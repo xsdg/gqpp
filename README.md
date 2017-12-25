@@ -124,7 +124,7 @@ Or: `git clone http://www.geeqie.org/git/geeqie.git`
 List compile options: `./autogen.sh --help`
 
 Common options:
-`./autogen.sh --disable-gtk3`,
+`./autogen.sh`,
 
 Compilation: `./autogen.sh [options]; make -j<no. of cpu cores> `
 
@@ -157,16 +157,16 @@ And either the ChangeLog file or [Geeqie ChangeLog](http://geeqie.org/cgi-bin/gi
 ## Requirements
 
 ### Required libraries:
-    GTK+ 3.00
-        www.gtk.org
-        enabled by default
-        disable with configure option: --disable-gtk3
-    or
     GTK+ 2.20
-        disabled by default when GTK+3 libraries are found.
-        enable with configure option: --disable-gtk3
+        enabled by default even when GTK+3 libraries are found.
+        disable with configure option: --enable-gtk3
         optional items map display and GPU acceleration are not available
         with GTK2
+    or
+    GTK+ 3.00
+        www.gtk.org
+        disabled by default when GTK+2 libraries are found.
+        enable with configure option: --enable-gtk3
 
         Note: GTK+3 is still somehow experimental. It is needed for some
         features but we have several complains about the GTK+3 usability.

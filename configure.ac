@@ -198,16 +198,11 @@ else
 fi
 
 AM_PATH_GLIB_2_0(2.24.0,,AC_MSG_ERROR(GLIB >= 2.24.0 not installed.))
-AC_ARG_ENABLE([gtk3], AC_HELP_STRING([--disable-gtk3], [use gtk2 instead of gtk3]),[gtk3="${enableval}"], [gtk3=m4_ifdef([AM_PATH_GTK_3_0], [auto], [no])])
+AC_ARG_ENABLE([gtk3], AC_HELP_STRING([--enable-gtk3], [use gtk3 instead of gtk2]),[gtk3="${enableval}"], [gtk3=m4_ifdef([AM_PATH_GTK_3_0], m4_ifdef([AM_PATH_GTK_2_0], [no], [auto]), [no])])
 
 if test x$gtk3 = xyes; then
     AC_MSG_WARN("Gtk3 enabled")
     m4_ifdef([AM_PATH_GTK_3_0], [AM_PATH_GTK_3_0(3.0.0,,AC_MSG_ERROR(GTK+ >= 3.0.0 not installed.))])
-else
-    if test x$gtk3 != xno; then
-       AC_MSG_WARN("Gtk3 is preferred...")
-       m4_ifdef([AM_PATH_GTK_3_0], [AM_PATH_GTK_3_0(3.0.0,,[gtk3=no])])
-    fi
 fi
 
 if test x$gtk3 = xno; then
