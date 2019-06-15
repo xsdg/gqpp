@@ -1,1 +1,0 @@
-web/geeqie-install-debian.sh
