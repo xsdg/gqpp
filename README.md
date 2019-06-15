@@ -1,5 +1,5 @@
       ###################################################################
-      ##                          Geeqie x.x                           ##
+      ##                          Geeqie 1.5                           ##
       ##                                                               ##
       ##              Copyright (C) 2008 - 2018 The Geeqie Team        ##
       ##              Copyright (C) 1999 - 2006 John Ellis.            ##
