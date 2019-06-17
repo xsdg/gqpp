@@ -234,6 +234,15 @@
     </note>
     <variablelist />
   </section>
+  <section id="TimezoneDatabase">
+    <title>Timezone Database</title>
+    <para>
+      The timezone database is used to correct exif time and date for UTC offset and Daylight Saving Time as described
+      <link linkend="GuideReferenceUTC">here.</link>
+      This option allows you to install or update the database. An Internet connection is required.
+    </para>
+    <variablelist />
+  </section>
   <section id="OnLineHelpSearch">
     <title>On-line help search</title>
     <para>

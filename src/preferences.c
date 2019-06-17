@@ -1691,6 +1691,19 @@ static void star_rating_rejected_test_cb(GtkWidget *widget, gpointer data)
 }
 
 /* general options tab */
+static void timezone_database_install_cb(GtkWidget *widget, gpointer data);
+typedef struct _TZData TZData;
+struct _TZData
+{
+	GenericDialog *gd;
+	GCancellable *cancellable;
+
+	GtkWidget *progress;
+	GFile *tmp_g_file;
+	GFile *timezone_database_gq;
+	gchar *timezone_database_user;
+};
+
 static void config_tab_general(GtkWidget *notebook)
 {
 	GtkWidget *vbox;
@@ -1707,6 +1720,12 @@ static void config_tab_general(GtkWidget *notebook)
 	GtkWidget *star_rating_entry;
 	GString *str;
 	gchar *rating_symbol;
+	gchar *path;
+	gchar *basename;
+	GNetworkMonitor *net_mon;
+	GSocketConnectable *geeqie_org;
+	gboolean internet_available;
+	TZData *tz;
 
 	vbox = scrolled_notebook_page(notebook, _("General"));
 
@@ -1759,6 +1778,8 @@ static void config_tab_general(GtkWidget *notebook)
 // 	pref_checkbox_new_int(group, _("Ignore embedded metadata if size is too small"),
 // 			      options->thumbnails.use_ft_metadata_small, &c_options->thumbnails.use_ft_metadata_small);
 #endif
+
+	pref_spacer(group, PREF_PAD_GROUP);
 
 	group = pref_group_new(vbox, FALSE, _("Star Rating"), GTK_ORIENTATION_VERTICAL);
 
@@ -1829,6 +1850,8 @@ static void config_tab_general(GtkWidget *notebook)
 	g_string_free(str, TRUE);
 	g_free(rating_symbol);
 
+	pref_spacer(group, PREF_PAD_GROUP);
+
 	group = pref_group_new(vbox, FALSE, _("Slide show"), GTK_ORIENTATION_VERTICAL);
 
 	c_options->slideshow.delay = options->slideshow.delay;
@@ -1859,6 +1882,8 @@ static void config_tab_general(GtkWidget *notebook)
 	pref_checkbox_new_int(group, _("Random"), options->slideshow.random, &c_options->slideshow.random);
 	pref_checkbox_new_int(group, _("Repeat"), options->slideshow.repeat, &c_options->slideshow.repeat);
 
+	pref_spacer(group, PREF_PAD_GROUP);
+
 	group = pref_group_new(vbox, FALSE, _("Image loading and caching"), GTK_ORIENTATION_VERTICAL);
 
 	pref_spin_new_int(group, _("Decoded image cache size (Mb):"), NULL,
@@ -1868,6 +1893,8 @@ static void config_tab_general(GtkWidget *notebook)
 
 	pref_checkbox_new_int(group, _("Refresh on file change"),
 			      options->update_on_time_change, &c_options->update_on_time_change);
+
+	pref_spacer(group, PREF_PAD_GROUP);
 
 	group = pref_group_new(vbox, FALSE, _("Info sidebar heights"), GTK_ORIENTATION_VERTICAL);
 	pref_label_new(group, _("NOTE! Geeqie must be restarted for changes to take effect"));
@@ -1885,10 +1912,56 @@ static void config_tab_general(GtkWidget *notebook)
 				 1, 9999, 1,
 				 options->info_rating.height, &c_options->info_rating.height);
 
+	pref_spacer(group, PREF_PAD_GROUP);
+
 	group = pref_group_new(vbox, FALSE, _("Show predefined keyword tree"), GTK_ORIENTATION_VERTICAL);
 
 	pref_checkbox_new_int(group, _("Show predefined keyword tree (NOTE! Geeqie must be restarted for change to take effect)"),
 				options->show_predefined_keyword_tree, &c_options->show_predefined_keyword_tree);
+
+	pref_spacer(group, PREF_PAD_GROUP);
+
+	net_mon = g_network_monitor_get_default();
+	geeqie_org = g_network_address_parse_uri(GQ_WEBSITE, 80, NULL);
+	internet_available = g_network_monitor_can_reach(net_mon, geeqie_org, NULL, NULL);
+	g_object_unref(geeqie_org);
+
+	group = pref_group_new(vbox, FALSE, _("Timezone database"), GTK_ORIENTATION_VERTICAL);
+	hbox = pref_box_new(group, TRUE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
+
+	if (!internet_available)
+		{
+		gtk_widget_set_sensitive(group, FALSE);
+		}
+
+	tz = g_new0(TZData, 1);
+
+	path = path_from_utf8(TIMEZONE_DATABASE);
+	basename = g_path_get_basename(path);
+	tz->timezone_database_user = g_build_filename(get_rc_dir(), basename, NULL);
+	g_free(path);
+	g_free(basename);
+
+	if (isfile(tz->timezone_database_user))
+		{
+		button = pref_button_new(GTK_WIDGET(hbox), NULL, _("Update"), FALSE, G_CALLBACK(timezone_database_install_cb), tz);
+		}
+	else
+		{
+		button = pref_button_new(GTK_WIDGET(hbox), NULL, _("Install"), FALSE, G_CALLBACK(timezone_database_install_cb), tz);
+		}
+
+	if (!internet_available)
+		{
+		gtk_widget_set_tooltip_text(button, _("No Internet connection!\nThe timezone database is used to display exif time and date\ncorrected for UTC offset and Daylight Saving Time"));
+		}
+	else
+		{
+		gtk_widget_set_tooltip_text(button, _("The timezone database is used to display exif time and date\ncorrected for UTC offset and Daylight Saving Time"));
+		}
+	gtk_widget_show(button);
+
+	pref_spacer(group, PREF_PAD_GROUP);
 
 	group = pref_group_new(vbox, FALSE, _("On-line help search engine"), GTK_ORIENTATION_VERTICAL);
 
@@ -3503,5 +3576,99 @@ static void image_overlay_set_text_colours()
 	c_options->image_overlay.background_green = options->image_overlay.background_green;
 	c_options->image_overlay.background_blue = options->image_overlay.background_blue;
 	c_options->image_overlay.background_alpha = options->image_overlay.background_alpha;
+}
+
+/*
+ *-----------------------------------------------------------------------------
+ * timezone database routines
+ *-----------------------------------------------------------------------------
+ */
+
+static void timezone_async_ready_cb(GObject *source_object, GAsyncResult *res, gpointer data)
+{
+	GError *error = NULL;
+	TZData *tz = data;
+	gchar *tmp_filename;
+
+	if (!g_cancellable_is_cancelled(tz->cancellable))
+		{
+		generic_dialog_close(tz->gd);
+		}
+
+
+	if (g_file_copy_finish(G_FILE(source_object), res, &error))
+		{
+		tmp_filename = g_file_get_parse_name(tz->tmp_g_file);
+		move_file(tmp_filename, tz->timezone_database_user);
+		g_free(tmp_filename);
+		}
+	else
+		{
+		file_util_warning_dialog(_("Timezone database download failed"), error->message, GTK_STOCK_DIALOG_ERROR, NULL);
+		}
+
+	g_file_delete(tz->tmp_g_file, NULL, &error);
+	g_object_unref(tz->tmp_g_file);
+	tz->tmp_g_file = NULL;
+	g_object_unref(tz->cancellable);
+	g_object_unref(tz->timezone_database_gq);
+}
+
+static void timezone_progress_cb(goffset current_num_bytes, goffset total_num_bytes, gpointer data)
+{
+	TZData *tz = data;
+
+	if (!g_cancellable_is_cancelled(tz->cancellable))
+		{
+		gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(tz->progress), (gdouble)current_num_bytes / total_num_bytes);
+		}
+}
+
+static void timezone_cancel_button_cb(GenericDialog *gd, gpointer data)
+{
+	TZData *tz = data;
+	GError *error = NULL;
+
+	g_cancellable_cancel(tz->cancellable);
+}
+
+static void timezone_database_install_cb(GtkWidget *widget, gpointer data)
+{
+	TZData *tz = data;
+	GError *error = NULL;
+	GFileIOStream *io_stream;
+
+	if (tz->tmp_g_file)
+		{
+		return;
+		}
+
+	tz->tmp_g_file = g_file_new_tmp("geeqie_timezone_XXXXXX", &io_stream, &error);
+
+	if (error)
+		{
+		file_util_warning_dialog(_("Timezone database download failed"), error->message, GTK_STOCK_DIALOG_ERROR, NULL);
+		log_printf("Error: Download timezone database failed:\n%s", error->message);
+		g_error_free(error);
+		g_object_unref(tz->tmp_g_file);
+		}
+	else
+		{
+		tz->timezone_database_gq = g_file_new_for_uri(TIMEZONE_DATABASE);
+
+		tz->gd = generic_dialog_new(_("Timezone database"), "download_timezone_database", NULL, TRUE, timezone_cancel_button_cb, tz);
+
+		generic_dialog_add_message(tz->gd, GTK_STOCK_DIALOG_INFO, _("Downloading timezone database"), NULL, FALSE);
+
+		tz->progress = gtk_progress_bar_new();
+		gtk_box_pack_start(GTK_BOX(tz->gd->vbox), tz->progress, FALSE, FALSE, 0);
+		gtk_widget_show(tz->progress);
+
+		gtk_widget_show(tz->gd->dialog);
+		tz->cancellable = g_cancellable_new();
+		g_file_copy_async(tz->timezone_database_gq, tz->tmp_g_file, G_FILE_COPY_OVERWRITE, G_PRIORITY_LOW, tz->cancellable, timezone_progress_cb, tz, timezone_async_ready_cb, tz);
+
+		gtk_button_set_label(GTK_BUTTON(widget), _("Update"));
+		}
 }
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

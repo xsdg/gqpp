@@ -27,8 +27,16 @@
 
 #include <stdint.h>
 
-#ifndef _ZONEDETECT_H_
-#define _ZONEDETECT_H_
+#ifndef INCL_ZONEDETECT_H_
+#define INCL_ZONEDETECT_H_
+
+#if !defined(ZD_EXPORT)
+  #if defined(_MSC_VER)
+    #define ZD_EXPORT __declspec(dllimport)
+  #else
+    #define ZD_EXPORT
+  #endif
+#endif
 
 typedef enum {
     ZD_LOOKUP_IGNORE = -3,
@@ -46,8 +54,8 @@ typedef struct {
 
     uint32_t metaId;
     uint8_t numFields;
-    char** fieldNames;
-    char** data;
+    char **fieldNames;
+    char **data;
 } ZoneDetectResult;
 
 struct ZoneDetectOpaque;
@@ -57,18 +65,21 @@ typedef struct ZoneDetectOpaque ZoneDetect;
 extern "C" {
 #endif
 
-ZoneDetect* ZDOpenDatabase(const char* path);
-void        ZDCloseDatabase(ZoneDetect* library);
+ZD_EXPORT ZoneDetect *ZDOpenDatabase(const char *path);
+ZD_EXPORT void        ZDCloseDatabase(ZoneDetect *library);
 
-ZoneDetectResult* ZDLookup(ZoneDetect* library, float lat, float lon, float* safezone);
-void              ZDFreeResults(ZoneDetectResult* results);
+ZD_EXPORT ZoneDetectResult *ZDLookup(const ZoneDetect *library, float lat, float lon, float *safezone);
+ZD_EXPORT void              ZDFreeResults(ZoneDetectResult *results);
 
-const char* ZDGetNotice(ZoneDetect* library);
-uint8_t     ZDGetTableType(ZoneDetect* library);
-const char* ZDLookupResultToString(ZDLookupResult result);
+ZD_EXPORT const char *ZDGetNotice(const ZoneDetect *library);
+ZD_EXPORT uint8_t     ZDGetTableType(const ZoneDetect *library);
+ZD_EXPORT const char *ZDLookupResultToString(ZDLookupResult result);
+
+ZD_EXPORT int         ZDSetErrorHandler(void (*handler)(int, int));
+ZD_EXPORT const char *ZDGetErrorString(int errZD);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+#endif // INCL_ZONEDETECT_H_

@@ -15,4 +15,7 @@ appropriate to keep translations in sync with the code.
 
 Maintainers, don't forget to run make update-po before releases.
 
+The scripts folder contains a script for generating the timezone database.
+The database will need updating occasionally.
+
 Translators, please have a look at po/README.

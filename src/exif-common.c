@@ -684,10 +684,12 @@ static gboolean exif_build_tz_data(ExifData *exif, gchar **exif_date_time, gchar
 	gchar *lat_min;
 	gchar *lon_deg;
 	gchar *lon_min;
-	gchar *zd_path;
+	gchar *timezone_path;
 	ZoneDetect *cd;
 	ZoneDetectResult *results;
 	gboolean ret = FALSE;
+	gchar *basename;
+	gchar *path;
 
 	text_latitude = exif_get_data_as_text(exif, "Exif.GPSInfo.GPSLatitude");
 	text_longitude = exif_get_data_as_text(exif, "Exif.GPSInfo.GPSLongitude");
@@ -713,10 +715,12 @@ static gboolean exif_build_tz_data(ExifData *exif, gchar **exif_date_time, gchar
 			longitude = -longitude;
 			}
 
-		zd_path = g_build_filename(GQ_BIN_DIR, TIMEZONE_DATABASE, NULL);
-		if (g_file_test(zd_path, G_FILE_TEST_EXISTS))
+		path = path_from_utf8(TIMEZONE_DATABASE);
+		basename = g_path_get_basename(path);
+		timezone_path = g_build_filename(get_rc_dir(), basename, NULL);
+		if (g_file_test(timezone_path, G_FILE_TEST_EXISTS))
 			{
-			cd = ZDOpenDatabase(zd_path);
+			cd = ZDOpenDatabase(timezone_path);
 			if (cd)
 				{
 				results = ZDLookup(cd, latitude, longitude, NULL);
@@ -728,11 +732,13 @@ static gboolean exif_build_tz_data(ExifData *exif, gchar **exif_date_time, gchar
 				}
 			else
 				{
-				log_printf("Error: Init of timezone database %s failed\n", zd_path);
+				log_printf("Error: Init of timezone database %s failed\n", timezone_path);
 				}
 			ZDCloseDatabase(cd);
 			}
-		g_free(zd_path);
+		g_free(path);
+		g_free(timezone_path);
+		g_free(basename);
 		}
 
 	if (ret && text_date && text_time)
