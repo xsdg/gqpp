@@ -53,6 +53,7 @@
 #include "filefilter.h"
 #include "filecache.h"
 #include "format_raw.h"
+#include "glua.h"
 #include "ui_fileops.h"
 #include "cache.h"
 #include "jpeg_parser.h"
@@ -1218,5 +1219,28 @@ gchar *metadata_file_info(FileData *fd, const gchar *key, MetadataFormat format)
 	return g_strdup("");
 }
 
+#ifdef HAVE_LUA
+gchar *metadata_lua_info(FileData *fd, const gchar *key, MetadataFormat format)
+{
+	gchar *script_name;
+	gchar *script_name_utf8;
+	gchar *data;
+	gchar *raw_data;
+	gchar *valid_data;
 
+	script_name_utf8 = g_strdup(key + 4);
+	script_name = path_from_utf8(script_name_utf8);
+
+	raw_data = lua_callvalue(fd, script_name, NULL);
+	valid_data = g_utf8_make_valid(raw_data, -1);
+	data = g_utf8_substring(valid_data, 0, 150);
+
+	g_free(script_name);
+	g_free(script_name_utf8);
+	g_free(raw_data);
+	g_free(valid_data);
+
+	return data;
+}
+#endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

@@ -709,6 +709,12 @@ GList *metadata_read_list(FileData *fd, const gchar *key, MetadataFormat format)
 		{
 	        return g_list_append(NULL, metadata_file_info(fd, key, format));
 		}
+#ifdef HAVE_LUA
+	else if (strncmp(key, "lua.", 4) == 0)
+		{
+		return g_list_append(NULL, metadata_lua_info(fd, key, format));
+		}
+#endif
 
 	exif = exif_read_fd(fd); /* this is cached, thus inexpensive */
 	if (!exif) return NULL;

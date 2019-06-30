@@ -206,7 +206,7 @@
       <link linkend="GuideOtherWindowsExif" endterm="titleGuideOtherWindowsExif" />
       onto any pane.
     </para>
-    <para>As an aide, in addition to standard metadata tags, Geeqie provides certain pre-formatted tags. These are:</para>
+    <para>As an aide, in addition to standard metadata tags, Geeqie can call lua scripts and also provides certain pre-formatted tags. These tags are:</para>
     <table id="formatted_exif">
       <tgroup cols="2" rowsep="1" colsep="1">
         <tbody>
@@ -339,6 +339,13 @@
           <row>
             <entry>file.link</entry>
             <entry>if the file is a symbolic link, shows the path of the source file</entry>
+          </row>
+          <row>
+            <entry>lua.&lt;lua script&gt;</entry>
+            <entry>
+              Call a lua script
+              <footnote id='lua_ref1'>The output is expected to be text.</footnote>
+            </entry>
           </row>
         </tbody>
       </tgroup>

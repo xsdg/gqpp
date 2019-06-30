@@ -4,7 +4,9 @@
   <para>
     Lua scripts allow the functionality of Geeqie to be extended. Lua scripts may only be used in conjunction with the
     <link linkend="OverlayScreenDisplay">Overlay Screen Display</link>
-    and the
+    ,
+    <link linkend="GuideSidebarsInfo" endterm="Listpanes-ExifFileinfoCopyrightLocationandGPS">List panes</link>
+    on the Info Sidebar, and the
     <programlisting xml:space="preserve">geeqie --remote --lua:</programlisting>
     command line option.
   </para>
