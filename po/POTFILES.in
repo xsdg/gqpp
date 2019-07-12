@@ -1,6 +1,4 @@
 geeqie.desktop.in
-plugins/import/geeqie-import-geeqie.desktop.in
-plugins/import/geeqie-import-gqview.desktop.in
 plugins/export-jpeg/export-jpeg.desktop.in
 plugins/tethered-photography/tethered-photography.desktop.in
 plugins/camera-import/camera-import.desktop.in
