@@ -4737,7 +4737,7 @@ msgstr ""
 msgid ""
 "2) Save metadata in '.metadata' folder, local to image folder (non-standard)"
 msgstr ""
-"2) Сохранять метаданные в подкаталоге '.metadata' каатлога с изображениями "
+"2) Сохранять метаданные в подкаталоге '.metadata' каталога с изображениями "
 "(настандартное поведение)"
 
 #: ../src/preferences.c:2114
