@@ -19,6 +19,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#include <locale.h>
+
 #include "main.h"
 #include "metadata.h"
 
@@ -859,6 +861,7 @@ gboolean metadata_write_GPS_coord(FileData *fd, const gchar *key, gdouble value)
 	char *coordinate;
 	char *ref;
 	gboolean ok = TRUE;
+	char *old_locale, *saved_locale;
 
 	param = value;
 	if (param < 0)
@@ -883,8 +886,20 @@ gboolean metadata_write_GPS_coord(FileData *fd, const gchar *key, gdouble value)
 
 	if (ok)
 		{
+		/* Avoid locale problems with commas and decimal points in numbers */
+		old_locale = setlocale(LC_ALL, NULL);
+		saved_locale = strdup(old_locale);
+		if (saved_locale == NULL)
+			{
+			return FALSE;
+			}
+		setlocale(LC_ALL, "C");
+
 		coordinate = g_strdup_printf("%i,%lf,%s", deg, min, ref);
 		metadata_write_string(fd, key, coordinate );
+
+		setlocale(LC_ALL, saved_locale);
+		free(saved_locale);
 		g_free(coordinate);
 		}
 
