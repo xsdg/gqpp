@@ -703,6 +703,10 @@ static gboolean exif_build_tz_data(ExifData *exif, gchar **exif_date_time, gchar
 		{
 		lat_deg = strtok(text_latitude, "deg'");
 		lat_min = strtok(NULL, "deg'");
+		if (!lat_deg || !lat_min)
+			{
+			return FALSE;
+			}
 		latitude = atof(lat_deg) + atof(lat_min) / 60;
 		if (!g_strcmp0(text_latitude_ref, "South"))
 			{
@@ -710,6 +714,10 @@ static gboolean exif_build_tz_data(ExifData *exif, gchar **exif_date_time, gchar
 			}
 		lon_deg = strtok(text_longitude, "deg'");
 		lon_min = strtok(NULL, "deg'");
+		if (!lon_deg || !lon_min)
+			{
+			return FALSE;
+			}
 		longitude = atof(lon_deg) + atof(lon_min) / 60;
 		if (!g_strcmp0(text_longitude_ref, "West"))
 			{
