@@ -41,6 +41,25 @@
 static lua_State *L; /** The LUA object needed for all operations (NOTE: That is
 		       * a upper-case variable to match the documentation!) */
 
+/* Taking that definition from lua 5.1 source */
+#if defined(LUA_VERSION_NUM) && LUA_VERSION_NUM >= 502
+int luaL_typerror(lua_State *L, int narg, const char *tname)
+{
+	const char *msg = lua_pushfstring(L, "%s expected, got %s", tname, luaL_typename(L, narg));
+	return luaL_argerror(L, narg, msg);
+}
+
+# define LUA_register_meta(L, meta) luaL_setfuncs(L, meta, 0);
+# define LUA_register_global(L, string, func) \
+	lua_newtable(L); \
+	luaL_setfuncs(L, func, 0); \
+	lua_pushvalue(L, -1); \
+	lua_setglobal(L, string)
+#else
+# define LUA_register_meta(L, meta) luaL_register(L, NULL, meta)
+# define LUA_register_global(L, string, func) luaL_register(L, string, func)
+#endif
+
 static FileData *lua_check_image(lua_State *L, int index)
 {
 	FileData **fd;
@@ -211,9 +230,9 @@ void lua_init(void)
 			{"get_marks", lua_image_get_marks},
 			{NULL, NULL}
 	};
-	luaL_register(L, "Image", image_methods);
+	LUA_register_global(L, "Image", image_methods);
 	luaL_newmetatable(L, "Image");
-	luaL_register(L, NULL, meta_methods);
+	LUA_register_meta(L, meta_methods);
 	lua_pushliteral(L, "__index");
 	lua_pushvalue(L, -3);
 	lua_settable(L, -3);
@@ -228,9 +247,9 @@ void lua_init(void)
 			{"get_datum", lua_exif_get_datum},
 			{NULL, NULL}
 	};
-	luaL_register(L, "Exif", exif_methods);
+	LUA_register_global(L, "Exif", exif_methods);
 	luaL_newmetatable(L, "Exif");
-	luaL_register(L, NULL, meta_methods);
+	LUA_register_meta(L, meta_methods);
 	lua_pushliteral(L, "__index");
 	lua_pushvalue(L, -3);
 	lua_settable(L, -3);
