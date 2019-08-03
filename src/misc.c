@@ -23,6 +23,7 @@
 #include "ui_fileops.h"
 
 #include <langinfo.h>
+#include <locale.h>
 
 gdouble get_zoom_increment(void)
 {
@@ -243,13 +244,32 @@ int runcmd(gchar *cmd)
  * @brief Returns integer representing first_day_of_week
  * @returns Integer in range 1 to 7
  * 
- * Uses current locale to get first day of week
+ * Uses current locale to get first day of week.
+ * If _NL_TIME_FIRST_WEEKDAY is not available, ISO 8601
+ * states first day of week is Monday.
+ * USA, Mexico and Canada (and others) use Sunday as first day of week.
  * 
  * Sunday == 1
  */
 gint date_get_first_day_of_week()
 {
+	gchar *dot;
+	gchar *current_locale;
+
+#ifdef HAVE__NL_TIME_FIRST_WEEKDAY
 	return nl_langinfo(_NL_TIME_FIRST_WEEKDAY)[0];
+#else
+	current_locale = setlocale(LC_ALL, NULL);
+	dot = strstr(current_locale, ".");
+	if ((strncmp(dot - 2, "US", 2) == 0) || (strncmp(dot - 2, "MX", 2) == 0) || (strncmp(dot - 2, "CA", 2) == 0))
+		{
+		return 1;
+		}
+	else
+		{
+		return 2;
+		}
+#endif
 }
 
 /**

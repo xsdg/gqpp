@@ -583,6 +583,21 @@ AC_SUBST(PDF_LIBS)
 
 AM_CONDITIONAL(HAVE_MARKDOWN, [ "$(command -v markdown)" ])
 
+# _NL_TIME_FIRST_WEEKDAY support
+# note that it is an enum and not a define
+# ----------------------------------------------------------------------
+
+AC_MSG_CHECKING([for _NL_TIME_FIRST_WEEKDAY])
+AC_TRY_LINK([#include <langinfo.h>], [
+char c;
+c = *((unsigned char *)  nl_langinfo(_NL_TIME_FIRST_WEEKDAY));
+], nl_ok=yes, nl_ok=no)
+AC_MSG_RESULT($nl_ok)
+if test "$nl_ok" = "yes"; then
+  AC_DEFINE([HAVE__NL_TIME_FIRST_WEEKDAY], [1],
+      [Define if _NL_TIME_FIRST_WEEKDAY is available])
+fi
+
 # ----------------------------------------------------------------------
 
 AH_TOP([
