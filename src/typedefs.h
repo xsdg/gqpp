@@ -362,12 +362,16 @@ struct _ThumbLoader
 struct _AnimationData
 {
 	ImageWindow *iw;
+	LayoutWindow *lw;
 	GdkPixbufAnimation *gpa;
 	GdkPixbufAnimationIter *iter;
 	GdkPixbuf *gpb;
 	FileData *data_adr;
 	guint delay;
 	gboolean valid;
+	GCancellable *cancellable;
+	GFile *in_file;
+	GFileInputStream *gfstream;
 };
 
 struct _CollectInfo
