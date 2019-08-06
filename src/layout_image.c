@@ -398,6 +398,8 @@ static void animation_async_ready_cb(GObject *source_object, GAsyncResult *res, 
 				if (animation->iter = gdk_pixbuf_animation_get_iter(animation->gpa,NULL))
 					{
 					animation->iter = gdk_pixbuf_animation_get_iter(animation->gpa, NULL);
+					// FIXME: the reference count is being incremented here. Reason unknown.
+					g_object_unref(animation->gpa);
 					animation->data_adr = animation->lw->image->image_fd;
 					animation->delay = gdk_pixbuf_animation_iter_get_delay_time(animation->iter);
 					animation->valid = TRUE;
