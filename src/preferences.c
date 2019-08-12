@@ -3497,7 +3497,8 @@ void show_about_window(LayoutWindow *lw)
 	gint i_authors = 0;
 	gchar *path;
 	GString *copyright;
-	gchar *zd_path;
+	gchar *timezone_path;
+	gchar *basename;
 	ZoneDetect *cd;
 	FILE *fp = NULL;
 #define LINE_LENGTH 1000
@@ -3506,14 +3507,21 @@ void show_about_window(LayoutWindow *lw)
 	copyright = g_string_new(NULL);
 	copyright = g_string_append(copyright, "This program comes with absolutely no warranty.\nGNU General Public License, version 2 or later.\nSee https://www.gnu.org/licenses/old-licenses/gpl-2.0.html\n\n");
 
-	zd_path = g_build_filename(GQ_BIN_DIR, TIMEZONE_DATABASE, NULL);
-	cd = ZDOpenDatabase(zd_path);
-	if (cd)
+	path = path_from_utf8(TIMEZONE_DATABASE);
+	basename = g_path_get_basename(path);
+	timezone_path = g_build_filename(get_rc_dir(), basename, NULL);
+	if (g_file_test(timezone_path, G_FILE_TEST_EXISTS))
 		{
-		copyright = g_string_append(copyright, ZDGetNotice(cd));
+		cd = ZDOpenDatabase(timezone_path);
+		if (cd)
+			{
+			copyright = g_string_append(copyright, ZDGetNotice(cd));
+			ZDCloseDatabase(cd);
+			}
 		}
-	ZDCloseDatabase(cd);
-	g_free(zd_path);
+	g_free(path);
+	g_free(timezone_path);
+	g_free(basename);
 
 	authors[0] = NULL;
 	path = g_build_filename(GQ_HELPDIR, "AUTHORS", NULL);
