@@ -1,4 +1,84 @@
-commit c029c5f0
+commit bd1ecdb6
+Author: Colin Clark <colin.clark@cclark.uk>
+Date:   Mon Aug 12 10:25:26 2019 +0100
+
+    Fix ZoneDetect licence bug
+    
+    ZoneDetect licence was not displayed
+
+commit 18afee58
+Author: Colin Clark <colin.clark@cclark.uk>
+Date:   Tue Aug 6 12:49:55 2019 +0100
+
+    Bug fix #626: Animated GIFS lead to high CPU load
+    
+    https://github.com/BestImageViewer/geeqie/issues/626
+    
+    Cure a memory leak.
+    A less significant memory leak remains.
+
+commit bc94f215
+Author: Colin Clark <colin.clark@cclark.uk>
+Date:   Mon Aug 5 12:56:48 2019 +0100
+
+    Bug fix: Eliminate runtime error
+    
+    Eliminate runtime error: "gdk_pixbuf_format_get_name: assertion 'format
+    != NULL' failed"
+
+commit 538c3261
+Author: Colin Clark <colin.clark@cclark.uk>
+Date:   Sun Aug 4 17:08:01 2019 +0100
+
+    Fix #626: Animated GIFS lead to high CPU load
+    
+    https://github.com/BestImageViewer/geeqie/issues/626
+    
+    File is read asynchronously, so no longer blocks while the file is read.
+    Cpu load is still high, but this is unavoidable.
+
+commit d7d01330
+Author: Dmitry Marakasov <>
+Date:   Sat Aug 3 12:34:42 2019 +0100
+
+    Fix #703: Fix build on non-glibc platforms
+    
+    https://github.com/BestImageViewer/geeqie/pull/703
+
+commit 662438ad
+Author: Colin Clark <colin.clark@cclark.uk>
+Date:   Sat Aug 3 12:25:16 2019 +0100
+
+    Fix #683: Build fails on macOS due to use of _NL_TIME_FIRST_WEEKDAY
+    
+    https://github.com/BestImageViewer/geeqie/issues/683
+
+commit ce3619e6
+Author: Klaus Ethgen <Klaus@Ethgen.de>
+Date:   Sat Jul 27 09:30:15 2019 +0100
+
+    Compatibility function for lua > 5.1
+
+commit 28221d2f
+Author: Klaus Ethgen <Klaus@Ethgen.de>
+Date:   Sun Jul 28 20:24:06 2019 +0100
+
+    Make the zoom lable a bit bigger
+    
+    Thanks Sami Farin for reporting and patch.
+    
+    Closes #686.
+
+commit 87e76531
+Author: Klaus Ethgen <Klaus@Ethgen.de>
+Date:   Sun Jul 28 23:14:39 2019 +0100
+
+    Limiting to more recent version of glib and fix travis
+    
+    g_utf8_make_valid was implemented with glib 2.52. That also causes
+    builds on ubuntu trusty fail.
+
+commit 17dfa054
 Author: Colin Clark <colin.clark@cclark.uk>
 Date:   Thu Jul 25 09:25:28 2019 +0100
 
@@ -6,7 +86,7 @@ Date:   Thu Jul 25 09:25:28 2019 +0100
     
     Improved error detection
 
-commit 66aa92c5
+commit 69b6794d
 Author: Colin Clark <colin.clark@cclark.uk>
 Date:   Wed Jul 24 16:47:06 2019 +0100
 
@@ -17,19 +97,19 @@ Date:   Wed Jul 24 16:47:06 2019 +0100
     European locales use a comma as a decimal separator.
     The XMP spec. specifies a dot as a decimal separator.
 
-commit 931cfae9
+commit e3f1bab5
 Author: ÐÐ¸ÐºÑÐ¾Ñ ÐÐ°Ð¹ÑÑÑÐµÐ½ÐºÐ¾ <>
 Date:   Fri Jul 12 10:43:56 2019 +0100
 
     Update Russian translation
 
-commit cf2c3d52
+commit 435502b0
 Author: Colin Clark <colin.clark@cclark.uk>
 Date:   Fri Jul 12 10:34:37 2019 +0100
 
     Remove references to obsolete desktop files
 
-commit 85fe8e1f
+commit 99a30398
 Author: Colin Clark <colin.clark@cclark.uk>
 Date:   Sun Jun 30 12:22:19 2019 +0100
 
@@ -43,7 +123,7 @@ Date:   Sun Jun 30 12:22:19 2019 +0100
     
     The output of the script should of course be text.
 
-commit ff0019ae
+commit 2038ab56
 Author: Colin Clark <colin.clark@cclark.uk>
 Date:   Sat Jun 22 16:37:40 2019 +0100
 
@@ -52,7 +132,7 @@ Date:   Sat Jun 22 16:37:40 2019 +0100
     When the Start-up directory radio buttons were initialized, the setting
     always reverted to No change.
 
-commit 7dc08907
+commit cc9a39ff
 Author: Colin Clark <colin.clark@cclark.uk>
 Date:   Mon Jun 17 11:32:22 2019 +0100
 

@@ -159,6 +159,9 @@
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
 
+/* Define if _NL_TIME_FIRST_WEEKDAY is available */
+#undef HAVE__NL_TIME_FIRST_WEEKDAY
+
 /* Build on native win32 OS */
 #undef OS_WIN32
 

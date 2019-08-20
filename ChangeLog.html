@@ -1,39 +1,84 @@
 <html>
 <body>
 <ul>
-<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=c029c5f0f80c49ef89f3548f3810c4d6027a9022">view commit </a></li><p>Author: Colin Clark<br>Date: 2019-07-25<br><textarea rows=4 cols=100>Bug fix: Compute TimeZone data 
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=bd1ecdb6d863300c434e24d6b91b257cdf82547c">view commit </a></li><p>Author: Colin Clark<br>Date: 2019-08-12<br><textarea rows=4 cols=100>Fix ZoneDetect licence bug 
+
+ZoneDetect licence was not displayed
+</textarea><br><br></p>
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=18afee58f0d7d576959a127cd42a466fce5290b3">view commit </a></li><p>Author: Colin Clark<br>Date: 2019-08-06<br><textarea rows=4 cols=100>Bug fix #626: Animated GIFS lead to high CPU load 
+
+https://github.com/BestImageViewer/geeqie/issues/626
+
+Cure a memory leak.
+A less significant memory leak remains.
+</textarea><br><br></p>
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=bc94f215e4435be50531d6a687bbdb966e1ae442">view commit </a></li><p>Author: Colin Clark<br>Date: 2019-08-05<br><textarea rows=4 cols=100>Bug fix: Eliminate runtime error 
+
+Eliminate runtime error: "gdk_pixbuf_format_get_name: assertion 'format
+!= NULL' failed"
+</textarea><br><br></p>
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=538c3261aba3d8f6b5177bc0163e134b0de9392a">view commit </a></li><p>Author: Colin Clark<br>Date: 2019-08-04<br><textarea rows=4 cols=100>Fix #626: Animated GIFS lead to high CPU load 
+
+https://github.com/BestImageViewer/geeqie/issues/626
+
+File is read asynchronously, so no longer blocks while the file is read.
+Cpu load is still high, but this is unavoidable.
+</textarea><br><br></p>
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=d7d0133043064971077c9e1effa4edd35aaaf902">view commit </a></li><p>Author: Dmitry Marakasov<br>Date: 2019-08-03<br><textarea rows=4 cols=100>Fix #703: Fix build on non-glibc platforms 
+
+https://github.com/BestImageViewer/geeqie/pull/703
+</textarea><br><br></p>
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=662438ad30d3ca609b7ca467fadf228abd16a642">view commit </a></li><p>Author: Colin Clark<br>Date: 2019-08-03<br><textarea rows=4 cols=100>Fix #683: Build fails on macOS due to use of _NL_TIME_FIRST_WEEKDAY 
+
+https://github.com/BestImageViewer/geeqie/issues/683
+</textarea><br><br></p>
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=ce3619e619c99eeca253bc2a842d31451b57c378">view commit </a></li><p>Author: Klaus Ethgen<br>Date: 2019-07-27<br><textarea rows=4 cols=100>Compatibility function for lua > 5.1 
+
+</textarea><br><br></p>
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=28221d2f86f54192e5385f4e5ef4ddda45c45f0d">view commit </a></li><p>Author: Klaus Ethgen<br>Date: 2019-07-28<br><textarea rows=4 cols=100>Make the zoom lable a bit bigger 
+
+Thanks Sami Farin for reporting and patch.
+
+Closes #686.
+</textarea><br><br></p>
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=87e765314a6f7c7d5ed850dea2a63b62965c5e46">view commit </a></li><p>Author: Klaus Ethgen<br>Date: 2019-07-28<br><textarea rows=4 cols=100>Limiting to more recent version of glib and fix travis 
+
+g_utf8_make_valid was implemented with glib 2.52. That also causes
+builds on ubuntu trusty fail.
+</textarea><br><br></p>
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=17dfa05433478f50441281b425fba75470e5700d">view commit </a></li><p>Author: Colin Clark<br>Date: 2019-07-25<br><textarea rows=4 cols=100>Bug fix: Compute TimeZone data 
 
 Improved error detection
 </textarea><br><br></p>
-<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=66aa92c5b2ab1f9bf26841b732b500afef46db48">view commit </a></li><p>Author: Colin Clark<br>Date: 2019-07-24<br><textarea rows=4 cols=100>Fix #691: wrong GPS 
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=69b6794d32a19c8985e73fe85188f6c128b8f2f5">view commit </a></li><p>Author: Colin Clark<br>Date: 2019-07-24<br><textarea rows=4 cols=100>Fix #691: wrong GPS 
 
 https://github.com/BestImageViewer/geeqie/issues/691
 
 European locales use a comma as a decimal separator.
 The XMP spec. specifies a dot as a decimal separator.
 </textarea><br><br></p>
-<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=931cfae999c87fd38700df178624788182c23868">view commit </a></li><p>Author: ÐÐ¸ÐºÑÐ¾Ñ ÐÐ°Ð¹ÑÑÑÐµÐ½ÐºÐ¾<br>Date: 2019-07-12<br><textarea rows=4 cols=100>Update Russian translation 
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=e3f1bab5ed4686576b707bf54d237558cd5f9e31">view commit </a></li><p>Author: ÐÐ¸ÐºÑÐ¾Ñ ÐÐ°Ð¹ÑÑÑÐµÐ½ÐºÐ¾<br>Date: 2019-07-12<br><textarea rows=4 cols=100>Update Russian translation 
 
 </textarea><br><br></p>
-<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=cf2c3d525a553bc3989afecbdd44835480fa2c00">view commit </a></li><p>Author: Colin Clark<br>Date: 2019-07-12<br><textarea rows=4 cols=100>Remove references to obsolete desktop files 
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=435502b033bd89b12bba42b6b5f5d293d9de88d1">view commit </a></li><p>Author: Colin Clark<br>Date: 2019-07-12<br><textarea rows=4 cols=100>Remove references to obsolete desktop files 
 
 </textarea><br><br></p>
-<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=85fe8e1fdd642cc8538cfa016e8773699d536b34">view commit </a></li><p>Author: Colin Clark<br>Date: 2019-06-30<br><textarea rows=4 cols=100>Enable lua scripts to be called from Info sidebar 
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=99a30398f7184ccbd313f5d589285f343d9eb658">view commit </a></li><p>Author: Colin Clark<br>Date: 2019-06-30<br><textarea rows=4 cols=100>Enable lua scripts to be called from Info sidebar 
 
 A lua script can be called from any of the List Panes in the Info
 sidebar.
 
 Add a new entry and in the Key field use:
-lua.<lua script name>
+lua.&lt;lua script name&gt;
 
 The output of the script should of course be text.
 </textarea><br><br></p>
-<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=ff0019ae0780e80bd0fef1336444b1804172b38c">view commit </a></li><p>Author: Colin Clark<br>Date: 2019-06-22<br><textarea rows=4 cols=100>Bug fix: Start-up directory setting not preserved 
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=2038ab5644598c95472977fce997d58f88f18d8c">view commit </a></li><p>Author: Colin Clark<br>Date: 2019-06-22<br><textarea rows=4 cols=100>Bug fix: Start-up directory setting not preserved 
 
 When the Start-up directory radio buttons were initialized, the setting
 always reverted to No change.
 </textarea><br><br></p>
-<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=7dc08907ff2439a6074e8c043c06e440d938dbba">view commit </a></li><p>Author: Colin Clark<br>Date: 2019-06-17<br><textarea rows=4 cols=100>Implement downloadable timezone database 
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=cc9a39fff411f20094b2ea09074bc541d0568330">view commit </a></li><p>Author: Colin Clark<br>Date: 2019-06-17<br><textarea rows=4 cols=100>Implement downloadable timezone database 
 
 Option in Preferences/General to download timezone database from
 geeqie.org/downloads
@@ -321,7 +366,7 @@ particularly appropriate, but its meaning should be clear.
 
 The target path is shown as a tooltip.
 </textarea><br><br></p>
-<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=d354f618240b2889c9bb895f11f6d439c4994e1b">view commit </a></li><p>Author: Colin Clark<br>Date: 2018-10-21<br><textarea rows=4 cols=100>Do not grab focus when --remote view:<file> is used 
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=d354f618240b2889c9bb895f11f6d439c4994e1b">view commit </a></li><p>Author: Colin Clark<br>Date: 2018-10-21<br><textarea rows=4 cols=100>Do not grab focus when --remote view:&lt;file&gt; is used 
 
 Ref:
 https://bugs.launchpad.net/ubuntu/+source/geeqie/+bug/1781858
@@ -932,11 +977,11 @@ titlebar. Off by default.
 <li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=01fd562adaacb04e680a655ada55ba983388eece">view commit </a></li><p>Author: Colin Clark<br>Date: 2018-04-01<br><textarea rows=4 cols=100>Additional remote commands for layout windows 
 
 Additional remote commands:
---remote --id:<ID>
+--remote --id:&lt;ID&gt;
 --remote --open-window
 --remote --close-window
 
-The id:<ID> parameter sends subsequent commands to the specified window.
+The id:&lt;ID&gt; parameter sends subsequent commands to the specified window.
 The window titlebar show the window identifier.
 </textarea><br><br></p>
 <li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=69022467c2db6ad8233114d743423e807cf35ded">view commit </a></li><p>Author: Colin Clark<br>Date: 2018-03-29<br><textarea rows=4 cols=100>Fix #162: Cannot symlink file if two geeqie instances are running 
@@ -1027,7 +1072,7 @@ create a bookmark will cause Geeqie to crash.
 <li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=0a6cb49628602587229c6c88627fa2e1453b1d52">view commit </a></li><p>Author: Klaus Ethgen<br>Date: 2018-01-23<br><textarea rows=4 cols=100>Fixing automake build system 
 
 </textarea><br><br></p>
-<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=a58676634b1432605e3a4330c3395d62a6c90b88">view commit </a></li><p>Author: Colin Clark<br>Date: 2018-01-22<br><textarea rows=4 cols=100>Fix #523: <Esc> in "Really continue?" copy confirmation dialog leads to crash 
+<li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=a58676634b1432605e3a4330c3395d62a6c90b88">view commit </a></li><p>Author: Colin Clark<br>Date: 2018-01-22<br><textarea rows=4 cols=100>Fix #523: &lt;Esc&gt; in "Really continue?" copy confirmation dialog leads to crash 
 
 https://github.com/BestImageViewer/geeqie/issues/523
 
@@ -1236,7 +1281,7 @@ cleared by "make distclean", and so the old ID continues to be used.
 Revised user docs show to use:
 
 sudo make uninstall; sudo make maintainer-clean; ./autogen.sh
-make -j<no. of cpu cores>; sudo make install
+make -j&lt;no. of cpu cores&gt;; sudo make install
 </textarea><br><br></p>
 <li><a href="http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=commit;h=0d8825dac65184ad2d6a8bec5c7954d3046935ee">view commit </a></li><p>Author: Colin Clark<br>Date: 2017-11-13<br><textarea rows=4 cols=100>Addl Fix #137: "Copy path" problem (or may be feature) 
 

@@ -1,3 +1,13 @@
+Geeqie 1.5.1
+============
+
+- Bugfixes for release 1.5
+- #626 - High CPU load with animated GIFs
+- #683 - Build failuer on macOS
+- #686 - Zoom lable adjustment
+- #703 - non-glibc fix
+- Lua compatibility
+
 Geeqie 1.5
 ==========
 

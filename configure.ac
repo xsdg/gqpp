@@ -15,7 +15,7 @@ dnl MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 dnl GNU General Public License for more details.
 
 AC_PREREQ(2.57)
-AC_INIT([geeqie], 1.5, [https://github.com/BestImageViewer/geeqie/issues], [], [http://www.geeqie.org/])
+AC_INIT([geeqie], 1.5.1, [https://github.com/BestImageViewer/geeqie/issues], [], [http://www.geeqie.org/])
 
 # Add -Werror to the default CFLAGS
 CFLAGS+=" -Werror -Wno-error=deprecated-declarations -Wno-error=sign-compare -Wno-error=return-type"
