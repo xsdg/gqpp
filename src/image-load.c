@@ -637,8 +637,10 @@ static void image_loader_setup_loader(ImageLoader *il)
 	else
 #endif
 #ifdef HAVE_HEIF
-	if (il->bytes_total >= 10 &&
-	    (memcmp(il->mapped_file + 4, "ftypheic", 8) == 0))
+	if (il->bytes_total >= 12 &&
+		((memcmp(il->mapped_file + 4, "ftypheic", 8) == 0) ||
+		(memcmp(il->mapped_file + 4, "ftypmsf1", 8) == 0) ||
+		(memcmp(il->mapped_file + 4, "ftypmif1", 8) == 0)))
 		{
 		DEBUG_1("Using custom heif loader");
 		image_loader_backend_set_heif(&il->backend);
@@ -741,6 +743,15 @@ static void image_loader_setup_loader(ImageLoader *il)
 	g_free(format);
 #endif
 
+#ifdef HAVE_HEIF
+	format = il->backend.get_format_name(il->loader);
+	if (g_strcmp0(format, "heif") == 0)
+		{
+		il->backend.set_page_num(il->loader, il->fd->page_num);
+		}
+	g_free(format);
+#endif
+
 #ifdef HAVE_DJVU
 	format = il->backend.get_format_name(il->loader);
 	if (g_strcmp0(format, "djvu") == 0)
@@ -837,6 +848,15 @@ static gboolean image_loader_begin(ImageLoader *il)
 #ifdef HAVE_PDF
 	format = il->backend.get_format_name(il->loader);
 	if (g_strcmp0(format, "pdf") == 0)
+		{
+		gint i = il->backend.get_page_total(il->loader);
+		file_data_set_page_total(il->fd, i);
+		}
+	g_free(format);
+#endif
+#ifdef HAVE_HEIF
+	format = il->backend.get_format_name(il->loader);
+	if (g_strcmp0(format, "heif") == 0)
 		{
 		gint i = il->backend.get_page_total(il->loader);
 		file_data_set_page_total(il->fd, i);

@@ -724,7 +724,7 @@ void layout_status_update_image(LayoutWindow *lw)
 			page_num = fd->page_num + 1;
 			image_get_image_size(lw->image, &width, &height);
 
-			if (page_total > 0)
+			if (page_total > 1)
 				{
 				text = g_strdup_printf(_("( %d x %d ) %s bytes %s%d%s%d%s"), width, height, b, "[", page_num, "/", page_total, "]");
 				}
