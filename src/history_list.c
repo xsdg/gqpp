@@ -308,7 +308,7 @@ gboolean history_list_save(const gchar *path)
 		list_count = g_list_position(hd->list, g_list_last(hd->list)) + 1;
 		while (work && secsave_errno == SS_ERR_NONE)
 			{
-			if (!(strcmp(hd->key, "path_list") == 0 && list_count > options->open_recent_list_maxsize))
+			if ((!(strcmp(hd->key, "path_list") == 0 && list_count > options->open_recent_list_maxsize)) && (!(strcmp(hd->key, "recent") == 0 && (!isfile(work->data)))))
 				{
 				secure_fprintf(ssi, "\"%s\"\n", (gchar *)work->data);
 				}
