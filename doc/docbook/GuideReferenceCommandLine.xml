@@ -337,6 +337,11 @@
             <entry>--PWD:&lt;PWD&gt;</entry>
             <entry>Use PWD as working directory for following commands</entry>
           </row>
+          <row>
+            <entry />
+            <entry>--print0</entry>
+            <entry>Terminate returned data with null character instead of newline</entry>
+          </row>
         </tbody>
       </tgroup>
     </table>

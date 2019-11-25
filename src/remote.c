@@ -74,6 +74,12 @@ struct _RemoteData {
 	CollectionData *command_collection;
 };
 
+/* To enable file names containing newlines to be processed correctly,
+ * the --print0 remote option sets returned data to be terminated with a null
+ * character rather a newline
+ */
+static gboolean print0 = FALSE;
+
 /* Remote commands from main.c are prepended with the current dir the remote
  * command was made from. Some remote commands require this. The
  * value is stored here
@@ -122,7 +128,7 @@ static gboolean remote_server_client_cb(GIOChannel *source, GIOCondition conditi
 		GError *error = NULL;
 		gsize termpos;
 		/* FIXME: it should be possible to terminate the command with a null character */
-		g_io_channel_set_line_term(source, "<gq_end_of_command>\n", -1);
+		g_io_channel_set_line_term(source, "<gq_end_of_command>", -1);
 		while ((status = g_io_channel_read_line(source, &buffer, NULL, &termpos, &error)) == G_IO_STATUS_NORMAL)
 			{
 			if (buffer)
@@ -132,7 +138,7 @@ static gboolean remote_server_client_cb(GIOChannel *source, GIOCondition conditi
 				if (strlen(buffer) > 0)
 					{
 					if (rc->read_func) rc->read_func(rc, buffer, source, rc->read_data);
-					g_io_channel_write_chars(source, "\n", -1, NULL, NULL); /* empty line finishes the command */
+					g_io_channel_write_chars(source, "<gq_end_of_command>", -1, NULL, NULL); /* empty line finishes the command */
 					g_io_channel_flush(source, NULL);
 					}
 				g_free(buffer);
@@ -348,7 +354,7 @@ static gboolean remote_client_send(RemoteConnection *rc, const gchar *text)
 	channel = g_io_channel_unix_new(rc->fd);
 
 	g_io_channel_write_chars(channel, text, -1, NULL, &error);
-	g_io_channel_write_chars(channel, "<gq_end_of_command>\n", -1, NULL, &error);
+	g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, &error);
 	g_io_channel_flush(channel, &error);
 
 	if (error)
@@ -366,18 +372,33 @@ static gboolean remote_client_send(RemoteConnection *rc, const gchar *text)
 		{
 		gchar *buffer = NULL;
 		gsize termpos;
+		g_io_channel_set_line_term(channel, "<gq_end_of_command>", -1);
 		while (g_io_channel_read_line(channel, &buffer, NULL, &termpos, &error) == G_IO_STATUS_NORMAL)
 			{
 			if (buffer)
 				{
-				if (buffer[0] == '\n') /* empty line finishes the command */
+				if (g_strstr_len(buffer, -1, "<gq_end_of_command>") == buffer) /* empty line finishes the command */
 					{
 					g_free(buffer);
 					fflush(stdout);
 					break;
 					}
 				buffer[termpos] = '\0';
-				printf("%s\n", buffer);
+				if (g_strstr_len(buffer, -1, "print0") != 0)
+					{
+					print0 = TRUE;
+					}
+				else
+					{
+					if (print0)
+						{
+						printf("%s%c", buffer, 0);
+						}
+					else
+						{
+						printf("%s\n", buffer);
+						}
+					}
 				g_free(buffer);
 				buffer = NULL;
 				}
@@ -721,7 +742,7 @@ static void gr_pixel_info(const gchar *text, GIOChannel *channel, gpointer data)
 						 r_mouse, g_mouse, b_mouse);
 
 			g_io_channel_write_chars(channel, pixel_info, -1, NULL, NULL);
-			g_io_channel_write_chars(channel, "\n", -1, NULL, NULL);
+			g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
 
 			g_free(pixel_info);
 			}
@@ -758,7 +779,7 @@ static void gr_rectangle(const gchar *text, GIOChannel *channel, gpointer data)
 					(y2 > y1) ? y1 : y2);
 
 		g_io_channel_write_chars(channel, rectangle_info, -1, NULL, NULL);
-		g_io_channel_write_chars(channel, "\n", -1, NULL, NULL);
+		g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
 
 		g_free(rectangle_info);
 		}
@@ -788,7 +809,7 @@ static void gr_render_intent(const gchar *text, GIOChannel *channel, gpointer da
 		}
 
 	g_io_channel_write_chars(channel, render_intent, -1, NULL, NULL);
-	g_io_channel_write_chars(channel, "\n", -1, NULL, NULL);
+	g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
 
 	g_free(render_intent);
 }
@@ -873,7 +894,7 @@ static void get_filelist(const gchar *text, GIOChannel *channel, gboolean recurs
 		}
 
 	g_io_channel_write_chars(channel, out_string->str, -1, NULL, NULL);
-	g_io_channel_write_chars(channel, "\n", -1, NULL, NULL);
+	g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
 
 	g_string_free(out_string, TRUE);
 	filelist_free(list);
@@ -894,7 +915,7 @@ static void gr_collection(const gchar *text, GIOChannel *channel, gpointer data)
 		}
 
 	g_io_channel_write_chars(channel, contents->str, -1, NULL, NULL);
-	g_io_channel_write_chars(channel, "\n", -1, NULL, NULL);
+	g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
 
 	g_string_free(contents, TRUE);
 }
@@ -919,7 +940,7 @@ static void gr_collection_list(const gchar *text, GIOChannel *channel, gpointer 
 		}
 
 	g_io_channel_write_chars(channel, out_string->str, -1, NULL, NULL);
-	g_io_channel_write_chars(channel, "\n", -1, NULL, NULL);
+	g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
 
 	string_list_free(collection_list);
 	g_string_free(out_string, TRUE);
@@ -956,7 +977,7 @@ static void gr_file_tell(const gchar *text, GIOChannel *channel, gpointer data)
 			}
 
 		g_io_channel_write_chars(channel, out_string, -1, NULL, NULL);
-		g_io_channel_write_chars(channel, "\n", -1, NULL, NULL);
+		g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
 
 		g_free(collection_name);
 		g_free(out_string);
@@ -1018,7 +1039,7 @@ static void gr_file_info(const gchar *text, GIOChannel *channel, gpointer data)
 			}
 
 		g_io_channel_write_chars(channel, out_string->str, -1, NULL, NULL);
-		g_io_channel_write_chars(channel, "\n", -1, NULL, NULL);
+		g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
 
 		g_free(country_name);
 		g_free(country_code);
@@ -1056,7 +1077,7 @@ static void gr_get_sidecars(const gchar *text, GIOChannel *channel, gpointer dat
 	if (fd->parent) fd = fd->parent;
 
 	g_io_channel_write_chars(channel, fd->path, -1, NULL, NULL);
-	g_io_channel_write_chars(channel, "\n", -1, NULL, NULL);
+	g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
 
 	work = fd->sidecar_files;
 
@@ -1065,7 +1086,7 @@ static void gr_get_sidecars(const gchar *text, GIOChannel *channel, gpointer dat
 		fd = work->data;
 		work = work->next;
 		g_io_channel_write_chars(channel, fd->path, -1, NULL, NULL);
-		g_io_channel_write_chars(channel, "\n", -1, NULL, NULL);
+		g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
 		}
 	g_free(filename);
 }
@@ -1078,7 +1099,7 @@ static void gr_get_destination(const gchar *text, GIOChannel *channel, gpointer 
 	if (fd->change && fd->change->dest)
 		{
 		g_io_channel_write_chars(channel, fd->change->dest, -1, NULL, NULL);
-		g_io_channel_write_chars(channel, "\n", -1, NULL, NULL);
+		g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
 		}
 	g_free(filename);
 }
@@ -1154,6 +1175,14 @@ static void gr_pwd(const gchar *text, GIOChannel *channel, gpointer data)
 	pwd = g_strdup(text);
 }
 
+static void gr_print0(const gchar *text, GIOChannel *channel, gpointer data)
+{
+	LayoutWindow *lw = NULL;
+
+	g_io_channel_write_chars(channel, "print0", -1, NULL, NULL);
+	g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
+}
+
 #ifdef HAVE_LUA
 static void gr_lua(const gchar *text, GIOChannel *channel, gpointer data)
 {
@@ -1180,7 +1209,7 @@ static void gr_lua(const gchar *text, GIOChannel *channel, gpointer data)
 		g_io_channel_write_chars(channel, N_("lua error: no data"), -1, NULL, NULL);
 		}
 
-	g_io_channel_write_chars(channel, "\n", -1, NULL, NULL);
+	g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
 
 	g_strfreev(lua_command);
 	g_free(result);
@@ -1251,6 +1280,7 @@ static RemoteCommandEntry remote_commands[] = {
 	{ NULL, "--lua:",               gr_lua,                 TRUE, FALSE, N_("<FILE>,<lua script>"), N_("run lua script on FILE") },
 #endif
 	{ NULL, "--PWD:",               gr_pwd,                 TRUE, FALSE, N_("<PWD>"), N_("use PWD as working directory for following commands") },
+	{ NULL, "--print0",             gr_print0,              TRUE, FALSE, NULL, N_("terminate returned data with null character instead of newline") },
 	{ NULL, NULL, NULL, FALSE, FALSE, NULL, NULL }
 };
 
