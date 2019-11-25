@@ -78,6 +78,9 @@ static gboolean collection_load_private(CollectionData *cd, const gchar *path, C
 	guint flush = !!(flags & COLLECTION_LOAD_FLUSH);
 	guint append = !!(flags & COLLECTION_LOAD_APPEND);
 	guint only_geometry = !!(flags & COLLECTION_LOAD_GEOMETRY);
+	gboolean reading_extended_filename = FALSE;
+	GString *extended_filename_buffer = g_string_new(NULL);
+	gchar *buffer2;
 
 	if (!only_geometry)
 		{
@@ -118,60 +121,104 @@ static gboolean collection_load_private(CollectionData *cd, const gchar *path, C
 		gchar *buf;
 		gchar *p = s_buf;
 
-		/* Skip whitespaces and empty lines */
-		while (*p && g_ascii_isspace(*p)) p++;
-		if (*p == '\n' || *p == '\r') continue;
-
-		/* Parse comments */
-		if (*p == '#')
+		if (!reading_extended_filename)
 			{
-			if (!need_header) continue;
-			if (g_ascii_strncasecmp(p, GQ_COLLECTION_MARKER, strlen(GQ_COLLECTION_MARKER)) == 0)
+			/* Skip whitespaces and empty lines */
+			while (*p && g_ascii_isspace(*p)) p++;
+			if (*p == '\n' || *p == '\r') continue;
+
+			/* Parse comments */
+			if (*p == '#')
 				{
-				/* Looks like an official collection, allow unchecked input.
-				 * All this does is allow adding files that may not exist,
-				 * which is needed for the collection manager to work.
-				 * Also unofficial files abort after too many invalid entries.
-				 */
-				has_official_header = TRUE;
-				limit_failures = FALSE;
+				if (!need_header) continue;
+				if (g_ascii_strncasecmp(p, GQ_COLLECTION_MARKER, strlen(GQ_COLLECTION_MARKER)) == 0)
+					{
+					/* Looks like an official collection, allow unchecked input.
+					 * All this does is allow adding files that may not exist,
+					 * which is needed for the collection manager to work.
+					 * Also unofficial files abort after too many invalid entries.
+					 */
+					has_official_header = TRUE;
+					limit_failures = FALSE;
+					}
+				else if (strncmp(p, "#geometry:", 10 ) == 0 &&
+					 scan_geometry(p + 10, &cd->window_x, &cd->window_y, &cd->window_w, &cd->window_h))
+					{
+					has_geometry_header = TRUE;
+					cd->window_read = TRUE;
+					if (only_geometry) break;
+					}
+				else if (g_ascii_strncasecmp(p, "#GQview collection", strlen("#GQview collection")) == 0)
+					{
+					/* As 2008/04/15 there is no difference between our collection file format
+					 * and GQview 2.1.5 collection file format so ignore failures as well. */
+					has_gqview_header = TRUE;
+					limit_failures = FALSE;
+					}
+				need_header = (!has_official_header && !has_gqview_header) || !has_geometry_header;
+				continue;
 				}
-			else if (strncmp(p, "#geometry:", 10 ) == 0 &&
-				 scan_geometry(p + 10, &cd->window_x, &cd->window_y, &cd->window_w, &cd->window_h))
-				{
-				has_geometry_header = TRUE;
-				cd->window_read = TRUE;
-				if (only_geometry) break;
-				}
-			else if (g_ascii_strncasecmp(p, "#GQview collection", strlen("#GQview collection")) == 0)
-				{
-				/* As 2008/04/15 there is no difference between our collection file format
-				 * and GQview 2.1.5 collection file format so ignore failures as well. */
-				has_gqview_header = TRUE;
-				limit_failures = FALSE;
-				}
-			need_header = (!has_official_header && !has_gqview_header) || !has_geometry_header;
-			continue;
+
+			if (only_geometry) continue;
 			}
 
-		if (only_geometry) continue;
-
 		/* Read filenames */
-		/* TODO: This is not safe! */
-		while (*p && *p != '"') p++;
-		if (*p) p++;
-		buf = p;
-		while (*p && *p != '"') p++;
-		*p = 0;
-		if (*buf)
+		/* TODO: This is not safe!
+		 * Updated: anything within double quotes is considered a filename */
+		if (!reading_extended_filename)
+			{
+			/* not yet reading filename */
+			while (*p && *p != '"') p++;
+			if (*p) p++;
+			/* start of filename read */
+			buf = p;
+			while (*p && *p != '"') p++;
+			if (p[0] != '"')
+				{
+				/* first part of extended filename */
+				g_string_append(extended_filename_buffer, buf);
+				reading_extended_filename = TRUE;
+				continue;
+				}
+			}
+		else
+			{
+			buf = p;
+			while (*p && *p != '"') p++;
+			if (p[0] != '"')
+				{
+				/* end of extended filename still not found */
+				g_string_append(extended_filename_buffer, buf);
+				continue;
+				}
+			else
+				{
+				/* end of extended filename found */
+				g_string_append_len(extended_filename_buffer, buf, p - buf);
+				reading_extended_filename = FALSE;
+				}
+			}
+
+		if (strlen(extended_filename_buffer->str) > 0)
+			{
+			buffer2 = g_strdup(extended_filename_buffer->str);
+			g_string_erase(extended_filename_buffer, 0, -1);
+			}
+		else
+			{
+			*p = 0;
+			buffer2 = g_strdup(buf);
+			}
+
+		if (*buffer2)
 			{
 			gboolean valid;
 
 			if (!flush)
-				changed |= collect_manager_process_action(entry, &buf);
+				changed |= collect_manager_process_action(entry, &buffer2);
 
-			valid = (buf[0] == G_DIR_SEPARATOR && collection_add_check(cd, file_data_new_simple(buf), FALSE, TRUE));
-			if (!valid) DEBUG_1("collection invalid file: %s", buf);
+			valid = (buffer2[0] == G_DIR_SEPARATOR && collection_add_check(cd, file_data_new_simple(buffer2), FALSE, TRUE));
+			if (!valid) DEBUG_1("collection invalid file: %s", buffer2);
 
 			total++;
 			if (!valid)
@@ -187,7 +234,10 @@ static gboolean collection_load_private(CollectionData *cd, const gchar *path, C
 					}
 				}
 			}
+		g_free(buffer2);
 		}
+
+	g_string_free(extended_filename_buffer, TRUE);
 
 	DEBUG_1("collection files: total = %d fail = %d official=%d gqview=%d geometry=%d",
 			  total, fail, has_official_header, has_gqview_header, has_geometry_header);
