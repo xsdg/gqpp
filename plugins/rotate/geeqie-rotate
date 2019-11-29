@@ -20,7 +20,7 @@ rotate()
 
     case "$ext" in
 	jpg|jpeg) 
-		if [ -n "$gq_orientaqtion" ] ; then
+		if [ -n "$gq_orientation" ] ; then
 			exiv2 -M "set Exif.Image.Orientation $gq_orientation" "$1"
 			[ $? != 0 ] && exit 1
 		fi
