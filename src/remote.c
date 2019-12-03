@@ -674,7 +674,7 @@ static void gr_file_load_no_raise(const gchar *text, GIOChannel *channel, gpoint
 	gchar *filename;
 	gchar *tilde_filename;
 
-	if (!download_web_file(text, NULL))
+	if (!download_web_file(text, TRUE, NULL))
 		{
 		tilde_filename = expand_tilde(text);
 		filename = set_pwd(tilde_filename);

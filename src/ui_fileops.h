@@ -109,6 +109,6 @@ gboolean recursive_mkdir_if_not_exists(const gchar *path, mode_t mode);
 gchar *md5_text_from_file_utf8(const gchar *path, const gchar *error_text);
 gboolean md5_get_digest_from_file_utf8(const gchar *path, guchar digest[16]);
 
-gboolean download_web_file(const gchar *text, gpointer data);
+gboolean download_web_file(const gchar *text, gboolean minimized, gpointer data);
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

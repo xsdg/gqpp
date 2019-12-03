@@ -1042,7 +1042,7 @@ static void web_file_progress_cb(goffset current_num_bytes, goffset total_num_by
 		}
 }
 
-static void timezone_cancel_button_cb(GenericDialog *gd, gpointer data)
+static void download_web_file_cancel_button_cb(GenericDialog *gd, gpointer data)
 {
 	WebData* web = data;
 	GError *error = NULL;
@@ -1050,7 +1050,7 @@ static void timezone_cancel_button_cb(GenericDialog *gd, gpointer data)
 	g_cancellable_cancel(web->cancellable);
 }
 
-gboolean download_web_file(const gchar *text, gpointer data)
+gboolean download_web_file(const gchar *text, gboolean minimized, gpointer data)
 {
 	gchar *scheme;
 	LayoutWindow *lw = data;
@@ -1087,7 +1087,7 @@ gboolean download_web_file(const gchar *text, gpointer data)
 				base = g_strdup(g_file_get_basename(web->web_file));
 				web->tmp_g_file = g_file_new_for_path(g_build_filename(tmp_dir, base, NULL));
 
-				web->gd = generic_dialog_new(_("Download web file"), "download_web_file", NULL, TRUE, timezone_cancel_button_cb, web);
+				web->gd = generic_dialog_new(_("Download web file"), "download_web_file", NULL, TRUE, download_web_file_cancel_button_cb, web);
 
 				message = g_strconcat(_("Downloading "), base, NULL);
 				generic_dialog_add_message(web->gd, GTK_STOCK_DIALOG_INFO, message, NULL, FALSE);
@@ -1095,6 +1095,10 @@ gboolean download_web_file(const gchar *text, gpointer data)
 				web->progress = gtk_progress_bar_new();
 				gtk_box_pack_start(GTK_BOX(web->gd->vbox), web->progress, FALSE, FALSE, 0);
 				gtk_widget_show(web->progress);
+				if (minimized)
+					{
+					gtk_window_iconify(GTK_WINDOW(web->gd->dialog));
+					}
 
 				gtk_widget_show(web->gd->dialog);
 				web->cancellable = g_cancellable_new();
@@ -1113,5 +1117,6 @@ gboolean download_web_file(const gchar *text, gpointer data)
 
 	g_free(scheme);
 	return ret;
+
 }
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

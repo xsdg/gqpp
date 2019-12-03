@@ -263,7 +263,7 @@ static void layout_path_entry_cb(const gchar *path, gpointer data)
 
 	buf = g_strdup(path);
 
-	if (!download_web_file(buf, lw))
+	if (!download_web_file(buf, FALSE, lw))
 		{
 		parse_out_relatives(buf);
 

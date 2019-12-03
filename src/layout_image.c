@@ -878,7 +878,7 @@ static void layout_image_dnd_receive(GtkWidget *widget, GdkDragContext *context,
 	if (info == TARGET_TEXT_PLAIN)
 		{
 		url = g_strdup((gchar *)gtk_selection_data_get_data(selection_data));
-		download_web_file(url, lw);
+		download_web_file(url, FALSE, lw);
 		g_free(url);
 		}
 	else if (info == TARGET_URI_LIST || info == TARGET_APP_COLLECTION_MEMBER)

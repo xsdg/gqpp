@@ -259,7 +259,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 				parse_command_line_process_file(cmd_all, &command_line->path, &command_line->file,
 								&list, &command_line->collection_list, &first_dir);
 				}
-			else if (download_web_file(cmd_line, NULL))
+			else if (download_web_file(cmd_line, FALSE, NULL))
 				{
 				}
 			else if (is_collection(cmd_line))
