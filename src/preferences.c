@@ -1870,6 +1870,11 @@ static void config_tab_general(GtkWidget *notebook)
 	add_thumb_size_menu(table, 0, 0, _("Size:"));
 	add_quality_menu(table, 0, 1, _("Quality:"), options->thumbnails.quality, &c_options->thumbnails.quality);
 
+	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
+	pref_label_new(hbox, _("Custom size: "));
+	pref_spin_new_int(hbox, _("Width:"), NULL, 1, 512, 1, options->thumbnails.max_width, &c_options->thumbnails.max_width);
+	pref_spin_new_int(hbox, _("Height:"), NULL, 1, 512, 1, options->thumbnails.max_height, &c_options->thumbnails.max_height);
+
 	ct_button = pref_checkbox_new_int(group, _("Cache thumbnails"),
 					  options->thumbnails.enable_caching, &c_options->thumbnails.enable_caching);
 

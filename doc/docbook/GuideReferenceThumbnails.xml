@@ -28,7 +28,8 @@
   <section id="Size">
     <title>Size</title>
     <para>Geeqie allows the following sizes for thumbnails:</para>
-    <para>24x24, 32x32, 48x48, 64x64, 96x72, 96x96, 129x96, 128x128, 160x120, 160x160, 192x144, 192x192, 256x192, 256x256</para>
+    <para>24x24, 32x32, 48x48, 64x64, 96x72, 96x96, 129x96, 128x128, 160x120, 160x160, 192x144, 192x192, 256x192, 256x256, custom</para>
+    <para>Custom size has a maximum of 512x512.</para>
     <para>The thumbnail is scaled to fit within the preferred size maintaining the aspect ratio. Thumbnails are not cached for images that are equal to or smaller than the preferred thumbnail size.</para>
     <para>When a cached thumbnail's width and height do not match the preferred size, the thumbnail is regenerated.</para>
     <para />
