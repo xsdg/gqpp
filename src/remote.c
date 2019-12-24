@@ -1430,6 +1430,11 @@ void remote_control(const gchar *arg_exec, GList *remote_list, const gchar *path
 			entry = remote_command_find(text, NULL);
 			if (entry)
 				{
+				/* If Geeqie is not running, stop the --new-window command opening a second window */
+				if (g_strcmp0(text, "--new-window") == 0)
+					{
+					remote_list = g_list_remove(remote_list, text);
+					}
 				if (entry->prefer_command_line)
 					{
 					remote_list = g_list_remove(remote_list, text);
