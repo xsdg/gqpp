@@ -267,7 +267,6 @@ gchar *lua_callvalue(FileData *fd, const gchar *file, const gchar *function)
 {
 	gint result;
 	gchar *data = NULL;
-	gchar *dir;
 	gchar *path;
 	FileData **image_data;
 	gchar *tmp;
@@ -312,7 +311,6 @@ gchar *lua_callvalue(FileData *fd, const gchar *file, const gchar *function)
 		{
 		result = luaL_dofile(L, path);
 		g_free(path);
-		g_free(dir);
 		}
 
 	if (result)
