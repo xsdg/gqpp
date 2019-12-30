@@ -242,7 +242,7 @@ AC_ARG_WITH(htmldir, [  --with-htmldir=DIR      install path for html files],
 AC_DEFINE_UNQUOTED(GQ_HELPDIR, "$readmedir", [Location of documentation files])
 AC_DEFINE_UNQUOTED(GQ_HTMLDIR, "$htmldir", [Location of html documentation])
 
-AC_PATH_PROG(GNOME_DOC_TOOL, gnome-doc-tool)
+AC_PATH_PROG(GNOME_DOC_TOOL, yelp-build)
 
 AC_SUBST(readmedir)
 AC_SUBST(htmldir)

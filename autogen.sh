@@ -58,6 +58,13 @@ test -n "$NO_AUTOMAKE" || (aclocal --version) < /dev/null > /dev/null 2>&1 || {
   DIE=1
 }
 
+GNOMEDOC=`which yelp-build`
+if test -z $GNOMEDOC; then
+  echo "*** The tools to build the documentation are not found,"
+  echo "    please intall the yelp-tool package ***"
+  DIE=1
+fi
+
 if test "$DIE" -eq 1; then
   exit 1
 fi
