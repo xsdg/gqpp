@@ -9,7 +9,7 @@ html/GuideIndex.html: docbook/GuideIndex.xml
 	if [ -x "$(GNOME_DOC_TOOL)" ]; then \
 		"$(GNOME_DOC_TOOL)" html -o html $(srcdir)/docbook/GuideIndex.xml ; \
 	else \
-		echo "gnome-doc-tool not found, html is not built" ; \
+		echo "yelp-tools not found, html is not built" ; \
 	fi
 
 html: html/GuideIndex.html
@@ -26,4 +26,3 @@ uninstall-hook:
 
 clean-local:
 	rm -rf html
-

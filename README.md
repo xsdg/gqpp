@@ -240,13 +240,6 @@ And either the ChangeLog file or [Geeqie ChangeLog](http://geeqie.org/cgi-bin/gi
         for displaying pdf files
         disable with configure option: --disable-pdf
 
-    ZoneDetect
-        For displaying timezone and UTC/DST time offset
-        Download file:
-        https://github.com/BertoldVdb/ZoneDetect/raw/master/database/timezone21.bin
-        and copy to the location of the Geeqie ancilliary files, which is usually:
-        /usr/local/lib/geeqie/
-
     libimage-exiftool-perl
         For the jpeg extraction plugin
 
@@ -271,6 +264,9 @@ And either the ChangeLog file or [Geeqie ChangeLog](http://geeqie.org/cgi-bin/gi
 
     libopenjp2
         For displaying JP2 images
+
+    yelp-tools
+        For creating the Help files
 
 ### Code hackers:
 
