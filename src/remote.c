@@ -1014,37 +1014,40 @@ static void gr_file_info(const gchar *text, GIOChannel *channel, gpointer data)
 			g_string_append_printf(out_string, _("Page no: %d/%d\n"), fd->page_num + 1, fd->page_total);
 			}
 
-		country_name = exif_get_data_as_text(fd->exif, "formatted.countryname");
-		if (country_name)
+		if (fd->exif)
 			{
-			g_string_append_printf(out_string, _("Country name: %s\n"), country_name);
-			}
+			country_name = exif_get_data_as_text(fd->exif, "formatted.countryname");
+			if (country_name)
+				{
+				g_string_append_printf(out_string, _("Country name: %s\n"), country_name);
+				g_free(country_name);
+				}
 
-		country_code = exif_get_data_as_text(fd->exif, "formatted.countrycode");
-		if (country_name)
-			{
-			g_string_append_printf(out_string, _("Country code: %s\n"), country_code);
-			}
+			country_code = exif_get_data_as_text(fd->exif, "formatted.countrycode");
+			if (country_name)
+				{
+				g_string_append_printf(out_string, _("Country code: %s\n"), country_code);
+				g_free(country_code);
+				}
 
-		timezone = exif_get_data_as_text(fd->exif, "formatted.timezone");
-		if (timezone)
-			{
-			g_string_append_printf(out_string, _("Timezone: %s\n"), timezone);
-			}
+			timezone = exif_get_data_as_text(fd->exif, "formatted.timezone");
+			if (timezone)
+				{
+				g_string_append_printf(out_string, _("Timezone: %s\n"), timezone);
+				g_free(timezone);
+				}
 
-		local_time = exif_get_data_as_text(fd->exif, "formatted.localtime");
-		if (local_time)
-			{
-			g_string_append_printf(out_string, ("Local time: %s\n"), local_time);
+			local_time = exif_get_data_as_text(fd->exif, "formatted.localtime");
+			if (local_time)
+				{
+				g_string_append_printf(out_string, ("Local time: %s\n"), local_time);
+				g_free(local_time);
+				}
 			}
 
 		g_io_channel_write_chars(channel, out_string->str, -1, NULL, NULL);
 		g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
 
-		g_free(country_name);
-		g_free(country_code);
-		g_free(timezone);
-		g_free(local_time);
 		g_string_free(out_string, TRUE);
 		file_data_unref(fd);
 		g_free(filename);
