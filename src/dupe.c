@@ -3874,7 +3874,7 @@ static void export_duplicates_data_save_cb(FileDialog *fdlg, gpointer data)
 		output_string = g_string_append(output_string, g_strdup_printf("%d", match_count));
 		output_string = g_string_append(output_string, sep);
 
-		if ((dupe_match_find_parent(edd->dupewindow, di) == di) == (DUPE_SELECT_GROUP1 == DUPE_SELECT_GROUP1))
+		if ((dupe_match_find_parent(edd->dupewindow, di) == di))
 			{
 			output_string = g_string_append(output_string, "1");
 			}
