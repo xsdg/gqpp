@@ -23,19 +23,26 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 icondir = $(datadir)/pixmaps
 icon_DATA = geeqie.png
 
+# Location defined by freedesktop.org
+appdatadir = /usr/share/metainfo
+appdata_DATA = $(appdata_in_files:.xml.in=.xml)
+appdata_in_files = org.geeqie.Geeqie.appdata.xml.in
+@INTLTOOL_XML_RULE@
+
 EXTRA_DIST = \
 	$(readme_DATA)	\
 	$(desktop_in_files)	\
 	$(icon_DATA)	\
 	geeqie.spec.in	\
 	geeqie.1	\
-	doxygen.conf
+	doxygen.conf	\
+	$(appdata_in_files)
 
 dist-hook: geeqie.spec
 	cp $(top_builddir)/geeqie.spec $(distdir)
 
 DISTCLEANFILES = config.report
-CLEANFILES = $(desktop_DATA) ChangeLog.html
+CLEANFILES = $(desktop_DATA) ChangeLog.html $(appdata_DATA)
 
 .PHONY: ChangeLog
 ChangeLog.html:
