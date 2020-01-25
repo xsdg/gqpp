@@ -24,7 +24,11 @@ icondir = $(datadir)/pixmaps
 icon_DATA = geeqie.png
 
 # Location defined by freedesktop.org
+if EXTERNAL_PREFIX
+appdatadir = $(datadir)/metainfo
+else
 appdatadir = /usr/share/metainfo
+endif
 appdata_DATA = $(appdata_in_files:.xml.in=.xml)
 appdata_in_files = org.geeqie.Geeqie.appdata.xml.in
 @INTLTOOL_XML_RULE@

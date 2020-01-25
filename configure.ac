@@ -190,6 +190,8 @@ AM_CONDITIONAL(MS_LIB_AVAILABLE, test x$ms_librarian = xyes)
 AM_CONDITIONAL(HAVE_WINDRES, test "x$WINDRES" != "x:")
 AC_SUBST(WINDRES)
 
+AM_CONDITIONAL([EXTERNAL_PREFIX], [test "x$prefix" != "xNONE"])
+
 dnl reasonable guesses for where stuff is installed
 if test "x$prefix" = "xNONE"; then
   prefix="/usr/local"
