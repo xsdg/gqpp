@@ -787,14 +787,21 @@ static void file_util_perform_ci_dir(UtilityData *ud, gboolean internal, gboolea
 			GList *work;
 			g_assert(ud->dir_fd->sidecar_files == NULL); // directories should not have sidecars
 
-			if ((internal && file_data_sc_perform_ci(ud->dir_fd)) ||
-			    (!internal && ext_result))
+			if (isdir(ud->dest_path))
 				{
-				file_data_sc_apply_ci(ud->dir_fd);
+				fail = file_data_ref(ud->dir_fd);
 				}
 			else
 				{
-				fail = file_data_ref(ud->dir_fd);
+				if ((internal && file_data_sc_perform_ci(ud->dir_fd)) ||
+				    (!internal && ext_result))
+					{
+					file_data_sc_apply_ci(ud->dir_fd);
+					}
+				else
+					{
+					fail = file_data_ref(ud->dir_fd);
+					}
 				}
 
 
