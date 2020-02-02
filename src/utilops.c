@@ -787,21 +787,14 @@ static void file_util_perform_ci_dir(UtilityData *ud, gboolean internal, gboolea
 			GList *work;
 			g_assert(ud->dir_fd->sidecar_files == NULL); // directories should not have sidecars
 
-			if (isdir(ud->dest_path))
+			if ((internal && file_data_sc_perform_ci(ud->dir_fd)) ||
+			    (!internal && ext_result))
 				{
-				fail = file_data_ref(ud->dir_fd);
+				file_data_sc_apply_ci(ud->dir_fd);
 				}
 			else
 				{
-				if ((internal && file_data_sc_perform_ci(ud->dir_fd)) ||
-				    (!internal && ext_result))
-					{
-					file_data_sc_apply_ci(ud->dir_fd);
-					}
-				else
-					{
-					fail = file_data_ref(ud->dir_fd);
-					}
+				fail = file_data_ref(ud->dir_fd);
 				}
 
 
@@ -1017,6 +1010,17 @@ void file_util_check_ci(UtilityData *ud)
 		else
 			{
 			error = file_data_verify_ci_list(ud->flist, &desc, ud->with_sidecars);
+			}
+		}
+	else
+		{
+		if (ud->type == UTILITY_TYPE_CREATE_FOLDER || ud->type == UTILITY_TYPE_RENAME_FOLDER)
+			{
+			if (isdir(ud->dest_path) || isfile(ud->dest_path))
+				{
+				error = CHANGE_DEST_EXISTS;
+				desc = g_strdup_printf(_("%s already exists"), ud->dest_path);
+				}
 			}
 		}
 
