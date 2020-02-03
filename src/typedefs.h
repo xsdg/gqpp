@@ -1060,6 +1060,7 @@ struct _CommandLine
 	gchar *regexp;
 	gchar *log_file;
 	SecureSaveInfo *ssi;
+	gboolean new_instance;
 };
 
 #endif

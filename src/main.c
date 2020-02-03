@@ -338,6 +338,14 @@ static void parse_command_line(gint argc, gchar *argv[])
 				{
 				set_regexp(g_strdup(cmd_line+3));
 				}
+			else if (strncmp(cmd_line, "-n", 2) == 0)
+				{
+				command_line->new_instance = TRUE;
+				}
+			else if (strncmp(cmd_line, "--new-instance", 14) == 0)
+				{
+				command_line->new_instance = TRUE;
+				}
 			else if (strcmp(cmd_line, "-rh") == 0 ||
 				 strcmp(cmd_line, "--remote-help") == 0)
 				{
@@ -373,6 +381,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 				print_term(FALSE, _("  -l, --list [files] [collections] open collection window for command line\n"));
 				print_term(FALSE, _("      --blank                      start with blank file list\n"));
 				print_term(FALSE, _("      --geometry=XxY+XOFF+YOFF     set main window location\n"));
+				print_term(FALSE, _("  -n, --new-instance               open a new instance of Geeqie\n"));
 				print_term(FALSE, _("  -r, --remote                     send following commands to open window\n"));
 				print_term(FALSE, _("  -rh,--remote-help                print remote command list\n"));
 #ifdef DEBUG
@@ -418,16 +427,19 @@ static void parse_command_line(gint argc, gchar *argv[])
 		}
 	g_free(first_dir);
 
-	/* If Geeqie is already running, prevent a second instance
-	 * from being started. Open a new window instead.
-	 */
-	app_lock = g_build_filename(get_rc_dir(), ".command", NULL);
-	if (remote_server_exists(app_lock) && !remote_do)
+	if (!command_line->new_instance)
 		{
-		remote_do = TRUE;
-		remote_list = g_list_append(remote_list, "--new-window");
-	}
-	g_free(app_lock);
+		/* If Geeqie is already running, prevent a second instance
+		 * from being started. Open a new window instead.
+		 */
+		app_lock = g_build_filename(get_rc_dir(), ".command", NULL);
+		if (remote_server_exists(app_lock) && !remote_do)
+			{
+			remote_do = TRUE;
+			remote_list = g_list_append(remote_list, "--new-window");
+		}
+		g_free(app_lock);
+		}
 
 	if (remote_do)
 		{
