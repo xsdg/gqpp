@@ -795,6 +795,8 @@ static void vd_dnd_drop_receive(GtkWidget *widget,
 	ViewDir *vd = data;
 	GtkTreePath *tpath;
 	FileData *fd = NULL;
+	GdkDragAction action;
+	GdkModifierType mask;
 
 	vd->click_fd = NULL;
 
@@ -822,13 +824,30 @@ static void vd_dnd_drop_receive(GtkWidget *widget,
 
 		if (active)
 			{
-			if (gdk_drag_context_get_actions(context) == GDK_ACTION_COPY)
+/* FIXME: With GTK2 gdk_drag_context_get_actions() shows the state of the
+ * shift and control keys during the drag operation. With GTK3 this is not
+ * so. This is a workaround.
+ */
+#if GTK_CHECK_VERSION(3,0,0)
+			gdk_window_get_pointer(gtk_widget_get_window(widget), NULL, NULL, &mask);
+			if (mask & GDK_CONTROL_MASK)
+				{
+				action = GDK_ACTION_COPY;
+				}
+			else if (mask & GDK_SHIFT_MASK)
+				{
+				action = GDK_ACTION_MOVE;
+				}
+#else
+			action = (gdk_drag_context_get_actions(context));
+#endif
+			if (action == GDK_ACTION_COPY)
 				{
 				file_util_copy_simple(list, fd->path, vd->widget);
 				done = TRUE;
 				list = NULL;
 				}
-			else if (gdk_drag_context_get_actions(context) == GDK_ACTION_MOVE)
+			else if (action == GDK_ACTION_MOVE)
 				{
 				file_util_move_simple(list, fd->path, vd->widget);
 				done = TRUE;
