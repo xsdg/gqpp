@@ -31,7 +31,7 @@ enum {
 	DIR_COLUMN_COUNT
 };
 
-ViewDir *vd_new(DirViewType type, FileData *dir_fd);
+ViewDir *vd_new(LayoutWindow *lw);
 
 void vd_set_select_func(ViewDir *vdl, void (*func)(ViewDir *vdl, FileData *fd, gpointer data), gpointer data);
 

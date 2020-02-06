@@ -645,6 +645,11 @@ struct _LayoutOptions
 	DirViewType dir_view_type;
 	FileViewType file_view_type;
 
+	struct {
+		SortType method;
+		gboolean ascend;
+	} dir_view_list_sort;
+
 	gboolean show_thumbnails;
 	gboolean show_marks;
 	gboolean show_file_filter;

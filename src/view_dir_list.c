@@ -151,6 +151,12 @@ static gboolean vdlist_populate(ViewDir *vd, gboolean clear)
 	gboolean sort_ascend = TRUE;
 	gchar *link = NULL;
 
+	if (vd->layout)
+		{
+		sort_type = vd->layout->options.dir_view_list_sort.method;
+		sort_ascend = vd->layout->options.dir_view_list_sort.ascend;
+		}
+
 	old_list = VDLIST(vd)->list;
 
 	ret = filelist_read(vd->dir_fd, NULL, &VDLIST(vd)->list);

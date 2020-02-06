@@ -27,6 +27,7 @@
 #include "filedata.h"
 #include "layout_image.h"
 #include "layout_util.h"
+#include "menu.h"
 #include "pixbuf_util.h"
 #include "ui_fileops.h"
 #include "ui_tree_edit.h"
@@ -107,7 +108,7 @@ static void vd_destroy_cb(GtkWidget *widget, gpointer data)
 	g_free(vd);
 }
 
-ViewDir *vd_new(DirViewType type, FileData *dir_fd)
+ViewDir *vd_new(LayoutWindow *lw)
 {
 	ViewDir *vd = g_new0(ViewDir, 1);
 
@@ -116,13 +117,14 @@ ViewDir *vd_new(DirViewType type, FileData *dir_fd)
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(vd->widget),
 				       GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
 
+	vd->layout = lw;
 	vd->pf = folder_icons_new(vd->widget);
 
-	switch (type)
-	{
-	case DIRVIEW_LIST: vd = vdlist_new(vd, dir_fd); break;
-	case DIRVIEW_TREE: vd = vdtree_new(vd, dir_fd); break;
-	}
+	switch (lw->options.dir_view_type)
+		{
+		case DIRVIEW_LIST: vd = vdlist_new(vd, lw->dir_fd); break;
+		case DIRVIEW_TREE: vd = vdtree_new(vd, lw->dir_fd); break;
+		}
 
 	gtk_container_add(GTK_CONTAINER(vd->widget), vd->view);
 
@@ -142,7 +144,7 @@ ViewDir *vd_new(DirViewType type, FileData *dir_fd)
 	file_data_register_notify_func(vd_notify_cb, vd, NOTIFY_PRIORITY_HIGH);
 
 	/* vd_set_fd expects that vd_notify_cb is already registered */
-	if (dir_fd) vd_set_fd(vd, dir_fd);
+	if (lw->dir_fd) vd_set_fd(vd, lw->dir_fd);
 
 	gtk_widget_show(vd->view);
 
@@ -623,12 +625,49 @@ static void vd_pop_menu_rename_cb(GtkWidget *widget, gpointer data)
 	vd_rename_by_data(vd, vd->click_fd);
 }
 
+static void vd_pop_menu_sort_ascend_cb(GtkWidget *widget, gpointer data)
+{
+	ViewDir *vd = data;
+	gboolean ascend;
+
+	if (!vd) return;
+
+	if (!vd->layout) return;
+
+	ascend = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
+	layout_views_set_sort(vd->layout, vd->layout->options.dir_view_list_sort.method, ascend);
+
+	if (vd->layout) layout_refresh(vd->layout);
+}
+
+static void vd_pop_menu_sort_cb(GtkWidget *widget, gpointer data)
+{
+	ViewDir *vd;
+	SortType type;
+
+	vd = submenu_item_get_data(widget);
+
+	if (!vd) return;
+	if (!vd->layout) return;
+
+	type = (SortType)GPOINTER_TO_INT(data);
+
+	if (type == SORT_NAME || type == SORT_TIME)
+		{
+		layout_views_set_sort(vd->layout, type, vd->layout->options.dir_view_list_sort.ascend);
+
+		if (vd->layout) layout_refresh(vd->layout);
+		}
+}
+
 GtkWidget *vd_pop_menu(ViewDir *vd, FileData *fd)
 {
 	GtkWidget *menu;
 	gboolean active;
 	gboolean rename_delete_active = FALSE;
 	gboolean new_folder_active = FALSE;
+	GtkWidget *submenu;
+	GtkWidget *item;
 
 	active = (fd != NULL);
 	switch (vd->type)
@@ -703,6 +742,14 @@ GtkWidget *vd_pop_menu(ViewDir *vd, FileData *fd)
 
 	menu_item_add_radio(menu, _("View as _Tree"), GINT_TO_POINTER(DIRVIEW_TREE), vd->type == DIRVIEW_TREE,
                         G_CALLBACK(vd_pop_submenu_dir_view_as_cb), vd);
+
+	if (vd->type == DIRVIEW_LIST)
+		{
+		submenu = submenu_add_dir_sort(NULL, G_CALLBACK(vd_pop_menu_sort_cb), vd, FALSE, FALSE, TRUE, vd->layout->options.dir_view_list_sort.method);
+		menu_item_add_check(submenu, _("Ascending"), vd->layout->options.dir_view_list_sort.ascend, G_CALLBACK(vd_pop_menu_sort_ascend_cb), (vd));
+		item = menu_item_add(menu, _("_Sort"), NULL, NULL);
+		gtk_menu_item_set_submenu(GTK_MENU_ITEM(item), submenu);
+		}
 
 	menu_item_add_divider(menu);
 
