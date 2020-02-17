@@ -56,6 +56,11 @@
           <entry>Set the &lt;width&gt; &lt;height&gt; &lt;xoffset&gt; &lt;yoffset&gt; of the window. The parameters are in pixels.</entry>
         </row>
         <row>
+          <entry>-n</entry>
+          <entry>--new-instance</entry>
+          <entry>Open a new instance of Geeqie.</entry>
+        </row>
+        <row>
           <entry>-r</entry>
           <entry>--remote</entry>
           <entry>Send command line options to existing Geeqie process.</entry>
