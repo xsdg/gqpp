@@ -805,8 +805,20 @@ GtkWidget *bookmark_list_new(const gchar *key,
 	bm->only_directories = FALSE;
 
 	scrolled = gtk_scrolled_window_new(NULL, NULL);
-	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
-				       GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+
+#if GTK_CHECK_VERSION(3,0,0)
+	PangoLayout *layout;
+	gint width, height;
+
+	layout = gtk_widget_create_pango_layout(GTK_WIDGET(scrolled), "reasonable width");
+	pango_layout_get_pixel_size(layout, &width, &height);
+	gtk_scrolled_window_set_min_content_width(GTK_SCROLLED_WINDOW(scrolled), width);
+	g_object_unref(layout);
+
+	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+#else
+	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+#endif
 
 	bm->box = gtk_vbox_new(FALSE, 0);
 	gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scrolled), bm->box);
