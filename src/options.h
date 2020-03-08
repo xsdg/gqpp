@@ -56,6 +56,7 @@ struct _ConfOptions
 
 	gint open_recent_list_maxsize;
 	gint dnd_icon_size;
+	DnDAction dnd_default_action;
 	gint clipboard_selection;
 
 	gboolean save_window_positions;

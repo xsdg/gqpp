@@ -79,6 +79,13 @@ typedef enum {
 	SORT_CLASS
 } SortType;
 
+/* drag and drop default action */
+typedef enum {
+	DND_ACTION_ASK,
+	DND_ACTION_COPY,
+	DND_ACTION_MOVE
+} DnDAction;
+
 typedef enum {
 	ALTER_NONE,		/* do nothing */
 	ALTER_ROTATE_90,

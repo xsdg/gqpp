@@ -888,6 +888,18 @@ static void vd_dnd_drop_receive(GtkWidget *widget,
 #else
 			action = (gdk_drag_context_get_actions(context));
 #endif
+			if (action != GDK_ACTION_COPY && action != GDK_ACTION_MOVE)
+				{
+				if (options->dnd_default_action == DND_ACTION_COPY)
+					{
+					action = GDK_ACTION_COPY;
+					}
+				else if (options->dnd_default_action == DND_ACTION_MOVE)
+					{
+					action = GDK_ACTION_MOVE;
+					}
+				}
+
 			if (action == GDK_ACTION_COPY)
 				{
 				file_util_copy_simple(list, fd->path, vd->widget);

@@ -51,6 +51,7 @@ ConfOptions *init_options(ConfOptions *options)
 	options->color_profile.render_intent = 0;
 
 	options->dnd_icon_size = 48;
+	options->dnd_default_action = DND_ACTION_ASK;
 	options->duplicates_similarity_threshold = 99;
 	options->rot_invariant_sim = TRUE;
 	options->sort_totals = FALSE;

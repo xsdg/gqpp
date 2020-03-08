@@ -378,6 +378,7 @@ static void config_window_apply(void)
 	options->open_recent_list_maxsize = c_options->open_recent_list_maxsize;
 	options->dnd_icon_size = c_options->dnd_icon_size;
 	options->clipboard_selection = c_options->clipboard_selection;
+	options->dnd_default_action = c_options->dnd_default_action;
 
 	options->metadata.save_in_image_file = c_options->metadata.save_in_image_file;
 	options->metadata.save_legacy_IPTC = c_options->metadata.save_legacy_IPTC;
@@ -551,6 +552,24 @@ static void quality_menu_cb(GtkWidget *combo, gpointer data)
 		}
 }
 
+static void dnd_default_action_selection_menu_cb(GtkWidget *combo, gpointer data)
+{
+	gint *option = data;
+
+	switch (gtk_combo_box_get_active(GTK_COMBO_BOX(combo)))
+		{
+		case 0:
+		default:
+			*option = DND_ACTION_ASK;
+			break;
+		case 1:
+			*option = DND_ACTION_COPY;
+			break;
+		case 2:
+			*option = DND_ACTION_MOVE;
+			break;
+		}
+}
 static void clipboard_selection_menu_cb(GtkWidget *combo, gpointer data)
 {
 	gint *option = data;
@@ -592,6 +611,33 @@ static void add_quality_menu(GtkWidget *table, gint column, gint row, const gcha
 
 	g_signal_connect(G_OBJECT(combo), "changed",
 			 G_CALLBACK(quality_menu_cb), option_c);
+
+	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, 0, 0, 0);
+	gtk_widget_show(combo);
+}
+
+static void add_dnd_default_action_selection_menu(GtkWidget *table, gint column, gint row, const gchar *text, DnDAction option, DnDAction *option_c)
+{
+	GtkWidget *combo;
+	gint current = 0;
+
+	*option_c = option;
+
+	pref_table_label(table, column, row, text, 0.0);
+
+	combo = gtk_combo_box_text_new();
+
+	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("Ask"));
+	if (option == DND_ACTION_ASK) current = 0;
+	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("Copy"));
+	if (option == DND_ACTION_COPY) current = 1;
+	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("Move"));
+	if (option == DND_ACTION_MOVE) current = 2;
+
+	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), current);
+
+	g_signal_connect(G_OBJECT(combo), "changed",
+			 G_CALLBACK(dnd_default_action_selection_menu_cb), option_c);
 
 	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, 0, 0, 0);
 	gtk_widget_show(combo);
@@ -3272,6 +3318,9 @@ static void config_tab_behavior(GtkWidget *notebook)
 
 	pref_spin_new_int(group, _("Drag'n drop icon size"), NULL,
 			  16, 256, 16, options->dnd_icon_size, &c_options->dnd_icon_size);
+
+	table = pref_table_new(group, 2, 1, FALSE, FALSE);
+	add_dnd_default_action_selection_menu(table, 0, 0, _("Drag`n drop default action:"), options->dnd_default_action, &c_options->dnd_default_action);
 
 	table = pref_table_new(group, 2, 1, FALSE, FALSE);
 	add_clipboard_selection_menu(table, 0, 0, _("Copy path clipboard selection:"), options->clipboard_selection, &c_options->clipboard_selection);

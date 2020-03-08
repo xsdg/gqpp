@@ -334,6 +334,7 @@ static void write_global_attributes(GString *outstr, gint indent)
 	WRITE_NL(); WRITE_CHAR(*options, image_l_click_video_editor);
 	WRITE_NL(); WRITE_INT(*options, open_recent_list_maxsize);
 	WRITE_NL(); WRITE_INT(*options, dnd_icon_size);
+	WRITE_NL(); WRITE_UINT(*options, dnd_default_action);
 	WRITE_NL(); WRITE_BOOL(*options, place_dialogs_under_mouse);
 	WRITE_NL(); WRITE_INT(*options, clipboard_selection);
 
@@ -748,6 +749,7 @@ static gboolean load_global_params(const gchar **attribute_names, const gchar **
 
 		if (READ_INT(*options, open_recent_list_maxsize)) continue;
 		if (READ_INT(*options, dnd_icon_size)) continue;
+		if (READ_UINT(*options, dnd_default_action)) continue;
 		if (READ_BOOL(*options, place_dialogs_under_mouse)) continue;
 		if (READ_INT(*options, clipboard_selection)) continue;
 
