@@ -27,7 +27,6 @@
 
 #ifdef HAVE_J2K
 
-#include <sys/sysinfo.h>
 #include "openjpeg.h"
 
 typedef struct _ImageLoaderJ2K ImageLoaderJ2K;
