@@ -975,13 +975,17 @@ static void gr_file_tell(const gchar *text, GIOChannel *channel, gpointer data)
 			{
 			out_string = g_strconcat(image_get_path(lw_id->image), NULL);
 			}
-
-		g_io_channel_write_chars(channel, out_string, -1, NULL, NULL);
-		g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
-
-		g_free(collection_name);
-		g_free(out_string);
 		}
+	else
+		{
+		out_string = g_strconcat(lw_id->dir_fd->path, G_DIR_SEPARATOR_S, NULL);
+		}
+
+	g_io_channel_write_chars(channel, out_string, -1, NULL, NULL);
+	g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
+
+	g_free(collection_name);
+	g_free(out_string);
 }
 
 static void gr_file_info(const gchar *text, GIOChannel *channel, gpointer data)
