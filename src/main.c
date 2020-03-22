@@ -923,6 +923,7 @@ gint main(gint argc, gchar *argv[])
 	mkdir_if_not_exists(get_collections_dir());
 	mkdir_if_not_exists(get_thumbnails_cache_dir());
 	mkdir_if_not_exists(get_metadata_cache_dir());
+	mkdir_if_not_exists(get_window_layouts_dir());
 
 	setup_env_path();
 

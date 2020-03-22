@@ -85,7 +85,7 @@ static const UseableToolbarItems useable_toolbar_items[] = {
 	{"PrevPage",	N_("Previous Page"), GTK_STOCK_MEDIA_REWIND},
 	{"ImageForward",	N_("Image Forward"), GTK_STOCK_GOTO_LAST},
 	{"ImageBack",	N_("Image Back"), GTK_STOCK_GOTO_FIRST},
-	{"NewWindow",	N_("New _window"), GTK_STOCK_NEW},
+	{"NewWindow",	N_("New window"), GTK_STOCK_NEW},
 	{"NewCollection",	N_("New collection"), GTK_STOCK_INDEX},
 	{"OpenCollection",	N_("Open collection"), GTK_STOCK_OPEN},
 	{"Search",	N_("Search"), GTK_STOCK_FIND},

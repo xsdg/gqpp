@@ -1529,6 +1529,70 @@
     </variablelist>
     <para />
   </section>
+  <section id="Windowmenu">
+    <title>Windows menu</title>
+    <para>This menu permits you to define several different window layouts that can be recalled at any time.</para>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo>
+                <keycap>Ctrl</keycap>
+                <keycap>N</keycap>
+              </keycombo>
+            </shortcut>
+            <guimenu>New window</guimenu>
+            <guimenuitem>default</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Opens a new window with the default layout. The window is given a name in the form "lw&lt;n&gt;".</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>New window</guimenu>
+            <guimenuitem>from current</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Opens a new window with the layout of the window that has focus.  The window is given a name in the form "lw&lt;n&gt;".</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Rename window</guimenu>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>If a window is given a name that does not begin with the characters "lw", the layout will be saved and be available for loading at a later time..</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Delete window</guimenu>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Delete a saved window layout from the list.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Close window</guimenu>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Close the window. If the window is the "main" window, close all windows.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
   <section id="Helpmenu">
     <title>Help menu</title>
     <variablelist>
@@ -1545,6 +1609,29 @@
         </term>
         <listitem>
           <para>Opens the Geeqie user manual in a new browser window.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo>
+                <keycap>/</keycap>
+              </keycombo>
+            </shortcut>
+            <guimenu>Search and Run Commands</guimenu>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>
+            Opens a text box in which you may type characters to find a command. The characters you type will be matched to the first characters of any word in all the commands in Geeqie - both built-in commands and plugins - and matching actions will be displayed in a pop-up. You may scroll to any of the matching commands and press
+            <code>Enter</code>
+            to execute the command. Pressing
+            <code>Enter</code>
+            without selecting from the list will execute the first action in the list. Press
+            <code>Esc</code>
+            to close the box.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1612,27 +1699,6 @@
         </listitem>
       </varlistentry>
     </variablelist>
-    <para />
-  </section>
-  <section id="Sarmenu">
-    <title>SaR menu</title>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <shortcut>
-              <keycombo>
-                <keycap>/</keycap>
-              </keycombo>
-            </shortcut>
-            <guimenu>Search and Run Commands</guimenu>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Opens a text box in which you may type characters to find a command. The characters you type will be matched to the first characters of any word in all the commands in Geeqie - both built-in commands and plugins - and matching actions will be displayed in a pop-up. You may scroll to any of the matching commands and press <code>Enter</code> to execute the command. Pressing <code>Enter</code> without selecting from the list will execute the first action in the list. Press <code>Esc</code> to close the box.</para>
-        </listitem>
-      </varlistentry>
-     </variablelist>
     <para />
   </section>
   <section id="Tearoffmenus">

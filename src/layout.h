@@ -124,5 +124,7 @@ void layout_info_pixel_set(LayoutWindow *lw, gboolean show);
 
 void layout_split_change(LayoutWindow *lw, ImageSplitMode mode);
 
+void save_layout(LayoutWindow *lw);
+gchar *layout_get_unique_id();
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

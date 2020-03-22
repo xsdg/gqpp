@@ -341,7 +341,7 @@ void save_options(ConfOptions *options)
 	sync_options_with_current_state(options);
 
 	rc_path = g_build_filename(get_rc_dir(), RC_FILE_NAME, NULL);
-	save_config_to_file(rc_path, options);
+	save_config_to_file(rc_path, options, NULL);
 	g_free(rc_path);
 }
 

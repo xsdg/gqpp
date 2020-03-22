@@ -302,6 +302,24 @@ const gchar *get_trash_dir(void)
 	return trash_dir;
 }
 
+const gchar *get_window_layouts_dir(void)
+{
+	static gchar *window_layouts_dir = NULL;
+
+	if (window_layouts_dir) return window_layouts_dir;
+
+	if (USE_XDG)
+		{
+		window_layouts_dir = g_build_filename(xdg_config_home_get(), GQ_APPNAME_LC, GQ_WINDOW_LAYOUTS_DIR, NULL);
+		}
+	else
+		{
+		window_layouts_dir = g_build_filename(get_rc_dir(), GQ_WINDOW_LAYOUTS_DIR, NULL);
+		}
+
+	return window_layouts_dir;
+}
+
 gboolean stat_utf8(const gchar *s, struct stat *st)
 {
 	gchar *sl;

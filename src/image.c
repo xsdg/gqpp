@@ -45,7 +45,7 @@
 
 static GList *image_list = NULL;
 
-static void image_update_title(ImageWindow *imd);
+void image_update_title(ImageWindow *imd);
 static void image_read_ahead_start(ImageWindow *imd);
 static void image_cache_set(ImageWindow *imd, FileData *fd);
 
@@ -333,7 +333,7 @@ static void image_zoom_cb(PixbufRenderer *pr, gdouble zoom, gpointer data)
  *-------------------------------------------------------------------
  */
 
-static void image_update_title(ImageWindow *imd)
+void image_update_title(ImageWindow *imd)
 {
 	gchar *title = NULL;
 	gchar *zoom = NULL;

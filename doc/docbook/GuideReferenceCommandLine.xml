@@ -199,8 +199,8 @@
           </row>
           <row>
             <entry />
-            <entry>--config-load:&lt;file&gt;</entry>
-            <entry>Load configuration from &lt;file&gt;.</entry>
+            <entry>--config-load:&lt;file&gt;|layout ID</entry>
+            <entry>Load configuration from &lt;file&gt;. Use either a full path, or a saved window layout ID.</entry>
           </row>
           <row>
             <entry />

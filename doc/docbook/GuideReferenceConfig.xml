@@ -21,6 +21,10 @@
     <programlisting xml:space="preserve">geeqie -r --config-load:&lt;filename&gt;</programlisting>
   </para>
   <para>
+    Saved window layout files are in the folder:
+    <programlisting xml:space="preserve">.../layouts</programlisting>
+  </para>
+  <para>
     Geeqie-created desktop files used by
     <link linkend="GuideImageManagementPlugins">Plugins</link>
     are in the folder:

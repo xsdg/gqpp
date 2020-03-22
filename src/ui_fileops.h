@@ -56,6 +56,7 @@ const gchar *homedir(void);
 const gchar *get_rc_dir(void);
 const gchar *get_collections_dir(void);
 const gchar *get_trash_dir(void);
+const gchar *get_window_layouts_dir(void);
 
 gboolean stat_utf8(const gchar *s, struct stat *st);
 gboolean lstat_utf8(const gchar *s, struct stat *st);

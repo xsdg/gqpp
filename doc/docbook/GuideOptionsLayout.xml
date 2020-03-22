@@ -38,24 +38,6 @@
     </varlistentry>
     <varlistentry>
       <term>
-        <guilabel>Exit program when this window is closed</guilabel>
-      </term>
-      <listitem>
-        <para>
-          If multiple instances of Geeqie have been started via
-          <menuchoice>
-            <guimenu>File</guimenu>
-            <guimenuitem>New Window</guimenuitem>
-          </menuchoice>
-          , if this check box is clicked all instances will be closed when this window is exited.
-        </para>
-        <note>
-          <para>When a window with this check box selected is closed, the existence of all other open Geeqie windows will be remembered. When Geeqie is started again, all those windows will be re-opened.</para>
-        </note>
-      </listitem>
-    </varlistentry>
-    <varlistentry>
-      <term>
         <guilabel>Start-up directory</guilabel>
       </term>
       <listitem>

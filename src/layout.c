@@ -150,6 +150,23 @@ LayoutWindow *layout_find_by_layout_id(const gchar *id)
 	return NULL;
 }
 
+gchar *layout_get_unique_id()
+{
+	char id[10];
+	gint i;
+
+	i = 1;
+	while (TRUE)
+		{
+		g_snprintf(id, sizeof(id), "lw%d", i);
+		if (!layout_find_by_layout_id(id))
+			{
+			return g_strdup(id);
+			}
+		i++;
+		}
+}
+
 static void layout_set_unique_id(LayoutWindow *lw)
 {
 	char id[10];
@@ -2274,9 +2291,6 @@ void layout_show_config_window(LayoutWindow *lw)
 	pref_checkbox_new_int(group, _("Show date in directories list view"),
 			      lc->options.show_directory_date, &lc->options.show_directory_date);
 
-	pref_checkbox_new_int(group, _("Exit program when this window is closed"),
-			      lc->options.exit_on_close, &lc->options.exit_on_close);
-
 	group = pref_group_new(vbox, FALSE, _("Start-up directory:"), GTK_ORIENTATION_VERTICAL);
 
 	button = pref_radiobutton_new(group, NULL, _("No change"),
@@ -2356,12 +2370,53 @@ void layout_apply_options(LayoutWindow *lw, LayoutOptions *lop)
 	if (refresh_lists) layout_refresh(lw);
 }
 
+void save_layout(LayoutWindow *lw)
+{
+	gchar *path;
+	gchar *xml_name;
+
+	if (!g_str_has_prefix(lw->options.id, "lw") && !g_str_equal(lw->options.id, "main"))
+		{
+		xml_name = g_strdup_printf("%s.xml", lw->options.id);
+		path = g_build_filename(get_window_layouts_dir(), xml_name, NULL);
+		save_config_to_file(path, options, lw);
+
+		g_free(xml_name);
+		g_free(path);
+		}
+}
 
 void layout_close(LayoutWindow *lw)
 {
-	if (!lw->options.exit_on_close && layout_window_list && layout_window_list->next)
+	GList *list;
+	LayoutWindow *tmp_lw;
+
+	if (layout_window_list && layout_window_list->next)
 		{
-		layout_free(lw);
+		if (g_strcmp0(lw->options.id, "main") == 0)
+			{
+			while (layout_window_list && layout_window_list->next)
+				{
+				list = layout_window_list;
+				while (list)
+					{
+					tmp_lw = list->data;
+					if (g_strcmp0(tmp_lw->options.id, "main") != 0)
+						{
+						save_layout(list->data);
+						layout_free(list->data);
+						break;
+						}
+					list = list->next;
+					}
+				}
+			exit_program();
+			}
+		else
+			{
+			save_layout(lw);
+			layout_free(lw);
+			}
 		}
 	else
 		{
@@ -2585,7 +2640,6 @@ void layout_write_attributes(LayoutOptions *layout, GString *outstr, gint indent
 	WRITE_NL(); WRITE_CHAR(*layout, home_path);
 	WRITE_NL(); WRITE_CHAR(*layout, last_path);
 	WRITE_NL(); WRITE_UINT(*layout, startup_path);
-	WRITE_NL(); WRITE_BOOL(*layout, exit_on_close);
 	WRITE_SEPARATOR();
 
 	WRITE_NL(); WRITE_INT(*layout, main_window.x);
@@ -2686,7 +2740,6 @@ void layout_load_attributes(LayoutOptions *layout, const gchar **attribute_names
 		if (READ_CHAR(*layout, home_path)) continue;
 		if (READ_CHAR(*layout, last_path)) continue;
 		if (READ_UINT_CLAMP(*layout, startup_path, 0, STARTUP_PATH_HOME)) continue;
-		if (READ_BOOL(*layout, exit_on_close)) continue;
 
 		/* window positions */
 

@@ -83,6 +83,7 @@
 #define GQ_RC_DIR		"." GQ_APPNAME_LC
 #define GQ_COLLECTIONS_DIR	"collections"
 #define GQ_TRASH_DIR		"trash"
+#define GQ_WINDOW_LAYOUTS_DIR	"layouts"
 
 #define GQ_SYSTEM_WIDE_DIR    "/etc/" GQ_APPNAME_LC
 

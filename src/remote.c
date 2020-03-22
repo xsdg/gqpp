@@ -1058,9 +1058,57 @@ static void gr_file_info(const gchar *text, GIOChannel *channel, gpointer data)
 		}
 }
 
+static gchar *config_file_path(const gchar *param)
+{
+	gchar *path = NULL;
+	gchar *full_name = NULL;
+
+	if (file_extension_match(param, ".xml"))
+		{
+		path = g_build_filename(get_window_layouts_dir(), param, NULL);
+		}
+	else if (file_extension_match(param, NULL))
+		{
+		full_name = g_strconcat(param, ".xml", NULL);
+		path = g_build_filename(get_window_layouts_dir(), full_name, NULL);
+		}
+
+	if (!isfile(path))
+		{
+		g_free(path);
+		path = NULL;
+		}
+
+	g_free(full_name);
+	return path;
+}
+
+static gboolean is_config_file(const gchar *param)
+{
+	gchar *name = NULL;
+
+	name = config_file_path(param);
+	if (name)
+		{
+		g_free(name);
+		return TRUE;
+		}
+	return FALSE;
+}
+
 static void gr_config_load(const gchar *text, GIOChannel *channel, gpointer data)
 {
 	gchar *filename = expand_tilde(text);
+
+	if (!g_strstr_len(filename, -1, G_DIR_SEPARATOR_S))
+		{
+		if (is_config_file(filename))
+			{
+			gchar *tmp = config_file_path(filename);
+			g_free(filename);
+			filename = tmp;
+			}
+		}
 
 	if (isfile(filename))
 		{
@@ -1251,7 +1299,7 @@ static RemoteCommandEntry remote_commands[] = {
 	{ "+t", "--tools-show",         gr_tools_show,          FALSE, TRUE,  NULL, N_("show tools") },
 	{ "-t", "--tools-hide",	        gr_tools_hide,          FALSE, TRUE,  NULL, N_("hide tools") },
 	{ "-q", "--quit",               gr_quit,                FALSE, FALSE, NULL, N_("quit") },
-	{ NULL, "--config-load:",       gr_config_load,         TRUE,  FALSE, N_("<FILE>"), N_("load configuration from FILE") },
+	{ NULL, "--config-load:",       gr_config_load,         TRUE,  FALSE, N_("<FILE>|layout ID"), N_("load configuration from FILE") },
 	{ NULL, "--get-sidecars:",      gr_get_sidecars,        TRUE,  FALSE, N_("<FILE>"), N_("get list of sidecars of FILE") },
 	{ NULL, "--get-destination:",  	gr_get_destination,     TRUE,  FALSE, N_("<FILE>"), N_("get destination path of FILE") },
 	{ NULL, "file:",                gr_file_load,           TRUE,  FALSE, N_("<FILE>"), N_("open FILE, bring Geeqie window to the top") },

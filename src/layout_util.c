@@ -35,6 +35,7 @@
 #include "editors.h"
 #include "filedata.h"
 #include "history_list.h"
+#include "image.h"
 #include "image-overlay.h"
 #include "histogram.h"
 #include "img-view.h"
@@ -275,11 +276,6 @@ static void layout_menu_clear_marks_cb(GtkAction *action, gpointer data)
 				clear_marks_help_cb, FALSE);
 
 	gtk_widget_show(gd->dialog);
-}
-
-static void layout_menu_new_window_cb(GtkAction *action, gpointer data)
-{
-	layout_menu_new_window(action, data);
 }
 
 static void layout_menu_new_cb(GtkAction *action, gpointer data)
@@ -1932,6 +1928,455 @@ void layout_recent_add_path(const gchar *path)
 
 /*
  *-----------------------------------------------------------------------------
+ * window layout menu
+ *-----------------------------------------------------------------------------
+ */
+typedef struct _WindowNames WindowNames;
+struct _WindowNames
+{
+	gboolean displayed;
+	gchar *name;
+	gchar *path;
+};
+
+typedef struct _RenameWindow RenameWindow;
+struct _RenameWindow
+{
+	GenericDialog *gd;
+	LayoutWindow *lw;
+
+	GtkWidget *button_ok;
+	GtkWidget *window_name_entry;
+};
+
+typedef struct _DeleteWindow DeleteWindow;
+struct _DeleteWindow
+{
+	GenericDialog *gd;
+	LayoutWindow *lw;
+
+	GtkWidget *button_ok;
+	GtkWidget *group;
+};
+
+static gint layout_window_menu_list_sort_cb(gconstpointer a, gconstpointer b)
+{
+	const WindowNames *wna = a;
+	const WindowNames *wnb = b;
+
+	return g_strcmp0((gchar *)wna->name, (gchar *)wnb->name);
+}
+
+static GList *layout_window_menu_list(GList *listin)
+{
+	GList *list;
+	WindowNames *wn;
+	gboolean dupe;
+	DIR *dp;
+	struct dirent *dir;
+	gchar *pathl;
+
+	pathl = path_from_utf8(get_window_layouts_dir());
+	dp = opendir(pathl);
+	if (!dp)
+		{
+		/* dir not found */
+		g_free(pathl);
+		return listin;
+		}
+
+	while ((dir = readdir(dp)) != NULL)
+		{
+		gchar *name_file = dir->d_name;
+
+		if (g_str_has_suffix(name_file, ".xml"))
+			{
+			LayoutWindow *lw_tmp ;
+			gchar *name_utf8 = path_to_utf8(name_file);
+			gchar *name_base = g_strndup(name_utf8, strlen(name_utf8) - 4);
+			list = layout_window_list;
+			dupe = FALSE;
+			while (list)
+				{
+				lw_tmp = list->data;
+				if (g_strcmp0(lw_tmp->options.id, name_base) == 0)
+					{
+					dupe = TRUE;
+					}
+				list = list->next;
+				}
+			gchar *dpath = g_build_filename(pathl, name_utf8, NULL);
+			wn  = g_new0(WindowNames, 1);
+			wn->displayed = dupe;
+			wn->name = g_strdup(name_base);
+			wn->path = g_strdup(dpath);
+			listin = g_list_append(listin, wn);
+
+			g_free(dpath);
+			g_free(name_utf8);
+			g_free(name_base);
+			}
+		}
+	closedir(dp);
+
+	g_free(pathl);
+
+	return g_list_sort(listin, layout_window_menu_list_sort_cb);
+}
+
+static void layout_menu_new_window_cb(GtkWidget *widget, gpointer data)
+{
+	LayoutWindow *nw = NULL;
+	gint n;
+
+	n = GPOINTER_TO_INT(data);
+	GList *menulist = NULL;
+
+	menulist = layout_window_menu_list(menulist);
+	WindowNames *wn = g_list_nth(menulist, n )->data;
+
+	if (wn->path)
+		{
+		load_config_from_file(wn->path, FALSE);
+		}
+	else
+		{
+		log_printf(_("Error: window layout name: %s does not exist\n"), wn->path);
+		}
+}
+
+static void layout_menu_new_window_update(LayoutWindow *lw)
+{
+	GtkWidget *menu;
+	GtkWidget *sub_menu;
+	GtkWidget *item;
+	GList *children, *iter;
+	gint n;
+	GList *list = NULL;
+	gint i = 0;
+	WindowNames *wn;
+
+	if (!lw->ui_manager) return;
+
+	list = layout_window_menu_list(list);
+
+	menu = gtk_ui_manager_get_widget(lw->ui_manager, "/MainMenu/WindowsMenu/NewWindow");
+	sub_menu = gtk_menu_item_get_submenu(GTK_MENU_ITEM(menu));
+
+	children = gtk_container_get_children(GTK_CONTAINER(sub_menu));
+	for (iter = children; iter != NULL; iter = g_list_next(iter), i++)
+		{
+		if (i >= 4) // separator, default, from current, separator
+			{
+			gtk_widget_destroy(GTK_WIDGET(iter->data));
+			}
+		}
+	g_list_free(children);
+
+	menu_item_add_divider(sub_menu);
+
+	n = 0;
+	while (list)
+		{
+		wn = list->data;
+		item = menu_item_add_simple(sub_menu, wn->name, G_CALLBACK(layout_menu_new_window_cb), GINT_TO_POINTER(n));
+		if (wn->displayed)
+			{
+			gtk_widget_set_sensitive(item, FALSE);
+			}
+		list = list->next;
+		n++;
+		}
+}
+
+static void window_rename_cancel_cb(GenericDialog *gd, gpointer data)
+{
+	RenameWindow *rw = data;
+
+	generic_dialog_close(rw->gd);
+	g_free(rw);
+}
+
+static void window_rename_ok(GenericDialog *gd, gpointer data)
+{
+	RenameWindow *rw = data;
+	gchar *path;
+	gboolean window_layout_name_exists = FALSE;
+	GList *list = NULL;
+	gchar *xml_name;
+	gchar *new_id;
+
+	new_id = g_strdup(gtk_entry_get_text(GTK_ENTRY(rw->window_name_entry)));
+
+	list = layout_window_menu_list(list);
+	while (list)
+		{
+		WindowNames *ln = list->data;
+		if (g_strcmp0(ln->name, new_id) == 0)
+			{
+			gchar *buf;
+			buf = g_strdup_printf(_("Window layout name \"%s\" already exists."), new_id);
+			warning_dialog(_("Rename window"), buf, GTK_STOCK_DIALOG_WARNING, rw->gd->dialog);
+			g_free(buf);
+			window_layout_name_exists = TRUE;
+			break;
+			}
+		list = list->next;
+		}
+
+	if (!window_layout_name_exists)
+		{
+		xml_name = g_strdup_printf("%s.xml", rw->lw->options.id);
+		path = g_build_filename(get_window_layouts_dir(), xml_name, NULL);
+
+		if (isfile(path))
+			{
+			unlink_file(path);
+			}
+		g_free(xml_name);
+		g_free(path);
+
+		g_free(rw->lw->options.id);
+		rw->lw->options.id = g_strdup(new_id);
+		layout_menu_new_window_update(rw->lw);
+		layout_refresh(rw->lw);
+		image_update_title(rw->lw->image);
+		}
+
+	save_layout(rw->lw);
+
+	g_free(new_id);
+	generic_dialog_close(rw->gd);
+	g_free(rw);
+}
+
+static void window_rename_ok_cb(GenericDialog *gd, gpointer data)
+{
+	RenameWindow *rw = data;
+
+	window_rename_ok(gd, rw);
+}
+
+static gboolean window_rename_entry_activate_cb(GenericDialog *gd, gpointer data)
+{
+	RenameWindow *rw = data;
+
+	window_rename_ok(gd, rw);
+}
+
+static void window_delete_cancel_cb(GenericDialog *gd, gpointer data)
+{
+	DeleteWindow *dw = data;
+
+	g_free(dw);
+}
+
+static void window_delete_ok_cb(GenericDialog *gd, gpointer data)
+{
+	DeleteWindow *dw = data;
+	gchar *path;
+	gchar *xml_name;
+
+	xml_name = g_strdup_printf("%s.xml", dw->lw->options.id);
+	path = g_build_filename(get_window_layouts_dir(), xml_name, NULL);
+
+	layout_close(dw->lw);
+	g_free(dw);
+
+	if (isfile(path))
+		{
+		unlink_file(path);
+		}
+	g_free(xml_name);
+	g_free(path);
+}
+
+static void layout_menu_window_default_cb(GtkWidget *widget, gpointer data)
+{
+	layout_new_from_config(NULL, NULL, TRUE);
+}
+
+static void layout_menu_windows_menu_cb(GtkWidget *widget, gpointer data)
+{
+	LayoutWindow *lw = data;
+	GtkWidget *menu;
+	GtkWidget *sub_menu;
+	gchar *menu_label;
+	GList *children, *iter;
+	gint i;
+
+	menu = gtk_ui_manager_get_widget(lw->ui_manager, "/MainMenu/WindowsMenu/");
+	sub_menu = gtk_menu_item_get_submenu(GTK_MENU_ITEM(menu));
+
+	/* disable Rename and Delete for main window */
+	if (g_strcmp0(lw->options.id, "main") == 0)
+		{
+		i = 0;
+		children = gtk_container_get_children(GTK_CONTAINER(sub_menu));
+		for (iter = children; iter != NULL; iter = g_list_next(iter), i++)
+			{
+			menu_label = g_strdup(gtk_menu_item_get_label(GTK_MENU_ITEM(iter->data)));
+			if (g_strcmp0(menu_label, _("Delete window")) == 0 || g_strcmp0(menu_label, _("Rename window")) == 0)
+				{
+				gtk_widget_set_sensitive(GTK_WIDGET(iter->data), FALSE);
+				}
+			g_free(menu_label);
+			}
+		g_list_free(children);
+		}
+}
+
+static void change_window_id(const gchar *infile, const gchar *outfile)
+{
+	GFile *in_file;
+	GFile *out_file;
+	GFileInputStream *in_file_stream;
+	GFileOutputStream *out_file_stream;
+	GDataInputStream *in_data_stream;
+	GDataOutputStream *out_data_stream;
+	gchar *line;
+	gchar *id_name;
+
+	id_name = layout_get_unique_id();
+
+	in_file = g_file_new_for_path(infile);
+	in_file_stream = g_file_read(in_file, NULL, NULL);
+	in_data_stream = g_data_input_stream_new(G_INPUT_STREAM(in_file_stream));
+
+	out_file = g_file_new_for_path(outfile);
+	out_file_stream = g_file_append_to(out_file, G_FILE_CREATE_PRIVATE, NULL, NULL);
+	out_data_stream = g_data_output_stream_new(G_OUTPUT_STREAM(out_file_stream));
+
+	while (line = g_data_input_stream_read_line(in_data_stream, NULL, NULL, NULL))
+		{
+		if (g_str_has_suffix(line, "<layout"))
+			{
+			g_data_output_stream_put_string(out_data_stream, line, NULL, NULL);
+			g_data_output_stream_put_string(out_data_stream, "\n", NULL, NULL);
+			g_free(line);
+
+			line = g_data_input_stream_read_line(in_data_stream, NULL, NULL, NULL);
+			g_data_output_stream_put_string(out_data_stream, "id = \"", NULL, NULL);
+			g_data_output_stream_put_string(out_data_stream, id_name, NULL, NULL);
+			g_data_output_stream_put_string(out_data_stream, "\"\n", NULL, NULL);
+			}
+		else
+			{
+			g_data_output_stream_put_string(out_data_stream, line, NULL, NULL);
+			g_data_output_stream_put_string(out_data_stream, "\n", NULL, NULL);
+			}
+		g_free(line);
+		}
+
+	g_free(id_name);
+	g_object_unref(out_data_stream);
+	g_object_unref(in_data_stream);
+	g_object_unref(out_file_stream);
+	g_object_unref(in_file_stream);
+	g_object_unref(out_file);
+	g_object_unref(in_file);
+}
+
+static void layout_menu_window_from_current_cb(GtkWidget *widget, gpointer data)
+{
+	LayoutWindow *lw = data;
+	gint fd_in = -1;
+	gint fd_out = -1;
+	char * tmp_file_in;
+	char * tmp_file_out;
+	GError *error = NULL;
+
+	fd_in = g_file_open_tmp("geeqie_layout_name_XXXXXX.xml", &tmp_file_in, &error);
+	if (error)
+		{
+		log_printf("Error: Window layout - cannot create file:%s\n",error->message);
+		g_error_free(error);
+		return;
+		}
+	close(fd_in);
+	fd_out = g_file_open_tmp("geeqie_layout_name_XXXXXX.xml", &tmp_file_out, &error);
+	if (error)
+		{
+		log_printf("Error: Window layout - cannot create file:%s\n",error->message);
+		g_error_free(error);
+		return;
+		}
+	close(fd_out);
+
+	save_config_to_file(tmp_file_in, options, lw);
+	change_window_id(tmp_file_in, tmp_file_out);
+	load_config_from_file(tmp_file_out, FALSE);
+
+	unlink_file(tmp_file_in);
+	unlink_file(tmp_file_out);
+	g_free(tmp_file_in);
+	g_free(tmp_file_out);
+}
+
+static void layout_menu_window_cb(GtkWidget *widget, gpointer data)
+{
+	LayoutWindow *lw = data;
+
+	layout_menu_new_window_update(lw);
+}
+
+static void layout_menu_window_rename_cb(GtkWidget *widget, gpointer data)
+{
+	LayoutWindow *lw = data;
+	RenameWindow *rw;
+	GtkWidget *hbox;
+
+	rw = g_new0(RenameWindow, 1);
+	rw->lw = lw;
+
+	rw->gd = generic_dialog_new(_("Rename window"), "rename_window", NULL, FALSE, window_rename_cancel_cb, rw);
+	rw->button_ok = generic_dialog_add_button(rw->gd, GTK_STOCK_OK, _("OK"), window_rename_ok_cb, TRUE);
+
+	generic_dialog_add_message(rw->gd, NULL, _("rename window"), NULL, FALSE);
+
+	hbox = pref_box_new(rw->gd->vbox, FALSE, GTK_ORIENTATION_HORIZONTAL, 0);
+	pref_spacer(hbox, PREF_PAD_INDENT);
+
+	hbox = pref_box_new(rw->gd->vbox, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
+
+	rw->window_name_entry = gtk_entry_new();
+	gtk_widget_set_can_focus(rw->window_name_entry, TRUE);
+	gtk_editable_set_editable(GTK_EDITABLE(rw->window_name_entry), TRUE);
+	gtk_entry_set_text(GTK_ENTRY(rw->window_name_entry), lw->options.id);
+	gtk_box_pack_start(GTK_BOX(hbox), rw->window_name_entry, TRUE, TRUE, 0);
+	gtk_widget_grab_focus(GTK_WIDGET(rw->window_name_entry));
+	gtk_widget_show(rw->window_name_entry);
+	g_signal_connect(rw->window_name_entry, "activate", G_CALLBACK(window_rename_entry_activate_cb), rw);
+
+	gtk_widget_show(rw->gd->dialog);
+}
+
+static void layout_menu_window_delete_cb(GtkWidget *widget, gpointer data)
+{
+	LayoutWindow *lw = data;
+	DeleteWindow *dw;
+	GtkWidget *hbox;
+
+	dw = g_new0(DeleteWindow, 1);
+	dw->lw = lw;
+
+	dw->gd = generic_dialog_new(_("Delete window"), "delete_window", NULL, TRUE, window_delete_cancel_cb, dw);
+	dw->button_ok = generic_dialog_add_button(dw->gd, GTK_STOCK_OK, _("OK"), window_delete_ok_cb, TRUE);
+
+	generic_dialog_add_message(dw->gd, NULL, _("Delete window layout"), NULL, FALSE);
+
+	hbox = pref_box_new(dw->gd->vbox, FALSE, GTK_ORIENTATION_HORIZONTAL, 0);
+	pref_spacer(hbox, PREF_PAD_INDENT);
+	dw->group = pref_box_new(hbox, TRUE, GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
+
+	hbox = pref_box_new(dw->group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
+	pref_label_new(hbox, (lw->options.id));
+
+	gtk_widget_show(dw->gd->dialog);
+}
+
+/*
+ *-----------------------------------------------------------------------------
  * menu
  *-----------------------------------------------------------------------------
  */
@@ -1955,7 +2400,7 @@ static GtkActionEntry menu_entries[] = {
   { "StereoMenu",	NULL,			N_("Stere_o"),				NULL,			NULL,					NULL },
   { "OverlayMenu",	NULL,			N_("Image _Overlay"),			NULL,			NULL,					NULL },
   { "PluginsMenu",	NULL,			N_("_Plugins"),				NULL,			NULL,					NULL },
-  { "SarMenu",		NULL,			N_("S_aR"),				NULL,			NULL,					NULL },
+  { "WindowsMenu",		NULL,		N_("_Windows"),				NULL,			NULL,					CB(layout_menu_windows_menu_cb)  },
   { "HelpMenu",		NULL,			N_("_Help"),				NULL,			NULL,					NULL },
 
   { "FirstImage",	GTK_STOCK_GOTO_TOP,	N_("_First Image"),			"Home",			N_("First Image"),			CB(layout_menu_image_first_cb) },
@@ -1980,8 +2425,11 @@ static GtkActionEntry menu_entries[] = {
   { "Forward",	GTK_STOCK_GO_FORWARD,	N_("_Forward"),		NULL,	N_("Forward in folder history"),	CB(layout_menu_forward_cb) },
   { "Home",		GTK_STOCK_HOME,		N_("_Home"),			NULL,	N_("Home"),				CB(layout_menu_home_cb) },
   { "Up",		GTK_STOCK_GO_UP,	N_("_Up"),				NULL,	N_("Up one folder"),				CB(layout_menu_up_cb) },
-
-  { "NewWindow",	GTK_STOCK_NEW,		N_("New _window"),			"<control>N",		N_("New window"),			CB(layout_menu_new_window_cb) },
+  { "NewWindow",	NULL,		N_("New window"),			NULL,		N_("New window"),	CB(layout_menu_window_cb) },
+  { "NewWindowDefault",	NULL,	N_("default"),			"<control>N",		N_("default"),	CB(layout_menu_window_default_cb)  },
+  { "NewWindowFromCurrent",	NULL,	N_("from current"),			NULL,		N_("from current"),	CB(layout_menu_window_from_current_cb)  },
+  { "RenameWindow",	GTK_STOCK_EDIT,		N_("Rename window"),	NULL,	N_("Rename window"),	CB(layout_menu_window_rename_cb) },
+  { "DeleteWindow",	GTK_STOCK_DELETE,		N_("Delete window"),	NULL,	N_("Delete window"),	CB(layout_menu_window_delete_cb) },
   { "NewCollection",	GTK_STOCK_INDEX,	N_("_New collection"),			"C",			N_("New collection"),			CB(layout_menu_new_cb) },
   { "OpenCollection",	GTK_STOCK_OPEN,		N_("_Open collection..."),		"O",			N_("Open collection..."),		CB(layout_menu_open_cb) },
   { "OpenRecent",	NULL,			N_("Open recen_t"),			NULL,			N_("Open recent collection"),			NULL },
@@ -2168,7 +2616,6 @@ static const gchar *menu_ui_description =
 "<ui>"
 "  <menubar name='MainMenu'>"
 "    <menu action='FileMenu'>"
-"      <menuitem action='NewWindow'/>"
 "      <menuitem action='NewCollection'/>"
 "      <menuitem action='OpenCollection'/>"
 "      <menuitem action='OpenRecent'/>"
@@ -2192,7 +2639,6 @@ static const gchar *menu_ui_description =
 "      <placeholder name='FileOpsSection'/>"
 "      <separator/>"
 "      <placeholder name='QuitSection'/>"
-"      <menuitem action='CloseWindow'/>"
 "      <menuitem action='Quit'/>"
 "      <separator/>"
 "    </menu>"
@@ -2394,12 +2840,20 @@ static const gchar *menu_ui_description =
 "      <placeholder name='SlideShowSection'/>"
 "      <separator/>"
 "    </menu>"
-"    <menu action='SarMenu'>"
-"      <menuitem action='SearchAndRunCommand'/>"
+"    <menu action='WindowsMenu'>"
+"      <menu action='NewWindow'>"
+"        <menuitem action='NewWindowDefault'/>"
+"        <menuitem action='NewWindowFromCurrent'/>"
+"        <separator/>"
+"       </menu>"
+"      <menuitem action='RenameWindow'/>"
+"      <menuitem action='DeleteWindow'/>"
+"      <menuitem action='CloseWindow'/>"
 "    </menu>"
 "    <menu action='HelpMenu'>"
 "      <separator/>"
 "      <menuitem action='HelpContents'/>"
+"      <menuitem action='SearchAndRunCommand'/>"
 "      <menuitem action='HelpSearch'/>"
 "      <menuitem action='HelpShortcuts'/>"
 "      <menuitem action='HelpKbd'/>"

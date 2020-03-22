@@ -619,7 +619,7 @@ static void write_disabled_plugins(GString *outstr, gint indent)
  *-----------------------------------------------------------------------------
  */
 
-gboolean save_config_to_file(const gchar *utf8_path, ConfOptions *options)
+gboolean save_config_to_file(const gchar *utf8_path, ConfOptions *options, LayoutWindow *lw)
 {
 	SecureSaveInfo *ssi;
 	gchar *rc_pathl;
@@ -652,42 +652,51 @@ gboolean save_config_to_file(const gchar *utf8_path, ConfOptions *options)
 	WRITE_STRING("<gq>\n");
 	indent++;
 
-	WRITE_NL(); WRITE_STRING("<global\n");
-	indent++;
-	write_global_attributes(outstr, indent + 1);
-	indent--;
-	WRITE_STRING(">\n");
+	if (!lw)
+		{
+		WRITE_NL(); WRITE_STRING("<global\n");
+		indent++;
+		write_global_attributes(outstr, indent + 1);
+		indent--;
+		WRITE_STRING(">\n");
 
-	indent++;
+		indent++;
 
-	write_color_profile(outstr, indent);
+		write_color_profile(outstr, indent);
 
-	WRITE_SEPARATOR();
-	filter_write_list(outstr, indent);
+		WRITE_SEPARATOR();
+		filter_write_list(outstr, indent);
 
-	WRITE_SEPARATOR();
-	write_marks_tooltips(outstr, indent);
+		WRITE_SEPARATOR();
+		write_marks_tooltips(outstr, indent);
 
-	WRITE_SEPARATOR();
-	write_disabled_plugins(outstr, indent);
+		WRITE_SEPARATOR();
+		write_disabled_plugins(outstr, indent);
 
-	WRITE_SEPARATOR();
-	write_class_filter(outstr, indent);
+		WRITE_SEPARATOR();
+		write_class_filter(outstr, indent);
 
-	WRITE_SEPARATOR();
-	keyword_tree_write_config(outstr, indent);
-	indent--;
-	WRITE_NL(); WRITE_STRING("</global>\n");
-
+		WRITE_SEPARATOR();
+		keyword_tree_write_config(outstr, indent);
+		indent--;
+		WRITE_NL(); WRITE_STRING("</global>\n");
+		}
 	WRITE_SEPARATOR();
 
 	/* Layout Options */
-	work = layout_window_list;
-	while (work)
+	if (!lw)
 		{
-		LayoutWindow *lw = work->data;
+		work = layout_window_list;
+		while (work)
+			{
+			LayoutWindow *lw = work->data;
+			layout_write_config(lw, outstr, indent);
+			work = work->next;
+			}
+		}
+	else
+		{
 		layout_write_config(lw, outstr, indent);
-		work = work->next;
 		}
 
 	indent--;

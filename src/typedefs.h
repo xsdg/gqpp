@@ -720,8 +720,6 @@ struct _LayoutOptions
 
 	StartUpPath startup_path;
 
-	gboolean exit_on_close;
-
 	gboolean animate;
 
 	SortActionType action;

@@ -7,15 +7,18 @@
     , the
     <link linkend="GuideMainWindowFolderPane" endterm="titleGuideMainWindowFolderPane" />
     , and the
-    <link linkend="GuideMainWindowImagePane" endterm="titleGuideMainWindowImagePane" /> (optionally bordered by <link linkend="GuideSidebars" endterm="titleGuideSidebars"></link>)
-    , all bordered by 
+    <link linkend="GuideMainWindowImagePane" endterm="titleGuideMainWindowImagePane" />
+    (optionally bordered by
+    <link linkend="GuideSidebars" endterm="titleGuideSidebars" />
+    )
+    , all bordered by
     <link linkend="GuideMainWindowMenus" endterm="titleGuideMainWindowMenus" />
     and
     <link linkend="GuideMainWindowStatusBar" endterm="titleGuideMainWindowStatusBar" />
     .
   </para>
   <para>
-    Multiple instances of the main window may be started via the 
+    Multiple instances of the main window may be started via the
     <menuchoice>
       <shortcut>
         <keycombo>
@@ -23,7 +26,7 @@
           <keycap>N</keycap>
         </keycombo>
       </shortcut>
-      <guimenu>File</guimenu>
+      <guimenu>Windows</guimenu>
       <guimenuitem>New Window</guimenuitem>
     </menuchoice>
     menu item, and the
@@ -33,8 +36,36 @@
     dialogue.
   </para>
   <para>
-    If several instances of the main window are open, they may be closed individually or simultaneously as defined in
-    <link linkend="GuideOptionsLayout" endterm="titleGuideOptionsLayout" />
+    If several instances of the main window are open, they may be closed individually or simultaneously. If
+    <menuchoice>
+      <shortcut>
+        <keycombo>
+          <keycap>Ctrl</keycap>
+          <keycap>Q</keycap>
+        </keycombo>
+      </shortcut>
+      <guimenu>File</guimenu>
+      <guimenuitem>Quit</guimenuitem>
+    </menuchoice>
+    is pressed, all windows will be closed. When Geeqie is re-opened the same windows will be re-displayed.
+    <para />
+    If
+    <menuchoice>
+      <shortcut>
+        <keycombo>
+          <keycap>Ctrl</keycap>
+          <keycap>W</keycap>
+        </keycombo>
+      </shortcut>
+      <guimenu>Windows</guimenu>
+      <guimenuitem>Close Window</guimenuitem>
+    </menuchoice>
+    is pressed, only that window will be closed unless that window is the "main" window, in which case all windows will be closed. When Geeqie is restarted only the main window will be displayed.
+    <para />
+    The main window may be recognised by the word "Geeqie" in the title bar, as opposed to other windows which have the word "geeqie".
+    <para />
+    Several window layouts may be defined and displayed at any time, as described in the
+    <link linkend="Windowmenu">Windows menu</link>
     .
   </para>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideMainWindowFilePane.xml" />
