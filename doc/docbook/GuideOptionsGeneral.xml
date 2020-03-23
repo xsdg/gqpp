@@ -139,6 +139,24 @@
         </listitem>
       </varlistentry>
     </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel>Collection preview</guilabel>
+        </term>
+        <listitem>
+          <para>
+            If thumbnail caching is enabled and you open the
+            <link linkend="GuideReferenceConfig">Collections folder</link>
+            , 
+            Geeqie will display a preview of the collections as a thumbnail montage. This option limits the number of thumbnails displayed in each preview.
+            <note>
+              <para>ImageMagick is required for this feature.</para>
+            </note>
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </section>
   <section id="StarRatingCharacters">
     <title>Star Rating</title>
