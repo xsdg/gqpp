@@ -214,23 +214,23 @@
           </row>
           <row>
             <entry />
-            <entry>file:&lt;file&gt;</entry>
-            <entry>Open  &lt;file&gt; and bring Geeqie window to the top</entry>
+            <entry>file:&lt;file&gt;|&lt;URL&gt;</entry>
+            <entry>Open  &lt;file&gt; or &lt;URL&gt; and bring Geeqie window to the top</entry>
           </row>
           <row>
             <entry />
-            <entry>--file:&lt;file&gt;</entry>
-            <entry>Open  &lt;file&gt; and bring Geeqie window to the top</entry>
+            <entry>--file:&lt;file&gt;|&lt;URL&gt;</entry>
+            <entry>Open  &lt;file&gt; or &lt;URL&gt; and bring Geeqie window to the top</entry>
           </row>
           <row>
             <entry />
-            <entry>File:&lt;file&gt;</entry>
-            <entry>Open  &lt;file&gt; and do not bring Geeqie window to the top</entry>
+            <entry>File:&lt;file&gt;|&lt;URL&gt;</entry>
+            <entry>Open  &lt;file&gt; or &lt;URL&gt; and do not bring Geeqie window to the top</entry>
           </row>
           <row>
             <entry />
-            <entry>--File:&lt;file&gt;</entry>
-            <entry>Open  &lt;file&gt; and do not bring Geeqie window to the top</entry>
+            <entry>--File:&lt;file&gt;|&lt;URL&gt;</entry>
+            <entry>Open  &lt;file&gt; or &lt;URL&gt; and do not bring Geeqie window to the top</entry>
           </row>
           <row>
             <entry />
