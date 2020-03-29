@@ -500,6 +500,7 @@ static void config_window_help_cb(GtkWidget *widget, gpointer data)
 	"GuideOptionsColor.html",
 	"GuideOptionsStereo.html",
 	"GuideOptionsBehavior.html",
+	"GuideOptionsToolbar.html",
 	"GuideOptionsToolbar.html"
 	};
 
