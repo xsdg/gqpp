@@ -181,6 +181,8 @@ geeqie_SOURCES = \
 	image.h		\
 	image-load.c	\
 	image-load.h	\
+	image_load_cr3.c\
+	image_load_cr3.h\
 	image_load_gdk.c\
 	image_load_gdk.h\
 	image_load_jpeg.c\
