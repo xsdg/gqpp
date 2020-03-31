@@ -29,7 +29,14 @@ while (<$in_fh>)
    }
    elsif (/^Date=(.*)/)
    {
-      printf "Date (used for pan-view): %s\n", $1;
+      my $unix_time = substr($1, 1, 10);
+
+      my ($S, $M, $H, $d, $m, $Y) = localtime($unix_time);
+      $m += 1;
+      $Y += 1900;
+      my $date_time = sprintf("%04d-%02d-%02d %02d:%02d:%02d", $Y, $m, $d, $H, $M, $S);
+
+      printf "Exif Date Original: %s %s\n", $1, $date_time;
    }
    elsif (/^Checksum=(.*)/)
    {
