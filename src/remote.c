@@ -458,6 +458,7 @@ static void gr_new_window(const gchar *text, GIOChannel *channel, gpointer data)
 	if (!layout_valid(&lw)) return;
 
 	lw_id = layout_menu_new_window(NULL, lw);
+	layout_set_path(lw_id, pwd);
 }
 
 static gboolean gr_close_window_cb()
@@ -1207,8 +1208,7 @@ static void gr_list_add(const gchar *text, GIOChannel *channel, gpointer data)
 
 	if (collection_add(remote_data->command_collection, file_data_new_group(text), FALSE) && new)
 		{
-		layout_image_set_collection(NULL, remote_data->command_collection,
-					    collection_get_first(remote_data->command_collection));
+		layout_image_set_collection(lw_id, remote_data->command_collection, collection_get_first(remote_data->command_collection));
 		}
 }
 
@@ -1226,8 +1226,15 @@ static void gr_pwd(const gchar *text, GIOChannel *channel, gpointer data)
 {
 	LayoutWindow *lw = NULL;
 
+	lw = layout_find_by_layout_id("main");
+	if (!lw)
+		{
+		lw = g_list_first(layout_window_list)->data;
+		}
+
 	g_free(pwd);
 	pwd = g_strdup(text);
+	lw_id = lw;
 }
 
 static void gr_print0(const gchar *text, GIOChannel *channel, gpointer data)
@@ -1436,7 +1443,7 @@ GList *remote_build_list(GList *list, gint argc, gchar *argv[], GList **errors)
 			{
 			list = g_list_append(list, argv[i]);
 			}
-		else if (errors && !isfile(argv[i]))
+		else if (errors && !isname(argv[i]))
 			{
 			*errors = g_list_append(*errors, argv[i]);
 			}
