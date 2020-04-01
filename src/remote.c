@@ -823,6 +823,7 @@ static void get_filelist(const gchar *text, GIOChannel *channel, gboolean recurs
 	FileData *fd;
 	GString *out_string = g_string_new(NULL);
 	GList *work;
+	gchar *tilde_filename;
 
 	if (strcmp(text, "") == 0)
 		{
@@ -837,14 +838,17 @@ static void get_filelist(const gchar *text, GIOChannel *channel, gboolean recurs
 		}
 	else
 		{
-		if (isdir(text))
+		tilde_filename = expand_tilde(text);
+		if (isdir(tilde_filename))
 			{
-			dir_fd = file_data_new_dir(text);
+			dir_fd = file_data_new_dir(tilde_filename);
 			}
 		else
 			{
+			g_free(tilde_filename);
 			return;
 			}
+		g_free(tilde_filename);
 		}
 
 	if (recurse)
