@@ -11,8 +11,12 @@
       <para />
       If the
       <link linkend="PreferencesThumbnails">Cache Thumbnails</link>
-      option is selected in Preferences/General, the similarity matrix and the checksum will also be cached. This will reduce the time needed for future searches.
-      <note>If you frequently search on similarity and your images are in a tree arrangement under a single point, initiating a one-time search on similarity from the top of the tree will generate the similarity data for all images.</note>
+      option is selected in Preferences/General, the similarity matrix, checksum, image size and Exif Date may also be cached. This will reduce the time needed for future searches.
+      <note>
+        If you frequently search on similarity and your images are in a tree arrangement under a single point, the
+        <link linkend="CreateSimFiles">Create file similarity cache</link>
+        from the top of the tree will generate the similarity data for all images.
+      </note>
       <para>Similarity data are stored in a folder hierachy that mirrors the location of the source images. The data have the same name as the original appended by the file extension .sim.</para>
       <para>
         The root of the hierachy is:

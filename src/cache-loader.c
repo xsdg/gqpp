@@ -30,36 +30,33 @@
 #include "ui_fileops.h"
 
 
-static gboolean cache_loader_process(CacheLoader *cl);
+static gboolean cache_loader_phase2_idle_cb(gpointer data);
 
-
-static void cache_loader_done_cb(ImageLoader *il, gpointer data)
+static void cache_loader_phase1_done_cb(ImageLoader *il, gpointer data)
 {
 	CacheLoader *cl = data;
 
-	cache_loader_process(cl);
+	cl->idle_id = g_idle_add(cache_loader_phase2_idle_cb, cl);
 }
 
-static void cache_loader_error_cb(ImageLoader *il, gpointer data)
+static void cache_loader_phase1_error_cb(ImageLoader *il, gpointer data)
 {
 	CacheLoader *cl = data;
 
 	cl->error = TRUE;
-	cache_loader_done_cb(il, data);
+	cl->idle_id = g_idle_add(cache_loader_phase2_idle_cb, cl);
 }
 
-static gboolean cache_loader_process(CacheLoader *cl)
+static gboolean cache_loader_phase1_process(CacheLoader *cl)
 {
-	if (cl->todo_mask & CACHE_LOADER_SIMILARITY &&
-	    !cl->cd->similarity)
+	if (cl->todo_mask & CACHE_LOADER_SIMILARITY && !cl->cd->similarity)
 		{
-		GdkPixbuf *pixbuf;
 
 		if (!cl->il && !cl->error)
 			{
 			cl->il = image_loader_new(cl->fd);
-			g_signal_connect(G_OBJECT(cl->il), "error", (GCallback)cache_loader_error_cb, cl);
-			g_signal_connect(G_OBJECT(cl->il), "done", (GCallback)cache_loader_done_cb, cl);
+			g_signal_connect(G_OBJECT(cl->il), "error", (GCallback)cache_loader_phase1_error_cb, cl);
+			g_signal_connect(G_OBJECT(cl->il), "done", (GCallback)cache_loader_phase1_done_cb, cl);
 			if (image_loader_start(cl->il))
 				{
 				return FALSE;
@@ -67,7 +64,18 @@ static gboolean cache_loader_process(CacheLoader *cl)
 
 			cl->error = TRUE;
 			}
+		}
 
+	cl->idle_id = g_idle_add(cache_loader_phase2_idle_cb, cl);
+
+	return FALSE;
+}
+
+static gboolean cache_loader_phase2_process(CacheLoader *cl)
+{
+	if (cl->todo_mask & CACHE_LOADER_SIMILARITY && !cl->cd->similarity && cl->il)
+		{
+		GdkPixbuf *pixbuf;
 		pixbuf = image_loader_get_pixbuf(cl->il);
 		if (pixbuf)
 			{
@@ -79,6 +87,7 @@ static gboolean cache_loader_process(CacheLoader *cl)
 				cache_sim_data_set_similarity(cl->cd, sim);
 				image_sim_free(sim);
 
+				cl->todo_mask &= ~CACHE_LOADER_SIMILARITY;
 				cl->done_mask |= CACHE_LOADER_SIMILARITY;
 				}
 
@@ -137,7 +146,7 @@ static gboolean cache_loader_process(CacheLoader *cl)
 		time_t date = -1;
 		gchar *text;
 
-		text =  metadata_read_string(cl->fd, "formatted.DateTime", METADATA_FORMATTED);
+		text =  metadata_read_string(cl->fd, "Exif.Image.DateTime", METADATA_FORMATTED);
 		if (text)
 			{
 			struct tm t;
@@ -196,11 +205,18 @@ static gboolean cache_loader_process(CacheLoader *cl)
 	return TRUE;
 }
 
-static gboolean cache_loader_idle_cb(gpointer data)
+static gboolean cache_loader_phase1_idle_cb(gpointer data)
 {
 	CacheLoader *cl = data;
 
-	return cache_loader_process(cl);
+	return cache_loader_phase1_process(cl);
+}
+
+static gboolean cache_loader_phase2_idle_cb(gpointer data)
+{
+	CacheLoader *cl = data;
+
+	return cache_loader_phase2_process(cl);
 }
 
 CacheLoader *cache_loader_new(FileData *fd, CacheDataType load_mask,
@@ -230,7 +246,7 @@ CacheLoader *cache_loader_new(FileData *fd, CacheDataType load_mask,
 	cl->done_mask = CACHE_LOADER_NONE;
 
 	cl->il = NULL;
-	cl->idle_id = g_idle_add(cache_loader_idle_cb, cl);
+	cl->idle_id = g_idle_add(cache_loader_phase1_idle_cb, cl);
 
 	cl->error = FALSE;
 
@@ -243,7 +259,7 @@ void cache_loader_free(CacheLoader *cl)
 
 	if (cl->idle_id)
 		{
-		g_source_remove(cl->idle_id);
+		g_source_remove_by_user_data(cl);
 		cl->idle_id = 0;
 		}
 

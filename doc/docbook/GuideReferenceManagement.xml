@@ -5,13 +5,13 @@
     Thumbnails and other cached data can be maintained from the dialog accessible by selecting
     <menuchoice>
       <guimenu>Edit</guimenu>
-      <guimenuitem>Thumbnail Maintenance</guimenuitem>
+      <guimenuitem>Cache maintenance</guimenuitem>
     </menuchoice>
     .
   </para>
   <para />
   <section id="Geeqiethumbnailcache">
-    <title>Geeqie thumbnail cache</title>
+    <title>Geeqie thumbnail and sim. cache</title>
     <para>
       The utilities listed here operate on the Geeqie caching mechanism. This also includes the data cached for the
       <link linkend="GuideImageSearchSearch">search</link>
@@ -25,7 +25,7 @@
           <guilabel>Clean up</guilabel>
         </term>
         <listitem>
-          <para>Removes thumbnails and data for which the source image is no longer present, or has been modified since the thumbnail was generated.</para>
+          <para>Removes thumbnails, sim. files, and data for which the source image is no longer present, or has been modified since the thumbnail was generated.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -33,7 +33,7 @@
           <guilabel>Clear cache</guilabel>
         </term>
         <listitem>
-          <para>Removes all thumbnails and data stored in the designated folder.</para>
+          <para>Removes all thumbnails, sim. files, and data stored in the designated folder.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -93,6 +93,52 @@
         </listitem>
       </varlistentry>
     </variablelist>
+  </section>
+  <section id="CreateSimFiles">
+    <title>Create file similarity cache</title>
+    <para>
+      Some file operations, such as
+      <link linkend="GuideImageSearchSearch">search</link>
+      and
+      <link linkend="GuideImageSearchFindingDuplicates">find duplicates</link>
+      , are speeded up if similarity data files for the images have been created. This utility will create sim. files recursively under the specified folder.
+      <para />
+      The sim. files contain some or all of the following fields:
+      <variablelist>
+        <varlistentry>
+          <term>
+            <guilabel>Dimensions</guilabel>
+          </term>
+          <listitem>
+            <para>width x height</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <guilabel>Date</guilabel>
+          </term>
+          <listitem>
+            <para>Exif date in time_t format</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <guilabel>checksum</guilabel>
+          </term>
+          <listitem>
+            <para>MD5sum 32 character ascii text digest</para>
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
+            <guilabel>SimilarityGrid</guilabel>
+          </term>
+          <listitem>
+            <para>[32 x 32] = 3072 bytes of data (1024 pixels in RGB format, 1 pixel is 24bits)</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </para>
   </section>
   <section id="Metadata">
     <title>Metadata</title>

@@ -63,10 +63,14 @@
     <variablelist>
       <varlistentry>
         <term>
-          <guilabel>Cache thumbnails</guilabel>
+          <guilabel>Cache thumbnails and sim. files</guilabel>
         </term>
         <listitem>
-          <para>Enable this to save thumbnails to disk. Subsequent requests for a thumbnail will be faster.</para>
+          <para>
+            Enable this to save thumbnails and
+            <link linkend="CreateSimFiles">sim. files</link>
+            to disk. Subsequent requests for a thumbnail will be faster, as will searches and find duplicates.
+          </para>
           <variablelist>
             <varlistentry>
               <term>

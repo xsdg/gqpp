@@ -1916,7 +1916,7 @@ static void config_tab_general(GtkWidget *notebook)
 	pref_spin_new_int(hbox, _("Width:"), NULL, 1, 512, 1, options->thumbnails.max_width, &c_options->thumbnails.max_width);
 	pref_spin_new_int(hbox, _("Height:"), NULL, 1, 512, 1, options->thumbnails.max_height, &c_options->thumbnails.max_height);
 
-	ct_button = pref_checkbox_new_int(group, _("Cache thumbnails"),
+	ct_button = pref_checkbox_new_int(group, _("Cache thumbnails and sim. files"),
 					  options->thumbnails.enable_caching, &c_options->thumbnails.enable_caching);
 
 	subgroup = pref_box_new(group, FALSE, GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);

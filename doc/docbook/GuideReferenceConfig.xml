@@ -10,7 +10,7 @@
   <para>
     Most of Geeqie's configuration files are contained in the folder, and sub-folders of:
     <programlisting xml:space="preserve">$XDG_CONFIG_HOME/geeqie/</programlisting>
-    <programlisting xml:space="preserve">($~/.config/geeqie/)</programlisting>
+    <programlisting xml:space="preserve">($HOME/.config/geeqie/)</programlisting>
   </para>
   <para>
     Geeqie's standard configuration file is:
@@ -47,7 +47,7 @@
   <para>
     The location for Collections is in the folder:
     <programlisting xml:space="preserve">$XDG_DATA_HOME/geeqie/collections</programlisting>
-    <programlisting xml:space="preserve">($~/.local/share/geeqie/collections)</programlisting>
+    <programlisting xml:space="preserve">($HOME/.local/share/geeqie/collections)</programlisting>
   </para>
   <para>
     The lirc
@@ -61,11 +61,15 @@
   </para>
   <para>
     Metadata is stored either in the image file or in the location specified in
-    <link linkend="Delete">Safe Delete</link>
+    <link linkend="MetadataWritingProcess">Metadata</link>
+  </para>
+  <para>
+    Similarity files are stored in the folder:
+    <programlisting xml:space="preserve">($HOME/.cache/geeqie/)</programlisting>
   </para>
   <para>
     The safe delete folder is specified in the
-    <link linkend="MetadataWritingProcess">Metadata</link>
+    <link linkend="Delete">Safe Delete</link>
     tab of main Preferences
   </para>
 </section>
