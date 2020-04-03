@@ -27,6 +27,10 @@ while (<$in_fh>)
    {
       printf "Original image dimensions: %dx%d\n", $1, $2;
    }
+   elsif (/^Date=(\[-1\])/)
+   {
+      printf "Exif Date Original: %s\n", $1;
+   }
    elsif (/^Date=(.*)/)
    {
       my $unix_time = substr($1, 1, 10);
