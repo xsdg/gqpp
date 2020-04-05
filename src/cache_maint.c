@@ -567,6 +567,7 @@ struct _CacheOpsData
 	GtkWidget *button_stop;
 	GtkWidget *button_start;
 	GtkWidget *progress;
+	GtkWidget *progress_bar;
 	GtkWidget *spinner;
 
 	GtkWidget *group;
@@ -625,6 +626,7 @@ static void cache_manager_render_stop_cb(GenericDialog *fd, gpointer data)
 {
 	CacheOpsData *cd = data;
 
+	gtk_entry_set_text(GTK_ENTRY(cd->progress), _("stopped"));
 	cache_manager_render_finish(cd);
 }
 
@@ -683,6 +685,8 @@ static gboolean cache_manager_render_file(CacheOpsData *cd)
 			if (!cd->remote)
 				{
 				gtk_entry_set_text(GTK_ENTRY(cd->progress), fd->path);
+				cd->count_done = cd->count_done + 1;
+				gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(cd->progress_bar), (gdouble)cd->count_done / cd->count_total);
 				}
 			}
 		else
@@ -709,6 +713,7 @@ static gboolean cache_manager_render_file(CacheOpsData *cd)
 		return TRUE;
 		}
 
+	gtk_entry_set_text(GTK_ENTRY(cd->progress), _("done"));
 	cache_manager_render_finish(cd);
 
 	return FALSE;
@@ -718,6 +723,7 @@ static void cache_manager_render_start_cb(GenericDialog *fd, gpointer data)
 {
 	CacheOpsData *cd = data;
 	gchar *path;
+	GList *list_total = NULL;
 
 	if(!cd->remote)
 		{
@@ -754,7 +760,12 @@ static void cache_manager_render_start_cb(GenericDialog *fd, gpointer data)
 			}
 		dir_fd = file_data_new_dir(path);
 		cache_manager_render_folder(cd, dir_fd);
+		list_total = filelist_recursive(dir_fd);
+		cd->count_total = g_list_length(list_total);
 		file_data_unref(dir_fd);
+		g_list_free(list_total);
+		cd->count_done = 0;
+
 		while (cache_manager_render_file(cd));
 		}
 
@@ -836,6 +847,10 @@ static void cache_manager_render_dialog(GtkWidget *widget, const gchar *path)
 	gtk_entry_set_text(GTK_ENTRY(cd->progress), _("click start to begin"));
 	gtk_box_pack_start(GTK_BOX(hbox), cd->progress, TRUE, TRUE, 0);
 	gtk_widget_show(cd->progress);
+
+	cd->progress_bar = gtk_progress_bar_new();
+	gtk_box_pack_start(GTK_BOX(cd->gd->vbox), cd->progress_bar, TRUE, TRUE, 0);
+	gtk_widget_show(cd->progress_bar);
 
 	cd->spinner = spinner_new(NULL, -1);
 	gtk_box_pack_start(GTK_BOX(hbox), cd->spinner, FALSE, FALSE, 0);
@@ -1217,7 +1232,6 @@ static void cache_manager_sim_finish(CacheOpsData *cd)
 	cache_manager_sim_reset(cd);
 	if (!cd->remote)
 		{
-		gtk_entry_set_text(GTK_ENTRY(cd->progress), _("done"));
 		spinner_set_interval(cd->spinner, -1);
 
 		gtk_widget_set_sensitive(cd->group, TRUE);
@@ -1231,6 +1245,7 @@ static void cache_manager_sim_stop_cb(GenericDialog *fd, gpointer data)
 {
 	CacheOpsData *cd = data;
 
+	gtk_entry_set_text(GTK_ENTRY(cd->progress), _("stopped"));
 	cache_manager_sim_finish(cd);
 }
 
@@ -1281,6 +1296,8 @@ static gboolean cache_manager_sim_file(CacheOpsData *cd)
 		gtk_entry_set_text(GTK_ENTRY(cd->progress), fd->path);
 
 		file_data_unref(fd);
+		cd->count_done = cd->count_done + 1;
+		gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(cd->progress_bar), (gdouble)cd->count_done / cd->count_total);
 
 		return FALSE;
 		}
@@ -1297,6 +1314,7 @@ static gboolean cache_manager_sim_file(CacheOpsData *cd)
 		return TRUE;
 		}
 
+	gtk_entry_set_text(GTK_ENTRY(cd->progress), _("done"));
 	cache_manager_sim_finish((CacheOpsData *)cd);
 
 	return FALSE;
@@ -1306,6 +1324,7 @@ static void cache_manager_sim_start_cb(GenericDialog *fd, gpointer data)
 {
 	CacheOpsData *cd = data;
 	gchar *path;
+	GList *list_total = NULL;
 
 	if (!cd->remote)
 		{
@@ -1342,7 +1361,11 @@ static void cache_manager_sim_start_cb(GenericDialog *fd, gpointer data)
 			}
 		dir_fd = file_data_new_dir(path);
 		cache_manager_sim_folder(cd, dir_fd);
+		list_total = filelist_recursive(dir_fd);
+		cd->count_total = g_list_length(list_total);
 		file_data_unref(dir_fd);
+		g_list_free(list_total);
+		cd->count_done = 0;
 
 		while (cache_manager_sim_file((CacheOpsData *)cd));
 		}
@@ -1394,6 +1417,10 @@ static void cache_manager_sim_load_dialog(GtkWidget *widget, const gchar *path)
 	gtk_entry_set_text(GTK_ENTRY(cd->progress), _("click start to begin"));
 	gtk_box_pack_start(GTK_BOX(hbox), cd->progress, TRUE, TRUE, 0);
 	gtk_widget_show(cd->progress);
+
+	cd->progress_bar = gtk_progress_bar_new();
+	gtk_box_pack_start(GTK_BOX(cd->gd->vbox), cd->progress_bar, TRUE, TRUE, 0);
+	gtk_widget_show(cd->progress_bar);
 
 	cd->spinner = spinner_new(NULL, -1);
 	gtk_box_pack_start(GTK_BOX(hbox), cd->spinner, FALSE, FALSE, 0);
