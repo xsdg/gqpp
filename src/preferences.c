@@ -1226,8 +1226,6 @@ static gboolean filter_add_scroll(gpointer data)
 	GList *list_cells;
 	GtkCellRenderer *cell;
 	GtkTreeViewColumn *column;
-	const gchar *title;
-	guint i = 0;
 	gint rows;
 
 	rows = gtk_tree_model_iter_n_children(GTK_TREE_MODEL(filter_store), NULL);
@@ -2308,7 +2306,6 @@ static void config_tab_osd(GtkWidget *notebook)
 {
 	GtkWidget *hbox;
 	GtkWidget *vbox;
-	GtkWidget *vbox_buttons;
 	GtkWidget *group;
 	GtkWidget *button;
 	GtkWidget *image_overlay_template_view;
@@ -2316,10 +2313,7 @@ static void config_tab_osd(GtkWidget *notebook)
 	GtkWidget *scrolled_pre_formatted;
 	GtkTextBuffer *buffer;
 	GtkWidget *label;
-	GtkWidget *	subgroup;
-	gint i = 0;
-	gint rows = 0;
-	gint cols = 0;
+	GtkWidget *subgroup;
 
 	vbox = scrolled_notebook_page(notebook, _("OSD"));
 
@@ -3828,7 +3822,6 @@ static void timezone_progress_cb(goffset current_num_bytes, goffset total_num_by
 static void timezone_cancel_button_cb(GenericDialog *gd, gpointer data)
 {
 	TZData *tz = data;
-	GError *error = NULL;
 
 	g_cancellable_cancel(tz->cancellable);
 }

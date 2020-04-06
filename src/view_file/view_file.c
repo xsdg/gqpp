@@ -485,23 +485,6 @@ static void vf_pop_menu_toggle_view_type_cb(GtkWidget *widget, gpointer data)
 	layout_views_set(vf->layout, vf->layout->options.dir_view_type, new_type);
 }
 
-static void vf_pop_menu_toggle_star_rating(ViewFile *vf)
-{
-	GtkAllocation allocation;
-
-	options->show_star_rating = !options->show_star_rating;
-
-	gtk_widget_get_allocation(vf->listview, &allocation);
-	vf_star_rating_set(vf, options->show_star_rating);
-}
-
-static void vf_pop_menu_show_star_rating_cb(GtkWidget *widget, gpointer data)
-{
-	ViewFile *vf = data;
-
-	vf_pop_menu_toggle_star_rating(vf);
-}
-
 static void vf_pop_menu_refresh_cb(GtkWidget *widget, gpointer data)
 {
 	ViewFile *vf = data;
@@ -1583,7 +1566,6 @@ static gboolean vf_read_metadata_in_idle_cb(gpointer data)
 {
 	FileData *fd;
 	ViewFile *vf = data;
-	GList *list_entry;
 	GList *work;
 
 	vf_thumb_status(vf, vf_read_metadata_in_idle_progress(vf), _("Loading meta..."));
@@ -1630,9 +1612,6 @@ static void vf_read_metadata_in_idle_finished_cb(gpointer data)
 
 void vf_read_metadata_in_idle(ViewFile *vf)
 {
-	GList *work;
-	FileData *fd;
-
 	if (!vf) return;
 
 	if (vf->read_metadata_in_idle_id)

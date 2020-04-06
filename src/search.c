@@ -1044,20 +1044,6 @@ static void sr_menu_copy_path_unquoted_cb(GtkWidget *widget, gpointer data)
 	file_util_copy_path_list_to_clipboard(search_result_selection_list(sd), FALSE);
 }
 
-static void sr_menu_remove_cb(GtkWidget *widget, gpointer data)
-{
-	SearchData *sd = data;
-
-	search_result_remove_selection(sd);
-}
-
-static void sr_menu_clear_cb(GtkWidget *widget, gpointer data)
-{
-	SearchData *sd = data;
-
-	search_result_clear(sd);
-}
-
 static void sr_menu_play_cb(GtkWidget *widget, gpointer data)
 {
 	SearchData *sd = data;
@@ -1096,7 +1082,6 @@ static GtkWidget *search_result_menu(SearchData *sd, gboolean on_row, gboolean e
 	GtkWidget *menu;
 	GtkWidget *item;
 	GList *editmenu_fd_list;
-	GtkWidget *submenu;
 	gboolean video;
 
 	menu = popup_menu_short_lived();

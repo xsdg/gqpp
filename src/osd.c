@@ -155,19 +155,11 @@ static void set_osd_button(GtkTable *table, const gint rows, const gint cols, co
 
 GtkWidget *osd_new(gint max_cols, GtkWidget *template_view)
 {
-	GtkWidget *hbox;
 	GtkWidget *vbox;
-	GtkWidget *vbox_buttons;
-	GtkWidget *group;
-	GtkWidget *button;
 	GtkWidget *scrolled;
-	GtkTextBuffer *buffer;
-	GtkWidget *label;
-	GtkWidget *	subgroup;
 	gint i = 0;
 	gint rows = 0;
 	gint max_rows = 0;
-	gint col = 0;
 	gint cols = 0;
 	gdouble entries;
 	GtkWidget *viewport;
@@ -181,7 +173,6 @@ GtkWidget *osd_new(gint max_cols, GtkWidget *template_view)
 	gtk_container_set_border_width(GTK_CONTAINER(scrolled), PREF_PAD_BORDER);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 				       GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-	label = gtk_label_new("title");
 	gtk_widget_show(scrolled);
 	gtk_widget_set_size_request(scrolled, -1, 140);
 
