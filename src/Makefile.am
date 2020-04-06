@@ -303,7 +303,7 @@ geeqie_LDADD = $(GTK_LIBS) $(GLIB_LIBS) $(INTLLIBS) $(JPEG_LIBS) $(TIFF_LIBS) $(
 EXTRA_DIST = \
 	$(extra_SLIK)
 
-image-load.o: gq-marshal.o
+image-load.o: gq-marshal.h
 
 gq-marshal.h: gq-marshal.list
 	$(GLIB_GENMARSHAL) --prefix=gq_marshal $(srcdir)/gq-marshal.list --header >$@
