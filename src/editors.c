@@ -124,6 +124,7 @@ static GList *editor_mime_types_to_extensions(gchar **mime_types)
 		{"image/x-bmp",		".bmp"},
 		{"image/x-canon-crw",	".crw"},
 		{"image/x-canon-cr2",	".cr2"},
+		{"image/x-canon-cr3",	".cr3"},
 		{"image/x-cr2",		".cr2"},
 		{"image/x-dcraw",	"%raw;.mos"},
 		{"image/x-epson-erf",	"%erf"},

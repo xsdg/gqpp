@@ -263,6 +263,7 @@ void filter_add_defaults(void)
 	 */
 	filter_add_if_missing("arw", "Sony raw format", ".arw;.srf;.sr2", FORMAT_CLASS_RAWIMAGE, FALSE, TRUE, TRUE);
 	filter_add_if_missing("crw", "Canon raw format", ".crw;.cr2", FORMAT_CLASS_RAWIMAGE, FALSE, TRUE, TRUE);
+	filter_add_if_missing("cr3", "Canon raw format", ".cr3", FORMAT_CLASS_RAWIMAGE, FALSE, TRUE, TRUE);
 	filter_add_if_missing("kdc", "Kodak raw format", ".kdc;.dcr;.k25", FORMAT_CLASS_RAWIMAGE, FALSE, TRUE, TRUE);
 	filter_add_if_missing("raf", "Fujifilm raw format", ".raf", FORMAT_CLASS_RAWIMAGE, FALSE, TRUE, TRUE);
 	filter_add_if_missing("mef", "Mamiya raw format", ".mef;.mos", FORMAT_CLASS_RAWIMAGE, FALSE, TRUE, TRUE);
