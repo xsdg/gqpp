@@ -571,7 +571,6 @@ static void draw_page(GtkPrintOperation *operation, GtkPrintContext *context,
 	gdouble width_offset;
 	gdouble height_offset;
 	GdkPixbuf *pixbuf;
-	GdkPixbuf *pixbuf_scaled;
 	GdkPixbuf *rotated = NULL;
 	PangoLayout *layout_image = NULL;
 	PangoLayout *layout_page = NULL;
@@ -686,22 +685,22 @@ static void draw_page(GtkPrintOperation *operation, GtkPrintContext *context,
 		width_offset = (context_width - (pixbuf_image_width * scale)) / 2;
 		}
 
-	incr_y = height_offset + PRINT_TEXT_PADDING;
+	incr_y = height_offset;
 
 	if (options->printer.page_text_position == HEADER_1 && page_text->len > 0)
 		{
 		cairo_move_to(cr, (w / 2) - (page_text_width / 2) + width_offset, incr_y);
 		pango_cairo_show_layout(cr, layout_page);
 
-		incr_y = incr_y + PRINT_TEXT_PADDING + pango_page_height;
+		incr_y = incr_y + pango_page_height;
 		}
 
 	if (options->printer.image_text_position == HEADER_1 && image_text->len > 0)
 		{
-		cairo_move_to(cr, (w / 2) - (image_text_width / 2) + width_offset, incr_y);
+		cairo_move_to(cr, (w / 2) - (image_text_width / 2) + width_offset, incr_y + PRINT_TEXT_PADDING);
 		pango_cairo_show_layout(cr, layout_image);
 
-		incr_y = incr_y + PRINT_TEXT_PADDING + pango_image_height;
+		incr_y = incr_y + pango_image_height;
 		}
 
 	if (options->printer.page_text_position == HEADER_2 && page_text->len > 0)
@@ -709,7 +708,7 @@ static void draw_page(GtkPrintOperation *operation, GtkPrintContext *context,
 		cairo_move_to(cr, (w / 2) - (page_text_width / 2) + width_offset, incr_y);
 		pango_cairo_show_layout(cr, layout_page);
 
-		incr_y = incr_y + PRINT_TEXT_PADDING + pango_page_height;
+		incr_y = incr_y + pango_page_height;
 		}
 
 	if (options->printer.image_text_position == HEADER_2 && image_text->len > 0)
@@ -717,18 +716,18 @@ static void draw_page(GtkPrintOperation *operation, GtkPrintContext *context,
 		cairo_move_to(cr, (w / 2) - (image_text_width / 2) + width_offset, incr_y);
 		pango_cairo_show_layout(cr, layout_image);
 
-		incr_y = incr_y + PRINT_TEXT_PADDING + pango_image_height;
+		incr_y = incr_y + pango_image_height;
 		}
 
 	image_y = incr_y;
-	incr_y = incr_y + h + PRINT_TEXT_PADDING;
+	incr_y = incr_y + h;
 
 	if (options->printer.page_text_position == FOOTER_1 && page_text->len > 0)
 		{
-		cairo_move_to(cr, (w / 2) - (page_text_width / 2) + width_offset, incr_y);
+		cairo_move_to(cr, (w / 2) - (page_text_width / 2) + width_offset, incr_y + PRINT_TEXT_PADDING);
 		pango_cairo_show_layout(cr, layout_page);
 
-		incr_y = incr_y + PRINT_TEXT_PADDING + pango_page_height;
+		incr_y = incr_y + pango_page_height;
 		}
 
 	if (options->printer.image_text_position == FOOTER_1 && image_text->len > 0)
@@ -736,7 +735,7 @@ static void draw_page(GtkPrintOperation *operation, GtkPrintContext *context,
 		cairo_move_to(cr, (w / 2) - (image_text_width / 2) + width_offset, incr_y);
 		pango_cairo_show_layout(cr, layout_image);
 
-		incr_y = incr_y + PRINT_TEXT_PADDING + pango_image_height;
+		incr_y = incr_y + pango_image_height;
 		}
 
 	if (options->printer.page_text_position == FOOTER_2 && page_text->len > 0)
@@ -744,7 +743,7 @@ static void draw_page(GtkPrintOperation *operation, GtkPrintContext *context,
 		cairo_move_to(cr, (w / 2) - (page_text_width / 2) + width_offset, incr_y);
 		pango_cairo_show_layout(cr, layout_page);
 
-		incr_y = incr_y + PRINT_TEXT_PADDING + pango_page_height;
+		incr_y = incr_y + pango_page_height;
 		}
 
 	if (options->printer.image_text_position == FOOTER_2 && image_text->len > 0)
@@ -753,13 +752,10 @@ static void draw_page(GtkPrintOperation *operation, GtkPrintContext *context,
 		pango_cairo_show_layout(cr, layout_image);
 		}
 
-	pixbuf_scaled = gdk_pixbuf_new(GDK_COLORSPACE_RGB, TRUE, 8, w, h);
-	gdk_pixbuf_scale(pixbuf, pixbuf_scaled, 0, 0, w, h, 0, 0,  scale, scale, PRINT_MAX_INTERP);
+	cairo_scale(cr, scale, scale);
 
-	cairo_rectangle(cr, width_offset, image_y, w, h);
-
-	gdk_cairo_set_source_pixbuf(cr, pixbuf_scaled, width_offset, image_y);
-
+	cairo_rectangle(cr,  width_offset * scale , image_y, pixbuf_image_width / scale, pixbuf_image_height / scale);
+	gdk_cairo_set_source_pixbuf(cr, pixbuf, width_offset / scale, image_y / scale);
 	cairo_fill(cr);
 
 	if (image_text->len > 0)
@@ -773,7 +769,6 @@ static void draw_page(GtkPrintOperation *operation, GtkPrintContext *context,
 		g_string_free(page_text, TRUE);
 		}
 
-	g_object_unref(pixbuf_scaled);
 	if (rotated) g_object_unref(rotated);
 
 	return;
