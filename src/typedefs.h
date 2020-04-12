@@ -704,6 +704,20 @@ struct _LayoutOptions
 		gint y;
 	} log_window;
 
+	struct {
+		gint w;
+		gint h;
+		gint x;
+		gint y;
+	} search_window;
+
+	struct {
+		gint w;
+		gint h;
+		gint x;
+		gint y;
+	} dupe_window;
+
 	gboolean tools_float;
 	gboolean tools_hidden;
 	gboolean toolbar_hidden;

@@ -3231,9 +3231,26 @@ void dupe_window_clear(DupeWindow *dw)
 	dupe_window_update_progress(dw, NULL, 0.0, FALSE);
 }
 
+static void dupe_window_get_geometry(DupeWindow *dw)
+{
+	GdkWindow *window;
+	LayoutWindow *lw = NULL;
+
+	layout_valid(&lw);
+
+	if (!dw || !lw) return;
+
+	window = gtk_widget_get_window(dw->window);
+	gdk_window_get_position(window, &lw->options.dupe_window.x, &lw->options.dupe_window.y);
+	lw->options.dupe_window.w = gdk_window_get_width(window);
+	lw->options.dupe_window.h = gdk_window_get_height(window);
+}
+
 void dupe_window_close(DupeWindow *dw)
 {
 	dupe_check_stop(dw);
+
+	dupe_window_get_geometry(dw);
 
 	dupe_window_list = g_list_remove(dupe_window_list, dw);
 	gtk_widget_destroy(dw->window);
@@ -3269,6 +3286,9 @@ DupeWindow *dupe_window_new()
 	GtkListStore *store;
 	GtkTreeSelection *selection;
 	GdkGeometry geometry;
+	LayoutWindow *lw = NULL;
+
+	layout_valid(&lw);
 
 	dw = g_new0(DupeWindow, 1);
 
@@ -3295,7 +3315,15 @@ DupeWindow *dupe_window_new()
 	gtk_window_set_geometry_hints(GTK_WINDOW(dw->window), NULL, &geometry,
 				      GDK_HINT_MIN_SIZE | GDK_HINT_BASE_SIZE);
 
-	gtk_window_set_default_size(GTK_WINDOW(dw->window), DUPE_DEF_WIDTH, DUPE_DEF_HEIGHT);
+	if (lw && options->save_window_positions)
+		{
+		gtk_window_set_default_size(GTK_WINDOW(dw->window), lw->options.dupe_window.w, lw->options.dupe_window.h);
+		gtk_window_move(GTK_WINDOW(dw->window), lw->options.dupe_window.x, lw->options.dupe_window.y);
+		}
+	else
+		{
+		gtk_window_set_default_size(GTK_WINDOW(dw->window), DUPE_DEF_WIDTH, DUPE_DEF_HEIGHT);
+		}
 
 	gtk_window_set_resizable(GTK_WINDOW(dw->window), TRUE);
 	gtk_container_set_border_width(GTK_CONTAINER(dw->window), 0);

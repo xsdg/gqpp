@@ -3043,8 +3043,26 @@ static GtkWidget *menu_choice(GtkWidget *box, GtkWidget **check, GtkWidget **men
 	return hbox;
 }
 
+static void search_window_get_geometry(SearchData *sd)
+{
+	GdkWindow *window;
+	LayoutWindow *lw = NULL;
+
+	layout_valid(&lw);
+
+	if (!sd || !lw) return;
+
+	window = gtk_widget_get_window(sd->window);
+	gdk_window_get_position(window, &lw->options.search_window.x, &lw->options.search_window.y);
+	lw->options.search_window.w = gdk_window_get_width(window);
+	lw->options.search_window.h = gdk_window_get_height(window);
+}
+
 static void search_window_close(SearchData *sd)
 {
+
+	search_window_get_geometry(sd);
+
 	gtk_widget_destroy(sd->window);
 }
 
@@ -3106,6 +3124,9 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	GdkGeometry geometry;
 	gint i;
 	gchar *marks_string;
+	LayoutWindow *lw = NULL;
+
+	layout_valid(&lw);
 
 	sd = g_new0(SearchData, 1);
 
@@ -3153,7 +3174,15 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	gtk_window_set_geometry_hints(GTK_WINDOW(sd->window), NULL, &geometry,
 				      GDK_HINT_MIN_SIZE | GDK_HINT_BASE_SIZE);
 
-	gtk_window_set_default_size(GTK_WINDOW(sd->window), DEF_SEARCH_WIDTH, DEF_SEARCH_HEIGHT);
+	if (lw && options->save_window_positions)
+		{
+		gtk_window_set_default_size(GTK_WINDOW(sd->window), lw->options.search_window.w, lw->options.search_window.h);
+		gtk_window_move(GTK_WINDOW(sd->window), lw->options.search_window.x, lw->options.search_window.y);
+		}
+	else
+		{
+		gtk_window_set_default_size(GTK_WINDOW(sd->window), DEF_SEARCH_WIDTH, DEF_SEARCH_HEIGHT);
+		}
 
 	g_signal_connect(G_OBJECT(sd->window), "delete_event",
 			 G_CALLBACK(search_window_delete_cb), sd);

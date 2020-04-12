@@ -296,6 +296,14 @@ LayoutOptions *init_layout_options(LayoutOptions *options)
 	options->main_window.w = 720;
 	options->main_window.x = 0;
 	options->main_window.y = 0;
+	options->dupe_window.w = 800;
+	options->dupe_window.h = 400;
+	options->dupe_window.x = 100;
+	options->dupe_window.y = 100;
+	options->search_window.w = 700;
+	options->search_window.h = 650;
+	options->search_window.x = 100;
+	options->search_window.y = 100;
 	options->folder_window.vdivider_pos = 100;
 	options->order = g_strdup("123");
 	options->show_directory_date = FALSE;
