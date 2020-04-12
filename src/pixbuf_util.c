@@ -149,6 +149,7 @@ static PixbufInline inline_pixbuf_data[] = {
 	{ PIXBUF_INLINE_ICON_HEIF,	icon_heic },
 	{ PIXBUF_INLINE_ICON_GRAYSCALE,	icon_grayscale },
 	{ PIXBUF_INLINE_ICON_EXPOSURE,	icon_exposure },
+	{ PIXBUF_INLINE_SPLIT_PANE_SYNC, icon_split_pane_sync },
 	{ NULL, NULL }
 };
 

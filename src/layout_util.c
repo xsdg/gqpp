@@ -532,6 +532,13 @@ static void layout_menu_select_rectangle_cb(GtkToggleAction *action, gpointer da
 	options->draw_rectangle = gtk_toggle_action_get_active(action);
 }
 
+static void layout_menu_split_pane_sync_cb(GtkToggleAction *action, gpointer data)
+{
+	LayoutWindow *lw = data;
+
+	lw->options.split_pane_sync = gtk_toggle_action_get_active(action);
+}
+
 static void layout_menu_select_overunderexposed_cb(GtkToggleAction *action, gpointer data)
 {
 	LayoutWindow *lw = data;
@@ -1527,13 +1534,53 @@ static void layout_menu_image_first_cb(GtkAction *action, gpointer data)
 static void layout_menu_image_prev_cb(GtkAction *action, gpointer data)
 {
 	LayoutWindow *lw = data;
-	layout_image_prev(lw);
+	gint i;
+
+	if (lw->options.split_pane_sync)
+		{
+		for (i = 0; i < MAX_SPLIT_IMAGES; i++)
+			{
+			if (lw->split_images[i])
+				{
+				if (i != -1)
+					{
+					DEBUG_1("image activate scroll %d", i);
+					layout_image_activate(lw, i, FALSE);
+					layout_image_prev(lw);
+					}
+				}
+			}
+		}
+	else
+		{
+		layout_image_prev(lw);
+		}
 }
 
 static void layout_menu_image_next_cb(GtkAction *action, gpointer data)
 {
 	LayoutWindow *lw = data;
-	layout_image_next(lw);
+	gint i;
+
+	if (lw->options.split_pane_sync)
+		{
+		for (i = 0; i < MAX_SPLIT_IMAGES; i++)
+			{
+			if (lw->split_images[i])
+				{
+				if (i != -1)
+					{
+					DEBUG_1("image activate scroll %d", i);
+					layout_image_activate(lw, i, FALSE);
+					layout_image_next(lw);
+					}
+				}
+			}
+		}
+	else
+		{
+		layout_image_next(lw);
+		}
 }
 
 static void layout_menu_page_first_cb(GtkAction *action, gpointer data)
@@ -2547,6 +2594,7 @@ static GtkToggleActionEntry menu_toggle_entries[] = {
   { "ExifRotate",	GTK_STOCK_ORIENTATION_PORTRAIT,			N_("_Exif rotate"),  		"<alt>X",		N_("Exif rotate"),			CB(layout_menu_exif_rotate_cb), FALSE },
   { "DrawRectangle",	PIXBUF_INLINE_ICON_DRAW_RECTANGLE,			N_("Draw Rectangle"),  		NULL,		N_("Draw Rectangle"),			CB(layout_menu_select_rectangle_cb), FALSE },
   { "OverUnderExposed",	PIXBUF_INLINE_ICON_EXPOSURE,	N_("Over/Under Exposed"),  	"<shift>E",		N_("Over/Under Exposed"),		CB(layout_menu_select_overunderexposed_cb), FALSE },
+  { "SplitPaneSync",	PIXBUF_INLINE_SPLIT_PANE_SYNC,			N_("Split Pane Sync"),	NULL,		N_("Split Pane Sync"),	CB(layout_menu_split_pane_sync_cb) },
 };
 
 static GtkRadioActionEntry menu_radio_entries[] = {
@@ -2767,6 +2815,8 @@ static const gchar *menu_ui_description =
 "        <menuitem action='SplitPreviousPane'/>"
 "        <menuitem action='SplitUpPane'/>"
 "        <menuitem action='SplitDownPane'/>"
+"        <separator/>"
+"        <menuitem action='SplitPaneSync'/>"
 "      </menu>"
 "      <menu action='StereoMenu'>"
 "        <menuitem action='StereoAuto'/>"
@@ -3695,6 +3745,9 @@ static void layout_util_sync_views(LayoutWindow *lw)
 	gtk_action_set_sensitive(action, !(lw->split_mode == SPLIT_NONE));
 	action = gtk_action_group_get_action(lw->action_group, "SplitDownPane");
 	gtk_action_set_sensitive(action, !(lw->split_mode == SPLIT_NONE));
+
+	action = gtk_action_group_get_action(lw->action_group, "SplitPaneSync");
+	gtk_toggle_action_set_active(GTK_TOGGLE_ACTION(action), lw->options.split_pane_sync);
 
 	action = gtk_action_group_get_action(lw->action_group, "ViewIcons");
 	gtk_radio_action_set_current_value(GTK_RADIO_ACTION(action), lw->options.file_view_type);

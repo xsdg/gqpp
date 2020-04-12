@@ -50,7 +50,8 @@ ICONS_INLINE = \
 	icon_trash.png \
 	icon_heic.png \
 	icon_grayscale.png \
-	icon_exposure.png
+	icon_exposure.png \
+	icon_split_pane_sync.png
 
 ICONS_INLINE_PAIRS = \
 	folder_closed		$(srcdir)/folder_closed.png	\
@@ -99,7 +100,8 @@ ICONS_INLINE_PAIRS = \
 	icon_trash	$(srcdir)/icon_trash.png \
 	icon_heic	$(srcdir)/icon_heic.png \
 	icon_grayscale	$(srcdir)/icon_grayscale.png \
-	icon_exposure	$(srcdir)/icon_exposure.png
+	icon_exposure	$(srcdir)/icon_exposure.png \
+	icon_split_pane_sync	$(srcdir)/icon_split_pane_sync.png
 
 icons_inline.h: $(ICONS_INLINE) Makefile.in
 	@sh -ec "echo '/* Auto generated file, do not edit */'; echo; \

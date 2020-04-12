@@ -314,6 +314,7 @@ LayoutOptions *init_layout_options(LayoutOptions *options)
 	options->bars_state.hidden = FALSE;
 	options->log_window.w = 520;
 	options->log_window.h = 400;
+	options->split_pane_sync = FALSE;
 	return options;
 }
 

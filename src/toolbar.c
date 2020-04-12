@@ -125,6 +125,7 @@ static const UseableToolbarItems useable_toolbar_items[] = {
 	{"Zoom33",	N_("Zoom1:3"), GTK_STOCK_FILE},
 	{"Zoom25",	N_("Zoom 1:4"), GTK_STOCK_FILE},
 	{"ConnectZoomIn",	N_("Connected Zoom in"), GTK_STOCK_ZOOM_IN},
+	{"SplitPaneSync",	N_("Split Pane Sync"), PIXBUF_INLINE_SPLIT_PANE_SYNC},
 	{"Grayscale",	N_("Grayscale"), PIXBUF_INLINE_ICON_GRAYSCALE},
 	{"OverUnderExposed",	N_("Over Under Exposed"), PIXBUF_INLINE_ICON_EXPOSURE},
 	{"ShowInfoPixel",	N_("Pixel Info"), 	GTK_STOCK_COLOR_PICKER},

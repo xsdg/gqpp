@@ -1152,12 +1152,47 @@ static gboolean image_focus_in_cb(GtkWidget *widget, GdkEventFocus *event, gpoin
 static gboolean image_scroll_cb(GtkWidget *widget, GdkEventScroll *event, gpointer data)
 {
 	ImageWindow *imd = data;
+	gboolean in_lw = FALSE;
+	gint i = 0;
+	LayoutWindow *lw = NULL;
 
-	if (imd->func_scroll &&
-	    event && event->type == GDK_SCROLL)
+	if (imd->func_scroll && event && event->type == GDK_SCROLL)
 		{
-		imd->func_scroll(imd, event, imd->data_scroll);
-		return TRUE;
+		layout_valid(&lw);
+		/* check if the image is in a layout window */
+		for (i = 0; i < MAX_SPLIT_IMAGES; i++)
+			{
+			if (imd == lw->split_images[i])
+				{
+				in_lw = TRUE;
+				break;
+				}
+			}
+
+		if (in_lw)
+			{
+			if (lw->options.split_pane_sync)
+				{
+				for (i = 0; i < MAX_SPLIT_IMAGES; i++)
+					{
+					if (lw->split_images[i])
+						{
+						layout_image_activate(lw, i, FALSE);
+						imd->func_scroll(lw->split_images[i], event, lw->split_images[i]->data_scroll);
+						}
+					}
+				}
+			else
+				{
+				imd->func_scroll(imd, event, imd->data_scroll);
+				}
+			return TRUE;
+			}
+		else
+			{
+			imd->func_scroll(imd, event, imd->data_scroll);
+			return TRUE;
+			}
 		}
 
 	return FALSE;

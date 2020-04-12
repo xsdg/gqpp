@@ -662,6 +662,7 @@ struct _LayoutOptions
 	gboolean show_file_filter;
 	gboolean show_directory_date;
 	gboolean show_info_pixel;
+	gboolean split_pane_sync;
 
 	struct {
 		gint w;
