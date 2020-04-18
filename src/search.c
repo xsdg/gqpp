@@ -63,6 +63,8 @@
 #define SEARCH_BUFFER_MATCH_MISS 1
 #define SEARCH_BUFFER_FLUSH_SIZE 99
 
+#define FORMAT_CLASS_BROKEN FILE_FORMAT_CLASSES + 1
+
 typedef enum {
 	SEARCH_MATCH_NONE,
 	SEARCH_MATCH_EQUAL,
@@ -96,6 +98,8 @@ struct _SearchData
 	GtkWidget *label_progress;
 	GtkWidget *button_start;
 	GtkWidget *button_stop;
+	GtkWidget *button_close;
+	GtkWidget *button_help;
 	GtkWidget *spinner;
 
 	GtkWidget *box_search;
@@ -202,6 +206,7 @@ struct _SearchData
 	gboolean match_rating_enable;
 	gboolean match_class_enable;
 	gboolean match_marks_enable;
+	gboolean match_broken_enable;
 
 	GList *search_folder_list;
 	GList *search_done_list;
@@ -1699,6 +1704,8 @@ static void search_stop(SearchData *sd)
 	filelist_free(sd->search_file_list);
 	sd->search_file_list = NULL;
 
+	sd->match_broken_enable = FALSE;
+
 	gtk_widget_set_sensitive(sd->box_search, TRUE);
 	spinner_set_interval(sd->spinner, -1);
 	gtk_widget_set_sensitive(sd->button_start, TRUE);
@@ -1713,7 +1720,16 @@ static void search_file_load_process(SearchData *sd, CacheData *cd)
 
 	pixbuf = image_loader_get_pixbuf(sd->img_loader);
 
-	if (cd && pixbuf)
+	/* Used to determnine if image is broken
+	 */
+	if (cd && !pixbuf)
+		{
+		if (!cd->dimensions)
+			{
+			cache_sim_data_set_dimensions(cd, -1, -1);
+			}
+		}
+	else if (cd && pixbuf)
 		{
 		if (!cd->dimensions)
 			{
@@ -1792,8 +1808,7 @@ static gboolean search_file_do_extra(SearchData *sd, FileData *fd, gint *match,
 
 	if (new_data)
 		{
-		if ((sd->match_dimensions_enable && !sd->img_cd->dimensions) ||
-		    (sd->match_similarity_enable && !sd->img_cd->similarity))
+		if ((sd->match_dimensions_enable && !sd->img_cd->dimensions) || (sd->match_similarity_enable && !sd->img_cd->similarity || sd->match_broken_enable))
 			{
 			sd->img_loader = image_loader_new(fd);
 			g_signal_connect(G_OBJECT(sd->img_loader), "error", (GCallback)search_file_load_done_cb, sd);
@@ -1807,6 +1822,20 @@ static gboolean search_file_do_extra(SearchData *sd, FileData *fd, gint *match,
 				image_loader_free(sd->img_loader);
 				sd->img_loader = NULL;
 				}
+			}
+		}
+
+	if (sd->match_broken_enable)
+		{
+		tested = TRUE;
+		tmatch = FALSE;
+		if (sd->match_class == SEARCH_MATCH_EQUAL && sd->img_cd->width == -1)
+			{
+			tmatch = TRUE;
+			}
+		else if (sd->match_class == SEARCH_MATCH_NONE && sd->img_cd->width != -1)
+			{
+			tmatch = TRUE;
 			}
 		}
 
@@ -2189,19 +2218,38 @@ static gboolean search_file_next(SearchData *sd)
 			{
 			search_class = FORMAT_CLASS_META;
 			}
-		else
+		else if (g_strcmp0(gtk_combo_box_text_get_active_text(
+						GTK_COMBO_BOX_TEXT(sd->class_type)), _("Unknown")) == 0)
 			{
 			search_class = FORMAT_CLASS_UNKNOWN;
 			}
-
-		class = fd->format_class;
-		if (sd->match_class == SEARCH_MATCH_EQUAL)
+		else
 			{
-			match = (class == search_class);
+			search_class = FORMAT_CLASS_BROKEN;
 			}
-		else if (sd->match_class == SEARCH_MATCH_NONE)
+
+		if (search_class != FORMAT_CLASS_BROKEN)
 			{
-			match = (class != search_class);
+			class = fd->format_class;
+			if (sd->match_class == SEARCH_MATCH_EQUAL)
+				{
+				match = (class == search_class);
+				}
+			else if (sd->match_class == SEARCH_MATCH_NONE)
+				{
+				match = (class != search_class);
+				}
+			}
+		else
+			{
+			if (fd->format_class == FORMAT_CLASS_IMAGE || fd->format_class == FORMAT_CLASS_RAWIMAGE || fd->format_class == FORMAT_CLASS_VIDEO || fd->format_class == FORMAT_CLASS_DOCUMENT)
+				{
+				sd->match_broken_enable = TRUE;
+				}
+			else
+				{
+				sd->match_broken_enable = FALSE;
+				}
 			}
 		}
 
@@ -2312,8 +2360,7 @@ static gboolean search_file_next(SearchData *sd)
 			}
 		}
 
-	if ((match || extra_only) && (sd->match_dimensions_enable ||
-								sd ->match_similarity_enable))
+	if (((match || extra_only) && sd->match_dimensions_enable || sd->match_similarity_enable || sd->match_broken_enable))
 		{
 		tested = TRUE;
 
@@ -3066,6 +3113,18 @@ static void search_window_close(SearchData *sd)
 	gtk_widget_destroy(sd->window);
 }
 
+static void search_window_close_cb(GtkWidget *widget, gpointer data)
+{
+	SearchData *sd = data;
+
+	search_window_close(sd);
+}
+
+static void search_window_help_cb(GtkWidget *widget, gpointer data)
+{
+	help_window_show("GuideImageSearchSearch.html");
+}
+
 static gboolean search_window_delete_cb(GtkWidget *widget, GdkEventAny *event, gpointer data)
 {
 	SearchData *sd = data;
@@ -3397,6 +3456,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(sd->class_type), _("Document"));
 	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(sd->class_type), _("Metadata"));
 	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(sd->class_type), _("Unknown"));
+	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(sd->class_type), _("Broken"));
 	gtk_box_pack_start(GTK_BOX(hbox), sd->class_type, FALSE, FALSE, 0);
 	gtk_combo_box_set_active(GTK_COMBO_BOX(sd->class_type), 0);
 	gtk_widget_show(sd->class_type);
@@ -3522,12 +3582,18 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	gtk_box_pack_start(GTK_BOX(hbox), sd->spinner, FALSE, FALSE, 0);
 	gtk_widget_show(sd->spinner);
 
+	sd->button_help = pref_button_new(hbox, GTK_STOCK_HELP, NULL, FALSE, G_CALLBACK(search_window_help_cb), sd);
+	gtk_widget_set_sensitive(sd->button_help, TRUE);
+	pref_spacer(hbox, PREF_PAD_BUTTON_GAP);
 	sd->button_start = pref_button_new(hbox, GTK_STOCK_FIND, NULL, FALSE,
 					   G_CALLBACK(search_start_cb), sd);
 	pref_spacer(hbox, PREF_PAD_BUTTON_GAP);
 	sd->button_stop = pref_button_new(hbox, GTK_STOCK_STOP, NULL, FALSE,
 					  G_CALLBACK(search_start_cb), sd);
 	gtk_widget_set_sensitive(sd->button_stop, FALSE);
+	pref_spacer(hbox, PREF_PAD_BUTTON_GAP);
+	sd->button_close = pref_button_new(hbox, GTK_STOCK_CLOSE, NULL, FALSE, G_CALLBACK(search_window_close_cb), sd);
+	gtk_widget_set_sensitive(sd->button_close, TRUE);
 
 	search_status_update(sd);
 	search_progress_update(sd, FALSE, -1.0);

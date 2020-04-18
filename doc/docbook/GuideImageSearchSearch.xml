@@ -175,7 +175,7 @@
           </itemizedlist>
           <note>
             In this last case, the result of a search may contain the latitude/longitude embedded in the URL. This may be automatically decoded with the help of an external file:-
-            <programlisting xml:space="preserve">~/.config/geeqie/geocode-parameters.awk</programlisting>
+            <programlisting xml:space="preserve">$HOME/.config/geeqie/geocode-parameters.awk</programlisting>
             See
             <link linkend="GuideReferenceDecodeLatLong">Decoding Latitude and Longitude</link>
             for details on how to create this file.
@@ -193,7 +193,10 @@
             <listitem>Image</listitem>
             <listitem>Raw Image</listitem>
             <listitem>Video</listitem>
+            <listitem>Document</listitem>
             <listitem>Metadata</listitem>
+            <listitem>Unknown</listitem>
+            <listitem>Broken (Of class Image, Raw Image, Video, or Document, but Geeqie cannot display an image)</listitem>
           </itemizedlist>
         </listitem>
       </varlistentry>
