@@ -136,12 +136,22 @@
           </para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel>Show all</guilabel>
+        </term>
+        <listitem>
+          <para>
+            Do not compare. Show all images.
+          </para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </section>
   <section id="Resultslist">
     <title>Results list</title>
     <para>Files that match with the selected comparison method will appear in the list. Matching files are grouped in alternating color.</para>
-    <para>The order of the result list can not be changed, files will appear in the order of the search. When comparing by image content similarity, the matching groups will be sorted by order of rank starting with the files that are most similar.</para>
+    <para>The order of the result list can be changed by clicking on the column header. This will re-order the images within each set. When comparing by image content similarity, the matching sets will be sorted by order of rank starting with the files that are most similar.</para>
     <para>
       A
       <emphasis role="strong">context menu</emphasis>
@@ -149,7 +159,7 @@
     </para>
     <para>
       Groups in the results list may be selected by using the keyboard. Refer to the <emphasis>Find Duplicates Window</emphasis> section of
-       <link linkend="FindDuplicatesWindow" >Keyboard Shortcuts</link>
+       <link linkend="DuplicatesKeyboardShortcuts" >Keyboard Shortcuts</link>
       .
     </para>
     <para>

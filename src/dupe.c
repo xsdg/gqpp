@@ -70,6 +70,7 @@ enum {
 	DUPE_COLUMN_DIMENSIONS,
 	DUPE_COLUMN_PATH,
 	DUPE_COLUMN_COLOR,
+	DUPE_COLUMN_SET,
 	DUPE_COLUMN_COUNT	/* total columns */
 };
 
@@ -524,6 +525,7 @@ static void dupe_listview_add(DupeWindow *dw, DupeItem *parent, DupeItem *child)
 			{
 			gtk_tree_model_get(GTK_TREE_MODEL(store), &iter, DUPE_COLUMN_COLOR, &color_set, -1);
 			color_set = !color_set;
+			dw->set_count++;
 			}
 		else
 			{
@@ -574,6 +576,7 @@ static void dupe_listview_add(DupeWindow *dw, DupeItem *parent, DupeItem *child)
 				DUPE_COLUMN_DIMENSIONS, text[DUPE_COLUMN_DIMENSIONS],
 				DUPE_COLUMN_PATH, text[DUPE_COLUMN_PATH],
 				DUPE_COLUMN_COLOR, color_set,
+				DUPE_COLUMN_SET, dw->set_count,
 				-1);
 
 	g_free(text[DUPE_COLUMN_RANK]);
@@ -737,6 +740,8 @@ static void dupe_listview_select_dupes(DupeWindow *dw, DupeSelectType parents)
 	GtkTreeSelection *selection;
 	GtkTreeIter iter;
 	gboolean valid;
+	gint set_count = 0;
+	gint set_count_last = -1;
 
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(dw->listview));
 	gtk_tree_selection_unselect_all(selection);
@@ -747,10 +752,21 @@ static void dupe_listview_select_dupes(DupeWindow *dw, DupeSelectType parents)
 		{
 		DupeItem *di;
 
-		gtk_tree_model_get(store, &iter, DUPE_COLUMN_POINTER, &di, -1);
-		if ((dupe_match_find_parent(dw, di) == di) == (parents == DUPE_SELECT_GROUP1))
+		gtk_tree_model_get(store, &iter, DUPE_COLUMN_POINTER, &di, DUPE_COLUMN_SET, &set_count, -1);
+		if (set_count != set_count_last)
 			{
-			gtk_tree_selection_select_iter(selection, &iter);
+			set_count_last = set_count;
+			if (parents == DUPE_SELECT_GROUP1)
+				{
+				gtk_tree_selection_select_iter(selection, &iter);
+				}
+			}
+		else
+			{
+			if (parents == DUPE_SELECT_GROUP2)
+				{
+				gtk_tree_selection_select_iter(selection, &iter);
+				}
 			}
 		valid = gtk_tree_model_iter_next(store, &iter);
 		}
@@ -1168,6 +1184,10 @@ static gboolean dupe_match(DupeItem *a, DupeItem *b, DupeMatchType mask, gdouble
 
 	if (a->fd->path == b->fd->path) return FALSE;
 
+	if (mask & DUPE_MATCH_ALL)
+		{
+		return TRUE;
+		}
 	if (mask & DUPE_MATCH_PATH)
 		{
 		if (utf8_compare(a->fd->path, b->fd->path, TRUE) != 0) return FALSE;
@@ -1410,6 +1430,13 @@ static void dupe_check_stop(DupeWindow *dw)
 
 	image_loader_free(dw->img_loader);
 	dw->img_loader = NULL;
+}
+
+static void dupe_check_stop_cb(GtkWidget *widget, gpointer data)
+{
+	DupeWindow *dw = data;
+
+	dupe_check_stop(dw);
 }
 
 static void dupe_loader_done_cb(ImageLoader *il, gpointer data)
@@ -1803,6 +1830,8 @@ static void dupe_files_add(DupeWindow *dw, CollectionData *collection, CollectIn
 
 	if (!di) return;
 
+	dupe_item_read_cache(di);
+
 	/* Ensure images in the lists have unique FileDatas */
 	GList *work;
 	DupeItem *di_list;
@@ -2046,6 +2075,7 @@ static void dupe_window_recompare(DupeWindow *dw)
 
 	dupe_match_reset_list(dw->list);
 	dupe_match_reset_list(dw->second_list);
+	dw->set_count = 0;
 
 	dupe_check_start(dw);
 }
@@ -2749,6 +2779,8 @@ enum {
 	DUPE_MENU_COLUMN_MASK
 };
 
+static void dupe_listview_show_rank(GtkWidget *listview, gboolean rank);
+
 static void dupe_menu_type_cb(GtkWidget *combo, gpointer data)
 {
 	DupeWindow *dw = data;
@@ -2761,6 +2793,14 @@ static void dupe_menu_type_cb(GtkWidget *combo, gpointer data)
 
 	options->duplicates_match = dw->match_mask;
 
+	if (dw->match_mask & (DUPE_MATCH_SIM_HIGH | DUPE_MATCH_SIM_MED | DUPE_MATCH_SIM_LOW | DUPE_MATCH_SIM_CUSTOM))
+		{
+		dupe_listview_show_rank(dw->listview, TRUE);
+		}
+	else
+		{
+		dupe_listview_show_rank(dw->listview, FALSE);
+		}
 	dupe_window_recompare(dw);
 }
 
@@ -2800,6 +2840,7 @@ static void dupe_menu_setup(DupeWindow *dw)
 	dupe_menu_add_item(store, _("Similarity"), DUPE_MATCH_SIM_MED, dw);
 	dupe_menu_add_item(store, _("Similarity (low)"), DUPE_MATCH_SIM_LOW, dw);
 	dupe_menu_add_item(store, _("Similarity (custom)"), DUPE_MATCH_SIM_CUSTOM, dw);
+	dupe_menu_add_item(store, _("Show all"), DUPE_MATCH_ALL, dw);
 
 	g_signal_connect(G_OBJECT(dw->combo), "changed",
 			 G_CALLBACK(dupe_menu_type_cb), dw);
@@ -2867,6 +2908,7 @@ static void dupe_listview_add_column(DupeWindow *dw, GtkWidget *listview, gint n
 	column = gtk_tree_view_column_new();
 	gtk_tree_view_column_set_title(column, title);
 	gtk_tree_view_column_set_min_width(column, 4);
+	gtk_tree_view_column_set_sort_column_id(column, n);
 
 	if (n != DUPE_COLUMN_RANK &&
 	    n != DUPE_COLUMN_THUMB)
@@ -2913,6 +2955,7 @@ static void dupe_listview_set_height(GtkWidget *listview, gboolean thumb)
 	if (!column) return;
 
 	gtk_tree_view_column_set_fixed_width(column, (thumb) ? options->thumbnails.max_width : 4);
+	gtk_tree_view_column_set_visible(column, thumb);
 
 	list = gtk_cell_layout_get_cells(GTK_CELL_LAYOUT(column));
 	if (!list) return;
@@ -2923,6 +2966,15 @@ static void dupe_listview_set_height(GtkWidget *listview, gboolean thumb)
 	gtk_tree_view_columns_autosize(GTK_TREE_VIEW(listview));
 }
 
+static void dupe_listview_show_rank(GtkWidget *listview, gboolean rank)
+{
+	GtkTreeViewColumn *column;
+
+	column = gtk_tree_view_get_column(GTK_TREE_VIEW(listview), DUPE_COLUMN_RANK - 1);
+	if (!column) return;
+
+	gtk_tree_view_column_set_visible(column, rank);
+}
 
 /*
  *-------------------------------------------------------------------
@@ -3167,6 +3219,10 @@ static gboolean dupe_window_keypress_cb(GtkWidget *widget, GdkEventKey *event, g
 					dupe_window_collection_from_selection(dw);
 					}
 				break;
+			case '0':
+				options->duplicates_select_type = DUPE_SELECT_NONE;
+				dupe_listview_select_dupes(dw, DUPE_SELECT_NONE);
+				break;
 			case '1':
 				options->duplicates_select_type = DUPE_SELECT_GROUP1;
 				dupe_listview_select_dupes(dw, DUPE_SELECT_GROUP1);
@@ -3224,6 +3280,7 @@ void dupe_window_clear(DupeWindow *dw)
 
 	dupe_list_free(dw->list);
 	dw->list = NULL;
+	dw->set_count = 0;
 
 	dupe_match_reset_list(dw->second_list);
 
@@ -3265,6 +3322,15 @@ void dupe_window_close(DupeWindow *dw)
 	g_free(dw);
 }
 
+static gint dupe_window_close_cb(GtkWidget *widget, gpointer data)
+{
+	DupeWindow *dw = data;
+
+	dupe_window_close(dw);
+
+	return TRUE;
+}
+
 static gint dupe_window_delete(GtkWidget *widget, GdkEvent *event, gpointer data)
 {
 	DupeWindow *dw = data;
@@ -3273,14 +3339,131 @@ static gint dupe_window_delete(GtkWidget *widget, GdkEvent *event, gpointer data
 	return TRUE;
 }
 
+static void dupe_help_cb(GtkAction *action, gpointer data)
+{
+	help_window_show("GuideImageSearchFindingDuplicates.html");
+}
+
+static gint default_sort_cb(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer data)
+{
+	return 0;
+}
+
+static gint column_sort_cb(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer data)
+{
+	GtkTreeSortable *sortable = data;
+	gint ret = 0;
+	gchar *rank_str_a, *rank_str_b;
+	gint rank_int_a;
+	gint rank_int_b;
+	gint group_a;
+	gint group_b;
+	gint sort_column_id;
+	GtkSortType sort_order;
+	DupeItem *di_a;
+	DupeItem *di_b;
+
+	gtk_tree_sortable_get_sort_column_id(sortable, &sort_column_id, &sort_order);
+
+	gtk_tree_model_get(model, a, DUPE_COLUMN_RANK, &rank_str_a, DUPE_COLUMN_SET, &group_a, DUPE_COLUMN_POINTER, &di_a, -1);
+
+	gtk_tree_model_get(model, b, DUPE_COLUMN_RANK, &rank_str_b, DUPE_COLUMN_SET, &group_b, DUPE_COLUMN_POINTER, &di_b, -1);
+
+	if (group_a == group_b)
+		{
+		switch (sort_column_id)
+			{
+			case DUPE_COLUMN_NAME:
+				ret = utf8_compare(di_a->fd->name, di_b->fd->name, TRUE);
+				break;
+			case DUPE_COLUMN_SIZE:
+				if (di_a->fd->size == di_b->fd->size)
+					{
+					ret = 0;
+					}
+				else
+					{
+					ret = (di_a->fd->size > di_b->fd->size) ? 1 : -1;
+					}
+				break;
+			case DUPE_COLUMN_DATE:
+				if (di_a->fd->date == di_b->fd->date)
+					{
+					ret = 0;
+					}
+				else
+					{
+					ret = (di_a->fd->date > di_b->fd->date) ? 1 : -1;
+					}
+				break;
+			case DUPE_COLUMN_DIMENSIONS:
+				if ((di_a->width == di_b->width) && (di_a->height == di_b->height))
+					{
+					ret = 0;
+					}
+				else
+					{
+					ret = ((di_a->width * di_a->height) > (di_b->width * di_b->height)) ? 1 : -1;
+					}
+				break;
+			case DUPE_COLUMN_RANK:
+				rank_int_a = atoi(rank_str_a);
+				rank_int_b = atoi(rank_str_b);
+				if (rank_int_a == 0) rank_int_a = 101;
+				if (rank_int_b == 0) rank_int_b = 101;
+
+				if (rank_int_a == rank_int_b)
+					{
+					ret = 0;
+					}
+				else
+					{
+					ret = (rank_int_a > rank_int_b) ? 1 : -1;
+					}
+				break;
+			case DUPE_COLUMN_PATH:
+				ret = utf8_compare(di_a->fd->path, di_b->fd->path, TRUE);
+				break;
+			}
+		}
+	else if (group_a < group_b)
+		{
+		ret = (sort_order == GTK_SORT_ASCENDING) ? 1 : -1;
+		}
+	else
+		{
+		ret = (sort_order == GTK_SORT_ASCENDING) ? -1 : 1;
+		}
+
+	return ret;
+}
+
+static gboolean dupe_window_recompare_cb(gpointer data)
+{
+	DupeWindow *dw = data;
+
+	dupe_window_recompare_cb(dw);
+}
+
+static void column_clicked_cb(GtkWidget *widget,  gpointer data)
+{
+	DupeWindow *dw = data;
+
+	options->duplicates_match = DUPE_SELECT_NONE;
+	dupe_listview_select_dupes(dw, DUPE_SELECT_NONE);
+	dupe_window_recompare_cb, dw;
+}
+
 /* collection and files can be NULL */
 DupeWindow *dupe_window_new()
 {
 	DupeWindow *dw;
 	GtkWidget *vbox;
+	GtkWidget *hbox;
 	GtkWidget *scrolled;
 	GtkWidget *frame;
 	GtkWidget *status_box;
+	GtkWidget *button_box;
 	GtkWidget *label;
 	GtkWidget *button;
 	GtkListStore *store;
@@ -3347,24 +3530,41 @@ DupeWindow *dupe_window_new()
 	gtk_table_attach_defaults(GTK_TABLE(dw->table), scrolled, 0, 2, 0, 1);
 	gtk_widget_show(scrolled);
 
-	store = gtk_list_store_new(9, G_TYPE_POINTER, G_TYPE_STRING, GDK_TYPE_PIXBUF,
-				   G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,
-				   G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN);
+	store = gtk_list_store_new(DUPE_COLUMN_COUNT, G_TYPE_POINTER, G_TYPE_STRING, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_INT, G_TYPE_INT);
 	dw->listview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
 	g_object_unref(store);
+
+	dw->sortable = GTK_TREE_SORTABLE(store);
+
+	gtk_tree_sortable_set_sort_func(dw->sortable, DUPE_COLUMN_RANK, column_sort_cb, dw->sortable, NULL);
+	gtk_tree_sortable_set_sort_func(dw->sortable, DUPE_COLUMN_SET, default_sort_cb, dw->sortable, NULL);
+	gtk_tree_sortable_set_sort_func(dw->sortable, DUPE_COLUMN_THUMB, default_sort_cb, dw->sortable, NULL);
+	gtk_tree_sortable_set_sort_func(dw->sortable, DUPE_COLUMN_NAME, column_sort_cb, dw->sortable, NULL);
+	gtk_tree_sortable_set_sort_func(dw->sortable, DUPE_COLUMN_SIZE, column_sort_cb, dw->sortable, NULL);
+	gtk_tree_sortable_set_sort_func(dw->sortable, DUPE_COLUMN_DATE, column_sort_cb, dw->sortable, NULL);
+	gtk_tree_sortable_set_sort_func(dw->sortable, DUPE_COLUMN_DIMENSIONS, column_sort_cb, dw->sortable, NULL);
+	gtk_tree_sortable_set_sort_func(dw->sortable, DUPE_COLUMN_PATH, column_sort_cb, dw->sortable, NULL);
 
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(dw->listview));
 	gtk_tree_selection_set_mode(GTK_TREE_SELECTION(selection), GTK_SELECTION_MULTIPLE);
 	gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(dw->listview), TRUE);
 	gtk_tree_view_set_enable_search(GTK_TREE_VIEW(dw->listview), FALSE);
 
-	dupe_listview_add_column(dw, dw->listview, DUPE_COLUMN_RANK, "", FALSE, TRUE);
-	dupe_listview_add_column(dw, dw->listview, DUPE_COLUMN_THUMB, "", TRUE, FALSE);
+	dupe_listview_add_column(dw, dw->listview, DUPE_COLUMN_RANK, _("Rank"), FALSE, TRUE);
+	dupe_listview_add_column(dw, dw->listview, DUPE_COLUMN_THUMB, _("Thumb"), TRUE, FALSE);
 	dupe_listview_add_column(dw, dw->listview, DUPE_COLUMN_NAME, _("Name"), FALSE, FALSE);
 	dupe_listview_add_column(dw, dw->listview, DUPE_COLUMN_SIZE, _("Size"), FALSE, TRUE);
 	dupe_listview_add_column(dw, dw->listview, DUPE_COLUMN_DATE, _("Date"), FALSE, TRUE);
 	dupe_listview_add_column(dw, dw->listview, DUPE_COLUMN_DIMENSIONS, _("Dimensions"), FALSE, FALSE);
 	dupe_listview_add_column(dw, dw->listview, DUPE_COLUMN_PATH, _("Path"), FALSE, FALSE);
+	dupe_listview_add_column(dw, dw->listview, DUPE_COLUMN_SET, _("Set"), FALSE, FALSE);
+
+	g_signal_connect(gtk_tree_view_get_column(GTK_TREE_VIEW(dw->listview), DUPE_COLUMN_RANK - 1), "clicked", (GCallback)column_clicked_cb, dw);
+	g_signal_connect(gtk_tree_view_get_column(GTK_TREE_VIEW(dw->listview), DUPE_COLUMN_NAME - 1), "clicked", (GCallback)column_clicked_cb, dw);
+	g_signal_connect(gtk_tree_view_get_column(GTK_TREE_VIEW(dw->listview), DUPE_COLUMN_SIZE - 1), "clicked", (GCallback)column_clicked_cb, dw);
+	g_signal_connect(gtk_tree_view_get_column(GTK_TREE_VIEW(dw->listview), DUPE_COLUMN_DATE - 1), "clicked", (GCallback)column_clicked_cb, dw);
+	g_signal_connect(gtk_tree_view_get_column(GTK_TREE_VIEW(dw->listview), DUPE_COLUMN_DIMENSIONS - 1), "clicked", (GCallback)column_clicked_cb, dw);
+	g_signal_connect(gtk_tree_view_get_column(GTK_TREE_VIEW(dw->listview), DUPE_COLUMN_PATH - 1), "clicked", (GCallback)column_clicked_cb, dw);
 
 	gtk_container_add(GTK_CONTAINER(scrolled), dw->listview);
 	gtk_widget_show(dw->listview);
@@ -3407,39 +3607,6 @@ DupeWindow *dupe_window_new()
 
 	pref_line(dw->second_vbox, GTK_ORIENTATION_HORIZONTAL);
 
-	status_box = pref_box_new(vbox, FALSE, GTK_ORIENTATION_HORIZONTAL, 0);
-
-	label = gtk_label_new(_("Compare by:"));
-	gtk_box_pack_start(GTK_BOX(status_box), label, FALSE, FALSE, PREF_PAD_SPACE);
-	gtk_widget_show(label);
-
-	dupe_menu_setup(dw);
-	gtk_box_pack_start(GTK_BOX(status_box), dw->combo, FALSE, FALSE, 0);
-	gtk_widget_show(dw->combo);
-
-	dw->button_thumbs = gtk_check_button_new_with_label(_("Thumbnails"));
-	dw->show_thumbs = options->duplicates_thumbnails;
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dw->button_thumbs), dw->show_thumbs);
-	g_signal_connect(G_OBJECT(dw->button_thumbs), "toggled",
-			 G_CALLBACK(dupe_window_show_thumb_cb), dw);
-	gtk_box_pack_start(GTK_BOX(status_box), dw->button_thumbs, FALSE, FALSE, PREF_PAD_SPACE);
-	gtk_widget_show(dw->button_thumbs);
-
-	dw->button_rotation_invariant = gtk_check_button_new_with_label(_("Ignore Rotation"));
-	gtk_widget_set_tooltip_text(GTK_WIDGET(dw->button_rotation_invariant), "Ignore image orientation");
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dw->button_rotation_invariant), options->rot_invariant_sim);
-	g_signal_connect(G_OBJECT(dw->button_rotation_invariant), "toggled",
-			 G_CALLBACK(dupe_window_rotation_invariant_cb), dw);
-	gtk_box_pack_start(GTK_BOX(status_box), dw->button_rotation_invariant, FALSE, FALSE, PREF_PAD_SPACE);
-	gtk_widget_show(dw->button_rotation_invariant);
-
-	button = gtk_check_button_new_with_label(_("Compare two file sets"));
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), dw->second_set);
-	g_signal_connect(G_OBJECT(button), "toggled",
-			 G_CALLBACK(dupe_second_set_toggle_cb), dw);
-	gtk_box_pack_end(GTK_BOX(status_box), button, FALSE, FALSE, PREF_PAD_SPACE);
-	gtk_widget_show(button);
-
 	status_box = gtk_hbox_new(FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), status_box, FALSE, FALSE, 0);
 	gtk_widget_show(status_box);
@@ -3454,13 +3621,32 @@ DupeWindow *dupe_window_new()
 	gtk_container_add(GTK_CONTAINER(frame), dw->status_label);
 	gtk_widget_show(dw->status_label);
 
-	button = gtk_check_button_new_with_label(_("Sort"));
-	gtk_widget_set_tooltip_text(GTK_WIDGET(button), "Sort by group totals");
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), options->sort_totals);
-	g_signal_connect(G_OBJECT(button), "toggled",
-			 G_CALLBACK(dupe_sort_totals_toggle_cb), dw);
-	gtk_box_pack_start(GTK_BOX(status_box), button, FALSE, FALSE, PREF_PAD_SPACE);
-	gtk_widget_show(button);
+	dw->extra_label = gtk_progress_bar_new();
+	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(dw->extra_label), 0.0);
+#if GTK_CHECK_VERSION(3,0,0)
+	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(dw->extra_label), "");
+	gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(dw->extra_label), TRUE);
+#endif
+	gtk_box_pack_start(GTK_BOX(status_box), dw->extra_label, FALSE, FALSE, PREF_PAD_SPACE);
+	gtk_widget_show(dw->extra_label);
+
+	status_box = pref_box_new(vbox, FALSE, GTK_ORIENTATION_HORIZONTAL, 0);
+
+	dw->button_thumbs = gtk_check_button_new_with_label(_("Thumbnails"));
+	dw->show_thumbs = options->duplicates_thumbnails;
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dw->button_thumbs), dw->show_thumbs);
+	g_signal_connect(G_OBJECT(dw->button_thumbs), "toggled",
+			 G_CALLBACK(dupe_window_show_thumb_cb), dw);
+	gtk_box_pack_start(GTK_BOX(status_box), dw->button_thumbs, FALSE, FALSE, PREF_PAD_SPACE);
+	gtk_widget_show(dw->button_thumbs);
+
+	label = gtk_label_new(_("Compare by:"));
+	gtk_box_pack_start(GTK_BOX(status_box), label, FALSE, FALSE, PREF_PAD_SPACE);
+	gtk_widget_show(label);
+
+	dupe_menu_setup(dw);
+	gtk_box_pack_start(GTK_BOX(status_box), dw->combo, FALSE, FALSE, 0);
+	gtk_widget_show(dw->combo);
 
 	label = gtk_label_new(_("Custom Threshold"));
 	gtk_box_pack_start(GTK_BOX(status_box), label, FALSE, FALSE, PREF_PAD_SPACE);
@@ -3468,20 +3654,57 @@ DupeWindow *dupe_window_new()
 	dw->custom_threshold = gtk_spin_button_new_with_range(1, 100, 1);
 	gtk_widget_set_tooltip_text(GTK_WIDGET(dw->custom_threshold), "Custom similarity threshold");
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(dw->custom_threshold), options->duplicates_similarity_threshold);
-	g_signal_connect(G_OBJECT(dw->custom_threshold), "value_changed",
-													G_CALLBACK(dupe_window_custom_threshold_cb), dw);
+	g_signal_connect(G_OBJECT(dw->custom_threshold), "value_changed", G_CALLBACK(dupe_window_custom_threshold_cb), dw);
 	gtk_box_pack_start(GTK_BOX(status_box), dw->custom_threshold, FALSE, FALSE, PREF_PAD_SPACE);
 	gtk_widget_show(dw->custom_threshold);
 
-	dw->extra_label = gtk_progress_bar_new();
-	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(dw->extra_label), 0.0);
-#if GTK_CHECK_VERSION(3,0,0)
-	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(dw->extra_label), "");
-	gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(dw->extra_label), TRUE);
-#endif
-	gtk_box_pack_end(GTK_BOX(status_box), dw->extra_label, FALSE, FALSE, 0);
-	gtk_widget_show(dw->extra_label);
+	button = gtk_check_button_new_with_label(_("Sort"));
+	gtk_widget_set_tooltip_text(GTK_WIDGET(button), "Sort by group totals");
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), options->sort_totals);
+	g_signal_connect(G_OBJECT(button), "toggled", G_CALLBACK(dupe_sort_totals_toggle_cb), dw);
+	gtk_box_pack_start(GTK_BOX(status_box), button, FALSE, FALSE, PREF_PAD_SPACE);
+	gtk_widget_show(button);
 
+	dw->button_rotation_invariant = gtk_check_button_new_with_label(_("Ignore Rotation"));
+	gtk_widget_set_tooltip_text(GTK_WIDGET(dw->button_rotation_invariant), "Ignore image orientation");
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dw->button_rotation_invariant), options->rot_invariant_sim);
+	g_signal_connect(G_OBJECT(dw->button_rotation_invariant), "toggled",
+			 G_CALLBACK(dupe_window_rotation_invariant_cb), dw);
+	gtk_box_pack_start(GTK_BOX(status_box), dw->button_rotation_invariant, FALSE, FALSE, PREF_PAD_SPACE);
+	gtk_widget_show(dw->button_rotation_invariant);
+
+	button = gtk_check_button_new_with_label(_("Compare two file sets"));
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), dw->second_set);
+	g_signal_connect(G_OBJECT(button), "toggled",
+			 G_CALLBACK(dupe_second_set_toggle_cb), dw);
+	gtk_box_pack_start(GTK_BOX(status_box), button, FALSE, FALSE, PREF_PAD_SPACE);
+	gtk_widget_show(button);
+
+	button_box = gtk_hbox_new(FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(vbox), button_box, FALSE, FALSE, 0);
+	gtk_widget_show(button_box);
+
+	hbox = gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL);
+	gtk_button_box_set_layout(GTK_BUTTON_BOX(hbox), GTK_BUTTONBOX_END);
+	gtk_box_set_spacing(GTK_BOX(hbox), PREF_PAD_SPACE);
+	gtk_box_pack_end(GTK_BOX(button_box), hbox, FALSE, FALSE, 0);
+	gtk_widget_show(hbox);
+
+	button = pref_button_new(NULL, GTK_STOCK_HELP, NULL, FALSE, G_CALLBACK(dupe_help_cb), NULL);
+	gtk_container_add(GTK_CONTAINER(hbox), button);
+	gtk_widget_set_can_default(button, TRUE);
+	gtk_widget_show(button);
+
+	button = pref_button_new(NULL, GTK_STOCK_STOP, NULL, FALSE, G_CALLBACK(dupe_check_stop_cb), dw);
+	gtk_container_add(GTK_CONTAINER(hbox), button);
+	gtk_widget_set_can_default(button, TRUE);
+	gtk_widget_show(button);
+
+	button = pref_button_new(NULL, GTK_STOCK_CLOSE, NULL, FALSE, G_CALLBACK(dupe_window_close_cb), dw);
+	gtk_container_add(GTK_CONTAINER(hbox), button);
+	gtk_widget_set_can_default(button, TRUE);
+	gtk_widget_grab_default(button);
+	gtk_widget_show(button);
 	dupe_dnd_init(dw);
 
 	/* order is important here, dnd_init should be seeing mouse
@@ -3497,6 +3720,9 @@ DupeWindow *dupe_window_new()
 			 G_CALLBACK(dupe_listview_release_cb), dw);
 
 	gtk_widget_show(dw->window);
+
+	dupe_listview_set_height(dw->listview, dw->show_thumbs);
+	g_signal_emit_by_name(G_OBJECT(dw->combo), "changed");
 
 	dupe_window_update_count(dw, TRUE);
 	dupe_window_update_progress(dw, NULL, 0.0, FALSE);
