@@ -949,6 +949,19 @@ static void gr_collection_list(const gchar *text, GIOChannel *channel, gpointer 
 	g_string_free(out_string, TRUE);
 }
 
+static void gr_geometry(const gchar *text, GIOChannel *channel, gpointer data)
+{
+	gchar **geometry;
+
+	geometry = g_strsplit_set(text, "+x", 4);
+	if (geometry[0] != NULL && geometry[1] != NULL && geometry[2] != NULL && geometry[3] != NULL)
+		{
+		gtk_window_resize(GTK_WINDOW(lw_id->window), atoi(geometry[0]), atoi(geometry[1]));
+		gtk_window_move(GTK_WINDOW(lw_id->window), atoi(geometry[2]), atoi(geometry[3]));
+		}
+
+	g_strfreev(geometry);
+}
 
 static void gr_filelist(const gchar *text, GIOChannel *channel, gpointer data)
 {
@@ -1329,6 +1342,7 @@ static RemoteCommandEntry remote_commands[] = {
 	{ NULL, "--id:",                gr_lw_id,               TRUE, FALSE, N_("<ID>"), N_("window id for following commands") },
 	{ NULL, "--new-window",         gr_new_window,          FALSE, FALSE, NULL, N_("new window") },
 	{ NULL, "--close-window",       gr_close_window,        FALSE, FALSE, NULL, N_("close window") },
+	{ NULL, "--geometry=",          gr_geometry,            TRUE, FALSE, N_("<GEOMETRY>"), N_("set window geometry") },
 	{ "-ct:", "--cache-thumbs:",    gr_cache_thumb,         TRUE, FALSE, N_("clear|clean"), N_("clear or clean thumbnail cache") },
 	{ "-cs:", "--cache-shared:",    gr_cache_shared,        TRUE, FALSE, N_("clear|clean"), N_("clear or clean shared thumbnail cache") },
 	{ "-cm","--cache-metadata",      gr_cache_metadata,               FALSE, FALSE, NULL, N_("    clean the metadata cache") },

@@ -224,6 +224,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 	gchar *app_lock;
 	gchar *pwd;
 	gchar *current_dir;
+	gchar *geometry = NULL;
 
 	command_line = g_new0(CommandLine, 1);
 
@@ -436,7 +437,12 @@ static void parse_command_line(gint argc, gchar *argv[])
 		if (remote_server_exists(app_lock) && !remote_do)
 			{
 			remote_do = TRUE;
-			remote_list = g_list_append(remote_list, "--new-window");
+			if (command_line->geometry)
+				{
+				geometry = g_strdup_printf("--geometry=%s", command_line->geometry);
+				remote_list = g_list_prepend(remote_list, geometry);
+				}
+			remote_list = g_list_prepend(remote_list, "--new-window");
 		}
 		g_free(app_lock);
 		}
@@ -470,6 +476,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 		g_free(pwd);
 		g_free(current_dir);
 		}
+	g_free(geometry);
 	g_list_free(remote_list);
 
 	if (list && list->next)

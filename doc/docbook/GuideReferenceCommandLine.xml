@@ -293,6 +293,11 @@
             <entry>Close window</entry>
           </row>
           <row>
+            <entry />
+            <entry>--geometry=&lt;w&gt;x&lt;h&gt;+&lt;x&gt;+&lt;y&gt;</entry>
+            <entry>Set the &lt;width&gt; &lt;height&gt; &lt;xoffset&gt; &lt;yoffset&gt; of the window. The parameters are in pixels.</entry>
+          </row>
+          <row>
             <entry>-ct:clear|clean</entry>
             <entry>--cache-thumbs:clear|clean</entry>
             <entry>clear or clean thumbnail cache</entry>
