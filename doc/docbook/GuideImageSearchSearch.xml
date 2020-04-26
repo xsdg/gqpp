@@ -64,6 +64,12 @@
         </term>
         <listitem>The search will include all files currently listed in the results list. Use this to refine a previous search.</listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel>Collection</guilabel>
+        </term>
+        <listitem>The search will include all files in the selected collection.</listitem>
+      </varlistentry>
     </variablelist>
     <para />
     <para />

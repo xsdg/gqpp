@@ -89,5 +89,7 @@ gboolean collection_window_modified_exists(void);
 gboolean is_collection(const gchar *param);
 gchar *collection_path(const gchar *param);
 void collection_contents(const gchar *name, GString **contents);
+GList *collection_contents_fd(const gchar *name);
+
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

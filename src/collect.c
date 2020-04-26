@@ -425,6 +425,42 @@ void collection_contents(const gchar *name, GString **contents)
 		}
 }
 
+/**
+ * @brief Returns a list of filedatas of the contents of a Collection
+ * @param[in] name The name of the collection, with or wihout extension
+ * 
+ * 
+ */
+GList *collection_contents_fd(const gchar *name)
+{
+	gchar *path;
+	CollectionData *cd;
+	CollectInfo *ci;
+	GList *work;
+	FileData *fd;
+	GList *list = NULL;
+
+	if (is_collection(name))
+		{
+		path = collection_path(name);
+		cd = collection_new("");
+		collection_load(cd, path, COLLECTION_LOAD_APPEND);
+		work = cd->list;
+		while (work)
+			{
+			ci = work->data;
+			fd = ci->fd;
+			list = g_list_append(list, ci->fd);
+
+			work = work->next;
+			}
+		g_free(path);
+		collection_free(cd);
+		}
+
+	return list;
+}
+
 /*
  *-------------------------------------------------------------------
  * please use these to actually add/remove stuff

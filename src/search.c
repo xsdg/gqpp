@@ -73,7 +73,8 @@ typedef enum {
 	SEARCH_MATCH_OVER,
 	SEARCH_MATCH_BETWEEN,
 	SEARCH_MATCH_ALL,
-	SEARCH_MATCH_ANY
+	SEARCH_MATCH_ANY,
+	SEARCH_MATCH_COLLECTION
 } MatchType;
 
 enum {
@@ -101,6 +102,10 @@ struct _SearchData
 	GtkWidget *button_close;
 	GtkWidget *button_help;
 	GtkWidget *spinner;
+
+	GtkWidget *collection;
+	GtkWidget *fd_button;
+	GtkWidget *collection_entry;
 
 	GtkWidget *box_search;
 
@@ -261,7 +266,8 @@ struct _MatchList
 static const MatchList text_search_menu_path[] = {
 	{ N_("folder"),		SEARCH_MATCH_NONE },
 	{ N_("comments"),	SEARCH_MATCH_ALL },
-	{ N_("results"),	SEARCH_MATCH_CONTAINS }
+	{ N_("results"),	SEARCH_MATCH_CONTAINS },
+	{ N_("collection"),	SEARCH_MATCH_COLLECTION }
 };
 
 static const MatchList text_search_menu_name[] = {
@@ -911,6 +917,8 @@ static void search_result_thumb_height(SearchData *sd)
 
 static void search_result_thumb_enable(SearchData *sd, gboolean enable)
 {
+	GtkTreeViewColumn *column;
+
 	if (sd->thumb_enable == enable) return;
 
 	if (sd->thumb_enable)
@@ -930,6 +938,12 @@ static void search_result_thumb_enable(SearchData *sd, gboolean enable)
 			valid = gtk_tree_model_iter_next(store, &iter);
 			}
 		search_progress_update(sd, TRUE, -1.0);
+		}
+
+	column = gtk_tree_view_get_column(GTK_TREE_VIEW(sd->result_view), SEARCH_COLUMN_THUMB - 1);
+	if (column)
+		{
+		gtk_tree_view_column_set_visible(column, enable);
 		}
 
 	sd->thumb_enable = enable;
@@ -2622,6 +2636,7 @@ static void search_start_cb(GtkWidget *widget, gpointer data)
 	GtkTreeViewColumn *column;
 	gchar *path;
 	gchar *entry_text;
+	gchar *collection;
 
 	if (sd->search_folder_list)
 		{
@@ -2746,6 +2761,29 @@ static void search_start_cb(GtkWidget *widget, gpointer data)
 		search_start(sd);
 
 		sd->search_file_list = g_list_concat(sd->search_file_list, list);
+		}
+	else if (sd->search_type == SEARCH_MATCH_COLLECTION)
+		{
+		collection = g_strdup(gtk_entry_get_text(GTK_ENTRY(sd->collection_entry)));
+
+		if (is_collection(collection))
+			{
+			GList *list = NULL;
+
+			list = collection_contents_fd(collection);
+
+			file_data_unref(sd->search_dir_fd);
+			sd->search_dir_fd = NULL;
+
+			search_start(sd);
+
+			sd->search_file_list = g_list_concat(sd->search_file_list, list);
+			}
+		else
+			{
+			file_util_warning_dialog(_("Collection not found"), _("Please enter an existing collection name."), GTK_STOCK_DIALOG_WARNING, sd->window);
+			}
+		g_free(collection);
 		}
 }
 
@@ -2891,6 +2929,7 @@ static void menu_choice_path_cb(GtkWidget *combo, gpointer data)
 
 	menu_choice_set_visible(gtk_widget_get_parent(sd->check_recurse),
 				(sd->search_type == SEARCH_MATCH_NONE));
+	menu_choice_set_visible(sd->collection, (sd->search_type == SEARCH_MATCH_COLLECTION));
 }
 
 static void menu_choice_name_cb(GtkWidget *combo, gpointer data)
@@ -3167,6 +3206,54 @@ static void search_window_destroy_cb(GtkWidget *widget, gpointer data)
 	g_free(sd);
 }
 
+static void select_collection_dialog_close_cb(FileDialog *fdlg, gpointer data)
+{
+	file_dialog_close(fdlg);
+}
+
+static void select_collection_dialog_ok_cb(FileDialog *fdlg, gpointer data)
+{
+	SearchData *sd = data;
+	gchar *path;
+	gchar *path_noext;
+	gchar *collection;
+
+	path = g_strdup(gtk_entry_get_text(GTK_ENTRY(fdlg->entry)));
+	path_noext = remove_extension_from_path(path);
+	collection = g_path_get_basename(path_noext);
+
+	gtk_entry_set_text(GTK_ENTRY(sd->collection_entry), collection);
+	file_dialog_close(fdlg);
+
+	g_free(path);
+	g_free(path_noext);
+	g_free(collection);
+}
+
+static gboolean select_collection_clicked_cb(GtkWidget *widget, gpointer data)
+{
+	SearchData *sd = data;
+	FileDialog *fdlg;
+	const gchar *title;
+	const gchar *btntext;
+	gpointer btnfunc;
+	const gchar *stock_id;
+
+	title = _("Select collection");
+	btntext = NULL;
+	btnfunc = select_collection_dialog_ok_cb;
+	stock_id = GTK_STOCK_OK;
+
+	fdlg = file_util_file_dlg(title, "dlg_collection", sd->window, select_collection_dialog_close_cb, sd);
+
+	generic_dialog_add_message(GENERIC_DIALOG(fdlg), NULL, title, NULL, FALSE);
+	file_dialog_add_button(fdlg, stock_id, btntext, btnfunc, TRUE);
+
+	file_dialog_add_path_widgets(fdlg, get_collections_dir(), NULL, "search_collection", GQ_COLLECTION_EXT, _("Collection Files"));
+
+	gtk_widget_show(GENERIC_DIALOG(fdlg)->dialog);
+}
+
 void search_new(FileData *dir_fd, FileData *example_file)
 {
 	SearchData *sd;
@@ -3179,6 +3266,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	GtkListStore *store;
 	GtkTreeSortable *sortable;
 	GtkTreeSelection *selection;
+	GtkTreeViewColumn *column;
 	GtkWidget *combo;
 	GdkGeometry geometry;
 	gint i;
@@ -3276,6 +3364,19 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	gtk_widget_show(combo);
 	sd->check_recurse = pref_checkbox_new_int(hbox2, _("Recurse"),
 						  sd->search_path_recurse, &sd->search_path_recurse);
+
+	sd->collection = pref_box_new(hbox, TRUE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
+	sd->collection_entry = gtk_entry_new();
+	gtk_entry_set_text(GTK_ENTRY(sd->collection_entry), "");
+	gtk_box_pack_start(GTK_BOX(sd->collection), sd->collection_entry, TRUE, TRUE, 0);
+	gtk_widget_show(sd->collection_entry);
+
+	sd->fd_button = gtk_button_new_with_label("...");
+	g_signal_connect(G_OBJECT(sd->fd_button), "clicked", G_CALLBACK(select_collection_clicked_cb), sd);
+	gtk_box_pack_start(GTK_BOX(sd->collection), sd->fd_button, FALSE, FALSE, 0);
+	gtk_widget_show(sd->fd_button);
+
+	gtk_widget_hide(sd->collection);
 
 	/* Search for file name */
 	hbox = menu_choice(sd->box_search, &sd->check_name, &sd->menu_name,
@@ -3537,7 +3638,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	gtk_tree_view_set_enable_search(GTK_TREE_VIEW(sd->result_view), FALSE);
 
 	search_result_add_column(sd, SEARCH_COLUMN_RANK, _("Rank"), FALSE, FALSE);
-	search_result_add_column(sd, SEARCH_COLUMN_THUMB, "", TRUE, FALSE);
+	search_result_add_column(sd, SEARCH_COLUMN_THUMB, _("Thumb"), TRUE, FALSE);
 	search_result_add_column(sd, SEARCH_COLUMN_NAME, _("Name"), FALSE, FALSE);
 	search_result_add_column(sd, SEARCH_COLUMN_SIZE, _("Size"), FALSE, TRUE);
 	search_result_add_column(sd, SEARCH_COLUMN_DATE, _("Date"), FALSE, TRUE);
@@ -3594,6 +3695,11 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	pref_spacer(hbox, PREF_PAD_BUTTON_GAP);
 	sd->button_close = pref_button_new(hbox, GTK_STOCK_CLOSE, NULL, FALSE, G_CALLBACK(search_window_close_cb), sd);
 	gtk_widget_set_sensitive(sd->button_close, TRUE);
+
+	search_result_thumb_enable(sd, TRUE);
+	search_result_thumb_enable(sd, FALSE);
+	column = gtk_tree_view_get_column(GTK_TREE_VIEW(sd->result_view), SEARCH_COLUMN_RANK - 1);
+	gtk_tree_view_column_set_visible(column, FALSE);
 
 	search_status_update(sd);
 	search_progress_update(sd, FALSE, -1.0);
