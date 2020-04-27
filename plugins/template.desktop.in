@@ -9,8 +9,13 @@ _Name=Template
 #Name[de]=Vorlage
 
 # Replace "command" with the actual command or script:
-Exec=command %f
+Exec=command <param>
 
+# Where <param> may be:
+# omitted	If no parameter is given the command will be executed in the
+#        current folder. If a parameter is given but the current folder
+#        does not contain any files, the command will not be run.
+#
 # %f	 A single file name, even if multiple files are selected. The
 #        system reading the desktop entry should recognize that the program in
 #        question cannot handle multiple file arguments, and it should should
@@ -42,8 +47,8 @@ Icon=gtk-file
 Categories=X-Geeqie;
 OnlyShowIn=X-Geeqie;
 
-# Uncomment the following line to include in a Geeqie menu,
-# other than in the default path of EditMenu/ExternalMenu
+# Uncomment the following line to include in a Geeqie menu
+# other than in the default path of PluginsMenu
 #X-Geeqie-Menu-Path=<FileMenuPath>
 
 # e.g.
@@ -83,12 +88,16 @@ OnlyShowIn=X-Geeqie;
 #    ViewMenu/ViewSection
 #    ViewMenu/ToolsSection
 #    ViewMenu/SlideShowSection
+#    WindowsMenu
+#    WindowsMenu/NewWindow
 #    HelpMenu
 #    HelpMenu/HelpSection
 
 # This is a filter - see symlink.desktop and geeqie-symlink for an example
-# how to use this feature
+# of how to use this feature, or the Plugins section of the Help file.
 #X-Geeqie-Filter=true
 
 # It can be made verbose
 #X-Geeqie-Verbose=true
+
+# For other keys such as MimeType see https://developer.gnome.org/desktop-entry-spec/
