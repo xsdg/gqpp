@@ -90,6 +90,7 @@ void image_set_desaturate(ImageWindow *imd, gboolean desaturate);
 gboolean image_get_desaturate(ImageWindow *imd);
 void image_set_overunderexposed(ImageWindow *imd, gboolean overunderexposed);
 gboolean image_get_overunderexposed(ImageWindow *imd);
+void image_set_ignore_alpha(ImageWindow *imd, gboolean ignore_alpha);
 
 /* zoom */
 void image_zoom_adjust(ImageWindow *imd, gdouble increment);

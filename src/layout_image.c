@@ -1308,6 +1308,14 @@ gboolean layout_image_get_overunderexposed(LayoutWindow *lw)
 	return image_get_overunderexposed(lw->image);
 }
 
+void layout_image_set_ignore_alpha(LayoutWindow *lw, gboolean ignore_alpha)
+{
+   if (!layout_valid(&lw)) return;
+
+   lw->options.ignore_alpha = ignore_alpha;
+   image_set_ignore_alpha(lw->image, ignore_alpha);
+}
+
 /* stereo */
 /*
 gint layout_image_stereo_get(LayoutWindow *lw)

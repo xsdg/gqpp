@@ -686,6 +686,11 @@ gboolean image_get_overunderexposed(ImageWindow *imd)
 	return imd->overunderexposed;
 }
 
+void image_set_ignore_alpha(ImageWindow *imd, gboolean ignore_alpha)
+{
+   pixbuf_renderer_set_ignore_alpha((PixbufRenderer *)imd->pr, ignore_alpha);
+}
+
 /*
  *-------------------------------------------------------------------
  * read ahead (prebuffer)

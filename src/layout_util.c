@@ -512,6 +512,15 @@ static void layout_menu_alter_desaturate_cb(GtkToggleAction *action, gpointer da
 	layout_image_set_desaturate(lw, gtk_toggle_action_get_active(action));
 }
 
+static void layout_menu_alter_ignore_alpha_cb(GtkToggleAction *action, gpointer data)
+{
+   LayoutWindow *lw = data;
+
+	if (lw->options.ignore_alpha == gtk_toggle_action_get_active(action)) return;
+
+   layout_image_set_ignore_alpha(lw, gtk_toggle_action_get_active(action));
+}
+
 static void layout_menu_alter_none_cb(GtkAction *action, gpointer data)
 {
 	LayoutWindow *lw = data;
@@ -2577,6 +2586,7 @@ static GtkToggleActionEntry menu_toggle_entries[] = {
   { "ShowMarks",        PIXBUF_INLINE_ICON_MARKS,	N_("Show _Marks"),			"M",			N_("Show Marks"),			CB(layout_menu_marks_cb),	 FALSE  },
   { "ShowFileFilter", PIXBUF_INLINE_ICON_FILE_FILTER,	N_("Show File Filter"),	NULL,	N_("Show File Filter"),	CB(layout_menu_file_filter_cb),	 FALSE  },
   { "ShowInfoPixel",	GTK_STOCK_COLOR_PICKER,	N_("Pi_xel Info"),			NULL,			N_("Show Pixel Info"),			CB(layout_menu_info_pixel_cb),	 FALSE  },
+  { "IgnoreAlpha", GTK_STOCK_STRIKETHROUGH,           N_("Hide _alpha"),          "<shift>A",     N_("Hide alpha channel"),       CB(layout_menu_alter_ignore_alpha_cb), FALSE},
   { "FloatTools",	PIXBUF_INLINE_ICON_FLOAT,N_("_Float file list"),		"L",			N_("Float file list"),			CB(layout_menu_float_cb),	 FALSE  },
   { "HideToolbar",	NULL,			N_("Hide tool_bar"),			NULL,			N_("Hide toolbar"),			CB(layout_menu_toolbar_cb),	 FALSE  },
   { "SBar",	PIXBUF_INLINE_ICON_INFO,	N_("_Info sidebar"),			"<control>K",		N_("Info sidebar"),			CB(layout_menu_bar_cb),		 FALSE  },
@@ -2863,6 +2873,7 @@ static const gchar *menu_ui_description =
 "      <menuitem action='SBarSort'/>"
 "      <menuitem action='HideBars'/>"
 "      <menuitem action='ShowInfoPixel'/>"
+"      <menuitem action='IgnoreAlpha'/>"
 "      <placeholder name='ToolsSection'/>"
 "      <separator/>"
 "      <menuitem action='Animate'/>"
@@ -3770,6 +3781,9 @@ static void layout_util_sync_views(LayoutWindow *lw)
 	action = gtk_action_group_get_action(lw->action_group, "SlideShow");
 	gtk_toggle_action_set_active(GTK_TOGGLE_ACTION(action), layout_image_slideshow_active(lw));
 
+	action = gtk_action_group_get_action(lw->action_group, "IgnoreAlpha");
+	gtk_toggle_action_set_active(GTK_TOGGLE_ACTION(action), lw->options.ignore_alpha);
+
 	action = gtk_action_group_get_action(lw->action_group, "Animate");
 	gtk_toggle_action_set_active(GTK_TOGGLE_ACTION(action), lw->options.animate);
 
@@ -3824,6 +3838,7 @@ static void layout_util_sync_views(LayoutWindow *lw)
 
 	layout_util_sync_marks(lw);
 	layout_util_sync_color(lw);
+	layout_image_set_ignore_alpha(lw, lw->options.ignore_alpha);
 }
 
 void layout_util_sync_thumb(LayoutWindow *lw)

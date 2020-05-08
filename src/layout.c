@@ -2667,6 +2667,7 @@ void layout_write_attributes(LayoutOptions *layout, GString *outstr, gint indent
 
 	WRITE_NL(); WRITE_BOOL(*layout, toolbar_hidden);
 	WRITE_NL(); WRITE_BOOL(*layout, show_info_pixel);
+	WRITE_NL(); WRITE_BOOL(*layout, ignore_alpha);
 	WRITE_SEPARATOR();
 
 	WRITE_NL(); WRITE_BOOL(*layout, bars_state.info);
@@ -2772,6 +2773,7 @@ void layout_load_attributes(LayoutOptions *layout, const gchar **attribute_names
 		if (READ_BOOL(*layout, tools_hidden)) continue;
 		if (READ_BOOL(*layout, toolbar_hidden)) continue;
 		if (READ_BOOL(*layout, show_info_pixel)) continue;
+		if (READ_BOOL(*layout, ignore_alpha)) continue;
 
 		if (READ_BOOL(*layout, bars_state.info)) continue;
 		if (READ_BOOL(*layout, bars_state.sort)) continue;

@@ -663,6 +663,7 @@ struct _LayoutOptions
 	gboolean show_directory_date;
 	gboolean show_info_pixel;
 	gboolean split_pane_sync;
+	gboolean ignore_alpha;
 
 	struct {
 		gint w;

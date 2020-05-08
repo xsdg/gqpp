@@ -135,7 +135,8 @@ void pixbuf_desaturate_rect(GdkPixbuf *pb,
 			    gint x, gint y, gint w, gint h);
 void pixbuf_highlight_overunderexposed(GdkPixbuf *pb,
 			    gint x, gint y, gint w, gint h);
-
+void pixbuf_ignore_alpha_rect(GdkPixbuf *pb,
+                 gint x, gint y, gint w, gint h);
 
 /* clipping utils */
 

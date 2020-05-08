@@ -213,6 +213,8 @@ struct _PixbufRenderer
 
 	RendererFuncs *renderer;
 	RendererFuncs *renderer2;
+
+	gboolean ignore_alpha;
 };
 
 struct _PixbufRendererClass
@@ -369,5 +371,7 @@ void pr_coords_map_orientation_reverse(gint orientation,
 GList *pr_source_tile_compute_region(PixbufRenderer *pr, gint x, gint y, gint w, gint h, gboolean request);
 
 void pr_create_anaglyph(guint mode, GdkPixbuf *pixbuf, GdkPixbuf *right, gint x, gint y, gint w, gint h);
+
+void pixbuf_renderer_set_ignore_alpha(PixbufRenderer *pr, gint ignore_alpha);
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

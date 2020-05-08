@@ -1256,13 +1256,15 @@ static gboolean rt_source_tile_render(RendererTiles *rt, ImageTile *it,
 	return draw;
 }
 
-static void rt_tile_get_region(gboolean has_alpha,
+static void rt_tile_get_region(gboolean has_alpha, gboolean ignore_alpha,
                                const GdkPixbuf *src, GdkPixbuf *dest,
                                int pb_x, int pb_y, int pb_w, int pb_h,
                                double offset_x, double offset_y, double scale_x, double scale_y,
                                GdkInterpType interp_type,
                                int check_x, int check_y)
 {
+	GdkPixbuf* tmppixbuf;
+
 	if (!has_alpha)
 		{
 		if (scale_x == 1.0 && scale_y == 1.0)
@@ -1285,20 +1287,45 @@ static void rt_tile_get_region(gboolean has_alpha,
 		}
 	else
 		{
-		gdk_pixbuf_composite_color(src, dest,
-					 pb_x, pb_y, pb_w, pb_h,
-					 offset_x,
-					 offset_y,
-					 scale_x, scale_y,
-					 (scale_x == 1.0 && scale_y == 1.0) ? GDK_INTERP_NEAREST : interp_type,
-					 255, check_x, check_y,
-					 PR_ALPHA_CHECK_SIZE,
-					 ((options->image.alpha_color_1.red << 8 & 0x00FF0000) +
-					 (options->image.alpha_color_1.green & 0x00FF00) +
-					 (options->image.alpha_color_1.blue >> 8 & 0x00FF)),
-					 ((options->image.alpha_color_2.red << 8 & 0x00FF0000) +
-					 (options->image.alpha_color_2.green & 0x00FF00) +
-					 (options->image.alpha_color_2.blue >> 8 & 0x00FF)));
+		if (ignore_alpha)
+			{
+			tmppixbuf = gdk_pixbuf_add_alpha(src, FALSE, 0, 0, 0);
+
+			pixbuf_ignore_alpha_rect(tmppixbuf, 0, 0, gdk_pixbuf_get_width(src), gdk_pixbuf_get_height(src));
+
+			gdk_pixbuf_composite_color(tmppixbuf, dest,
+					pb_x, pb_y, pb_w, pb_h,
+					offset_x,
+					offset_y,
+					scale_x, scale_y,
+					(scale_x == 1.0 && scale_y == 1.0) ? GDK_INTERP_NEAREST : interp_type,
+					255, check_x, check_y,
+					PR_ALPHA_CHECK_SIZE,
+					((options->image.alpha_color_1.red << 8 & 0x00FF0000) +
+					(options->image.alpha_color_1.green & 0x00FF00) +
+					(options->image.alpha_color_1.blue >> 8 & 0x00FF)),
+					((options->image.alpha_color_2.red << 8 & 0x00FF0000) +
+					(options->image.alpha_color_2.green & 0x00FF00) +
+					(options->image.alpha_color_2.blue >> 8 & 0x00FF)));
+			g_object_unref(tmppixbuf);
+			}
+		else
+			{
+			gdk_pixbuf_composite_color(src, dest,
+					pb_x, pb_y, pb_w, pb_h,
+					offset_x,
+					offset_y,
+					scale_x, scale_y,
+					(scale_x == 1.0 && scale_y == 1.0) ? GDK_INTERP_NEAREST : interp_type,
+					255, check_x, check_y,
+					PR_ALPHA_CHECK_SIZE,
+					((options->image.alpha_color_1.red << 8 & 0x00FF0000) +
+					(options->image.alpha_color_1.green & 0x00FF00) +
+					(options->image.alpha_color_1.blue >> 8 & 0x00FF)),
+					((options->image.alpha_color_2.red << 8 & 0x00FF0000) +
+					(options->image.alpha_color_2.green & 0x00FF00) +
+					(options->image.alpha_color_2.blue >> 8 & 0x00FF)));
+			}
 		}
 }
 
@@ -1417,7 +1444,7 @@ static void rt_tile_render(RendererTiles *rt, ImageTile *it,
 		 */
 		if (pr->width < PR_MIN_SCALE_SIZE || pr->height < PR_MIN_SCALE_SIZE) fast = TRUE;
 
-		rt_tile_get_region(has_alpha,
+		rt_tile_get_region(has_alpha, pr->ignore_alpha,
 				   pr->pixbuf, it->pixbuf, pb_x, pb_y, pb_w, pb_h,
 				   (gdouble) 0.0 - src_x - GET_RIGHT_PIXBUF_OFFSET(rt) * scale_x,
 				   (gdouble) 0.0 - src_y,
@@ -1428,7 +1455,7 @@ static void rt_tile_render(RendererTiles *rt, ImageTile *it,
 		    (pr->stereo_pixbuf_offset_right > 0 || pr->stereo_pixbuf_offset_left > 0))
 			{
 			GdkPixbuf *right_pb = rt_get_spare_tile(rt);
-			rt_tile_get_region(has_alpha,
+			rt_tile_get_region(has_alpha, pr->ignore_alpha,
 					   pr->pixbuf, right_pb, pb_x, pb_y, pb_w, pb_h,
 					   (gdouble) 0.0 - src_x - GET_LEFT_PIXBUF_OFFSET(rt) * scale_x,
 					   (gdouble) 0.0 - src_y,

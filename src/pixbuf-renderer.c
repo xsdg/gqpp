@@ -2995,4 +2995,13 @@ void pixbuf_renderer_set_size_early(PixbufRenderer *pr, guint width, guint heigh
 #endif
 }
 
+void pixbuf_renderer_set_ignore_alpha(PixbufRenderer *pr, gint ignore_alpha)
+{
+   g_return_if_fail(IS_PIXBUF_RENDERER(pr));
+
+   pr->ignore_alpha = ignore_alpha;
+   pr_pixbuf_size_sync(pr);
+   pr_zoom_sync(pr, pr->zoom, PR_ZOOM_FORCE, 0, 0);
+}
+
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

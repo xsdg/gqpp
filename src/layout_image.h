@@ -65,6 +65,7 @@ void layout_image_set_desaturate(LayoutWindow *lw, gboolean desaturate);
 gboolean layout_image_get_desaturate(LayoutWindow *lw);
 void layout_image_set_overunderexposed(LayoutWindow *lw, gboolean overunderexposed);
 gboolean layout_image_get_overunderexposed(LayoutWindow *lw);
+void layout_image_set_ignore_alpha(LayoutWindow *lw, gboolean ignore_alpha);
 
 void layout_image_rating(LayoutWindow *lw, const gchar *rating);
 
