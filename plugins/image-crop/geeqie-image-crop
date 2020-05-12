@@ -15,7 +15,7 @@ process_raw ()
 		readarray -t split_list <<<"$list"
 
 		array_length="${#split_list[@]}" 
-		exiv2 -ep"$array_length" "$1" --location "$tmpdir"
+		exiv2 --location "$tmpdir" -ep"$array_length" "$1"
 
 		src_filename=$(ls "$tmpdir/")
 		filename="${src_filename%.*}"

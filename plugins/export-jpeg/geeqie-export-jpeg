@@ -50,7 +50,7 @@ if [[ ! -z "$image_selected" ]]
 then
 	tmpdir=$(mktemp --tmpdir --directory geeqie_export_jpeg_XXXXXX)
 
-	exiv2 -ep"$image_selected" "$1" --location "$tmpdir"
+	exiv2 --location "$tmpdir" -ep"$image_selected" "$1"
 
 	render_str=$(geeqie --remote --get-render-intent)
 
