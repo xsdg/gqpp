@@ -138,6 +138,26 @@
       </varlistentry>
       <varlistentry>
         <term>
+          <guilabel>Name ≠ Content</guilabel>
+        </term>
+        <listitem>
+          <para>
+            Show images with the same name but different content.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel>Name case-insensitive ≠ Content</guilabel>
+        </term>
+        <listitem>
+          <para>
+            Show images with the same name, ignoring case, but different content.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
           <guilabel>Show all</guilabel>
         </term>
         <listitem>

@@ -1200,6 +1200,50 @@ static gboolean dupe_match(DupeItem *a, DupeItem *b, DupeMatchType mask, gdouble
 		{
 		if (strcmp(a->fd->collate_key_name_nocase, b->fd->collate_key_name_nocase) != 0) return FALSE;
 		}
+	if (mask & DUPE_MATCH_NAME_CONTENT)
+		{
+		if (strcmp(a->fd->collate_key_name, b->fd->collate_key_name) == 0)
+			{
+			if (!a->md5sum) a->md5sum = md5_text_from_file_utf8(a->fd->path, "");
+			if (!b->md5sum) b->md5sum = md5_text_from_file_utf8(b->fd->path, "");
+			if (a->md5sum[0] != '\0' ||
+			    b->md5sum[0] != '\0' ||
+			    strcmp(a->md5sum, b->md5sum) != 0)
+				{
+				return TRUE;
+				}
+			else
+				{
+				return FALSE;
+				}
+			}
+		else
+			{
+			return FALSE;
+			}
+		}
+	if (mask & DUPE_MATCH_NAME_CI_CONTENT)
+		{
+		if (strcmp(a->fd->collate_key_name_nocase, b->fd->collate_key_name_nocase) == 0)
+			{
+			if (!a->md5sum) a->md5sum = md5_text_from_file_utf8(a->fd->path, "");
+			if (!b->md5sum) b->md5sum = md5_text_from_file_utf8(b->fd->path, "");
+			if (a->md5sum[0] != '\0' ||
+			    b->md5sum[0] != '\0' ||
+			    strcmp(a->md5sum, b->md5sum) != 0)
+				{
+				return TRUE;
+				}
+			else
+				{
+				return FALSE;
+				}
+			}
+		else
+			{
+			return FALSE;
+			}
+		}
 	if (mask & DUPE_MATCH_SIZE)
 		{
 		if (a->fd->size != b->fd->size) return FALSE;
@@ -2840,6 +2884,8 @@ static void dupe_menu_setup(DupeWindow *dw)
 	dupe_menu_add_item(store, _("Similarity"), DUPE_MATCH_SIM_MED, dw);
 	dupe_menu_add_item(store, _("Similarity (low)"), DUPE_MATCH_SIM_LOW, dw);
 	dupe_menu_add_item(store, _("Similarity (custom)"), DUPE_MATCH_SIM_CUSTOM, dw);
+	dupe_menu_add_item(store, _("Name ≠ content"), DUPE_MATCH_NAME_CONTENT, dw);
+	dupe_menu_add_item(store, _("Name case-insensitive ≠ content"), DUPE_MATCH_NAME_CI_CONTENT, dw);
 	dupe_menu_add_item(store, _("Show all"), DUPE_MATCH_ALL, dw);
 
 	g_signal_connect(G_OBJECT(dw->combo), "changed",
@@ -3487,6 +3533,8 @@ DupeWindow *dupe_window_new()
 	if (options->duplicates_match == DUPE_MATCH_SIM_LOW) dw->match_mask = DUPE_MATCH_SIM_LOW;
 	if (options->duplicates_match == DUPE_MATCH_SIM_CUSTOM) dw->match_mask = DUPE_MATCH_SIM_CUSTOM;
 	if (options->duplicates_match == DUPE_MATCH_NAME_CI) dw->match_mask = DUPE_MATCH_NAME_CI;
+	if (options->duplicates_match == DUPE_MATCH_NAME_CONTENT) dw->match_mask = DUPE_MATCH_NAME_CONTENT;
+	if (options->duplicates_match == DUPE_MATCH_NAME_CI_CONTENT) dw->match_mask = DUPE_MATCH_NAME_CI_CONTENT;
 
 	dw->window = window_new(GTK_WINDOW_TOPLEVEL, "dupe", NULL, NULL, _("Find duplicates"));
 	DEBUG_NAME(dw->window);

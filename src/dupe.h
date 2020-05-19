@@ -39,7 +39,9 @@ typedef enum
 	DUPE_MATCH_SIM_LOW  = 1 << 8,
 	DUPE_MATCH_SIM_CUSTOM = 1 << 9,
 	DUPE_MATCH_NAME_CI = 1 << 10,	/* same as name, but case insensitive */
-	DUPE_MATCH_ALL = 1 << 11
+	DUPE_MATCH_NAME_CONTENT = 1 << 11,	/* same name, but different content */
+	DUPE_MATCH_NAME_CI_CONTENT = 1 << 12,	/* same name - case insensitive, but different content */
+	DUPE_MATCH_ALL = 1 << 13
 } DupeMatchType;
 
 typedef enum
