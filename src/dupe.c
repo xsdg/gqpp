@@ -1206,8 +1206,8 @@ static gboolean dupe_match(DupeItem *a, DupeItem *b, DupeMatchType mask, gdouble
 			{
 			if (!a->md5sum) a->md5sum = md5_text_from_file_utf8(a->fd->path, "");
 			if (!b->md5sum) b->md5sum = md5_text_from_file_utf8(b->fd->path, "");
-			if (a->md5sum[0] != '\0' ||
-			    b->md5sum[0] != '\0' ||
+			if (a->md5sum[0] == '\0' ||
+			    b->md5sum[0] == '\0' ||
 			    strcmp(a->md5sum, b->md5sum) != 0)
 				{
 				return TRUE;
@@ -1228,8 +1228,8 @@ static gboolean dupe_match(DupeItem *a, DupeItem *b, DupeMatchType mask, gdouble
 			{
 			if (!a->md5sum) a->md5sum = md5_text_from_file_utf8(a->fd->path, "");
 			if (!b->md5sum) b->md5sum = md5_text_from_file_utf8(b->fd->path, "");
-			if (a->md5sum[0] != '\0' ||
-			    b->md5sum[0] != '\0' ||
+			if (a->md5sum[0] == '\0' ||
+			    b->md5sum[0] == '\0' ||
 			    strcmp(a->md5sum, b->md5sum) != 0)
 				{
 				return TRUE;
@@ -3535,6 +3535,7 @@ DupeWindow *dupe_window_new()
 	if (options->duplicates_match == DUPE_MATCH_NAME_CI) dw->match_mask = DUPE_MATCH_NAME_CI;
 	if (options->duplicates_match == DUPE_MATCH_NAME_CONTENT) dw->match_mask = DUPE_MATCH_NAME_CONTENT;
 	if (options->duplicates_match == DUPE_MATCH_NAME_CI_CONTENT) dw->match_mask = DUPE_MATCH_NAME_CI_CONTENT;
+	if (options->duplicates_match == DUPE_MATCH_ALL) dw->match_mask = DUPE_MATCH_ALL;
 
 	dw->window = window_new(GTK_WINDOW_TOPLEVEL, "dupe", NULL, NULL, _("Find duplicates"));
 	DEBUG_NAME(dw->window);

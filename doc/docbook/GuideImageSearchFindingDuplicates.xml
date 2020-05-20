@@ -143,6 +143,9 @@
         <listitem>
           <para>
             Show images with the same name but different content.
+            <note>
+              <para>Because pairs of files are being compared, when there are multiple hits care should be taken when analyzing the results.</para>
+            </note>
           </para>
         </listitem>
       </varlistentry>
@@ -153,6 +156,9 @@
         <listitem>
           <para>
             Show images with the same name, ignoring case, but different content.
+            <note>
+              <para>Because pairs of files are being compared, when there are multiple hits care should be taken when analyzing the results.</para>
+            </note>
           </para>
         </listitem>
       </varlistentry>
