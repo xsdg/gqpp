@@ -115,6 +115,8 @@ struct _RendererClutter
 
 	gboolean clut_updated;
 	gint64 last_pixbuf_change;
+
+	GdkPixbuf *display_pixbuf;
 };
 
 typedef struct _RendererClutterAreaParam RendererClutterAreaParam;
@@ -215,73 +217,75 @@ static void rc_prepare_post_process_lut(RendererClutter *rc)
 	CoglHandle material;
 	CoglHandle tex3d;
 
-	DEBUG_3("%s clut start", get_exec_time());
+	return; //FIXME
 
-	for (r = 0; r < CLUT_SIZE; r++)
-		{
-		for (g = 0; g < CLUT_SIZE; g++)
-			{
-			for (b = 0; b < CLUT_SIZE; b++)
-				{
-				guchar *ptr = clut + ((b * CLUT_SIZE + g) * CLUT_SIZE + r) * 3;
-				ptr[0] = floor ((double) r / (CLUT_SIZE - 1) * 255.0 + 0.5);
-				ptr[1] = floor ((double) g / (CLUT_SIZE - 1) * 255.0 + 0.5);
-				ptr[2] = floor ((double) b / (CLUT_SIZE - 1) * 255.0 + 0.5);
-				}
-			}
-		}
-	tmp_pixbuf = gdk_pixbuf_new_from_data(clut, GDK_COLORSPACE_RGB, FALSE, 8,
-					      CLUT_SIZE * CLUT_SIZE,
-					      CLUT_SIZE,
-					      CLUT_SIZE * CLUT_SIZE * 3,
-					      NULL, NULL);
-	if (pr->func_post_process)
-		{
-		pr->func_post_process(pr, &tmp_pixbuf, 0, 0, CLUT_SIZE * CLUT_SIZE, CLUT_SIZE, pr->post_process_user_data);
-		}
-	g_object_unref(tmp_pixbuf);
+	//~ DEBUG_3("%s clut start", get_exec_time());
 
-	DEBUG_3("%s clut upload start", get_exec_time());
-#if COGL_VERSION_CHECK(1,18,2)
-	{
-	CoglContext *ctx = clutter_backend_get_cogl_context(clutter_get_default_backend ());
+	//~ for (r = 0; r < CLUT_SIZE; r++)
+		//~ {
+		//~ for (g = 0; g < CLUT_SIZE; g++)
+			//~ {
+			//~ for (b = 0; b < CLUT_SIZE; b++)
+				//~ {
+				//~ guchar *ptr = clut + ((b * CLUT_SIZE + g) * CLUT_SIZE + r) * 3;
+				//~ ptr[0] = floor ((double) r / (CLUT_SIZE - 1) * 255.0 + 0.5);
+				//~ ptr[1] = floor ((double) g / (CLUT_SIZE - 1) * 255.0 + 0.5);
+				//~ ptr[2] = floor ((double) b / (CLUT_SIZE - 1) * 255.0 + 0.5);
+				//~ }
+			//~ }
+		//~ }
+	//~ tmp_pixbuf = gdk_pixbuf_new_from_data(clut, GDK_COLORSPACE_RGB, FALSE, 8,
+					      //~ CLUT_SIZE * CLUT_SIZE,
+					      //~ CLUT_SIZE,
+					      //~ CLUT_SIZE * CLUT_SIZE * 3,
+					      //~ NULL, NULL);
+	//~ if (pr->func_post_process)
+		//~ {
+		//~ pr->func_post_process(pr, &tmp_pixbuf, 0, 0, CLUT_SIZE * CLUT_SIZE, CLUT_SIZE, pr->post_process_user_data);
+		//~ }
+	//~ g_object_unref(tmp_pixbuf);
 
-	tex3d = cogl_texture_3d_new_from_data(ctx,
-					      CLUT_SIZE, CLUT_SIZE, CLUT_SIZE,
-					      COGL_PIXEL_FORMAT_RGB_888,
-					      CLUT_SIZE * 3,
-					      CLUT_SIZE * CLUT_SIZE * 3,
-					      clut,
-					      NULL);
-	}
-#elif COGL_VERSION_CHECK(1,10,4)
-	{
-	CoglContext *ctx = clutter_backend_get_cogl_context(clutter_get_default_backend ());
+	//~ DEBUG_3("%s clut upload start", get_exec_time());
+//~ #if COGL_VERSION_CHECK(1,18,2)
+	//~ {
+	//~ CoglContext *ctx = clutter_backend_get_cogl_context(clutter_get_default_backend ());
 
-	tex3d = cogl_texture_3d_new_from_data(ctx,
-					      CLUT_SIZE, CLUT_SIZE, CLUT_SIZE,
-					      COGL_PIXEL_FORMAT_RGB_888,
-					      COGL_PIXEL_FORMAT_RGB_888,
-					      CLUT_SIZE * 3,
-					      CLUT_SIZE * CLUT_SIZE * 3,
-					      clut,
-					      NULL);
-	}
-#else
-	tex3d = cogl_texture_3d_new_from_data(CLUT_SIZE, CLUT_SIZE, CLUT_SIZE,
-					      COGL_TEXTURE_NONE,
-					      COGL_PIXEL_FORMAT_RGB_888,
-					      COGL_PIXEL_FORMAT_RGB_888,
-					      CLUT_SIZE * 3,
-					      CLUT_SIZE * CLUT_SIZE * 3,
-					      clut,
-					      NULL);
-#endif
-	material = clutter_texture_get_cogl_material(CLUTTER_TEXTURE(rc->texture));
-	cogl_material_set_layer(material, 1, tex3d);
-	cogl_handle_unref(tex3d);
-	DEBUG_3("%s clut end", get_exec_time());
-	rc->clut_updated = TRUE;
+	//~ tex3d = cogl_texture_3d_new_from_data(ctx,
+					      //~ CLUT_SIZE, CLUT_SIZE, CLUT_SIZE,
+					      //~ COGL_PIXEL_FORMAT_RGB_888,
+					      //~ CLUT_SIZE * 3,
+					      //~ CLUT_SIZE * CLUT_SIZE * 3,
+					      //~ clut,
+					      //~ NULL);
+	//~ }
+//~ #elif COGL_VERSION_CHECK(1,10,4)
+	//~ {
+	//~ CoglContext *ctx = clutter_backend_get_cogl_context(clutter_get_default_backend ());
+
+	//~ tex3d = cogl_texture_3d_new_from_data(ctx,
+					      //~ CLUT_SIZE, CLUT_SIZE, CLUT_SIZE,
+					      //~ COGL_PIXEL_FORMAT_RGB_888,
+					      //~ COGL_PIXEL_FORMAT_RGB_888,
+					      //~ CLUT_SIZE * 3,
+					      //~ CLUT_SIZE * CLUT_SIZE * 3,
+					      //~ clut,
+					      //~ NULL);
+	//~ }
+//~ #else
+	//~ tex3d = cogl_texture_3d_new_from_data(CLUT_SIZE, CLUT_SIZE, CLUT_SIZE,
+					      //~ COGL_TEXTURE_NONE,
+					      //~ COGL_PIXEL_FORMAT_RGB_888,
+					      //~ COGL_PIXEL_FORMAT_RGB_888,
+					      //~ CLUT_SIZE * 3,
+					      //~ CLUT_SIZE * CLUT_SIZE * 3,
+					      //~ clut,
+					      //~ NULL);
+//~ #endif
+	//~ material = clutter_texture_get_cogl_material(CLUTTER_TEXTURE(rc->texture));
+	//~ cogl_material_set_layer(material, 1, tex3d);
+	//~ cogl_handle_unref(tex3d);
+	//~ DEBUG_3("%s clut end", get_exec_time());
+	//~ rc->clut_updated = TRUE;
 }
 
 
@@ -412,6 +416,8 @@ static void rc_schedule_texture_upload(RendererClutter *rc)
 		}
 }
 
+static void update_display_pixbuf(RendererClutter *rc);
+
 static gboolean rc_area_changed_cb(gpointer data)
 {
 	RendererClutter *rc = (RendererClutter *)data;
@@ -423,6 +429,12 @@ static gboolean rc_area_changed_cb(gpointer data)
 	if (h == 0) h = 1;
 	if (h > par->h) h = par->h;
 
+	update_display_pixbuf(rc);
+
+	if (pr->func_post_process)
+		{
+		pr->func_post_process(pr, &rc->display_pixbuf, 0, 0, gdk_pixbuf_get_width(pr->pixbuf), gdk_pixbuf_get_height(pr->pixbuf), pr->post_process_user_data);
+		}
 
 	DEBUG_3("%s upload start", get_exec_time());
 	if (pr->pixbuf)
@@ -438,9 +450,9 @@ static gboolean rc_area_changed_cb(gpointer data)
 					h,
 					par->w,
 					h,
-					gdk_pixbuf_get_has_alpha(pr->pixbuf) ? COGL_PIXEL_FORMAT_BGRA_8888 : COGL_PIXEL_FORMAT_BGR_888,
+					gdk_pixbuf_get_has_alpha(pr->pixbuf) ? COGL_PIXEL_FORMAT_RGBA_8888 : COGL_PIXEL_FORMAT_RGB_888,
 					gdk_pixbuf_get_rowstride(pr->pixbuf),
-					gdk_pixbuf_get_pixels(pr->pixbuf));
+					gdk_pixbuf_get_pixels(rc->display_pixbuf));
 		}
 	DEBUG_3("%s upload end", get_exec_time());
 	rc_area_clip_add(rc, par->x, par->y, par->w, h);
@@ -514,6 +526,63 @@ static void rc_remove_pending_updates(RendererClutter *rc)
 		}
 }
 
+static void update_display_pixbuf(RendererClutter *rc)
+{
+	PixbufRenderer *pr = rc->pr;
+	GdkPixbuf* tmppixbuf = NULL;
+
+	if (pr->pixbuf)
+		{
+		if (rc->display_pixbuf)
+			{
+			g_object_unref(rc->display_pixbuf);
+			}
+
+		if (!gdk_pixbuf_get_has_alpha(pr->pixbuf))
+			{
+			rc->display_pixbuf = gdk_pixbuf_copy(pr->pixbuf);
+			}
+		else
+			{
+			if (pr->ignore_alpha)
+				{
+				tmppixbuf = gdk_pixbuf_add_alpha(pr->pixbuf, FALSE, 0, 0, 0);
+
+				pixbuf_ignore_alpha_rect(tmppixbuf, 0, 0, gdk_pixbuf_get_width(pr->pixbuf), gdk_pixbuf_get_height(pr->pixbuf));
+
+				rc->display_pixbuf = gdk_pixbuf_composite_color_simple (tmppixbuf,
+						gdk_pixbuf_get_width(pr->pixbuf),
+						gdk_pixbuf_get_height(pr->pixbuf),
+						GDK_INTERP_HYPER,
+						255,
+						PR_ALPHA_CHECK_SIZE,
+						((options->image.alpha_color_1.red << 8 & 0x00FF0000) +
+						(options->image.alpha_color_1.green & 0x00FF00) +
+						(options->image.alpha_color_1.blue >> 8 & 0x00FF)),
+						((options->image.alpha_color_2.red << 8 & 0x00FF0000) +
+						(options->image.alpha_color_2.green & 0x00FF00) +
+						(options->image.alpha_color_2.blue >> 8 & 0x00FF)));
+				g_object_unref(tmppixbuf);
+				}
+			else
+				{
+				rc->display_pixbuf = gdk_pixbuf_composite_color_simple (pr->pixbuf,
+						gdk_pixbuf_get_width(pr->pixbuf),
+						gdk_pixbuf_get_height(pr->pixbuf),
+						GDK_INTERP_HYPER,
+						255,
+						PR_ALPHA_CHECK_SIZE,
+						((options->image.alpha_color_1.red << 8 & 0x00FF0000) +
+						(options->image.alpha_color_1.green & 0x00FF00) +
+						(options->image.alpha_color_1.blue >> 8 & 0x00FF)),
+						((options->image.alpha_color_2.red << 8 & 0x00FF0000) +
+						(options->image.alpha_color_2.green & 0x00FF00) +
+						(options->image.alpha_color_2.blue >> 8 & 0x00FF)));
+				}
+			}
+		}
+}
+
 static void rc_update_pixbuf(void *renderer, gboolean lazy)
 {
 	RendererClutter *rc = (RendererClutter *)renderer;
@@ -521,6 +590,7 @@ static void rc_update_pixbuf(void *renderer, gboolean lazy)
 
 	DEBUG_3("rc_update_pixbuf");
 
+	update_display_pixbuf(rc);
 	rc_remove_pending_updates(rc);
 
 	rc->last_pixbuf_change = g_get_monotonic_time();
@@ -528,43 +598,48 @@ static void rc_update_pixbuf(void *renderer, gboolean lazy)
 
 	if (pr->pixbuf)
 		{
-		gint width = gdk_pixbuf_get_width(pr->pixbuf);
-		gint height = gdk_pixbuf_get_height(pr->pixbuf);
-
-		DEBUG_3("pixbuf size %d x %d (%d)", width, height, gdk_pixbuf_get_has_alpha(pr->pixbuf) ? 32 : 24);
-
-		gint prev_width, prev_height;
-
-		if (pr->stereo_data == STEREO_PIXBUF_SBS || pr->stereo_data == STEREO_PIXBUF_CROSS)
+		if (pr->func_post_process)
 			{
-			width /= 2;
+			pr->func_post_process(pr, &rc->display_pixbuf, 0, 0, gdk_pixbuf_get_width(pr->pixbuf), gdk_pixbuf_get_height(pr->pixbuf), pr->post_process_user_data);
 			}
 
+			gint width = gdk_pixbuf_get_width(pr->pixbuf);
+			gint height = gdk_pixbuf_get_height(pr->pixbuf);
 
-		clutter_texture_get_base_size(CLUTTER_TEXTURE(rc->texture), &prev_width, &prev_height);
+			DEBUG_3("pixbuf size %d x %d (%d)", width, height, gdk_pixbuf_get_has_alpha(pr->pixbuf) ? 32 : 24);
 
-		if (width != prev_width || height != prev_height)
-			{
-			/* FIXME use CoglMaterial with multiple textures for background, color management, anaglyph, ... */
-			CoglHandle texture = cogl_texture_new_with_size(width,
-									height,
-									COGL_TEXTURE_NO_AUTO_MIPMAP | COGL_TEXTURE_NO_SLICING,
-									gdk_pixbuf_get_has_alpha(pr->pixbuf) ? COGL_PIXEL_FORMAT_BGRA_8888 : COGL_PIXEL_FORMAT_BGR_888);
+			gint prev_width, prev_height;
 
-			if (texture != COGL_INVALID_HANDLE)
+			if (pr->stereo_data == STEREO_PIXBUF_SBS || pr->stereo_data == STEREO_PIXBUF_CROSS)
 				{
-				clutter_texture_set_cogl_texture(CLUTTER_TEXTURE(rc->texture), texture);
-				cogl_handle_unref(texture);
+				width /= 2;
 				}
-			}
-		clutter_actor_set_clip(rc->texture, 0, 0, 0, 0); /* visible area is extended as area_changed events arrive */
-		if (!lazy)
-			{
-			rc_area_changed(renderer, GET_RIGHT_PIXBUF_OFFSET(rc), 0, width, height);
-			}
-		}
 
-	rc->clut_updated = FALSE;
+
+			clutter_texture_get_base_size(CLUTTER_TEXTURE(rc->texture), &prev_width, &prev_height);
+
+			if (width != prev_width || height != prev_height)
+				{
+				/* FIXME use CoglMaterial with multiple textures for background, color management, anaglyph, ... */
+				CoglHandle texture = cogl_texture_new_with_size(width,
+										height,
+										COGL_TEXTURE_NO_AUTO_MIPMAP,
+										gdk_pixbuf_get_has_alpha(pr->pixbuf) ? COGL_PIXEL_FORMAT_RGBA_8888 : COGL_PIXEL_FORMAT_RGB_888);
+
+				if (texture != COGL_INVALID_HANDLE)
+					{
+					clutter_texture_set_cogl_texture(CLUTTER_TEXTURE(rc->texture), texture);
+					cogl_handle_unref(texture);
+					}
+				}
+			clutter_actor_set_clip(rc->texture, 0, 0, 0, 0); /* visible area is extended as area_changed events arrive */
+			if (!lazy)
+				{
+				rc_area_changed(renderer, GET_RIGHT_PIXBUF_OFFSET(rc), 0, width, height);
+				}
+
+		rc->clut_updated = FALSE;
+		}
 }
 
 
@@ -742,7 +817,7 @@ static gboolean rc_overlay_get(void *renderer, gint id, GdkPixbuf **pixbuf, gint
 static void rc_update_viewport(void *renderer)
 {
 	RendererClutter *rc = (RendererClutter *)renderer;
-	ClutterColor stage_color = { 0x00, 0x00, 0x00, 0xff };
+	ClutterColor stage_color = { rc->pr->color.red / 256, rc->pr->color.green / 256, rc->pr->color.blue / 256, 0xff };
 
 	rc->stereo_off_x = 0;
 	rc->stereo_off_y = 0;
@@ -813,6 +888,11 @@ static void rc_free(void *renderer)
 	RendererClutter *rc = (RendererClutter *)renderer;
 	GtkWidget *widget = gtk_bin_get_child(GTK_BIN(rc->pr));
 
+	if (rc->display_pixbuf)
+		{
+		g_object_unref(rc->display_pixbuf);
+		}
+
 	rc_remove_pending_updates(rc);
 
 	rc_overlay_free_all(rc);
@@ -876,6 +956,8 @@ RendererFuncs *renderer_clutter_new(PixbufRenderer *pr)
 	rc->idle_update = 0;
 	rc->pending_updates = NULL;
 
+	rc->display_pixbuf = NULL;
+
 	rc->widget = gtk_bin_get_child(GTK_BIN(rc->pr));
 
 	if (rc->widget)
@@ -903,7 +985,7 @@ RendererFuncs *renderer_clutter_new(PixbufRenderer *pr)
 	rc->texture = clutter_texture_new ();
 	clutter_container_add_actor(CLUTTER_CONTAINER(rc->group), rc->texture);
 
-	renderer_clutter_init_checker_shader(rc);
+	//~ renderer_clutter_init_checker_shader(rc);  //FIXME
 	g_object_ref(G_OBJECT(rc->widget));
 
 	gtk_widget_show(rc->widget);

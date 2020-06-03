@@ -2184,7 +2184,7 @@ static void config_tab_image(GtkWidget *notebook)
 	add_quality_menu(table, 0, 0, _("Quality:"), options->image.zoom_quality, &c_options->image.zoom_quality);
 
 #ifdef HAVE_CLUTTER
-	pref_checkbox_new_int(group, _("Use GPU acceleration via Clutter library"),
+	pref_checkbox_new_int(group, _("Use GPU acceleration via Clutter library (Requires restart)"),
 			      options->image.use_clutter_renderer, &c_options->image.use_clutter_renderer);
 #endif
 
