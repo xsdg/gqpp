@@ -2175,6 +2175,7 @@ static void config_tab_image(GtkWidget *notebook)
 	GtkWidget *enlargement_button;
 	GtkWidget *table;
 	GtkWidget *spin;
+	GtkWidget *two_pass;
 
 	vbox = scrolled_notebook_page(notebook, _("Image"));
 
@@ -2182,14 +2183,22 @@ static void config_tab_image(GtkWidget *notebook)
 
 	table = pref_table_new(group, 2, 1, FALSE, FALSE);
 	add_quality_menu(table, 0, 0, _("Quality:"), options->image.zoom_quality, &c_options->image.zoom_quality);
+	if (options->image.use_clutter_renderer)
+		{
+		gtk_widget_set_sensitive(table, FALSE);
+		}
 
 #ifdef HAVE_CLUTTER
 	pref_checkbox_new_int(group, _("Use GPU acceleration via Clutter library (Requires restart)"),
 			      options->image.use_clutter_renderer, &c_options->image.use_clutter_renderer);
 #endif
 
-	pref_checkbox_new_int(group, _("Two pass rendering (apply HQ zoom and color correction in second pass)"),
+	two_pass = pref_checkbox_new_int(group, _("Two pass rendering (apply HQ zoom and color correction in second pass)"),
 			      options->image.zoom_2pass, &c_options->image.zoom_2pass);
+	if (options->image.use_clutter_renderer)
+		{
+		gtk_widget_set_sensitive(two_pass, FALSE);
+		}
 
 	c_options->image.zoom_increment = options->image.zoom_increment;
 	spin = pref_spin_new(group, _("Zoom increment:"), NULL,
