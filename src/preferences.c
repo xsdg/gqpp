@@ -421,6 +421,7 @@ static void config_window_apply(void)
 	options->info_rating.height = c_options->info_rating.height;
 
 	options->show_predefined_keyword_tree = c_options->show_predefined_keyword_tree;
+	options->expand_menu_toolbar = c_options->expand_menu_toolbar;
 
 	options->marks_save = c_options->marks_save;
 	options->with_rename = c_options->with_rename;
@@ -2073,6 +2074,15 @@ static void config_tab_general(GtkWidget *notebook)
 
 	pref_checkbox_new_int(group, _("Refresh on file change"),
 			      options->update_on_time_change, &c_options->update_on_time_change);
+
+
+	pref_spacer(group, PREF_PAD_GROUP);
+
+	group = pref_group_new(vbox, FALSE, _("Expand menu and toolbar"), GTK_ORIENTATION_VERTICAL);
+
+	pref_checkbox_new_int(group, _("Expand menu and toolbar (NOTE! Geeqie must be restarted for change to take effect)"),
+				options->expand_menu_toolbar, &c_options->expand_menu_toolbar);
+	gtk_widget_set_tooltip_text(group, _("Expand the menu and toolbar to the full width of the window"));
 
 	pref_spacer(group, PREF_PAD_GROUP);
 

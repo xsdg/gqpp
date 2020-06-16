@@ -332,14 +332,28 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 	GtkWidget *scd;
 	GtkWidget *menu_tool_bar;
 	GtkWidget *tabcomp;
+	GtkWidget *menu_bar;
+	GtkWidget *toolbar;
 
 	box = gtk_vbox_new(FALSE, 0);
 
-	menu_tool_bar = layout_actions_menu_tool_bar(lw);
-	DEBUG_NAME(menu_tool_bar);
-	gtk_widget_show(menu_tool_bar);
-	gtk_box_pack_start(GTK_BOX(lw->main_box), lw->menu_tool_bar, FALSE, FALSE, 0);
-	if (lw->options.toolbar_hidden) gtk_widget_hide(lw->toolbar[TOOLBAR_MAIN]);
+	if (!options->expand_menu_toolbar)
+		{
+		menu_bar = layout_actions_menu_bar(lw);
+		gtk_box_pack_start(GTK_BOX(box), menu_bar, FALSE, FALSE, 0);
+
+		toolbar = layout_actions_toolbar(lw, TOOLBAR_MAIN);
+		gtk_box_pack_start(GTK_BOX(box), toolbar, FALSE, FALSE, 0);
+		if (lw->options.toolbar_hidden) gtk_widget_hide(toolbar);
+		}
+	else
+		{
+		menu_tool_bar = layout_actions_menu_tool_bar(lw);
+		DEBUG_NAME(menu_tool_bar);
+		gtk_widget_show(menu_tool_bar);
+		gtk_box_pack_start(GTK_BOX(lw->main_box), lw->menu_tool_bar, FALSE, FALSE, 0);
+		if (lw->options.toolbar_hidden) gtk_widget_hide(lw->toolbar[TOOLBAR_MAIN]);
+		}
 
 	tabcomp = tab_completion_new_with_history(&lw->path_entry, NULL, "path_list", -1,
 						  layout_path_entry_cb, lw);
@@ -1575,7 +1589,7 @@ static void layout_tools_setup(LayoutWindow *lw, GtkWidget *tools, GtkWidget *fi
 
 		gtk_window_set_resizable(GTK_WINDOW(lw->tools), TRUE);
 		gtk_container_set_border_width(GTK_CONTAINER(lw->tools), 0);
-		gtk_container_remove(GTK_CONTAINER(lw->main_box), lw->menu_tool_bar);
+		if (options->expand_menu_toolbar) gtk_container_remove(GTK_CONTAINER(lw->main_box), lw->menu_tool_bar);
 
 		new_window = TRUE;
 		}
@@ -1591,7 +1605,7 @@ static void layout_tools_setup(LayoutWindow *lw, GtkWidget *tools, GtkWidget *fi
 	vbox = gtk_vbox_new(FALSE, 0);
 	DEBUG_NAME(vbox);
 	gtk_container_add(GTK_CONTAINER(lw->tools), vbox);
-	gtk_box_pack_start(GTK_BOX(vbox), GTK_WIDGET(lw->menu_tool_bar), FALSE, FALSE, 0);
+	if (options->expand_menu_toolbar) gtk_box_pack_start(GTK_BOX(vbox), GTK_WIDGET(lw->menu_tool_bar), FALSE, FALSE, 0);
 	gtk_widget_show(vbox);
 
 	layout_status_setup(lw, vbox, TRUE);
@@ -1744,7 +1758,14 @@ static void layout_grid_setup(LayoutWindow *lw)
 
 	lw->group_box = gtk_vbox_new(FALSE, 0);
 	DEBUG_NAME(lw->group_box);
-	gtk_box_pack_end(GTK_BOX(lw->main_box), lw->group_box, TRUE, TRUE, 0);
+	if (options->expand_menu_toolbar)
+		{
+		gtk_box_pack_end(GTK_BOX(lw->main_box), lw->group_box, TRUE, TRUE, 0);
+		}
+	else
+		{
+		gtk_box_pack_start(GTK_BOX(lw->main_box), lw->group_box, TRUE, TRUE, 0);
+		}
 	gtk_widget_show(lw->group_box);
 
 	priority_location = layout_grid_compass(lw);
@@ -1851,6 +1872,7 @@ static void layout_grid_setup(LayoutWindow *lw)
 void layout_style_set(LayoutWindow *lw, gint style, const gchar *order)
 {
 	FileData *dir_fd;
+	gint i;
 
 	if (!layout_valid(&lw)) return;
 
@@ -1884,9 +1906,18 @@ void layout_style_set(LayoutWindow *lw, gint style, const gchar *order)
 	/* lw->image is preserved together with lw->utility_box */
 	if (lw->utility_box) gtk_container_remove(GTK_CONTAINER(gtk_widget_get_parent(lw->utility_box)), lw->utility_box);
 
-	if (lw->toolbar[TOOLBAR_STATUS]) gtk_container_remove(GTK_CONTAINER(gtk_widget_get_parent(lw->toolbar[TOOLBAR_STATUS])), lw->toolbar[TOOLBAR_STATUS]);
+	if (options->expand_menu_toolbar)
+		{
+		if (lw->toolbar[TOOLBAR_STATUS]) gtk_container_remove(GTK_CONTAINER(gtk_widget_get_parent(lw->toolbar[TOOLBAR_STATUS])), lw->toolbar[TOOLBAR_STATUS]);
 
-	if (lw->menu_tool_bar) gtk_container_remove(GTK_CONTAINER(gtk_widget_get_parent(lw->menu_tool_bar)), lw->menu_tool_bar);
+		if (lw->menu_tool_bar) gtk_container_remove(GTK_CONTAINER(gtk_widget_get_parent(lw->menu_tool_bar)), lw->menu_tool_bar);
+		}
+	else
+		{
+		if (lw->menu_bar) gtk_container_remove(GTK_CONTAINER(gtk_widget_get_parent(lw->menu_bar)), lw->menu_bar);
+			for (i = 0; i < TOOLBAR_COUNT; i++)
+				if (lw->toolbar[i]) gtk_container_remove(GTK_CONTAINER(gtk_widget_get_parent(lw->toolbar[i])), lw->toolbar[i]);	
+		}
 
 	/* clear it all */
 

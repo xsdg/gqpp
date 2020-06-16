@@ -233,6 +233,13 @@
       </varlistentry>
     </variablelist>
   </section>
+  <section id="ExpandMenuToolbar">
+    <title>Expand menu and toolbar</title>
+    <para>Expand the menu and toolbar to the full width of the window.</para>
+    <note>
+      <para>Geeqie must be restarted for changes to take effect.</para>
+    </note>
+  </section>
   <section id="InfoSidebar">
     <title>Info Sidebar component heights</title>
     <para>

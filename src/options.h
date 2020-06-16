@@ -39,6 +39,7 @@ struct _ConfOptions
 	gboolean draw_rectangle;
 	gboolean show_predefined_keyword_tree;
 	gboolean overunderexposed;
+	gboolean expand_menu_toolbar;
 
 	/* various */
 	gboolean tree_descend_subdirs;
