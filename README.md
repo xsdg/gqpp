@@ -1,3 +1,10 @@
+
+##PLEASE NOTE!
+The repository at GitHub is not the main repository, and is likely to be out-of-date.  
+If you wish to clone the source code, please use the repository at [geeqie.org](http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git).  
+Details are given in the [Downloading](#downloading) section below.
+###########################################################################  
+
       ###################################################################
       ##                          Geeqie x.x                           ##
       ##                                                               ##
@@ -98,6 +105,7 @@ Geeqie is a graphics file viewer. Basic features:
 
 * Maps from [OpenStreetMap](http://www.openstreetmap.org) may be displayed in a side panel. If an image has GPS coordinates embedded, its position will be displayed on the map - if Image Direction is encoded, that will be displayed also. If an image does not have embedded GPS coordinates, it may be dragged-and-dropped onto the map to encode its position.
 
+# <a name="downloading"></a>
 ## Downloading
 
 Geeqie is available as a package with some distributions, however Geeqie is stable and you may compile the latest version from sources.
