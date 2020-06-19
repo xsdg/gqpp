@@ -1479,6 +1479,11 @@ static void collection_table_insert_marker(CollectTable *ct, CollectInfo *info, 
 {
 	gboolean after = FALSE;
 	GdkRectangle cell;
+	GdkWindow *parent;
+	gint x_parent, y_parent;
+
+	parent = gtk_widget_get_window(gtk_widget_get_toplevel(ct->listview));
+	gdk_window_get_position(parent, &x_parent, &y_parent);
 
 	if (!enable)
 		{
@@ -1495,7 +1500,6 @@ static void collection_table_insert_marker(CollectTable *ct, CollectInfo *info, 
 
 	if (!ct->marker_window)
 		{
-		GdkWindow *parent = gtk_tree_view_get_bin_window(GTK_TREE_VIEW(ct->listview));
 		GdkWindowAttr attributes;
 		gint attributes_mask;
 		GdkPixbuf *pb = gdk_pixbuf_new_from_xpm_data((const gchar **)marker_xpm);
@@ -1509,7 +1513,7 @@ static void collection_table_insert_marker(CollectTable *ct, CollectInfo *info, 
 		attributes.event_mask = gtk_widget_get_events(ct->listview);
 		attributes_mask = 0;
 
-		ct->marker_window = gdk_window_new(parent, &attributes, attributes_mask);
+		ct->marker_window = gdk_window_new(NULL, &attributes, attributes_mask);
 
 #if GTK_CHECK_VERSION(3,0,0)
 		cairo_region_t *mask;
@@ -1518,7 +1522,9 @@ static void collection_table_insert_marker(CollectTable *ct, CollectInfo *info, 
 		cairo_t *cr = cairo_create(img);
 		gdk_cairo_set_source_pixbuf(cr, pb, 0, 0);
 		cairo_paint(cr);
-		pattern = cairo_pattern_create_for_surface(img);
+		// FIXME: this is a hack to get the background color
+		//~ pattern = cairo_pattern_create_for_surface(img);
+		pattern = cairo_pattern_create_rgb (1.0, 0.0, 0.0);
 		mask = gdk_cairo_region_create_from_surface(img);
 		gdk_window_shape_combine_region(ct->marker_window, mask, 0, 0);
 		gdk_window_set_background_pattern(ct->marker_window, pattern);
@@ -1558,6 +1564,9 @@ static void collection_table_insert_marker(CollectTable *ct, CollectInfo *info, 
 			}
 		x -= (w / 2);
 		y = cell.y + (cell.height / 2) - (h / 2);
+
+		x = x + x_parent;
+		y = y + y_parent;
 
 		gdk_window_move(ct->marker_window, x, y);
 #if !GTK_CHECK_VERSION(3,0,0)
