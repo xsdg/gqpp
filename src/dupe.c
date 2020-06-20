@@ -3484,20 +3484,12 @@ static gint column_sort_cb(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, 
 	return ret;
 }
 
-static gboolean dupe_window_recompare_cb(gpointer data)
-{
-	DupeWindow *dw = data;
-
-	dupe_window_recompare_cb(dw);
-}
-
 static void column_clicked_cb(GtkWidget *widget,  gpointer data)
 {
 	DupeWindow *dw = data;
 
 	options->duplicates_match = DUPE_SELECT_NONE;
 	dupe_listview_select_dupes(dw, DUPE_SELECT_NONE);
-	dupe_window_recompare_cb, dw;
 }
 
 /* collection and files can be NULL */

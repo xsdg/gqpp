@@ -2198,7 +2198,7 @@ static void window_rename_ok_cb(GenericDialog *gd, gpointer data)
 	window_rename_ok(gd, rw);
 }
 
-static gboolean window_rename_entry_activate_cb(GenericDialog *gd, gpointer data)
+static void window_rename_entry_activate_cb(GenericDialog *gd, gpointer data)
 {
 	RenameWindow *rw = data;
 
@@ -2288,7 +2288,7 @@ static void change_window_id(const gchar *infile, const gchar *outfile)
 	out_file_stream = g_file_append_to(out_file, G_FILE_CREATE_PRIVATE, NULL, NULL);
 	out_data_stream = g_data_output_stream_new(G_OUTPUT_STREAM(out_file_stream));
 
-	while (line = g_data_input_stream_read_line(in_data_stream, NULL, NULL, NULL))
+	while ((line = g_data_input_stream_read_line(in_data_stream, NULL, NULL, NULL)))
 		{
 		if (g_str_has_suffix(line, "<layout"))
 			{
