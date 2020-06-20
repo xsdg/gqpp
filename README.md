@@ -176,12 +176,8 @@ And either the ChangeLog file or [Geeqie ChangeLog](http://geeqie.org/cgi-bin/gi
         optional items map display and GPU acceleration are not available
         with GTK2
 
-        Note: GTK+3 is still somehow experimental. It is needed for some
-        features but we have several complains about the GTK+3 usability.
-
-        So if you need a stable version, you are advised to compile it
-        with GTK+2. If you want to play with the cool new features, use
-        GTK+3.
+        Both GTK2 and GTK3 versions have been in use for several
+        years, and both may be considered stable.
 
 ### Optional libraries:
     lcms2 2.0
