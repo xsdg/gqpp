@@ -80,12 +80,12 @@
     <variablelist>
       <varlistentry>
         <term>
-          <guilabel>File name</guilabel>
+          <guilabel>File</guilabel>
         </term>
         <listitem>
-          The search will match if the entered text appears within the file name, or if the text exactly matches the file name, depending on the method selected from the drop down menu. The text comparison can be made to be case sensitive by enabling the Match case checkbox.
+          If "name is" is selected, the search will match if the text exactly matches the file name. If "name contains" or "path contains" is selected, the search will match if the entered text appears within the file name or path.<para/>The text comparison can be made to be case sensitive by enabling the Match case checkbox.
           <para />
-          If "contains" is selected,
+          If "contains" or "path contains" is selected,
           <link linkend="GuideReferencePCRE">Perl Compatible Regular Expressions</link>
           are used.
         </listitem>
