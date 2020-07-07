@@ -3243,7 +3243,7 @@ static void select_collection_dialog_ok_cb(FileDialog *fdlg, gpointer data)
 	g_free(collection);
 }
 
-static gboolean select_collection_clicked_cb(GtkWidget *widget, gpointer data)
+static void select_collection_clicked_cb(GtkWidget *widget, gpointer data)
 {
 	SearchData *sd = data;
 	FileDialog *fdlg;
