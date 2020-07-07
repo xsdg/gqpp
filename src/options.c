@@ -215,6 +215,9 @@ ConfOptions *init_options(ConfOptions *options)
 	options->mouse_button_8 = g_strdup("Back");
 	options->mouse_button_9 = g_strdup("Forward");
 
+	options->disable_gpu = FALSE;
+	options->override_disable_gpu = FALSE;
+
 	for (i = 0; i < FILE_FORMAT_CLASSES; i++)
 		{
 		options->class_filter[i] = TRUE;

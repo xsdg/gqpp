@@ -61,6 +61,10 @@
 #include <clutter-gtk/clutter-gtk.h>
 #endif
 
+#ifdef HAVE_GTHREAD
+/* FIXME: see below */
+#include <X11/Xlib.h>
+#endif
 
 gboolean thumb_format_changed = FALSE;
 static RemoteConnection *remote_connection = NULL;
@@ -853,6 +857,11 @@ gint main(gint argc, gchar *argv[])
 #if !GLIB_CHECK_VERSION(2,32,0)
 	g_thread_init(NULL);
 #endif
+#ifdef HAVE_CLUTTER
+/* FIXME: see below */
+	putenv("LIBGL_ALWAYS_INDIRECT=1");
+	XInitThreads();
+#endif
 	gdk_threads_init();
 	gdk_threads_enter();
 
@@ -946,6 +955,23 @@ gint main(gint argc, gchar *argv[])
 		filter_add_defaults();
 		filter_rebuild();
 		}
+
+#ifdef HAVE_CLUTTER
+/* FIXME: For the background of this see:
+ * https://github.com/BestImageViewer/geeqie/issues/397
+ * The feature CLUTTER_FEATURE_SWAP_EVENTS indictates if the
+ * system is liable to exhibit this problem.
+ * The user is provided with an override in Preferences/Behavior
+ */
+	if (!options->override_disable_gpu)
+		{
+		DEBUG_1("CLUTTER_FEATURE_SWAP_EVENTS %d",clutter_feature_available(CLUTTER_FEATURE_SWAP_EVENTS));
+		if (clutter_feature_available(CLUTTER_FEATURE_SWAP_EVENTS) != 0)
+			{
+			options->disable_gpu = TRUE;
+			}
+		}
+#endif
 
 	/* handle missing config file and commandline additions*/
 	if (!layout_window_list)

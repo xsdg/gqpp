@@ -401,7 +401,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *class)
 
 static RendererFuncs *pr_backend_renderer_new(PixbufRenderer *pr)
 {
-	if (options->image.use_clutter_renderer)
+	if (options->image.use_clutter_renderer && !options->disable_gpu)
 		{
 #ifdef HAVE_CLUTTER
 		return renderer_clutter_new(pr);

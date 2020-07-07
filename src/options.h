@@ -328,6 +328,10 @@ struct _ConfOptions
 
 	gboolean read_metadata_in_idle;
 
+	/* GPU - see main.c */
+	gboolean disable_gpu;
+	gboolean override_disable_gpu;
+
 	GList *disabled_plugins;
 };
 

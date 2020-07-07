@@ -454,6 +454,8 @@ static void config_window_apply(void)
 	options->mouse_button_8 = c_options->mouse_button_8;
 	options->mouse_button_9 = c_options->mouse_button_9;
 
+	options->override_disable_gpu = c_options->override_disable_gpu;
+
 	config_tab_keywords_save();
 
 	image_options_sync();
@@ -2186,6 +2188,7 @@ static void config_tab_image(GtkWidget *notebook)
 	GtkWidget *table;
 	GtkWidget *spin;
 	GtkWidget *two_pass;
+	GtkWidget *gpu_accel;
 
 	vbox = scrolled_notebook_page(notebook, _("Image"));
 
@@ -2199,8 +2202,12 @@ static void config_tab_image(GtkWidget *notebook)
 		}
 
 #ifdef HAVE_CLUTTER
-	pref_checkbox_new_int(group, _("Use GPU acceleration via Clutter library (Requires restart)"),
+	gpu_accel = pref_checkbox_new_int(group, _("Use GPU acceleration via Clutter library (Requires restart)"),
 			      options->image.use_clutter_renderer, &c_options->image.use_clutter_renderer);
+	if (options->disable_gpu && !options->override_disable_gpu)
+		{
+		gtk_widget_set_sensitive(gpu_accel, FALSE);
+		}
 #endif
 
 	two_pass = pref_checkbox_new_int(group, _("Two pass rendering (apply HQ zoom and color correction in second pass)"),
@@ -3253,6 +3260,7 @@ static void config_tab_behavior(GtkWidget *notebook)
 	GtkWidget *marks;
 	GtkWidget *with_rename;
 	GtkWidget *collections_on_top;
+	GtkWidget *checkbox;
 
 	vbox = scrolled_notebook_page(notebook, _("Behavior"));
 
@@ -3362,6 +3370,14 @@ static void config_tab_behavior(GtkWidget *notebook)
 	add_mouse_selection_menu(table, 0, 0, _("Mouse button Back:"), options->mouse_button_8, &c_options->mouse_button_8);
 	table = pref_table_new(group, 2, 1, FALSE, FALSE);
 	add_mouse_selection_menu(table, 0, 0, _("Mouse button Forward:"), options->mouse_button_9, &c_options->mouse_button_9);
+
+	pref_spacer(group, PREF_PAD_GROUP);
+
+	group = pref_group_new(vbox, FALSE, _("GPU"), GTK_ORIENTATION_VERTICAL);
+
+	checkbox = pref_checkbox_new_int(group, _("Override disable GPU"),
+				options->override_disable_gpu, &c_options->override_disable_gpu);
+	gtk_widget_set_tooltip_text(checkbox, "Contact the developers for usage");
 
 #ifdef DEBUG
 	pref_spacer(group, PREF_PAD_GROUP);
