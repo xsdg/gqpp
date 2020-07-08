@@ -3706,7 +3706,7 @@ DupeWindow *dupe_window_new()
 	gtk_box_pack_start(GTK_BOX(status_box), button, FALSE, FALSE, PREF_PAD_SPACE);
 	gtk_widget_show(button);
 
-	dw->button_rotation_invariant = gtk_check_button_new_with_label(_("Ignore Rotation"));
+	dw->button_rotation_invariant = gtk_check_button_new_with_label(_("Ignore Orientation"));
 	gtk_widget_set_tooltip_text(GTK_WIDGET(dw->button_rotation_invariant), "Ignore image orientation");
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dw->button_rotation_invariant), options->rot_invariant_sim);
 	g_signal_connect(G_OBJECT(dw->button_rotation_invariant), "toggled",

@@ -107,7 +107,7 @@
           <guilabel>Similarity (high)</guilabel>
         </term>
         <listitem>
-          <para>Very similar image content.</para>
+          <para>Very similar image content. Preset to 95%.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -115,7 +115,7 @@
           <guilabel>Similarity</guilabel>
         </term>
         <listitem>
-          <para>Similar image content.</para>
+          <para>Similar image content. Preset to 90%.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -123,7 +123,7 @@
           <guilabel>Similarity (low)</guilabel>
         </term>
         <listitem>
-          <para>Slightly similar image content.</para>
+          <para>Slightly similar image content. Preset to 85%.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -132,7 +132,7 @@
         </term>
         <listitem>
           <para>
-            The percentage value to used to consider two images a match is configured in the spin box at the bottom of the window.
+            The percentage value to used to consider two images a match is configured in the spin box at the bottom of the window. Setting a value to less than 85 is not likely to be useful.
           </para>
         </listitem>
       </varlistentry>
@@ -217,9 +217,9 @@
     <title>Thumbnails</title>
     <para>Thumbnails can be displayed beside each image in the result list by enabling the Thumbnails check box.</para>
   </section>
-  <section id="Rotation">
-    <title>Ignore Rotation</title>
-    <para>When checked, the rotational orientation of images will be ignored.</para>
+  <section id="Orientation">
+    <title>Ignore Orientation</title>
+    <para>When selected and a similarity compare is being used, the images are checked against 4 rotations: 0°, 90°, 180°, 270°, plus flip and mirror.</para>
   </section>
   <section id="Sort">
     <title>Sort</title>
