@@ -1826,7 +1826,7 @@ static gboolean search_file_do_extra(SearchData *sd, FileData *fd, gint *match,
 
 	if (new_data)
 		{
-		if ((sd->match_dimensions_enable && !sd->img_cd->dimensions) || (sd->match_similarity_enable && !sd->img_cd->similarity || sd->match_broken_enable))
+		if ((sd->match_dimensions_enable && !sd->img_cd->dimensions) || (sd->match_similarity_enable && !sd->img_cd->similarity) || sd->match_broken_enable)
 			{
 			sd->img_loader = image_loader_new(fd);
 			g_signal_connect(G_OBJECT(sd->img_loader), "error", (GCallback)search_file_load_done_cb, sd);
@@ -2272,6 +2272,7 @@ static gboolean search_file_next(SearchData *sd)
 			if (fd->format_class == FORMAT_CLASS_IMAGE || fd->format_class == FORMAT_CLASS_RAWIMAGE || fd->format_class == FORMAT_CLASS_VIDEO || fd->format_class == FORMAT_CLASS_DOCUMENT)
 				{
 				sd->match_broken_enable = TRUE;
+				match = TRUE;
 				}
 			else
 				{
@@ -2387,7 +2388,7 @@ static gboolean search_file_next(SearchData *sd)
 			}
 		}
 
-	if (((match || extra_only) && sd->match_dimensions_enable || sd->match_similarity_enable || sd->match_broken_enable))
+	if ((match || extra_only) && (sd->match_dimensions_enable || sd->match_similarity_enable || sd->match_broken_enable))
 		{
 		tested = TRUE;
 
