@@ -37,6 +37,11 @@
         </listitem>
       </varlistentry>
     </variablelist>
+    <para>
+      <note>
+        <para>Symbolic links to folders will be followed, but symbolic links to files will be ignored. Only actual files will be tested.</para>
+      </note>
+    </para>
   </section>
   <section id="Comparisonmethods">
     <title>Comparison methods</title>
