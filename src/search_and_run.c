@@ -304,6 +304,7 @@ GtkWidget *search_and_run_new(LayoutWindow *lw)
 	sar->entry_box = gtk_entry_new();
 	gtk_box_pack_start(GTK_BOX(sar->vbox), sar->entry_box, FALSE, FALSE, 0);
 	gtk_widget_show(sar->entry_box);
+	gtk_entry_set_icon_from_stock(GTK_ENTRY(sar->entry_box), GTK_ENTRY_ICON_PRIMARY, GTK_STOCK_FIND);
 	gtk_widget_show(sar->vbox);
 	gtk_widget_set_tooltip_text(sar->entry_box, "Search for commands and run them");
 	g_signal_connect(G_OBJECT(sar->entry_box), "key_press_event", G_CALLBACK(keypress_cb), sar);
