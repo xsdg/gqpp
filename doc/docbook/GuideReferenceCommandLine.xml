@@ -244,6 +244,46 @@
           </row>
           <row>
             <entry />
+            <entry>--get-rectangle</entry>
+            <entry>Get rectangle coordinates</entry>
+          </row>
+          <row>
+            <entry />
+            <entry>--get-render-intent</entry>
+            <entry>Get render intent</entry>
+          </row>
+          <row>
+            <entry />
+            <entry>--get-filelist:[&lt;FOLDER&gt;]</entry>
+            <entry>Get list of files and class</entry>
+          </row>
+          <row>
+            <entry />
+            <entry>--get-filelist-recurse:[&lt;FOLDER&gt;]</entry>
+            <entry>Get list of files and class recursive</entry>
+          </row>
+          <row>
+            <entry />
+            <entry>--get-collection:&lt;COLLECTION&gt;</entry>
+            <entry>Get collection content</entry>
+          </row>
+          <row>
+            <entry />
+            <entry>--get-collection-list</entry>
+            <entry>Get collection list</entry>
+          </row>
+          <row>
+            <entry />
+            <entry>--get-file-info</entry>
+            <entry>
+              Get file info
+              <footnote id='fileinfo'>
+                <para>File info consists of: class, no. of pages (if multi-page image), (and if exif exists) country name, country code, timezone, local time.</para>
+              </footnote>
+            </entry>
+          </row>
+          <row>
+            <entry />
             <entry>view:&lt;file&gt;</entry>
             <entry>Open new window containing &lt;file&gt;</entry>
           </row>
