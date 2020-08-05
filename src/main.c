@@ -280,6 +280,10 @@ static void parse_command_line(gint argc, gchar *argv[])
 				{
 				/* do nothing but do not produce warnings */
 				}
+			else if (strncmp(cmd_line, "--disable-clutter", 17) == 0 && (cmd_line[17] == '\0'))
+				{
+				/* do nothing but do not produce warnings */
+				}
 			else if (strcmp(cmd_line, "+t") == 0 ||
 				 strcmp(cmd_line, "--with-tools") == 0)
 				{
@@ -396,7 +400,8 @@ static void parse_command_line(gint argc, gchar *argv[])
 				print_term(FALSE, _("  +w, --show-log-window            show log window\n"));
 				print_term(FALSE, _("  -o:<file>, --log-file:<file>     save log data to file\n"));
 				print_term(FALSE, _("  -v, --version                    print version info\n"));
-				print_term(FALSE, _("  -h, --help                       show this message\n\n"));
+				print_term(FALSE, _("  -h, --help                       show this message\n"));
+				print_term(FALSE, _("      --disable-clutter            disable use of Clutter library (i.e. GPU accel.)\n\n"));
 
 #if 0
 				/* these options are not officially supported!
@@ -538,6 +543,29 @@ static void parse_command_line_for_debug_option(gint argc, gchar *argv[])
 
 	DEBUG_1("debugging output enabled (level %d)", get_debug_level());
 #endif
+}
+
+static gboolean parse_command_line_for_clutter_option(gint argc, gchar *argv[])
+{
+	const gchar *clutter_option = "--disable-clutter";
+	gint len = strlen(clutter_option);
+	gboolean ret = FALSE;
+
+	if (argc > 1)
+		{
+		gint i;
+
+		for (i = 1; i < argc; i++)
+			{
+			const gchar *cmd_line = argv[i];
+			if (strncmp(cmd_line, clutter_option, len) == 0)
+				{
+				ret = TRUE;
+				}
+			}
+		}
+
+	return ret;
 }
 
 /*
@@ -852,6 +880,7 @@ gint main(gint argc, gchar *argv[])
 	CollectionData *first_collection = NULL;
 	gchar *buf;
 	CollectionData *cd = NULL;
+	gboolean disable_clutter = FALSE;
 
 #ifdef HAVE_GTHREAD
 #if !GLIB_CHECK_VERSION(2,32,0)
@@ -903,10 +932,18 @@ gint main(gint argc, gchar *argv[])
 	parse_command_line_for_debug_option(argc, argv);
 	DEBUG_1("%s main: gtk_init", get_exec_time());
 #ifdef HAVE_CLUTTER
-	if (gtk_clutter_init(&argc, &argv) != CLUTTER_INIT_SUCCESS)
+	if (parse_command_line_for_clutter_option(argc, argv))
 		{
-		log_printf("Can't initialize clutter-gtk.\n");
-		exit(1);
+		disable_clutter	= TRUE;
+		gtk_init(&argc, &argv);
+		}
+	else
+		{
+		if (gtk_clutter_init(&argc, &argv) != CLUTTER_INIT_SUCCESS)
+			{
+			log_printf("Can't initialize clutter-gtk.\nStart Geeqie with the option \"geeqie --disable-clutter\"");
+			exit(1);
+			}
 		}
 #else
 	gtk_init(&argc, &argv);
@@ -928,6 +965,10 @@ gint main(gint argc, gchar *argv[])
 	DEBUG_1("%s main: setting default options before commandline handling", get_exec_time());
 	options = init_options(NULL);
 	setup_default_options(options);
+	if (disable_clutter)
+		{
+		options->disable_gpu = TRUE;
+		}
 
 	DEBUG_1("%s main: parse_command_line", get_exec_time());
 	parse_command_line(argc, argv);
@@ -963,7 +1004,7 @@ gint main(gint argc, gchar *argv[])
  * system is liable to exhibit this problem.
  * The user is provided with an override in Preferences/Behavior
  */
-	if (!options->override_disable_gpu)
+	if (!options->override_disable_gpu && !options->disable_gpu)
 		{
 		DEBUG_1("CLUTTER_FEATURE_SWAP_EVENTS %d",clutter_feature_available(CLUTTER_FEATURE_SWAP_EVENTS));
 		if (clutter_feature_available(CLUTTER_FEATURE_SWAP_EVENTS) != 0)

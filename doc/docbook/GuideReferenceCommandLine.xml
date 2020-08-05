@@ -105,6 +105,11 @@
           <entry>--alternate</entry>
           <entry>Use alternate similarity algorithm - experimental - requires re-compile.</entry>
         </row>
+        <row>
+          <entry />
+          <entry>--disable-clutter</entry>
+          <entry>Disable use of Clutter library (i.e. GPU accel.). If the Clutter library is compiled into Geeqie but Clutter fails to initialize, it is necessary to start Geeqie with this option.</entry>
+        </row>
       </tbody>
     </tgroup>
   </table>
