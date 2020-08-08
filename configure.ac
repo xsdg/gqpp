@@ -25,7 +25,7 @@ AC_CONFIG_SRCDIR([src/main.c])
 
 AC_CONFIG_AUX_DIR(auxdir)
 # Require Automake 1.14 for %reldir% support
-AM_INIT_AUTOMAKE([1.14.1 subdir-objects foreign dist-xz no-dist-gzip])
+AM_INIT_AUTOMAKE([1.14.1 subdir-objects foreign dist-xz no-dist-gzip tar-ustar])
 
 AC_CONFIG_HEADER([config.h])
 
