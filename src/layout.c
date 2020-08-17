@@ -2900,7 +2900,10 @@ LayoutWindow *layout_new_from_config(const gchar **attribute_names, const gchar 
 
 	if (attribute_names) layout_load_attributes(&lop, attribute_names, attribute_values);
 
-	if (use_commandline)
+	/* If multiple windows are specified in the config. file,
+	 * use the command line options only in the main window.
+	 */
+	if (use_commandline && (g_strcmp0(lop.id, "main") == 0))
 		{
 		layout_config_commandline(&lop, &path);
 		}
