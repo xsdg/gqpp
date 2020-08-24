@@ -97,6 +97,9 @@ struct _DupeWindow
 	GtkWidget *button_thumbs;
 	GtkWidget *button_rotation_invariant;
 	GtkWidget *custom_threshold;
+	GList *add_files_queue;
+	guint add_files_queue_id;
+	GtkWidget *controls_box;
 
 	gboolean show_thumbs;
 
