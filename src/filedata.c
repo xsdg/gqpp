@@ -3359,7 +3359,7 @@ gboolean marks_list_load(const gchar *path)
 			marks_value = strtok(NULL, ",");
 			if (isfile(file_path))
 				{
-				FileData *fd = file_data_new_group(file_path);
+				FileData *fd = file_data_new_no_grouping(file_path);
 				file_data_ref(fd);
 				gint n = 0;
 				while (n <= 9)
