@@ -501,12 +501,27 @@ static gint editor_sort(gconstpointer a, gconstpointer b)
 {
 	const EditorDescription *ea = a;
 	const EditorDescription *eb = b;
+	gchar *caseless_name_ea;
+	gchar *caseless_name_eb;
+	gchar *collate_key_ea;
+	gchar *collate_key_eb;
 	gint ret;
 
 	ret = strcmp(ea->menu_path, eb->menu_path);
 	if (ret != 0) return ret;
 
-	return g_utf8_collate(ea->name, eb->name);
+	caseless_name_ea = g_utf8_casefold(ea->name, -1);
+	caseless_name_eb = g_utf8_casefold(eb->name, -1);
+	collate_key_ea = g_utf8_collate_key_for_filename(caseless_name_ea, -1);
+	collate_key_eb = g_utf8_collate_key_for_filename(caseless_name_eb, -1);
+	ret = g_strcmp0(collate_key_ea, collate_key_eb);
+
+	g_free(collate_key_ea);
+	g_free(collate_key_eb);
+	g_free(caseless_name_ea);
+	g_free(caseless_name_eb);
+
+	return ret;
 }
 
 GList *editor_list_get(void)
