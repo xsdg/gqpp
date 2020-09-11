@@ -4,8 +4,8 @@ Type=Application
 
 # The name which appears in the menu:
 _Name=Template
-#Name[cs]=
-#Name[fr]=
+#Name[cs]=Šablona
+#Name[fr]=Modèle
 #Name[de]=Vorlage
 
 # Replace "command" with the actual command or script:
@@ -36,6 +36,8 @@ Exec=command <param>
 # %U	A list of URLs. Each URL is passed as a separate argument to
 #       the executable program. Local files may either be passed as file: URLs
 #       or as file path.
+#
+# %%    Percent sign. Use anywhere you want '%' to appear in your command.
 
 # Change the following line to point to an icon of your choosing
 Icon=gtk-file
