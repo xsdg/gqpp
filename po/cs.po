@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-28 19:44+0100\n"
-"PO-Revision-Date: 2009-07-29 23:02+0200\n"
+"PO-Revision-Date: 2020-09-20 07:13+0200\n"
 "Last-Translator: Vladimír Nádvorník <nadvornik@suse.cz>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
@@ -106,9 +106,8 @@ msgid "Comment"
 msgstr "Komentář"
 
 #: ../src/bar.c:187
-#, fuzzy
 msgid "Rating"
-msgstr "Obraz"
+msgstr "Hodnocení"
 
 #: ../src/bar.c:188
 msgid "Exif"
@@ -158,7 +157,7 @@ msgstr "Přidat obrázek"
 
 #: ../src/bar_comment.c:216
 msgid "Add text to selected files"
-msgstr "Přidat text k vybraným souborů"
+msgstr "Přidat text k vybraným souborům"
 
 #: ../src/bar_comment.c:217
 msgid "Replace existing text in selected files"
@@ -340,7 +339,7 @@ msgstr "L_og Histogram"
 
 #: ../src/bar_keywords.c:463
 msgid "Add keywords to selected files"
-msgstr "Přidat klíčová slova k vybraným souborů"
+msgstr "Přidat klíčová slova k vybraným souborům"
 
 #: ../src/bar_keywords.c:464
 msgid "Replace existing keywords in selected files"
@@ -691,7 +690,7 @@ msgid ""
 "Collection has been modified.\n"
 "Save first?"
 msgstr ""
-"kolekce byla změněna.\n"
+"Kolekce byla změněna.\n"
 "Uložit?"
 
 #: ../src/collect.c:1171
@@ -1427,7 +1426,7 @@ msgstr "D50"
 
 #: ../src/exif.c:213
 msgid "ISO studio tungsten"
-msgstr "ISO studiová žárovka "
+msgstr "ISO studiová žárovka"
 
 #: ../src/exif.c:221
 msgid "yes, not detected by strobe"
@@ -1783,7 +1782,7 @@ msgstr "Typ zdroje"
 # Konektory pro externí blesky: kolejnice typu Hot-shoe: komunikace s
 #: ../src/exif.c:388
 msgid "Scene type"
-msgstr "Typ sceny"
+msgstr "Typ scény"
 
 #: ../src/exif.c:389
 msgid "Color filter array pattern"
@@ -4769,11 +4768,11 @@ msgstr "Různé"
 msgid ""
 "Write the same description tags (keywords, comment, etc.) to all grouped "
 "sidecars"
-msgstr "Zapisovat stejná klíčová slova a komenáře do všech sdružených souborů"
+msgstr "Zapisovat stejná klíčová slova a komentáře do všech sdružených souborů"
 
 #: ../src/preferences.c:2153
 msgid "Allow keywords to differ only in case"
-msgstr "Pvažovat klíčová slova lišící se pouze velikostí písmen za různá"
+msgstr "Považovat klíčová slova lišící se pouze velikostí písmen za různá"
 
 #: ../src/preferences.c:2156
 msgid "Write altered image orientation to the metadata"
@@ -4785,7 +4784,7 @@ msgstr "Volby pro automatické ukládání"
 
 #: ../src/preferences.c:2164
 msgid "Write metadata after timeout"
-msgstr "Zapsat metadata po daném čas"
+msgstr "Zapsat metadata po daném čase"
 
 #: ../src/preferences.c:2170
 msgid "Timeout (seconds):"
@@ -4846,7 +4845,7 @@ msgstr "Profil monitoru"
 
 #: ../src/preferences.c:2299
 msgid "Use system screen profile if available"
-msgstr "Použít systémový profil monitoru pokud je k dispozici!"
+msgstr "Použít systémový profil monitoru pokud je k dispozici"
 
 #: ../src/preferences.c:2304
 msgid "Screen:"
@@ -4967,7 +4966,7 @@ msgstr "Klávesnice"
 
 #: ../src/preferences.c:2437
 msgid "Accelerators"
-msgstr "Akcelerárory"
+msgstr "Akcelerátory"
 
 #: ../src/preferences.c:2456
 msgid "Action"
@@ -5227,7 +5226,7 @@ msgstr ""
 #: ../src/print.c:1084 ../src/print.c:1476 ../src/ui_pathsel.c:432
 #, c-format
 msgid "A file with name %s already exists."
-msgstr "Soubor se názvem %s již existuje."
+msgstr "Soubor s názvem %s již existuje."
 
 #: ../src/print.c:1099 ../src/print.c:1531
 #, c-format
@@ -6410,7 +6409,8 @@ msgstr "Adresář obsahuje tyto soubory"
 msgid ""
 "This will delete the folder.\n"
 "The contents of this folder will also be deleted."
-msgstr "Tímto odstraníte adresářObsah adresáře bude také odstraněn"
+msgstr "Tímto odstraníte adresář.\n"
+"Obsah adresáře bude také odstraněn."
 
 #: ../src/utilops.c:2810
 msgid "Rename folder?"
