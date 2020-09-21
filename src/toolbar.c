@@ -130,7 +130,7 @@ static const UseableToolbarItems useable_toolbar_items[] = {
 	{"OverUnderExposed",	N_("Over Under Exposed"), PIXBUF_INLINE_ICON_EXPOSURE},
 	{"ShowInfoPixel",	N_("Pixel Info"), 	GTK_STOCK_COLOR_PICKER},
 	{"IgnoreAlpha",	N_("Ignore Alpha"), 	GTK_STOCK_STRIKETHROUGH},
-	{"ExifRotate",	N_("_Exif rotate"),	GTK_STOCK_ORIENTATION_PORTRAIT},
+	{"ExifRotate",	N_("Exif rotate"),	GTK_STOCK_ORIENTATION_PORTRAIT},
 	{"UseColorProfiles",	N_("Use color profiles"),	GTK_STOCK_SELECT_COLOR},
 	{"SaveMetadata",	N_("Save metadata"),	GTK_STOCK_SAVE},
 	{"HideTools",	N_("Hide file list"), PIXBUF_INLINE_ICON_HIDETOOLS},
