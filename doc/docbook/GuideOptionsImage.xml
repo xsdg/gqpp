@@ -37,14 +37,6 @@
                   <para>High quality results, moderately fast.</para>
                 </listitem>
               </varlistentry>
-              <varlistentry>
-                <term>
-                  <guilabel>Hyper</guilabel>
-                </term>
-                <listitem>
-                  <para>Slowest scaler, sometimes gives better results than bilinear.</para>
-                </listitem>
-              </varlistentry>
             </variablelist>
           </para>
         </listitem>

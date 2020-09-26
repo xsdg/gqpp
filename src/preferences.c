@@ -550,9 +550,6 @@ static void quality_menu_cb(GtkWidget *combo, gpointer data)
 		case 2:
 			*option = GDK_INTERP_BILINEAR;
 			break;
-		case 3:
-			*option = GDK_INTERP_HYPER;
-			break;
 		}
 }
 
@@ -606,10 +603,8 @@ static void add_quality_menu(GtkWidget *table, gint column, gint row, const gcha
 	if (option == GDK_INTERP_NEAREST) current = 0;
 	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("Tiles"));
 	if (option == GDK_INTERP_TILES) current = 1;
-	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("Bilinear"));
+	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("Bilinear (best, but slowest)"));
 	if (option == GDK_INTERP_BILINEAR) current = 2;
-	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("Hyper (best, but slowest)"));
-	if (option == GDK_INTERP_HYPER) current = 3;
 
 	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), current);
 

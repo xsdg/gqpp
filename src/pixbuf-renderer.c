@@ -213,7 +213,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *class)
 							  "Zoom quality",
 							  NULL,
 							  GDK_INTERP_NEAREST,
-							  GDK_INTERP_HYPER,
+							  GDK_INTERP_BILINEAR,
 							  GDK_INTERP_BILINEAR,
 							  G_PARAM_READABLE | G_PARAM_WRITABLE));
 

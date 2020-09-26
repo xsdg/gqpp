@@ -405,7 +405,7 @@ static void update_display_pixbuf(RendererClutter *rc)
 				rc->display_pixbuf = gdk_pixbuf_composite_color_simple (tmppixbuf,
 						gdk_pixbuf_get_width(pr->pixbuf),
 						gdk_pixbuf_get_height(pr->pixbuf),
-						GDK_INTERP_HYPER,
+						GDK_INTERP_BILINEAR,
 						255,
 						PR_ALPHA_CHECK_SIZE,
 						((options->image.alpha_color_1.red << 8 & 0x00FF0000) +
@@ -421,7 +421,7 @@ static void update_display_pixbuf(RendererClutter *rc)
 				rc->display_pixbuf = gdk_pixbuf_composite_color_simple (pr->pixbuf,
 						gdk_pixbuf_get_width(pr->pixbuf),
 						gdk_pixbuf_get_height(pr->pixbuf),
-						GDK_INTERP_HYPER,
+						GDK_INTERP_BILINEAR,
 						255,
 						PR_ALPHA_CHECK_SIZE,
 						((options->image.alpha_color_1.red << 8 & 0x00FF0000) +

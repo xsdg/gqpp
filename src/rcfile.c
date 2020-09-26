@@ -800,7 +800,7 @@ static gboolean load_global_params(const gchar **attribute_names, const gchar **
 		if (READ_UINT_CLAMP(*options, image.scroll_reset_method, 0, PR_SCROLL_RESET_COUNT - 1)) continue;
 		if (READ_INT(*options, image.tile_cache_max)) continue;
 		if (READ_INT(*options, image.image_cache_max)) continue;
-		if (READ_UINT_CLAMP(*options, image.zoom_quality, GDK_INTERP_NEAREST, GDK_INTERP_HYPER)) continue;
+		if (READ_UINT_CLAMP(*options, image.zoom_quality, GDK_INTERP_NEAREST, GDK_INTERP_BILINEAR)) continue;
 		if (READ_INT(*options, image.zoom_increment)) continue;
 		if (READ_BOOL(*options, image.enable_read_ahead)) continue;
 		if (READ_BOOL(*options, image.exif_rotate_enable)) continue;
@@ -819,7 +819,7 @@ static gboolean load_global_params(const gchar **attribute_names, const gchar **
 		if (READ_BOOL(*options, thumbnails.cache_into_dirs)) continue;
 		if (READ_BOOL(*options, thumbnails.use_xvpics)) continue;
 		if (READ_BOOL(*options, thumbnails.spec_standard)) continue;
-		if (READ_UINT_CLAMP(*options, thumbnails.quality, GDK_INTERP_NEAREST, GDK_INTERP_HYPER)) continue;
+		if (READ_UINT_CLAMP(*options, thumbnails.quality, GDK_INTERP_NEAREST, GDK_INTERP_BILINEAR)) continue;
 		if (READ_BOOL(*options, thumbnails.use_exif)) continue;
 		if (READ_INT(*options, thumbnails.collection_preview)) continue;
 		if (READ_BOOL(*options, thumbnails.use_ft_metadata)) continue;

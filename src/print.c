@@ -36,7 +36,7 @@
 #define PRINT_TEXT_PADDING 3.0
 
 /* method to use when scaling down image data */
-#define PRINT_MAX_INTERP GDK_INTERP_HYPER
+#define PRINT_MAX_INTERP GDK_INTERP_BILINEAR
 
 /* reverse order is important */
 typedef enum {
