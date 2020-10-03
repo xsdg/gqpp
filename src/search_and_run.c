@@ -175,12 +175,14 @@ static void command_store_populate(SarData* sar)
 		}
 }
 
-static void search_and_run_destroy(gpointer data)
+static gboolean search_and_run_destroy(gpointer data)
 {
 	SarData *sar = data;
 
 	sar->lw->sar_window = NULL;
 	gtk_widget_destroy(sar->window);
+
+	return TRUE;
 }
 
 static gboolean entry_box_activate_cb(GtkWidget *widget, gpointer data)

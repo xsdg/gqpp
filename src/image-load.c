@@ -64,6 +64,7 @@ enum {
 static guint signals[SIGNAL_COUNT] = { 0 };
 
 static void image_loader_init(GTypeInstance *instance, gpointer g_class);
+static void image_loader_class_init_wrapper(void *data, void *user_data);
 static void image_loader_class_init(ImageLoaderClass *class);
 static void image_loader_finalize(GObject *object);
 static void image_loader_stop(ImageLoader *il);
@@ -77,7 +78,7 @@ GType image_loader_get_type(void)
 			sizeof(ImageLoaderClass),
 			NULL,   /* base_init */
 			NULL,   /* base_finalize */
-			(GClassInitFunc)image_loader_class_init, /* class_init */
+			(GClassInitFunc)image_loader_class_init_wrapper, /* class_init */
 			NULL,   /* class_finalize */
 			NULL,   /* class_data */
 			sizeof(ImageLoader),
@@ -129,6 +130,11 @@ static void image_loader_init(GTypeInstance *instance, gpointer g_class)
 #endif
 #endif
 	DEBUG_1("new image loader %p, bufsize=%" G_GSIZE_FORMAT " idle_loop=%u", il, il->read_buffer_size, il->idle_read_loop_count);
+}
+
+static void image_loader_class_init_wrapper(void *data, void *user_data)
+{
+	image_loader_class_init(data);
 }
 
 static void image_loader_class_init(ImageLoaderClass *class)

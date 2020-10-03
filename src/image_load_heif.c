@@ -147,7 +147,7 @@ static gchar** image_loader_heif_get_format_mime_types(gpointer loader)
 
 static void image_loader_heif_set_page_num(gpointer loader, gint page_num)
 {
-	ImageLoader *il = (ImageLoader *) loader;
+	// ImageLoader *il = (ImageLoader *) loader;
 	ImageLoaderHEIF *ld = (ImageLoaderHEIF *) loader;
 
 	ld->page_num = page_num;

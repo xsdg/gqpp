@@ -1431,11 +1431,6 @@ static void cache_manager_sim_load_dialog(GtkWidget *widget, const gchar *path)
 	gtk_widget_show(cd->gd->dialog);
 }
 
-static void cache_manager_sim_clear_ok_cb(GenericDialog *gd, gpointer data)
-{
-	cache_maintain_home(FALSE, TRUE, NULL);
-}
-
 static void cache_manager_sim_load_cb(GtkWidget *widget, gpointer data)
 {
 	const gchar *path = layout_get_path(NULL);

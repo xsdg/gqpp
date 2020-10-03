@@ -676,6 +676,14 @@ static GList *dupe_listview_get_filelist(DupeWindow *dw, GtkWidget *listview)
 }
 
 
+
+
+void gtk_tree_path_free_wrapper(void *data, void *useradata)
+{
+	gtk_tree_path_free(data);
+}
+
+
 static GList *dupe_listview_get_selection(DupeWindow *dw, GtkWidget *listview)
 {
 	GtkTreeModel *store;
@@ -701,7 +709,7 @@ static GList *dupe_listview_get_selection(DupeWindow *dw, GtkWidget *listview)
 			}
 		work = work->next;
 		}
-	g_list_foreach(slist, (GFunc)gtk_tree_path_free, NULL);
+	g_list_foreach(slist, (GFunc)gtk_tree_path_free_wrapper, NULL);
 	g_list_free(slist);
 
 	return g_list_reverse(list);
@@ -729,7 +737,7 @@ static gboolean dupe_listview_item_is_selected(DupeWindow *dw, DupeItem *di, Gtk
 		if (di_n == di) found = TRUE;
 		work = work->next;
 		}
-	g_list_foreach(slist, (GFunc)gtk_tree_path_free, NULL);
+	g_list_foreach(slist, (GFunc)gtk_tree_path_free_wrapper, NULL);
 	g_list_free(slist);
 
 	return found;
@@ -2355,7 +2363,7 @@ static void dupe_window_remove_selection(DupeWindow *dw, GtkWidget *listview)
 		if (di) list = g_list_prepend(list, di);
 		work = work->next;
 		}
-	g_list_foreach(slist, (GFunc)gtk_tree_path_free, NULL);
+	g_list_foreach(slist, (GFunc)gtk_tree_path_free_wrapper, NULL);
 	g_list_free(slist);
 
 	dw->color_frozen = TRUE;
@@ -3338,7 +3346,7 @@ static gboolean dupe_window_keypress_cb(GtkWidget *widget, GdkEventKey *event, g
 		gtk_tree_model_get_iter(store, &iter, tpath);
 		gtk_tree_model_get(store, &iter, DUPE_COLUMN_POINTER, &di, -1);
 		}
-	g_list_foreach(slist, (GFunc)gtk_tree_path_free, NULL);
+	g_list_foreach(slist, (GFunc)gtk_tree_path_free_wrapper, NULL);
 	g_list_free(slist);
 
 	if (event->state & GDK_CONTROL_MASK)

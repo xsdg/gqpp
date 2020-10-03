@@ -1777,8 +1777,8 @@ gboolean defined_mouse_buttons(GtkWidget *widget, GdkEventButton *event, gpointe
 					gtk_action_activate(action);
 					}
 				ret = TRUE;
-				break;
 				}
+				break;
 		case MOUSE_BUTTON_9:
 			if (options->mouse_button_9)
 				{

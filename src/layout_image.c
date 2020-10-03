@@ -516,13 +516,6 @@ static void li_pop_menu_edit_cb(GtkWidget *widget, gpointer data)
 	file_util_start_editor_from_file(key, layout_image_get_fd(lw), lw->window);
 }
 
-static void li_pop_menu_wallpaper_cb(GtkWidget *widget, gpointer data)
-{
-	LayoutWindow *lw = data;
-
-	layout_image_to_root(lw);
-}
-
 static void li_pop_menu_alter_cb(GtkWidget *widget, gpointer data)
 {
 	LayoutWindow *lw = data;

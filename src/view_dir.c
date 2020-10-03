@@ -569,31 +569,6 @@ static void vd_toggle_show_hidden_files_cb(GtkWidget *widget, gpointer data)
 	if (vd->layout) layout_refresh(vd->layout);
 }
 
-static void vd_pop_menu_new_rename_cb(gboolean success, const gchar *new_path, gpointer data)
-{
-	ViewDir *vd = data;
-	FileData *fd = NULL;
-	if (!success) return;
-
-	switch (vd->type)
-		{
-		case DIRVIEW_LIST:
-			{
-			vd_refresh(vd);
-			fd = vdlist_row_by_path(vd, new_path, NULL);
-			};
-			break;
-		case DIRVIEW_TREE:
-			{
-			FileData *new_fd = file_data_new_dir(new_path);
-			fd = vdtree_populate_path(vd, new_fd, TRUE, TRUE);
-			file_data_unref(new_fd);
-			}
-			break;
-		}
-	vd_rename_by_data(vd, fd);
-}
-
 static void vd_pop_menu_new_folder_cb(gboolean success, const gchar *new_path, gpointer data)
 {
 	ViewDir *vd = data;

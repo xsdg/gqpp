@@ -545,6 +545,7 @@ static void parse_command_line_for_debug_option(gint argc, gchar *argv[])
 #endif
 }
 
+#ifdef HAVE_CLUTTER
 static gboolean parse_command_line_for_clutter_option(gint argc, gchar *argv[])
 {
 	const gchar *clutter_option = "--disable-clutter";
@@ -567,6 +568,8 @@ static gboolean parse_command_line_for_clutter_option(gint argc, gchar *argv[])
 
 	return ret;
 }
+#endif
+
 
 /*
  *-----------------------------------------------------------------------------
