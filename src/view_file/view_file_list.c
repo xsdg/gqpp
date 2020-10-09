@@ -2065,7 +2065,7 @@ ViewFile *vflist_new(ViewFile *vf, FileData *dir_fd)
 	gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(vf->listview), FALSE);
 	gtk_tree_view_set_enable_search(GTK_TREE_VIEW(vf->listview), FALSE);
 
-	gtk_tree_view_set_tooltip_column(GTK_TREE_VIEW(vf->listview), FILE_COLUMN_FORMATTED);
+	gtk_tree_view_set_tooltip_column(GTK_TREE_VIEW(vf->listview), -1);
 
 	column = 0;
 
