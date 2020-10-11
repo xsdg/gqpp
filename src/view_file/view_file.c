@@ -1367,6 +1367,97 @@ void vf_thumb_update(ViewFile *vf)
 	while (vf_thumb_next(vf));
 }
 
+void vf_star_cleanup(ViewFile *vf)
+{
+	if (vf->stars_id != 0)
+		{
+		g_source_remove(vf->stars_id);
+		}
+
+	vf->stars_id = 0;
+	vf->stars_filedata = NULL;
+}
+
+void vf_star_stop(ViewFile *vf)
+{
+	 vf_star_cleanup(vf);
+}
+
+static void vf_set_star_fd(ViewFile *vf, FileData *fd)
+{
+	switch (vf->type)
+		{
+		case FILEVIEW_LIST: vflist_set_star_fd(vf, fd); break;
+		case FILEVIEW_ICON: vficon_set_star_fd(vf, fd); break;
+		default: break;
+		}
+}
+
+static void vf_star_do(ViewFile *vf, FileData *fd)
+{
+	if (!fd) return;
+
+	vf_set_star_fd(vf, fd);
+}
+
+static gboolean vf_star_next(ViewFile *vf)
+{
+	FileData *fd = NULL;
+
+	switch (vf->type)
+		{
+		case FILEVIEW_LIST: fd = vflist_star_next_fd(vf); break;
+		case FILEVIEW_ICON: fd = vficon_star_next_fd(vf); break;
+		default: break;
+		}
+
+	if (!fd)
+		{
+		/* done */
+		vf_star_cleanup(vf);
+		return FALSE;
+		}
+
+	return TRUE;
+}
+
+gboolean vf_stars_cb(gpointer data)
+{
+	ViewFile *vf = data;
+	FileData *fd = vf->stars_filedata;
+
+	if (fd)
+		{
+		read_rating_data(fd);
+
+		vf_star_do(vf, fd);
+
+		if (vf_star_next(vf))
+			{
+			return TRUE;
+			}
+		else
+			{
+			vf->stars_filedata = NULL;
+			vf->stars_id = 0;
+			return FALSE;
+			}
+		}
+
+	return FALSE;
+}
+
+void vf_star_update(ViewFile *vf)
+{
+	vf_star_stop(vf);
+
+	if (!options->show_star_rating)
+		{
+		return;
+		}
+
+	vf_star_next(vf);
+}
 
 void vf_marks_set(ViewFile *vf, gboolean enable)
 {

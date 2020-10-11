@@ -583,6 +583,10 @@ void read_rating_data(FileData *file)
 		file->rating = atoi(rating_str);
 		g_free(rating_str);
 		}
+	else
+		{
+		file->rating = 0;
+		}
 }
 
 void set_exif_time_data(GList *files)

@@ -35,6 +35,7 @@
 #include "layout_image.h"
 #include "menu.h"
 #include "metadata.h"
+#include "misc.h"
 #include "thumb.h"
 #include "utilops.h"
 #include "ui_fileops.h"
@@ -1662,6 +1663,7 @@ static void vficon_populate(ViewFile *vf, gboolean resize, gboolean keep_positio
 
 	vf_send_update(vf);
 	vf_thumb_update(vf);
+	vf_star_update(vf);
 }
 
 static void vficon_populate_at_new_size(ViewFile *vf, gint w, gint h, gboolean force)
@@ -1797,6 +1799,86 @@ FileData *vficon_thumb_next_fd(ViewFile *vf)
 		// Note: This implementation differs from view_file_list.c because sidecar files are not
 		// distinct list elements here, as they are in the list view.
 		if (!fd->thumb_pixbuf) return fd;
+		}
+
+	return NULL;
+}
+
+void vficon_set_star_fd(ViewFile *vf, FileData *fd)
+{
+	GtkTreeModel *store;
+	GtkTreeIter iter;
+	GList *list;
+
+	if (!g_list_find(vf->list, fd)) return;
+	if (!vficon_find_iter(vf, fd, &iter, NULL)) return;
+
+	store = gtk_tree_view_get_model(GTK_TREE_VIEW(vf->listview));
+
+	gtk_tree_model_get(store, &iter, FILE_COLUMN_POINTER, &list, -1);
+	gtk_list_store_set(GTK_LIST_STORE(store), &iter, FILE_COLUMN_POINTER, list, -1);
+}
+
+FileData *vficon_star_next_fd(ViewFile *vf)
+{
+	GtkTreePath *tpath;
+
+	/* first check the visible files */
+
+	if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(vf->listview), 0, 0, &tpath, NULL, NULL, NULL))
+		{
+		GtkTreeModel *store;
+		GtkTreeIter iter;
+		gboolean valid = TRUE;
+
+		store = gtk_tree_view_get_model(GTK_TREE_VIEW(vf->listview));
+		gtk_tree_model_get_iter(store, &iter, tpath);
+		gtk_tree_path_free(tpath);
+		tpath = NULL;
+
+		while (valid && tree_view_row_get_visibility(GTK_TREE_VIEW(vf->listview), &iter, FALSE) == 0)
+			{
+			GList *list;
+			gtk_tree_model_get(store, &iter, FILE_COLUMN_POINTER, &list, -1);
+
+			for (; list; list = list->next)
+				{
+				FileData *fd = list->data;
+				if (fd && fd->rating == STAR_RATING_NOT_READ)
+					{
+					vf->stars_filedata = fd;
+
+					if (vf->stars_id == 0)
+						{
+						vf->stars_id = g_idle_add_full(G_PRIORITY_LOW, vf_stars_cb, vf, NULL);
+						}
+
+					return fd;
+					}
+				}
+
+			valid = gtk_tree_model_iter_next(store, &iter);
+			}
+		}
+
+	/* Then iterate through the entire list to load all of them. */
+
+	GList *work;
+	for (work = vf->list; work; work = work->next)
+		{
+		FileData *fd = work->data;
+
+		if (fd && fd->rating == STAR_RATING_NOT_READ)
+			{
+			vf->stars_filedata = fd;
+
+			if (vf->stars_id == 0)
+				{
+				vf->stars_id = g_idle_add_full(G_PRIORITY_LOW, vf_stars_cb, vf, NULL);
+				}
+
+			return fd;
+			}
 		}
 
 	return NULL;
@@ -2009,9 +2091,9 @@ static void vficon_cell_data_cb(GtkTreeViewColumn *tree_column, GtkCellRenderer 
 
 		g_assert(fd->magick == FD_MAGICK);
 
-		if (options->show_star_rating)
+		if (options->show_star_rating && fd->rating != STAR_RATING_NOT_READ)
 			{
-			star_rating = metadata_read_rating_stars(fd);
+			star_rating = convert_rating_to_stars(fd->rating);
 			}
 		else
 			{
@@ -2163,6 +2245,7 @@ void vficon_destroy_cb(GtkWidget *widget, gpointer data)
 	tip_unschedule(vf);
 
 	vf_thumb_cleanup(vf);
+	vf_star_cleanup(vf);
 
 	g_list_free(vf->list);
 	g_list_free(VFICON(vf)->selection);

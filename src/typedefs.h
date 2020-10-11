@@ -958,6 +958,10 @@ struct _ViewFile
 	gint active_mark;
 	gint clicked_mark;
 
+	/* stars */
+	FileData *stars_filedata;
+	guint stars_id;
+
 	/* refresh */
 	guint refresh_idle_id; /* event source id */
 	time_t time_refresh_set; /* time when refresh_idle_id was set */

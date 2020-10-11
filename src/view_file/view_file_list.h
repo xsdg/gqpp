@@ -75,5 +75,9 @@ void vflist_set_thumb_fd(ViewFile *vf, FileData *fd);
 FileData *vflist_thumb_next_fd(ViewFile *vf);
 void vflist_thumb_reset_all(ViewFile *vf);
 void vflist_pop_menu_show_star_rating_cb(GtkWidget *widget, gpointer data);
+
+FileData *vflist_star_next_fd(ViewFile *vf);
+void vflist_set_star_fd(ViewFile *vf, FileData *fd);
+
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

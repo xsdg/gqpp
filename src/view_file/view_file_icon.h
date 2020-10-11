@@ -75,5 +75,8 @@ void vficon_set_thumb_fd(ViewFile *vf, FileData *fd);
 FileData *vficon_thumb_next_fd(ViewFile *vf);
 void vficon_thumb_reset_all(ViewFile *vf);
 
+FileData *vficon_star_next_fd(ViewFile *vf);
+void vficon_set_star_fd(ViewFile *vf, FileData *fd);
+
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

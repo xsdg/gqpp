@@ -32,6 +32,7 @@
 #include "layout_image.h"
 #include "menu.h"
 #include "metadata.h"
+#include "misc.h"
 #include "thumb.h"
 #include "utilops.h"
 #include "ui_fileops.h"
@@ -894,6 +895,7 @@ static void vflist_set_expanded(ViewFile *vf, GtkTreeIter *iter, gboolean expand
 	g_free(sidecars);
 	g_free(name);
 	g_free(formatted);
+	g_free(formatted_with_stars);
 }
 
 static void vflist_setup_iter(ViewFile *vf, GtkTreeStore *store, GtkTreeIter *iter, FileData *fd)
@@ -909,9 +911,9 @@ static void vflist_setup_iter(ViewFile *vf, GtkTreeStore *store, GtkTreeIter *it
 	gboolean expanded = FALSE;
 	gchar *star_rating;
 
-	if (options->show_star_rating)
+	if (options->show_star_rating && fd->rating != STAR_RATING_NOT_READ)
 		{
-		star_rating = metadata_read_rating_stars(fd);
+ 		star_rating = convert_rating_to_stars(fd->rating);
 		}
 	else
 		{
@@ -1257,6 +1259,123 @@ FileData *vflist_thumb_next_fd(ViewFile *vf)
 					}
 				}
 			work = work->next;
+			}
+		}
+
+	return fd;
+}
+
+void vflist_set_star_fd(ViewFile *vf, FileData *fd)
+{
+	GtkTreeStore *store;
+	GtkTreeIter iter;
+	gchar *name;
+	gchar *sidecars;
+	gchar *size;
+	gchar *time;
+	gchar *star_rating;
+	gchar *formatted_with_stars;
+	gboolean expanded;
+
+	if (!fd || vflist_find_row(vf, fd, &iter) < 0) return;
+
+	star_rating = metadata_read_rating_stars(fd);
+
+	store = GTK_TREE_STORE(gtk_tree_view_get_model(GTK_TREE_VIEW(vf->listview)));
+	gtk_tree_store_set(store, &iter, FILE_COLUMN_STAR_RATING, star_rating, -1);
+
+	gtk_tree_model_get(GTK_TREE_MODEL(store), &iter,
+					FILE_COLUMN_NAME, &name,
+					FILE_COLUMN_SIDECARS, &sidecars,
+					FILE_COLUMN_SIZE, &size,
+					FILE_COLUMN_DATE, &time,
+					FILE_COLUMN_EXPANDED, &expanded,
+					-1);
+
+	formatted_with_stars = vflist_get_formatted(vf, name, sidecars, size, time, expanded, TRUE, star_rating);
+
+	gtk_tree_store_set(store, &iter, FILE_COLUMN_FORMATTED_WITH_STARS, formatted_with_stars,
+					FILE_COLUMN_EXPANDED, expanded,
+					-1);
+
+	g_free(star_rating);
+	g_free(formatted_with_stars);
+}
+
+FileData *vflist_star_next_fd(ViewFile *vf)
+{
+	GtkTreePath *tpath;
+	FileData *fd = NULL;
+	FileData *nfd = NULL;
+
+	/* first check the visible files */
+
+	if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(vf->listview), 0, 0, &tpath, NULL, NULL, NULL))
+		{
+		GtkTreeModel *store;
+		GtkTreeIter iter;
+		gboolean valid = TRUE;
+
+		store = gtk_tree_view_get_model(GTK_TREE_VIEW(vf->listview));
+		gtk_tree_model_get_iter(store, &iter, tpath);
+		gtk_tree_path_free(tpath);
+		tpath = NULL;
+
+		while (!fd && valid && tree_view_row_get_visibility(GTK_TREE_VIEW(vf->listview), &iter, FALSE) == 0)
+			{
+			GList *work;
+
+			gtk_tree_model_get(store, &iter, FILE_COLUMN_POINTER, &nfd, -1);
+
+			if (nfd && nfd->rating == STAR_RATING_NOT_READ)
+				{
+				fd = nfd;
+				}
+
+			valid = gtk_tree_model_iter_next(store, &iter);
+			}
+
+		if (fd)
+			{
+			vf->stars_filedata = fd;
+
+			if (vf->stars_id == 0)
+				{
+				vf->stars_id = g_idle_add_full(G_PRIORITY_LOW, vf_stars_cb, vf, NULL);
+				}
+			}
+		}
+
+	/* then find first undone */
+
+	if (!fd)
+		{
+		GList *work = vf->list;
+
+		while (work && !fd)
+			{
+			FileData *fd_p = work->data;
+
+			if (fd_p && fd_p->rating == STAR_RATING_NOT_READ)
+				{
+				fd = fd_p;
+				}
+			else
+				{
+				fd = NULL;
+				}
+
+			work = work->next;
+			}
+
+		if (fd)
+			{
+			vf->stars_filedata = fd;
+
+			if (vf->stars_id == 0)
+				{
+				vf->stars_id = g_idle_add_full(G_PRIORITY_LOW, vf_stars_cb, vf, NULL);
+				}
 			}
 		}
 
@@ -1755,6 +1874,7 @@ static void vflist_populate_view(ViewFile *vf, gboolean force)
 	store = GTK_TREE_STORE(gtk_tree_view_get_model(GTK_TREE_VIEW(vf->listview)));
 
 	vf_thumb_stop(vf);
+	vf_star_stop(vf);
 
 	if (!vf->list)
 		{
@@ -1779,6 +1899,7 @@ static void vflist_populate_view(ViewFile *vf, gboolean force)
 
 	vf_send_update(vf);
 	vf_thumb_update(vf);
+	vf_star_update(vf);
 }
 
 gboolean vflist_refresh(ViewFile *vf)
@@ -2018,6 +2139,7 @@ void vflist_destroy_cb(GtkWidget *widget, gpointer data)
 	vflist_select_idle_cancel(vf);
 	vf_refresh_idle_cancel(vf);
 	vf_thumb_stop(vf);
+	vf_star_stop(vf);
 
 	filelist_free(vf->list);
 }
