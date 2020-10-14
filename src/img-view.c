@@ -1104,6 +1104,7 @@ static void view_alter_cb(GtkWidget *widget, gpointer data)
 	image_alter_orientation(vw->imd, vw->imd->image_fd, type);
 }
 
+#if !GTK_CHECK_VERSION(3,0,0)
 static void view_wallpaper_cb(GtkWidget *widget, gpointer data)
 {
 	ViewWindow *vw = data;
@@ -1112,6 +1113,7 @@ static void view_wallpaper_cb(GtkWidget *widget, gpointer data)
 	imd = view_window_active_image(vw);
 	image_to_root_window(imd, (image_zoom_get(imd) == 0.0));
 }
+#endif
 
 static void view_zoom_in_cb(GtkWidget *widget, gpointer data)
 {

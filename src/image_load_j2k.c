@@ -170,7 +170,6 @@ opj_stream_t* OPJ_CALLCONV opj_stream_create_buffer_stream (opj_buffer_info_t* p
 static gboolean image_loader_j2k_load(gpointer loader, const guchar *buf, gsize count, GError **error)
 {
 	ImageLoaderJ2K *ld = (ImageLoaderJ2K *) loader;
-	ImageLoader *il = ld->data;
 	opj_stream_t *stream;
 	opj_codec_t *codec;
 	opj_dparameters_t parameters;

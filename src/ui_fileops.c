@@ -733,9 +733,14 @@ gchar *get_current_dir(void)
 	return path8;
 }
 
+void list_free_wrapper(void *data, void *userdata)
+{
+	g_free(data);
+}
+
 void string_list_free(GList *list)
 {
-	g_list_foreach(list, (GFunc)g_free, NULL);
+	g_list_foreach(list, (GFunc)list_free_wrapper, NULL);
 	g_list_free(list);
 }
 
@@ -1063,7 +1068,6 @@ static void web_file_progress_cb(goffset current_num_bytes, goffset total_num_by
 static void download_web_file_cancel_button_cb(GenericDialog *gd, gpointer data)
 {
 	WebData* web = data;
-	GError *error = NULL;
 
 	g_cancellable_cancel(web->cancellable);
 }

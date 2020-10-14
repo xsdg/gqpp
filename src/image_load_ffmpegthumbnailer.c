@@ -42,6 +42,7 @@ struct _ImageLoaderFT {
 
 };
 
+#if HAVE_FFMPEGTHUMBNAILER_RGB
 static void image_loader_ft_log_cb(ThumbnailerLogLevel log_level, const char* msg)
 {
 	if (log_level == ThumbnailerLogLevelError)
@@ -49,6 +50,7 @@ static void image_loader_ft_log_cb(ThumbnailerLogLevel log_level, const char* ms
 	else
 		DEBUG_1("ImageLoaderFFmpegthumbnailer: %s",msg);
 }
+#endif
 
 void image_loader_ft_destroy_image_data(guchar *pixels, gpointer data)
 {

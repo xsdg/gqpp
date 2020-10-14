@@ -129,7 +129,6 @@ static gchar** image_loader_pdf_get_format_mime_types(gpointer loader)
 
 static void image_loader_pdf_set_page_num(gpointer loader, gint page_num)
 {
-	ImageLoader *il = (ImageLoader *) loader;
 	ImageLoaderPDF *ld = (ImageLoaderPDF *) loader;
 
 	ld->page_num = page_num;

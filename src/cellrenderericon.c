@@ -34,7 +34,9 @@ static void gqv_cell_renderer_icon_set_property(GObject		*object,
 						guint		param_id,
 						const GValue	*value,
 						GParamSpec	*pspec);
+static void gqv_cell_renderer_icon_init_wrapper(void *, void *);
 static void gqv_cell_renderer_icon_init(GQvCellRendererIcon *celltext);
+static void gqv_cell_renderer_icon_class_init_wrapper(void *, void *);
 static void gqv_cell_renderer_icon_class_init(GQvCellRendererIconClass *class);
 static void gqv_cell_renderer_icon_finalize(GObject *object);
 #if GTK_CHECK_VERSION(3,0,0)
@@ -130,12 +132,12 @@ gqv_cell_renderer_icon_get_type(void)
 			sizeof(GQvCellRendererIconClass), /* class_size */
 			NULL,		/* base_init */
 			NULL,		/* base_finalize */
-			(GClassInitFunc) gqv_cell_renderer_icon_class_init, /* class_init */
+			(GClassInitFunc) gqv_cell_renderer_icon_class_init_wrapper, /* class_init */
 			NULL,		/* class_finalize */
 			NULL,		/* class_data */
 			sizeof(GQvCellRendererIcon), /* instance_size */
 			0,		/* n_preallocs */
-			(GInstanceInitFunc) gqv_cell_renderer_icon_init, /* instance_init */
+			(GInstanceInitFunc) gqv_cell_renderer_icon_init_wrapper, /* instance_init */
 			NULL,		/* value_table */
 			};
 
@@ -148,10 +150,22 @@ gqv_cell_renderer_icon_get_type(void)
 }
 
 static void
+gqv_cell_renderer_icon_init_wrapper(void *data, void *user_data)
+{
+	gqv_cell_renderer_icon_init(data);
+}
+
+static void
 gqv_cell_renderer_icon_init(GQvCellRendererIcon *cellicon)
 {
 	g_object_set(G_OBJECT(cellicon), "mode", GTK_CELL_RENDERER_MODE_ACTIVATABLE, NULL);
 	gtk_cell_renderer_set_padding(GTK_CELL_RENDERER(cellicon), 2, 2);
+}
+
+static void
+gqv_cell_renderer_icon_class_init_wrapper(void *data, void *user_data)
+{
+	gqv_cell_renderer_icon_class_init(data);
 }
 
 static void

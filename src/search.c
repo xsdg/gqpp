@@ -447,6 +447,7 @@ static gint search_result_find_row(SearchData *sd, FileData *fd, GtkTreeIter *it
 	return -1;
 }
 
+
 static gboolean search_result_row_selected(SearchData *sd, FileData *fd)
 {
 	GtkTreeModel *store;
@@ -469,7 +470,7 @@ static gboolean search_result_row_selected(SearchData *sd, FileData *fd)
 		if (mfd_n->fd == fd) found = TRUE;
 		work = work->next;
 		}
-	g_list_foreach(slist, (GFunc)gtk_tree_path_free, NULL);
+	g_list_foreach(slist, (GFunc)tree_path_free_wrapper, NULL);
 	g_list_free(slist);
 
 	return found;
@@ -508,7 +509,7 @@ static gint search_result_selection_util(SearchData *sd, gint64 *bytes, GList **
 
 		work = work->next;
 		}
-	g_list_foreach(slist, (GFunc)gtk_tree_path_free, NULL);
+	g_list_foreach(slist, (GFunc)tree_path_free_wrapper, NULL);
 	g_list_free(slist);
 
 	if (bytes) *bytes = total;
@@ -726,7 +727,7 @@ static void search_result_remove_selection(SearchData *sd)
 		flist = g_list_prepend(flist, mfd->fd);
 		work = work->next;
 		}
-	g_list_foreach(slist, (GFunc)gtk_tree_path_free, NULL);
+	g_list_foreach(slist, (GFunc)tree_path_free_wrapper, NULL);
 	g_list_free(slist);
 
 	work = flist;
@@ -1315,6 +1316,7 @@ static gboolean search_result_release_cb(GtkWidget *widget, GdkEventButton *beve
 	return FALSE;
 }
 
+
 static gboolean search_result_keypress_cb(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
 	SearchData *sd = data;
@@ -1339,7 +1341,7 @@ static gboolean search_result_keypress_cb(GtkWidget *widget, GdkEventKey *event,
 		gtk_tree_model_get_iter(store, &iter, tpath);
 		gtk_tree_model_get(store, &iter, SEARCH_COLUMN_POINTER, &mfd, -1);
 		}
-	g_list_foreach(slist, (GFunc)gtk_tree_path_free, NULL);
+	g_list_foreach(slist, (GFunc)tree_path_free_wrapper, NULL);
 	g_list_free(slist);
 
 	if (event->state & GDK_CONTROL_MASK)

@@ -877,6 +877,7 @@ static void image_load_done_cb(ImageLoader *il, gpointer data)
 				break;
 			case FORMAT_CLASS_VIDEO:
 				pixbuf = pixbuf_inline(PIXBUF_INLINE_VIDEO);
+				break;
 			case FORMAT_CLASS_COLLECTION:
 				pixbuf = pixbuf_inline(PIXBUF_INLINE_COLLECTION);
 				break;

@@ -149,6 +149,16 @@ static void pr_stereo_temp_disable(PixbufRenderer *pr, gboolean disable);
  *-------------------------------------------------------------------
  */
 
+static void pixbuf_renderer_class_init_wrapper(void *g_class, void *class_data)
+{
+	pixbuf_renderer_class_init(g_class);
+}
+
+static void pixbuf_renderer_init_wrapper(PixbufRenderer *pr, void *class_data)
+{
+	pixbuf_renderer_init(pr);
+}
+
 GType pixbuf_renderer_get_type(void)
 {
 	static GType pixbuf_renderer_type = 0;
@@ -160,12 +170,12 @@ GType pixbuf_renderer_get_type(void)
 			sizeof(PixbufRendererClass), /* class_size */
 			NULL,		/* base_init */
 			NULL,		/* base_finalize */
-			(GClassInitFunc)pixbuf_renderer_class_init,
+			(GClassInitFunc)pixbuf_renderer_class_init_wrapper,
 			NULL,		/* class_finalize */
 			NULL,		/* class_data */
 			sizeof(PixbufRenderer), /* instance_size */
 			0,		/* n_preallocs */
-			(GInstanceInitFunc)pixbuf_renderer_init, /* instance_init */
+			(GInstanceInitFunc)pixbuf_renderer_init_wrapper, /* instance_init */
 			NULL,		/* value_table */
 			};
 

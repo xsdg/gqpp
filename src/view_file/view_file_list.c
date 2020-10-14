@@ -1323,8 +1323,6 @@ FileData *vflist_star_next_fd(ViewFile *vf)
 
 		while (!fd && valid && tree_view_row_get_visibility(GTK_TREE_VIEW(vf->listview), &iter, FALSE) == 0)
 			{
-			GList *work;
-
 			gtk_tree_model_get(store, &iter, FILE_COLUMN_POINTER, &nfd, -1);
 
 			if (nfd && nfd->rating == STAR_RATING_NOT_READ)
@@ -1446,7 +1444,7 @@ static gboolean vflist_row_is_selected(ViewFile *vf, FileData *fd)
 		if (fd_n == fd) found = TRUE;
 		work = work->next;
 		}
-	g_list_foreach(slist, (GFunc)gtk_tree_path_free, NULL);
+	g_list_foreach(slist, (GFunc)tree_path_free_wrapper, NULL);
 	g_list_free(slist);
 
 	return found;
@@ -1493,7 +1491,7 @@ guint vflist_selection_count(ViewFile *vf, gint64 *bytes)
 		}
 
 	count = g_list_length(slist);
-	g_list_foreach(slist, (GFunc)gtk_tree_path_free, NULL);
+	g_list_foreach(slist, (GFunc)tree_path_free_wrapper, NULL);
 	g_list_free(slist);
 
 	return count;
@@ -1535,7 +1533,7 @@ GList *vflist_selection_get_list(ViewFile *vf)
 
 		work = work->next;
 		}
-	g_list_foreach(slist, (GFunc)gtk_tree_path_free, NULL);
+	g_list_foreach(slist, (GFunc)tree_path_free_wrapper, NULL);
 	g_list_free(slist);
 
 	return g_list_reverse(list);
@@ -1565,7 +1563,7 @@ GList *vflist_selection_get_list_by_index(ViewFile *vf)
 
 		work = work->next;
 		}
-	g_list_foreach(slist, (GFunc)gtk_tree_path_free, NULL);
+	g_list_foreach(slist, (GFunc)tree_path_free_wrapper, NULL);
 	g_list_free(slist);
 
 	return g_list_reverse(list);
@@ -1795,7 +1793,7 @@ void vflist_selection_to_mark(ViewFile *vf, gint mark, SelectionToMarkMode mode)
 
 		work = work->next;
 		}
-	g_list_foreach(slist, (GFunc)gtk_tree_path_free, NULL);
+	g_list_foreach(slist, (GFunc)tree_path_free_wrapper, NULL);
 	g_list_free(slist);
 }
 

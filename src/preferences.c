@@ -245,8 +245,10 @@ static gboolean accel_apply_cb(GtkTreeModel *model, GtkTreePath *path, GtkTreeIt
 
 static void config_window_apply(void)
 {
-	gint i;
 	gboolean refresh = FALSE;
+#ifdef HAVE_LCMS2
+	int i = 0;
+#endif
 
 	config_entry_to_option(safe_delete_path_entry, &options->file_ops.safe_delete_path, remove_trailing_slash);
 
@@ -2183,7 +2185,9 @@ static void config_tab_image(GtkWidget *notebook)
 	GtkWidget *table;
 	GtkWidget *spin;
 	GtkWidget *two_pass;
+#ifdef HAVE_CLUTTER
 	GtkWidget *gpu_accel;
+#endif
 
 	vbox = scrolled_notebook_page(notebook, _("Image"));
 

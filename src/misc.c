@@ -403,4 +403,9 @@ gint get_cpu_cores(void)
 	return cores;
 }
 
+void tree_path_free_wrapper(void *data, void *useradata)
+{
+	gtk_tree_path_free(data);
+}
+
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

@@ -63,7 +63,7 @@
 
 #include <sys/wait.h>
 #include <gdk/gdkkeysyms.h> /* for keyboard values */
-#include "keymap_template.c"
+#include "keymap_template.h"
 
 #define MENU_EDIT_ACTION_OFFSET 16
 #define FILE_COLUMN_POINTER 0
@@ -2067,7 +2067,6 @@ static GList *layout_window_menu_list(GList *listin)
 
 static void layout_menu_new_window_cb(GtkWidget *widget, gpointer data)
 {
-	LayoutWindow *nw = NULL;
 	gint n;
 
 	n = GPOINTER_TO_INT(data);
@@ -2604,7 +2603,7 @@ static GtkToggleActionEntry menu_toggle_entries[] = {
   { "ExifRotate",	GTK_STOCK_ORIENTATION_PORTRAIT,			N_("_Exif rotate"),  		"<alt>X",		N_("Exif rotate"),			CB(layout_menu_exif_rotate_cb), FALSE },
   { "DrawRectangle",	PIXBUF_INLINE_ICON_DRAW_RECTANGLE,			N_("Draw Rectangle"),  		NULL,		N_("Draw Rectangle"),			CB(layout_menu_select_rectangle_cb), FALSE },
   { "OverUnderExposed",	PIXBUF_INLINE_ICON_EXPOSURE,	N_("Over/Under Exposed"),  	"<shift>E",		N_("Over/Under Exposed"),		CB(layout_menu_select_overunderexposed_cb), FALSE },
-  { "SplitPaneSync",	PIXBUF_INLINE_SPLIT_PANE_SYNC,			N_("Split Pane Sync"),	NULL,		N_("Split Pane Sync"),	CB(layout_menu_split_pane_sync_cb) },
+  { "SplitPaneSync",	PIXBUF_INLINE_SPLIT_PANE_SYNC,			N_("Split Pane Sync"),	NULL,		N_("Split Pane Sync"),	CB(layout_menu_split_pane_sync_cb), FALSE },
 };
 
 static GtkRadioActionEntry menu_radio_entries[] = {
@@ -3648,9 +3647,10 @@ void layout_util_sync_color(LayoutWindow *lw)
 	gboolean use_image = FALSE;
 	gint i;
 	gchar action_name[15];
+#ifdef HAVE_LCMS
 	gchar *image_profile;
 	gchar *screen_profile;
-
+#endif
 
 	if (!lw->action_group) return;
 	if (!layout_image_color_profile_get(lw, &input, &use_image)) return;

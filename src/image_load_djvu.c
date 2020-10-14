@@ -148,7 +148,6 @@ static gchar** image_loader_djvu_get_format_mime_types(gpointer loader)
 
 static void image_loader_djvu_set_page_num(gpointer loader, gint page_num)
 {
-	ImageLoader *il = (ImageLoader *) loader;
 	ImageLoaderDJVU *ld = (ImageLoaderDJVU *) loader;
 
 	ld->page_num = page_num;
