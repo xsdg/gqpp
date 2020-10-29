@@ -428,6 +428,7 @@ static void config_window_apply(void)
 	options->marks_save = c_options->marks_save;
 	options->with_rename = c_options->with_rename;
 	options->collections_on_top = c_options->collections_on_top;
+	options->hide_window_in_fullscreen = c_options->hide_window_in_fullscreen;
 	config_entry_to_option(help_search_engine_entry, &options->help_search_engine, NULL);
 
 	options->read_metadata_in_idle = c_options->read_metadata_in_idle;
@@ -3259,6 +3260,7 @@ static void config_tab_behavior(GtkWidget *notebook)
 	GtkWidget *marks;
 	GtkWidget *with_rename;
 	GtkWidget *collections_on_top;
+	GtkWidget *hide_window_in_fullscreen;
 	GtkWidget *checkbox;
 
 	vbox = scrolled_notebook_page(notebook, _("Behavior"));
@@ -3334,6 +3336,10 @@ static void config_tab_behavior(GtkWidget *notebook)
 	collections_on_top = pref_checkbox_new_int(group, _("Open collections on top"),
 				options->collections_on_top, &c_options->collections_on_top);
 	gtk_widget_set_tooltip_text(collections_on_top,"Open collections window on top");
+
+	hide_window_in_fullscreen = pref_checkbox_new_int(group, _("Hide window in fullscreen"),
+				options->hide_window_in_fullscreen, &c_options->hide_window_in_fullscreen);
+	gtk_widget_set_tooltip_text(hide_window_in_fullscreen,"When alt-tabbing, prevent Geeqie window showing twice");
 
 	pref_spin_new_int(group, _("Recent folder list maximum size"), NULL,
 			  1, 50, 1, options->open_recent_list_maxsize, &c_options->open_recent_list_maxsize);

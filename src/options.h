@@ -73,6 +73,7 @@ struct _ConfOptions
 
 	gboolean with_rename;
 	gboolean collections_on_top;
+	gboolean hide_window_in_fullscreen;
 
 	gchar *help_search_engine;
 

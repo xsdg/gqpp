@@ -338,9 +338,10 @@ FullScreenData *fullscreen_start(GtkWidget *window, ImageWindow *imd,
 	 */
 	if (fs->same_region)
 		{
-#ifdef HIDE_WINDOW_IN_FULLSCREEN
-		gtk_widget_hide(fs->normal_window);
-#endif
+		if (options->hide_window_in_fullscreen)
+			{
+			gtk_widget_hide(fs->normal_window);
+			}
 		image_change_fd(fs->normal_imd, NULL, image_zoom_get(fs->normal_imd));
 		}
 
@@ -360,9 +361,10 @@ void fullscreen_stop(FullScreenData *fs)
 	if (fs->same_region)
 		{
 		image_move_from_image(fs->normal_imd, fs->imd);
-#ifdef HIDE_WINDOW_IN_FULLSCREEN
-		gtk_widget_show(fs->normal_window);
-#endif
+		if (options->hide_window_in_fullscreen)
+			{
+			gtk_widget_show(fs->normal_window);
+			}
 		if (options->stereo.enable_fsmode)
 			{
 			image_stereo_set(fs->normal_imd, options->stereo.mode);
