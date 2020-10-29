@@ -949,17 +949,47 @@ static void gr_collection_list(const gchar *text, GIOChannel *channel, gpointer 
 	g_string_free(out_string, TRUE);
 }
 
+static gboolean wait_cb(const gpointer data)
+{
+	gint position = GPOINTER_TO_INT(data);
+	gint x = position >> 16;
+	gint y = position - (x << 16);
+
+	gtk_window_move(GTK_WINDOW(lw_id->window), x, y);
+
+	return FALSE;
+}
+
 static void gr_geometry(const gchar *text, GIOChannel *channel, gpointer data)
 {
 	gchar **geometry;
 
-	geometry = g_strsplit_set(text, "+x", 4);
-	if (geometry[0] != NULL && geometry[1] != NULL && geometry[2] != NULL && geometry[3] != NULL)
+	if (!layout_valid(&lw_id) || !text)
 		{
-		gtk_window_resize(GTK_WINDOW(lw_id->window), atoi(geometry[0]), atoi(geometry[1]));
-		gtk_window_move(GTK_WINDOW(lw_id->window), atoi(geometry[2]), atoi(geometry[3]));
+		return;
 		}
 
+	if (text[0] == '+')
+		{
+		geometry = g_strsplit_set(text, "+", 3);
+		if (geometry[1] != NULL && geometry[2] != NULL )
+			{
+			gtk_window_move(GTK_WINDOW(lw_id->window), atoi(geometry[1]), atoi(geometry[2]));
+			}
+		}
+	else
+		{
+		geometry = g_strsplit_set(text, "+x", 4);
+		if (geometry[0] != NULL && geometry[1] != NULL)
+			{
+			gtk_window_resize(GTK_WINDOW(lw_id->window), atoi(geometry[0]), atoi(geometry[1]));
+			}
+		if (geometry[2] != NULL && geometry[3] != NULL)
+			{
+			/* There is an occasional problem with a window_move immediately after a window_resize */
+			g_idle_add(wait_cb, GINT_TO_POINTER((atoi(geometry[2]) << 16) + atoi(geometry[3])));
+			}
+		}
 	g_strfreev(geometry);
 }
 
