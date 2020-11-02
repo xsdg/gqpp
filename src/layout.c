@@ -52,6 +52,11 @@
 #ifdef HAVE_LIRC
 #include "lirc.h"
 #endif
+#ifdef GDK_WINDOWING_X11
+#if GTK_CHECK_VERSION(3,10,0)
+#include <gdk/gdkx.h>
+#endif
+#endif
 
 #define MAINWINDOW_DEF_WIDTH 700
 #define MAINWINDOW_DEF_HEIGHT 500
@@ -2350,6 +2355,12 @@ void layout_show_config_window(LayoutWindow *lw)
 void layout_sync_options_with_current_state(LayoutWindow *lw)
 {
 	Histogram *histogram;
+#ifdef GDK_WINDOWING_X11
+#if GTK_CHECK_VERSION(3,10,0)
+	GdkWindow *window;
+#endif
+#endif
+
 	if (!layout_valid(&lw)) return;
 
 	lw->options.main_window.maximized =  window_maximized(lw->window);
@@ -2378,6 +2389,13 @@ void layout_sync_options_with_current_state(LayoutWindow *lw)
 	layout_geometry_get_log_window(lw, &lw->options.log_window.x, &lw->options.log_window.y,
 	                                 &lw->options.log_window.w, &lw->options.log_window.h);
 
+#ifdef GDK_WINDOWING_X11
+#if GTK_CHECK_VERSION(3,10,0)
+	window = gtk_widget_get_window(GTK_WIDGET(lw->window));
+	lw->options.workspace = gdk_x11_window_get_desktop(window);
+#endif
+#endif
+	return;
 }
 
 void layout_apply_options(LayoutWindow *lw, LayoutOptions *lop)
@@ -2505,6 +2523,24 @@ gboolean release_cb(GtkWidget *widget, GdkEventButton *event, gpointer data)
 	return defined_mouse_buttons(widget, event, data);
 }
 
+#ifdef GDK_WINDOWING_X11
+#if GTK_CHECK_VERSION(3,10,0)
+static gboolean move_window_to_workspace_cb(gpointer data)
+{
+	LayoutWindow *lw = data;
+	GdkWindow *window;
+
+	if (lw->options.workspace != -1)
+		{
+		window = gtk_widget_get_window(GTK_WIDGET(lw->window));
+		gdk_x11_window_move_to_desktop(window, lw->options.workspace);
+		}
+
+	return FALSE;
+}
+#endif
+#endif
+
 LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 				       const gchar *geometry)
 {
@@ -2579,6 +2615,11 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 		gtk_window_move(GTK_WINDOW(lw->window), lw->options.main_window.x, lw->options.main_window.y);
 		if (lw->options.main_window.maximized) gtk_window_maximize(GTK_WINDOW(lw->window));
 //			}
+#ifdef GDK_WINDOWING_X11
+#if GTK_CHECK_VERSION(3,10,0)
+		g_idle_add(move_window_to_workspace_cb, lw);
+#endif
+#endif
 		}
 	else
 		{
@@ -2676,6 +2717,7 @@ void layout_write_attributes(LayoutOptions *layout, GString *outstr, gint indent
 	WRITE_NL(); WRITE_BOOL(*layout, main_window.maximized);
 	WRITE_NL(); WRITE_INT(*layout, main_window.hdivider_pos);
 	WRITE_NL(); WRITE_INT(*layout, main_window.vdivider_pos);
+	WRITE_NL(); WRITE_INT(*layout, workspace);
 	WRITE_SEPARATOR();
 
 	WRITE_NL(); WRITE_INT(*layout, folder_window.vdivider_pos);
@@ -2832,6 +2874,7 @@ void layout_load_attributes(LayoutOptions *layout, const gchar **attribute_names
 		if (READ_INT(*layout, dupe_window.h)) continue;
 
 		if (READ_BOOL(*layout, animate)) continue;
+		if (READ_INT(*layout, workspace)) continue;
 
 		log_printf("unknown attribute %s = %s\n", option, value);
 		}

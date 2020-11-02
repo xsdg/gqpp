@@ -737,6 +737,7 @@ struct _LayoutOptions
 	StartUpPath startup_path;
 
 	gboolean animate;
+	gint workspace;
 
 	SortActionType action;
 	SortModeType mode;
