@@ -1,9 +1,12 @@
 
-##PLEASE NOTE!
+PLEASE NOTE!
+------------
+
 The repository at GitHub is not the main repository, and is likely to be out-of-date.  
 If you wish to clone the source code, please use the repository at [geeqie.org](http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git).  
 Details are given in the [Downloading](#downloading) section below.
-###########################################################################  
+
+-------------------
 
       ###################################################################
       ##                          Geeqie x.x                           ##
@@ -126,6 +129,8 @@ If you wish to compile the sources yourself you may download the latest version 
 Either: `git clone git://www.geeqie.org/geeqie.git`
 
 Or: `git clone http://www.geeqie.org/git/geeqie.git`
+
+Also [Geeqie is available as a flatpak](https://flathub.org/apps/details/org.geeqie.Geeqie) from the [Flathub site](https://flathub.org/home).
 
 ## Manual Installation
 
