@@ -754,6 +754,8 @@ static void gtkrc_load(void)
 static void exit_program_final(void)
 {
 	LayoutWindow *lw = NULL;
+	GList *list;
+	LayoutWindow *tmp_lw;
 
 	 /* make sure that external editors are loaded, we would save incomplete configuration otherwise */
 	layout_editors_reload_finish();
@@ -761,6 +763,21 @@ static void exit_program_final(void)
 	remote_close(remote_connection);
 
 	collect_manager_flush();
+
+	/* Save the named windows */
+	if (layout_window_list && layout_window_list->next)
+		{
+		list = layout_window_list;
+		while (list)
+			{
+			tmp_lw = list->data;
+			if (!g_str_has_prefix(tmp_lw->options.id, "lw"))
+				{
+				save_layout(list->data);
+				}
+			list = list->next;
+			}
+		}
 
 	save_options(options);
 	keys_save();

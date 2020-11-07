@@ -2248,15 +2248,15 @@ static void layout_menu_windows_menu_cb(GtkWidget *widget, gpointer data)
 	menu = gtk_ui_manager_get_widget(lw->ui_manager, "/MainMenu/WindowsMenu/");
 	sub_menu = gtk_menu_item_get_submenu(GTK_MENU_ITEM(menu));
 
-	/* disable Rename and Delete for main window */
-	if (g_strcmp0(lw->options.id, "main") == 0)
+	/* disable Delete for temporary windows */
+	if (g_str_has_prefix(lw->options.id, "lw"))
 		{
 		i = 0;
 		children = gtk_container_get_children(GTK_CONTAINER(sub_menu));
 		for (iter = children; iter != NULL; iter = g_list_next(iter), i++)
 			{
 			menu_label = g_strdup(gtk_menu_item_get_label(GTK_MENU_ITEM(iter->data)));
-			if (g_strcmp0(menu_label, _("Delete window")) == 0 || g_strcmp0(menu_label, _("Rename window")) == 0)
+			if (g_strcmp0(menu_label, _("Delete window")) == 0)
 				{
 				gtk_widget_set_sensitive(GTK_WIDGET(iter->data), FALSE);
 				}

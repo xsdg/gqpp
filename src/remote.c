@@ -1269,11 +1269,7 @@ static void gr_pwd(const gchar *text, GIOChannel *channel, gpointer data)
 {
 	LayoutWindow *lw = NULL;
 
-	lw = layout_find_by_layout_id("main");
-	if (!lw)
-		{
-		lw = g_list_first(layout_window_list)->data;
-		}
+	layout_valid(&lw);
 
 	g_free(pwd);
 	pwd = g_strdup(text);

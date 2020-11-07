@@ -181,12 +181,6 @@ static void layout_set_unique_id(LayoutWindow *lw)
 	g_free(lw->options.id);
 	lw->options.id = NULL;
 
-	if (!layout_find_by_layout_id("main"))
-		{
-		lw->options.id = g_strdup("main");
-		return;
-		}
-
 	i = 1;
 	while (TRUE)
 		{
@@ -2420,7 +2414,7 @@ void save_layout(LayoutWindow *lw)
 	gchar *path;
 	gchar *xml_name;
 
-	if (!g_str_has_prefix(lw->options.id, "lw") && !g_str_equal(lw->options.id, "main"))
+	if (!g_str_has_prefix(lw->options.id, "lw"))
 		{
 		xml_name = g_strdup_printf("%s.xml", lw->options.id);
 		path = g_build_filename(get_window_layouts_dir(), xml_name, NULL);
@@ -2438,30 +2432,8 @@ void layout_close(LayoutWindow *lw)
 
 	if (layout_window_list && layout_window_list->next)
 		{
-		if (g_strcmp0(lw->options.id, "main") == 0)
-			{
-			while (layout_window_list && layout_window_list->next)
-				{
-				list = layout_window_list;
-				while (list)
-					{
-					tmp_lw = list->data;
-					if (g_strcmp0(tmp_lw->options.id, "main") != 0)
-						{
-						save_layout(list->data);
-						layout_free(list->data);
-						break;
-						}
-					list = list->next;
-					}
-				}
-			exit_program();
-			}
-		else
-			{
-			save_layout(lw);
-			layout_free(lw);
-			}
+		save_layout(lw);
+		layout_free(lw);
 		}
 	else
 		{
@@ -2933,6 +2905,8 @@ static void layout_config_commandline(LayoutOptions *lop, gchar **path)
 		}
 }
 
+static gboolean first_found = FALSE;
+
 LayoutWindow *layout_new_from_config(const gchar **attribute_names, const gchar **attribute_values, gboolean use_commandline)
 {
 	LayoutOptions lop;
@@ -2946,8 +2920,9 @@ LayoutWindow *layout_new_from_config(const gchar **attribute_names, const gchar 
 	/* If multiple windows are specified in the config. file,
 	 * use the command line options only in the main window.
 	 */
-	if (use_commandline && (g_strcmp0(lop.id, "main") == 0))
+	if (use_commandline && !first_found)
 		{
+		first_found = TRUE;
 		layout_config_commandline(&lop, &path);
 		}
 	else
