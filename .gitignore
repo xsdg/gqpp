@@ -61,6 +61,3 @@ Makefile
 
 # The files that are autocreated(!)
 /src/gq-marshal.[ch]
-ChangeLog.html
-README.html
-ChangeLog

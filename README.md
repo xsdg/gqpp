@@ -1,17 +1,7 @@
-
-PLEASE NOTE!
-------------
-
-The repository at GitHub is not the main repository, and is likely to be out-of-date.  
-If you wish to clone the source code, please use the repository at [geeqie.org](http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git).  
-Details are given in the [Downloading](#downloading) section below.
-
--------------------
-
       ###################################################################
-      ##                          Geeqie x.x                           ##
+      ##                          Geeqie 1.6                           ##
       ##                                                               ##
-      ##              Copyright (C) 2008 - 2018 The Geeqie Team        ##
+      ##              Copyright (C) 2008 - 2020 The Geeqie Team        ##
       ##              Copyright (C) 1999 - 2006 John Ellis.            ##
       ##                                                               ##
       ##                      Use at your own risk!                    ##
@@ -19,6 +9,15 @@ Details are given in the [Downloading](#downloading) section below.
       ##  This software released under the GNU General Public License. ##
       ##       Please read the COPYING file for more information.      ##
       ###################################################################
+
+PLEASE NOTE!
+------------
+
+The repository at GitHub is not the main repository, and is likely to be out-of-date.
+If you wish to clone the source code, please use the repository at [geeqie.org](http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git).
+Details are given in the [Downloading](#downloading) section below.
+
+-------------------
 
 This is Geeqie, a successor of GQview.
 

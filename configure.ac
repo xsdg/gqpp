@@ -2,7 +2,7 @@ dnl Process this file with autoconf to produce a configure script.  -*- Autoconf
  -*-
 
 dnl This file is a part of Geeqie project (http://www.geeqie.org/).
-dnl Copyright (C) 2008 - 2018 The Geeqie Team
+dnl Copyright (C) 2008 - 2020 The Geeqie Team
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@ dnl MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 dnl GNU General Public License for more details.
 
 AC_PREREQ(2.57)
-AC_INIT([geeqie], m4_translit(m4_esyscmd([if [ $(git tag --list 'v[1-9]*' --points-at HEAD | wc -c) -gt 0 ]; then git tag --list v[1-9]* --points-at HEAD | tail --lines=1 | tr --delete 'v' ; else git tag --list v[1-9]* | tail --lines=1 | tr --delete 'v' && echo "+git" && git log --max-count=1 --date=format:"%Y%m%d" --format="%ad" && echo "-" && git rev-parse --quiet --verify --short HEAD; fi ]), m4_newline), [geeqie@freelists.org], [], [http://www.geeqie.org/])
+AC_INIT([geeqie], 1.6, [https://github.com/BestImageViewer/geeqie/issues], [], [http://www.geeqie.org/])
 
 # Add -Werror to the default CFLAGS
 CFLAGS+=" -Werror -Wno-error=deprecated-declarations -Wno-error=sign-compare -Wno-error=return-type"

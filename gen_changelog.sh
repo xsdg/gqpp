@@ -7,6 +7,7 @@
 #
 # ChangeLog.html is also created
 
+exit 0 # Just drop it, we have it hardcoded in release
 [ ! -e "ChangeLog.gqview" ] && exit 1
 [ ! -x "$(command -v git)" ] && exit 0
 
