@@ -581,12 +581,16 @@ static void clipboard_selection_menu_cb(GtkWidget *combo, gpointer data)
 	switch (gtk_combo_box_get_active(GTK_COMBO_BOX(combo)))
 		{
 		case 0:
-		default:
-			*option = PRIMARY;
+			*option = CLIPBOARD_PRIMARY;
 			break;
 		case 1:
-			*option = CLIPBOARD;
+			*option = CLIPBOARD_CLIPBOARD;
 			break;
+		case 2:
+			*option = CLIPBOARD_BOTH;
+			break;
+		default:
+			*option = CLIPBOARD_BOTH;
 		}
 }
 
@@ -657,10 +661,12 @@ static void add_clipboard_selection_menu(GtkWidget *table, gint column, gint row
 
 	combo = gtk_combo_box_text_new();
 
-	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("PRIMARY"));
-	if (option == PRIMARY) current = 0;
-	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("CLIPBOARD"));
-	if (option == CLIPBOARD) current = 1;
+	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("Primary"));
+	if (option == CLIPBOARD_PRIMARY) current = 0;
+	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("Clipboard"));
+	if (option == CLIPBOARD_CLIPBOARD) current = 1;
+	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("Both"));
+	if (option == CLIPBOARD_BOTH) current = 2;
 
 	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), current);
 

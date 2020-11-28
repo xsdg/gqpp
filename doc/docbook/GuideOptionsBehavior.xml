@@ -202,7 +202,7 @@
             <variablelist>
               <varlistentry>
                 <term>
-                  <guilabel>PRIMARY</guilabel>
+                  <guilabel>Primary</guilabel>
                 </term>
                 <listitem>
                   <para>Paste using mouse middle-click, or shift-insert.</para>
@@ -210,10 +210,18 @@
               </varlistentry>
               <varlistentry>
                 <term>
-                  <guilabel>CLIPBOARD</guilabel>
+                  <guilabel>Clipboard</guilabel>
                 </term>
                 <listitem>
                   <para>Paste using mouse right-click and select paste, or control-v.</para>
+                </listitem>
+              </varlistentry>
+              <varlistentry>
+                <term>
+                  <guilabel>Both</guilabel>
+                </term>
+                <listitem>
+                  <para>Paste using either method.</para>
                 </listitem>
               </varlistentry>
             </variablelist>

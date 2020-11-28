@@ -29,8 +29,9 @@ typedef enum {
 } ZoomMode;
 
 typedef enum {
-	PRIMARY	= 0,
-	CLIPBOARD = 1,
+	CLIPBOARD_PRIMARY	= 0,
+	CLIPBOARD_CLIPBOARD = 1,
+	CLIPBOARD_BOTH = 2
 } ClipboardSelection;
 
 typedef enum {
