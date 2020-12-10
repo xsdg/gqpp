@@ -2410,8 +2410,15 @@ void layout_sync_options_with_current_state(LayoutWindow *lw)
 
 #ifdef GDK_WINDOWING_X11
 #if GTK_CHECK_VERSION(3,10,0)
-	window = gtk_widget_get_window(GTK_WIDGET(lw->window));
-	lw->options.workspace = gdk_x11_window_get_desktop(window);
+	GdkDisplay *display;
+
+	display = gdk_display_get_default();
+
+	if (GDK_IS_X11_DISPLAY(display))
+		{
+		window = gtk_widget_get_window(GTK_WIDGET(lw->window));
+		lw->options.workspace = gdk_x11_window_get_desktop(window);
+		}
 #endif
 #endif
 	return;
