@@ -2520,23 +2520,28 @@ gboolean release_cb(GtkWidget *widget, GdkEventButton *event, gpointer data)
 	return defined_mouse_buttons(widget, event, data);
 }
 
-#ifdef GDK_WINDOWING_X11
-#if GTK_CHECK_VERSION(3,10,0)
 static gboolean move_window_to_workspace_cb(gpointer data)
 {
+#ifdef GDK_WINDOWING_X11
+#if GTK_CHECK_VERSION(3,10,0)
 	LayoutWindow *lw = data;
 	GdkWindow *window;
+	GdkDisplay *display;
 
-	if (lw->options.workspace != -1)
+	display = gdk_display_get_default();
+
+	if (GDK_IS_X11_DISPLAY(display))
 		{
-		window = gtk_widget_get_window(GTK_WIDGET(lw->window));
-		gdk_x11_window_move_to_desktop(window, lw->options.workspace);
+		if (lw->options.workspace != -1)
+			{
+			window = gtk_widget_get_window(GTK_WIDGET(lw->window));
+			gdk_x11_window_move_to_desktop(window, lw->options.workspace);
+			}
 		}
-
+#endif
+#endif
 	return FALSE;
 }
-#endif
-#endif
 
 LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 				       const gchar *geometry)
@@ -2612,11 +2617,8 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 		gtk_window_move(GTK_WINDOW(lw->window), lw->options.main_window.x, lw->options.main_window.y);
 		if (lw->options.main_window.maximized) gtk_window_maximize(GTK_WINDOW(lw->window));
 //			}
-#ifdef GDK_WINDOWING_X11
-#if GTK_CHECK_VERSION(3,10,0)
+
 		g_idle_add(move_window_to_workspace_cb, lw);
-#endif
-#endif
 		}
 	else
 		{
