@@ -269,6 +269,7 @@ static void config_window_apply(void)
 	options->tools_restore_state = c_options->tools_restore_state;
 	options->save_window_positions = c_options->save_window_positions;
 	options->use_saved_window_positions_for_new_windows = c_options->use_saved_window_positions_for_new_windows;
+	options->save_window_workspace = c_options->save_window_workspace;
 	options->save_dialog_window_positions = c_options->save_dialog_window_positions;
 	options->show_window_ids = c_options->show_window_ids;
 	options->image.scroll_reset_method = c_options->image.scroll_reset_method;
@@ -2296,6 +2297,10 @@ static void config_tab_windows(GtkWidget *notebook)
 
 	button = pref_checkbox_new_int(group, _("Use saved window positions also for new windows"),
 				       options->use_saved_window_positions_for_new_windows, &c_options->use_saved_window_positions_for_new_windows);
+	pref_checkbox_link_sensitivity(ct_button, button);
+
+	button = pref_checkbox_new_int(group, _("Remember window workspace"),
+			      options->save_window_workspace, &c_options->save_window_workspace);
 	pref_checkbox_link_sensitivity(ct_button, button);
 
 	pref_checkbox_new_int(group, _("Remember tool state (float/hidden)"),

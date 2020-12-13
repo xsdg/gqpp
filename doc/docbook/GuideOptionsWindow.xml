@@ -40,6 +40,18 @@
     <variablelist>
       <varlistentry>
         <term>
+          <guilabel>Remember window workspace</guilabel>
+        </term>
+        <listitem>
+          <para>
+            Remember which workspace a window was displayed in.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>
           <guilabel>Remember tool state</guilabel>
         </term>
         <listitem>

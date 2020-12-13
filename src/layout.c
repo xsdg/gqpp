@@ -2412,12 +2412,15 @@ void layout_sync_options_with_current_state(LayoutWindow *lw)
 #if GTK_CHECK_VERSION(3,10,0)
 	GdkDisplay *display;
 
-	display = gdk_display_get_default();
-
-	if (GDK_IS_X11_DISPLAY(display))
+	if (options->save_window_workspace)
 		{
-		window = gtk_widget_get_window(GTK_WIDGET(lw->window));
-		lw->options.workspace = gdk_x11_window_get_desktop(window);
+		display = gdk_display_get_default();
+
+		if (GDK_IS_X11_DISPLAY(display))
+			{
+			window = gtk_widget_get_window(GTK_WIDGET(lw->window));
+			lw->options.workspace = gdk_x11_window_get_desktop(window);
+			}
 		}
 #endif
 #endif
@@ -2535,14 +2538,17 @@ static gboolean move_window_to_workspace_cb(gpointer data)
 	GdkWindow *window;
 	GdkDisplay *display;
 
-	display = gdk_display_get_default();
-
-	if (GDK_IS_X11_DISPLAY(display))
+	if (options->save_window_workspace)
 		{
-		if (lw->options.workspace != -1)
+		display = gdk_display_get_default();
+
+		if (GDK_IS_X11_DISPLAY(display))
 			{
-			window = gtk_widget_get_window(GTK_WIDGET(lw->window));
-			gdk_x11_window_move_to_desktop(window, lw->options.workspace);
+			if (lw->options.workspace != -1)
+				{
+				window = gtk_widget_get_window(GTK_WIDGET(lw->window));
+				gdk_x11_window_move_to_desktop(window, lw->options.workspace);
+				}
 			}
 		}
 #endif
