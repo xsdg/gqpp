@@ -1197,7 +1197,8 @@ static GtkWidget *cache_manager_location_label(GtkWidget *group, const gchar *su
 	buf = g_strdup_printf(_("Location: %s"), subdir);
 	label = pref_label_new(group, buf);
 	g_free(buf);
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label), 0.0);
+	gtk_label_set_yalign(GTK_LABEL(label), 0.5);
 
 	return label;
 }

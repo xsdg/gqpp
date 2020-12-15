@@ -2667,7 +2667,8 @@ static void config_tab_metadata(GtkWidget *notebook)
 	label = pref_label_new(group, _("Warning: Geeqie is built without Exiv2. Some options are disabled."));
 #endif
 	label = pref_label_new(group, _("Metadata are written in the following order. The process ends after first success."));
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label), 0.0);
+	gtk_label_set_yalign(GTK_LABEL(label), 0.5);
 
 	ct_button = pref_checkbox_new_int(group, _("1) Save metadata in image files, or sidecar files, according to the XMP standard"),
 			      options->metadata.save_in_image_file, &c_options->metadata.save_in_image_file);
@@ -2680,7 +2681,8 @@ static void config_tab_metadata(GtkWidget *notebook)
 
 	text = g_strdup_printf(_("3) Save metadata in Geeqie private directory '%s'"), get_metadata_cache_dir());
 	label = pref_label_new(group, text);
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label), 0.0);
+	gtk_label_set_yalign(GTK_LABEL(label), 0.5);
 	gtk_misc_set_padding(GTK_MISC(label), 22, 0);
 	g_free(text);
 

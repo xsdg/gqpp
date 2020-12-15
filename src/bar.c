@@ -706,7 +706,8 @@ GtkWidget *bar_new(LayoutWindow *lw)
 	bd->label_file_name = gtk_label_new("");
 	gtk_label_set_ellipsize(GTK_LABEL(bd->label_file_name), PANGO_ELLIPSIZE_END);
 	gtk_label_set_selectable(GTK_LABEL(bd->label_file_name), TRUE);
-	gtk_misc_set_alignment(GTK_MISC(bd->label_file_name), 0.5, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(bd->label_file_name), 0.5);
+	gtk_label_set_yalign(GTK_LABEL(bd->label_file_name), 0.5);
 	gtk_box_pack_start(GTK_BOX(box), bd->label_file_name, TRUE, TRUE, 0);
 	gtk_widget_show(bd->label_file_name);
 
