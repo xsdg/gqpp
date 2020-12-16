@@ -377,12 +377,20 @@ void help_search_window_show()
 				  help_search_window_ok_cb, TRUE);
 
 	label1 = pref_label_new(GENERIC_DIALOG(gd)->vbox, _("Search engine:"));
+#if GTK_CHECK_VERSION(3,16,0)
 	gtk_label_set_xalign(GTK_LABEL(label1), 0.0);
 	gtk_label_set_yalign(GTK_LABEL(label1), 0.5);
+#else
+   gtk_misc_set_alignment(GTK_MISC(label1), 0.0, 0.5);
+#endif
 
 	label2 = pref_label_new(GENERIC_DIALOG(gd)->vbox, options->help_search_engine);
+#if GTK_CHECK_VERSION(3,16,0)
 	gtk_label_set_xalign(GTK_LABEL(label2), 0.0);
 	gtk_label_set_yalign(GTK_LABEL(label2), 0.5);
+#else
+   gtk_misc_set_alignment(GTK_MISC(label2), 0.0, 0.5);
+#endif
 	pref_spacer(GENERIC_DIALOG(gd)->vbox, 0);
 
 	table = pref_table_new(gd->vbox, 3, 1, FALSE, TRUE);

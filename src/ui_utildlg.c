@@ -299,8 +299,12 @@ GtkWidget *generic_dialog_add_message(GenericDialog *gd, const gchar *icon_stock
 		GtkWidget *image;
 
 		image = gtk_image_new_from_stock(icon_stock_id, GTK_ICON_SIZE_DIALOG);
+#if GTK_CHECK_VERSION(3,16,0)
 		gtk_widget_set_halign(GTK_WIDGET(image), GTK_ALIGN_CENTER);
 		gtk_widget_set_valign(GTK_WIDGET(image), GTK_ALIGN_START);
+#else
+		gtk_misc_set_alignment(GTK_MISC(image), 0.5, 0.0);
+#endif
 		gtk_box_pack_start(GTK_BOX(hbox), image, FALSE, FALSE, 0);
 		gtk_widget_show(image);
 		}
@@ -310,14 +314,22 @@ GtkWidget *generic_dialog_add_message(GenericDialog *gd, const gchar *icon_stock
 		{
 		label = pref_label_new(vbox, heading);
 		pref_label_bold(label, TRUE, TRUE);
+#if GTK_CHECK_VERSION(3,16,0)
 		gtk_label_set_xalign(GTK_LABEL(label), 0.0);
 		gtk_label_set_yalign(GTK_LABEL(label), 0.5);
+#else
+		gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+#endif
 		}
 	if (text)
 		{
 		label = pref_label_new(vbox, text);
+#if GTK_CHECK_VERSION(3,16,0)
 		gtk_label_set_xalign(GTK_LABEL(label), 0.0);
 		gtk_label_set_yalign(GTK_LABEL(label), 0.5);
+#else
+		gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+#endif
 		gtk_label_set_line_wrap(GTK_LABEL(label), TRUE);
 		}
 

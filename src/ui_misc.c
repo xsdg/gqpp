@@ -89,8 +89,12 @@ GtkWidget *pref_group_new(GtkWidget *parent_box, gboolean fill,
 	gtk_widget_show(vbox);
 
 	label = gtk_label_new(text);
+#if GTK_CHECK_VERSION(3,16,0)
 	gtk_label_set_xalign(GTK_LABEL(label), 0.0);
 	gtk_label_set_yalign(GTK_LABEL(label), 0.5);
+#else
+	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+#endif
 	pref_label_bold(label, TRUE, FALSE);
 
 	gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0);
@@ -266,8 +270,12 @@ GtkWidget *pref_button_new(GtkWidget *parent_box, const gchar *stock_id,
 		if (text)
 			{
 			label = gtk_label_new_with_mnemonic(text);
+#if GTK_CHECK_VERSION(3,16,0)
 			gtk_label_set_xalign(GTK_LABEL(label), 0.5);
 			gtk_label_set_yalign(GTK_LABEL(label), 0.5);
+#else
+			gtk_misc_set_alignment(GTK_MISC(label), 0.5, 0.5);
+#endif
 			gtk_label_set_mnemonic_widget(GTK_LABEL(label), button);
 			}
 
