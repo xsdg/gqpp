@@ -132,8 +132,12 @@ static void bar_pane_exif_setup_entry_box(PaneExifData *ped, ExifEntry *ee)
 	gtk_widget_show(ee->box);
 
 	ee->title_label = gtk_label_new(NULL);
+#if GTK_CHECK_VERSION(3,16,0)
 	gtk_label_set_xalign(GTK_LABEL(ee->title_label), horizontal ? 1.0 : 0.0);
 	gtk_label_set_yalign(GTK_LABEL(ee->title_label), 0.5);
+#else
+	gtk_misc_set_alignment(GTK_MISC(ee->title_label), horizontal ? 1.0 : 0.0, 0.5);
+#endif
 	gtk_size_group_add_widget(ped->size_group, ee->title_label);
 	gtk_box_pack_start(GTK_BOX(ee->box), ee->title_label, FALSE, TRUE, 0);
 	gtk_widget_show(ee->title_label);
@@ -151,8 +155,12 @@ static void bar_pane_exif_setup_entry_box(PaneExifData *ped, ExifEntry *ee)
 //		gtk_label_set_width_chars(GTK_LABEL(ee->value_widget), 20);
 		gtk_label_set_ellipsize(GTK_LABEL(ee->value_widget), PANGO_ELLIPSIZE_END);
 //		gtk_widget_set_size_request(ee->value_widget, 100, -1);
+#if GTK_CHECK_VERSION(3,16,0)
 		gtk_label_set_xalign(GTK_LABEL(ee->value_widget), 0.0);
 		gtk_label_set_yalign(GTK_LABEL(ee->value_widget), 0.5);
+#else
+		gtk_misc_set_alignment(GTK_MISC(ee->value_widget), 0.0, 0.5);
+#endif
 		}
 
 	gtk_box_pack_start(GTK_BOX(ee->box), ee->value_widget, TRUE, TRUE, 1);

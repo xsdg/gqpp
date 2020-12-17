@@ -98,8 +98,12 @@ static void generic_dialog_add_image(GenericDialog *gd, GtkWidget *box,
 
 		head = pref_label_new(vbox, header1);
 		pref_label_bold(head, TRUE, FALSE);
+#if GTK_CHECK_VERSION(3,16,0)
 		gtk_label_set_xalign(GTK_LABEL(head), 0.0);
 		gtk_label_set_yalign(GTK_LABEL(head), 0.5);
+#else
+		gtk_misc_set_alignment(GTK_MISC(head), 0.0, 0.5);
+#endif
 		}
 
 	imd = image_new(FALSE);
@@ -131,8 +135,12 @@ static void generic_dialog_add_image(GenericDialog *gd, GtkWidget *box,
 
 			head = pref_label_new(vbox, header2);
 			pref_label_bold(head, TRUE, FALSE);
+#if GTK_CHECK_VERSION(3,16,0)
 			gtk_label_set_xalign(GTK_LABEL(head), 0.0);
 			gtk_label_set_yalign(GTK_LABEL(head), 0.5);
+#else
+			gtk_misc_set_alignment(GTK_MISC(head), 0.0, 0.5);
+#endif
 			}
 
 		imd = image_new(FALSE);
@@ -1493,8 +1501,12 @@ static void box_append_safe_delete_status(GenericDialog *gd)
 	label = pref_label_new(gd->vbox, buf);
 	g_free(buf);
 
+#if GTK_CHECK_VERSION(3,16,0)
 	gtk_label_set_xalign(GTK_LABEL(label), 1.0);
 	gtk_label_set_yalign(GTK_LABEL(label), 0.5);
+#else
+	gtk_misc_set_alignment(GTK_MISC(label), 1.0, 0.5);
+#endif
 	gtk_widget_set_sensitive(label, FALSE);
 }
 
@@ -1595,8 +1607,12 @@ static void file_util_dialog_init_dest_folder(UtilityData *ud)
 	generic_dialog_add_message(GENERIC_DIALOG(fdlg), NULL, ud->messages.question, NULL, FALSE);
 
 	label = pref_label_new(GENERIC_DIALOG(fdlg)->vbox, _("Choose the destination folder."));
+#if GTK_CHECK_VERSION(3,16,0)
 	gtk_label_set_xalign(GTK_LABEL(label), 0.0);
 	gtk_label_set_yalign(GTK_LABEL(label), 0.5);
+#else
+	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+#endif
 	pref_spacer(GENERIC_DIALOG(fdlg)->vbox, 0);
 
 	if (options->with_rename)
@@ -2109,8 +2125,12 @@ static void file_util_write_metadata_details_dialog(UtilityData *ud, FileData *f
 
 
 		label = gtk_label_new(title_f);
+#if GTK_CHECK_VERSION(3,16,0)
 		gtk_label_set_xalign(GTK_LABEL(label), 1.0);
 		gtk_label_set_yalign(GTK_LABEL(label), 0.0);
+#else
+		gtk_misc_set_alignment(GTK_MISC(label), 1.0, 0.0);
+#endif
 		pref_label_bold(label, TRUE, FALSE);
 		gtk_table_attach(GTK_TABLE(table), label,
 				 0, 1, i, i + 1,
@@ -2120,8 +2140,12 @@ static void file_util_write_metadata_details_dialog(UtilityData *ud, FileData *f
 
 		label = gtk_label_new(value);
 
+#if GTK_CHECK_VERSION(3,16,0)
 		gtk_label_set_xalign(GTK_LABEL(label), 0.0);
 		gtk_label_set_yalign(GTK_LABEL(label), 0.0);
+#else
+		gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.0);
+#endif
 		gtk_label_set_line_wrap(GTK_LABEL(label), TRUE);
 		gtk_table_attach(GTK_TABLE(table), label,
 				 1, 2, i, i + 1,

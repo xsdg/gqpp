@@ -403,8 +403,12 @@ GtkWidget *advanced_exif_new(void)
 	ew->label_file_name = gtk_label_new("");
 	gtk_label_set_ellipsize(GTK_LABEL(ew->label_file_name), PANGO_ELLIPSIZE_START);
 	gtk_label_set_selectable(GTK_LABEL(ew->label_file_name), TRUE);
+#if GTK_CHECK_VERSION(3,16,0)
 	gtk_label_set_xalign(GTK_LABEL(ew->label_file_name), 0.5);
 	gtk_label_set_yalign(GTK_LABEL(ew->label_file_name), 0.5);
+#else
+	gtk_misc_set_alignment(GTK_MISC(ew->label_file_name), 0.5, 0.5);
+#endif
 	gtk_box_pack_start(GTK_BOX(box), ew->label_file_name, TRUE, TRUE, 0);
 	gtk_widget_show(ew->label_file_name);
 
