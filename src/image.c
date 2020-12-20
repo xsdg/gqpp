@@ -1404,7 +1404,7 @@ void image_change_pixbuf(ImageWindow *imd, GdkPixbuf *pixbuf, gdouble zoom, gboo
 
 	/* Color correction takes too much time for an animated gif */
 	lw = layout_find_by_image(imd);
-	if (imd->color_profile_enable && !lw->animation)
+	if (imd->color_profile_enable && lw && !lw->animation)
 		{
 		image_post_process_color(imd, 0, FALSE); /* TODO: error handling */
 		}
