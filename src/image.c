@@ -1352,6 +1352,7 @@ GdkPixbuf *image_get_pixbuf(ImageWindow *imd)
 
 void image_change_pixbuf(ImageWindow *imd, GdkPixbuf *pixbuf, gdouble zoom, gboolean lazy)
 {
+	LayoutWindow *lw;
 	StereoPixbufData stereo_data = STEREO_PIXBUF_DEFAULT;
 	/* read_exif and similar functions can actually notice that the file has changed and trigger
 	   a notification that removes the pixbuf from cache and unrefs it. Therefore we must ref it
@@ -1401,7 +1402,9 @@ void image_change_pixbuf(ImageWindow *imd, GdkPixbuf *pixbuf, gdouble zoom, gboo
 
 	if (pixbuf) g_object_unref(pixbuf);
 
-	if (imd->color_profile_enable)
+	/* Color correction takes too much time for an animated gif */
+	lw = layout_find_by_image(imd);
+	if (imd->color_profile_enable && !lw->animation)
 		{
 		image_post_process_color(imd, 0, FALSE); /* TODO: error handling */
 		}
