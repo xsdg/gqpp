@@ -905,11 +905,6 @@ gint main(gint argc, gchar *argv[])
 #if !GLIB_CHECK_VERSION(2,32,0)
 	g_thread_init(NULL);
 #endif
-#ifdef HAVE_CLUTTER
-/* FIXME: see below */
-	putenv("LIBGL_ALWAYS_INDIRECT=1");
-	XInitThreads();
-#endif
 	gdk_threads_init();
 	gdk_threads_enter();
 
