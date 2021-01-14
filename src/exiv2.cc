@@ -977,7 +977,7 @@ gint exif_update_metadata(ExifData *exif, const gchar *key, const GList *values)
 	    TRUE || /* no conversion support */
 #endif
 	    !values || /* deleting item */
-	    !ret  /* writing to the explicitely given xmp tag failed */
+	    !ret  /* writing to the explicitly given xmp tag failed */
 	    )
 		{
 		/* deleted xmp metadatum can't be converted, we have to delete also the corresponding legacy tag */

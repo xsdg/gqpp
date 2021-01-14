@@ -2423,7 +2423,7 @@ Wed Mar 10 03:36:24 2004  John Ellis  <johne@verizon.net>
 Wed Mar 10 01:50:14 2004  John Ellis  <johne@verizon.net>
 
 	* cache.[ch], gqview.h: Changed cache get and find functions to take
-	a CacheType, so that metadata location can be seperate from thumbnails.
+	a CacheType, so that metadata location can be separate from thumbnails.
 	* cache_maint.c: Add support for meta cache to maintenance.
 	* image.c, preferences.c, rcfile.c: Remove GDK_PIXBUF_TILE_BROKEN hack,
 	as it has long been fixed.
@@ -3255,7 +3255,7 @@ Sun Nov  9 06:41:48 2003  John Ellis  <johne@bellatlantic.net>
 Sat Nov  8 20:51:37 2003  John Ellis  <johne@bellatlantic.net>
 
 	* bar_exif.c: Added advanced view for exif data.
-	* exif.c: Fix capitalization, mark relevent (standard view) strings for
+	* exif.c: Fix capitalization, mark relevant (standard view) strings for
 	translation.
 	* info.c: Use a paned widget to allow expansion of properties window
 	without expanding image view size.
@@ -3775,7 +3775,7 @@ Tue Feb  4 07:32:43 2003  John Ellis  <johne@bellatlantic.net>
 	layout_util.c, view_dir_list.c, view_dir_tree.c, view_file_icon.c,
 	view_file_list.c: Hooked up context menu key, to show right click
 	menus, F10 will also work for the collection, dupes, and image windows.
-	Also now explicitely destroy pop up menus when the underlying view is
+	Also now explicitly destroy pop up menus when the underlying view is
 	destroyed, since the menu does not go away when menu items are toggled
 	with the spacebar (no selection done is sent in this case).
 	* ui_menu.[ch](popup_position_clamp): Given a GtkMenu, ensure the
@@ -5014,7 +5014,7 @@ Thu Oct 25 14:10:47 2001  John Ellis  <johne@bellatlantic.net>
 
 Fri Oct 19 20:09:44 2001  John Ellis  <johne@bellatlantic.net>
 
-	* ui_clist_edit.c: Explicitely set the focus for the text entry to
+	* ui_clist_edit.c: Explicitly set the focus for the text entry to
 	fix missing cursor.
 	* README: Updated.
 	* configure.in: Release 0.12.0
@@ -5324,7 +5324,7 @@ Thu Feb  8 18:16:18 2001  John Ellis  <johne@bellatlantic.net>
 
 Thu Feb  8 17:46:00 2001  John Ellis  <johne@bellatlantic.net>
 
-	* image.c (image_change_from_image): Copy all relevent data from
+	* image.c (image_change_from_image): Copy all relevant data from
 	source, now fullscreen toggle while loading an image works. This is
 	really a move function, it moves most data from source to dest.
 	Probably should add a copy function that copies pixbuf, or loads from
@@ -5355,7 +5355,7 @@ Mon Feb  5 17:03:27 2001  John Ellis  <johne@bellatlantic.net>
 
 	* dupe.c: Added keyboard shortcuts for the duplicates window.
 	* image.c (image_change_complete): Call the update function
-	explicitely if sync if FALSE.
+	explicitly if sync if FALSE.
 
 Mon Feb  5 14:06:07 2001  John Ellis  <johne@bellatlantic.net>
 
@@ -6488,7 +6488,7 @@ Sat Apr 10 19:01:33 1999  John Ellis  <johne@bellatlantic.net>
   - Pressing the [ESC] key will now stop loading of thumbnails.
   - [CTRL] - M is now moves files, purging old thumbnails is now [CTRL] - T.
   - Add save button to config dialog.
-  - New configuration tab: image, moved relevent options there.
+  - New configuration tab: image, moved relevant options there.
 
 0.4.1  (9-11-98)
   > Scrollbars removed, now you can pan the image by pressing and dragging the

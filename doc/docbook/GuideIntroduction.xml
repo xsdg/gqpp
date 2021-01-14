@@ -5,7 +5,7 @@
   <para>Geeqie is an image manager, with complete copy, move, rename, and delete functions available at the press of a button.</para>
   <para>Extensive image collections can be easily handled using a combination of Geeqie's flexible Keyword facility and powerful Image searches.</para>
   <para>Image collections can be refined with a duplicate image finder.</para>
-  <para>Geeqie is ideal for making presentations. A slide-show feature is built in, and Geeqie can be remotely controlled either via command line scripts or an infra-red device. Information such as f-stop, shutter speed and descriptive text can be overlayed onto the image display.</para>
+  <para>Geeqie is ideal for making presentations. A slide-show feature is built in, and Geeqie can be remotely controlled either via command line scripts or an infra-red device. Information such as f-stop, shutter speed and descriptive text can be overlaid onto the image display.</para>
   <para>There is no need to import images into Geeqie - simply point Geeqie to a folder containing images, and your data will be displayed.</para>
   <para>Geeqie is an image viewer, not an image editor. However, Geeqie can be configured to call external image editors such as the Gimp, resulting in a very powerful combination.</para>
   <para />

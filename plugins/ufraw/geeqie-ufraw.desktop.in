@@ -5,7 +5,7 @@ _Name=UFRaw Batch
 _Comment=Search for new RAW files or modified UFRaw ID files
 
 # call the helper script on each file individually 
-# - this allows a better controll over processing
+# - this allows a better control over processing
 Exec=geeqie-ufraw %f
 
 # show only if ufraw is installed

@@ -69,9 +69,9 @@
                 <guilabel>Use Geeqie thumbnail style and cache</guilabel>
               </term>
               <listitem>
-                <para>Thumbnails are stored in a folder hierachy that mirrors the location of the source images. Thumbnails have the same name as the original appended by the file extension .png.</para>
+                <para>Thumbnails are stored in a folder hierarchy that mirrors the location of the source images. Thumbnails have the same name as the original appended by the file extension .png.</para>
                 <para>
-                  The root of the hierachy is:
+                  The root of the hierarchy is:
                   <para>
                     <programlisting>$XDG_CACHE_HOME/geeqie/thumbnails/</programlisting>
                     or, if $XDG_CACHE_HOME is not defined:
