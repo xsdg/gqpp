@@ -177,7 +177,7 @@
           <para />
           If this option is checked, Geeqie will automatically read the required metatada in the background as soon as a folder is opened. This will reduce the amount of time you have to wait until the sort is completed.
           <para />
-          If you do not use these sort otions, leave this option unchecked.
+          If you do not use these sort options, leave this option unchecked.
         </para>
       </listitem>
     </itemizedlist>

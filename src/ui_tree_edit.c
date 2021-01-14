@@ -174,7 +174,7 @@ static gboolean tree_edit_by_path_idle_cb(gpointer data)
 
 	/* grab it */
 	gtk_widget_grab_focus(ted->entry);
-	/* explicitely set the focus flag for the entry, for some reason on popup windows this
+	/* explicitly set the focus flag for the entry, for some reason on popup windows this
 	 * is not set, and causes no edit cursor to appear ( popups not allowed focus? )
 	 */
 	gtk_widget_grab_focus(ted->entry);

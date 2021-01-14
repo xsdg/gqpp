@@ -21,7 +21,7 @@
     
     You can pan the view as you pan an image in normal view mode, using left mouse button and drag.
   </para>
-  <para>A primary mouse button click on any image will display informations about the image. Secondary mouse button will show a context menu.</para>
+  <para>A primary mouse button click on any image will display information about the image. Secondary mouse button will show a context menu.</para>
   <para>
     The
     <link linkend="GuideReferenceKeyboardShortcuts" endterm="titleGuideReferenceKeyboardShortcuts" />

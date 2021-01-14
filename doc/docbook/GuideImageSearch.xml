@@ -17,9 +17,9 @@
         <link linkend="CreateSimFiles">Create file similarity cache</link>
         from the top of the tree will generate the similarity data for all images.
       </note>
-      <para>Similarity data are stored in a folder hierachy that mirrors the location of the source images. The data have the same name as the original appended by the file extension .sim.</para>
+      <para>Similarity data are stored in a folder hierarchy that mirrors the location of the source images. The data have the same name as the original appended by the file extension .sim.</para>
       <para>
-        The root of the hierachy is:
+        The root of the hierarchy is:
         <para>
           <programlisting>$XDG_CACHE_HOME/geeqie/thumbnails/</programlisting>
           or, if $XDG_CACHE_HOME is not defined:

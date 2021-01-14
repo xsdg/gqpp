@@ -117,7 +117,7 @@
     <para>
       Right-click on the left-hand box allows the selected keywords to be written to the currently selected files - the keywords may be either added to the existing contents, or entirely replace the existing content.
       <warning>
-        <para>Keyword completion is used when selecting keywords. If the selected area includes part of a keyword, the selection will autmatically be expanded to cover the whole keyword. If no text is selected, all keywords will be used.</para>
+        <para>Keyword completion is used when selecting keywords. If the selected area includes part of a keyword, the selection will automatically be expanded to cover the whole keyword. If no text is selected, all keywords will be used.</para>
       </warning>
     </para>
     <para>
@@ -220,7 +220,7 @@
           </row>
           <row>
             <entry>formatted.Camera</entry>
-            <entry>Camera and sofware name</entry>
+            <entry>Camera and software name</entry>
           </row>
           <row>
             <entry>formatted.DateTime</entry>
@@ -465,7 +465,7 @@
         <para>
           Map Centering
           <para />
-          If an internet URL containg a valid latitude and longitude is dropped on the map, the map will be re-centered on that location. The zoom level will not change. Refer to
+          If an internet URL containing a valid latitude and longitude is dropped on the map, the map will be re-centered on that location. The zoom level will not change. Refer to
           <link linkend="GuideReferenceDecodeLatLong">Decoding Latitude and Longitude</link>
           .
         </para>

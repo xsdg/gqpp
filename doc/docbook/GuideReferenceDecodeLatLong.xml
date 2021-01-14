@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <section id="GuideReferenceDecodeLatLong">
   <title id="titleGuideReferenceDecodeLatLong">Decoding Latitude and Longitude</title>
-  <para>This section is relevent to geocode searches and the map display of Geeqie.</para>
+  <para>This section is relevant to geocode searches and the map display of Geeqie.</para>
   <para>
     The result of some internet or other searches for placenames can contain a latitude and longitude embedded in a text string. For example an openstreetmap.org search can give a URL such as:
     <para />

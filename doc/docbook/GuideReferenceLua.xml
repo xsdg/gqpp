@@ -56,7 +56,7 @@
             </row>
             <row>
               <entry>Image:get_extension</entry>
-              <entry>The file extension including preceeding dot</entry>
+              <entry>The file extension including preceding dot</entry>
             </row>
             <row>
               <entry>Image:get_date()</entry>
