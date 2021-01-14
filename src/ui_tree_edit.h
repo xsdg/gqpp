@@ -57,7 +57,7 @@ void tree_view_get_cell_clamped(GtkTreeView *widget, GtkTreePath *tpath, gint co
 			       gint *x, gint *y, gint *width, gint *height);
 
 /* return 0 = row visible, -1 = row is above, 1 = row is below visible region
- * if fully_visible is TRUE, the bahavior changes to return -1/1 if _any_ part of the cell is out of view */
+ * if fully_visible is TRUE, the behavior changes to return -1/1 if _any_ part of the cell is out of view */
 gint tree_view_row_get_visibility(GtkTreeView *widget, GtkTreeIter *iter, gboolean fully_visible);
 
 /* scrolls to make row visible, if necessary

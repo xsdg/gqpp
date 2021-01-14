@@ -202,7 +202,7 @@ static void slideshow_delay_seconds_cb(GtkWidget *spin, gpointer data)
 
 /*
  *-----------------------------------------------------------------------------
- * sync progam to config window routine (private)
+ * sync program to config window routine (private)
  *-----------------------------------------------------------------------------
  */
 

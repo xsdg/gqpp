@@ -340,7 +340,7 @@ static gboolean image_loader_emit_size_cb(gpointer data)
 }
 
 
-/* DONE and ERROR are emited only once, thus they can have normal priority
+/* DONE and ERROR are emitted only once, thus they can have normal priority
    PERCENT and AREA_READY should be processed ASAP
 */
 
@@ -1158,7 +1158,7 @@ static void image_loader_thread_run(gpointer data, gpointer user_data)
 
 	if (il->idle_priority > G_PRIORITY_DEFAULT_IDLE)
 		{
-		/* low prio, wait untill high prio tasks finishes */
+		/* low prio, wait until high prio tasks finishes */
 		image_loader_thread_wait_high();
 		}
 	else
@@ -1185,7 +1185,7 @@ static void image_loader_thread_run(gpointer data, gpointer user_data)
 		{
 		if (il->idle_priority > G_PRIORITY_DEFAULT_IDLE)
 			{
-			/* low prio, wait untill high prio tasks finishes */
+			/* low prio, wait until high prio tasks finishes */
 			image_loader_thread_wait_high();
 			}
 		cont = image_loader_continue(il);

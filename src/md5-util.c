@@ -91,7 +91,7 @@ md5_init(MD5Context *ctx)
 
 /**
  * md5_update: add a buffer to md5 hash computation
- * @ctx: context object used for md5 computaion
+ * @ctx: context object used for md5 computation
  * @buf: buffer to add
  * @len: buffer length
  *
@@ -151,11 +151,11 @@ md5_update(MD5Context *ctx, const guchar *buf, guint32 len)
  * 1 0* (64-bit count of bits processed, MSB-first)
  */
 /**
- * md5_final: copy the final md5 hash to a bufer
+ * md5_final: copy the final md5 hash to a buffer
  * @digest: 16 bytes buffer
  * @ctx: context containing the calculated md5
  *
- * copy the final md5 hash to a bufer
+ * copy the final md5 hash to a buffer
  **/
 void
 md5_final(MD5Context *ctx, guchar digest[16])

@@ -510,7 +510,7 @@ void thumb_notify_cb(FileData *fd, NotifyType type, gpointer data)
  *
  * Note: Code has been modified to fit the style of the other code, and to use
  *       a few more glib-isms.
- * 08-28-2000: Updated to return a gdk_pixbuf, Imlib is dieing a death here.
+ * 08-28-2000: Updated to return a gdk_pixbuf, Imlib is dying a death here.
  */
 
 #define XV_BUFFER 2048

@@ -298,7 +298,7 @@ gboolean read_bool_option(const gchar *option, const gchar *label, const gchar *
 
 /*
  *-----------------------------------------------------------------------------
- * write fuctions for elements (private)
+ * write functions for elements (private)
  *-----------------------------------------------------------------------------
  */
 

@@ -2151,8 +2151,8 @@ void layout_image_activate(LayoutWindow *lw, gint i, gboolean force)
 
 	image_attach_window(lw->image, lw->window, NULL, GQ_APPNAME, FALSE);
 
-	/* do not hilight selected image in SPLIT_NONE */
-	/* maybe the image should be selected always and hilight should be controled by
+	/* do not highlight selected image in SPLIT_NONE */
+	/* maybe the image should be selected always and highlight should be controlled by
 	   another image option */
 	if (lw->split_mode != SPLIT_NONE)
 		image_select(lw->split_images[i], TRUE);

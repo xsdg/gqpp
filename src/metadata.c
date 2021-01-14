@@ -670,7 +670,7 @@ GList *metadata_read_list(FileData *fd, const gchar *key, MetadataFormat format)
 	const GList *cache_entry;
 	if (!fd) return NULL;
 
-	/* unwritten data overide everything */
+	/* unwritten data override everything */
 	if (fd->modified_xmp && format == METADATA_PLAIN)
 		{
 	        list = g_hash_table_lookup(fd->modified_xmp, key);

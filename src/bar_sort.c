@@ -764,7 +764,7 @@ GtkWidget *bar_sort_new_from_config(LayoutWindow *lw, const gchar **attribute_na
  * @param attribute_values 
  * 
  * Called from rcfile when processing geeqierc.xml on start-up.
- * It is neccesary to set the bar_sort_enabled flag because
+ * It is necessary to set the bar_sort_enabled flag because
  * the sort manager and desktop files are set up in the idle loop, and
  * setup is not yet completed during initialisation.
  * The flag is checked in layout_editors_reload_idle_cb.

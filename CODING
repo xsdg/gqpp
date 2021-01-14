@@ -27,7 +27,7 @@ GPL header, in every file, like this:
  * \author Author1
  * \author Author2
  *
- * Optionaly detailed description of this file
+ * Optionally detailed description of this file
  * on more lines.
  */
 
@@ -162,7 +162,7 @@ Use spaces around every operator (except ".", "->", "++" and "--");
 As you can see above, parentheses are closed to inside, i.e. " (blah blah) "
     In "function(<var>)" there are no space before '('.
 You MAY use more tabs/spaces than you OUGHT TO (according to this CodingStyle), if
-        it makes your code nicer in being verticaly indented.
+        it makes your code nicer in being vertically indented.
 Variables declarations should be followed by a blank line and should always be
 at the start of the block.
 

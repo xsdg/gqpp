@@ -1016,7 +1016,7 @@ GtkWidget *bar_pane_gps_new_from_config(const gchar **attribute_names, const gch
 	gdouble latitude;
 	gdouble longitude;
 	/* Latitude and longitude are stored in the config file as an integer of
-	 * (actual value * 1,000,000). There is no READ_DOUBLE utilty function.
+	 * (actual value * 1,000,000). There is no READ_DOUBLE utility function.
 	 */
 	gint int_latitude = 54000000;
 	gint int_longitude = -4000000;

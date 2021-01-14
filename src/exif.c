@@ -29,7 +29,7 @@
  *     Additional tag formats should be added to the proper
  *     location in ExifKnownMarkersList[].
  *
- *     Human readable ouput (that needs additional processing of data to
+ *     Human readable output (that needs additional processing of data to
  *     be useable) can be defined by adding a key to ExifFormattedList[],
  *     then handling that tag in the function exif_get_formatted_by_key().
  *     The human readable formatted keys must begin with the character 'f'.

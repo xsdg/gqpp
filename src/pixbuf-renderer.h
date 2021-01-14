@@ -132,7 +132,7 @@ struct _PixbufRenderer
 	gdouble norm_center_x;	/* coordinates of viewport center in the image, in range 0.0 - 1.0 */
 	gdouble norm_center_y;  /* these coordinates are used for PR_SCROLL_RESET_NOCHANGE and should be preserved over periods with NULL pixbuf */
 
-	gdouble subpixel_x_scroll; /* subpixel scroll alignment, used to prevent acumulation of rounding errors */
+	gdouble subpixel_x_scroll; /* subpixel scroll alignment, used to prevent accumulation of rounding errors */
 	gdouble subpixel_y_scroll;
 
 	gdouble zoom_min;

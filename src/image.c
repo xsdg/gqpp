@@ -1816,7 +1816,7 @@ static void image_notify_cb(FileData *fd, NotifyType type, gpointer data)
 	if ((type & NOTIFY_REREAD) && fd == imd->image_fd)
 		{
 		/* there is no need to reload on NOTIFY_CHANGE,
-		   modified files should be detacted anyway and NOTIFY_REREAD should be recieved
+		   modified files should be detacted anyway and NOTIFY_REREAD should be received
 		   or they are removed from the filelist completely on "move" and "delete"
 		*/
 		DEBUG_1("Notify image: %s %04x", fd->path, type);
