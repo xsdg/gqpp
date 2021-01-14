@@ -2027,7 +2027,7 @@ gchar *file_data_sc_list_to_string(FileData *fd)
    COPY
    MOVE   - path is changed, name may be changed too
    RENAME - path remains unchanged, name is changed
-            extension should remain (FIXME should we allow editing extension? it will make problems wth grouping)
+            extension should remain (FIXME should we allow editing extension? it will make problems with grouping)
 	    sidecar names are changed too, extensions are not changed
    DELETE
    UPDATE - file size, date or grouping has been changed
@@ -3090,7 +3090,7 @@ GList *file_data_process_groups_in_selection(GList *list, gboolean ungroup, GLis
 		}
 
 	/* remove sidecars from the list,
-	   they can be still acessed via main_fd->sidecar_files */
+	   they can be still accessed via main_fd->sidecar_files */
 	work = list;
 	while (work)
 		{

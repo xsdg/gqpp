@@ -273,7 +273,7 @@ gchar *image_osd_mkinfo(const gchar *str, FileData *fd, GHashTable *vars)
 		if (!end)
 			break;
 
-		/* Search for optionnal modifiers
+		/* Search for optional modifiers
 		 * %name:99:extra% -> name = "name", limit=99, extra = "extra"
 		 */
 		for (p = start + 1; p < end; p++)

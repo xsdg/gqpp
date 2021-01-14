@@ -19,7 +19,7 @@ PREV               - Go to previous image
 RIGHT [int]        - Move "camera" right by the specified amount. Default=1
 ROTATE_90          - Rotate image 90 degrees clockwise.	
 ROTATE_90_CC       - Rotate image 90 degrees counter-clockwise.
-SET_INV_ZOOM [int] - Zoom to 1/Nx. Deafult=1x
+SET_INV_ZOOM [int] - Zoom to 1/Nx. Default=1x
 SET_ZOOM [int]     - Zoom to Nx. Default=1x
 UP [int]           - Move "camera" up by the specified amount. Default=1
 ZOOM_IN [int]      - Zoom in. Value specifies the amount of zoom.

@@ -392,7 +392,7 @@ gboolean is_collection(const gchar *param)
 
 /**
  * @brief Creates a text list of the image paths of the contents of a Collection
- * @param[in] name The name of the collection, with or wihout extension
+ * @param[in] name The name of the collection, with or without extension
  * @param[inout] contents A GString to which the image paths are appended
  * 
  * 
@@ -427,7 +427,7 @@ void collection_contents(const gchar *name, GString **contents)
 
 /**
  * @brief Returns a list of filedatas of the contents of a Collection
- * @param[in] name The name of the collection, with or wihout extension
+ * @param[in] name The name of the collection, with or without extension
  * 
  * 
  */

@@ -1740,7 +1740,7 @@ static void search_file_load_process(SearchData *sd, CacheData *cd)
 
 	pixbuf = image_loader_get_pixbuf(sd->img_loader);
 
-	/* Used to determnine if image is broken
+	/* Used to determine if image is broken
 	 */
 	if (cd && !pixbuf)
 		{

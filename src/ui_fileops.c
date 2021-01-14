@@ -178,7 +178,7 @@ gchar *path_from_utf8(const gchar *utf8)
 		}
 	if (!path)
 		{
-		/* if invalid UTF-8, text probaby still in original form, so just copy it */
+		/* if invalid UTF-8, text probably still in original form, so just copy it */
 		path = g_strdup(utf8);
 		}
 
@@ -887,7 +887,7 @@ void parse_out_relatives(gchar *path)
 		{
 		if (path[s] == G_DIR_SEPARATOR && path[s+1] == '.')
 			{
-			/* /. occurence, let's see more */
+			/* /. occurrence, let's see more */
 			gint p = s + 2;
 
 			if (path[p] == G_DIR_SEPARATOR || path[p] == '\0')

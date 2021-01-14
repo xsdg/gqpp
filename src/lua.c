@@ -212,7 +212,7 @@ static int lua_exif_get_datum(lua_State *L)
 void lua_init(void)
 {
 	L = luaL_newstate();
-	luaL_openlibs(L); /* Open all libraries for lua programms */
+	luaL_openlibs(L); /* Open all libraries for lua programs */
 
 	/* Now create custom methodes to do something */
 	static const luaL_Reg meta_methods[] = {

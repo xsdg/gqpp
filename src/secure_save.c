@@ -321,7 +321,7 @@ free:
 
 
 /** fputs() wrapper, set ssi->err to errno on error. If ssi->err is set when
- * called, it immediatly returns EOF.
+ * called, it immediately returns EOF.
  */
 gint
 secure_fputs(SecureSaveInfo *ssi, const gchar *s)
@@ -341,7 +341,7 @@ secure_fputs(SecureSaveInfo *ssi, const gchar *s)
 
 
 /** fputc() wrapper, set ssi->err to errno on error. If ssi->err is set when
- * called, it immediatly returns EOF.
+ * called, it immediately returns EOF.
  */
 gint
 secure_fputc(SecureSaveInfo *ssi, gint c)
@@ -360,7 +360,7 @@ secure_fputc(SecureSaveInfo *ssi, gint c)
 }
 
 /** fprintf() wrapper, set ssi->err to errno on error and return a negative
- * value. If ssi->err is set when called, it immediatly returns -1.
+ * value. If ssi->err is set when called, it immediately returns -1.
  */
 gint
 secure_fprintf(SecureSaveInfo *ssi, const gchar *format, ...)
@@ -378,7 +378,7 @@ secure_fprintf(SecureSaveInfo *ssi, const gchar *format, ...)
 }
 
 /** fwrite() wrapper, set ssi->err to errno on error and return a value less than
- * the number of elements to write. If ssi->err is set when called, it immediatly returns 0.
+ * the number of elements to write. If ssi->err is set when called, it immediately returns 0.
  */
 size_t
 secure_fwrite(gconstpointer ptr, size_t size, size_t nmemb, SecureSaveInfo *ssi)

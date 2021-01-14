@@ -289,7 +289,7 @@ Machine: $MACH" 2>/dev/null
 	exit
 fi
 
-# Parse the comand line
+# Parse the command line
 OPTS=$(getopt -o vhc:t:b:d: --long version,help,commit:,tag:,back:,debug: -- "$@")
 eval set -- "$OPTS"
 

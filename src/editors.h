@@ -102,7 +102,7 @@ It is a good place to call file_data_change_info_free().
 
 ed - pointer that can be used for editor_resume/editor_skip or NULL if all files were already processed
 flags - flags above
-list - list of procesed FileData structures, typically single file or whole list passed to start_editor_*
+list - list of processed FileData structures, typically single file or whole list passed to start_editor_*
 data - generic pointer
 */
 typedef gint (*EditorCallback) (gpointer ed, EditorFlags flags, GList *list, gpointer data);
