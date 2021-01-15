@@ -38,6 +38,7 @@
 #include "slideshow.h"
 #include "ui_fileops.h"
 #include "rcfile.h"
+#include "view_file.h"
 
 #include <sys/socket.h>
 #include <sys/un.h>
@@ -72,6 +73,8 @@ struct _RemoteClient {
 typedef struct _RemoteData RemoteData;
 struct _RemoteData {
 	CollectionData *command_collection;
+	GList *file_list;
+	gboolean single_dir;
 };
 
 /* To enable file names containing newlines to be processed correctly,
@@ -1221,39 +1224,87 @@ static void gr_list_clear(const gchar *text, GIOChannel *channel, gpointer data)
 {
 	RemoteData *remote_data = data;
 
-	if (remote_data->command_collection)
-		{
-		collection_unref(remote_data->command_collection);
-		remote_data->command_collection = NULL;
-		}
+	remote_data->command_collection = NULL;
+	remote_data->file_list = NULL;
+	remote_data->single_dir = TRUE;
 }
 
 static void gr_list_add(const gchar *text, GIOChannel *channel, gpointer data)
 {
 	RemoteData *remote_data = data;
 	gboolean new = TRUE;
+	gchar *path = NULL;
+	FileData *fd;
+	FileData *first;
 
-	if (!remote_data->command_collection)
+	/* If there is a files list on the command line
+	 * check if they are all in the same folder
+	 */
+	if (remote_data->single_dir)
 		{
+		GList *work;
+		work = remote_data->file_list;
+		while (work && remote_data->single_dir)
+			{
+			gchar *dirname;
+			dirname = g_path_get_dirname(((FileData *)work->data)->path);
+			if (!path)
+				{
+				path = g_strdup(dirname);
+				}
+			else
+				{
+				if (g_strcmp0(path, dirname) != 0)
+					{
+					remote_data->single_dir = FALSE;
+					}
+				}
+			g_free(dirname);
+			work = work->next;
+			}
+		g_free(path);
+		}
+
+	gchar *pathname = g_path_get_dirname(text);
+	layout_set_path(lw_id, pathname);
+	g_free(pathname);
+
+	fd = file_data_new_simple(text);
+	remote_data->file_list = g_list_append(remote_data->file_list, fd);
+	file_data_unref(fd);
+
+	vf_select_none(lw_id->vf);
+	remote_data->file_list = g_list_reverse(remote_data->file_list);
+
+	layout_select_list(lw_id, remote_data->file_list);
+	layout_refresh(lw_id);
+	first = (FileData *)(g_list_first(vf_selection_get_list(lw_id->vf))->data);
+	layout_set_fd(lw_id, first);
+
 		CollectionData *cd;
+		CollectWindow *cw;
 
-		cd = collection_new("");
+	if (!remote_data->command_collection && !remote_data->single_dir)
+		{
+		cw = collection_window_new(NULL);
+		cd = cw->cd;
 
-		g_free(cd->path);
-		cd->path = NULL;
-		g_free(cd->name);
-		cd->name = g_strdup(_("Command line"));
+		collection_path_changed(cd);
 
 		remote_data->command_collection = cd;
 		}
-	else
+	else if (!remote_data->single_dir)
 		{
 		new = (!collection_get_first(remote_data->command_collection));
 		}
 
-	if (collection_add(remote_data->command_collection, file_data_new_group(text), FALSE) && new)
+	if (!remote_data->single_dir)
 		{
 		layout_image_set_collection(lw_id, remote_data->command_collection, collection_get_first(remote_data->command_collection));
+		if (collection_add(remote_data->command_collection, file_data_new_group(text), FALSE) && new)
+			{
+			layout_image_set_collection(lw_id, remote_data->command_collection, collection_get_first(remote_data->command_collection));
+			}
 		}
 }
 
@@ -1495,7 +1546,7 @@ GList *remote_build_list(GList *list, gint argc, gchar *argv[], GList **errors)
  * \param arg_exec Binary (argv0)
  * \param remote_list Evaluated and recognized remote commands
  * \param path The current path
- * \param cmd_list List of all non collections in Path
+ * \param cmd_list List of all non collections in Path (gchar *path)
  * \param collection_list List of all collections in argv
  */
 void remote_control(const gchar *arg_exec, GList *remote_list, const gchar *path,
@@ -1608,15 +1659,12 @@ void remote_control(const gchar *arg_exec, GList *remote_list, const gchar *path
 		work = cmd_list;
 		while (work)
 			{
-			FileData *fd;
 			gchar *text;
 
-			fd = work->data;
-			work = work->next;
-
-			text = g_strconcat(prefix, fd->path, NULL);
+			text = g_strconcat(prefix, work->data, NULL);
 			remote_client_send(rc, text);
 			g_free(text);
+			work = work->next;
 
 			sent = TRUE;
 			}

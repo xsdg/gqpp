@@ -1086,6 +1086,16 @@ void layout_select_invert(LayoutWindow *lw)
 	if (lw->vf) vf_select_invert(lw->vf);
 }
 
+void layout_select_list(LayoutWindow *lw, GList *list)
+{
+	if (!layout_valid(&lw)) return;
+
+	if (lw->vf)
+		{
+		vf_select_list(lw->vf, list);
+		}
+}
+
 void layout_mark_to_selection(LayoutWindow *lw, gint mark, MarkToSelectionMode mode)
 {
 	if (!layout_valid(&lw)) return;

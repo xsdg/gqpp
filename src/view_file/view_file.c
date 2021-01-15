@@ -234,6 +234,15 @@ void vf_select_by_fd(ViewFile *vf, FileData *fd)
 	}
 }
 
+void vf_select_list(ViewFile *vf, GList *list)
+{
+	switch (vf->type)
+	{
+	case FILEVIEW_LIST: vflist_select_list(vf, list); break;
+	case FILEVIEW_ICON: vficon_select_list(vf, list); break;
+	}
+}
+
 void vf_mark_to_selection(ViewFile *vf, gint mark, MarkToSelectionMode mode)
 {
 	switch (vf->type)

@@ -1673,6 +1673,31 @@ void vflist_select_by_fd(ViewFile *vf, FileData *fd)
 		}
 }
 
+void vflist_select_list(ViewFile *vf, GList *list)
+{
+	GtkTreeIter iter;
+	GList *work;
+
+	work = list;
+
+	while (work)
+		{
+		FileData *fd;
+
+		fd = work->data;
+
+		if (vflist_find_row(vf, fd, &iter) < 0) return;
+		if (!vflist_row_is_selected(vf, fd))
+			{
+			GtkTreeSelection *selection;
+
+			selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(vf->listview));
+			gtk_tree_selection_select_iter(selection, &iter);
+			}
+		work = work->next;
+		}
+}
+
 static void vflist_select_closest(ViewFile *vf, FileData *sel_fd)
 {
 	GList *work;

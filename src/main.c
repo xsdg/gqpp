@@ -138,7 +138,7 @@ static void parse_command_line_add_file(const gchar *file_path, gchar **path, gc
 		{
 		if (!*path) *path = remove_level_from_path(path_parsed);
 		if (!*file) *file = g_strdup(path_parsed);
-		*list = g_list_prepend(*list, file_data_new_no_grouping(path_parsed));
+		*list = g_list_prepend(*list, path_parsed);
 		}
 }
 
@@ -452,7 +452,13 @@ static void parse_command_line(gint argc, gchar *argv[])
 				remote_list = g_list_prepend(remote_list, geometry);
 				}
 			remote_list = g_list_prepend(remote_list, "--new-window");
-		}
+			}
+		else if (!remote_server_exists(app_lock))
+			{
+			/* Geeqie started for first time but with --remote option
+			 */
+			remote_do = FALSE;
+			}
 		g_free(app_lock);
 		}
 
@@ -482,6 +488,8 @@ static void parse_command_line(gint argc, gchar *argv[])
 		remote_list = g_list_prepend(remote_list, pwd);
 
 		remote_control(argv[0], remote_list, command_line->path, list, command_line->collection_list);
+		/* There is no return to this point
+		 */
 		g_free(pwd);
 		g_free(current_dir);
 		}
@@ -494,7 +502,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 		}
 	else
 		{
-		filelist_free(list);
+		string_list_free(list);
 		command_line->cmd_list = NULL;
 		}
 
@@ -900,6 +908,8 @@ gint main(gint argc, gchar *argv[])
 	gchar *buf;
 	CollectionData *cd = NULL;
 	gboolean disable_clutter = FALSE;
+	gboolean single_dir = TRUE;
+	LayoutWindow *lw;
 
 #ifdef HAVE_GTHREAD
 #if !GLIB_CHECK_VERSION(2,32,0)
@@ -1037,6 +1047,9 @@ gint main(gint argc, gchar *argv[])
 
 	layout_editors_reload_start();
 
+	/* If no --list option, open a separate collection window for each
+	 * .gqv file on the command line
+	 */
 	if (command_line->collection_list && !command_line->startup_command_line_collection)
 		{
 		GList *work;
@@ -1064,34 +1077,59 @@ gint main(gint argc, gchar *argv[])
 		command_line->ssi = secure_open(pathl);
 		}
 
-	if (command_line->cmd_list ||
-	    (command_line->startup_command_line_collection && command_line->collection_list))
+	/* If there is a files list on the command line and no --list option,
+	 * check if they are all in the same folder
+	 */
+	if (command_line->cmd_list && !(command_line->startup_command_line_collection))
 		{
 		GList *work;
+		gchar *path = NULL;
 
-		if (command_line->startup_command_line_collection)
+		work = command_line->cmd_list;
+
+		while (work && single_dir)
 			{
-			CollectWindow *cw;
+			gchar *dirname;
 
-			cw = collection_window_new("");
-			cd = cw->cd;
+			dirname = g_path_get_dirname(work->data);
+			if (!path)
+				{
+				path = g_strdup(dirname);
+				}
+			else
+				{
+				if (g_strcmp0(path, dirname) != 0)
+					{
+					single_dir = FALSE;
+					}
+				}
+			g_free(dirname);
+			work = work->next;
 			}
-		else
-			{
-			cd = collection_new("");	/* if we pass NULL, untitled counter is falsely increm. */
-			}
+		g_free(path);
+		}
 
-		g_free(cd->path);
-		cd->path = NULL;
-		g_free(cd->name);
-		cd->name = g_strdup(_("Command line"));
+	/* Files from multiple folders, or --list option given
+	 * then open an unnamed collection and insert all files
+	 */
+	if ((command_line->cmd_list && !single_dir) || (command_line->startup_command_line_collection))
+		{
+		GList *work;
+		CollectWindow *cw;
+
+		cw = collection_window_new(NULL);
+		cd = cw->cd;
 
 		collection_path_changed(cd);
 
 		work = command_line->cmd_list;
 		while (work)
 			{
-			collection_add(cd, (FileData *)work->data, FALSE);
+			FileData *fd;
+
+			fd = file_data_new_simple(work->data);
+			collection_add(cd, fd, FALSE);
+			file_data_unref(fd);
 			work = work->next;
 			}
 
@@ -1117,6 +1155,29 @@ gint main(gint argc, gchar *argv[])
 		{
 		layout_image_set_collection(NULL, first_collection,
 					    collection_get_first(first_collection));
+		}
+
+	/* If the files on the command line are from one folder, select those files
+	 */
+	lw = NULL;
+	layout_valid(&lw);
+
+	if (single_dir && command_line->cmd_list)
+		{
+		GList *work;
+		GList *selected;
+		FileData *fd;
+
+		selected = NULL;
+		work = command_line->cmd_list;
+		while (work)
+			{
+			fd = file_data_new_simple((gchar *)work->data);
+			selected = g_list_append(selected, fd);
+			file_data_unref(fd);
+			work = work->next;
+			}
+		layout_select_list(lw, selected);
 		}
 
 	buf = g_build_filename(get_rc_dir(), ".command", NULL);
