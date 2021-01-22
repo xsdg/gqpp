@@ -130,7 +130,7 @@ msgstr ""
 #: ../src/preferences.c:117 ../src/preferences.c:2662 ../src/search.c:2246
 #: ../src/search.c:3574
 msgid "Metadata"
-msgstr "Schlüsselworte und Kommentare"
+msgstr "Schlüsselwörter und Kommentare"
 
 #: ../src/advanced_exif.c:438 ../src/preferences.c:2576
 msgid "Description"
@@ -170,7 +170,7 @@ msgstr "Titel"
 #: ../src/bar.c:201 ../src/osd.c:48 ../src/preferences.c:3057
 #: ../src/search.c:3493
 msgid "Keywords"
-msgstr "Schlüsselworte"
+msgstr "Schlüsselwörter"
 
 #: ../src/bar.c:202 ../src/osd.c:47 ../src/search.c:3505
 msgid "Comment"
@@ -427,7 +427,7 @@ msgstr "Schlüsselwörter zu den ausgewählten Dateien hinzufügen"
 
 #: ../src/bar_keywords.c:489
 msgid "Replace existing keywords in selected files with selected keywords"
-msgstr "Bestehende Schlüsselworte der ausgewählen Dateien austauschen"
+msgstr "Bestehende Schlüsselwörter der ausgewählen Dateien austauschen"
 
 #: ../src/bar_keywords.c:960
 msgid "Edit keyword"
@@ -744,7 +744,7 @@ msgstr "Cachewartung"
 
 #: ../src/cache_maint.c:1476
 msgid "Cache and Data Maintenance"
-msgstr "Speicher für Vorschaubilder, Schlüsselworte und Kommentare"
+msgstr "Speicher für Vorschaubilder, Schlüsselwörter und Kommentare"
 
 #: ../src/cache_maint.c:1480
 msgid "Geeqie thumbnail and sim. cache"
@@ -798,7 +798,7 @@ msgstr "Erstellen Sie Ähnlichkeitsdateien rekursiv."
 #: ../src/cache_maint.c:1544
 msgid "Remove orphaned keywords and comments."
 msgstr ""
-"Entfernt ungültige und veraltete Schlüsselworte und Kommenare aus diesem "
+"Entfernt ungültige und veraltete Schlüsselwörter und Kommenare aus diesem "
 "Speicher."
 
 #. When does this occur ??
@@ -5594,7 +5594,7 @@ msgstr ""
 #: ../src/preferences.c:2730
 msgid "Allow keywords to differ only in case"
 msgstr ""
-"Erlaube, daß Schlüsselworte sich nur in Groß-/Kleinschreibung unterscheiden"
+"Erlaube, daß Schlüsselwörter sich nur in Groß-/Kleinschreibung unterscheiden"
 
 #: ../src/preferences.c:2733
 msgid "Write altered image orientation to the metadata"
@@ -7649,7 +7649,7 @@ msgstr "Suchbegriff:"
 #~ msgstr "öffne DATEI"
 
 #~ msgid "Add keywords"
-#~ msgstr "Schlüsselworte hinzufügen"
+#~ msgstr "Schlüsselwörter hinzufügen"
 
 #~ msgid "Auto rotate image using Exif information"
 #~ msgstr "Automatisch gemäß Exif-Daten drehen"
