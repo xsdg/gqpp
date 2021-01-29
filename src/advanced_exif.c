@@ -249,7 +249,9 @@ static void advanced_exif_add_column(GtkWidget *listview, const gchar *title, gi
 		gtk_tree_view_column_set_sizing(column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 		}
 
+#if GTK_CHECK_VERSION(3,0,0)
 	gtk_tree_view_column_set_resizable(column, TRUE);
+#endif
 	gtk_tree_view_column_set_sort_column_id(column, n);
 
 	renderer = gtk_cell_renderer_text_new();
