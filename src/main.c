@@ -368,7 +368,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 			else if (strcmp(cmd_line, "-v") == 0 ||
 				 strcmp(cmd_line, "--version") == 0)
 				{
-				printf_term(FALSE, "%s %s\n", GQ_APPNAME, VERSION);
+				printf_term(FALSE, "%s %s GTK%d\n", GQ_APPNAME, VERSION, gtk_major_version);
 				exit(0);
 				}
 			else if (strcmp(cmd_line, "--alternate") == 0)
