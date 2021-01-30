@@ -62,6 +62,7 @@ struct _DupeItem
 	gchar *md5sum;
 	gint width;
 	gint height;
+	gint dimensions; /* Computed as (di->width << 16) + di->height */
 
 	ImageSimilarityData *simd;
 
@@ -106,7 +107,7 @@ struct _DupeWindow
 	guint idle_id; /* event source id */
 	GList *working;
 	gint setup_done;
-	gint setup_count;
+	gint setup_count; /* length of set1 or if 2 sets, total length of both */
 	gint setup_n;			/* these are merely for speed optimization */
 	GList *setup_point;		/* ditto */
 	DupeMatchType setup_mask;	/* ditto */

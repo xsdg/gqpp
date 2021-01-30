@@ -75,7 +75,13 @@ enum {
 	DUPE_COLUMN_COUNT	/* total columns */
 };
 
+typedef enum {
+	DUPE_MATCH = 0,
+	DUPE_NO_MATCH,
+	DUPE_NAME_MATCH
+} DUPE_CHECK_RESULT;
 
+static DupeMatchType param_match_mask;
 static GList *dupe_window_list = NULL;	/* list of open DupeWindow *s */
 
 /*
@@ -420,6 +426,7 @@ static void dupe_item_read_cache(DupeItem *di)
 			{
 			di->width = cd->width;
 			di->height = cd->height;
+			di->dimensions = (di->width << 16) + di->height;
 			}
 		if (!di->md5sum && cd->have_md5sum)
 			{
@@ -1299,6 +1306,418 @@ static gboolean dupe_match(DupeItem *a, DupeItem *b, DupeMatchType mask, gdouble
 	return TRUE;
 }
 
+/**
+ * @brief  Determine if there is a match
+ * @param di1 
+ * @param di2 
+ * @param data 
+ * @returns DUPE_MATCH/DUPE_NO_MATCH/DUPE_NAME_MATCH
+ * 			DUPE_NAME_MATCH is used for name != contents searches:
+ * 							the name and content match i.e.
+ * 							no match, but keep searching
+ * 
+ * Called when stepping down the array looking for adjacent matches,
+ * and from the 2nd set search.
+ * 
+ * Is not used for similarity checks.
+ */
+static DUPE_CHECK_RESULT dupe_match_check(DupeItem *di1, DupeItem *di2, gpointer data)
+{
+	DupeWindow *dw = data;
+	DupeMatchType mask = dw->match_mask;
+
+	if (mask & DUPE_MATCH_ALL)
+		{
+		return DUPE_MATCH;
+		}
+	if (mask & DUPE_MATCH_PATH)
+		{
+		if (utf8_compare(di1->fd->path, di2->fd->path, TRUE) != 0)
+			{
+			return DUPE_NO_MATCH;
+			}
+		}
+	if (mask & DUPE_MATCH_NAME)
+		{
+		if (g_strcmp0(di1->fd->collate_key_name, di2->fd->collate_key_name) != 0)
+			{
+			return DUPE_NO_MATCH;
+			}
+		}
+	if (mask & DUPE_MATCH_NAME_CI)
+		{
+		if (g_strcmp0(di1->fd->collate_key_name_nocase, di2->fd->collate_key_name_nocase) != 0 )
+			{
+			return DUPE_NO_MATCH;
+			}
+		}
+	if (mask & DUPE_MATCH_NAME_CONTENT)
+		{
+		if (g_strcmp0(di1->fd->collate_key_name, di2->fd->collate_key_name) == 0)
+			{
+			if (g_strcmp0(di1->md5sum, di2->md5sum) == 0)
+				{
+				return DUPE_NAME_MATCH;
+				}
+			}
+		else
+			{
+			return DUPE_NO_MATCH;
+			}
+		}
+	if (mask & DUPE_MATCH_NAME_CI_CONTENT)
+		{
+		if (strcmp(di1->fd->collate_key_name_nocase, di2->fd->collate_key_name_nocase) == 0)
+			{
+			if (g_strcmp0(di1->md5sum, di2->md5sum) == 0)
+				{
+				return DUPE_NAME_MATCH;
+				}
+			}
+		else
+			{
+			return DUPE_NO_MATCH;
+			}
+		}
+	if (mask & DUPE_MATCH_SIZE)
+		{
+		if (di1->fd->size != di2->fd->size)
+			{
+			return DUPE_NO_MATCH;
+			}
+		}
+	if (mask & DUPE_MATCH_DATE)
+		{
+		if (di1->fd->date != di2->fd->date)
+			{
+			return DUPE_NO_MATCH;
+			}
+		}
+	if (mask & DUPE_MATCH_SUM)
+		{
+		if (g_strcmp0(di1->md5sum, di2->md5sum) != 0)
+			{
+			return DUPE_NO_MATCH;
+			}
+		}
+	if (mask & DUPE_MATCH_DIM)
+		{
+		if (di1->dimensions != di2->dimensions)
+			{
+			return DUPE_NO_MATCH;
+			}
+		}
+
+	return DUPE_MATCH;
+}
+
+/**
+ * @brief The callback for the binary search
+ * @param a 
+ * @param b 
+ * @param param_match_mask
+ * @returns negative/0/positive
+ * 
+ * Is not used for similarity checks.
+ *
+ * Used only when two file sets are used.
+ * Requires use of a global for param_match_mask because there is no
+ * g_array_binary_search_with_data() function in glib.
+ */
+static gint dupe_match_binary_search_cb(gconstpointer a, gconstpointer b)
+{
+	const DupeItem *di1 = *((DupeItem **) a);
+	const DupeItem *di2 = b;
+	DupeMatchType mask = param_match_mask;
+
+	if (mask & DUPE_MATCH_ALL)
+		{
+		return 0;
+		}
+	if (mask & DUPE_MATCH_PATH)
+		{
+		return utf8_compare(di1->fd->path, di2->fd->path, TRUE);
+		}
+	if (mask & DUPE_MATCH_NAME)
+		{
+		return g_strcmp0(di1->fd->collate_key_name, di2->fd->collate_key_name);
+		}
+	if (mask & DUPE_MATCH_NAME_CI)
+		{
+		return strcmp(di1->fd->collate_key_name_nocase, di2->fd->collate_key_name_nocase);
+		}
+	if (mask & DUPE_MATCH_NAME_CONTENT)
+		{
+		return g_strcmp0(di1->fd->collate_key_name, di2->fd->collate_key_name);
+		}
+	if (mask & DUPE_MATCH_NAME_CI_CONTENT)
+		{
+		return strcmp(di1->fd->collate_key_name_nocase, di2->fd->collate_key_name_nocase);
+		}
+	if (mask & DUPE_MATCH_SIZE)
+		{
+		return (di1->fd->size - di2->fd->size);
+		}
+	if (mask & DUPE_MATCH_DATE)
+		{
+		return (di1->fd->date - di2->fd->date);
+		}
+	if (mask & DUPE_MATCH_SUM)
+		{
+		return g_strcmp0(di1->md5sum, di2->md5sum);
+		}
+	if (mask & DUPE_MATCH_DIM)
+		{
+		return (di1->dimensions - di2->dimensions);
+		}
+
+	return 0;
+}
+
+/**
+ * @brief The callback for the array sort
+ * @param a 
+ * @param b 
+ * @param data 
+ * @returns negative/0/positive
+ * 
+ * Is not used for similarity checks.
+*/
+static gint dupe_match_sort_cb(gconstpointer a, gconstpointer b, gpointer data)
+{
+	const DupeItem *di1 = *((DupeItem **) a);
+	const DupeItem *di2 = *((DupeItem **) b);
+	DupeWindow *dw = data;
+	DupeMatchType mask = dw->match_mask;
+
+	if (mask & DUPE_MATCH_ALL)
+		{
+		return 0;
+		}
+	if (mask & DUPE_MATCH_PATH)
+		{
+		return utf8_compare(di1->fd->path, di2->fd->path, TRUE);
+		}
+	if (mask & DUPE_MATCH_NAME)
+		{
+		return g_strcmp0(di1->fd->collate_key_name, di2->fd->collate_key_name);
+		}
+	if (mask & DUPE_MATCH_NAME_CI)
+		{
+		return strcmp(di1->fd->collate_key_name_nocase, di2->fd->collate_key_name_nocase);
+		}
+	if (mask & DUPE_MATCH_NAME_CONTENT)
+		{
+		return g_strcmp0(di1->fd->collate_key_name, di2->fd->collate_key_name);
+		}
+	if (mask & DUPE_MATCH_NAME_CI_CONTENT)
+		{
+		return strcmp(di1->fd->collate_key_name_nocase, di2->fd->collate_key_name_nocase);
+		}
+	if (mask & DUPE_MATCH_SIZE)
+		{
+		return (di1->fd->size - di2->fd->size);
+		}
+	if (mask & DUPE_MATCH_DATE)
+		{
+		return (di1->fd->date - di2->fd->date);
+		}
+	if (mask & DUPE_MATCH_SUM)
+		{
+		if (di1->md5sum[0] == '\0' || di2->md5sum[0] == '\0')
+		    {
+			return -1;
+			}
+		else
+			{
+			return strcmp(di1->md5sum, di2->md5sum);
+			}
+		}
+	if (mask & DUPE_MATCH_DIM)
+		{
+		if (!di1 || !di2 || !di1->width || !di1->height || !di2->width || !di2->height)
+			{
+			return -1;
+			}
+		return (di1->dimensions - di2->dimensions);
+		}
+
+	return 0; // should not execute
+}
+
+/**
+ * @brief Check for duplicate matches
+ * @param dw 
+ *
+ * Is not used for similarity checks.
+ *
+ * Loads the file sets into an array and sorts on the searched
+ * for parameter.
+ * 
+ * If one file set, steps down the array looking for adjacent equal values.
+ * 
+ * If two file sets, steps down the first set and for each value
+ * does a binary search for matches in the second set.
+ */ 
+static void dupe_array_check(DupeWindow *dw )
+{
+	GArray *array_set1;
+	GArray *array_set2;
+	GList *work;
+	gint i_set1;
+	gint i_set2;
+	DUPE_CHECK_RESULT check_result;
+	DupeMatchType mask = dw->match_mask;
+	param_match_mask = dw->match_mask;
+	guint out_match_index;
+
+	if (!dw->list) return;
+
+	array_set1 = g_array_new(TRUE, TRUE, sizeof(gpointer));
+	array_set2 = g_array_new(TRUE, TRUE, sizeof(gpointer));
+	dupe_match_reset_list(dw->list);
+
+	work = dw->list;
+	while (work)
+		{
+		DupeItem *di = work->data;
+		g_array_append_val(array_set1, di);
+		work = work->next;
+		}
+
+	g_array_sort_with_data(array_set1, dupe_match_sort_cb, dw);
+
+	if (dw->second_set)
+		{
+		/* Two sets - nothing can be done until a second set is loaded */
+		if (dw->second_list)
+			{
+			work = dw->second_list;
+			while (work)
+				{
+				DupeItem *di = work->data;
+				g_array_append_val(array_set2, (work->data));
+				work = work->next;
+				}
+			g_array_sort_with_data(array_set2, dupe_match_sort_cb, dw);
+
+			for (i_set1 = 0; i_set1 <= (gint)(array_set1->len) - 1; i_set1++)
+				{
+				DupeItem *di1 = g_array_index(array_set1, gpointer, i_set1);
+				DupeItem *di2 = NULL;
+				/* If multiple identical entries in set 1, use the last one */
+				if (i_set1 < (gint)(array_set1->len) - 2)
+					{
+					di2 = g_array_index(array_set1, gpointer, i_set1 + 1);
+					check_result = dupe_match_check(di1, di2, dw);
+					if (check_result == DUPE_MATCH || check_result == DUPE_NAME_MATCH)
+						{
+						continue;
+						}
+					}
+				if (g_array_binary_search(array_set2, di1, dupe_match_binary_search_cb, &out_match_index))
+					{
+					di2 = g_array_index(array_set2, gpointer, out_match_index);
+
+					check_result = dupe_match_check(di1, di2, dw);
+					if (check_result == DUPE_MATCH || check_result == DUPE_NAME_MATCH)
+						{
+						if (check_result == DUPE_MATCH)
+							{
+							dupe_match_link(di2, di1, 0.0);
+							}
+						i_set2 = out_match_index + 1;
+
+						if (i_set2 > (gint)(array_set2->len) - 1)
+							{
+							break;
+							}
+						/* Look for multiple matches in set 2 for item di1 */
+						di2 = g_array_index(array_set2, gpointer, i_set2);
+						check_result = dupe_match_check(di1, di2, dw);
+						while (check_result == DUPE_MATCH || check_result == DUPE_NAME_MATCH)
+							{
+							if (check_result == DUPE_MATCH)
+								{
+								dupe_match_link(di2, di1, 0.0);
+								}
+							i_set2++;
+							if (i_set2 > (gint)(array_set2->len) - 1)
+								{
+								break;
+								}
+							di2 = g_array_index(array_set2, gpointer, i_set2);
+							check_result = dupe_match_check(di1, di2, dw);
+							}
+						}
+					}
+				}
+			}
+		}
+	else
+		{
+		/* File set 1 only */
+		g_list_free(dw->dupes);
+		dw->dupes = NULL;
+
+		if ((gint)(array_set1->len) > 1)
+			{
+			for (i_set1 = 0; i_set1 <= (gint)(array_set1->len) - 2; i_set1++)
+				{
+				DupeItem *di1 = g_array_index(array_set1, gpointer, i_set1);
+				DupeItem *di2 = g_array_index(array_set1, gpointer, i_set1 + 1);
+
+				check_result = dupe_match_check(di1, di2, dw);
+				if (check_result == DUPE_MATCH || check_result == DUPE_NAME_MATCH)
+					{
+					if (check_result == DUPE_MATCH)
+						{
+						dupe_match_link(di2, di1, 0.0);
+						}
+					i_set1++;
+
+					if ( i_set1 + 1 > (gint)(array_set1->len) - 1)
+						{
+						break;
+						}
+					/* Look for multiple matches for item di1 */
+					di2 = g_array_index(array_set1, gpointer, i_set1 + 1);
+					check_result = dupe_match_check(di1, di2, dw);
+					while (check_result == DUPE_MATCH || check_result == DUPE_NAME_MATCH)
+						{
+						if (check_result == DUPE_MATCH)
+							{
+							dupe_match_link(di2, di1, 0.0);
+							}
+						i_set1++;
+
+						if (i_set1 + 1 > (gint)(array_set1->len) - 1)
+							{
+							break;
+							}
+						di2 = g_array_index(array_set1, gpointer, i_set1 + 1);
+						check_result = dupe_match_check(di1, di2, dw);
+						}
+					}
+				}
+			}
+		}
+	g_array_free(array_set1, TRUE);
+	g_array_free(array_set2, TRUE);
+}
+
+/**
+ * @brief Look for similarity match
+ * @param dw 
+ * @param needle 
+ * @param start 
+ * 
+ * Called from dupe_check_cb.
+ * Called for each entry in the list.
+ * Steps through the list looking for matches against needle.
+ * 
+ * Only used for similarity checks.
+ */
 static void dupe_list_check_match(DupeWindow *dw, DupeItem *needle, GList *start)
 {
 	GList *work;
@@ -1556,18 +1975,22 @@ static GList *dupe_setup_point_step(DupeWindow *dw, GList *p)
 	return NULL;
 }
 
-static gboolean dupe_check_cb(gpointer data)
+/**
+ * @brief Generates the sumcheck or dimensions
+ * @param list Set1 or set2
+ * @returns TRUE/FALSE = not completed/completed
+ * 
+ * Ensures that the DIs contain the MD5SUM or dimensions for all items in
+ * the list. One item at a time. Re-enters if not completed.
+ */
+static gboolean create_checksums_dimensions(DupeWindow *dw, GList *list)
 {
-	DupeWindow *dw = data;
-
-	if (!dw->idle_id) return FALSE;
-
-	if (!dw->setup_done)
-		{
-		if ((dw->match_mask & DUPE_MATCH_SUM) &&
-		    !(dw->setup_mask & DUPE_MATCH_SUM) )
+		if ((dw->match_mask & DUPE_MATCH_SUM) ||
+			(dw->match_mask & DUPE_MATCH_NAME_CONTENT) ||
+			(dw->match_mask & DUPE_MATCH_NAME_CI_CONTENT))
 			{
-			if (!dw->setup_point) dw->setup_point = dw->list;
+			/* MD5SUM only */
+			if (!dw->setup_point) dw->setup_point = list; // setup_point clear on 1st entry
 
 			while (dw->setup_point)
 				{
@@ -1584,7 +2007,10 @@ static gboolean dupe_check_cb(gpointer data)
 					if (options->thumbnails.enable_caching)
 						{
 						dupe_item_read_cache(di);
-						if (di->md5sum) return TRUE;
+						if (di->md5sum)
+							{
+							return TRUE;
+							}
 						}
 
 					di->md5sum = md5_text_from_file_utf8(di->fd->path, "");
@@ -1595,13 +2021,13 @@ static gboolean dupe_check_cb(gpointer data)
 					return TRUE;
 					}
 				}
-			dw->setup_mask |= DUPE_MATCH_SUM;
 			dupe_setup_reset(dw);
 			}
-		if ((dw->match_mask & DUPE_MATCH_DIM) &&
-		    !(dw->setup_mask & DUPE_MATCH_DIM) )
+
+		if ((dw->match_mask & DUPE_MATCH_DIM)  )
 			{
-			if (!dw->setup_point) dw->setup_point = dw->list;
+			/* Dimensions only */
+			if (!dw->setup_point) dw->setup_point = list;
 
 			while (dw->setup_point)
 				{
@@ -1617,10 +2043,14 @@ static gboolean dupe_check_cb(gpointer data)
 					if (options->thumbnails.enable_caching)
 						{
 						dupe_item_read_cache(di);
-						if (di->width != 0 || di->height != 0) return TRUE;
+						if (di->width != 0 || di->height != 0)
+							{
+							return TRUE;
+							}
 						}
 
 					image_load_dimensions(di->fd, &di->width, &di->height);
+					di->dimensions = (di->width << 16) + di->height;
 					if (options->thumbnails.enable_caching)
 						{
 						dupe_item_write_cache(di);
@@ -1628,8 +2058,46 @@ static gboolean dupe_check_cb(gpointer data)
 					return TRUE;
 					}
 				}
-			dw->setup_mask |= DUPE_MATCH_DIM;
 			dupe_setup_reset(dw);
+			}
+
+	return FALSE;
+}
+
+/**
+ * @brief Check set 1 (and set 2) for matches
+ * @param data DupeWindow
+ * @returns TRUE/FALSE = not completed/completed
+ * 
+ * Initiated from start, loader done and item remove
+ *
+ * On first entry generates di->MD5SUM, di->dimensions and sim data,
+ * and updates the cache.
+ */
+static gboolean dupe_check_cb(gpointer data)
+{
+	DupeWindow *dw = data;
+
+	if (!dw->idle_id)
+		{
+		return FALSE;
+		}
+
+	if (!dw->setup_done) /* Clear on 1st entry */
+		{
+		if (dw->list)
+			{
+			if (create_checksums_dimensions(dw, dw->list))
+				{
+				return TRUE;
+				}
+			}
+		if (dw->second_list)
+			{
+			if (create_checksums_dimensions(dw, dw->second_list))
+				{
+				return TRUE;
+				}
 			}
 		if ((dw->match_mask & DUPE_MATCH_SIM_HIGH ||
 		     dw->match_mask & DUPE_MATCH_SIM_MED ||
@@ -1637,6 +2105,7 @@ static gboolean dupe_check_cb(gpointer data)
 		     dw->match_mask & DUPE_MATCH_SIM_CUSTOM) &&
 		    !(dw->setup_mask & DUPE_MATCH_SIM_MED) )
 			{
+			/* Similarity only */
 			if (!dw->setup_point) dw->setup_point = dw->list;
 
 			while (dw->setup_point)
@@ -1681,12 +2150,18 @@ static gboolean dupe_check_cb(gpointer data)
 			dw->setup_mask |= DUPE_MATCH_SIM_MED;
 			dupe_setup_reset(dw);
 			}
+
+		/* End of setup not done */
 		dupe_window_update_progress(dw, _("Comparing..."), 0.0, FALSE);
 		dw->setup_done = TRUE;
 		dupe_setup_reset(dw);
 		dw->setup_count = g_list_length(dw->list);
 		}
 
+	/* Setup done - dw->working set to NULL below
+	 * Set before 1st entry: dw->working = g_list_last(dw->list)
+	 * Set before 1st entry: dw->setup_count = g_list_length(dw->list)
+	 */
 	if (!dw->working)
 		{
 		if (dw->setup_count > 0)
@@ -1711,11 +2186,27 @@ static gboolean dupe_check_cb(gpointer data)
 		return FALSE;
 		}
 
-	dupe_list_check_match(dw, (DupeItem *)dw->working->data, dw->working);
-	dupe_window_update_progress(dw, _("Comparing..."), dw->setup_count == 0 ? 0.0 : (gdouble) dw->setup_n / dw->setup_count, FALSE);
-	dw->setup_n++;
+	if (dw->match_mask == DUPE_MATCH_SIM_HIGH ||
+		dw->match_mask == DUPE_MATCH_SIM_MED ||
+		dw->match_mask == DUPE_MATCH_SIM_LOW ||
+		dw->match_mask == DUPE_MATCH_SIM_CUSTOM)
+		{
+		/* This is the similarity comparison */
+		dupe_list_check_match(dw, (DupeItem *)dw->working->data, dw->working);
+		dupe_window_update_progress(dw, _("Comparing..."), dw->setup_count == 0 ? 0.0 : (gdouble) dw->setup_n / dw->setup_count, FALSE);
+		dw->setup_n++;
 
-	dw->working = dw->working->prev;
+		dw->working = dw->working->prev; /* Is NULL when complete */
+		}
+	else
+		{
+		/* This is the comparison for all other parameters.
+		 * dupe_array_check() processes the entire list in one go
+		*/
+		dw->working = NULL;
+		dupe_window_update_progress(dw, _("Comparing..."), 0.0, FALSE);
+		dupe_array_check(dw);
+		}
 
 	return TRUE;
 }
