@@ -521,7 +521,12 @@ static void gr_lw_id(const gchar *text, GIOChannel *channel, gpointer data)
 static void gr_slideshow_start_rec(const gchar *text, GIOChannel *channel, gpointer data)
 {
 	GList *list;
-	FileData *dir_fd = file_data_new_dir(text);
+	gchar *tilde_filename;
+
+	tilde_filename = expand_tilde(text);
+
+	FileData *dir_fd = file_data_new_dir(tilde_filename);
+	g_free(tilde_filename);
 
 	layout_valid(&lw_id);
 	list = filelist_recursive_full(dir_fd, lw_id->sort_method, lw_id->sort_ascend);
