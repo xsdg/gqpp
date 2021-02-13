@@ -2353,7 +2353,7 @@ static gboolean dupe_files_add_queue_cb(gpointer data)
 
 	gtk_progress_bar_pulse(GTK_PROGRESS_BAR(dw->extra_label));
 
-	if (g_list_length(queue) == 0)
+	if (queue == NULL)
 		{
 		dw->add_files_queue_id = 0;
 		g_idle_add(dupe_check_start_cb, dw);
@@ -2456,7 +2456,7 @@ static gboolean dupe_files_add_queue_cb(gpointer data)
 		dw->list = g_list_prepend(dw->list, di);
 		}
 
-	if (g_list_length(dw->add_files_queue) > 0)
+	if (dw->add_files_queue != NULL)
 		{
 		return TRUE;
 		}
