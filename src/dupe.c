@@ -2375,25 +2375,11 @@ static gboolean dupe_files_add_queue_cb(gpointer data)
 
 			if (filelist_read(fd, &f, &d))
 				{
-				GList *work;
-
 				f = filelist_filter(f, FALSE);
 				d = filelist_filter(d, TRUE);
 
-				work = f;
-				while (work)
-					{
-					dw->add_files_queue = g_list_prepend(dw->add_files_queue, work->data);
-					work = work->next;
-					}
-				g_list_free(f);
-				work = d;
-				while (work)
-					{
-					dw->add_files_queue = g_list_prepend(dw->add_files_queue, work->data);
-					work = work->next;
-					}
-				g_list_free(d);
+				dw->add_files_queue = g_list_concat(f, dw->add_files_queue);
+				dw->add_files_queue = g_list_concat(d, dw->add_files_queue);
 				}
 			}
 		else
