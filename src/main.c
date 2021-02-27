@@ -453,12 +453,6 @@ static void parse_command_line(gint argc, gchar *argv[])
 				}
 			remote_list = g_list_prepend(remote_list, "--new-window");
 			}
-		else if (!remote_server_exists(app_lock))
-			{
-			/* Geeqie started for first time but with --remote option
-			 */
-			remote_do = FALSE;
-			}
 		g_free(app_lock);
 		}
 
