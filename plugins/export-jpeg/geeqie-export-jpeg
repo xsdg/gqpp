@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Extract emdedded jpegs from a raw file:
+# Extract embedded jpegs from a raw file:
 #
 # Display a list of the embedded files
 # Extract the selected image to a tmp folder

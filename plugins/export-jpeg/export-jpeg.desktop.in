@@ -2,7 +2,7 @@
 Version=1.0
 Type=Application
 _Name=Export jpeg
-_Comment=Extract emdedded jpegs from a raw file
+_Comment=Extract embedded jpegs from a raw file
 
 Exec=geeqie-export-jpeg %f
 
