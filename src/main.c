@@ -229,6 +229,8 @@ static void parse_command_line(gint argc, gchar *argv[])
 	gchar *pwd;
 	gchar *current_dir;
 	gchar *geometry = NULL;
+	GtkWidget *dialog_warning;
+	GString *command_line_errors = g_string_new(NULL);
 
 	command_line = g_new0(CommandLine, 1);
 
@@ -414,13 +416,28 @@ static void parse_command_line(gint argc, gchar *argv[])
 				}
 			else if (!remote_do)
 				{
-				printf_term(TRUE, _("invalid or ignored: %s\nUse --help for options\n"), cmd_line);
+				command_line_errors = g_string_append(command_line_errors, cmd_line);
+				command_line_errors = g_string_append(command_line_errors, "\n");
 				}
 
 			g_free(cmd_all);
 			g_free(cmd_line);
 			i++;
 			}
+
+		if (command_line_errors->len > 0)
+			{
+			dialog_warning = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "%s", "Invalid parameter(s):");
+			gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog_warning), "%s", command_line_errors->str);
+			gtk_window_set_title(GTK_WINDOW(dialog_warning), GQ_APPNAME);
+			gtk_window_set_keep_above(GTK_WINDOW(dialog_warning), TRUE);
+			gtk_dialog_run(GTK_DIALOG(dialog_warning));
+			gtk_widget_destroy(dialog_warning);
+			g_string_free(command_line_errors, TRUE);
+
+			exit(EXIT_FAILURE);
+			}
+
 		g_free(base_dir);
 		parse_out_relatives(command_line->path);
 		parse_out_relatives(command_line->file);
@@ -462,16 +479,24 @@ static void parse_command_line(gint argc, gchar *argv[])
 			{
 			GList *work = remote_errors;
 
-			printf_term(TRUE,_("Invalid or ignored remote options: "));
 			while (work)
 				{
 				gchar *opt = work->data;
 
-				printf_term(TRUE, "%s%s", (work == remote_errors) ? "" : ", ", opt);
+				command_line_errors = g_string_append(command_line_errors, opt);
+				command_line_errors = g_string_append(command_line_errors, "\n");
 				work = work->next;
 				}
 
-			printf_term(TRUE, _("\nUse --remote-help for valid remote options.\n"));
+			dialog_warning = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "%s", "Invalid parameter(s):");
+			gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog_warning), "%s", command_line_errors->str);
+			gtk_window_set_title(GTK_WINDOW(dialog_warning), GQ_APPNAME);
+			gtk_window_set_keep_above(GTK_WINDOW(dialog_warning), TRUE);
+			gtk_dialog_run(GTK_DIALOG(dialog_warning));
+			gtk_widget_destroy(dialog_warning);
+			g_string_free(command_line_errors, TRUE);
+
+			exit(EXIT_FAILURE);
 			}
 
 		/* prepend the current dir the remote command was made from,
