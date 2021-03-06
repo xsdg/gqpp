@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2006 John Ellis
- * Copyright (C) 2008 - 2016 The Geeqie Team
+ * Copyright (C) 2008 - 2021 The Geeqie Team
  *
  * Author: John Ellis
  *
@@ -135,6 +135,7 @@ struct _RendererTiles
 
 	GList *overlay_list;
 	cairo_surface_t *overlay_buffer;
+	cairo_surface_t *surface;
 
 	guint draw_idle_id; /* event source id */
 
@@ -210,8 +211,11 @@ static void rt_border_draw(RendererTiles *rt, gint x, gint y, gint w, gint h)
 
 	if (!window) return;
 
+#if GTK_CHECK_VERSION(3,0,0)
+	cr = cairo_create(rt->surface);
+#else
 	cr = gdk_cairo_create(window);
-
+#endif
 
 	if (!pr->pixbuf && !pr->source_tiles_enabled)
 		{
@@ -602,7 +606,9 @@ static void rt_overlay_init_window(RendererTiles *rt, OverlayData *od)
 	od->window = gdk_window_new(gtk_widget_get_window(GTK_WIDGET(pr)), &attributes, attributes_mask);
 	gdk_window_set_user_data(od->window, pr);
 	gdk_window_move(od->window, px + rt->stereo_off_x, py + rt->stereo_off_y);
+#if !GTK_CHECK_VERSION(3,0,0)
 	gdk_window_show(od->window);
+#endif
 }
 
 static void rt_overlay_draw(RendererTiles *rt, gint x, gint y, gint w, gint h,
@@ -786,7 +792,11 @@ gint renderer_tiles_overlay_add(void *renderer, GdkPixbuf *pixbuf, gint x, gint 
 
 	rt->overlay_list = g_list_append(rt->overlay_list, od);
 
+#if GTK_CHECK_VERSION(3,0,0)
+	gtk_widget_queue_draw(GTK_WIDGET(rt->pr));
+#else
 	rt_overlay_queue_draw(rt, od, 0, 0, 0, 0);
+#endif
 
 	return od->id;
 }
@@ -834,6 +844,30 @@ static void rt_overlay_list_reset_window(RendererTiles *rt)
 		}
 }
 
+#if GTK_CHECK_VERSION(3,0,0)
+void renderer_tiles_overlay_set(void *renderer, gint id, GdkPixbuf *pixbuf, gint x, gint y)
+{
+	RendererTiles *rc = (RendererTiles *)renderer;
+	PixbufRenderer *pr = rc->pr;
+	OverlayData *od;
+
+	g_return_if_fail(IS_PIXBUF_RENDERER(pr));
+
+	od = rt_overlay_find(rc, id);
+	if (!od) return;
+
+	if (pixbuf)
+		{
+		g_object_ref(G_OBJECT(pixbuf));
+		g_object_unref(G_OBJECT(od->pixbuf));
+		od->pixbuf = pixbuf;
+		}
+	else
+		{
+		rt_overlay_free(rc, od);
+		}
+}
+#else
 void renderer_tiles_overlay_set(void *renderer, gint id, GdkPixbuf *pixbuf, gint x, gint y)
 {
 	RendererTiles *rt = (RendererTiles *) renderer;
@@ -868,6 +902,7 @@ void renderer_tiles_overlay_set(void *renderer, gint id, GdkPixbuf *pixbuf, gint
 		rt_overlay_free(rt, od);
 		}
 }
+#endif
 
 gboolean renderer_tiles_overlay_get(void *renderer, gint id, GdkPixbuf **pixbuf, gint *x, gint *y)
 {
@@ -1520,7 +1555,11 @@ static void rt_tile_expose(RendererTiles *rt, ImageTile *it,
 	box = GTK_WIDGET(pr);
 	window = gtk_widget_get_window(box);
 
+#if GTK_CHECK_VERSION(3,0,0)
+	cr = cairo_create(rt->surface);
+#else
 	cr = gdk_cairo_create(window);
+#endif
 	cairo_set_source_surface(cr, it->surface, pr->x_offset + (it->x - rt->x_scroll) + rt->stereo_off_x, pr->y_offset + (it->y - rt->y_scroll) + rt->stereo_off_y);
 	cairo_rectangle (cr, pr->x_offset + (it->x - rt->x_scroll) + x + rt->stereo_off_x, pr->y_offset + (it->y - rt->y_scroll) + y + rt->stereo_off_y, w, h);
 	cairo_fill (cr);
@@ -1533,6 +1572,10 @@ static void rt_tile_expose(RendererTiles *rt, ImageTile *it,
 				w, h,
 				it);
 		}
+
+#if GTK_CHECK_VERSION(3,0,0)
+	gtk_widget_queue_draw(GTK_WIDGET(rt->pr));
+#endif
 }
 
 
@@ -1958,11 +2001,16 @@ static void rt_scroll(void *renderer, gint x_off, gint y_off)
 			y2 = abs(y_off);
 			}
 
+#if GTK_CHECK_VERSION(3,0,0)
+		cr = cairo_create(rt->surface);
+		surface = rt->surface;
+#else
 		box = GTK_WIDGET(pr);
 		window = gtk_widget_get_window(box);
 
 		cr = gdk_cairo_create(window);
 		surface = cairo_get_target(cr);
+#endif
 		/* clipping restricts the intermediate surface's size, so it's a good idea
 		 * to use it. */
 		cairo_rectangle(cr, x1 + pr->x_offset + rt->stereo_off_x, y1 + pr->y_offset + rt->stereo_off_y, w, h);
@@ -2128,21 +2176,78 @@ static void renderer_free(void *renderer)
 }
 
 #if GTK_CHECK_VERSION(3,0,0)
+static gboolean rt_realize_cb(GtkWidget *widget, gpointer data)
+{
+	RendererTiles *rt = (RendererTiles *)data;
+	cairo_t *cr;
+
+	if (!rt->surface)
+		{
+		rt->surface = gdk_window_create_similar_surface(gtk_widget_get_window(widget), CAIRO_CONTENT_COLOR, gtk_widget_get_allocated_width(widget), gtk_widget_get_allocated_height(widget));
+
+		cr = cairo_create(rt->surface);
+		cairo_set_source_rgb(cr, (gdouble)options->image.border_color.red  /65535, (gdouble)options->image.border_color.green / 65535, (gdouble)options->image.border_color.blue / 65535);
+		cairo_paint(cr);
+		cairo_destroy(cr);
+		}
+
+	return FALSE;
+}
+
+static gboolean rt_size_allocate_cb(GtkWidget *widget,  GdkRectangle *allocation, gpointer data)
+{
+	RendererTiles *rt = data;
+	cairo_t *cr;
+	cairo_surface_t *old_surface;
+
+	if (gtk_widget_get_realized(GTK_WIDGET(rt->pr)))
+		{
+		old_surface = rt->surface;
+		rt->surface = gdk_window_create_similar_surface(gtk_widget_get_window(widget), CAIRO_CONTENT_COLOR, allocation->width, allocation->height);
+
+		cr = cairo_create(rt->surface);
+
+		cairo_set_source_rgb(cr, (gdouble)options->image.border_color.red / 65535, (gdouble)options->image.border_color.green / 65535, (gdouble)options->image.border_color.blue / 65535);
+		cairo_paint(cr);
+		cairo_set_source_surface(cr, old_surface, 0, 0);
+		cairo_paint(cr);
+		cairo_destroy(cr);
+		cairo_surface_destroy(old_surface);
+
+		renderer_redraw(rt, allocation->x, allocation->y, allocation->width, allocation->height, FALSE, TILE_RENDER_ALL, FALSE, FALSE);
+	}
+
+	return FALSE;
+}
 
 static gboolean rt_draw_cb(GtkWidget *widget, cairo_t *cr, gpointer data)
 {
 	RendererTiles *rt = (RendererTiles *)data;
-	if (gtk_widget_is_drawable(widget))
+	GList *work;
+	OverlayData *od;
+
+	cairo_set_source_surface (cr, rt->surface, 0, 0);
+	cairo_paint(cr);
+
+	work = rt->overlay_list;
+	while (work)
 		{
-		if (gtk_widget_get_has_window(widget))
+		od = work->data;
+		gint px, py, pw, ph;
+		pw = gdk_pixbuf_get_width(od->pixbuf);
+		ph = gdk_pixbuf_get_height(od->pixbuf);
+		px = od->x;
+		py = od->y;
+
+		if (od->flags & OVL_RELATIVE)
 			{
-			GdkRectangle area;
-			if (gdk_cairo_get_clip_rectangle(cr, &area))
-				{
-				renderer_redraw(rt, area.x, area.y, area.width, area.height,
-						FALSE, TILE_RENDER_ALL, FALSE, FALSE);
-				}
+			if (px < 0) px = rt->pr->viewport_width - pw + px;
+			if (py < 0) py = rt->pr->viewport_height - ph + py;
 			}
+
+		gdk_cairo_set_source_pixbuf(cr, od->pixbuf, px, py);
+		cairo_paint(cr);
+		work = work->next;
 		}
 
 	return FALSE;
@@ -2229,6 +2334,8 @@ RendererFuncs *renderer_tiles_new(PixbufRenderer *pr)
 #if GTK_CHECK_VERSION(3,0,0)
 	g_signal_connect(G_OBJECT(pr), "draw",
 	                 G_CALLBACK(rt_draw_cb), rt);
+	g_signal_connect(G_OBJECT(pr), "realize", G_CALLBACK(rt_realize_cb), rt);
+	g_signal_connect(G_OBJECT(pr), "size-allocate", G_CALLBACK(rt_size_allocate_cb), rt);
 #else
 	g_signal_connect(G_OBJECT(pr), "expose_event",
 	                 G_CALLBACK(rt_expose_cb), rt);

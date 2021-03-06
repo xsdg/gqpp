@@ -202,7 +202,6 @@ gint image_osd_histogram_get_mode(ImageWindow *imd)
 void image_osd_toggle(ImageWindow *imd)
 {
 	OsdShowFlags show;
-
 	if (!imd) return;
 
 	show = image_osd_get(imd);
@@ -522,30 +521,32 @@ static GdkPixbuf *image_osd_guidelines_render(OverlayStateData *osd)
 	GdkPixbuf *rectangles;
 	ImageWindow *imd = osd->imd;
 
-	pixbuf_renderer_get_scaled_size((PixbufRenderer *)imd->pr, &width, &height);
+/* FIXME: guidelines does not work with revised draw signal handling
+ */
+	//~ pixbuf_renderer_get_scaled_size((PixbufRenderer *)imd->pr, &width, &height);
 
-	if (width && height)
-		{
-		rectangles = gdk_pixbuf_new(GDK_COLORSPACE_RGB, TRUE, 8, width, height);
-		if (rectangles)
-			{
-			pixbuf_set_rect_fill(rectangles, 0, 0, width, height, 255, 255, 255, 0);
-			pixbuf_set_rect(rectangles, 0, 0 + (height / 3), width, height / 3,
-								0, 0, 0, 255,
-								1, 1, 1, 1);
-			pixbuf_set_rect(rectangles, 0, 0 + (height / 3 + 1), width, height / 3 - 2,
-								255, 255, 255, 255,
-								1, 1, 1, 1);
+	//~ if (width && height)
+		//~ {
+		//~ rectangles = gdk_pixbuf_new(GDK_COLORSPACE_RGB, TRUE, 8, width, height);
+		//~ if (rectangles)
+			//~ {
+			//~ pixbuf_set_rect_fill(rectangles, 0, 0, width, height, 255, 255, 255, 0);
+			//~ pixbuf_set_rect(rectangles, 0, 0 + (height / 3), width, height / 3,
+								//~ 0, 0, 0, 255,
+								//~ 1, 1, 1, 1);
+			//~ pixbuf_set_rect(rectangles, 0, 0 + (height / 3 + 1), width, height / 3 - 2,
+								//~ 255, 255, 255, 255,
+								//~ 1, 1, 1, 1);
 
-			pixbuf_set_rect(rectangles, 0 + width / 3, 0 , width / 3, height,
-								0, 0, 0, 255,
-								1, 1, 1, 1);
-			pixbuf_set_rect(rectangles, 0 + width / 3 + 1, 0, width / 3 - 2, height,
-								255, 255, 255, 255,
-								1, 1, 1, 1);
-			return rectangles;
-			}
-		}
+			//~ pixbuf_set_rect(rectangles, 0 + width / 3, 0 , width / 3, height,
+								//~ 0, 0, 0, 255,
+								//~ 1, 1, 1, 1);
+			//~ pixbuf_set_rect(rectangles, 0 + width / 3 + 1, 0, width / 3 - 2, height,
+								//~ 255, 255, 255, 255,
+								//~ 1, 1, 1, 1);
+			//~ return rectangles;
+			//~ }
+		//~ }
 
 	return NULL;
 }
