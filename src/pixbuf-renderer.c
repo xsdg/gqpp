@@ -1772,10 +1772,10 @@ static void pr_zoom_sync(PixbufRenderer *pr, gdouble zoom,
 		}
 
 	if (force) clamp_flags |= PR_ZOOM_INVALIDATE;
-	(void) pr_parent_window_resize(pr, pr->width, pr->height);
 	if (!pr_zoom_clamp(pr, zoom, clamp_flags)) return;
 
 	(void) pr_size_clamp(pr);
+	(void) pr_parent_window_resize(pr, pr->width, pr->height);
 
 	if (force && new)
 		{
