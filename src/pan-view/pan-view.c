@@ -128,6 +128,7 @@ static void pan_queue_thumb_done_cb(ThumbLoader *tl, gpointer data)
 static void pan_queue_image_done_cb(ImageLoader *il, gpointer data)
 {
 	PanWindow *pw = data;
+	GdkPixbuf *rotated = NULL;
 
 	if (pw->queue_pi)
 		{
@@ -141,6 +142,21 @@ static void pan_queue_image_done_cb(ImageLoader *il, gpointer data)
 
 		if (pi->pixbuf) g_object_unref(pi->pixbuf);
 		pi->pixbuf = image_loader_get_pixbuf(pw->il);
+
+		if (pi->pixbuf && options->image.exif_rotate_enable)
+			{
+			if (!il->fd->exif_orientation)
+				{
+				il->fd->exif_orientation = metadata_read_int(il->fd, ORIENTATION_KEY, EXIF_ORIENTATION_TOP_LEFT);
+				}
+
+			if (il->fd->exif_orientation != EXIF_ORIENTATION_TOP_LEFT)
+				{
+				rotated = pixbuf_apply_orientation(pi->pixbuf, il->fd->exif_orientation);
+				pi->pixbuf = rotated;
+				}
+			}
+
 		if (pi->pixbuf) g_object_ref(pi->pixbuf);
 
 		if (pi->pixbuf && pw->size != PAN_IMAGE_SIZE_100 &&
