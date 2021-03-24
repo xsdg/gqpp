@@ -213,3 +213,6 @@ can use see http://www.stack.nl/~dimitri/doxygen/commands.html.
 
 But in case just think about that the documentation is for other developers not
 for the end user. So keep the focus.
+
+The file ./scripts/doxygen-help.sh may be used to integrate access to the
+Doxygen files into a code editor.
