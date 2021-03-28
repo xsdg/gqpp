@@ -100,6 +100,8 @@ struct _DupeWindow
 	GtkWidget *custom_threshold;
 	GList *add_files_queue;
 	guint add_files_queue_id;
+	GHashTable *list_cache; /* Caches the DupeItems of all items in list */
+	GHashTable *second_list_cache; /* Caches the DupeItems of all items in second_list */
 	GtkWidget *controls_box;
 
 	gboolean show_thumbs;
