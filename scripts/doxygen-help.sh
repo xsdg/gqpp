@@ -58,21 +58,16 @@ then
 	echo "Environment variable PROJECT not set"
 	zenity --title="Geeqie" --width=200 --warning --text="Environment variable PROJECT not set"
 else
-	awk  -v search_param="$1" -v docdir="$DOCDIR" '
+	url_found=$(awk  -v search_param="$1" -v docdir="$DOCDIR" '
 		{
-		if ($1 ==  "<name>_"search_param"</name>")
+		if ($1 == "<name>_"search_param"</name>")
 			{
-			found=0
-			while (found == 0)
-				{
-				getline
-				n=split($1, anchorfile, /[<>]/)
-				if (anchorfile[2] == "anchorfile")
-					{
-					found=1
-					}
-				}
-			data_result="file://"docdir"/html/" anchorfile[3]
+			getline
+			n=split($1, anchorfile, /[<>]/)
+
+			getline
+			n=split($1, anchor, /[<>]/)
+			struct_result="file://"docdir"/html/" anchorfile[3] "#" anchor[3]
 			}
 		else
 			{
@@ -88,14 +83,22 @@ else
 			}
 		}
 		END {
-			if (data_result != "")
+			if (struct_result != "")
 				{
-				print data_result
+				print struct_result
 				}
 			else if (function_result != "")
 				{
 				print function_result
 				}
 			}
-		' $DOCDIR/$PROJECT.tag | while read -r file; do xdg-open "$file"; done
+		' $DOCDIR/$PROJECT.tag)
+
+	if [[ -z $url_found ]]
+	then
+		exit 1
+	else
+		xdg-open "$url_found"
+		exit 0
+	fi
 fi
