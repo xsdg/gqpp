@@ -50,6 +50,9 @@ struct _LogWindow
 	GtkWidget *wrap;
 	GtkWidget *timer_data;
 	GtkWidget *debug_level;
+	gint debug_value; /**< Not used */
+	GtkWidget *search_entry_box;
+	gboolean highlight_all;
 };
 
 #if !GTK_CHECK_VERSION(3,0,0)
@@ -69,6 +72,11 @@ static LogDef logdefs[LOG_COUNT] = {
 	{ LOG_ERROR,	"error",	"red"	 },
 };
 #endif
+
+typedef enum {
+	LOGWINDOW_SEARCH_BACKWARDS,
+	LOGWINDOW_SEARCH_FORWARDS
+} LogWindowSearchDirection;
 
 static LogWindow *logwindow = NULL;
 
@@ -125,6 +133,203 @@ static void log_window_debug_spin_cb(GtkSpinButton *debug_level, gpointer data)
 	set_debug_level(gtk_spin_button_get_value(debug_level));
 }
 
+static void remove_green_bg(LogWindow *logwin)
+{
+	GtkTextIter start_find;
+	GtkTextIter start_match;
+	GtkTextIter end_match;
+	GtkTextBuffer *buffer;
+	GSList *list;
+	const gchar *text;
+	gchar *tag_name;
+	gint offset;
+
+	text = gtk_entry_get_text(GTK_ENTRY(logwin->search_entry_box));
+	buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(logwin->text));
+	gtk_text_buffer_get_start_iter(buffer, &start_find);
+
+	while (gtk_text_iter_forward_search(&start_find, text, GTK_TEXT_SEARCH_VISIBLE_ONLY,  &start_match, &end_match, NULL))
+		{
+		list = gtk_text_iter_get_tags(&start_match);
+		while (list)
+			{
+			g_object_get(list->data, "name", &tag_name, NULL);
+			if (g_strcmp0(tag_name, "green_bg") == 0)
+				{
+				gtk_text_buffer_remove_tag_by_name(buffer, "green_bg", &start_match, &end_match);
+				}
+			list = list->next;
+			}
+		g_slist_free(list);
+
+		offset = gtk_text_iter_get_offset(&end_match);
+		gtk_text_buffer_get_iter_at_offset(buffer, &start_find, offset);
+		}
+}
+
+static void search_activate_event(GtkEntry *widget, LogWindow *logwin)
+{
+	GtkTextIter start_find;
+	GtkTextIter start_match;
+	GtkTextIter end_match;
+	GtkTextBuffer *buffer;
+	GtkTextMark *cursor_mark;
+	GtkTextIter cursor_iter;
+	const gchar *text;
+	gint offset;
+
+	buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(logwin->text));
+	text = gtk_entry_get_text(GTK_ENTRY(logwin->search_entry_box));
+
+	if (logwin->highlight_all)
+		{
+		gtk_text_buffer_get_start_iter(buffer, &start_find);
+
+		while (gtk_text_iter_forward_search(&start_find, text, GTK_TEXT_SEARCH_VISIBLE_ONLY, &start_match, &end_match, NULL))
+			{
+			gtk_text_buffer_apply_tag_by_name(buffer, "gray_bg", &start_match, &end_match);
+			offset = gtk_text_iter_get_offset(&end_match);
+			gtk_text_buffer_get_iter_at_offset(buffer, &start_find, offset);
+			}
+		}
+	else
+		{
+		cursor_mark = gtk_text_buffer_get_insert(buffer);
+		gtk_text_buffer_get_iter_at_mark(buffer, &cursor_iter, cursor_mark);
+
+		if (gtk_text_iter_forward_search(&cursor_iter, text, GTK_TEXT_SEARCH_VISIBLE_ONLY, &start_match, &end_match, NULL))
+			{
+			gtk_text_buffer_apply_tag_by_name(buffer, "gray_bg", &start_match, &end_match);
+			}
+		}
+}
+
+static gboolean search_keypress_event(GtkWidget *widget, GdkEventKey *event, LogWindow *logwin, LogWindowSearchDirection direction)
+{
+	GtkTextIter start_find;
+	GtkTextIter start_match;
+	GtkTextIter end_match;
+	GtkTextIter start_sel;
+	GtkTextIter end_sel;
+	const gchar *text;
+	GtkTextBuffer *buffer;
+	GtkTextMark *cursor_mark;
+	GtkTextIter cursor_iter;
+	gint offset;
+	gboolean match_found = FALSE;
+	gboolean selected;
+
+	buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(logwin->text));
+	gtk_text_buffer_get_start_iter(buffer, &start_find);
+
+	text = gtk_entry_get_text(GTK_ENTRY(logwin->search_entry_box));
+	if (strlen(text) == 0)
+		{
+		selected = gtk_text_buffer_get_selection_bounds(buffer, &start_sel, &end_sel);
+		if (selected)
+			{
+			text = gtk_text_buffer_get_text(buffer, &start_sel, &end_sel, FALSE);
+			gtk_entry_set_text(GTK_ENTRY(logwin->search_entry_box), text);
+			}
+		}
+
+	if (logwin->highlight_all)
+		{
+		while (gtk_text_iter_forward_search(&start_find, text, GTK_TEXT_SEARCH_VISIBLE_ONLY, &start_match, &end_match, NULL))
+			{
+			gtk_text_buffer_apply_tag_by_name(buffer, "gray_bg", &start_match, &end_match);
+			offset = gtk_text_iter_get_offset(&end_match);
+			gtk_text_buffer_get_iter_at_offset(buffer, &start_find, offset);
+			}
+		}
+
+	cursor_mark = gtk_text_buffer_get_insert(buffer);
+	gtk_text_buffer_get_iter_at_mark(buffer, &cursor_iter, cursor_mark);
+
+	if (direction == LOGWINDOW_SEARCH_BACKWARDS)
+		{
+		match_found = gtk_text_iter_backward_search( &cursor_iter, text, GTK_TEXT_SEARCH_VISIBLE_ONLY,  &start_match, &end_match, NULL);
+		}
+	else
+		{
+		match_found = gtk_text_iter_forward_search( &cursor_iter, text, GTK_TEXT_SEARCH_VISIBLE_ONLY,  &start_match, &end_match, NULL);
+		}
+
+	if (match_found)
+		{
+		remove_green_bg(logwin);
+
+		gtk_text_buffer_apply_tag_by_name(buffer, "green_bg",  &start_match, &end_match);
+
+		if (direction == LOGWINDOW_SEARCH_BACKWARDS)
+			{
+			gtk_text_buffer_place_cursor(buffer, &start_match);
+			}
+		else
+			{
+			gtk_text_buffer_place_cursor(buffer, &end_match);
+			}
+
+		cursor_mark = gtk_text_buffer_get_insert(buffer);
+		gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(logwin->text), cursor_mark, 0.2, FALSE, 0.0, 0.0);
+        }
+
+	return FALSE;
+}
+
+static gboolean backwards_keypress_event_cb(GtkWidget *widget, GdkEventKey *event, LogWindow *logwin)
+{
+	search_keypress_event(widget, event, logwin, LOGWINDOW_SEARCH_BACKWARDS);
+
+	return FALSE;
+}
+
+static gboolean forwards_keypress_event_cb(GtkWidget *widget, GdkEventKey *event, LogWindow *logwin)
+{
+	search_keypress_event(widget, event, logwin, LOGWINDOW_SEARCH_FORWARDS);
+
+	return FALSE;
+}
+
+static gboolean all_keypress_event_cb(GtkToggleButton *widget, LogWindow *logwin)
+{
+	logwin->highlight_all = gtk_toggle_button_get_active(widget);
+
+	return FALSE;
+}
+
+static gboolean debug_changed_cb(GtkSpinButton *widget, LogWindow *logwin)
+{
+	set_debug_level((gtk_spin_button_get_value(widget)));
+
+	return FALSE;
+}
+
+static void search_entry_icon_cb(GtkEntry *entry, GtkEntryIconPosition pos, GdkEvent *event, gpointer userdata)
+{
+	LogWindow *logwin = userdata;
+	GtkTextIter start_find;
+	GtkTextIter end_find;
+	GtkTextBuffer *buffer;
+
+	if (pos == GTK_ENTRY_ICON_SECONDARY)
+		{
+		gtk_entry_set_text(GTK_ENTRY(logwin->search_entry_box), "");
+
+		buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(logwin->text));
+		gtk_text_buffer_get_start_iter(buffer, &start_find);
+		gtk_text_buffer_get_end_iter(buffer, &end_find);
+		gtk_text_buffer_remove_tag_by_name(buffer, "gray_bg", &start_find, &end_find);
+		gtk_text_buffer_remove_tag_by_name(buffer, "green_bg", &start_find, &end_find);
+		}
+}
+
+static void filter_entry_icon_cb(GtkEntry *entry, GtkEntryIconPosition pos, GdkEvent *event, gpointer userdata)
+{
+	gtk_entry_set_text(entry, "");
+	set_regexp("");
+}
+
 static LogWindow *log_window_create(LayoutWindow *lw)
 {
 	LogWindow *logwin;
@@ -136,6 +341,14 @@ static LogWindow *log_window_create(LayoutWindow *lw)
 	GtkWidget *win_vbox;
 	GtkWidget *textbox;
 	GtkWidget *hbox;
+	GtkWidget *label = NULL;
+	GtkWidget *search_box;
+	GtkWidget *backwards_button;
+	GtkWidget *forwards_button;
+	GtkWidget *all_button;
+	GtkIconTheme *theme;
+	GdkPixbuf *pixbuf;
+	GtkWidget *image = NULL;
 
 	logwin = g_new0(LogWindow, 1);
 
@@ -166,40 +379,115 @@ static LogWindow *log_window_create(LayoutWindow *lw)
 	gtk_box_pack_start(GTK_BOX(win_vbox), scrolledwin, TRUE, TRUE, 0);
 	gtk_widget_show(scrolledwin);
 
-#ifdef DEBUG
-	hbox = pref_box_new(win_vbox, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
-
-	gtk_widget_show(hbox);
-	logwin->debug_level = pref_spin_new_mnemonic(hbox, _("Debug level:"), NULL,
-			  0, 4, 1, 1, get_debug_level(),G_CALLBACK(log_window_debug_spin_cb),
-			  logwin->debug_level );
-
-	logwin->pause = pref_button_new(hbox, NULL, "Pause", FALSE,
-					   G_CALLBACK(log_window_pause_cb), NULL);
-
-	logwin->wrap = pref_button_new(hbox, NULL, "Line wrap", FALSE,
-					   G_CALLBACK(log_window_line_wrap_cb), logwin);
-
-	logwin->timer_data = pref_button_new(hbox, NULL, "Timer data", FALSE,
-					   G_CALLBACK(log_window_timer_data_cb), logwin);
-
-	pref_label_new(hbox, "Filter regexp");
-
-	textbox = gtk_entry_new();
-	gtk_container_add(GTK_CONTAINER(hbox), textbox);
-	gtk_widget_show(textbox);
-	g_signal_connect(G_OBJECT(textbox), "activate",
-			 G_CALLBACK(log_window_regexp_cb), logwin);
-#endif
-
 	text = gtk_text_view_new();
 	gtk_text_view_set_editable(GTK_TEXT_VIEW(text), FALSE);
-	gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(text), GTK_WRAP_WORD);
+	if (options->log_window.line_wrap)
+		{
+		gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(text), GTK_WRAP_WORD);
+		}
+	else
+		{
+		gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(text), GTK_WRAP_NONE);
+		}
 	buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text));
 	gtk_text_buffer_get_start_iter(buffer, &iter);
 	gtk_text_buffer_create_mark(buffer, "end", &iter, FALSE);
 	gtk_container_add(GTK_CONTAINER(scrolledwin), text);
 	gtk_widget_show(text);
+
+#ifdef DEBUG
+	gtk_text_buffer_create_tag(buffer, "gray_bg", "background", "gray", NULL);
+	gtk_text_buffer_create_tag(buffer, "green_bg", "background", "#00FF00", NULL);
+
+	hbox = pref_box_new(win_vbox, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
+
+	gtk_widget_show(hbox);
+	logwin->debug_level = pref_spin_new_int(hbox, _("Debug level:"), NULL, 0, 4, 1, get_debug_level(), &logwin->debug_value);
+	g_signal_connect(logwin->debug_level, "value-changed", G_CALLBACK(debug_changed_cb), logwin);
+
+	logwin->pause = gtk_toggle_button_new();
+	label = gtk_label_new("Pause");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(logwin->pause), _("Pause scrolling"));
+	gtk_container_add(GTK_CONTAINER(logwin->pause), label) ;
+	gtk_box_pack_start(GTK_BOX(hbox),logwin->pause, FALSE, FALSE, 0) ;
+	g_signal_connect(logwin->pause, "toggled", G_CALLBACK(log_window_pause_cb), logwin);
+	gtk_widget_show_all(logwin->pause);
+
+	logwin->wrap = gtk_toggle_button_new();
+	label = gtk_label_new("Wrap");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(logwin->wrap), _("Enable line wrap"));
+	gtk_container_add(GTK_CONTAINER(logwin->wrap), label) ;
+	gtk_box_pack_start(GTK_BOX(hbox),logwin->wrap, FALSE, FALSE, 0) ;
+	g_signal_connect(logwin->wrap, "toggled", G_CALLBACK(log_window_line_wrap_cb), logwin);
+	gtk_widget_show_all(logwin->wrap);
+
+	logwin->timer_data = gtk_toggle_button_new();
+	label = gtk_label_new("Timer");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(logwin->timer_data), _("Enable timer data"));
+	gtk_container_add(GTK_CONTAINER(logwin->timer_data), label) ;
+	gtk_box_pack_start(GTK_BOX(hbox),logwin->timer_data, FALSE, FALSE, 0) ;
+	if (options->log_window.timer_data)
+		{
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(logwin->timer_data), TRUE);
+		}
+	g_signal_connect(logwin->timer_data, "toggled", G_CALLBACK(log_window_timer_data_cb), logwin);
+	gtk_widget_show_all(logwin->timer_data);
+
+	search_box = gtk_hbox_new(FALSE, 0);
+	gtk_container_add(GTK_CONTAINER(hbox), search_box);
+	gtk_widget_show(search_box);
+
+	logwin->search_entry_box = gtk_entry_new();
+	gtk_box_pack_start(GTK_BOX(search_box), logwin->search_entry_box, FALSE, FALSE, 0);
+	gtk_widget_show(logwin->search_entry_box);
+	gtk_entry_set_icon_from_icon_name(GTK_ENTRY(logwin->search_entry_box), GTK_ENTRY_ICON_PRIMARY, GTK_STOCK_FIND);
+	gtk_entry_set_icon_from_icon_name(GTK_ENTRY(logwin->search_entry_box), GTK_ENTRY_ICON_SECONDARY, GTK_STOCK_CLEAR);
+	gtk_widget_show(search_box);
+	gtk_widget_set_tooltip_text(logwin->search_entry_box, _("Search for text in log window"));
+	g_signal_connect(logwin->search_entry_box, "icon-press", G_CALLBACK(search_entry_icon_cb), logwin);
+	g_signal_connect(logwin->search_entry_box, "activate", G_CALLBACK(search_activate_event), logwin);
+
+	theme = gtk_icon_theme_get_default();
+	pixbuf = gtk_icon_theme_load_icon(theme, "pan-up-symbolic", 20, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
+	image = gtk_image_new_from_pixbuf(pixbuf);
+	backwards_button = gtk_button_new();
+	gtk_button_set_image(GTK_BUTTON(backwards_button), GTK_WIDGET(image));
+	gtk_widget_set_tooltip_text(backwards_button, _("Search backwards"));
+	gtk_box_pack_start(GTK_BOX(search_box), backwards_button, FALSE, FALSE, 0);
+	gtk_widget_show(backwards_button);
+	g_signal_connect(backwards_button, "button_release_event", G_CALLBACK(backwards_keypress_event_cb), logwin);
+	g_object_unref(pixbuf);
+
+	pixbuf = gtk_icon_theme_load_icon(theme, "pan-down-symbolic", 20, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
+	image = gtk_image_new_from_pixbuf(pixbuf);
+	forwards_button = gtk_button_new();
+	gtk_button_set_image(GTK_BUTTON(forwards_button), GTK_WIDGET(image));
+	gtk_widget_set_tooltip_text(forwards_button, _("Search forwards"));
+	gtk_box_pack_start(GTK_BOX(search_box), forwards_button, FALSE, FALSE, 0);
+	gtk_widget_show(forwards_button);
+	g_signal_connect(forwards_button, "button_release_event", G_CALLBACK(forwards_keypress_event_cb), logwin);
+	g_object_unref(pixbuf);
+
+	pixbuf = gtk_icon_theme_load_icon(theme, "edit-select-all-symbolic", 20, GTK_ICON_LOOKUP_GENERIC_FALLBACK, NULL);
+	image = gtk_image_new_from_pixbuf(pixbuf);
+	all_button = gtk_toggle_button_new();
+	gtk_button_set_image(GTK_BUTTON(all_button), GTK_WIDGET(image));
+	gtk_widget_set_tooltip_text(GTK_WIDGET(all_button), _("Highlight all"));
+	gtk_box_pack_start(GTK_BOX(search_box), all_button, FALSE, FALSE, 0) ;
+	g_signal_connect(all_button, "toggled", G_CALLBACK(all_keypress_event_cb), logwin);
+	gtk_widget_show_all(all_button);
+	g_object_unref(pixbuf);
+
+	pref_label_new(hbox, _("Filter regexp"));
+
+	textbox = gtk_entry_new();
+	gtk_box_pack_start(GTK_BOX(hbox), textbox, FALSE, FALSE, 0);
+	gtk_entry_set_icon_from_icon_name(GTK_ENTRY(textbox), GTK_ENTRY_ICON_SECONDARY, GTK_STOCK_CLEAR);
+	gtk_widget_show(textbox);
+	g_signal_connect(G_OBJECT(textbox), "activate",
+			 G_CALLBACK(log_window_regexp_cb), logwin);
+	g_signal_connect(textbox, "icon-press", G_CALLBACK(filter_entry_icon_cb), logwin);
+#endif
 
 	logwin->window = window;
 	logwin->scrolledwin = scrolledwin;
@@ -279,8 +567,6 @@ static void log_window_show(LogWindow *logwin)
 	GtkTextBuffer *buffer;
 	GtkTextMark *mark;
 	gchar *regexp;
-
-	g_assert(logwin != NULL);
 
 	buffer = gtk_text_view_get_buffer(text);
 	mark = gtk_text_buffer_get_mark(buffer, "end");
