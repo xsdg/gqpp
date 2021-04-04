@@ -2561,7 +2561,7 @@ static gboolean dupe_insert_in_list_cache(DupeWindow *dw, FileData *fd)
 	/* We do this as a lookup + add as we don't want to overwrite
 	   items as that would leak the old value. */
 	if (g_hash_table_lookup(table, fd) != NULL)
-		return TRUE;
+		return FALSE;
 	return g_hash_table_add(table, fd);
 }
 
