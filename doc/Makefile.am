@@ -7,7 +7,7 @@ EXTRA_DIST = docbook2html.sh docbook icons
 html/GuideIndex.html: docbook/GuideIndex.xml
 	rm -rf html; mkdir html; cp $(srcdir)/icons/* html/
 	if [ -x "$(GNOME_DOC_TOOL)" ]; then \
-		"$(GNOME_DOC_TOOL)" html -o html $(srcdir)/docbook/GuideIndex.xml ; \
+		"$(GNOME_DOC_TOOL)" html -i -o html/ $(srcdir)/docbook/GuideIndex.xml ; \
 	else \
 		echo "yelp-tools not found, html is not built" ; \
 	fi
