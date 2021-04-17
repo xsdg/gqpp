@@ -60,7 +60,8 @@
 #define DUPE_DEF_HEIGHT 400
 #define DUPE_PROGRESS_PULSE_STEP 0.0001
 
-/* column assignment order (simply change them here) */
+/** column assignment order (simply change them here)
+ */
 enum {
 	DUPE_COLUMN_POINTER = 0,
 	DUPE_COLUMN_RANK,
@@ -72,7 +73,7 @@ enum {
 	DUPE_COLUMN_PATH,
 	DUPE_COLUMN_COLOR,
 	DUPE_COLUMN_SET,
-	DUPE_COLUMN_COUNT	/* total columns */
+	DUPE_COLUMN_COUNT	/**< total columns */
 };
 
 typedef enum {
@@ -81,8 +82,31 @@ typedef enum {
 	DUPE_NAME_MATCH
 } DUPE_CHECK_RESULT;
 
+typedef struct _DupeQueueItem DupeQueueItem;
+/** Used for similarity checks. One for each item pushed
+ * onto the thread pool.
+ */
+struct _DupeQueueItem
+{
+	DupeItem *needle;
+	DupeWindow *dw;
+	GList *work; /**< pointer into \a dw->list or \a dw->second_list (#DupeItem) */
+	gint index; /**< The order items pushed onto thread pool. Used to sort returned matches */
+};
+
+typedef struct _DupeSearchMatch DupeSearchMatch;
+/** Used for similarity checks thread. One for each pair match found.
+ */
+struct _DupeSearchMatch
+{
+	DupeItem *a; /**< \a a / \a b matched pair found */
+	DupeItem *b; /**< \a a / \a b matched pair found */
+	gdouble rank;
+	gint index; /**< The order items pushed onto thread pool. Used to sort returned matches */
+};
+
 static DupeMatchType param_match_mask;
-static GList *dupe_window_list = NULL;	/* list of open DupeWindow *s */
+static GList *dupe_window_list = NULL;	/**< list of open DupeWindow *s */
 
 /*
  * Well, after adding the 'compare two sets' option things got a little sloppy in here
@@ -112,13 +136,86 @@ static void dupe_init_list_cache(DupeWindow *dw);
 static void dupe_destroy_list_cache(DupeWindow *dw);
 static gboolean dupe_insert_in_list_cache(DupeWindow *dw, FileData *fd);
 
+static void dupe_match_link(DupeItem *a, DupeItem *b, gdouble rank);
+static gint dupe_match_link_exists(DupeItem *child, DupeItem *parent);
+
+/**
+ * @brief The function run in threads for similarity checks
+ * @param d1 #DupeQueueItem
+ * @param d2 #DupeWindow
+ * 
+ * Used only for similarity checks.\n
+ * Search \a dqi->list for \a dqi->needle and if a match is
+ * found, create a #DupeSearchMatch and add to \a dw->search_matches list\n
+ * If \a dw->abort is set, just increment \a dw->thread_count
+ */
+static void dupe_comparison_func(gpointer d1, gpointer d2)
+{
+	DupeQueueItem *dqi = d1;
+	DupeWindow *dw = d2;
+	DupeSearchMatch *dsm;
+	DupeItem *di;
+	GList *matches = NULL;
+	gdouble rank = 0;
+
+	if (!dw->abort)
+		{
+		GList *work = dqi->work;
+		while (work)
+			{
+			di = work->data;
+
+			/* forward for second set, back for simple compare */
+			if (dw->second_set)
+				{
+				work = work->next;
+				}
+			else
+				{
+				work = work->prev;
+				}
+
+			if (dupe_match(di, dqi->needle, dqi->dw->match_mask, &rank, TRUE))
+				{
+				dsm = g_new0(DupeSearchMatch, 1);
+				dsm->a = di;
+				dsm->b = dqi->needle;
+				dsm->rank = rank;
+				matches = g_list_prepend(matches, dsm);
+				dsm->index = dqi->index;
+				}
+
+			if (dw->abort)
+				{
+				break;
+				}
+			}
+
+		matches = g_list_reverse(matches);
+		g_mutex_lock(&dw->search_matches_mutex);
+		dw->search_matches = g_list_concat(dw->search_matches, matches);
+		g_mutex_unlock(&dw->search_matches_mutex);
+		}
+
+	g_mutex_lock(&dw->thread_count_mutex);
+	dw->thread_count++;
+	g_mutex_unlock(&dw->thread_count_mutex);
+	g_free(dqi);
+}
+
 /*
  * ------------------------------------------------------------------
  * Window updates
  * ------------------------------------------------------------------
  */
 
-
+/**
+ * @brief Update display of status label
+ * @param dw 
+ * @param count_only 
+ * 
+ * 
+ */
 static void dupe_window_update_count(DupeWindow *dw, gboolean count_only)
 {
 	gchar *text;
@@ -147,6 +244,12 @@ static void dupe_window_update_count(DupeWindow *dw, gboolean count_only)
 	g_free(text);
 }
 
+/**
+ * @brief Returns time in µsec since Epoch
+ * @returns 
+ * 
+ * 
+ */
 static guint64 msec_time(void)
 {
 	struct timeval tv;
@@ -161,6 +264,16 @@ static gint dupe_iterations(gint n)
 	return (n * ((n + 1) / 2));
 }
 
+/**
+ * @brief 
+ * @param dw 
+ * @param status 
+ * @param value 
+ * @param force 
+ * 
+ * If \a status is blank, clear status bar text and set progress to zero. \n
+ * If \a force is not set, after 2 secs has elapsed, update time-to-go every 250 ms. 
+ */
 static void dupe_window_update_progress(DupeWindow *dw, const gchar *status, gdouble value, gboolean force)
 {
 	const gchar *status_text;
@@ -791,6 +904,13 @@ static void dupe_listview_select_dupes(DupeWindow *dw, DupeSelectType parents)
  * ------------------------------------------------------------------
  */
 
+/**
+ * @brief Search \a parent->group for \a child (#DupeItem)
+ * @param child 
+ * @param parent 
+ * @returns 
+ * 
+ */
 static DupeMatch *dupe_match_find_match(DupeItem *child, DupeItem *parent)
 {
 	GList *work;
@@ -805,6 +925,13 @@ static DupeMatch *dupe_match_find_match(DupeItem *child, DupeItem *parent)
 	return NULL;
 }
 
+/**
+ * @brief Create #DupeMatch structure for \a child, and insert into \a parent->group list.
+ * @param child 
+ * @param parent 
+ * @param rank 
+ * 
+ */
 static void dupe_match_link_child(DupeItem *child, DupeItem *parent, gdouble rank)
 {
 	DupeMatch *dm;
@@ -815,12 +942,26 @@ static void dupe_match_link_child(DupeItem *child, DupeItem *parent, gdouble ran
 	parent->group = g_list_append(parent->group, dm);
 }
 
+/**
+ * @brief Link \a a & \a b as both parent and child
+ * @param a 
+ * @param b 
+ * @param rank 
+ * 
+ * Link \a a as child of \a b, and \a b as child of \a a
+ */
 static void dupe_match_link(DupeItem *a, DupeItem *b, gdouble rank)
 {
 	dupe_match_link_child(a, b, rank);
 	dupe_match_link_child(b, a, rank);
 }
 
+/**
+ * @brief Remove \a child #DupeMatch from \a parent->group list.
+ * @param child 
+ * @param parent 
+ * 
+ */
 static void dupe_match_unlink_child(DupeItem *child, DupeItem *parent)
 {
 	DupeMatch *dm;
@@ -833,12 +974,27 @@ static void dupe_match_unlink_child(DupeItem *child, DupeItem *parent)
 		}
 }
 
+/**
+ * @brief  Unlink \a a from \a b, and \a b from \a a
+ * @param a 
+ * @param b 
+ *
+ * Free the relevant #DupeMatch items from the #DupeItem group lists
+ */
 static void dupe_match_unlink(DupeItem *a, DupeItem *b)
 {
 	dupe_match_unlink_child(a, b);
 	dupe_match_unlink_child(b, a);
 }
 
+/**
+ * @brief 
+ * @param parent 
+ * @param unlink_children 
+ * 
+ * If \a unlink_children is set, unlink all entries in \a parent->group list. \n
+ * Free the \a parent->group list and set group_rank to zero;
+ */
 static void dupe_match_link_clear(DupeItem *parent, gboolean unlink_children)
 {
 	GList *work;
@@ -859,11 +1015,25 @@ static void dupe_match_link_clear(DupeItem *parent, gboolean unlink_children)
 	parent->group_rank = 0.0;
 }
 
+/**
+ * @brief Search \a parent->group list for \a child
+ * @param child 
+ * @param parent 
+ * @returns boolean TRUE/FALSE found/not found
+ * 
+ */
 static gint dupe_match_link_exists(DupeItem *child, DupeItem *parent)
 {
 	return (dupe_match_find_match(child, parent) != NULL);
 }
 
+/**
+ * @brief  Search \a parent->group for \a child, and return \a child->rank
+ * @param child 
+ * @param parent 
+ * @returns \a dm->di->rank
+ *
+ */
 static gdouble dupe_match_link_rank(DupeItem *child, DupeItem *parent)
 {
 	DupeMatch *dm;
@@ -874,6 +1044,15 @@ static gdouble dupe_match_link_rank(DupeItem *child, DupeItem *parent)
 	return 0.0;
 }
 
+/**
+ * @brief Find highest rank in \a child->group
+ * @param child 
+ * @returns 
+ * 
+ * Search the #DupeMatch entries in the \a child->group list.
+ * Return the #DupeItem with the highest rank. If more than one have
+ * the same rank, the first encountered is used.
+ */
 static DupeItem *dupe_match_highest_rank(DupeItem *child)
 {
 	DupeMatch *dr;
@@ -884,13 +1063,22 @@ static DupeItem *dupe_match_highest_rank(DupeItem *child)
 	while (work)
 		{
 		DupeMatch *dm = work->data;
-		if (!dr || dm->rank > dr->rank) dr = dm;
+		if (!dr || dm->rank > dr->rank)
+			{
+			dr = dm;
+			}
 		work = work->next;
 		}
 
 	return (dr) ? dr->di : NULL;
 }
 
+/** 
+ * @brief Compute and store \a parent->group_rank
+ * @param parent 
+ * 
+ * Group_rank = (sum of all child ranks) / n
+ */
 static void dupe_match_rank_update(DupeItem *parent)
 {
 	GList *work;
@@ -933,6 +1121,13 @@ static DupeItem *dupe_match_find_parent(DupeWindow *dw, DupeItem *child)
 	return NULL;
 }
 
+/**
+ * @brief 
+ * @param work (#DupeItem) dw->list or dw->second_list
+ * 
+ * Unlink all #DupeItem-s in \a work.
+ * Do not unlink children.
+ */
 static void dupe_match_reset_list(GList *work)
 {
 	while (work)
@@ -999,11 +1194,25 @@ static void dupe_match_print_list(GList *list)
 }
 
 /* level 3, unlinking and orphan handling */
+/**
+ * @brief 
+ * @param child 
+ * @param parent \a di from \a child->group
+ * @param[inout] list \a dw->list sorted by rank (#DupeItem)
+ * @param dw 
+ * @returns modified \a list
+ *
+ * Called for each entry in \a child->group (#DupeMatch) with \a parent set to \a dm->di. \n
+ * Find the highest rank #DupeItem of the \a parent's children. \n
+ * If that is == \a child OR
+ * highest rank #DupeItem of \a child == \a parent then FIXME:
+ * 
+ */
 static GList *dupe_match_unlink_by_rank(DupeItem *child, DupeItem *parent, GList *list, DupeWindow *dw)
 {
-	DupeItem *best;
+	DupeItem *best = NULL;
 
-	best = dupe_match_highest_rank(parent);
+	best = dupe_match_highest_rank(parent); // highest rank in parent->group
 	if (best == child || dupe_match_highest_rank(child) == parent)
 		{
 		GList *work;
@@ -1031,7 +1240,7 @@ static GList *dupe_match_unlink_by_rank(DupeItem *child, DupeItem *parent, GList
 				}
 			}
 
-		rank = dupe_match_link_rank(child, parent);
+		rank = dupe_match_link_rank(child, parent); // child->rank
 		dupe_match_link_clear(parent, TRUE);
 		dupe_match_link(child, parent, rank);
 		list = g_list_remove(list, parent);
@@ -1047,6 +1256,16 @@ static GList *dupe_match_unlink_by_rank(DupeItem *child, DupeItem *parent, GList
 }
 
 /* level 2 */
+/**
+ * @brief 
+ * @param[inout] list \a dw->list sorted by rank (#DupeItem)
+ * @param di 
+ * @param dw 
+ * @returns modified \a list
+ * 
+ * Called for each entry in \a list.
+ * Call unlink for each child in \a di->group
+ */
 static GList *dupe_match_group_filter(GList *list, DupeItem *di, DupeWindow *dw)
 {
 	GList *work;
@@ -1063,6 +1282,15 @@ static GList *dupe_match_group_filter(GList *list, DupeItem *di, DupeWindow *dw)
 }
 
 /* level 1 (top) */
+/**
+ * @brief 
+ * @param[inout] list \a dw->list sorted by rank (#DupeItem)
+ * @param dw 
+ * @returns Filtered \a list
+ * 
+ * Called once.
+ * Call group filter for each \a di in \a list
+ */
 static GList *dupe_match_group_trim(GList *list, DupeWindow *dw)
 {
 	GList *work;
@@ -1089,6 +1317,12 @@ static gint dupe_match_sort_groups_cb(gconstpointer a, gconstpointer b)
 	return 0;
 }
 
+/**
+ * @brief Sorts the children of each #DupeItem in \a list
+ * @param list #DupeItem
+ * 
+ * Sorts the #DupeItem->group children on rank
+ */
 static void dupe_match_sort_groups(GList *list)
 {
 	GList *work;
@@ -1116,6 +1350,14 @@ static gint dupe_match_totals_sort_cb(gconstpointer a, gconstpointer b)
 	return 0;
 }
 
+/**
+ * @brief Callback for group_rank sort
+ * @param a 
+ * @param b 
+ * @returns 
+ * 
+ * 
+ */
 static gint dupe_match_rank_sort_cb(gconstpointer a, gconstpointer b)
 {
 	DupeItem *da = (DupeItem *)a;
@@ -1126,7 +1368,15 @@ static gint dupe_match_rank_sort_cb(gconstpointer a, gconstpointer b)
 	return 0;
 }
 
-/* returns allocated GList of dupes sorted by rank */
+/**
+ * @brief Sorts \a source_list by group-rank
+ * @param source_list #DupeItem
+ * @returns 
+ *
+ * Computes group_rank for each #DupeItem. \n
+ * Items with no group list are ignored.
+ * Returns allocated GList of #DupeItem-s sorted by group_rank
+ */
 static GList *dupe_match_rank_sort(GList *source_list)
 {
 	GList *list = NULL;
@@ -1139,7 +1389,7 @@ static GList *dupe_match_rank_sort(GList *source_list)
 
 		if (di->group)
 			{
-			dupe_match_rank_update(di);
+			dupe_match_rank_update(di); // Compute and store group_rank for di
 			list = g_list_prepend(list, di);
 			}
 
@@ -1149,7 +1399,13 @@ static GList *dupe_match_rank_sort(GList *source_list)
 	return g_list_sort(list, dupe_match_rank_sort_cb);
 }
 
-/* returns allocated GList of dupes sorted by totals */
+/**
+ * @brief Returns allocated GList of dupes sorted by totals
+ * @param source_list 
+ * @returns 
+ * 
+ * 
+ */
 static GList *dupe_match_totals_sort(GList *source_list)
 {
 	source_list = g_list_sort(source_list, dupe_match_totals_sort_cb);
@@ -1158,11 +1414,17 @@ static GList *dupe_match_totals_sort(GList *source_list)
 	return g_list_reverse(source_list);
 }
 
+/**
+ * @brief 
+ * @param dw 
+ * 
+ * Called once.
+ */
 static void dupe_match_rank(DupeWindow *dw)
 {
 	GList *list;
 
-	list = dupe_match_rank_sort(dw->list);
+	list = dupe_match_rank_sort(dw->list); // sorted by group_rank, no-matches filtered out
 
 	if (required_debug_level(2)) dupe_match_print_list(list);
 
@@ -1191,6 +1453,18 @@ static void dupe_match_rank(DupeWindow *dw)
  * ------------------------------------------------------------------
  */
 
+/**
+ * @brief 
+ * @param[in] a 
+ * @param[in] b 
+ * @param[in] mask 
+ * @param[out] rank 
+ * @param[in] fast 
+ * @returns 
+ * 
+ * For similarity checks, compute rank - (similarity factor between a and b). \n
+ * If rank < user-set sim value, returns FALSE.
+ */
 static gboolean dupe_match(DupeItem *a, DupeItem *b, DupeMatchType mask, gdouble *rank, gint fast)
 {
 	*rank = 0.0;
@@ -1717,15 +1991,16 @@ static void dupe_array_check(DupeWindow *dw )
  * @param needle 
  * @param start 
  * 
+ * Only used for similarity checks.\n
  * Called from dupe_check_cb.
  * Called for each entry in the list.
  * Steps through the list looking for matches against needle.
- * 
- * Only used for similarity checks.
+ * Pushes a #DupeQueueItem onto thread pool queue.
  */
 static void dupe_list_check_match(DupeWindow *dw, DupeItem *needle, GList *start)
 {
 	GList *work;
+	DupeQueueItem *dqi;
 
 	if (dw->second_set)
 		{
@@ -1740,26 +2015,12 @@ static void dupe_list_check_match(DupeWindow *dw, DupeItem *needle, GList *start
 		work = g_list_last(dw->list);
 		}
 
-	while (work)
-		{
-		DupeItem *di = work->data;
-
-		/* speed opt: forward for second set, back for simple compare */
-		if (dw->second_set)
-			work = work->next;
-		else
-			work = work->prev;
-
-		if (!dupe_match_link_exists(needle, di))
-			{
-			gdouble rank;
-
-			if (dupe_match(di, needle, dw->match_mask, &rank, TRUE))
-				{
-				dupe_match_link(di, needle, rank);
-				}
-			}
-		}
+	dqi = g_new0(DupeQueueItem, 1);
+	dqi->needle = needle;
+	dqi->dw = dw;
+	dqi->work = work;
+	dqi->index = dw->queue_count;
+	g_thread_pool_push(dw->dupe_comparison_thread_pool, dqi, NULL);
 }
 
 /*
@@ -1886,10 +2147,30 @@ static void dupe_thumb_step(DupeWindow *dw)
 
 static void dupe_check_stop(DupeWindow *dw)
 {
-	if (dw->idle_id || dw->img_loader || dw->thumb_loader)
+	if (dw->idle_id > 0)
 		{
 		g_source_remove(dw->idle_id);
 		dw->idle_id = 0;
+		}
+
+	dw->abort = TRUE;
+
+	while (dw->thread_count < dw->queue_count) // Wait for the queue to empty
+		{
+		dupe_window_update_progress(dw, NULL, 0.0, FALSE);
+		widget_set_cursor(dw->listview, -1);
+		}
+
+	g_list_free(dw->search_matches);
+	dw->search_matches = NULL;
+
+	if (dw->idle_id || dw->img_loader || dw->thumb_loader)
+		{
+		if (dw->idle_id > 0)
+			{
+			g_source_remove(dw->idle_id);
+			dw->idle_id = 0;
+			}
 		dupe_window_update_progress(dw, NULL, 0.0, FALSE);
 		widget_set_cursor(dw->listview, -1);
 		}
@@ -2071,6 +2352,20 @@ static gboolean create_checksums_dimensions(DupeWindow *dw, GList *list)
 }
 
 /**
+ * @brief Compare func. for sorting search matches
+ * @param a #DupeSearchMatch
+ * @param b #DupeSearchMatch
+ * @returns 
+ * 
+ * Used only for similarity checks\n
+ * Sorts search matches on order they were inserted into the pool queue
+ */
+static gint sort_func(gconstpointer a, gconstpointer b)
+{
+	return (((DupeSearchMatch *)a)->index - ((DupeSearchMatch *)b)->index);
+}
+
+/**
  * @brief Check set 1 (and set 2) for matches
  * @param data DupeWindow
  * @returns TRUE/FALSE = not completed/completed
@@ -2083,6 +2378,7 @@ static gboolean create_checksums_dimensions(DupeWindow *dw, GList *list)
 static gboolean dupe_check_cb(gpointer data)
 {
 	DupeWindow *dw = data;
+	DupeSearchMatch *search_match_list_item;
 
 	if (!dw->idle_id)
 		{
@@ -2170,12 +2466,59 @@ static gboolean dupe_check_cb(gpointer data)
 	 */
 	if (!dw->working)
 		{
-		if (dw->setup_count > 0)
+		/* Similarity check threads may still be running */
+		if (dw->setup_count > 0 && (dw->match_mask == DUPE_MATCH_SIM_HIGH ||
+			dw->match_mask == DUPE_MATCH_SIM_MED ||
+			dw->match_mask == DUPE_MATCH_SIM_LOW ||
+			dw->match_mask == DUPE_MATCH_SIM_CUSTOM))
 			{
+			if( dw->thread_count < dw->queue_count)
+				{
+				dupe_window_update_progress(dw, _("Comparing..."), 0.0, FALSE);
+
+				return TRUE;
+				}
+
+			if (dw->search_matches_sorted == NULL)
+				{
+				dw->search_matches_sorted = g_list_sort(dw->search_matches, sort_func);
+				dupe_setup_reset(dw);
+				}
+
+			while (dw->search_matches_sorted)
+				{
+				dw->setup_n++;
+				dupe_window_update_progress(dw, _("Sorting..."), 0.0, FALSE);
+				search_match_list_item = dw->search_matches_sorted->data;
+
+				if (!dupe_match_link_exists(search_match_list_item->a, search_match_list_item->b))
+					{
+					dupe_match_link(search_match_list_item->a, search_match_list_item->b, search_match_list_item->rank);
+					}
+
+				dw->search_matches_sorted = dw->search_matches_sorted->next;
+
+				if (dw->search_matches_sorted != NULL)
+					{
+					return TRUE;
+					}
+				}
+			g_list_free(dw->search_matches);
+			dw->search_matches = NULL;
+			g_list_free(dw->search_matches_sorted);
+			dw->search_matches_sorted = NULL;
 			dw->setup_count = 0;
-			dupe_window_update_progress(dw, _("Sorting..."), 1.0, TRUE);
-			return TRUE;
 			}
+		else
+			{
+			if (dw->setup_count > 0)
+				{
+				dw->setup_count = 0;
+				dupe_window_update_progress(dw, _("Sorting..."), 1.0, TRUE);
+				return TRUE;
+				}
+			}
+
 		dw->idle_id = 0;
 		dupe_window_update_progress(dw, NULL, 0.0, FALSE);
 
@@ -2190,8 +2533,10 @@ static gboolean dupe_check_cb(gpointer data)
 		widget_set_cursor(dw->listview, -1);
 
 		return FALSE;
+		/* The end */
 		}
 
+	/* Setup done - working */
 	if (dw->match_mask == DUPE_MATCH_SIM_HIGH ||
 		dw->match_mask == DUPE_MATCH_SIM_MED ||
 		dw->match_mask == DUPE_MATCH_SIM_LOW ||
@@ -2199,8 +2544,9 @@ static gboolean dupe_check_cb(gpointer data)
 		{
 		/* This is the similarity comparison */
 		dupe_list_check_match(dw, (DupeItem *)dw->working->data, dw->working);
-		dupe_window_update_progress(dw, _("Comparing..."), dw->setup_count == 0 ? 0.0 : (gdouble) dw->setup_n / dw->setup_count, FALSE);
+		dupe_window_update_progress(dw, _("Queuing..."), dw->setup_count == 0 ? 0.0 : (gdouble) dw->setup_n / dw->setup_count, FALSE);
 		dw->setup_n++;
+		dw->queue_count++;
 
 		dw->working = dw->working->prev; /* Is NULL when complete */
 		}
@@ -2231,6 +2577,10 @@ static void dupe_check_start(DupeWindow *dw)
 
 	dupe_window_update_count(dw, TRUE);
 	widget_set_cursor(dw->listview, GDK_WATCH);
+	dw->queue_count = 0;
+	dw->thread_count = 0;
+	dw->search_matches_sorted = NULL;
+	dw->abort = FALSE;
 
 	if (dw->idle_id) return;
 
@@ -2553,7 +2903,14 @@ static void dupe_destroy_list_cache(DupeWindow *dw)
 	g_hash_table_destroy(dw->second_list_cache);
 }
 
-/* Return true if the fd was not in the cache */
+/**
+ * @brief Return true if the fd was not in the cache
+ * @param dw 
+ * @param fd 
+ * @returns 
+ * 
+ * 
+ */
 static gboolean dupe_insert_in_list_cache(DupeWindow *dw, FileData *fd)
 {
 	GHashTable *table =
@@ -3554,9 +3911,9 @@ static void dupe_menu_setup(DupeWindow *dw)
 	dupe_menu_add_item(store, _("Dimensions"), DUPE_MATCH_DIM, dw);
 	dupe_menu_add_item(store, _("Checksum"), DUPE_MATCH_SUM, dw);
 	dupe_menu_add_item(store, _("Path"), DUPE_MATCH_PATH, dw);
-	dupe_menu_add_item(store, _("Similarity (high)"), DUPE_MATCH_SIM_HIGH, dw);
-	dupe_menu_add_item(store, _("Similarity"), DUPE_MATCH_SIM_MED, dw);
-	dupe_menu_add_item(store, _("Similarity (low)"), DUPE_MATCH_SIM_LOW, dw);
+	dupe_menu_add_item(store, _("Similarity (high - 95)"), DUPE_MATCH_SIM_HIGH, dw);
+	dupe_menu_add_item(store, _("Similarity (med. - 90)"), DUPE_MATCH_SIM_MED, dw);
+	dupe_menu_add_item(store, _("Similarity (low - 85)"), DUPE_MATCH_SIM_LOW, dw);
 	dupe_menu_add_item(store, _("Similarity (custom)"), DUPE_MATCH_SIM_CUSTOM, dw);
 	dupe_menu_add_item(store, _("Name ≠ content"), DUPE_MATCH_NAME_CONTENT, dw);
 	dupe_menu_add_item(store, _("Name case-insensitive ≠ content"), DUPE_MATCH_NAME_CI_CONTENT, dw);
@@ -4039,6 +4396,8 @@ void dupe_window_close(DupeWindow *dw)
 
 	file_data_unregister_notify_func(dupe_notify_cb, dw);
 
+	g_thread_pool_free(dw->dupe_comparison_thread_pool, TRUE, TRUE);
+
 	g_free(dw);
 }
 
@@ -4371,7 +4730,7 @@ DupeWindow *dupe_window_new()
 	gtk_box_pack_start(GTK_BOX(controls_box), label, FALSE, FALSE, PREF_PAD_SPACE);
 	gtk_widget_show(label);
 	dw->custom_threshold = gtk_spin_button_new_with_range(1, 100, 1);
-	gtk_widget_set_tooltip_text(GTK_WIDGET(dw->custom_threshold), "Custom similarity threshold");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(dw->custom_threshold), "Custom similarity threshold\n(Use tab key to set value)");
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(dw->custom_threshold), options->duplicates_similarity_threshold);
 	g_signal_connect(G_OBJECT(dw->custom_threshold), "value_changed", G_CALLBACK(dupe_window_custom_threshold_cb), dw);
 	gtk_box_pack_start(GTK_BOX(controls_box), dw->custom_threshold, FALSE, FALSE, PREF_PAD_SPACE);
@@ -4449,6 +4808,10 @@ DupeWindow *dupe_window_new()
 	dupe_window_list = g_list_append(dupe_window_list, dw);
 
 	file_data_register_notify_func(dupe_notify_cb, dw, NOTIFY_PRIORITY_MEDIUM);
+
+	g_mutex_init(&dw->thread_count_mutex);
+	g_mutex_init(&dw->search_matches_mutex);
+	dw->dupe_comparison_thread_pool = g_thread_pool_new(dupe_comparison_func, dw, -1, FALSE, NULL);
 
 	return dw;
 }
