@@ -1177,11 +1177,12 @@ gint main(gint argc, gchar *argv[])
 		}
 
 	/* If the files on the command line are from one folder, select those files
+	 * unless it is a command line collection - then leave focus on collection window
 	 */
 	lw = NULL;
 	layout_valid(&lw);
 
-	if (single_dir && command_line->cmd_list)
+	if (single_dir && command_line->cmd_list && !command_line->startup_command_line_collection)
 		{
 		GList *work;
 		GList *selected;
