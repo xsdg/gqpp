@@ -92,7 +92,7 @@ else
 				print function_result
 				}
 			}
-		' $DOCDIR/$PROJECT.tag)
+		' "$DOCDIR"/"$PROJECT".tag)
 
 	if [[ -z $url_found ]]
 	then
