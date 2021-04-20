@@ -1131,7 +1131,7 @@ gint main(gint argc, gchar *argv[])
 	/* Files from multiple folders, or --list option given
 	 * then open an unnamed collection and insert all files
 	 */
-	if ((command_line->cmd_list && !single_dir) || (command_line->startup_command_line_collection))
+	if ((command_line->cmd_list && !single_dir) || (command_line->startup_command_line_collection && command_line->cmd_list))
 		{
 		GList *work;
 		CollectWindow *cw;
