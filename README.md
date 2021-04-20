@@ -1,17 +1,8 @@
 
-PLEASE NOTE!
-------------
-
-The repository at GitHub is not the main repository, and is likely to be out-of-date.  
-If you wish to clone the source code, please use the repository at [geeqie.org](http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git).  
-Details are given in the [Downloading](#downloading) section below.
-
--------------------
-
       ###################################################################
       ##                          Geeqie x.x                           ##
       ##                                                               ##
-      ##              Copyright (C) 2008 - 2018 The Geeqie Team        ##
+      ##              Copyright (C) 2008 - 2021 The Geeqie Team        ##
       ##              Copyright (C) 1999 - 2006 John Ellis.            ##
       ##                                                               ##
       ##                      Use at your own risk!                    ##
@@ -80,7 +71,8 @@ Geeqie is a graphics file viewer. Basic features:
     * output: single image, anaglyph, SBS, mirror, SBS half size (3DTV)
 
 *   Viewing raster and vector images, in the following formats:
-3FR, ANI, APM, ARW, BMP, CR2, CRW, CUR, DNG, ERF, GIF, HEIC, ICNS, ICO, JPE/JPEG/JPG, JPS, KDC, MEF, MPO, MOS, MRW, NEF, ORF, PEF, PTX, PBM/PGM/PNM/PPM, PNG, QIF/QTIF (QuickTime Image Format), RAF, RAW, RW2, SR2, SRF, SVG/SVGZ, TGA/TARGA, TIF/TIFF, WMF, XBM, XPM, HEIF, WEBP, DjVu, PSD, JP2. Animated GIFs are supported.
+3FR, ANI, APM, ARW, AVIF, BMP, CR2, CRW, CUR, DjVu, DNG, ERF, GIF, HEIC, HEIF, ICNS, ICO, JP2. JPE/JPEG/JPG, JPS, KDC, MEF, MOS, MPO, MRW, NEF, ORF, PBM/PGM/PNM/PPM, PEF, PNG, PSD, PTX, QIF/QTIF (QuickTime Image Format), RAF, RAW, RW2, SR2, SRF, SVG/SVGZ, TGA/TARGA, TIF/TIFF, WEBP, WMF, XBM, XPM.
+Animated GIFs are supported.
 
 * Preview and thumbnails of video clips can be displayed. Clips can be run via a defined external program.
 
