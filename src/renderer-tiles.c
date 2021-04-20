@@ -1291,33 +1291,81 @@ static gboolean rt_source_tile_render(RendererTiles *rt, ImageTile *it,
 	return draw;
 }
 
+/**
+ * @brief 
+ * @param has_alpha 
+ * @param ignore_alpha 
+ * @param src 
+ * @param dest 
+ * @param pb_x 
+ * @param pb_y 
+ * @param pb_w 
+ * @param pb_h 
+ * @param offset_x 
+ * @param offset_y 
+ * @param scale_x 
+ * @param scale_y 
+ * @param interp_type 
+ * @param check_x 
+ * @param check_y 
+ * @param wide_image Used as a work-around for a GdkPixbuf problem. Set when image width is > 32767. Problem exhibited with gdk_pixbuf_copy_area() and GDK_INTERP_NEAREST. See #772 on GitHub Geeqie
+ * 
+ * 
+ */
 static void rt_tile_get_region(gboolean has_alpha, gboolean ignore_alpha,
                                const GdkPixbuf *src, GdkPixbuf *dest,
                                int pb_x, int pb_y, int pb_w, int pb_h,
                                double offset_x, double offset_y, double scale_x, double scale_y,
                                GdkInterpType interp_type,
-                               int check_x, int check_y)
+                               int check_x, int check_y, gboolean wide_image)
 {
 	GdkPixbuf* tmppixbuf;
+	gint srs;
+	gint drs;
+	gint x;
+	gint y;
+	gint c;
+	guchar *psrc;
+	guchar *pdst;
 
 	if (!has_alpha)
 		{
 		if (scale_x == 1.0 && scale_y == 1.0)
 			{
-			gdk_pixbuf_copy_area(src,
-					     -offset_x + pb_x, -offset_y + pb_y,
-					     pb_w, pb_h,
-					     dest,
-					     pb_x, pb_y);
+			if (wide_image)
+				{
+				srs = gdk_pixbuf_get_rowstride(src);
+				drs = gdk_pixbuf_get_rowstride(dest);
+				psrc = gdk_pixbuf_get_pixels(src);
+				pdst = gdk_pixbuf_get_pixels(dest);
+				for (y = 0; y < pb_h; y++)
+					{
+					for (x = 0; x < pb_w; x++)
+						{
+						for (c = 0; c < 3; c++)
+							{
+							pdst[(y * drs) + x*3 + c] = psrc[(-(int)offset_y + pb_y + y) * srs + (-(int)offset_x + pb_x+x)*3 + c];
+							}
+						}
+					}
+				}
+			else
+				{
+				gdk_pixbuf_copy_area(src,
+									-offset_x + pb_x, -offset_y + pb_y,
+									pb_w, pb_h,
+									dest,
+									pb_x, pb_y);
+					}
 			}
 		else
 			{
 			gdk_pixbuf_scale(src, dest,
-					 pb_x, pb_y, pb_w, pb_h,
-					 offset_x,
-					 offset_y,
-					 scale_x, scale_y,
-					 interp_type);
+							pb_x, pb_y, pb_w, pb_h,
+							offset_x,
+							offset_y,
+							scale_x, scale_y,
+							(wide_image && interp_type == GDK_INTERP_NEAREST) ? GDK_INTERP_TILES : interp_type);
 			}
 		}
 	else
@@ -1387,6 +1435,7 @@ static void rt_tile_render(RendererTiles *rt, ImageTile *it,
 	gboolean has_alpha;
 	gboolean draw = FALSE;
 	gint orientation = rt_get_orientation(rt);
+	gboolean wide_image = FALSE;
 
 	if (it->render_todo == TILE_RENDER_NONE && it->surface && !new_data) return;
 
@@ -1478,6 +1527,7 @@ static void rt_tile_render(RendererTiles *rt, ImageTile *it,
 		 * small sizes for anything but GDK_INTERP_NEAREST
 		 */
 		if (pr->width < PR_MIN_SCALE_SIZE || pr->height < PR_MIN_SCALE_SIZE) fast = TRUE;
+		if (pr->image_width > 32767) wide_image = TRUE;
 
 		rt_tile_get_region(has_alpha, pr->ignore_alpha,
 				   pr->pixbuf, it->pixbuf, pb_x, pb_y, pb_w, pb_h,
@@ -1485,7 +1535,7 @@ static void rt_tile_render(RendererTiles *rt, ImageTile *it,
 				   (gdouble) 0.0 - src_y,
 				   scale_x, scale_y,
 				   (fast) ? GDK_INTERP_NEAREST : pr->zoom_quality,
-				   it->x + pb_x, it->y + pb_y);
+				   it->x + pb_x, it->y + pb_y, wide_image);
 		if (rt->stereo_mode & PR_STEREO_ANAGLYPH &&
 		    (pr->stereo_pixbuf_offset_right > 0 || pr->stereo_pixbuf_offset_left > 0))
 			{
@@ -1496,7 +1546,7 @@ static void rt_tile_render(RendererTiles *rt, ImageTile *it,
 					   (gdouble) 0.0 - src_y,
 					   scale_x, scale_y,
 					   (fast) ? GDK_INTERP_NEAREST : pr->zoom_quality,
-					   it->x + pb_x, it->y + pb_y);
+					   it->x + pb_x, it->y + pb_y, wide_image);
 			pr_create_anaglyph(rt->stereo_mode, it->pixbuf, right_pb, pb_x, pb_y, pb_w, pb_h);
 			/* do not care about freeing spare_tile, it will be reused */
 			}
