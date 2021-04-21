@@ -51,7 +51,9 @@ void collection_path_changed(CollectionData *cd);
 gint collection_to_number(CollectionData *cd);
 CollectionData *collection_from_number(gint n);
 
-/* pass a NULL pointer to whatever you don't need
+/**
+ * \headerfile collection_from_dnd_data
+ * pass a NULL pointer to whatever you don't need
  * use free_selected_list to free list, and
  * g_list_free to free info_list, which is a list of
  * CollectInfo pointers into CollectionData

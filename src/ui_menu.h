@@ -37,13 +37,18 @@ GtkWidget *menu_item_add_radio(GtkWidget *menu, const gchar *label, gpointer ite
 			       GCallback func, gpointer data);
 void menu_item_add_divider(GtkWidget *menu);
 
-/* use to avoid mnemonics, for example filenames */
+/**
+ * \headerfile menu_item_add_simple
+ * use to avoid mnemonics, for example filenames
+ */
 GtkWidget *menu_item_add_simple(GtkWidget *menu, const gchar *label,
 				GCallback func, gpointer data);
 
 GtkWidget *popup_menu_short_lived(void);
 
-/* clamp a menu's position to within the screen
+/**
+ * \headerfile popup_menu_position_clamp
+ * clamp a menu's position to within the screen
  * if menu will attempt to stay out of region y to y+height
  */
 gboolean popup_menu_position_clamp(GtkMenu *menu, gint *x, gint *y, gint height);

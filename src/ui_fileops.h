@@ -80,7 +80,9 @@ gboolean move_file(const gchar *s, const gchar *t);
 gboolean rename_file(const gchar *s, const gchar *t);
 gchar *get_current_dir(void);
 
-/* return True on success, it is up to you to free
+/**
+ * \headerfile string_list_free
+ * return True on success, it is up to you to free
  * the lists with string_list_free()
  */
 void string_list_free(GList *list);
@@ -96,7 +98,10 @@ gchar *remove_extension_from_path(const gchar *path);
 
 gboolean file_extension_match(const gchar *path, const gchar *ext);
 
-/* warning note: this modifies path string! */
+/**
+ * \headerfile parse_out_relatives
+ * warning note: this modifies path string!
+ */
 void parse_out_relatives(gchar *path);
 
 gboolean file_in_path(const gchar *name);
@@ -104,9 +109,11 @@ gboolean file_in_path(const gchar *name);
 gboolean recursive_mkdir_if_not_exists(const gchar *path, mode_t mode);
 
 
-/* generate md5 string from file,
+/**
+ * \headerfile md5_text_from_file_utf8
+ * generate md5 string from file,
  * on failure returns newly allocated copy of error_text, error_text may be NULL
-  */
+ */
 gchar *md5_text_from_file_utf8(const gchar *path, const gchar *error_text);
 gboolean md5_get_digest_from_file_utf8(const gchar *path, guchar digest[16]);
 

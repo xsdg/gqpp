@@ -53,7 +53,7 @@ struct _CacheLoader {
 	gboolean error;
 
 	ImageLoader *il;
-	guint idle_id; /* event source id */
+	guint idle_id; /**< event source id */
 };
 
 

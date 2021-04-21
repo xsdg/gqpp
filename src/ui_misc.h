@@ -32,30 +32,61 @@
 
 /* HIG 2.0 chapter 8 defines: */
 
-/* space between elements within control (ex: icon and it's text) */
+/**
+ * \def PREF_PAD_GAP
+ * space between elements within control (ex: icon and it's text)
+ */
 #define PREF_PAD_GAP     6
-/* space between label and control(s) */
+
+/**
+ * \def PREF_PAD_SPACE
+ * space between label and control(s)
+ */
 #define PREF_PAD_SPACE  12
-/* space between window border and controls */
+
+/**
+ * \def PREF_PAD_BORDER
+ * space between window border and controls
+ */
 #define PREF_PAD_BORDER 12
-/* indent for group members */
+
+/**
+ * \def PREF_PAD_INDENT
+ * indent for group members
+ */
 #define PREF_PAD_INDENT 12
-/* vertical space between groups */
+
+/**
+ * \def PREF_PAD_GROUP
+ * vertical space between groups
+ */
 #define PREF_PAD_GROUP  18
 
 /* HIG 2.0 chapter 3.13 defines: */
 
-/* gap between buttons in a dialog */
+/**
+ * \def PREF_PAD_BUTTON_GAP
+ * gap between buttons in a dialog
+ */
 #define PREF_PAD_BUTTON_GAP 6
-/* space between buttons in a dialog and it's contents */
+
+/**
+ * \def PREF_PAD_BUTTON_SPACE
+ * space between buttons in a dialog and it's contents
+ */
 #define PREF_PAD_BUTTON_SPACE 24
 
 /* and these are not in the GNOME HIG */
 
-/* gap between similar toolbar items (buttons) */
+/**
+ * \def PREF_PAD_TOOLBAR_GAP
+ * gap between similar toolbar items (buttons)
+ */
 #define PREF_PAD_TOOLBAR_GAP 0
 
-/* HIG 2.0 states 6 pixels between icons and text,
+/**
+ * \def PREF_PAD_BUTTON_ICON_GAP
+ * HIG 2.0 states 6 pixels between icons and text,
  * but GTK's stock buttons ignore this (hard coded to 2), we do it too for consistency
  */
 #define PREF_PAD_BUTTON_ICON_GAP 2

@@ -86,7 +86,9 @@ void thumb_loader_std_free(ThumbLoaderStd *tl);
 GdkPixbuf *thumb_loader_std_get_pixbuf(ThumbLoaderStd *tl);
 
 
-/* validates a non local thumbnail file,
+/**
+ * \headerfile thumb_loader_std_thumb_file_validate
+ * validates a non local thumbnail file,
  * calling func_valid with the information when app is idle
  * for thumbnail's without a file: uri, validates against allowed_age in days
  */

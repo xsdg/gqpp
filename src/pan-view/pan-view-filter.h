@@ -58,7 +58,7 @@ struct _PanViewFilterUi
 	GtkWidget *filter_check_buttons[FILE_FORMAT_CLASSES];
 	GtkListStore *filter_mode_model;
 	GtkWidget *filter_mode_combo;
-	GList *filter_elements;  // List of PanViewFilterElement.
+	GList *filter_elements;  /**< List of #PanViewFilterElement. */
 	gint filter_classes;
 };
 
@@ -68,10 +68,16 @@ void pan_filter_activate_cb(const gchar *text, gpointer data);
 void pan_filter_toggle_cb(GtkWidget *button, gpointer data);
 void pan_filter_toggle_button_cb(GtkWidget *button, gpointer data);
 
-// Creates a new PanViewFilterUi instance and returns it.
+/**
+ * \headerfile pan_filter_ui_new
+ * Creates a new #PanViewFilterUi instance and returns it.
+ */
 PanViewFilterUi *pan_filter_ui_new(PanWindow *pw);
 
-// Destroys the specified PanViewFilterUi and sets the pointer to NULL.
+/**
+ * \headerfile pan_filter_ui_destroy
+ * Destroys the specified #PanViewFilterUi and sets the pointer to NULL.
+ */
 void pan_filter_ui_destroy(PanViewFilterUi **ui);
 
 gboolean pan_filter_fd_list(GList **fd_list, GList *filter_elements, gint filter_classes);

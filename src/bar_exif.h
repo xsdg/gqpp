@@ -27,8 +27,7 @@ void bar_pane_exif_update_from_config(GtkWidget *pane, const gchar **attribute_n
 
 void bar_pane_exif_entry_add_from_config(GtkWidget *pane, const gchar **attribute_names, const gchar **attribute_values);
 
-/* these are exposed for when duplication of the exif bar's text is needed */
-GList *bar_pane_exif_list();
+GList *bar_pane_exif_list(); /**< these are exposed for when duplication of the exif bar's text is needed */
 
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

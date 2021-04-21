@@ -30,10 +30,16 @@ void pan_search_activate(PanWindow *pw);
 void pan_search_activate_cb(const gchar *text, gpointer data);
 void pan_search_toggle_cb(GtkWidget *button, gpointer data);
 
-// Creates a new PanViewSearchUi instance and returns it.
+/**
+ * \headerfile pan_search_ui_new
+ * Creates a new #PanViewSearchUi instance and returns it.
+ */
 PanViewSearchUi *pan_search_ui_new(PanWindow *pw);
 
-// Destroys the specified PanViewSearchUi and sets the pointer to NULL.
+/**
+ * \headerfile pan_search_ui_destroy
+ * Destroys the specified #PanViewSearchUi and sets the pointer to NULL.
+ */
 void pan_search_ui_destroy(PanViewSearchUi **ui);
 
 #endif

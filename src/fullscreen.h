@@ -30,14 +30,14 @@ FullScreenData *fullscreen_start(GtkWidget *window, ImageWindow *imd,
 void fullscreen_stop(FullScreenData *fs);
 
 
-/* screen numbers for fullscreen_prefs are as follows:
- *   0  use default display size
- * 101  screen 0, monitor 0
- * 102  screen 0, monitor 1
- * 201  screen 1, monitor 0
+/**
+ * \struct ScreenData
+ * screen numbers for fullscreen_prefs are as follows: \n
+ *   0  use default display size \n
+ * 101  screen 0, monitor 0 \n
+ * 102  screen 0, monitor 1 \n
+ * 201  screen 1, monitor 0 \n
  */
-
-
 typedef struct _ScreenData ScreenData;
 struct _ScreenData {
 	gint number;

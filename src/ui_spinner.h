@@ -29,17 +29,19 @@
 extern const guint8 icon_spinner[];
 extern const guint8 icon_tabcomp[];
 
-/* if path is NULL, the built in spinner is used,
+/**
+ * \headerfile spinner_new
+ * if path is NULL, the built in spinner is used,
  * otherwise path must be the location of the first image of the
- * spinner without the 00.png portion of the pathname, example:
+ * spinner without the 00.png portion of the pathname, example: \n
  *
- *     /path/to/spinnerimg_
+ *     /path/to/spinnerimg_ \n
  *
- * the files required are then:
+ * the files required are then: \n
  *
- *     /path/to/spinnerimg_00.png   non-animated state
- *     /path/to/spinnerimg_01.png   animation frame 1
- *     /path/to/spinnerimg_02.png   animation frame 2
+ *     /path/to/spinnerimg_00.png   non-animated state \n
+ *     /path/to/spinnerimg_01.png   animation frame 1 \n
+ *     /path/to/spinnerimg_02.png   animation frame 2 \n
  *     [continues to last frame...]
  */
 GtkWidget *spinner_new(const gchar *path, gint interval);

@@ -41,7 +41,9 @@ gboolean collection_save(CollectionData *cd, const gchar *path);
 gboolean collection_load_only_geometry(CollectionData *cd, const gchar *path);
 
 
-/* these are used to update collections contained in user's collection
+/**
+ * \headerfile collect_manager_moved
+ * these are used to update collections contained in user's collection
  * folder when moving or renaming files.
  * also handles:
  *   deletes file when newpath == NULL
@@ -49,11 +51,22 @@ gboolean collection_load_only_geometry(CollectionData *cd, const gchar *path);
  */
 void collect_manager_moved(FileData *fd);
 
-/* add or removing from a specific collection */
+/**
+ * \headerfile collect_manager_add
+ * add from a specific collection
+ */
 void collect_manager_add(FileData *fd, const gchar *collection);
+
+/**
+ * \headerfile collect_manager_remove
+ * removing from a specific collection
+ */
 void collect_manager_remove(FileData *fd, const gchar *collection);
 
-/* commit pending operations to disk */
+/**
+ * \headerfile collect_manager_flush
+ * commit pending operations to disk
+ */
 void collect_manager_flush(void);
 
 void collect_manager_notify_cb(FileData *fd, NotifyType type, gpointer data);

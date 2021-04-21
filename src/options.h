@@ -69,7 +69,7 @@ struct _ConfOptions
 
 	gint log_window_lines;
 
-	gboolean marks_save;		// save marks on exit
+	gboolean marks_save;		/**< save marks on exit */
 	gchar *marks_tooltips[FILEDATA_MARKS_SIZE];
 
 	gboolean with_rename;
@@ -78,19 +78,34 @@ struct _ConfOptions
 
 	gchar *help_search_engine;
 
-	/* info sidebar component heights */
+	/**
+	 * \struct info_comment
+	 * info sidebar component height
+	 */
 	struct {
 		gint height;
 	} info_comment;
 
+	/**
+	 * \struct info_keywords
+	 * info sidebar component height
+	 */
 	struct {
 		gint height;
 	} info_keywords;
 
+	/**
+	 * \struct info_title
+	 * info sidebar component height
+	 */
 	struct {
 		gint height;
 	} info_title;
 
+	/**
+	 * \struct info_rating
+	 * info sidebar component height
+	 */
 	struct {
 		gint height;
 	} info_rating;
@@ -121,15 +136,15 @@ struct _ConfOptions
 		gint max_autofit_size;
 		gint max_enlargement_size;
 
-		gint tile_cache_max;	/* in megabytes */
-		gint image_cache_max;   /* in megabytes */
+		gint tile_cache_max;	/**< in megabytes */
+		gint image_cache_max;   /**< in megabytes */
 		gboolean enable_read_ahead;
 
 		ZoomMode zoom_mode;
 		gboolean zoom_2pass;
 		gboolean zoom_to_fit_allow_expand;
 		guint zoom_quality;
-		gint zoom_increment;	/* 100 is 1.0, 5 is 0.05, 200 is 2.0, etc. */
+		gint zoom_increment;	/**< 100 is 1.0, 5 is 0.05, 200 is 2.0, etc. */
 		gboolean use_clutter_renderer;
 
 		gboolean use_custom_border_color_in_fullscreen;
@@ -182,13 +197,13 @@ struct _ConfOptions
 	struct {
 		SortType method;
 		gboolean ascending;
-		gboolean case_sensitive; /* file sorting method (case) */
+		gboolean case_sensitive; /**< file sorting method (case) */
 		gboolean natural;
 	} file_sort;
 
 	/* slideshow */
 	struct {
-		gint delay;	/* in tenths of a second */
+		gint delay;	/**< in tenths of a second */
 		gboolean random;
 		gboolean repeat;
 	} slideshow;
@@ -272,7 +287,11 @@ struct _ConfOptions
 		gint fixed_w, fixed_h;
 		gint fixed_x1, fixed_y1;
 		gint fixed_x2, fixed_y2;
-		struct { /* options in this struct are packed to mode and fsmode entries */
+		/**
+		 * \struct tmp
+		 * options in this struct are packed to mode and fsmode entries
+		 */
+		struct {
 			gboolean mirror_right;
 			gboolean mirror_left;
 			gboolean flip_right;
@@ -288,7 +307,10 @@ struct _ConfOptions
 		} tmp;
 	} stereo;
 
-	/* copy move rename */
+	/**
+	 * \struct cp_mv_rn
+	 * copy move rename
+	 */
 	struct {
 		gint auto_start;
 		gchar *auto_end;
@@ -321,18 +343,15 @@ struct _ConfOptions
 		gchar *template_string;
 	} printer;
 
-	/* user-definable mouse buttons */
-	gchar *mouse_button_8;
-	gchar *mouse_button_9;
+	gchar *mouse_button_8; /**< user-definable mouse buttons */
+	gchar *mouse_button_9; /**< user-definable mouse buttons */
 
-	/* class file filter */
-	gboolean class_filter[FILE_FORMAT_CLASSES];
+	gboolean class_filter[FILE_FORMAT_CLASSES]; /**< class file filter */
 
 	gboolean read_metadata_in_idle;
 
-	/* GPU - see main.c */
-	gboolean disable_gpu;
-	gboolean override_disable_gpu;
+	gboolean disable_gpu; /**< GPU - see main.c */
+	gboolean override_disable_gpu; /**< GPU - see main.c */
 
 	GList *disabled_plugins;
 };

@@ -33,7 +33,7 @@ typedef enum {
 	EDITOR_FOR_EACH           = 0x00000200,
 	EDITOR_SINGLE_COMMAND     = 0x00000400,
 	EDITOR_NO_PARAM           = 0x00000800,
-	/* below are errors */
+	/**< below are errors */
 	EDITOR_ERROR_EMPTY        = 0x00020000,
 	EDITOR_ERROR_SYNTAX       = 0x00040000,
 	EDITOR_ERROR_INCOMPATIBLE = 0x00080000,
@@ -41,35 +41,38 @@ typedef enum {
 	EDITOR_ERROR_CANT_EXEC    = 0x00200000,
 	EDITOR_ERROR_STATUS       = 0x00400000,
 	EDITOR_ERROR_SKIPPED      = 0x00800000,
-	/* mask to match errors only */
+	/**< mask to match errors only */
 	EDITOR_ERROR_MASK         = 0xffff0000,
 } EditorFlags;
 
 struct _EditorDescription {
-	gchar *key; 		/* desktop file name, not including path, including extension */
-	gchar *name; 		/* Name, localized name presented to user */
-	gchar *icon;		/* Icon */
-	gchar *exec;		/* Exec */
+	gchar *key; 		/**< desktop file name, not including path, including extension */
+	gchar *name; 		/**< Name, localized name presented to user */
+	gchar *icon;		/**< Icon */
+	gchar *exec;		/**< Exec */
 	gchar *menu_path;
 	gchar *hotkey;
 	GList *ext_list;
 	gchar *file;
-	gchar *comment;		/* .desktop Comment key, used to show a tooltip */
+	gchar *comment;		/**< .desktop Comment key, used to show a tooltip */
 	EditorFlags flags;
-	gboolean hidden;	/* explicitly hidden, shown in configuration dialog */
-	gboolean ignored;	/* not interesting, do not show at all */
-	gboolean disabled;	/* display disabled by user */
+	gboolean hidden;	/**< explicitly hidden, shown in configuration dialog */
+	gboolean ignored;	/**< not interesting, do not show at all */
+	gboolean disabled;	/**< display disabled by user */
 };
 
 #define EDITOR_ERRORS(flags) ((flags) & EDITOR_ERROR_MASK)
 #define EDITOR_ERRORS_BUT_SKIPPED(flags) (!!(((flags) & EDITOR_ERROR_MASK) && !((flags) & EDITOR_ERROR_SKIPPED)))
 
 
-/* return values from callback function */
+/**
+ * \enum
+ * return values from callback function
+ */
 enum {
-	EDITOR_CB_CONTINUE = 0, /* continue multiple editor execution on remaining files*/
-	EDITOR_CB_SKIP,         /* skip the remaining files */
-	EDITOR_CB_SUSPEND       /* suspend execution, one of editor_resume or editor_skip
+	EDITOR_CB_CONTINUE = 0, /**< continue multiple editor execution on remaining files*/
+	EDITOR_CB_SKIP,         /**< skip the remaining files */
+	EDITOR_CB_SUSPEND       /**< suspend execution, one of editor_resume or editor_skip
 				   must be called later */
 };
 
@@ -96,14 +99,16 @@ gboolean editor_read_desktop_file(const gchar *path);
 GList *editor_list_get(void);
 
 
-/*
-Callback is called even on skipped files, with the EDITOR_ERROR_SKIPPED flag set.
-It is a good place to call file_data_change_info_free().
-
-ed - pointer that can be used for editor_resume/editor_skip or NULL if all files were already processed
-flags - flags above
-list - list of processed FileData structures, typically single file or whole list passed to start_editor_*
-data - generic pointer
+/**
+ * \typedef EditorCallback
+ *
+ * Callback is called even on skipped files, with the #EDITOR_ERROR_SKIPPED flag set.
+ * It is a good place to call file_data_change_info_free().
+ *
+ * \param ed - pointer that can be used for editor_resume/editor_skip or NULL if all files were already processed \n
+ * \param flags - flags above \n
+ * \param list - list of processed #FileData structures, typically single file or whole list passed to start_editor_* \n
+ * \param data - generic pointer
 */
 typedef gint (*EditorCallback) (gpointer ed, EditorFlags flags, GList *list, gpointer data);
 

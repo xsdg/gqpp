@@ -179,7 +179,10 @@ struct _PanViewSearchUi
 	GtkWidget *search_button_arrow;
 };
 
-// Defined in pan-view-filter.h
+/**
+ * \typedef _PanViewFilterUi
+ * Defined in pan-view-filter.h
+ */
 typedef struct _PanViewFilterUi PanViewFilterUi;
 
 typedef struct _PanWindow PanWindow;

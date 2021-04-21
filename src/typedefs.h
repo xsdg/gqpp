@@ -48,16 +48,14 @@ typedef enum {
 	DIRVIEW_LIST,
 	DIRVIEW_TREE,
 
-	// Keep this up to date!
-	DIRVIEW_LAST = DIRVIEW_TREE
+	DIRVIEW_LAST = DIRVIEW_TREE /**< Keep this up to date! */
 } DirViewType;
 
 typedef enum {
 	FILEVIEW_LIST,
 	FILEVIEW_ICON,
 
-	// Keep this up to date!
-	FILEVIEW_LAST = FILEVIEW_ICON
+	FILEVIEW_LAST = FILEVIEW_ICON /**< Keep this up to date! */
 } FileViewType;
 
 #define	CMD_COPY     "geeqie-copy-command.desktop"
@@ -80,7 +78,10 @@ typedef enum {
 	SORT_CLASS
 } SortType;
 
-/* drag and drop default action */
+/**
+ * \typedef DnDAction
+ * drag and drop default action
+ */
 typedef enum {
 	DND_ACTION_ASK,
 	DND_ACTION_COPY,
@@ -88,9 +89,9 @@ typedef enum {
 } DnDAction;
 
 typedef enum {
-	ALTER_NONE,		/* do nothing */
+	ALTER_NONE,		/**< do nothing */
 	ALTER_ROTATE_90,
-	ALTER_ROTATE_90_CC,	/* counterclockwise */
+	ALTER_ROTATE_90_CC,	/**< counterclockwise */
 	ALTER_ROTATE_180,
 	ALTER_MIRROR,
 	ALTER_FLIP,
@@ -156,15 +157,17 @@ typedef enum {
 	FILE_FORMAT_CLASSES
 } FileFormatClass;
 
-/* defined in preferences.c */
-extern gchar *format_class_list[];
+extern gchar *format_class_list[]; /**< defined in preferences.c */
 
+/**
+ * \typedef SecureSaveErrno
+ * see err field in #SecureSaveInfo
+ */
 typedef enum {
 	SS_ERR_NONE = 0,
 	SS_ERR_DISABLED, /**< secsave is disabled. */
 	SS_ERR_OUT_OF_MEM, /**< memory allocation failure */
 
-	/* see err field in SecureSaveInfo */
 	SS_ERR_OPEN_READ,
 	SS_ERR_OPEN_WRITE,
 	SS_ERR_STAT,
@@ -181,14 +184,14 @@ typedef enum {
 } NotifyPriority;
 
 typedef enum {
-	NOTIFY_MARKS		= 1 << 1, /* changed marks */
-	NOTIFY_PIXBUF		= 1 << 2, /* image was read into fd->pixbuf */
-	NOTIFY_HISTMAP		= 1 << 3, /* histmap was read into fd->histmap */
-	NOTIFY_ORIENTATION	= 1 << 4, /* image was rotated */
-	NOTIFY_METADATA		= 1 << 5, /* changed image metadata, not yet written */
-	NOTIFY_GROUPING		= 1 << 6, /* change in fd->sidecar_files or fd->parent */
-	NOTIFY_REREAD		= 1 << 7, /* changed file size, date, etc., file name remains unchanged */
-	NOTIFY_CHANGE		= 1 << 8  /* generic change described by fd->change */
+	NOTIFY_MARKS		= 1 << 1, /**< changed marks */
+	NOTIFY_PIXBUF		= 1 << 2, /**< image was read into fd->pixbuf */
+	NOTIFY_HISTMAP		= 1 << 3, /**< histmap was read into fd->histmap */
+	NOTIFY_ORIENTATION	= 1 << 4, /**< image was rotated */
+	NOTIFY_METADATA		= 1 << 5, /**< changed image metadata, not yet written */
+	NOTIFY_GROUPING		= 1 << 6, /**< change in fd->sidecar_files or fd->parent */
+	NOTIFY_REREAD		= 1 << 7, /**< changed file size, date, etc., file name remains unchanged */
+	NOTIFY_CHANGE		= 1 << 8  /**< generic change described by fd->change */
 } NotifyType;
 
 typedef enum {
@@ -199,7 +202,7 @@ typedef enum {
 	CHANGE_WARN_CHANGED_EXT        = 1 << 3,
 	CHANGE_WARN_UNSAVED_META       = 1 << 4,
 	CHANGE_WARN_NO_WRITE_PERM_DEST_DIR  = 1 << 5,
-	CHANGE_ERROR_MASK              = (~0U) << 8, /* the values below are fatal errors */
+	CHANGE_ERROR_MASK              = (~0U) << 8, /**< the values below are fatal errors */
 	CHANGE_NO_READ_PERM            = 1 << 8,
 	CHANGE_NO_WRITE_PERM_DIR       = 1 << 9,
 	CHANGE_NO_DEST_DIR             = 1 << 10,
@@ -211,8 +214,8 @@ typedef enum {
 } ChangeError;
 
 typedef enum {
-	METADATA_PLAIN		= 0, /* format that can be edited and written back */
-	METADATA_FORMATTED	= 1  /* for display only */
+	METADATA_PLAIN		= 0, /**< format that can be edited and written back */
+	METADATA_FORMATTED	= 1  /**< for display only */
 } MetadataFormat;
 
 typedef enum {
@@ -228,21 +231,21 @@ typedef enum {
 } ToolbarType;
 
 typedef enum {
-	PR_STEREO_NONE             = 0,	  /* do nothing */
-	PR_STEREO_DUAL             = 1 << 0, /* independent stereo buffers, for example nvidia opengl */
-	PR_STEREO_FIXED            = 1 << 1,  /* custom position */
-	PR_STEREO_HORIZ            = 1 << 2,  /* side by side */
-	PR_STEREO_VERT             = 1 << 3,  /* above below */
-	PR_STEREO_RIGHT            = 1 << 4,  /* render right buffer */
-	PR_STEREO_ANAGLYPH_RC      = 1 << 5,  /* anaglyph red-cyan */
-	PR_STEREO_ANAGLYPH_GM      = 1 << 6,  /* anaglyph green-magenta */
-	PR_STEREO_ANAGLYPH_YB      = 1 << 7,  /* anaglyph yellow-blue */
-	PR_STEREO_ANAGLYPH_GRAY_RC = 1 << 8,  /* anaglyph gray red-cyan*/
-	PR_STEREO_ANAGLYPH_GRAY_GM = 1 << 9,  /* anaglyph gray green-magenta */
-	PR_STEREO_ANAGLYPH_GRAY_YB = 1 << 10, /* anaglyph gray yellow-blue */
-	PR_STEREO_ANAGLYPH_DB_RC   = 1 << 11, /* anaglyph dubois red-cyan */
-	PR_STEREO_ANAGLYPH_DB_GM   = 1 << 12, /* anaglyph dubois green-magenta */
-	PR_STEREO_ANAGLYPH_DB_YB   = 1 << 13, /* anaglyph dubois yellow-blue */
+	PR_STEREO_NONE             = 0,	  /**< do nothing */
+	PR_STEREO_DUAL             = 1 << 0, /**< independent stereo buffers, for example nvidia opengl */
+	PR_STEREO_FIXED            = 1 << 1,  /**< custom position */
+	PR_STEREO_HORIZ            = 1 << 2,  /**< side by side */
+	PR_STEREO_VERT             = 1 << 3,  /**< above below */
+	PR_STEREO_RIGHT            = 1 << 4,  /**< render right buffer */
+	PR_STEREO_ANAGLYPH_RC      = 1 << 5,  /**< anaglyph red-cyan */
+	PR_STEREO_ANAGLYPH_GM      = 1 << 6,  /**< anaglyph green-magenta */
+	PR_STEREO_ANAGLYPH_YB      = 1 << 7,  /**< anaglyph yellow-blue */
+	PR_STEREO_ANAGLYPH_GRAY_RC = 1 << 8,  /**< anaglyph gray red-cyan*/
+	PR_STEREO_ANAGLYPH_GRAY_GM = 1 << 9,  /**< anaglyph gray green-magenta */
+	PR_STEREO_ANAGLYPH_GRAY_YB = 1 << 10, /**< anaglyph gray yellow-blue */
+	PR_STEREO_ANAGLYPH_DB_RC   = 1 << 11, /**< anaglyph dubois red-cyan */
+	PR_STEREO_ANAGLYPH_DB_GM   = 1 << 12, /**< anaglyph dubois green-magenta */
+	PR_STEREO_ANAGLYPH_DB_YB   = 1 << 13, /**< anaglyph dubois yellow-blue */
 	PR_STEREO_ANAGLYPH         = PR_STEREO_ANAGLYPH_RC |
 	                             PR_STEREO_ANAGLYPH_GM |
 	                             PR_STEREO_ANAGLYPH_YB |
@@ -251,18 +254,18 @@ typedef enum {
 	                             PR_STEREO_ANAGLYPH_GRAY_YB |
 	                             PR_STEREO_ANAGLYPH_DB_RC |
 	                             PR_STEREO_ANAGLYPH_DB_GM |
-	                             PR_STEREO_ANAGLYPH_DB_YB, /* anaglyph mask */
+	                             PR_STEREO_ANAGLYPH_DB_YB, /**< anaglyph mask */
 
-	PR_STEREO_MIRROR_LEFT      = 1 << 14, /* mirror */
-	PR_STEREO_FLIP_LEFT        = 1 << 15, /* flip */
+	PR_STEREO_MIRROR_LEFT      = 1 << 14, /**< mirror */
+	PR_STEREO_FLIP_LEFT        = 1 << 15, /**< flip */
 
-	PR_STEREO_MIRROR_RIGHT     = 1 << 16, /* mirror */
-	PR_STEREO_FLIP_RIGHT       = 1 << 17, /* flip */
+	PR_STEREO_MIRROR_RIGHT     = 1 << 16, /**< mirror */
+	PR_STEREO_FLIP_RIGHT       = 1 << 17, /**< flip */
 
-	PR_STEREO_MIRROR           = PR_STEREO_MIRROR_LEFT | PR_STEREO_MIRROR_RIGHT, /* mirror mask*/
-	PR_STEREO_FLIP             = PR_STEREO_FLIP_LEFT | PR_STEREO_FLIP_RIGHT, /* flip mask*/
-	PR_STEREO_SWAP             = 1 << 18,  /* swap left and right buffers */
-	PR_STEREO_TEMP_DISABLE     = 1 << 19,  /* temporarily disable stereo mode if source image is not stereo */
+	PR_STEREO_MIRROR           = PR_STEREO_MIRROR_LEFT | PR_STEREO_MIRROR_RIGHT, /**< mirror mask*/
+	PR_STEREO_FLIP             = PR_STEREO_FLIP_LEFT | PR_STEREO_FLIP_RIGHT, /**< flip mask*/
+	PR_STEREO_SWAP             = 1 << 18,  /**< swap left and right buffers */
+	PR_STEREO_TEMP_DISABLE     = 1 << 19,  /**< temporarily disable stereo mode if source image is not stereo */
 	PR_STEREO_HALF             = 1 << 20
 } PixbufRendererStereoMode;
 
@@ -343,16 +346,16 @@ typedef struct _EditorDescription EditorDescription;
 typedef struct _CommandLine CommandLine;
 
 struct _Histogram {
-	gint histogram_channel; /* drawing mode for histogram */
-	gint histogram_mode;     /* logarithmical or not */
-	guint vgrid; /* number of vertical divisions, 0 for none */
-	guint hgrid; /* number of horizontal divisions, 0 for none */
+	gint histogram_channel; /**< drawing mode for histogram */
+	gint histogram_mode;     /**< logarithmical or not */
+	guint vgrid; /**< number of vertical divisions, 0 for none */
+	guint hgrid; /**< number of horizontal divisions, 0 for none */
 	struct {
-		int R; /* red */
-		int G; /* green */
-		int B; /* blue */
-		int A; /* alpha */
-	} grid_color;  /* grid color */
+		int R; /**< red */
+		int G; /**< green */
+		int B; /**< blue */
+		int A; /**< alpha */
+	} grid_color;  /**< grid color */
 
 };
 
@@ -369,7 +372,7 @@ struct _ThumbLoader
 	gboolean standard_loader;
 
 	ImageLoader *il;
-	FileData *fd;           /* fd->pixbuf contains final (scaled) image when done */
+	FileData *fd;           /**< fd->pixbuf contains final (scaled) image when done */
 
 	gboolean cache_enable;
 	gboolean cache_hit;
@@ -384,7 +387,7 @@ struct _ThumbLoader
 
 	gpointer data;
 
-	guint idle_done_id; /* event source id */
+	guint idle_done_id; /**< event source id */
 };
 
 struct _AnimationData
@@ -431,8 +434,7 @@ struct _CollectionData
 	gint window_w;
 	gint window_h;
 
-	/* contents changed since save flag */
-	gboolean changed;
+	gboolean changed; /**< contents changed since save flag */
 
 	GHashTable *existence;
 };
@@ -452,7 +454,7 @@ struct _CollectTable
 	CollectInfo *click_info;
 
 	GtkWidget *tip_window;
-	guint tip_delay_id; /* event source id */
+	guint tip_delay_id; /**< event source id */
 	CollectInfo *tip_info;
 
 	GdkWindow *marker_window;
@@ -469,14 +471,13 @@ struct _CollectTable
 	CollectInfo *drop_info;
 	GList *drop_list;
 
-	guint sync_idle_id; /* event source id */
-	guint drop_idle_id; /* event source id */
+	guint sync_idle_id; /**< event source id */
+	guint drop_idle_id; /**< event source id */
 
 	gboolean show_text;
 	gboolean show_stars;
 
-	/* file list for edit menu */
-	GList *editmenu_fd_list;
+	GList *editmenu_fd_list; /**< file list for edit menu */
 };
 
 struct _CollectWindow
@@ -497,28 +498,28 @@ typedef void (* ImageTileDisposeFunc)(ImageWindow *imd, gint x, gint y,
 
 struct _ImageWindow
 {
-	GtkWidget *widget;	/* use this to add it and show it */
+	GtkWidget *widget;	/**< use this to add it and show it */
 	GtkWidget *pr;
 	GtkWidget *frame;
 
 	FileData *image_fd;
 
-	gboolean unknown;		/* failed to load image */
+	gboolean unknown;		/**< failed to load image */
 
-	ImageLoader *il;        /* FIXME - image loader should probably go to FileData, but it must first support
+	ImageLoader *il;        /**< FIXME - image loader should probably go to FileData, but it must first support
 				   sending callbacks to multiple ImageWindows in parallel */
 
-	gint has_frame;  /* not boolean, see image_new() */
+	gint has_frame;  /**< not boolean, see image_new() */
 
 	/* top level (not necessarily parent) window */
-	gboolean top_window_sync;	/* resize top_window when image dimensions change */
-	GtkWidget *top_window;	/* window that gets title, and window to resize when 'fitting' */
-	gchar *title;		/* window title to display left of file name */
-	gchar *title_right;	/* window title to display right of file name */
-	gboolean title_show_zoom;	/* option to include zoom in window title */
+	gboolean top_window_sync;	/**< resize top_window when image dimensions change */
+	GtkWidget *top_window;	/**< window that gets title, and window to resize when 'fitting' */
+	gchar *title;		/**< window title to display left of file name */
+	gchar *title_right;	/**< window title to display right of file name */
+	gboolean title_show_zoom;	/**< option to include zoom in window title */
 
 	gboolean completed;
-	ImageState state;	/* mask of IMAGE_STATE_* flags about current image */
+	ImageState state;	/**< mask of IMAGE_STATE_* flags about current image */
 
 	void (*func_update)(ImageWindow *imd, gpointer data);
 	void (*func_complete)(ImageWindow *imd, gint preload, gpointer data);
@@ -542,7 +543,10 @@ struct _ImageWindow
 	gpointer data_scroll;
 	gpointer data_focus_in;
 
-	/* scroll notification (for scroll bar implementation) */
+	/**
+	 * \headerfile func_scroll_notify
+	 * scroll notification (for scroll bar implementation)
+	 */
 	void (*func_scroll_notify)(ImageWindow *, gint x, gint y, gint width, gint height, gpointer);
 
 	gpointer data_scroll_notify;
@@ -589,7 +593,7 @@ struct _FileDataChangeInfo {
 struct _FileData {
 	guint magick;
 	gint type;
-	gchar *original_path; /* key to file_data_pool hash table */
+	gchar *original_path; /**< key to file_data_pool hash table */
 	gchar *path;
 	const gchar *name;
 	const gchar *extension;
@@ -600,26 +604,26 @@ struct _FileData {
 	gint64 size;
 	time_t date;
 	time_t cdate;
-	mode_t mode; /* this is needed at least for notification in view_dir because it is preserved after the file/directory is deleted */
+	mode_t mode; /**< this is needed at least for notification in view_dir because it is preserved after the file/directory is deleted */
 	gint sidecar_priority;
 
-	guint marks; /* each bit represents one mark */
-	guint valid_marks; /* zero bit means that the corresponding mark needs to be reread */
+	guint marks; /**< each bit represents one mark */
+	guint valid_marks; /**< zero bit means that the corresponding mark needs to be reread */
 
 
 	GList *sidecar_files;
-	FileData *parent; /* parent file if this is a sidecar file, NULL otherwise */
-	FileDataChangeInfo *change; /* for rename, move ... */
+	FileData *parent; /**< parent file if this is a sidecar file, NULL otherwise */
+	FileDataChangeInfo *change; /**< for rename, move ... */
 	GdkPixbuf *thumb_pixbuf;
 
-	GdkPixbuf *pixbuf; /* full-size image, only complete images, NULL during loading
+	GdkPixbuf *pixbuf; /**< full-size image, only complete images, NULL during loading
 			      all FileData with non-NULL pixbuf are referenced by image_cache */
 
 	HistMap *histmap;
 
 	gboolean locked;
 	gint ref;
-	gint version; /* increased when any field in this structure is changed */
+	gint version; /**< increased when any field in this structure is changed */
 	gboolean disable_grouping;
 
 	gint user_orientation;
@@ -628,7 +632,7 @@ struct _FileData {
 	ExifData *exif;
 	time_t exifdate;
 	time_t exifdate_digitized;
-	GHashTable *modified_xmp; // hash table which contains unwritten xmp metadata in format: key->list of string values
+	GHashTable *modified_xmp; /**< hash table which contains unwritten xmp metadata in format: key->list of string values */
 	GList *cached_metadata;
 	gint rating;
 	gboolean metadata_in_idle_loaded;
@@ -637,7 +641,7 @@ struct _FileData {
 	gchar *group;
 	gchar *sym_link;
 
-	SelectionType selected;  // Used by view_file_icon.
+	SelectionType selected;  /**< Used by view_file_icon. */
 
 	gint page_num;
 	gint page_total;
@@ -793,11 +797,11 @@ struct _LayoutWindow
 
 //	gint tools_float;
 //	gint tools_hidden;
-	GtkWidget *menu_tool_bar; /*Combined menu and toolbar box */
-	GtkWidget *menu_bar; /* referenced by lw, exist during whole lw lifetime */
+	GtkWidget *menu_tool_bar; /**< Combined menu and toolbar box */
+	GtkWidget *menu_bar; /**< referenced by lw, exist during whole lw lifetime */
 	/* toolbar */
 
-	GtkWidget *toolbar[TOOLBAR_COUNT]; /* referenced by lw, exist during whole lw lifetime */
+	GtkWidget *toolbar[TOOLBAR_COUNT]; /**< referenced by lw, exist during whole lw lifetime */
 //	gint toolbar_hidden;
 
 //	GtkWidget *thumb_button;
@@ -827,15 +831,13 @@ struct _LayoutWindow
 	SortType sort_method;
 	gboolean sort_ascend;
 
-	/* status bar */
-
-	GtkWidget *info_box;
-	GtkWidget *info_progress_bar;
-	GtkWidget *info_sort;
-	GtkWidget *info_status;
-	GtkWidget *info_details;
-	GtkWidget *info_zoom;
-	GtkWidget *info_pixel;
+	GtkWidget *info_box; /**< status bar */
+	GtkWidget *info_progress_bar; /**< status bar */
+	GtkWidget *info_sort; /**< status bar */
+	GtkWidget *info_status; /**< status bar */
+	GtkWidget *info_details; /**< status bar */
+	GtkWidget *info_zoom; /**< status bar */
+	GtkWidget *info_pixel; /**< status bar */
 
 	/* slide show */
 
@@ -853,18 +855,18 @@ struct _LayoutWindow
 
 	/* misc */
 
-	GtkWidget *utility_box; /* referenced by lw, exist during whole lw lifetime */
-	GtkWidget *utility_paned; /* between image and bar */
+	GtkWidget *utility_box; /**< referenced by lw, exist during whole lw lifetime */
+	GtkWidget *utility_paned; /**< between image and bar */
 	GtkWidget *bar_sort;
 	GtkWidget *bar;
 
-	gboolean bar_sort_enabled; /* Set during start-up, and checked when the editors have loaded */
+	gboolean bar_sort_enabled; /**< Set during start-up, and checked when the editors have loaded */
 //	gint bar_enabled;
 
 //	gint bar_width;
 
 	GtkWidget *exif_window;
-	GtkWidget *sar_window; /* Search and Run window */
+	GtkWidget *sar_window; /**< Search and Run window */
 
 	AnimationData *animation;
 
@@ -885,7 +887,7 @@ struct _ViewDir
 
 	FileData *drop_fd;
 	GList *drop_list;
-	guint drop_scroll_id; /* event source id */
+	guint drop_scroll_id; /**< event source id */
 
 	/* func list */
 	void (*select_func)(ViewDir *vd, FileData *fd, gpointer data);
@@ -908,7 +910,7 @@ struct _ViewDirInfoList
 
 struct _ViewDirInfoTree
 {
-	guint drop_expand_id; /* event source id */
+	guint drop_expand_id; /**< event source id */
 	gint busy_ref;
 };
 
@@ -965,11 +967,10 @@ struct _ViewFile
 	guint stars_id;
 
 	/* refresh */
-	guint refresh_idle_id; /* event source id */
-	time_t time_refresh_set; /* time when refresh_idle_id was set */
+	guint refresh_idle_id; /**< event source id */
+	time_t time_refresh_set; /**< time when refresh_idle_id was set */
 
-	/* file list for edit menu */
-	GList *editmenu_fd_list;
+	GList *editmenu_fd_list; /**< file list for edit menu */
 
 	guint read_metadata_in_idle_id;
 };
@@ -981,7 +982,7 @@ struct _ViewFileInfoList
 
 	gboolean thumbs_enabled;
 
-	guint select_idle_id; /* event source id */
+	guint select_idle_id; /**< event source id */
 };
 
 struct _ViewFileInfoIcon
@@ -994,7 +995,7 @@ struct _ViewFileInfoIcon
 	FileData *prev_selection;
 
 	GtkWidget *tip_window;
-	guint tip_delay_id; /* event source id */
+	guint tip_delay_id; /**< event source id */
 	FileData *tip_fd;
 
 	FileData *click_fd;
@@ -1008,8 +1009,8 @@ struct _ViewFileInfoIcon
 
 struct _SlideShowData
 {
-	LayoutWindow *lw;        /* use this window to display the slideshow */
-	ImageWindow *imd;        /* use this window only if lw is not available,
+	LayoutWindow *lw;        /**< use this window to display the slideshow */
+	ImageWindow *imd;        /**< use this window only if lw is not available,
 	                            FIXME: it is probably required only by img-view.c and should be dropped with it */
 
 	GList *filelist;
@@ -1022,7 +1023,7 @@ struct _SlideShowData
 	FileData *slide_fd;
 
 	guint slide_count;
-	guint timeout_id; /* event source id */
+	guint timeout_id; /**< event source id */
 
 	gboolean from_selection;
 
@@ -1040,17 +1041,17 @@ struct _FullScreenData
 	GtkWidget *normal_window;
 	ImageWindow *normal_imd;
 
-	guint hide_mouse_id; /* event source id */
-	guint busy_mouse_id; /* event source id */
+	guint hide_mouse_id; /**< event source id */
+	guint busy_mouse_id; /**< event source id */
 
 	gint cursor_state;
 
-	guint saver_block_id; /* event source id */
+	guint saver_block_id; /**< event source id */
 
 	void (*stop_func)(FullScreenData *, gpointer);
 	gpointer stop_data;
 
-	gboolean same_region; /* the returned region will overlap the current location of widget. */
+	gboolean same_region; /**< the returned region will overlap the current location of widget. */
 };
 
 struct _PixmapFolders

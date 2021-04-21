@@ -44,8 +44,7 @@ struct _ExifFormatAttrib
 	const gchar *description;
 };
 
-/* the list of known tag data formats */
-extern ExifFormatAttrib ExifFormatList[];
+extern ExifFormatAttrib ExifFormatList[]; /**< the list of known tag data formats */
 
 
 /*
@@ -60,8 +59,8 @@ typedef struct _ExifTextList ExifTextList;
 struct _ExifData
 {
 	gchar *path;
-	GList *items;	/* list of (ExifItem *) */
-	GList *current; /* for exif_get_next_item */
+	GList *items;	/**< list of (ExifItem *) */
+	GList *current; /**< for exif_get_next_item */
 };
 
 
@@ -106,14 +105,11 @@ struct _ExifTextList
 
 
 
-/* the known exif tags list */
-extern ExifMarker ExifKnownMarkersList[];
+extern ExifMarker ExifKnownMarkersList[]; /**< the known exif tags list */
 
-/* the unknown tags utilize this generic list */
-extern ExifMarker ExifUnknownMarkersList[];
+extern ExifMarker ExifUnknownMarkersList[]; /**< the unknown tags utilize this generic list */
 
-/* the list of specially formatted keys, for human readable output */
-extern ExifFormattedText ExifFormattedList[];
+extern ExifFormattedText ExifFormattedList[]; /**< the list of specially formatted keys, for human readable output */
 
 
 /*
@@ -122,8 +118,10 @@ extern ExifFormattedText ExifFormattedList[];
  *-----------------------------------------------------------------------------
  */
 
-
-/* usually for debugging to stdout */
+/**
+ * \headerfile exif_write_data_list
+ * usually for debugging to stdout
+ */
 void exif_write_data_list(ExifData *exif, FILE *f, gint human_readable_list);
 
 

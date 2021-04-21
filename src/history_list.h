@@ -44,7 +44,11 @@ const gchar *image_chain_back();
 const gchar *image_chain_forward();
 void image_chain_append_end(const gchar *path);
 
-/* the returned GList is internal, don't free it */
+
+/**
+ * \headerfile history_list_get_by_key
+ * the returned GList is internal, don't free it
+ */
 GList *history_list_get_by_key(const gchar *key);
 
 

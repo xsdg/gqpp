@@ -34,19 +34,17 @@ typedef enum {
 typedef struct _PaneData PaneData;
 
 struct _PaneData {
-	/* filled in by pane */
-	void (*pane_set_fd)(GtkWidget *pane, FileData *fd);
-	void (*pane_notify_selection)(GtkWidget *pane, gint count);
-	gint (*pane_event)(GtkWidget *pane, GdkEvent *event);
-	void (*pane_write_config)(GtkWidget *pane, GString *outstr, gint indent);
-	GtkWidget *title;
-	gboolean expanded;
-	gchar *id;
-	PaneType type;
+	void (*pane_set_fd)(GtkWidget *pane, FileData *fd); /**< filled in by pane */
+	void (*pane_notify_selection)(GtkWidget *pane, gint count); /**< filled in by pane */
+	gint (*pane_event)(GtkWidget *pane, GdkEvent *event); /**< filled in by pane */
+	void (*pane_write_config)(GtkWidget *pane, GString *outstr, gint indent); /**< filled in by pane */
+	GtkWidget *title; /**< filled in by pane */
+	gboolean expanded; /**< filled in by pane */
+	gchar *id; /**< filled in by pane */
+	PaneType type; /**< filled in by pane */
 
-	/* filled in by bar */
-	GtkWidget *bar;
-	LayoutWindow *lw;
+	GtkWidget *bar; /**< filled in by bar */
+	LayoutWindow *lw; /**< filled in by bar */
 };
 
 

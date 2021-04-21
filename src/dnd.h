@@ -42,7 +42,10 @@ extern GtkTargetEntry dnd_file_drop_types[];
 extern gint dnd_file_drop_types_count;
 
 
-/* sets a drag icon to pixbuf, if items is > 1, text is drawn onto icon to indicate value */
+/**
+ * \headerfile dnd_set_drag_icon
+ * sets a drag icon to pixbuf, if items is > 1, text is drawn onto icon to indicate value
+ */
 void dnd_set_drag_icon(GtkWidget *widget, GdkDragContext *context, GdkPixbuf *pixbuf, gint items);
 
 void dnd_set_drag_label(GtkWidget *widget, GdkDragContext *context, const gchar *text);

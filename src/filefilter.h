@@ -34,7 +34,10 @@ struct _FilterEntry {
 	gboolean allow_sidecar;
 };
 
-/* you can change, but not add or remove entries from the returned list */
+/**
+ * \headerfile filter_get_list
+ * you can change, but not add or remove entries from the returned list
+ */
 GList *filter_get_list(void);
 void filter_remove_entry(FilterEntry *fe);
 
