@@ -32,20 +32,22 @@
 #include "metadata.h"
 
 
-/*
+/**
+ * @file
+ * 
  * This thumbnail caching implementation attempts to conform
  * to the Thumbnail Managing Standard proposed on freedesktop.org
- * The standard is documented here:
- *   http://triq.net/~jens/thumbnail-spec/index.html
+ * The standard is documented here: \n
+ *   http://triq.net/~jens/thumbnail-spec/index.html \n
  *  (why isn't it actually hosted on freedesktop.org?)
  *
  * This code attempts to conform to version 0.7.0 of the standard.
  *
  * Notes:
  *   > Validation of the thumb's embedded uri is a simple strcmp between our
- *     version of the escaped uri and the thumb's escaped uri. But not all uri
- *     escape functions escape the same set of chars, comparing the unescaped
- *     versions may be more accurate.
+ *   > version of the escaped uri and the thumb's escaped uri. But not all uri
+ *   > escape functions escape the same set of chars, comparing the unescaped
+ *   > versions may be more accurate. \n
  *   > Only Thumb::URI and Thumb::MTime are stored in a thumb at this time.
  *     Storing the Size, Width, Height should probably be implemented.
  */

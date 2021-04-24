@@ -25,13 +25,15 @@
 #include "ui_fileops.h"
 
 
-/*
+/**
+ * @file
  *-----------------------------------------------------------------------------
  * Implements a history chain. Used by the Back and Forward toolbar buttons.
  * Selecting any folder appends the path to the end of the chain.
  * Pressing the Back and Forward buttons moves along the chain, but does
  * not make additions to the chain.
  * The chain always increases and is deleted at the end of the session
+ * 
  *-----------------------------------------------------------------------------
  */
 
@@ -98,13 +100,15 @@ void history_chain_append_end(const gchar *path)
 		}
 }
 
-/*
+/**
+ * @file
  *-----------------------------------------------------------------------------
  * Implements an image history chain. Whenever an image is displayed it is
  * appended to a chain.
  * Pressing the Image Back and Image Forward buttons moves along the chain,
  * but does not make additions to the chain.
  * The chain always increases and is deleted at the end of the session
+ * 
  *-----------------------------------------------------------------------------
  */
 static GList *image_chain = NULL;

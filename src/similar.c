@@ -23,7 +23,9 @@
 #include "main.h"
 #include "similar.h"
 
-/*
+/**
+ * @file
+ * 
  * These functions are intended to find images with similar color content. For
  * example when an image was saved at different compression levels or dimensions
  * (scaled down/up) the contents are similar, but these files do not match by file
@@ -40,9 +42,9 @@
  * of the two images. (for this, simple comparisons are used, basically the return
  * is an average of the corresponding array differences)
  *
- * for image_sim_compare(), the return is 0.0 to 1.0:
- *  1.0 for exact matches (an image is compared to itself)
- *  0.0 for exact opposite images (compare an all black to an all white image)
+ * for image_sim_compare(), the return is 0.0 to 1.0: \n
+ *  1.0 for exact matches (an image is compared to itself) \n
+ *  0.0 for exact opposite images (compare an all black to an all white image) \n
  * generally only a match of > 0.85 are significant at all, and >.95 is useful to
  * find images that have been re-saved to other formats, dimensions, or compression.
  */

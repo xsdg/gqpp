@@ -26,16 +26,16 @@
 
 #include "secure_save.h"
 
-
-/* ABOUT SECURE SAVE */
-/* This code was borrowed from the ELinks project (http://elinks.cz)
+/**
+ * @file secure_save.c
+ * 
+ * ABOUT SECURE SAVE \n
+ * This code was borrowed from the ELinks project (http://elinks.cz)
  * It was originally written by me (Laurent Monin aka Zas) and heavily
  * modified and improved by all ELinks contributors.
  * This code was released under the GPLv2 licence.
- * It was modified to be included in geeqie on 2008/04/05 */
-
-/* If ssi->secure_save is TRUE:
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * It was modified to be included in geeqie on 2008/04/05
+ * If ssi->secure_save is TRUE:
  *
  * A call to secure_open("/home/me/.confdir/filename", mask) will open a file
  * named "filename.tmp_XXXXXX" in /home/me/.confdir/ and return a pointer to a
@@ -59,13 +59,11 @@
  * then secsave is disabled for that file.
  *
  * If ssi->secure_save is FALSE:
- * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *
  * No temporary file is created, "filename" is truncated, all operations are
  * done on it, no rename nor flush occur, symlinks are preserved.
  *
  * In both cases:
- * ~~~~~~~~~~~~~
  *
  * Access rights are affected by secure_open() mask parameter.
  */
