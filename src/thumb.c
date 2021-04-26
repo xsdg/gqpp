@@ -145,6 +145,11 @@ static void thumb_loader_done_cb(ImageLoader *il, gpointer data)
 		return;
 		}
 
+	if(!tl->cache_hit)
+		{
+			// apply color correction, if required
+			thumb_loader_std_calibrate_pixbuf(tl->fd, pixbuf);
+		}
 
 	if (!tl->cache_hit && options->image.exif_rotate_enable)
 		{

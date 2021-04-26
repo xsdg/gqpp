@@ -85,6 +85,7 @@ void thumb_loader_std_free(ThumbLoaderStd *tl);
 
 GdkPixbuf *thumb_loader_std_get_pixbuf(ThumbLoaderStd *tl);
 
+void thumb_loader_std_calibrate_pixbuf(FileData *fd, GdkPixbuf *pixbuf);
 
 /**
  * \headerfile thumb_loader_std_thumb_file_validate
