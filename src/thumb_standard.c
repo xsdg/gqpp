@@ -30,6 +30,7 @@
 #include "filedata.h"
 #include "exif.h"
 #include "metadata.h"
+#include "color-man.h"
 
 
 /*
@@ -384,6 +385,99 @@ static void thumb_loader_std_set_fallback(ThumbLoaderStd *tl)
 	tl->fd->thumb_pixbuf = pixbuf_fallback(tl->fd, tl->requested_width, tl->requested_height);
 }
 
+
+void thumb_loader_std_calibrate_pixbuf(FileData *fd, GdkPixbuf *pixbuf) {
+	ColorMan *cm = NULL;
+	ExifData *exif = NULL;
+	gint color_profile_from_image = COLOR_PROFILE_NONE;
+	ColorManProfileType input_type = COLOR_PROFILE_MEM;
+	ColorManProfileType screen_type;
+	const gchar *input_file = NULL;
+	guchar *profile = NULL;
+	guint profile_len;
+	gint sw, sh;
+
+	sw = gdk_pixbuf_get_width(pixbuf);
+	sh = gdk_pixbuf_get_height(pixbuf);
+
+	exif = exif_read_fd(fd);
+
+	if (exif)
+		{
+		profile = exif_get_color_profile(exif, &profile_len);
+		if (profile)
+			{
+			DEBUG_1("Found embedded color profile");
+			color_profile_from_image = COLOR_PROFILE_MEM;
+			}
+		else
+			{
+			gchar *interop_index = exif_get_data_as_text(exif, "Exif.Iop.InteroperabilityIndex");
+
+			if (interop_index)
+				{
+				/* Exif 2.21 specification */
+				if (!strcmp(interop_index, "R98"))
+					{
+					color_profile_from_image = COLOR_PROFILE_SRGB;
+					DEBUG_1("Found EXIF 2.21 ColorSpace of sRGB");
+					}
+				else if (!strcmp(interop_index, "R03"))
+					{
+					color_profile_from_image = COLOR_PROFILE_ADOBERGB;
+					DEBUG_1("Found EXIF 2.21 ColorSpace of AdobeRGB");
+					}
+				g_free(interop_index);
+				}
+			else
+				{
+				gint cs;
+
+				/* ColorSpace == 1 specifies sRGB per EXIF 2.2 */
+				if (!exif_get_integer(exif, "Exif.Photo.ColorSpace", &cs)) cs = 0;
+				if (cs == 1)
+					{
+					color_profile_from_image = COLOR_PROFILE_SRGB;
+					DEBUG_1("Found EXIF 2.2 ColorSpace of sRGB");
+					}
+				else if (cs == 2)
+					{
+					/* non-standard way of specifying AdobeRGB (used by some software) */
+					color_profile_from_image = COLOR_PROFILE_ADOBERGB;
+					DEBUG_1("Found EXIF 2.2 ColorSpace of AdobeRGB");
+					}
+				}
+			}
+
+		if(color_profile_from_image != COLOR_PROFILE_NONE)
+			{
+				// transform image, we always use sRGB as target for thumbnails
+				screen_type = COLOR_PROFILE_SRGB;
+
+				if (profile)
+					{
+					cm = color_man_new_embedded(NULL, pixbuf,
+									profile, profile_len,
+									screen_type, NULL, NULL, 0);
+					g_free(profile);
+					}
+				else
+					{
+					cm = color_man_new(NULL, pixbuf,
+							input_type, input_file,
+							screen_type, NULL, NULL, 0);
+					}
+
+				if(cm) {
+					color_man_correct_region(cm, cm->pixbuf, 0, 0, sw, sh);
+					g_free(cm);
+				}
+
+			}
+		exif_free_fd(fd, exif);
+		}
+}
+
 static GdkPixbuf *thumb_loader_std_finish(ThumbLoaderStd *tl, GdkPixbuf *pixbuf, gboolean shrunk)
 {
 	GdkPixbuf *pixbuf_thumb = NULL;
@@ -496,6 +590,9 @@ static GdkPixbuf *thumb_loader_std_finish(ThumbLoaderStd *tl, GdkPixbuf *pixbuf,
 			g_object_ref(result);
 			}
 		}
+
+	// apply color correction, if required
+	thumb_loader_std_calibrate_pixbuf(tl->fd, result);
 
 	if (pixbuf_thumb) g_object_unref(pixbuf_thumb);
 	if (rotated) g_object_unref(rotated);
