@@ -180,6 +180,7 @@ ConfOptions *init_options(ConfOptions *options)
 	options->thumbnails.spec_standard = TRUE;
 	options->thumbnails.use_xvpics = TRUE;
 	options->thumbnails.use_exif = FALSE;
+	options->thumbnails.use_color_management = FALSE;
 	options->thumbnails.use_ft_metadata = TRUE;
 // 	options->thumbnails.use_ft_metadata_small = TRUE;
 	options->thumbnails.collection_preview = 20;

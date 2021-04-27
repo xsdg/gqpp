@@ -164,6 +164,7 @@ struct _ConfOptions
 		gboolean spec_standard;
 		guint quality;
 		gboolean use_exif;
+		gboolean use_color_management;
 		gboolean use_ft_metadata;
 		gint collection_preview;
 // 		gboolean use_ft_metadata_small;

@@ -298,6 +298,7 @@ static void config_window_apply(void)
 	options->thumbnails.enable_caching = c_options->thumbnails.enable_caching;
 	options->thumbnails.cache_into_dirs = c_options->thumbnails.cache_into_dirs;
 	options->thumbnails.use_exif = c_options->thumbnails.use_exif;
+	options->thumbnails.use_color_management = c_options->thumbnails.use_color_management;
 	options->thumbnails.collection_preview = c_options->thumbnails.collection_preview;
 	options->thumbnails.use_ft_metadata = c_options->thumbnails.use_ft_metadata;
 // 	options->thumbnails.use_ft_metadata_small = c_options->thumbnails.use_ft_metadata_small;
@@ -1953,6 +1954,9 @@ static void config_tab_general(GtkWidget *notebook)
 
 	pref_checkbox_new_int(group, _("Use EXIF thumbnails when available (EXIF thumbnails may be outdated)"),
 			      options->thumbnails.use_exif, &c_options->thumbnails.use_exif);
+
+	pref_checkbox_new_int(group, _("Thumbnail color management"),
+				options->thumbnails.use_color_management, &c_options->thumbnails.use_color_management);
 
 	spin = pref_spin_new_int(group, _("Collection preview:"), NULL,
 				 1, 999, 1,

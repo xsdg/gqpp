@@ -138,6 +138,20 @@
     <variablelist>
       <varlistentry>
         <term>
+          <guilabel>Thumbnail color management</guilabel>
+        </term>
+        <listitem>
+          <para>Where possible store thumbnails with an sRGB color profile.</para>
+            <note>
+              <para>Selecting this option will increase the time taken to generate thumbnails.</para>
+              <para>You probably will want to deselect the "Use EXIF thumbnails" option.</para>
+            </note>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>
           <guilabel>Collection preview</guilabel>
         </term>
         <listitem>

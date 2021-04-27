@@ -397,6 +397,11 @@ void thumb_loader_std_calibrate_pixbuf(FileData *fd, GdkPixbuf *pixbuf) {
 	guint profile_len;
 	gint sw, sh;
 
+	if (!options->thumbnails.use_color_management)
+		{
+		return;
+		}
+
 	sw = gdk_pixbuf_get_width(pixbuf);
 	sh = gdk_pixbuf_get_height(pixbuf);
 
