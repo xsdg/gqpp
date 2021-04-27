@@ -1,3 +1,22 @@
+Geeqie 1.6
+============
+
+- Geeqie available as Flatpak
+- Cache maintenance option to recursively create .sim files
+- Geeqie windows may be named and made persistent
+- Export duplicates in tab or csv format
+- "Action search" via "/" key
+- Show lens ID via Lua script
+- Remote command --get-file-info
+- Load file from URL
+- Show over/under exposed toolbar icon
+- Support HEIC, WEBP, DjVu, PSD, JP2000, SVGZ, CR3 files
+
+And as usual:
+- Many small improvements
+- Many bug fixes
+- Updated language support
+
 Geeqie 1.5.1
 ============
 
