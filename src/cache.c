@@ -31,24 +31,24 @@
 #include <errno.h>
 
 
-/*
+/**
+ * @file
  *-------------------------------------------------------------------
  * Cache data file format:
  *-------------------------------------------------------------------
  *
- * SIMcache
- * #comment
- * Dimensions=[<width> x <height>]
- * Date=[<value in time_t format, or -1 if no embedded date>]
- * MD5sum=[<32 character ascii text digest>]
+ * SIMcache \n
+ * #comment \n
+ * Dimensions=[<width> x <height>] \n
+ * Date=[<value in time_t format, or -1 if no embedded date>] \n
+ * MD5sum=[<32 character ascii text digest>] \n
  * SimilarityGrid[32 x 32]=<3072 bytes of data (1024 pixels in RGB format, 1 pixel is 24bits)>
  *
- *
- * The first line (9 bytes) indicates it is a SIMcache format file. (new line char must exist)
- * Comment lines starting with a # are ignored up to a new line.
- * All data lines should end with a new line char.
- * Format is very strict, data must begin with the char immediately following '='.
- * Currently SimilarityGrid is always assumed to be 32 x 32 RGB.
+ * The first line (9 bytes) indicates it is a SIMcache format file. (new line char must exist) \n
+ * Comment lines starting with a # are ignored up to a new line. \n
+ * All data lines should end with a new line char. \n
+ * Format is very strict, data must begin with the char immediately following '='. \n
+ * Currently SimilarityGrid is always assumed to be 32 x 32 RGB. \n
  */
 
 

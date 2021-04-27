@@ -58,11 +58,16 @@
 #endif
 
 
-/* ----------------------------------------------------------------
-   Tab completion routines, can be connected to any gtkentry widget
-   using the tab_completion_add_to_entry() function.
-   Use remove_trailing_slash() to strip the trailing G_DIR_SEPARATOR.
-   ----------------------------------------------------------------*/
+/**
+ * @file
+ * ----------------------------------------------------------------
+ * Tab completion routines, can be connected to any gtkentry widget
+ * using the tab_completion_add_to_entry() function.
+ * 
+ * Use remove_trailing_slash() to strip the trailing G_DIR_SEPARATOR.
+ * 
+ * ----------------------------------------------------------------
+ */
 
 typedef struct _TabCompData TabCompData;
 struct _TabCompData
