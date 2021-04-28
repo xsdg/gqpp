@@ -45,6 +45,8 @@ struct _ConfOptions
 	gboolean tree_descend_subdirs;
 	gboolean view_dir_list_single_click_enter;
 
+	gboolean circular_selection_lists;
+
 	gboolean lazy_image_sync;
 	gboolean update_on_time_change;
 

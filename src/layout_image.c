@@ -1618,7 +1618,12 @@ void layout_image_next(LayoutWindow *lw)
 			if (y->next)
 				layout_image_set_index(lw, GPOINTER_TO_INT(y->next->data));
 			else
-				layout_image_set_index(lw, GPOINTER_TO_INT(x->data));
+				{
+				if (options->circular_selection_lists)
+					{
+					layout_image_set_index(lw, GPOINTER_TO_INT(x->data));
+					}
+				}
 			}
 		while (x)
 			x = g_list_remove(x, x->data);
@@ -1691,7 +1696,12 @@ void layout_image_prev(LayoutWindow *lw)
 			if (y->prev)
 				layout_image_set_index(lw, GPOINTER_TO_INT(y->prev->data));
 			else
-				layout_image_set_index(lw, GPOINTER_TO_INT(last->data));
+				{
+				if (options->circular_selection_lists)
+					{
+					layout_image_set_index(lw, GPOINTER_TO_INT(last->data));
+					}
+				}
 			}
 		while (x)
 			x = g_list_remove(x, x->data);

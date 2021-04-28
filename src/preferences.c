@@ -378,6 +378,7 @@ static void config_window_apply(void)
 	options->tree_descend_subdirs = c_options->tree_descend_subdirs;
 
 	options->view_dir_list_single_click_enter = c_options->view_dir_list_single_click_enter;
+	options->circular_selection_lists = c_options->circular_selection_lists;
 
 	options->open_recent_list_maxsize = c_options->open_recent_list_maxsize;
 	options->dnd_icon_size = c_options->dnd_icon_size;
@@ -3287,6 +3288,7 @@ static void config_tab_behavior(GtkWidget *notebook)
 	GtkWidget *collections_on_top;
 	GtkWidget *hide_window_in_fullscreen;
 	GtkWidget *checkbox;
+	GtkWidget *tmp;
 
 	vbox = scrolled_notebook_page(notebook, _("Behavior"));
 
@@ -3349,6 +3351,10 @@ static void config_tab_behavior(GtkWidget *notebook)
 
 	pref_checkbox_new_int(group, _("List directory view uses single click to enter"),
 			      options->view_dir_list_single_click_enter, &c_options->view_dir_list_single_click_enter);
+
+	tmp = pref_checkbox_new_int(group, _("Circular selection lists"),
+			      options->circular_selection_lists, &c_options->circular_selection_lists);
+	gtk_widget_set_tooltip_text(tmp, _("Traverse selection lists in a circular manner"));
 
 	marks = pref_checkbox_new_int(group, _("Save marks on exit"),
 				options->marks_save, &c_options->marks_save);
