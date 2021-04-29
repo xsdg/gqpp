@@ -1187,9 +1187,36 @@ gboolean vd_press_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer data)
 {
 	ViewDir *vd = data;
 	gboolean ret = FALSE;
+	FileData *fd;
+	GtkTreePath *tpath;
+	GtkTreeIter iter;
+	NodeData *nd = NULL;
+	GtkTreeModel *store;
 
 	if (bevent->button == MOUSE_BUTTON_RIGHT)
 		{
+		if (gtk_tree_view_get_path_at_pos(GTK_TREE_VIEW(widget), bevent->x, bevent->y, &tpath, NULL, NULL, NULL))
+			{
+			store = gtk_tree_view_get_model(GTK_TREE_VIEW(widget));
+			gtk_tree_model_get_iter(store, &iter, tpath);
+
+			switch (vd->type)
+				{
+				case DIRVIEW_LIST:
+					gtk_tree_model_get(store, &iter, DIR_COLUMN_POINTER, &fd, -1);
+					vd->click_fd = fd;
+					break;
+				case DIRVIEW_TREE:
+					gtk_tree_model_get(store, &iter, DIR_COLUMN_POINTER, &nd, -1);
+					vd->click_fd = (nd) ? nd->fd : NULL;
+				}
+
+			if (vd->click_fd)
+				{
+				vd_color_set(vd, vd->click_fd, TRUE);
+				}
+			}
+
 		vd->popup = vd_pop_menu(vd, vd->click_fd);
 		gtk_menu_popup(GTK_MENU(vd->popup), NULL, NULL, NULL, NULL,
 			       bevent->button, bevent->time);
