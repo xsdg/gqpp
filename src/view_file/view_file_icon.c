@@ -1943,6 +1943,7 @@ static gboolean vficon_refresh_real(ViewFile *vf, gboolean keep_position)
 	FileData *first_selected = NULL;
 	GList *new_filelist = NULL;
 	GList *new_fd_list = NULL;
+	GList *old_selected = NULL;
 
 	focus_fd = VFICON(vf)->focus_fd;
 
@@ -1963,6 +1964,7 @@ static gboolean vficon_refresh_real(ViewFile *vf, gboolean keep_position)
 
 	if (VFICON(vf)->selection)
 		{
+		old_selected = g_list_copy(VFICON(vf)->selection);
 		first_selected = VFICON(vf)->selection->data;
 		file_data_ref(first_selected);
 		g_list_free(VFICON(vf)->selection);
@@ -2046,6 +2048,26 @@ static gboolean vficon_refresh_real(ViewFile *vf, gboolean keep_position)
 		}
 
 	VFICON(vf)->selection = g_list_reverse(VFICON(vf)->selection);
+
+	/* Preserve the original selection order */
+	if (old_selected)
+		{
+		GList *reversed_old_selected;
+
+		reversed_old_selected = g_list_reverse(old_selected);
+		while (reversed_old_selected)
+			{
+			GList *tmp;
+			tmp = g_list_find(VFICON(vf)->selection, reversed_old_selected->data);
+			if (tmp)
+				{
+				VFICON(vf)->selection = g_list_remove_link(VFICON(vf)->selection, tmp);
+				VFICON(vf)->selection = g_list_concat(tmp, VFICON(vf)->selection);
+				}
+			reversed_old_selected = reversed_old_selected->next;
+			}
+		g_list_free(old_selected);
+		}
 
 	filelist_free(new_filelist);
 
