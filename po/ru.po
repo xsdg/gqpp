@@ -16,15 +16,14 @@ msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-28 19:44+0100\n"
-"PO-Revision-Date: 2010-02-12 20:23+0300\n"
-"Last-Translator: Denis Silakov <d_uragan@rambler.ru>\n"
+"PO-Revision-Date: 2021-04-30 15:06+0500\n"
+"Last-Translator: ashed <craysy@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@lists.gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Russian\n"
-"X-Poedit-Country: RUSSIAN FEDERATION\n"
+"X-Generator: Poedit 2.3\n"
 
 #: ../geeqie.desktop.in.h:1
 msgid "Geeqie"
@@ -48,7 +47,7 @@ msgstr "Импорт метаданных GQView"
 
 #: ../plugins/rotate/rotate.desktop.in.h:1
 msgid "Apply the orientation to image content"
-msgstr "Применить изменение ориентации непосредственно к изображению."
+msgstr "Применить изменение ориентации прямо к изображению"
 
 #: ../plugins/symlink/symlink.desktop.in.h:1
 msgid "Symlink"
@@ -115,9 +114,8 @@ msgid "Comment"
 msgstr "Комментарий"
 
 #: ../src/bar.c:187
-#, fuzzy
 msgid "Rating"
-msgstr "Рисунок"
+msgstr "Рейтинг"
 
 #: ../src/bar.c:188
 msgid "Exif"
@@ -161,9 +159,8 @@ msgid "Remove"
 msgstr "Удалить"
 
 #: ../src/bar.c:711
-#, fuzzy
 msgid "Add Pane"
-msgstr "Добавить изображение"
+msgstr "Добавить панель"
 
 #: ../src/bar_comment.c:216
 msgid "Add text to selected files"
@@ -188,7 +185,7 @@ msgstr "Добавить запись"
 
 #: ../src/bar_exif.c:566
 msgid "Key:"
-msgstr "Ключевое слово"
+msgstr "Ключ:"
 
 #: ../src/bar_exif.c:575 ../src/preferences.c:1688
 msgid "Title:"
@@ -228,6 +225,8 @@ msgid ""
 "\n"
 "Do you want to geocode image %s?"
 msgstr ""
+"\n"
+"Хотите геокодировать изображение %s?"
 
 #: ../src/bar_gps.c:192
 #, c-format
@@ -235,6 +234,8 @@ msgid ""
 "\n"
 "Do you want to geocode %i images?"
 msgstr ""
+"\n"
+"Хотите геокодировать %i изображений?"
 
 #: ../src/bar_gps.c:197
 #, c-format
@@ -242,6 +243,8 @@ msgid ""
 "\n"
 "This image is already geocoded!"
 msgstr ""
+"\n"
+"Это изображение уже геокодировано!"
 
 #: ../src/bar_gps.c:202
 #, c-format
@@ -249,6 +252,8 @@ msgid ""
 "\n"
 "One image is already geocoded!"
 msgstr ""
+"\n"
+"Одно изображение уже геокодировано!"
 
 #: ../src/bar_gps.c:207
 #, c-format
@@ -256,6 +261,8 @@ msgid ""
 "\n"
 "%i Images are already geocoded!"
 msgstr ""
+"\n"
+"%i изображений уже геокодированы!"
 
 #: ../src/bar_gps.c:212
 #, fuzzy, c-format
@@ -266,14 +273,12 @@ msgid ""
 msgstr "Расположение: %s"
 
 #: ../src/bar_gps.c:214
-#, fuzzy
 msgid "Geocode images"
-msgstr "Заранее загружать следующее изображение"
+msgstr "Геокодировать изображения"
 
 #: ../src/bar_gps.c:218
-#, fuzzy
 msgid "Write lat/long to meta-data?"
-msgstr "Записать метаданные?"
+msgstr "Записать lat/long в метаданные?"
 
 #: ../src/bar_gps.c:721
 #, c-format
@@ -371,11 +376,11 @@ msgstr "Редактировать ключевое слово"
 
 #: ../src/bar_keywords.c:948
 msgid "Keyword:"
-msgstr "Ключевое слово"
+msgstr "Ключевое слово:"
 
 #: ../src/bar_keywords.c:957
 msgid "Keyword type:"
-msgstr "Тип ключевого слова"
+msgstr "Тип ключевого слова:"
 
 #: ../src/bar_keywords.c:959
 msgid "Active keyword"
@@ -386,18 +391,19 @@ msgid "Helper"
 msgstr "Помощник"
 
 #: ../src/bar_keywords.c:1036
+#, fuzzy
 msgid "This will disconnect all Marks Keywords connections"
-msgstr ""
+msgstr "Это отсоединит все соединения Пометки ключевых слов"
 
 #: ../src/bar_keywords.c:1038
 #, fuzzy
 msgid "Marks Keywords"
-msgstr "Ключевые слова"
+msgstr "Пометить Ключевые слова"
 
 #: ../src/bar_keywords.c:1311
-#, fuzzy, c-format
+#, c-format
 msgid "Add \"%s\" to all selected images"
-msgstr "Добавить ключевые слова в выбранные файлы"
+msgstr "Добавить \"%s\" в выбранные изображения"
 
 #: ../src/bar_keywords.c:1317
 #, c-format
@@ -410,9 +416,9 @@ msgid "Mark %d"
 msgstr "Закладка %d"
 
 #: ../src/bar_keywords.c:1332
-#, c-format
+#, fuzzy, c-format
 msgid "Connect \"%s\" to mark"
-msgstr "Добавить \"%s\" в закладку"
+msgstr "Добавить \"%s\" в пометку"
 
 #: ../src/bar_keywords.c:1339
 #, c-format
@@ -420,14 +426,14 @@ msgid "Edit \"%s\""
 msgstr "Выйти из \"%s\""
 
 #: ../src/bar_keywords.c:1349
-#, c-format
+#, fuzzy, c-format
 msgid "Disconnect \"%s\" from mark %s"
-msgstr "Отсоединить \"%s\" от закладки %s"
+msgstr "Отсоединить \"%s\" от пометки %s"
 
 #: ../src/bar_keywords.c:1356
-#, c-format
+#, fuzzy, c-format
 msgid "Disconnect all Mark Keyword connections"
-msgstr ""
+msgstr "Отключить все соединения по ключевым словам"
 
 #. for the pane
 #: ../src/bar_keywords.c:1367 ../src/bar_keywords.c:1381
@@ -444,20 +450,19 @@ msgstr "Скрыть неотмеченные"
 
 #: ../src/bar_keywords.c:1370
 msgid "Revert all hidden"
-msgstr ""
+msgstr "Обратить все скрытые"
 
 #: ../src/bar_keywords.c:1372
 msgid "Show all"
 msgstr "Показать все"
 
 #: ../src/bar_keywords.c:1373
-#, fuzzy
 msgid "Collapse all"
-msgstr "Свернуть неотмеченные"
+msgstr "Свернуть все"
 
 #: ../src/bar_keywords.c:1374
 msgid "Revert"
-msgstr ""
+msgstr "Обратить"
 
 #: ../src/bar_keywords.c:1378
 msgid "On any change"
@@ -492,6 +497,7 @@ msgid "Save Failed"
 msgstr "Не удалось сохранить"
 
 #: ../src/bar_sort.c:551 ../src/bar_sort.c:723
+#, fuzzy
 msgid "Add Bookmark"
 msgstr "Добавить закладку"
 
@@ -548,7 +554,7 @@ msgstr ""
 #: ../src/cache_maint.c:123 ../src/cache_maint.c:612 ../src/cache_maint.c:880
 #: ../src/editors.c:1195
 msgid "done"
-msgstr "Готово"
+msgstr "готово"
 
 #: ../src/cache_maint.c:313
 msgid "Removing old metadata..."
@@ -600,7 +606,7 @@ msgstr "Сохранять миниатюры в одном каталоге с 
 
 #: ../src/cache_maint.c:834 ../src/cache_maint.c:1072
 msgid "click start to begin"
-msgstr "Нажмите «Начать» для запуска"
+msgstr "нажмите «Начать» для запуска"
 
 #: ../src/cache_maint.c:992 ../src/editors.c:1121
 msgid "running..."
@@ -646,12 +652,11 @@ msgstr "Очистить"
 
 #: ../src/cache_maint.c:1230 ../src/cache_maint.c:1249
 msgid "Remove orphaned or outdated thumbnails."
-msgstr "Удалить осиротевшие или устаревшие миниатюры"
+msgstr "Удалить осиротевшие или устаревшие миниатюры."
 
 #: ../src/cache_maint.c:1235
-#, fuzzy
 msgid "Delete all cached data."
-msgstr "Удалить все закэшированные миниатюры"
+msgstr "Удалить все закэшированные миниатюры."
 
 #: ../src/cache_maint.c:1238
 msgid "Shared thumbnail cache"
@@ -659,7 +664,7 @@ msgstr "Общий кэш миниатюр"
 
 #: ../src/cache_maint.c:1254
 msgid "Delete all cached thumbnails."
-msgstr "Удалить все закэшированные миниатюры"
+msgstr "Удалить все закэшированные миниатюры."
 
 #: ../src/cache_maint.c:1260
 msgid "Render"
@@ -667,11 +672,11 @@ msgstr "Создать"
 
 #: ../src/cache_maint.c:1263
 msgid "Render thumbnails for a specific folder."
-msgstr "Создать миниатюры для выбранного каталога"
+msgstr "Создать миниатюры для выбранного каталога."
 
 #: ../src/cache_maint.c:1274
 msgid "Remove orphaned keywords and comments."
-msgstr "Удалить осиротевшие ключевые слова и комментарии"
+msgstr "Удалить осиротевшие ключевые слова и комментарии."
 
 #. When does this occur ??
 #: ../src/collect.c:405 ../src/image.c:186 ../src/image-overlay.c:545
@@ -774,7 +779,7 @@ msgstr "Файлы коллекций"
 #: ../src/collect-io.c:356
 #, c-format
 msgid "failed to open collection (write) \"%s\"\n"
-msgstr "Не удалось открыть коллекцию: \"%s\"\n"
+msgstr "не удалось открыть коллекцию: \"%s\"\n"
 
 #: ../src/collect-io.c:381
 #, c-format
@@ -823,9 +828,8 @@ msgid "Rem_ove"
 msgstr "Уд_алить"
 
 #: ../src/collect-table.c:921
-#, fuzzy
 msgid "Append from file selection"
-msgstr "Добавить из списка файлов"
+msgstr "Добавить из выбранных файлов"
 
 #: ../src/collect-table.c:923
 msgid "Append from collection..."
@@ -886,7 +890,7 @@ msgstr "_Копировать путь"
 #: ../src/search.c:1093 ../src/view_dir.c:689 ../src/view_file/view_file.c:610
 #, fuzzy
 msgid "_Copy path unquoted"
-msgstr "_Копировать путь"
+msgstr "_Копировать путь раскавыченным"
 
 #: ../src/collect-table.c:957 ../src/dupe.c:2381 ../src/img-view.c:1328
 #: ../src/layout_image.c:708 ../src/layout_util.c:1758
@@ -960,13 +964,12 @@ msgid "Custom profile"
 msgstr "Выбранный профиль"
 
 #: ../src/debug.c:55
-#, fuzzy
 msgid "error"
-msgstr "Отразить зеркально"
+msgstr "ошибка"
 
 #: ../src/debug.c:56
 msgid "warning"
-msgstr ""
+msgstr "предупреждение"
 
 #: ../src/desktop_file.c:83 ../src/desktop_file.c:95 ../src/desktop_file.c:101
 msgid "Can't save"
@@ -974,7 +977,7 @@ msgstr "Невозможно сохранить"
 
 #: ../src/desktop_file.c:83
 msgid "Please specify file name."
-msgstr "Пожалуйста, укажите имя файла"
+msgstr "Пожалуйста, укажите имя файла."
 
 #: ../src/desktop_file.c:95
 msgid "Could not create directory"
@@ -1014,11 +1017,11 @@ msgstr ""
 
 #: ../src/desktop_file.c:383
 msgid "new.desktop"
-msgstr "Новый.desktop"
+msgstr "новый.desktop"
 
 #: ../src/desktop_file.c:467
 msgid "Plugins"
-msgstr ""
+msgstr "Плагины"
 
 #: ../src/desktop_file.c:544
 msgid "Hidden"
@@ -1131,8 +1134,9 @@ msgid "Similarity (custom)"
 msgstr "Похожесть (заданная)"
 
 #: ../src/dupe.c:3257 ../src/toolbar.c:86
+#, fuzzy
 msgid "Find duplicates"
-msgstr "Найти повторяющиеся..."
+msgstr "Найти дубликаты"
 
 #: ../src/dupe.c:3339
 msgid "Compare to:"
@@ -1147,9 +1151,8 @@ msgid "Thumbnails"
 msgstr "Миниатюры"
 
 #: ../src/dupe.c:3368
-#, fuzzy
 msgid "Ignore Rotation"
-msgstr "Ориентация"
+msgstr "Игнорировать вращение"
 
 #: ../src/dupe.c:3376
 msgid "Compare two file sets"
@@ -1160,14 +1163,13 @@ msgid "Sort"
 msgstr "Сортировать"
 
 #: ../src/dupe.c:3404
-#, fuzzy
 msgid "Custom Threshold"
-msgstr "Значение порога похожести:"
+msgstr "Настраиваемый порог похожести"
 
 #: ../src/editors.c:295
 #, c-format
 msgid "Desktop file '%s' should not include extension in Icon key: '%s'\n"
-msgstr "Поле Icon в файле %s не должно содержать расширение %s\n"
+msgstr "Поле Icon в Desktop файле %s не должно включать расширение %s\n"
 
 #. flash fired (bit 0)
 #: ../src/editors.c:349 ../src/exif.c:220 ../src/exif-common.c:374
@@ -1231,7 +1233,7 @@ msgstr "В строке вызова редактора используются
 
 #: ../src/editors.c:1376
 msgid "Can't find matching file type."
-msgstr "Невозможно найти подходящий тип файла"
+msgstr "Невозможно найти подходящий тип файла."
 
 #: ../src/editors.c:1377
 msgid "Can't execute external editor."
@@ -1434,7 +1436,7 @@ msgstr "D50"
 
 #: ../src/exif.c:213
 msgid "ISO studio tungsten"
-msgstr ""
+msgstr "ISO студийный вольфрам"
 
 #: ../src/exif.c:221
 msgid "yes, not detected by strobe"
@@ -1450,19 +1452,20 @@ msgstr "некалиброванный"
 
 #: ../src/exif.c:234
 msgid "1 chip color area"
-msgstr ""
+msgstr "1 chip область цвета"
 
 #: ../src/exif.c:235
 msgid "2 chip color area"
-msgstr ""
+msgstr "2 chip область цвета"
 
 #: ../src/exif.c:236
 msgid "3 chip color area"
-msgstr ""
+msgstr "3 chip область цвета"
 
 #: ../src/exif.c:237
+#, fuzzy
 msgid "color sequential area"
-msgstr ""
+msgstr "секвенциональная область цвета"
 
 #: ../src/exif.c:238
 msgid "trilinear"
@@ -1470,11 +1473,11 @@ msgstr "трилинейный"
 
 #: ../src/exif.c:239
 msgid "color sequential linear"
-msgstr ""
+msgstr "линейная цветовая секвенция"
 
 #: ../src/exif.c:244
 msgid "digital still camera"
-msgstr "бесшумная цифровая камера"
+msgstr "статическая цифровая камера"
 
 #: ../src/exif.c:249
 msgid "direct photo"
@@ -1486,7 +1489,7 @@ msgstr "выбранный"
 
 #: ../src/exif.c:260 ../src/exif.c:267 ../src/exif-common.c:388
 msgid "auto"
-msgstr "автоматически"
+msgstr "авто"
 
 #: ../src/exif.c:262
 msgid "auto bracket"
@@ -1505,22 +1508,20 @@ msgid "none"
 msgstr "нет"
 
 #: ../src/exif.c:282
-#, fuzzy
 msgid "low gain up"
-msgstr "Очистить"
+msgstr "низкое усиление"
 
 #: ../src/exif.c:283
 msgid "high gain up"
-msgstr ""
+msgstr "высокое усиление"
 
 #: ../src/exif.c:284
-#, fuzzy
 msgid "low gain down"
-msgstr "_Закрыть окно"
+msgstr "низкое ослабление"
 
 #: ../src/exif.c:285
 msgid "high gain down"
-msgstr ""
+msgstr "высокое ослабление"
 
 #: ../src/exif.c:291 ../src/exif.c:305
 msgid "soft"
@@ -1617,7 +1618,7 @@ msgstr "Регулировка YCbCr"
 
 #: ../src/exif.c:341
 msgid "Black white reference"
-msgstr ""
+msgstr "Референс черный белый"
 
 #: ../src/exif.c:343
 msgid "SubIFD Exif offset"
@@ -1646,7 +1647,7 @@ msgstr "Чувствительность ISO"
 
 #: ../src/exif.c:350
 msgid "Optoelectric conversion factor"
-msgstr ""
+msgstr "Фактор оптоэлектрической конверсии"
 
 #: ../src/exif.c:351
 msgid "Exif version"
@@ -1715,7 +1716,7 @@ msgstr "Расстояние до объекта"
 
 #: ../src/exif.c:367
 msgid "MakerNote"
-msgstr ""
+msgstr "Примечание"
 
 #: ../src/exif.c:368
 msgid "UserComment"
@@ -1723,7 +1724,7 @@ msgstr "Комментарий"
 
 #: ../src/exif.c:369
 msgid "Subsecond time"
-msgstr ""
+msgstr "Время субсекунды"
 
 #: ../src/exif.c:370
 #, fuzzy
@@ -1766,7 +1767,7 @@ msgstr "Сила вспышки"
 
 #: ../src/exif.c:380
 msgid "Spatial frequency response"
-msgstr ""
+msgstr "Пространственная частотная реакция"
 
 #: ../src/exif.c:381
 msgid "X Pixel density"
@@ -1778,7 +1779,7 @@ msgstr "Плотность точек по Y"
 
 #: ../src/exif.c:383
 msgid "Pixel density units"
-msgstr ""
+msgstr "Плотность пикселей"
 
 #: ../src/exif.c:384
 msgid "Subject location"
@@ -1799,13 +1800,12 @@ msgstr "Тип сцены"
 
 #: ../src/exif.c:389
 msgid "Color filter array pattern"
-msgstr ""
+msgstr "Паттерн массива цветного фильтра"
 
 #. tags a4xx were added for Exif 2.2 (not just these - some above, as well)
 #: ../src/exif.c:391
-#, fuzzy
 msgid "Render process"
-msgstr "Создать"
+msgstr "Рендер процесс"
 
 #: ../src/exif.c:392
 msgid "Exposure mode"
@@ -1825,11 +1825,11 @@ msgstr "Фокусное расстояние (35mm)"
 
 #: ../src/exif.c:396
 msgid "Scene capture type"
-msgstr ""
+msgstr "Тип захвата сцены"
 
 #: ../src/exif.c:397
 msgid "Gain control"
-msgstr ""
+msgstr "Контроль усиления"
 
 #: ../src/exif.c:398
 msgid "Contrast"
@@ -1858,10 +1858,12 @@ msgstr "Серийный номер снимка"
 #: ../src/exif.c:1110
 msgid "Can't get image comment: not compiled with Exiv2.\n"
 msgstr ""
+"Невозможно получить комментарий изображения: не скомпилирован с Exiv2.\n"
 
 #: ../src/exif.c:1116
 msgid "Can't set image comment: not compiled with Exiv2.\n"
 msgstr ""
+"Невозможно установить комментарий изображения: не скомпилирован с Exiv2.\n"
 
 #: ../src/exif-common.c:349
 msgid "infinity"
@@ -2104,7 +2106,7 @@ msgstr " (Коллекция %s)"
 #: ../src/image_load_jpeg.c:163
 #, c-format
 msgid "Error interpreting JPEG image file (%s)"
-msgstr ""
+msgstr "Ошибка интерпретации файла JPEG (%s)"
 
 #: ../src/img-view.c:1303 ../src/layout_image.c:674 ../src/layout_util.c:1789
 #: ../src/layout_util.c:1790 ../src/layout_util.c:1805
@@ -2223,31 +2225,29 @@ msgid "( %d x %d ) %s bytes"
 msgstr "( %d x %d ) %s байт"
 
 #: ../src/layout.c:755
-#, fuzzy
 msgid "Select sort order"
-msgstr "Выбрать каталог"
+msgstr "Выберите порядок сортировки"
 
 #: ../src/layout.c:760
-#, fuzzy
 msgid "Folder contents (files selected)"
-msgstr "Каталог содержит подкаталоги"
+msgstr "Папка содержит (выбрано файлов)"
 
 #: ../src/layout.c:769
 #, fuzzy
 msgid "(Image dimensions) Image size"
-msgstr "Размер изображения"
+msgstr "Размеры изображения"
 
 #: ../src/layout.c:779
-#, fuzzy
 msgid "Select zoom mode"
-msgstr "Выбрать каталог"
+msgstr "Выберите режим масштабирования"
 
 #. expand only in small format
 #: ../src/layout.c:789
 msgid "[Pixel x,y coord]: (Pixel R,G,B value)"
-msgstr ""
+msgstr "[Пиксел x,y коорд]: (Пиксел R,G,B значение)"
 
 #: ../src/layout.c:1429 ../src/layout_config.c:67
+#, fuzzy
 msgid "Tools"
 msgstr "Инструменты"
 
@@ -2279,7 +2279,7 @@ msgstr "Выйти из программы после закрытия этог�
 
 #: ../src/layout.c:2140
 msgid "Start-up directory:"
-msgstr "Начальный каталог"
+msgstr "Начальный каталог:"
 
 #: ../src/layout.c:2142
 msgid "No change"
@@ -2311,13 +2311,13 @@ msgid "Image"
 msgstr "Изображение"
 
 #: ../src/layout_config.c:358
+#, fuzzy
 msgid "(drag to change order)"
 msgstr "(номер панели меняется перетаскиванием)"
 
 #: ../src/layout_image.c:747
-#, fuzzy
 msgid "_Animate"
-msgstr "Животное"
+msgstr "_Анимировать"
 
 #: ../src/layout_image.c:751
 msgid "Hide file _list"
@@ -2334,9 +2334,8 @@ msgid "[%*s,%*s]: RGB(---,---,---)"
 msgstr "[%*s,%*s]: RGB(---,---,---)"
 
 #: ../src/layout_util.c:523
-#, fuzzy
 msgid "Operation failed:\n"
-msgstr "Удаление файла не прошло"
+msgstr "Сбой операции:\n"
 
 #: ../src/layout_util.c:526
 #, fuzzy
@@ -2344,14 +2343,12 @@ msgid "Cannot create tmp file"
 msgstr "Невозможно создать временный файл"
 
 #: ../src/layout_util.c:529
-#, fuzzy
 msgid "File: "
-msgstr "Файл:"
+msgstr "Файл: "
 
 #: ../src/layout_util.c:533
-#, fuzzy
 msgid "Image orientation"
-msgstr "Ориентация"
+msgstr "Ориентация изображения"
 
 #: ../src/layout_util.c:1715
 msgid "_File"
@@ -2374,9 +2371,8 @@ msgid "_Orientation"
 msgstr "_Ориентация"
 
 #: ../src/layout_util.c:1720
-#, fuzzy
 msgid "_Rating"
-msgstr "Рисунок"
+msgstr "_Рейтинг"
 
 #: ../src/layout_util.c:1721
 msgid "P_references"
@@ -2404,7 +2400,7 @@ msgstr "_Разделить"
 
 #: ../src/layout_util.c:1728
 msgid "Stere_o"
-msgstr ""
+msgstr "Стере_о"
 
 #: ../src/layout_util.c:1729 ../src/layout_util.c:1866
 msgid "Image _Overlay"
@@ -2412,7 +2408,7 @@ msgstr "_Перекрытие изображений"
 
 #: ../src/layout_util.c:1730
 msgid "_Plugins"
-msgstr ""
+msgstr "_Плагины"
 
 #: ../src/layout_util.c:1731
 msgid "_Help"
@@ -2464,11 +2460,11 @@ msgstr "Назад"
 
 #: ../src/layout_util.c:1742
 msgid "_Forward"
-msgstr ""
+msgstr "_Вперёд"
 
 #: ../src/layout_util.c:1742 ../src/toolbar.c:79
 msgid "Forward"
-msgstr ""
+msgstr "Вперёд"
 
 #: ../src/layout_util.c:1743
 msgid "_Home"
@@ -2481,11 +2477,11 @@ msgstr "Домашняя папка"
 
 #: ../src/layout_util.c:1744
 msgid "_Up"
-msgstr ""
+msgstr "Вв_ерх"
 
 #: ../src/layout_util.c:1744 ../src/toolbar.c:81
 msgid "Up"
-msgstr ""
+msgstr "Вверх"
 
 #: ../src/layout_util.c:1746 ../src/toolbar.c:82
 msgid "New _window"
@@ -2570,19 +2566,19 @@ msgstr "Удалить..."
 
 #: ../src/layout_util.c:1761 ../src/view_file/view_file.c:616
 msgid "Enable file _grouping"
-msgstr "_Выключить отбор файлов"
+msgstr "Включить _группировку файлов"
 
 #: ../src/layout_util.c:1761
 msgid "Enable file grouping"
-msgstr "Включить отбор файлов"
+msgstr "Включить группировку файлов"
 
 #: ../src/layout_util.c:1762 ../src/view_file/view_file.c:618
 msgid "Disable file groupi_ng"
-msgstr "В_ыключить отбор файлов"
+msgstr "В_ыключить группировку файлов"
 
 #: ../src/layout_util.c:1762
 msgid "Disable file grouping"
-msgstr "Выключить отбор файлов"
+msgstr "Выключить группировку файлов"
 
 #: ../src/layout_util.c:1763
 msgid "_Copy path to clipboard"
@@ -2593,14 +2589,12 @@ msgid "Copy path to clipboard"
 msgstr "Скопировать путь в буфер обмена"
 
 #: ../src/layout_util.c:1764
-#, fuzzy
 msgid "_Copy path unquoted to clipboard"
-msgstr "_Скопировать путь в буфер обмена"
+msgstr "_Скопировать раскавыченный путь в буфер обмена"
 
 #: ../src/layout_util.c:1764
-#, fuzzy
 msgid "Copy path unquoted to clipboard"
-msgstr "Скопировать путь в буфер обмена"
+msgstr "Скопировать раскавыченный путь в буфер обмена"
 
 #: ../src/layout_util.c:1765
 msgid "Close window"
@@ -2624,65 +2618,59 @@ msgstr "Повернуть по часовой стрелке"
 
 #: ../src/layout_util.c:1768
 msgid "_Rating 0"
-msgstr ""
+msgstr "_Рейтинг 0"
 
 #: ../src/layout_util.c:1768
-#, fuzzy
 msgid "Rating 0"
-msgstr "Рисунок"
+msgstr "Рейтинг 0"
 
 #: ../src/layout_util.c:1769
 msgid "_Rating 1"
-msgstr ""
+msgstr "_Рейтинг 1"
 
 #: ../src/layout_util.c:1769
-#, fuzzy
 msgid "Rating 1"
-msgstr "Рисунок"
+msgstr "Рейтинг 1"
 
 #: ../src/layout_util.c:1770
 msgid "_Rating 2"
-msgstr ""
+msgstr "_Рейтинг 2"
 
 #: ../src/layout_util.c:1770
-#, fuzzy
 msgid "Rating 2"
-msgstr "Рисунок"
+msgstr "Рейтинг 2"
 
 #: ../src/layout_util.c:1771
 msgid "_Rating 3"
-msgstr ""
+msgstr "_Рейтинг 3"
 
 #: ../src/layout_util.c:1771
-#, fuzzy
 msgid "Rating 3"
-msgstr "Рисунок"
+msgstr "Рейтинг 3"
 
 #: ../src/layout_util.c:1772
 msgid "_Rating 4"
-msgstr ""
+msgstr "_Рейтинг 4"
 
 #: ../src/layout_util.c:1772
-#, fuzzy
 msgid "Rating 4"
-msgstr "Рисунок"
+msgstr "Рейтинг 4"
 
 #: ../src/layout_util.c:1773
 msgid "_Rating 5"
-msgstr ""
+msgstr "Рейтинг 5"
 
 #: ../src/layout_util.c:1773
-#, fuzzy
 msgid "Rating 5"
-msgstr "Рисунок"
+msgstr "Рейтинг 5"
 
 #: ../src/layout_util.c:1774
 msgid "_Rating -1"
-msgstr ""
+msgstr "_Рейтинг -1"
 
 #: ../src/layout_util.c:1774
 msgid "Rating -1"
-msgstr ""
+msgstr "Рейтинг -1"
 
 #: ../src/layout_util.c:1775 ../src/menu.c:317
 msgid "Rotate _counterclockwise"
@@ -2742,21 +2730,19 @@ msgstr "Инвертировать выделение"
 
 #: ../src/layout_util.c:1783
 msgid "P_references..."
-msgstr "_Параметры"
+msgstr "_Параметры..."
 
 #: ../src/layout_util.c:1783
 msgid "Preferences..."
-msgstr "Параметры"
+msgstr "Параметры..."
 
 #: ../src/layout_util.c:1784
-#, fuzzy
 msgid "Configure _Plugins..."
-msgstr "Настроить _редакторы..."
+msgstr "Настроить _плагины..."
 
 #: ../src/layout_util.c:1784
-#, fuzzy
 msgid "Configure Plugins..."
-msgstr "Настроить редакторы..."
+msgstr "Настроить плагины..."
 
 #: ../src/layout_util.c:1785
 msgid "_Configure this window..."
@@ -2768,11 +2754,11 @@ msgstr "Настроить это окно..."
 
 #: ../src/layout_util.c:1786
 msgid "_Thumbnail maintenance..."
-msgstr "У_правление миниатюрами"
+msgstr "У_правление миниатюрами..."
 
 #: ../src/layout_util.c:1786
 msgid "Thumbnail maintenance..."
-msgstr "Управление миниатюрами"
+msgstr "Управление миниатюрами..."
 
 #: ../src/layout_util.c:1787
 msgid "Set as wallpaper"
@@ -2970,12 +2956,11 @@ msgstr "Приостановить просмотр слайдов"
 
 #: ../src/layout_util.c:1832
 msgid "Faster"
-msgstr ""
+msgstr "Быстрее"
 
 #: ../src/layout_util.c:1833
-#, fuzzy
 msgid "Slower"
-msgstr "Цветок"
+msgstr "Медленнее"
 
 #: ../src/layout_util.c:1834
 msgid "_Refresh"
@@ -3021,12 +3006,11 @@ msgstr "Информация о версии"
 
 #: ../src/layout_util.c:1839
 msgid "_ChangeLog"
-msgstr ""
+msgstr "_Изменения"
 
 #: ../src/layout_util.c:1839
-#, fuzzy
 msgid "ChangeLog notes"
-msgstr "Перейти в каталог:"
+msgstr "Заметки об изменениях"
 
 #: ../src/layout_util.c:1840
 msgid "_About"
@@ -3053,68 +3037,60 @@ msgid "Exif window"
 msgstr "Окно Exif"
 
 #: ../src/layout_util.c:1843
-#, fuzzy
 msgid "_Cycle through stereo modes"
-msgstr "_Переключение между режимами перекрытия"
+msgstr "_Переключение между режимами стерео"
 
 #: ../src/layout_util.c:1843
-#, fuzzy
 msgid "Cycle through stereo modes"
-msgstr "Переключение между режимами гистограммы"
+msgstr "Переключение между режимами стерео"
 
 #: ../src/layout_util.c:1844
-#, fuzzy
 msgid "_Next Pane"
-msgstr "_Следующее изображение"
+msgstr "_Следующая панель"
 
 #: ../src/layout_util.c:1844
-#, fuzzy
 msgid "Next Pane"
-msgstr "Следующее изображение"
+msgstr "Следующая панель"
 
 #: ../src/layout_util.c:1845
-#, fuzzy
 msgid "_Previous Pane"
-msgstr "Пр_едыдущее изображение"
+msgstr "Пр_едыдущая панель"
 
 #: ../src/layout_util.c:1845
-#, fuzzy
 msgid "Previous Pane"
-msgstr "Предыдущее изображение"
+msgstr "Предыдущая панель"
 
 #: ../src/layout_util.c:1846
 msgid "_Up Pane"
-msgstr ""
+msgstr "_Вверх панель"
 
 #: ../src/layout_util.c:1846
 msgid "Up Pane"
-msgstr ""
+msgstr "Вверх панель"
 
 #: ../src/layout_util.c:1847
 msgid "_Down Pane"
-msgstr ""
+msgstr "_Вниз панель"
 
 #: ../src/layout_util.c:1847
 msgid "Down Pane"
-msgstr ""
+msgstr "Вниз панель"
 
 #: ../src/layout_util.c:1848
-#, fuzzy
 msgid "_Write orientation to file"
-msgstr "Записать в файл"
+msgstr "_Записать ориентацию в файл"
 
 #: ../src/layout_util.c:1848
-#, fuzzy
 msgid "Write orientation to file"
-msgstr "Записать в файл"
+msgstr "Записать ориентацию в файл"
 
 #: ../src/layout_util.c:1849
 msgid "_Write orientation to file (preserve timestamp)"
-msgstr ""
+msgstr "_Записать ориентацию в файл (сохр. метку времени)"
 
 #: ../src/layout_util.c:1849
 msgid "Write orientation to file (preserve timestamp)"
-msgstr ""
+msgstr "Записать ориентацию в файл (сохр. метку времени)"
 
 #: ../src/layout_util.c:1854
 msgid "Show _Thumbnails"
@@ -3173,9 +3149,8 @@ msgid "Sort manager"
 msgstr "Менеджер сортировки"
 
 #: ../src/layout_util.c:1861
-#, fuzzy
 msgid "Hide Bars"
-msgstr "Скрыть \"%s\""
+msgstr "Скрыть панели"
 
 #: ../src/layout_util.c:1862
 msgid "Toggle _slideshow"
@@ -3222,27 +3197,24 @@ msgid "Show Histogram"
 msgstr "Показать гистограмму"
 
 #: ../src/layout_util.c:1868
-#, fuzzy
 msgid "Rectangular Selection"
-msgstr "Прямоугольное выделение в просмотре иконок"
+msgstr "Прямоугольное выделение"
 
 #: ../src/layout_util.c:1869
 msgid "GIF _animation"
-msgstr ""
+msgstr "GIF _анимация"
 
 #: ../src/layout_util.c:1869
 msgid "Toggle GIF animation"
-msgstr ""
+msgstr "Переключить GIF анимацию"
 
 #: ../src/layout_util.c:1870
-#, fuzzy
 msgid "_Exif rotate"
-msgstr "Использовать дату из Exif"
+msgstr "_Exif вращение"
 
 #: ../src/layout_util.c:1870
-#, fuzzy
 msgid "Exif rotate"
-msgstr "Использовать дату из Exif"
+msgstr "Exif вращение"
 
 #: ../src/layout_util.c:1874
 msgid "Image _List"
@@ -3261,14 +3233,12 @@ msgid "View Images as Icons"
 msgstr "Показать как пиктограммы"
 
 #: ../src/layout_util.c:1879
-#, fuzzy
 msgid "T_oggle Folder View"
-msgstr "Переключить просмотр слайдов"
+msgstr "Пере_ключить отображение папок"
 
 #: ../src/layout_util.c:1879
-#, fuzzy
 msgid "Toggle Folders View"
-msgstr "Переключить просмотр слайдов"
+msgstr "Переключить отображение папок"
 
 #: ../src/layout_util.c:1883
 msgid "_Horizontal"
@@ -3384,35 +3354,35 @@ msgstr "Логарифмическая гистограмма"
 
 #: ../src/layout_util.c:1912
 msgid "_Auto"
-msgstr ""
+msgstr "_Авто"
 
 #: ../src/layout_util.c:1912
 msgid "Stereo Auto"
-msgstr ""
+msgstr "Стерео авто"
 
 #: ../src/layout_util.c:1913
 msgid "_Side by Side"
-msgstr ""
+msgstr "Бок о бок"
 
 #: ../src/layout_util.c:1913
 msgid "Stereo Side by Side"
-msgstr ""
+msgstr "Стерео бок о бок"
 
 #: ../src/layout_util.c:1914
 msgid "_Cross"
-msgstr ""
+msgstr "_Кросс"
 
 #: ../src/layout_util.c:1914
 msgid "Stereo Cross"
-msgstr ""
+msgstr "Стерео кросс"
 
 #: ../src/layout_util.c:1915
 msgid "_Off"
-msgstr ""
+msgstr "_Выкл"
 
 #: ../src/layout_util.c:1915
 msgid "Stereo Off"
-msgstr ""
+msgstr "Стерео выкл"
 
 #: ../src/layout_util.c:2226
 #, c-format
@@ -3559,7 +3529,7 @@ msgstr "Журнал"
 
 #: ../src/logwindow.c:171 ../src/preferences.c:2411
 msgid "Debug level:"
-msgstr "Уровень отладки"
+msgstr "Уровень отладки:"
 
 #: ../src/main.c:361
 #, c-format
@@ -3585,30 +3555,27 @@ msgid "  -t, --without-tools              force hide of tools\n"
 msgstr "  -t, --without-tools        скрыть окно инструментов\n"
 
 #: ../src/main.c:365
-#, fuzzy
 msgid "  -f, --fullscreen                 start in full screen mode\n"
-msgstr "  -f, --fullscreen           запускаться в полноэкранном режиме\n"
+msgstr "  -f, --fullscreen           запуск в полноэкранном режиме\n"
 
 #: ../src/main.c:366
-#, fuzzy
 msgid "  -s, --slideshow                  start in slideshow mode\n"
-msgstr "  -s, --slideshow            запускаться в режиме показа слайдов\n"
+msgstr "  -s, --slideshow            запуск в режиме показа слайдов\n"
 
 #: ../src/main.c:367
-#, fuzzy
 msgid ""
 "  -l, --list [files] [collections] open collection window for command line\n"
 msgstr ""
-"  -l, --list                 открыть окно коллекций для командной строки\n"
+"  -l, --list [files] [collections] открыть окно коллекций для командной "
+"строки\n"
 
 #: ../src/main.c:368
 msgid "      --blank                      start with blank file list\n"
-msgstr ""
+msgstr "      --blank                      старт с пустым списком файлов\n"
 
 #: ../src/main.c:369
-#, fuzzy
 msgid "      --geometry=XxY+XOFF+YOFF     set main window location\n"
-msgstr "      --geometry=GEOMETRY    задать расположение главного окна\n"
+msgstr "      --geometry=XxY+XOFF+YOFF    задать расположение главного окна\n"
 
 #: ../src/main.c:370
 #, fuzzy
@@ -3618,9 +3585,9 @@ msgstr ""
 "  -r, --remote               отправить указанные команды в открытое окно\n"
 
 #: ../src/main.c:371
-#, fuzzy
 msgid "  -rh,--remote-help                print remote command list\n"
-msgstr "  -rh,--remote-help          показать список удаленных команд\n"
+msgstr ""
+"  -rh,--remote-help          показать список удалённо отправляемых команд\n"
 
 #: ../src/main.c:373
 #, fuzzy
@@ -3629,16 +3596,15 @@ msgstr "  --debug[=level]            выводить отладочную ин�
 
 #: ../src/main.c:374
 msgid "  -g:<regexp>, --grep:<regexp>     filter debug output\n"
-msgstr ""
+msgstr "  -g:<regexp>, --grep:<regexp>     фильтровать вывод отладки\n"
 
 #: ../src/main.c:376
-#, fuzzy
 msgid "  +w, --show-log-window            show log window\n"
-msgstr "  +t, --with-tools           показывать окно инструментов\n"
+msgstr "  +w, --show-log-window            показывать окно журнала\n"
 
 #: ../src/main.c:377
 msgid "  -o:<file>, --log-file:<file>     save log data to file\n"
-msgstr ""
+msgstr "  -o:<file>, --log-file:<file>     сохранять данные лога в файл\n"
 
 #: ../src/main.c:378
 #, fuzzy
@@ -3655,19 +3621,20 @@ msgstr ""
 "\n"
 
 #: ../src/main.c:392
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "invalid or ignored: %s\n"
 "Use --help for options\n"
 msgstr ""
 "неправильно или игнорировано: %s\n"
-"Используйте -help для списка параметров.\n"
+"Используйте --help для параметров.\n"
 
 #: ../src/main.c:421
 msgid "Invalid or ignored remote options: "
 msgstr "Неправильные или проигнорированные параметры удаленного управления: "
 
 #: ../src/main.c:430
+#, fuzzy
 msgid ""
 "\n"
 "Use --remote-help for valid remote options.\n"
@@ -3726,14 +3693,12 @@ msgid "Sort by date"
 msgstr "Сортировать по дате"
 
 #: ../src/menu.c:149
-#, fuzzy
 msgid "Sort by file creation date"
-msgstr "Сортировать по дате из E_xif"
+msgstr "Сортировать по дате создания файла"
 
 #: ../src/menu.c:152
-#, fuzzy
 msgid "Sort by Exif-date"
-msgstr "Сортировать по дате из E_xif"
+msgstr "Сортировать по дате из Exif"
 
 #: ../src/menu.c:155
 msgid "Unsorted"
@@ -3748,9 +3713,8 @@ msgid "Sort by number"
 msgstr "Сортировать по номеру"
 
 #: ../src/menu.c:164
-#, fuzzy
 msgid "Sort by rating"
-msgstr "Сортировать по дате"
+msgstr "Сортировать по рейтингу"
 
 #: ../src/menu.c:168
 msgid "Sort by name"
@@ -3777,9 +3741,8 @@ msgid "Rotate _180"
 msgstr "Повернуть на _180"
 
 #: ../src/menu.c:426
-#, fuzzy
 msgid "_Add to Collection"
-msgstr "Добавить коллекцию"
+msgstr "_Добавить в коллекцию"
 
 #: ../src/metadata.c:1702
 msgid "People"
@@ -4176,53 +4139,50 @@ msgid "_Full size"
 msgstr "_Полный размер"
 
 #: ../src/pan-view/pan-view-filter.c:48
+#, fuzzy
 msgid "Require"
-msgstr ""
+msgstr "Требовать"
 
 #: ../src/pan-view/pan-view-filter.c:48
 msgid "R"
 msgstr ""
 
 #: ../src/pan-view/pan-view-filter.c:51
-#, fuzzy
 msgid "Exclude"
-msgstr "исключить"
+msgstr "Исключить"
 
 #: ../src/pan-view/pan-view-filter.c:51
 msgid "E"
 msgstr ""
 
 #: ../src/pan-view/pan-view-filter.c:54
-#, fuzzy
 msgid "Include"
-msgstr "исключить"
+msgstr "Включить"
 
 #: ../src/pan-view/pan-view-filter.c:54
 msgid "I"
 msgstr ""
 
 #: ../src/pan-view/pan-view-filter.c:57
-#, fuzzy
 msgid "Group"
-msgstr "Группа:"
+msgstr "Группа"
 
 #: ../src/pan-view/pan-view-filter.c:57
 msgid "G"
 msgstr ""
 
 #: ../src/pan-view/pan-view-filter.c:71
-#, fuzzy
 msgid "Keyword Filter:"
-msgstr "Тип ключевого слова"
+msgstr "Фильтр ключевых слов:"
 
 #: ../src/pan-view/pan-view-filter.c:104 ../src/preferences.c:1989
 msgid "Filter"
-msgstr "Расширение"
+msgstr "Фильтр"
 
 #: ../src/pan-view/pan-view-filter.c:139
 #, fuzzy
 msgid "Removed keyword…"
-msgstr "Активное ключевое слово"
+msgstr "Удалённое ключевое слово..."
 
 #: ../src/pan-view/pan-view-search.c:41
 msgid "Find:"
@@ -4258,7 +4218,7 @@ msgstr "Изображение в RAW-формате"
 
 #: ../src/preferences.c:111
 msgid "Video"
-msgstr ""
+msgstr "Видео"
 
 #: ../src/preferences.c:559
 msgid "Nearest (worst, but fastest)"
@@ -4278,11 +4238,11 @@ msgstr "Гипер (лучший, но медленный)"
 
 #: ../src/preferences.c:590
 msgid "PRIMARY"
-msgstr ""
+msgstr "PRIMARY"
 
 #: ../src/preferences.c:592
 msgid "CLIPBOARD"
-msgstr ""
+msgstr "CLIPBOARD"
 
 #: ../src/preferences.c:657 ../src/print.c:390
 msgid "Custom"
@@ -4291,76 +4251,75 @@ msgstr "Выбранный"
 #: ../src/preferences.c:740
 #, fuzzy
 msgid "Single image"
-msgstr "следующее изображение"
+msgstr "Единственное изображение"
 
 #: ../src/preferences.c:742
 msgid "Anaglyph Red-Cyan"
-msgstr ""
+msgstr "Анаглиф Красный-Циан"
 
 #: ../src/preferences.c:744
 msgid "Anaglyph Green-Magenta"
-msgstr ""
+msgstr "Анаглиф Зелёный-Пурпурный"
 
 #: ../src/preferences.c:746
 msgid "Anaglyph Yellow-Blue"
-msgstr ""
+msgstr "Анаглиф Жёлтый-Голубой"
 
 #: ../src/preferences.c:748
 msgid "Anaglyph Gray Red-Cyan"
-msgstr ""
+msgstr "Анаглиф Серый Красный-Циан"
 
 #: ../src/preferences.c:750
 msgid "Anaglyph Gray Green-Magenta"
-msgstr ""
+msgstr "Анаглиф Серый Зелёный-Пурпурный"
 
 #: ../src/preferences.c:752
 msgid "Anaglyph Gray Yellow-Blue"
-msgstr ""
+msgstr "Анаглиф Серый Жёлтый-Голубой"
 
 #: ../src/preferences.c:754
 msgid "Anaglyph Dubois Red-Cyan"
-msgstr ""
+msgstr "Анаглиф Дюбуа Красный-Циан"
 
 #: ../src/preferences.c:756
 msgid "Anaglyph Dubois Green-Magenta"
-msgstr ""
+msgstr "Анаглиф Дюбуа Зелёный-Пурпурный"
 
 #: ../src/preferences.c:758
 msgid "Anaglyph Dubois Yellow-Blue"
-msgstr ""
+msgstr "Анаглиф Дюбуа Жёлтый-Голубой"
 
 #: ../src/preferences.c:761
 msgid "Side by Side"
-msgstr ""
+msgstr "Бок о бок"
 
 #: ../src/preferences.c:762
 msgid "Side by Side Half size"
-msgstr ""
+msgstr "Бок о бок половинный размер"
 
 #: ../src/preferences.c:769
-#, fuzzy
 msgid "Top - Bottom"
-msgstr "Снизу:"
+msgstr "Верх - Низ"
 
 #: ../src/preferences.c:770
 msgid "Top - Bottom Half size"
-msgstr ""
+msgstr "Верх - Низ половинный размер"
 
 #: ../src/preferences.c:779 ../src/preferences.c:2602
 #, fuzzy
 msgid "Fixed position"
-msgstr "Координаты GPS"
+msgstr "Фиксированная позиция"
 
 #: ../src/preferences.c:1118 ../src/preferences.c:1121
 msgid "Reset filters"
-msgstr "Вернуть в первоначальное состояние"
+msgstr "Сбросить фильтры"
 
 #: ../src/preferences.c:1122
 msgid ""
 "This will reset the file filters to the defaults.\n"
 "Continue?"
 msgstr ""
-"Список расширений для отбора будет возвращён в первоначальное состояние.\n"
+"Файловый фильтр будет сброшен к умолчанию.\n"
 "Продолжить ?"
 
 #: ../src/preferences.c:1149 ../src/preferences.c:1152
@@ -4372,10 +4331,12 @@ msgid "This will remove the trash contents."
 msgstr "Содержимое корзины будет удалено."
 
 #: ../src/preferences.c:1197 ../src/preferences.c:1200
+#, fuzzy
 msgid "Reset image overlay template string"
 msgstr "Сбросить шаблон перекрытия изображений"
 
 #: ../src/preferences.c:1201
+#, fuzzy
 msgid ""
 "This will reset the image overlay template string to the default.\n"
 "Continue?"
@@ -4397,11 +4358,8 @@ msgid "Use Geeqie thumbnail style and cache"
 msgstr "Использовать общий кэш миниатюр"
 
 #: ../src/preferences.c:1618
-#, fuzzy
 msgid "Store thumbnails local to image folder (non-standard)"
-msgstr ""
-"Сохранять миниатюр в каталоге '.thumbnails' внутри каталога с изображениями "
-"(нестандартное поведение)"
+msgstr "Сохранять миниатюры в каталоге с изображениями (нестандарт)"
 
 #: ../src/preferences.c:1625
 #, fuzzy
@@ -4411,16 +4369,16 @@ msgstr ""
 
 #: ../src/preferences.c:1631
 msgid "Use EXIF thumbnails when available (EXIF thumbnails may be outdated)"
-msgstr ""
-"Использовать миниатюры EXIF, если возможно (иконки EXIF могут устареть)"
+msgstr "Использовать миниатюры EXIF, если возможно (могут устареть)"
 
 #: ../src/preferences.c:1635
 msgid "Use embedded metadata in video files as thumbnails when available"
 msgstr ""
+"Использовать встроенные метаданные в видеофайлах как миниатюры, если доступны"
 
 #: ../src/preferences.c:1642
 msgid "Slide show"
-msgstr "Просмотр слайдов"
+msgstr "Слайдшоу"
 
 #: ../src/preferences.c:1653
 #, fuzzy
@@ -4454,30 +4412,27 @@ msgstr "Обновить при изменении файла"
 #: ../src/preferences.c:1682
 #, fuzzy
 msgid "Info sidebar heights"
-msgstr "Информационная панель"
+msgstr "Высота инфопанели"
 
 #: ../src/preferences.c:1683
 msgid "NOTE! Geeqie must be restarted for changes to take effect"
-msgstr ""
+msgstr "ПРИМЕЧАНИЕ! Geeqie необходимо перезапустить для изменения в сил"
 
 #: ../src/preferences.c:1685
-#, fuzzy
 msgid "Keywords:"
-msgstr "Ключевые слова"
+msgstr "Ключевые слова:"
 
 #: ../src/preferences.c:1691
-#, fuzzy
 msgid "Comment:"
-msgstr "Комментарий"
+msgstr "Комментарий:"
 
 #: ../src/preferences.c:1694
-#, fuzzy
 msgid "Rating:"
-msgstr "Рисунок"
+msgstr "Рейтинг:"
 
 #: ../src/preferences.c:1718
 msgid "Use GPU acceleration via Clutter library"
-msgstr ""
+msgstr "Использовать GPU-ускорение через Clutter библиотеку"
 
 #: ../src/preferences.c:1722
 msgid "Two pass rendering (apply HQ zoom and color correction in second pass)"
@@ -4490,25 +4445,28 @@ msgid "Zoom increment:"
 msgstr "Увеличение масштаба:"
 
 #: ../src/preferences.c:1734
-#, fuzzy
 msgid "Allow enlargement of image (max. size in %)"
-msgstr "Разрешить увеличение изображения при масштабировании к размеру окна"
+msgstr "Разрешить увеличение изображения (макс. размер в %)"
 
 #: ../src/preferences.c:1740
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Enable this to allow Geeqie to increase the image size for images that are "
 "smaller than the current view area when the zoom is set to \"Fit image to "
 "window\". This value sets the maximum expansion permitted in percent i.e. "
 "100% is full-size."
 msgstr ""
+"Включите чтобы Geeqie использовал размер изображения для изображений меньших "
+"текущей области просмотра, при масштабе «Подгонять к окну». Значение - макс. "
+"разрешение в процентах. Т.е. 100% - полноразмерный."
 
 #: ../src/preferences.c:1743
-#, c-format
+#, fuzzy, c-format
 msgid "Virtual window size (% of actual window):"
-msgstr ""
+msgstr "Размер виртуального окна (% от фактического окна):"
 
 #: ../src/preferences.c:1749
+#, fuzzy
 msgid ""
 "This value will set the virtual size of the window when \"Fit image to window"
 "\" is set. Instead of using the actual size of the window, the specified "
@@ -4516,6 +4474,11 @@ msgid ""
 "the image (values lower than 100%) or to auto zoom the image (values greater "
 "than 100%). It affects fullscreen mode too."
 msgstr ""
+"Это значение установит виртуальный размер окна при установке «Подгонять к "
+"окну». Вместо фактического размера окна будет использоваться указанный "
+"процент. Поддерживает границу вокруг изображения (значения < 100%) или "
+"автоувеличивает изображения (значения > 100%). Также влияет на полноэкранный "
+"режим."
 
 #: ../src/preferences.c:1751
 msgid "Appearance"
@@ -4534,12 +4497,13 @@ msgid "Border color"
 msgstr "Цвет границы"
 
 #: ../src/preferences.c:1764
+#, fuzzy
 msgid "Alpha channel color 1"
-msgstr ""
+msgstr "Альфа канал цвет 1"
 
 #: ../src/preferences.c:1767
 msgid "Alpha channel color 2"
-msgstr ""
+msgstr "Альфа канал цвет 2"
 
 #: ../src/preferences.c:1773
 msgid "Convenience"
@@ -4548,7 +4512,7 @@ msgstr "Удобства"
 #: ../src/preferences.c:1775
 #, fuzzy
 msgid "Auto rotate proofs using Exif information"
-msgstr "Автоматически вращать изображение по информации Exif"
+msgstr "Автовращать изображение по информации Exif"
 
 #: ../src/preferences.c:1792
 msgid "Windows"
@@ -4563,12 +4527,14 @@ msgid "Remember window positions"
 msgstr "Помнить расположение окон"
 
 #: ../src/preferences.c:1799
+#, fuzzy
 msgid "Use saved window positions also for new windows"
-msgstr ""
+msgstr "Использовать сохраненные положения окна также для новых окон"
 
 #: ../src/preferences.c:1803
+#, fuzzy
 msgid "Remember tool state (float/hidden)"
-msgstr "Помнить расположение инструментов (свободное/спрятанное)"
+msgstr "Помнить расположение инструментов (свободное/скрытое)"
 
 #: ../src/preferences.c:1806
 #, fuzzy
@@ -4594,12 +4560,14 @@ msgid "Disable screen saver"
 msgstr "Отключить хранитель экрана"
 
 #: ../src/preferences.c:1836
+#, fuzzy
 msgid "Overlay Screen Display"
-msgstr ""
+msgstr "Дисплей экрана наложения"
 
 #: ../src/preferences.c:1838
+#, fuzzy
 msgid "Image overlay template"
-msgstr "Шаблон сводки по изображению"
+msgstr "Шаблон оверлея изображения"
 
 #: ../src/preferences.c:1851
 #, fuzzy
@@ -4666,37 +4634,38 @@ msgstr "Показывать скрытые файлы и каталоги"
 
 #: ../src/preferences.c:1947
 msgid "Show parent folder (..)"
-msgstr ""
+msgstr "Показать родительскую папку (..)"
 
 #: ../src/preferences.c:1949
 msgid "Case sensitive sort"
 msgstr "Чувствительная к регистру сортировка"
 
 #: ../src/preferences.c:1951
+#, fuzzy
 msgid "Natural sort order"
-msgstr ""
+msgstr "Естественный порядок сортировки"
 
 #: ../src/preferences.c:1953
 #, fuzzy
 msgid "Disable file extension checks"
-msgstr "Выключить отбор файлов"
+msgstr "Отключить проверки расширения файлов"
 
 #: ../src/preferences.c:1956
+#, fuzzy
 msgid "Disable File Filtering"
-msgstr "Выключить отбор файлов"
+msgstr "Отключить фильтрацию файлов"
 
 #: ../src/preferences.c:1960
 msgid "Grouping sidecar extensions"
-msgstr ""
+msgstr "Группировка расширений присоединенных файлов"
 
 #: ../src/preferences.c:1967
 msgid "File types"
 msgstr "Типы файлов"
 
 #: ../src/preferences.c:2024
-#, fuzzy
 msgid "Class"
-msgstr "вспышка"
+msgstr "Класс"
 
 #: ../src/preferences.c:2041
 msgid "Writable"
@@ -4725,20 +4694,19 @@ msgstr ""
 "один из способов увенчался успехом."
 
 #: ../src/preferences.c:2105
-#, fuzzy
 msgid ""
 "1) Save metadata in image files, or sidecar files, according to the XMP "
 "standard"
 msgstr ""
-"1) Сохранять метаданные в файлах с изображениями либо в присоединенных "
-"файлах, согласно стандарту XMP"
+"1) Сохранять метаданные в изображениях или в присоединенных файлах, по "
+"стандарту XMP"
 
 #: ../src/preferences.c:2111
 msgid ""
 "2) Save metadata in '.metadata' folder, local to image folder (non-standard)"
 msgstr ""
 "2) Сохранять метаданные в подкаталоге '.metadata' каталога с изображениями "
-"(настандартное поведение)"
+"(нестандартное поведение)"
 
 #: ../src/preferences.c:2114
 #, c-format
@@ -4766,8 +4734,10 @@ msgid "Ask before writing to image files"
 msgstr "Запрашивать подтверждение перед записью в файлы изображений"
 
 #: ../src/preferences.c:2137
+#, fuzzy
 msgid "Create sidecar files named image.ext.xmp (as opposed to image.xmp)"
 msgstr ""
+"Создать присоединённые файлы с именем image.ext.xmp (в отличие от image.xmp)"
 
 #: ../src/preferences.c:2140
 msgid "Step 2 and 3: write to Geeqie private files"
@@ -4823,15 +4793,15 @@ msgstr "Записывать метаданные при смене катало
 
 #: ../src/preferences.c:2216
 msgid "Perceptual"
-msgstr ""
+msgstr "Перцепционный"
 
 #: ../src/preferences.c:2218
 msgid "Relative Colorimetric"
-msgstr ""
+msgstr "Относительный колориметрический"
 
 #: ../src/preferences.c:2222
 msgid "Absolute Colorimetric"
-msgstr ""
+msgstr "Абсолютный колориметрический"
 
 #: ../src/preferences.c:2247
 msgid "Color management"
@@ -4877,7 +4847,7 @@ msgstr "Монитор:"
 #: ../src/preferences.c:2310
 #, fuzzy
 msgid "Render Intent:"
-msgstr "Создать"
+msgstr "Цель рендера:"
 
 #: ../src/preferences.c:2331 ../src/preferences.c:2372
 msgid "Behavior"
@@ -4925,12 +4895,11 @@ msgstr "Переименование в списке"
 
 #: ../src/preferences.c:2380
 msgid "List directory view uses single click to enter"
-msgstr ""
+msgstr "Просмотр каталогов списка использует один клик для ввода"
 
 #: ../src/preferences.c:2383
-#, fuzzy
 msgid "Recent folder list maximum size"
-msgstr "Максимальное число записей в списке открывавшихся недавно каталогов"
+msgstr "Максимум записей в списке недавних каталогов"
 
 #: ../src/preferences.c:2386
 msgid "Drag'n drop icon size"
@@ -4939,7 +4908,7 @@ msgstr "Размер значков при перетаскивании"
 #: ../src/preferences.c:2390
 #, fuzzy
 msgid "Copy path clipboard selection:"
-msgstr "Скопировать путь в буфер обмена"
+msgstr "Скопировать путь в буфер обмена:"
 
 #: ../src/preferences.c:2392
 msgid "Navigation"
@@ -4950,8 +4919,9 @@ msgid "Progressive keyboard scrolling"
 msgstr "Нарастающий клавиатурный скроллинг"
 
 #: ../src/preferences.c:2396
+#, fuzzy
 msgid "Keyboard scrolling step multiplier:"
-msgstr ""
+msgstr "Шаг прокрутки клавиатуры:"
 
 #: ../src/preferences.c:2398
 msgid "Mouse wheel scrolls image"
@@ -4959,15 +4929,17 @@ msgstr "Колесо мыши прокручивает изображение"
 
 #: ../src/preferences.c:2400
 msgid "Navigation by left or middle click on image"
-msgstr ""
+msgstr "Навигация по левому или среднему клику на изображение"
 
 #: ../src/preferences.c:2402
+#, fuzzy
 msgid "Play video by left click on image"
-msgstr ""
+msgstr "Воспроизвести видео, щелкнув левой кнопкой мыши по изображению"
 
 #: ../src/preferences.c:2405
+#, fuzzy
 msgid "Play with:"
-msgstr ""
+msgstr "Воспроизвести с:"
 
 #: ../src/preferences.c:2409
 msgid "Debugging"
@@ -4976,12 +4948,12 @@ msgstr "Отладка"
 #: ../src/preferences.c:2414
 #, fuzzy
 msgid "Timer data"
-msgstr "Дата файла"
+msgstr "Данные таймера"
 
 #: ../src/preferences.c:2417
 #, fuzzy
 msgid "Log Window max. lines:"
-msgstr "Окно журнала"
+msgstr "Окно журнала макс. строк:"
 
 #: ../src/preferences.c:2435
 msgid "Keyboard"
@@ -5014,81 +4986,80 @@ msgstr "Инструменты"
 
 #: ../src/preferences.c:2552
 msgid "Stereo"
-msgstr ""
+msgstr "Стерео"
 
 #: ../src/preferences.c:2554 ../src/preferences.c:2557
+#, fuzzy
 msgid "Windowed stereo mode"
-msgstr ""
+msgstr "Оконный стерео режим"
 
 #: ../src/preferences.c:2561 ../src/preferences.c:2586
 #, fuzzy
 msgid "Mirror left image"
-msgstr "первое изображение"
+msgstr "Отразить левое изображение"
 
 #: ../src/preferences.c:2564 ../src/preferences.c:2589
 #, fuzzy
 msgid "Flip left image"
-msgstr "следующее изображение"
+msgstr "Повернуть левое изображение"
 
 #: ../src/preferences.c:2567 ../src/preferences.c:2592
 #, fuzzy
 msgid "Mirror right image"
-msgstr "первое изображение"
+msgstr "Отразить правое изображение"
 
 #: ../src/preferences.c:2570 ../src/preferences.c:2595
 #, fuzzy
 msgid "Flip right image"
-msgstr "первое изображение"
+msgstr "Повернуть правое изображение"
 
 #: ../src/preferences.c:2572 ../src/preferences.c:2597
+#, fuzzy
 msgid "Swap left and right images"
-msgstr ""
+msgstr "Обменять левое и правое изображения"
 
 #: ../src/preferences.c:2574 ../src/preferences.c:2599
+#, fuzzy
 msgid "Disable stereo mode on single image source"
-msgstr ""
+msgstr "Отключить стерео режим на единственном источнике изображения"
 
 #: ../src/preferences.c:2577 ../src/preferences.c:2583
 #, fuzzy
 msgid "Fullscreen stereo mode"
-msgstr "Полный экран"
+msgstr "Полноэкранное стерео"
 
 #: ../src/preferences.c:2578
+#, fuzzy
 msgid "Use different settings for fullscreen"
-msgstr ""
+msgstr "Исп-ть разные настройки полноэкранного режима"
 
 #: ../src/preferences.c:2608
-#, fuzzy
 msgid "Left X"
-msgstr "Слева:"
+msgstr "Слева X"
 
 #: ../src/preferences.c:2610
-#, fuzzy
 msgid "Left Y"
-msgstr "Слева:"
+msgstr "Слева Y"
 
 #: ../src/preferences.c:2612
-#, fuzzy
 msgid "Right X"
-msgstr "Справа:"
+msgstr "Справа X"
 
 #: ../src/preferences.c:2614
-#, fuzzy
 msgid "Right Y"
-msgstr "Справа:"
+msgstr "Справа Y"
 
 #: ../src/preferences.c:2630 ../src/toolbar.c:89
 msgid "Preferences"
 msgstr "Параметры"
 
 #: ../src/preferences.c:2781
-#, fuzzy
 msgid "About Geeqie"
-msgstr "О программе - Geeqie"
+msgstr "О программе Geeqie"
 
 #: ../src/preferences.c:2791
 msgid "translator-credits"
-msgstr ""
+msgstr "упоминания переводчиков"
 
 #: ../src/print.c:134
 msgid "Selection"
@@ -5116,7 +5087,7 @@ msgstr "Выбранный принтер"
 
 #: ../src/print.c:162
 msgid "PostScript file"
-msgstr "Файл PostScript"
+msgstr "PostScript файл"
 
 #: ../src/print.c:163
 msgid "Image file"
@@ -5124,15 +5095,15 @@ msgstr "Графический файл"
 
 #: ../src/print.c:177
 msgid "jpeg, low quality"
-msgstr "JPEG, низкое качество"
+msgstr "jpeg, низкое качество"
 
 #: ../src/print.c:178
 msgid "jpeg, normal quality"
-msgstr "JPEG, нормальное качество"
+msgstr "jpeg, нормальное качество"
 
 #: ../src/print.c:179
 msgid "jpeg, high quality"
-msgstr "JPEG, высокое качество"
+msgstr "jpeg, высокое качество"
 
 #: ../src/print.c:375 ../src/print.c:3222
 msgid "points"
@@ -5166,7 +5137,7 @@ msgstr "Legal"
 #. in 8.5 x 14
 #: ../src/print.c:393
 msgid "Executive"
-msgstr "Исполнительный"
+msgstr "Executive (B5)"
 
 #. in 7.25x 10.5
 #. mm 841 x 1189
@@ -5222,7 +5193,7 @@ msgstr "Почтовая открытка"
 #. mm 100 x 148
 #: ../src/print.c:413
 msgid "Tabloid"
-msgstr "Конспект"
+msgstr "Таблоид"
 
 #: ../src/print.c:569
 #, c-format
@@ -5373,9 +5344,9 @@ msgid "Remember print settings"
 msgstr "Запомнить установки печати"
 
 #: ../src/rcfile.c:91
-#, fuzzy, c-format
+#, c-format
 msgid "Option %s ignored: %s\n"
-msgstr "Создаём каталог %s: %s\n"
+msgstr "Опция %s проигнорирована: %s\n"
 
 #: ../src/rcfile.c:532
 #, c-format
@@ -5393,7 +5364,7 @@ msgstr ""
 
 #: ../src/remote.c:752 ../src/remote.c:757
 msgid "lua error: no data"
-msgstr ""
+msgstr "lua ошибка: нет данных"
 
 #. short, long                  callback,               extra, prefer, parameter, description
 #: ../src/remote.c:780
@@ -5438,21 +5409,20 @@ msgstr "остановить просмотр слайдов"
 
 #: ../src/remote.c:790
 msgid "<FOLDER>"
-msgstr ""
+msgstr "<КАТАЛОГ>"
 
 #: ../src/remote.c:790
-#, fuzzy
 msgid "start recursive slide show in FOLDER"
-msgstr "начать рекурсивный просмотр слайдов"
+msgstr "начать рекурсивное слайдшоу в каталоге"
 
 #: ../src/remote.c:791
 msgid "<[H:][M:][N][.M]>"
-msgstr ""
+msgstr "<[H:][M:][N][.M]>"
 
 #: ../src/remote.c:791
 #, fuzzy
 msgid "set slide show delay to Hrs Mins N.M seconds"
-msgstr "установить задержку просмотра слайдов (в секундах)"
+msgstr "задержка просмотра слайдов Hrs Mins N.M секунд"
 
 #: ../src/remote.c:792
 msgid "show tools"
@@ -5470,122 +5440,117 @@ msgstr "выйти"
 #: ../src/remote.c:798 ../src/remote.c:799 ../src/remote.c:801
 #: ../src/remote.c:803
 msgid "<FILE>"
-msgstr ""
+msgstr "<ФАЙЛ>"
 
 #: ../src/remote.c:795
 msgid "load configuration from FILE"
-msgstr ""
+msgstr "загрузить конфигурацию из ФАЙЛА"
 
 #: ../src/remote.c:796
-#, fuzzy
 msgid "get list of sidecars of FILE"
-msgstr "получить список присоединенных файлов для заданного изображения"
+msgstr "получить список присоединенных файлов для ФАЙЛА"
 
 #: ../src/remote.c:797
-#, fuzzy
 msgid "get destination path of FILE"
-msgstr "получить путь назначения для заданного файла"
+msgstr "получить путь назначения для ФАЙЛА"
 
 #: ../src/remote.c:798
-#, fuzzy
 msgid "open FILE, bring Geeqie window to the top"
-msgstr "открыть файл в новом окне"
+msgstr "открыть файл, окно Geeqie поверх"
 
 #: ../src/remote.c:799
 msgid "open FILE, do not bring Geeqie window to the top"
-msgstr ""
+msgstr "открыть файл, окно Geeqie не поверх"
 
 #: ../src/remote.c:800
 msgid "print filename of current image"
-msgstr ""
+msgstr "напечатать имя файла текущего изображения"
 
 #: ../src/remote.c:801
-#, fuzzy
 msgid "open FILE in new window"
-msgstr "открыть файл в новом окне"
+msgstr "открыть ФАЙЛ в новом окне"
 
 #: ../src/remote.c:802
 msgid "clear command line collection list"
-msgstr ""
+msgstr "очистить список коллекций командной строки"
 
 #: ../src/remote.c:803
-#, fuzzy
 msgid "add FILE to command line collection list"
-msgstr "Добавить в новую коллекцию"
+msgstr "добавить ФАЙЛ в список коллекций командной строки"
 
 #: ../src/remote.c:804
 msgid "bring the Geeqie window to the top"
-msgstr ""
+msgstr "перенести окно Geeqie поверх"
 
 #: ../src/remote.c:805 ../src/remote.c:806
 msgid "clear|clean"
-msgstr ""
+msgstr "удалить|очистить"
 
 #: ../src/remote.c:805
-#, fuzzy
 msgid "clear or clean thumbnail cache"
-msgstr "Общий кэш миниатюр"
+msgstr "удалить или очистить кэш миниатюр"
 
 #: ../src/remote.c:806
-#, fuzzy
 msgid "clear or clean shared thumbnail cache"
-msgstr "Использовать общий кэш миниатюр"
+msgstr "удалить или очистить общий кэш миниатюр"
 
 #: ../src/remote.c:807
+#, fuzzy
 msgid "    clean the metadata cache"
-msgstr ""
+msgstr "    очистить кэш метаданных"
 
 #: ../src/remote.c:808
 #, fuzzy
 msgid "<folder>  "
-msgstr "каталог"
+msgstr "<каталог>"
 
 #: ../src/remote.c:808
-#, fuzzy
 msgid " render thumbnails"
-msgstr "Создать миниатюры"
+msgstr " отрендерить миниатюры"
 
 #: ../src/remote.c:809 ../src/remote.c:810
 #, fuzzy
 msgid "<folder> "
-msgstr "каталог"
+msgstr "<каталог>"
 
 #: ../src/remote.c:809
-#, fuzzy
 msgid "render thumbnails recursively"
-msgstr "Создать миниатюры для выбранного каталога"
+msgstr "отрендерить миниатюры рекурсивно"
 
 #: ../src/remote.c:810
-#, fuzzy
 msgid " render thumbnails (see Help)"
-msgstr "Создать миниатюры для выбранного каталога"
+msgstr " отрендерить миниатюры (см. Справку)"
 
 #: ../src/remote.c:811
 #, fuzzy
 msgid "<folder>"
-msgstr "каталог"
+msgstr "<каталог>"
 
 #: ../src/remote.c:811
 msgid " render thumbnails recursively (see Help)"
-msgstr ""
+msgstr " отрендерить миниатюры рекурсивно (см. Справку)"
 
 #: ../src/remote.c:813
+#, fuzzy
 msgid "<FILE>,<lua script>"
-msgstr ""
+msgstr "<FILE>,<lua script>"
 
 #: ../src/remote.c:813
 msgid "run lua script on FILE"
-msgstr ""
+msgstr "запустить lua скрипт на файле"
 
 #: ../src/remote.c:879
 msgid "Remote command list:\n"
-msgstr "Список команд удалённого доступа:\n"
+msgstr "Список удалённо исполняемых команд:\n"
 
 #: ../src/remote.c:898
 msgid ""
 "\n"
 "  All other command line parameters are used as plain files if they exists.\n"
 msgstr ""
+"\n"
+"Все остальные параметры ком. строки используются как простые файлы, при их "
+"наличии.\n"
 
 #: ../src/remote.c:948
 #, c-format
@@ -5613,12 +5578,13 @@ msgid "contains"
 msgstr "содержит"
 
 #: ../src/search.c:250
+#, fuzzy
 msgid "is"
-msgstr "соответствует"
+msgstr "это"
 
 #: ../src/search.c:254 ../src/search.c:261 ../src/search.c:280
 msgid "equal to"
-msgstr "соответствует"
+msgstr "равно"
 
 #: ../src/search.c:255 ../src/search.c:281 ../src/search.c:288
 msgid "less than"
@@ -5649,17 +5615,18 @@ msgid "match any"
 msgstr "соответствует любому"
 
 #: ../src/search.c:270
+#, fuzzy
 msgid "exclude"
 msgstr "исключить"
 
 #: ../src/search.c:275
+#, fuzzy
 msgid "miss"
 msgstr "пропустить"
 
 #: ../src/search.c:287
-#, fuzzy
 msgid "not geocoded"
-msgstr "не определена"
+msgstr "не геокодирована"
 
 #: ../src/search.c:340
 #, c-format
@@ -5677,12 +5644,11 @@ msgstr "Ищем..."
 
 #: ../src/search.c:2045 ../src/search.c:3043
 msgid "km"
-msgstr ""
+msgstr "км"
 
 #: ../src/search.c:2050 ../src/search.c:3044
-#, fuzzy
 msgid "miles"
-msgstr "Файлы"
+msgstr "мили"
 
 #: ../src/search.c:2342
 msgid "File not found"
@@ -5694,11 +5660,11 @@ msgstr "Пожалуйста, выберите существующий файл
 
 #: ../src/search.c:2368
 msgid "Entry does not contain a valid lat/long value"
-msgstr ""
+msgstr "Запись без допустимого значения lat/long"
 
 #: ../src/search.c:2418
 msgid "Please enter an existing folder to search."
-msgstr "Пожалуйста, выберите существующий каталог для поиска."
+msgstr "Выберите существующий каталог для поиска."
 
 #: ../src/search.c:2860
 msgid "Image search"
@@ -5709,6 +5675,7 @@ msgid "Search:"
 msgstr "Поиск:"
 
 #: ../src/search.c:2904
+#, fuzzy
 msgid "Recurse"
 msgstr "Рекурсивный"
 
@@ -5731,12 +5698,11 @@ msgstr "и"
 
 #: ../src/search.c:2933
 msgid "File date is"
-msgstr "Время файла"
+msgstr "Дата файла"
 
 #: ../src/search.c:2948
-#, fuzzy
 msgid "Exif date"
-msgstr "Данные _Exif"
+msgstr "Дата Exif"
 
 #: ../src/search.c:2953
 msgid "Image dimensions are"
@@ -5752,9 +5718,8 @@ msgid "% similar to"
 msgstr "% похожести на"
 
 #: ../src/search.c:2988
-#, fuzzy
 msgid "Ignore rotation"
-msgstr "Ориентация"
+msgstr "Игнорировать вращение"
 
 #: ../src/search.c:3019
 #, fuzzy
@@ -5768,13 +5733,14 @@ msgstr "_Список изображений"
 
 #: ../src/search.c:3045
 msgid "n.m."
-msgstr ""
+msgstr "мор. миля."
 
 #: ../src/search.c:3051
 msgid "from"
-msgstr ""
+msgstr "от"
 
 #: ../src/search.c:3056
+#, fuzzy
 msgid ""
 "Enter a coordinate in the form:\n"
 "89.123 179.456\n"
@@ -5784,6 +5750,13 @@ msgid ""
 "an internet search URL\n"
 "See the Help file"
 msgstr ""
+"Введите координату в форме:\n"
+"89.123 179.456\n"
+"или перетащите геокодируемое изображение\n"
+"или щелкните левой кнопкой мыши на карте и вставьте\n"
+"или вырезать/вставить или перетащите\n"
+"URL поиск в Интернете\n"
+"Смотрите файл справки"
 
 #: ../src/search.c:3109
 msgid "Rank"
@@ -5826,71 +5799,60 @@ msgid "Secure file saving error"
 msgstr "Ошибка безопасного сохранения файла"
 
 #: ../src/shortcuts.c:106 ../src/shortcuts.c:160
-#, fuzzy
 msgid "Add Shortcut"
-msgstr "Горячие клавиши"
+msgstr "Добавить горячую клавишу"
 
 #: ../src/thumb.c:405
 msgid "Thumbnail image in cache failed to load, trying to recreate.\n"
-msgstr "Не удалось загрузить миниатюры из кэша, пытаемся пересоздать.\n"
+msgstr "Не удалось загрузить миниатюру из кэша, попытка пересоздать.\n"
 
 #: ../src/toolbar.c:85
-#, fuzzy
 msgid "Search"
-msgstr "Поиск:"
+msgstr "Поиск"
 
 #: ../src/toolbar.c:90
-#, fuzzy
 msgid "Configure this window"
-msgstr "Настроить это окно..."
+msgstr "Настроить это окно"
 
 #: ../src/toolbar.c:91
-#, fuzzy
 msgid "Thumbnail maintenance"
 msgstr "Управление миниатюрами"
 
 #: ../src/toolbar.c:96
-#, fuzzy
 msgid "Fit Horizontaly"
 msgstr "Уместить по горизонтали"
 
 #: ../src/toolbar.c:97
-#, fuzzy
 msgid "Fit vertically"
 msgstr "Уместить по вертикали"
 
 #: ../src/toolbar.c:102
-#, fuzzy
 msgid "Zoom1:3"
 msgstr "Масштаб 1:3"
 
 #: ../src/toolbar.c:107
-#, fuzzy
 msgid "Slideshow Faster"
-msgstr " Просмотр слайдов"
+msgstr "Слайдшоу быстрее"
 
 #: ../src/toolbar.c:108
-#, fuzzy
 msgid "Slideshow Slower"
-msgstr " Просмотр слайдов"
+msgstr "Слайдшоу медленнее"
 
 #: ../src/toolbar.c:110 ../src/window.c:274 ../src/window.c:295
 msgid "Help"
 msgstr "Справка"
 
 #: ../src/toolbar.c:112
-#, fuzzy
 msgid "Show thumbnails"
-msgstr "Показать м_иниатюры"
+msgstr "Показать миниатюры"
 
 #: ../src/toolbar.c:113
-#, fuzzy
 msgid "Show marks"
 msgstr "Показать метки"
 
 #: ../src/toolbar.c:503
 msgid "Add Toolbar Item"
-msgstr ""
+msgstr "Добавить элемент панели инструментов"
 
 #: ../src/trash.c:88 ../src/utilops.c:2621 ../src/utilops.c:2632
 #: ../src/utilops.c:2689
@@ -6109,9 +6071,8 @@ msgid "All files"
 msgstr "Все файлы"
 
 #: ../src/uri_utils.c:43
-#, fuzzy
 msgid "Drag and Drop failed"
-msgstr "Внешняя команда завершилась с ошибкой"
+msgstr "Перетаскивание завершилась с ошибкой"
 
 #: ../src/utilops.c:590
 msgid ""
@@ -6305,7 +6266,6 @@ msgid "This will write the changed metadata into the following files"
 msgstr "Измененные метаданные будут записаны в следующие файлы"
 
 #: ../src/utilops.c:2204
-#, fuzzy
 msgid "Metadata writing failed"
 msgstr "Не удалось записать метаданные"
 
