@@ -1981,7 +1981,7 @@ static void config_tab_general(GtkWidget *notebook)
 
 	str = g_string_new(NULL);
 	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
-	pref_label_new(hbox, "Star character: ");
+	pref_label_new(hbox, _("Star character: "));
 	str = g_string_append_unichar(str, options->star_rating.star);
 	pref_label_new(hbox, g_strdup(str->str));
 	rating_symbol = g_strdup_printf("U+%X", options->star_rating.star);
@@ -2013,7 +2013,7 @@ static void config_tab_general(GtkWidget *notebook)
 
 	str = g_string_new(NULL);
 	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
-	pref_label_new(hbox, "Rejected character: ");
+	pref_label_new(hbox, _("Rejected character: "));
 	str = g_string_append_unichar(str, options->star_rating.rejected);
 	pref_label_new(hbox, g_strdup(str->str));
 	rating_symbol = g_strdup_printf("U+%X", options->star_rating.rejected);
