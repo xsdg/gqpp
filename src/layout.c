@@ -2728,7 +2728,6 @@ void layout_write_attributes(LayoutOptions *layout, GString *outstr, gint indent
 	WRITE_NL(); WRITE_BOOL(*layout, show_thumbnails);
 	WRITE_NL(); WRITE_BOOL(*layout, show_directory_date);
 	WRITE_NL(); WRITE_CHAR(*layout, home_path);
-	WRITE_NL(); WRITE_CHAR(*layout, last_path);
 	WRITE_NL(); WRITE_UINT(*layout, startup_path);
 	WRITE_SEPARATOR();
 
@@ -2840,7 +2839,6 @@ void layout_load_attributes(LayoutOptions *layout, const gchar **attribute_names
 		if (READ_BOOL(*layout, show_thumbnails)) continue;
 		if (READ_BOOL(*layout, show_directory_date)) continue;
 		if (READ_CHAR(*layout, home_path)) continue;
-		if (READ_CHAR(*layout, last_path)) continue;
 		if (READ_UINT_CLAMP(*layout, startup_path, 0, STARTUP_PATH_HOME)) continue;
 
 		/* window positions */
@@ -2916,7 +2914,7 @@ static void layout_config_startup_path(LayoutOptions *lop, gchar **path)
 	switch (lop->startup_path)
 		{
 		case STARTUP_PATH_LAST:
-			*path = (lop->last_path && isdir(lop->last_path)) ? g_strdup(lop->last_path) : get_current_dir();
+			*path = (history_list_find_last_path_by_key("path_list") && isdir(history_list_find_last_path_by_key("path_list"))) ? g_strdup(history_list_find_last_path_by_key("path_list")) : get_current_dir();
 			break;
 		case STARTUP_PATH_HOME:
 			*path = (lop->home_path && isdir(lop->home_path)) ? g_strdup(lop->home_path) : g_strdup(homedir());
