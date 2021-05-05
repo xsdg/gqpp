@@ -30,7 +30,7 @@ extern const guint8 icon_spinner[];
 extern const guint8 icon_tabcomp[];
 
 /**
- * \headerfile spinner_new
+ * @headerfile spinner_new
  * if path is NULL, the built in spinner is used,
  * otherwise path must be the location of the first image of the
  * spinner without the 00.png portion of the pathname, example: \n

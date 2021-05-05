@@ -81,7 +81,7 @@ gboolean format_exif_makernote_parse(ExifData *exif, guchar *tiff, guint offset,
 				"Tiff debugger MM", format_debug_tiff_raw }
 
 /**
- * \headerfile format_debug_tiff_raw
+ * @headerfile format_debug_tiff_raw
  * used for debugging only
  */
 gint format_debug_tiff_raw(guchar *data, const guint len,

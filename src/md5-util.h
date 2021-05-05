@@ -55,25 +55,25 @@ void md5_update(MD5Context *ctx, const guchar *buf, guint32 len);
 void md5_final(MD5Context *ctx, guchar digest[16]);
 
 /**
- * \headerfile md5_get_digest
+ * @headerfile md5_get_digest
  * generate digest from memory buffer
  */
 void md5_get_digest(const guchar *buffer, gint buffer_size, guchar digest[16]);
 
 /**
- * \headerfile md5_get_digest_from_file
+ * @headerfile md5_get_digest_from_file
  * generate digest from file
  */
 gboolean md5_get_digest_from_file(const gchar *path, guchar digest[16]);
 
 /**
- * \headerfile md5_digest_to_text
+ * @headerfile md5_digest_to_text
  * convert digest to a NULL terminated text string, in ascii encoding
  */
 gchar *md5_digest_to_text(guchar digest[16]);
 
 /**
- * \headerfile md5_digest_from_text
+ * @headerfile md5_digest_from_text
  * convert digest from a NULL terminated text string, in ascii encoding
  */
 gboolean md5_digest_from_text(const gchar *text, guchar digest[16]);

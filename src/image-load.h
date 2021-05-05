@@ -126,13 +126,13 @@ ImageLoader *image_loader_new(FileData *fd);
 void image_loader_free(ImageLoader *il);
 
 /**
- * \headerfile image_loader_delay_area_ready
+ * @headerfile image_loader_delay_area_ready
  * delay area_ready signals
  */
 void image_loader_delay_area_ready(ImageLoader *il, gboolean enable);
 
 /**
- * \headerfile image_loader_set_requested_size
+ * @headerfile image_loader_set_requested_size
  * Speed up loading when you only need at most width x height size image,
  * only the jpeg GdkPixbuf loader benefits from it - so there is no
  * guarantee that the image will scale down to the requested size..
@@ -142,7 +142,7 @@ void image_loader_set_requested_size(ImageLoader *il, gint width, gint height);
 void image_loader_set_buffer_size(ImageLoader *il, guint size);
 
 /**
- * \headerfile image_loader_set_priority
+ * @headerfile image_loader_set_priority
  * this only has effect if used before image_loader_start()
  * default is G_PRIORITY_DEFAULT_IDLE
  */

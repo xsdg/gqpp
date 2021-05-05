@@ -207,7 +207,7 @@ static int lua_exif_get_datum(lua_State *L)
 }
 
 /**
- * \brief Initialize the lua interpreter.
+ * @brief Initialize the lua interpreter.
  */
 void lua_init(void)
 {
@@ -261,7 +261,7 @@ void lua_init(void)
 }
 
 /**
- * \brief Call a lua function to get a single value.
+ * @brief Call a lua function to get a single value.
  */
 gchar *lua_callvalue(FileData *fd, const gchar *file, const gchar *function)
 {

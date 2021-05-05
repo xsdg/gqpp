@@ -66,7 +66,7 @@ struct _EditorDescription {
 
 
 /**
- * \enum
+ * @enum
  * return values from callback function
  */
 enum {
@@ -100,15 +100,15 @@ GList *editor_list_get(void);
 
 
 /**
- * \typedef EditorCallback
+ * @typedef EditorCallback
  *
  * Callback is called even on skipped files, with the #EDITOR_ERROR_SKIPPED flag set.
  * It is a good place to call file_data_change_info_free().
  *
- * \param ed - pointer that can be used for editor_resume/editor_skip or NULL if all files were already processed \n
- * \param flags - flags above \n
- * \param list - list of processed #FileData structures, typically single file or whole list passed to start_editor_* \n
- * \param data - generic pointer
+ * @param ed - pointer that can be used for editor_resume/editor_skip or NULL if all files were already processed \n
+ * @param flags - flags above \n
+ * @param list - list of processed #FileData structures, typically single file or whole list passed to start_editor_* @n
+ * @param data - generic pointer
 */
 typedef gint (*EditorCallback) (gpointer ed, EditorFlags flags, GList *list, gpointer data);
 

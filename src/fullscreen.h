@@ -31,7 +31,7 @@ void fullscreen_stop(FullScreenData *fs);
 
 
 /**
- * \struct ScreenData
+ * @struct ScreenData
  * screen numbers for fullscreen_prefs are as follows: \n
  *   0  use default display size \n
  * 101  screen 0, monitor 0 \n

@@ -64,7 +64,7 @@ const gchar *image_get_name(ImageWindow *imd);
 FileData *image_get_fd(ImageWindow *imd);
 
 /**
- * \headerfile image_set_fd
+ * @headerfile image_set_fd
  * merely changes path string, does not change the image!
  */
 void image_set_fd(ImageWindow *imd, FileData *fd);
@@ -115,19 +115,19 @@ StereoPixbufData image_stereo_pixbuf_get(ImageWindow *imd);
 void image_stereo_pixbuf_set(ImageWindow *imd, StereoPixbufData stereo_mode);
 
 /**
- * \headerfile image_prebuffer_set
+ * @headerfile image_prebuffer_set
  * read ahead, pass NULL to cancel
  */
 void image_prebuffer_set(ImageWindow *imd, FileData *fd);
 
 /**
- * \headerfile image_auto_refresh_enable
+ * @headerfile image_auto_refresh_enable
  * auto refresh
  */
 void image_auto_refresh_enable(ImageWindow *imd, gboolean enable);
 
 /**
- * \headerfile image_top_window_set_sync
+ * @headerfile image_top_window_set_sync
  * allow top window to be resized ?
  */
 void image_top_window_set_sync(ImageWindow *imd, gboolean allow_sync);
@@ -148,13 +148,13 @@ gboolean image_color_profile_get_use(ImageWindow *imd);
 gboolean image_color_profile_get_status(ImageWindow *imd, gchar **image_profile, gchar **screen_profile);
 
 /**
- * \headerfile image_set_delay_flip
+ * @headerfile image_set_delay_flip
  * set delayed page flipping
  */
 void image_set_delay_flip(ImageWindow *imd, gint delay);
 
 /**
- * \headerfile image_to_root_window
+ * @headerfile image_to_root_window
  * wallpaper util
  */
 void image_to_root_window(ImageWindow *imd, gboolean scaled);
@@ -169,7 +169,7 @@ void image_set_image_as_tiles(ImageWindow *imd, gint width, gint height,
 			      gdouble zoom);
 
 /**
- * \headerfile image_options_sync
+ * @headerfile image_options_sync
  * reset default options
  */
 void image_options_sync(void);

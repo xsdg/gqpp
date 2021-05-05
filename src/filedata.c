@@ -723,7 +723,7 @@ static void file_data_free(FileData *fd)
 }
 
 /**
- * \brief Checks if the FileData is referenced
+ * @brief Checks if the FileData is referenced
  *
  * Checks the refcount and whether the FileData is locked.
  */
@@ -733,7 +733,7 @@ static gboolean file_data_check_has_ref(FileData *fd)
 }
 
 /**
- * \brief Consider freeing a FileData.
+ * @brief Consider freeing a FileData.
  *
  * This function will free a FileData and its children provided that neither its parent nor it has
  * a positive refcount, and provided that neither is locked.
@@ -801,7 +801,7 @@ void file_data_unref(FileData *fd)
 }
 
 /**
- * \brief Lock the FileData in memory.
+ * @brief Lock the FileData in memory.
  *
  * This allows the caller to prevent a FileData from being freed, even after its refcount is zero.
  * This is intended to be used in cases where a FileData _should_ stay in memory as an optimization,
@@ -823,7 +823,7 @@ void file_data_lock(FileData *fd)
 }
 
 /**
- * \brief Reset the maintain-FileData-in-memory lock
+ * @brief Reset the maintain-FileData-in-memory lock
  *
  * This again allows the FileData to be freed when its refcount drops to zero.  Automatically frees
  * the FileData if its refcount is already zero (which will happen if the lock is the only thing
@@ -842,9 +842,9 @@ void file_data_unlock(FileData *fd)
 }
 
 /**
- * \brief Lock all of the FileDatas in the provided list
+ * @brief Lock all of the FileDatas in the provided list
  *
- * \see file_data_lock(FileData)
+ * @see file_data_lock(#FileData)
  */
 void file_data_lock_list(GList *list)
 {
@@ -860,9 +860,9 @@ void file_data_lock_list(GList *list)
 }
 
 /**
- * \brief Unlock all of the FileDatas in the provided list
+ * @brief Unlock all of the FileDatas in the provided list
  *
- * \see file_data_unlock(FileData)
+ * @see #file_data_unlock(#FileData)
  */
 void file_data_unlock_list(GList *list)
 {

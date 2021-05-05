@@ -176,6 +176,9 @@ Check if used functions are not deprecated.
 
 Documentation:
 
+Use American, rather than British English, spelling. This will facilitate consistent
+text searches. User text may be translated via the en_GB.po file.
+
 To document the code use the following rules to allow extraction with doxygen.
 Do not save with comments. Not all comments have to be doxygen comments.
 
@@ -183,30 +186,37 @@ Do not save with comments. Not all comments have to be doxygen comments.
   comments.
 - Use '/**' (note the two asterisks) to start comments to be extracted by
   doxygen and start every following line with " *".
-- Use '\' to indicate doxygen keywords/commands (see below).
-- Use the '\deprecated' command to tell if the function is subject to be deleted
+- Use '@' to indicate doxygen keywords/commands (see below).
+- Use the '@deprecated' command to tell if the function is subject to be deleted
   or to a  complete rewrite.
 
 Example:
 
 To document functions or big structures:
    /**
-    * \brief This is a short description of the function.
+    * @brief This is a short description of the function.
     *
     * This function does ...
     *
-    * \param x1 This is the first parameter named x1
-    * \param y1 This is the second parameter named y1
-    * \return What the function returns
+    * @param x1 This is the first parameter named x1
+    * @param y1 This is the second parameter named y1
+    * @return What the function returns
     *    You can extend that return description (or anything else) by indenting the
     *    following lines until the next empty line or the next keyword/command.
-    * \see Cross reference
+    * @see Cross reference
     */
 
 To document members of a structure that have to be documented (use it at least
 for big structures) use the '/**<' format:
    int counter; /**< This counter counts images */
 
+Document TODO or FIXME comments as:
+ /**
+ * @todo
+or
+ /**
+ * @FIXME 
+ 
 For further documentation about doxygen see
 http://www.stack.nl/~dimitri/doxygen/manual.html. For the possible commands you
 can use see http://www.stack.nl/~dimitri/doxygen/commands.html.

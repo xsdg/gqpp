@@ -27,7 +27,7 @@ void show_config_window(void);
 void show_about_window(LayoutWindow *lw);
 
 /**
- * \headerfile config_entry_to_option
+ * @headerfile config_entry_to_option
  * reusable helper functions
  */
 void config_entry_to_option(GtkWidget *entry, gchar **option, gchar *(*func)(const gchar *));

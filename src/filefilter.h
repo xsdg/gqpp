@@ -35,7 +35,7 @@ struct _FilterEntry {
 };
 
 /**
- * \headerfile filter_get_list
+ * @headerfile filter_get_list
  * you can change, but not add or remove entries from the returned list
  */
 GList *filter_get_list(void);

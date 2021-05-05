@@ -79,7 +79,7 @@ typedef enum {
 } SortType;
 
 /**
- * \typedef DnDAction
+ * @typedef DnDAction
  * drag and drop default action
  */
 typedef enum {
@@ -160,7 +160,7 @@ typedef enum {
 extern gchar *format_class_list[]; /**< defined in preferences.c */
 
 /**
- * \typedef SecureSaveErrno
+ * @typedef SecureSaveErrno
  * see err field in #SecureSaveInfo
  */
 typedef enum {
@@ -544,7 +544,7 @@ struct _ImageWindow
 	gpointer data_focus_in;
 
 	/**
-	 * \headerfile func_scroll_notify
+	 * @headerfile func_scroll_notify
 	 * scroll notification (for scroll bar implementation)
 	 */
 	void (*func_scroll_notify)(ImageWindow *, gint x, gint y, gint width, gint height, gpointer);

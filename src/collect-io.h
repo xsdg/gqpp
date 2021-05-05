@@ -42,7 +42,7 @@ gboolean collection_load_only_geometry(CollectionData *cd, const gchar *path);
 
 
 /**
- * \headerfile collect_manager_moved
+ * @headerfile collect_manager_moved
  * these are used to update collections contained in user's collection
  * folder when moving or renaming files.
  * also handles:
@@ -52,19 +52,19 @@ gboolean collection_load_only_geometry(CollectionData *cd, const gchar *path);
 void collect_manager_moved(FileData *fd);
 
 /**
- * \headerfile collect_manager_add
+ * @headerfile collect_manager_add
  * add from a specific collection
  */
 void collect_manager_add(FileData *fd, const gchar *collection);
 
 /**
- * \headerfile collect_manager_remove
+ * @headerfile collect_manager_remove
  * removing from a specific collection
  */
 void collect_manager_remove(FileData *fd, const gchar *collection);
 
 /**
- * \headerfile collect_manager_flush
+ * @headerfile collect_manager_flush
  * commit pending operations to disk
  */
 void collect_manager_flush(void);

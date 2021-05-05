@@ -927,7 +927,7 @@ gboolean metadata_append_list(FileData *fd, const gchar *key, const GList *value
 }
 
 /**
- * \see find_string_in_list
+ * @see find_string_in_list
  */
 gchar *find_string_in_list_utf8nocase(GList *list, const gchar *string)
 {
@@ -960,7 +960,7 @@ gchar *find_string_in_list_utf8nocase(GList *list, const gchar *string)
 }
 
 /**
- * \see find_string_in_list
+ * @see find_string_in_list
  */
 gchar *find_string_in_list_utf8case(GList *list, const gchar *string)
 {
@@ -978,18 +978,18 @@ gchar *find_string_in_list_utf8case(GList *list, const gchar *string)
 } // gchar *find_string_in_list_utf...
 
 /**
- * \brief Find a existent string in a list.
+ * @brief Find a existent string in a list.
  *
  * This is a switch between find_string_in_list_utf8case and
  * find_string_in_list_utf8nocase to search with or without case for the
  * existence of a string.
  *
- * \param list The list to search in
- * \param string The string to search for
- * \return The string or NULL
+ * @param list The list to search in
+ * @param string The string to search for
+ * @return The string or NULL
  *
- * \see find_string_in_list_utf8case
- * \see find_string_in_list_utf8nocase
+ * @see find_string_in_list_utf8case
+ * @see find_string_in_list_utf8nocase
  */
 gchar *find_string_in_list(GList *list, const gchar *string)
 {

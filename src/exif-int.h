@@ -119,7 +119,7 @@ extern ExifFormattedText ExifFormattedList[]; /**< the list of specially formatt
  */
 
 /**
- * \headerfile exif_write_data_list
+ * @headerfile exif_write_data_list
  * usually for debugging to stdout
  */
 void exif_write_data_list(ExifData *exif, FILE *f, gint human_readable_list);

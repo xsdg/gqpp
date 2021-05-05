@@ -109,7 +109,7 @@ ExifData *exif_read_fd(FileData *fd);
 void exif_free_fd(FileData *fd, ExifData *exif);
 
 /**
- * \headerfile exif_get_original
+ * @headerfile exif_get_original
  * exif_read returns processed data (merged from image and sidecar, etc.)
  * this function gives access to the original data from the image.
  * original data are part of the processed data and should not be freed separately

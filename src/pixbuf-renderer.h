@@ -30,32 +30,32 @@
 #define PIXBUF_RENDERER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj), TYPE_PIXBUF_RENDERER, PixbufRendererClass))
 
 /**
- * \def PR_ALPHA_CHECK_SIZE
+ * @def PR_ALPHA_CHECK_SIZE
  * alpha channel checkerboard (same as gimp)
  */
 #define PR_ALPHA_CHECK_SIZE 16
 
 /**
- * \def PR_MIN_SCALE_SIZE
+ * @def PR_MIN_SCALE_SIZE
  * when scaling image to below this size, use nearest pixel for scaling
  * (below about 4, the other scale types become slow generating their conversion tables)
  */
 #define PR_MIN_SCALE_SIZE 8
 
 /**
- * \def PR_CACHE_SIZE_DEFAULT
+ * @def PR_CACHE_SIZE_DEFAULT
  * default size of tile cache (MiB)
  */
 #define PR_CACHE_SIZE_DEFAULT 8
 
 /**
- * \def ROUND_UP
+ * @def ROUND_UP
  * round A up to integer count of B
  */
 #define ROUND_UP(A,B)   ((gint)(((A)+(B)-1)/(B))*(B))
 
 /**
- * \def ROUND_DOWN
+ * @def ROUND_DOWN
  * round A down to integer count of B
  */
 #define ROUND_DOWN(A,B) ((gint)(((A))/(B))*(B))
@@ -258,13 +258,13 @@ void pixbuf_renderer_set_parent(PixbufRenderer *pr, GtkWindow *window);
 GtkWindow *pixbuf_renderer_get_parent(PixbufRenderer *pr);
 
 /**
- * \headerfile pixbuf_renderer_set_pixbuf
+ * @headerfile pixbuf_renderer_set_pixbuf
  * display a pixbuf
  */
 void pixbuf_renderer_set_pixbuf(PixbufRenderer *pr, GdkPixbuf *pixbuf, gdouble zoom);
 
 /**
- * \headerfile  pixbuf_renderer_set_pixbuf_lazy
+ * @headerfile  pixbuf_renderer_set_pixbuf_lazy
  * same as pixbuf_renderer_set_pixbuf but waits with redrawing for pixbuf_renderer_area_changed */
 void pixbuf_renderer_set_pixbuf_lazy(PixbufRenderer *pr, GdkPixbuf *pixbuf, gdouble zoom, gint orientation, StereoPixbufData stereo_data);
 
@@ -275,7 +275,7 @@ void pixbuf_renderer_set_orientation(PixbufRenderer *pr, gint orientation);
 gint pixbuf_renderer_get_orientation(PixbufRenderer *pr);
 
 /**
- * \headerfile pixbuf_renderer_set_stereo_data
+ * @headerfile pixbuf_renderer_set_stereo_data
  * sets the format of stereo data in the input pixbuf
  */
 void pixbuf_renderer_set_stereo_data(PixbufRenderer *pr, StereoPixbufData stereo_data);
@@ -283,7 +283,7 @@ void pixbuf_renderer_set_stereo_data(PixbufRenderer *pr, StereoPixbufData stereo
 void pixbuf_renderer_set_post_process_func(PixbufRenderer *pr, PixbufRendererPostProcessFunc func, gpointer user_data, gboolean slow);
 
 /**
- * \headerfile pixbuf_renderer_set_tiles
+ * @headerfile pixbuf_renderer_set_tiles
  * display an on-request array of pixbuf tiles
  */
 void pixbuf_renderer_set_tiles(PixbufRenderer *pr, gint width, gint height,
@@ -296,14 +296,14 @@ void pixbuf_renderer_set_tiles_size(PixbufRenderer *pr, gint width, gint height)
 gint pixbuf_renderer_get_tiles(PixbufRenderer *pr);
 
 /**
- * \headerfile pixbuf_renderer_move
+ * @headerfile pixbuf_renderer_move
  * move image data from source to pr, source is then set to NULL image
  */
 void pixbuf_renderer_move(PixbufRenderer *pr, PixbufRenderer *source);
 void pixbuf_renderer_copy(PixbufRenderer *pr, PixbufRenderer *source);
 
 /**
- * \headerfile pixbuf_renderer_area_changed
+ * @headerfile pixbuf_renderer_area_changed
  * update region of existing image
  */
 void pixbuf_renderer_area_changed(PixbufRenderer *pr, gint x, gint y, gint width, gint height);
@@ -333,20 +333,20 @@ gboolean pixbuf_renderer_get_image_size(PixbufRenderer *pr, gint *width, gint *h
 gboolean pixbuf_renderer_get_scaled_size(PixbufRenderer *pr, gint *width, gint *height);
 
 /**
- * \headerfile pixbuf_renderer_get_visible_rect
+ * @headerfile pixbuf_renderer_get_visible_rect
  * region of image in pixel coordinates
  */
 gboolean pixbuf_renderer_get_visible_rect(PixbufRenderer *pr, GdkRectangle *rect);
 
 /**
- * \headerfile pixbuf_renderer_get_virtual_rect
+ * @headerfile pixbuf_renderer_get_virtual_rect
  * actual size of the PixbufRenderer window minus borders,
  * x and y are the scroll offset and include zoom factor.
  */
 gboolean pixbuf_renderer_get_virtual_rect(PixbufRenderer *pr, GdkRectangle *rect);
 
 /**
- * \headerfile pixbuf_renderer_set_color
+ * @headerfile pixbuf_renderer_set_color
  *  background color
  */
 void pixbuf_renderer_set_color(PixbufRenderer *pr, GdkColor *color);
@@ -362,7 +362,7 @@ void pixbuf_renderer_overlay_remove(PixbufRenderer *pr, gint id);
 gboolean pixbuf_renderer_get_mouse_position(PixbufRenderer *pr, gint *x_pixel, gint *y_pixel);
 
 /**
- * \headerfile pixbuf_renderer_get_pixel_colors
+ * @headerfile pixbuf_renderer_get_pixel_colors
  * x_pixel and y_pixel are the pixel coordinates see #pixbuf_renderer_get_mouse_position
  */
 gboolean pixbuf_renderer_get_pixel_colors(PixbufRenderer *pr, gint x_pixel, gint y_pixel,
@@ -376,7 +376,7 @@ gint pixbuf_renderer_stereo_get(PixbufRenderer *pr);
 void pixbuf_renderer_stereo_fixed_set(PixbufRenderer *pr, gint width, gint height, gint x1, gint y1, gint x2, gint y2);
 
 /**
- * \struct _SourceTile
+ * @struct _SourceTile
  * protected - for renderer use only
  */
 typedef struct _SourceTile SourceTile;

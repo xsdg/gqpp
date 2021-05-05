@@ -81,7 +81,7 @@ struct _ConfOptions
 	gchar *help_search_engine;
 
 	/**
-	 * \struct info_comment
+	 * @struct info_comment
 	 * info sidebar component height
 	 */
 	struct {
@@ -89,7 +89,7 @@ struct _ConfOptions
 	} info_comment;
 
 	/**
-	 * \struct info_keywords
+	 * @struct info_keywords
 	 * info sidebar component height
 	 */
 	struct {
@@ -97,7 +97,7 @@ struct _ConfOptions
 	} info_keywords;
 
 	/**
-	 * \struct info_title
+	 * @struct info_title
 	 * info sidebar component height
 	 */
 	struct {
@@ -105,7 +105,7 @@ struct _ConfOptions
 	} info_title;
 
 	/**
-	 * \struct info_rating
+	 * @struct info_rating
 	 * info sidebar component height
 	 */
 	struct {
@@ -291,7 +291,7 @@ struct _ConfOptions
 		gint fixed_x1, fixed_y1;
 		gint fixed_x2, fixed_y2;
 		/**
-		 * \struct tmp
+		 * @struct tmp
 		 * options in this struct are packed to mode and fsmode entries
 		 */
 		struct {
@@ -311,7 +311,7 @@ struct _ConfOptions
 	} stereo;
 
 	/**
-	 * \struct cp_mv_rn
+	 * @struct cp_mv_rn
 	 * copy move rename
 	 */
 	struct {

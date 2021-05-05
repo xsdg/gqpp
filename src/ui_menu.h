@@ -38,7 +38,7 @@ GtkWidget *menu_item_add_radio(GtkWidget *menu, const gchar *label, gpointer ite
 void menu_item_add_divider(GtkWidget *menu);
 
 /**
- * \headerfile menu_item_add_simple
+ * @headerfile menu_item_add_simple
  * use to avoid mnemonics, for example filenames
  */
 GtkWidget *menu_item_add_simple(GtkWidget *menu, const gchar *label,
@@ -47,7 +47,7 @@ GtkWidget *menu_item_add_simple(GtkWidget *menu, const gchar *label,
 GtkWidget *popup_menu_short_lived(void);
 
 /**
- * \headerfile popup_menu_position_clamp
+ * @headerfile popup_menu_position_clamp
  * clamp a menu's position to within the screen
  * if menu will attempt to stay out of region y to y+height
  */

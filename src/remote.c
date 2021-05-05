@@ -1548,11 +1548,11 @@ GList *remote_build_list(GList *list, gint argc, gchar *argv[], GList **errors)
 }
 
 /**
- * \param arg_exec Binary (argv0)
- * \param remote_list Evaluated and recognized remote commands
- * \param path The current path
- * \param cmd_list List of all non collections in Path (gchar *path)
- * \param collection_list List of all collections in argv
+ * @param arg_exec Binary (argv0)
+ * @param remote_list Evaluated and recognized remote commands
+ * @param path The current path
+ * @param cmd_list List of all non collections in Path (gchar *path)
+ * @param collection_list List of all collections in argv
  */
 void remote_control(const gchar *arg_exec, GList *remote_list, const gchar *path,
 		    GList *cmd_list, GList *collection_list)

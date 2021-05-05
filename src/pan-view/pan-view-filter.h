@@ -69,13 +69,13 @@ void pan_filter_toggle_cb(GtkWidget *button, gpointer data);
 void pan_filter_toggle_button_cb(GtkWidget *button, gpointer data);
 
 /**
- * \headerfile pan_filter_ui_new
+ * @headerfile pan_filter_ui_new
  * Creates a new #PanViewFilterUi instance and returns it.
  */
 PanViewFilterUi *pan_filter_ui_new(PanWindow *pw);
 
 /**
- * \headerfile pan_filter_ui_destroy
+ * @headerfile pan_filter_ui_destroy
  * Destroys the specified #PanViewFilterUi and sets the pointer to NULL.
  */
 void pan_filter_ui_destroy(PanViewFilterUi **ui);

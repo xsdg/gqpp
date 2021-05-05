@@ -1241,7 +1241,7 @@ static void bar_pane_keywords_hide_unchecked_toggle_cb(GtkWidget *menu_widget, g
 }
 
 /**
- * \brief Callback for adding selected keyword to all selected images.
+ * @brief Callback for adding selected keyword to all selected images.
  */
 static void bar_pane_keywords_add_to_selected_cb(GtkWidget *menu_widget, gpointer data)
 {
