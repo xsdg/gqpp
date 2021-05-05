@@ -1476,8 +1476,7 @@ gint exif_item_get_integer(ExifItem *item, gint *value)
 			*value = (gint)(((gint32 *)(item->data))[0]);
 			return TRUE;
 			break;
-		case EXIF_FORMAT_LONG_UNSIGNED:
-			/* FIXME: overflow possible */
+		case EXIF_FORMAT_LONG_UNSIGNED: /**< @FIXME overflow possible */
 			*value = (gint)(((guint32 *)(item->data))[0]);
 			return TRUE;
 		default:

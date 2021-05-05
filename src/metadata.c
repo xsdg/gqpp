@@ -328,7 +328,9 @@ gboolean metadata_write_perform(FileData *fd)
 		   (we can't wait until the sidecar is discovered by directory scanning because
 		    exif_read_fd is called before that and it would read the main file only and
 		    store the metadata in the cache)
-		    FIXME: this does not catch new sidecars created by independent external programs
+		*/
+		/**
+		@FIXME this does not catch new sidecars created by independent external programs
 		*/
 		file_data_unref(file_data_new_group(fd->change->dest));
 
@@ -1045,7 +1047,7 @@ GList *string_to_keywords_list(const gchar *text)
 
 gboolean meta_data_get_keyword_mark(FileData *fd, gint n, gpointer data)
 {
-	/* FIXME: do not use global keyword_tree */
+	/** @FIXME do not use global keyword_tree */
 	GList *path = data;
 	GList *keywords;
 	gboolean found = FALSE;

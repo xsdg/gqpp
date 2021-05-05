@@ -92,7 +92,8 @@ static gboolean image_loader_djvu_load(gpointer loader, const guchar *buf, gsize
 
 	ddjvu_page_render(page, DDJVU_RENDER_COLOR, &prect, &rrect, fmt, stride, (char *)pixels);
 
-	/* FIXME implementation of rotation is not correct */
+	/**
+	 * @FIXME implementation of rotation is not correct */
 	GdkPixbuf *tmp1;
 	GdkPixbuf *tmp2;
 	tmp1 = gdk_pixbuf_new_from_data(pixels, GDK_COLORSPACE_RGB, alpha, 8, width, height, stride, free_buffer, NULL);

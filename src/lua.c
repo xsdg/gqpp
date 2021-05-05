@@ -280,7 +280,7 @@ gchar *lua_callvalue(FileData *fd, const gchar *file, const gchar *function)
 		}
 	else
 		{
-		/* FIXME: what is the correct way to find the scripts folder? */
+		/** @FIXME what is the correct way to find the scripts folder? */
 		ok = access(g_build_filename("/usr/local/lib", GQ_APPNAME_LC, file, NULL), R_OK);
 		if (ok == 0)
 			{

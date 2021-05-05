@@ -32,7 +32,7 @@
 #include "window.h"
 #include "dnd.h"
 
-/* FIXME: not needed when bar_exif.c is improved */
+/** @FIXME not needed when bar_exif.c is improved */
 #include "bar_exif.h"
 
 #include <math.h>

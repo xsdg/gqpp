@@ -860,7 +860,7 @@ gboolean file_extension_match(const gchar *path, const gchar *ext)
 	p = strlen(path);
 	e = strlen(ext);
 
-	/* FIXME: utf8 */
+	/** @FIXME utf8 */
 	return (p > e && g_ascii_strncasecmp(path + p - e, ext, e) == 0);
 }
 

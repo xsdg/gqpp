@@ -68,8 +68,11 @@
  * Access rights are affected by secure_open() mask parameter.
  */
 
-/* FIXME: locking system on files about to be rewritten ? */
-/* FIXME: Low risk race conditions about ssi->file_name. */
+/**
+ * @file
+ * @FIXME locking system on files about to be rewritten ?
+ * @FIXME Low risk race conditions about ssi->file_name.
+ */
 
 SecureSaveErrno secsave_errno = SS_ERR_NONE;
 
@@ -270,7 +273,8 @@ secure_close(SecureSaveInfo *ssi)
 	if (ssi->secure_save && ssi->file_name && ssi->tmp_file_name) {
 		struct stat st;
 
-		/* FIXME: Race condition on ssi->file_name. The file
+		/**
+		 * @FIXME Race condition on ssi->file_name. The file
 		 * named ssi->file_name may have changed since
 		 * secure_open() call (where we stat() file and
 		 * more..).  */

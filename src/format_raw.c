@@ -341,8 +341,8 @@ gboolean format_raw_img_exif_offsets_fd(gint fd, const gchar *path,
 		DEBUG_1("RAW file parser extension match");
 		}
 
-	/* FIXME:
-	 * when the target is a tiff file it should be mmaped prior to format_raw_find as
+	/**
+	 * @FIXME when the target is a tiff file it should be mmaped prior to format_raw_find as
 	 * the make field data may not always be within header_data + header_len
 	 */
 	entry = format_raw_find(header_data, header_len);

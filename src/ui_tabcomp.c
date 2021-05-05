@@ -434,7 +434,7 @@ static gboolean tab_completion_do(TabCompData *td)
 
 	if (entry_text[0] == '\0')
 		{
-		entry_dir = g_strdup(G_DIR_SEPARATOR_S); /* FIXME: root directory win32 */
+		entry_dir = g_strdup(G_DIR_SEPARATOR_S); /** @FIXME root directory win32 */
 		gtk_entry_set_text(GTK_ENTRY(td->entry), entry_dir);
 		gtk_editable_set_position(GTK_EDITABLE(td->entry), strlen(entry_dir));
 		g_free(entry_dir);
@@ -525,7 +525,7 @@ static gboolean tab_completion_do(TabCompData *td)
 	if (strlen(entry_dir) == 0)
 		{
 		g_free(entry_dir);
-		entry_dir = g_strdup(G_DIR_SEPARATOR_S); /* FIXME: win32 */
+		entry_dir = g_strdup(G_DIR_SEPARATOR_S); /** @FIXME win32 */
 		}
 
 	if (isdir(entry_dir))

@@ -83,8 +83,7 @@ PanViewFilterUi *pan_filter_ui_new(PanWindow *pw)
 	gtk_box_pack_start(GTK_BOX(hbox), combo, TRUE, TRUE, 0);
 	gtk_widget_show(combo);
 
-	// TODO(xsdg): Figure out whether it's useful to keep this label around.
-	ui->filter_label = gtk_label_new("");
+	ui->filter_label = gtk_label_new("");/** @todo (xsdg): Figure out whether it's useful to keep this label around. */
 	//gtk_box_pack_start(GTK_BOX(hbox), ui->filter_label, FALSE, FALSE, 0);
 	//gtk_widget_show(ui->filter_label);
 
@@ -149,7 +148,7 @@ static void pan_filter_kw_button_cb(GtkButton *widget, gpointer data)
 	PanWindow *pw = cb_state->pw;
 	PanViewFilterUi *ui = pw->filter_ui;
 
-	// TODO(xsdg): Fix filter element pointed object memory leak.
+	/** @todo (xsdg): Fix filter element pointed object memory leak. */
 	ui->filter_elements = g_list_delete_link(ui->filter_elements, cb_state->filter_element);
 	gtk_widget_destroy(GTK_WIDGET(widget));
 	g_free(cb_state);
@@ -188,7 +187,7 @@ void pan_filter_activate_cb(const gchar *text, gpointer data)
 	gtk_tree_model_get(GTK_TREE_MODEL(ui->filter_mode_model), &iter, 2, &short_mode, -1);
 
 	// Create the button.
-	// TODO(xsdg): Use MVC so that the button list is an actual representation of the GList
+	/** @todo (xsdg): Use MVC so that the button list is an actual representation of the GList */
 	gchar *label = g_strdup_printf("(%s) %s", short_mode, text);
 	kw_button = gtk_button_new_with_label(label);
 	g_clear_pointer(&label, g_free);
@@ -338,12 +337,10 @@ gboolean pan_filter_fd_list(GList **fd_list, GList *filter_elements, gint filter
 			}
 		else if (filter_elements)
 			{
-			// TODO(xsdg): OPTIMIZATION Do the search inside of metadata.c to avoid a
-			// bunch of string list copies.
+			/** @todo (xsdg): OPTIMIZATION Do the search inside of metadata.c to avoid a bunch of string list copies. */
 			GList *img_keywords = metadata_read_list(fd, KEYWORD_KEY, METADATA_PLAIN);
 
-			// TODO(xsdg): OPTIMIZATION Determine a heuristic for when to linear-search the
-			// keywords list, and when to build a hash table for the image's keywords.
+			/** @todo (xsdg): OPTIMIZATION Determine a heuristic for when to linear-search the keywords list, and when to build a hash table for the image's keywords. */
 			GList *filter_element = filter_elements;
 
 			while (filter_element)

@@ -1185,8 +1185,8 @@ static gboolean thumb_std_maint_move_idle(gpointer data)
  *
  * The thumbnails are processed when the app is idle. If the app
  * exits early well too bad - they can simply be regenerated from scratch.
- *
- * This does not manage local thumbnails (fixme ?)
+ */
+/** @FIXME This does not manage local thumbnails (fixme ?)
  */
 void thumb_std_maint_moved(const gchar *source, const gchar *dest)
 {

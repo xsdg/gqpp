@@ -506,7 +506,7 @@ struct _ImageWindow
 
 	gboolean unknown;		/**< failed to load image */
 
-	ImageLoader *il;        /**< FIXME - image loader should probably go to FileData, but it must first support
+	ImageLoader *il;        /**< @FIXME image loader should probably go to FileData, but it must first support
 				   sending callbacks to multiple ImageWindows in parallel */
 
 	gint has_frame;  /**< not boolean, see image_new() */
@@ -917,8 +917,8 @@ struct _ViewDirInfoTree
 
 struct _ViewFile
 {
-	FileViewType type;
-	// TODO(xsdg): Turn this into a union (see VFLIST and VFICON from view_file.h).
+	FileViewType type; 	/**< @todo (xsdg): Turn this into a union (see VFLIST and VFICON from view_file.h). */
+
 	gpointer info;
 
 	GtkWidget *widget;
@@ -1011,7 +1011,7 @@ struct _SlideShowData
 {
 	LayoutWindow *lw;        /**< use this window to display the slideshow */
 	ImageWindow *imd;        /**< use this window only if lw is not available,
-	                            FIXME: it is probably required only by img-view.c and should be dropped with it */
+	                            @FIXME it is probably required only by img-view.c and should be dropped with it */
 
 	GList *filelist;
 	CollectionData *cd;

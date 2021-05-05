@@ -18,7 +18,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-/* FIXME: This is just a copy of image_load_jpeg.c, with an adjusted
+/** @FIXME This is just a copy of image_load_jpeg.c, with an adjusted
  * start address for a .cr3 file
  */
 #include "main.h"
@@ -262,7 +262,7 @@ static gboolean image_loader_cr3_load (gpointer loader, const guchar *buf, gsize
 
 	struct error_handler_data jerr;
 
-/* FIXME: Just start search at where full size jpeg should be,
+/** @FIXME Just start search at where full size jpeg should be,
  * / then search through the file looking for a jpeg end-marker
  */
 	guint64 align_buf;

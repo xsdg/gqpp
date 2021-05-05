@@ -1527,7 +1527,7 @@ static void file_util_dialog_init_simple_list(UtilityData *ud)
 
 	const gchar *stock_id;
 
-	/* FIXME: use ud->stock_id */
+	/** @FIXME use ud->stock_id */
 	if (ud->type == UTILITY_TYPE_DELETE ||
 	    ud->type == UTILITY_TYPE_DELETE_LINK ||
 	    ud->type == UTILITY_TYPE_DELETE_FOLDER)
@@ -1886,7 +1886,7 @@ void file_util_dialog_run(UtilityData *ud)
 					ud->phase = UTILITY_PHASE_ENTERING;
 					break;
 				case UTILITY_TYPE_RENAME_FOLDER:
-					ud->phase = UTILITY_PHASE_CANCEL; /* FIXME - not handled for now */
+					ud->phase = UTILITY_PHASE_CANCEL; /**< @FIXME not handled for now */
 					file_util_dialog_run(ud);
 					return;
 				}

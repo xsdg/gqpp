@@ -62,7 +62,7 @@
 #endif
 
 #ifdef HAVE_GTHREAD
-/* FIXME: see below */
+/** @FIXME see below */
 #include <X11/Xlib.h>
 #endif
 
@@ -898,7 +898,7 @@ void exit_program(void)
  * crash otherwise.
  * Ideas for improvement are welcome ;)
  */
-/* FIXME: this probably needs some better ifdefs. Please report any compilation problems */
+/** @FIXME this probably needs some better ifdefs. Please report any compilation problems */
 
 #if defined(SIGBUS) && defined(SA_SIGINFO)
 static void sigbus_handler_cb(int signum, siginfo_t *info, void *context)
@@ -1041,7 +1041,7 @@ gint main(gint argc, gchar *argv[])
 		}
 
 #ifdef HAVE_CLUTTER
-/* FIXME: For the background of this see:
+/** @FIXME For the background of this see:
  * https://github.com/BestImageViewer/geeqie/issues/397
  * The feature CLUTTER_FEATURE_SWAP_EVENTS indictates if the
  * system is liable to exhibit this problem.

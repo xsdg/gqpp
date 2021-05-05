@@ -815,7 +815,7 @@ gchar *exif_item_get_string(ExifItem *item, int idx)
 #if EXIV2_TEST_VERSION(0,16,0)
 		std::string str = em->toString(idx);
 #else
-		std::string str = em->toString(); // FIXME
+		std::string str = em->toString(); /**< @FIXME ?? */
 #endif
 		if (idx == 0 && str == "") str = em->toString();
 		if (str.length() > 5 && str.substr(0, 5) == "lang=")

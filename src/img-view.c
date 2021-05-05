@@ -1444,7 +1444,7 @@ static void view_dir_list_do(ViewWindow *vw, GList *list, gboolean skip, gboolea
 					list = filelist_recursive(fd);
 					}
 				else
-					{ /*FIXME */
+					{ /** @FIXME ?? */
 					filelist_read(fd, &list, NULL);
 					list = filelist_sort_path(list);
 					list = filelist_filter(list, FALSE);
@@ -1454,7 +1454,7 @@ static void view_dir_list_do(ViewWindow *vw, GList *list, gboolean skip, gboolea
 			}
 		else
 			{
-			/* FIXME: no filtering here */
+			/** @FIXME no filtering here */
 			vw->list = g_list_append(vw->list, file_data_ref(fd));
 			}
 		}

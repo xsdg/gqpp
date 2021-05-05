@@ -450,7 +450,7 @@ static const gchar *filter_name_find(GList *filter, const gchar *name)
 
 		if (ln >= lf)
 			{
-			/* FIXME: utf8 */
+			/** @FIXME utf8 */
 			if (g_ascii_strncasecmp(name + ln - lf, filter, lf) == 0) return name + ln - lf;
 			}
 		work = work->next;

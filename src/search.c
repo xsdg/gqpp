@@ -1892,7 +1892,7 @@ static gboolean search_file_do_extra(SearchData *sd, FileData *fd, gint *match,
 		tmatch = FALSE;
 		tested = TRUE;
 
-		/* fixme: implement similarity checking */
+		/** @FIXME implement similarity checking */
 		if (sd->search_similarity_cd && sd->search_similarity_cd->similarity)
 			{
 			gdouble result;

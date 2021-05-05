@@ -65,7 +65,7 @@ struct _UseableToolbarItems
 	gchar *stock_id;
 };
 
-/* FIXME Should be created by program from menu_entries[]
+/** @FIXME Should be created by program from menu_entries[]
  * in layout_util.c */
  /** The user is limited to selecting from this list of menu items
   * plus any desktop files

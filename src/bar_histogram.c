@@ -66,9 +66,9 @@ static void bar_pane_histogram_update(PaneHistogramData *phd)
 
 	if (!phd->histogram_width || !phd->histogram_height || !phd->fd) return;
 
-	/* histmap_get is relatively expensive, run it only when we really need it
+	/** histmap_get is relatively expensive, run it only when we really need it
 	   and with lower priority than pixbuf_renderer
-	   FIXME: this does not work for fullscreen*/
+	   @FIXME this does not work for fullscreen */
 	if (gtk_widget_is_drawable(phd->drawing_area))
 		{
 		if (!phd->idle_id)

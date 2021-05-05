@@ -2667,7 +2667,7 @@ gint file_data_verify_ci(FileData *fd, GList *list)
 			}
 		else
 			{
-			if (fd->change->type != FILEDATA_CHANGE_UNSPECIFIED) /* FIXME this is now needed for running editors */
+			if (fd->change->type != FILEDATA_CHANGE_UNSPECIFIED) /** @FIXME this is now needed for running editors */
 		   		{
 				ret |= CHANGE_WARN_SAME;
 				DEBUG_1("Change checked: source and destination are the same: %s -> %s", fd->path, fd->change->dest);
@@ -3003,7 +3003,7 @@ gboolean file_data_apply_ci(FileData *fd)
 {
 	FileDataChangeType type = fd->change->type;
 
-	/* FIXME delete ?*/
+	/** @FIXME delete ?*/
 	if (type == FILEDATA_CHANGE_MOVE || type == FILEDATA_CHANGE_RENAME)
 		{
 		DEBUG_1("planned change: applying %s -> %s", fd->change->dest, fd->path);
@@ -3014,7 +3014,8 @@ gboolean file_data_apply_ci(FileData *fd)
 			/* this change overwrites another file which is already known to other modules
 			   renaming fd would create duplicate FileData structure
 			   the best thing we can do is nothing
-			   FIXME: maybe we could copy stuff like marks
+			*/
+			/**  @FIXME maybe we could copy stuff like marks
 			*/
 			DEBUG_1("can't rename fd, target exists %s -> %s", fd->change->dest, fd->path);
 			}
@@ -3118,8 +3119,8 @@ GList *file_data_process_groups_in_selection(GList *list, gboolean ungroup, GLis
  * notify other modules about the change described by FileDataChangeInfo
  */
 
-/* might use file_maint_ functions for now, later it should be changed to a system of callbacks
-   FIXME do we need the ignore_list? It looks like a workaround for ineffective
+/* might use file_maint_ functions for now, later it should be changed to a system of callbacks */
+/** @FIXME do we need the ignore_list? It looks like a workaround for ineffective
    implementation in view_file_list.c */
 
 

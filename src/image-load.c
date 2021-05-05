@@ -1362,7 +1362,9 @@ const gchar *image_loader_get_error(ImageLoader *il)
 }
 
 
-/* FIXME - this can be rather slow and blocks until the size is known */
+/**
+ *  @FIXME this can be rather slow and blocks until the size is known
+ */
 gboolean image_load_dimensions(FileData *fd, gint *width, gint *height)
 {
 	ImageLoader *il;

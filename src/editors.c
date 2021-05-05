@@ -104,7 +104,7 @@ void editor_description_free(EditorDescription *editor)
 
 static GList *editor_mime_types_to_extensions(gchar **mime_types)
 {
-	/* FIXME: this should be rewritten to use the shared mime database, as soon as we switch to gio */
+	/** @FIXME this should be rewritten to use the shared mime database, as soon as we switch to gio */
 
 	static const gchar *conv_table[][2] = {
 		{"application/x-ufraw",	".ufraw"},
@@ -1084,7 +1084,7 @@ static EditorFlags editor_command_one(const EditorDescription *editor, GList *li
 		args[n++] = command;
 		args[n] = NULL;
 
-		if ((ed->flags & EDITOR_DEST) && fd && fd->change && fd->change->dest) /* FIXME: error handling */
+		if ((ed->flags & EDITOR_DEST) && fd && fd->change && fd->change->dest) /** @FIXME error handling */
 			{
 			g_setenv("GEEQIE_DESTINATION", fd->change->dest, TRUE);
 			}

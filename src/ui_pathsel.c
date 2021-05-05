@@ -145,7 +145,8 @@ static gboolean dest_check_filter(const gchar *filter, const gchar *file)
 			}
 		if (*f_ptr != '\0' && f_ptr[1] == ' ') f_ptr++;	/* skip space immediately after separator */
 		f_ptr++;
-		/* FIXME: utf8 */
+		/**
+		 * @FIXME utf8 */
 		if (l >= i && g_ascii_strncasecmp(file + l - i, strt_ptr, i) == 0) return TRUE;
 		}
 	return FALSE;
@@ -737,7 +738,8 @@ static void dest_new_dir_cb(GtkWidget *widget, gpointer data)
 	gchar *path;
 	GtkWidget *dialog_window;
 
-/* FIXME: on exit from the "new folder" modal dialog, focus returns to the main Geeqie
+/**
+ * @FIXME on exit from the "new folder" modal dialog, focus returns to the main Geeqie
  * window rather than the file dialog window. gtk_window_present() does not seem to
  * function unless the window was previously minimized.
  */

@@ -274,7 +274,7 @@ static void histogram_hgrid(Histogram *histogram, GdkPixbuf *pixbuf, gint x, gin
 
 gboolean histogram_draw(Histogram *histogram, const HistMap *histmap, GdkPixbuf *pixbuf, gint x, gint y, gint width, gint height)
 {
-	/* FIXME: use the coordinates correctly */
+	/** @FIXME use the coordinates correctly */
 	gint i;
 	gulong max = 0;
 	gdouble logmax;

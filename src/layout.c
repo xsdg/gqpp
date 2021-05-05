@@ -206,7 +206,7 @@ static void layout_box_folders_changed_cb(GtkWidget *widget, gpointer data)
 	LayoutWindow *lw;
 	GList *work;
 
-/* FIXME: this is probably not the correct way to implement this */
+/** @FIXME this is probably not the correct way to implement this */
 	work = layout_window_list;
 	while (work)
 		{
@@ -2443,7 +2443,7 @@ void layout_apply_options(LayoutWindow *lw, LayoutOptions *lop)
 	gboolean refresh_lists;
 
 	if (!layout_valid(&lw)) return;
-/* FIXME: add other options too */
+/** @FIXME add other options too */
 
 	refresh_style = (lop->style != lw->options.style || strcmp(lop->order, lw->options.order) != 0);
 	refresh_lists = (lop->show_directory_date != lw->options.show_directory_date);
@@ -2681,7 +2681,7 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 
 		pixbuf = pixbuf_inline(PIXBUF_INLINE_LOGO);
 
-		/* FIXME: the zoom value set here is the value, which is then copied again and again
+		/** @FIXME the zoom value set here is the value, which is then copied again and again
 		   in "Leave Zoom at previous setting" mode. This is not ideal.  */
 		image_change_pixbuf(lw->image, pixbuf, 0.0, FALSE);
 		g_object_unref(pixbuf);

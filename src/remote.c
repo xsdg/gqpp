@@ -130,7 +130,7 @@ static gboolean remote_server_client_cb(GIOChannel *source, GIOCondition conditi
 		gchar *buffer = NULL;
 		GError *error = NULL;
 		gsize termpos;
-		/* FIXME: it should be possible to terminate the command with a null character */
+		/** @FIXME it should be possible to terminate the command with a null character */
 		g_io_channel_set_line_term(source, "<gq_end_of_command>", -1);
 		while ((status = g_io_channel_read_line(source, &buffer, NULL, &termpos, &error)) == G_IO_STATUS_NORMAL)
 			{

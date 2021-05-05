@@ -293,21 +293,21 @@ static gint mpo_parse_Attributes_IFD_entry(const guchar *tiff, guint offset,
 		case 0xb201:
 			mpe->PanOrientation = data_val;
 			break;
-/*
+/**
 
-FIXME:
-Panorama Scanning Orientation PanOrientation 45569 B201 LONG 1
-Panorama Horizontal Overlap PanOverlap_H 45570 B202 RATIONAL 1
-Panorama Vertical Overlap PanOverlap_V 45571 B203 RATIONAL 1
-Base Viewpoint Number BaseViewpointNum 45572 B204 LONG 1
-Convergence Angle ConvergenceAngle 45573 B205 SRATIONAL 1
-Baseline Length BaselineLength 45574 B206 RATIONAL 1
-Divergence Angle VerticalDivergence 45575 B207 SRATIONAL 1
-Horizontal Axis Distance AxisDistance_X 45576 B208 SRATIONAL 1
-Vertical Axis Distance AxisDistance_Y 45577 B209 SRATIONAL 1
-Collimation Axis Distance AxisDistance_Z 45578 B20A SRATIONAL 1
-Yaw Angle YawAngle 45579 B20B SRATIONAL 1
-Pitch Angle PitchAngle 45580 B20C SRATIONAL 1
+@FIXME
+Panorama Scanning Orientation PanOrientation 45569 B201 LONG 1 \n
+Panorama Horizontal Overlap PanOverlap_H 45570 B202 RATIONAL 1 \n
+Panorama Vertical Overlap PanOverlap_V 45571 B203 RATIONAL 1 \n
+Base Viewpoint Number BaseViewpointNum 45572 B204 LONG 1 \n
+Convergence Angle ConvergenceAngle 45573 B205 SRATIONAL 1 \n
+Baseline Length BaselineLength 45574 B206 RATIONAL 1 \n
+Divergence Angle VerticalDivergence 45575 B207 SRATIONAL 1 \n
+Horizontal Axis Distance AxisDistance_X 45576 B208 SRATIONAL 1 \n
+Vertical Axis Distance AxisDistance_Y 45577 B209 SRATIONAL 1 \n
+Collimation Axis Distance AxisDistance_Z 45578 B20A SRATIONAL 1 \n
+Yaw Angle YawAngle 45579 B20B SRATIONAL 1 \n
+Pitch Angle PitchAngle 45580 B20C SRATIONAL 1 \n
 Roll Angle RollAngle 45581 B20D
   */
 		default:

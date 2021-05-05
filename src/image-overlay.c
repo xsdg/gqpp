@@ -521,7 +521,7 @@ static GdkPixbuf *image_osd_guidelines_render(OverlayStateData *osd)
 	GdkPixbuf *rectangles;
 	ImageWindow *imd = osd->imd;
 
-/* FIXME: guidelines does not work with revised draw signal handling
+/** @FIXME guidelines does not work with revised draw signal handling
  */
 	//~ pixbuf_renderer_get_scaled_size((PixbufRenderer *)imd->pr, &width, &height);
 

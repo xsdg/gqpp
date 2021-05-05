@@ -1406,7 +1406,7 @@ void image_change_pixbuf(ImageWindow *imd, GdkPixbuf *pixbuf, gdouble zoom, gboo
 	lw = layout_find_by_image(imd);
 	if (imd->color_profile_enable && lw && !lw->animation)
 		{
-		image_post_process_color(imd, 0, FALSE); /* TODO: error handling */
+		image_post_process_color(imd, 0, FALSE); /** @todo error handling */
 		}
 
 	if (imd->cm || imd->desaturate || imd->overunderexposed)

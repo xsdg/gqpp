@@ -782,6 +782,7 @@ void vdtree_refresh(ViewDir *vd)
 
 const gchar *vdtree_row_get_path(ViewDir *vd, gint row)
 {
+/** @FIXME no get row path */
 	log_printf("FIXME: no get row path\n");
 	return NULL;
 }

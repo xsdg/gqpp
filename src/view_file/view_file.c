@@ -1625,7 +1625,7 @@ void vf_notify_cb(FileData *fd, NotifyType type, gpointer data)
 
 	NotifyType interested = NOTIFY_CHANGE | NOTIFY_REREAD | NOTIFY_GROUPING;
 	if (vf->marks_enabled) interested |= NOTIFY_MARKS | NOTIFY_METADATA;
-	/* FIXME: NOTIFY_METADATA should be checked by the keyword-to-mark functions and converted to NOTIFY_MARKS only if there was a change */
+	/** @FIXME NOTIFY_METADATA should be checked by the keyword-to-mark functions and converted to NOTIFY_MARKS only if there was a change */
 
 	if (!(type & interested) || vf->refresh_idle_id || !vf->dir_fd) return;
 

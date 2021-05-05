@@ -1522,7 +1522,7 @@ static void collection_table_insert_marker(CollectTable *ct, CollectInfo *info, 
 		cairo_t *cr = cairo_create(img);
 		gdk_cairo_set_source_pixbuf(cr, pb, 0, 0);
 		cairo_paint(cr);
-		// FIXME: this is a hack to get the background color
+		/** @FIXME this is a hack to get the background color */
 		//~ pattern = cairo_pattern_create_for_surface(img);
 		pattern = cairo_pattern_create_rgb (1.0, 0.0, 0.0);
 		mask = gdk_cairo_region_create_from_surface(img);
@@ -2046,7 +2046,7 @@ static void collection_table_move_by_info_list(CollectTable *ct, GList *info_lis
 
 	if (info) insert_pos = g_list_find(ct->cd->list, info);
 
-	/* FIXME: this may get slow for large lists */
+	/** @FIXME this may get slow for large lists */
 	work = info_list;
 	while (insert_pos && work)
 		{
@@ -2502,7 +2502,7 @@ static void collection_table_cell_data_cb(GtkTreeViewColumn *tree_column, GtkCel
 	gtk_tree_model_get(tree_model, iter, CTABLE_COLUMN_POINTER, &list, -1);
 
 #if GTK_CHECK_VERSION(3,0,0)
-	/* FIXME this is a primitive hack to stop a crash.
+	/** @FIXME this is a primitive hack to stop a crash.
 	 * When compiled with GTK3, if a Collection window containing
 	 * say, 50 or so, images has its width changed, there is a segfault
 	 * https://github.com/BestImageViewer/geeqie/issues/531

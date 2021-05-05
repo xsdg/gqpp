@@ -51,8 +51,7 @@ static PixmapFolders *folder_icons_new(GtkWidget *widget)
 	pf->open   = gtk_widget_render_icon(widget, GTK_STOCK_OPEN, size, NULL);
 	pf->deny   = gtk_widget_render_icon(widget, GTK_STOCK_STOP, size, NULL);
 	pf->parent = gtk_widget_render_icon(widget, GTK_STOCK_GO_UP, size, NULL);
-	/* FIXME: this is not a suitable icon */
-	pf->link = gtk_widget_render_icon(widget, GTK_STOCK_REDO, size, NULL);
+	pf->link = gtk_widget_render_icon(widget, GTK_STOCK_REDO, size, NULL); /** @FIXME this is not a suitable icon */
 #else
 	/* GQView legacy icons */
 	pf->close  = pixbuf_inline(PIXBUF_INLINE_FOLDER_CLOSED);
@@ -880,7 +879,7 @@ static void vd_dnd_drop_receive(GtkWidget *widget,
 
 		if (active)
 			{
-/* FIXME: With GTK2 gdk_drag_context_get_actions() shows the state of the
+/** @FIXME With GTK2 gdk_drag_context_get_actions() shows the state of the
  * shift and control keys during the drag operation. With GTK3 this is not
  * so. This is a workaround.
  */

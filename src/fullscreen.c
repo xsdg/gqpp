@@ -333,8 +333,8 @@ FullScreenData *fullscreen_start(GtkWidget *window, ImageWindow *imd,
 	/* set timer to block screen saver */
 	fs->saver_block_id = g_timeout_add(60 * 1000, fullscreen_saver_block_cb, fs);
 
-	/* hide normal window
-	 * FIXME: properly restore this window on show
+	/* hide normal window */
+	 /** @FIXME properly restore this window on show
 	 */
 	if (fs->same_region)
 		{

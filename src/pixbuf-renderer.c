@@ -2986,7 +2986,7 @@ gboolean pixbuf_renderer_get_virtual_rect(PixbufRenderer *pr, GdkRectangle *rect
 void pixbuf_renderer_set_size_early(PixbufRenderer *pr, guint width, guint height)
 {
 #if 0
-	/* FIXME: this function does not consider the image orientation,
+	/** @FIXME this function does not consider the image orientation,
 	so it probably only breaks something */
 	gdouble zoom;
 	gint w, h;

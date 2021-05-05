@@ -660,8 +660,8 @@ static void bar_destroy(GtkWidget *widget, gpointer data)
 }
 
 #ifdef HAVE_LIBCHAMPLAIN_GTK
-/*
-   FIXME: this is an ugly hack that works around this bug:
+/**
+   @FIXME this is an ugly hack that works around this bug:
    https://bugzilla.gnome.org/show_bug.cgi?id=590692
    http://bugzilla.openedhand.com/show_bug.cgi?id=1751
    it should be removed as soon as a better solution exists
@@ -767,7 +767,7 @@ GtkWidget *bar_update_from_config(GtkWidget *bar, const gchar **attribute_names,
 		}
 
 #if !GTK_CHECK_VERSION(3,0,0)
-/* FIXME: In bar_size_allocate() the width obained is the allocated width. In GTK2 this
+/** @FIXME In bar_size_allocate() the width obtained is the allocated width. In GTK2 this
  * is the actual width. In GTK3 it is the *minimum* width.
  * This results in the info sidebar being able to increase, but not
  * decrease. There does not seem to be a way in GTK3 to get the actual width of
@@ -798,7 +798,8 @@ GtkWidget *bar_pane_expander_title(const gchar *title)
 	GtkWidget *widget = gtk_label_new(title);
 
 	pref_label_bold(widget, TRUE, FALSE);
-	//gtk_label_set_ellipsize(GTK_LABEL(widget), PANGO_ELLIPSIZE_END); //FIXME: do not work
+	//gtk_label_set_ellipsize(GTK_LABEL(widget), PANGO_ELLIPSIZE_END);
+	/** @FIXME do not work */
 
 	return widget;
 }

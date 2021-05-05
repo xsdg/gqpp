@@ -111,7 +111,7 @@ static void collection_save_cb(FileDialog *fd, gpointer data)
 
 	path = fd->dest_path;
 
-	/* FIXME: utf8 */
+	/** @FIXME utf8 */
 	if (!file_extension_match(path, GQ_COLLECTION_EXT))
 		{
 		gchar *buf;

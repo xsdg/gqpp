@@ -1883,7 +1883,7 @@ static void pan_window_new_real(FileData *dir_fd)
 	gtk_table_set_row_spacings(GTK_TABLE(table), 2);
 	gtk_table_set_col_spacings(GTK_TABLE(table), 2);
 
-	/* FIXME: pan view does not work correctly when renderer-clutter()
+	/** @FIXME pan view does not work correctly when renderer-clutter()
 	 * is used.
 	 */
 	gint temp = options->image.use_clutter_renderer;
@@ -2233,7 +2233,7 @@ static void pan_info_toggle_exif_cb(GtkWidget *widget, gpointer data)
 	PanWindow *pw = data;
 
 	pw->info_includes_exif = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
-	/* fixme: sync info now */
+	/** @FIXME sync info now */
 }
 
 static void pan_info_toggle_image_cb(GtkWidget *widget, gpointer data)
@@ -2241,7 +2241,7 @@ static void pan_info_toggle_image_cb(GtkWidget *widget, gpointer data)
 	PanWindow *pw = data;
 
 	pw->info_image_size = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(widget), INFO_IMAGE_SIZE_KEY));
-	/* fixme: sync info now */
+	/** @FIXME sync info now */
 }
 
 static void pan_fullscreen_cb(GtkWidget *widget, gpointer data)

@@ -163,8 +163,8 @@ static gboolean collection_load_private(CollectionData *cd, const gchar *path, C
 			}
 
 		/* Read filenames */
-		/* TODO: This is not safe!
-		 * Updated: anything within double quotes is considered a filename */
+		/** @todo This is not safe! */
+		/* Updated: anything within double quotes is considered a filename */
 		if (!reading_extended_filename)
 			{
 			/* not yet reading filename */

@@ -742,7 +742,7 @@ static void vflist_select_image(ViewFile *vf, FileData *sel_fd)
 	if (sel_fd == cur_fd) return; /* no change */
 
 	row = g_list_index(vf->list, sel_fd);
-	// FIXME sidecar data
+	/** @FIXME sidecar data */
 
 	if (sel_fd && options->image.enable_read_ahead && row >= 0)
 		{
@@ -1400,7 +1400,7 @@ gint vflist_index_by_fd(ViewFile *vf, FileData *fd)
 		work2 = list_fd->sidecar_files;
 		while (work2)
 			{
-			/* FIXME: return the same index also for sidecars
+			/** @FIXME return the same index also for sidecars
 			   it is sufficient for next/prev navigation but it should be rewritten
 			   without using indexes at all
 			*/
@@ -1948,8 +1948,8 @@ gboolean vflist_refresh(ViewFile *vf)
 		        }
 	        else
 			{
-			// FIXME: only do this when needed (aka when we just switched from
-			// FIXME: marks-enabled to marks-disabled)
+			/** @FIXME only do this when needed (aka when we just switched from */
+			/** @FIXME marks-enabled to marks-disabled) */
 			file_data_unlock_list(vf->list);
 			}
 

@@ -1460,7 +1460,7 @@ static void rt_tile_render(RendererTiles *rt, ImageTile *it,
 	rt_tile_prepare(rt, it);
 	has_alpha = (pr->pixbuf && gdk_pixbuf_get_has_alpha(pr->pixbuf));
 
-	/* FIXME checker colors for alpha should be configurable,
+	/** @FIXME checker colors for alpha should be configurable,
 	 * also should be drawn for blank = TRUE
 	 */
 
@@ -2087,7 +2087,7 @@ static void rt_scroll(void *renderer, gint x_off, gint y_off)
 			}
 		if (h > 0)
 			{
-			/* FIXME, to optimize this, remove overlap */
+			/** @FIXME to optimize this, remove overlap */
 			rt_queue(rt,
 				    rt->x_scroll, y_off > 0 ? rt->y_scroll + (pr->vis_height - h) : rt->y_scroll,
 				    pr->vis_width, h, TRUE, TILE_RENDER_ALL, FALSE, FALSE);

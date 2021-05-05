@@ -1135,7 +1135,7 @@ static void vficon_set_focus(ViewFile *vf, FileData *fd)
 			/* ensure focus row col are correct */
 			vficon_find_position(vf, VFICON(vf)->focus_fd, &VFICON(vf)->focus_row, &VFICON(vf)->focus_column);
 #if GTK_CHECK_VERSION(3,0,0)
-/* FIXME: Refer to issue #467 on Github. The thumbnail position is not
+/** @FIXME Refer to issue #467 on Github. The thumbnail position is not
  * preserved when the icon view is refreshed. Caused by an unknown call from
  * the idle loop. This patch hides the problem.
  */
@@ -1799,7 +1799,7 @@ FileData *vficon_thumb_next_fd(ViewFile *vf)
 			GList *list;
 			gtk_tree_model_get(store, &iter, FILE_COLUMN_POINTER, &list, -1);
 
-			// TODO(xsdg): for loop here.
+			/** @todo (xsdg): for loop here. */
 			for (; list; list = list->next)
 				{
 				FileData *fd = list->data;

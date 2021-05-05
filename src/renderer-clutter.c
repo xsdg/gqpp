@@ -466,7 +466,7 @@ static void rc_update_pixbuf(void *renderer, gboolean lazy)
 
 			if (width != prev_width || height != prev_height)
 				{
-				/* FIXME use CoglMaterial with multiple textures for background, color management, anaglyph, ... */
+				/** @FIXME use CoglMaterial with multiple textures for background, color management, anaglyph, ... */
 				CoglHandle texture = cogl_texture_new_with_size(width,
 										height,
 										COGL_TEXTURE_NO_AUTO_MIPMAP,
