@@ -205,6 +205,8 @@ geeqie_SOURCES = \
 	image_load_psd.h\
 	image_load_j2k.c\
 	image_load_j2k.h\
+	image_load_libraw.c\
+	image_load_libraw.h\
 	image_load_svgz.c\
 	image_load_svgz.h\
 	image_load_ffmpegthumbnailer.c\
@@ -299,7 +301,7 @@ geeqie_SOURCES = \
 	zonedetect.c	\
 	zonedetect.h
 
-geeqie_LDADD = $(GTK_LIBS) $(GLIB_LIBS) $(INTLLIBS) $(JPEG_LIBS) $(TIFF_LIBS) $(LCMS_LIBS) $(EXIV2_LIBS) $(LIBCHAMPLAIN_LIBS) $(LIBCHAMPLAIN_GTK_LIBS) $(LUA_LIBS) $(CLUTTER_LIBS) $(CLUTTER_GTK_LIBS) $(FFMPEGTHUMBNAILER_LIBS) $(PDF_LIBS) $(HEIF_LIBS) $(WEBP_LIBS) $(DJVU_LIBS) $(J2K_LIBS)
+geeqie_LDADD = $(GTK_LIBS) $(GLIB_LIBS) $(INTLLIBS) $(JPEG_LIBS) $(TIFF_LIBS) $(LCMS_LIBS) $(EXIV2_LIBS) $(LIBCHAMPLAIN_LIBS) $(LIBCHAMPLAIN_GTK_LIBS) $(LUA_LIBS) $(CLUTTER_LIBS) $(CLUTTER_GTK_LIBS) $(FFMPEGTHUMBNAILER_LIBS) $(PDF_LIBS) $(HEIF_LIBS) $(WEBP_LIBS) $(DJVU_LIBS) $(J2K_LIBS) $(RAW_LIBS)
 
 EXTRA_DIST = \
 	$(extra_SLIK)

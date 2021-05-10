@@ -34,6 +34,7 @@
 #include "image_load_collection.h"
 #include "image_load_webp.h"
 #include "image_load_j2k.h"
+#include "image_load_libraw.h"
 #include "image_load_svgz.h"
 
 #include "exif.h"
@@ -109,6 +110,7 @@ static void image_loader_init(GTypeInstance *instance, gpointer g_class)
 	il->idle_read_loop_count = IMAGE_LOADER_IDLE_READ_LOOP_COUNT_DEFAULT;
 	il->read_buffer_size = IMAGE_LOADER_READ_BUFFER_SIZE_DEFAULT;
 	il->mapped_file = NULL;
+	il->preview = IMAGE_LOADER_PREVIEW_NONE;
 
 	il->requested_width = 0;
 	il->requested_height = 0;
@@ -682,6 +684,7 @@ static void image_loader_setup_loader(ImageLoader *il)
 		DEBUG_1("Using custom jpeg loader");
 		image_loader_backend_set_jpeg(&il->backend);
 		}
+#ifndef HAVE_RAW
 	else
 	if (il->bytes_total >= 11 &&
 		(memcmp(il->mapped_file + 4, "ftypcrx", 7) == 0) &&
@@ -690,6 +693,7 @@ static void image_loader_setup_loader(ImageLoader *il)
 		DEBUG_1("Using custom cr3 loader");
 		image_loader_backend_set_cr3(&il->backend);
 		}
+#endif
 	else
 #endif
 #ifdef HAVE_TIFF
@@ -954,13 +958,37 @@ static gboolean image_loader_setup_source(ImageLoader *il)
 		ExifData *exif = exif_read_fd(il->fd);
 
 		if (options->thumbnails.use_exif)
+			{
 			il->mapped_file = exif_get_preview(exif, (guint *)&il->bytes_total, il->requested_width, il->requested_height);
+
+			if (il->mapped_file)
+				{
+				il->preview = IMAGE_LOADER_PREVIEW_EXIF;
+				}
+			}
 		else
+			{
 			il->mapped_file = exif_get_preview(exif, (guint *)&il->bytes_total, 0, 0); /* get the largest available preview image or NULL for normal images*/
+
+			if (il->mapped_file)
+				{
+				il->preview = IMAGE_LOADER_PREVIEW_EXIF;
+				}
+			}
+
+		/* If exiv2 does not find a thumbnail, try libraw (which may be slower) */
+		if (!il->mapped_file)
+			{
+			il->mapped_file = libraw_get_preview(il, (guint *)&il->bytes_total);
+
+			if (il->mapped_file)
+				{
+				il->preview = IMAGE_LOADER_PREVIEW_LIBRAW;
+				}
+			}
 
 		if (il->mapped_file)
 			{
-			il->preview = TRUE;
 			DEBUG_1("Usable reduced size (preview) image loaded from file %s", il->fd->path);
 			}
 		exif_free_fd(il->fd, exif);
@@ -994,7 +1022,7 @@ static gboolean image_loader_setup_source(ImageLoader *il)
 			il->mapped_file = 0;
 			return FALSE;
 			}
-		il->preview = FALSE;
+		il->preview = IMAGE_LOADER_PREVIEW_NONE;
 		}
 
 	return TRUE;
@@ -1006,9 +1034,13 @@ static void image_loader_stop_source(ImageLoader *il)
 
 	if (il->mapped_file)
 		{
-		if (il->preview)
+		if (il->preview == IMAGE_LOADER_PREVIEW_EXIF)
 			{
 			exif_free_preview(il->mapped_file);
+			}
+		else if (il->preview == IMAGE_LOADER_PREVIEW_LIBRAW)
+			{
+			libraw_free_preview(il->mapped_file);
 			}
 		else
 			{

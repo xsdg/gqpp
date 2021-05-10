@@ -368,6 +368,31 @@ AM_CONDITIONAL(HAVE_TIFF, [test "x$HAVE_TIFF" = xyes])
 AC_SUBST(TIFF_CFLAGS)
 AC_SUBST(TIFF_LIBS)
 
+#  libraw support
+# ----------------------------------------------------------------------
+
+AC_ARG_ENABLE([raw],
+  AC_HELP_STRING([--disable-raw], [disable LibRaw support]),
+    [libraw=$enableval], [libraw=auto])
+
+if test "x${libraw}" != "xno"; then
+  PKG_CHECK_MODULES(RAW, [libraw >= 0.20],
+    [
+      HAVE_RAW=yes
+      AC_DEFINE(HAVE_RAW, 1, [define to enable libraw support])
+    ],
+    [
+      HAVE_RAW=no
+      AC_MSG_WARN([$RAW_PKG_ERRORS])
+    ])
+else
+  HAVE_RAW=disabled
+fi
+
+AM_CONDITIONAL(HAVE_RAW, [test "x$HAVE_RAW" = xyes])
+AC_SUBST(RAW_CFLAGS)
+AC_SUBST(RAW_LIBS)
+
 #  libffmpegthumbnailer support
 # ----------------------------------------------------------------------
 
@@ -784,7 +809,7 @@ Flags:
   Gtk:           $GTK_CFLAGS
   Glib:          $GLIB_CFLAGS
   Thread:        $GTHREAD_LIBS
-  Others:	 $JPEG_LIBS $TIFF_LIBS $LCMS_LIBS $EXIV2_LIBS $CLUTTER_LIBS $CLUTTER_GTK_LIBS $LIBCHAMPLAIN_LIBS $LIBCHAMPLAIN_GTK_LIBS $LUA_LIBS
+  Others:	 $JPEG_LIBS $TIFF_LIBS $LCMS_LIBS $EXIV2_LIBS $CLUTTER_LIBS $CLUTTER_GTK_LIBS $LIBCHAMPLAIN_LIBS $LIBCHAMPLAIN_GTK_LIBS $LUA_LIBS $RAW_LIBS
 
 Localization:
   NLS support:   $USE_NLS
@@ -810,6 +835,7 @@ Support:
   WebP:	         $HAVE_WEBP
   DjVu:	         $HAVE_DJVU
   J2K:	         $HAVE_J2K
+  LibRaw:        $HAVE_RAW
 
 Documentation:
   Doxygen:       $DX_DOXYGEN

@@ -58,6 +58,12 @@ struct _ImageLoaderBackend
 	ImageLoaderBackendFuncGetPageTotal get_page_total;
 };
 
+typedef enum {
+	IMAGE_LOADER_PREVIEW_NONE = 0,
+	IMAGE_LOADER_PREVIEW_EXIF = 1,
+	IMAGE_LOADER_PREVIEW_LIBRAW = 2
+} ImageLoaderPreview;
+
 
 //typedef struct _ImageLoader ImageLoader;
 typedef struct _ImageLoaderClass ImageLoaderClass;
@@ -74,7 +80,7 @@ struct _ImageLoader
 	gsize bytes_read;
 	gsize bytes_total;
 
-	gboolean preview;
+	ImageLoaderPreview preview;
 
 	gint requested_width;
 	gint requested_height;

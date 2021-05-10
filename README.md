@@ -266,6 +266,9 @@ And either the ChangeLog file or [Geeqie ChangeLog](http://geeqie.org/cgi-bin/gi
     libopenjp2
         For displaying JP2 images
 
+    libraw 0.20
+        For displaying CR3 images
+
     yelp-tools
         For creating the Help files
 
