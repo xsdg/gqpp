@@ -265,31 +265,45 @@ static gboolean image_loader_cr3_load (gpointer loader, const guchar *buf, gsize
 /** @FIXME Just start search at where full size jpeg should be,
  * / then search through the file looking for a jpeg end-marker
  */
-	guint64 align_buf;
 	gboolean found = FALSE;
 	gint i;
+	gint n;
 
-	memcpy(&align_buf, &buf[0xf2], sizeof(guint64));
-	buf = buf + GUINT64_FROM_BE(align_buf) + 0x10;
-
-	if (memcmp(&buf[0], "\xFF\xD8", 2) == 0)
+	n = 0;
+	while (n < count - 4 && !found)
 		{
-		i = 0;
-		while (!found )
+		if (memcmp(&buf[n], "mdat", 4) == 0)
 			{
-			if (memcmp(&buf[ i], "\xFF\xD9", 2) == 0)
+			if (memcmp(&buf[n + 12], "\xFF\xD8", 2) == 0)
 				{
-				found = TRUE;
+				i = 0;
+				while (!found )
+					{
+					if (memcmp(&buf[n + 12 + i], "\xFF\xD9", 2) == 0)
+						{
+						found = TRUE;
+						}
+					i++;
+					}
 				}
-			i = i + 1;
+			else
+				{
+				break;
+				}
+			}
+		else
+			{
+			n++;
 			}
 		}
-	else
+
+	if (!found)
 		{
 		return FALSE;
 		}
 
 	count = i;
+	buf = (unsigned char *)buf + n + 12;
 
 	lj->stereo = FALSE;
 
