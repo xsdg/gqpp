@@ -450,6 +450,10 @@ void exif_init(void)
 #ifdef EXV_ENABLE_NLS
 	bind_textdomain_codeset (EXV_PACKAGE, "UTF-8");
 #endif
+
+#if EXIV2_TEST_VERSION(0,27,4)
+	Exiv2::enableBMFF(TRUE);
+#endif
 }
 
 
