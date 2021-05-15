@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-01 10:24+0100\n"
-"PO-Revision-Date: 2020-09-20 06:44+0200\n"
+"PO-Revision-Date: 2021-05-16 09:37+0200\n"
 "Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: Peter Tuhársky <tuharsky@misbb.sk>\n"
 "Language: sk_SK\n"
@@ -66,7 +66,6 @@ msgid "Export jpeg"
 msgstr "Exportovať jpeg"
 
 #: ../plugins/export-jpeg/export-jpeg.desktop.in.h:2
-#, fuzzy
 msgid "Extract embedded jpegs from a raw file"
 msgstr "Extrahovať vstavané jpegy zo súboru raw"
 
@@ -1385,9 +1384,8 @@ msgstr "Triedim..."
 
 # src/dupe.c:871 src/dupe.c:892
 #: ../src/dupe.c:2547
-#, fuzzy
 msgid "Queuing..."
-msgstr "pracujem..."
+msgstr "Pridávam do poradia..."
 
 # src/menu.c:766
 #: ../src/dupe.c:2976
@@ -1448,21 +1446,18 @@ msgstr "Kontrolný súčet"
 
 # src/dupe.c:1658
 #: ../src/dupe.c:3914
-#, fuzzy
 msgid "Similarity (high - 95)"
-msgstr "Podobnosť (vysoká)"
+msgstr "Podobnosť (vysoká - 95)"
 
 # src/dupe.c:1660
 #: ../src/dupe.c:3915
-#, fuzzy
 msgid "Similarity (med. - 90)"
-msgstr "Podobnosť (nízka)"
+msgstr "Podobnosť (stredná - 90)"
 
 # src/dupe.c:1660
 #: ../src/dupe.c:3916
-#, fuzzy
 msgid "Similarity (low - 85)"
-msgstr "Podobnosť (nízka)"
+msgstr "Podobnosť (nízka - 85)"
 
 # src/dupe.c:1660
 #: ../src/dupe.c:3917
@@ -2470,19 +2465,19 @@ msgid "%d bytes"
 msgstr "%d bajtov"
 
 #: ../src/filedata.c:116
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f KiB"
-msgstr "%.1f K"
+msgstr "%.1f KiB"
 
 #: ../src/filedata.c:120
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f MiB"
-msgstr "%.1f MB"
+msgstr "%.1f MiB"
 
 #: ../src/filedata.c:125
-#, fuzzy, c-format
+#, c-format
 msgid "%.1f GiB"
-msgstr "%.1f GB"
+msgstr "%.1f GiB"
 
 #: ../src/filedata.c:2770
 msgid "file or directory does not exist"
@@ -2902,9 +2897,8 @@ msgstr "(poradie zmeníte ťahaním)"
 
 # src/utilops.c:1090
 #: ../src/layout_image.c:787
-#, fuzzy
 msgid "Copy _image"
-msgstr "Kopírovanie zlyhalo"
+msgstr "_Kopírovať obrázok"
 
 #: ../src/layout_image.c:838
 msgid "_Animate"
@@ -4476,45 +4470,39 @@ msgstr "Úroveň ladenia:"
 
 # src/preferences.c:766
 #: ../src/logwindow.c:410
-#, fuzzy
 msgid "Pause scrolling"
-msgstr "Koliesko myši posúva obrázok"
+msgstr "Pozastaviť posúvanie"
 
 # src/preferences.c:823
 #: ../src/logwindow.c:418
-#, fuzzy
 msgid "Enable line wrap"
-msgstr "Povoliť zoskupovanie súborov"
+msgstr "Zapnúť zalamovanie riadkov"
 
 # src/ui_pathsel.c:799
 #: ../src/logwindow.c:426
-#, fuzzy
 msgid "Enable timer data"
-msgstr "Časový údaj"
+msgstr "Zapnúť údaje časovača"
 
 #: ../src/logwindow.c:446
 msgid "Search for text in log window"
-msgstr ""
+msgstr "Prehľadávať text v okne so záznamom"
 
 #: ../src/logwindow.c:455
-#, fuzzy
 msgid "Search backwards"
-msgstr "Hľadať kľúčové slová"
+msgstr "Hľadať smerom dozadu"
 
 #: ../src/logwindow.c:465
-#, fuzzy
 msgid "Search forwards"
-msgstr "Hľadať kľúčové slová"
+msgstr "Hľadať smerom dopredu"
 
 #: ../src/logwindow.c:475
 msgid "Highlight all"
-msgstr ""
+msgstr "Zvýrazniť všetko"
 
 # src/preferences.c:812
 #: ../src/logwindow.c:481
-#, fuzzy
 msgid "Filter regexp"
-msgstr "Filtrovanie"
+msgstr "Filter pomocou reg. výrazu"
 
 # src/main.c:457
 #: ../src/main.c:386
@@ -5354,9 +5342,8 @@ msgstr "Dlaždice"
 
 # src/preferences.c:370
 #: ../src/preferences.c:616
-#, fuzzy
 msgid "Bilinear (best, but slowest)"
-msgstr "Hyper (najlepšia, ale najpomalšia)"
+msgstr "Bilineárne (najlepšia, ale najpomalšia)"
 
 #: ../src/preferences.c:639
 msgid "Ask"
@@ -5364,15 +5351,15 @@ msgstr "Spýtať sa"
 
 #: ../src/preferences.c:667
 msgid "Primary"
-msgstr ""
+msgstr "Primárny"
 
 #: ../src/preferences.c:669
 msgid "Clipboard"
-msgstr ""
+msgstr "Schránka"
 
 #: ../src/preferences.c:671
 msgid "Both"
-msgstr ""
+msgstr "Obe"
 
 #: ../src/preferences.c:697 ../src/toolbar.c:78
 msgid "Back"
@@ -5691,9 +5678,8 @@ msgstr ""
 
 # src/menu.c:526
 #: ../src/preferences.c:1959
-#, fuzzy
 msgid "Thumbnail color management"
-msgstr "Správa farieb"
+msgstr "Správa farieb náhľadov"
 
 # src/collect-dlg.c:194
 #: ../src/preferences.c:1962
@@ -5715,7 +5701,7 @@ msgstr "Hodnotenie hviezdičkami"
 
 #: ../src/preferences.c:1984
 msgid "Star character: "
-msgstr ""
+msgstr "Znak hviezdičky: "
 
 #: ../src/preferences.c:1995 ../src/preferences.c:2027
 msgid "Display selected character"
@@ -5741,9 +5727,8 @@ msgid "Default"
 msgstr "Predvolené"
 
 #: ../src/preferences.c:2016
-#, fuzzy
 msgid "Rejected character: "
-msgstr "Zobraziť vybraný znak"
+msgstr "Znak odmietnutia: "
 
 # src/preferences.c:615
 #: ../src/preferences.c:2048
@@ -5771,9 +5756,8 @@ msgstr "Načítavanie a kešovanie obrázka"
 
 # src/preferences.c:735
 #: ../src/preferences.c:2082
-#, fuzzy
 msgid "Decoded image cache size (MiB):"
-msgstr "Veľkosť vyrovnávacej pamäte dekódovaného obrázka (Mb):"
+msgstr "Veľkosť vyrovnávacej pamäte dekódovaného obrázka (MiB):"
 
 # src/preferences.c:660
 #: ../src/preferences.c:2084
@@ -6066,7 +6050,7 @@ msgstr "Exif, XMP alebo IPTC značky"
 # src/dupe.c:1655 src/dupe.c:1944
 #: ../src/preferences.c:2440
 msgid "%Exif.Image.Orientation%"
-msgstr "%Exif.Orientácia.Obrázka%"
+msgstr "%Exif.Image.Orientation%"
 
 #: ../src/preferences.c:2445
 msgid "Field separators"
@@ -6077,7 +6061,7 @@ msgid ""
 "Separator shown only if both fields are non-null:\n"
 "%formatted.ShutterSpeed%|%formatted.ISOSpeedRating%"
 msgstr ""
-"Oddeľovač zobrazený iba vtedy, keď sú obe polia obsahujú hodnoty:\n"
+"Oddeľovač zobrazený iba vtedy, keď obe polia obsahujú hodnoty:\n"
 "%formatted.ShutterSpeed%|%formatted.ISOSpeedRating%"
 
 #: ../src/preferences.c:2454
@@ -6147,7 +6131,7 @@ msgstr "Vypnúť filtrovanie súborov"
 
 #: ../src/preferences.c:2532
 msgid "Grouping sidecar extensions"
-msgstr "Zoskupovať postranné súbory"
+msgstr "Zoskupovanie prípon pomocných súborov"
 
 # src/ui_pathsel.c:799
 #: ../src/preferences.c:2539
@@ -6164,7 +6148,7 @@ msgstr "Zapisovateľný"
 
 #: ../src/preferences.c:2624
 msgid "Sidecar is allowed"
-msgstr "Povolený postranný súbor"
+msgstr "Pomocný súbor je povolený"
 
 #: ../src/preferences.c:2670
 msgid "Metadata writing process"
@@ -6188,7 +6172,7 @@ msgid ""
 "1) Save metadata in image files, or sidecar files, according to the XMP "
 "standard"
 msgstr ""
-"1) Ukladať metadáta do súborov obrázka alebo postranných súborov, podľa "
+"1) Ukladať metadáta do súborov obrázka alebo pomocných súborov, podľa "
 "štandardu XMP"
 
 #: ../src/preferences.c:2688
@@ -6226,7 +6210,7 @@ msgstr "Spýtať sa pred zápisom do súborov s obrázkami"
 #: ../src/preferences.c:2719
 msgid "Create sidecar files named image.ext.xmp (as opposed to image.xmp)"
 msgstr ""
-"Vytvoriť postranné súbory s názvom obrázok.ext.xmp (miesto obrázok.xmp)"
+"Vytvoriť pomocné súbory s názvom obrázok.ext.xmp (miesto obrázok.xmp)"
 
 #: ../src/preferences.c:2722
 msgid "Step 2 and 3: write to Geeqie private files"
@@ -6242,7 +6226,7 @@ msgstr ""
 
 #: ../src/preferences.c:2731
 msgid "Miscellaneous"
-msgstr "Rozličné"
+msgstr "Rôzne"
 
 #: ../src/preferences.c:2732
 msgid ""
@@ -6250,7 +6234,7 @@ msgid ""
 "sidecars"
 msgstr ""
 "Zapisovať rovnaké kľúčové slová a komentáre do všetkých združených "
-"postranných súborov"
+"pomocných súborov"
 
 #: ../src/preferences.c:2735
 msgid "Allow keywords to differ only in case"
@@ -6390,9 +6374,8 @@ msgid "Maximum size:"
 msgstr "Maximálna veľkosť:"
 
 #: ../src/preferences.c:3322
-#, fuzzy
 msgid "MiB"
-msgstr "MB"
+msgstr "MiB"
 
 #: ../src/preferences.c:3324
 msgid "Set to 0 for unlimited size"
@@ -6452,7 +6435,7 @@ msgstr "Otvoriť zbierku na vrchu"
 
 #: ../src/preferences.c:3371
 msgid "Hide window in fullscreen"
-msgstr ""
+msgstr "Skryť okno pri zobrazení na celú obrazovku"
 
 #: ../src/preferences.c:3375
 msgid "Recent folder list maximum size"
@@ -6815,7 +6798,7 @@ msgstr "<SÚBOR>"
 
 #: ../src/remote.c:1403
 msgid "get list of sidecars of FILE"
-msgstr "načítať zoznam postranných súborov zo SÚBORU"
+msgstr "načítať zoznam pomocných súborov zo SÚBORU"
 
 #: ../src/remote.c:1404
 msgid "get destination path of FILE"
@@ -7413,9 +7396,9 @@ msgid "Deleting without trash"
 msgstr "Odstraňujem bez koša"
 
 #: ../src/trash.c:210
-#, fuzzy, c-format
+#, c-format
 msgid " (max. %d MiB)"
-msgstr " (max. %d MB)"
+msgstr " (max. %d MiB)"
 
 #: ../src/trash.c:214
 #, c-format
@@ -7770,7 +7753,7 @@ msgstr "Súbor: '%s'\n"
 
 #: ../src/utilops.c:2001
 msgid "with sidecar files:\n"
-msgstr "s postrannými súbormi:\n"
+msgstr "s pomocnými súbormi:\n"
 
 #: ../src/utilops.c:2007
 #, c-format
