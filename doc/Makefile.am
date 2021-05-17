@@ -5,7 +5,7 @@ helpdir = @htmldir@
 EXTRA_DIST = docbook2html.sh docbook icons
 
 html/GuideIndex.html: docbook/GuideIndex.xml
-	rm -rf html; mkdir html; cp $(srcdir)/icons/* html/
+	rm -rf html; mkdir html; cp $(srcdir)/icons/* html/; ./create-doxygen-lua-api.sh
 	if [ -x "$(GNOME_DOC_TOOL)" ]; then \
 		"$(GNOME_DOC_TOOL)" html -i -o html/ $(srcdir)/docbook/GuideIndex.xml ; \
 	else \
@@ -19,6 +19,8 @@ install-data-hook: html
 		$(MKDIR_P) "$(DESTDIR)$(helpdir)" || exit 1; \
 		cd $(srcdir)/html; for f in * ; do $(INSTALL_DATA) "$$f" "$(DESTDIR)$(helpdir)/$$f" ; done; \
 		ln -s -f GuideIndex.html "$(DESTDIR)$(helpdir)/index.html" ; \
+		$(MKDIR_P) "$(DESTDIR)$(helpdir)/lua-api" || exit 1; \
+		cd ./lua-api/html; for f in * ; do $(INSTALL_DATA) "$$f" "$(DESTDIR)$(helpdir)/lua-api/$$f" ; done; \
 	fi
 
 uninstall-hook:

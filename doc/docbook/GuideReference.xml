@@ -6,6 +6,7 @@
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceThumbnails.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceMetadata.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceLua.xml" />
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceLuaAPI.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceConfig.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceFileDates.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceLIRC.xml" />

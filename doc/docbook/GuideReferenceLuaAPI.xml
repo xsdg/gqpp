@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<section id="GuideReferenceLuaAPI">
+  <title>Lua API</title>
+  <para>
+    <ulink url="./lua-api/lua_8c.html">The Lua API document</ulink>
+  </para>
+</section>

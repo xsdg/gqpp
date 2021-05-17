@@ -38,6 +38,18 @@
 #include "ui_fileops.h"
 #include "exif.h"
 
+/**
+ * @file
+ * User API consists of the following namespaces:
+ * 
+ * @link image_methods Image:@endlink basic image information
+ *
+ * <b>Collection</b>: not implemented
+ * 
+ * @link exif_methods <exif-structure>:get_datum() @endlink get single exif parameter
+ *
+ */
+
 static lua_State *L; /** The LUA object needed for all operations (NOTE: That is
 		       * a upper-case variable to match the documentation!) */
 
@@ -69,6 +81,13 @@ static FileData *lua_check_image(lua_State *L, int index)
 	return *fd;
 }
 
+/**
+ * @brief Get exif structure of selected image
+ * @param L 
+ * @returns An @ref ExifData data structure containing the entire exif data
+ * 
+ * To be used in conjunction with @link lua_exif_get_datum <exif-structure>:get_datum() @endlink
+ */
 static int lua_image_get_exif(lua_State *L)
 {
 	FileData *fd;
@@ -87,6 +106,13 @@ static int lua_image_get_exif(lua_State *L)
 	return 1;
 }
 
+/**
+ * @brief Get full path of selected image
+ * @param L 
+ * @returns char The full path of the file, including filename and extension
+ * 
+ * 
+ */
 static int lua_image_get_path(lua_State *L)
 {
 	FileData *fd;
@@ -96,6 +122,13 @@ static int lua_image_get_path(lua_State *L)
 	return 1;
 }
 
+/**
+ * @brief Get full filename of selected image
+ * @param L 
+ * @returns char The full filename including extension
+ * 
+ * 
+ */
 static int lua_image_get_name(lua_State *L)
 {
 	FileData *fd;
@@ -105,6 +138,13 @@ static int lua_image_get_name(lua_State *L)
 	return 1;
 }
 
+/**
+ * @brief Get file extension of selected image
+ * @param L 
+ * @returns char The file extension including preceding dot
+ * 
+ * 
+ */
 static int lua_image_get_extension(lua_State *L)
 {
 	FileData *fd;
@@ -114,6 +154,14 @@ static int lua_image_get_extension(lua_State *L)
 	return 1;
 }
 
+/**
+ * @brief Get file date of selected image
+ * @param L 
+ * @returns time_t The file date in Unix timestamp format.
+ * 
+ * time_t - signed integer which represents the number of seconds since
+ * the start of the Unix epoch: midnight UTC of January 1, 1970
+ */
 static int lua_image_get_date(lua_State *L)
 {
 	FileData *fd;
@@ -123,6 +171,13 @@ static int lua_image_get_date(lua_State *L)
 	return 1;
 }
 
+/**
+ * @brief Get file size of selected image
+ * @param L 
+ * @returns integer The file size in bytes
+ * 
+ * 
+ */
 static int lua_image_get_size(lua_State *L)
 {
 	FileData *fd;
@@ -132,6 +187,15 @@ static int lua_image_get_size(lua_State *L)
 	return 1;
 }
 
+/**
+ * @brief Get marks of selected image
+ * @param L 
+ * @returns unsigned integer Bit map of marks set
+ * 
+ * Bit 0 == Mark 1 etc.
+ * 
+ * 
+ */
 static int lua_image_get_marks(lua_State *L)
 {
 	FileData *fd;
@@ -150,7 +214,21 @@ static ExifData *lua_check_exif(lua_State *L, int index)
 	return *exif;
 }
 
-/* Interface for EXIF data */
+/**
+ * @brief Interface for EXIF data
+ * @param L 
+ * @returns <i>return</i> A single exif tag extracted from a structure output by the @link lua_image_get_exif Image:get_exif() @endlink command
+ * 
+ * e.g. \n
+ * exif_structure = Image:get_exif(); \n
+ * DateTimeDigitized = exif_structure:get_datum("Exif.Photo.DateTimeDigitized");
+ *
+ * Where <i>return</i> is: \n
+ * Exif.Photo.DateTimeOriginal = signed integer time_t \n
+ * Exif.Photo.DateTimeDigitized = signed integer time_t \n
+ * otherwise char
+ * 
+ */
 static int lua_exif_get_datum(lua_State *L)
 {
 	const gchar *key;
@@ -207,6 +285,37 @@ static int lua_exif_get_datum(lua_State *L)
 }
 
 /**
+ * @brief  <b>Image:</b> metatable and methods \n
+ * Call by e.g. \n
+ * path_name = @link lua_image_get_path Image:getpath() @endlink \n
+ * where the keyword <b>Image</b> represents the currently selected image
+ */
+static const luaL_Reg image_methods[] = {
+		{"get_path", lua_image_get_path},
+		{"get_name", lua_image_get_name},
+		{"get_extension", lua_image_get_extension},
+		{"get_date", lua_image_get_date},
+		{"get_size", lua_image_get_size},
+		{"get_exif", lua_image_get_exif},
+		{"get_marks", lua_image_get_marks},
+		{NULL, NULL}
+};
+
+/**
+ * @brief  <b>exif:</b> table and methods \n
+ * Call by e.g. \n
+ * @link lua_exif_get_datum <exif-structure>:get_datum() @endlink \n
+ * where <exif-structure> is the output of @link lua_image_get_exif Image:get_exif() @endlink
+ * 
+ * exif_structure = Image:get_exif(); \n
+ * DateTimeDigitized = exif_structure:get_datum("Exif.Photo.DateTimeDigitized");
+ */
+static const luaL_Reg exif_methods[] = {
+		{"get_datum", lua_exif_get_datum},
+		{NULL, NULL}
+};
+
+/**
  * @brief Initialize the lua interpreter.
  */
 void lua_init(void)
@@ -219,17 +328,6 @@ void lua_init(void)
 			{NULL, NULL}
 	};
 
-	/* The Image metatable and methodes */
-	static const luaL_Reg image_methods[] = {
-			{"get_path", lua_image_get_path},
-			{"get_name", lua_image_get_name},
-			{"get_extension", lua_image_get_extension},
-			{"get_date", lua_image_get_date},
-			{"get_size", lua_image_get_size},
-			{"get_exif", lua_image_get_exif},
-			{"get_marks", lua_image_get_marks},
-			{NULL, NULL}
-	};
 	LUA_register_global(L, "Image", image_methods);
 	luaL_newmetatable(L, "Image");
 	LUA_register_meta(L, meta_methods);
@@ -242,11 +340,6 @@ void lua_init(void)
 	lua_pop(L, 1);
 	lua_pop(L, 1);
 
-	/* The Exif table and methodes */
-	static const luaL_Reg exif_methods[] = {
-			{"get_datum", lua_exif_get_datum},
-			{NULL, NULL}
-	};
 	LUA_register_global(L, "Exif", exif_methods);
 	luaL_newmetatable(L, "Exif");
 	LUA_register_meta(L, meta_methods);
