@@ -24,7 +24,7 @@ install-data-hook: html
 	fi
 
 uninstall-hook:
-	rm "$(DESTDIR)$(helpdir)/"*
+	rm -r "$(DESTDIR)$(helpdir)/"*
 
 clean-local:
 	rm -rf html
