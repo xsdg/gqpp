@@ -661,7 +661,7 @@ static void layout_menu_config_cb(GtkAction *action, gpointer data)
 	LayoutWindow *lw = data;
 
 	layout_exit_fullscreen(lw);
-	show_config_window();
+	show_config_window(lw);
 }
 
 static void layout_menu_editors_cb(GtkAction *action, gpointer data)

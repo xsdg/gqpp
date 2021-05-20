@@ -2780,6 +2780,12 @@ void layout_write_attributes(LayoutOptions *layout, GString *outstr, gint indent
 	WRITE_NL(); WRITE_INT(*layout, log_window.w);
 	WRITE_NL(); WRITE_INT(*layout, log_window.h);
 
+	WRITE_NL(); WRITE_INT(*layout, preferences_window.x);
+	WRITE_NL(); WRITE_INT(*layout, preferences_window.y);
+	WRITE_NL(); WRITE_INT(*layout, preferences_window.w);
+	WRITE_NL(); WRITE_INT(*layout, preferences_window.h);
+	WRITE_NL(); WRITE_INT(*layout, preferences_window.page_number);
+
 	WRITE_NL(); WRITE_INT(*layout, search_window.x);
 	WRITE_NL(); WRITE_INT(*layout, search_window.y);
 	WRITE_NL(); WRITE_INT(*layout, search_window.w);
@@ -2882,6 +2888,12 @@ void layout_load_attributes(LayoutOptions *layout, const gchar **attribute_names
 		if (READ_INT(*layout, log_window.y)) continue;
 		if (READ_INT(*layout, log_window.w)) continue;
 		if (READ_INT(*layout, log_window.h)) continue;
+
+		if (READ_INT(*layout, preferences_window.x)) continue;
+		if (READ_INT(*layout, preferences_window.y)) continue;
+		if (READ_INT(*layout, preferences_window.w)) continue;
+		if (READ_INT(*layout, preferences_window.h)) continue;
+		if (READ_INT(*layout, preferences_window.page_number)) continue;
 
 		if (READ_INT(*layout, search_window.x)) continue;
 		if (READ_INT(*layout, search_window.y)) continue;

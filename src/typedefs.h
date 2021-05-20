@@ -715,6 +715,14 @@ struct _LayoutOptions
 		gint h;
 		gint x;
 		gint y;
+		gint page_number;
+	} preferences_window;
+
+	struct {
+		gint w;
+		gint h;
+		gint x;
+		gint y;
 	} search_window;
 
 	struct {

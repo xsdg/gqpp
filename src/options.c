@@ -330,6 +330,8 @@ LayoutOptions *init_layout_options(LayoutOptions *options)
 	options->bars_state.hidden = FALSE;
 	options->log_window.w = 520;
 	options->log_window.h = 400;
+	options->preferences_window.w = 700;
+	options->preferences_window.h = 600;
 	options->split_pane_sync = FALSE;
 	options->workspace = -1;
 	return options;

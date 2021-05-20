@@ -23,7 +23,7 @@
 #define PREFERENCES_H
 
 
-void show_config_window(void);
+void show_config_window(LayoutWindow *lw);
 void show_about_window(LayoutWindow *lw);
 
 /**

@@ -526,7 +526,27 @@ static gboolean config_window_delete(GtkWidget *widget, GdkEventAny *event, gpoi
 static void config_window_ok_cb(GtkWidget *widget, gpointer data)
 {
 	LayoutWindow *lw;
+	GtkNotebook *notebook = data;
+	GdkWindow *window;
+	gint x;
+	gint y;
+	gint w;
+	gint h;
+	gint page_number;
+
 	lw = layout_window_list->data;
+
+	window = gtk_widget_get_window(widget);
+	gdk_window_get_root_origin(window, &x, &y);
+	w = gdk_window_get_width(window);
+	h = gdk_window_get_height(window);
+	page_number = gtk_notebook_get_current_page(notebook);
+
+	lw->options.preferences_window.x = x;
+	lw->options.preferences_window.y = y;
+	lw->options.preferences_window.w = w;
+	lw->options.preferences_window.h = h;
+	lw->options.preferences_window.page_number = page_number;
 
 	config_window_apply();
 	layout_util_sync(lw);
@@ -3645,7 +3665,7 @@ static void config_tab_stereo(GtkWidget *notebook)
 }
 
 /* Main preferences window */
-static void config_window_create(void)
+static void config_window_create(LayoutWindow *lw)
 {
 	GtkWidget *win_vbox;
 	GtkWidget *hbox;
@@ -3660,7 +3680,15 @@ static void config_window_create(void)
 	gtk_window_set_type_hint(GTK_WINDOW(configwindow), GDK_WINDOW_TYPE_HINT_DIALOG);
 	g_signal_connect(G_OBJECT(configwindow), "delete_event",
 			 G_CALLBACK(config_window_delete), NULL);
-	gtk_window_set_default_size(GTK_WINDOW(configwindow), CONFIG_WINDOW_DEF_WIDTH, CONFIG_WINDOW_DEF_HEIGHT);
+	if (options->save_dialog_window_positions)
+		{
+		gtk_window_resize(GTK_WINDOW(configwindow), lw->options.preferences_window.w, lw->options.preferences_window.h);
+		gtk_window_move(GTK_WINDOW(configwindow), lw->options.preferences_window.x, lw->options.preferences_window.y);
+		}
+	else
+		{
+		gtk_window_set_default_size(GTK_WINDOW(configwindow), CONFIG_WINDOW_DEF_WIDTH, CONFIG_WINDOW_DEF_HEIGHT);
+		}
 	gtk_window_set_resizable(GTK_WINDOW(configwindow), TRUE);
 	gtk_container_set_border_width(GTK_CONTAINER(configwindow), PREF_PAD_BORDER);
 
@@ -3687,6 +3715,8 @@ static void config_window_create(void)
 	config_tab_toolbar_main(notebook);
 	config_tab_toolbar_status(notebook);
 
+	gtk_notebook_set_current_page(GTK_NOTEBOOK(notebook), lw->options.preferences_window.page_number);
+
 	hbox = gtk_hbutton_box_new();
 	gtk_button_box_set_layout(GTK_BUTTON_BOX(hbox), GTK_BUTTONBOX_END);
 	gtk_box_set_spacing(GTK_BOX(hbox), PREF_PAD_BUTTON_GAP);
@@ -3700,7 +3730,7 @@ static void config_window_create(void)
 	gtk_widget_show(button);
 
 	button = pref_button_new(NULL, GTK_STOCK_OK, NULL, FALSE,
-				 G_CALLBACK(config_window_ok_cb), NULL);
+				 G_CALLBACK(config_window_ok_cb), notebook);
 	gtk_container_add(GTK_CONTAINER(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_grab_default(button);
@@ -3730,7 +3760,7 @@ static void config_window_create(void)
  *-----------------------------------------------------------------------------
  */
 
-void show_config_window(void)
+void show_config_window(LayoutWindow *lw)
 {
 	if (configwindow)
 		{
@@ -3738,7 +3768,7 @@ void show_config_window(void)
 		return;
 		}
 
-	config_window_create();
+	config_window_create(lw);
 }
 
 /*
