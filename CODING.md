@@ -8,7 +8,7 @@
 
 
 # <a name='log-window'>
-#Log Window
+# Log Window
 
 
 `log_printf()`  
@@ -55,7 +55,7 @@ Include a header in every file, like this:
 -------------
 
 # <a name='git-change-log'>
-#git change-log
+# git change-log
 
 If referencing a Geeqie GitHub issue, include the issue number in the summary line. Start with a short summary in the first line (without a dot at the end) followed by a empty line.
 
@@ -78,7 +78,7 @@ Also please use your full name and a working e-mail address as author for any co
 --------------------------------------------------------------------------------
 
 # <a name='sources'>
-#Sources
+# Sources
 
 Indentation: tabs at 4 spaces
 	
@@ -175,7 +175,7 @@ Check if used functions are not deprecated.
 --------------------------------------------------------------------------------
 
 # <a name='documentation'>
-#Documentation
+# Documentation
 
 Use American, rather than British English, spelling. This will facilitate consistent
 text searches. User text may be translated via the en_GB.po file.
