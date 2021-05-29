@@ -10,6 +10,10 @@
 # <a name='log-window'>
 # Log Window
 
+`DEBUG_0()`  
+Use `DEBUG_0()` only for temporary debugging i.e. not in code in the repository.
+The user will then not see irrelevant debug output when the default
+`debug level = 0` is used.
 
 `log_printf()`  
 If the first word of the message is "error" or "warning" (case insensitive) the message will be color-coded appropriately.
