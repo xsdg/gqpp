@@ -1033,7 +1033,16 @@ static gboolean image_loader_setup_source(ImageLoader *il)
 
 			if (il->mapped_file)
 				{
-				il->preview = IMAGE_LOADER_PREVIEW_EXIF;
+				/* Both exiv2 and libraw sometimes return a pointer to a file
+				 * section that is not a jpeg */
+				if (!(il->mapped_file[0] == 0xFF && il->mapped_file[1] == 0xD8))
+					{
+					il->mapped_file = NULL;
+					}
+				else
+					{
+					il->preview = IMAGE_LOADER_PREVIEW_EXIF;
+					}
 				}
 			}
 
@@ -1044,7 +1053,14 @@ static gboolean image_loader_setup_source(ImageLoader *il)
 
 			if (il->mapped_file)
 				{
-				il->preview = IMAGE_LOADER_PREVIEW_LIBRAW;
+				if (!(il->mapped_file[0] == 0xFF && il->mapped_file[1] == 0xD8))
+					{
+					il->mapped_file = NULL;
+					}
+				else
+					{
+					il->preview = IMAGE_LOADER_PREVIEW_LIBRAW;
+					}
 				}
 			}
 
