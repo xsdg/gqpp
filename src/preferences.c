@@ -137,6 +137,8 @@ static GtkWidget *safe_delete_path_entry;
 static GtkWidget *color_profile_input_file_entry[COLOR_PROFILE_INPUTS];
 static GtkWidget *color_profile_input_name_entry[COLOR_PROFILE_INPUTS];
 static GtkWidget *color_profile_screen_file_entry;
+static GtkWidget *external_preview_select_entry;
+static GtkWidget *external_preview_extract_entry;
 
 static GtkWidget *sidecar_ext_entry;
 static GtkWidget *help_search_engine_entry;
@@ -434,6 +436,10 @@ static void config_window_apply(void)
 	options->hide_window_in_fullscreen = c_options->hide_window_in_fullscreen;
 	config_entry_to_option(help_search_engine_entry, &options->help_search_engine, NULL);
 
+	options->external_preview.enable = c_options->external_preview.enable;
+	config_entry_to_option(external_preview_select_entry, &options->external_preview.select, NULL);
+	config_entry_to_option(external_preview_extract_entry, &options->external_preview.extract, NULL);
+
 	options->read_metadata_in_idle = c_options->read_metadata_in_idle;
 
 	options->star_rating.star = c_options->star_rating.star;
@@ -510,7 +516,8 @@ static void config_window_help_cb(GtkWidget *widget, gpointer data)
 	"GuideOptionsStereo.html",
 	"GuideOptionsBehavior.html",
 	"GuideOptionsToolbar.html",
-	"GuideOptionsToolbar.html"
+	"GuideOptionsToolbar.html",
+	"GuideOptionsAdvanced.html"
 	};
 
 	i = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
@@ -3587,6 +3594,92 @@ static void config_tab_toolbar_status(GtkWidget *notebook)
 	gtk_widget_show(vbox);
 }
 
+/* advanced tab */
+static gint extension_sort_cb(gconstpointer a, gconstpointer b)
+{
+	return g_strcmp0((gchar *)a, (gchar *)b);
+}
+
+static void config_tab_advanced(GtkWidget *notebook)
+{
+	GtkWidget *vbox;
+	GtkWidget *group;
+	GSList *formats_list;
+	GList *extensions_list = NULL;
+	gchar **extensions;
+	GtkWidget *tabcomp;
+	GdkPixbufFormat *fm;
+	gint i;
+	GString *types_string = g_string_new(NULL);
+
+	vbox = scrolled_notebook_page(notebook, _("Advanced"));
+	group = pref_group_new(vbox, FALSE, _("External preview extraction"), GTK_ORIENTATION_VERTICAL);
+
+	pref_checkbox_new_int(group, _("Use external preview extraction -  Requires restart"), options->external_preview.enable, &c_options->external_preview.enable);
+
+	pref_spacer(group, PREF_PAD_GROUP);
+
+	formats_list = gdk_pixbuf_get_formats();
+
+	while (formats_list)
+		{
+		fm = formats_list->data;
+		extensions = gdk_pixbuf_format_get_extensions(fm);
+
+		i = 0;
+		while (extensions[i])
+			{
+			extensions_list = g_list_insert_sorted(extensions_list, g_strdup(extensions[i]), extension_sort_cb);
+			i++;
+			}
+
+		g_strfreev(extensions);
+		formats_list = formats_list->next;
+		}
+
+	while (extensions_list)
+		{
+		if (types_string->len == 0)
+			{
+			types_string = g_string_append(types_string, extensions_list->data);
+			}
+		else
+			{
+			types_string = g_string_append(types_string, ", ");
+			types_string = g_string_append(types_string, extensions_list->data);
+			}
+
+		extensions_list = extensions_list->next;
+		}
+
+	types_string = g_string_prepend(types_string, _("Usable file types:\n"));
+	pref_label_new(group, types_string->str);
+	GtkWidget *types_string_label = gtk_label_new(types_string->str);
+	gtk_label_set_line_wrap(GTK_LABEL(types_string_label), TRUE);
+
+	pref_spacer(group, PREF_PAD_GROUP);
+
+	group = pref_group_new(vbox, FALSE, _("File identification tool"), GTK_ORIENTATION_VERTICAL);
+	external_preview_select_entry = gtk_entry_new();
+	tabcomp = tab_completion_new(&external_preview_select_entry, options->external_preview.select, NULL, NULL, NULL, NULL);
+	tab_completion_add_select_button(external_preview_select_entry, _("Select file identification tool"), FALSE);
+	gtk_box_pack_start(GTK_BOX(group), tabcomp, TRUE, TRUE, 0);
+	gtk_widget_show(tabcomp);
+
+	group = pref_group_new(vbox, FALSE, _("Preview extraction tool"), GTK_ORIENTATION_VERTICAL);
+	external_preview_extract_entry = gtk_entry_new();
+	tabcomp = tab_completion_new(&external_preview_extract_entry, options->external_preview.extract, NULL, NULL, NULL, NULL);
+	tab_completion_add_select_button(external_preview_extract_entry, _("Select preview extraction tool"), FALSE);
+	gtk_box_pack_start(GTK_BOX(group), tabcomp, TRUE, TRUE, 0);
+	gtk_widget_show(tabcomp);
+
+	gtk_widget_show(vbox);
+
+	g_slist_free(formats_list);
+	string_list_free(extensions_list);
+	g_string_free(types_string, TRUE);
+}
+
 /* stereo tab */
 static void config_tab_stereo(GtkWidget *notebook)
 {
@@ -3714,6 +3807,7 @@ static void config_window_create(LayoutWindow *lw)
 	config_tab_behavior(notebook);
 	config_tab_toolbar_main(notebook);
 	config_tab_toolbar_status(notebook);
+	config_tab_advanced(notebook);
 
 	gtk_notebook_set_current_page(GTK_NOTEBOOK(notebook), lw->options.preferences_window.page_number);
 

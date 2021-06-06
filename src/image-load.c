@@ -27,6 +27,7 @@
 #include "image_load_tiff.h"
 #include "image_load_dds.h"
 #include "image_load_djvu.h"
+#include "image_load_external.h"
 #include "image_load_pdf.h"
 #include "image_load_psd.h"
 #include "image_load_heif.h"
@@ -36,6 +37,7 @@
 #include "image_load_j2k.h"
 #include "image_load_libraw.h"
 #include "image_load_svgz.h"
+#include "misc.h"
 
 #include "exif.h"
 #include "filedata.h"
@@ -690,7 +692,31 @@ static void image_loader_setup_loader(ImageLoader *il)
 	gchar *format;
 #endif
 
+	gint external_preview = 1;
+
 	g_mutex_lock(il->data_mutex);
+
+	if (options->external_preview.enable)
+		{
+		gchar *cmd_line;
+		gchar *tilde_filename;
+
+		tilde_filename = expand_tilde(options->external_preview.select);
+
+		cmd_line = g_strdup_printf("\"%s\" \"%s\"" , tilde_filename, il->fd->path);
+
+		external_preview = runcmd(cmd_line);
+		g_free(cmd_line);
+		g_free(tilde_filename);
+		}
+
+	if (external_preview == 0)
+		{
+		DEBUG_1("Using custom external loader");
+		image_loader_backend_set_external(&il->backend);
+		}
+	else
+
 #ifdef HAVE_FFMPEGTHUMBNAILER
 	if (il->fd->format_class == FORMAT_CLASS_VIDEO)
 		{

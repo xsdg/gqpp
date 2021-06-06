@@ -191,6 +191,8 @@ geeqie_SOURCES = \
 	image_load_tiff.h\
 	image_load_dds.c\
 	image_load_dds.h\
+	image_load_external.c\
+	image_load_external.h\
 	image_load_collection.c\
 	image_load_collection.h\
 	image_load_pdf.c\
