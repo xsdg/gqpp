@@ -43,7 +43,7 @@ then
 fi
 
 rm -rf "$target_dir"/AppDir
-mkdir "$target_dir"/Appdir
+mkdir "$target_dir"/AppDir
 
 sudo rm -rf doc/html
 
