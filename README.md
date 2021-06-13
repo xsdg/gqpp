@@ -103,7 +103,15 @@ Animated GIFs are supported.
 # <a name="downloading"></a>
 ## Downloading
 
-Geeqie is available as a package with some distributions, however Geeqie is stable and you may compile the latest version from sources.
+Geeqie is available:  
+
+* as a package with some distributions.
+
+* as a [flatpak](https://flathub.org/apps/details/org.geeqie.Geeqie) from the [Flathub site](https://flathub.org/home).
+
+* as an [AppImage](https://cclark.uk/Geeqie).
+
+However Geeqie is stable and you may compile the latest version from sources.
 
 There are two scripts which will download and compile the sources for you.
 
@@ -121,8 +129,6 @@ If you wish to compile the sources yourself you may download the latest version 
 Either: `git clone git://www.geeqie.org/geeqie.git`
 
 Or: `git clone http://www.geeqie.org/git/geeqie.git`
-
-Also [Geeqie is available as a flatpak](https://flathub.org/apps/details/org.geeqie.Geeqie) from the [Flathub site](https://flathub.org/home).
 
 ## Manual Installation
 

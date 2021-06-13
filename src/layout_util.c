@@ -602,7 +602,7 @@ static void layout_menu_write_rotate(GtkToggleAction *action, gpointer data, gbo
 			}
 
 		rotation = g_strdup_printf("%d", fd_n->user_orientation);
-		command = g_strconcat(GQ_BIN_DIR, "/geeqie-rotate -r ", rotation,
+		command = g_strconcat(gq_bin_dir, "/geeqie-rotate -r ", rotation,
 								keep_date ? " -t \"" : " \"", fd_n->path, "\"", NULL);
 		cmdstatus = runcmd(command);
 		run_result = WEXITSTATUS(cmdstatus);

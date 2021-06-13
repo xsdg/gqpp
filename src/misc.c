@@ -178,7 +178,7 @@ gchar *decode_geo_parameters(const gchar *input_text)
 	gchar *message;
 	gchar *dir;
 
-	message = decode_geo_script(GQ_BIN_DIR, input_text);
+	message = decode_geo_script(gq_bin_dir, input_text);
 	if (strstr(message, "Error"))
 		{
 		g_free(message);

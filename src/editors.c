@@ -458,7 +458,7 @@ GList *editor_get_desktop_files(void)
 	else
 		xdg_data_dirs = g_strdup("/usr/share");
 
-	all_dirs = g_strconcat(get_rc_dir(), ":", GQ_APP_DIR, ":", xdg_data_home_get(), ":", xdg_data_dirs, NULL);
+	all_dirs = g_strconcat(get_rc_dir(), ":", gq_app_dir, ":", xdg_data_home_get(), ":", xdg_data_dirs, NULL);
 
 	g_free(xdg_data_dirs);
 

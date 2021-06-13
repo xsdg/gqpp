@@ -124,8 +124,6 @@
 #include "debug.h"
 #include "options.h"
 
-#define DESKTOP_FILE_TEMPLATE GQ_APP_DIR "/template.desktop"
-
 #define TIMEZONE_DATABASE GQ_WEBSITE"downloads/timezone21.bin"
 
 #define HELP_SEARCH_ENGINE "https://duckduckgo.com/?q=site:geeqie.org/help "
@@ -145,6 +143,14 @@
  */
 
 extern gboolean thumb_format_changed;
+
+extern gchar *gq_prefix;
+extern gchar *gq_localedir;
+extern gchar *gq_helpdir;
+extern gchar *gq_htmldir;
+extern gchar *gq_app_dir;
+extern gchar *gq_bin_dir;
+extern gchar *desktop_file_template;
 
 void keyboard_scroll_calc(gint *x, gint *y, GdkEventKey *event);
 gint key_press_cb(GtkWidget *widget, GdkEventKey *event, gpointer data);

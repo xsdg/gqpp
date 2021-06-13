@@ -246,7 +246,7 @@ void help_window_show(const gchar *key)
 
 	if (key && strstr(key, ".html") != 0)
 		{
-		path = g_build_filename(GQ_HTMLDIR, key, NULL);
+		path = g_build_filename(gq_htmldir, key, NULL);
 		if (!isfile(path))
 			{
 			if (g_strcmp0(key, "index.html") == 0)
@@ -272,18 +272,18 @@ void help_window_show(const gchar *key)
 
 	if (!strcmp(key, "release_notes"))
 		{
-		path = g_build_filename(GQ_HELPDIR, "README.html", NULL);
+		path = g_build_filename(gq_helpdir, "README.html", NULL);
 		if (isfile(path))
 			{
 			g_free(path);
-			path = g_build_filename("file://", GQ_HELPDIR, "README.html", NULL);
+			path = g_build_filename("file://", gq_helpdir, "README.html", NULL);
 			help_browser_run(path);
 			g_free(path);
 			}
 		else
 			{
 			g_free(path);
-			path = g_build_filename(GQ_HELPDIR, "README.md", NULL);
+			path = g_build_filename(gq_helpdir, "README.md", NULL);
 			help_window = help_window_new(_("Help"), "help", path, key);
 			g_free(path);
 
@@ -293,18 +293,18 @@ void help_window_show(const gchar *key)
 		}
 	else
 		{
-		path = g_build_filename(GQ_HELPDIR, "ChangeLog.html", NULL);
+		path = g_build_filename(gq_helpdir, "ChangeLog.html", NULL);
 		if (isfile(path))
 			{
 			g_free(path);
-			path = g_build_filename("file://", GQ_HELPDIR, "ChangeLog.html", NULL);
+			path = g_build_filename("file://", gq_helpdir, "ChangeLog.html", NULL);
 			help_browser_run(path);
 			g_free(path);
 			}
 		else
 			{
 			g_free(path);
-			path = g_build_filename(GQ_HELPDIR, "ChangeLog", NULL);
+			path = g_build_filename(gq_helpdir, "ChangeLog", NULL);
 			help_window = help_window_new(_("Help"), "help", path, key);
 			g_free(path);
 

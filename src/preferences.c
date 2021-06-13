@@ -3907,7 +3907,7 @@ void show_about_window(LayoutWindow *lw)
 	g_free(basename);
 
 	authors[0] = NULL;
-	path = g_build_filename(GQ_HELPDIR, "AUTHORS", NULL);
+	path = g_build_filename(gq_helpdir, "AUTHORS", NULL);
 	fp = fopen(path, "r");
 	if (fp)
 		{

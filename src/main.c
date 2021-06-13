@@ -69,6 +69,14 @@
 gboolean thumb_format_changed = FALSE;
 static RemoteConnection *remote_connection = NULL;
 
+gchar *gq_prefix;
+gchar *gq_localedir;
+gchar *gq_helpdir;
+gchar *gq_htmldir;
+gchar *gq_app_dir;
+gchar *gq_bin_dir;
+gchar *desktop_file_template;
+
 /*
  *-----------------------------------------------------------------------------
  * keyboard functions
@@ -609,7 +617,7 @@ static gboolean parse_command_line_for_clutter_option(gint argc, gchar *argv[])
 static void setup_env_path(void)
 {
 	const gchar *old_path = g_getenv("PATH");
-	gchar *path = g_strconcat(GQ_BIN_DIR, ":", old_path, NULL);
+	gchar *path = g_strconcat(gq_bin_dir, ":", old_path, NULL);
         g_setenv("PATH", path, TRUE);
 	g_free(path);
 }
@@ -921,6 +929,46 @@ static void setup_sigbus_handler(void)
 #endif
 }
 
+/**
+ * @brief Set up the application paths
+ * 
+ * This function is required for use of AppImages. AppImages are
+ * relocatable, and therefore cannot use fixed paths to various components.
+ * These paths were originally #defines created during compilation.
+ * They are now variables, all defined relative to one level above the
+ * directory that the executable is run from.
+ */
+static void create_application_paths()
+{
+	gchar buf[1024];
+	gchar *dirname;
+	gchar *basename;
+	gchar *tmp;
+
+	memset(buf, 0, sizeof(buf));
+	if (readlink("/proc/self/exe", buf, sizeof(buf) - 1) < 0)
+		{
+		/* There was an error. Perhaps the path does not exist
+		 * or the buffer is not big enough. */
+		log_printf("Can't get path from /proc/self/exe");
+		exit(1);
+		}
+
+	dirname = g_path_get_dirname(buf); // default is /usr/bin/
+	gq_prefix = g_path_get_dirname(dirname);
+
+	gq_localedir = g_build_filename(gq_prefix, "share", "locale", NULL);
+	tmp = g_build_filename(gq_prefix, "share", "doc", NULL);
+	gq_helpdir = g_strconcat(tmp, G_DIR_SEPARATOR_S, "geeqie-", VERSION, NULL);
+	gq_htmldir = g_build_filename(gq_helpdir, "html", NULL);
+	gq_app_dir = g_build_filename(gq_prefix, "share", "geeqie", NULL);
+	gq_bin_dir = g_build_filename(gq_prefix, "lib", "geeqie", NULL);
+	desktop_file_template = g_build_filename(gq_app_dir, "template.desktop", NULL);
+
+	g_free(tmp);
+	g_free(dirname);
+}
+
 gint main(gint argc, gchar *argv[])
 {
 	CollectionData *first_collection = NULL;
@@ -942,11 +990,13 @@ gint main(gint argc, gchar *argv[])
 	/* init execution time counter (debug only) */
 	init_exec_time();
 
+	create_application_paths();
+
 	/* setup locale, i18n */
 	setlocale(LC_ALL, "");
 
 #ifdef ENABLE_NLS
-	bindtextdomain(PACKAGE, GQ_LOCALEDIR);
+	bindtextdomain(PACKAGE, gq_localedir);
 	bind_textdomain_codeset(PACKAGE, "UTF-8");
 	textdomain(PACKAGE);
 #endif

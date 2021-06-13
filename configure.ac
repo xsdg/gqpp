@@ -376,7 +376,7 @@ AC_ARG_ENABLE([raw],
     [libraw=$enableval], [libraw=auto])
 
 if test "x${libraw}" != "xno"; then
-  PKG_CHECK_MODULES(RAW, [libraw >= 0.20],
+  PKG_CHECK_MODULES(RAW, [libraw >= 0.19.5],
     [
       HAVE_RAW=yes
       AC_DEFINE(HAVE_RAW, 1, [define to enable libraw support])

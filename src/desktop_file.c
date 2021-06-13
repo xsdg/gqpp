@@ -381,7 +381,7 @@ static void editor_list_window_edit_cb(GtkWidget *widget, gpointer data)
 
 static void editor_list_window_new_cb(GtkWidget *widget, gpointer data)
 {
-	editor_window_new(DESKTOP_FILE_TEMPLATE, _("new.desktop"));
+	editor_window_new(desktop_file_template, _("new.desktop"));
 }
 
 static void editor_list_window_help_cb(GtkWidget *widget, gpointer data)
