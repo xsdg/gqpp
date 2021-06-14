@@ -72,6 +72,7 @@
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideOptionsMain.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideOptionsAdditional.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReference.xml" />
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideOtherSoftware.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideFaq.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideLicence.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideCredits.xml" />

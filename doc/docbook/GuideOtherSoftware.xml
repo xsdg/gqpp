@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<chapter id="GuideOtherSoftware">
+  <title id="titleGuideOtherSoftware">Other Software</title>
+  <para>This is a list of other software that users might find useful in conjunction with Geeqie.</para>
+  <section id="Entangle">
+    <title>Entangle</title>
+    <para>
+      Tethered photography:
+      <ulink url="https://entangle-photo.org/">https://entangle-photo.org/</ulink>
+    </para>
+  </section>
+  <section id="Photini">
+    <title>Photini</title>
+    <para>
+      Digital photograph metadata editor:
+      <ulink url="https://photini.readthedocs.io/en/latest/">https://photini.readthedocs.io/en/latest/</ulink>
+    </para>
+  </section>
+</chapter>
