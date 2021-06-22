@@ -42,6 +42,7 @@
 #include "layout.h"
 #include "layout_image.h"
 #include "layout_util.h"
+#include "misc.h"
 #include "options.h"
 #include "remote.h"
 #include "secure_save.h"
@@ -1035,6 +1036,7 @@ gint main(gint argc, gchar *argv[])
 		if (gtk_clutter_init(&argc, &argv) != CLUTTER_INIT_SUCCESS)
 			{
 			log_printf("Can't initialize clutter-gtk.\nStart Geeqie with the option \"geeqie --disable-clutter\"");
+			runcmd("zenity --error --title=\"Geeqie\" --text \"Can't initialize clutter-gtk.\n\nStart Geeqie with the option:\n geeqie --disable-clutter\" --width=300");
 			exit(1);
 			}
 		}
