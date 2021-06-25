@@ -660,6 +660,10 @@ void layout_status_update_progress(LayoutWindow *lw, gdouble val, const gchar *t
 void layout_status_update_info(LayoutWindow *lw, const gchar *text)
 {
 	gchar *buf = NULL;
+	gint hrs;
+	gint min;
+	gdouble sec;
+	GString *delay;
 
 	if (!layout_valid(&lw)) return;
 
@@ -674,22 +678,40 @@ void layout_status_update_info(LayoutWindow *lw, const gchar *text)
 			{
 			guint s;
 			gint64 s_bytes = 0;
-			const gchar *ss;
+			gchar *ss;
 
 			if (layout_image_slideshow_active(lw))
 				{
+
 				if (!layout_image_slideshow_paused(lw))
 					{
-					ss = _(" Slideshow");
+					delay = g_string_new(_(" Slideshow ["));
 					}
 				else
 					{
-					ss = _(" Paused");
+					delay = g_string_new(_(" Paused ["));
 					}
+				hrs = options->slideshow.delay / (36000);
+				min = (options->slideshow.delay -(36000 * hrs))/600;
+				sec = (gdouble)(options->slideshow.delay -(36000 * hrs)-(min * 600)) / 10;
+
+				if (hrs > 0)
+					{
+					g_string_append_printf(delay, "%dh ", hrs);
+					}
+				if (min > 0)
+					{
+					g_string_append_printf(delay, "%dm ", min);
+					}
+				g_string_append_printf(delay, "%.1fs]", sec);
+
+				ss = g_strdup(delay->str);
+
+				g_string_free(delay, TRUE);
 				}
 			else
 				{
-				ss = "";
+				ss = g_strdup("");
 				}
 
 			s = layout_selection_count(lw, &s_bytes);
@@ -703,16 +725,19 @@ void layout_status_update_info(LayoutWindow *lw, const gchar *text)
 				buf = g_strdup_printf(_("%s, %d files (%s, %d)%s"), b, n, sb, s, ss);
 				g_free(b);
 				g_free(sb);
+				g_free(ss);
 				}
 			else if (n > 0)
 				{
 				gchar *b = text_from_size_abrev(n_bytes);
 				buf = g_strdup_printf(_("%s, %d files%s"), b, n, ss);
 				g_free(b);
+				g_free(ss);
 				}
 			else
 				{
 				buf = g_strdup_printf(_("%d files%s"), n, ss);
+				g_free(ss);
 				}
 
 			text = buf;
@@ -879,7 +904,7 @@ static void layout_status_setup(LayoutWindow *lw, GtkWidget *box, gboolean small
 
 	lw->info_status = layout_status_label(NULL, lw->info_box, TRUE, 0, (!small_format));
 	DEBUG_NAME(lw->info_status);
-	gtk_widget_set_tooltip_text(GTK_WIDGET(lw->info_status), _("Folder contents (files selected)"));
+	gtk_widget_set_tooltip_text(GTK_WIDGET(lw->info_status), _("Folder contents (files selected)\nSlideshow [time interval]"));
 
 	if (small_format)
 		{

@@ -767,7 +767,7 @@
             <entry>
               <code>
                 Ctrl +
-                <keycap>Keypad +</keycap>
+                <keycap>=</keycap>
               </code>
             </entry>
             <entry />
@@ -777,7 +777,7 @@
             <entry>
               <code>
                 Ctrl +
-                <keycap>Keypad -</keycap>
+                <keycap>-</keycap>
               </code>
             </entry>
             <entry />
