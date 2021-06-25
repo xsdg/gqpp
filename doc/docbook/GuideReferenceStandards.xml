@@ -11,7 +11,7 @@
   </para>
   <para>
     XMP:
-    <ulink url="http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart3.pdf" />
+    <ulink url="https://wwwimages2.adobe.com/content/dam/acom/en/devnet/xmp/pdfs/XMP%20SDK%20Release%20cc-2016-08/XMPSpecificationPart3.pdf" />
   </para>
   <para>
     IPTC4XMP:
@@ -19,7 +19,7 @@
   </para>
   <para>
     Pango mark up:
-    <ulink url="https://developer.gnome.org/pango/stable/PangoMarkupFormat.html" />
+    <ulink url="https://developer.gnome.org/pygtk/stable/pango-markup-language.html" />
   </para>
   <para>
     Thumbnails:
