@@ -22,10 +22,12 @@ After compiling the sources, carry out the following actions when necessary:
 
 * Generate a new AppImage (note that this should be run on a **20.04 system**)  
 ```
-./scripts/generate-appimage.sh <location of GeeqieWeb/appimages folder>
+./scripts/generate-appimage.sh <location of local appimages folder>
 ```
-* Copy Help html files to ```<location of GeeqieWeb/help folder>```
-* Copy ```geeqie.desktop``` to ```<location of GeeqieWeb/ folder>```  
-* Copy ```org.geeqie.Geeqie.appdata.xml``` to ```<location of GeeqieWeb/ folder>```  
-* Upload to GeeqieWeb  
+* Upload AppImage to web AppImages location
+* Edit ```<location of local geeqie.github.io>/AppImage/appimages.txt``` to include latest AppImage at the *top* of the list
+* Copy Help html files to ```<location of local geeqie.github.io>/help```
+* Copy ```geeqie.desktop``` to ```<location of local geeqie.github.io>/```
+* Copy ```org.geeqie.Geeqie.appdata.xml``` to ```<location of local geeqie.github.io>/```
+* Push changes to ```geeqie.github.io```
 
