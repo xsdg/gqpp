@@ -160,7 +160,7 @@ static gboolean tree_edit_by_path_idle_cb(gpointer data)
 		w = MAX(w - sx, sw);
 		}
 
-	gdk_window_get_origin(gtk_tree_view_get_bin_window(ted->tree), &wx, &wy);
+	gdk_window_get_origin(gtk_widget_get_window(gtk_widget_get_parent(GTK_WIDGET(ted->tree))), &wx, &wy);
 
 	x += wx - 2; /* the -val is to 'fix' alignment of entry position */
 	y += wy - 2;
@@ -231,7 +231,7 @@ gboolean tree_edit_by_path(GtkTreeView *tree, GtkTreePath *tpath, gint column, c
 	ted->column = tcolumn;
 	ted->cell = cell;
 
-	gtk_tree_view_scroll_to_cell(ted->tree, ted->path, ted->column, FALSE, 0.0, 0.0);
+	gtk_tree_view_scroll_to_cell(ted->tree, ted->path, ted->column, TRUE, 0.5, 0.0);
 
 	/* create the window */
 
