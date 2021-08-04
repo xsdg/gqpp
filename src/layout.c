@@ -2598,6 +2598,7 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 	GdkGeometry hint;
 	GdkWindowHints hint_mask;
 	Histogram *histogram;
+	gchar *default_path;
 
 	DEBUG_1("%s layout_new: start", get_exec_time());
 	lw = g_new0(LayoutWindow, 1);
@@ -2625,11 +2626,16 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 
 	/* divider positions */
 
+	default_path = g_build_filename(get_rc_dir(), DEFAULT_WINDOW_LAYOUT, NULL);
+
 	if (!options->save_window_positions)
 		{
-		lw->options.main_window.hdivider_pos = MAIN_WINDOW_DIV_HPOS;
-		lw->options.main_window.vdivider_pos = MAIN_WINDOW_DIV_VPOS;
-		lw->options.float_window.vdivider_pos = MAIN_WINDOW_DIV_VPOS;
+		if (!isfile(default_path))
+			{
+			lw->options.main_window.hdivider_pos = MAIN_WINDOW_DIV_HPOS;
+			lw->options.main_window.vdivider_pos = MAIN_WINDOW_DIV_VPOS;
+			lw->options.float_window.vdivider_pos = MAIN_WINDOW_DIV_VPOS;
+			}
 		}
 
 	/* window */
@@ -2657,7 +2663,7 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 	gtk_window_set_geometry_hints(GTK_WINDOW(lw->window), NULL, &hint,
 				      GDK_HINT_MIN_SIZE | GDK_HINT_BASE_SIZE | hint_mask);
 
-	if (options->save_window_positions)
+	if (options->save_window_positions || isfile(default_path))
 		{
 		gtk_window_set_default_size(GTK_WINDOW(lw->window), lw->options.main_window.w, lw->options.main_window.h);
 //		if (!layout_window_list)
@@ -2673,6 +2679,7 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 		gtk_window_set_default_size(GTK_WINDOW(lw->window), MAINWINDOW_DEF_WIDTH, MAINWINDOW_DEF_HEIGHT);
 		}
 
+	g_free(default_path);
 	g_signal_connect(G_OBJECT(lw->window), "delete_event",
 			 G_CALLBACK(layout_delete_cb), lw);
 
@@ -3039,6 +3046,32 @@ void layout_update_from_config(LayoutWindow *lw, const gchar **attribute_names, 
 	layout_apply_options(lw, &lop);
 
 	free_layout_options_content(&lop);
+}
+
+LayoutWindow *layout_new_from_default()
+{
+	LayoutWindow *lw;
+	gchar *path = NULL;
+	GList *work;
+	gboolean success;
+	gchar *default_path;
+
+	default_path = g_build_filename(get_rc_dir(), DEFAULT_WINDOW_LAYOUT, NULL);
+	success = load_config_from_file(default_path, TRUE);
+	g_free(default_path);
+
+	if (success)
+		{
+		work = g_list_last(layout_window_list);
+		lw = work->data;
+		g_free(lw->options.id);
+		lw->options.id = g_strdup(layout_get_unique_id());
+		}
+	else
+		{
+		layout_new_from_config(NULL, NULL, TRUE);
+		}
+	return lw;
 }
 
 

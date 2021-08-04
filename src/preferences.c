@@ -41,6 +41,7 @@
 #include "metadata.h"
 #include "osd.h"
 #include "pixbuf_util.h"
+#include "rcfile.h"
 #include "slideshow.h"
 #include "toolbar.h"
 #include "trash.h"
@@ -2311,11 +2312,32 @@ static void config_tab_image(GtkWidget *notebook)
 }
 
 /* windows tab */
+
+static void save_default_window_layout_cb(GtkWidget *widget, gpointer data)
+{
+	LayoutWindow *lw = NULL;
+	gchar *default_path;
+	gchar *tmp_id;
+
+	/* Get current lw */
+	layout_valid(&lw);
+
+	tmp_id = lw->options.id;
+	lw->options.id = g_strdup("lw_default");
+
+	default_path = g_build_filename(get_rc_dir(), DEFAULT_WINDOW_LAYOUT, NULL);
+	save_default_layout_options_to_file(default_path, options, lw);
+	g_free(lw->options.id);
+	lw->options.id = tmp_id;
+	g_free(default_path);
+}
+
 static void config_tab_windows(GtkWidget *notebook)
 {
 	GtkWidget *hbox;
 	GtkWidget *vbox;
 	GtkWidget *group;
+	GtkWidget *subgroup;
 	GtkWidget *button;
 	GtkWidget *ct_button;
 	GtkWidget *spin;
@@ -2324,7 +2346,7 @@ static void config_tab_windows(GtkWidget *notebook)
 
 	group = pref_group_new(vbox, FALSE, _("State"), GTK_ORIENTATION_VERTICAL);
 
-	ct_button = pref_checkbox_new_int(group, _("Remember window positions"),
+	ct_button = pref_checkbox_new_int(group, _("Remember session"),
 					  options->save_window_positions, &c_options->save_window_positions);
 
 	button = pref_checkbox_new_int(group, _("Use saved window positions also for new windows"),
@@ -2343,6 +2365,10 @@ static void config_tab_windows(GtkWidget *notebook)
 
 	pref_checkbox_new_int(group, _("Show window IDs"),
 			      options->show_window_ids, &c_options->show_window_ids);
+
+	subgroup = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
+	pref_label_new(subgroup, _("Use current layout for default: "));
+	button = pref_button_new(subgroup, NULL, _("Set"), FALSE, G_CALLBACK(save_default_window_layout_cb), NULL);
 
 	group = pref_group_new(vbox, FALSE, _("Size"), GTK_ORIENTATION_VERTICAL);
 

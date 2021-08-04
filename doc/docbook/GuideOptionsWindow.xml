@@ -7,7 +7,7 @@
     <variablelist>
       <varlistentry>
         <term>
-          <guilabel>Remember window positions</guilabel>
+          <guilabel>Remember session</guilabel>
         </term>
         <listitem>
           <para>This will maintain windows size and position between Geeqie sessions.</para>
@@ -92,6 +92,18 @@
             <link linkend="Remotecommands">
               <programlisting>--remote --id:&lt;ID&gt;</programlisting>
             </link>
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel>Use current layout for default</guilabel>
+        </term>
+        <listitem>
+          <para>
+            Press the <code>Set</code> button to store the current window layout for use as the default for all new windows.
           </para>
         </listitem>
       </varlistentry>

@@ -73,7 +73,6 @@ void layout_bars_close(LayoutWindow *lw);
 void layout_exif_window_new(LayoutWindow *lw);
 
 gboolean is_help_key(GdkEventKey *event);
-LayoutWindow *layout_menu_new_window(GtkAction *action, gpointer data);
 void layout_menu_close_cb(GtkAction *action, gpointer data);
 GtkWidget *layout_actions_menu_tool_bar(LayoutWindow *lw);
 #endif

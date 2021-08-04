@@ -221,31 +221,6 @@ static void layout_exit_fullscreen(LayoutWindow *lw)
 	layout_image_full_screen_stop(lw);
 }
 
-LayoutWindow *layout_menu_new_window(GtkAction *action, gpointer data)
-{
-	LayoutWindow *lw = data;
-	LayoutWindow *nw;
-	LayoutOptions lop;
-	gboolean tmp = options->save_window_positions;
-
-	if (!options->use_saved_window_positions_for_new_windows)
-		options->save_window_positions = FALSE; /* let the windowmanager decide for the first time */
-
-	layout_exit_fullscreen(lw);
-
-	layout_sync_options_with_current_state(lw);
-	lop = lw->options; /* we can copy it directly, no strings are modified */
-
-	lop.id = NULL; /* get a new id */
-	nw = layout_new(NULL, &lop);
-	layout_sort_set(nw, options->file_sort.method, options->file_sort.ascending);
-	layout_set_fd(nw, lw->dir_fd);
-	options->save_window_positions = tmp;
-
-	return nw;
-}
-
-
 static void clear_marks_cancel_cb(GenericDialog *gd, gpointer data)
 {
 	generic_dialog_close(gd);
@@ -2233,7 +2208,7 @@ static void window_delete_ok_cb(GenericDialog *gd, gpointer data)
 
 static void layout_menu_window_default_cb(GtkWidget *widget, gpointer data)
 {
-	layout_new_from_config(NULL, NULL, TRUE);
+	layout_new_from_default();
 }
 
 static void layout_menu_windows_menu_cb(GtkWidget *widget, gpointer data)

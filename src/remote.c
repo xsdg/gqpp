@@ -460,7 +460,8 @@ static void gr_new_window(const gchar *text, GIOChannel *channel, gpointer data)
 
 	if (!layout_valid(&lw)) return;
 
-	lw_id = layout_menu_new_window(NULL, lw);
+	lw_id = layout_new_from_default();
+
 	layout_set_path(lw_id, pwd);
 }
 
