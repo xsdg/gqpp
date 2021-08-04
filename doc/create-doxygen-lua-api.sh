@@ -36,6 +36,8 @@ export PROJECT="Geeqie"
 export VERSION=$(git tag --list v[1-9]* | tail -1)
 export SRCDIR="$PWD/.."
 export DOCDIR="$PWD/html/lua-api"
+export INLINE_SOURCES=NO
+export STRIP_CODE_COMMENTS=YES
 
 TMPFILE=$(mktemp) || exit 1
 

@@ -67,7 +67,7 @@
         option.
       </para>
       <para>
-        <guilabel>Write altered image orientation to the metadata not set</guilabel>
+        <emphasis role="bold">Write altered image orientation to the metadata - not set:</emphasis>
         <para />
         If you change the orientation of an image using any of the available commands, the image will always be displayed in the modified orientation. This new orientation is stored in temporary data structures associated with each image file. When Geeqie closes, these changes will be lost.
       </para>
@@ -80,7 +80,7 @@
         is selected, any images which have Exif orientation data will also be shown rotated. However, any rotation you have selected manually will always over-ride the embedded Exif rotation value.
       </para>
       <para>
-        <guilabel>Write altered image orientation to the metadata set</guilabel>
+        <emphasis role="bold">Write altered image orientation to the metadata - set:</emphasis>
         <para />
         <para>If you change the orientation of an image using any of the available commands, this new orientation is stored in a metadata write queue.</para>
         <para>

@@ -13,8 +13,6 @@
 
 This is Geeqie, a successor of GQview.
 
-[![Build Status](https://api.travis-ci.org/BestImageViewer/geeqie.svg?branch=master)](https://travis-ci.org/BestImageViewer/geeqie)
-
 Geeqie has been forked from GQview project, because it was not possible to
 contact the GQview author and only maintainer.
 
@@ -25,6 +23,8 @@ Geeqie is currently considered stable.
 Please send any questions, problems or suggestions to the [mailing list](mailto:geeqie@freelists.org) or
 open an issue on [Geeqie at GitHub](https://github.com/BestImageViewer/geeqie/issues).
 
+(Unless you first subscribe to the mailing list, you will not receive automated responses)
+
 Subscribe to the mailing list [here](https://www.freelists.org/list/geeqie).
 
 The project website is <http://www.geeqie.org/> and you will find the latest sources in the
@@ -32,14 +32,14 @@ The project website is <http://www.geeqie.org/> and you will find the latest sou
 
 # README contents:
 
-* Description / Features
+* Features
 * Downloading
 * Installation
-* Notes and changes for this release
+* Notes and changes for the latest release
 * Requirements
 
 
-## Description / Features
+## Features
 
 Geeqie is a graphics file viewer. Basic features:
 
@@ -66,7 +66,7 @@ Geeqie is a graphics file viewer. Basic features:
 
 * Collections.
 
-* support for stereoscopic images
+* Support for stereoscopic images
     * input: side-by-side (JPS) and MPO format
     * output: single image, anaglyph, SBS, mirror, SBS half size (3DTV)
 
@@ -105,11 +105,13 @@ Animated GIFs are supported.
 
 Geeqie is available:  
 
-* as a package with some distributions.
+* as a package for Linux and BSD systems (See the [project web page](https://www.geeqie.org)).
 
 * as a [flatpak](https://flathub.org/apps/details/org.geeqie.Geeqie) from the [Flathub site](https://flathub.org/home).
 
-* as an [AppImage](https://cclark.uk/Geeqie).
+* as an [AppImage](https://www.geeqie.org/AppImage/index.html) (Generated from the latest sources).
+
+* as a [Homebrew](https://formulae.brew.sh/formula/geeqie) package for macOS.
 
 However Geeqie is stable and you may compile the latest version from sources.
 
