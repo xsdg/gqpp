@@ -2331,6 +2331,37 @@ static void save_default_window_layout_cb(GtkWidget *widget, gpointer data)
 	g_free(default_path);
 }
 
+#if GTK_CHECK_VERSION(3,22,0)
+static gboolean popover_cb(gpointer data)
+{
+	GtkPopover *popover = data;
+
+	gtk_popover_popdown(popover);
+
+	return FALSE;
+}
+
+static void default_layout_changed_cb(GtkWidget *button, GtkPopover *popover)
+{
+	gtk_popover_popup(popover);
+
+	g_timeout_add(2000, popover_cb, popover);
+}
+
+static GtkWidget *create_popover(GtkWidget *parent, GtkWidget *child, GtkPositionType pos)
+{
+	GtkWidget *popover;
+
+	popover = gtk_popover_new(parent);
+	gtk_popover_set_position(GTK_POPOVER (popover), pos);
+	gtk_container_add (GTK_CONTAINER(popover), child);
+	gtk_container_set_border_width(GTK_CONTAINER (popover), 6);
+	gtk_widget_show (child);
+
+	return popover;
+}
+#endif
+
 static void config_tab_windows(GtkWidget *notebook)
 {
 	GtkWidget *hbox;
@@ -2368,6 +2399,14 @@ static void config_tab_windows(GtkWidget *notebook)
 	subgroup = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 	pref_label_new(subgroup, _("Use current layout for default: "));
 	button = pref_button_new(subgroup, NULL, _("Set"), FALSE, G_CALLBACK(save_default_window_layout_cb), NULL);
+
+#if GTK_CHECK_VERSION(3,22,0)
+	GtkWidget *popover;
+
+	popover = create_popover(button, gtk_label_new(_("Current window layout\nhas been set as default")), GTK_POS_TOP);
+	gtk_popover_set_modal(GTK_POPOVER (popover), FALSE);
+	g_signal_connect(button, "clicked", G_CALLBACK(default_layout_changed_cb), popover);
+#endif
 
 	group = pref_group_new(vbox, FALSE, _("Size"), GTK_ORIENTATION_VERTICAL);
 
