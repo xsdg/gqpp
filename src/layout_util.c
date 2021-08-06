@@ -950,23 +950,6 @@ static void layout_menu_histogram_cb(GtkToggleAction *action, gpointer data)
 		}
 }
 
-static void layout_menu_guidelines_cb(GtkToggleAction *action, gpointer data)
-{
-	LayoutWindow *lw = data;
-
-	if (gtk_toggle_action_get_active(action))
-		{
-		image_osd_set(lw->image, OSD_SHOW_INFO | OSD_SHOW_STATUS | OSD_SHOW_GUIDELINES);
-		layout_util_sync_views(lw);
-		}
-	else
-		{
-		OsdShowFlags flags = image_osd_get(lw->image);
-		if (flags & OSD_SHOW_GUIDELINES)
-			image_osd_set(lw->image, OSD_SHOW_NOTHING);
-		}
-}
-
 static void layout_menu_animate_cb(GtkToggleAction *action, gpointer data)
 {
 	LayoutWindow *lw = data;
@@ -1289,7 +1272,8 @@ static void layout_menu_kbd_map_cb(GtkAction *action, gpointer data)
 	GIOChannel *channel;
 	char **pre_key, **post_key;
 	char *key_name, *converted_line;
-	int keymap_index, index;
+	int keymap_index;
+	guint index;
 
 	fd = g_file_open_tmp("geeqie_keymap_XXXXXX.svg", &tmp_file, &error);
 	if (error)
@@ -2572,7 +2556,6 @@ static GtkToggleActionEntry menu_toggle_entries[] = {
   { "Grayscale",	PIXBUF_INLINE_ICON_GRAYSCALE,	N_("Toggle _grayscale"),	"<shift>G",		N_("Toggle grayscale"),		CB(layout_menu_alter_desaturate_cb), FALSE},
   { "ImageOverlay",	NULL,			N_("Image _Overlay"),			NULL,			N_("Image Overlay"),			CB(layout_menu_overlay_cb),	 FALSE },
   { "ImageHistogram",	NULL,			N_("_Show Histogram"),			NULL,			N_("Show Histogram"),			CB(layout_menu_histogram_cb),	 FALSE },
-  { "ImageGuidelines",	PIXBUF_INLINE_ICON_GUIDELINES,		N_("_Show Guidelines"),			NULL,		N_("Show Guidelines"),			CB(layout_menu_guidelines_cb),	 FALSE },
   { "RectangularSelection",	PIXBUF_INLINE_ICON_SELECT_RECTANGLE,	N_("Rectangular Selection"),			"<alt>R",			N_("Rectangular Selection"),			CB(layout_menu_rectangular_selection_cb),	 FALSE },
   { "Animate",	NULL,	N_("GIF _animation"),		"A",			N_("Toggle GIF animation"),			CB(layout_menu_animate_cb),	 FALSE  },
   { "ExifRotate",	GTK_STOCK_ORIENTATION_PORTRAIT,			N_("_Exif rotate"),  		"<alt>X",		N_("Exif rotate"),			CB(layout_menu_exif_rotate_cb), FALSE },
@@ -2824,7 +2807,6 @@ static const gchar *menu_ui_description =
 "      </menu>"
 "      <menu action='OverlayMenu'>"
 "        <menuitem action='ImageOverlay'/>"
-"        <menuitem action='ImageGuidelines'/>"
 "        <menuitem action='ImageHistogram'/>"
 "        <menuitem action='ImageOverlayCycle'/>"
 "        <separator/>"
@@ -3767,9 +3749,6 @@ static void layout_util_sync_views(LayoutWindow *lw)
 
 	action = gtk_action_group_get_action(lw->action_group, "ImageHistogram");
 	gtk_toggle_action_set_active(GTK_TOGGLE_ACTION(action), osd_flags & OSD_SHOW_HISTOGRAM);
-
-	action = gtk_action_group_get_action(lw->action_group, "ImageGuidelines");
-	gtk_toggle_action_set_active(GTK_TOGGLE_ACTION(action), osd_flags & OSD_SHOW_GUIDELINES);
 
 	action = gtk_action_group_get_action(lw->action_group, "ExifRotate");
 	gtk_toggle_action_set_active(GTK_TOGGLE_ACTION(action), options->image.exif_rotate_enable);

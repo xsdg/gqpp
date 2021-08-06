@@ -54,7 +54,6 @@ gboolean pixbuf_scale_aspect(gint req_w, gint req_h, gint old_w, gint old_h, gin
 #define PIXBUF_INLINE_ICON_CONFIG	"icon_config"
 #define PIXBUF_INLINE_ICON_TOOLS	"icon_tools"
 #define PIXBUF_INLINE_ICON_VIEW		"icon_view"
-#define PIXBUF_INLINE_ICON_GUIDELINES	"icon_guidelines"
 #define PIXBUF_INLINE_ICON_PANORAMA		"icon_panorama"
 #define PIXBUF_INLINE_ICON_MAINTENANCE	"icon_maintenance"
 #define PIXBUF_INLINE_ICON_ZOOMFILLHOR	"icon_zoomfillhor"

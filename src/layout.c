@@ -2497,9 +2497,6 @@ void save_layout(LayoutWindow *lw)
 
 void layout_close(LayoutWindow *lw)
 {
-	GList *list;
-	LayoutWindow *tmp_lw;
-
 	if (layout_window_list && layout_window_list->next)
 		{
 		save_layout(lw);
@@ -3051,7 +3048,6 @@ void layout_update_from_config(LayoutWindow *lw, const gchar **attribute_names, 
 LayoutWindow *layout_new_from_default()
 {
 	LayoutWindow *lw;
-	gchar *path = NULL;
 	GList *work;
 	gboolean success;
 	gchar *default_path;

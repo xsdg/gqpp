@@ -2024,8 +2024,6 @@ static void rt_scroll(void *renderer, gint x_off, gint y_off)
 		{
 		gint x1, y1;
 		gint x2, y2;
-		GtkWidget *box;
-		GdkWindow *window;
 		cairo_t *cr;
 		cairo_surface_t *surface;
 
@@ -2055,6 +2053,9 @@ static void rt_scroll(void *renderer, gint x_off, gint y_off)
 		cr = cairo_create(rt->surface);
 		surface = rt->surface;
 #else
+		GtkWidget *box;
+		GdkWindow *window;
+
 		box = GTK_WIDGET(pr);
 		window = gtk_widget_get_window(box);
 

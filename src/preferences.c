@@ -782,7 +782,6 @@ static const UseableMouseItems useable_mouse_items[] = {
 	{"ExifWin",	N_("Exif window"), PIXBUF_INLINE_ICON_EXIF},
 	{"Thumbnails",	N_("Show thumbnails"), PIXBUF_INLINE_ICON_THUMB},
 	{"ShowMarks",	N_("Show marks"), PIXBUF_INLINE_ICON_MARKS},
-	{"ImageGuidelines",	N_("Show guidelines"), PIXBUF_INLINE_ICON_GUIDELINES},
 	{"DrawRectangle",	N_("Draw Rectangle"), PIXBUF_INLINE_ICON_DRAW_RECTANGLE},
 	{"FloatTools",	N_("Float file list"), PIXBUF_INLINE_ICON_FLOAT},
 	{"SBar",	N_("Info sidebar"), PIXBUF_INLINE_ICON_INFO},

@@ -485,6 +485,7 @@ static DupeItem *dupe_item_find_fd(DupeWindow *dw, FileData *fd)
 }
 */
 
+/*
 static DupeItem *dupe_item_find_path_by_list(const gchar *path, GList *work)
 {
 	while (work)
@@ -498,7 +499,9 @@ static DupeItem *dupe_item_find_path_by_list(const gchar *path, GList *work)
 
 	return NULL;
 }
+*/
 
+/*
 static DupeItem *dupe_item_find_path(DupeWindow *dw, const gchar *path)
 {
 	DupeItem *di;
@@ -508,6 +511,7 @@ static DupeItem *dupe_item_find_path(DupeWindow *dw, const gchar *path)
 
 	return di;
 }
+*/
 
 /*
  * ------------------------------------------------------------------
@@ -1847,7 +1851,6 @@ static void dupe_array_check(DupeWindow *dw )
 	gint i_set1;
 	gint i_set2;
 	DUPE_CHECK_RESULT check_result;
-	DupeMatchType mask = dw->match_mask;
 	param_match_mask = dw->match_mask;
 	guint out_match_index;
 	gboolean match_found = FALSE;;
@@ -1876,7 +1879,6 @@ static void dupe_array_check(DupeWindow *dw )
 			work = dw->second_list;
 			while (work)
 				{
-				DupeItem *di = work->data;
 				g_array_append_val(array_set2, (work->data));
 				work = work->next;
 				}
@@ -2710,6 +2712,7 @@ static void dupe_item_remove(DupeWindow *dw, DupeItem *di)
 	dupe_window_update_count(dw, FALSE);
 }
 
+/*
 static gboolean dupe_item_remove_by_path(DupeWindow *dw, const gchar *path)
 {
 	DupeItem *di;
@@ -2721,6 +2724,7 @@ static gboolean dupe_item_remove_by_path(DupeWindow *dw, const gchar *path)
 
 	return TRUE;
 }
+*/
 
 static gboolean dupe_files_add_queue_cb(gpointer data)
 {
@@ -5157,7 +5161,6 @@ static void dupe_notify_cb(FileData *fd, NotifyType type, gpointer data)
 static void delete_finished_cb(gboolean success, const gchar *dest_path, gpointer data)
 {
 	DupeWindow *dw = data;
-	GList *work;
 
 	if (!success)
 		{

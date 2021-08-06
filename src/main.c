@@ -1136,7 +1136,6 @@ static void create_application_paths()
 {
 	gchar buf[1024];
 	gchar *dirname;
-	gchar *basename;
 	gchar *tmp;
 
 	memset(buf, 0, sizeof(buf));

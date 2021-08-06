@@ -43,7 +43,7 @@ struct _LogWindow
 	GtkTextTag *color_tags[LOG_COUNT];
 #endif
 
-	guint lines;
+	gint lines;
 	GtkWidget *regexp_box;
 	GtkWidget *bar;
 	GtkWidget *pause;
@@ -126,11 +126,6 @@ static void log_window_regexp_cb(GtkWidget *text_entry, gpointer data)
 	new_regexp = g_strdup(gtk_entry_get_text(GTK_ENTRY(text_entry)));
 	set_regexp(new_regexp);
 	g_free(new_regexp);
-}
-
-static void log_window_debug_spin_cb(GtkSpinButton *debug_level, gpointer data)
-{
-	set_debug_level(gtk_spin_button_get_value(debug_level));
 }
 
 static void remove_green_bg(LogWindow *logwin)
@@ -648,7 +643,7 @@ void log_window_append(const gchar *str, LogType type)
 
 			memory = g_list_prepend(memory, msg);
 
-			while (g_list_length(memory) >= options->log_window_lines)
+			while (g_list_length(memory) >= (guint)options->log_window_lines)
 				{
 				GList *work = g_list_last(memory);
 				LogMsg *oldest_msg = work->data;

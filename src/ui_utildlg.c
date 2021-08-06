@@ -457,6 +457,7 @@ static void generic_dialog_setup(GenericDialog *gd,
 	gtk_window_set_resizable(GTK_WINDOW(gd->dialog), TRUE);
 	gtk_container_set_border_width(GTK_CONTAINER(gd->dialog), PREF_PAD_BORDER);
 
+#if GTK_CHECK_VERSION(3,22,0)
 	scrolled = gtk_scrolled_window_new(NULL, NULL);
 	gtk_scrolled_window_set_propagate_natural_height(GTK_SCROLLED_WINDOW(scrolled), TRUE);
 	gtk_scrolled_window_set_propagate_natural_width(GTK_SCROLLED_WINDOW(scrolled), TRUE);
@@ -464,6 +465,9 @@ static void generic_dialog_setup(GenericDialog *gd,
 	gtk_container_add(GTK_CONTAINER(scrolled), vbox);
 	gtk_container_add(GTK_CONTAINER(gd->dialog), scrolled);
 	gtk_widget_show(scrolled);
+#else
+	vbox = gtk_vbox_new(FALSE, PREF_PAD_BUTTON_SPACE);
+#endif
 	gtk_widget_show(vbox);
 
 	gd->vbox = gtk_vbox_new(FALSE, PREF_PAD_GAP);

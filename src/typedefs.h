@@ -398,7 +398,7 @@ struct _AnimationData
 	GdkPixbufAnimationIter *iter;
 	GdkPixbuf *gpb;
 	FileData *data_adr;
-	guint delay;
+	gint delay;
 	gboolean valid;
 	GCancellable *cancellable;
 	GFile *in_file;

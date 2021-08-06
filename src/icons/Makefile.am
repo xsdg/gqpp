@@ -22,7 +22,6 @@ ICONS_INLINE = \
 	icon_config.png		\
 	icon_tools.png		\
 	icon_view.png		\
-	icon_guidelines.png	\
 	icon_panorama.png	\
 	icon_maintenance.png	\
 	icon_zoomfillhor.png	\
@@ -72,7 +71,6 @@ ICONS_INLINE_PAIRS = \
 	icon_config		$(srcdir)/icon_config.png	\
 	icon_tools		$(srcdir)/icon_tools.png	\
 	icon_view		$(srcdir)/icon_view.png		\
-	icon_guidelines	$(srcdir)/icon_guidelines.png	\
 	icon_panorama	$(srcdir)/icon_panorama.png	\
 	icon_maintenance	$(srcdir)/icon_maintenance.png	\
 	icon_zoomfillhor	$(srcdir)/icon_zoomfillhor.png	\

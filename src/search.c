@@ -2219,7 +2219,7 @@ static gboolean search_file_next(SearchData *sd)
 		{
 		tested = TRUE;
 		match = FALSE;
-		gint class;
+		FileFormatClass class;
 		FileFormatClass search_class;
 
 		if (g_strcmp0(gtk_combo_box_text_get_active_text(

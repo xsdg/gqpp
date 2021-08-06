@@ -212,14 +212,9 @@ void image_osd_toggle(ImageWindow *imd)
 		}
 	else
 		{
-		if (show & OSD_SHOW_GUIDELINES)
+		if (show & OSD_SHOW_HISTOGRAM)
 			{
 			image_osd_set(imd, OSD_SHOW_NOTHING);
-			}
-		else if (show & OSD_SHOW_HISTOGRAM)
-			{
-			image_osd_set(imd, OSD_SHOW_GUIDELINES);
-			image_osd_set(imd, show | ~OSD_SHOW_HISTOGRAM);
 			}
 		else
 			{
@@ -515,42 +510,6 @@ static GdkPixbuf *image_osd_icon_pixbuf(ImageOSDFlag flag)
 	return icon;
 }
 
-static GdkPixbuf *image_osd_guidelines_render(OverlayStateData *osd)
-{
-	gint width, height;
-	GdkPixbuf *rectangles;
-	ImageWindow *imd = osd->imd;
-
-/** @FIXME guidelines does not work with revised draw signal handling
- */
-	//~ pixbuf_renderer_get_scaled_size((PixbufRenderer *)imd->pr, &width, &height);
-
-	//~ if (width && height)
-		//~ {
-		//~ rectangles = gdk_pixbuf_new(GDK_COLORSPACE_RGB, TRUE, 8, width, height);
-		//~ if (rectangles)
-			//~ {
-			//~ pixbuf_set_rect_fill(rectangles, 0, 0, width, height, 255, 255, 255, 0);
-			//~ pixbuf_set_rect(rectangles, 0, 0 + (height / 3), width, height / 3,
-								//~ 0, 0, 0, 255,
-								//~ 1, 1, 1, 1);
-			//~ pixbuf_set_rect(rectangles, 0, 0 + (height / 3 + 1), width, height / 3 - 2,
-								//~ 255, 255, 255, 255,
-								//~ 1, 1, 1, 1);
-
-			//~ pixbuf_set_rect(rectangles, 0 + width / 3, 0 , width / 3, height,
-								//~ 0, 0, 0, 255,
-								//~ 1, 1, 1, 1);
-			//~ pixbuf_set_rect(rectangles, 0 + width / 3 + 1, 0, width / 3 - 2, height,
-								//~ 255, 255, 255, 255,
-								//~ 1, 1, 1, 1);
-			//~ return rectangles;
-			//~ }
-		//~ }
-
-	return NULL;
-}
-
 static gint image_overlay_add(ImageWindow *imd, GdkPixbuf *pixbuf, gint x, gint y,
 			      OverlayRendererFlags flags)
 {
@@ -660,41 +619,19 @@ static gboolean image_osd_update_cb(gpointer data)
 		   with histogram we have to redraw also when loading is finished */
 		if (osd->changed_states & IMAGE_STATE_IMAGE ||
 		    (osd->changed_states & IMAGE_STATE_LOADING && osd->show & OSD_SHOW_HISTOGRAM) ||
-		    (osd->changed_states & IMAGE_STATE_LOADING && osd->show & OSD_SHOW_GUIDELINES) ||
 		    osd->notify & NOTIFY_HISTMAP)
 			{
 			GdkPixbuf *pixbuf;
 
-			if (osd->show & OSD_SHOW_GUIDELINES)
+			pixbuf = image_osd_info_render(osd);
+			if (pixbuf)
 				{
-				ImageWindow *imd = osd->imd;
-				osd->x = ((PixbufRenderer *)imd->pr)->x_offset;
-				osd->y = ((PixbufRenderer *)imd->pr)->y_offset;
-				osd->origin = OVL_NORMAL;
-
-				pixbuf = image_osd_guidelines_render(osd);
-				if (pixbuf)
-					{
-					image_osd_info_show(osd, pixbuf);
-					g_object_unref(pixbuf);
-					}
-
-				osd->x = options->image_overlay.x;
-				osd->y = options->image_overlay.y;
-				osd->origin = OVL_RELATIVE;
+				image_osd_info_show(osd, pixbuf);
+				g_object_unref(pixbuf);
 				}
 			else
 				{
-				pixbuf = image_osd_info_render(osd);
-				if (pixbuf)
-					{
-					image_osd_info_show(osd, pixbuf);
-					g_object_unref(pixbuf);
-					}
-				else
-					{
-					image_osd_info_hide(osd);
-					}
+				image_osd_info_hide(osd);
 				}
 			}
 		}
