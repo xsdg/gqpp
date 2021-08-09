@@ -710,6 +710,31 @@ AM_CONDITIONAL(HAVE_DJVU, [test "x$HAVE_DJVU" = xyes])
 AC_SUBST(DJVU_CFLAGS)
 AC_SUBST(DJVU_LIBS)
 
+#  JPEG XL support
+# ----------------------------------------------------------------------
+
+AC_ARG_ENABLE([jpegxl],
+  AC_HELP_STRING([--disable-jpegxl], [disable jpeg xl support]),
+    [libjxl=$enableval], [libjxl=auto])
+
+if test "x${libjxl}" != "xno"; then
+  PKG_CHECK_MODULES(JPEGXL, libjxl >= 0.3.7,
+    [
+      HAVE_JPEGXL=yes
+      AC_DEFINE(HAVE_JPEGXL, 1, [define to enable JPEG XL support])
+    ],
+    [
+      HAVE_JPEGXL=no
+      AC_MSG_WARN([$JPEGXL_PKG_ERRORS])
+    ])
+else
+    HAVE_JPEGXL=disabled
+fi
+
+AM_CONDITIONAL(HAVE_JPEGXL, [test "x$HAVE_JPEGXL" = xyes])
+AC_SUBST(JPEGXL_CFLAGS)
+AC_SUBST(JPEGXL_LIBS)
+
 #  Markdown support
 # ----------------------------------------------------------------------
 
@@ -809,7 +834,7 @@ Flags:
   Gtk:           $GTK_CFLAGS
   Glib:          $GLIB_CFLAGS
   Thread:        $GTHREAD_LIBS
-  Others:	 $JPEG_LIBS $TIFF_LIBS $LCMS_LIBS $EXIV2_LIBS $CLUTTER_LIBS $CLUTTER_GTK_LIBS $LIBCHAMPLAIN_LIBS $LIBCHAMPLAIN_GTK_LIBS $LUA_LIBS $RAW_LIBS
+  Others:	 $JPEG_LIBS $TIFF_LIBS $LCMS_LIBS $EXIV2_LIBS $CLUTTER_LIBS $CLUTTER_GTK_LIBS $LIBCHAMPLAIN_LIBS $LIBCHAMPLAIN_GTK_LIBS $LUA_LIBS $RAW_LIBS $JPEGXL_LIBS
 
 Localization:
   NLS support:   $USE_NLS
@@ -836,6 +861,7 @@ Support:
   DjVu:	         $HAVE_DJVU
   J2K:	         $HAVE_J2K
   LibRaw:        $HAVE_RAW
+  Libjxl:        $HAVE_JPEGXL
 
 Documentation:
   Doxygen:       $DX_DOXYGEN

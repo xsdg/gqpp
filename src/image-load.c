@@ -35,6 +35,7 @@
 #include "image_load_collection.h"
 #include "image_load_webp.h"
 #include "image_load_j2k.h"
+#include "image_load_jpegxl.h"
 #include "image_load_libraw.h"
 #include "image_load_svgz.h"
 #include "misc.h"
@@ -815,6 +816,15 @@ static void image_loader_setup_loader(ImageLoader *il)
 		{
 		DEBUG_1("Using custom j2k loader");
 		image_loader_backend_set_j2k(&il->backend);
+		}
+	else
+#endif
+#ifdef HAVE_JPEGXL
+	if (il->bytes_total >= 12 &&
+		(memcmp(il->mapped_file, "\0\0\0\x0C\x4A\x58\x4C\x20\x0D\x0A\x87\x0A", 12) == 0))
+		{
+		DEBUG_1("Using custom jpeg xl loader");
+		image_loader_backend_set_jpegxl(&il->backend);
 		}
 	else
 #endif
