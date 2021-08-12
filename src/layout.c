@@ -503,15 +503,28 @@ static void layout_sort_button_press_cb(GtkWidget *widget, gpointer data)
 	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 0, etime);
 }
 
-static GtkWidget *layout_sort_button(LayoutWindow *lw)
+static GtkWidget *layout_sort_button(LayoutWindow *lw, GtkWidget *box)
 {
 	GtkWidget *button;
+	GtkWidget *frame;
+	GtkWidget *image;
 
+	frame = gtk_frame_new(NULL);
+	DEBUG_NAME(frame);
+	gtk_frame_set_shadow_type(GTK_FRAME(frame), GTK_SHADOW_IN);
+	gtk_box_pack_start(GTK_BOX(box), frame, FALSE, FALSE, 0);
+	gtk_widget_show(frame);
+
+	image = gtk_image_new_from_icon_name("pan-down", GTK_ICON_SIZE_BUTTON);
 	button = gtk_button_new_with_label(sort_type_get_text(lw->sort_method));
-	DEBUG_NAME(button);
+	gtk_button_set_image(GTK_BUTTON(button), image);
 	g_signal_connect(G_OBJECT(button), "clicked",
 			 G_CALLBACK(layout_sort_button_press_cb), lw);
 	gtk_button_set_relief(GTK_BUTTON(button), GTK_RELIEF_NONE);
+	gtk_button_set_image_position(GTK_BUTTON(button), GTK_POS_RIGHT);
+
+	gtk_container_add(GTK_CONTAINER(frame), button);
+	gtk_widget_show(button);
 
 	return button;
 }
@@ -602,7 +615,7 @@ static GtkWidget *layout_zoom_button(LayoutWindow *lw, GtkWidget *box, gint size
 {
 	GtkWidget *button;
 	GtkWidget *frame;
-
+	GtkWidget *image;
 
 	frame = gtk_frame_new(NULL);
 	DEBUG_NAME(frame);
@@ -613,10 +626,13 @@ static GtkWidget *layout_zoom_button(LayoutWindow *lw, GtkWidget *box, gint size
 
 	gtk_widget_show(frame);
 
+	image = gtk_image_new_from_icon_name("pan-down", GTK_ICON_SIZE_BUTTON);
 	button = gtk_button_new_with_label("1:1");
+	gtk_button_set_image(GTK_BUTTON(button), image);
 	g_signal_connect(G_OBJECT(button), "clicked",
 			 G_CALLBACK(layout_zoom_button_press_cb), lw);
 	gtk_button_set_relief(GTK_BUTTON(button), GTK_RELIEF_NONE);
+	gtk_button_set_image_position(GTK_BUTTON(button), GTK_POS_RIGHT);
 
 	gtk_container_add(GTK_CONTAINER(frame), button);
 	gtk_widget_show(button);
@@ -897,9 +913,8 @@ static void layout_status_setup(LayoutWindow *lw, GtkWidget *box, gboolean small
 	gtk_box_pack_start(GTK_BOX(hbox), lw->info_progress_bar, FALSE, FALSE, 0);
 	gtk_widget_show(lw->info_progress_bar);
 
-	lw->info_sort = layout_sort_button(lw);
+	lw->info_sort = layout_sort_button(lw, hbox);
 	gtk_widget_set_tooltip_text(GTK_WIDGET(lw->info_sort), _("Select sort order"));
-	gtk_box_pack_start(GTK_BOX(hbox), lw->info_sort, FALSE, FALSE, 0);
 	gtk_widget_show(lw->info_sort);
 
 	lw->info_status = layout_status_label(NULL, lw->info_box, TRUE, 0, (!small_format));
@@ -1351,8 +1366,7 @@ void layout_sort_set(LayoutWindow *lw, SortType type, gboolean ascend)
 	lw->sort_method = type;
 	lw->sort_ascend = ascend;
 
-	if (lw->info_sort) gtk_label_set_text(GTK_LABEL(gtk_bin_get_child(GTK_BIN(lw->info_sort))),
-					      sort_type_get_text(type));
+	if (lw->info_sort) gtk_button_set_label(GTK_BUTTON(lw->info_sort), sort_type_get_text(type));
 	layout_list_sync_sort(lw);
 }
 
