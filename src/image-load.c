@@ -827,6 +827,13 @@ static void image_loader_setup_loader(ImageLoader *il)
 		image_loader_backend_set_jpegxl(&il->backend);
 		}
 	else
+	if (il->bytes_total >= 2 &&
+		(memcmp(il->mapped_file, "\xFF\x0A", 2) == 0))
+		{
+		DEBUG_1("Using custom jpeg xl loader");
+		image_loader_backend_set_jpegxl(&il->backend);
+		}
+	else
 #endif
 	if (il->fd->format_class == FORMAT_CLASS_COLLECTION)
 		{
