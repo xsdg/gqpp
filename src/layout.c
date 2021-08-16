@@ -865,6 +865,7 @@ static GtkWidget *layout_status_label(gchar *text, GtkWidget *box, gboolean star
 	gtk_widget_show(frame);
 
 	label = gtk_label_new(text ? text : "");
+	gtk_label_set_ellipsize(GTK_LABEL(label), PANGO_ELLIPSIZE_END);
 	gtk_container_add(GTK_CONTAINER(frame), label);
 	gtk_widget_show(label);
 
