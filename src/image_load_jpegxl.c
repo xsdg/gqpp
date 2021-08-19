@@ -147,6 +147,8 @@ static uint8_t *JxlMemoryToPixels(const uint8_t *next_in, size_t size, size_t *s
       break;
     }
   }
+
+  JxlDecoderDestroy(dec);
   if (success){
     return pixels;
   } else {
