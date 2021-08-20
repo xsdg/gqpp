@@ -1,4 +1,4 @@
-[Log Window](#log-window)  
+[Error Logging](#error-logging)  
 [GPL header](#gpl-header)  
 [Git change log](#git-change-log)  
 [Sources](#sources)  
@@ -7,8 +7,8 @@
 -----------
 
 
-# <a name='log-window'>
-# Log Window
+# <a name='error-logging'>
+# Error Logging
 
 `DEBUG_0()`  
 Use `DEBUG_0()` only for temporary debugging i.e. not in code in the repository.
@@ -17,6 +17,12 @@ The user will then not see irrelevant debug output when the default
 
 `log_printf()`  
 If the first word of the message is "error" or "warning" (case insensitive) the message will be color-coded appropriately.
+
+ - Note that these messages are output in the idle loop.
+
+`print_term(gboolean err, const gchar *text_utf8)`
+
+- If `err` is TRUE output is to STDERR, otherwise to STDOUT
 
 
 `DEBUG_NAME(widget)`  

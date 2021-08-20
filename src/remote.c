@@ -541,9 +541,13 @@ static void gr_slideshow_start_rec(const gchar *text, GIOChannel *channel, gpoin
 static void gr_cache_thumb(const gchar *text, GIOChannel *channel, gpointer data)
 {
 	if (!g_strcmp0(text, "clear"))
-		cache_maintain_home_remote(FALSE, TRUE);
+		{
+		cache_maintain_home_remote(FALSE, TRUE, NULL);
+		}
 	else if (!g_strcmp0(text, "clean"))
-		cache_maintain_home_remote(FALSE, FALSE);
+		{
+		cache_maintain_home_remote(FALSE, FALSE, NULL);
+		}
 }
 
 static void gr_cache_shared(const gchar *text, GIOChannel *channel, gpointer data)
@@ -556,29 +560,33 @@ static void gr_cache_shared(const gchar *text, GIOChannel *channel, gpointer dat
 
 static void gr_cache_metadata(const gchar *text, GIOChannel *channel, gpointer data)
 {
-	cache_maintain_home_remote(TRUE, FALSE);
+	cache_maintain_home_remote(TRUE, FALSE, NULL);
 }
 
 static void gr_cache_render(const gchar *text, GIOChannel *channel, gpointer data)
 {
-	cache_manager_render_remote(text, FALSE, FALSE);
+	cache_manager_render_remote(text, FALSE, FALSE, NULL);
 }
 
 static void gr_cache_render_recurse(const gchar *text, GIOChannel *channel, gpointer data)
 {
-	cache_manager_render_remote(text, TRUE, FALSE);
+	cache_manager_render_remote(text, TRUE, FALSE, NULL);
 }
 
 static void gr_cache_render_standard(const gchar *text, GIOChannel *channel, gpointer data)
 {
 	if(options->thumbnails.spec_standard)
-		cache_manager_render_remote(text, FALSE, TRUE);
+		{
+		cache_manager_render_remote(text, FALSE, TRUE, NULL);
+		}
 }
 
 static void gr_cache_render_standard_recurse(const gchar *text, GIOChannel *channel, gpointer data)
 {
 	if(options->thumbnails.spec_standard)
-		cache_manager_render_remote(text, TRUE, TRUE);
+		{
+		cache_manager_render_remote(text, TRUE, TRUE, NULL);
+		}
 }
 
 static void gr_slideshow_toggle(const gchar *text, GIOChannel *channel, gpointer data)

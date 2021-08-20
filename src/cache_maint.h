@@ -27,8 +27,10 @@ void cache_maintain_home(gboolean metadata, gboolean clear, GtkWidget *parent);
 void cache_notify_cb(FileData *fd, NotifyType type, gpointer data);
 void cache_manager_show(void);
 
-void cache_maintain_home_remote(gboolean metadata, gboolean clear);
+void cache_maintain_home_remote(gboolean metadata, gboolean clear, GDestroyNotify *func);
 void cache_manager_standard_process_remote(gboolean clear);
-void cache_manager_render_remote(const gchar *path, gboolean recurse, gboolean local);
+void cache_manager_render_remote(const gchar *path, gboolean recurse, gboolean local, GDestroyNotify *func);
+void cache_manager_sim_remote(const gchar *path, gboolean recurse, GDestroyNotify *func);
+void cache_maintenance(const gchar *path);
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

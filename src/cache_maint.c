@@ -26,6 +26,7 @@
 #include "cache-loader.h"
 #include "filedata.h"
 #include "layout.h"
+#include "pixbuf_util.h"
 #include "thumb.h"
 #include "thumb_standard.h"
 #include "ui_fileops.h"
@@ -54,6 +55,65 @@ struct _CMData
 
 #define PURGE_DIALOG_WIDTH 400
 
+/*
+ *-----------------------------------------------------------------------------
+ * Command line cache maintenance program functions *-----------------------------------------------------------------------------
+ */
+static gchar *cache_maintenance_path = NULL;
+static GtkStatusIcon *status_icon;
+
+static void cache_maintenance_sim_stop_cb(gpointer data)
+{
+	exit(EXIT_SUCCESS);
+}
+
+static void cache_maintenance_render_stop_cb(gpointer data)
+{
+	gtk_status_icon_set_tooltip_text(status_icon, _("Geeqie: Creating sim data..."));
+	cache_manager_sim_remote(cache_maintenance_path, TRUE, (GDestroyNotify *)cache_maintenance_sim_stop_cb);
+}
+
+static void cache_maintenance_clean_stop_cb(gpointer data)
+{
+	gtk_status_icon_set_tooltip_text(status_icon, _("Geeqie: Creating thumbs..."));
+	cache_manager_render_remote(cache_maintenance_path, TRUE, options->thumbnails.cache_into_dirs, (GDestroyNotify *)cache_maintenance_render_stop_cb);
+}
+
+static void cache_maintenance_user_cancel_cb()
+{
+	exit(EXIT_FAILURE);
+}
+
+static void cache_maintenance_status_icon_activate_cb(GtkStatusIcon *status, gpointer data)
+{
+	GtkWidget *menu;
+	GtkWidget *item;
+
+	menu = gtk_menu_new();
+
+	item = gtk_menu_item_new_with_label("Exit Geeqie Cache Maintenance");
+
+	g_signal_connect(G_OBJECT(item), "activate", cache_maintenance_user_cancel_cb, item);
+	gtk_menu_shell_append(GTK_MENU_SHELL(menu), item);
+	gtk_widget_show(item);
+
+	/* take ownership of menu */
+	g_object_ref_sink(G_OBJECT(menu));
+
+	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 0, gtk_get_current_event_time());
+}
+
+void cache_maintenance(const gchar *path)
+{
+	cache_maintenance_path = g_strdup(path);
+
+	status_icon = gtk_status_icon_new_from_pixbuf(pixbuf_inline(PIXBUF_INLINE_ICON));
+	gtk_status_icon_set_tooltip_text(status_icon, _("Geeqie: Cleaning thumbs..."));
+	gtk_status_icon_set_visible(status_icon, TRUE);
+	g_signal_connect(G_OBJECT(status_icon), "activate", G_CALLBACK(cache_maintenance_status_icon_activate_cb), NULL);
+
+	cache_maintain_home_remote(FALSE, FALSE, (GDestroyNotify *)cache_maintenance_clean_stop_cb);
+}
 
 /*
  *-------------------------------------------------------------------
@@ -355,7 +415,15 @@ void cache_maintain_home(gboolean metadata, gboolean clear, GtkWidget *parent)
 	cm->idle_id = g_idle_add(cache_maintain_home_cb, cm);
 }
 
-void cache_maintain_home_remote(gboolean metadata, gboolean clear)
+/**
+ * @brief Clears or culls cached data
+ * @param metadata TRUE - work on metadata cache, FALSE - work on thumbnail cache
+ * @param clear TRUE - clear cache, FALSE - delete orphaned cached items
+ * @param func Function called when idle loop function terminates
+ * 
+ * 
+ */
+void cache_maintain_home_remote(gboolean metadata, gboolean clear, GDestroyNotify *func)
 {
 	CMData *cm;
 	GList *dlist;
@@ -387,7 +455,7 @@ void cache_maintain_home_remote(gboolean metadata, gboolean clear)
 	cm->metadata = metadata;
 	cm->remote = TRUE;
 
-	cm->idle_id = g_idle_add(cache_maintain_home_cb, cm);
+	cm->idle_id = g_idle_add_full(G_PRIORITY_LOW, cache_maintain_home_cb, cm, (GDestroyNotify)func);
 }
 
 static void cache_file_move(const gchar *src, const gchar *dest)
@@ -556,6 +624,7 @@ struct _CacheOpsData
 	GenericDialog *gd;
 	ThumbLoaderStd *tl;
 	CacheLoader *cl;
+	GDestroyNotify *destroy_func; /* Used by the command line prog. functions */
 
 	GList *list;
 	GList *list_dir;
@@ -713,8 +782,16 @@ static gboolean cache_manager_render_file(CacheOpsData *cd)
 		return TRUE;
 		}
 
-	gtk_entry_set_text(GTK_ENTRY(cd->progress), _("done"));
+	if (!cd->remote)
+		{
+		gtk_entry_set_text(GTK_ENTRY(cd->progress), _("done"));
+		}
 	cache_manager_render_finish(cd);
+
+	if (cd->destroy_func)
+		{
+		g_idle_add((GSourceFunc)cd->destroy_func, NULL);
+		}
 
 	return FALSE;
 }
@@ -861,7 +938,16 @@ static void cache_manager_render_dialog(GtkWidget *widget, const gchar *path)
 	gtk_widget_show(cd->gd->dialog);
 }
 
-void cache_manager_render_remote(const gchar *path, gboolean recurse, gboolean local)
+/**
+ * @brief Create thumbnails
+ * @param path Path to image folder
+ * @param recurse 
+ * @param local Create thumbnails in same folder as images
+ * @param func Function called when idle loop function terminates
+ * 
+ * 
+ */
+void cache_manager_render_remote(const gchar *path, gboolean recurse, gboolean local, GDestroyNotify *func)
 {
 	CacheOpsData *cd;
 
@@ -869,6 +955,7 @@ void cache_manager_render_remote(const gchar *path, gboolean recurse, gboolean l
 	cd->recurse = recurse;
 	cd->local = local;
 	cd->remote = TRUE;
+	cd->destroy_func = func;
 
 	cache_manager_render_start_render_remote(cd, path);
 }
@@ -1285,6 +1372,50 @@ static void cache_manager_sim_file_done_cb(CacheLoader *cl, gint error, gpointer
 	while (cache_manager_sim_file(cd));
 }
 
+static void cache_manager_sim_start_sim_remote(CacheOpsData *cd, const gchar *user_path)
+{
+	gchar *path;
+
+	path = remove_trailing_slash(user_path);
+	parse_out_relatives(path);
+
+	if (!isdir(path))
+		{
+		log_printf("The specified folder can not be found: %s\n", path);
+		}
+	else
+		{
+		FileData *dir_fd;
+
+		dir_fd = file_data_new_dir(path);
+		cache_manager_sim_folder(cd, dir_fd);
+		file_data_unref(dir_fd);
+		while (cache_manager_sim_file(cd));
+		}
+
+	g_free(path);
+}
+
+/**
+ * @brief Generate .sim files
+ * @param path Path to image folder
+ * @param recurse 
+ * @param func Function called when idle loop function terminates
+ * 
+ * 
+ */
+void cache_manager_sim_remote(const gchar *path, gboolean recurse, GDestroyNotify *func)
+{
+	CacheOpsData *cd;
+
+	cd = g_new0(CacheOpsData, 1);
+	cd->recurse = recurse;
+	cd->remote = TRUE;
+	cd->destroy_func = func;
+
+	cache_manager_sim_start_sim_remote(cd, path);
+}
+
 static gboolean cache_manager_sim_file(CacheOpsData *cd)
 {
 	CacheDataType load_mask;
@@ -1298,11 +1429,17 @@ static gboolean cache_manager_sim_file(CacheOpsData *cd)
 		load_mask = CACHE_LOADER_DIMENSIONS | CACHE_LOADER_DATE | CACHE_LOADER_MD5SUM | CACHE_LOADER_SIMILARITY;
 		cd->cl = (CacheLoader *)cache_loader_new(fd, load_mask, (cache_manager_sim_file_done_cb), cd);
 
-		gtk_entry_set_text(GTK_ENTRY(cd->progress), fd->path);
+		if (!cd->remote)
+			{
+			gtk_entry_set_text(GTK_ENTRY(cd->progress), fd->path);
+			}
 
 		file_data_unref(fd);
 		cd->count_done = cd->count_done + 1;
-		gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(cd->progress_bar), (gdouble)cd->count_done / cd->count_total);
+		if (!cd->remote)
+			{
+			gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(cd->progress_bar), (gdouble)cd->count_done / cd->count_total);
+			}
 
 		return FALSE;
 		}
@@ -1319,8 +1456,17 @@ static gboolean cache_manager_sim_file(CacheOpsData *cd)
 		return TRUE;
 		}
 
-	gtk_entry_set_text(GTK_ENTRY(cd->progress), _("done"));
+		if (!cd->remote)
+			{
+			gtk_entry_set_text(GTK_ENTRY(cd->progress), _("done"));
+			}
+
 	cache_manager_sim_finish((CacheOpsData *)cd);
+
+	if (cd->destroy_func)
+		{
+		g_idle_add((GSourceFunc)cd->destroy_func, NULL);
+		}
 
 	return FALSE;
 }

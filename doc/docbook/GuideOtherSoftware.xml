@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <chapter id="GuideOtherSoftware">
-  <title id="titleGuideOtherSoftware">Other Software</title>
+  <title id="titleGuideOtherSoftware">Useful Software</title>
   <para>This is a list of other software that users might find useful in conjunction with Geeqie.</para>
+  <section id="OtherSoftware">
   <section id="Entangle">
     <title>Entangle</title>
     <para>
@@ -15,5 +16,36 @@
       Digital photograph metadata editor:
       <ulink url="https://photini.readthedocs.io/en/latest/">https://photini.readthedocs.io/en/latest/</ulink>
     </para>
+  </section>
+  <section id="GeeqieCacheMaintenance">
+    <title>Geeqie Cache Maintenance</title>
+    <para>
+      Command line program to automatically create or update thumbnails and similarity data: <link linkend="CacheMaintenance"><code>geeqie-cache-maintenance</code></link>
+    </para>
+  </section>
+  <section id="KeywordMerge">
+    <title>Keyword Merge</title>
+    <para>
+       This program will merge the keyword tree of one Geeqie configuration file into another. The keyword trees are simply concatenated. When Geeqie loads the resulting configuration file, any duplicates are discarded: <ulink url="https://raw.githubusercontent.com/BestImageViewer/geeqie/master/scripts/keyword_merge.sh">keyword_merge.sh</ulink>
+    </para>
+  </section>
+  <section id="InstallDebian">
+    <title>Install Geeqie from sources on Debian</title>
+    <para>
+      This script will clone the Geeqie repository, fulfill all dependecies, and install Geeqie on a Debian based system: <ulink url="https://raw.githubusercontent.com/BestImageViewer/geeqie/master/web/geeqie-install-debian.sh">geeqie-install-debian.sh</ulink>
+    </para>
+  </section>
+  <section id="GenericInstall">
+    <title>Generic install script</title>
+    <para>
+      This script will install Geeqie to a defined location, and will run under any system. However, it is left to you to make sure dependencies are fulfilled: <ulink url="https://raw.githubusercontent.com/pixlsus/Scripts/master/build-geeqie">build-geeqie</ulink>
+    </para>
+  </section>
+  <section id="DecodeSim">
+    <title>Decoder for .sim files</title>
+    <para>
+      This program is unlikely to be of interest to most users. It shows a summary of the contents of a .sim file. (Requires perl to be installed): <ulink url="https://raw.githubusercontent.com/BestImageViewer/geeqie/master/scripts/decode_sim">decode_sim</ulink>
+    </para>
+  </section>
   </section>
 </chapter>

@@ -605,7 +605,8 @@ static void parse_command_line(gint argc, gchar *argv[])
 				print_term(FALSE, _("  -o:<file>, --log-file:<file>     save log data to file\n"));
 				print_term(FALSE, _("  -v, --version                    print version info\n"));
 				print_term(FALSE, _("  -h, --help                       show this message\n"));
-				print_term(FALSE, _("      --disable-clutter            disable use of Clutter library (i.e. GPU accel.)\n\n"));
+				print_term(FALSE, _("      --disable-clutter            disable use of Clutter library (i.e. GPU accel.)\n"));
+				print_term(FALSE, _("      --cache-maintenance <path>   run cache maintenance in non-GUI mode\n\n"));
 
 #if 0
 				/* these options are not officially supported!
@@ -798,6 +799,95 @@ static gboolean parse_command_line_for_clutter_option(gint argc, gchar *argv[])
 	return ret;
 }
 #endif
+
+static gboolean parse_command_line_for_cache_maintenance_option(gint argc, gchar *argv[])
+{
+	const gchar *cache_maintenance_option = "--cache-maintenance";
+	gint len = strlen(cache_maintenance_option);
+	gboolean ret = FALSE;
+
+	if (argc >= 2)
+		{
+		const gchar *cmd_line = argv[1];
+		if (strncmp(cmd_line, cache_maintenance_option, len) == 0)
+			{
+			ret = TRUE;
+			}
+		}
+
+	return ret;
+}
+
+static void process_command_line_for_cache_maintenance_option(gint argc, gchar *argv[])
+{
+	gchar *rc_path;
+	gchar *folder_path = NULL;
+	gsize size;
+	gsize i = 0;
+	gchar *buf_config_file;
+	gint diff_count;
+
+	if (argc >= 3)
+		{
+		folder_path = expand_tilde(argv[2]);
+
+		if (isdir(folder_path))
+			{
+			rc_path = g_build_filename(get_rc_dir(), RC_FILE_NAME, NULL);
+
+			if (isfile(rc_path))
+				{
+				if (g_file_get_contents(rc_path, &buf_config_file, &size, NULL))
+					{
+					while (i < size)
+						{
+						diff_count = strncmp("</global>", &buf_config_file[i], 9);
+						if (diff_count == 0)
+							{
+							break;
+							}
+						i++;
+						}
+					/* Load only the <global> section */
+					load_config_from_buf(buf_config_file, i + 9, FALSE);
+
+					if (options->thumbnails.enable_caching)
+						{
+						cache_maintenance(folder_path);
+						}
+					else
+						{
+						print_term(TRUE, "Caching not enabled\n");
+						exit(EXIT_FAILURE);
+						}
+					g_free(buf_config_file);
+					}
+				else
+					{
+					print_term(TRUE, g_strconcat(_("Cannot load "), rc_path, "\n", NULL));
+					exit(EXIT_FAILURE);
+					}
+				}
+			else
+				{
+				print_term(TRUE, g_strconcat(_("Configuration file path "), rc_path, _(" is not a file\n"), NULL));
+				exit(EXIT_FAILURE);
+				}
+			g_free(rc_path);
+			}
+		else
+			{
+			print_term(TRUE, g_strconcat(argv[2], _(" is not a folder\n"), NULL));
+			exit(EXIT_FAILURE);
+			}
+		g_free(folder_path);
+		}
+	else
+		{
+		print_term(TRUE, _("No path parameter given\n"));
+		exit(EXIT_FAILURE);
+		}
+}
 
 /*
  *-----------------------------------------------------------------------------
@@ -1257,9 +1347,6 @@ gint main(gint argc, gchar *argv[])
 		options->disable_gpu = TRUE;
 		}
 
-	DEBUG_1("%s main: parse_command_line", get_exec_time());
-	parse_command_line(argc, argv);
-
 	DEBUG_1("%s main: mkdir_if_not_exists", get_exec_time());
 	/* these functions don't depend on config file */
 	mkdir_if_not_exists(get_rc_dir());
@@ -1270,185 +1357,195 @@ gint main(gint argc, gchar *argv[])
 
 	setup_env_path();
 
-	keys_load();
-	accel_map_load();
-
-	/* restore session from the config file */
-
-
-	DEBUG_1("%s main: load_options", get_exec_time());
-	if (!load_options(options))
+	if (parse_command_line_for_cache_maintenance_option(argc, argv))
 		{
-		/* load_options calls these functions after it parses global options, we have to call it here if it fails */
-		filter_add_defaults();
-		filter_rebuild();
+		process_command_line_for_cache_maintenance_option(argc, argv);
 		}
-
-#ifdef HAVE_CLUTTER
-/** @FIXME For the background of this see:
- * https://github.com/BestImageViewer/geeqie/issues/397
- * The feature CLUTTER_FEATURE_SWAP_EVENTS indictates if the
- * system is liable to exhibit this problem.
- * The user is provided with an override in Preferences/Behavior
- */
-	if (!options->override_disable_gpu && !options->disable_gpu)
+	else
 		{
-		DEBUG_1("CLUTTER_FEATURE_SWAP_EVENTS %d",clutter_feature_available(CLUTTER_FEATURE_SWAP_EVENTS));
-		if (clutter_feature_available(CLUTTER_FEATURE_SWAP_EVENTS) != 0)
+		DEBUG_1("%s main: parse_command_line", get_exec_time());
+		parse_command_line(argc, argv);
+
+		keys_load();
+		accel_map_load();
+
+		/* restore session from the config file */
+
+
+		DEBUG_1("%s main: load_options", get_exec_time());
+		if (!load_options(options))
 			{
-			options->disable_gpu = TRUE;
+			/* load_options calls these functions after it parses global options, we have to call it here if it fails */
+			filter_add_defaults();
+			filter_rebuild();
 			}
-		}
-#endif
 
-	/* handle missing config file and commandline additions*/
-	if (!layout_window_list)
-		{
-		/* broken or no config file or no <layout> section */
-		layout_new_from_default();
-		}
-
-	layout_editors_reload_start();
-
-	/* If no --list option, open a separate collection window for each
-	 * .gqv file on the command line
+	#ifdef HAVE_CLUTTER
+	/** @FIXME For the background of this see:
+	 * https://github.com/BestImageViewer/geeqie/issues/397
+	 * The feature CLUTTER_FEATURE_SWAP_EVENTS indictates if the
+	 * system is liable to exhibit this problem.
+	 * The user is provided with an override in Preferences/Behavior
 	 */
-	if (command_line->collection_list && !command_line->startup_command_line_collection)
-		{
-		GList *work;
-
-		work = command_line->collection_list;
-		while (work)
+		if (!options->override_disable_gpu && !options->disable_gpu)
 			{
-			CollectWindow *cw;
-			const gchar *path;
-
-			path = work->data;
-			work = work->next;
-
-			cw = collection_window_new(path);
-			if (!first_collection && cw) first_collection = cw->cd;
-			}
-		}
-
-	if (command_line->log_file)
-		{
-		gchar *pathl;
-		gchar *path = g_strdup(command_line->log_file);
-
-		pathl = path_from_utf8(path);
-		command_line->ssi = secure_open(pathl);
-		}
-
-	/* If there is a files list on the command line and no --list option,
-	 * check if they are all in the same folder
-	 */
-	if (command_line->cmd_list && !(command_line->startup_command_line_collection))
-		{
-		GList *work;
-		gchar *path = NULL;
-
-		work = command_line->cmd_list;
-
-		while (work && single_dir)
-			{
-			gchar *dirname;
-
-			dirname = g_path_get_dirname(work->data);
-			if (!path)
+			DEBUG_1("CLUTTER_FEATURE_SWAP_EVENTS %d",clutter_feature_available(CLUTTER_FEATURE_SWAP_EVENTS));
+			if (clutter_feature_available(CLUTTER_FEATURE_SWAP_EVENTS) != 0)
 				{
-				path = g_strdup(dirname);
+				options->disable_gpu = TRUE;
 				}
-			else
+			}
+	#endif
+
+		/* handle missing config file and commandline additions*/
+		if (!layout_window_list)
+			{
+			/* broken or no config file or no <layout> section */
+			layout_new_from_default();
+			}
+
+		layout_editors_reload_start();
+
+		/* If no --list option, open a separate collection window for each
+		 * .gqv file on the command line
+		 */
+		if (command_line->collection_list && !command_line->startup_command_line_collection)
+			{
+			GList *work;
+
+			work = command_line->collection_list;
+			while (work)
 				{
-				if (g_strcmp0(path, dirname) != 0)
+				CollectWindow *cw;
+				const gchar *path;
+
+				path = work->data;
+				work = work->next;
+
+				cw = collection_window_new(path);
+				if (!first_collection && cw) first_collection = cw->cd;
+				}
+			}
+
+		if (command_line->log_file)
+			{
+			gchar *pathl;
+			gchar *path = g_strdup(command_line->log_file);
+
+			pathl = path_from_utf8(path);
+			command_line->ssi = secure_open(pathl);
+			}
+
+		/* If there is a files list on the command line and no --list option,
+		 * check if they are all in the same folder
+		 */
+		if (command_line->cmd_list && !(command_line->startup_command_line_collection))
+			{
+			GList *work;
+			gchar *path = NULL;
+
+			work = command_line->cmd_list;
+
+			while (work && single_dir)
+				{
+				gchar *dirname;
+
+				dirname = g_path_get_dirname(work->data);
+				if (!path)
 					{
-					single_dir = FALSE;
+					path = g_strdup(dirname);
 					}
+				else
+					{
+					if (g_strcmp0(path, dirname) != 0)
+						{
+						single_dir = FALSE;
+						}
+					}
+				g_free(dirname);
+				work = work->next;
 				}
-			g_free(dirname);
-			work = work->next;
+			g_free(path);
 			}
-		g_free(path);
-		}
 
-	/* Files from multiple folders, or --list option given
-	 * then open an unnamed collection and insert all files
-	 */
-	if ((command_line->cmd_list && !single_dir) || (command_line->startup_command_line_collection && command_line->cmd_list))
-		{
-		GList *work;
-		CollectWindow *cw;
-
-		cw = collection_window_new(NULL);
-		cd = cw->cd;
-
-		collection_path_changed(cd);
-
-		work = command_line->cmd_list;
-		while (work)
+		/* Files from multiple folders, or --list option given
+		 * then open an unnamed collection and insert all files
+		 */
+		if ((command_line->cmd_list && !single_dir) || (command_line->startup_command_line_collection && command_line->cmd_list))
 			{
+			GList *work;
+			CollectWindow *cw;
+
+			cw = collection_window_new(NULL);
+			cd = cw->cd;
+
+			collection_path_changed(cd);
+
+			work = command_line->cmd_list;
+			while (work)
+				{
+				FileData *fd;
+
+				fd = file_data_new_simple(work->data);
+				collection_add(cd, fd, FALSE);
+				file_data_unref(fd);
+				work = work->next;
+				}
+
+			work = command_line->collection_list;
+			while (work)
+				{
+				collection_load(cd, (gchar *)work->data, COLLECTION_LOAD_APPEND);
+				work = work->next;
+				}
+
+			if (cd->list) layout_image_set_collection(NULL, cd, cd->list->data);
+
+			/* mem leak, we never unref this collection when !startup_command_line_collection
+			 * (the image view of the main window does not hold a ref to the collection)
+			 * this is sort of unavoidable, for if it did hold a ref, next/back
+			 * may not work as expected when closing collection windows.
+			 *
+			 * collection_unref(cd);
+			 */
+
+			}
+		else if (first_collection)
+			{
+			layout_image_set_collection(NULL, first_collection,
+						    collection_get_first(first_collection));
+			}
+
+		/* If the files on the command line are from one folder, select those files
+		 * unless it is a command line collection - then leave focus on collection window
+		 */
+		lw = NULL;
+		layout_valid(&lw);
+
+		if (single_dir && command_line->cmd_list && !command_line->startup_command_line_collection)
+			{
+			GList *work;
+			GList *selected;
 			FileData *fd;
 
-			fd = file_data_new_simple(work->data);
-			collection_add(cd, fd, FALSE);
-			file_data_unref(fd);
-			work = work->next;
+			selected = NULL;
+			work = command_line->cmd_list;
+			while (work)
+				{
+				fd = file_data_new_simple((gchar *)work->data);
+				selected = g_list_append(selected, fd);
+				file_data_unref(fd);
+				work = work->next;
+				}
+			layout_select_list(lw, selected);
 			}
 
-		work = command_line->collection_list;
-		while (work)
-			{
-			collection_load(cd, (gchar *)work->data, COLLECTION_LOAD_APPEND);
-			work = work->next;
-			}
+		buf = g_build_filename(get_rc_dir(), ".command", NULL);
+		remote_connection = remote_server_init(buf, cd);
+		g_free(buf);
 
-		if (cd->list) layout_image_set_collection(NULL, cd, cd->list->data);
-
-		/* mem leak, we never unref this collection when !startup_command_line_collection
-		 * (the image view of the main window does not hold a ref to the collection)
-		 * this is sort of unavoidable, for if it did hold a ref, next/back
-		 * may not work as expected when closing collection windows.
-		 *
-		 * collection_unref(cd);
-		 */
-
-		}
-	else if (first_collection)
-		{
-		layout_image_set_collection(NULL, first_collection,
-					    collection_get_first(first_collection));
-		}
-
-	/* If the files on the command line are from one folder, select those files
-	 * unless it is a command line collection - then leave focus on collection window
-	 */
-	lw = NULL;
-	layout_valid(&lw);
-
-	if (single_dir && command_line->cmd_list && !command_line->startup_command_line_collection)
-		{
-		GList *work;
-		GList *selected;
-		FileData *fd;
-
-		selected = NULL;
-		work = command_line->cmd_list;
-		while (work)
-			{
-			fd = file_data_new_simple((gchar *)work->data);
-			selected = g_list_append(selected, fd);
-			file_data_unref(fd);
-			work = work->next;
-			}
-		layout_select_list(lw, selected);
-		}
-
-	buf = g_build_filename(get_rc_dir(), ".command", NULL);
-	remote_connection = remote_server_init(buf, cd);
-	g_free(buf);
-
-	marks_load();
+		marks_load();
+	}
 
 	DEBUG_1("%s main: gtk_main", get_exec_time());
 	gtk_main();
