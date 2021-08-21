@@ -151,6 +151,7 @@ extern gchar *gq_helpdir;
 extern gchar *gq_htmldir;
 extern gchar *gq_app_dir;
 extern gchar *gq_bin_dir;
+extern gchar *gq_executable_path;
 extern gchar *desktop_file_template;
 
 void keyboard_scroll_calc(gint *x, gint *y, GdkEventKey *event);

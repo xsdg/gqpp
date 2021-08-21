@@ -269,6 +269,7 @@ gchar *gq_helpdir;
 gchar *gq_htmldir;
 gchar *gq_app_dir;
 gchar *gq_bin_dir;
+gchar *gq_executable_path;
 gchar *desktop_file_template;
 
 /*
@@ -1237,6 +1238,7 @@ static void create_application_paths()
 		exit(1);
 		}
 
+	gq_executable_path = g_strdup(buf);
 	dirname = g_path_get_dirname(buf); // default is /usr/bin/
 	gq_prefix = g_path_get_dirname(dirname);
 

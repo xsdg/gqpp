@@ -1590,6 +1590,105 @@ static void cache_manager_sim_load_cb(GtkWidget *widget, gpointer data)
 	cache_manager_sim_load_dialog(widget, path);
 }
 
+static void cache_manager_cache_maintenance_close_cb(GenericDialog *fd, gpointer data)
+{
+	CacheOpsData *cd = data;
+
+	if (!gtk_widget_get_sensitive(cd->button_close)) return;
+
+	cache_manager_sim_reset(cd);
+	generic_dialog_close(cd->gd);
+	g_free(cd);
+}
+
+static void cache_manager_cache_maintenance_start_cb(GenericDialog *fd, gpointer data)
+{
+	CacheOpsData *cd = data;
+	gchar *path;
+	GList *list_total = NULL;
+	gchar *cmd_line;
+
+	if (!cd->remote)
+		{
+		if (cd->list || !gtk_widget_get_sensitive(cd->button_start)) return;
+		}
+
+	path = remove_trailing_slash((gtk_entry_get_text(GTK_ENTRY(cd->entry))));
+	parse_out_relatives(path);
+
+	if (!isdir(path))
+		{
+		if (!cd->remote)
+			{
+			warning_dialog(_("Invalid folder"),
+			_("The specified folder can not be found."),
+			GTK_STOCK_DIALOG_WARNING, cd->gd->dialog);
+			}
+		else
+			{
+			log_printf("The specified folder can not be found: %s\n", path);
+			}
+		}
+	else
+		{
+		cmd_line = g_strdup_printf("%s --cache-maintenance %s", gq_executable_path, path);
+
+		g_spawn_command_line_async(cmd_line, NULL);
+
+		g_free(cmd_line);
+		generic_dialog_close(cd->gd);
+		cache_manager_sim_reset(cd);
+		g_free(cd);
+		}
+
+	g_free(path);
+}
+
+static void cache_manager_cache_maintenance_load_dialog(GtkWidget *widget, const gchar *path)
+{
+	CacheOpsData *cd;
+	GtkWidget *hbox;
+	GtkWidget *label;
+
+	cd = g_new0(CacheOpsData, 1);
+	cd->remote = FALSE;
+	cd->recurse = TRUE;
+
+	cd->gd = generic_dialog_new(_("Background cache maintenance"), "background_cache_maintenance", widget, FALSE, NULL, cd);
+	gtk_window_set_default_size(GTK_WINDOW(cd->gd->dialog), PURGE_DIALOG_WIDTH, -1);
+	cd->gd->cancel_cb = cache_manager_cache_maintenance_close_cb;
+	cd->button_close = generic_dialog_add_button(cd->gd, GTK_STOCK_CLOSE, NULL,
+						     cache_manager_cache_maintenance_close_cb, FALSE);
+	cd->button_start = generic_dialog_add_button(cd->gd, GTK_STOCK_OK, _("S_tart"),
+						     cache_manager_cache_maintenance_start_cb, FALSE);
+
+	generic_dialog_add_message(cd->gd, NULL, _("Recursively delete orphaned thumbnails\nand .sim files, and create new\nthumbnails and .sim files"), NULL, FALSE);
+
+	hbox = pref_box_new(cd->gd->vbox, FALSE, GTK_ORIENTATION_HORIZONTAL, 0);
+	pref_spacer(hbox, PREF_PAD_INDENT);
+	cd->group = pref_box_new(hbox, TRUE, GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
+
+	hbox = pref_box_new(cd->group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
+	pref_label_new(hbox, _("Folder:"));
+
+	label = tab_completion_new(&cd->entry, path, NULL, NULL, NULL, NULL);
+	tab_completion_add_select_button(cd->entry,_("Select folder") , TRUE);
+	gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
+	gtk_widget_show(label);
+
+	cd->list = NULL;
+
+	gtk_widget_show(cd->gd->dialog);
+}
+
+static void cache_manager_cache_maintenance_load_cb(GtkWidget *widget, gpointer data)
+{
+	const gchar *path = layout_get_path(NULL);
+
+	if (!path || !*path) path = homedir();
+	cache_manager_cache_maintenance_load_dialog(widget, path);
+}
+
 void cache_manager_show(void)
 {
 	GenericDialog *gd;
@@ -1688,6 +1787,16 @@ void cache_manager_show(void)
 				   G_CALLBACK(cache_manager_metadata_clean_cb), cache_manager);
 	gtk_size_group_add_widget(sizegroup, button);
 	pref_table_label(table, 1, 0, _("Remove orphaned keywords and comments."), 0.0);
+
+	group = pref_group_new(gd->vbox, FALSE, _("Background cache maintenance"), GTK_ORIENTATION_VERTICAL);
+
+	table = pref_table_new(group, 3, 2, FALSE, FALSE);
+
+	button = pref_table_button(table, 0, 0, GTK_STOCK_EXECUTE, _("Select"), FALSE,
+				   G_CALLBACK(cache_manager_cache_maintenance_load_cb), cache_manager);
+	gtk_size_group_add_widget(sizegroup, button);
+	pref_table_label(table, 1, 0, _("Run cache maintenance as a background job."), 0.0);
+	gtk_widget_set_sensitive(group, options->thumbnails.enable_caching);
 
 	gtk_widget_show(cache_manager->dialog->dialog);
 }

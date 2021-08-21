@@ -17,6 +17,13 @@
       <ulink url="https://photini.readthedocs.io/en/latest/">https://photini.readthedocs.io/en/latest/</ulink>
     </para>
   </section>
+  <section id="Unison">
+    <title>Unison</title>
+    <para>
+       Unison allows two replicas of a collection of files and directories to be stored on different hosts (or different disks on the same host), modified separately, and then brought up to date by propagating the changes in each replica to the other (n.b. there is a GTK GUI .deb package):
+      <ulink url="https://www.cis.upenn.edu/~bcpierce/unison/">https://www.cis.upenn.edu/~bcpierce/unison/</ulink>
+    </para>
+  </section>
   <section id="GeeqieCacheMaintenance">
     <title>Geeqie Cache Maintenance</title>
     <para>
