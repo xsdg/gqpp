@@ -945,7 +945,7 @@ GtkWidget *bar_pane_gps_new(const gchar *id, const gchar *title, const gchar *ma
 
 	status = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,0);
 	slider = gtk_scale_button_new(GTK_ICON_SIZE_SMALL_TOOLBAR, 1, 17, 1, slider_icons);
-	gtk_widget_set_tooltip_text(slider, "Zoom");
+	gtk_widget_set_tooltip_text(slider, _("Zoom"));
 	gtk_scale_button_set_value(GTK_SCALE_BUTTON(slider), (gdouble)zoom);
 
 	progress = gtk_progress_bar_new();
@@ -954,7 +954,9 @@ GtkWidget *bar_pane_gps_new(const gchar *id, const gchar *title, const gchar *ma
 	gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(progress), TRUE);
 #endif
 	state = gtk_label_new("");
-	gtk_label_set_justify(GTK_LABEL(state), GTK_JUSTIFY_CENTER);
+	gtk_label_set_justify(GTK_LABEL(state), GTK_JUSTIFY_LEFT);
+	gtk_label_set_ellipsize(GTK_LABEL(state), PANGO_ELLIPSIZE_START);
+	gtk_widget_set_tooltip_text(state, _("Zoom level"));
 
 	gtk_box_pack_start(GTK_BOX(status), GTK_WIDGET(slider), FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(status), GTK_WIDGET(state), FALSE, FALSE, 5);
