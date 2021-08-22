@@ -1095,6 +1095,15 @@ static void image_change_complete(ImageWindow *imd, gdouble zoom)
 			pr = PIXBUF_RENDERER(imd->pr);
 			pr->zoom = zoom;	/* store the zoom, needed by the loader */
 
+			/* Disable 2-pass for GIFs. Animated GIFs can flicker when enabled
+			 * Reduce quality to worst but fastest to avoid dropped frames */
+			if (g_ascii_strcasecmp(imd->image_fd->extension, ".GIF") == 0)
+				{
+				g_object_set(G_OBJECT(imd->pr), "zoom_2pass", FALSE, NULL);
+				g_object_set(G_OBJECT(imd->pr), "zoom_quality", GDK_INTERP_NEAREST, NULL);
+				}
+
+
 			if (image_load_begin(imd, imd->image_fd))
 				{
 				imd->unknown = FALSE;
