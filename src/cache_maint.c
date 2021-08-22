@@ -1626,12 +1626,12 @@ static void cache_manager_cache_maintenance_start_cb(GenericDialog *fd, gpointer
 			}
 		else
 			{
-			log_printf("The specified folder can not be found: %s\n", path);
+			log_printf("The specified folder can not be found: \"%s\"\n", path);
 			}
 		}
 	else
 		{
-		cmd_line = g_strdup_printf("%s --cache-maintenance %s", gq_executable_path, path);
+		cmd_line = g_strdup_printf("%s --cache-maintenance \"%s\"", gq_executable_path, path);
 
 		g_spawn_command_line_async(cmd_line, NULL);
 
