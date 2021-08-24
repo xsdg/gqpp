@@ -396,8 +396,11 @@ static gboolean bar_pane_gps_marker_keypress_cb(GtkWidget *widget, ClutterButton
 			g_string_free(text, TRUE);
 
 			parent_marker = clutter_actor_get_parent(label_marker);
-			direction = clutter_actor_get_child_at_index(parent_marker, 0);
-			clutter_actor_set_opacity(direction, 255);
+			if (clutter_actor_get_n_children(parent_marker ) > 1 )
+				{
+				direction = clutter_actor_get_child_at_index(parent_marker, 0);
+				clutter_actor_set_opacity(direction, 255);
+				}
 			}
 		/* otherwise, revert to the hidden text marker
 		 */
@@ -409,8 +412,11 @@ static gboolean bar_pane_gps_marker_keypress_cb(GtkWidget *widget, ClutterButton
 			champlain_marker_set_selection_text_color(&marker_colour);
 
 			parent_marker = clutter_actor_get_parent(label_marker);
-			direction = clutter_actor_get_child_at_index(parent_marker, 0);
-			clutter_actor_set_opacity(direction, 0);
+			if (clutter_actor_get_n_children(parent_marker ) > 1 )
+				{
+				direction = clutter_actor_get_child_at_index(parent_marker, 0);
+				clutter_actor_set_opacity(direction, 0);
+				}
 			}
 
 		g_free(current_text);
