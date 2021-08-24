@@ -39,6 +39,7 @@
 #include "layout_config.h"
 #include "layout_util.h"
 #include "metadata.h"
+#include "misc.h"
 #include "osd.h"
 #include "pixbuf_util.h"
 #include "rcfile.h"
@@ -445,6 +446,9 @@ static void config_window_apply(void)
 
 	options->star_rating.star = c_options->star_rating.star;
 	options->star_rating.rejected = c_options->star_rating.rejected;
+
+	options->threads.duplicates = c_options->threads.duplicates > 0 ? c_options->threads.duplicates : -1;
+
 #ifdef DEBUG
 	set_debug_level(debug_c);
 #endif
@@ -3675,6 +3679,9 @@ static void config_tab_advanced(GtkWidget *notebook)
 	GdkPixbufFormat *fm;
 	gint i;
 	GString *types_string = g_string_new(NULL);
+	GtkWidget *types_string_label;
+	GtkWidget *threads_string_label;
+	GtkWidget *dupes_threads_spin;
 
 	vbox = scrolled_notebook_page(notebook, _("Advanced"));
 	group = pref_group_new(vbox, FALSE, _("External preview extraction"), GTK_ORIENTATION_VERTICAL);
@@ -3717,8 +3724,7 @@ static void config_tab_advanced(GtkWidget *notebook)
 		}
 
 	types_string = g_string_prepend(types_string, _("Usable file types:\n"));
-	pref_label_new(group, types_string->str);
-	GtkWidget *types_string_label = gtk_label_new(types_string->str);
+	types_string_label = pref_label_new(group, types_string->str);
 	gtk_label_set_line_wrap(GTK_LABEL(types_string_label), TRUE);
 
 	pref_spacer(group, PREF_PAD_GROUP);
@@ -3742,6 +3748,19 @@ static void config_tab_advanced(GtkWidget *notebook)
 	g_slist_free(formats_list);
 	string_list_free(extensions_list);
 	g_string_free(types_string, TRUE);
+
+	pref_spacer(group, PREF_PAD_GROUP);
+
+	pref_line(vbox, PREF_PAD_SPACE);
+	group = pref_group_new(vbox, FALSE, _("Thread pool limits"), GTK_ORIENTATION_VERTICAL);
+
+	threads_string_label = pref_label_new(group, "This option limits the number of threads (or cpu cores)\nthat Geeqie will use when running duplicate checks. The default value is 0, which means all avaialble cores will be used.");
+	gtk_label_set_line_wrap(GTK_LABEL(threads_string_label), TRUE);
+
+	pref_spacer(vbox, PREF_PAD_GROUP);
+
+	dupes_threads_spin = pref_spin_new_int(vbox, _("Duplicate check:"), _("max. threads"), 0, get_cpu_cores(), 1, options->threads.duplicates, &c_options->threads.duplicates);
+	gtk_widget_set_tooltip_markup(dupes_threads_spin, _("Set to 0 for unlimited"));
 }
 
 /* stereo tab */

@@ -214,6 +214,8 @@ ConfOptions *init_options(ConfOptions *options)
 	options->printer.image_text_position = 1;
 	options->printer.page_text_position = 3;
 
+	options->threads.duplicates = -1;
+
 	options->disabled_plugins = NULL;
 
 	options->mouse_button_8 = g_strdup("Back");

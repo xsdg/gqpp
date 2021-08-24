@@ -4837,7 +4837,7 @@ DupeWindow *dupe_window_new()
 
 	g_mutex_init(&dw->thread_count_mutex);
 	g_mutex_init(&dw->search_matches_mutex);
-	dw->dupe_comparison_thread_pool = g_thread_pool_new(dupe_comparison_func, dw, -1, FALSE, NULL);
+	dw->dupe_comparison_thread_pool = g_thread_pool_new(dupe_comparison_func, dw, options->threads.duplicates, FALSE, NULL);
 
 	return dw;
 }

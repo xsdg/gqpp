@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<section id="GuideOptionsAdvanced">
-  <title>External preview extraction</title>
-  <para>
+  <section id="GuideOptionsAdvanced">
+<title>Advanced</title>
+  <section id="ExternalPreviewExtraction">
+     <title>External preview extraction</title>
+ <para>
     The intention of this feature is to give the user the possibility to display image previews of files
     that the standard libraries cannot decode.
     <para />
@@ -85,4 +87,9 @@
         mv $tmpfile "$2"</programlisting>
     </pre>
   </para>
+</section>
+<section id="ThreadPools">
+    <title>Thread Pools</title>
+    <para>This option will limit the number of threads (cores) that are used when performing a duplicate image search. A value of <code>0</code> means use all available threads. This will give the fastest processing time, but will slow other processes including user input response time.</para> 
+</section>
 </section>

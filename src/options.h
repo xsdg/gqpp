@@ -352,6 +352,11 @@ struct _ConfOptions
 		gchar *template_string;
 	} printer;
 
+	/* Threads */
+	struct {
+		gint duplicates;
+	} threads;
+
 	gchar *mouse_button_8; /**< user-definable mouse buttons */
 	gchar *mouse_button_9; /**< user-definable mouse buttons */
 
