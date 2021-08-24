@@ -1605,7 +1605,6 @@ static void cache_manager_cache_maintenance_start_cb(GenericDialog *fd, gpointer
 {
 	CacheOpsData *cd = data;
 	gchar *path;
-	GList *list_total = NULL;
 	gchar *cmd_line;
 
 	if (!cd->remote)
