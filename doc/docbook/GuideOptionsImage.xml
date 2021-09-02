@@ -102,6 +102,21 @@
       </varlistentry>
     </variablelist>
   </section>
+  <section id="TileSize">
+    <title>Tile Size</title>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guilabel>Tile size in pixels</guilabel>
+        </term>
+        <listitem>
+          <para>
+            This option is only available when GPU acceleration is not selected. It sets the size in pixels that large images are split into during rendering. Setting a larger value will reduce the tiling effect seen as the image is displayed, but will also slightly increase the delay until the first part of the image is seen.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
   <section id="Appearance">
     <title>Appearance</title>
     <variablelist>

@@ -58,10 +58,6 @@ typedef enum {
 } ExifOrientationType;
 #endif
 
-
-/* size to use when breaking up image pane for rendering */
-#define PR_TILE_SIZE 128
-
 typedef struct _ImageTile ImageTile;
 typedef struct _QueueData QueueData;
 
@@ -501,7 +497,7 @@ static gint pixmap_calc_size(cairo_surface_t *surface)
 
 //	d = gdk_drawable_get_depth(pixmap);
 //	gdk_drawable_get_size(pixmap, &w, &h);
-	return PR_TILE_SIZE * PR_TILE_SIZE * 4 / 8;
+	return options->image.tile_size * options->image.tile_size * 4 / 8;
 }
 
 static void rt_hidpi_aware_draw(
@@ -2359,8 +2355,8 @@ RendererFuncs *renderer_tiles_new(PixbufRenderer *pr)
 
 	rt->f.stereo_set = renderer_stereo_set;
 
-	rt->tile_width = PR_TILE_SIZE;
-	rt->tile_height = PR_TILE_SIZE;
+	rt->tile_width = options->image.tile_size;
+	rt->tile_height = options->image.tile_size;
 
 	rt->tiles = NULL;
 	rt->tile_cache_size = 0;

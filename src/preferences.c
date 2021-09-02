@@ -286,6 +286,7 @@ static void config_window_apply(void)
 	options->image.max_autofit_size = c_options->image.max_autofit_size;
 	options->image.max_enlargement_size = c_options->image.max_enlargement_size;
 	options->image.use_clutter_renderer = c_options->image.use_clutter_renderer;
+	options->image.tile_size = c_options->image.tile_size;
 	options->progressive_key_scrolling = c_options->progressive_key_scrolling;
 	options->keyboard_scroll_step = c_options->keyboard_scroll_step;
 
@@ -2285,6 +2286,15 @@ static void config_tab_image(GtkWidget *notebook)
 				 options->image.max_autofit_size, &c_options->image.max_autofit_size);
 	pref_checkbox_link_sensitivity(ct_button, spin);
 	gtk_widget_set_tooltip_text(GTK_WIDGET(hbox), _("This value will set the virtual size of the window when \"Fit image to window\" is set. Instead of using the actual size of the window, the specified percentage of the window will be used. It allows one to keep a border around the image (values lower than 100%) or to auto zoom the image (values greater than 100%). It affects fullscreen mode too."));
+
+	group = pref_group_new(vbox, FALSE, _("Tile size"), GTK_ORIENTATION_VERTICAL);
+	gtk_widget_set_sensitive(group, !options->image.use_clutter_renderer);
+
+	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
+	spin = pref_spin_new_int(hbox, _("Pixels"), _("(Requires restart)"),
+				 128, 4096, 128,
+				 options->image.tile_size, &c_options->image.tile_size);
+	gtk_widget_set_tooltip_text(GTK_WIDGET(hbox), _("This value changes the size of the tiles large images are split into. Increasing the size of the tiles will reduce the tiling effect seen on image changes, but will also slightly increase the delay before the first part of a large image is seen."));
 
 	group = pref_group_new(vbox, FALSE, _("Appearance"), GTK_ORIENTATION_VERTICAL);
 

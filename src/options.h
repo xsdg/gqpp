@@ -153,6 +153,8 @@ struct _ConfOptions
 		GdkColor border_color;
 		GdkColor alpha_color_1;
 		GdkColor alpha_color_2;
+
+		gint tile_size;
 	} image;
 
 	/* thumbnails */
