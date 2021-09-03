@@ -2273,7 +2273,7 @@ static gboolean rt_draw_cb(GtkWidget *widget, cairo_t *cr, gpointer data)
 	GList *work;
 	OverlayData *od;
 
-	if (rt->stereo_mode && (PR_STEREO_HORIZ | PR_STEREO_VERT))
+	if (rt->stereo_mode & (PR_STEREO_HORIZ | PR_STEREO_VERT))
 		{
 		cairo_push_group(cr);
 		cairo_set_source_rgb(cr, (double)rt->pr->color.red / 65535, (double)rt->pr->color.green / 65535, (double)rt->pr->color.blue / 65535);
