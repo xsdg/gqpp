@@ -2273,8 +2273,35 @@ static gboolean rt_draw_cb(GtkWidget *widget, cairo_t *cr, gpointer data)
 	GList *work;
 	OverlayData *od;
 
-	cairo_set_source_surface (cr, rt->surface, 0, 0);
-	cairo_paint(cr);
+	if (rt->stereo_mode && (PR_STEREO_HORIZ | PR_STEREO_VERT))
+		{
+		cairo_push_group(cr);
+		cairo_set_source_rgb(cr, (double)rt->pr->color.red / 65535, (double)rt->pr->color.green / 65535, (double)rt->pr->color.blue / 65535);
+
+		if (rt->stereo_mode & PR_STEREO_HORIZ)
+			{
+			cairo_rectangle(cr, rt->stereo_off_x, 0, rt->pr->viewport_width, rt->pr->viewport_height);
+			}
+		else
+			{
+			cairo_rectangle(cr, 0, rt->stereo_off_y, rt->pr->viewport_width, rt->pr->viewport_height);
+			}
+		cairo_clip(cr);
+		cairo_paint(cr);
+
+		cairo_rectangle(cr, rt->pr->x_offset + rt->stereo_off_x, rt->pr->y_offset + rt->stereo_off_y, rt->pr->vis_width, rt->pr->vis_height);
+		cairo_clip(cr);
+		cairo_set_source_surface(cr, rt->surface, 0, 0);
+		cairo_paint(cr);
+
+		cairo_pop_group_to_source(cr);
+		cairo_paint(cr);
+		}
+	else
+		{
+		cairo_set_source_surface(cr, rt->surface, 0, 0);
+		cairo_paint(cr);
+		}
 
 	work = rt->overlay_list;
 	while (work)
