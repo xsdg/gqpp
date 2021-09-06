@@ -1522,7 +1522,7 @@ static void options_parse_layout(GQParserData *parser_data, GMarkupParseContext 
 			}
 		else
 			{
-			bar_update_from_config(lw->bar, attribute_names, attribute_values);
+			bar_update_from_config(lw->bar, attribute_names, attribute_values, lw);
 			}
 
 		options_parse_func_push(parser_data, options_parse_bar, NULL, lw->bar);

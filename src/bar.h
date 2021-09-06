@@ -52,7 +52,7 @@ struct _PaneData {
 
 GtkWidget *bar_new(LayoutWindow *lw);
 GtkWidget *bar_new_from_config(LayoutWindow *lw, const gchar **attribute_names, const gchar **attribute_values);
-GtkWidget *bar_update_from_config(GtkWidget *bar, const gchar **attribute_names, const gchar **attribute_values);
+GtkWidget *bar_update_from_config(GtkWidget *bar, const gchar **attribute_names, const gchar **attribute_values, LayoutWindow *lw);
 
 void bar_close(GtkWidget *bar);
 

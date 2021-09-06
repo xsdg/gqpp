@@ -628,7 +628,7 @@ static void bar_size_allocate(GtkWidget *widget, GtkAllocation *allocation, gpoi
 {
 	BarData *bd = data;
 
-	bd->width = allocation->width;
+	bd->width = gtk_paned_get_position(GTK_PANED(bd->lw->utility_paned));
 }
 
 gint bar_get_width(GtkWidget *bar)
@@ -698,7 +698,6 @@ GtkWidget *bar_new(LayoutWindow *lw)
 	g_signal_connect(G_OBJECT(bd->widget), "button_release_event", G_CALLBACK(bar_menu_cb), bd);
 
 	bd->width = SIDEBAR_DEFAULT_WIDTH;
-	gtk_widget_set_size_request(bd->widget, bd->width, -1);
 
 	box = gtk_hbox_new(FALSE, 0);
 	DEBUG_NAME(box);
@@ -749,7 +748,7 @@ GtkWidget *bar_new(LayoutWindow *lw)
 }
 
 
-GtkWidget *bar_update_from_config(GtkWidget *bar, const gchar **attribute_names, const gchar **attribute_values)
+GtkWidget *bar_update_from_config(GtkWidget *bar, const gchar **attribute_names, const gchar **attribute_values, LayoutWindow *lw)
 {
 	gboolean enabled = TRUE;
 	gint width = SIDEBAR_DEFAULT_WIDTH;
@@ -766,16 +765,8 @@ GtkWidget *bar_update_from_config(GtkWidget *bar, const gchar **attribute_names,
 		log_printf("unknown attribute %s = %s\n", option, value);
 		}
 
-#if !GTK_CHECK_VERSION(3,0,0)
-/** @FIXME In bar_size_allocate() the width obtained is the allocated width. In GTK2 this
- * is the actual width. In GTK3 it is the *minimum* width.
- * This results in the info sidebar being able to increase, but not
- * decrease. There does not seem to be a way in GTK3 to get the actual width of
- * a widget. For GTK3 the only way is to disable it. The width of the sidebar
- * is therefore not preserved across restarts.
- */
-	gtk_widget_set_size_request(bar, width, -1);
-#endif
+	gtk_paned_set_position(GTK_PANED(lw->utility_paned), width);
+
 	if (enabled)
 		{
 		gtk_widget_show(bar);
@@ -790,7 +781,7 @@ GtkWidget *bar_update_from_config(GtkWidget *bar, const gchar **attribute_names,
 GtkWidget *bar_new_from_config(LayoutWindow *lw, const gchar **attribute_names, const gchar **attribute_values)
 {
 	GtkWidget *bar = bar_new(lw);
-	return bar_update_from_config(bar, attribute_names, attribute_values);
+	return bar_update_from_config(bar, attribute_names, attribute_values, lw);
 }
 
 GtkWidget *bar_pane_expander_title(const gchar *title)
