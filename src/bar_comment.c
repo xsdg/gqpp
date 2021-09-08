@@ -172,21 +172,28 @@ static gint bar_pane_comment_event(GtkWidget *bar, GdkEvent *event)
 static void bar_pane_comment_write_config(GtkWidget *pane, GString *outstr, gint indent)
 {
 	PaneCommentData *pcd;
+	gint w, h;
 
 	pcd = g_object_get_data(G_OBJECT(pane), "pane_data");
 	if (!pcd) return;
 
+	gtk_widget_get_size_request(GTK_WIDGET(pane), &w, &h);
+
 	if (!g_strcmp0(pcd->pane.id, "title"))
 		{
-		pcd->height = options->info_title.height;
+		pcd->height = h;
 		}
 	if (!g_strcmp0(pcd->pane.id, "comment"))
 		{
-		pcd->height = options->info_comment.height;
+		pcd->height = h;
 		}
 	if (!g_strcmp0(pcd->pane.id, "rating"))
 		{
-		pcd->height = options->info_rating.height;
+		pcd->height = h;
+		}
+	if (!g_strcmp0(pcd->pane.id, "headline"))
+		{
+		pcd->height = h;
 		}
 
 	WRITE_NL(); WRITE_STRING("<pane_comment ");
@@ -327,6 +334,10 @@ GtkWidget *bar_pane_comment_new_from_config(const gchar **attribute_names, const
 	if (!g_strcmp0(id, "rating"))
 		{
 		options->info_rating.height = height;
+		}
+	if (!g_strcmp0(id, "headline"))
+		{
+		options->info_headline.height = height;
 		}
 
 	bar_pane_translate_title(PANE_COMMENT, id, &title);

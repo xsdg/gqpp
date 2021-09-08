@@ -39,6 +39,8 @@
 #include "rcfile.h"
 #include "bar_gps.h"
 
+#include <gdk/gdkkeysyms.h>
+
 typedef struct _KnownPanes KnownPanes;
 struct _KnownPanes
 {
@@ -274,6 +276,72 @@ static void bar_expander_move_bottom_cb(GtkWidget *widget, gpointer data)
 	bar_expander_move(widget, data, FALSE, FALSE);
 }
 
+static void height_spin_changed_cb(GtkSpinButton *spin, gpointer data)
+{
+
+	gtk_widget_set_size_request(GTK_WIDGET(data), -1, gtk_spin_button_get_value_as_int(spin));
+}
+
+static gboolean height_spin_key_press_cb(GtkWidget *widget, GdkEventKey *event, gpointer data)
+{
+	if ((event->keyval == GDK_KEY_Return || event->keyval == GDK_KEY_Escape))
+		{
+		gtk_widget_destroy(GTK_WIDGET(data));
+		}
+
+	return TRUE;
+}
+
+static void bar_expander_height_cb(GtkWidget *widget, gpointer data)
+{
+	GtkWidget *expander = data;
+	GtkWidget *spin;
+	GtkWidget *window;
+	GtkWidget *data_box;
+	GList *list;
+	gint x, y;
+	gint w, h;
+#if GTK_CHECK_VERSION(3,0,0)
+	GdkDisplay *display;
+	GdkDeviceManager *device_manager;
+	GdkDevice *device;
+#endif
+
+#if GTK_CHECK_VERSION(3,0,0)
+	display = gdk_display_get_default();
+	device_manager = gdk_display_get_device_manager(display);
+	device = gdk_device_manager_get_client_pointer(device_manager);
+	gdk_device_get_position(device, NULL, &x, &y);
+#else
+	gdk_window_get_pointer(NULL, &x, &y, NULL);
+#endif
+
+	list = gtk_container_get_children(GTK_CONTAINER(expander));
+	data_box = list->data;
+
+	window = gtk_window_new(GTK_WINDOW_POPUP);
+
+	gtk_window_set_modal(GTK_WINDOW(window), TRUE);
+	gtk_window_set_keep_above(GTK_WINDOW(window), TRUE);
+	gtk_window_set_default_size(GTK_WINDOW(window), 50, 30); //** @FIXME set these values in a more sensible way */
+
+	gtk_window_move(GTK_WINDOW(window), x, y);
+	gtk_widget_show(window);
+
+	gtk_widget_get_size_request(GTK_WIDGET(data_box), &w, &h);
+
+	spin = gtk_spin_button_new_with_range(1, 1000, 1);
+	g_signal_connect(G_OBJECT(spin), "value-changed", G_CALLBACK(height_spin_changed_cb), data_box);
+	g_signal_connect(G_OBJECT(spin), "key-press-event", G_CALLBACK(height_spin_key_press_cb), window);
+
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin), h);
+	gtk_container_add(GTK_CONTAINER(window), spin);
+	gtk_widget_show(spin);
+	gtk_widget_grab_focus(GTK_WIDGET(spin));
+
+	g_list_free(list);
+}
+
 static void bar_expander_delete_cb(GtkWidget *widget, gpointer data)
 {
 	GtkWidget *expander = data;
@@ -307,8 +375,17 @@ static void bar_menu_popup(GtkWidget *widget)
 	GtkWidget *menu;
 	GtkWidget *bar;
 	GtkWidget *expander;
-	const KnownPanes *pane = known_panes;
 	BarData *bd;
+	gboolean display_height_option = FALSE;
+	gchar const *label;
+
+	label = gtk_expander_get_label(GTK_EXPANDER(widget));
+	display_height_option =	(g_strcmp0(label, "Comment") == 0) ||
+							(g_strcmp0(label, "Rating") == 0) ||
+							(g_strcmp0(label, "Title") == 0) ||
+							(g_strcmp0(label, "Headline") == 0) ||
+							(g_strcmp0(label, "Keywords") == 0) ||
+							(g_strcmp0(label, "GPS Map") == 0);
 
 	bd = g_object_get_data(G_OBJECT(widget), "bar_data");
 	if (bd)
@@ -334,16 +411,15 @@ static void bar_menu_popup(GtkWidget *widget)
 		menu_item_add_stock(menu, _("Move _down"), GTK_STOCK_GO_DOWN, G_CALLBACK(bar_expander_move_down_cb), expander);
 		menu_item_add_stock(menu, _("Move to _bottom"), GTK_STOCK_GOTO_BOTTOM, G_CALLBACK(bar_expander_move_bottom_cb), expander);
 		menu_item_add_divider(menu);
+
+		if (gtk_expander_get_expanded(GTK_EXPANDER(expander)) && display_height_option)
+			{
+			menu_item_add_stock(menu, _("Height..."), GTK_STOCK_PREFERENCES, G_CALLBACK(bar_expander_height_cb), expander);
+			menu_item_add_divider(menu);
+			}
+
 		menu_item_add_stock(menu, _("Remove"), GTK_STOCK_DELETE, G_CALLBACK(bar_expander_delete_cb), expander);
 		menu_item_add_divider(menu);
-		}
-
-	while (pane->id)
-		{
-		GtkWidget *item;
-		item = menu_item_add_stock(menu, _(pane->title), GTK_STOCK_ADD, G_CALLBACK(bar_expander_add_cb), bar);
-		g_object_set_data(G_OBJECT(item), "pane_add_id", pane->id);
-		pane++;
 		}
 
 	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, bar, 0, GDK_CURRENT_TIME);

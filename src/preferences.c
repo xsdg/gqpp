@@ -2130,31 +2130,6 @@ static void config_tab_general(GtkWidget *notebook)
 
 	pref_spacer(group, PREF_PAD_GROUP);
 
-	group = pref_group_new(vbox, FALSE, _("Info sidebar heights"), GTK_ORIENTATION_VERTICAL);
-	pref_label_new(group, _("NOTE! Geeqie must be restarted for changes to take effect"));
-	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
-	pref_spin_new_int(hbox, _("Keywords:"), NULL,
-				 1, 9999, 1,
-				 options->info_keywords.height, &c_options->info_keywords.height);
-	pref_spin_new_int(hbox, _("Title:"), NULL,
-				 1, 9999, 1,
-				 options->info_title.height, &c_options->info_title.height);
-	pref_spin_new_int(hbox, _("Comment:"), NULL,
-				 1, 9999, 1,
-				 options->info_comment.height, &c_options->info_comment.height);
-	pref_spin_new_int(hbox, _("Rating:"), NULL,
-				 1, 9999, 1,
-				 options->info_rating.height, &c_options->info_rating.height);
-
-	pref_spacer(group, PREF_PAD_GROUP);
-
-	group = pref_group_new(vbox, FALSE, _("Show predefined keyword tree"), GTK_ORIENTATION_VERTICAL);
-
-	pref_checkbox_new_int(group, _("Show predefined keyword tree (NOTE! Geeqie must be restarted for change to take effect)"),
-				options->show_predefined_keyword_tree, &c_options->show_predefined_keyword_tree);
-
-	pref_spacer(group, PREF_PAD_GROUP);
-
 	net_mon = g_network_monitor_get_default();
 	geeqie_org = g_network_address_parse_uri(GQ_WEBSITE, 80, NULL);
 	internet_available = g_network_monitor_can_reach(net_mon, geeqie_org, NULL, NULL);

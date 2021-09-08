@@ -246,21 +246,6 @@
       <para>Geeqie must be restarted for changes to take effect.</para>
     </note>
   </section>
-  <section id="InfoSidebar">
-    <title>Info Sidebar component heights</title>
-    <para>
-      The heights of the following components can be set individually:
-      <itemizedlist>
-        <listitem>Keywords</listitem>
-        <listitem>Title</listitem>
-        <listitem>Comments</listitem>
-      </itemizedlist>
-    </para>
-    <note>
-      <para>Geeqie must be restarted for changes to take effect.</para>
-    </note>
-    <variablelist />
-  </section>
   <section id="PredefinedKeywordTree">
     <title>Show predefined keyword tree</title>
     <para>Deselecting this option will hide the list of predefined keywords on the right-hand side of the keywords pane of the info sidebar.</para>

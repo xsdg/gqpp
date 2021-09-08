@@ -303,11 +303,13 @@ static void bar_pane_keywords_write_config(GtkWidget *pane, GString *outstr, gin
 {
 	PaneKeywordsData *pkd;
 	GList *path_expanded = NULL;
+	gint w, h;
 
 	pkd = g_object_get_data(G_OBJECT(pane), "pane_data");
 	if (!pkd) return;
 
-	pkd->height = options->info_keywords.height;
+	gtk_widget_get_size_request(GTK_WIDGET(pane), &w, &h);
+	pkd->height = h;
 
 	WRITE_NL(); WRITE_STRING("<pane_keywords ");
 	write_char_option(outstr, indent, "id", pkd->pane.id);

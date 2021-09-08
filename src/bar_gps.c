@@ -674,6 +674,7 @@ static void bar_pane_gps_write_config(GtkWidget *pane, GString *outstr, gint ind
 	GString *buffer = g_string_new(str);
 	gdouble position;
 	gint int_position;
+	gint w, h;
 
 	pgd = g_object_get_data(G_OBJECT(pane), "pane_data");
 	if (!pgd) return;
@@ -683,6 +684,10 @@ static void bar_pane_gps_write_config(GtkWidget *pane, GString *outstr, gint ind
 	write_char_option(outstr, indent, "id", pgd->pane.id);
 	write_char_option(outstr, indent, "title", gtk_label_get_text(GTK_LABEL(pgd->pane.title)));
 	WRITE_BOOL(pgd->pane, expanded);
+
+	gtk_widget_get_size_request(GTK_WIDGET(pane), &w, &h);
+	pgd->height = h;
+
 	WRITE_INT(*pgd, height);
 	indent++;
 
