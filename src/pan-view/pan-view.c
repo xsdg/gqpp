@@ -147,7 +147,14 @@ static void pan_queue_image_done_cb(ImageLoader *il, gpointer data)
 			{
 			if (!il->fd->exif_orientation)
 				{
-				il->fd->exif_orientation = metadata_read_int(il->fd, ORIENTATION_KEY, EXIF_ORIENTATION_TOP_LEFT);
+				if (g_strcmp0(il->fd->format_name, "heif") != 0)
+					{
+					il->fd->exif_orientation = metadata_read_int(il->fd, ORIENTATION_KEY, EXIF_ORIENTATION_TOP_LEFT);
+					}
+				else
+					{
+					il->fd->exif_orientation = EXIF_ORIENTATION_TOP_LEFT;
+					}
 				}
 
 			if (il->fd->exif_orientation != EXIF_ORIENTATION_TOP_LEFT)

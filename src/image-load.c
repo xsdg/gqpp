@@ -887,6 +887,8 @@ static void image_loader_setup_loader(ImageLoader *il)
 	g_free(format);
 #endif
 
+	il->fd->format_name = il->backend.get_format_name(il->loader);
+
 	g_mutex_unlock(il->data_mutex);
 }
 

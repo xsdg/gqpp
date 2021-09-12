@@ -716,6 +716,7 @@ static void file_data_free(FileData *fd)
 	g_free(fd->owner);
 	g_free(fd->group);
 	g_free(fd->sym_link);
+	g_free(fd->format_name);
 	g_assert(fd->sidecar_files == NULL); /* sidecar files must be freed before calling this */
 
 	file_data_change_info_free(NULL, fd);

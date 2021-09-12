@@ -599,6 +599,7 @@ struct _FileData {
 	const gchar *extension;
 	gchar *extended_extension;
 	FileFormatClass format_class;
+	gchar *format_name; /**< set by the image loader */
 	gchar *collate_key_name;
 	gchar *collate_key_name_nocase;
 	gint64 size;

@@ -1279,7 +1279,14 @@ void layout_image_reset_orientation(LayoutWindow *lw)
 
 	if (options->image.exif_rotate_enable)
 		{
-		imd->orientation = metadata_read_int(imd->image_fd, ORIENTATION_KEY, EXIF_ORIENTATION_TOP_LEFT);
+		if (g_strcmp0(imd->image_fd->format_name, "heif") != 0)
+			{
+			imd->orientation = metadata_read_int(imd->image_fd, ORIENTATION_KEY, EXIF_ORIENTATION_TOP_LEFT);
+			}
+		else
+			{
+			imd->orientation = EXIF_ORIENTATION_TOP_LEFT;
+			}
 		}
 	else
 		{
