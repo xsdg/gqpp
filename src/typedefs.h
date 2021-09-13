@@ -733,6 +733,13 @@ struct _LayoutOptions
 		gint y;
 	} dupe_window;
 
+	struct {
+		gint w;
+		gint h;
+		gint x;
+		gint y;
+	} advanced_exif_window;
+
 	gboolean tools_float;
 	gboolean tools_hidden;
 	gboolean toolbar_hidden;

@@ -260,16 +260,36 @@ static void advanced_exif_add_column(GtkWidget *listview, const gchar *title, gi
 	gtk_tree_view_append_column(GTK_TREE_VIEW(listview), column);
 }
 
+static void advanced_exif_window_get_geometry(ExifWin *ew)
+{
+	GdkWindow *window;
+	LayoutWindow *lw = NULL;
+
+	layout_valid(&lw);
+
+	if (!ew || !lw) return;
+
+	window = gtk_widget_get_window(ew->window);
+	gdk_window_get_position(window, &lw->options.advanced_exif_window.x, &lw->options.advanced_exif_window.y);
+	lw->options.advanced_exif_window.w = gdk_window_get_width(window);
+	lw->options.advanced_exif_window.h = gdk_window_get_height(window);
+}
+
 void advanced_exif_close(ExifWin *ew)
 {
 	if (!ew) return;
 
+	advanced_exif_window_get_geometry(ew);
+
 	gtk_widget_destroy(ew->window);
 }
 
-static void advanced_exif_destroy(GtkWidget *widget, gpointer data)
+static void advanced_exif_delete_cb(GtkWidget *widget, GdkEvent *event, gpointer data)
 {
 	ExifWin *ew = data;
+
+	advanced_exif_window_get_geometry(ew);
+
 	file_data_unref(ew->fd);
 	g_free(ew);
 }
@@ -372,7 +392,7 @@ static gboolean advanced_exif_keypress(GtkWidget *widget, GdkEventKey *event, gp
 	return stop_signal;
 } // static gboolean advanced_exif_...
 
-GtkWidget *advanced_exif_new(void)
+GtkWidget *advanced_exif_new(LayoutWindow *lw)
 {
 	ExifWin *ew;
 	GtkListStore *store;
@@ -392,9 +412,14 @@ GtkWidget *advanced_exif_new(void)
 
 	gtk_window_set_resizable(GTK_WINDOW(ew->window), TRUE);
 
+	gtk_window_resize(GTK_WINDOW(ew->window), lw->options.advanced_exif_window.w, lw->options.advanced_exif_window.h);
+	if (lw->options.advanced_exif_window.x != 0 && lw->options.advanced_exif_window.y != 0)
+		{
+		gtk_window_move(GTK_WINDOW(ew->window), lw->options.advanced_exif_window.x, lw->options.advanced_exif_window.y);
+		}
+
 	g_object_set_data(G_OBJECT(ew->window), "advanced_exif_data", ew);
-	g_signal_connect_after(G_OBJECT(ew->window), "destroy",
-			       G_CALLBACK(advanced_exif_destroy), ew);
+	g_signal_connect(G_OBJECT(ew->window), "delete_event", G_CALLBACK(advanced_exif_delete_cb), ew);
 
 	ew->vbox = gtk_vbox_new(FALSE, PREF_PAD_GAP);
 	gtk_container_add(GTK_CONTAINER(ew->window), ew->vbox);

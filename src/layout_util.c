@@ -4108,7 +4108,7 @@ void layout_exif_window_new(LayoutWindow *lw)
 {
 	if (lw->exif_window) return;
 
-	lw->exif_window = advanced_exif_new();
+	lw->exif_window = advanced_exif_new(lw);
 	if (!lw->exif_window) return;
 	g_signal_connect(G_OBJECT(lw->exif_window), "destroy",
 			 G_CALLBACK(layout_exif_window_destroy), lw);

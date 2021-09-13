@@ -315,6 +315,10 @@ LayoutOptions *init_layout_options(LayoutOptions *options)
 	options->search_window.h = 650;
 	options->search_window.x = 100;
 	options->search_window.y = 100;
+	options->advanced_exif_window.w = 900;
+	options->advanced_exif_window.h = 600;
+	options->advanced_exif_window.x = 0;
+	options->advanced_exif_window.y = 0;
 	options->folder_window.vdivider_pos = 100;
 	options->order = g_strdup("123");
 	options->show_directory_date = FALSE;

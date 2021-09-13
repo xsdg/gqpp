@@ -2839,6 +2839,11 @@ void layout_write_attributes(LayoutOptions *layout, GString *outstr, gint indent
 	WRITE_NL(); WRITE_INT(*layout, dupe_window.y);
 	WRITE_NL(); WRITE_INT(*layout, dupe_window.w);
 	WRITE_NL(); WRITE_INT(*layout, dupe_window.h);
+
+	WRITE_NL(); WRITE_INT(*layout, advanced_exif_window.x);
+	WRITE_NL(); WRITE_INT(*layout, advanced_exif_window.y);
+	WRITE_NL(); WRITE_INT(*layout, advanced_exif_window.w);
+	WRITE_NL(); WRITE_INT(*layout, advanced_exif_window.h);
 	WRITE_SEPARATOR();
 
 	WRITE_NL(); WRITE_BOOL(*layout, animate);
@@ -2948,6 +2953,11 @@ void layout_load_attributes(LayoutOptions *layout, const gchar **attribute_names
 		if (READ_INT(*layout, dupe_window.y)) continue;
 		if (READ_INT(*layout, dupe_window.w)) continue;
 		if (READ_INT(*layout, dupe_window.h)) continue;
+
+		if (READ_INT(*layout, advanced_exif_window.x)) continue;
+		if (READ_INT(*layout, advanced_exif_window.y)) continue;
+		if (READ_INT(*layout, advanced_exif_window.w)) continue;
+		if (READ_INT(*layout, advanced_exif_window.h)) continue;
 
 		if (READ_BOOL(*layout, animate)) continue;
 		if (READ_INT(*layout, workspace)) continue;

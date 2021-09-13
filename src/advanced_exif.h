@@ -23,7 +23,7 @@
 #define ADVANCED_EXIF_H
 
 
-GtkWidget *advanced_exif_new(void);
+GtkWidget *advanced_exif_new(LayoutWindow *lw);
 
 void advanced_exif_set_fd(GtkWidget *bar, FileData *fd);
 
