@@ -12,6 +12,7 @@ ICONS_INLINE = \
 	geeqie_logo.png		\
 	scroller.png		\
 	sheet_broken.png	\
+	archive_file.png	\
 	sheet_metadata.png	\
 	sheet_unknown.png	\
 	sheet_video.png	\
@@ -63,6 +64,7 @@ ICONS_INLINE_PAIRS = \
 	icon_thumb		$(srcdir)/icon_thumb.png	\
 	icon_scroller		$(srcdir)/scroller.png		\
 	icon_broken		$(srcdir)/sheet_broken.png	\
+	icon_archive	$(srcdir)/archive_file.png	\
 	icon_metadata		$(srcdir)/sheet_metadata.png	\
 	icon_unknown		$(srcdir)/sheet_unknown.png	\
 	icon_video		$(srcdir)/sheet_video.png	\

@@ -114,6 +114,7 @@ static PixbufInline inline_pixbuf_data[] = {
 	{ PIXBUF_INLINE_COLLECTION,	icon_collection },
 	{ PIXBUF_INLINE_ICON,		gqview_icon },
 	{ PIXBUF_INLINE_LOGO,		geeqie_logo },
+	{ PIXBUF_INLINE_ARCHIVE,	icon_archive },
 	{ PIXBUF_INLINE_ICON_FLOAT,	icon_float },
 	{ PIXBUF_INLINE_ICON_THUMB,	icon_thumb },
 	{ PIXBUF_INLINE_ICON_BOOK,	icon_book },
@@ -298,6 +299,9 @@ GdkPixbuf *pixbuf_fallback(FileData *fd, gint requested_width, gint requested_he
 			break;
 		case FORMAT_CLASS_DOCUMENT:
 			pixbuf = pixbuf_inline(PIXBUF_INLINE_ICON_PDF);
+			break;
+		case FORMAT_CLASS_ARCHIVE:
+			pixbuf = pixbuf_inline(PIXBUF_INLINE_ARCHIVE);
 			break;
 		default:
 			pixbuf = pixbuf_inline(PIXBUF_INLINE_BROKEN);

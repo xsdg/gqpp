@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Extract the contents of an archive file to a
+# temporary folder under /tmp.
+#
+# Open a new Geeqie window pointing to that folder.
+
+full_path=$(realpath "$1")
+filename=$(basename -- "$1")
+extension="${filename#*.}"
+
+case $extension in
+
+	zip)
+		if [ $(which unzip > /dev/null; echo $? ) = 0 ]
+		then
+			rm --recursive --force "/tmp/geeqie-archive/$full_path"
+			mkdir --parents "/tmp/geeqie-archive/$full_path"
+			unzip "$full_path" -d "/tmp/geeqie-archive/$full_path" > /dev/null
+			geeqie --remote --new-window "/tmp/geeqie-archive/$full_path"
+		else
+			zenity --title="Geeqie Open Archive" --info --width=300 --text="Utility unzip is not installed"  
+		fi
+	;;
+
+	tar.gz)
+		if [ $(which tar > /dev/null; echo $? ) = 0 ]
+		then
+			rm --recursive --force "/tmp/geeqie-archive/$full_path"
+			mkdir --parents "/tmp/geeqie-archive/$full_path"
+			tar --extract --gunzip --directory "/tmp/geeqie-archive/$full_path" --file="$full_path"  > /dev/null
+			geeqie --remote --new-window "/tmp/geeqie-archive/$full_path"
+		else
+			zenity --title="Geeqie Open Archive" --info --width=300 --text="Utility tar is not installed"  
+		fi
+	;;
+
+	cbr | rar)
+		if [ $(which unrar > /dev/null; echo $? ) = 0 ]
+		then
+			rm --recursive --force rf "/tmp/geeqie-archive/$full_path"
+			mkdir --parents "/tmp/geeqie-archive/$full_path"
+			unrar "$full_path" "/tmp/geeqie-archive/$full_path" > /dev/null
+			geeqie --remote --new-window "/tmp/geeqie-archive/$full_path"
+ 		else
+			zenity --title="Geeqie Open Archive" --info --width=300 --text="Utility unrar is not installed"  
+		fi
+   ;;
+
+	*)
+		zenity --title="Geeqie Open Archive" --info --width=300 --text="This is not a known archive file type"  
+    ;;
+esac
+

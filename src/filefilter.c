@@ -309,6 +309,7 @@ void filter_add_defaults(void)
 #endif
 	filter_add_if_missing("psd", "Adobe Photoshop Document", ".psd", FORMAT_CLASS_IMAGE, FALSE, FALSE, TRUE);
 	filter_add_if_missing("apng", "Animated Portable Network Graphic", ".apng", FORMAT_CLASS_IMAGE, FALSE, FALSE, TRUE);
+	filter_add_if_missing("zip", "Archive files", ".zip;.rar;.cbr;tar.gz", FORMAT_CLASS_ARCHIVE, FALSE, FALSE, TRUE);
 }
 
 GList *filter_to_list(const gchar *extensions)
@@ -489,6 +490,7 @@ FileFormatClass filter_file_get_class(const gchar *name)
 	if (filter_file_class(name, FORMAT_CLASS_VIDEO)) return FORMAT_CLASS_VIDEO;
 	if (filter_file_class(name, FORMAT_CLASS_COLLECTION)) return FORMAT_CLASS_COLLECTION;
 	if (filter_file_class(name, FORMAT_CLASS_DOCUMENT)) return FORMAT_CLASS_DOCUMENT;
+	if (filter_file_class(name, FORMAT_CLASS_ARCHIVE)) return FORMAT_CLASS_ARCHIVE;
 	return FORMAT_CLASS_UNKNOWN;
 }
 

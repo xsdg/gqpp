@@ -46,6 +46,7 @@ gboolean pixbuf_scale_aspect(gint req_w, gint req_h, gint old_w, gint old_h, gin
 #define PIXBUF_INLINE_COLLECTION	"collection"
 #define PIXBUF_INLINE_ICON		"icon"
 #define PIXBUF_INLINE_LOGO		"logo"
+#define PIXBUF_INLINE_ARCHIVE		"archive"
 
 #define PIXBUF_INLINE_ICON_FLOAT	"icon_float"
 #define PIXBUF_INLINE_ICON_THUMB	"icon_thumb"

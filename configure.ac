@@ -805,6 +805,7 @@ AC_CONFIG_FILES([
     plugins/image-crop/Makefile
     plugins/random-image/Makefile
     plugins/lens/Makefile
+    plugins/open-archive/Makefile
     geeqie.spec
 ])
 
