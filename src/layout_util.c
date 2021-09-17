@@ -903,9 +903,16 @@ static void layout_menu_open_archive_cb(GtkAction *action, gpointer data)
 	if (fd->format_class == FORMAT_CLASS_ARCHIVE)
 		{
 		dest_dir = open_archive(layout_image_get_fd(lw));
-		lw_new = layout_new_from_default();
-		layout_set_path(lw_new, dest_dir);
-		g_free(dest_dir);
+		if (dest_dir)
+			{
+			lw_new = layout_new_from_default();
+			layout_set_path(lw_new, dest_dir);
+			g_free(dest_dir);
+			}
+		else
+			{
+			warning_dialog(_("Cannot open archive file"), _("See the Log Window"), GTK_STOCK_DIALOG_WARNING, NULL);
+			}
 		}
 }
 

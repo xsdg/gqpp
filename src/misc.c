@@ -22,8 +22,6 @@
 #include "misc.h"
 #include "ui_fileops.h"
 
-#include <archive.h>
-#include <archive_entry.h>
 #include <langinfo.h>
 #include <locale.h>
 
@@ -412,6 +410,17 @@ void tree_path_free_wrapper(void *data, void *useradata)
 
 /* Copied from the libarchive .repo. examples */
 
+#ifndef HAVE_ARCHIVE
+gchar *open_archive(FileData *fd)
+{
+	return NULL;
+}
+
+#else
+
+#include <archive.h>
+#include <archive_entry.h>
+
 static void errmsg(const char *);
 static gboolean extract(const char *filename, int do_extract, int flags);
 static int copy_data(struct archive *, struct archive *);
@@ -526,8 +535,7 @@ static gboolean extract(const char *filename, int do_extract, int flags)
 	return(TRUE);
 }
 
-static int
-copy_data(struct archive *ar, struct archive *aw)
+static int copy_data(struct archive *ar, struct archive *aw)
 {
 	int r;
 	const void *buff;
@@ -566,5 +574,5 @@ static void errmsg(const char *m)
 		}
 	log_printf("%s \n", m);
 }
-
+#endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

@@ -668,7 +668,7 @@ AC_ARG_ENABLE([archive],
     [libarchive=$enableval], [libarchive=auto])
 
 if test "x${libarchive}" != "xno"; then
-  PKG_CHECK_MODULES(ARCHIVE, libarchive >= 3.4.3,
+  PKG_CHECK_MODULES(ARCHIVE, libarchive >= 3.4.0,
     [
       HAVE_ARCHIVE=yes
       AC_DEFINE(HAVE_ARCHIVE, 1, [define to enable archive support])
