@@ -1843,11 +1843,27 @@ static void layout_image_button_cb(ImageWindow *imd, GdkEventButton *event, gpoi
 {
 	LayoutWindow *lw = data;
 	GtkWidget *menu;
+	LayoutWindow *lw_new;
+	gchar *dest_dir;
 
 	switch (event->button)
 		{
 		case MOUSE_BUTTON_LEFT:
-			if (options->image_l_click_video && options->image_l_click_video_editor && imd->image_fd && imd->image_fd->format_class == FORMAT_CLASS_VIDEO)
+			if (options->image_l_click_archive && imd-> image_fd && imd->image_fd->format_class == FORMAT_CLASS_ARCHIVE)
+				{
+				dest_dir = open_archive(imd->image_fd);
+				if (dest_dir)
+					{
+					lw_new = layout_new_from_default();
+					layout_set_path(lw_new, dest_dir);
+					g_free(dest_dir);
+					}
+				else
+					{
+					warning_dialog(_("Cannot open archive file"), _("See the Log Window"), GTK_STOCK_DIALOG_WARNING, NULL);
+					}
+				}
+			else if (options->image_l_click_video && options->image_l_click_video_editor && imd-> image_fd && imd->image_fd->format_class == FORMAT_CLASS_VIDEO)
 				{
 				start_editor_from_file(options->image_l_click_video_editor, imd->image_fd);
 				}

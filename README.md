@@ -72,7 +72,8 @@ Geeqie is a graphics file viewer. Basic features:
 
 *   Viewing raster and vector images, in the following formats:
 3FR, ANI, APM, ARW, AVIF, BMP, CR2, CR3, CRW, CUR, DDS, DjVu, DNG, ERF, GIF, HEIC, HEIF, ICNS, ICO, JP2. JPE/JPEG/JPG, JPEG XL, JPS, KDC, MEF, MOS, MPO, MRW, NEF, ORF, PBM/PGM/PNM/PPM, PEF, PNG, PSD, PTX, QIF/QTIF (QuickTime Image Format), RAF, RAW, RW2, SR2, SRF, SVG/SVGZ, TGA/TARGA, TIF/TIFF, WEBP, WMF, XBM, XPM.
-Animated GIFs are supported.
+    * Display images in archive files (.ZIP, .RAR etc.).
+    * Animated GIFs are supported.
 
 * Preview and thumbnails of video clips can be displayed. Clips can be run via a defined external program.
 
@@ -278,6 +279,9 @@ And either the ChangeLog file or [Geeqie ChangeLog](http://geeqie.org/cgi-bin/gi
 
     libraw 0.20
         For displaying CR3 images
+
+    libarchive 3.4.3
+        For opening archive files (.ZIP, .RAR etc.)
 
     yelp-tools
         For creating the Help files

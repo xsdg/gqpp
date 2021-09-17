@@ -132,15 +132,4 @@
       menu.
     </para>
   </section>
-  <section id="OpenArchive">
-    <title>Open archive file</title>
-    <para>
-      Opens an archive file (of the type .zip, .rar, .cbr, .tar.gz) and extracts the contents into a folder in <code>/tmp</code>. A new Geeqie window is opened in that folder.
-    </para>
-    <para>
-      This item is displayed in the
-      <emphasis role="strong">Plugins</emphasis>
-      menu.
-    </para>
-  </section>
 </section>

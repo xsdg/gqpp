@@ -3,14 +3,6 @@
   <title id="titleGuideReferencePixbufLoaders">Additional pixbuf loaders</title>
   <para>Geeqie can display files for which there are existing pixbuf loaders. In addition to the standard ones included with most distributions, the following loaders may also be available to you.</para>
   <para>However, in some cases you are required to compile and install them yourself.</para>
-  <section id="svg">
-    <title>svg</title>
-    <para>librsvg2-common</para>
-  </section>
-  <section id="wmf">
-    <title>wmf</title>
-    <para>libwmf0.2-7-gtk</para>
-  </section>
   <section id="jp2">
     <title>JP2/JPC/JPX/J2K/JPF</title>
     <para>If your distribution has the libpixbufloader-jasper.so loader, these file formats will also be displayed.</para>

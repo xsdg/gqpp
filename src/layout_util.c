@@ -890,6 +890,25 @@ static void layout_menu_view_in_new_window_cb(GtkAction *action, gpointer data)
 	view_window_new(layout_image_get_fd(lw));
 }
 
+static void layout_menu_open_archive_cb(GtkAction *action, gpointer data)
+{
+	LayoutWindow *lw = data;
+	LayoutWindow *lw_new;
+	gchar *dest_dir;
+	FileData *fd;
+
+	layout_exit_fullscreen(lw);
+	fd = layout_image_get_fd(lw);
+
+	if (fd->format_class == FORMAT_CLASS_ARCHIVE)
+		{
+		dest_dir = open_archive(layout_image_get_fd(lw));
+		lw_new = layout_new_from_default();
+		layout_set_path(lw_new, dest_dir);
+		g_free(dest_dir);
+		}
+}
+
 static void layout_menu_fullscreen_cb(GtkAction *action, gpointer data)
 {
 	LayoutWindow *lw = data;
@@ -2225,6 +2244,42 @@ static void layout_menu_windows_menu_cb(GtkWidget *widget, gpointer data)
 		}
 }
 
+static void layout_menu_view_menu_cb(GtkWidget *widget, gpointer data)
+{
+	LayoutWindow *lw = data;
+	GtkWidget *menu;
+	GtkWidget *sub_menu;
+	gchar *menu_label;
+	GList *children, *iter;
+	gint i;
+	FileData *fd;
+
+	menu = gtk_ui_manager_get_widget(lw->ui_manager, "/MainMenu/ViewMenu/");
+	sub_menu = gtk_menu_item_get_submenu(GTK_MENU_ITEM(menu));
+
+	fd = layout_image_get_fd(lw);
+
+	i = 0;
+	children = gtk_container_get_children(GTK_CONTAINER(sub_menu));
+	for (iter = children; iter != NULL; iter = g_list_next(iter), i++)
+		{
+		menu_label = g_strdup(gtk_menu_item_get_label(GTK_MENU_ITEM(iter->data)));
+		if (g_strcmp0(menu_label, _("Open archive")) == 0)
+			{
+			if (fd->format_class == FORMAT_CLASS_ARCHIVE)
+				{
+				gtk_widget_set_sensitive(GTK_WIDGET(iter->data), TRUE);
+				}
+			else
+				{
+				gtk_widget_set_sensitive(GTK_WIDGET(iter->data), FALSE);
+				}
+			}
+		g_free(menu_label);
+		}
+	g_list_free(children);
+}
+
 static void change_window_id(const gchar *infile, const gchar *outfile)
 {
 	GFile *in_file;
@@ -2390,7 +2445,7 @@ static GtkActionEntry menu_entries[] = {
   { "OrientationMenu",	NULL,			N_("_Orientation"),			NULL,			NULL,					NULL },
   { "RatingMenu",	NULL,			N_("_Rating"),					NULL,			NULL,					NULL },
   { "PreferencesMenu",	NULL,			N_("P_references"),			NULL,			NULL,					NULL },
-  { "ViewMenu",		NULL,			N_("_View"),				NULL,			NULL,					NULL },
+  { "ViewMenu",		NULL,			N_("_View"),				NULL,			NULL,					CB(layout_menu_view_menu_cb)  },
   { "FileDirMenu",	NULL,			N_("_Files and Folders"),		NULL,			NULL,					NULL },
   { "ZoomMenu",		NULL,			N_("_Zoom"),				NULL,			NULL,					NULL },
   { "ColorMenu",	NULL,			N_("_Color Management"),		NULL,			NULL,					NULL },
@@ -2506,6 +2561,7 @@ static GtkActionEntry menu_entries[] = {
   { "ConnectZoom33",	NULL,			N_("Zoom 1:3"),				NULL,			N_("Connected Zoom 1:3"),		CB(layout_menu_connect_zoom_1_3_cb) },
   { "ConnectZoom25",	NULL,			N_("Zoom 1:4"),				NULL,			N_("Connected Zoom 1:4"),		CB(layout_menu_connect_zoom_1_4_cb) },
   { "ViewInNewWindow",	NULL,			N_("_View in new window"),		"<control>V",		N_("View in new window"),		CB(layout_menu_view_in_new_window_cb) },
+  { "OpenArchive",	GTK_STOCK_OPEN,			N_("Open archive"),		NULL,		N_("Open archive"),		CB(layout_menu_open_archive_cb) },
   { "FullScreen",	GTK_STOCK_FULLSCREEN,	N_("F_ull screen"),			"F",			N_("Full screen"),			CB(layout_menu_fullscreen_cb) },
   { "FullScreenAlt1",	GTK_STOCK_FULLSCREEN,	N_("F_ull screen"),			"V",			N_("Full screen"),			CB(layout_menu_fullscreen_cb) },
   { "FullScreenAlt2",	GTK_STOCK_FULLSCREEN,	N_("F_ull screen"),			"F11",			N_("Full screen"),			CB(layout_menu_fullscreen_cb) },
@@ -2727,6 +2783,7 @@ static const gchar *menu_ui_description =
 "      <menuitem action='ViewInNewWindow'/>"
 "      <menuitem action='PanView'/>"
 "      <menuitem action='ExifWin'/>"
+"      <menuitem action='OpenArchive'/>"
 "      <placeholder name='WindowSection'/>"
 "      <separator/>"
 "      <menu action='FileDirMenu'>"

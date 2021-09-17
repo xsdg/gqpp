@@ -271,6 +271,7 @@ gchar *gq_app_dir;
 gchar *gq_bin_dir;
 gchar *gq_executable_path;
 gchar *desktop_file_template;
+gchar *instance_identifier;
 
 /*
  *-----------------------------------------------------------------------------
@@ -1076,6 +1077,8 @@ static void exit_program_final(void)
 	LayoutWindow *lw = NULL;
 	GList *list;
 	LayoutWindow *tmp_lw;
+	gchar *archive_dir;
+	GFile *archive_file;
 
 	 /* make sure that external editors are loaded, we would save incomplete configuration otherwise */
 	layout_editors_reload_finish();
@@ -1106,6 +1109,27 @@ static void exit_program_final(void)
 	if (layout_valid(&lw))
 		{
 		layout_free(lw);
+		}
+
+	/* Delete any files/folders in /tmp that have been created by the open archive function */
+	archive_dir = g_build_filename(g_get_tmp_dir(), GQ_ARCHIVE_DIR, instance_identifier, NULL);
+	if (isdir(archive_dir))
+		{
+		archive_file = g_file_new_for_path(archive_dir);
+		rmdir_recursive(archive_file, NULL, NULL);
+		g_free(archive_dir);
+		g_object_unref(archive_file);
+		}
+
+	/* If there are still sub-dirs created by another instance, this will fail
+	 * but that does not matter */
+	archive_dir = g_build_filename(g_get_tmp_dir(), GQ_ARCHIVE_DIR, NULL);
+	if (isdir(archive_dir))
+		{
+		archive_file = g_file_new_for_path(archive_dir);
+		g_file_delete(archive_file, NULL, NULL);
+		g_free(archive_dir);
+		g_object_unref(archive_file);
 		}
 
 	secure_close(command_line->ssi);
@@ -1348,6 +1372,9 @@ gint main(gint argc, gchar *argv[])
 		{
 		options->disable_gpu = TRUE;
 		}
+
+	/* Generate a unique identifier used by the open archive function */
+	instance_identifier = g_strdup_printf("%x", g_random_int());
 
 	DEBUG_1("%s main: mkdir_if_not_exists", get_exec_time());
 	/* these functions don't depend on config file */

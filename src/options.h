@@ -31,6 +31,7 @@ struct _ConfOptions
 	gboolean place_dialogs_under_mouse;
 	gboolean mousewheel_scrolls;
 	gboolean image_lm_click_nav;
+	gboolean image_l_click_archive;
 	gboolean image_l_click_video;
 	gchar *image_l_click_video_editor;
 	gboolean show_icon_names;

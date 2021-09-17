@@ -97,6 +97,7 @@ static const UseableToolbarItems useable_toolbar_items[] = {
 	{"Delete",	N_("Delete"), GTK_STOCK_DELETE},
 	{"CloseWindow",	N_("Close Window"), GTK_STOCK_CLOSE},
 	{"PanView",	N_("Pan view"), PIXBUF_INLINE_ICON_PANORAMA},
+	{"OpenArchive",	N_("Open Archive"), PIXBUF_INLINE_ARCHIVE},
 	{"SelectAll",	N_("Select all"), PIXBUF_INLINE_ICON_SELECT_ALL},
 	{"SelectNone",	N_("Select none"), PIXBUF_INLINE_ICON_SELECT_NONE},
 	{"SelectInvert",	N_("Select invert"), PIXBUF_INLINE_ICON_SELECT_INVERT},

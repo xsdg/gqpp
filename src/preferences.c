@@ -328,6 +328,7 @@ static void config_window_apply(void)
 
 	options->mousewheel_scrolls = c_options->mousewheel_scrolls;
 	options->image_lm_click_nav = c_options->image_lm_click_nav;
+	options->image_l_click_archive = c_options->image_l_click_archive;
 	options->image_l_click_video = c_options->image_l_click_video;
 	options->image_l_click_video_editor = c_options->image_l_click_video_editor;
 
@@ -3477,6 +3478,8 @@ static void config_tab_behavior(GtkWidget *notebook)
 			      options->mousewheel_scrolls, &c_options->mousewheel_scrolls);
 	pref_checkbox_new_int(group, _("Navigation by left or middle click on image"),
 			      options->image_lm_click_nav, &c_options->image_lm_click_nav);
+	pref_checkbox_new_int(group, _("Open archive by left click on image"),
+			      options->image_l_click_archive, &c_options->image_l_click_archive);
 	pref_checkbox_new_int(group, _("Play video by left click on image"),
 			      options->image_l_click_video, &c_options->image_l_click_video);
 	table = pref_table_new(group, 2, 1, FALSE, FALSE);

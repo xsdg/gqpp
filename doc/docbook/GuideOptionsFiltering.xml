@@ -161,6 +161,7 @@
               <listitem>Video</listitem>
               <listitem>Collection</listitem>
               <listitem>Document</listitem>
+              <listitem>Archive (.zip, .rar etc.)</listitem>
             </itemizedlist>
           </listitem>
         </varlistentry>

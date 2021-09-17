@@ -281,6 +281,14 @@
       </varlistentry>
       <varlistentry>
         <term>
+          <guilabel>Open archive by left click on image</guilabel>
+        </term>
+        <listitem>
+          <para>If selected, mouse left-click on an image belonging to the archive class will decompress the file contents and display them in a new Geeqie window.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
           <guilabel>Play video by left click on image</guilabel>
         </term>
         <listitem>

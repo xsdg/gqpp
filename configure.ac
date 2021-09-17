@@ -660,6 +660,31 @@ AM_CONDITIONAL(HAVE_WEBP, [test "x$HAVE_WEBP" = xyes])
 AC_SUBST(WEBP_CFLAGS)
 AC_SUBST(WEBP_LIBS)
 
+#  Libarchive support
+# ----------------------------------------------------------------------
+
+AC_ARG_ENABLE([archive],
+  AC_HELP_STRING([--disable-archive], [disable archive support]),
+    [libarchive=$enableval], [libarchive=auto])
+
+if test "x${libarchive}" != "xno"; then
+  PKG_CHECK_MODULES(ARCHIVE, libarchive >= 3.4.3,
+    [
+      HAVE_ARCHIVE=yes
+      AC_DEFINE(HAVE_ARCHIVE, 1, [define to enable archive support])
+    ],
+    [
+      HAVE_ARCHIVE=no
+      AC_MSG_WARN([$ARCHIVE_PKG_ERRORS])
+    ])
+else
+    HAVE_ARCHIVE=disabled
+fi
+
+AM_CONDITIONAL(HAVE_ARCHIVE, [test "x$HAVE_ARCHIVE" = xyes])
+AC_SUBST(ARCHIVE_CFLAGS)
+AC_SUBST(ARCHIVE_LIBS)
+
 #  J2K support
 # ----------------------------------------------------------------------
 
@@ -805,7 +830,6 @@ AC_CONFIG_FILES([
     plugins/image-crop/Makefile
     plugins/random-image/Makefile
     plugins/lens/Makefile
-    plugins/open-archive/Makefile
     geeqie.spec
 ])
 
@@ -863,6 +887,7 @@ Support:
   J2K:	         $HAVE_J2K
   LibRaw:        $HAVE_RAW
   Libjxl:        $HAVE_JPEGXL
+  Libarchive:    $HAVE_ARCHIVE
 
 Documentation:
   Doxygen:       $DX_DOXYGEN

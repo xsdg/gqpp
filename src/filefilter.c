@@ -307,9 +307,11 @@ void filter_add_defaults(void)
 #ifdef HAVE_J2K
 	filter_add_if_missing("jp2", "JPEG 2000", ".jp2", FORMAT_CLASS_IMAGE, FALSE, FALSE, TRUE);
 #endif
+#ifdef HAVE_ARCHIVE
+	filter_add_if_missing("zip", "Archive files", ".zip;.rar;.tar;.tar.gz;.cbr;.cbz;.bz2;.lzh;.lza;.7z", FORMAT_CLASS_ARCHIVE, FALSE, FALSE, TRUE);
+#endif
 	filter_add_if_missing("psd", "Adobe Photoshop Document", ".psd", FORMAT_CLASS_IMAGE, FALSE, FALSE, TRUE);
 	filter_add_if_missing("apng", "Animated Portable Network Graphic", ".apng", FORMAT_CLASS_IMAGE, FALSE, FALSE, TRUE);
-	filter_add_if_missing("zip", "Archive files", ".zip;.rar;.cbr;tar.gz", FORMAT_CLASS_ARCHIVE, FALSE, FALSE, TRUE);
 }
 
 GList *filter_to_list(const gchar *extensions)

@@ -330,6 +330,7 @@ static void write_global_attributes(GString *outstr, gint indent)
 
 	WRITE_NL(); WRITE_BOOL(*options, mousewheel_scrolls);
 	WRITE_NL(); WRITE_BOOL(*options, image_lm_click_nav);
+	WRITE_NL(); WRITE_BOOL(*options, image_l_click_archive);
 	WRITE_NL(); WRITE_BOOL(*options, image_l_click_video);
 	WRITE_NL(); WRITE_CHAR(*options, image_l_click_video_editor);
 	WRITE_NL(); WRITE_INT(*options, open_recent_list_maxsize);
@@ -825,6 +826,7 @@ static gboolean load_global_params(const gchar **attribute_names, const gchar **
 
 		if (READ_BOOL(*options, mousewheel_scrolls)) continue;
 		if (READ_BOOL(*options, image_lm_click_nav)) continue;
+		if (READ_BOOL(*options, image_l_click_archive)) continue;
 		if (READ_BOOL(*options, image_l_click_video)) continue;
 		if (READ_CHAR(*options, image_l_click_video_editor)) continue;
 

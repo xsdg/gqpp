@@ -84,6 +84,7 @@
 #define GQ_COLLECTIONS_DIR	"collections"
 #define GQ_TRASH_DIR		"trash"
 #define GQ_WINDOW_LAYOUTS_DIR	"layouts"
+#define GQ_ARCHIVE_DIR	"geeqie-archive"
 
 #define GQ_SYSTEM_WIDE_DIR    "/etc/" GQ_APPNAME_LC
 
@@ -153,6 +154,7 @@ extern gchar *gq_app_dir;
 extern gchar *gq_bin_dir;
 extern gchar *gq_executable_path;
 extern gchar *desktop_file_template;
+extern gchar *instance_identifier;
 
 void keyboard_scroll_calc(gint *x, gint *y, GdkEventKey *event);
 gint key_press_cb(GtkWidget *widget, GdkEventKey *event, gpointer data);
