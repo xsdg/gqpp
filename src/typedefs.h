@@ -29,6 +29,11 @@ typedef enum {
 } ZoomMode;
 
 typedef enum {
+	ZOOM_GEOMETRIC	= 0,
+	ZOOM_ARITHMETIC	= 1
+} ZoomStyle;
+
+typedef enum {
 	CLIPBOARD_PRIMARY	= 0,
 	CLIPBOARD_CLIPBOARD = 1,
 	CLIPBOARD_BOTH = 2

@@ -123,6 +123,7 @@ ConfOptions *init_options(ConfOptions *options)
 	options->image.zoom_mode = ZOOM_RESET_NONE;
 	options->image.zoom_quality = GDK_INTERP_BILINEAR;
 	options->image.zoom_to_fit_allow_expand = FALSE;
+	options->image.zoom_style = ZOOM_GEOMETRIC;
 	options->image.tile_size = 128;
 
 	options->image_overlay.template_string = NULL;

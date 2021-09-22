@@ -383,6 +383,7 @@ static void write_global_attributes(GString *outstr, gint indent)
 	WRITE_NL(); WRITE_BOOL(*options, image.zoom_to_fit_allow_expand);
 	WRITE_NL(); WRITE_UINT(*options, image.zoom_quality);
 	WRITE_NL(); WRITE_INT(*options, image.zoom_increment);
+	WRITE_NL(); WRITE_UINT(*options, image.zoom_style);
 	WRITE_NL(); WRITE_BOOL(*options, image.fit_window_to_image);
 	WRITE_NL(); WRITE_BOOL(*options, image.limit_window_size);
 	WRITE_NL(); WRITE_INT(*options, image.max_window_size);
@@ -864,6 +865,7 @@ static gboolean load_global_params(const gchar **attribute_names, const gchar **
 
 		/* Image options */
 		if (READ_UINT_CLAMP(*options, image.zoom_mode, 0, ZOOM_RESET_NONE)) continue;
+		if (READ_UINT_CLAMP(*options, image.zoom_style, 0, ZOOM_ARITHMETIC)) continue;
 		if (READ_BOOL(*options, image.zoom_2pass)) continue;
 		if (READ_BOOL(*options, image.zoom_to_fit_allow_expand)) continue;
 		if (READ_BOOL(*options, image.fit_window_to_image)) continue;

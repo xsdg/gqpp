@@ -341,6 +341,8 @@ static void config_window_apply(void)
 
 	options->image.zoom_increment = c_options->image.zoom_increment;
 
+	options->image.zoom_style = c_options->image.zoom_style;
+
 	options->image.enable_read_ahead = c_options->image.enable_read_ahead;
 
 
@@ -710,6 +712,47 @@ static void add_clipboard_selection_menu(GtkWidget *table, gint column, gint row
 
 	g_signal_connect(G_OBJECT(combo), "changed",
 			 G_CALLBACK(clipboard_selection_menu_cb), option_c);
+
+	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, 0, 0, 0);
+	gtk_widget_show(combo);
+}
+
+static void zoom_style_selection_menu_cb(GtkWidget *combo, gpointer data)
+{
+	gint *option = data;
+
+	switch (gtk_combo_box_get_active(GTK_COMBO_BOX(combo)))
+		{
+		case 0:
+			*option = ZOOM_GEOMETRIC;
+			break;
+		case 1:
+			*option = ZOOM_ARITHMETIC;
+			break;
+		default:
+			*option = ZOOM_GEOMETRIC;
+		}
+}
+
+static void add_zoom_style_selection_menu(GtkWidget *table, gint column, gint row, const gchar *text, ZoomStyle option, ZoomStyle *option_c)
+{
+	GtkWidget *combo;
+	gint current = 0;
+
+	*option_c = option;
+
+	pref_table_label(table, column, row, text, 0.0);
+
+	combo = gtk_combo_box_text_new();
+
+	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("Geometric"));
+	if (option == ZOOM_GEOMETRIC) current = 0;
+	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("Arithmetic"));
+	if (option == ZOOM_ARITHMETIC) current = 1;
+
+	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), current);
+
+	g_signal_connect(G_OBJECT(combo), "changed", G_CALLBACK(zoom_style_selection_menu_cb), option_c);
 
 	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, 0, 0, 0);
 	gtk_widget_show(combo);
@@ -2243,6 +2286,10 @@ static void config_tab_image(GtkWidget *notebook)
 			     0.01, 4.0, 0.01, 2, (gdouble)options->image.zoom_increment / 100.0,
 			     G_CALLBACK(zoom_increment_cb), NULL);
 	gtk_spin_button_set_update_policy(GTK_SPIN_BUTTON(spin), GTK_UPDATE_ALWAYS);
+
+	c_options->image.zoom_style = options->image.zoom_style;
+	table = pref_table_new(group, 2, 1, FALSE, FALSE);
+	add_zoom_style_selection_menu(table, 0, 0, _("Zoom style:"), options->image.zoom_style, &c_options->image.zoom_style);
 
 	group = pref_group_new(vbox, FALSE, _("Fit image to window"), GTK_ORIENTATION_VERTICAL);
 

@@ -68,7 +68,15 @@
           <guilabel>Zoom increment</guilabel>
         </term>
         <listitem>
-          <para>Adjusts the step size when zooming in or out on an image. This value corresponds to the percentage of the original image.</para>
+          <para>Adjusts the step size when zooming in or out on an image.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel>Zoom style</guilabel>
+        </term>
+        <listitem>
+          <para>Selects whether the zoom step size is applied as a geometric (n * step) or arithmetic (n + step) factor.</para>
         </listitem>
       </varlistentry>
     </variablelist>
