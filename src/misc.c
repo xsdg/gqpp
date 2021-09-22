@@ -22,6 +22,7 @@
 #include "misc.h"
 #include "ui_fileops.h"
 
+#include <errno.h>
 #include <langinfo.h>
 #include <locale.h>
 
