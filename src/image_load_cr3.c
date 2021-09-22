@@ -93,7 +93,8 @@ static void
 convert_cmyk_to_rgb (struct jpeg_decompress_struct *cinfo,
 		     guchar **lines)
 {
-	gint i, j;
+	gint i;
+	guint j;
 
 	g_return_if_fail (cinfo != NULL);
 	g_return_if_fail (cinfo->output_components == 4);
@@ -217,7 +218,7 @@ static void skip_input_data (j_decompress_ptr cinfo, long num_bytes)
 {
 	struct jpeg_source_mgr* src = (struct jpeg_source_mgr*) cinfo->src;
 
-	if (num_bytes > src->bytes_in_buffer)
+	if ((gulong)num_bytes > src->bytes_in_buffer)
 		{
 		ERREXIT(cinfo, JERR_INPUT_EOF);
 		}
@@ -267,7 +268,7 @@ static gboolean image_loader_cr3_load (gpointer loader, const guchar *buf, gsize
  */
 	gboolean found = FALSE;
 	gint i;
-	gint n;
+	guint n;
 
 	n = 0;
 	while (n < count - 4 && !found)

@@ -185,7 +185,7 @@ feed_buffer (guchar*        buffer,
              guint*         size,
              guint          bytes_needed)
 {
-	gint how_many = bytes_needed - *bytes_read;
+	guint how_many = bytes_needed - *bytes_read;
 	if (how_many > *size) {
 		how_many = *size;
 	}
@@ -293,7 +293,8 @@ static gboolean image_loader_psd_load(gpointer loader, const guchar *buf, gsize 
 {
 	ImageLoaderPSD *ld = (ImageLoaderPSD *) loader;
 	PsdContext* ctx = g_new0(PsdContext, 1);
-	int i, j;
+	guint i;
+	guint32 j;
 	guint size = count;
 
 	ctx->state = PSD_STATE_HEADER;

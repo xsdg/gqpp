@@ -130,7 +130,7 @@ static OPJ_BOOL opj_seek_from_buffer (OPJ_OFF_T len, opj_buffer_info_t* psrc)
 {
     OPJ_SIZE_T n = psrc->len;
 
-    if (n > len)
+    if (n > (gulong)len)
         n = len;
 
     psrc->cur = psrc->buf + n;
