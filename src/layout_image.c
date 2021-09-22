@@ -681,6 +681,27 @@ static void li_set_layout_path_cb(GtkWidget *widget, gpointer data)
 	if (fd) layout_set_fd(lw, fd);
 }
 
+static void li_open_archive_cb(GtkWidget *widget, gpointer data)
+{
+	LayoutWindow *lw = data;
+	LayoutWindow *lw_new;
+	gchar *dest_dir;
+
+	if (!layout_valid(&lw)) return;
+
+	dest_dir = open_archive(layout_image_get_fd(lw));
+	if (dest_dir)
+		{
+		lw_new = layout_new_from_default();
+		layout_set_path(lw_new, dest_dir);
+		g_free(dest_dir);
+		}
+	else
+		{
+		warning_dialog(_("Cannot open archive file"), _("See the Log Window"), GTK_STOCK_DIALOG_WARNING, NULL);
+		}
+}
+
 static gboolean li_check_if_current_path(LayoutWindow *lw, const gchar *path)
 {
 	gchar *dirname;
@@ -773,6 +794,12 @@ static GtkWidget *layout_image_pop_menu(LayoutWindow *lw)
 
 	item = menu_item_add(menu, _("_Go to directory view"), G_CALLBACK(li_set_layout_path_cb), lw);
 	if (!path || li_check_if_current_path(lw, path)) gtk_widget_set_sensitive(item, FALSE);
+
+	item = menu_item_add_stock(menu, _("Open archive"), GTK_STOCK_OPEN, G_CALLBACK(li_open_archive_cb), lw);
+	if (!path || lw->image->image_fd->format_class != FORMAT_CLASS_ARCHIVE)
+		{
+		gtk_widget_set_sensitive(item, FALSE);
+		}
 
 	menu_item_add_divider(menu);
 

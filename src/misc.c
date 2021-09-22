@@ -433,18 +433,38 @@ gchar *open_archive(FileData *fd)
 	gchar *current_dir;
 	gchar *destination_dir;
 	gboolean success;
+	gint error;
 
 	destination_dir = g_build_filename(g_get_tmp_dir(), GQ_ARCHIVE_DIR, instance_identifier, fd->path, NULL);
 
-	recursive_mkdir_if_not_exists(destination_dir, 0755);
+	if (!recursive_mkdir_if_not_exists(destination_dir, 0755))
+		{
+		log_printf("%s%s%s", _("Open Archive - Cannot create directory: "), destination_dir, "\n");
+		g_free(destination_dir);
+		return NULL;
+		}
 
 	current_dir = g_get_current_dir();
-	chdir(destination_dir);
+	error = chdir(destination_dir);
+	if (error)
+		{
+		log_printf("%s%s%s%s%s", _("Open Archive - Cannot change directory to: "), destination_dir, _("\n  Error code: "), strerror(errno), "\n");
+		g_free(destination_dir);
+		g_free(current_dir);
+		return NULL;
+		}
 
 	flags = ARCHIVE_EXTRACT_TIME;
 	success = extract(fd->path, 1, flags);
 
-	chdir(current_dir);
+	error = chdir(current_dir);
+	if (error)
+		{
+		log_printf("%s%s%s%s%s", _("Open Archive - Cannot change directory to: "), current_dir, _("\n  Error code: "), strerror(errno), "\n");
+		g_free(destination_dir);
+		g_free(current_dir);
+		return NULL;
+		}
 	g_free(current_dir);
 
 	if (!success)
@@ -563,7 +583,7 @@ static int copy_data(struct archive *ar, struct archive *aw)
 
 static void msg(const char *m)
 {
-	log_printf("%s \n", m);
+	log_printf("Open Archive - libarchive error: %s \n", m);
 }
 
 static void errmsg(const char *m)
@@ -572,7 +592,7 @@ static void errmsg(const char *m)
 		{
 		m = "Error: No error description provided.\n";
 		}
-	log_printf("%s \n", m);
+	log_printf("Open Archive - libarchive error: %s \n", m);
 }
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

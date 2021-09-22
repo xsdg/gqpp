@@ -28,6 +28,7 @@
 #include "history_list.h"
 #include "layout.h"
 #include "menu.h"
+#include "misc.h"
 #include "pixbuf_util.h"
 #include "thumb.h"
 #include "ui_menu.h"
@@ -366,6 +367,36 @@ static void vf_pop_menu_view_cb(GtkWidget *widget, gpointer data)
 	}
 }
 
+static void vf_pop_menu_open_archive_cb(GtkWidget *widget, gpointer data)
+{
+	ViewFile *vf = data;
+	LayoutWindow *lw_new;
+	FileData *fd;
+	gchar *dest_dir;
+
+	switch (vf->type)
+	{
+	case FILEVIEW_LIST:
+		fd = (VFLIST(vf)->click_fd);
+		break;
+	case FILEVIEW_ICON:
+		fd = (VFICON(vf)->click_fd);
+		break;
+	}
+
+	dest_dir = open_archive(fd);
+	if (dest_dir)
+		{
+		lw_new = layout_new_from_default();
+		layout_set_path(lw_new, dest_dir);
+		g_free(dest_dir);
+		}
+	else
+		{
+		warning_dialog(_("Cannot open archive file"), _("See the Log Window"), GTK_STOCK_DIALOG_WARNING, NULL);
+		}
+}
+
 static void vf_pop_menu_copy_cb(GtkWidget *widget, gpointer data)
 {
 	ViewFile *vf = data;
@@ -586,15 +617,18 @@ GtkWidget *vf_pop_menu(ViewFile *vf)
 	GtkWidget *item;
 	GtkWidget *submenu;
 	gboolean active = FALSE;
+	gboolean class_archive = FALSE;
 
 	switch (vf->type)
 	{
 	case FILEVIEW_LIST:
 		vflist_color_set(vf, VFLIST(vf)->click_fd, TRUE);
 		active = (VFLIST(vf)->click_fd != NULL);
+		class_archive = (VFLIST(vf)->click_fd->format_class == FORMAT_CLASS_ARCHIVE);
 		break;
 	case FILEVIEW_ICON:
 		active = (VFICON(vf)->click_fd != NULL);
+		class_archive = (VFICON(vf)->click_fd->format_class == FORMAT_CLASS_ARCHIVE);
 		break;
 	}
 
@@ -656,6 +690,8 @@ GtkWidget *vf_pop_menu(ViewFile *vf)
 
 	menu_item_add_stock_sensitive(menu, _("View in _new window"), GTK_STOCK_NEW, active,
 				      G_CALLBACK(vf_pop_menu_view_cb), vf);
+
+	menu_item_add_stock_sensitive(menu, _("Open archive"), GTK_STOCK_OPEN, active & class_archive, G_CALLBACK(vf_pop_menu_open_archive_cb), vf);
 
 	menu_item_add_divider(menu);
 	menu_item_add_stock_sensitive(menu, _("_Copy..."), GTK_STOCK_COPY, active,
