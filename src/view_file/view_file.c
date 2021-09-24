@@ -624,11 +624,11 @@ GtkWidget *vf_pop_menu(ViewFile *vf)
 	case FILEVIEW_LIST:
 		vflist_color_set(vf, VFLIST(vf)->click_fd, TRUE);
 		active = (VFLIST(vf)->click_fd != NULL);
-		class_archive = (VFLIST(vf)->click_fd->format_class == FORMAT_CLASS_ARCHIVE);
+		class_archive = (VFLIST(vf)->click_fd != NULL && VFLIST(vf)->click_fd->format_class == FORMAT_CLASS_ARCHIVE);
 		break;
 	case FILEVIEW_ICON:
 		active = (VFICON(vf)->click_fd != NULL);
-		class_archive = (VFICON(vf)->click_fd->format_class == FORMAT_CLASS_ARCHIVE);
+		class_archive = (VFICON(vf)->click_fd != NULL && VFICON(vf)->click_fd->format_class == FORMAT_CLASS_ARCHIVE);
 		break;
 	}
 
