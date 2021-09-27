@@ -1944,8 +1944,12 @@ static gboolean vficon_refresh_real(ViewFile *vf, gboolean keep_position)
 	GList *new_filelist = NULL;
 	GList *new_fd_list = NULL;
 	GList *old_selected = NULL;
+	GtkTreePath *end_path = NULL;
+	GtkTreePath *start_path = NULL;
 
 	focus_fd = VFICON(vf)->focus_fd;
+
+	gtk_tree_view_get_visible_range(GTK_TREE_VIEW(vf->listview), &start_path, &end_path);
 
 	if (vf->dir_fd)
 		{
@@ -2080,11 +2084,13 @@ static gboolean vficon_refresh_real(ViewFile *vf, gboolean keep_position)
 		}
 	file_data_unref(first_selected);
 
-	/* attempt to keep focus on same icon when refreshing */
-	if (focus_fd && g_list_find(vf->list, focus_fd))
+	if (start_path)
 		{
-		vficon_set_focus(vf, focus_fd);
+		gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(vf->listview), start_path, NULL, FALSE, 0.0, 0.0);
 		}
+
+	gtk_tree_path_free(start_path);
+	gtk_tree_path_free(end_path);
 
 	return ret;
 }
