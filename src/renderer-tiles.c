@@ -862,6 +862,8 @@ void renderer_tiles_overlay_set(void *renderer, gint id, GdkPixbuf *pixbuf, gint
 		{
 		rt_overlay_free(rc, od);
 		}
+
+	gtk_widget_queue_draw(GTK_WIDGET(rc->pr));
 }
 #else
 void renderer_tiles_overlay_set(void *renderer, gint id, GdkPixbuf *pixbuf, gint x, gint y)
