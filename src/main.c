@@ -1247,23 +1247,24 @@ static void setup_sigbus_handler(void)
  * They are now variables, all defined relative to one level above the
  * directory that the executable is run from.
  */
-static void create_application_paths()
+static void create_application_paths(gchar *argv[])
 {
-	gchar buf[1024];
 	gchar *dirname;
 	gchar *tmp;
+	gchar **env;
 
-	memset(buf, 0, sizeof(buf));
-	if (readlink("/proc/self/exe", buf, sizeof(buf) - 1) < 0)
+	env = g_get_environ();
+
+	if (argv[0][0] == G_DIR_SEPARATOR)
 		{
-		/* There was an error. Perhaps the path does not exist
-		 * or the buffer is not big enough. */
-		log_printf("Can't get path from /proc/self/exe");
-		exit(1);
+		gq_executable_path = g_strdup(argv[0]);
+		}
+	else
+		{
+		gq_executable_path = g_build_filename(g_environ_getenv(env, "PWD"), argv[0], NULL);
 		}
 
-	gq_executable_path = g_strdup(buf);
-	dirname = g_path_get_dirname(buf); // default is /usr/bin/
+	dirname = g_path_get_dirname(gq_executable_path); // default is /usr/bin/
 	gq_prefix = g_path_get_dirname(dirname);
 
 	gq_localedir = g_build_filename(gq_prefix, "share", "locale", NULL);
@@ -1276,6 +1277,7 @@ static void create_application_paths()
 
 	g_free(tmp);
 	g_free(dirname);
+	g_strfreev(env);
 }
 
 gint main(gint argc, gchar *argv[])
@@ -1299,7 +1301,7 @@ gint main(gint argc, gchar *argv[])
 	/* init execution time counter (debug only) */
 	init_exec_time();
 
-	create_application_paths();
+	create_application_paths(argv);
 
 	/* setup locale, i18n */
 	setlocale(LC_ALL, "");

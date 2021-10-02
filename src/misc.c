@@ -379,29 +379,7 @@ gchar *get_symbolic_link(const gchar *path_utf8)
 
 gint get_cpu_cores(void)
 {
-	FILE *cpuinfo = fopen("/proc/cpuinfo", "rb");
-	char *arg = 0;
-	size_t size = 0;
-	int cores = 1;
-	gchar *siblings_line;
-	gchar *siblings_str;
-
-	while(getline(&arg, &size, cpuinfo) != -1)
-		{
-		siblings_line = g_strrstr(arg, "siblings");
-		if (siblings_line)
-			{
-			siblings_str = g_strrstr(siblings_line, ":");
-			if (siblings_str)
-				{
-				cores = g_ascii_strtoll(siblings_str + 1, NULL, 0);
-				}
-			}
-		}
-	free(arg);
-	fclose(cpuinfo);
-
-	return cores;
+    return sysconf(_SC_NPROCESSORS_ONLN);
 }
 
 void tree_path_free_wrapper(void *data, void *useradata)
