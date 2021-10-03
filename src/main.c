@@ -58,6 +58,7 @@
 #include "histogram.h"
 #include "pixbuf_util.h"
 #include "glua.h"
+#include "whereami.h"
 
 #ifdef HAVE_CLUTTER
 #include <clutter-gtk/clutter-gtk.h>
@@ -1251,19 +1252,15 @@ static void create_application_paths(gchar *argv[])
 {
 	gchar *dirname;
 	gchar *tmp;
-	gchar **env;
+	gint length;
+	gchar *path;
 
-	env = g_get_environ();
+	length = wai_getExecutablePath(NULL, 0, NULL);
+	path = (gchar *)malloc(length + 1);
+	wai_getExecutablePath(path, length, NULL);
+	path[length] = '\0';
 
-	if (argv[0][0] == G_DIR_SEPARATOR)
-		{
-		gq_executable_path = g_strdup(argv[0]);
-		}
-	else
-		{
-		gq_executable_path = g_build_filename(g_environ_getenv(env, "PWD"), argv[0], NULL);
-		}
-
+	gq_executable_path = g_strdup(path);
 	dirname = g_path_get_dirname(gq_executable_path); // default is /usr/bin/
 	gq_prefix = g_path_get_dirname(dirname);
 
@@ -1277,7 +1274,7 @@ static void create_application_paths(gchar *argv[])
 
 	g_free(tmp);
 	g_free(dirname);
-	g_strfreev(env);
+	g_free(path);
 }
 
 gint main(gint argc, gchar *argv[])

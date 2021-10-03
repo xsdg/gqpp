@@ -300,6 +300,8 @@ geeqie_SOURCES = \
 	view_dir_tree.c	\
 	view_dir_tree.h	\
 	view_file.h	\
+	whereami.c	\
+	whereami.h	\
 	window.c	\
 	window.h	\
 	lua.c		\
