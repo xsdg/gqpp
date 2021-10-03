@@ -137,7 +137,6 @@ struct _ConfOptions
 	/* image */
 	struct {
 		gboolean exif_rotate_enable;
-		gboolean exif_proof_rotate_enable;
 		guint scroll_reset_method;
 		gboolean fit_window_to_image;
 		gboolean limit_window_size;

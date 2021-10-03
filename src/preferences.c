@@ -379,7 +379,6 @@ static void config_window_apply(void)
 	options->image_overlay.background_blue = c_options->image_overlay.background_blue;
 	options->image_overlay.background_alpha = c_options->image_overlay.background_alpha;
 	options->update_on_time_change = c_options->update_on_time_change;
-	options->image.exif_proof_rotate_enable = c_options->image.exif_proof_rotate_enable;
 
 	options->duplicates_similarity_threshold = c_options->duplicates_similarity_threshold;
 	options->rot_invariant_sim = c_options->rot_invariant_sim;
@@ -2341,11 +2340,6 @@ static void config_tab_image(GtkWidget *notebook)
 
 	c_options->image.alpha_color_1 = options->image.alpha_color_1;
 	c_options->image.alpha_color_2 = options->image.alpha_color_2;
-
-	group = pref_group_new(vbox, FALSE, _("Convenience"), GTK_ORIENTATION_VERTICAL);
-
-	pref_checkbox_new_int(group, _("Auto rotate proofs using Exif information"),
-			      options->image.exif_proof_rotate_enable, &c_options->image.exif_proof_rotate_enable);
 }
 
 /* windows tab */

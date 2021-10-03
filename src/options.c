@@ -106,7 +106,6 @@ ConfOptions *init_options(ConfOptions *options)
 	options->image.alpha_color_2.blue = 0x006666;
 	options->image.enable_read_ahead = TRUE;
 	options->image.exif_rotate_enable = TRUE;
-	options->image.exif_proof_rotate_enable = TRUE;
 	options->image.fit_window_to_image = FALSE;
 	options->image.limit_autofit_size = FALSE;
 	options->image.limit_window_size = TRUE;

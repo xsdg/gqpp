@@ -165,17 +165,4 @@
       </varlistentry>
     </variablelist>
   </section>
-  <section id="Convenience">
-    <title>Convenience</title>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Auto rotate proofs using EXIF information</guilabel>
-        </term>
-        <listitem>
-          <para>Auto rotate images on print proof sheet.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </section>
 </section>
