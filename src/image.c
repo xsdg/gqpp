@@ -1888,12 +1888,34 @@ void image_background_set_color(ImageWindow *imd, GdkColor *color)
 void image_background_set_color_from_options(ImageWindow *imd, gboolean fullscreen)
 {
 	GdkColor *color = NULL;
+#if GTK_CHECK_VERSION(3,0,0)
+	GdkColor theme_color;
+	GdkRGBA bg_color;
+	GtkStyleContext *style_context;
+	LayoutWindow *lw = NULL;
+#endif
 
 	if ((options->image.use_custom_border_color && !fullscreen) ||
 	    (options->image.use_custom_border_color_in_fullscreen && fullscreen))
 		{
 		color = &options->image.border_color;
 		}
+
+#if GTK_CHECK_VERSION(3,0,0)
+	else
+		{
+		if (!layout_valid(&lw)) return;
+
+		style_context = gtk_widget_get_style_context(lw->window);
+		gtk_style_context_get_background_color(style_context, GTK_STATE_FLAG_NORMAL, &bg_color);
+
+		theme_color.red = bg_color.red * 65535;
+		theme_color.green = bg_color.green * 65535;
+		theme_color.blue = bg_color.blue * 65535;
+
+		color = &theme_color;
+		}
+#endif
 
 	image_background_set_color(imd, color);
 }

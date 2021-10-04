@@ -2235,7 +2235,7 @@ static gboolean rt_realize_cb(GtkWidget *widget, gpointer data)
 		rt->surface = gdk_window_create_similar_surface(gtk_widget_get_window(widget), CAIRO_CONTENT_COLOR, gtk_widget_get_allocated_width(widget), gtk_widget_get_allocated_height(widget));
 
 		cr = cairo_create(rt->surface);
-		cairo_set_source_rgb(cr, (gdouble)options->image.border_color.red  /65535, (gdouble)options->image.border_color.green / 65535, (gdouble)options->image.border_color.blue / 65535);
+		cairo_set_source_rgb(cr, (gdouble)rt->pr->color.red / 65535, (gdouble)rt->pr->color.green / 65535, (gdouble)rt->pr->color.blue / 65535);
 		cairo_paint(cr);
 		cairo_destroy(cr);
 		}

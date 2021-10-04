@@ -38,7 +38,9 @@
 #include "filedata.h"
 #include "filefilter.h"
 #include "history_list.h"
+#include "image.h"
 #include "image-overlay.h"
+#include "img-view.h"
 #include "layout.h"
 #include "layout_image.h"
 #include "layout_util.h"
@@ -1239,6 +1241,46 @@ static void setup_sigbus_handler(void)
 #endif
 }
 
+static void set_theme_bg_color()
+{
+#if GTK_CHECK_VERSION(3,0,0)
+	GdkRGBA bg_color;
+	GdkColor theme_color;
+	GtkStyleContext *style_context;
+	GList *work;
+	LayoutWindow *lw;
+
+	if (!options->image.use_custom_border_color)
+		{
+		work = layout_window_list;
+		lw = work->data;
+
+		style_context = gtk_widget_get_style_context(lw->window);
+		gtk_style_context_get_background_color(style_context, GTK_STATE_FLAG_NORMAL, &bg_color);
+
+		theme_color.red = bg_color.red * 65535;
+		theme_color.green = bg_color.green * 65535;
+		theme_color.blue = bg_color.blue * 65535;
+
+		while (work)
+			{
+			lw = work->data;
+			image_background_set_color(lw->image, &theme_color);
+			work = work->next;
+			}
+		}
+
+	view_window_colors_update();
+#endif
+}
+
+static gboolean theme_change_cb(GObject *gobject, GParamSpec *pspec, gpointer data)
+{
+	set_theme_bg_color();
+
+	return FALSE;
+}
+
 /**
  * @brief Set up the application paths
  * 
@@ -1285,6 +1327,7 @@ gint main(gint argc, gchar *argv[])
 	gboolean disable_clutter = FALSE;
 	gboolean single_dir = TRUE;
 	LayoutWindow *lw;
+	GtkSettings *default_settings;
 
 #ifdef HAVE_GTHREAD
 #if !GLIB_CHECK_VERSION(2,32,0)
@@ -1574,6 +1617,10 @@ gint main(gint argc, gchar *argv[])
 
 		marks_load();
 	}
+
+	default_settings = gtk_settings_get_default();
+	g_signal_connect(default_settings, "notify::gtk-theme-name", G_CALLBACK(theme_change_cb), NULL);
+	set_theme_bg_color();
 
 	DEBUG_1("%s main: gtk_main", get_exec_time());
 	gtk_main();
