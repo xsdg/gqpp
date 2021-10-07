@@ -1319,6 +1319,39 @@ static void create_application_paths(gchar *argv[])
 	g_free(path);
 }
 
+gboolean stderr_channel_cb(GIOChannel *source, GIOCondition condition, gpointer data)
+{
+	static GString *message_str = NULL;
+	gchar buf[10] = {0};
+	gsize count;
+
+	if (!message_str)
+		{
+		message_str = g_string_new(NULL);
+		}
+
+	g_io_channel_read_chars(source, buf, 1, &count, NULL);
+
+	if (count > 0)
+		{
+		if (buf[0] == '\n')
+			{
+			log_printf("%s", message_str->str);
+			g_string_free(message_str, TRUE);
+			message_str = NULL;
+			}
+		else
+			{
+			message_str = g_string_append_c(message_str, buf[0]);
+			}
+		return TRUE;
+		}
+	else
+		{
+		return FALSE;
+		}
+}
+
 gint main(gint argc, gchar *argv[])
 {
 	CollectionData *first_collection = NULL;
@@ -1328,6 +1361,8 @@ gint main(gint argc, gchar *argv[])
 	gboolean single_dir = TRUE;
 	LayoutWindow *lw;
 	GtkSettings *default_settings;
+	gint fd_stderr[2];
+	GIOChannel *stderr_channel;
 
 #ifdef HAVE_GTHREAD
 #if !GLIB_CHECK_VERSION(2,32,0)
@@ -1351,6 +1386,17 @@ gint main(gint argc, gchar *argv[])
 	bind_textdomain_codeset(PACKAGE, "UTF-8");
 	textdomain(PACKAGE);
 #endif
+
+	/* Tee stderr to log window */
+	if (pipe(fd_stderr) == 0)
+		{
+		if (dup2(fd_stderr[1], fileno(stderr)) != -1)
+			{
+			close(fd_stderr[1]);
+			stderr_channel = g_io_channel_unix_new(fd_stderr[0]);
+			g_io_add_watch(stderr_channel, G_IO_IN, (GIOFunc)stderr_channel_cb, NULL);
+			}
+		}
 
 	exif_init();
 
