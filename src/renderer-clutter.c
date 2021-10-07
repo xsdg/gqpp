@@ -302,7 +302,7 @@ static gboolean rc_area_changed_cb(gpointer data)
 
 		update_display_pixbuf(rc);
 
-		if (pr->func_post_process)
+		if (pr->func_post_process && pr->pixbuf)
 			{
 			pr->func_post_process(pr, &rc->display_pixbuf, 0, 0, gdk_pixbuf_get_width(pr->pixbuf), gdk_pixbuf_get_height(pr->pixbuf), pr->post_process_user_data);
 			}
