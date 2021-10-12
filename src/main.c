@@ -1662,11 +1662,11 @@ gint main(gint argc, gchar *argv[])
 		g_free(buf);
 
 		marks_load();
-	}
 
-	default_settings = gtk_settings_get_default();
-	g_signal_connect(default_settings, "notify::gtk-theme-name", G_CALLBACK(theme_change_cb), NULL);
-	set_theme_bg_color();
+		default_settings = gtk_settings_get_default();
+		g_signal_connect(default_settings, "notify::gtk-theme-name", G_CALLBACK(theme_change_cb), NULL);
+		set_theme_bg_color();
+		}
 
 	DEBUG_1("%s main: gtk_main", get_exec_time());
 	gtk_main();
