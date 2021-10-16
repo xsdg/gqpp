@@ -213,5 +213,21 @@
         <listitem>Resets the filter list to the default values, discarding any customizations made by the user.</listitem>
       </varlistentry>
     </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guibutton>Column Sorting</guibutton>
+        </term>
+        <listitem>Columns other than Filter can be sorted in ascending or descending order by clicking on the column header.</listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>
+          <guibutton>Filter Search</guibutton>
+        </term>
+        <listitem>A search of the file extensions listed in the Filter column can be initiated either by typing <code>Ctrl + F</code> or by pressing any alpha-numeric key when the File Types table has focus.</listitem>
+      </varlistentry>
+    </variablelist>
   </section>
 </section>

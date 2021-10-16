@@ -112,6 +112,15 @@ enum {
 	AE_ACCEL
 };
 
+enum {
+	FILETYPES_COLUMN_FILTER = 0,
+	FILETYPES_COLUMN_DESCRIPTION,
+	FILETYPES_COLUMN_CLASS,
+	FILETYPES_COLUMN_WRITABLE,
+	FILETYPES_COLUMN_SIDECAR,
+	FILETYPES_COLUMN_COUNT
+};
+
 gchar *format_class_list[] = {
 	N_("Unknown"),
 	N_("Image"),
@@ -2619,6 +2628,60 @@ static GtkTreeModel *create_class_model(void)
 
 
 /* filtering tab */
+static gint filter_table_sort_cb(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer data)
+{
+	gint n = GPOINTER_TO_INT(data);
+	gint ret = 0;
+	FilterEntry *filter_a;
+	FilterEntry *filter_b;
+
+	gtk_tree_model_get(model, a, 0, &filter_a, -1);
+	gtk_tree_model_get(model, b, 0, &filter_b, -1);
+
+	switch (n)
+		{
+		case FILETYPES_COLUMN_DESCRIPTION:
+			{
+			ret = g_utf8_collate(filter_a->description, filter_b->description);
+			break;
+			}
+		case FILETYPES_COLUMN_CLASS:
+			{
+			ret = g_strcmp0(format_class_list[filter_a->file_class], format_class_list[filter_b->file_class]);
+			break;
+			}
+		case FILETYPES_COLUMN_WRITABLE:
+			{
+			ret = filter_a->writable - filter_b->writable;
+			break;
+			}
+		case FILETYPES_COLUMN_SIDECAR:
+			{
+			ret = filter_a->allow_sidecar - filter_b->allow_sidecar;
+			break;
+			}
+		default:
+			g_return_val_if_reached(0);
+		}
+
+	return ret;
+}
+
+static gboolean search_function_cb(GtkTreeModel *model, gint column, const gchar *key, GtkTreeIter *iter, gpointer search_data)
+{
+	FilterEntry *fe;
+	gboolean ret = TRUE;
+
+	gtk_tree_model_get(model, iter, 0, &fe, -1);
+
+	if (g_strstr_len(fe->extensions, -1, key))
+		{
+		ret = FALSE;
+		}
+
+	return ret;
+}
+
 static void config_tab_files(GtkWidget *notebook)
 {
 	GtkWidget *hbox;
@@ -2700,6 +2763,10 @@ static void config_tab_files(GtkWidget *notebook)
 						GINT_TO_POINTER(FE_EXTENSION), NULL);
 	gtk_tree_view_append_column(GTK_TREE_VIEW(filter_view), column);
 
+	gtk_tree_view_set_enable_search(GTK_TREE_VIEW(filter_view), TRUE);
+	gtk_tree_view_set_search_column(GTK_TREE_VIEW(filter_view), FILETYPES_COLUMN_FILTER);
+	gtk_tree_view_set_search_equal_func(GTK_TREE_VIEW(filter_view), search_function_cb, NULL, NULL);
+
 	column = gtk_tree_view_column_new();
 	gtk_tree_view_column_set_title(column, _("Description"));
 	gtk_tree_view_column_set_resizable(column, TRUE);
@@ -2714,6 +2781,8 @@ static void config_tab_files(GtkWidget *notebook)
 	gtk_tree_view_column_set_cell_data_func(column, renderer, filter_set_func,
 						GINT_TO_POINTER(FE_DESCRIPTION), NULL);
 	gtk_tree_view_append_column(GTK_TREE_VIEW(filter_view), column);
+	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(filter_store), FILETYPES_COLUMN_DESCRIPTION, filter_table_sort_cb, GINT_TO_POINTER(FILETYPES_COLUMN_DESCRIPTION), NULL);
+	gtk_tree_view_column_set_sort_column_id(column, FILETYPES_COLUMN_DESCRIPTION);
 
 	column = gtk_tree_view_column_new();
 	gtk_tree_view_column_set_title(column, _("Class"));
@@ -2731,6 +2800,8 @@ static void config_tab_files(GtkWidget *notebook)
 	gtk_tree_view_column_set_cell_data_func(column, renderer, filter_set_func,
 						GINT_TO_POINTER(FE_CLASS), NULL);
 	gtk_tree_view_append_column(GTK_TREE_VIEW(filter_view), column);
+	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(filter_store), FILETYPES_COLUMN_CLASS, filter_table_sort_cb, GINT_TO_POINTER(FILETYPES_COLUMN_CLASS), NULL);
+	gtk_tree_view_column_set_sort_column_id(column, FILETYPES_COLUMN_CLASS);
 
 	column = gtk_tree_view_column_new();
 	gtk_tree_view_column_set_title(column, _("Writable"));
@@ -2742,6 +2813,8 @@ static void config_tab_files(GtkWidget *notebook)
 	gtk_tree_view_column_set_cell_data_func(column, renderer, filter_set_func,
 						GINT_TO_POINTER(FE_WRITABLE), NULL);
 	gtk_tree_view_append_column(GTK_TREE_VIEW(filter_view), column);
+	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(filter_store), FILETYPES_COLUMN_WRITABLE, filter_table_sort_cb, GINT_TO_POINTER(FILETYPES_COLUMN_WRITABLE), NULL);
+	gtk_tree_view_column_set_sort_column_id(column, FILETYPES_COLUMN_WRITABLE);
 
 	column = gtk_tree_view_column_new();
 	gtk_tree_view_column_set_title(column, _("Sidecar is allowed"));
@@ -2753,7 +2826,8 @@ static void config_tab_files(GtkWidget *notebook)
 	gtk_tree_view_column_set_cell_data_func(column, renderer, filter_set_func,
 						GINT_TO_POINTER(FE_ALLOW_SIDECAR), NULL);
 	gtk_tree_view_append_column(GTK_TREE_VIEW(filter_view), column);
-
+	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(filter_store), FILETYPES_COLUMN_SIDECAR, filter_table_sort_cb, GINT_TO_POINTER(FILETYPES_COLUMN_SIDECAR), NULL);
+	gtk_tree_view_column_set_sort_column_id(column, FILETYPES_COLUMN_SIDECAR);
 
 	filter_store_populate();
 	gtk_container_add(GTK_CONTAINER(scrolled), filter_view);
