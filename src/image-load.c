@@ -34,6 +34,7 @@
 #include "image_load_ffmpegthumbnailer.h"
 #include "image_load_collection.h"
 #include "image_load_webp.h"
+#include "image_load_zxscr.h"
 #include "image_load_j2k.h"
 #include "image_load_jpegxl.h"
 #include "image_load_libraw.h"
@@ -835,6 +836,13 @@ static void image_loader_setup_loader(ImageLoader *il)
 		}
 	else
 #endif
+	if ((il->bytes_total == 6144 || il->bytes_total == 6912) &&
+		(file_extension_match(il->fd->path, ".scr")))
+		{
+		DEBUG_1("Using custom zxscr loader");
+		image_loader_backend_set_zxscr(&il->backend);
+		}
+	else
 	if (il->fd->format_class == FORMAT_CLASS_COLLECTION)
 		{
 		DEBUG_1("Using custom collection loader");

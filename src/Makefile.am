@@ -203,6 +203,8 @@ geeqie_SOURCES = \
 	image_load_heif.h\
 	image_load_webp.c\
 	image_load_webp.h\
+	image_load_zxscr.c\
+	image_load_zxscr.h\
 	image_load_djvu.c\
 	image_load_djvu.h\
 	image_load_psd.c\
