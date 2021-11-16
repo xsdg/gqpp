@@ -20,7 +20,8 @@ install-data-hook: html
 		cd $(srcdir)/html; for f in * ; do $(INSTALL_DATA) "$$f" "$(DESTDIR)$(helpdir)/$$f" ; done; \
 		ln -s -f GuideIndex.html "$(DESTDIR)$(helpdir)/index.html" ; \
 		$(MKDIR_P) "$(DESTDIR)$(helpdir)/lua-api" || exit 1; \
-		cd ./lua-api/html; for f in * ; do $(INSTALL_DATA) "$$f" "$(DESTDIR)$(helpdir)/lua-api/$$f" ; done; \
+		$(MKDIR_P) "$(DESTDIR)$(helpdir)/lua-api/html" || exit 1; \
+		cd ./lua-api/html; for f in * ; do $(INSTALL_DATA) "$$f" "$(DESTDIR)$(helpdir)/lua-api/html/$$f" ; done; \
 	fi
 
 uninstall-hook:

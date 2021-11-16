@@ -1396,59 +1396,55 @@ struct _RemoteCommandEntry {
 
 static RemoteCommandEntry remote_commands[] = {
 	/* short, long                  callback,               extra, prefer, parameter, description */
-	{ "-n", "--next",               gr_image_next,          FALSE, FALSE, NULL, N_("next image") },
 	{ "-b", "--back",               gr_image_prev,          FALSE, FALSE, NULL, N_("previous image") },
-	{ NULL, "--first",              gr_image_first,         FALSE, FALSE, NULL, N_("first image") },
-	{ NULL, "--last",               gr_image_last,          FALSE, FALSE, NULL, N_("last image") },
-	{ "-f", "--fullscreen",         gr_fullscreen_toggle,   FALSE, TRUE,  NULL, N_("toggle full screen") },
-	{ "-fs","--fullscreen-start",   gr_fullscreen_start,    FALSE, FALSE, NULL, N_("start full screen") },
-	{ "-fS","--fullscreen-stop",    gr_fullscreen_stop,     FALSE, FALSE, NULL, N_("stop full screen") },
-	{ "-s", "--slideshow",          gr_slideshow_toggle,    FALSE, TRUE,  NULL, N_("toggle slide show") },
-	{ "-ss","--slideshow-start",    gr_slideshow_start,     FALSE, FALSE, NULL, N_("start slide show") },
-	{ "-sS","--slideshow-stop",     gr_slideshow_stop,      FALSE, FALSE, NULL, N_("stop slide show") },
-	{ NULL, "--slideshow-recurse:", gr_slideshow_start_rec, TRUE,  FALSE, N_("<FOLDER>"), N_("start recursive slide show in FOLDER") },
-	{ "-d", "--delay=",             gr_slideshow_delay,     TRUE,  FALSE, N_("<[H:][M:][N][.M]>"), N_("set slide show delay to Hrs Mins N.M seconds") },
-	{ "+t", "--tools-show",         gr_tools_show,          FALSE, TRUE,  NULL, N_("show tools") },
-	{ "-t", "--tools-hide",	        gr_tools_hide,          FALSE, TRUE,  NULL, N_("hide tools") },
-	{ "-q", "--quit",               gr_quit,                FALSE, FALSE, NULL, N_("quit") },
-	{ NULL, "--config-load:",       gr_config_load,         TRUE,  FALSE, N_("<FILE>|layout ID"), N_("load configuration from FILE") },
-	{ NULL, "--get-sidecars:",      gr_get_sidecars,        TRUE,  FALSE, N_("<FILE>"), N_("get list of sidecars of FILE") },
-	{ NULL, "--get-destination:",  	gr_get_destination,     TRUE,  FALSE, N_("<FILE>"), N_("get destination path of FILE") },
-	{ NULL, "file:",                gr_file_load,           TRUE,  FALSE, N_("<FILE>|<URL>"), N_("open FILE or URL, bring Geeqie window to the top") },
-	{ NULL, "--file:",              gr_file_load,           TRUE,  FALSE, N_("<FILE>|<URL>"), N_("open FILE or URL, bring Geeqie window to the top") },
-	{ NULL, "File:",                gr_file_load_no_raise,  TRUE,  FALSE, N_("<FILE>|<URL>"), N_("open FILE or URL, do not bring Geeqie window to the top") },
-	{ NULL, "--File:",              gr_file_load_no_raise,  TRUE,  FALSE, N_("<FILE>|<URL>"), N_("open FILE or URL, do not bring Geeqie window to the top") },
-	{ NULL, "--tell",               gr_file_tell,           FALSE, FALSE, NULL, N_("print filename [and Collection] of current image") },
-	{ NULL, "--pixel-info",         gr_pixel_info,          FALSE, FALSE, NULL, N_("print pixel info of mouse pointer on current image") },
-	{ NULL, "--get-rectangle",      gr_rectangle,           FALSE, FALSE, NULL, N_("get rectangle co-ordinates") },
-	{ NULL, "--get-render-intent",  gr_render_intent,       FALSE, FALSE, NULL, N_("get render intent") },
-	{ NULL, "--get-filelist:",      gr_filelist,            TRUE,  FALSE, N_("[<FOLDER>]"), N_("get list of files and class") },
-	{ NULL, "--get-filelist-recurse:", gr_filelist_recurse, TRUE,  FALSE, N_("[<FOLDER>]"), N_("get list of files and class recursive") },
-	{ NULL, "--get-collection:",    gr_collection,          TRUE,  FALSE, N_("<COLLECTION>"), N_("get collection content") },
-	{ NULL, "--get-collection-list", gr_collection_list,    FALSE, FALSE, NULL, N_("get collection list") },
-	{ NULL, "--get-file-info",      gr_file_info,           FALSE, FALSE, NULL, N_("get file info") },
-	{ NULL, "view:",                gr_file_view,           TRUE,  FALSE, N_("<FILE>"), N_("open FILE in new window") },
-	{ NULL, "--view:",              gr_file_view,           TRUE,  FALSE, N_("<FILE>"), N_("open FILE in new window") },
-	{ NULL, "--list-clear",         gr_list_clear,          FALSE, FALSE, NULL, N_("clear command line collection list") },
-	{ NULL, "--list-add:",          gr_list_add,            TRUE,  FALSE, N_("<FILE>"), N_("add FILE to command line collection list") },
-	{ NULL, "raise",                gr_raise,               FALSE, FALSE, NULL, N_("bring the Geeqie window to the top") },
-	{ NULL, "--raise",              gr_raise,               FALSE, FALSE, NULL, N_("bring the Geeqie window to the top") },
-	{ NULL, "--id:",                gr_lw_id,               TRUE, FALSE, N_("<ID>"), N_("window id for following commands") },
-	{ NULL, "--new-window",         gr_new_window,          FALSE, FALSE, NULL, N_("new window") },
 	{ NULL, "--close-window",       gr_close_window,        FALSE, FALSE, NULL, N_("close window") },
-	{ NULL, "--geometry=",          gr_geometry,            TRUE, FALSE, N_("<GEOMETRY>"), N_("set window geometry") },
-	{ "-ct:", "--cache-thumbs:",    gr_cache_thumb,         TRUE, FALSE, N_("clear|clean"), N_("clear or clean thumbnail cache") },
-	{ "-cs:", "--cache-shared:",    gr_cache_shared,        TRUE, FALSE, N_("clear|clean"), N_("clear or clean shared thumbnail cache") },
-	{ "-cm","--cache-metadata",      gr_cache_metadata,               FALSE, FALSE, NULL, N_("    clean the metadata cache") },
+	{ NULL, "--config-load: ",       gr_config_load,         TRUE,  FALSE, N_("<FILE>|layout ID"), N_(" load configuration from FILE") },
+	{ "-cm","--cache-metadata",      gr_cache_metadata,               FALSE, FALSE, NULL, N_("clean the metadata cache") },
 	{ "-cr:", "--cache-render:",    gr_cache_render,        TRUE, FALSE, N_("<folder>  "), N_(" render thumbnails") },
 	{ "-crr:", "--cache-render-recurse:", gr_cache_render_recurse, TRUE, FALSE, N_("<folder> "), N_("render thumbnails recursively") },
 	{ "-crs:", "--cache-render-shared:", gr_cache_render_standard, TRUE, FALSE, N_("<folder> "), N_(" render thumbnails (see Help)") },
 	{ "-crsr:", "--cache-render-shared-recurse:", gr_cache_render_standard_recurse, TRUE, FALSE, N_("<folder>"), N_(" render thumbnails recursively (see Help)") },
+	{ "-cs:", "--cache-shared:",    gr_cache_shared,        TRUE, FALSE, N_("clear|clean"), N_("clear or clean shared thumbnail cache") },
+	{ "-ct:", "--cache-thumbs:",    gr_cache_thumb,         TRUE, FALSE, N_("clear|clean"), N_("clear or clean thumbnail cache") },
+	{ "-d", "--delay=",             gr_slideshow_delay,     TRUE,  FALSE, N_("<[H:][M:][N][.M]>"), N_("set slide show delay to Hrs Mins N.M seconds") },
+	{ NULL, "--first",              gr_image_first,         FALSE, FALSE, NULL, N_("first image") },
+	{ "-f", "--fullscreen",         gr_fullscreen_toggle,   FALSE, TRUE,  NULL, N_("toggle full screen") },
+	{ NULL, "--file:",              gr_file_load,           TRUE,  FALSE, N_("<FILE>|<URL>"), N_("open FILE or URL, bring Geeqie window to the top") },
+	{ NULL, "--File:",              gr_file_load_no_raise,  TRUE,  FALSE, N_("<FILE>|<URL>"), N_("open FILE or URL, do not bring Geeqie window to the top") },
+	{ "-fs","--fullscreen-start",   gr_fullscreen_start,    FALSE, FALSE, NULL, N_("start full screen") },
+	{ "-fS","--fullscreen-stop",    gr_fullscreen_stop,     FALSE, FALSE, NULL, N_("stop full screen") },
+	{ NULL, "--geometry=",          gr_geometry,            TRUE, FALSE, N_("<GEOMETRY>"), N_("set window geometry") },
+	{ NULL, "--get-collection:",    gr_collection,          TRUE,  FALSE, N_("<COLLECTION>"), N_("get collection content") },
+	{ NULL, "--get-collection-list", gr_collection_list,    FALSE, FALSE, NULL, N_("get collection list") },
+	{ NULL, "--get-destination:",  	gr_get_destination,     TRUE,  FALSE, N_("<FILE>"), N_("get destination path of FILE (See Plugins Configuration)") },
+	{ NULL, "--get-file-info",      gr_file_info,           FALSE, FALSE, NULL, N_("get file info") },
+	{ NULL, "--get-filelist:",      gr_filelist,            TRUE,  FALSE, N_("[<FOLDER>]"), N_("get list of files and class") },
+	{ NULL, "--get-filelist-recurse:", gr_filelist_recurse, TRUE,  FALSE, N_("[<FOLDER>]"), N_("get list of files and class recursive") },
+	{ NULL, "--get-rectangle",      gr_rectangle,           FALSE, FALSE, NULL, N_("get rectangle co-ordinates") },
+	{ NULL, "--get-render-intent",  gr_render_intent,       FALSE, FALSE, NULL, N_("get render intent") },
+	{ NULL, "--get-sidecars:",      gr_get_sidecars,        TRUE,  FALSE, N_("<FILE>"), N_("get list of sidecars of FILE") },
+	{ NULL, "--id:",                gr_lw_id,               TRUE, FALSE, N_("<ID>"), N_("window id for following commands") },
+	{ NULL, "--last",               gr_image_last,          FALSE, FALSE, NULL, N_("last image") },
+	{ NULL, "--list-add:",          gr_list_add,            TRUE,  FALSE, N_("<FILE>"), N_("add FILE to command line collection list") },
+	{ NULL, "--list-clear",         gr_list_clear,          FALSE, FALSE, NULL, N_("clear command line collection list") },
 #ifdef HAVE_LUA
 	{ NULL, "--lua:",               gr_lua,                 TRUE, FALSE, N_("<FILE>,<lua script>"), N_("run lua script on FILE") },
 #endif
-	{ NULL, "--PWD:",               gr_pwd,                 TRUE, FALSE, N_("<PWD>"), N_("use PWD as working directory for following commands") },
+	{ NULL, "--new-window",         gr_new_window,          FALSE, FALSE, NULL, N_("new window") },
+	{ "-n", "--next",               gr_image_next,          FALSE, FALSE, NULL, N_("next image") },
+	{ NULL, "--pixel-info",         gr_pixel_info,          FALSE, FALSE, NULL, N_("print pixel info of mouse pointer on current image") },
 	{ NULL, "--print0",             gr_print0,              TRUE, FALSE, NULL, N_("terminate returned data with null character instead of newline") },
+	{ NULL, "--PWD:",               gr_pwd,                 TRUE, FALSE, N_("<PWD>"), N_("use PWD as working directory for following commands") },
+	{ "-q", "--quit",               gr_quit,                FALSE, FALSE, NULL, N_("quit") },
+	{ NULL, "--raise",              gr_raise,               FALSE, FALSE, NULL, N_("bring the Geeqie window to the top") },
+	{ "-s", "--slideshow",          gr_slideshow_toggle,    FALSE, TRUE,  NULL, N_("toggle slide show") },
+	{ NULL, "--slideshow-recurse:", gr_slideshow_start_rec, TRUE,  FALSE, N_("<FOLDER>"), N_("start recursive slide show in FOLDER") },
+	{ "-ss","--slideshow-start",    gr_slideshow_start,     FALSE, FALSE, NULL, N_("start slide show") },
+	{ "-sS","--slideshow-stop",     gr_slideshow_stop,      FALSE, FALSE, NULL, N_("stop slide show") },
+	{ NULL, "--tell",               gr_file_tell,           FALSE, FALSE, NULL, N_("print filename [and Collection] of current image") },
+	{ "+t", "--tools-show",         gr_tools_show,          FALSE, TRUE,  NULL, N_("show tools") },
+	{ "-t", "--tools-hide",	        gr_tools_hide,          FALSE, TRUE,  NULL, N_("hide tools") },
+	{ NULL, "--view:",              gr_file_view,           TRUE,  FALSE, N_("<FILE>"), N_("open FILE in new window") },
 	{ NULL, NULL, NULL, FALSE, FALSE, NULL, NULL }
 };
 
@@ -1520,19 +1516,18 @@ void remote_help(void)
 		{
 		if (remote_commands[i].description)
 			{
-			s_opt_param = g_strconcat(remote_commands[i].opt_s, remote_commands[i].parameter, NULL);
+			s_opt_param = g_strdup(remote_commands[i].opt_s  ? remote_commands[i].opt_s : "" );
 			l_opt_param = g_strconcat(remote_commands[i].opt_l, remote_commands[i].parameter, NULL);
-			printf_term(FALSE, "  %-11s%-1s %-30s%-s\n",
-				    (remote_commands[i].opt_s) ? s_opt_param : "",
-				    (remote_commands[i].opt_s && remote_commands[i].opt_l) ? "," : " ",
-				    (remote_commands[i].opt_l) ? l_opt_param : "",
-				    _(remote_commands[i].description));
+			printf_term(FALSE, "  %-4s %-40s%-s\n",
+					s_opt_param,
+					l_opt_param,
+					remote_commands[i].description);
 			g_free(s_opt_param);
 			g_free(l_opt_param);
 			}
 		i++;
 		}
-	printf_term(FALSE, N_("\n  All other command line parameters are used as plain files if they exists.\n"));
+	printf_term(FALSE, N_("\n\n  All other command line parameters are used as plain files if they exist.\n\n  The name of a collection, with or without either path or extension (.gqv) may be used.\n"));
 }
 
 GList *remote_build_list(GList *list, gint argc, gchar *argv[], GList **errors)

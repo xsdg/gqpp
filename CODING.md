@@ -216,6 +216,10 @@ align-pointer=name
 align-reference=name
 ```
 
+### check-compiles.sh
+
+This shell script is part of the Geeqie project and will compile Geeqie with various options.
+
 ### cppcheck
 
 A lint-style program may be used, e.g.
@@ -233,12 +237,14 @@ unusedFunction
 unmatchedSuppression
 ```
 
-### shellcheck
+### generate-man-page.sh
 
-Shell scripts may also be validated, e.g.
+This script is part of the Geeqie project and should be used to generate the Geeqie man page from Geeqie's command line
+help output and also update the Command Line Options section of the Help files.
+The programs help2man and doclifter are required - both are available as .deb packages.
 
 ```sh
-shellcheck --enable=add-default-case,avoid-nullary-conditions,check-unassigned-uppercase,deprecate-which,quote-safe-variables
+./scripts/generate-man-page.sh
 ```
 
 ### markdownlint
@@ -255,13 +261,17 @@ rule 'MD010', :code_blocks => true
 exclude_rule 'MD013'
 ```
 
+### shellcheck
+
+Shell scripts may also be validated, e.g.
+
+```sh
+shellcheck --enable=add-default-case,avoid-nullary-conditions,check-unassigned-uppercase,deprecate-which,quote-safe-variables
+```
+
 ### xmllint
 
 The .xml Help files may be validated with e.g. `xmllint`.
-
-### check-compiles.sh
-
-This shell script is part of the Geeqie project and will compile Geeqie with various options.
 
 ---
 

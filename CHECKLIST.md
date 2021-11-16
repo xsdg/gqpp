@@ -19,6 +19,12 @@ make update-po
 ```
 
 After compiling the sources, carry out the following actions when necessary:
+* Update the man page and Command Line Options section in Help
+```sh
+./scripts/generate-man-page.sh
+```
+
+*  Commit the changes
 
 * Generate a new AppImage (note that this should be run on a **20.04 system**)
 ```sh

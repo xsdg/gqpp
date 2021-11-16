@@ -286,6 +286,10 @@ And either the ChangeLog file or [Geeqie ChangeLog](http://geeqie.org/cgi-bin/gi
     yelp-tools
         For creating the Help files
 
+    help2man
+    doclifter
+        For creating the man pages and some Help files
+
 ### Code hackers:
 
 If you plan on making any major changes to the code that will be offered for
