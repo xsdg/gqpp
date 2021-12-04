@@ -225,7 +225,7 @@ This shell script is part of the Geeqie project and will compile Geeqie with var
 A lint-style program may be used, e.g.
 
 ```sh
-cppcheck --language=c --library=gtk --enable=all --force  -USA_SIGINFO -UZD_EXPORT -Ugettext_noop -DG_KEY_FILE_DESKTOP_GROUP --template=gcc -I. --quiet --suppressions-list=<suppressions file>
+cppcheck --language=c --library=gtk --enable=all --force  -USA_SIGINFO -UZD_EXPORT -Ugettext_noop -DG_KEY_FILE_DESKTOP_GROUP --template=gcc -I .. --quiet --suppressions-list=<suppressions file>
 ```
 
 Where the suppressions file might contain:
