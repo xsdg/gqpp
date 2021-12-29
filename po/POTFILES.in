@@ -8,9 +8,6 @@ plugins/rotate/rotate.desktop.in
 plugins/symlink/symlink.desktop.in
 plugins/template.desktop.in
 plugins/tethered-photography/tethered-photography.desktop.in
-plugins/ufraw/geeqie-ufraw.desktop.in
-plugins/ufraw/geeqie-ufraw-id.desktop.in
-plugins/ufraw/geeqie-ufraw-recursive.desktop.in
 src/advanced_exif.c
 src/bar.c
 src/bar_comment.c
@@ -54,16 +51,20 @@ src/image_load_collection.c
 src/image_load_cr3.c
 src/image_load_dds.c
 src/image_load_djvu.c
+src/image_load_external.c
 src/image_load_ffmpegthumbnailer.c
 src/image_load_gdk.c
 src/image_load_heif.c
 src/image_load_j2k.c
 src/image_load_jpeg.c
+src/image_load_jpegxl.c
+src/image_load_libraw.c
 src/image_load_pdf.c
 src/image_load_psd.c
 src/image_load_svgz.c
 src/image_load_tiff.c
 src/image_load_webp.c
+src/image_load_zxscr.c
 src/image-overlay.c
 src/img-view.c
 src/jpeg_parser.c
@@ -127,5 +128,6 @@ src/view_dir_tree.c
 src/view_file/view_file.c
 src/view_file/view_file_icon.c
 src/view_file/view_file_list.c
+src/whereami.c
 src/window.c
 src/zonedetect.c

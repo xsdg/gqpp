@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Import all images from camera
-# Requires gphoto2
+## @file
+## @brief Import all images from camera
+##
+## Requires gphoto2
+##
 
 function finish 
 {

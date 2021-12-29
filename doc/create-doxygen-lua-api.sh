@@ -19,18 +19,18 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #**********************************************************************
-#
-# This script will create the Lua API html document, which is part of
-# the Geeqie Help file.
-#
-# It is run during the generation of the help files.
-#
-# The generated Lua html files are placed in doc/html/lua-api
-#
-# The doxygen.conf file is modified to extract only those comments
-# that are useful as part of an API description.
-#
-#**********************************************************************
+
+## @file
+## @brief This script will create the Lua API html document, which is part of
+## the Geeqie Help file.
+##
+## It is run during the generation of the help files.
+##
+## The generated Lua html files are placed in doc/html/lua-api
+##
+## The doxygen.conf file is modified to extract only those comments
+## that are useful as part of an API description.
+##
 
 export PROJECT="Geeqie"
 export VERSION=$(git tag --list v[1-9]* | tail -1)

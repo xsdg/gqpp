@@ -1,7 +1,10 @@
 #!/bin/sh
 
-# This is a helper script that rotate image files according to the metadata
-# requirements: ImageMagick, exiftran, exiv2
+## @file
+## @brief This is a helper script that rotates image files according to the metadata
+##
+## Requirements: ImageMagick, exiftran, exiv2
+##
 
 GQ_METADATA_DIR="$HOME/.local/share/geeqie/metadata"
 

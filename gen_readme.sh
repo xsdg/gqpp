@@ -1,12 +1,25 @@
 #!/bin/bash
 
-# Script to create README.html file,
+## @file
+## @brief Convert README.md to README.html
+##
+## Script to create README.html file,
+##
 
-[ ! -e "README.md" ] && exit 1
-[ ! -x "$(command -v markdown)" ] && exit 0
+if [ ! -e "README.md" ]
+then
+	echo "ERROR: README.md not found"
+	exit 1
+fi
+
+if [ ! -x "$(command -v pandoc)" ]
+then
+	echo "ERROR: File pandoc not installed"
+	exit 1
+fi
 
 [ -e README.html ] && mv -f README.html README.html.bak
 
-markdown README.md > README.html
+pandoc README.md > README.html
 
 exit 0

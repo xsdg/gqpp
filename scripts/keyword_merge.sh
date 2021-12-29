@@ -1,11 +1,14 @@
 #!/bin/bash
-#
-# This is a simple script to merge the keyword tree of one Geeqie
-# configuration file into another.
-# The keyword trees are simply concatenated. When Geeqie loads
-# the resulting configuration file, any duplicates are discarded.
-#
-# There is no error checking.
+
+## @file
+## @brief This is a simple script to merge the keyword tree of one Geeqie
+## configuration file into another.  
+##
+## The keyword trees are simply concatenated. When Geeqie loads
+## the resulting configuration file, any duplicates are discarded.
+##
+## There is no error checking.
+##
 
 merge_file()
 {

@@ -19,36 +19,38 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #**********************************************************************
-#
-# Facilitate the integration of the Doxygen html files
-# into a code editor.
-#
-# doxygen-help.sh <parameter to be searched for>
-#
-# The environment variable DOCDIR must be set to point to the
-# Doxygen html files location.
-# The environment variable PROJECT must be set to the value used
-# when creating the Doxygen files.
-#
-# Set a hot key in the code editor to call this script with
-# the highlighted variable or function name as a parameter.
-#
-# The file $DOCDIR/$PROJECT.tag contains an index of all documented
-# items and is scanned to locate the relevant html section.
-#
-# xdg-open is used to call the html browser to display the document.
-#
-#**********************************************************************
-#
-# To generate the Doxygen html files set the following
-# environment variables:
-# DOCDIR (destination folder)
-# SRCDIR (must point to the level above the source code)
-# PROJECT
-# VERSION
-#
-# Then run 'doxygen doxygen.conf'
-
+## @file
+## @brief Facilitate the integration of the Doxygen html files
+## into a code editor.
+##  
+## doxygen-help.sh <parameter to be searched for>
+##  
+## The environment variable DOCDIR must be set to point to the
+## Doxygen html files location.
+##
+## The environment variable PROJECT must be set to the value used
+## when creating the Doxygen files.
+##  
+## Set a hot key in the code editor to call this script with
+## the highlighted variable or function name as a parameter.
+##  
+## The file $DOCDIR/$PROJECT.tag contains an index of all documented
+## items and is scanned to locate the relevant html section.
+##  
+## xdg-open is used to call the html browser to display the document.
+##  
+##  **********************************************************************
+##  
+## To generate the Doxygen html files set the following
+## environment variables:  
+## DOCDIR (destination folder)  
+## SRCDIR (must point to the level above the source code)  
+## PROJECT  
+## VERSION
+##  
+## Then run 'doxygen doxygen.conf'
+##
+ 
 if [[ -z "${DOCDIR}" ]]
 then
 	echo "Environment variable DOCDIR not set"

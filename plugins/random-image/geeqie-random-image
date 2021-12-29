@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# Select and display a random image from a list of all images
-# in Collections and the currently displayed folder
+## @file
+## @brief Select and display a random image from a list of all images
+## in Collections and the currently displayed folder
+##
 
 # get list of images in all collections
 collection_list=$(geeqie --remote --get-collection-list)

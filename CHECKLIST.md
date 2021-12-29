@@ -1,4 +1,4 @@
-# A checklist to be used after Geeqie has been updated
+# Checklist for new releases of Geeqie
 
 ## Before compiling the sources, carry out the following actions when necessary
 
@@ -18,7 +18,13 @@ cd ./po
 make update-po
 ```
 
-* Update the the timezone database
+* Update the desktop template if menus have changed
+
+```sh
+./scripts/template-desktop.sh
+```
+
+* Update the the timezone database if the underlying database has changed significantly
 
 ```sh
 ./scripts/zonedetect/create_timezone_database
@@ -28,19 +34,19 @@ make update-po
 
 ## After compiling the sources, carry out the following actions when necessary
 
-* Update the man page and Command Line Options section in Help
+* Update the man page and Command Line Options section in Help if the command line options have changed
 
 ```sh
 ./scripts/generate-man-page.sh
 ```
 
-* Update the keyboard shortcuts page in Help
+* Update the keyboard shortcuts page in Help if any keyboard shortcuts have changed
 
 ```sh
 ./doc/create-shortcuts-xml.sh
 ```
 
-* Commit the changes
+* Commit the changes and push to the .repo
 
 * Generate a new AppImage (note that this should be run on a **20.04 system**)
 

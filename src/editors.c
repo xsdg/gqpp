@@ -107,7 +107,6 @@ static GList *editor_mime_types_to_extensions(gchar **mime_types)
 	/** @FIXME this should be rewritten to use the shared mime database, as soon as we switch to gio */
 
 	static const gchar *conv_table[][2] = {
-		{"application/x-ufraw",	".ufraw"},
 		{"image/*",		"*"},
 		{"image/bmp",		".bmp"},
 		{"image/gif",		".gif"},

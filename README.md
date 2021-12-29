@@ -1,48 +1,34 @@
+# Geeqie Readme
 
-      ###################################################################
-      ##                          Geeqie x.x                           ##
-      ##                                                               ##
-      ##              Copyright (C) 2008 - 2021 The Geeqie Team        ##
-      ##              Copyright (C) 1999 - 2006 John Ellis.            ##
-      ##                                                               ##
-      ##                      Use at your own risk!                    ##
-      ##                                                               ##
-      ##  This software released under the GNU General Public License. ##
-      ##       Please read the COPYING file for more information.      ##
-      ###################################################################
+## ![][image_ref_geeqie_png] Geeqie - an image viewer
 
 This is Geeqie, a successor of GQview.
 
-Geeqie has been forked from GQview project, because it was not possible to
-contact the GQview author and only maintainer.
+Geeqie is a free open software image viewer and organiser program for Linux, FreeBSD and other Unix-like operating systems
 
-The Geeqie project will continue the development forward and maintain the existing code.
-
-Geeqie is currently considered stable.
+It can be used as a simple database-free image viewer but it also has extensive capabilities.
 
 Please send any questions, problems or suggestions to the [mailing list](mailto:geeqie@freelists.org) or
 open an issue on [Geeqie at GitHub](https://github.com/BestImageViewer/geeqie/issues).
 
-(Unless you first subscribe to the mailing list, you will not receive automated responses)
+(NB Unless you first subscribe to the mailing list, you will not receive automated responses)
 
 Subscribe to the mailing list [here](https://www.freelists.org/list/geeqie).
 
 The project website is <http://www.geeqie.org/> and you will find the latest sources in the
 [Geeqie repository](http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git).
 
-# README contents:
+## Contents
 
-* Features
-* Downloading
-* Installation
-* Notes and changes for the latest release
-* Requirements
+* [Features](#features)
+* [Downloading](#downloading)
+* [Installation](#manual-installation)
+* [Notes and changes for the latest release](#notes-and-changes-for-the-latest-release)
+* [Requirements](#requirements)
 
-
-## Features
+### Features
 
 Geeqie is a graphics file viewer. Basic features:
-
 
 * Single click image viewing / navigation.
 
@@ -60,7 +46,6 @@ Geeqie is a graphics file viewer. Basic features:
 
 * Selectable exif auto-rotation of images.
 
-
 * Single click file copy or move to pre-defined folders - with undo feature.
 * Drag and drop.
 
@@ -70,8 +55,8 @@ Geeqie is a graphics file viewer. Basic features:
     * input: side-by-side (JPS) and MPO format
     * output: single image, anaglyph, SBS, mirror, SBS half size (3DTV)
 
-*   Viewing raster and vector images, in the following formats:
-3FR, ANI, APM, ARW, AVIF, BMP, CR2, CR3, CRW, CUR, DDS, DjVu, DNG, ERF, GIF, HEIC, HEIF, ICNS, ICO, JP2. JPE/JPEG/JPG, JPEG XL, JPS, KDC, MEF, MOS, MPO, MRW, NEF, ORF, PBM/PGM/PNM/PPM, PEF, PNG, PSD, PTX, QIF/QTIF (QuickTime Image Format), RAF, RAW, RW2, SCR (ZX Spectrum), SR2, SRF, SVG/SVGZ, TGA/TARGA, TIF/TIFF, WEBP, WMF, XBM, XPM.
+* Viewing raster and vector images, in the following formats:
+    * 3FR, ANI, APM, ARW, AVIF, BMP, CR2, CR3, CRW, CUR, DDS, DjVu, DNG, ERF, GIF, HEIC, HEIF, ICNS, ICO, JP2. JPE/JPEG/JPG, JPEG XL, JPS, KDC, MEF, MOS, MPO, MRW, NEF, ORF, PBM/PGM/PNM/PPM, PEF, PNG, PSD, PTX, QIF/QTIF (QuickTime Image Format), RAF, RAW, RW2, SCR (ZX Spectrum), SR2, SRF, SVG/SVGZ, TGA/TARGA, TIF/TIFF, WEBP, WMF, XBM, XPM.
     * Display images in archive files (.ZIP, .RAR etc.).
     * Animated GIFs are supported.
 
@@ -103,12 +88,13 @@ Geeqie is a graphics file viewer. Basic features:
 
 * Speed of operation can be increased by caching thumbnails and similarity data of images. When Geeqie is run as a stand-alone command line program (`geeqie --cache-maintenance <path>`) these data will be recursively created from the defined start point. This program can be called from `cron` or `anacron` so that cache updating is automatically done at specified intervals.
 
-# <a name="downloading"></a>
-## Downloading
+* Extensible via plugins
+
+### Downloading
 
 Geeqie is available:  
 
-* as a package for Linux and BSD systems (See the [project web page](https://www.geeqie.org)).
+* as a package for Linux and BSD systems (See the [project web page](https://www.geeqie.org#download)).
 
 * as a [flatpak](https://flathub.org/apps/details/org.geeqie.Geeqie) from the [Flathub site](https://flathub.org/home).
 
@@ -121,13 +107,20 @@ However Geeqie is stable and you may compile the latest version from sources.
 There are two scripts which will download and compile the sources for you.
 
 The first script will install Geeqie to a defined location, and will run under any system. However, it is left to you to make sure dependencies are fulfilled.
-To get the script, from the command line type:<br/><br/>
-`wget https://raw.githubusercontent.com/pixlsus/Scripts/master/build-geeqie`
+To get the script, from the command line type:
+
+```sh
+wget https://raw.githubusercontent.com/pixlsus/Scripts/master/build-geeqie
+chmod +x build-geeqie
+```
 
 The second script will run only on Debian-based system, but will fulfil all dependencies and also give you the opportunity to include additional pixbuf loaders and other useful programs.
-To get the script, from the command line type:<br/><br/>
-`wget https://raw.githubusercontent.com/BestImageViewer/geeqie/master/web/geeqie-install-debian.sh`
+To get the script, from the command line type:
 
+```sh
+wget https://raw.githubusercontent.com/BestImageViewer/geeqie/master/web/geeqie-install-debian.sh
+chmod +x geeqie-install-debian.sh
+```
 
 If you wish to compile the sources yourself you may download the latest version (if you have installed git) from here:
 
@@ -135,7 +128,7 @@ Either: `git clone git://www.geeqie.org/geeqie.git`
 
 Or: `git clone http://git.geeqie.org/git/geeqie.git`
 
-## Manual Installation
+### Manual Installation
 
 List compile options: `./autogen.sh --help`
 
@@ -148,7 +141,8 @@ Install: `[sudo] make install`
 
 Removal: `[sudo] make uninstall`
 
-#### Note:
+#### Note
+
 The zip and gzip files at geeqie.org and GitHub contain only the sources - they cannot, by themselves, be used to install Geeqie.
 
 It is recommended to always use `git clone  git://www.geeqie.org/geeqie.git` to download Geeqie. After installing Geeqie you may delete the folder you have cloned Geeqie into.
@@ -161,142 +155,31 @@ Only the changed sources are downloaded, which makes this a quick operation.
 
 Your configuration file, history file and desktop files are not affected by this process.
 
-
-
-## Notes and changes for the latest release
+### Notes and changes for the latest release
 
 See the NEWS file in the installation folder, or [Geeqie News at GitHub](https://github.com/BestImageViewer/geeqie/blob/master/NEWS)
 
 And either the ChangeLog file or [Geeqie ChangeLog](http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=shortlog)
 
+### Required libraries
 
-## Requirements
+Required libraries for a Debian installation may be listed by:
 
-### Required libraries:
-    GTK+ 3.00
-        www.gtk.org
-        enabled by default
-        disable with configure option: --disable-gtk3
-    or
-    GTK+ 2.20
-        disabled by default when GTK+3 libraries are found.
-        enable with configure option: --disable-gtk3
-        optional items map display and GPU acceleration are not available
-        with GTK2
+```sh
+wget https://raw.githubusercontent.com/BestImageViewer/geeqie/master/web/geeqie-install-debian.sh
+chmod +x geeqie-install-debian.sh
+./geeqie-install-debian.sh --list
+```
 
-        Both GTK2 and GTK3 versions have been in use for several
-        years, and both may be considered stable.
-
-### Optional libraries:
-    lcms2 2.0
-    or
-    lcms 1.14
-        www.littlecms.com
-        for color management support
-        enabled by default
-        disable with configure option: --disable-lcms
-
-    exiv2 0.11
-        www.exiv2.org
-        for enhanced exif support
-        enabled by default
-        disable with configure option: --disable-exiv2
-
-    lirc
-        www.lirc.org
-        for remote control support
-        enabled by default
-        disable with configure option: --disable-lirc
-
-    libchamplain-gtk 0.12
-    libchamplain 0.12
-    libclutter 1.0
-        wiki.gnome.org/Projects/libchamplain
-        for map display
-        enabled by default
-        disable with configure option: --disable-map
-
-    libclutter 1.0
-        www.clutter-project.org
-        for GPU acceleration (a check-box on Preferences/Image must also be ticked)
-        enabled by default
-        disable with configure option: --disable-gpu-accel
-        explicitly disabling will also disable the map feature
-
-    lua 5.1
-        www.lua.org
-        support for lua scripting
-        enabled by default
-        disable with configure option: --disable-lua
-
-    librsvg2-common
-        for displaying .svg images
-
-    libwmf0.2-7-gtk
-        for displaying .wmf images
-
-    (see also "Additional pixbuf loaders" in the References section of the Help file)
-
-    awk
-        when running Geeqie, to use the geo-decode function
-
-    markdown
-        when compiling Geeqie, to create this file in html format
-
-    libffmpegthumbnailer 2.1.0
-        https://github.com/dirkvdb/ffmpegthumbnailer
-        for thumbnailing camera video clips
-        disable with configure option: --disable-ffmpegthumbnailer
-
-    libpoppler-glib-dev 0.62
-        for displaying pdf files
-        disable with configure option: --disable-pdf
-
-    libimage-exiftool-perl
-        For the jpeg extraction plugin
-
-    liblcms2-utils
-        For the command-line tool jpgicc, used by the jpeg extraction plugin
-
-     ImageMagick
-     exiftran
-     gphoto2
-     ufraw
-     exiv2
-        Additional command-line tools for various operations
-
-    libheif
-        For displaying HEIF images
-
-    libwebp
-        For displaying webp images
-
-    libdjvulibre
-        For displaying DjVu images
-
-    libopenjp2
-        For displaying JP2 images
-
-    libraw 0.20
-        For displaying CR3 images
-
-    libarchive 3.4.3
-        For opening archive files (.ZIP, .RAR etc.)
-
-    yelp-tools
-        For creating the Help files
-
-    help2man
-    doclifter
-        For creating the man pages and some Help files
-
-### Code hackers:
+### Code hackers
 
 If you plan on making any major changes to the code that will be offered for
 inclusion to the main source, please contact us first - so that we can avoid
 duplication of effort.
-                                                         The Geeqie Team
 
-### Known bugs:
+### Known bugs
 
 See the Geeqie Bug Tracker at <https://github.com/BestImageViewer/geeqie/issues>
+
+[image_ref_geeqie_png]:
+data:image/png;base64,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

@@ -1,9 +1,11 @@
 #!/bin/bash
 
-# Crop image
-#
-# Requires ImageMagick and exiftool
-
+## @file
+## @brief Crop image
+##
+## Requires ImageMagick and exiftool  
+## Crops the image to the size set by the Draw Rectangle menu item
+##
 
 process_raw ()
 {

@@ -1,8 +1,13 @@
 #!/bin/bash
-# Create the man page from the output of the "geeqie--help" command
-# and also create the xml file for Command Line Options
-#
-# This needs to be run only when the command line options change
+
+## @file
+## @brief Create the man page from the output of the "geeqie--help" command
+## and also create the xml file for Command Line Options
+##
+## This needs to be run only when the command line options change
+##
+## The programs help2man and doclifter are required - both are available as .deb packages.
+##
 
 command -v help2man > /dev/null
 if [ $? -eq 1 ]

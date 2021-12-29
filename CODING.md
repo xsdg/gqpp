@@ -3,9 +3,13 @@
 [Error Logging](#error-logging)  
 [GPL header](#gpl-header)  
 [Git change log](#git-change-log)  
-[Sources](#sources)  
-[Software Tools](#software-tools)  
+[Source Code Style](#source-code-style)  
+[External Software Tools](#external-software-tools)  
+[Geeqie Software Tools](#geeqie-software-tools)  
 [Documentation](#documentation)  
+[Documentation - C code](#c-code)  
+[Documentation - Script files](#script-files)  
+[Doxygen](#doxygen)  
 
 ---
 
@@ -95,7 +99,7 @@ Also please use your full name and a working e-mail address as author for any co
 
 ---
 
-## Sources
+## Source Code Style
 
 Indentation: tabs at 4 spaces
 
@@ -112,38 +116,38 @@ Conditions, cycles:
 
 ```c
 if (<cond>)
-	{
-	<command>;
-	...
-	<command>;
-	}
+    {
+    <command>;
+    ...
+    <command>;
+    }
 else
-	{
-	<command>;
-	...
-	<command>;
-	}
+    {
+    <command>;
+    ...
+    <command>;
+    }
 
 if (<cond_very_very_very_very_very_very_very_very_very_long> &&
 <cond2very_very_very_very_very_very_very_very_very_long>)
 <the_only_command>;
 
 switch (<var>)
-	{
-	case 0:
-		<command>;
-		<command>;
-		break;
-	case 1:
-		<command>; break;
-	}
+    {
+    case 0:
+        <command>;
+        <command>;
+        break;
+    case 1:
+        <command>; break;
+    }
 
 for (i = 0; i <= 10; i++)
-	{
-	<command>;
-	...
-	<command>;
-	}
+    {
+    <command>;
+    ...
+    <command>;
+    }
 ```
 
 Functions:
@@ -151,18 +155,18 @@ Functions:
 ```c
 gint bar(<var_def>, <var_def>, <var_def>)
 {
-	<command>;
-	...
-	<command>;
+    <command>;
+    ...
+    <command>;
 
-	return 0; // i.e. SUCCESS; if error, you must return minus <err_no> @FIXME
+    return 0; // i.e. SUCCESS; if error, you must return minus <err_no> @FIXME
 }
 
 void bar2(void)
 {
-	<command>;
-	...
-	<command>;
+    <command>;
+    ...
+    <command>;
 }
 ```
 
@@ -194,7 +198,7 @@ Use glib functions when possible (i.e. `g_ascii_isspace()` instead of `isspace()
 Check if used functions are not deprecated.
 
 ---
-## Software Tools
+## External Software Tools
 
 ### astyle
 
@@ -216,10 +220,6 @@ align-pointer=name
 align-reference=name
 ```
 
-### check-compiles.sh
-
-This shell script is part of the Geeqie project and will compile Geeqie with various options.
-
 ### cppcheck
 
 A lint-style program may be used, e.g.
@@ -237,25 +237,19 @@ unusedFunction
 unmatchedSuppression
 ```
 
-### generate-man-page.sh
-
-This script is part of the Geeqie project and should be used to generate the Geeqie man page from Geeqie's command line
-help output and also update the Command Line Options section of the Help files.
-The programs help2man and doclifter are required - both are available as .deb packages.
-
-```sh
-./scripts/generate-man-page.sh
-```
-
 ### markdownlint
 
-Markdown documents may be validated with e.g. [markdownlint](https://github.com/markdownlint/markdownlint).  
-`mdl --style <style file>`
+Markdown documents may be validated with e.g. [markdownlint](https://github.com/markdownlint/markdownlint).
 
-Where the style file might be:
+```sh
+mdl --style <style file>`
+```
+
+Where the style file might contain:
 
 ```text
 all
+rule 'MD007', :indent => 4
 rule 'MD009', :br_spaces => 2
 rule 'MD010', :code_blocks => true
 exclude_rule 'MD013'
@@ -275,6 +269,12 @@ The .xml Help files may be validated with e.g. `xmllint`.
 
 ---
 
+## Geeqie Software Tools
+
+See the shell scripts section in the Doxygen documentation (`File List`, `detail level 3`, except the `src` sublist).
+
+---
+
 ## Documentation
 
 Use American, rather than British English, spelling. This will facilitate consistent
@@ -282,6 +282,8 @@ text searches. User text may be translated via the en_GB.po file.
 
 To document the code use the following rules to allow extraction with Doxygen.  
 Not all comments have to be Doxygen comments.
+
+### C code
 
 - Use C comments in plain C files and use C++ comments in C++ files for one line comments.
 - Use `/**` (note the two asterisks) to start comments to be extracted by Doxygen and start every following line with ` *` as shown below.
@@ -327,27 +329,57 @@ or
 * @FIXME
 ```
 
+### Script files
+
+Script files such as .sh, .pl, and .awk should have the file relevant file extension or be symlinked as so.
+
+Doxygen comments should start each line with `##`, and each file should contain:
+
+```sh
+## @file
+## @brief <one line description>
+## <contents description>
+##
+```
+
+## Doxygen
+
 For further documentation about Doxygen see the [Doxygen Manual](https://www.doxygen.nl/index.html).  
 For the possible commands you may use, see [Doxygen Special Commands](https://www.doxygen.nl/manual/commands.html).
 
 The file `./scripts/doxygen-help.sh` may be used to integrate access to the Doxygen files into a code editor.
 
-The following environment variables may be set to personalize the Doxygen output:  
-`DOCDIR=<output folder>`  
-`SRCDIR=<the folder above ./src>`  
-`PROJECT=`  
-`VERSION=`  
-`PLANTUML_JAR_PATH=`  
-`INLINE_SOURCES=<YES|NO>`  
-`STRIP_CODE_COMMENTS=<YES|NO>`  
+The following environment variables may be set to personalize the Doxygen output:
+
+```sh
+DOCDIR=<output folder>
+SRCDIR=<the top level directory of the project>
+PROJECT=
+VERSION=
+PLANTUML_JAR_PATH=
+INLINE_SOURCES=<YES|NO>
+STRIP_CODE_COMMENTS=<YES|NO>
+```
 
 Ref: [INLINE\_SOURCES](https://www.doxygen.nl/manual/config.html#cfg_inline_sources)  
 Ref: [STRIP\_CODE\_COMMENTS](https://www.doxygen.nl/manual/config.html#cfg_strip_code_comments)
 
-To include diagrams in the Doxygen output, the following are required to be installed. The installation process will vary between distributions:  
-[The PlantUML jar](https://plantuml.com/download)  
-`sudo apt install default-jre`  
-`sudo apt install texlive-font-utils`
+For shell scripts to be documented, the file `doxygen-bash.sed` must be in the `$PATH` environment variable.  
+It can be download from here:
+
+```sh
+wget https://raw.githubusercontent.com/Anvil/bash-doxygen/master/doxygen-bash.sed
+chmod +x doxygen-bash.sed
+```
+
+To include diagrams in the Doxygen output, the following are required to be installed. The installation process will vary between distributions:
+
+[The PlantUML jar](https://plantuml.com/download)
+
+```sh
+sudo apt install default-jre
+sudo apt install texlive-font-utils
+```
 
 ---
 

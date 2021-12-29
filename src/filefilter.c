@@ -255,7 +255,6 @@ void filter_add_defaults(void)
 	filter_add_if_missing("xmp", "XMP sidecar", ".xmp", FORMAT_CLASS_META, TRUE, FALSE, TRUE);
 	filter_add_if_missing("meta", "GQview legacy metadata", GQ_CACHE_EXT_METADATA, FORMAT_CLASS_META, TRUE, FALSE, TRUE);
 	filter_add_if_missing("gqv", GQ_APPNAME " image collection", GQ_COLLECTION_EXT, FORMAT_CLASS_COLLECTION, FALSE, FALSE, TRUE);
-	filter_add_if_missing("ufraw", "UFRaw ID file", ".ufraw", FORMAT_CLASS_META, FALSE, FALSE, TRUE);
 	filter_add_if_missing("pto", "Panorama script file", ".pto", FORMAT_CLASS_META, FALSE, FALSE, TRUE);
 
 	/* These are the raw camera formats with embedded jpeg/exif.

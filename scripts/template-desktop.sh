@@ -1,7 +1,11 @@
 #! /bin/bash
 
-# Insert updated menu "Valid sections" list into the desktop template file.
-# This needs to be run only when the menus have changed.
+
+## @file
+## @brief Insert updated menu "Valid sections" list into the desktop template file.
+##
+## This needs to be run only when the menus have changed.
+##
 
 tmp_file=$(mktemp)
 path=$(dirname "$(realpath "$0")")
@@ -74,7 +78,11 @@ function get_menus()
 (template_flag == 0) {print}
 '  "$templatepath" > "$tmp_file"
 
-zenity --text-info < "$tmp_file"
+cat $tmp_file
+echo $PWD
+
+diff --unified=0 "./plugins/template.desktop.in" "$tmp_file" | zenity --title="Plugin template update" --text-info --width=700 --height=400
+
 if [ "$?" == 0 ]
 then
 	mv "$tmp_file" "$templatepath"

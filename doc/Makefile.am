@@ -2,7 +2,7 @@
 
 helpdir = @htmldir@
 
-EXTRA_DIST = docbook2html.sh docbook icons
+EXTRA_DIST = docbook icons
 
 html/GuideIndex.html: docbook/GuideIndex.xml
 	rm -rf html; mkdir html; cp $(srcdir)/icons/* html/; ./create-doxygen-lua-api.sh

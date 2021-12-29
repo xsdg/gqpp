@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# This script prints translations statistics for .po files
-# existing in the current directory
+## @file
+## @brief This script prints translations statistics for .po files
+## existing in the current directory
+##
+
 export LC_ALL=C
 
 echo "Translations statistics"

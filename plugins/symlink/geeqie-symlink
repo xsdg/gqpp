@@ -1,8 +1,10 @@
 #!/bin/sh
 
-# This is a helper script that symlinks grouped files
-# it uses geeqie remote connection to get details about grouped files
-
+## @file
+## @brief This is a helper script that symlinks grouped files
+##
+## It uses geeqie remote connection to get details about grouped files
+##
 
 # iterate over files on commandline
 for file in "$@" ; do

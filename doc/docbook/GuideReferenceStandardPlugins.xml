@@ -2,38 +2,6 @@
 <section id="GuideReferenceStandardPlugins">
   <title id="titleGuideReferenceStandardPlugins">Standard Plugins</title>
   <para>The following plugins are supplied as standard with Geeqie.</para>
-  <section id="EditUFRawIDfile">
-    <title>Edit UFRaw ID file</title>
-    <para>Creates a UFRaw ID file for each of the selected files.</para>
-    <para>
-      This item is displayed in the
-      <emphasis role="strong">Edit</emphasis>
-      menu.
-    </para>
-  </section>
-  <section id="UFRawBatch">
-    <title>UFRaw Batch</title>
-    <para>
-      Searches for new RAW files or for modified UFRaw 
-      ID files and processes them with
-      <code>ufraw-batch</code>
-      .
-    </para>
-    <para>
-      This item is displayed in the
-      <emphasis role="strong">Edit</emphasis>
-      menu.
-    </para>
-  </section>
-  <section id="UFRawBatchrecursive">
-    <title>UFRaw Batch recursive</title>
-    <para>As above, with a recursive search.</para>
-    <para>
-      This item is displayed in the
-      <emphasis role="strong">Edit</emphasis>
-      menu.
-    </para>
-  </section>
   <section id="Symlink">
     <title>Symlink</title>
     <para>Creates a symbolic link on the selected files. If a file has sidecars, they will also be symlinked.</para>

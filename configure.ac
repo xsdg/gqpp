@@ -822,7 +822,6 @@ AC_CONFIG_FILES([
     plugins/Makefile
     plugins/symlink/Makefile
     plugins/rotate/Makefile
-    plugins/ufraw/Makefile
     plugins/geocode-parameters/Makefile
     plugins/export-jpeg/Makefile
     plugins/tethered-photography/Makefile

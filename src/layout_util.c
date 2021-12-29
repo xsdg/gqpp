@@ -2591,7 +2591,7 @@ static GtkActionEntry menu_entries[] = {
   { "HelpSearch",	NULL,		N_("On-line help search"),			NULL,			N_("On-line help search"),				CB(layout_menu_help_search_cb) },
   { "HelpShortcuts",	NULL,			N_("_Keyboard shortcuts"),		NULL,			N_("Keyboard shortcuts"),		CB(layout_menu_help_keys_cb) },
   { "HelpKbd",		NULL,			N_("_Keyboard map"),			NULL,			N_("Keyboard map"),			CB(layout_menu_kbd_map_cb) },
-  { "HelpNotes",	NULL,			N_("_Release notes"),			NULL,			N_("Release notes"),			CB(layout_menu_notes_cb) },
+  { "HelpNotes",	NULL,			N_("_Readme"),			NULL,			N_("Readme"),			CB(layout_menu_notes_cb) },
   { "HelpChangeLog",	NULL,			N_("_ChangeLog"),			NULL,			N_("ChangeLog notes"),			CB(layout_menu_changelog_cb) },
   { "SearchAndRunCommand",	GTK_STOCK_FIND,		N_("Search and Run command"),	"slash",	N_("Search commands by keyword and run them"),	CB(layout_menu_search_and_run_cb) },
   { "About",		GTK_STOCK_ABOUT,	N_("_About"),				NULL,			N_("About"),				CB(layout_menu_about_cb) },

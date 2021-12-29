@@ -1,0 +1,1 @@
+geeqie-camera-import-hook-script

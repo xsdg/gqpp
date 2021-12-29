@@ -57,4 +57,5 @@ If required, rename the AppImage executable - e.g.:
 mv ./Geeqie-v1.6-x86_64.AppImage $(./Geeqie-v1.6-x86_64.AppImage -v | sed 's/git//' | sed 's/-.* /-/' | sed 's/ /-v/' | sed 's/-GTK3//').AppImage
 ```
 
+## Automation script
 The script `./scripts/generate-appimage.sh` automates this process.

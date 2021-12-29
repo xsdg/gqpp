@@ -1,17 +1,19 @@
 #!/usr/bin/awk -f
 #
-# This file is used by the Search option "search on geo-position".
-# It is used to decode the results of internet or other searches
-# to extract a geo-position from a text string.
-#
-# To include other searches, follow the examples below and
-# store the file in:
-# ~/.config/geeqie/applications/geocode-parameters.awk
-# Ensure the returned value is either in the format:
-# 89.123 179.123
-# or
-# Error: $0
-#
+## @file
+## @brief This file is used by the Search option "search on geo-position".
+##
+## It is used to decode the results of internet or other searches
+## to extract a geo-position from a text string.
+##
+## To include other searches, follow the examples below and
+## store the file in:  
+## ~/.config/geeqie/applications/geocode-parameters.awk  
+## Ensure the returned value is either in the format:  
+## 89.123 179.123  
+## or  
+## Error: $0  
+##
 
 function check_parameters(latitude, longitude)
     {

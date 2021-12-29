@@ -18,14 +18,14 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #**********************************************************************
-#
-# This script will generate a Geeqie AppImage.
-#
-# It must be run from the base Geeqie folder.
-# The single parameter is the directory where the AppDir
-# will be created.
-#
-#**********************************************************************
+
+## @file
+## @brief This script will generate a Geeqie AppImage.
+##
+## It must be run from the base Geeqie folder.  
+## The single parameter is the directory where the AppDir
+## will be created.
+##
 
 
 if [[ ! -f geeqie.spec.in ]] || [[ ! -d .git ]]

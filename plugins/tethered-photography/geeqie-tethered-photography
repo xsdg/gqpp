@@ -1,13 +1,16 @@
 #!/bin/bash
 
-# Tethered photography
-# Requires gphoto2
-#
-# If a file already exists with the same name, it is not overwritten, but the
-# download will not take place.
-# Auto-rename can be achieved with the --filename option of gphoto2.
-# In file $HOME/.config/gphoto2/settings, set the option:
-# gphoto2=filename=<see the manual>
+## @file
+## @brief Simple tethered photography helper
+##
+## Requires gphoto2
+##
+## If a file already exists with the same name, it is not overwritten, but the
+## download will not take place.
+## Auto-rename can be achieved with the --filename option of gphoto2.  
+## In file $HOME/.config/gphoto2/settings, set the option:  
+## gphoto2=filename=<see the manual>
+##
 
 n=$(ps -e | grep "geeqie-tethered" | wc -l)
 if [ "$n" -ge 3 ]

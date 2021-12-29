@@ -1,5 +1,18 @@
 #! /usr/bin/perl
 #
+## @file
+## @brief Display the contents of a .sim file
+##
+## Usage: ./scripts/decode_sim <path to sim file>
+##
+## Displays:  
+## Comment: <geeqie version file was created by>  
+## Original image dimensions:  
+## Exif Date Original:  
+## MD5 sum:  
+## Image of the thumbnail  
+##
+
 
 use strict;
 use warnings;
