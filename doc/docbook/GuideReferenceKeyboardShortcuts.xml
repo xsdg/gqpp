@@ -2,12 +2,17 @@
 <section id="GuideReferenceKeyboardShortcuts">
   <title id="titleGuideReferenceKeyboardShortcuts">Keyboard and Mouse Shortcuts</title>
   <para>
-    The tables below shows the defaults for keyboard shortcuts. The current settings for all shortcuts may be found in the
+    The tables below shows the defaults for keyboard shortcuts. The current settings for shortcuts may be found in the
     <link linkend="GuideOptionsKeyboard" endterm="titleGuideOptionsKeyboard" />
     dialogue.
+    <para />
+    Only the main window shortcuts can be redefined in
+    <link linkend="GuideOptionsKeyboard" endterm="titleGuideOptionsKeyboard" />
+    . The shortcuts in other windows are fixed.
   </para>
+  <note>In the list below, KP means KeyPad</note>
   <section id="AllWindows">
-    <title>Keyboard shortcuts in all windows</title>
+    <title>Keyboard shortcuts in all windows, where relevant</title>
     <table frame="all">
       <title>Standard keyboard shortcuts</title>
       <tgroup cols="3" rowsep="1" colsep="1">
@@ -44,40 +49,49 @@
             <entry>
               <keycap>/</keycap>
             </entry>
-            <entry/>
+            <entry />
             <entry>Search and Run Commands.</entry>
           </row>
         </tbody>
       </tgroup>
     </table>
   </section>
-  <section id="mainKeyboard">
-    <title>Main window keyboard shortcuts</title>
+  <section id="MainWindow">
+    <title>Main window programmable keyboard shortcuts</title>
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceMainWindowShortcuts.xml" />
+  </section>
+  <section id="CollectionsKeyboardShortcuts">
+    <title>Collections window non-programmable keyboard shortcuts</title>
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceCollectionsShortcuts.xml" />
+  </section>
+  <section id="DuplicatesKeyboardShortcuts">
+    <title>Duplicates window non-programmable keyboard shortcuts</title>
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceDuplicatesShortcuts.xml" />
+  </section>
+  <section id="ImageViewKeyboardShortcuts">
+    <title>Image window non-programmable keyboard shortcuts</title>
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceImageViewShortcuts.xml" />
+  </section>
+  <section id="PanViewKeyboardShortcuts">
+    <title>Pan window non-programmable keyboard shortcuts</title>
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferencePanViewShortcuts.xml" />
+  </section>
+  <section id="SearchKeyboardShortcuts">
+    <title>Search window non-programmable keyboard shortcuts</title>
+    <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceSearchShortcuts.xml" />
+  </section>
+  <section id="MouseActions">
+    <title>Mouse actions</title>
     <table frame="all">
-      <title>
-        <link linkend="GuideMainWindow">Main window</link>
-        keyboard shortcuts
-      </title>
-      <tgroup cols="3" rowsep="1" colsep="1">
+      <tgroup cols="2" rowsep="1" colsep="1">
         <thead>
           <row>
-            <entry>Shortcut</entry>
             <entry>Mouse</entry>
             <entry>Action</entry>
           </row>
         </thead>
         <tbody>
-          <row colsep="0">
-            <entry colsep="0">
-              <emphasis role="strong">Image Navigation</emphasis>
-            </entry>
-            <entry colsep="0" />
-            <entry />
-          </row>
           <row>
-            <entry>
-              <keycap>PageDown</keycap>
-            </entry>
             <entry>
               <code>Left Click</code>
               ,
@@ -91,12 +105,9 @@
                 </para>
               </footnote>
             </entry>
-            <entry>Change to next image.</entry>
+            <entry>Next image.</entry>
           </row>
           <row>
-            <entry>
-              <keycap>PageUp</keycap>
-            </entry>
             <entry>
               <code>Middle Click</code>
               ,
@@ -104,55 +115,9 @@
               <code>Mouse Wheel up</code>
               <footnoteref linkend='ref1' />
             </entry>
-            <entry>Change to previous image.</entry>
+            <entry>Previous image.</entry>
           </row>
           <row>
-            <entry>
-              <keycap>Home</keycap>
-            </entry>
-            <entry />
-            <entry>Change to first image.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>End</keycap>
-            </entry>
-            <entry />
-            <entry>Change to last image.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>Space</keycap>
-            </entry>
-            <entry />
-            <entry>Change to next image.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>Backspace</keycap>
-            </entry>
-            <entry />
-            <entry>Change to previous image.</entry>
-          </row>
-          <row rowsep="0">
-            <entry colsep="0" />
-            <entry colsep="0" />
-            <entry colsep="0" />
-          </row>
-          <row>
-            <entry colsep="0">
-              <emphasis role="strong">Image viewing</emphasis>
-              (image has keyboard focus. Refer also to
-              <link linkend="MouseWheelMode">Mouse Wheel Mode</link>
-              )
-            </entry>
-            <entry colsep="0" />
-            <entry colsep="0" />
-          </row>
-          <row>
-            <entry>
-              <keycap>Arrow key</keycap>
-            </entry>
             <entry>
               <code>Left click and Drag</code>
               <footnoteref linkend='ref1' />
@@ -161,20 +126,17 @@
           </row>
           <row>
             <entry>
-              <code>Shift + Arrows</code>
+              <code>Ctrl + Mouse Wheel up</code>
             </entry>
-            <entry />
-            <entry>Pan Image faster.</entry>
+            <entry>Zoom image in.</entry>
           </row>
           <row>
             <entry>
-              <code>Ctrl + Arrow key</code>
+              <code>Ctrl + Mouse Wheel down</code>
             </entry>
-            <entry />
-            <entry>Pan to respective edge of image.</entry>
+            <entry>Zoom image out.</entry>
           </row>
           <row>
-            <entry />
             <entry>
               <code>Mouse button 8</code>
               <footnote id='ref2'>
@@ -184,7 +146,6 @@
             <entry>Forward</entry>
           </row>
           <row>
-            <entry />
             <entry>
               <code>Mouse button 9</code>
               <footnoteref linkend='ref2' />
@@ -192,1221 +153,22 @@
             <entry>Back</entry>
           </row>
           <row>
-            <entry />
             <entry>
-              <code>Shift + right-click</code>
+              <code>Control + left-click</code>
             </entry>
             <entry>Smooth scroll</entry>
           </row>
-          <row>
-            <entry>
-              <keycap>]</keycap>
-            </entry>
-            <entry />
-            <entry>Rotate image clockwise 90 degrees.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>[</keycap>
-            </entry>
-            <entry />
-            <entry>Rotate image counterclockwise 90 degree.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>Shift + R</code>
-            </entry>
-            <entry />
-            <entry>Rotate image 180 degrees.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>Shift + M</code>
-            </entry>
-            <entry />
-            <entry>Flip image horizontally (mirror).</entry>
-          </row>
-          <row>
-            <entry>
-              <code>Shift + F</code>
-            </entry>
-            <entry />
-            <entry>Flip image vertically.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>+</keycap>
-              ,
-              <keycap>=</keycap>
-            </entry>
-            <entry>
-              <code>Ctrl + Mouse Wheel up</code>
-            </entry>
-            <entry>Zoom image in.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>-</keycap>
-            </entry>
-            <entry>
-              <code>Ctrl + Mouse Wheel down</code>
-            </entry>
-            <entry>Zoom image out.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>Z</keycap>
-            </entry>
-            <entry />
-            <entry>Reset zoom to original size (1:1).</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>X</keycap>
-            </entry>
-            <entry />
-            <entry>Fit image to window size.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>W</keycap>
-            </entry>
-            <entry />
-            <entry>Zoom image to fit window width.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>H</keycap>
-            </entry>
-            <entry />
-            <entry>Zoom image to fit window height.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>1</keycap>
-            </entry>
-            <entry />
-            <entry>Set zoom to 1:1</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>2</keycap>
-            </entry>
-            <entry />
-            <entry>Set zoom to 2:1</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>3</keycap>
-            </entry>
-            <entry />
-            <entry>Set zoom to 3:1</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>4</keycap>
-            </entry>
-            <entry />
-            <entry>Set zoom to 4:1</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>7</keycap>
-            </entry>
-            <entry />
-            <entry>Set zoom to 1:4</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>8</keycap>
-            </entry>
-            <entry />
-            <entry>Set zoom to 1:3</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>9</keycap>
-            </entry>
-            <entry />
-            <entry>Set zoom to 1:2</entry>
-          </row>
-          <row rowsep="0">
-            <entry colsep="0" />
-            <entry colsep="0" />
-            <entry colsep="0" />
-          </row>
-          <row>
-            <entry colsep="0">
-              <emphasis role="strong">For files with multiple pages e.g. tiff files</emphasis>
-            </entry>
-            <entry colsep="0" />
-            <entry colsep="0" />
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>Home</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Go to first page</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>End</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Go to last page</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>PageUp</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Go to previous page</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>PageDown</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Go to next page</entry>
-          </row>
-          <row>
-            <entry colsep="0">
-              <emphasis role="strong">File Menu</emphasis>
-            </entry>
-            <entry colsep="0" />
-            <entry colsep="0" />
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>N</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>New Window</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>C</keycap>
-            </entry>
-            <entry />
-            <entry>Open a new empty collection window.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>O</keycap>
-            </entry>
-            <entry />
-            <entry>Display open collection dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>F3</keycap>
-            </entry>
-            <entry />
-            <entry>Open new search window.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Shift +
-                <keycap>P</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Open print dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>F</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Create new folder in current path.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>C</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Copy selected images, opens destination selection dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>M</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Move selected images, opens destination selection dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>R</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Rename selected images, opens rename dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>D</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Move selected images to trash bin.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>Shift + Delete</code>
-            </entry>
-            <entry />
-            <entry>Permanently delete selected images.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>W</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Close window, Geeqie exits when last window is closed.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>Q</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Quit Geeqie.</entry>
-          </row>
-          <row rowsep="0">
-            <entry colsep="0" />
-            <entry colsep="0" />
-            <entry colsep="0" />
-          </row>
-          <row>
-            <entry colsep="0">
-              <emphasis role="strong">Edit Menu</emphasis>
-            </entry>
-            <entry colsep="0" />
-            <entry colsep="0" />
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>O</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Open Geeqie preferences window.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>S</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Save metadata</entry>
-          </row>
-          <row rowsep="0">
-            <entry colsep="0" />
-            <entry colsep="0" />
-            <entry colsep="0" />
-          </row>
-          <row>
-            <entry colsep="0">
-              <emphasis role="strong">Select Menu</emphasis>
-            </entry>
-            <entry colsep="0" />
-            <entry colsep="0" />
-          </row>
-          <row>
-            <entry>
-              <keycap>1</keycap>
-              ...
-              <keycap>6</keycap>
-            </entry>
-            <entry />
-            <entry>Toggle mark 1 ... 6</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>1</keycap>
-              </code>
-              ...
-              <code>
-                Ctrl +
-                <keycap>6</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Select mark 1 ... 6</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>A</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Select all images.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl + SHIFT +
-                <keycap>A</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Unselect all images.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl + SHIFT +
-                <keycap>I</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Invert selection.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Alt +
-                <keycap>R</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Toggle rectangular selection mode in icon view.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>M</keycap>
-            </entry>
-            <entry />
-            <entry>Show marks.</entry>
-          </row>
-          <row rowsep="0">
-            <entry colsep="0" />
-            <entry colsep="0" />
-            <entry colsep="0" />
-          </row>
-          <row>
-            <entry colsep="0">
-              <emphasis role="strong">View Menu</emphasis>
-            </entry>
-            <entry colsep="0" />
-            <entry colsep="0" />
-          </row>
-          <row>
-            <entry>
-              <keycap>T</keycap>
-            </entry>
-            <entry />
-            <entry>Toggle display of thumbnails when in list view.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>L</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Display file list as detailed list view.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>I</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Display file list as icon view.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>T</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Toggle folder display between list and tree views.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>R</keycap>
-            </entry>
-            <entry />
-            <entry>Refresh file list.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>L</keycap>
-            </entry>
-            <entry />
-            <entry>Toggle floating of file display.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>H</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Toggle hiding of file display.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>E</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Toggle EXIF sidebar.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Shift +
-                <keycap>S</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Toggle Sort Manager sidebar.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>K</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Toggle Keywords sidebar.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Shift +
-                <keycap>E</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Toggle highlighting of pixels that are over or under exposed.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>V</keycap>
-            </entry>
-            <entry />
-            <entry>Toggle full screen.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>I</keycap>
-            </entry>
-            <entry />
-            <entry>Toggle information overlay.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>S</keycap>
-            </entry>
-            <entry />
-            <entry>Toggle slideshow.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>P</keycap>
-            </entry>
-            <entry />
-            <entry>Pause slideshow.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>=</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Slideshow faster.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>-</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Slideshow slower.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>E</keycap>
-            </entry>
-            <entry />
-            <entry>Split panes horizontal.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>U</keycap>
-            </entry>
-            <entry />
-            <entry>Split panes vertical.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>Y</keycap>
-            </entry>
-            <entry />
-            <entry>Single pane.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>Alt + Right Arrow</code>
-            </entry>
-            <entry />
-            <entry>Next split pane.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>Alt + Left Arrow</code>
-            </entry>
-            <entry />
-            <entry>Previous split pane.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>Alt + Up Arrow</code>
-            </entry>
-            <entry />
-            <entry>Up or previous split pane.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>Alt + Down Arrow</code>
-            </entry>
-            <entry />
-            <entry>Down or next split pane.</entry>
-          </row>
         </tbody>
       </tgroup>
     </table>
   </section>
-  <section id="CollectionsKeyboardShortcuts">
-    <title>Collections keyboard shortcuts</title>
+  <section id="ArrowKeys">
+    <title>Arrow keys actions</title>
     <table frame="all">
-      <title>
-        <link linkend="GuideCollections">Collections window</link>
-        keyboard shortcuts
-      </title>
-      <tgroup cols="3" rowsep="1" colsep="1">
+      <tgroup cols="2" rowsep="1" colsep="1">
         <thead>
           <row>
             <entry>Shortcut</entry>
-            <entry>Mouse</entry>
-            <entry>Action</entry>
-          </row>
-        </thead>
-        <tbody>
-          <entry colsep="0">
-            <emphasis role="strong">Collection Window</emphasis>
-          </entry>
-          <entry colsep="0" />
-          <entry colsep="0" />
-          <row>
-            <entry>
-              <keycap>Arrows</keycap>
-            </entry>
-            <entry />
-            <entry>Move selection.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>Shift + Arrow key</code>
-            </entry>
-            <entry />
-            <entry>Select multiple images.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Alt +
-                <keycap>R</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Toggle rectangular selection mode.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>Space</keycap>
-            </entry>
-            <entry />
-            <entry>Select only image with focus.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>Ctrl + Space</code>
-            </entry>
-            <entry />
-            <entry>Toggle selection of image with focus.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>Home</keycap>
-            </entry>
-            <entry />
-            <entry>Move focus to first image.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>End</keycap>
-            </entry>
-            <entry />
-            <entry>Move focus to last image.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>A</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Select all images.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl + Shift +
-                <keycap>A</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Unselect all images.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>Delete</keycap>
-            </entry>
-            <entry />
-            <entry>Remove selected image from collection, does not delete image from disk.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>L</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Add images from main window's file list.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>T</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Toggle display of icon filenames.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>N</keycap>
-            </entry>
-            <entry />
-            <entry>Sort collection by name.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>D</keycap>
-            </entry>
-            <entry />
-            <entry>Sort collection by file date.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>B</keycap>
-            </entry>
-            <entry />
-            <entry>Sort collection by file size.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>P</keycap>
-            </entry>
-            <entry />
-            <entry>Sort collection by file path.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>I</keycap>
-            </entry>
-            <entry />
-            <entry>Sort collection by natural numerical order.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>Enter</keycap>
-            </entry>
-            <entry />
-            <entry>View image with focus in main window.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>V</keycap>
-            </entry>
-            <entry />
-            <entry>View image with focus in new window.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Shift +
-                <keycap>P</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Open print dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>S</keycap>
-            </entry>
-            <entry />
-            <entry>Save collection.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>S</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Save collection as, opens destination dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>A</keycap>
-            </entry>
-            <entry />
-            <entry>Append to collection, opens append dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>C</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Copy selected images, opens destination selection dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>M</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Move selected images, opens destination selection dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>R</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Rename selected images, opens rename dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>D</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Delete selected images.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>W</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Close collection window.</entry>
-          </row>
-          <row rowsep="0">
-            <entry colsep="0" />
-            <entry colsep="0" />
-            <entry colsep="0" />
-          </row>
-        </tbody>
-      </tgroup>
-    </table>
-  </section>
-  <section id="DuplicatesKeyboardShortcuts">
-    <title>Duplicates keyboard shortcuts</title>
-    <table frame="all">
-      <title>
-        <link linkend="GuideImageSearchFindingDuplicates">Duplicates window</link>
-        keyboard shortcuts
-      </title>
-      <tgroup cols="3" rowsep="1" colsep="1">
-        <thead>
-          <row>
-            <entry>Shortcut</entry>
-            <entry>Mouse</entry>
-            <entry>Action</entry>
-          </row>
-        </thead>
-        <tbody>
-          <row>
-            <entry>
-              <keycap>0</keycap>
-            </entry>
-            <entry />
-            <entry>Select none.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>1</keycap>
-            </entry>
-            <entry />
-            <entry>Select group 1 duplicates.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>2</keycap>
-            </entry>
-            <entry />
-            <entry>Select group 2 duplicates.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>C</keycap>
-            </entry>
-            <entry />
-            <entry>Open new collection window and add selected images.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>L</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Add images from main window's list.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>V</keycap>
-            </entry>
-            <entry />
-            <entry>View selected item in new window.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>T</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Toggle thumbnails.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>A</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Select all.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl + shift +
-                <keycap>A</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Deselect all.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>C</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Copy selected images, opens destination selection dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>M</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Move selected images, opens destination selection dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>R</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Rename selected images, opens rename dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>D</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Delete selected images.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>Ctrl + Delete</code>
-            </entry>
-            <entry />
-            <entry>Remove all items from list.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>W</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Close window.</entry>
-          </row>
-          <row>
-            <entry />
-            <entry>
-              <code>Ctrl + shift + right-click</code>
-            </entry>
-            <entry>Show debug info.</entry>
-          </row>
-        </tbody>
-      </tgroup>
-    </table>
-  </section>
-  <section id="SearchKeyboardShortcuts">
-    <title>Search keyboard shortcuts</title>
-    <table frame="all">
-      <title>
-        <link linkend="GuideImageSearchSearch">Search window</link>
-        keyboard shortcuts
-      </title>
-      <tgroup cols="3" rowsep="1" colsep="1">
-        <thead>
-          <row>
-            <entry>Shortcut</entry>
-            <entry>Mouse</entry>
-            <entry>Action</entry>
-          </row>
-        </thead>
-        <tbody>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>C</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Copy selected images, opens destination selection dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>M</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Move selected images, opens destination selection dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>R</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Rename selected images, opens rename dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>D</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Delete selected images.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>A</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Select all.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl + shift +
-                <keycap>A</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Deselect all.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>Delete</code>
-            </entry>
-            <entry />
-            <entry>Remove selected items from list.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>Ctrl + Delete</code>
-            </entry>
-            <entry />
-            <entry>Remove all items from list.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>V</keycap>
-            </entry>
-            <entry />
-            <entry>View selected item in new window.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>C</keycap>
-            </entry>
-            <entry />
-            <entry>Open new collection window and add selected images.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>T</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Toggle thumbnails.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>W</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Close window.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>Enter</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Start/Stop search.</entry>
-          </row>
-        </tbody>
-      </tgroup>
-    </table>
-  </section>
-  <section id="PanViewKeyboardShortcuts">
-    <title>Pan view keyboard shortcuts</title>
-    <table frame="all">
-      <title>
-        <link linkend="GuideOtherWindowsPanView">Pan View window</link>
-        keyboard shortcuts
-      </title>
-      <tgroup cols="3" rowsep="1" colsep="1">
-        <thead>
-          <row>
-            <entry>Shortcut</entry>
-            <entry>Mouse</entry>
             <entry>Action</entry>
           </row>
         </thead>
@@ -1415,206 +177,43 @@
             <entry>
               <keycap>Arrow key</keycap>
             </entry>
-            <entry>
-              <code>Left click and Drag</code>
-              <footnoteref linkend='ref1' />
-            </entry>
-            <entry>Scroll display.</entry>
+            <entry>Pan image.</entry>
           </row>
           <row>
             <entry>
-              <keycap>Page Up</keycap>
+              <code>Shift + Arrow key</code>
             </entry>
-            <entry />
-            <entry>Scroll display half screen up.</entry>
+            <entry>Pan Image faster.</entry>
           </row>
           <row>
             <entry>
-              <keycap>Page Down</keycap>
+              <code>Ctrl + Arrow key</code>
             </entry>
-            <entry />
-            <entry>Scroll display half screen down.</entry>
+            <entry>Pan to respective edge of image.</entry>
           </row>
           <row>
             <entry>
-              <keycap>Home</keycap>
+              <code>Alt + Right Arrow</code>
             </entry>
-            <entry />
-            <entry>Scroll display half screen left.</entry>
+            <entry>Next split pane.</entry>
           </row>
           <row>
             <entry>
-              <keycap>End</keycap>
+              <code>Alt + Left Arrow</code>
             </entry>
-            <entry />
-            <entry>Scroll display half screen right.</entry>
+            <entry>Previous split pane.</entry>
           </row>
           <row>
             <entry>
-              <code>
-                Ctrl +
-                <keycap>F</keycap>
-              </code>
+              <code>Alt + Up Arrow</code>
             </entry>
-            <entry />
-            <entry>Display Find search bar.</entry>
+            <entry>Up or previous split pane.</entry>
           </row>
           <row>
             <entry>
-              <keycap>/</keycap>
+              <code>Alt + Down Arrow</code>
             </entry>
-            <entry />
-            <entry>Display Find search bar.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>G</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Start search.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>F11, F, V</keycap>
-            </entry>
-            <entry />
-            <entry>Toggle Fullscreen.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>Esc</keycap>
-            </entry>
-            <entry />
-            <entry>Exit fullscreen or clear search bar.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>+</keycap>
-              ,
-              <keycap>=</keycap>
-            </entry>
-            <entry>
-              <code>Ctrl + Mouse Wheel up</code>
-            </entry>
-            <entry>Zoom image in.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>-</keycap>
-            </entry>
-            <entry>
-              <code>Ctrl + Mouse Wheel down</code>
-            </entry>
-            <entry>Zoom image out.</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>Z</keycap>
-            </entry>
-            <entry />
-            <entry>Reset zoom to original size (1:1).</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>1</keycap>
-            </entry>
-            <entry />
-            <entry>Set zoom to 1:1</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>2</keycap>
-            </entry>
-            <entry />
-            <entry>Set zoom to 2:1</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>3</keycap>
-            </entry>
-            <entry />
-            <entry>Set zoom to 3:1</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>4</keycap>
-            </entry>
-            <entry />
-            <entry>Set zoom to 4:1</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>7</keycap>
-            </entry>
-            <entry />
-            <entry>Set zoom to 1:4</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>8</keycap>
-            </entry>
-            <entry />
-            <entry>Set zoom to 1:3</entry>
-          </row>
-          <row>
-            <entry>
-              <keycap>9</keycap>
-            </entry>
-            <entry />
-            <entry>Set zoom to 1:2</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>C</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Copy selected image, opens destination selection dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>M</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Move selected image, opens destination selection dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>R</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Rename selected image, opens rename dialog.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>D</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Delete selected image.</entry>
-          </row>
-          <row>
-            <entry>
-              <code>
-                Ctrl +
-                <keycap>W</keycap>
-              </code>
-            </entry>
-            <entry />
-            <entry>Close window.</entry>
+            <entry>Down or next split pane.</entry>
           </row>
         </tbody>
       </tgroup>

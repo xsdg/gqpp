@@ -116,7 +116,7 @@ GtkWidget *submenu_add_edit(GtkWidget *menu, GtkWidget **menu_item, GCallback fu
 	GtkWidget *item;
 	GtkWidget *submenu;
 
-	item = menu_item_add(menu, _("Plugins"), NULL, NULL);
+	item = menu_item_add(menu, _("_Plugins"), NULL, NULL);
 
 	submenu = gtk_menu_new();
 	g_object_set_data(G_OBJECT(submenu), "submenu_data", data);
@@ -345,22 +345,22 @@ gchar *alter_type_get_text(AlterType type)
 	switch (type)
 		{
 		case ALTER_ROTATE_90:
-			return _("_Rotate clockwise 90°");
+			return _("Rotate clockwise 90°");
 			break;
 		case ALTER_ROTATE_90_CC:
-			return _("Rotate _counterclockwise 90°");
+			return _("Rotate counterclockwise 90°");
 			break;
 		case ALTER_ROTATE_180:
-			return _("Rotate _180°");
+			return _("Rotate 180°");
 			break;
 		case ALTER_MIRROR:
-			return _("_Mirror");
+			return _("Mirror");
 			break;
 		case ALTER_FLIP:
-			return _("_Flip");
+			return _("Flip");
 			break;
 		case ALTER_NONE:
-			return _("_Original state");
+			return _("Original state");
 			break;
 		default:
 			break;
@@ -413,7 +413,10 @@ static GtkWidget *real_submenu_add_alter(GtkWidget *menu, GCallback func, gpoint
 
 GtkWidget *submenu_add_alter(GtkWidget *menu, GCallback func, gpointer data)
 {
-	return real_submenu_add_alter(menu, func, data, NULL);
+	GtkAccelGroup *accel;
+
+	accel = gtk_accel_group_new();
+	return real_submenu_add_alter(menu, func, data, accel); //last accel gr
 }
 
 /*

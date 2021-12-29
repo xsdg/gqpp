@@ -340,6 +340,35 @@ static void search_notify_cb(FileData *fd, NotifyType type, gpointer data);
 static void search_start_cb(GtkWidget *widget, gpointer data);
 void mfd_list_free(GList *list);
 
+
+/**
+ * This array must be kept in sync with the contents of:\n
+ * @link search_result_press_cb @endlink \n
+ * @link search_window_keypress_cb @endlink \n
+ * @link search_result_menu @endlink
+ * 
+ * See also @link hard_coded_window_keys @endlink
+ **/
+
+hard_coded_window_keys search_window_keys[] = {
+	{GDK_CONTROL_MASK, 'C', N_("Copy")},
+	{GDK_CONTROL_MASK, 'M', N_("Move")},
+	{GDK_CONTROL_MASK, 'R', N_("Rename")},
+	{GDK_CONTROL_MASK, 'D', N_("Move to Trash")},
+	{GDK_SHIFT_MASK, GDK_KEY_Delete, N_("Delete")},
+	{0, GDK_KEY_Delete, N_("Remove")},
+	{GDK_CONTROL_MASK, 'A', N_("Select all")},
+	{GDK_CONTROL_MASK + GDK_SHIFT_MASK, 'A', N_("Select none")},
+	{GDK_CONTROL_MASK, GDK_KEY_Delete, N_("Clear")},
+	{GDK_CONTROL_MASK, 'T', N_("Toggle thumbs")},
+	{GDK_CONTROL_MASK, 'W', N_("Close window")},
+	{0, GDK_KEY_Return, N_("View")},
+	{0, 'V', N_("View in new window")},
+	{0, 'C', N_("Collection from selection")},
+	{GDK_CONTROL_MASK, GDK_KEY_Return, N_("Start/stop search")},
+	{0, GDK_KEY_F3, N_("Find duplicates")},
+	{0, 0, NULL}
+};
 /*
  *-------------------------------------------------------------------
  * utils
@@ -1107,8 +1136,14 @@ static GtkWidget *search_result_menu(SearchData *sd, gboolean on_row, gboolean e
 	GtkWidget *item;
 	GList *editmenu_fd_list;
 	gboolean video;
+	GtkAccelGroup *accel_group;
 
 	menu = popup_menu_short_lived();
+	accel_group = gtk_accel_group_new();
+	gtk_menu_set_accel_group(GTK_MENU(menu), accel_group);
+
+	g_object_set_data(G_OBJECT(menu), "window_keys", search_window_keys);
+	g_object_set_data(G_OBJECT(menu), "accel_group", accel_group);
 
 	video = (on_row && sd->click_fd && sd->click_fd->format_class == FORMAT_CLASS_VIDEO);
 	menu_item_add_stock_sensitive(menu, _("_Play"), GTK_STOCK_MEDIA_PLAY, video,
@@ -3674,6 +3709,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 
 	sd->button_thumbs = pref_checkbox_new(hbox, _("Thumbnails"), FALSE,
 					      G_CALLBACK(search_thumb_toggle_cb), sd);
+	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_thumbs), "Ctrl-T");
 
 	frame = gtk_frame_new(NULL);
 	DEBUG_NAME(frame);
@@ -3700,16 +3736,20 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	gtk_widget_show(sd->spinner);
 
 	sd->button_help = pref_button_new(hbox, GTK_STOCK_HELP, NULL, FALSE, G_CALLBACK(search_window_help_cb), sd);
+	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_help), "F1");
 	gtk_widget_set_sensitive(sd->button_help, TRUE);
 	pref_spacer(hbox, PREF_PAD_BUTTON_GAP);
 	sd->button_start = pref_button_new(hbox, GTK_STOCK_FIND, NULL, FALSE,
 					   G_CALLBACK(search_start_cb), sd);
+	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_start), "Ctrl-Return");
 	pref_spacer(hbox, PREF_PAD_BUTTON_GAP);
 	sd->button_stop = pref_button_new(hbox, GTK_STOCK_STOP, NULL, FALSE,
 					  G_CALLBACK(search_start_cb), sd);
+	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_stop), "Ctrl-Return");
 	gtk_widget_set_sensitive(sd->button_stop, FALSE);
 	pref_spacer(hbox, PREF_PAD_BUTTON_GAP);
 	sd->button_close = pref_button_new(hbox, GTK_STOCK_CLOSE, NULL, FALSE, G_CALLBACK(search_window_close_cb), sd);
+	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_close), "Ctrl-W");
 	gtk_widget_set_sensitive(sd->button_close, TRUE);
 
 	search_result_thumb_enable(sd, TRUE);

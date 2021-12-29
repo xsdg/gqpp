@@ -1,0 +1,62 @@
+<table frame="all">
+
+<title>
+
+ <link linkend="GuideOtherWindowsPanView">Pan view window</link> 
+keyboard shortcuts
+
+</title>
+
+<tgroup cols="2" rowsep="1" colsep="1">
+
+<thead>
+
+<row>
+
+<entry>Shortcut</entry>
+
+<entry>Action</entry>
+
+</row>
+
+</thead>
+
+<tbody>
+
+ <row> <entry> <code> 	Ctrl + <keycap>  C </keycap> </code> </entry> <entry>  Copy </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  M </keycap> </code> </entry> <entry>  Move </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  R </keycap> </code> </entry> <entry>  Rename </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  D </keycap> </code> </entry> <entry>  Move to Trash </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  W </keycap> </code> </entry> <entry>  Close window </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  F </keycap> </code> </entry> <entry>  Display Find search bar </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  G </keycap> </code> </entry> <entry>  Start search </entry> </row>
+<row> <entry> <code> 	 <keycap> Escape </keycap> </code> </entry> <entry>  Exit fullscreen </entry> </row>
+<row> <entry> <code> 	 <keycap> Escape </keycap> </code> </entry> <entry>  Hide Find search bar </entry> </row>
+<row> <entry> <code> 	 <keycap> equal </keycap> </code> </entry> <entry>  Zoom in </entry> </row>
+<row> <entry> <code> 	 <keycap> plus </keycap> </code> </entry> <entry>  Zoom in </entry> </row>
+<row> <entry> <code> 	 <keycap> minus </keycap> </code> </entry> <entry>  Zoom out </entry> </row>
+<row> <entry> <code> 	 <keycap> Z </keycap> </code> </entry> <entry>  Zoom 1:1 </entry> </row>
+<row> <entry> <code> 	 <keycap> 1 </keycap> </code> </entry> <entry>  Zoom 1:1 </entry> </row>
+<row> <entry> <code> 	 <keycap> KP_Divide </keycap> </code> </entry> <entry>  Zoom 1:1 </entry> </row>
+<row> <entry> <code> 	 <keycap>  2 </keycap> </code> </entry> <entry>  Zoom 2:1 </entry> </row>
+<row> <entry> <code> 	 <keycap>  3 </keycap> </code> </entry> <entry>  Zoom 3:1 </entry> </row>
+<row> <entry> <code> 	 <keycap>  4 </keycap> </code> </entry> <entry>  Zoom 4:1 </entry> </row>
+<row> <entry> <code> 	 <keycap>  7 </keycap> </code> </entry> <entry>  Zoom 1:4 </entry> </row>
+<row> <entry> <code> 	 <keycap>  8 </keycap> </code> </entry> <entry>  Zoom 1:3 </entry> </row>
+<row> <entry> <code> 	 <keycap>  9 </keycap> </code> </entry> <entry>  Zoom 1:2 </entry> </row>
+<row> <entry> <code> 	 <keycap>  F </keycap> </code> </entry> <entry>  Full screen </entry> </row>
+<row> <entry> <code> 	 <keycap>  V </keycap> </code> </entry> <entry>  Full screen </entry> </row>
+<row> <entry> <code> 	 <keycap> F11 </keycap> </code> </entry> <entry>  Full screen </entry> </row>
+<row> <entry> <code> 	 <keycap>  / </keycap> </code> </entry> <entry>  Display Find search bar </entry> </row>
+<row> <entry> <code> 	 <keycap> Left </keycap> </code> </entry> <entry>  Scroll left </entry> </row>
+<row> <entry> <code> 	 <keycap> Right </keycap> </code> </entry> <entry>  Scroll right </entry> </row>
+<row> <entry> <code> 	 <keycap> Up </keycap> </code> </entry> <entry>  Scroll up </entry> </row>
+<row> <entry> <code> 	 <keycap> Down </keycap> </code> </entry> <entry>  Scroll down </entry> </row>
+<row> <entry> <code> 	Shift + <keycap> Left </keycap> </code> </entry> <entry>  Scroll left faster </entry> </row>
+<row> <entry> <code> 	Shift + <keycap> Right </keycap> </code> </entry> <entry>  Scroll right faster </entry> </row>
+<row> <entry> <code> 	Shift + <keycap> Up </keycap> </code> </entry> <entry>  Scroll up faster </entry> </row>
+<row> <entry> <code> 	Shift + <keycap> Down </keycap> </code> </entry> <entry>  Scroll down faster </entry> </row>
+<row> <entry> <code> 	 <keycap> Page_Up </keycap> </code> </entry> <entry>  Scroll display half screen up </entry> </row>
+<row> <entry> <code> 	 <keycap> Page_Down </keycap> </code> </entry> <entry>  Scroll display half screen down </entry> </row>
+<row> <entry> <code> 	 <keycap> Home </keycap> </code> </entry> <entry>  Scroll display half screen left </entry> </row>
+<row> <entry> <code> 	 <keycap> End </keycap> </code> </entry> <entry>  Scroll display half screen right </entry> </row> </tbody></tgroup></table>

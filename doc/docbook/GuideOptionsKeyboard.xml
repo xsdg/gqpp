@@ -4,4 +4,5 @@
   <para>This dialogue enables changes to be be made to the default key short-cut allocated to menu items.</para>
   <para>The data displayed may be ordered by clicking at the top of each column.</para>
   <para>To change or create a new short-cut, double click on the KEY column of the relevant item. The text displayed will change to "New accelerator...". Press the key combination required for this action.</para>
+  <para>Only shortcuts in the main window can be redefined. Shortcuts in other windows are fixed.</para>
 </section>

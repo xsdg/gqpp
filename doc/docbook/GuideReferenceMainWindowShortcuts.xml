@@ -1,0 +1,143 @@
+<table frame="all">
+
+<title>
+
+ <link linkend="GuideMainWindow">Main window</link> 
+keyboard shortcuts
+
+</title>
+
+<tgroup cols="2" rowsep="1" colsep="1">
+
+<thead>
+
+<row>
+
+<entry>Shortcut</entry>
+
+<entry>Action</entry>
+
+</row>
+
+</thead>
+
+<tbody>
+
+ <row> <entry> <code> <keycap> Ctrl + C </keycap> </code> </entry> <entry> Copy </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + M </keycap> </code> </entry> <entry> Move </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + R </keycap> </code> </entry> <entry> Rename </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + D </keycap> </code> </entry> <entry> Move to Trash </entry> </row>
+<row> <entry> <code> <keycap> Delete </keycap> </code> </entry> <entry> Move to Trash </entry> </row>
+<row> <entry> <code> <keycap> KP_Delete </keycap> </code> </entry> <entry> Move to Trash </entry> </row>
+<row> <entry> <code> <keycap> Shift + Delete </keycap> </code> </entry> <entry> Delete </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + A </keycap> </code> </entry> <entry> Select all </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + Shift + A </keycap> </code> </entry> <entry> Select none </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + Shift + I </keycap> </code> </entry> <entry> Invert Selection </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + W </keycap> </code> </entry> <entry> Close window </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + Q </keycap> </code> </entry> <entry> Quit </entry> </row>
+<row> <entry> <code> <keycap> Home </keycap> </code> </entry> <entry> First Image </entry> </row>
+<row> <entry> <code> <keycap> BackSpace </keycap> </code> </entry> <entry> Previous Image </entry> </row>
+<row> <entry> <code> <keycap> Page_Up </keycap> </code> </entry> <entry> Previous Image </entry> </row>
+<row> <entry> <code> <keycap> KP_Page_Up </keycap> </code> </entry> <entry> Previous Image </entry> </row>
+<row> <entry> <code> <keycap> space </keycap> </code> </entry> <entry> Next Image </entry> </row>
+<row> <entry> <code> <keycap> Page_Down </keycap> </code> </entry> <entry> Next Image </entry> </row>
+<row> <entry> <code> <keycap> KP_Page_Down </keycap> </code> </entry> <entry> Next Image </entry> </row>
+<row> <entry> <code> <keycap> End </keycap> </code> </entry> <entry> Last Image </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + N </keycap> </code> </entry> <entry> New window (default </entry> </row>
+<row> <entry> <code> <keycap> C </keycap> </code> </entry> <entry> New collection </entry> </row>
+<row> <entry> <code> <keycap> O </keycap> </code> </entry> <entry> Open collection </entry> </row>
+<row> <entry> <code> <keycap> F3 </keycap> </code> </entry> <entry> Search </entry> </row>
+<row> <entry> <code> <keycap> D </keycap> </code> </entry> <entry> Find duplicates </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + J </keycap> </code> </entry> <entry> Pan view </entry> </row>
+<row> <entry> <code> <keycap> Shift + P </keycap> </code> </entry> <entry> Print </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + F </keycap> </code> </entry> <entry> New folder </entry> </row>
+<row> <entry> <code> <keycap> Alt + KP_0 </keycap> </code> </entry> <entry> Rating 0 </entry> </row>
+<row> <entry> <code> <keycap> Alt + KP_1 </keycap> </code> </entry> <entry> Rating 1 </entry> </row>
+<row> <entry> <code> <keycap> Alt + KP_2 </keycap> </code> </entry> <entry> Rating 2 </entry> </row>
+<row> <entry> <code> <keycap> Alt + KP_3 </keycap> </code> </entry> <entry> Rating 3 </entry> </row>
+<row> <entry> <code> <keycap> Alt + KP_4 </keycap> </code> </entry> <entry> Rating 4 </entry> </row>
+<row> <entry> <code> <keycap> Alt + KP_5 </keycap> </code> </entry> <entry> Rating 5 </entry> </row>
+<row> <entry> <code> <keycap> Alt + KP_Subtract </keycap> </code> </entry> <entry> Rating -1 </entry> </row>
+<row> <entry> <code> <keycap> ] </keycap> </code> </entry> <entry> Image Rotate clockwise 90° </entry> </row>
+<row> <entry> <code> <keycap> [ </keycap> </code> </entry> <entry> Rotate counterclockwise 90° </entry> </row>
+<row> <entry> <code> <keycap> Shift + R </keycap> </code> </entry> <entry> Image Rotate 180° </entry> </row>
+<row> <entry> <code> <keycap> Shift + M </keycap> </code> </entry> <entry> Image Mirror </entry> </row>
+<row> <entry> <code> <keycap> Shift + F </keycap> </code> </entry> <entry> Image Flip </entry> </row>
+<row> <entry> <code> <keycap> Shift + O </keycap> </code> </entry> <entry> Image rotate Original state </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + O </keycap> </code> </entry> <entry> Preferences </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + S </keycap> </code> </entry> <entry> Save metadata </entry> </row>
+<row> <entry> <code> <keycap> Alt + K </keycap> </code> </entry> <entry> Keyword Autocomplete </entry> </row>
+<row> <entry> <code> <keycap> KP_Add </keycap> </code> </entry> <entry> Zoom in </entry> </row>
+<row> <entry> <code> <keycap> equal </keycap> </code> </entry> <entry> Zoom in </entry> </row>
+<row> <entry> <code> <keycap> minus </keycap> </code> </entry> <entry> Zoom out </entry> </row>
+<row> <entry> <code> <keycap> KP_Subtract </keycap> </code> </entry> <entry> Zoom out </entry> </row>
+<row> <entry> <code> <keycap> Z </keycap> </code> </entry> <entry> Zoom 1:1 </entry> </row>
+<row> <entry> <code> <keycap> KP_Divide </keycap> </code> </entry> <entry> Zoom 1:1 </entry> </row>
+<row> <entry> <code> <keycap> KP_Multiply </keycap> </code> </entry> <entry> Zoom to fit </entry> </row>
+<row> <entry> <code> <keycap> X </keycap> </code> </entry> <entry> Zoom to fit </entry> </row>
+<row> <entry> <code> <keycap> H </keycap> </code> </entry> <entry> Fit Horizontally </entry> </row>
+<row> <entry> <code> <keycap> W </keycap> </code> </entry> <entry> Fit Vertically </entry> </row>
+<row> <entry> <code> <keycap> plus </keycap> </code> </entry> <entry> Connected Zoom in </entry> </row>
+<row> <entry> <code> <keycap> Shift + KP_Add </keycap> </code> </entry> <entry> Connected Zoom in </entry> </row>
+<row> <entry> <code> <keycap> underscore </keycap> </code> </entry> <entry> Connected Zoom out </entry> </row>
+<row> <entry> <code> <keycap> Shift + KP_Subtract </keycap> </code> </entry> <entry> Connected Zoom out </entry> </row>
+<row> <entry> <code> <keycap> Shift + Z </keycap> </code> </entry> <entry> Connected Zoom 1:1 </entry> </row>
+<row> <entry> <code> <keycap> Shift + KP_Divide </keycap> </code> </entry> <entry> Connected Zoom 1:1 </entry> </row>
+<row> <entry> <code> <keycap> Shift + X </keycap> </code> </entry> <entry> Connected Zoom to fit </entry> </row>
+<row> <entry> <code> <keycap> Shift + KP_Multiply </keycap> </code> </entry> <entry> Connected Zoom to fit </entry> </row>
+<row> <entry> <code> <keycap> Shift + H </keycap> </code> </entry> <entry> Connected Fit Horizontally </entry> </row>
+<row> <entry> <code> <keycap> Shift + W </keycap> </code> </entry> <entry> Connected Fit Vertically </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + V </keycap> </code> </entry> <entry> View in new window </entry> </row>
+<row> <entry> <code> <keycap> F </keycap> </code> </entry> <entry> Full screen </entry> </row>
+<row> <entry> <code> <keycap> V </keycap> </code> </entry> <entry> Full screen </entry> </row>
+<row> <entry> <code> <keycap> F11 </keycap> </code> </entry> <entry> Full screen </entry> </row>
+<row> <entry> <code> <keycap> Escape </keycap> </code> </entry> <entry> Leave full screen </entry> </row>
+<row> <entry> <code> <keycap> Q </keycap> </code> </entry> <entry> Leave full screen </entry> </row>
+<row> <entry> <code> <keycap> I </keycap> </code> </entry> <entry> Cycle through Overlay modes </entry> </row>
+<row> <entry> <code> <keycap> K </keycap> </code> </entry> <entry> Cycle through histogram channels </entry> </row>
+<row> <entry> <code> <keycap> J </keycap> </code> </entry> <entry> Cycle through histogram modes </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + H </keycap> </code> </entry> <entry> Hide file list </entry> </row>
+<row> <entry> <code> <keycap> P </keycap> </code> </entry> <entry> Pause slideshow </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + equal </keycap> </code> </entry> <entry> Slideshow Faster </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + minus </keycap> </code> </entry> <entry> Slideshow Slower </entry> </row>
+<row> <entry> <code> <keycap> R </keycap> </code> </entry> <entry> Refresh </entry> </row>
+<row> <entry> <code> <keycap> F1 </keycap> </code> </entry> <entry> Help manual </entry> </row>
+<row> <entry> <code> <keycap> / </keycap> </code> </entry> <entry> Search commands by keyword and run them </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + E </keycap> </code> </entry> <entry> Exif window </entry> </row>
+<row> <entry> <code> <keycap> Alt + Right </keycap> </code> </entry> <entry> Next Split Pane </entry> </row>
+<row> <entry> <code> <keycap> Alt + Left </keycap> </code> </entry> <entry> Previous Split Pane </entry> </row>
+<row> <entry> <code> <keycap> Alt + Up </keycap> </code> </entry> <entry> Up Split Pane </entry> </row>
+<row> <entry> <code> <keycap> Alt + Down </keycap> </code> </entry> <entry> Down Split Pane </entry> </row>
+<row> <entry> <code> <keycap> T </keycap> </code> </entry> <entry> Show Thumbnails </entry> </row>
+<row> <entry> <code> <keycap> M </keycap> </code> </entry> <entry> Show Marks </entry> </row>
+<row> <entry> <code> <keycap> Shift + A </keycap> </code> </entry> <entry> Hide alpha channel </entry> </row>
+<row> <entry> <code> <keycap> L </keycap> </code> </entry> <entry> Float file list </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + K </keycap> </code> </entry> <entry> Info sidebar </entry> </row>
+<row> <entry> <code> <keycap> Shift + S </keycap> </code> </entry> <entry> Sort manager </entry> </row>
+<row> <entry> <code> <keycap> grave </keycap> </code> </entry> <entry> Hide Bars </entry> </row>
+<row> <entry> <code> <keycap> S </keycap> </code> </entry> <entry> Toggle slideshow </entry> </row>
+<row> <entry> <code> <keycap> Shift + G </keycap> </code> </entry> <entry> Toggle grayscale </entry> </row>
+<row> <entry> <code> <keycap> Alt + R </keycap> </code> </entry> <entry> Rectangular Selection </entry> </row>
+<row> <entry> <code> <keycap> A </keycap> </code> </entry> <entry> Toggle GIF animation </entry> </row>
+<row> <entry> <code> <keycap> Alt + X </keycap> </code> </entry> <entry> Toggle Exif rotate </entry> </row>
+<row> <entry> <code> <keycap> Shift + E </keycap> </code> </entry> <entry> Highlight over/under exposed </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + L </keycap> </code> </entry> <entry> View Images as List </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + I </keycap> </code> </entry> <entry> View Images as Icons </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + T </keycap> </code> </entry> <entry> Toggle Folders View </entry> </row>
+<row> <entry> <code> <keycap> E </keycap> </code> </entry> <entry> Split panes horizontal. </entry> </row>
+<row> <entry> <code> <keycap> U </keycap> </code> </entry> <entry> Split panes vertical </entry> </row>
+<row> <entry> <code> <keycap> Y </keycap> </code> </entry> <entry> Single pane </entry> </row> 
+<row>
+<entry>
+<keycap>1</keycap>...<keycap>6</keycap>
+</entry>
+<entry>Toggle mark 1 ... 6</entry>
+</row>
+<row>
+<entry>
+<code>Ctrl +<keycap>1</keycap></code>...<code>Ctrl +<keycap>6</keycap></code>
+</entry>
+<entry>Select mark 1 ... 6</entry>
+</row>
+
+</tbody></tgroup></table>

@@ -141,6 +141,35 @@ static void dupe_match_link(DupeItem *a, DupeItem *b, gdouble rank);
 static gint dupe_match_link_exists(DupeItem *child, DupeItem *parent);
 
 /**
+ * This array must be kept in sync with the contents of:\n
+ *  @link dupe_window_keypress_cb() @endlink \n
+ *  @link dupe_menu_popup_main() @endlink
+ *
+ * See also @link hard_coded_window_keys @endlink
+ **/
+hard_coded_window_keys dupe_window_keys[] = {
+	{GDK_CONTROL_MASK, 'C', N_("Copy")},
+	{GDK_CONTROL_MASK, 'M', N_("Move")},
+	{GDK_CONTROL_MASK, 'R', N_("Rename")},
+	{GDK_CONTROL_MASK, 'D', N_("Move to Trash")},
+	{GDK_SHIFT_MASK, GDK_KEY_Delete, N_("Delete")},
+	{0, GDK_KEY_Delete, N_("Remove")},
+	{GDK_CONTROL_MASK, GDK_KEY_Delete, N_("Clear")},
+	{GDK_CONTROL_MASK, 'A', N_("Select all")},
+	{GDK_CONTROL_MASK + GDK_SHIFT_MASK, 'A', N_("Select none")},
+	{GDK_CONTROL_MASK, 'T', N_("Toggle thumbs")},
+	{GDK_CONTROL_MASK, 'W', N_("Close window")},
+	{0, GDK_KEY_Return, N_("View")},
+	{0, 'V', N_("View in new window")},
+	{0, 'C', N_("Collection from selection")},
+	{GDK_CONTROL_MASK, 'L', N_("Append list")},
+	{0, '0', N_("Select none")},
+	{0, '1', N_("Select group 1 duplicates")},
+	{0, '2', N_("Select group 2 duplicates")},
+	{0, 0, NULL}
+};
+
+/**
  * @brief The function run in threads for similarity checks
  * @param d1 #DupeQueueItem
  * @param d2 #DupeWindow
@@ -3481,10 +3510,17 @@ static GtkWidget *dupe_menu_popup_main(DupeWindow *dw, DupeItem *di)
 	GtkWidget *item;
 	gint on_row;
 	GList *editmenu_fd_list;
+	GtkAccelGroup *accel_group;
 
 	on_row = (di != NULL);
 
 	menu = popup_menu_short_lived();
+
+	accel_group = gtk_accel_group_new();
+	gtk_menu_set_accel_group(GTK_MENU(menu), accel_group);
+
+	g_object_set_data(G_OBJECT(menu), "window_keys", dupe_window_keys);
+	g_object_set_data(G_OBJECT(menu), "accel_group", accel_group);
 
 	menu_item_add_sensitive(menu, _("_View"), on_row,
 				G_CALLBACK(dupe_menu_view_cb), dw);
@@ -3815,8 +3851,15 @@ static GtkWidget *dupe_menu_popup_second(DupeWindow *dw, DupeItem *di)
 	GtkWidget *menu;
 	gboolean notempty = (dw->second_list != NULL);
 	gboolean on_row = (di != NULL);
+	GtkAccelGroup *accel_group;
 
 	menu = popup_menu_short_lived();
+	accel_group = gtk_accel_group_new();
+	gtk_menu_set_accel_group(GTK_MENU(menu), accel_group);
+
+	g_object_set_data(G_OBJECT(menu), "window_keys", dupe_window_keys);
+	g_object_set_data(G_OBJECT(menu), "accel_group", accel_group);
+
 	menu_item_add_sensitive(menu, _("_View"), on_row,
 				G_CALLBACK(dupe_second_menu_view_cb), dw);
 	menu_item_add_stock_sensitive(menu, _("View in _new window"), GTK_STOCK_NEW, on_row,
@@ -4737,6 +4780,7 @@ DupeWindow *dupe_window_new()
 	dw->controls_box = controls_box;
 
 	dw->button_thumbs = gtk_check_button_new_with_label(_("Thumbnails"));
+	gtk_widget_set_tooltip_text(GTK_WIDGET(dw->button_thumbs), "Ctrl-T");
 	dw->show_thumbs = options->duplicates_thumbnails;
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dw->button_thumbs), dw->show_thumbs);
 	g_signal_connect(G_OBJECT(dw->button_thumbs), "toggled",
@@ -4795,6 +4839,7 @@ DupeWindow *dupe_window_new()
 	gtk_widget_show(hbox);
 
 	button = pref_button_new(NULL, GTK_STOCK_HELP, NULL, FALSE, G_CALLBACK(dupe_help_cb), NULL);
+	gtk_widget_set_tooltip_text(GTK_WIDGET(button), "F1");
 	gtk_container_add(GTK_CONTAINER(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_show(button);
@@ -4805,6 +4850,7 @@ DupeWindow *dupe_window_new()
 	gtk_widget_show(button);
 
 	button = pref_button_new(NULL, GTK_STOCK_CLOSE, NULL, FALSE, G_CALLBACK(dupe_window_close_cb), dw);
+	gtk_widget_set_tooltip_text(GTK_WIDGET(button), "Ctrl-W");
 	gtk_container_add(GTK_CONTAINER(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_grab_default(button);
@@ -5395,7 +5441,7 @@ static GtkWidget *submenu_add_export(GtkWidget *menu, GtkWidget **menu_item, GCa
 	GtkWidget *item;
 	GtkWidget *submenu;
 
-	item = menu_item_add(menu, _("Export"), NULL, NULL);
+	item = menu_item_add(menu, _("_Export"), NULL, NULL);
 
 	submenu = gtk_menu_new();
 	g_object_set_data(G_OBJECT(submenu), "submenu_data", data);

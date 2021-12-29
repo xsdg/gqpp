@@ -1118,5 +1118,21 @@ struct _CommandLine
 	gboolean new_instance;
 };
 
+/**
+ * @struct _hard_coded_window_keys
+ * @brief hard coded window shortcut keys
+ * 
+ * Used for two purposes:\n
+ * to display the shortcuts keys in popup menus\n
+ * used by ./doc/create-shortcuts-xml.sh to generate shortcut documentation in the Help files
+ * 
+ */
+typedef struct _hard_coded_window_keys hard_coded_window_keys;
+struct _hard_coded_window_keys {
+	GdkModifierType mask; /**< modifier key mask */
+	guint key_value;  /**< GDK_keyval */
+	gchar *text;  /**< menu item label - NULL if end of list */
+};
+
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

@@ -618,6 +618,7 @@ GtkWidget *vf_pop_menu(ViewFile *vf)
 	GtkWidget *submenu;
 	gboolean active = FALSE;
 	gboolean class_archive = FALSE;
+	GtkAccelGroup *accel_group;
 
 	switch (vf->type)
 	{
@@ -633,6 +634,12 @@ GtkWidget *vf_pop_menu(ViewFile *vf)
 	}
 
 	menu = popup_menu_short_lived();
+
+	accel_group = gtk_accel_group_new();
+	gtk_menu_set_accel_group(GTK_MENU(menu), accel_group);
+
+	g_object_set_data(G_OBJECT(menu), "window_keys", NULL);
+	g_object_set_data(G_OBJECT(menu), "accel_group", accel_group);
 
 	g_signal_connect(G_OBJECT(menu), "destroy",
 			 G_CALLBACK(vf_popup_destroy_cb), vf);
@@ -700,9 +707,9 @@ GtkWidget *vf_pop_menu(ViewFile *vf)
 				G_CALLBACK(vf_pop_menu_move_cb), vf);
 	menu_item_add_sensitive(menu, _("_Rename..."), active,
 				G_CALLBACK(vf_pop_menu_rename_cb), vf);
-	menu_item_add_sensitive(menu, _("_Copy path"), active,
+	menu_item_add_sensitive(menu, _("_Copy path to clipboard"), active,
 				G_CALLBACK(vf_pop_menu_copy_path_cb), vf);
-	menu_item_add_sensitive(menu, _("_Copy path unquoted"), active,
+	menu_item_add_sensitive(menu, _("_Copy path unquoted to clipboard"), active,
 				G_CALLBACK(vf_pop_menu_copy_path_unquoted_cb), vf);
 	menu_item_add_divider(menu);
 	menu_item_add_stock_sensitive(menu,
@@ -739,10 +746,10 @@ GtkWidget *vf_pop_menu(ViewFile *vf)
 	item = menu_item_add(menu, _("_Sort"), NULL, NULL);
 	gtk_menu_item_set_submenu(GTK_MENU_ITEM(item), submenu);
 
-	item = menu_item_add_radio(menu, _("View as _List"), GINT_TO_POINTER(FILEVIEW_LIST), vf->type == FILEVIEW_LIST,
+	item = menu_item_add_radio(menu, _("Images as List"), GINT_TO_POINTER(FILEVIEW_LIST), vf->type == FILEVIEW_LIST,
                                            G_CALLBACK(vf_pop_menu_toggle_view_type_cb), vf);
 
-	item = menu_item_add_radio(menu, _("View as _Icons"), GINT_TO_POINTER(FILEVIEW_ICON), vf->type == FILEVIEW_ICON,
+	item = menu_item_add_radio(menu, _("Images as Icons"), GINT_TO_POINTER(FILEVIEW_ICON), vf->type == FILEVIEW_ICON,
                                            G_CALLBACK(vf_pop_menu_toggle_view_type_cb), vf);
 
 	switch (vf->type)

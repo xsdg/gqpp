@@ -2443,7 +2443,12 @@ static void layout_menu_window_delete_cb(GtkWidget *widget, gpointer data)
  */
 
 #define CB G_CALLBACK
-
+/**
+ * tooltip is used as the description field in the Help manual shortcuts documentation
+ *
+ * struct GtkActionEntry:
+ *  name, stock_id, label, accelerator, tooltip, callback
+ */
 static GtkActionEntry menu_entries[] = {
   { "FileMenu",		NULL,			N_("_File"),				NULL,			NULL,					NULL },
   { "GoMenu",		NULL,			N_("_Go"),				NULL,			NULL,					NULL },
@@ -2464,6 +2469,18 @@ static GtkActionEntry menu_entries[] = {
   { "WindowsMenu",		NULL,		N_("_Windows"),				NULL,			NULL,					CB(layout_menu_windows_menu_cb)  },
   { "HelpMenu",		NULL,			N_("_Help"),				NULL,			NULL,					NULL },
 
+  { "Copy",		GTK_STOCK_COPY,		N_("_Copy..."),				"<control>C",		N_("Copy..."),				CB(layout_menu_copy_cb) },
+  { "Move",	PIXBUF_INLINE_ICON_MOVE,			N_("_Move..."),				"<control>M",		N_("Move..."),				CB(layout_menu_move_cb) },
+  { "Rename",	PIXBUF_INLINE_ICON_RENAME,	N_("_Rename..."),			"<control>R",		N_("Rename..."),			CB(layout_menu_rename_cb) },
+  { "Delete",	PIXBUF_INLINE_ICON_TRASH,	N_("Move to Trash..."),		"<control>D",	N_("Move to Trash..."),		CB(layout_menu_move_to_trash_cb) },
+  { "DeleteAlt1",	PIXBUF_INLINE_ICON_TRASH,N_("Move to Trash..."),	"Delete",		N_("Move to Trash..."),		CB(layout_menu_move_to_trash_key_cb) },
+  { "DeleteAlt2",	PIXBUF_INLINE_ICON_TRASH,N_("Move to Trash..."),	"KP_Delete",	N_("Move to Trash..."),		CB(layout_menu_move_to_trash_key_cb) },
+  { "PermanentDelete",	GTK_STOCK_DELETE,	N_("Delete..."),			"<shift>Delete",N_("Delete..."),			CB(layout_menu_delete_cb) }, 
+  { "SelectAll",	PIXBUF_INLINE_ICON_SELECT_ALL,			N_("Select _all"),			"<control>A",		N_("Select all"),			CB(layout_menu_select_all_cb) },
+  { "SelectNone",	PIXBUF_INLINE_ICON_SELECT_NONE,			N_("Select _none"),			"<control><shift>A",	N_("Select none"),			CB(layout_menu_unselect_all_cb) },
+  { "SelectInvert",	PIXBUF_INLINE_ICON_SELECT_INVERT,			N_("_Invert Selection"),		"<control><shift>I",	N_("Invert Selection"),			CB(layout_menu_invert_selection_cb) },
+  { "CloseWindow",	GTK_STOCK_CLOSE,	N_("C_lose window"),			"<control>W",		N_("Close window"),			CB(layout_menu_close_cb) },
+  { "Quit",		GTK_STOCK_QUIT, 	N_("_Quit"),				"<control>Q",		N_("Quit"),				CB(layout_menu_exit_cb) },
   { "FirstImage",	GTK_STOCK_GOTO_TOP,	N_("_First Image"),			"Home",			N_("First Image"),			CB(layout_menu_image_first_cb) },
   { "PrevImage",	GTK_STOCK_GO_UP,	N_("_Previous Image"),			"BackSpace",		N_("Previous Image"),			CB(layout_menu_image_prev_cb) },
   { "PrevImageAlt1",	GTK_STOCK_GO_UP,	N_("_Previous Image"),			"Page_Up",		N_("Previous Image"),			CB(layout_menu_image_prev_cb) },
@@ -2487,7 +2504,7 @@ static GtkActionEntry menu_entries[] = {
   { "Home",		GTK_STOCK_HOME,		N_("_Home"),			NULL,	N_("Home"),				CB(layout_menu_home_cb) },
   { "Up",		GTK_STOCK_GO_UP,	N_("_Up"),				NULL,	N_("Up one folder"),				CB(layout_menu_up_cb) },
   { "NewWindow",	NULL,		N_("New window"),			NULL,		N_("New window"),	CB(layout_menu_window_cb) },
-  { "NewWindowDefault",	NULL,	N_("default"),			"<control>N",		N_("default"),	CB(layout_menu_window_default_cb)  },
+  { "NewWindowDefault",	NULL,	N_("default"),			"<control>N",		N_("New window (default)"),	CB(layout_menu_window_default_cb)  },
   { "NewWindowFromCurrent",	NULL,	N_("from current"),			NULL,		N_("from current"),	CB(layout_menu_window_from_current_cb)  },
   { "RenameWindow",	GTK_STOCK_EDIT,		N_("Rename window"),	NULL,	N_("Rename window"),	CB(layout_menu_window_rename_cb) },
   { "DeleteWindow",	GTK_STOCK_DELETE,		N_("Delete window"),	NULL,	N_("Delete window"),	CB(layout_menu_window_delete_cb) },
@@ -2499,20 +2516,10 @@ static GtkActionEntry menu_entries[] = {
   { "PanView",	PIXBUF_INLINE_ICON_PANORAMA,	N_("Pa_n view"),			"<control>J",		N_("Pan view"),				CB(layout_menu_pan_cb) },
   { "Print",		GTK_STOCK_PRINT,	N_("_Print..."),			"<shift>P",		N_("Print..."),				CB(layout_menu_print_cb) },
   { "NewFolder",	GTK_STOCK_DIRECTORY,	N_("N_ew folder..."),			"<control>F",		N_("New folder..."),			CB(layout_menu_dir_cb) },
-  { "Copy",		GTK_STOCK_COPY,		N_("_Copy..."),				"<control>C",		N_("Copy..."),				CB(layout_menu_copy_cb) },
-  { "Move",	PIXBUF_INLINE_ICON_MOVE,			N_("_Move..."),				"<control>M",		N_("Move..."),				CB(layout_menu_move_cb) },
-  { "Rename",	PIXBUF_INLINE_ICON_RENAME,	N_("_Rename..."),			"<control>R",		N_("Rename..."),			CB(layout_menu_rename_cb) },
-  { "Delete",	PIXBUF_INLINE_ICON_TRASH,	N_("Move to Trash..."),		"<control>D",	N_("Move to Trash..."),		CB(layout_menu_move_to_trash_cb) },
-  { "DeleteAlt1",	PIXBUF_INLINE_ICON_TRASH,N_("Move to Trash..."),	"Delete",		N_("Move to Trash..."),		CB(layout_menu_move_to_trash_key_cb) },
-  { "DeleteAlt2",	PIXBUF_INLINE_ICON_TRASH,N_("Move to Trash..."),	"KP_Delete",	N_("Move to Trash..."),		CB(layout_menu_move_to_trash_key_cb) },
-  { "PermanentDelete",	GTK_STOCK_DELETE,	N_("Delete..."),			"<shift>Delete",N_("Delete..."),			CB(layout_menu_delete_cb) }, 
   { "EnableGrouping",	NULL,			N_("Enable file _grouping"),		NULL,			N_("Enable file grouping"),		CB(layout_menu_enable_grouping_cb) },
   { "DisableGrouping",	NULL,			N_("Disable file groupi_ng"),		NULL,			N_("Disable file grouping"),		CB(layout_menu_disable_grouping_cb) },
   { "CopyPath",		NULL,			N_("_Copy path to clipboard"),		NULL,			N_("Copy path to clipboard"),		CB(layout_menu_copy_path_cb) },
   { "CopyPathUnquoted",		NULL,			N_("_Copy path unquoted to clipboard"),		NULL,			N_("Copy path unquoted to clipboard"),		CB(layout_menu_copy_path_unquoted_cb) },
-  { "CloseWindow",	GTK_STOCK_CLOSE,	N_("C_lose window"),			"<control>W",		N_("Close window"),			CB(layout_menu_close_cb) },
-  { "Quit",		GTK_STOCK_QUIT, 	N_("_Quit"),				"<control>Q",		N_("Quit"),				CB(layout_menu_exit_cb) },
-  { "RotateCW",		PIXBUF_INLINE_ICON_CW,			N_("_Rotate clockwise 90°"),		"bracketright",		N_("Image Rotate clockwise 90°"),			CB(layout_menu_alter_90_cb) },
   { "Rating0",		NULL,			N_("_Rating 0"),	"<alt>KP_0",	N_("Rating 0"),			CB(layout_menu_rating_0_cb) },
   { "Rating1",		NULL,			N_("_Rating 1"),	"<alt>KP_1",	N_("Rating 1"),			CB(layout_menu_rating_1_cb) },
   { "Rating2",		NULL,			N_("_Rating 2"),	"<alt>KP_2",	N_("Rating 2"),			CB(layout_menu_rating_2_cb) },
@@ -2520,14 +2527,12 @@ static GtkActionEntry menu_entries[] = {
   { "Rating4",		NULL,			N_("_Rating 4"),	"<alt>KP_4",	N_("Rating 4"),			CB(layout_menu_rating_4_cb) },
   { "Rating5",		NULL,			N_("_Rating 5"),	"<alt>KP_5",	N_("Rating 5"),			CB(layout_menu_rating_5_cb) },
   { "RatingM1",		NULL,			N_("_Rating -1"),	"<alt>KP_Subtract",	N_("Rating -1"),	CB(layout_menu_rating_m1_cb) },
+  { "RotateCW",		PIXBUF_INLINE_ICON_CW,			N_("_Rotate clockwise 90°"),		"bracketright",		N_("Image Rotate clockwise 90°"),			CB(layout_menu_alter_90_cb) },
   { "RotateCCW",	PIXBUF_INLINE_ICON_CCW,	N_("Rotate _counterclockwise 90°"),		"bracketleft",		N_("Rotate counterclockwise 90°"),		CB(layout_menu_alter_90cc_cb) },
   { "Rotate180",	PIXBUF_INLINE_ICON_180,	N_("Rotate 1_80°"),	"<shift>R",		N_("Image Rotate 180°"),			CB(layout_menu_alter_180_cb) },
   { "Mirror",		PIXBUF_INLINE_ICON_MIRROR,	N_("_Mirror"),	"<shift>M",		N_("Image Mirror"),				CB(layout_menu_alter_mirror_cb) },
   { "Flip",		PIXBUF_INLINE_ICON_FLIP,	N_("_Flip"),	"<shift>F",		N_("Image Flip"),				CB(layout_menu_alter_flip_cb) },
   { "AlterNone",	PIXBUF_INLINE_ICON_ORIGINAL,	N_("_Original state"), 	"<shift>O",		N_("Image rotate Original state"),			CB(layout_menu_alter_none_cb) },
-  { "SelectAll",	PIXBUF_INLINE_ICON_SELECT_ALL,			N_("Select _all"),			"<control>A",		N_("Select all"),			CB(layout_menu_select_all_cb) },
-  { "SelectNone",	PIXBUF_INLINE_ICON_SELECT_NONE,			N_("Select _none"),			"<control><shift>A",	N_("Select none"),			CB(layout_menu_unselect_all_cb) },
-  { "SelectInvert",	PIXBUF_INLINE_ICON_SELECT_INVERT,			N_("_Invert Selection"),		"<control><shift>I",	N_("Invert Selection"),			CB(layout_menu_invert_selection_cb) },
   { "Preferences",	GTK_STOCK_PREFERENCES,	N_("P_references..."),			"<control>O",		N_("Preferences..."),			CB(layout_menu_config_cb) },
   { "Plugins",		GTK_STOCK_PREFERENCES,	N_("Configure _Plugins..."),		NULL,			N_("Configure Plugins..."),		CB(layout_menu_editors_cb) },
   { "LayoutConfig",	GTK_STOCK_PREFERENCES,	N_("_Configure this window..."),	NULL,			N_("Configure this window..."),		CB(layout_menu_layout_config_cb) },
@@ -2535,14 +2540,14 @@ static GtkActionEntry menu_entries[] = {
   { "Wallpaper",	NULL,			N_("Set as _wallpaper"),		NULL,			N_("Set as wallpaper"),			CB(layout_menu_wallpaper_cb) },
   { "SaveMetadata",	GTK_STOCK_SAVE,		N_("_Save metadata"),			"<control>S",		N_("Save metadata"),			CB(layout_menu_metadata_write_cb) },
   { "KeywordAutocomplete",	NULL,	N_("Keyword autocomplete"),		"<alt>K",		N_("Keyword Autocomplete"),			CB(layout_menu_keyword_autocomplete_cb) },
-  { "ZoomIn",		GTK_STOCK_ZOOM_IN,	N_("Zoom _in"),				"equal",		N_("Zoom in"),				CB(layout_menu_zoom_in_cb) },
   { "ZoomInAlt1",	GTK_STOCK_ZOOM_IN,	N_("Zoom _in"),				"KP_Add",		N_("Zoom in"),				CB(layout_menu_zoom_in_cb) },
+  { "ZoomIn",		GTK_STOCK_ZOOM_IN,	N_("Zoom _in"),				"equal",		N_("Zoom in"),				CB(layout_menu_zoom_in_cb) },
   { "ZoomOut",		GTK_STOCK_ZOOM_OUT,	N_("Zoom _out"),			"minus",		N_("Zoom out"),				CB(layout_menu_zoom_out_cb) },
   { "ZoomOutAlt1",	GTK_STOCK_ZOOM_OUT,	N_("Zoom _out"),			"KP_Subtract",		N_("Zoom out"),				CB(layout_menu_zoom_out_cb) },
   { "Zoom100",		GTK_STOCK_ZOOM_100,	N_("Zoom _1:1"),			"Z",			N_("Zoom 1:1"),				CB(layout_menu_zoom_1_1_cb) },
   { "Zoom100Alt1",	GTK_STOCK_ZOOM_100,	N_("Zoom _1:1"),			"KP_Divide",		N_("Zoom 1:1"),				CB(layout_menu_zoom_1_1_cb) },
-  { "ZoomFit",		GTK_STOCK_ZOOM_FIT,	N_("_Zoom to fit"),			"X",			N_("Zoom to fit"),			CB(layout_menu_zoom_fit_cb) },
   { "ZoomFitAlt1",	GTK_STOCK_ZOOM_FIT,	N_("_Zoom to fit"),			"KP_Multiply",		N_("Zoom to fit"),			CB(layout_menu_zoom_fit_cb) },
+  { "ZoomFit",		GTK_STOCK_ZOOM_FIT,	N_("_Zoom to fit"),			"X",			N_("Zoom to fit"),			CB(layout_menu_zoom_fit_cb) },
   { "ZoomFillHor",	PIXBUF_INLINE_ICON_ZOOMFILLHOR,	N_("Fit _Horizontally"),		"H",			N_("Fit Horizontally"),			CB(layout_menu_zoom_fit_hor_cb) },
   { "ZoomFillVert",	PIXBUF_INLINE_ICON_ZOOMFILLVERT,	N_("Fit _Vertically"),			"W",			N_("Fit Vertically"),			CB(layout_menu_zoom_fit_vert_cb) },
   { "Zoom200",	        GTK_STOCK_FILE,			N_("Zoom _2:1"),			NULL,			N_("Zoom 2:1"),				CB(layout_menu_zoom_2_1_cb) },
@@ -2582,7 +2587,7 @@ static GtkActionEntry menu_entries[] = {
   { "SlideShowFaster",	GTK_STOCK_FILE,	N_("Faster"), 		"<control>equal",			N_("Slideshow Faster"), 			CB(layout_menu_slideshow_faster_cb) },
   { "SlideShowSlower",	GTK_STOCK_FILE,	N_("Slower"), 		"<control>minus",			N_("Slideshow Slower"), 			CB(layout_menu_slideshow_slower_cb) },
   { "Refresh",		GTK_STOCK_REFRESH,	N_("_Refresh"),				"R",			N_("Refresh"),				CB(layout_menu_refresh_cb) },
-  { "HelpContents",	GTK_STOCK_HELP,		N_("_Contents"),			"F1",			N_("Contents"),				CB(layout_menu_help_cb) },
+  { "HelpContents",	GTK_STOCK_HELP,		N_("_Help manual"),			"F1",			N_("Help manual"),				CB(layout_menu_help_cb) },
   { "HelpSearch",	NULL,		N_("On-line help search"),			NULL,			N_("On-line help search"),				CB(layout_menu_help_search_cb) },
   { "HelpShortcuts",	NULL,			N_("_Keyboard shortcuts"),		NULL,			N_("Keyboard shortcuts"),		CB(layout_menu_help_keys_cb) },
   { "HelpKbd",		NULL,			N_("_Keyboard map"),			NULL,			N_("Keyboard map"),			CB(layout_menu_kbd_map_cb) },
@@ -2621,15 +2626,15 @@ static GtkToggleActionEntry menu_toggle_entries[] = {
   { "ImageHistogram",	NULL,			N_("_Show Histogram"),			NULL,			N_("Show Histogram"),			CB(layout_menu_histogram_cb),	 FALSE },
   { "RectangularSelection",	PIXBUF_INLINE_ICON_SELECT_RECTANGLE,	N_("Rectangular Selection"),			"<alt>R",			N_("Rectangular Selection"),			CB(layout_menu_rectangular_selection_cb),	 FALSE },
   { "Animate",	NULL,	N_("GIF _animation"),		"A",			N_("Toggle GIF animation"),			CB(layout_menu_animate_cb),	 FALSE  },
-  { "ExifRotate",	GTK_STOCK_ORIENTATION_PORTRAIT,			N_("_Exif rotate"),  		"<alt>X",		N_("Exif rotate"),			CB(layout_menu_exif_rotate_cb), FALSE },
+  { "ExifRotate",	GTK_STOCK_ORIENTATION_PORTRAIT,			N_("_Exif rotate"),  		"<alt>X",		N_("Toggle Exif rotate"),			CB(layout_menu_exif_rotate_cb), FALSE },
   { "DrawRectangle",	PIXBUF_INLINE_ICON_DRAW_RECTANGLE,			N_("Draw Rectangle"),  		NULL,		N_("Draw Rectangle"),			CB(layout_menu_select_rectangle_cb), FALSE },
-  { "OverUnderExposed",	PIXBUF_INLINE_ICON_EXPOSURE,	N_("Over/Under Exposed"),  	"<shift>E",		N_("Over/Under Exposed"),		CB(layout_menu_select_overunderexposed_cb), FALSE },
+  { "OverUnderExposed",	PIXBUF_INLINE_ICON_EXPOSURE,	N_("Over/Under Exposed"),  	"<shift>E",		N_("Highlight over/under exposed"),		CB(layout_menu_select_overunderexposed_cb), FALSE },
   { "SplitPaneSync",	PIXBUF_INLINE_SPLIT_PANE_SYNC,			N_("Split Pane Sync"),	NULL,		N_("Split Pane Sync"),	CB(layout_menu_split_pane_sync_cb), FALSE },
 };
 
 static GtkRadioActionEntry menu_radio_entries[] = {
-  { "ViewList",		NULL,			N_("Image _List"),			"<control>L",		N_("View Images as List"),		FILEVIEW_LIST },
-  { "ViewIcons",	NULL,			N_("I_cons"),				"<control>I",		N_("View Images as Icons"),		FILEVIEW_ICON }
+  { "ViewList",		NULL,			N_("Images as _List"),			"<control>L",		N_("View Images as List"),		FILEVIEW_LIST },
+  { "ViewIcons",	NULL,			N_("Images as I_cons"),			"<control>I",		N_("View Images as Icons"),		FILEVIEW_ICON }
 };
 
 static GtkToggleActionEntry menu_view_dir_toggle_entries[] = {
@@ -2637,10 +2642,10 @@ static GtkToggleActionEntry menu_view_dir_toggle_entries[] = {
 };
 
 static GtkRadioActionEntry menu_split_radio_entries[] = {
-  { "SplitHorizontal",	NULL,			N_("_Horizontal"),			"E",			N_("Split Horizontal"),			SPLIT_HOR },
-  { "SplitVertical",	NULL,			N_("_Vertical"),			"U",			N_("Split Vertical"),				SPLIT_VERT },
-  { "SplitQuad",	NULL,			N_("_Quad"),				NULL,			N_("Split Quad"),				SPLIT_QUAD },
-  { "SplitSingle",	NULL,			N_("_Single"),				"Y",			N_("Split Single"),				SPLIT_NONE }
+  { "SplitHorizontal",	NULL,			N_("_Horizontal"),			"E",			N_("Split panes horizontal."),			SPLIT_HOR },
+  { "SplitVertical",	NULL,			N_("_Vertical"),			"U",			N_("Split panes vertical"),				SPLIT_VERT },
+  { "SplitQuad",	NULL,			N_("_Quad"),				NULL,			N_("Split panes quad"),				SPLIT_QUAD },
+  { "SplitSingle",	NULL,			N_("_Single"),				"Y",			N_("Single pane"),				SPLIT_NONE }
 };
 
 static GtkRadioActionEntry menu_color_radio_entries[] = {

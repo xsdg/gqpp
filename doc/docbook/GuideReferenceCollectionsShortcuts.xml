@@ -1,0 +1,49 @@
+<table frame="all">
+
+<title>
+
+ <link linkend="GuideCollections">Collections window</link> 
+keyboard shortcuts
+
+</title>
+
+<tgroup cols="2" rowsep="1" colsep="1">
+
+<thead>
+
+<row>
+
+<entry>Shortcut</entry>
+
+<entry>Action</entry>
+
+</row>
+
+</thead>
+
+<tbody>
+
+ <row> <entry> <code> 	Ctrl + <keycap>  C </keycap> </code> </entry> <entry>  Copy </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  M </keycap> </code> </entry> <entry>  Move </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  R </keycap> </code> </entry> <entry>  Rename </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  D </keycap> </code> </entry> <entry>  Move to Trash </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  W </keycap> </code> </entry> <entry>  Close window </entry> </row>
+<row> <entry> <code> 	 <keycap> Delete </keycap> </code> </entry> <entry>  Remove </entry> </row>
+<row> <entry> <code> 	 <keycap> Return </keycap> </code> </entry> <entry>  View </entry> </row>
+<row> <entry> <code> 	 <keycap>  V </keycap> </code> </entry> <entry>  View in new window </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  A </keycap> </code> </entry> <entry>  Select all </entry> </row>
+<row> <entry> <code> 	Ctrl + Shift + <keycap>  A </keycap> </code> </entry> <entry>  Select none </entry> </row>
+<row> <entry> <code> 	Alt + <keycap>  R </keycap> </code> </entry> <entry>  Rectangular selection </entry> </row>
+<row> <entry> <code> 	 <keycap> space </keycap> </code> </entry> <entry>  Select single file </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap> space </keycap> </code> </entry> <entry>  Toggle select image </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  L </keycap> </code> </entry> <entry>  Append from file selection </entry> </row>
+<row> <entry> <code> 	 <keycap>  A </keycap> </code> </entry> <entry>  Append from collection </entry> </row>
+<row> <entry> <code> 	 <keycap>  S </keycap> </code> </entry> <entry>  Save collection </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  S </keycap> </code> </entry> <entry>  Save collection as </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  T </keycap> </code> </entry> <entry>  Show filename text </entry> </row>
+<row> <entry> <code> 	 <keycap>  N </keycap> </code> </entry> <entry>  Sort by name </entry> </row>
+<row> <entry> <code> 	 <keycap>  I </keycap> </code> </entry> <entry>  Sort by number </entry> </row>
+<row> <entry> <code> 	 <keycap>  D </keycap> </code> </entry> <entry>  Sort by date </entry> </row>
+<row> <entry> <code> 	 <keycap>  B </keycap> </code> </entry> <entry>  Sort by size </entry> </row>
+<row> <entry> <code> 	 <keycap>  P </keycap> </code> </entry> <entry>  Sort by path </entry> </row>
+<row> <entry> <code> 	Shift + <keycap>  P </keycap> </code> </entry> <entry>  Print </entry> </row> </tbody></tgroup></table>

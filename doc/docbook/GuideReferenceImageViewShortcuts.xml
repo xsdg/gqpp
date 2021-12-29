@@ -1,0 +1,72 @@
+<table frame="all">
+
+<title>
+
+ <link linkend="GuideOtherWindowsImageWindow">Image view window</link> 
+keyboard shortcuts
+
+</title>
+
+<tgroup cols="2" rowsep="1" colsep="1">
+
+<thead>
+
+<row>
+
+<entry>Shortcut</entry>
+
+<entry>Action</entry>
+
+</row>
+
+</thead>
+
+<tbody>
+
+ <row> <entry> <code> 	Ctrl + <keycap>  C </keycap> </code> </entry> <entry>  Copy </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  M </keycap> </code> </entry> <entry>  Move </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  R </keycap> </code> </entry> <entry>  Rename </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  D </keycap> </code> </entry> <entry>  Move to Trash </entry> </row>
+<row> <entry> <code> 	 <keycap> Delete </keycap> </code> </entry> <entry>  Move to Trash </entry> </row>
+<row> <entry> <code> 	Shift + <keycap> Delete </keycap> </code> </entry> <entry>  Delete </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  W </keycap> </code> </entry> <entry>  Close window </entry> </row>
+<row> <entry> <code> 	Shift + <keycap>  R </keycap> </code> </entry> <entry>  Rotate 180° </entry> </row>
+<row> <entry> <code> 	Shift + <keycap>  M </keycap> </code> </entry> <entry>  Rotate mirror </entry> </row>
+<row> <entry> <code> 	Shift + <keycap>  F </keycap> </code> </entry> <entry>  Rotate flip </entry> </row>
+<row> <entry> <code> 	 <keycap>  ] </keycap> </code> </entry> <entry>   Rotate counterclockwise 90° </entry> </row>
+<row> <entry> <code> 	 <keycap>  [ </keycap> </code> </entry> <entry>   Rotate clockwise 90° </entry> </row>
+<row> <entry> <code> 	 <keycap> Page_Up </keycap> </code> </entry> <entry>  Previous </entry> </row>
+<row> <entry> <code> 	 <keycap> KP_Page_Up </keycap> </code> </entry> <entry>  Previous </entry> </row>
+<row> <entry> <code> 	 <keycap> BackSpace </keycap> </code> </entry> <entry>  Previous </entry> </row>
+<row> <entry> <code> 	 <keycap>  B </keycap> </code> </entry> <entry>  Previous </entry> </row>
+<row> <entry> <code> 	 <keycap> Page_Down </keycap> </code> </entry> <entry>  Next </entry> </row>
+<row> <entry> <code> 	 <keycap> KP_Page_Down </keycap> </code> </entry> <entry>  Next </entry> </row>
+<row> <entry> <code> 	 <keycap> space </keycap> </code> </entry> <entry>  Next </entry> </row>
+<row> <entry> <code> 	 <keycap>  N </keycap> </code> </entry> <entry>  Next </entry> </row>
+<row> <entry> <code> 	 <keycap> equal </keycap> </code> </entry> <entry>  Zoom in </entry> </row>
+<row> <entry> <code> 	 <keycap> plus </keycap> </code> </entry> <entry>  Zoom in </entry> </row>
+<row> <entry> <code> 	 <keycap> minus </keycap> </code> </entry> <entry>  Zoom out </entry> </row>
+<row> <entry> <code> 	 <keycap>  X </keycap> </code> </entry> <entry>  Zoom to fit </entry> </row>
+<row> <entry> <code> 	 <keycap> KP_Multiply </keycap> </code> </entry> <entry>  Zoom to fit </entry> </row>
+<row> <entry> <code> 	 <keycap>  Z </keycap> </code> </entry> <entry>  Zoom 1:1 </entry> </row>
+<row> <entry> <code> 	 <keycap> KP_Divide </keycap> </code> </entry> <entry>  Zoom 1:1 </entry> </row>
+<row> <entry> <code> 	 <keycap> 1 </keycap> </code> </entry> <entry>  Zoom 1:1 </entry> </row>
+<row> <entry> <code> 	 <keycap>  2 </keycap> </code> </entry> <entry>  Zoom 2:1 </entry> </row>
+<row> <entry> <code> 	 <keycap>  3 </keycap> </code> </entry> <entry>  Zoom 3:1 </entry> </row>
+<row> <entry> <code> 	 <keycap>  4 </keycap> </code> </entry> <entry>  Zoom 4:1 </entry> </row>
+<row> <entry> <code> 	 <keycap>  7 </keycap> </code> </entry> <entry>  Zoom 1:4 </entry> </row>
+<row> <entry> <code> 	 <keycap>  8 </keycap> </code> </entry> <entry>  Zoom 1:3 </entry> </row>
+<row> <entry> <code> 	 <keycap>  9 </keycap> </code> </entry> <entry>  Zoom 1:2 </entry> </row>
+<row> <entry> <code> 	 <keycap>  W </keycap> </code> </entry> <entry>  Zoom fit window width </entry> </row>
+<row> <entry> <code> 	 <keycap>  H </keycap> </code> </entry> <entry>  Zoom fit window height </entry> </row>
+<row> <entry> <code> 	 <keycap>  S </keycap> </code> </entry> <entry>  Toggle slideshow </entry> </row>
+<row> <entry> <code> 	 <keycap>  P </keycap> </code> </entry> <entry>  Pause slideshow </entry> </row>
+<row> <entry> <code> 	 <keycap>  R </keycap> </code> </entry> <entry>  Reload image </entry> </row>
+<row> <entry> <code> 	 <keycap>  F </keycap> </code> </entry> <entry>  Full screen </entry> </row>
+<row> <entry> <code> 	 <keycap>  V </keycap> </code> </entry> <entry>  Fullscreen </entry> </row>
+<row> <entry> <code> 	 <keycap> F11 </keycap> </code> </entry> <entry>  Fullscreen </entry> </row>
+<row> <entry> <code> 	 <keycap>  I </keycap> </code> </entry> <entry>  Image overlay </entry> </row>
+<row> <entry> <code> 	 <keycap> Escape </keycap> </code> </entry> <entry>  Exit fullscreen </entry> </row>
+<row> <entry> <code> 	 <keycap> Escape </keycap> </code> </entry> <entry>  Close window </entry> </row>
+<row> <entry> <code> 	Shift + <keycap>  G </keycap> </code> </entry> <entry>  Desaturate </entry> </row>
+<row> <entry> <code> 	Shift + <keycap>  P </keycap> </code> </entry> <entry>  Print </entry> </row> </tbody></tgroup></table>

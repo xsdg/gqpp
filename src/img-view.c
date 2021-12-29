@@ -80,6 +80,66 @@ static void view_window_dnd_init(ViewWindow *vw);
 
 static void view_window_notify_cb(FileData *fd, NotifyType type, gpointer data);
 
+
+/**
+ * This array must be kept in sync with the contents of:\n
+ *  @link view_popup_menu() @endlink \n
+ *  @link view_window_key_press_cb() @endlink
+ * 
+ * See also @link hard_coded_window_keys @endlink
+ **/
+hard_coded_window_keys image_window_keys[] = {
+	{GDK_CONTROL_MASK, 'C', N_("Copy")},
+	{GDK_CONTROL_MASK, 'M', N_("Move")},
+	{GDK_CONTROL_MASK, 'R', N_("Rename")},
+	{GDK_CONTROL_MASK, 'D', N_("Move to Trash")},
+	{0, GDK_KEY_Delete, N_("Move to Trash")},
+	{GDK_SHIFT_MASK, GDK_KEY_Delete, N_("Delete")},
+	{GDK_CONTROL_MASK, 'W', N_("Close window")},
+	{GDK_SHIFT_MASK, 'R', N_("Rotate 180°")},
+	{GDK_SHIFT_MASK, 'M', N_("Rotate mirror")},
+	{GDK_SHIFT_MASK, 'F', N_("Rotate flip")},
+	{0, ']', N_(" Rotate counterclockwise 90°")},
+	{0, '[', N_(" Rotate clockwise 90°")},
+	{0, GDK_KEY_Page_Up, N_("Previous")},
+	{0, GDK_KEY_KP_Page_Up, N_("Previous")},
+	{0, GDK_KEY_BackSpace, N_("Previous")},
+	{0, 'B', N_("Previous")},
+	{0, GDK_KEY_Page_Down, N_("Next")},
+	{0, GDK_KEY_KP_Page_Down, N_("Next")},
+	{0, GDK_KEY_space, N_("Next")},
+	{0, 'N', N_("Next")},
+	{0, GDK_KEY_equal, N_("Zoom in")},
+	{0, GDK_KEY_plus, N_("Zoom in")},
+	{0, GDK_KEY_minus, N_("Zoom out")},
+	{0, 'X', N_("Zoom to fit")},
+	{0, GDK_KEY_KP_Multiply, N_("Zoom to fit")},
+	{0, 'Z', N_("Zoom 1:1")},
+	{0, GDK_KEY_KP_Divide, N_("Zoom 1:1")},
+	{0, GDK_KEY_1, N_("Zoom 1:1")},
+	{0, '2', N_("Zoom 2:1")},
+	{0, '3', N_("Zoom 3:1")},
+	{0, '4', N_("Zoom 4:1")},
+	{0, '7', N_("Zoom 1:4")},
+	{0, '8', N_("Zoom 1:3")},
+	{0, '9', N_("Zoom 1:2")},
+	{0, 'W', N_("Zoom fit window width")},
+	{0, 'H', N_("Zoom fit window height")},
+	{0, 'S', N_("Toggle slideshow")},
+	{0, 'P', N_("Pause slideshow")},
+	{0, 'R', N_("Reload image")},
+	{0, 'F', N_("Full screen")},
+	{0, 'V', N_("Fullscreen")},
+	{0, GDK_KEY_F11, N_("Fullscreen")},
+	{0, 'I', N_("Image overlay")},
+	{0, GDK_KEY_Escape, N_("Exit fullscreen")},
+	{0, GDK_KEY_Escape, N_("Close window")},
+	{GDK_SHIFT_MASK, 'G', N_("Desaturate")},
+	{GDK_SHIFT_MASK, 'P', N_("Print")},
+	{0, 0, NULL}
+};
+
+
 /*
  *-----------------------------------------------------------------------------
  * misc
@@ -1337,14 +1397,20 @@ static GtkWidget *view_popup_menu(ViewWindow *vw)
 	GtkWidget *menu;
 	GtkWidget *item;
 	GList *editmenu_fd_list;
+	GtkAccelGroup *accel_group;
 
 	menu = popup_menu_short_lived();
 
+	accel_group = gtk_accel_group_new();
+	gtk_menu_set_accel_group(GTK_MENU(menu), accel_group);
+
+	g_object_set_data(G_OBJECT(menu), "window_keys", image_window_keys);
+	g_object_set_data(G_OBJECT(menu), "accel_group", accel_group);
 
 	menu_item_add_stock(menu, _("Zoom _in"), GTK_STOCK_ZOOM_IN, G_CALLBACK(view_zoom_in_cb), vw);
 	menu_item_add_stock(menu, _("Zoom _out"), GTK_STOCK_ZOOM_OUT, G_CALLBACK(view_zoom_out_cb), vw);
 	menu_item_add_stock(menu, _("Zoom _1:1"), GTK_STOCK_ZOOM_100, G_CALLBACK(view_zoom_1_1_cb), vw);
-	menu_item_add_stock(menu, _("Fit image to _window"), GTK_STOCK_ZOOM_FIT, G_CALLBACK(view_zoom_fit_cb), vw);
+	menu_item_add_stock(menu, _("Zoom to fit"), GTK_STOCK_ZOOM_FIT, G_CALLBACK(view_zoom_fit_cb), vw);
 	menu_item_add_divider(menu);
 
  	editmenu_fd_list = view_window_get_fd_list(vw);
@@ -1386,7 +1452,7 @@ static GtkWidget *view_popup_menu(ViewWindow *vw)
 
 	if (vw->ss)
 		{
-		menu_item_add(menu, _("_Stop slideshow"), G_CALLBACK(view_slideshow_stop_cb), vw);
+		menu_item_add(menu, _("Toggle _slideshow"), G_CALLBACK(view_slideshow_stop_cb), vw);
 		if (slideshow_paused(vw->ss))
 			{
 			item = menu_item_add(menu, _("Continue slides_how"),
@@ -1400,7 +1466,7 @@ static GtkWidget *view_popup_menu(ViewWindow *vw)
 		}
 	else
 		{
-		item = menu_item_add(menu, _("_Start slideshow"), G_CALLBACK(view_slideshow_start_cb), vw);
+		item = menu_item_add(menu, _("Toggle _slideshow"), G_CALLBACK(view_slideshow_start_cb), vw);
 		gtk_widget_set_sensitive(item, (vw->list != NULL) || view_window_contains_collection(vw));
 		item = menu_item_add(menu, _("Pause slides_how"), G_CALLBACK(view_slideshow_pause_cb), vw);
 		gtk_widget_set_sensitive(item, FALSE);

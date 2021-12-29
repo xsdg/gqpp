@@ -70,6 +70,41 @@ enum {
 
 static void collection_table_populate_at_new_size(CollectTable *ct, gint w, gint h, gboolean force);
 
+/**
+ * This array must be kept in sync with the contents of:\n
+ * @link collection_table_press_key_cb @endlink \n
+ * @link collection_window_keypress @endlink \n
+ * @link collection_table_popup_menu @endlink
+ *
+ * See also @link hard_coded_window_keys @endlink
+ **/
+hard_coded_window_keys collection_window_keys[] = {
+	{GDK_CONTROL_MASK, 'C', N_("Copy")},
+	{GDK_CONTROL_MASK, 'M', N_("Move")},
+	{GDK_CONTROL_MASK, 'R', N_("Rename")},
+	{GDK_CONTROL_MASK, 'D', N_("Move to Trash")},
+	{GDK_CONTROL_MASK, 'W', N_("Close window")},
+	{0, GDK_KEY_Delete, N_("Remove")},
+	{0, GDK_KEY_Return, N_("View")},
+	{0, 'V', N_("View in new window")},
+	{GDK_CONTROL_MASK, 'A', N_("Select all")},
+	{GDK_CONTROL_MASK + GDK_SHIFT_MASK, 'A', N_("Select none")},
+	{GDK_MOD1_MASK, 'R', N_("Rectangular selection")},
+	{0, GDK_KEY_space, N_("Select single file")},
+	{GDK_CONTROL_MASK, GDK_KEY_space, N_("Toggle select image")},
+	{GDK_CONTROL_MASK, 'L', N_("Append from file selection")},
+	{0, 'A', N_("Append from collection")},
+	{0, 'S', N_("Save collection")},
+	{GDK_CONTROL_MASK, 'S', N_("Save collection as")},
+	{GDK_CONTROL_MASK, 'T', N_("Show filename text")},
+	{0, 'N', N_("Sort by name")},
+	{0, 'I', N_("Sort by number")},
+	{0, 'D', N_("Sort by date")},
+	{0, 'B', N_("Sort by size")},
+	{0, 'P', N_("Sort by path")},
+	{GDK_SHIFT_MASK, 'P', N_("Print")},
+	{0, 0, NULL}
+};
 
 /*
  *-------------------------------------------------------------------
@@ -952,8 +987,15 @@ static GtkWidget *collection_table_popup_menu(CollectTable *ct, gboolean over_ic
 	GtkWidget *menu;
 	GtkWidget *item;
 	GtkWidget *submenu;
+ 	GtkAccelGroup *accel_group;
 
 	menu = popup_menu_short_lived();
+
+	accel_group = gtk_accel_group_new();
+	gtk_menu_set_accel_group(GTK_MENU(menu), accel_group);
+
+	g_object_set_data(G_OBJECT(menu), "window_keys", collection_window_keys);
+	g_object_set_data(G_OBJECT(menu), "accel_group", accel_group);
 
 	g_signal_connect(G_OBJECT(menu), "destroy",
 			 G_CALLBACK(collection_table_popup_destroy_cb), ct);

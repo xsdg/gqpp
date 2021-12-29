@@ -133,7 +133,7 @@ If you wish to compile the sources yourself you may download the latest version 
 
 Either: `git clone git://www.geeqie.org/geeqie.git`
 
-Or: `git clone http://www.geeqie.org/git/geeqie.git`
+Or: `git clone http://git.geeqie.org/git/geeqie.git`
 
 ## Manual Installation
 

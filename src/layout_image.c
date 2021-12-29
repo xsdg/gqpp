@@ -766,16 +766,23 @@ static GtkWidget *layout_image_pop_menu(LayoutWindow *lw)
 	const gchar *path;
 	gboolean fullscreen;
 	GList *editmenu_fd_list;
+	GtkAccelGroup *accel_group;
 
 	path = layout_image_get_path(lw);
 	fullscreen = layout_image_full_screen_active(lw);
 
 	menu = popup_menu_short_lived();
 
+	accel_group = gtk_accel_group_new();
+	gtk_menu_set_accel_group(GTK_MENU(menu), accel_group);
+
+	g_object_set_data(G_OBJECT(menu), "window_keys", NULL);
+	g_object_set_data(G_OBJECT(menu), "accel_group", accel_group);
+
 	menu_item_add_stock(menu, _("Zoom _in"), GTK_STOCK_ZOOM_IN, G_CALLBACK(li_pop_menu_zoom_in_cb), lw);
 	menu_item_add_stock(menu, _("Zoom _out"), GTK_STOCK_ZOOM_OUT, G_CALLBACK(li_pop_menu_zoom_out_cb), lw);
 	menu_item_add_stock(menu, _("Zoom _1:1"), GTK_STOCK_ZOOM_100, G_CALLBACK(li_pop_menu_zoom_1_1_cb), lw);
-	menu_item_add_stock(menu, _("Fit image to _window"), GTK_STOCK_ZOOM_FIT, G_CALLBACK(li_pop_menu_zoom_fit_cb), lw);
+	menu_item_add_stock(menu, _("Zoom to fit"), GTK_STOCK_ZOOM_FIT, G_CALLBACK(li_pop_menu_zoom_fit_cb), lw);
 	menu_item_add_divider(menu);
 
 	editmenu_fd_list = layout_image_get_fd_list(lw);
@@ -809,9 +816,9 @@ static GtkWidget *layout_image_pop_menu(LayoutWindow *lw)
 	if (!path) gtk_widget_set_sensitive(item, FALSE);
 	item = menu_item_add(menu, _("_Rename..."), G_CALLBACK(li_pop_menu_rename_cb), lw);
 	if (!path) gtk_widget_set_sensitive(item, FALSE);
-	item = menu_item_add(menu, _("_Copy path"), G_CALLBACK(li_pop_menu_copy_path_cb), lw);
-	item = menu_item_add(menu, _("_Copy path unquoted"), G_CALLBACK(li_pop_menu_copy_path_unquoted_cb), lw);
-	item = menu_item_add(menu, _("Copy _image"), G_CALLBACK(li_pop_menu_copy_image_cb), lw);
+	item = menu_item_add(menu, _("_Copy path to clipboard"), G_CALLBACK(li_pop_menu_copy_path_cb), lw);
+	item = menu_item_add(menu, _("_Copy path unquoted to clipboard"), G_CALLBACK(li_pop_menu_copy_path_unquoted_cb), lw);
+	item = menu_item_add(menu, _("Copy _image to clipboard"), G_CALLBACK(li_pop_menu_copy_image_cb), lw);
 	if (!path) gtk_widget_set_sensitive(item, FALSE);
 	menu_item_add_divider(menu);
 
@@ -834,7 +841,7 @@ static GtkWidget *layout_image_pop_menu(LayoutWindow *lw)
 
 	if (layout_image_slideshow_active(lw))
 		{
-		menu_item_add(menu, _("_Stop slideshow"), G_CALLBACK(li_pop_menu_slide_stop_cb), lw);
+		menu_item_add(menu, _("Toggle _slideshow"), G_CALLBACK(li_pop_menu_slide_stop_cb), lw);
 		if (layout_image_slideshow_paused(lw))
 			{
 			item = menu_item_add(menu, _("Continue slides_how"),
@@ -848,7 +855,7 @@ static GtkWidget *layout_image_pop_menu(LayoutWindow *lw)
 		}
 	else
 		{
-		menu_item_add(menu, _("_Start slideshow"), G_CALLBACK(li_pop_menu_slide_start_cb), lw);
+		menu_item_add(menu, _("Toggle _slideshow"), G_CALLBACK(li_pop_menu_slide_start_cb), lw);
 		item = menu_item_add(menu, _("Pause slides_how"), G_CALLBACK(li_pop_menu_slide_pause_cb), lw);
 		gtk_widget_set_sensitive(item, FALSE);
 		}
@@ -862,7 +869,7 @@ static GtkWidget *layout_image_pop_menu(LayoutWindow *lw)
 		menu_item_add(menu, _("Exit _full screen"), G_CALLBACK(li_pop_menu_full_screen_cb), lw);
 		}
 
-	menu_item_add_check(menu, _("_Animate"), lw->options.animate, G_CALLBACK(li_pop_menu_animate_cb), lw);
+	menu_item_add_check(menu, _("GIF _animation"), lw->options.animate, G_CALLBACK(li_pop_menu_animate_cb), lw);
 
 	menu_item_add_divider(menu);
 

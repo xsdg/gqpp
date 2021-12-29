@@ -87,6 +87,53 @@ static GtkWidget *pan_popup_menu(PanWindow *pw);
 
 static void pan_window_dnd_init(PanWindow *pw);
 
+/**
+ * This array must be kept in sync with the contents of:\n
+ * @link pan_window_key_press_cb @endlink \n
+ * @link pan_popup_menu @endlink
+ *
+ * See also @link hard_coded_window_keys @endlink
+ **/
+hard_coded_window_keys pan_view_window_keys[] = {
+	{GDK_CONTROL_MASK, 'C', N_("Copy")},
+	{GDK_CONTROL_MASK, 'M', N_("Move")},
+	{GDK_CONTROL_MASK, 'R', N_("Rename")},
+	{GDK_CONTROL_MASK, 'D', N_("Move to Trash")},
+	{GDK_CONTROL_MASK, 'W', N_("Close window")},
+	{GDK_CONTROL_MASK, 'F', N_("Display Find search bar")},
+	{GDK_CONTROL_MASK, 'G', N_("Start search")},
+	{0, GDK_KEY_Escape, N_("Exit fullscreen")},
+	{0, GDK_KEY_Escape, N_("Hide Find search bar")},
+	{0, GDK_KEY_equal, N_("Zoom in")},
+	{0, GDK_KEY_plus, N_("Zoom in")},
+	{0, GDK_KEY_minus, N_("Zoom out")},
+	{0, GDK_KEY_Z, N_("Zoom 1:1")},
+	{0, GDK_KEY_1, N_("Zoom 1:1")},
+	{0, GDK_KEY_KP_Divide, N_("Zoom 1:1")},
+	{0, '2', N_("Zoom 2:1")},
+	{0, '3', N_("Zoom 3:1")},
+	{0, '4', N_("Zoom 4:1")},
+	{0, '7', N_("Zoom 1:4")},
+	{0, '8', N_("Zoom 1:3")},
+	{0, '9', N_("Zoom 1:2")},
+	{0, 'F', N_("Full screen")},
+	{0, 'V', N_("Full screen")},
+	{0, GDK_KEY_F11, N_("Full screen")},
+	{0, '/', N_("Display Find search bar")},
+	{0, GDK_KEY_Left, N_("Scroll left")},
+	{0, GDK_KEY_Right, N_("Scroll right")},
+	{0, GDK_KEY_Up, N_("Scroll up")},
+	{0, GDK_KEY_Down, N_("Scroll down")},
+	{GDK_SHIFT_MASK, GDK_KEY_Left, N_("Scroll left faster")},
+	{GDK_SHIFT_MASK, GDK_KEY_Right, N_("Scroll right faster")},
+	{GDK_SHIFT_MASK, GDK_KEY_Up, N_("Scroll up faster")},
+	{GDK_SHIFT_MASK, GDK_KEY_Down, N_("Scroll down faster")},
+	{0, GDK_KEY_Page_Up, N_("Scroll display half screen up")},
+	{0, GDK_KEY_Page_Down, N_("Scroll display half screen down")},
+	{0, GDK_KEY_Home, N_("Scroll display half screen left")},
+	{0, GDK_KEY_End, N_("Scroll display half screen right")},
+	{0, 0, NULL}
+};
 
 /*
  *-----------------------------------------------------------------------------
@@ -2315,11 +2362,17 @@ static GtkWidget *pan_popup_menu(PanWindow *pw)
 	GtkWidget *item;
 	gboolean active, video;
 	GList *editmenu_fd_list;
+	GtkAccelGroup *accel_group;
 
 	active = (pw->click_pi != NULL);
 	video = (active && pw->click_pi->fd && pw->click_pi->fd->format_class == FORMAT_CLASS_VIDEO);
 
 	menu = popup_menu_short_lived();
+	accel_group = gtk_accel_group_new();
+	gtk_menu_set_accel_group(GTK_MENU(menu), accel_group);
+
+	g_object_set_data(G_OBJECT(menu), "window_keys", pan_view_window_keys);
+	g_object_set_data(G_OBJECT(menu), "accel_group", accel_group);
 
 	menu_item_add_stock_sensitive(menu, _("_Play"), GTK_STOCK_MEDIA_PLAY, video,
 			    G_CALLBACK(pan_play_cb), pw);
@@ -2352,9 +2405,9 @@ static GtkWidget *pan_popup_menu(PanWindow *pw)
 				G_CALLBACK(pan_move_cb), pw);
 	menu_item_add_sensitive(menu, _("_Rename..."), active,
 				G_CALLBACK(pan_rename_cb), pw);
-	menu_item_add_sensitive(menu, _("_Copy path"), active,
+	menu_item_add_sensitive(menu, _("_Copy path to clipboard"), active,
 				G_CALLBACK(pan_copy_path_cb), pw);
-	menu_item_add_sensitive(menu, _("_Copy path unquoted"), active,
+	menu_item_add_sensitive(menu, _("_Copy path unquoted to clipboard"), active,
 				G_CALLBACK(pan_copy_path_unquoted_cb), pw);
 
 	menu_item_add_divider(menu);

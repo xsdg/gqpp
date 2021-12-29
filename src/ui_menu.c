@@ -30,6 +30,8 @@
 
 #include <gtk/gtk.h>
 
+#include "main.h"
+#include "layout.h"
 #include "ui_menu.h"
 
 
@@ -38,6 +40,137 @@
  * menu items
  *-----------------------------------------------------------------------------
  */
+
+/**
+ * @brief Add accelerator key to a window popup menu
+ * @param menu
+ * @param accel_group
+ * @param window_keys
+ *
+ * This is used only so that the user can see the applicable
+ * shortcut key displayed in the menu. The actual handling of
+ * the keystroke is done elsewhere in the code.
+ */
+static void menu_item_add_accelerator(GtkWidget *menu, GtkAccelGroup *accel_group, hard_coded_window_keys *window_keys)
+{
+	gchar *label;
+	gchar *label_text;
+	gchar **label_stripped;
+	gint i = 0;
+
+	label = g_strdup(gtk_menu_item_get_label(GTK_MENU_ITEM(menu)));
+
+	pango_parse_markup(label, -1, '_', NULL, &label_text, NULL, NULL);
+
+	label_stripped = g_strsplit(label_text, "...", 2);
+
+	while (window_keys[i].text != NULL)
+		{
+		if (g_strcmp0(window_keys[i].text, label_stripped[0]) == 0)
+			{
+			gtk_widget_add_accelerator(menu, "activate", accel_group, window_keys[i].key_value, (GdkModifierType)window_keys[i].mask, GTK_ACCEL_VISIBLE);
+
+			break;
+			}
+		i++;
+		}
+
+	g_free(label);
+	g_free(label_text);
+	g_strfreev(label_stripped);
+}
+
+/**
+ * @brief Callback for the actions GList sort function
+ * @param a
+ * @param b
+ * @returns
+ *
+ * Sort the action entries so that the non-shifted and non-control
+ * entries are at the start of the list. The user then sees the basic
+ * non-modified key shortcuts displayed in the menus.
+ */
+static gint actions_sort_cb(gconstpointer a, gconstpointer b)
+{
+	const gchar *accel_path_a;
+	GtkAccelKey key_a;
+	const gchar *accel_path_b;
+	GtkAccelKey key_b;
+
+	accel_path_a = gtk_action_get_accel_path(GTK_ACTION(a));
+	accel_path_b = gtk_action_get_accel_path(GTK_ACTION(b));
+
+	if (accel_path_a && gtk_accel_map_lookup_entry(accel_path_a, &key_a) && accel_path_b && gtk_accel_map_lookup_entry(accel_path_b, &key_b))
+		{
+		if (key_a.accel_mods < key_b.accel_mods) return -1;
+		if (key_a.accel_mods > key_b.accel_mods) return 1;
+		}
+
+	return 0;
+}
+
+/**
+ * @brief Add accelerator key to main window popup menu
+ * @param menu
+ * @param accel_group
+ *
+ * This is used only so that the user can see the applicable
+ * shortcut key displayed in the menu. The actual handling of
+ * the keystroke is done elsewhere in the code.
+ */
+static void menu_item_add_main_window_accelerator(GtkWidget *menu, GtkAccelGroup *accel_group)
+{
+	gchar *menu_label;
+	gchar *menu_label_text;
+	gchar *action_label;
+	gchar *action_label_text;
+	LayoutWindow *lw;
+	GList *groups;
+	GList *actions;
+	GtkAction *action;
+	const gchar *accel_path;
+	GtkAccelKey key;
+
+	menu_label = g_strdup(gtk_menu_item_get_label(GTK_MENU_ITEM(menu)));
+
+	pango_parse_markup(menu_label, -1, '_', NULL, &menu_label_text, NULL, NULL);
+
+	lw = layout_window_list->data; /* get the actions from the first window, it should not matter, they should be the same in all windows */
+
+	g_assert(lw && lw->ui_manager);
+	groups = gtk_ui_manager_get_action_groups(lw->ui_manager);
+	actions = gtk_action_group_list_actions(GTK_ACTION_GROUP(groups->data)); // Only the first group required
+	actions = g_list_sort(actions, actions_sort_cb);
+
+	while (actions)
+		{
+		action = GTK_ACTION(actions->data);
+		accel_path = gtk_action_get_accel_path(action);
+		if (accel_path && gtk_accel_map_lookup_entry(accel_path, &key))
+			{
+			g_object_get(action, "label", &action_label, NULL);
+
+			pango_parse_markup(action_label, -1, '_', NULL, &action_label_text, NULL, NULL);
+
+			if (g_strcmp0(action_label_text, menu_label_text) == 0)
+				{
+				if (key.accel_key != 0)
+					{
+					gtk_widget_add_accelerator(menu, "activate", accel_group, key.accel_key, key.accel_mods, GTK_ACCEL_VISIBLE);
+
+					break;
+					}
+				}
+
+			g_free(action_label_text);
+			g_free(action_label);
+			}
+		actions = actions->next;
+		}
+
+	g_free(menu_label);
+	g_free(menu_label_text);
+}
 
 static void menu_item_finish(GtkWidget *menu, GtkWidget *item, GCallback func, gpointer data)
 {
@@ -50,8 +183,22 @@ GtkWidget *menu_item_add(GtkWidget *menu, const gchar *label,
 			 GCallback func, gpointer data)
 {
 	GtkWidget *item;
+	GtkAccelGroup *accel_group;
+	hard_coded_window_keys *window_keys;
 
 	item = gtk_menu_item_new_with_mnemonic(label);
+	window_keys = g_object_get_data(G_OBJECT(menu), "window_keys");
+	accel_group = g_object_get_data(G_OBJECT(menu), "accel_group");
+
+	if (accel_group && window_keys)
+		{
+		menu_item_add_accelerator(item, accel_group, window_keys);
+		}
+	else if (accel_group)
+		{
+		menu_item_add_main_window_accelerator(item, accel_group);
+		}
+
 	menu_item_finish(menu, item, func, data);
 
 	return item;
@@ -62,10 +209,25 @@ GtkWidget *menu_item_add_stock(GtkWidget *menu, const gchar *label, const gchar 
 {
 	GtkWidget *item;
 	GtkWidget *image;
+	GtkAccelGroup *accel_group;
+	hard_coded_window_keys *window_keys;
 
 	item = gtk_image_menu_item_new_with_mnemonic(label);
+	window_keys = g_object_get_data(G_OBJECT(menu), "window_keys");
+	accel_group = g_object_get_data(G_OBJECT(menu), "accel_group");
+
 	image = gtk_image_new_from_stock(stock_id, GTK_ICON_SIZE_MENU);
 	gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(item), image);
+
+	if (accel_group && window_keys)
+		{
+		menu_item_add_accelerator(item, accel_group, window_keys);
+		}
+	else if (accel_group)
+		{
+		menu_item_add_main_window_accelerator(item, accel_group);
+		}
+
 	gtk_widget_show(image);
 	menu_item_finish(menu, item, func, data);
 
@@ -76,9 +238,21 @@ GtkWidget *menu_item_add_sensitive(GtkWidget *menu, const gchar *label, gboolean
 				   GCallback func, gpointer data)
 {
 	GtkWidget *item;
+	GtkAccelGroup *accel_group;
+	hard_coded_window_keys *window_keys;
 
 	item = menu_item_add(menu, label, func, data);
 	gtk_widget_set_sensitive(item, sensitive);
+	window_keys = g_object_get_data(G_OBJECT(menu), "window_keys");
+	accel_group = g_object_get_data(G_OBJECT(menu), "accel_group");
+	if (accel_group && window_keys)
+		{
+		menu_item_add_accelerator(item, accel_group, window_keys);
+		}
+	else if (accel_group)
+		{
+		menu_item_add_main_window_accelerator(item, accel_group);
+		}
 
 	return item;
 }
@@ -87,9 +261,21 @@ GtkWidget *menu_item_add_stock_sensitive(GtkWidget *menu, const gchar *label, co
 					 GCallback func, gpointer data)
 {
 	GtkWidget *item;
+	GtkAccelGroup *accel_group;
+	hard_coded_window_keys *window_keys;
 
 	item = menu_item_add_stock(menu, label, stock_id, func, data);
 	gtk_widget_set_sensitive(item, sensitive);
+	window_keys = g_object_get_data(G_OBJECT(menu), "window_keys");
+	accel_group = g_object_get_data(G_OBJECT(menu), "accel_group");
+	if (accel_group && window_keys)
+		{
+		menu_item_add_accelerator(item, accel_group, window_keys);
+		}
+	else if (accel_group)
+		{
+		menu_item_add_main_window_accelerator(item, accel_group);
+		}
 
 	return item;
 }
@@ -98,8 +284,22 @@ GtkWidget *menu_item_add_check(GtkWidget *menu, const gchar *label, gboolean act
 			       GCallback func, gpointer data)
 {
 	GtkWidget *item;
+	GtkAccelGroup *accel_group;
+	hard_coded_window_keys *window_keys;
 
 	item = gtk_check_menu_item_new_with_mnemonic(label);
+	window_keys = g_object_get_data(G_OBJECT(menu), "window_keys");
+	accel_group = g_object_get_data(G_OBJECT(menu), "accel_group");
+
+	if (accel_group && window_keys)
+		{
+		menu_item_add_accelerator(item, accel_group, window_keys);
+		}
+	else if (accel_group)
+		{
+		menu_item_add_main_window_accelerator(item, accel_group);
+		}
+
 	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(item), active);
 	menu_item_finish(menu, item, func, data);
 
@@ -109,9 +309,23 @@ GtkWidget *menu_item_add_check(GtkWidget *menu, const gchar *label, gboolean act
 GtkWidget *menu_item_add_radio(GtkWidget *menu, const gchar *label, gpointer item_data, gboolean active,
 			       GCallback func, gpointer data)
 {
+	GtkAccelGroup *accel_group;
+	hard_coded_window_keys *window_keys;
+
 	GtkWidget *item = menu_item_add_check(menu, label, active, func, data);
 	g_object_set_data(G_OBJECT(item), "menu_item_radio_data", item_data);
 	g_object_set(G_OBJECT(item), "draw-as-radio", TRUE, NULL);
+
+	window_keys = g_object_get_data(G_OBJECT(menu), "window_keys");
+	accel_group = g_object_get_data(G_OBJECT(menu), "accel_group");
+	if (accel_group && window_keys)
+		{
+		menu_item_add_accelerator(item, accel_group, window_keys);
+		}
+	else if (accel_group)
+		{
+		menu_item_add_main_window_accelerator(item, accel_group);
+		}
 
 	return item;
 }
