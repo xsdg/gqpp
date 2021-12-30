@@ -118,7 +118,7 @@ The second script will run only on Debian-based system, but will fulfil all depe
 To get the script, from the command line type:
 
 ```sh
-wget https://raw.githubusercontent.com/BestImageViewer/geeqie/master/web/geeqie-install-debian.sh
+wget https://raw.githubusercontent.com/BestImageViewer/geeqie/master/geeqie-install-debian.sh
 chmod +x geeqie-install-debian.sh
 ```
 
@@ -166,7 +166,7 @@ And either the ChangeLog file or [Geeqie ChangeLog](http://geeqie.org/cgi-bin/gi
 Required libraries for a Debian installation may be listed by:
 
 ```sh
-wget https://raw.githubusercontent.com/BestImageViewer/geeqie/master/web/geeqie-install-debian.sh
+wget https://raw.githubusercontent.com/BestImageViewer/geeqie/master/geeqie-install-debian.sh
 chmod +x geeqie-install-debian.sh
 ./geeqie-install-debian.sh --list
 ```
