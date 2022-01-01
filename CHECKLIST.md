@@ -56,7 +56,13 @@ make update-po
 
 * Upload AppImage to web AppImages location
 * Edit `<location of local geeqie.github.io>/AppImage/appimages.txt` to include latest AppImage at the *top* of the list
-* Copy Help html files to `<location of local geeqie.github.io>/help`
+* Update the web-page Help files if they have changed
+    * commit and push if necessary
+
+```sh
+./scripts/web-help.sh
+```
+
 * Copy `geeqie.desktop` to `<location of local geeqie.github.io>/`
 * Copy `org.geeqie.Geeqie.appdata.xml` to `<location of local geeqie.github.io>/`
 * Push changes to `geeqie.github.io`
