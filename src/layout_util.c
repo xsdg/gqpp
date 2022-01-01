@@ -2273,7 +2273,7 @@ static void layout_menu_view_menu_cb(GtkWidget *widget, gpointer data)
 		menu_label = g_strdup(gtk_menu_item_get_label(GTK_MENU_ITEM(iter->data)));
 		if (g_strcmp0(menu_label, _("Open archive")) == 0)
 			{
-			if (fd->format_class == FORMAT_CLASS_ARCHIVE)
+			if (fd && fd->format_class == FORMAT_CLASS_ARCHIVE)
 				{
 				gtk_widget_set_sensitive(GTK_WIDGET(iter->data), TRUE);
 				}
