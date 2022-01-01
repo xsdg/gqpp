@@ -8,7 +8,7 @@
 ## Dialogs allow the user to install additional features.
 ##
 
-version="2021-12-29"
+version="2022-01-01"
 description=$'
 Geeqie is an image viewer.
 This script will download, compile, and install Geeqie on Debian-based systems.
@@ -79,6 +79,8 @@ optional_array=(
 "libopenjp2-7-dev"
 "libraw (for CR3 images)"
 "libraw-dev"
+"libomp (required by libraw)"
+"libomp-dev"
 )
 
 # Optional for GTK3 only
