@@ -392,6 +392,7 @@ void tree_path_free_wrapper(void *data, void *useradata)
 #ifndef HAVE_ARCHIVE
 gchar *open_archive(FileData *fd)
 {
+	log_printf("%s", _("Warning: libarchive not installed"));
 	return NULL;
 }
 

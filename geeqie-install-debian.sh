@@ -81,6 +81,8 @@ optional_array=(
 "libraw-dev"
 "libomp (required by libraw)"
 "libomp-dev"
+"libarchive (for compressed files e.g. zip)"
+"libarchive-dev"
 )
 
 # Optional for GTK3 only
