@@ -15,354 +15,40 @@
     </menuchoice>
     .
   </para>
-  <para>The print dialog includes tabs that group related printing options, a preview pane, and a Print and Cancel button.</para>
-  <section id="Layouttab">
-    <title>Layout tab</title>
+  <para>Printing is provided by the standard Gtk printer services. The Options tab provides Geeqie-specific features.</para>
+  <section id="Optionstab">
+    <title>Options tab</title>
     <variablelist>
       <varlistentry>
         <term>
-          <guilabel>Source</guilabel>
+          <guilabel>Image Text</guilabel>
         </term>
         <listitem>
-          <para>This selects the group of images to use for print output.</para>
+          <para>This text will be attached to each image printed. It may contain any combination of plain text and predefined tags.</para>
         </listitem>
       </varlistentry>
     </variablelist>
     <variablelist>
       <varlistentry>
         <term>
-          <guilabel>Image</guilabel>
+          <guilabel>Page Text</guilabel>
         </term>
         <listitem>
-          <para>The file with the focus.</para>
+          <para>
+            This text will also be attached to each image printed. It may contain only plain text.
+            <para />
+            It is probably of value only when one image per page is printed.
+          </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <guilabel>Selection</guilabel>
+          <guilabel>Header 1/2 Footer 1/2</guilabel>
         </term>
         <listitem>
-          <para>The files selected in the main window.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <guilabel>All</guilabel>
-        </term>
-        <listitem>
-          <para>All files listed in the main window.</para>
+          <para>These checkboxes define the layout for Image Text and Page Text. Image and Page Text may be printed above or below each image and in the order defined by these checkboxes.</para>
         </listitem>
       </varlistentry>
     </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Layout</guilabel>
-        </term>
-        <listitem>
-          <para>Select one image per page, or a Proof sheet that will print multiple images per page.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Image size</guilabel>
-        </term>
-        <listitem>
-          <para>When print one image per page, the size of the image in relation to the available print area.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <guilabel>Proof size</guilabel>
-        </term>
-        <listitem>
-          <para>When printing a Proof sheet, the size of each image in Units (see Paper tab).</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </section>
-  <section id="Texttab">
-    <title>Text tab</title>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Name</guilabel>
-        </term>
-        <listitem>
-          <para>Include the file name below each image.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Path</guilabel>
-        </term>
-        <listitem>
-          <para>Include the full path of the file below each image.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Date</guilabel>
-        </term>
-        <listitem>
-          <para>Include the file date below each image.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Size</guilabel>
-        </term>
-        <listitem>
-          <para>Include the file size below each image.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Dimensions</guilabel>
-        </term>
-        <listitem>
-          <para>Include the source image's pixel width and height below each image.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Font size</guilabel>
-        </term>
-        <listitem>
-          <para>The font size to use for the text description of each image, in points.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </section>
-  <section id="Papertab">
-    <title>Paper tab</title>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Format</guilabel>
-        </term>
-        <listitem>
-          <para>The size of the paper in the printer's paper tray. Many common sizes are provided, however if the paper size is not listed selected the Custom format and enter the paper size in Size below.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Size</guilabel>
-        </term>
-        <listitem>
-          <para>The size of the selected paper format, in Units (below). These numbers can be changed when the paper Format is Custom.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Units</guilabel>
-        </term>
-        <listitem>
-          <para>Select the units for Geeqie to use when conveying measurements of length for paper size, margins, and images sizes to the user.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Orientation</guilabel>
-        </term>
-        <listitem>
-          <para>Select portrait or landscape print output.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Margins</guilabel>
-        </term>
-        <listitem>
-          <para>These values specify the size of the paper edges not to be included in the print region, in Units (above).</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </section>
-  <section id="Printertab">
-    <title>Printer tab</title>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Destination</guilabel>
-        </term>
-        <listitem>
-          <para>Use this to select the destination of the print output.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Default printer</guilabel>
-        </term>
-        <listitem>
-          <para>Prints to the system default printer.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <guilabel>Custom printer</guilabel>
-        </term>
-        <listitem>
-          <para>Prints to the printer using the command defined in Custom printer (below).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <guilabel>Postscript file</guilabel>
-        </term>
-        <listitem>
-          <para>Writes using the postscript format to named File (below).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <guilabel>Image file</guilabel>
-        </term>
-        <listitem>
-          <para>Writes using the selected File format (below) to named File (below).</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Custom printer</guilabel>
-        </term>
-        <listitem>
-          <para>The command to use when Destination is selected as Custom printer. For convenience, the drop down list includes printers available for use by the printing subsystem.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>File</guilabel>
-        </term>
-        <listitem>
-          <para>The file to use for output when Destination is Postscript file or Image file.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>File format</guilabel>
-        </term>
-        <listitem>
-          <para>The image format to use when Destination is Image file.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>DPI</guilabel>
-        </term>
-        <listitem>
-          <para>Abbreviation for Dots Per Inch. When the Destination is a printer or postscript file, this defines the maximum DPI to use when outputting image data. For example if the Destination printer is only capable of 600 DPI, but the resulting image to print is 1200 DPI, Geeqie will scale the image down to 600 DPI before sending it to the printer. This can greatly reduce the size of a print job when printing Proof Sheets or very large images.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </section>
-  <section id="Preview">
-    <title>Preview</title>
-    <para>The preview displays a small version of the output that will result with the current settings. The preview will update whenever a setting is changed that will effect the print output.</para>
-    <para>The preview will indicate the number of pages that will be printed, to see a preview of a specific page change to that page by activating the left or right arrow buttons located below the preview.</para>
-    <para>The size of the preview can be changed using the three zoom buttons located below the preview.</para>
-    <para>
-      The preview includes several reference lines that are
-      <emphasis role="i">not included</emphasis>
-      in the final print:
-    </para>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Reference grid</guilabel>
-        </term>
-        <listitem>
-          <para>Light gray lines that form a grid over the entire page, the spacing between these lines is dependent on the current measurement unit:</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Inch</guilabel>
-        </term>
-        <listitem>
-          <para>1 inch.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <guilabel>Points</guilabel>
-        </term>
-        <listitem>
-          <para>72 points.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <guilabel>Centimeters or Millimeters</guilabel>
-        </term>
-        <listitem>
-          <para>1 centimeter.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Margins</guilabel>
-        </term>
-        <listitem>
-          <para>Blue lines along each edge of the page represent the location of the print margins, the non-printable area of the page is also gray.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <guilabel>Proof sheet grid</guilabel>
-        </term>
-        <listitem>
-          <para>When the layout is set to Proof sheet, each proof location is indicated with a red rectangle.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </section>
-  <section id="Rememberprintsettings">
-    <title>Remember print settings</title>
-    <para>Enable this check box to retain the current settings as the default for the print dialog. This option only retains the settings when a print operation is started by activating the print button. In addition, only the settings relevant to the current print operation will be retained.</para>
-  </section>
-  <section id="Printbutton">
-    <title>Print button</title>
-    <para>Activate the print button to start the print job, the dialog will change to display the progress as images are sent to the selected print destination.</para>
-  </section>
-  <section id="Cancelbutton">
-    <title>Cancel button</title>
-    <para>Activate this button to close the print dialog, no printing will be performed.</para>
   </section>
 </chapter>
