@@ -1410,7 +1410,9 @@ static RemoteCommandEntry remote_commands[] = {
 	{ NULL, "--first",              gr_image_first,         FALSE, FALSE, NULL, N_("first image") },
 	{ "-f", "--fullscreen",         gr_fullscreen_toggle,   FALSE, TRUE,  NULL, N_("toggle full screen") },
 	{ NULL, "--file:",              gr_file_load,           TRUE,  FALSE, N_("<FILE>|<URL>"), N_("open FILE or URL, bring Geeqie window to the top") },
+	{ NULL, "file:",                gr_file_load,           TRUE,  FALSE, N_("<FILE>|<URL>"), N_("open FILE or URL, bring Geeqie window to the top") },
 	{ NULL, "--File:",              gr_file_load_no_raise,  TRUE,  FALSE, N_("<FILE>|<URL>"), N_("open FILE or URL, do not bring Geeqie window to the top") },
+	{ NULL, "File:",                gr_file_load_no_raise,  TRUE,  FALSE, N_("<FILE>|<URL>"), N_("open FILE or URL, do not bring Geeqie window to the top") },
 	{ "-fs","--fullscreen-start",   gr_fullscreen_start,    FALSE, FALSE, NULL, N_("start full screen") },
 	{ "-fS","--fullscreen-stop",    gr_fullscreen_stop,     FALSE, FALSE, NULL, N_("stop full screen") },
 	{ NULL, "--geometry=",          gr_geometry,            TRUE, FALSE, N_("<GEOMETRY>"), N_("set window geometry") },
@@ -1437,6 +1439,7 @@ static RemoteCommandEntry remote_commands[] = {
 	{ NULL, "--PWD:",               gr_pwd,                 TRUE, FALSE, N_("<PWD>"), N_("use PWD as working directory for following commands") },
 	{ "-q", "--quit",               gr_quit,                FALSE, FALSE, NULL, N_("quit") },
 	{ NULL, "--raise",              gr_raise,               FALSE, FALSE, NULL, N_("bring the Geeqie window to the top") },
+	{ NULL, "raise",                gr_raise,               FALSE, FALSE, NULL, N_("bring the Geeqie window to the top") },
 	{ "-s", "--slideshow",          gr_slideshow_toggle,    FALSE, TRUE,  NULL, N_("toggle slide show") },
 	{ NULL, "--slideshow-recurse:", gr_slideshow_start_rec, TRUE,  FALSE, N_("<FOLDER>"), N_("start recursive slide show in FOLDER") },
 	{ "-ss","--slideshow-start",    gr_slideshow_start,     FALSE, FALSE, NULL, N_("start slide show") },
@@ -1445,6 +1448,7 @@ static RemoteCommandEntry remote_commands[] = {
 	{ "+t", "--tools-show",         gr_tools_show,          FALSE, TRUE,  NULL, N_("show tools") },
 	{ "-t", "--tools-hide",	        gr_tools_hide,          FALSE, TRUE,  NULL, N_("hide tools") },
 	{ NULL, "--view:",              gr_file_view,           TRUE,  FALSE, N_("<FILE>"), N_("open FILE in new window") },
+	{ NULL, "view:",                gr_file_view,           TRUE,  FALSE, N_("<FILE>"), N_("open FILE in new window") },
 	{ NULL, NULL, NULL, FALSE, FALSE, NULL, NULL }
 };
 
