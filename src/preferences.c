@@ -1994,8 +1994,8 @@ static void config_tab_general(GtkWidget *notebook)
 	gchar *basename;
 	gchar *download_locn;
 	GNetworkMonitor *net_mon;
-	GSocketConnectable *geeqie_org;
-	gboolean internet_available;
+	GSocketConnectable *tz_org;
+	gboolean internet_available = FALSE;
 	TZData *tz;
 
 	vbox = scrolled_notebook_page(notebook, _("General"));
@@ -2185,9 +2185,12 @@ static void config_tab_general(GtkWidget *notebook)
 	pref_spacer(group, PREF_PAD_GROUP);
 
 	net_mon = g_network_monitor_get_default();
-	geeqie_org = g_network_address_parse_uri(GQ_WEBSITE, 80, NULL);
-	internet_available = g_network_monitor_can_reach(net_mon, geeqie_org, NULL, NULL);
-	g_object_unref(geeqie_org);
+	tz_org = g_network_address_parse_uri(TIMEZONE_DATABASE_WEB, 80, NULL);
+	if (tz_org)
+		{
+		internet_available = g_network_monitor_can_reach(net_mon, tz_org, NULL, NULL);
+		g_object_unref(tz_org);
+		}
 
 	group = pref_group_new(vbox, FALSE, _("Timezone database"), GTK_ORIENTATION_VERTICAL);
 	hbox = pref_box_new(group, TRUE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
