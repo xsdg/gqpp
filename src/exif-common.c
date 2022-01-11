@@ -660,6 +660,11 @@ static void zd_tz(ZoneDetectResult *results, gchar **timezone, gchar **countryna
 	g_free(timezone_id);
 }
 
+void ZoneDetect_onError(int errZD, int errNative)
+{
+	log_printf("Error: ZoneDetect %s (0x%08X)\n", ZDGetErrorString(errZD), (unsigned)errNative);
+}
+
 /**
  * @brief Gets timezone data from an exif structure
  * @param[in] exif
@@ -689,8 +694,6 @@ static gboolean exif_build_tz_data(ExifData *exif, gchar **exif_date_time, gchar
 	ZoneDetect *cd;
 	ZoneDetectResult *results;
 	gboolean ret = FALSE;
-	gchar *basename;
-	gchar *path;
 
 	text_latitude = exif_get_data_as_text(exif, "Exif.GPSInfo.GPSLatitude");
 	text_longitude = exif_get_data_as_text(exif, "Exif.GPSInfo.GPSLongitude");
@@ -724,11 +727,10 @@ static gboolean exif_build_tz_data(ExifData *exif, gchar **exif_date_time, gchar
 			longitude = -longitude;
 			}
 
-		path = path_from_utf8(TIMEZONE_DATABASE);
-		basename = g_path_get_basename(path);
-		timezone_path = g_build_filename(get_rc_dir(), basename, NULL);
+		timezone_path = g_build_filename(get_rc_dir(), TIMEZONE_DATABASE_FILE, NULL);
 		if (g_file_test(timezone_path, G_FILE_TEST_EXISTS))
 			{
+			ZDSetErrorHandler(ZoneDetect_onError);
 			cd = ZDOpenDatabase(timezone_path);
 			if (cd)
 				{
@@ -745,9 +747,7 @@ static gboolean exif_build_tz_data(ExifData *exif, gchar **exif_date_time, gchar
 				}
 			ZDCloseDatabase(cd);
 			}
-		g_free(path);
 		g_free(timezone_path);
-		g_free(basename);
 		}
 
 	if (ret && text_date && text_time)

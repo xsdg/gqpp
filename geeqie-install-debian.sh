@@ -81,7 +81,7 @@ optional_array=(
 "libraw-dev"
 "libomp (required by libraw)"
 "libomp-dev"
-"libarchive (for compressed files e.g. zip)"
+"libarchive (for compressed files e.g. zip, including timezone)"
 "libarchive-dev"
 )
 

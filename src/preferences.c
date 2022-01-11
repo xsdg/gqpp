@@ -1992,6 +1992,7 @@ static void config_tab_general(GtkWidget *notebook)
 	gchar *rating_symbol;
 	gchar *path;
 	gchar *basename;
+	gchar *download_locn;
 	GNetworkMonitor *net_mon;
 	GSocketConnectable *geeqie_org;
 	gboolean internet_available;
@@ -2198,9 +2199,9 @@ static void config_tab_general(GtkWidget *notebook)
 
 	tz = g_new0(TZData, 1);
 
-	path = path_from_utf8(TIMEZONE_DATABASE);
+	path = path_from_utf8(TIMEZONE_DATABASE_WEB);
 	basename = g_path_get_basename(path);
-	tz->timezone_database_user = g_build_filename(get_rc_dir(), basename, NULL);
+	tz->timezone_database_user = g_build_filename(get_rc_dir(), TIMEZONE_DATABASE_FILE, NULL);
 	g_free(path);
 	g_free(basename);
 
@@ -2212,6 +2213,10 @@ static void config_tab_general(GtkWidget *notebook)
 		{
 		button = pref_button_new(GTK_WIDGET(hbox), NULL, _("Install"), FALSE, G_CALLBACK(timezone_database_install_cb), tz);
 		}
+
+	download_locn = g_strconcat(_("Download database from: "), TIMEZONE_DATABASE_WEB, NULL);
+	pref_label_new(GTK_WIDGET(hbox), download_locn);
+	g_free(download_locn);
 
 	if (!internet_available)
 		{
@@ -4068,7 +4073,6 @@ void show_about_window(LayoutWindow *lw)
 	gchar *path;
 	GString *copyright;
 	gchar *timezone_path;
-	gchar *basename;
 	ZoneDetect *cd;
 	FILE *fp = NULL;
 #define LINE_LENGTH 1000
@@ -4077,21 +4081,21 @@ void show_about_window(LayoutWindow *lw)
 	copyright = g_string_new(NULL);
 	copyright = g_string_append(copyright, "This program comes with absolutely no warranty.\nGNU General Public License, version 2 or later.\nSee https://www.gnu.org/licenses/old-licenses/gpl-2.0.html\n\n");
 
-	path = path_from_utf8(TIMEZONE_DATABASE);
-	basename = g_path_get_basename(path);
-	timezone_path = g_build_filename(get_rc_dir(), basename, NULL);
+	timezone_path = g_build_filename(get_rc_dir(), TIMEZONE_DATABASE_FILE, NULL);
 	if (g_file_test(timezone_path, G_FILE_TEST_EXISTS))
 		{
 		cd = ZDOpenDatabase(timezone_path);
 		if (cd)
 			{
 			copyright = g_string_append(copyright, ZDGetNotice(cd));
-			ZDCloseDatabase(cd);
 			}
+		else
+			{
+			log_printf("Error: Init of timezone database %s failed\n", timezone_path);
+			}
+		ZDCloseDatabase(cd);
 		}
-	g_free(path);
 	g_free(timezone_path);
-	g_free(basename);
 
 	authors[0] = NULL;
 	path = g_build_filename(gq_helpdir, "AUTHORS", NULL);
@@ -4167,6 +4171,9 @@ static void timezone_async_ready_cb(GObject *source_object, GAsyncResult *res, g
 	GError *error = NULL;
 	TZData *tz = data;
 	gchar *tmp_filename;
+	gchar *timezone_bin;
+	gchar *tmp_dir = NULL;
+	FileData *fd;
 
 	if (!g_cancellable_is_cancelled(tz->cancellable))
 		{
@@ -4176,13 +4183,35 @@ static void timezone_async_ready_cb(GObject *source_object, GAsyncResult *res, g
 
 	if (g_file_copy_finish(G_FILE(source_object), res, &error))
 		{
-		tmp_filename = g_file_get_parse_name(tz->tmp_g_file);
-		move_file(tmp_filename, tz->timezone_database_user);
+		tmp_filename = g_file_get_path(tz->tmp_g_file);
+		fd = file_data_new_simple(tmp_filename);
+		tmp_dir = open_archive(fd);
+
+		if (tmp_dir)
+			{
+			timezone_bin = g_build_filename(tmp_dir, TIMEZONE_DATABASE_VERSION, TIMEZONE_DATABASE_FILE, NULL);
+			if (isfile(timezone_bin))
+				{
+				move_file(timezone_bin, tz->timezone_database_user);
+				}
+			else
+				{
+				warning_dialog(_("Warning: Cannot open timezone database file"), _("See the Log Window"), GTK_STOCK_DIALOG_WARNING, NULL);
+				}
+
+			g_free(timezone_bin);
+			g_free(tmp_dir); // The folder in /tmp is deleted in exit_program_final()
+			}
+		else
+			{
+			warning_dialog(_("Warning: Cannot open timezone database file"), _("See the Log Window"), GTK_STOCK_DIALOG_WARNING, NULL);
+			}
 		g_free(tmp_filename);
+		file_data_unref(fd);
 		}
 	else
 		{
-		file_util_warning_dialog(_("Timezone database download failed"), error->message, GTK_STOCK_DIALOG_ERROR, NULL);
+		file_util_warning_dialog(_("Error: Timezone database download failed"), error->message, GTK_STOCK_DIALOG_ERROR, NULL);
 		}
 
 	g_file_delete(tz->tmp_g_file, NULL, &error);
@@ -4231,7 +4260,7 @@ static void timezone_database_install_cb(GtkWidget *widget, gpointer data)
 		}
 	else
 		{
-		tz->timezone_database_gq = g_file_new_for_uri(TIMEZONE_DATABASE);
+		tz->timezone_database_gq = g_file_new_for_uri(TIMEZONE_DATABASE_WEB);
 
 		tz->gd = generic_dialog_new(_("Timezone database"), "download_timezone_database", NULL, TRUE, timezone_cancel_button_cb, tz);
 

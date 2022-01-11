@@ -24,14 +24,6 @@ make update-po
 ./scripts/template-desktop.sh
 ```
 
-* Update the the timezone database if the underlying database has changed significantly
-
-```sh
-./scripts/zonedetect/create_timezone_database
-```
-
-* Upload the timezone database to TBD
-
 ## After compiling the sources, carry out the following actions when necessary
 
 * Update the man page and Command Line Options section in Help if the command line options have changed

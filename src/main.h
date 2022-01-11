@@ -126,8 +126,9 @@
 #include "debug.h"
 #include "options.h"
 
-#define TIMEZONE_DATABASE GQ_WEBSITE"downloads/timezone21.bin"
-
+#define TIMEZONE_DATABASE_WEB "https://cdn.bertold.org/zonedetect/db/db.zip"
+#define TIMEZONE_DATABASE_FILE "timezone21.bin"
+#define TIMEZONE_DATABASE_VERSION "out_v1"
 #define HELP_SEARCH_ENGINE "https://duckduckgo.com/?q=site:geeqie.org/help "
 
 #define STAR_RATING_NOT_READ -12345
