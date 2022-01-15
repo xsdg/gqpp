@@ -124,7 +124,7 @@ chmod +x geeqie-install-debian.sh
 
 If you wish to compile the sources yourself you may download the latest version (if you have installed git) from here:
 
-Either: `git clone git://www.geeqie.org/geeqie.git`
+Either: `git clone git://git.geeqie.org/geeqie.git`
 
 Or: `git clone http://git.geeqie.org/git/geeqie.git`
 
@@ -145,7 +145,7 @@ Removal: `[sudo] make uninstall`
 
 The zip and gzip files at geeqie.org and GitHub contain only the sources - they cannot, by themselves, be used to install Geeqie.
 
-It is recommended to always use `git clone  git://www.geeqie.org/geeqie.git` to download Geeqie. After installing Geeqie you may delete the folder you have cloned Geeqie into.
+It is recommended to always use `git clone  git://git.geeqie.org/geeqie.git` to download Geeqie. After installing Geeqie you may delete the folder you have cloned Geeqie into.
 
 However if you leave the folder intact, whenever new features or patches are available, execute:
 
