@@ -8,7 +8,7 @@
 ## Dialogs allow the user to install additional features.
 ##
 
-version="2022-01-01"
+version="2022-01-15"
 description=$'
 Geeqie is an image viewer.
 This script will download, compile, and install Geeqie on Debian-based systems.
@@ -537,7 +537,7 @@ echo "#Getting new sources from server..." > $zen_pipe
 
 if [[ $mode == "install" ]]
 then
-	ret=$(git clone git://www.geeqie.org/geeqie.git >>$install_log 2>&1)
+	ret=$(git clone git://geeqie.org/geeqie.git >>$install_log 2>&1)
 else
 	git checkout master >>$install_log 2>&1
 	if [[ $? != 0 ]]
