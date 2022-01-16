@@ -1,3 +1,22 @@
+Geeqie 1.7
+============
+
+- Copy image to clipboard option
+- Fix MacOS problems
+- Multi-threaded find duplicates
+- Generate sRGB thumbnails for images with embedded color profile
+- External image decoder option
+- AppImage supported
+- Support jpeg xl format
+- Automated cache maintenance
+- Support archive (e.g. zip) files
+- Use system theme background color
+
+And as usual:
+- Many small improvements
+- Many bug fixes
+- Updated language support
+
 Geeqie 1.6
 ============
 
