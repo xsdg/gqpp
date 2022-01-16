@@ -24,6 +24,7 @@ then
 fi
 
 options_file=$(mktemp)
+year=$(date +"%Y")
 
 echo "[NAME]
 Geeqie - GTK based multiformat image viewer
@@ -41,7 +42,7 @@ Full documentation: https://www.geeqie.org/help/GuideIndex.html
 Please send bug reports and feedback to https://github.com/BestImageViewer/geeqie/issues
 
 [COPYRIGHT]
-Copyright (C) 1999-2004 by John Ellis. Copyright (C) 2004-2021 by The Geeqie Team. Use this software  at  your
+Copyright (C) 1999-2004 by John Ellis. Copyright (C) 2004-$year by The Geeqie Team. Use this software  at  your
 own  risk! This  software released under the GNU General Public License. Please read the COPYING file for more
 information." > "$options_file"
 
