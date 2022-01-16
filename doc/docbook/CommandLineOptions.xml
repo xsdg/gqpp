@@ -7,8 +7,8 @@
 <refmeta>
 <refentrytitle>GEEQIE</refentrytitle>
 <manvolnum>1</manvolnum>
-<refmiscinfo class='source'>November 2021</refmiscinfo>
-<refmiscinfo class='manual'>Geeqie 1.6+git20211107-31197b3d GTK3</refmiscinfo>
+<refmiscinfo class='source'>January 2022</refmiscinfo>
+<refmiscinfo class='manual'>Geeqie 1.7 GTK3</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>Geeqie</refname>
@@ -30,7 +30,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
 
 <para>Generated for version:</para>
 
-<para>Geeqie 1.6+git20211107-31197b3d</para>
+<para>Geeqie 1.7</para>
 
 <refsect2 id='valid_options'><title>Valid options:</title>
 <variablelist remap='TP'>
@@ -230,7 +230,19 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
+  <term>file:&lt;FILE&gt;|&lt;URL&gt;</term>
+  <listitem>
+<para>open FILE or URL, bring Geeqie window to the top</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
   <term><emphasis role='strong' remap='B'>--File</emphasis>:&lt;FILE&gt;|&lt;URL&gt;</term>
+  <listitem>
+<para>open FILE or URL, do not bring Geeqie window to the top</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term>File:&lt;FILE&gt;|&lt;URL&gt;</term>
   <listitem>
 <para>open FILE or URL, do not bring Geeqie window to the top</para>
   </listitem>
@@ -380,6 +392,12 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
+  <term>raise</term>
+  <listitem>
+<para>bring the Geeqie window to the top</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
   <term><emphasis role='strong' remap='B'>-s</emphasis> <emphasis role='strong' remap='B'>--slideshow</emphasis></term>
   <listitem>
 <para>toggle slide show</para>
@@ -425,6 +443,12 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   <term><emphasis role='strong' remap='B'>--view</emphasis>:&lt;FILE&gt;</term>
   <listitem>
 <para>open FILE in new window</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term>view:&lt;FILE&gt;</term>
+  <listitem>
+<para>open FILE in new window</para>
 
 <para>All other command line parameters are used as plain files if they exist.</para>
 
@@ -440,7 +464,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
 </refsect1>
 
 <refsect1 id='copyright'><title>COPYRIGHT</title>
-<para>Copyright (C) 1999-2004 by John Ellis. Copyright (C) 2004-2021 by The Geeqie Team. Use this software  at  your
+<para>Copyright (C) 1999-2004 by John Ellis. Copyright (C) 2004-2022 by The Geeqie Team. Use this software  at  your
 own  risk! This  software released under the GNU General Public License. Please read the COPYING file for more
 information.</para>
 </refsect1>
