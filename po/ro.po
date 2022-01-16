@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-28 11:11+0000\n"
+"POT-Creation-Date: 2022-01-16 10:56+0000\n"
 "PO-Revision-Date: 2009-07-24 17:16+0200\n"
 "Last-Translator: Sabin Iacob <iacobs@gmail.com>\n"
 "Language-Team: Romanian <rtfs-project@sourceforge.net>\n"
@@ -96,12 +96,12 @@ msgid "Tethered photography"
 msgstr ""
 
 #: ../src/advanced_exif.c:406 ../src/cache_maint.c:1779
-#: ../src/preferences.c:128 ../src/preferences.c:2864 ../src/search.c:2246
-#: ../src/search.c:3574
+#: ../src/preferences.c:128 ../src/preferences.c:2872 ../src/search.c:2281
+#: ../src/search.c:3609
 msgid "Metadata"
 msgstr "Metadate"
 
-#: ../src/advanced_exif.c:465 ../src/preferences.c:2771
+#: ../src/advanced_exif.c:465 ../src/preferences.c:2779
 msgid "Description"
 msgstr "Descriere"
 
@@ -109,9 +109,9 @@ msgstr "Descriere"
 msgid "Value"
 msgstr "Valoare"
 
-#: ../src/advanced_exif.c:467 ../src/desktop_file.c:631 ../src/dupe.c:3933
-#: ../src/dupe.c:4658 ../src/dupe.c:5241 ../src/osd.c:38 ../src/search.c:3658
-#: ../src/utilops.c:515 ../src/view_file/view_file_list.c:2228
+#: ../src/advanced_exif.c:467 ../src/desktop_file.c:631 ../src/dupe.c:3978
+#: ../src/dupe.c:4703 ../src/dupe.c:5289 ../src/osd.c:38 ../src/search.c:3693
+#: ../src/utilops.c:515 ../src/view_file/view_file_list.c:2229
 msgid "Name"
 msgstr "Nume"
 
@@ -136,12 +136,12 @@ msgstr "Histogramă"
 msgid "Title"
 msgstr "Titlu"
 
-#: ../src/bar.c:203 ../src/osd.c:48 ../src/preferences.c:3259
-#: ../src/search.c:3493
+#: ../src/bar.c:203 ../src/osd.c:48 ../src/preferences.c:3267
+#: ../src/search.c:3528
 msgid "Keywords"
 msgstr "Cuvinte cheie"
 
-#: ../src/bar.c:204 ../src/osd.c:47 ../src/search.c:3505
+#: ../src/bar.c:204 ../src/osd.c:47 ../src/search.c:3540
 msgid "Comment"
 msgstr "Comentariu"
 
@@ -197,7 +197,8 @@ msgstr "Mută _jos"
 msgid "Height..."
 msgstr "Înălţime"
 
-#: ../src/bar.c:421 ../src/toolbar.c:229
+#: ../src/bar.c:421 ../src/collect-table.c:87 ../src/dupe.c:156
+#: ../src/search.c:359 ../src/toolbar.c:229
 msgid "Remove"
 msgstr "Şterge"
 
@@ -360,7 +361,7 @@ msgid "Map centering"
 msgstr "Centrare pe hartă"
 
 #: ../src/bar_gps.c:959 ../src/menu.c:329 ../src/osd.c:42
-#: ../src/preferences.c:2267
+#: ../src/preferences.c:2275
 msgid "Zoom"
 msgstr "Zoom"
 
@@ -370,27 +371,27 @@ msgid "Zoom level"
 msgstr "Nivel zoom %i"
 
 #. use the same strings as in layout_util.c
-#: ../src/bar_histogram.c:257 ../src/layout_util.c:2656
+#: ../src/bar_histogram.c:257 ../src/layout_util.c:2661
 msgid "Histogram on _Red"
 msgstr "Histogramă pe _roșu"
 
-#: ../src/bar_histogram.c:258 ../src/layout_util.c:2657
+#: ../src/bar_histogram.c:258 ../src/layout_util.c:2662
 msgid "Histogram on _Green"
 msgstr "Histo_gramă pe verde"
 
-#: ../src/bar_histogram.c:259 ../src/layout_util.c:2658
+#: ../src/bar_histogram.c:259 ../src/layout_util.c:2663
 msgid "Histogram on _Blue"
 msgstr "Histogramă pe al_bastru"
 
-#: ../src/bar_histogram.c:260 ../src/layout_util.c:2659
+#: ../src/bar_histogram.c:260 ../src/layout_util.c:2664
 msgid "_Histogram on RGB"
 msgstr "_Histogramă pe RGB"
 
-#: ../src/bar_histogram.c:261 ../src/layout_util.c:2660
+#: ../src/bar_histogram.c:261 ../src/layout_util.c:2665
 msgid "Histogram on _Value"
 msgstr "Histogramă pe _valoare"
 
-#: ../src/bar_histogram.c:265 ../src/layout_util.c:2664
+#: ../src/bar_histogram.c:265 ../src/layout_util.c:2669
 msgid "Li_near Histogram"
 msgstr "Histogramă li_niară"
 
@@ -499,7 +500,7 @@ msgstr "Ascunde nebifate"
 msgid "Revert all hidden"
 msgstr ""
 
-#: ../src/bar_keywords.c:1399 ../src/dupe.c:3946
+#: ../src/bar_keywords.c:1399 ../src/dupe.c:3991
 msgid "Show all"
 msgstr "Arată tot"
 
@@ -580,7 +581,7 @@ msgstr "Nume:"
 msgid "Sort Manager"
 msgstr "Gestionar de sortare"
 
-#: ../src/bar_sort.c:667 ../src/pan-view/pan-view.c:1861
+#: ../src/bar_sort.c:667 ../src/pan-view/pan-view.c:1908
 #: ../src/ui_pathsel.c:1102
 msgid "Folders"
 msgstr "Dosare"
@@ -589,13 +590,17 @@ msgstr "Dosare"
 msgid "Collections"
 msgstr "Colecţii"
 
-#: ../src/bar_sort.c:677 ../src/preferences.c:686 ../src/preferences.c:797
-#: ../src/toolbar.c:94 ../src/utilops.c:2371
+#: ../src/bar_sort.c:677 ../src/collect-table.c:82 ../src/dupe.c:151
+#: ../src/img-view.c:92 ../src/pan-view/pan-view.c:98 ../src/preferences.c:686
+#: ../src/preferences.c:797 ../src/search.c:354 ../src/toolbar.c:94
+#: ../src/utilops.c:2371
 msgid "Copy"
 msgstr "Copiază"
 
-#: ../src/bar_sort.c:681 ../src/preferences.c:688 ../src/preferences.c:798
-#: ../src/toolbar.c:95 ../src/utilops.c:2321
+#: ../src/bar_sort.c:681 ../src/collect-table.c:83 ../src/dupe.c:152
+#: ../src/img-view.c:93 ../src/pan-view/pan-view.c:99 ../src/preferences.c:688
+#: ../src/preferences.c:798 ../src/search.c:355 ../src/toolbar.c:95
+#: ../src/utilops.c:2321
 msgid "Move"
 msgstr "Mută"
 
@@ -636,8 +641,8 @@ msgid "Geeqie: Cleaning thumbs..."
 msgstr "Şterg miniaturile..."
 
 #: ../src/cache_maint.c:184 ../src/cache_maint.c:684 ../src/cache_maint.c:787
-#: ../src/cache_maint.c:984 ../src/cache_maint.c:1461 ../src/editors.c:1244
-#: ../src/preferences.c:3036
+#: ../src/cache_maint.c:984 ../src/cache_maint.c:1461 ../src/editors.c:1245
+#: ../src/preferences.c:3044
 msgid "done"
 msgstr "terminat"
 
@@ -663,12 +668,12 @@ msgid "stopped"
 msgstr "oprit de către utilizator"
 
 #: ../src/cache_maint.c:817 ../src/cache_maint.c:1492 ../src/cache_maint.c:1622
-#: ../src/preferences.c:3118
+#: ../src/preferences.c:3126
 msgid "Invalid folder"
 msgstr "Folder invalid"
 
 #: ../src/cache_maint.c:818 ../src/cache_maint.c:1493 ../src/cache_maint.c:1623
-#: ../src/preferences.c:3119
+#: ../src/preferences.c:3127
 msgid "The specified folder can not be found."
 msgstr "Folder-ul specificat nu a putut fi găsit"
 
@@ -677,21 +682,21 @@ msgid "Create thumbnails"
 msgstr "Creează thumbnail-uri"
 
 #: ../src/cache_maint.c:894 ../src/cache_maint.c:1167 ../src/cache_maint.c:1542
-#: ../src/cache_maint.c:1661 ../src/preferences.c:3157
+#: ../src/cache_maint.c:1661 ../src/preferences.c:3165
 msgid "S_tart"
 msgstr "S_tart"
 
 #: ../src/cache_maint.c:907 ../src/cache_maint.c:1555 ../src/cache_maint.c:1671
-#: ../src/preferences.c:3170 ../src/preferences.c:3508
+#: ../src/preferences.c:3178 ../src/preferences.c:3516
 msgid "Folder:"
 msgstr "Dosar:"
 
 #: ../src/cache_maint.c:910 ../src/cache_maint.c:1558 ../src/cache_maint.c:1674
-#: ../src/preferences.c:3173
+#: ../src/preferences.c:3181
 msgid "Select folder"
 msgstr "Alegeți folder"
 
-#: ../src/cache_maint.c:914 ../src/preferences.c:3177
+#: ../src/cache_maint.c:914 ../src/preferences.c:3185
 msgid "Include subfolders"
 msgstr "Include subfoldere"
 
@@ -700,11 +705,11 @@ msgid "Store thumbnails local to source images"
 msgstr "Salvează thumbnail-uri în imaginile sursă"
 
 #: ../src/cache_maint.c:924 ../src/cache_maint.c:1176 ../src/cache_maint.c:1568
-#: ../src/preferences.c:3185
+#: ../src/preferences.c:3193
 msgid "click start to begin"
 msgstr "click pe start pentru a începe"
 
-#: ../src/cache_maint.c:1096 ../src/editors.c:1170
+#: ../src/cache_maint.c:1096 ../src/editors.c:1171
 msgid "running..."
 msgstr "rulează..."
 
@@ -907,7 +912,7 @@ msgstr "Nu aveți permisiuni de citire pe fișierul '%s'."
 msgid "Can not open collection file"
 msgstr "Nu pot deschide fișierul colecție"
 
-#: ../src/collect-dlg.c:203
+#: ../src/collect-dlg.c:203 ../src/collect-table.c:97
 msgid "Save collection"
 msgstr "Salvează colecţia"
 
@@ -923,7 +928,7 @@ msgstr "Adaugă colecţia"
 msgid "_Append"
 msgstr "_Adaugă"
 
-#: ../src/collect-dlg.c:236 ../src/search.c:3268
+#: ../src/collect-dlg.c:236 ../src/search.c:3303
 msgid "Collection Files"
 msgstr "Fişiere colecţie"
 
@@ -941,199 +946,273 @@ msgstr ""
 "Nu pot salva fişierul colecție: %s\n"
 "eroare: %s\n"
 
-#: ../src/collect-table.c:214
-#, c-format
-msgid "%s, %d images (%s, %d)"
-msgstr "%s, %d imagini (%s, %d)"
+#: ../src/collect-table.c:84 ../src/dupe.c:153 ../src/img-view.c:94
+#: ../src/pan-view/pan-view.c:100 ../src/preferences.c:799 ../src/search.c:356
+#: ../src/toolbar.c:96 ../src/utilops.c:2417 ../src/utilops.c:2883
+msgid "Rename"
+msgstr "Redenumeşte"
 
-#: ../src/collect-table.c:221
-#, c-format
-msgid "%s, %d images"
-msgstr "%s, %d imagini"
-
-#: ../src/collect-table.c:226 ../src/layout_util.c:1924
-#: ../src/layout_util.c:3659
-msgid "Empty"
-msgstr "Gol"
-
-#: ../src/collect-table.c:240 ../src/dupe.c:2143 ../src/search.c:406
-#: ../src/view_file/view_file.c:1346 ../src/view_file/view_file.c:1455
-msgid "Loading thumbs..."
-msgstr "Încarc miniaturile..."
-
-#: ../src/collect-table.c:961 ../src/dupe.c:3489 ../src/dupe.c:3820
-#: ../src/layout_util.c:2455 ../src/search.c:1118
-msgid "_View"
-msgstr "_Vizualizare"
-
-#: ../src/collect-table.c:963 ../src/dupe.c:3491 ../src/dupe.c:3822
-#: ../src/img-view.c:1360 ../src/layout_image.c:792
-#: ../src/pan-view/pan-view.c:2343 ../src/search.c:1120
-#: ../src/view_file/view_file.c:691
-msgid "View in _new window"
-msgstr "Vizualizează în fereastră _nouă"
-
-#: ../src/collect-table.c:965 ../src/pan-view/pan-view.c:2345
-#, fuzzy
-msgid "Go to original"
-msgstr "Măreşte la dimensiunea iniţială"
-
-#: ../src/collect-table.c:968 ../src/dupe.c:3543 ../src/dupe.c:3830
-msgid "Rem_ove"
-msgstr "_Şterge"
-
-#: ../src/collect-table.c:971
-#, fuzzy
-msgid "Append from file selection"
-msgstr "Adaugă din lista de fişiere"
-
-#: ../src/collect-table.c:973
-msgid "Append from collection..."
-msgstr "Adaugă din colecţie"
-
-#: ../src/collect-table.c:977
-msgid "_Selection"
-msgstr "_Selecție"
-
-#: ../src/collect-table.c:979 ../src/dupe.c:3494 ../src/dupe.c:3825
-#: ../src/layout_util.c:2528 ../src/preferences.c:803 ../src/search.c:1123
-#: ../src/toolbar.c:101 ../src/view_file/view_file.c:1080
-#: ../src/view_file/view_file.c:1130
-msgid "Select all"
-msgstr "Selectează tot"
-
-#: ../src/collect-table.c:981 ../src/dupe.c:3496 ../src/dupe.c:3827
-#: ../src/layout_util.c:2529 ../src/preferences.c:804 ../src/search.c:1125
-#: ../src/toolbar.c:102 ../src/view_file/view_file.c:1135
-msgid "Select none"
-msgstr "Nu selecta nimic"
-
-#: ../src/collect-table.c:983
-msgid "Invert selection"
-msgstr "Inversează Selecția"
-
-#: ../src/collect-table.c:985
-#, fuzzy
-msgid "Rectangular selection"
-msgstr "Selecție rectangulară în modul  de afișare cu icon-uri"
-
-#: ../src/collect-table.c:997 ../src/dupe.c:3521 ../src/img-view.c:1364
-#: ../src/layout_image.c:806 ../src/layout_util.c:2502
-#: ../src/pan-view/pan-view.c:2349 ../src/search.c:1142
-#: ../src/view_file/view_file.c:697
-msgid "_Copy..."
-msgstr "_Copiere..."
-
-#: ../src/collect-table.c:999 ../src/dupe.c:3523 ../src/img-view.c:1365
-#: ../src/layout_image.c:808 ../src/layout_util.c:2503
-#: ../src/pan-view/pan-view.c:2351 ../src/search.c:1144
-#: ../src/view_file/view_file.c:699
-msgid "_Move..."
-msgstr "_Mutare..."
-
-#: ../src/collect-table.c:1001 ../src/dupe.c:3525 ../src/img-view.c:1366
-#: ../src/layout_image.c:810 ../src/layout_util.c:2504
-#: ../src/pan-view/pan-view.c:2353 ../src/search.c:1146 ../src/view_dir.c:735
-#: ../src/view_file/view_file.c:701
-msgid "_Rename..."
-msgstr "_Redenumire..."
-
-#: ../src/collect-table.c:1003 ../src/dupe.c:3527 ../src/img-view.c:1367
-#: ../src/layout_image.c:812 ../src/pan-view/pan-view.c:2355
-#: ../src/search.c:1148 ../src/view_dir.c:738 ../src/view_file/view_file.c:703
-msgid "_Copy path"
-msgstr "_Copiază cale"
-
-#: ../src/collect-table.c:1005 ../src/dupe.c:3529 ../src/img-view.c:1368
-#: ../src/layout_image.c:813 ../src/pan-view/pan-view.c:2357
-#: ../src/search.c:1150 ../src/view_dir.c:741 ../src/view_file/view_file.c:705
-#, fuzzy
-msgid "_Copy path unquoted"
-msgstr "_Copiază cale"
-
-#: ../src/collect-table.c:1010 ../src/dupe.c:3534 ../src/img-view.c:1372
-#: ../src/layout_image.c:819 ../src/layout_util.c:2505
-#: ../src/layout_util.c:2506 ../src/layout_util.c:2507
-#: ../src/pan-view/pan-view.c:2362 ../src/search.c:1155
-#: ../src/view_file/view_file.c:709
-#, fuzzy
-msgid "Move to Trash..."
-msgstr "Mută..."
-
-#: ../src/collect-table.c:1011 ../src/dupe.c:3535 ../src/img-view.c:1373
-#: ../src/layout_image.c:820 ../src/pan-view/pan-view.c:2363
-#: ../src/search.c:1156 ../src/view_file/view_file.c:710
+#: ../src/collect-table.c:85 ../src/collect-table.c:1053 ../src/dupe.c:154
+#: ../src/dupe.c:3573 ../src/img-view.c:95 ../src/img-view.c:96
+#: ../src/img-view.c:1439 ../src/layout_image.c:827
+#: ../src/pan-view/pan-view.c:101 ../src/pan-view/pan-view.c:2416
+#: ../src/search.c:357 ../src/search.c:1191 ../src/view_file/view_file.c:717
 #, fuzzy
 msgid "Move to Trash"
 msgstr "Mu_tă sus"
 
-#: ../src/collect-table.c:1014 ../src/dupe.c:3538 ../src/img-view.c:1376
-#: ../src/layout_image.c:824 ../src/pan-view/pan-view.c:2366
-#: ../src/search.c:1159 ../src/view_dir.c:744 ../src/view_file/view_file.c:713
+#: ../src/collect-table.c:86 ../src/dupe.c:161 ../src/img-view.c:98
+#: ../src/img-view.c:136 ../src/layout_util.c:2482
+#: ../src/pan-view/pan-view.c:102 ../src/search.c:364
+msgid "Close window"
+msgstr "Închide fereastra"
+
+#: ../src/collect-table.c:88 ../src/dupe.c:162 ../src/preferences.c:3530
+#: ../src/search.c:365
+msgid "View"
+msgstr "Vizualizare"
+
+#: ../src/collect-table.c:89 ../src/dupe.c:163 ../src/layout_util.c:2575
+#: ../src/search.c:366
+msgid "View in new window"
+msgstr "Vizualizează în fereastră nouă"
+
+#: ../src/collect-table.c:90 ../src/collect-table.c:1021 ../src/dupe.c:158
+#: ../src/dupe.c:3532 ../src/dupe.c:3870 ../src/layout_util.c:2479
+#: ../src/preferences.c:803 ../src/search.c:360 ../src/search.c:1158
+#: ../src/toolbar.c:101 ../src/view_file/view_file.c:1087
+#: ../src/view_file/view_file.c:1137
+msgid "Select all"
+msgstr "Selectează tot"
+
+#: ../src/collect-table.c:91 ../src/collect-table.c:1023 ../src/dupe.c:159
+#: ../src/dupe.c:166 ../src/dupe.c:3534 ../src/dupe.c:3872
+#: ../src/layout_util.c:2480 ../src/preferences.c:804 ../src/search.c:361
+#: ../src/search.c:1160 ../src/toolbar.c:102 ../src/view_file/view_file.c:1142
+msgid "Select none"
+msgstr "Nu selecta nimic"
+
+#: ../src/collect-table.c:92 ../src/collect-table.c:1027
+#, fuzzy
+msgid "Rectangular selection"
+msgstr "Selecție rectangulară în modul  de afișare cu icon-uri"
+
+#: ../src/collect-table.c:93
+#, fuzzy
+msgid "Select single file"
+msgstr "Alegeți folder"
+
+#: ../src/collect-table.c:94
+#, fuzzy
+msgid "Toggle select image"
+msgstr "imaginea următoare"
+
+#: ../src/collect-table.c:95 ../src/collect-table.c:1013
+#, fuzzy
+msgid "Append from file selection"
+msgstr "Adaugă din lista de fişiere"
+
+#: ../src/collect-table.c:96
+#, fuzzy
+msgid "Append from collection"
+msgstr "Adaugă din colecţie"
+
+#: ../src/collect-table.c:98
+#, fuzzy
+msgid "Save collection as"
+msgstr "Salvează colecţia"
+
+#: ../src/collect-table.c:99
+#, fuzzy
+msgid "Show filename text"
+msgstr "Afişează numele fişierelor"
+
+#: ../src/collect-table.c:100 ../src/menu.c:174
+msgid "Sort by name"
+msgstr "Sortare după nume"
+
+#: ../src/collect-table.c:101 ../src/menu.c:164
+msgid "Sort by number"
+msgstr "Sortare după număr"
+
+#: ../src/collect-table.c:102 ../src/menu.c:146
+msgid "Sort by date"
+msgstr "Sortare după dată"
+
+#: ../src/collect-table.c:103 ../src/menu.c:143
+msgid "Sort by size"
+msgstr "Sortare după mărime"
+
+#: ../src/collect-table.c:104 ../src/menu.c:161
+msgid "Sort by path"
+msgstr "Sortare după cale"
+
+#: ../src/collect-table.c:105 ../src/img-view.c:138 ../src/preferences.c:808
+#: ../src/toolbar.c:106
+msgid "Print"
+msgstr "Ti_părește"
+
+#: ../src/collect-table.c:249
+#, c-format
+msgid "%s, %d images (%s, %d)"
+msgstr "%s, %d imagini (%s, %d)"
+
+#: ../src/collect-table.c:256
+#, c-format
+msgid "%s, %d images"
+msgstr "%s, %d imagini"
+
+#: ../src/collect-table.c:261 ../src/layout_util.c:1924
+#: ../src/layout_util.c:3664
+msgid "Empty"
+msgstr "Gol"
+
+#: ../src/collect-table.c:275 ../src/dupe.c:2172 ../src/search.c:435
+#: ../src/view_file/view_file.c:1353 ../src/view_file/view_file.c:1462
+msgid "Loading thumbs..."
+msgstr "Încarc miniaturile..."
+
+#: ../src/collect-table.c:1003 ../src/dupe.c:3527 ../src/dupe.c:3865
+#: ../src/layout_util.c:2460 ../src/search.c:1153
+msgid "_View"
+msgstr "_Vizualizare"
+
+#: ../src/collect-table.c:1005 ../src/dupe.c:3529 ../src/dupe.c:3867
+#: ../src/img-view.c:1426 ../src/layout_image.c:799
+#: ../src/pan-view/pan-view.c:2396 ../src/search.c:1155
+#: ../src/view_file/view_file.c:698
+msgid "View in _new window"
+msgstr "Vizualizează în fereastră _nouă"
+
+#: ../src/collect-table.c:1007 ../src/pan-view/pan-view.c:2398
+#, fuzzy
+msgid "Go to original"
+msgstr "Măreşte la dimensiunea iniţială"
+
+#: ../src/collect-table.c:1010 ../src/dupe.c:3581 ../src/dupe.c:3875
+msgid "Rem_ove"
+msgstr "_Şterge"
+
+#: ../src/collect-table.c:1015
+msgid "Append from collection..."
+msgstr "Adaugă din colecţie"
+
+#: ../src/collect-table.c:1019
+msgid "_Selection"
+msgstr "_Selecție"
+
+#: ../src/collect-table.c:1025
+msgid "Invert selection"
+msgstr "Inversează Selecția"
+
+#: ../src/collect-table.c:1039 ../src/dupe.c:3559 ../src/img-view.c:1430
+#: ../src/layout_image.c:813 ../src/layout_util.c:2472
+#: ../src/pan-view/pan-view.c:2402 ../src/search.c:1177
+#: ../src/view_file/view_file.c:704
+msgid "_Copy..."
+msgstr "_Copiere..."
+
+#: ../src/collect-table.c:1041 ../src/dupe.c:3561 ../src/img-view.c:1431
+#: ../src/layout_image.c:815 ../src/layout_util.c:2473
+#: ../src/pan-view/pan-view.c:2404 ../src/search.c:1179
+#: ../src/view_file/view_file.c:706
+msgid "_Move..."
+msgstr "_Mutare..."
+
+#: ../src/collect-table.c:1043 ../src/dupe.c:3563 ../src/img-view.c:1432
+#: ../src/layout_image.c:817 ../src/layout_util.c:2474
+#: ../src/pan-view/pan-view.c:2406 ../src/search.c:1181 ../src/view_dir.c:735
+#: ../src/view_file/view_file.c:708
+msgid "_Rename..."
+msgstr "_Redenumire..."
+
+#: ../src/collect-table.c:1045 ../src/dupe.c:3565 ../src/img-view.c:1433
+#: ../src/search.c:1183 ../src/view_dir.c:738
+msgid "_Copy path"
+msgstr "_Copiază cale"
+
+#: ../src/collect-table.c:1047 ../src/dupe.c:3567 ../src/img-view.c:1434
+#: ../src/search.c:1185 ../src/view_dir.c:741
+#, fuzzy
+msgid "_Copy path unquoted"
+msgstr "_Copiază cale"
+
+#: ../src/collect-table.c:1052 ../src/dupe.c:3572 ../src/img-view.c:1438
+#: ../src/layout_image.c:826 ../src/layout_util.c:2475
+#: ../src/layout_util.c:2476 ../src/layout_util.c:2477
+#: ../src/pan-view/pan-view.c:2415 ../src/search.c:1190
+#: ../src/view_file/view_file.c:716
+#, fuzzy
+msgid "Move to Trash..."
+msgstr "Mută..."
+
+#: ../src/collect-table.c:1056 ../src/dupe.c:3576 ../src/img-view.c:1442
+#: ../src/layout_image.c:831 ../src/pan-view/pan-view.c:2419
+#: ../src/search.c:1194 ../src/view_dir.c:744 ../src/view_file/view_file.c:720
 msgid "_Delete..."
 msgstr "_Ştergere..."
 
-#: ../src/collect-table.c:1015 ../src/dupe.c:3539 ../src/img-view.c:1377
-#: ../src/layout_image.c:825 ../src/pan-view/pan-view.c:2367
-#: ../src/search.c:1160 ../src/ui_pathsel.c:646
-#: ../src/view_file/view_file.c:714
+#: ../src/collect-table.c:1057 ../src/dupe.c:3577 ../src/img-view.c:1443
+#: ../src/layout_image.c:832 ../src/pan-view/pan-view.c:2420
+#: ../src/search.c:1195 ../src/ui_pathsel.c:646
+#: ../src/view_file/view_file.c:721
 msgid "_Delete"
 msgstr "_Şterge"
 
-#: ../src/collect-table.c:1021
+#: ../src/collect-table.c:1063
 msgid "Randomize"
 msgstr "Amestecă"
 
-#: ../src/collect-table.c:1023 ../src/view_dir.c:759
-#: ../src/view_file/view_file.c:739
+#: ../src/collect-table.c:1065 ../src/view_dir.c:759
+#: ../src/view_file/view_file.c:746
 msgid "_Sort"
 msgstr "_Sortare"
 
-#: ../src/collect-table.c:1026 ../src/view_file/view_file.c:755
+#: ../src/collect-table.c:1068 ../src/view_file/view_file.c:762
 msgid "Show filename _text"
 msgstr "Afişează numele fişierelor"
 
-#: ../src/collect-table.c:1028 ../src/view_file/view_file.c:763
-#: ../src/view_file/view_file.c:767
+#: ../src/collect-table.c:1070 ../src/view_file/view_file.c:770
+#: ../src/view_file/view_file.c:774
 #, fuzzy
 msgid "Show star rating"
 msgstr "Sortare după dată"
 
-#: ../src/collect-table.c:1031
+#: ../src/collect-table.c:1073
 msgid "_Save collection"
 msgstr "_Salvează colecţia"
 
-#: ../src/collect-table.c:1033
+#: ../src/collect-table.c:1075
 msgid "Save collection _as..."
 msgstr "Salvează colecţia c_a..."
 
-#: ../src/collect-table.c:1036 ../src/layout_util.c:2498
-#: ../src/view_file/view_file.c:724
+#: ../src/collect-table.c:1078 ../src/layout_util.c:2515
+#: ../src/view_file/view_file.c:731
 msgid "_Find duplicates..."
 msgstr "_Caută duplicatele..."
 
-#: ../src/collect-table.c:1038 ../src/dupe.c:3518 ../src/layout_util.c:2500
-#: ../src/search.c:1139
+#: ../src/collect-table.c:1080 ../src/dupe.c:3556 ../src/layout_util.c:2517
+#: ../src/search.c:1174
 msgid "Print..."
 msgstr "Ti_părește..."
 
-#: ../src/collect-table.c:2236 ../src/dupe.c:4920 ../src/img-view.c:1537
+#: ../src/collect-table.c:2278 ../src/dupe.c:4968 ../src/img-view.c:1603
 msgid "Dropped list includes folders."
 msgstr "Lista include directoare"
 
-#: ../src/collect-table.c:2238 ../src/dupe.c:4922 ../src/img-view.c:1539
+#: ../src/collect-table.c:2280 ../src/dupe.c:4970 ../src/img-view.c:1605
 msgid "_Add contents"
 msgstr "_Adaugă conţinut"
 
-#: ../src/collect-table.c:2240 ../src/dupe.c:4923 ../src/img-view.c:1540
+#: ../src/collect-table.c:2282 ../src/dupe.c:4971 ../src/img-view.c:1606
 msgid "Add contents _recursive"
 msgstr "Adaugă conţinut în mod _recursiv"
 
-#: ../src/collect-table.c:2242 ../src/dupe.c:4924 ../src/img-view.c:1541
+#: ../src/collect-table.c:2284 ../src/dupe.c:4972 ../src/img-view.c:1607
 msgid "_Skip folders"
 msgstr "_Sari peste directoare"
 
-#: ../src/collect-table.c:2245 ../src/dupe.c:4926 ../src/img-view.c:1543
+#: ../src/collect-table.c:2287 ../src/dupe.c:4974 ../src/img-view.c:1609
 #: ../src/view_dir.c:431
 msgid "Cancel"
 msgstr "Renunţă"
@@ -1207,7 +1286,7 @@ msgstr ""
 msgid "new.desktop"
 msgstr "new.desktop"
 
-#: ../src/desktop_file.c:549 ../src/menu.c:119
+#: ../src/desktop_file.c:549
 msgid "Plugins"
 msgstr ""
 
@@ -1220,248 +1299,285 @@ msgstr "Scrierea permisă"
 msgid "Hidden"
 msgstr "Ascuns"
 
-#: ../src/desktop_file.c:659 ../src/dupe.c:3939 ../src/dupe.c:4662
-#: ../src/osd.c:39 ../src/search.c:3662 ../src/ui_pathsel.c:1114
+#: ../src/desktop_file.c:659 ../src/dupe.c:3984 ../src/dupe.c:4707
+#: ../src/osd.c:39 ../src/search.c:3697 ../src/ui_pathsel.c:1114
 #: ../src/utilops.c:511
 msgid "Path"
 msgstr "Cale"
 
-#: ../src/dupe.c:226
+#: ../src/dupe.c:155 ../src/img-view.c:97 ../src/preferences.c:800
+#: ../src/preferences.c:3500 ../src/search.c:358 ../src/toolbar.c:97
+#: ../src/utilops.c:2230
+msgid "Delete"
+msgstr "Şterge"
+
+#: ../src/dupe.c:157 ../src/preferences.c:2088 ../src/preferences.c:2120
+#: ../src/preferences.c:2248 ../src/search.c:362 ../src/window.c:407
+#, fuzzy
+msgid "Clear"
+msgstr "_Şterge"
+
+#: ../src/dupe.c:160 ../src/search.c:363
+#, fuzzy
+msgid "Toggle thumbs"
+msgstr "Încarc miniaturile..."
+
+#: ../src/dupe.c:164 ../src/search.c:367
+#, fuzzy
+msgid "Collection from selection"
+msgstr "Adaugă din lista de fişiere"
+
+#: ../src/dupe.c:165
+#, fuzzy
+msgid "Append list"
+msgstr "_Adaugă"
+
+#: ../src/dupe.c:167
+#, fuzzy
+msgid "Select group 1 duplicates"
+msgstr "Selecţie duplicate-grup _1"
+
+#: ../src/dupe.c:168
+#, fuzzy
+msgid "Select group 2 duplicates"
+msgstr "Selecţie duplicate-grup _1"
+
+#: ../src/dupe.c:255
 msgid "Drop files to compare them."
 msgstr "Renunţă la fişiere pentru a le compara."
 
-#: ../src/dupe.c:230
+#: ../src/dupe.c:259
 #, c-format
 msgid "%d files"
 msgstr "%d fişiere"
 
-#: ../src/dupe.c:234
+#: ../src/dupe.c:263
 #, c-format
 msgid "%d matches found in %d files"
 msgstr "%d potriviri găsite în%d fişiere"
 
-#: ../src/dupe.c:239
+#: ../src/dupe.c:268
 msgid "[set 1]"
 msgstr "[set 1]"
 
-#: ../src/dupe.c:2315
+#: ../src/dupe.c:2344
 msgid "Reading checksums..."
 msgstr "Citesc sumele de control..."
 
-#: ../src/dupe.c:2351
+#: ../src/dupe.c:2380
 msgid "Reading dimensions..."
 msgstr "Citesc dimensiunile..."
 
-#: ../src/dupe.c:2443
+#: ../src/dupe.c:2472
 msgid "Reading similarity data..."
 msgstr "Citesc datele de similaritate..."
 
 #. End of setup not done
-#: ../src/dupe.c:2481 ../src/dupe.c:2501 ../src/dupe.c:2583
+#: ../src/dupe.c:2510 ../src/dupe.c:2530 ../src/dupe.c:2612
 msgid "Comparing..."
 msgstr "Compar..."
 
-#: ../src/dupe.c:2515 ../src/dupe.c:2541 ../src/pan-view/pan-view.c:1035
+#: ../src/dupe.c:2544 ../src/dupe.c:2570 ../src/pan-view/pan-view.c:1082
 msgid "Sorting..."
 msgstr "Sortez..."
 
-#: ../src/dupe.c:2571
+#: ../src/dupe.c:2600
 #, fuzzy
 msgid "Queuing..."
 msgstr "rulează..."
 
-#: ../src/dupe.c:3002
+#: ../src/dupe.c:3033
 #, fuzzy
 msgid "Loading file list"
 msgstr "Detașează lista de fișiere"
 
-#: ../src/dupe.c:3498
+#: ../src/dupe.c:3536
 msgid "Select group _1 duplicates"
 msgstr "Selecţie duplicate-grup _1"
 
-#: ../src/dupe.c:3500
+#: ../src/dupe.c:3538
 msgid "Select group _2 duplicates"
 msgstr "Selecţie duplicate-grup _1"
 
-#: ../src/dupe.c:3545 ../src/dupe.c:3832
+#: ../src/dupe.c:3583 ../src/dupe.c:3877
 msgid "C_lear"
 msgstr "_Şterge"
 
-#: ../src/dupe.c:3548 ../src/dupe.c:3835
+#: ../src/dupe.c:3586 ../src/dupe.c:3880
 msgid "Close _window"
 msgstr "Închide _fereastra"
 
-#: ../src/dupe.c:3708
+#: ../src/dupe.c:3746
 #, c-format
 msgid "%d files (set 2)"
 msgstr "%d fişiere (set 2)"
 
-#: ../src/dupe.c:3934
+#: ../src/dupe.c:3979
 msgid "Name case-insensitive"
 msgstr "Nume case-insensitive"
 
-#: ../src/dupe.c:3935 ../src/dupe.c:4659 ../src/dupe.c:5241 ../src/osd.c:41
-#: ../src/preferences.c:2452 ../src/search.c:3659
-#: ../src/view_file/view_file_list.c:2240
+#: ../src/dupe.c:3980 ../src/dupe.c:4704 ../src/dupe.c:5289 ../src/osd.c:41
+#: ../src/preferences.c:2460 ../src/search.c:3694
+#: ../src/view_file/view_file_list.c:2241
 msgid "Size"
 msgstr "Mărime"
 
-#: ../src/dupe.c:3936 ../src/dupe.c:4660 ../src/dupe.c:5241 ../src/exif.c:336
-#: ../src/exif-common.c:918 ../src/osd.c:40 ../src/search.c:3660
-#: ../src/view_file/view_file_list.c:2244
+#: ../src/dupe.c:3981 ../src/dupe.c:4705 ../src/dupe.c:5289 ../src/exif.c:336
+#: ../src/exif-common.c:918 ../src/osd.c:40 ../src/search.c:3695
+#: ../src/view_file/view_file_list.c:2245
 msgid "Date"
 msgstr "Data"
 
-#: ../src/dupe.c:3937 ../src/dupe.c:4661 ../src/osd.c:43 ../src/search.c:3661
+#: ../src/dupe.c:3982 ../src/dupe.c:4706 ../src/osd.c:43 ../src/search.c:3696
 msgid "Dimensions"
 msgstr "Dimensiuni"
 
-#: ../src/dupe.c:3938
+#: ../src/dupe.c:3983
 msgid "Checksum"
 msgstr "Sumă de control"
 
-#: ../src/dupe.c:3940
+#: ../src/dupe.c:3985
 #, fuzzy
 msgid "Similarity (high - 95)"
 msgstr "Similaritate (mare)"
 
-#: ../src/dupe.c:3941
+#: ../src/dupe.c:3986
 #, fuzzy
 msgid "Similarity (med. - 90)"
 msgstr "Similaritate (mică)"
 
-#: ../src/dupe.c:3942
+#: ../src/dupe.c:3987
 #, fuzzy
 msgid "Similarity (low - 85)"
 msgstr "Similaritate (mică)"
 
-#: ../src/dupe.c:3943
+#: ../src/dupe.c:3988
 msgid "Similarity (custom)"
 msgstr "Similaritate (personalizată)"
 
-#: ../src/dupe.c:3944
+#: ../src/dupe.c:3989
 #, fuzzy
 msgid "Name ≠ content"
 msgstr "Conținutul imaginii este"
 
-#: ../src/dupe.c:3945
+#: ../src/dupe.c:3990
 #, fuzzy
 msgid "Name case-insensitive ≠ content"
 msgstr "Nume case-insensitive"
 
-#: ../src/dupe.c:4594 ../src/dupe.c:4982 ../src/preferences.c:795
-#: ../src/toolbar.c:92
+#: ../src/dupe.c:4639 ../src/dupe.c:5030 ../src/preferences.c:795
+#: ../src/search.c:369 ../src/toolbar.c:92
 msgid "Find duplicates"
 msgstr "Caută duplicate"
 
-#: ../src/dupe.c:4656 ../src/search.c:3656
+#: ../src/dupe.c:4701 ../src/search.c:3691
 msgid "Rank"
 msgstr "Rang"
 
-#: ../src/dupe.c:4657 ../src/search.c:3657
+#: ../src/dupe.c:4702 ../src/search.c:3692
 #, fuzzy
 msgid "Thumb"
 msgstr "Miniaturi"
 
-#: ../src/dupe.c:4663 ../src/dupe.c:5241 ../src/preferences.c:2078
-#: ../src/preferences.c:2110 ../src/preferences.c:2442
+#: ../src/dupe.c:4708 ../src/dupe.c:5289 ../src/preferences.c:2079
+#: ../src/preferences.c:2111 ../src/preferences.c:2450
 #, fuzzy
 msgid "Set"
 msgstr "Mmare..."
 
-#: ../src/dupe.c:4702
+#: ../src/dupe.c:4747
 msgid "Compare to:"
 msgstr "Compară cu:"
 
-#: ../src/dupe.c:4739 ../src/preferences.c:2002 ../src/search.c:3675
+#: ../src/dupe.c:4784 ../src/preferences.c:2003 ../src/search.c:3710
 msgid "Thumbnails"
 msgstr "Miniaturi"
 
-#: ../src/dupe.c:4747
+#: ../src/dupe.c:4793
 msgid "Compare by:"
 msgstr "Comparare după:"
 
-#: ../src/dupe.c:4755
+#: ../src/dupe.c:4801
 #, fuzzy
 msgid "Custom Threshold"
 msgstr "Prag similaritate utilizator:"
 
-#: ../src/dupe.c:4765 ../src/menu.c:229 ../src/menu.c:255
+#: ../src/dupe.c:4811 ../src/menu.c:229 ../src/menu.c:255
 msgid "Sort"
 msgstr "Sortare"
 
-#: ../src/dupe.c:4772
+#: ../src/dupe.c:4818
 #, fuzzy
 msgid "Ignore Orientation"
 msgstr "Orientare"
 
-#: ../src/dupe.c:4780
+#: ../src/dupe.c:4826
 msgid "Compare two file sets"
 msgstr "Compară 2 seturi de fişiere"
 
-#: ../src/dupe.c:4982
+#: ../src/dupe.c:5030
 msgid "Please wait for the current file selection to be loaded."
 msgstr ""
 
-#: ../src/dupe.c:5235
+#: ../src/dupe.c:5283
 #, fuzzy, c-format
 msgid "Error creating Export duplicates data file: Error: %s\n"
 msgstr ""
 "error saving sim cache data: %s\n"
 "error: %s\n"
 
-#: ../src/dupe.c:5241
+#: ../src/dupe.c:5289
 #, fuzzy
 msgid "Match"
 msgstr "Match case"
 
-#: ../src/dupe.c:5241 ../src/pan-view/pan-view-filter.c:58
+#: ../src/dupe.c:5289 ../src/pan-view/pan-view-filter.c:58
 #, fuzzy
 msgid "Group"
 msgstr "Grup:"
 
-#: ../src/dupe.c:5241
+#: ../src/dupe.c:5289
 msgid "Similarity"
 msgstr "Similaritate"
 
-#: ../src/dupe.c:5241
+#: ../src/dupe.c:5289
 #, fuzzy
 msgid "Thumbnail"
 msgstr "Miniaturi"
 
 #. ExifImageWidth, ExifImageHeight can also be unsigned short
-#: ../src/dupe.c:5241 ../src/exif.c:375 ../src/preferences.c:3932
+#: ../src/dupe.c:5289 ../src/exif.c:375 ../src/preferences.c:3940
 msgid "Width"
 msgstr "Lăţime"
 
-#: ../src/dupe.c:5241 ../src/exif.c:376 ../src/preferences.c:3934
+#: ../src/dupe.c:5289 ../src/exif.c:376 ../src/preferences.c:3942
 msgid "Height"
 msgstr "Înălţime"
 
-#: ../src/dupe.c:5241
+#: ../src/dupe.c:5289
 #, fuzzy
 msgid "Path\n"
 msgstr "Cale"
 
-#: ../src/dupe.c:5372
+#: ../src/dupe.c:5420
 #, fuzzy
 msgid "Export Files"
 msgstr "Decalaj expunere"
 
-#: ../src/dupe.c:5398
+#: ../src/dupe.c:5446
 #, fuzzy
-msgid "Export"
+msgid "_Export"
 msgstr "Sport"
 
-#: ../src/dupe.c:5403
+#: ../src/dupe.c:5451
 msgid "Export to csv"
 msgstr ""
 
-#: ../src/dupe.c:5405
+#: ../src/dupe.c:5453
 msgid "Export to tab-delimited"
 msgstr ""
 
-#: ../src/editors.c:308
+#: ../src/editors.c:309
 #, c-format
 msgid "Desktop file '%s' should not include extension in Icon key: '%s'\n"
 msgstr ""
@@ -1469,28 +1585,28 @@ msgstr ""
 "'%s'\n"
 
 #. flash fired (bit 0)
-#: ../src/editors.c:378 ../src/exif.c:220 ../src/exif-common.c:430
+#: ../src/editors.c:379 ../src/exif.c:220 ../src/exif-common.c:430
 msgid "yes"
 msgstr "da"
 
-#: ../src/editors.c:378 ../src/exif.c:219 ../src/exif-common.c:430
+#: ../src/editors.c:379 ../src/exif.c:219 ../src/exif-common.c:430
 msgid "no"
 msgstr "nu"
 
-#: ../src/editors.c:570
+#: ../src/editors.c:571
 msgid "stopping..."
 msgstr "opresc..."
 
-#: ../src/editors.c:591
+#: ../src/editors.c:592
 msgid "Edit command results"
 msgstr "Editare rezultate comandă"
 
-#: ../src/editors.c:594
+#: ../src/editors.c:595
 #, c-format
 msgid "Output of %s"
 msgstr "Ieşirea %s"
 
-#: ../src/editors.c:1121
+#: ../src/editors.c:1122
 #, c-format
 msgid ""
 "Failed to run command:\n"
@@ -1499,11 +1615,11 @@ msgstr ""
 "Nu pot executa comanda:\n"
 "%s\n"
 
-#: ../src/editors.c:1248
+#: ../src/editors.c:1249
 msgid "stopped by user"
 msgstr "oprit de către utilizator"
 
-#: ../src/editors.c:1333
+#: ../src/editors.c:1334
 #, c-format
 msgid ""
 "%s\n"
@@ -1512,39 +1628,39 @@ msgstr ""
 "%s\n"
 "\"%s\""
 
-#: ../src/editors.c:1335
+#: ../src/editors.c:1336
 msgid "Invalid editor command"
 msgstr "Comanda editor invalidă"
 
-#: ../src/editors.c:1422
+#: ../src/editors.c:1423
 msgid "Editor template is empty."
 msgstr "Template-ul de editor este gol."
 
-#: ../src/editors.c:1423
+#: ../src/editors.c:1424
 msgid "Editor template has incorrect syntax."
 msgstr "Template-ul de editor conține greșeli de sintaxă."
 
-#: ../src/editors.c:1424
+#: ../src/editors.c:1425
 msgid "Editor template uses incompatible macros."
 msgstr "Template-ul de editor conține macro-uri incompatibile."
 
-#: ../src/editors.c:1425
+#: ../src/editors.c:1426
 msgid "Can't find matching file type."
 msgstr "Nu pot găsi un tip de fișier potrivit."
 
-#: ../src/editors.c:1426
+#: ../src/editors.c:1427
 msgid "Can't execute external editor."
 msgstr "Nu pot executa editorul extern."
 
-#: ../src/editors.c:1427
+#: ../src/editors.c:1428
 msgid "External editor returned error status."
 msgstr "Editorul extern a semnalat o eroare."
 
-#: ../src/editors.c:1428
+#: ../src/editors.c:1429
 msgid "File was skipped."
 msgstr "Fișierul a fost omis."
 
-#: ../src/editors.c:1429
+#: ../src/editors.c:1430
 msgid "Unknown error."
 msgstr "Eroare necunoscută."
 
@@ -2117,7 +2233,7 @@ msgstr "Control câștig"
 msgid "Contrast"
 msgstr "Contrast"
 
-#: ../src/exif.c:399 ../src/preferences.c:3348
+#: ../src/exif.c:399 ../src/preferences.c:3356
 msgid "Saturation"
 msgstr "Saturație"
 
@@ -2372,8 +2488,10 @@ msgstr "sursa se suprapune cu destinaţia"
 msgid "Error: Unable to write marks lists to: %s\n"
 msgstr "Nu pot scrie istoricul în: %s\n"
 
-#: ../src/fullscreen.c:242 ../src/layout_util.c:2572 ../src/layout_util.c:2573
-#: ../src/layout_util.c:2574 ../src/preferences.c:2465
+#: ../src/fullscreen.c:242 ../src/img-view.c:131 ../src/layout_util.c:2577
+#: ../src/layout_util.c:2578 ../src/layout_util.c:2579
+#: ../src/pan-view/pan-view.c:119 ../src/pan-view/pan-view.c:120
+#: ../src/pan-view/pan-view.c:121 ../src/preferences.c:2473
 msgid "Full screen"
 msgstr "Tot ecranul"
 
@@ -2484,81 +2602,211 @@ msgstr ""
 msgid "JP2 image not rgb"
 msgstr ""
 
-#: ../src/img-view.c:612 ../src/layout_image.c:701 ../src/layout_image.c:1890
+#: ../src/img-view.c:99 ../src/menu.c:354 ../src/preferences.c:814
+#: ../src/toolbar.c:112
+#, fuzzy
+msgid "Rotate 180°"
+msgstr "Rotește 180"
+
+#: ../src/img-view.c:100
+#, fuzzy
+msgid "Rotate mirror"
+msgstr "_Lista imagini"
+
+#: ../src/img-view.c:101
+#, fuzzy
+msgid "Rotate flip"
+msgstr "Smooth image flip"
+
+#: ../src/img-view.c:102
+#, fuzzy
+msgid " Rotate counterclockwise 90°"
+msgstr "Rotește în sens antiorar"
+
+#: ../src/img-view.c:103
+#, fuzzy
+msgid " Rotate clockwise 90°"
+msgstr "Rotește în sens orar"
+
+#: ../src/img-view.c:104 ../src/img-view.c:105 ../src/img-view.c:106
+#: ../src/img-view.c:107
+#, fuzzy
+msgid "Previous"
+msgstr "Imaginea precedentă"
+
+#: ../src/img-view.c:108 ../src/img-view.c:109 ../src/img-view.c:110
+#: ../src/img-view.c:111
+#, fuzzy
+msgid "Next"
+msgstr "Imaginea următoare"
+
+#: ../src/img-view.c:112 ../src/img-view.c:113 ../src/layout_util.c:2543
+#: ../src/layout_util.c:2544 ../src/pan-view/pan-view.c:107
+#: ../src/pan-view/pan-view.c:108 ../src/preferences.c:818 ../src/toolbar.c:116
+msgid "Zoom in"
+msgstr "Mărire"
+
+#: ../src/img-view.c:114 ../src/layout_util.c:2545 ../src/layout_util.c:2546
+#: ../src/pan-view/pan-view.c:109 ../src/preferences.c:819 ../src/toolbar.c:117
+msgid "Zoom out"
+msgstr "Micşorare"
+
+#: ../src/img-view.c:115 ../src/img-view.c:116 ../src/img-view.c:1413
+#: ../src/layout_image.c:785 ../src/layout_util.c:2549
+#: ../src/layout_util.c:2550 ../src/preferences.c:821 ../src/toolbar.c:119
+msgid "Zoom to fit"
+msgstr "Zoom la dimensiunea ferestrei"
+
+#: ../src/img-view.c:117 ../src/img-view.c:118 ../src/img-view.c:119
+#: ../src/layout_util.c:2547 ../src/layout_util.c:2548
+#: ../src/pan-view/pan-view.c:110 ../src/pan-view/pan-view.c:111
+#: ../src/pan-view/pan-view.c:112 ../src/preferences.c:820 ../src/toolbar.c:118
+msgid "Zoom 1:1"
+msgstr "Zoom 1:1"
+
+#: ../src/img-view.c:120 ../src/layout_util.c:2553
+#: ../src/pan-view/pan-view.c:113 ../src/preferences.c:824 ../src/toolbar.c:122
+msgid "Zoom 2:1"
+msgstr "Zoom 2:1"
+
+#: ../src/img-view.c:121 ../src/layout_util.c:2554
+#: ../src/pan-view/pan-view.c:114 ../src/preferences.c:825 ../src/toolbar.c:123
+msgid "Zoom 3:1"
+msgstr "Zoom 3:1"
+
+#: ../src/img-view.c:122 ../src/layout_util.c:2555
+#: ../src/pan-view/pan-view.c:115 ../src/preferences.c:826 ../src/toolbar.c:124
+msgid "Zoom 4:1"
+msgstr "Zoom 4:1"
+
+#: ../src/img-view.c:123 ../src/layout_util.c:2558 ../src/layout_util.c:2574
+#: ../src/pan-view/pan-view.c:116 ../src/preferences.c:829 ../src/toolbar.c:127
+msgid "Zoom 1:4"
+msgstr "Zoom 1:4"
+
+#: ../src/img-view.c:124 ../src/layout_util.c:2557 ../src/layout_util.c:2573
+#: ../src/pan-view/pan-view.c:117
+msgid "Zoom 1:3"
+msgstr "Zoom 1:3"
+
+#: ../src/img-view.c:125 ../src/layout_util.c:2556 ../src/layout_util.c:2572
+#: ../src/pan-view/pan-view.c:118 ../src/preferences.c:827 ../src/toolbar.c:125
+msgid "Zoom 1:2"
+msgstr "Zoom 1:2"
+
+#: ../src/img-view.c:126
+#, fuzzy
+msgid "Zoom fit window width"
+msgstr "Zoom la dimensiunea ferestrei"
+
+#: ../src/img-view.c:127
+#, fuzzy
+msgid "Zoom fit window height"
+msgstr "Zoom la dimensiunea ferestrei"
+
+#: ../src/img-view.c:128 ../src/layout_util.c:2621
+msgid "Toggle slideshow"
+msgstr "Comută slideshow"
+
+#: ../src/img-view.c:129 ../src/layout_util.c:2586 ../src/preferences.c:835
+#: ../src/toolbar.c:138
+msgid "Pause slideshow"
+msgstr "Pauză slideshow"
+
+#: ../src/img-view.c:130
+#, fuzzy
+msgid "Reload image"
+msgstr "Amestecă"
+
+#: ../src/img-view.c:132 ../src/img-view.c:133
+#, fuzzy
+msgid "Fullscreen"
+msgstr "Tot ecranul"
+
+#: ../src/img-view.c:134
+#, fuzzy
+msgid "Image overlay"
+msgstr "Overlay imagine"
+
+#: ../src/img-view.c:135 ../src/pan-view/pan-view.c:105
+#, fuzzy
+msgid "Exit fullscreen"
+msgstr "_Ieşire din mod tot ecranul"
+
+#: ../src/img-view.c:137
+#, fuzzy
+msgid "Desaturate"
+msgstr "Natură"
+
+#: ../src/img-view.c:672 ../src/layout_image.c:701 ../src/layout_image.c:1897
 #: ../src/layout_util.c:914 ../src/view_file/view_file.c:396
 #, fuzzy
 msgid "Cannot open archive file"
 msgstr "Nu pot redenumi fișierul"
 
-#: ../src/img-view.c:612 ../src/layout_image.c:701 ../src/layout_image.c:1890
-#: ../src/layout_util.c:914 ../src/view_file/view_file.c:396
+#: ../src/img-view.c:672 ../src/layout_image.c:701 ../src/layout_image.c:1897
+#: ../src/layout_util.c:914 ../src/preferences.c:4202 ../src/preferences.c:4210
+#: ../src/view_file/view_file.c:396
 #, fuzzy
 msgid "See the Log Window"
 msgstr "Fereastra log"
 
-#: ../src/img-view.c:1344 ../src/layout_image.c:775 ../src/layout_util.c:2538
-#: ../src/layout_util.c:2539 ../src/layout_util.c:2554
-#: ../src/layout_util.c:2555 ../src/pan-view/pan-view.c:2328
+#: ../src/img-view.c:1410 ../src/layout_image.c:782 ../src/layout_util.c:2543
+#: ../src/layout_util.c:2544 ../src/layout_util.c:2559
+#: ../src/layout_util.c:2560 ../src/pan-view/pan-view.c:2381
 msgid "Zoom _in"
 msgstr "Măr_ire"
 
-#: ../src/img-view.c:1345 ../src/layout_image.c:776 ../src/layout_util.c:2540
-#: ../src/layout_util.c:2541 ../src/layout_util.c:2556
-#: ../src/layout_util.c:2557 ../src/pan-view/pan-view.c:2330
+#: ../src/img-view.c:1411 ../src/layout_image.c:783 ../src/layout_util.c:2545
+#: ../src/layout_util.c:2546 ../src/layout_util.c:2561
+#: ../src/layout_util.c:2562 ../src/pan-view/pan-view.c:2383
 msgid "Zoom _out"
 msgstr "Micş_orare"
 
-#: ../src/img-view.c:1346 ../src/layout_image.c:777 ../src/layout_util.c:2542
-#: ../src/layout_util.c:2543 ../src/layout_util.c:2558
-#: ../src/layout_util.c:2559 ../src/pan-view/pan-view.c:2332
+#: ../src/img-view.c:1412 ../src/layout_image.c:784 ../src/layout_util.c:2547
+#: ../src/layout_util.c:2548 ../src/layout_util.c:2563
+#: ../src/layout_util.c:2564 ../src/pan-view/pan-view.c:2385
 msgid "Zoom _1:1"
 msgstr "Scara _1:1"
 
-#: ../src/img-view.c:1347 ../src/layout_image.c:778
-msgid "Fit image to _window"
-msgstr "Umple _fereastra cu imaginea"
-
-#: ../src/img-view.c:1356 ../src/layout_image.c:788 ../src/layout_util.c:2535
+#: ../src/img-view.c:1422 ../src/layout_image.c:795 ../src/layout_util.c:2540
 msgid "Set as _wallpaper"
 msgstr "Pune drept fundal (_wallpaper)"
 
-#: ../src/img-view.c:1361 ../src/layout_image.c:795
+#: ../src/img-view.c:1427 ../src/layout_image.c:802
 msgid "_Go to directory view"
 msgstr "Mer_gi la afișare director"
 
-#: ../src/img-view.c:1389 ../src/layout_image.c:837
-msgid "_Stop slideshow"
-msgstr "_Opreşte prezentarea de imagini"
+#: ../src/img-view.c:1455 ../src/img-view.c:1469 ../src/layout_image.c:844
+#: ../src/layout_image.c:858 ../src/layout_util.c:2621
+msgid "Toggle _slideshow"
+msgstr "Comută _slideshow"
 
-#: ../src/img-view.c:1392 ../src/layout_image.c:840
+#: ../src/img-view.c:1458 ../src/layout_image.c:847
 msgid "Continue slides_how"
 msgstr "_Continuă prezentarea de imagini"
 
-#: ../src/img-view.c:1397 ../src/img-view.c:1405 ../src/layout_image.c:845
-#: ../src/layout_image.c:852
+#: ../src/img-view.c:1463 ../src/img-view.c:1471 ../src/layout_image.c:852
+#: ../src/layout_image.c:859
 msgid "Pause slides_how"
 msgstr "_Întrerupe prezentarea de imagini"
 
-#: ../src/img-view.c:1403 ../src/layout_image.c:851
-msgid "_Start slideshow"
-msgstr "_Porneşte prezentarea de imagini"
-
-#: ../src/img-view.c:1411 ../src/layout_image.c:862
-#: ../src/pan-view/pan-view.c:2420
+#: ../src/img-view.c:1477 ../src/layout_image.c:869
+#: ../src/pan-view/pan-view.c:2473
 msgid "Exit _full screen"
 msgstr "_Ieşire din mod tot ecranul"
 
-#: ../src/img-view.c:1415 ../src/layout_image.c:858
-#: ../src/pan-view/pan-view.c:2424
+#: ../src/img-view.c:1481 ../src/layout_image.c:865
+#: ../src/pan-view/pan-view.c:2477
 msgid "_Full screen"
 msgstr "_Tot ecranul"
 
-#: ../src/img-view.c:1419 ../src/layout_util.c:2513
-#: ../src/pan-view/pan-view.c:2428
+#: ../src/img-view.c:1485 ../src/layout_util.c:2482
+#: ../src/pan-view/pan-view.c:2481
 msgid "C_lose window"
 msgstr "Î_nchide fereastra"
 
-#: ../src/layout.c:487 ../src/view_dir.c:758 ../src/view_file/view_file.c:736
+#: ../src/layout.c:487 ../src/view_dir.c:758 ../src/view_file/view_file.c:743
 msgid "Ascending"
 msgstr "Ascendentă"
 
@@ -2693,12 +2941,12 @@ msgstr "Aranjare"
 msgid "Invalid geometry\n"
 msgstr "Date de geometrie invalide\n"
 
-#: ../src/layout_config.c:67 ../src/preferences.c:2699 ../src/ui_pathsel.c:1181
+#: ../src/layout_config.c:67 ../src/preferences.c:2707 ../src/ui_pathsel.c:1181
 msgid "Files"
 msgstr "Fişiere"
 
-#: ../src/layout_config.c:67 ../src/preferences.c:126 ../src/preferences.c:2265
-#: ../src/search.c:2226 ../src/search.c:3570
+#: ../src/layout_config.c:67 ../src/preferences.c:126 ../src/preferences.c:2273
+#: ../src/search.c:2261 ../src/search.c:3605
 msgid "Image"
 msgstr "Imagine"
 
@@ -2706,37 +2954,47 @@ msgstr "Imagine"
 msgid "(drag to change order)"
 msgstr "(trageţi pentru schimbare ordine)"
 
-#: ../src/layout_image.c:798 ../src/layout_util.c:2274
-#: ../src/layout_util.c:2571 ../src/view_file/view_file.c:694
+#: ../src/layout_image.c:805 ../src/layout_util.c:2274
+#: ../src/layout_util.c:2576 ../src/view_file/view_file.c:701
 #, fuzzy
 msgid "Open archive"
 msgstr "Deschide recent"
 
-#: ../src/layout_image.c:814
-#, fuzzy
-msgid "Copy _image"
-msgstr "Copiere eșuată"
+#: ../src/layout_image.c:819 ../src/layout_util.c:2521
+#: ../src/pan-view/pan-view.c:2408 ../src/view_file/view_file.c:710
+msgid "_Copy path to clipboard"
+msgstr "_Copiază cale în clipboard"
 
-#: ../src/layout_image.c:865
+#: ../src/layout_image.c:820 ../src/layout_util.c:2522
+#: ../src/pan-view/pan-view.c:2410 ../src/view_file/view_file.c:712
 #, fuzzy
-msgid "_Animate"
-msgstr "Animal"
+msgid "_Copy path unquoted to clipboard"
+msgstr "_Copiază cale în clipboard"
 
-#: ../src/layout_image.c:869
+#: ../src/layout_image.c:821
+#, fuzzy
+msgid "Copy _image to clipboard"
+msgstr "Copiază cale în clipboard"
+
+#: ../src/layout_image.c:872 ../src/layout_util.c:2628
+msgid "GIF _animation"
+msgstr ""
+
+#: ../src/layout_image.c:876
 msgid "Hide file _list"
 msgstr "Ascunde _listă fişiere"
 
-#: ../src/layout_image.c:2115
+#: ../src/layout_image.c:2122
 #, c-format
 msgid "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 msgstr "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 
-#: ../src/layout_image.c:2123
+#: ../src/layout_image.c:2130
 #, c-format
 msgid "[%*s,%*s]: RGB(---,---,---)"
 msgstr "[%*s,%*s]: RGB(---,---,---)"
 
-#: ../src/layout_util.c:244 ../src/layout_util.c:2602
+#: ../src/layout_util.c:244 ../src/layout_util.c:2607
 #, fuzzy
 msgid "Clear Marks"
 msgstr "Şterge gunoi"
@@ -2791,13 +3049,13 @@ msgid "Window layout name \"%s\" already exists."
 msgstr "Fişierul cu numele %s există deja."
 
 #: ../src/layout_util.c:2144 ../src/layout_util.c:2393
-#: ../src/layout_util.c:2492
+#: ../src/layout_util.c:2509
 #, fuzzy
 msgid "Rename window"
 msgstr "Fereastră nouă"
 
 #: ../src/layout_util.c:2244 ../src/layout_util.c:2424
-#: ../src/layout_util.c:2493
+#: ../src/layout_util.c:2510
 #, fuzzy
 msgid "Delete window"
 msgstr "Închide fereastra"
@@ -2815,1317 +3073,1256 @@ msgstr "Fereastră nouă"
 msgid "Delete window layout"
 msgstr ""
 
-#: ../src/layout_util.c:2448
+#: ../src/layout_util.c:2453
 msgid "_File"
 msgstr "_Fișier"
 
-#: ../src/layout_util.c:2449
+#: ../src/layout_util.c:2454
 msgid "_Go"
 msgstr "Navi_gare"
 
-#: ../src/layout_util.c:2450
+#: ../src/layout_util.c:2455
 msgid "_Edit"
 msgstr "_Editare"
 
-#: ../src/layout_util.c:2451
+#: ../src/layout_util.c:2456
 msgid "_Select"
 msgstr "_Selectează"
 
-#: ../src/layout_util.c:2452 ../src/menu.c:406
+#: ../src/layout_util.c:2457 ../src/menu.c:406
 msgid "_Orientation"
 msgstr "_Orientare"
 
-#: ../src/layout_util.c:2453
+#: ../src/layout_util.c:2458
 #, fuzzy
 msgid "_Rating"
 msgstr "Pictură"
 
-#: ../src/layout_util.c:2454
+#: ../src/layout_util.c:2459
 msgid "P_references"
 msgstr "P_referințe"
 
-#: ../src/layout_util.c:2456
+#: ../src/layout_util.c:2461
 msgid "_Files and Folders"
 msgstr "_Fișiere și directoare"
 
-#: ../src/layout_util.c:2457
+#: ../src/layout_util.c:2462
 msgid "_Zoom"
 msgstr "_Zoom"
 
-#: ../src/layout_util.c:2458
+#: ../src/layout_util.c:2463
 msgid "_Color Management"
 msgstr "_Color Management"
 
-#: ../src/layout_util.c:2459
+#: ../src/layout_util.c:2464
 msgid "_Connected Zoom"
 msgstr "Zoom sin_cronizat"
 
-#: ../src/layout_util.c:2460
+#: ../src/layout_util.c:2465
 msgid "Spli_t"
 msgstr "Împar_te"
 
-#: ../src/layout_util.c:2461
+#: ../src/layout_util.c:2466
 msgid "Stere_o"
 msgstr ""
 
-#: ../src/layout_util.c:2462 ../src/layout_util.c:2620
+#: ../src/layout_util.c:2467 ../src/layout_util.c:2625
 msgid "Image _Overlay"
 msgstr "_Overlay imagine"
 
-#: ../src/layout_util.c:2463
+#: ../src/layout_util.c:2468 ../src/menu.c:119
 msgid "_Plugins"
 msgstr ""
 
-#: ../src/layout_util.c:2464
+#: ../src/layout_util.c:2469
 #, fuzzy
 msgid "_Windows"
 msgstr "Ferestre"
 
-#: ../src/layout_util.c:2465
+#: ../src/layout_util.c:2470
 msgid "_Help"
 msgstr "_Ajutor"
 
-#: ../src/layout_util.c:2467
+#: ../src/layout_util.c:2472
+msgid "Copy..."
+msgstr "Copiază..."
+
+#: ../src/layout_util.c:2473
+msgid "Move..."
+msgstr "Mută..."
+
+#: ../src/layout_util.c:2474
+msgid "Rename..."
+msgstr "_Redenumește..."
+
+#: ../src/layout_util.c:2478
+msgid "Delete..."
+msgstr "Șterge..."
+
+#: ../src/layout_util.c:2479
+msgid "Select _all"
+msgstr "Selecte_ază tot"
+
+#: ../src/layout_util.c:2480
+msgid "Select _none"
+msgstr "_Nu selecta nimic"
+
+#: ../src/layout_util.c:2481
+msgid "_Invert Selection"
+msgstr "_Inversează selecția"
+
+#: ../src/layout_util.c:2481
+msgid "Invert Selection"
+msgstr "Inversează selecția"
+
+#: ../src/layout_util.c:2483
+msgid "_Quit"
+msgstr "_Ieșire"
+
+#: ../src/layout_util.c:2483 ../src/preferences.c:847 ../src/toolbar.c:150
+msgid "Quit"
+msgstr "Ieșire"
+
+#: ../src/layout_util.c:2484
 msgid "_First Image"
 msgstr "Pr_ima imagine"
 
-#: ../src/layout_util.c:2467 ../src/preferences.c:779 ../src/toolbar.c:74
+#: ../src/layout_util.c:2484 ../src/preferences.c:779 ../src/toolbar.c:74
 msgid "First Image"
 msgstr "Prima imagine"
 
-#: ../src/layout_util.c:2468 ../src/layout_util.c:2469
-#: ../src/layout_util.c:2470
+#: ../src/layout_util.c:2485 ../src/layout_util.c:2486
+#: ../src/layout_util.c:2487
 msgid "_Previous Image"
 msgstr "Imaginea _precedentă"
 
-#: ../src/layout_util.c:2468 ../src/layout_util.c:2469
-#: ../src/layout_util.c:2470 ../src/preferences.c:780 ../src/toolbar.c:75
+#: ../src/layout_util.c:2485 ../src/layout_util.c:2486
+#: ../src/layout_util.c:2487 ../src/preferences.c:780 ../src/toolbar.c:75
 msgid "Previous Image"
 msgstr "Imaginea precedentă"
 
-#: ../src/layout_util.c:2471 ../src/layout_util.c:2472
-#: ../src/layout_util.c:2483
+#: ../src/layout_util.c:2488 ../src/layout_util.c:2489
+#: ../src/layout_util.c:2500
 msgid "_Next Image"
 msgstr "Imagi_nea următoare"
 
-#: ../src/layout_util.c:2471 ../src/layout_util.c:2472
-#: ../src/layout_util.c:2483 ../src/preferences.c:781 ../src/toolbar.c:76
+#: ../src/layout_util.c:2488 ../src/layout_util.c:2489
+#: ../src/layout_util.c:2500 ../src/preferences.c:781 ../src/toolbar.c:76
 msgid "Next Image"
 msgstr "Imaginea următoare"
 
-#: ../src/layout_util.c:2474 ../src/toolbar.c:86
+#: ../src/layout_util.c:2491 ../src/toolbar.c:86
 #, fuzzy
 msgid "Image Forward"
 msgstr "Viewer imagini"
 
-#: ../src/layout_util.c:2474
+#: ../src/layout_util.c:2491
 msgid "Forward in image history"
 msgstr ""
 
-#: ../src/layout_util.c:2475 ../src/toolbar.c:87
+#: ../src/layout_util.c:2492 ../src/toolbar.c:87
 #, fuzzy
 msgid "Image Back"
 msgstr "Căutare imagini"
 
-#: ../src/layout_util.c:2475
+#: ../src/layout_util.c:2492
 msgid "Back in image history"
 msgstr ""
 
-#: ../src/layout_util.c:2477
+#: ../src/layout_util.c:2494
 #, fuzzy
 msgid "_First Page"
 msgstr "Pr_ima imagine"
 
-#: ../src/layout_util.c:2477
+#: ../src/layout_util.c:2494
 msgid "First Page of multi-page image"
 msgstr ""
 
-#: ../src/layout_util.c:2478
+#: ../src/layout_util.c:2495
 #, fuzzy
 msgid "_Last Page"
 msgstr "U_ltima imagine"
 
-#: ../src/layout_util.c:2478
+#: ../src/layout_util.c:2495
 msgid "Last Page of multi-page image"
 msgstr ""
 
-#: ../src/layout_util.c:2479
+#: ../src/layout_util.c:2496
 #, fuzzy
 msgid "_Next Page"
 msgstr "Imagi_nea următoare"
 
-#: ../src/layout_util.c:2479
+#: ../src/layout_util.c:2496
 msgid "Next Page of multi-page image"
 msgstr ""
 
-#: ../src/layout_util.c:2480
+#: ../src/layout_util.c:2497
 #, fuzzy
 msgid "_Previous Page"
 msgstr "Imaginea _precedentă"
 
-#: ../src/layout_util.c:2480
+#: ../src/layout_util.c:2497
 msgid "Previous Page of multi-page image"
 msgstr ""
 
-#: ../src/layout_util.c:2484
+#: ../src/layout_util.c:2501
 msgid "_Last Image"
 msgstr "U_ltima imagine"
 
-#: ../src/layout_util.c:2484 ../src/preferences.c:782 ../src/toolbar.c:77
+#: ../src/layout_util.c:2501 ../src/preferences.c:782 ../src/toolbar.c:77
 msgid "Last Image"
 msgstr "Ultima imagine"
 
-#: ../src/layout_util.c:2485
+#: ../src/layout_util.c:2502
 msgid "_Back"
 msgstr "Îna_poi"
 
-#: ../src/layout_util.c:2485
+#: ../src/layout_util.c:2502
 msgid "Back in folder history"
 msgstr ""
 
-#: ../src/layout_util.c:2486
+#: ../src/layout_util.c:2503
 msgid "_Forward"
 msgstr ""
 
-#: ../src/layout_util.c:2486
+#: ../src/layout_util.c:2503
 msgid "Forward in folder history"
 msgstr ""
 
-#: ../src/layout_util.c:2487
+#: ../src/layout_util.c:2504
 msgid "_Home"
 msgstr "_Acasă"
 
-#: ../src/layout_util.c:2487 ../src/options.c:242 ../src/preferences.c:785
+#: ../src/layout_util.c:2504 ../src/options.c:242 ../src/preferences.c:785
 #: ../src/toolbar.c:80 ../src/ui_bookmark.c:577 ../src/ui_pathsel.c:1049
 msgid "Home"
 msgstr "Acasă"
 
-#: ../src/layout_util.c:2488
+#: ../src/layout_util.c:2505
 msgid "_Up"
 msgstr ""
 
-#: ../src/layout_util.c:2488
+#: ../src/layout_util.c:2505
 #, fuzzy
 msgid "Up one folder"
 msgstr "Director nou"
 
-#: ../src/layout_util.c:2489 ../src/toolbar.c:88
+#: ../src/layout_util.c:2506 ../src/toolbar.c:88
 msgid "New window"
 msgstr "Fereastră nouă"
 
-#: ../src/layout_util.c:2490
+#: ../src/layout_util.c:2507
 #, fuzzy
 msgid "default"
 msgstr "Implicite"
 
-#: ../src/layout_util.c:2491
+#: ../src/layout_util.c:2507
+#, fuzzy
+msgid "New window (default)"
+msgstr "Fereastră nouă"
+
+#: ../src/layout_util.c:2508
 #, fuzzy
 msgid "from current"
 msgstr "Foloseşte directorul curent"
 
-#: ../src/layout_util.c:2494
+#: ../src/layout_util.c:2511
 msgid "_New collection"
 msgstr "Colecţie _nouă"
 
-#: ../src/layout_util.c:2494 ../src/menu.c:464 ../src/preferences.c:792
+#: ../src/layout_util.c:2511 ../src/menu.c:467 ../src/preferences.c:792
 #: ../src/toolbar.c:89
 msgid "New collection"
 msgstr "Colecţie nouă"
 
-#: ../src/layout_util.c:2495
+#: ../src/layout_util.c:2512
 msgid "_Open collection..."
 msgstr "Deschide c_olecţie..."
 
-#: ../src/layout_util.c:2495
+#: ../src/layout_util.c:2512
 msgid "Open collection..."
 msgstr "Deschide colecţie..."
 
-#: ../src/layout_util.c:2496
+#: ../src/layout_util.c:2513
 msgid "Open recen_t"
 msgstr "Deschide recen_t"
 
-#: ../src/layout_util.c:2496
+#: ../src/layout_util.c:2513
 #, fuzzy
 msgid "Open recent collection"
 msgstr "Deschide colecţia"
 
-#: ../src/layout_util.c:2497
+#: ../src/layout_util.c:2514
 msgid "_Search..."
 msgstr "_Caută..."
 
-#: ../src/layout_util.c:2497
+#: ../src/layout_util.c:2514
 msgid "Search..."
 msgstr "Caută..."
 
-#: ../src/layout_util.c:2498
+#: ../src/layout_util.c:2515
 msgid "Find duplicates..."
 msgstr "Caută _duplicate..."
 
-#: ../src/layout_util.c:2499
+#: ../src/layout_util.c:2516
 msgid "Pa_n view"
 msgstr "Pa_n view"
 
-#: ../src/layout_util.c:2499 ../src/preferences.c:802 ../src/toolbar.c:99
+#: ../src/layout_util.c:2516 ../src/preferences.c:802 ../src/toolbar.c:99
 msgid "Pan view"
 msgstr "Pan view"
 
-#: ../src/layout_util.c:2500
+#: ../src/layout_util.c:2517
 msgid "_Print..."
 msgstr "Ti_părește..."
 
-#: ../src/layout_util.c:2501
+#: ../src/layout_util.c:2518
 msgid "N_ew folder..."
 msgstr "Dir_ector nou..."
 
-#: ../src/layout_util.c:2501
+#: ../src/layout_util.c:2518
 msgid "New folder..."
 msgstr "Director nou..."
 
-#: ../src/layout_util.c:2502
-msgid "Copy..."
-msgstr "Copiază..."
-
-#: ../src/layout_util.c:2503
-msgid "Move..."
-msgstr "Mută..."
-
-#: ../src/layout_util.c:2504
-msgid "Rename..."
-msgstr "_Redenumește..."
-
-#: ../src/layout_util.c:2508
-msgid "Delete..."
-msgstr "Șterge..."
-
-#: ../src/layout_util.c:2509 ../src/view_file/view_file.c:718
+#: ../src/layout_util.c:2519 ../src/view_file/view_file.c:725
 msgid "Enable file _grouping"
 msgstr "Activează _grupare fișiere"
 
-#: ../src/layout_util.c:2509
+#: ../src/layout_util.c:2519
 msgid "Enable file grouping"
 msgstr "Activează grupare fișiere"
 
-#: ../src/layout_util.c:2510 ../src/view_file/view_file.c:720
+#: ../src/layout_util.c:2520 ../src/view_file/view_file.c:727
 msgid "Disable file groupi_ng"
 msgstr "Dezactivează g_rupare fişiere"
 
-#: ../src/layout_util.c:2510
+#: ../src/layout_util.c:2520
 msgid "Disable file grouping"
 msgstr "Dezactivează grupare fişiere"
 
-#: ../src/layout_util.c:2511
-msgid "_Copy path to clipboard"
-msgstr "_Copiază cale în clipboard"
-
-#: ../src/layout_util.c:2511
+#: ../src/layout_util.c:2521
 msgid "Copy path to clipboard"
 msgstr "Copiază cale în clipboard"
 
-#: ../src/layout_util.c:2512
-#, fuzzy
-msgid "_Copy path unquoted to clipboard"
-msgstr "_Copiază cale în clipboard"
-
-#: ../src/layout_util.c:2512
+#: ../src/layout_util.c:2522
 #, fuzzy
 msgid "Copy path unquoted to clipboard"
 msgstr "Copiază cale în clipboard"
 
-#: ../src/layout_util.c:2513
-msgid "Close window"
-msgstr "Închide fereastra"
-
-#: ../src/layout_util.c:2514
-msgid "_Quit"
-msgstr "_Ieșire"
-
-#: ../src/layout_util.c:2514 ../src/preferences.c:847 ../src/toolbar.c:150
-msgid "Quit"
-msgstr "Ieșire"
-
-#: ../src/layout_util.c:2515 ../src/menu.c:348
-#, fuzzy
-msgid "_Rotate clockwise 90°"
-msgstr "Rotire în sens _orar"
-
-#: ../src/layout_util.c:2515
-#, fuzzy
-msgid "Image Rotate clockwise 90°"
-msgstr "Rotește în sens orar"
-
-#: ../src/layout_util.c:2516
+#: ../src/layout_util.c:2523
 msgid "_Rating 0"
 msgstr ""
 
-#: ../src/layout_util.c:2516
+#: ../src/layout_util.c:2523
 #, fuzzy
 msgid "Rating 0"
 msgstr "Pictură"
 
-#: ../src/layout_util.c:2517
+#: ../src/layout_util.c:2524
 msgid "_Rating 1"
 msgstr ""
 
-#: ../src/layout_util.c:2517
+#: ../src/layout_util.c:2524
 #, fuzzy
 msgid "Rating 1"
 msgstr "Pictură"
 
-#: ../src/layout_util.c:2518
+#: ../src/layout_util.c:2525
 msgid "_Rating 2"
 msgstr ""
 
-#: ../src/layout_util.c:2518
+#: ../src/layout_util.c:2525
 #, fuzzy
 msgid "Rating 2"
 msgstr "Pictură"
 
-#: ../src/layout_util.c:2519
+#: ../src/layout_util.c:2526
 msgid "_Rating 3"
 msgstr ""
 
-#: ../src/layout_util.c:2519
+#: ../src/layout_util.c:2526
 #, fuzzy
 msgid "Rating 3"
 msgstr "Pictură"
 
-#: ../src/layout_util.c:2520
+#: ../src/layout_util.c:2527
 msgid "_Rating 4"
 msgstr ""
 
-#: ../src/layout_util.c:2520
+#: ../src/layout_util.c:2527
 #, fuzzy
 msgid "Rating 4"
 msgstr "Pictură"
 
-#: ../src/layout_util.c:2521
+#: ../src/layout_util.c:2528
 msgid "_Rating 5"
 msgstr ""
 
-#: ../src/layout_util.c:2521
+#: ../src/layout_util.c:2528
 #, fuzzy
 msgid "Rating 5"
 msgstr "Pictură"
 
-#: ../src/layout_util.c:2522
+#: ../src/layout_util.c:2529
 msgid "_Rating -1"
 msgstr ""
 
-#: ../src/layout_util.c:2522
+#: ../src/layout_util.c:2529
 msgid "Rating -1"
 msgstr ""
 
-#: ../src/layout_util.c:2523 ../src/menu.c:351
+#: ../src/layout_util.c:2530
+#, fuzzy
+msgid "_Rotate clockwise 90°"
+msgstr "Rotire în sens _orar"
+
+#: ../src/layout_util.c:2530
+#, fuzzy
+msgid "Image Rotate clockwise 90°"
+msgstr "Rotește în sens orar"
+
+#: ../src/layout_util.c:2531
 #, fuzzy
 msgid "Rotate _counterclockwise 90°"
 msgstr "Rotire în sens _antiorar"
 
-#: ../src/layout_util.c:2523 ../src/preferences.c:813 ../src/toolbar.c:111
+#: ../src/layout_util.c:2531 ../src/menu.c:351 ../src/preferences.c:813
+#: ../src/toolbar.c:111
 #, fuzzy
 msgid "Rotate counterclockwise 90°"
 msgstr "Rotește în sens antiorar"
 
-#: ../src/layout_util.c:2524
+#: ../src/layout_util.c:2532
 #, fuzzy
 msgid "Rotate 1_80°"
 msgstr "Rotește 1_80"
 
-#: ../src/layout_util.c:2524
+#: ../src/layout_util.c:2532
 #, fuzzy
 msgid "Image Rotate 180°"
 msgstr "Rotește 180"
 
-#: ../src/layout_util.c:2525 ../src/menu.c:357
+#: ../src/layout_util.c:2533
 msgid "_Mirror"
 msgstr "_Oglindire"
 
-#: ../src/layout_util.c:2525
+#: ../src/layout_util.c:2533
 #, fuzzy
 msgid "Image Mirror"
 msgstr "_Lista imagini"
 
-#: ../src/layout_util.c:2526 ../src/menu.c:360
+#: ../src/layout_util.c:2534
 msgid "_Flip"
 msgstr "_Răsturnare"
 
-#: ../src/layout_util.c:2526
+#: ../src/layout_util.c:2534
 #, fuzzy
 msgid "Image Flip"
 msgstr "_Lista imagini"
 
-#: ../src/layout_util.c:2527 ../src/menu.c:363
+#: ../src/layout_util.c:2535
 msgid "_Original state"
 msgstr "Starea _originală"
 
-#: ../src/layout_util.c:2527
+#: ../src/layout_util.c:2535
 #, fuzzy
 msgid "Image rotate Original state"
 msgstr "Starea originală"
 
-#: ../src/layout_util.c:2528
-msgid "Select _all"
-msgstr "Selecte_ază tot"
-
-#: ../src/layout_util.c:2529
-msgid "Select _none"
-msgstr "_Nu selecta nimic"
-
-#: ../src/layout_util.c:2530
-msgid "_Invert Selection"
-msgstr "_Inversează selecția"
-
-#: ../src/layout_util.c:2530
-msgid "Invert Selection"
-msgstr "Inversează selecția"
-
-#: ../src/layout_util.c:2531
+#: ../src/layout_util.c:2536
 msgid "P_references..."
 msgstr "P_referinţe..."
 
-#: ../src/layout_util.c:2531
+#: ../src/layout_util.c:2536
 msgid "Preferences..."
 msgstr "Preferințe..."
 
-#: ../src/layout_util.c:2532
+#: ../src/layout_util.c:2537
 #, fuzzy
 msgid "Configure _Plugins..."
 msgstr "Configurare _editoare..."
 
-#: ../src/layout_util.c:2532
+#: ../src/layout_util.c:2537
 #, fuzzy
 msgid "Configure Plugins..."
 msgstr "Configurare editoare..."
 
-#: ../src/layout_util.c:2533
+#: ../src/layout_util.c:2538
 msgid "_Configure this window..."
 msgstr "_Configurează această fereastră"
 
-#: ../src/layout_util.c:2533
+#: ../src/layout_util.c:2538
 msgid "Configure this window..."
 msgstr "Configurează această fereastră"
 
-#: ../src/layout_util.c:2534
+#: ../src/layout_util.c:2539
 #, fuzzy
 msgid "_Cache maintenance..."
 msgstr "Administrare cache"
 
-#: ../src/layout_util.c:2534
+#: ../src/layout_util.c:2539
 #, fuzzy
 msgid "Cache maintenance..."
 msgstr "Administrare cache"
 
-#: ../src/layout_util.c:2535
+#: ../src/layout_util.c:2540
 msgid "Set as wallpaper"
 msgstr "Folosește ca fundal (_wallpaper)"
 
-#: ../src/layout_util.c:2536
+#: ../src/layout_util.c:2541
 msgid "_Save metadata"
 msgstr "_Salvează metadate"
 
-#: ../src/layout_util.c:2536 ../src/toolbar.c:136
+#: ../src/layout_util.c:2541 ../src/toolbar.c:136
 msgid "Save metadata"
 msgstr "Salvează metadate"
 
-#: ../src/layout_util.c:2537
+#: ../src/layout_util.c:2542
 #, fuzzy
 msgid "Keyword autocomplete"
 msgstr "Tip cuvânt cheie:"
 
-#: ../src/layout_util.c:2537
+#: ../src/layout_util.c:2542
 #, fuzzy
 msgid "Keyword Autocomplete"
 msgstr "Tip cuvânt cheie:"
 
-#: ../src/layout_util.c:2538 ../src/layout_util.c:2539 ../src/preferences.c:818
-#: ../src/toolbar.c:116
-msgid "Zoom in"
-msgstr "Mărire"
-
-#: ../src/layout_util.c:2540 ../src/layout_util.c:2541 ../src/preferences.c:819
-#: ../src/toolbar.c:117
-msgid "Zoom out"
-msgstr "Micşorare"
-
-#: ../src/layout_util.c:2542 ../src/layout_util.c:2543 ../src/preferences.c:820
-#: ../src/toolbar.c:118
-msgid "Zoom 1:1"
-msgstr "Zoom 1:1"
-
-#: ../src/layout_util.c:2544 ../src/layout_util.c:2545
-#: ../src/layout_util.c:2560 ../src/layout_util.c:2561
+#: ../src/layout_util.c:2549 ../src/layout_util.c:2550
+#: ../src/layout_util.c:2565 ../src/layout_util.c:2566
 msgid "_Zoom to fit"
 msgstr "_Zoom la dimensiunea ferestrei"
 
-#: ../src/layout_util.c:2544 ../src/layout_util.c:2545 ../src/preferences.c:821
-#: ../src/toolbar.c:119
-msgid "Zoom to fit"
-msgstr "Zoom la dimensiunea ferestrei"
-
-#: ../src/layout_util.c:2546 ../src/layout_util.c:2562
+#: ../src/layout_util.c:2551 ../src/layout_util.c:2567
 msgid "Fit _Horizontally"
 msgstr "Potrivește _orizontal"
 
-#: ../src/layout_util.c:2546
+#: ../src/layout_util.c:2551
 msgid "Fit Horizontally"
 msgstr "Potrivește _orizontal"
 
-#: ../src/layout_util.c:2547 ../src/layout_util.c:2563
+#: ../src/layout_util.c:2552 ../src/layout_util.c:2568
 msgid "Fit _Vertically"
 msgstr "Potrivește _vertical"
 
-#: ../src/layout_util.c:2547
+#: ../src/layout_util.c:2552
 msgid "Fit Vertically"
 msgstr "Potrivește vertical"
 
-#: ../src/layout_util.c:2548 ../src/layout_util.c:2564
+#: ../src/layout_util.c:2553 ../src/layout_util.c:2569
 msgid "Zoom _2:1"
 msgstr "Zoom _2:1"
 
-#: ../src/layout_util.c:2548 ../src/preferences.c:824 ../src/toolbar.c:122
-msgid "Zoom 2:1"
-msgstr "Zoom 2:1"
-
-#: ../src/layout_util.c:2549 ../src/layout_util.c:2565
+#: ../src/layout_util.c:2554 ../src/layout_util.c:2570
 msgid "Zoom _3:1"
 msgstr "Zoom _3:1"
 
-#: ../src/layout_util.c:2549 ../src/preferences.c:825 ../src/toolbar.c:123
-msgid "Zoom 3:1"
-msgstr "Zoom 3:1"
-
-#: ../src/layout_util.c:2550 ../src/layout_util.c:2566
+#: ../src/layout_util.c:2555 ../src/layout_util.c:2571
 msgid "Zoom _4:1"
 msgstr "Zoom _4:1"
 
-#: ../src/layout_util.c:2550 ../src/preferences.c:826 ../src/toolbar.c:124
-msgid "Zoom 4:1"
-msgstr "Zoom 4:1"
-
-#: ../src/layout_util.c:2551 ../src/layout_util.c:2567 ../src/preferences.c:827
-#: ../src/toolbar.c:125
-msgid "Zoom 1:2"
-msgstr "Zoom 1:2"
-
-#: ../src/layout_util.c:2552 ../src/layout_util.c:2568
-msgid "Zoom 1:3"
-msgstr "Zoom 1:3"
-
-#: ../src/layout_util.c:2553 ../src/layout_util.c:2569 ../src/preferences.c:829
-#: ../src/toolbar.c:127
-msgid "Zoom 1:4"
-msgstr "Zoom 1:4"
-
-#: ../src/layout_util.c:2554 ../src/layout_util.c:2555 ../src/preferences.c:830
+#: ../src/layout_util.c:2559 ../src/layout_util.c:2560 ../src/preferences.c:830
 #: ../src/toolbar.c:128
 msgid "Connected Zoom in"
 msgstr "Mărește (sincronizat)"
 
-#: ../src/layout_util.c:2556 ../src/layout_util.c:2557
+#: ../src/layout_util.c:2561 ../src/layout_util.c:2562
 msgid "Connected Zoom out"
 msgstr "Micșorează (sincronizat)"
 
-#: ../src/layout_util.c:2558 ../src/layout_util.c:2559
+#: ../src/layout_util.c:2563 ../src/layout_util.c:2564
 msgid "Connected Zoom 1:1"
 msgstr "Zoom sincronizat 1:1"
 
-#: ../src/layout_util.c:2560 ../src/layout_util.c:2561
+#: ../src/layout_util.c:2565 ../src/layout_util.c:2566
 msgid "Connected Zoom to fit"
 msgstr "Zoom sincronizat la dimensiunile ferestrei"
 
-#: ../src/layout_util.c:2562
+#: ../src/layout_util.c:2567
 msgid "Connected Fit Horizontally"
 msgstr "Potrivește în fereastră orizontal (sincronizat)"
 
-#: ../src/layout_util.c:2563
+#: ../src/layout_util.c:2568
 msgid "Connected Fit Vertically"
 msgstr "Potrivește în fereastră vertical (sincronizat)"
 
-#: ../src/layout_util.c:2564
+#: ../src/layout_util.c:2569
 msgid "Connected Zoom 2:1"
 msgstr "Zoom sincronizat 2:1"
 
-#: ../src/layout_util.c:2565
+#: ../src/layout_util.c:2570
 msgid "Connected Zoom 3:1"
 msgstr "Zoom sincronizat 3:1"
 
-#: ../src/layout_util.c:2566
+#: ../src/layout_util.c:2571
 msgid "Connected Zoom 4:1"
 msgstr "Zoom sincronizat 4:1"
 
-#: ../src/layout_util.c:2567
+#: ../src/layout_util.c:2572
 msgid "Connected Zoom 1:2"
 msgstr "Zoom sincronizat 1:2"
 
-#: ../src/layout_util.c:2568
+#: ../src/layout_util.c:2573
 msgid "Connected Zoom 1:3"
 msgstr "Zoom sincronizat 1:3"
 
-#: ../src/layout_util.c:2569
+#: ../src/layout_util.c:2574
 msgid "Connected Zoom 1:4"
 msgstr "Zoom sincronizat 1:4"
 
-#: ../src/layout_util.c:2570
+#: ../src/layout_util.c:2575
 msgid "_View in new window"
 msgstr "_Vizualizează în fereastră _nouă"
 
-#: ../src/layout_util.c:2570
-msgid "View in new window"
-msgstr "Vizualizează în fereastră nouă"
-
-#: ../src/layout_util.c:2572 ../src/layout_util.c:2573
-#: ../src/layout_util.c:2574
+#: ../src/layout_util.c:2577 ../src/layout_util.c:2578
+#: ../src/layout_util.c:2579
 msgid "F_ull screen"
 msgstr "Tot ecran_ul"
 
-#: ../src/layout_util.c:2575 ../src/layout_util.c:2576
+#: ../src/layout_util.c:2580 ../src/layout_util.c:2581
 msgid "_Leave full screen"
 msgstr "Ieşire din mod tot ecranu_l"
 
-#: ../src/layout_util.c:2575 ../src/layout_util.c:2576
+#: ../src/layout_util.c:2580 ../src/layout_util.c:2581
 msgid "Leave full screen"
 msgstr "Ieşire din mod tot ecranul"
 
-#: ../src/layout_util.c:2577
+#: ../src/layout_util.c:2582
 msgid "_Cycle through overlay modes"
 msgstr "S_chimbă moduri overlay"
 
-#: ../src/layout_util.c:2577
+#: ../src/layout_util.c:2582
 msgid "Cycle through Overlay modes"
 msgstr "Rotește moduri overlay"
 
-#: ../src/layout_util.c:2578
+#: ../src/layout_util.c:2583
 msgid "Cycle through histogram ch_annels"
 msgstr "Schimbă c_anale histogramă"
 
-#: ../src/layout_util.c:2578
+#: ../src/layout_util.c:2583
 msgid "Cycle through histogram channels"
 msgstr "Rotește canale histogramă"
 
-#: ../src/layout_util.c:2579
+#: ../src/layout_util.c:2584
 msgid "Cycle through histogram mo_des"
 msgstr "Schimbă mo_duri histogramă"
 
-#: ../src/layout_util.c:2579
+#: ../src/layout_util.c:2584
 msgid "Cycle through histogram modes"
 msgstr "Rotește moduri histogramă"
 
-#: ../src/layout_util.c:2580
+#: ../src/layout_util.c:2585
 msgid "_Hide file list"
 msgstr "Ascunde _listă fişiere"
 
-#: ../src/layout_util.c:2580 ../src/preferences.c:834 ../src/toolbar.c:137
+#: ../src/layout_util.c:2585 ../src/preferences.c:834 ../src/toolbar.c:137
 msgid "Hide file list"
 msgstr "Ascunde _listă fişiere"
 
-#: ../src/layout_util.c:2581
+#: ../src/layout_util.c:2586
 msgid "_Pause slideshow"
 msgstr "_Pauză slideshow"
 
-#: ../src/layout_util.c:2581 ../src/preferences.c:835 ../src/toolbar.c:138
-msgid "Pause slideshow"
-msgstr "Pauză slideshow"
-
-#: ../src/layout_util.c:2582
+#: ../src/layout_util.c:2587
 msgid "Faster"
 msgstr ""
 
-#: ../src/layout_util.c:2582 ../src/preferences.c:836 ../src/toolbar.c:139
+#: ../src/layout_util.c:2587 ../src/preferences.c:836 ../src/toolbar.c:139
 #, fuzzy
 msgid "Slideshow Faster"
 msgstr " Prezentare de imagini"
 
-#: ../src/layout_util.c:2583
+#: ../src/layout_util.c:2588
 #, fuzzy
 msgid "Slower"
 msgstr "Floare"
 
-#: ../src/layout_util.c:2583 ../src/preferences.c:837 ../src/toolbar.c:140
+#: ../src/layout_util.c:2588 ../src/preferences.c:837 ../src/toolbar.c:140
 #, fuzzy
 msgid "Slideshow Slower"
 msgstr " Prezentare de imagini"
 
-#: ../src/layout_util.c:2584
+#: ../src/layout_util.c:2589
 msgid "_Refresh"
 msgstr "_Actualizare"
 
-#: ../src/layout_util.c:2584 ../src/preferences.c:838 ../src/toolbar.c:141
+#: ../src/layout_util.c:2589 ../src/preferences.c:838 ../src/toolbar.c:141
 msgid "Refresh"
 msgstr "Actualizare"
 
-#: ../src/layout_util.c:2585
-msgid "_Contents"
-msgstr "_Conținut"
+#: ../src/layout_util.c:2590
+#, fuzzy
+msgid "_Help manual"
+msgstr "manual(e)"
 
-#: ../src/layout_util.c:2585
-msgid "Contents"
-msgstr "Conţinut"
+#: ../src/layout_util.c:2590
+#, fuzzy
+msgid "Help manual"
+msgstr "manual(e)"
 
-#: ../src/layout_util.c:2586 ../src/window.c:371
+#: ../src/layout_util.c:2591 ../src/window.c:371
 msgid "On-line help search"
 msgstr ""
 
-#: ../src/layout_util.c:2587
+#: ../src/layout_util.c:2592
 msgid "_Keyboard shortcuts"
 msgstr "Scurtături de _tastatură"
 
-#: ../src/layout_util.c:2587
+#: ../src/layout_util.c:2592
 msgid "Keyboard shortcuts"
 msgstr "Scurtături de tastatură"
 
-#: ../src/layout_util.c:2588
+#: ../src/layout_util.c:2593
 #, fuzzy
 msgid "_Keyboard map"
 msgstr "Tastatură"
 
-#: ../src/layout_util.c:2588
+#: ../src/layout_util.c:2593
 #, fuzzy
 msgid "Keyboard map"
 msgstr "Tastatură"
 
-#: ../src/layout_util.c:2589
-msgid "_Release notes"
-msgstr "Note _release"
+#: ../src/layout_util.c:2594
+msgid "_Readme"
+msgstr ""
 
-#: ../src/layout_util.c:2589
-msgid "Release notes"
-msgstr "Note release"
+#: ../src/layout_util.c:2594
+msgid "Readme"
+msgstr ""
 
-#: ../src/layout_util.c:2590
+#: ../src/layout_util.c:2595
 msgid "_ChangeLog"
 msgstr ""
 
-#: ../src/layout_util.c:2590
+#: ../src/layout_util.c:2595
 #, fuzzy
 msgid "ChangeLog notes"
 msgstr "Du-te în directorul Acasă"
 
-#: ../src/layout_util.c:2591 ../src/search_and_run.c:291
+#: ../src/layout_util.c:2596 ../src/search_and_run.c:291
 msgid "Search and Run command"
 msgstr ""
 
-#: ../src/layout_util.c:2591
+#: ../src/layout_util.c:2596
 msgid "Search commands by keyword and run them"
 msgstr ""
 
-#: ../src/layout_util.c:2592
+#: ../src/layout_util.c:2597
 msgid "_About"
 msgstr "_Despre"
 
-#: ../src/layout_util.c:2592
+#: ../src/layout_util.c:2597
 msgid "About"
 msgstr "Despre"
 
-#: ../src/layout_util.c:2593
+#: ../src/layout_util.c:2598
 msgid "_Log Window"
 msgstr "Fereastra _log"
 
-#: ../src/layout_util.c:2593
+#: ../src/layout_util.c:2598
 msgid "Log Window"
 msgstr "Fereastra log"
 
-#: ../src/layout_util.c:2594
+#: ../src/layout_util.c:2599
 msgid "_Exif window"
 msgstr "Fereastra _EXIF"
 
-#: ../src/layout_util.c:2594 ../src/preferences.c:840 ../src/toolbar.c:143
+#: ../src/layout_util.c:2599 ../src/preferences.c:840 ../src/toolbar.c:143
 msgid "Exif window"
 msgstr "Fereastra EXIF"
 
-#: ../src/layout_util.c:2595
+#: ../src/layout_util.c:2600
 #, fuzzy
 msgid "_Cycle through stereo modes"
 msgstr "S_chimbă moduri overlay"
 
-#: ../src/layout_util.c:2595
+#: ../src/layout_util.c:2600
 #, fuzzy
 msgid "Cycle through stereo modes"
 msgstr "Rotește moduri histogramă"
 
-#: ../src/layout_util.c:2596
+#: ../src/layout_util.c:2601
 #, fuzzy
 msgid "_Next Pane"
 msgstr "Imagi_nea următoare"
 
-#: ../src/layout_util.c:2596
+#: ../src/layout_util.c:2601
 #, fuzzy
 msgid "Next Split Pane"
 msgstr "Imaginea următoare"
 
-#: ../src/layout_util.c:2597
+#: ../src/layout_util.c:2602
 #, fuzzy
 msgid "_Previous Pane"
 msgstr "Imaginea _precedentă"
 
-#: ../src/layout_util.c:2597
+#: ../src/layout_util.c:2602
 #, fuzzy
 msgid "Previous Split Pane"
 msgstr "Imaginea precedentă"
 
-#: ../src/layout_util.c:2598
+#: ../src/layout_util.c:2603
 msgid "_Up Pane"
 msgstr ""
 
-#: ../src/layout_util.c:2598
+#: ../src/layout_util.c:2603
 #, fuzzy
 msgid "Up Split Pane"
 msgstr "Afișează o singură imagine"
 
-#: ../src/layout_util.c:2599
+#: ../src/layout_util.c:2604
 msgid "_Down Pane"
 msgstr ""
 
-#: ../src/layout_util.c:2599
+#: ../src/layout_util.c:2604
 msgid "Down Split Pane"
 msgstr ""
 
-#: ../src/layout_util.c:2600
+#: ../src/layout_util.c:2605
 #, fuzzy
 msgid "_Write orientation to file"
 msgstr "Scrie în fișier"
 
-#: ../src/layout_util.c:2600
+#: ../src/layout_util.c:2605
 #, fuzzy
 msgid "Write orientation to file"
 msgstr "Scrie în fișier"
 
-#: ../src/layout_util.c:2601
+#: ../src/layout_util.c:2606
 msgid "_Write orientation to file (preserve timestamp)"
 msgstr ""
 
-#: ../src/layout_util.c:2601
+#: ../src/layout_util.c:2606
 msgid "Write orientation to file (preserve timestamp)"
 msgstr ""
 
-#: ../src/layout_util.c:2602
+#: ../src/layout_util.c:2607
 #, fuzzy
 msgid "Clear Marks..."
 msgstr "Şterge gunoi"
 
-#: ../src/layout_util.c:2606
+#: ../src/layout_util.c:2611
 msgid "Show _Thumbnails"
 msgstr "Arată _thumbnail-uri"
 
-#: ../src/layout_util.c:2606
+#: ../src/layout_util.c:2611
 msgid "Show Thumbnails"
 msgstr "Arată _thumbnail-uri"
 
-#: ../src/layout_util.c:2607
+#: ../src/layout_util.c:2612
 msgid "Show _Marks"
 msgstr "Arată _marcaje"
 
-#: ../src/layout_util.c:2607
+#: ../src/layout_util.c:2612
 msgid "Show Marks"
 msgstr "Arată marcaje"
 
-#: ../src/layout_util.c:2608
+#: ../src/layout_util.c:2613
 #, fuzzy
 msgid "Show File Filter"
 msgstr "Afișează fişierele _ascunse"
 
-#: ../src/layout_util.c:2609
+#: ../src/layout_util.c:2614
 msgid "Pi_xel Info"
 msgstr "Informații pi_xel"
 
-#: ../src/layout_util.c:2609
+#: ../src/layout_util.c:2614
 msgid "Show Pixel Info"
 msgstr "afișează informații despre pixel"
 
-#: ../src/layout_util.c:2610
+#: ../src/layout_util.c:2615
 #, fuzzy
 msgid "Hide _alpha"
 msgstr "Ascunde bara cu unelte"
 
-#: ../src/layout_util.c:2610
+#: ../src/layout_util.c:2615
 msgid "Hide alpha channel"
 msgstr ""
 
-#: ../src/layout_util.c:2611
+#: ../src/layout_util.c:2616
 msgid "_Float file list"
 msgstr "Detașează lista de _fișiere"
 
-#: ../src/layout_util.c:2611 ../src/preferences.c:844 ../src/toolbar.c:147
+#: ../src/layout_util.c:2616 ../src/preferences.c:844 ../src/toolbar.c:147
 msgid "Float file list"
 msgstr "Detașează lista de fișiere"
 
-#: ../src/layout_util.c:2612
+#: ../src/layout_util.c:2617
 msgid "Hide tool_bar"
 msgstr "Ascunde _bara cu unelte"
 
-#: ../src/layout_util.c:2612
+#: ../src/layout_util.c:2617
 msgid "Hide toolbar"
 msgstr "Ascunde bara cu unelte"
 
-#: ../src/layout_util.c:2613
+#: ../src/layout_util.c:2618
 msgid "_Info sidebar"
 msgstr "Bara laterală _informații"
 
-#: ../src/layout_util.c:2613 ../src/preferences.c:845 ../src/toolbar.c:148
+#: ../src/layout_util.c:2618 ../src/preferences.c:845 ../src/toolbar.c:148
 msgid "Info sidebar"
 msgstr "Bara laterală informații"
 
-#: ../src/layout_util.c:2614
+#: ../src/layout_util.c:2619
 msgid "Sort _manager"
 msgstr "_Manager sortare"
 
-#: ../src/layout_util.c:2614 ../src/preferences.c:846 ../src/toolbar.c:149
+#: ../src/layout_util.c:2619 ../src/preferences.c:846 ../src/toolbar.c:149
 msgid "Sort manager"
 msgstr "Manager sortare"
 
-#: ../src/layout_util.c:2615
+#: ../src/layout_util.c:2620
 #, fuzzy
 msgid "Hide Bars"
 msgstr "Ascunde \"%s\""
 
-#: ../src/layout_util.c:2616
-msgid "Toggle _slideshow"
-msgstr "Comută _slideshow"
-
-#: ../src/layout_util.c:2616
-msgid "Toggle slideshow"
-msgstr "Comută slideshow"
-
-#: ../src/layout_util.c:2617
+#: ../src/layout_util.c:2622
 msgid "Use _color profiles"
 msgstr "Folosește profile de _culoare"
 
-#: ../src/layout_util.c:2617 ../src/toolbar.c:135
+#: ../src/layout_util.c:2622 ../src/toolbar.c:135
 msgid "Use color profiles"
 msgstr "Folosește profile de culoare"
 
-#: ../src/layout_util.c:2618
+#: ../src/layout_util.c:2623
 msgid "Use profile from _image"
 msgstr "Folosește profil din _imagine"
 
-#: ../src/layout_util.c:2618
+#: ../src/layout_util.c:2623
 msgid "Use profile from image"
 msgstr "Folosește profil din imagine"
 
-#: ../src/layout_util.c:2619
+#: ../src/layout_util.c:2624
 msgid "Toggle _grayscale"
 msgstr "Comută alb-ne_gru"
 
-#: ../src/layout_util.c:2619
+#: ../src/layout_util.c:2624
 msgid "Toggle grayscale"
 msgstr "Comută alb-negru"
 
-#: ../src/layout_util.c:2620
+#: ../src/layout_util.c:2625
 msgid "Image Overlay"
 msgstr "Overlay imagine"
 
-#: ../src/layout_util.c:2621
+#: ../src/layout_util.c:2626
 msgid "_Show Histogram"
 msgstr "Arată hi_stogramă"
 
-#: ../src/layout_util.c:2621
+#: ../src/layout_util.c:2626
 msgid "Show Histogram"
 msgstr "Arată histogramă"
 
-#: ../src/layout_util.c:2622
+#: ../src/layout_util.c:2627
 #, fuzzy
 msgid "Rectangular Selection"
 msgstr "Selecție rectangulară în modul  de afișare cu icon-uri"
 
-#: ../src/layout_util.c:2623
-msgid "GIF _animation"
-msgstr ""
-
-#: ../src/layout_util.c:2623
+#: ../src/layout_util.c:2628
 msgid "Toggle GIF animation"
 msgstr ""
 
-#: ../src/layout_util.c:2624
+#: ../src/layout_util.c:2629
 #, fuzzy
 msgid "_Exif rotate"
 msgstr "Folosește data EXIF"
 
-#: ../src/layout_util.c:2624 ../src/toolbar.c:134
+#: ../src/layout_util.c:2629
 #, fuzzy
-msgid "Exif rotate"
+msgid "Toggle Exif rotate"
 msgstr "Folosește data EXIF"
 
-#: ../src/layout_util.c:2625 ../src/preferences.c:843 ../src/toolbar.c:146
+#: ../src/layout_util.c:2630 ../src/preferences.c:843 ../src/toolbar.c:146
 msgid "Draw Rectangle"
 msgstr ""
 
-#: ../src/layout_util.c:2626
+#: ../src/layout_util.c:2631
 msgid "Over/Under Exposed"
 msgstr ""
 
-#: ../src/layout_util.c:2627 ../src/preferences.c:831 ../src/toolbar.c:129
+#: ../src/layout_util.c:2631
+msgid "Highlight over/under exposed"
+msgstr ""
+
+#: ../src/layout_util.c:2632 ../src/preferences.c:831 ../src/toolbar.c:129
 msgid "Split Pane Sync"
 msgstr ""
 
-#: ../src/layout_util.c:2631
-msgid "Image _List"
+#: ../src/layout_util.c:2636
+#, fuzzy
+msgid "Images as _List"
 msgstr "_Lista imagini"
 
-#: ../src/layout_util.c:2631
+#: ../src/layout_util.c:2636
 msgid "View Images as List"
 msgstr "Afișează listă imagini"
 
-#: ../src/layout_util.c:2632
-msgid "I_cons"
-msgstr "I_con-uri"
+#: ../src/layout_util.c:2637
+#, fuzzy
+msgid "Images as I_cons"
+msgstr "Afișează imagini ca icon-uri"
 
-#: ../src/layout_util.c:2632
+#: ../src/layout_util.c:2637
 msgid "View Images as Icons"
 msgstr "Afișează imagini ca icon-uri"
 
-#: ../src/layout_util.c:2636
+#: ../src/layout_util.c:2641
 #, fuzzy
 msgid "T_oggle Folder View"
 msgstr "Comută slideshow"
 
-#: ../src/layout_util.c:2636
+#: ../src/layout_util.c:2641
 #, fuzzy
 msgid "Toggle Folders View"
 msgstr "Comută slideshow"
 
-#: ../src/layout_util.c:2640
+#: ../src/layout_util.c:2645
 msgid "_Horizontal"
 msgstr "_Orizontal"
 
-#: ../src/layout_util.c:2640
-msgid "Split Horizontal"
+#: ../src/layout_util.c:2645
+#, fuzzy
+msgid "Split panes horizontal."
 msgstr "Împărțire orizontală"
 
-#: ../src/layout_util.c:2641
+#: ../src/layout_util.c:2646
 msgid "_Vertical"
 msgstr "_Vertical"
 
-#: ../src/layout_util.c:2641
-msgid "Split Vertical"
+#: ../src/layout_util.c:2646
+#, fuzzy
+msgid "Split panes vertical"
 msgstr "Împărțire Verticală"
 
-#: ../src/layout_util.c:2642
+#: ../src/layout_util.c:2647
 msgid "_Quad"
 msgstr "_Quad"
 
-#: ../src/layout_util.c:2642
-msgid "Split Quad"
+#: ../src/layout_util.c:2647
+#, fuzzy
+msgid "Split panes quad"
 msgstr " Împărţire în 4 "
 
-#: ../src/layout_util.c:2643
+#: ../src/layout_util.c:2648
 msgid "_Single"
 msgstr "O _singură imagine"
 
-#: ../src/layout_util.c:2643
-msgid "Split Single"
-msgstr "Afișează o singură imagine"
+#: ../src/layout_util.c:2648
+#, fuzzy
+msgid "Single pane"
+msgstr "imaginea următoare"
 
-#: ../src/layout_util.c:2647
+#: ../src/layout_util.c:2652
 msgid "Input _0: sRGB"
 msgstr "Intrare _0: sRGB"
 
-#: ../src/layout_util.c:2647
+#: ../src/layout_util.c:2652
 msgid "Input 0: sRGB"
 msgstr "Intrare 0: sRGB"
 
-#: ../src/layout_util.c:2648
+#: ../src/layout_util.c:2653
 msgid "Input _1: AdobeRGB compatible"
 msgstr "Intrare _1: compatibil AdobeRGB"
 
-#: ../src/layout_util.c:2648
+#: ../src/layout_util.c:2653
 msgid "Input 1: AdobeRGB compatible"
 msgstr "Intrare 1: compatibil AdobeRGB"
 
-#: ../src/layout_util.c:2649
+#: ../src/layout_util.c:2654
 msgid "Input _2"
 msgstr "Intrare _2"
 
-#: ../src/layout_util.c:2649
+#: ../src/layout_util.c:2654
 msgid "Input 2"
 msgstr "Intrare 2"
 
-#: ../src/layout_util.c:2650
+#: ../src/layout_util.c:2655
 msgid "Input _3"
 msgstr "Intrare _3"
 
-#: ../src/layout_util.c:2650
+#: ../src/layout_util.c:2655
 msgid "Input 3"
 msgstr "Intrare 3"
 
-#: ../src/layout_util.c:2651
+#: ../src/layout_util.c:2656
 msgid "Input _4"
 msgstr "Intrare _4"
 
-#: ../src/layout_util.c:2651
+#: ../src/layout_util.c:2656
 msgid "Input 4"
 msgstr "Intrare 4"
 
-#: ../src/layout_util.c:2652
+#: ../src/layout_util.c:2657
 msgid "Input _5"
 msgstr "Intrare _5"
 
-#: ../src/layout_util.c:2652
+#: ../src/layout_util.c:2657
 msgid "Input 5"
 msgstr "Intrare 5"
 
-#: ../src/layout_util.c:2656
+#: ../src/layout_util.c:2661
 msgid "Histogram on Red"
 msgstr "Histogramă pe roșu"
 
-#: ../src/layout_util.c:2657
+#: ../src/layout_util.c:2662
 msgid "Histogram on Green"
 msgstr "Histogramă pe verde"
 
-#: ../src/layout_util.c:2658
+#: ../src/layout_util.c:2663
 msgid "Histogram on Blue"
 msgstr "Histogramă pe albastru"
 
-#: ../src/layout_util.c:2659
+#: ../src/layout_util.c:2664
 msgid "Histogram on RGB"
 msgstr "Histogramă pe RGB"
 
-#: ../src/layout_util.c:2660
+#: ../src/layout_util.c:2665
 msgid "Histogram on Value"
 msgstr "Histogramă pe valoare"
 
-#: ../src/layout_util.c:2664
+#: ../src/layout_util.c:2669
 msgid "Linear Histogram"
 msgstr "Histogramă liniară"
 
-#: ../src/layout_util.c:2665
+#: ../src/layout_util.c:2670
 msgid "_Log Histogram"
 msgstr "Histogramă _logaritmică"
 
-#: ../src/layout_util.c:2665
+#: ../src/layout_util.c:2670
 msgid "Log Histogram"
 msgstr "Histogramă logaritmică"
 
-#: ../src/layout_util.c:2669
+#: ../src/layout_util.c:2674
 msgid "_Auto"
 msgstr ""
 
-#: ../src/layout_util.c:2669
+#: ../src/layout_util.c:2674
 msgid "Stereo Auto"
 msgstr ""
 
-#: ../src/layout_util.c:2670
+#: ../src/layout_util.c:2675
 msgid "_Side by Side"
 msgstr ""
 
-#: ../src/layout_util.c:2670
+#: ../src/layout_util.c:2675
 msgid "Stereo Side by Side"
 msgstr ""
 
-#: ../src/layout_util.c:2671
+#: ../src/layout_util.c:2676
 msgid "_Cross"
 msgstr ""
 
-#: ../src/layout_util.c:2671
+#: ../src/layout_util.c:2676
 msgid "Stereo Cross"
 msgstr ""
 
-#: ../src/layout_util.c:2672
+#: ../src/layout_util.c:2677
 msgid "_Off"
 msgstr ""
 
-#: ../src/layout_util.c:2672
+#: ../src/layout_util.c:2677
 msgid "Stereo Off"
 msgstr ""
 
-#: ../src/layout_util.c:3008
+#: ../src/layout_util.c:3013
 #, c-format
 msgid "Mark _%d"
 msgstr "Marcaj _%d"
 
-#: ../src/layout_util.c:3009 ../src/view_file/view_file.c:643
+#: ../src/layout_util.c:3014 ../src/view_file/view_file.c:650
 #, c-format
 msgid "_Set mark %d"
 msgstr "_Setează marcaj %d"
 
-#: ../src/layout_util.c:3009
+#: ../src/layout_util.c:3014
 #, c-format
 msgid "Set mark %d"
 msgstr "Setează marcaj %d"
 
-#: ../src/layout_util.c:3010 ../src/view_file/view_file.c:644
+#: ../src/layout_util.c:3015 ../src/view_file/view_file.c:651
 #, c-format
 msgid "_Reset mark %d"
 msgstr "_Resetează marcaj %d"
 
-#: ../src/layout_util.c:3010
+#: ../src/layout_util.c:3015
 #, c-format
 msgid "Reset mark %d"
 msgstr "Resetează marcaj %d"
 
-#: ../src/layout_util.c:3011 ../src/layout_util.c:3012
-#: ../src/view_file/view_file.c:645
+#: ../src/layout_util.c:3016 ../src/layout_util.c:3017
+#: ../src/view_file/view_file.c:652
 #, c-format
 msgid "_Toggle mark %d"
 msgstr "Comu_tă marcaj %d"
 
-#: ../src/layout_util.c:3011 ../src/layout_util.c:3012
+#: ../src/layout_util.c:3016 ../src/layout_util.c:3017
 #, c-format
 msgid "Toggle mark %d"
 msgstr "Comută marcaj %d"
 
-#: ../src/layout_util.c:3013
+#: ../src/layout_util.c:3018
 #, c-format
 msgid "Se_lect mark %d"
 msgstr "Se_lectează marcaj %d"
 
-#: ../src/layout_util.c:3013 ../src/layout_util.c:3014
+#: ../src/layout_util.c:3018 ../src/layout_util.c:3019
 #, c-format
 msgid "Select mark %d"
 msgstr "Selectează marcaj %d"
 
-#: ../src/layout_util.c:3014 ../src/view_file/view_file.c:646
+#: ../src/layout_util.c:3019 ../src/view_file/view_file.c:653
 #, c-format
 msgid "_Select mark %d"
 msgstr "_Selectează marcaj %d"
 
-#: ../src/layout_util.c:3015 ../src/view_file/view_file.c:647
+#: ../src/layout_util.c:3020 ../src/view_file/view_file.c:654
 #, c-format
 msgid "_Add mark %d"
 msgstr "_Adaugă marcaj %d"
 
-#: ../src/layout_util.c:3015
+#: ../src/layout_util.c:3020
 #, c-format
 msgid "Add mark %d"
 msgstr "Adaugă marcaj %d"
 
-#: ../src/layout_util.c:3016 ../src/view_file/view_file.c:648
+#: ../src/layout_util.c:3021 ../src/view_file/view_file.c:655
 #, c-format
 msgid "_Intersection with mark %d"
 msgstr "_Intersectează cu marcaj %d"
 
-#: ../src/layout_util.c:3016
+#: ../src/layout_util.c:3021
 #, c-format
 msgid "Intersection with mark %d"
 msgstr "Intersectează cu marcaj %d"
 
-#: ../src/layout_util.c:3017 ../src/view_file/view_file.c:649
+#: ../src/layout_util.c:3022 ../src/view_file/view_file.c:656
 #, c-format
 msgid "_Unselect mark %d"
 msgstr "_Deselectează marcaj %d"
 
-#: ../src/layout_util.c:3017
+#: ../src/layout_util.c:3022
 #, c-format
 msgid "Unselect mark %d"
 msgstr "Deselectează marcaj %d"
 
-#: ../src/layout_util.c:3018
+#: ../src/layout_util.c:3023
 #, c-format
 msgid "_Filter mark %d"
 msgstr "_Filtrează marcaj %d"
 
-#: ../src/layout_util.c:3018
+#: ../src/layout_util.c:3023
 #, c-format
 msgid "Filter mark %d"
 msgstr "Filtrează marcaj %d"
 
-#: ../src/layout_util.c:3633
+#: ../src/layout_util.c:3638
 #, c-format
 msgid "Number of files with unsaved metadata: %d"
 msgstr "Număr de fișiere cu metadate nesalvate: %d"
 
-#: ../src/layout_util.c:3639
+#: ../src/layout_util.c:3644
 msgid "No unsaved metadata"
 msgstr "Nu există metadate nesalvate"
 
-#: ../src/layout_util.c:3687
+#: ../src/layout_util.c:3692
 #, c-format
 msgid ""
 "Image profile: %s\n"
@@ -4134,15 +4331,15 @@ msgstr ""
 "Profil imagine: %s\n"
 "Profil ecran: %s"
 
-#: ../src/layout_util.c:3695
+#: ../src/layout_util.c:3700
 msgid "Click to enable color management"
 msgstr "Click pentru a activa color management"
 
-#: ../src/layout_util.c:3700
+#: ../src/layout_util.c:3705
 msgid "Color profiles not supported"
 msgstr "Profilele de culoare nu sunt suportate"
 
-#: ../src/layout_util.c:3722
+#: ../src/layout_util.c:3727
 #, c-format
 msgid "Input _%d: %s"
 msgstr "Intrare _%d: %s"
@@ -4168,7 +4365,7 @@ msgstr ""
 msgid "Log"
 msgstr "Log"
 
-#: ../src/logwindow.c:400 ../src/preferences.c:3622
+#: ../src/logwindow.c:400 ../src/preferences.c:3630
 msgid "Debug level:"
 msgstr "Nivelul de depanare:"
 
@@ -4379,14 +4576,6 @@ msgstr "Ieșire %s"
 msgid "Collections have been modified. Quit anyway?"
 msgstr "Colecţiile au fost modificate. Sigur doriţi să ieşiţi?"
 
-#: ../src/menu.c:143
-msgid "Sort by size"
-msgstr "Sortare după mărime"
-
-#: ../src/menu.c:146
-msgid "Sort by date"
-msgstr "Sortare după dată"
-
 #: ../src/menu.c:149
 #, fuzzy
 msgid "Sort by file creation date"
@@ -4406,14 +4595,6 @@ msgstr "Sortează după data E_XIF"
 msgid "Unsorted"
 msgstr "Nesortate"
 
-#: ../src/menu.c:161
-msgid "Sort by path"
-msgstr "Sortare după cale"
-
-#: ../src/menu.c:164
-msgid "Sort by number"
-msgstr "Sortare după număr"
-
 #: ../src/menu.c:167
 #, fuzzy
 msgid "Sort by rating"
@@ -4424,15 +4605,11 @@ msgstr "Sortare după dată"
 msgid "Sort by class"
 msgstr "Sortare după mărime"
 
-#: ../src/menu.c:174
-msgid "Sort by name"
-msgstr "Sortare după nume"
-
 #: ../src/menu.c:268 ../src/menu.c:277
 msgid "Zoom to original size"
 msgstr "Măreşte la dimensiunea iniţială"
 
-#: ../src/menu.c:271 ../src/preferences.c:2302
+#: ../src/menu.c:271 ../src/preferences.c:2310
 msgid "Fit image to window"
 msgstr "Umple fereastra cu imaginea"
 
@@ -4440,12 +4617,24 @@ msgstr "Umple fereastra cu imaginea"
 msgid "Leave Zoom at previous setting"
 msgstr "Păstrează valoarea anterioară a măririi"
 
-#: ../src/menu.c:354
+#: ../src/menu.c:348 ../src/preferences.c:812 ../src/toolbar.c:110
 #, fuzzy
-msgid "Rotate _180°"
-msgstr "Rotire _180"
+msgid "Rotate clockwise 90°"
+msgstr "Rotește în sens orar"
 
-#: ../src/menu.c:459
+#: ../src/menu.c:357 ../src/preferences.c:815 ../src/toolbar.c:113
+msgid "Mirror"
+msgstr "Oglindește"
+
+#: ../src/menu.c:360 ../src/preferences.c:816 ../src/toolbar.c:114
+msgid "Flip"
+msgstr "Întoarce"
+
+#: ../src/menu.c:363 ../src/preferences.c:817 ../src/toolbar.c:115
+msgid "Original state"
+msgstr "Starea originală"
+
+#: ../src/menu.c:462
 #, fuzzy
 msgid "_Add to Collection"
 msgstr "Adaugă colecţie"
@@ -4682,16 +4871,20 @@ msgstr "Alb-negru"
 msgid "Perspective"
 msgstr "Perspectivă"
 
-#: ../src/misc.c:421
+#: ../src/misc.c:395
+msgid "Warning: libarchive not installed"
+msgstr ""
+
+#: ../src/misc.c:422
 #, fuzzy
 msgid "Open Archive - Cannot create directory: "
 msgstr "Nu am putut crea directorul."
 
-#: ../src/misc.c:430 ../src/misc.c:442
+#: ../src/misc.c:431 ../src/misc.c:443
 msgid "Open Archive - Cannot change directory to: "
 msgstr ""
 
-#: ../src/misc.c:430 ../src/misc.c:442
+#: ../src/misc.c:431 ../src/misc.c:443
 msgid ""
 "\n"
 "  Error code: "
@@ -4701,8 +4894,8 @@ msgstr ""
 msgid "Desktop"
 msgstr "Ecran"
 
-#: ../src/options.c:265 ../src/search.c:2303 ../src/search.c:2307
-#: ../src/search.c:3591 ../src/search.c:3595 ../src/view_file/view_file.c:908
+#: ../src/options.c:265 ../src/search.c:2338 ../src/search.c:2342
+#: ../src/search.c:3626 ../src/search.c:3630 ../src/view_file/view_file.c:915
 #, fuzzy
 msgid "Mark "
 msgstr "Marchează %d"
@@ -4779,122 +4972,189 @@ msgid ""
 "To include predefined tags in the template, click a button or drag-and-drop"
 msgstr ""
 
-#: ../src/pan-view/pan-view.c:462
+#: ../src/pan-view/pan-view.c:103 ../src/pan-view/pan-view.c:122
+msgid "Display Find search bar"
+msgstr ""
+
+#: ../src/pan-view/pan-view.c:104
+#, fuzzy
+msgid "Start search"
+msgstr "Căutare imagini"
+
+#: ../src/pan-view/pan-view.c:106
+msgid "Hide Find search bar"
+msgstr ""
+
+#: ../src/pan-view/pan-view.c:123
+#, fuzzy
+msgid "Scroll left"
+msgstr "stânga sus"
+
+#: ../src/pan-view/pan-view.c:124
+#, fuzzy
+msgid "Scroll right"
+msgstr "dreapta sus"
+
+#: ../src/pan-view/pan-view.c:125
+msgid "Scroll up"
+msgstr ""
+
+#: ../src/pan-view/pan-view.c:126
+msgid "Scroll down"
+msgstr ""
+
+#: ../src/pan-view/pan-view.c:127
+#, fuzzy
+msgid "Scroll left faster"
+msgstr "Mută în colțul stânga sus"
+
+#: ../src/pan-view/pan-view.c:128
+#, fuzzy
+msgid "Scroll right faster"
+msgstr "Mută în centrul imaginii"
+
+#: ../src/pan-view/pan-view.c:129
+#, fuzzy
+msgid "Scroll up faster"
+msgstr "Mută în colțul stânga sus"
+
+#: ../src/pan-view/pan-view.c:130
+#, fuzzy
+msgid "Scroll down faster"
+msgstr "Mută în centrul imaginii"
+
+#: ../src/pan-view/pan-view.c:131
+msgid "Scroll display half screen up"
+msgstr ""
+
+#: ../src/pan-view/pan-view.c:132
+msgid "Scroll display half screen down"
+msgstr ""
+
+#: ../src/pan-view/pan-view.c:133
+msgid "Scroll display half screen left"
+msgstr ""
+
+#: ../src/pan-view/pan-view.c:134
+msgid "Scroll display half screen right"
+msgstr ""
+
+#: ../src/pan-view/pan-view.c:509
 #, c-format
 msgid "%d images, %s"
 msgstr "%d imagini, %s"
 
-#: ../src/pan-view/pan-view.c:472
+#: ../src/pan-view/pan-view.c:519
 #, c-format
 msgid "The pan view does not support the folder \"%s\"."
 msgstr "Acest mod de afișare nu suportă folder-ul \"%s\"."
 
-#: ../src/pan-view/pan-view.c:473
+#: ../src/pan-view/pan-view.c:520
 msgid "Folder not supported"
 msgstr "Director nesuportată"
 
-#: ../src/pan-view/pan-view.c:1025 ../src/pan-view/pan-view.c:1041
+#: ../src/pan-view/pan-view.c:1072 ../src/pan-view/pan-view.c:1088
 msgid "Reading image data..."
 msgstr "Citesc date imagine..."
 
-#: ../src/pan-view/pan-view.c:1100
+#: ../src/pan-view/pan-view.c:1147
 msgid "Sorting images..."
 msgstr "Sortez imagini..."
 
-#: ../src/pan-view/pan-view.c:1435
+#: ../src/pan-view/pan-view.c:1482
 msgid "Filename:"
 msgstr "Nume fişier:"
 
-#: ../src/pan-view/pan-view.c:1437 ../src/pan-view/pan-view.c:1852
-#: ../src/preferences.c:2469
+#: ../src/pan-view/pan-view.c:1484 ../src/pan-view/pan-view.c:1899
+#: ../src/preferences.c:2477
 msgid "Location:"
 msgstr "Locație:"
 
-#: ../src/pan-view/pan-view.c:1439 ../src/pan-view/pan-view-search.c:377
+#: ../src/pan-view/pan-view.c:1486 ../src/pan-view/pan-view-search.c:377
 msgid "Date:"
 msgstr "Dată:"
 
-#: ../src/pan-view/pan-view.c:1441 ../src/preferences.c:2005
+#: ../src/pan-view/pan-view.c:1488 ../src/preferences.c:2006
 msgid "Size:"
 msgstr "Mărime:"
 
-#: ../src/pan-view/pan-view.c:1748 ../src/search.c:2753
+#: ../src/pan-view/pan-view.c:1795 ../src/search.c:2788
 msgid "Folder not found"
 msgstr "directorul nu a fost găsit"
 
-#: ../src/pan-view/pan-view.c:1749
+#: ../src/pan-view/pan-view.c:1796
 msgid "The entered path is not a folder"
 msgstr "Calea specificată nu este un director"
 
-#: ../src/pan-view/pan-view.c:1834
+#: ../src/pan-view/pan-view.c:1881
 msgid "Pan View"
 msgstr "Pan View"
 
-#: ../src/pan-view/pan-view.c:1859
+#: ../src/pan-view/pan-view.c:1906
 msgid "Timeline"
 msgstr "Timeline"
 
-#: ../src/pan-view/pan-view.c:1860
+#: ../src/pan-view/pan-view.c:1907
 msgid "Calendar"
 msgstr "Calendar"
 
-#: ../src/pan-view/pan-view.c:1862
+#: ../src/pan-view/pan-view.c:1909
 msgid "Folders (flower)"
 msgstr "Directoare (floare)"
 
-#: ../src/pan-view/pan-view.c:1863
+#: ../src/pan-view/pan-view.c:1910
 msgid "Grid"
 msgstr "Grilă"
 
-#: ../src/pan-view/pan-view.c:1872
+#: ../src/pan-view/pan-view.c:1919
 msgid "Dots"
 msgstr "_Puncte"
 
-#: ../src/pan-view/pan-view.c:1873
+#: ../src/pan-view/pan-view.c:1920
 msgid "No Images"
 msgstr "Nicio imagine"
 
-#: ../src/pan-view/pan-view.c:1874
+#: ../src/pan-view/pan-view.c:1921
 msgid "Small Thumbnails"
 msgstr "Thumbnail-uri mici"
 
-#: ../src/pan-view/pan-view.c:1875
+#: ../src/pan-view/pan-view.c:1922
 msgid "Normal Thumbnails"
 msgstr "Thumbnail-uri norrmale"
 
-#: ../src/pan-view/pan-view.c:1876
+#: ../src/pan-view/pan-view.c:1923
 msgid "Large Thumbnails"
 msgstr "Thumbnail-uri mari"
 
-#: ../src/pan-view/pan-view.c:1877 ../src/pan-view/pan-view.c:2410
+#: ../src/pan-view/pan-view.c:1924 ../src/pan-view/pan-view.c:2463
 msgid "1:10 (10%)"
 msgstr "1:10 (10%)"
 
-#: ../src/pan-view/pan-view.c:1878 ../src/pan-view/pan-view.c:2406
+#: ../src/pan-view/pan-view.c:1925 ../src/pan-view/pan-view.c:2459
 msgid "1:4 (25%)"
 msgstr "1:4 (25%)"
 
-#: ../src/pan-view/pan-view.c:1879 ../src/pan-view/pan-view.c:2402
+#: ../src/pan-view/pan-view.c:1926 ../src/pan-view/pan-view.c:2455
 msgid "1:3 (33%)"
 msgstr "1:3 (33%)"
 
-#: ../src/pan-view/pan-view.c:1880 ../src/pan-view/pan-view.c:2398
+#: ../src/pan-view/pan-view.c:1927 ../src/pan-view/pan-view.c:2451
 msgid "1:2 (50%)"
 msgstr "1:2 (50%)"
 
-#: ../src/pan-view/pan-view.c:1881
+#: ../src/pan-view/pan-view.c:1928
 msgid "1:1 (100%)"
 msgstr "1:1 (100%)"
 
-#: ../src/pan-view/pan-view.c:2036
+#: ../src/pan-view/pan-view.c:2083
 msgid "Pan View Performance"
 msgstr "Performanță Pan View"
 
-#: ../src/pan-view/pan-view.c:2043
+#: ../src/pan-view/pan-view.c:2090
 msgid "Pan view performance may be poor."
 msgstr "Performanța acestui mod de afișare ar putea fi slabă."
 
-#: ../src/pan-view/pan-view.c:2044
+#: ../src/pan-view/pan-view.c:2091
 #, fuzzy
 msgid ""
 "To improve the performance of thumbnails in\n"
@@ -4907,39 +5167,39 @@ msgstr ""
 "următoarele opțiuni. Notă: ambele opțiuni trebuie activate pentru a vedea "
 "vreo schimbare."
 
-#: ../src/pan-view/pan-view.c:2050
+#: ../src/pan-view/pan-view.c:2097
 msgid "Cache thumbnails"
 msgstr "Pune miniaturile în memoria tampon"
 
-#: ../src/pan-view/pan-view.c:2052
+#: ../src/pan-view/pan-view.c:2099
 msgid "Use shared thumbnail cache"
 msgstr "Folosește cache-ul de thumbnail-uri din sistem"
 
-#: ../src/pan-view/pan-view.c:2058
+#: ../src/pan-view/pan-view.c:2105
 msgid "Do not show this dialog again"
 msgstr "Nu arăta din nou acest mesaj"
 
-#: ../src/pan-view/pan-view.c:2324 ../src/search.c:1114
+#: ../src/pan-view/pan-view.c:2377 ../src/search.c:1149
 msgid "_Play"
 msgstr ""
 
-#: ../src/pan-view/pan-view.c:2378
+#: ../src/pan-view/pan-view.c:2431
 msgid "Sort by E_xif date"
 msgstr "Sortează după data E_XIF"
 
-#: ../src/pan-view/pan-view.c:2384
+#: ../src/pan-view/pan-view.c:2437
 msgid "_Show Exif information"
 msgstr "Afişează informaţia _EXIF"
 
-#: ../src/pan-view/pan-view.c:2386
+#: ../src/pan-view/pan-view.c:2439
 msgid "Show im_age"
 msgstr "Afișează im_agine"
 
-#: ../src/pan-view/pan-view.c:2390
+#: ../src/pan-view/pan-view.c:2443
 msgid "_None"
 msgstr "_Niciuna"
 
-#: ../src/pan-view/pan-view.c:2394
+#: ../src/pan-view/pan-view.c:2447
 msgid "_Full size"
 msgstr "Dimensiunea _reală"
 
@@ -4978,7 +5238,7 @@ msgstr ""
 msgid "Keyword Filter:"
 msgstr "Tip cuvânt cheie:"
 
-#: ../src/pan-view/pan-view-filter.c:104 ../src/preferences.c:2747
+#: ../src/pan-view/pan-view-filter.c:104 ../src/preferences.c:2755
 msgid "Filter"
 msgstr "Filtru"
 
@@ -5011,7 +5271,7 @@ msgstr "potrivire parțială"
 msgid "no match"
 msgstr "nicio potrivire"
 
-#: ../src/preferences.c:125 ../src/search.c:2251 ../src/search.c:3575
+#: ../src/preferences.c:125 ../src/search.c:2286 ../src/search.c:3610
 msgid "Unknown"
 msgstr "Necunoscut"
 
@@ -5019,11 +5279,11 @@ msgstr "Necunoscut"
 msgid "RAW Image"
 msgstr "Imagine RAW"
 
-#: ../src/preferences.c:129 ../src/search.c:2236 ../src/search.c:3572
+#: ../src/preferences.c:129 ../src/search.c:2271 ../src/search.c:3607
 msgid "Video"
 msgstr ""
 
-#: ../src/preferences.c:131 ../src/search.c:2241 ../src/search.c:3573
+#: ../src/preferences.c:131 ../src/search.c:2276 ../src/search.c:3608
 #, fuzzy
 msgid "Document"
 msgstr "Comentariu"
@@ -5106,7 +5366,7 @@ msgstr "Imaginea precedentă"
 msgid "New _window"
 msgstr "Fereastră _nouă"
 
-#: ../src/preferences.c:794 ../src/preferences.c:3265 ../src/toolbar.c:91
+#: ../src/preferences.c:794 ../src/preferences.c:3273 ../src/toolbar.c:91
 #, fuzzy
 msgid "Search"
 msgstr "Caută:"
@@ -5115,16 +5375,6 @@ msgstr "Caută:"
 #: ../src/utilops.c:3210
 msgid "New folder"
 msgstr "Director nou"
-
-#: ../src/preferences.c:799 ../src/toolbar.c:96 ../src/utilops.c:2417
-#: ../src/utilops.c:2883
-msgid "Rename"
-msgstr "Redenumeşte"
-
-#: ../src/preferences.c:800 ../src/preferences.c:3492 ../src/toolbar.c:97
-#: ../src/utilops.c:2230
-msgid "Delete"
-msgstr "Şterge"
 
 #: ../src/preferences.c:801 ../src/toolbar.c:98
 #, fuzzy
@@ -5146,11 +5396,7 @@ msgstr "Afișează fişierele _ascunse"
 msgid "Select rectangle"
 msgstr "Selectează tot"
 
-#: ../src/preferences.c:808 ../src/toolbar.c:106
-msgid "Print"
-msgstr "Ti_părește"
-
-#: ../src/preferences.c:809 ../src/preferences.c:3958 ../src/toolbar.c:107
+#: ../src/preferences.c:809 ../src/preferences.c:3966 ../src/toolbar.c:107
 msgid "Preferences"
 msgstr "Preferințe"
 
@@ -5163,28 +5409,6 @@ msgstr "Configurează această fereastră"
 #, fuzzy
 msgid "Cache maintenance"
 msgstr "Administrare cache"
-
-#: ../src/preferences.c:812 ../src/toolbar.c:110
-#, fuzzy
-msgid "Rotate clockwise 90°"
-msgstr "Rotește în sens orar"
-
-#: ../src/preferences.c:814 ../src/toolbar.c:112
-#, fuzzy
-msgid "Rotate 180°"
-msgstr "Rotește 180"
-
-#: ../src/preferences.c:815 ../src/toolbar.c:113
-msgid "Mirror"
-msgstr "Oglindește"
-
-#: ../src/preferences.c:816 ../src/toolbar.c:114
-msgid "Flip"
-msgstr "Întoarce"
-
-#: ../src/preferences.c:817 ../src/toolbar.c:115
-msgid "Original state"
-msgstr "Starea originală"
 
 #: ../src/preferences.c:822 ../src/toolbar.c:120
 #, fuzzy
@@ -5287,7 +5511,7 @@ msgstr "Jos:"
 msgid "Top - Bottom Half size"
 msgstr ""
 
-#: ../src/preferences.c:1082 ../src/preferences.c:3930
+#: ../src/preferences.c:1082 ../src/preferences.c:3938
 #, fuzzy
 msgid "Fixed position"
 msgstr "Poziție GPS"
@@ -5324,220 +5548,218 @@ msgstr ""
 "Această acțiune va reseta template-ul pentru overlay la valoarea implicită.\n"
 "Doriţi să continuaţi?"
 
-#: ../src/preferences.c:2000
+#: ../src/preferences.c:2001
 msgid "General"
 msgstr "General"
 
-#: ../src/preferences.c:2006 ../src/preferences.c:2270
+#: ../src/preferences.c:2007 ../src/preferences.c:2278
 msgid "Quality:"
 msgstr "Calitate:"
 
-#: ../src/preferences.c:2009
+#: ../src/preferences.c:2010
 #, fuzzy
 msgid "Custom size: "
 msgstr "Imprimantă personalizată:"
 
-#: ../src/preferences.c:2010
+#: ../src/preferences.c:2011
 #, fuzzy
 msgid "Width:"
 msgstr "Lăţime"
 
-#: ../src/preferences.c:2011
+#: ../src/preferences.c:2012
 #, fuzzy
 msgid "Height:"
 msgstr "Înălţime"
 
-#: ../src/preferences.c:2013
+#: ../src/preferences.c:2014
 #, fuzzy
 msgid "Cache thumbnails and sim. files"
 msgstr "Păstrează miniaturile în .thumbnails"
 
-#: ../src/preferences.c:2021
+#: ../src/preferences.c:2022
 #, fuzzy
 msgid "Use Geeqie thumbnail style and cache"
 msgstr "Folosește cache-ul de thumbnail-uri din sistem"
 
-#: ../src/preferences.c:2028
+#: ../src/preferences.c:2029
 #, fuzzy
 msgid "Store thumbnails local to image folder (non-standard)"
 msgstr ""
 "Salvează thumbnail-urile în folder-ul '.thumbnails' din folder-ul cu imagini "
 "(non-standard)"
 
-#: ../src/preferences.c:2035
+#: ../src/preferences.c:2036
 #, fuzzy
 msgid "Use standard thumbnail style and cache, shared with other applications"
 msgstr ""
 "Folosește cache-ul de thumbnail-uri standard, folosit și de alte aplicații"
 
-#: ../src/preferences.c:2041
+#: ../src/preferences.c:2042
 msgid "Use EXIF thumbnails when available (EXIF thumbnails may be outdated)"
 msgstr ""
 "Folosește thumbnail-urile EXIF când sunt disponibile (pot fi neactualizate)"
 
-#: ../src/preferences.c:2044
+#: ../src/preferences.c:2045
 #, fuzzy
 msgid "Thumbnail color management"
 msgstr "Color management"
 
-#: ../src/preferences.c:2047
+#: ../src/preferences.c:2048
 #, fuzzy
 msgid "Collection preview:"
 msgstr "Fişiere colecţie"
 
-#: ../src/preferences.c:2050
+#: ../src/preferences.c:2051
 msgid "The maximum number of thumbnails shown in a Collection preview montage"
 msgstr ""
 
-#: ../src/preferences.c:2053
+#: ../src/preferences.c:2054
 msgid "Use embedded metadata in video files as thumbnails when available"
 msgstr ""
 
-#: ../src/preferences.c:2062
+#: ../src/preferences.c:2063
 #, fuzzy
 msgid "Star Rating"
 msgstr "Pictură"
 
-#: ../src/preferences.c:2069
+#: ../src/preferences.c:2070
 msgid "Star character: "
 msgstr ""
 
-#: ../src/preferences.c:2080 ../src/preferences.c:2112
+#: ../src/preferences.c:2081 ../src/preferences.c:2113
 msgid "Display selected character"
 msgstr ""
 
-#: ../src/preferences.c:2083 ../src/preferences.c:2115
+#: ../src/preferences.c:2084 ../src/preferences.c:2116
 msgid ""
 "Hexadecimal representation of a Unicode character. A list of all Unicode "
 "characters may be found on the Internet."
 msgstr ""
 
-#: ../src/preferences.c:2087 ../src/preferences.c:2119
-#: ../src/preferences.c:2240 ../src/window.c:407
-#, fuzzy
-msgid "Clear"
-msgstr "_Şterge"
-
-#: ../src/preferences.c:2091 ../src/preferences.c:2123
-#: ../src/preferences.c:2244
+#: ../src/preferences.c:2092 ../src/preferences.c:2124
+#: ../src/preferences.c:2252
 #, fuzzy
 msgid "Default"
 msgstr "Implicite"
 
-#: ../src/preferences.c:2101
+#: ../src/preferences.c:2102
 msgid "Rejected character: "
 msgstr ""
 
-#: ../src/preferences.c:2133
+#: ../src/preferences.c:2134
 msgid "Slide show"
 msgstr "Prezentare de imagini"
 
-#: ../src/preferences.c:2144
+#: ../src/preferences.c:2145
 #, fuzzy
 msgid "Delay between image change hrs:mins:secs.dec"
 msgstr "Interval între afișări:"
 
-#: ../src/preferences.c:2160
+#: ../src/preferences.c:2161
 msgid "Random"
 msgstr "Aleator"
 
-#: ../src/preferences.c:2161
+#: ../src/preferences.c:2162
 msgid "Repeat"
 msgstr "Repetare"
 
-#: ../src/preferences.c:2165
+#: ../src/preferences.c:2166
 msgid "Image loading and caching"
 msgstr "Reîncărcare și caching imagini"
 
-#: ../src/preferences.c:2167
+#: ../src/preferences.c:2168
 #, fuzzy
 msgid "Decoded image cache size (MiB):"
 msgstr "Mărime cache pentru imaginile decodate (MB)"
 
-#: ../src/preferences.c:2169
+#: ../src/preferences.c:2170
 msgid "Preload next image"
 msgstr "Preîncarcă următoarea imagine"
 
-#: ../src/preferences.c:2172
+#: ../src/preferences.c:2173
 msgid "Refresh on file change"
 msgstr "Actualizare la modificare fişiere"
 
-#: ../src/preferences.c:2178
+#: ../src/preferences.c:2179
 msgid "Expand menu and toolbar"
 msgstr ""
 
-#: ../src/preferences.c:2180
+#: ../src/preferences.c:2181
 msgid ""
 "Expand menu and toolbar (NOTE! Geeqie must be restarted for change to take "
 "effect)"
 msgstr ""
 
-#: ../src/preferences.c:2182
+#: ../src/preferences.c:2183
 msgid "Expand the menu and toolbar to the full width of the window"
 msgstr ""
 
-#: ../src/preferences.c:2191 ../src/preferences.c:4236
+#: ../src/preferences.c:2195 ../src/preferences.c:4268
 #, fuzzy
 msgid "Timezone database"
 msgstr "Dată fişier"
 
-#: ../src/preferences.c:2209 ../src/preferences.c:4248
+#: ../src/preferences.c:2213 ../src/preferences.c:4280
 msgid "Update"
 msgstr ""
 
-#: ../src/preferences.c:2213
+#: ../src/preferences.c:2217
 msgid "Install"
 msgstr ""
 
-#: ../src/preferences.c:2218
+#: ../src/preferences.c:2220
+msgid "Download database from: "
+msgstr ""
+
+#: ../src/preferences.c:2226
 msgid ""
 "No Internet connection!\n"
 "The timezone database is used to display exif time and date\n"
 "corrected for UTC offset and Daylight Saving Time"
 msgstr ""
 
-#: ../src/preferences.c:2222
+#: ../src/preferences.c:2230
 msgid ""
 "The timezone database is used to display exif time and date\n"
 "corrected for UTC offset and Daylight Saving Time"
 msgstr ""
 
-#: ../src/preferences.c:2228
+#: ../src/preferences.c:2236
 msgid "On-line help search engine"
 msgstr ""
 
-#: ../src/preferences.c:2235
+#: ../src/preferences.c:2243
 msgid ""
 "The format varies between search engines, e.g the format may be:\n"
 "https://www.search_engine.com/search?q=site:geeqie.org/help\n"
 "https://www.search_engine.com/?q=site:geeqie.org/help"
 msgstr ""
 
-#: ../src/preferences.c:2277
+#: ../src/preferences.c:2285
 msgid "Use GPU acceleration via Clutter library (Requires restart)"
 msgstr ""
 
-#: ../src/preferences.c:2285
+#: ../src/preferences.c:2293
 msgid "Two pass rendering (apply HQ zoom and color correction in second pass)"
 msgstr ""
 "Randare în 2 pași (zoom de înaltă calitate și corecții de culoare în al "
 "doilea pas)"
 
-#: ../src/preferences.c:2293
+#: ../src/preferences.c:2301
 msgid "Zoom increment:"
 msgstr "Incrementul măririi"
 
-#: ../src/preferences.c:2300
+#: ../src/preferences.c:2308
 #, fuzzy
 msgid "Zoom style:"
 msgstr "Micşorare"
 
-#: ../src/preferences.c:2305
+#: ../src/preferences.c:2313
 #, fuzzy
 msgid "Allow enlargement of image (max. size in %)"
 msgstr "Măreşte imaginea până la umplere"
 
-#: ../src/preferences.c:2311
+#: ../src/preferences.c:2319
 #, c-format
 msgid ""
 "Enable this to allow Geeqie to increase the image size for images that are "
@@ -5546,12 +5768,12 @@ msgid ""
 "100% is full-size."
 msgstr ""
 
-#: ../src/preferences.c:2314
+#: ../src/preferences.c:2322
 #, c-format
 msgid "Virtual window size (% of actual window):"
 msgstr ""
 
-#: ../src/preferences.c:2320
+#: ../src/preferences.c:2328
 msgid ""
 "This value will set the virtual size of the window when \"Fit image to window"
 "\" is set. Instead of using the actual size of the window, the specified "
@@ -5560,21 +5782,21 @@ msgid ""
 "than 100%). It affects fullscreen mode too."
 msgstr ""
 
-#: ../src/preferences.c:2322
+#: ../src/preferences.c:2330
 #, fuzzy
 msgid "Tile size"
 msgstr "Dimensiune fișier"
 
-#: ../src/preferences.c:2326
+#: ../src/preferences.c:2334
 #, fuzzy
 msgid "Pixels"
 msgstr "Informații pi_xel"
 
-#: ../src/preferences.c:2326
+#: ../src/preferences.c:2334
 msgid "(Requires restart)"
 msgstr ""
 
-#: ../src/preferences.c:2329
+#: ../src/preferences.c:2337
 msgid ""
 "This value changes the size of the tiles large images are split into. "
 "Increasing the size of the tiles will reduce the tiling effect seen on image "
@@ -5582,171 +5804,171 @@ msgid ""
 "a large image is seen."
 msgstr ""
 
-#: ../src/preferences.c:2331
+#: ../src/preferences.c:2339
 msgid "Appearance"
 msgstr "Aspect"
 
-#: ../src/preferences.c:2333
+#: ../src/preferences.c:2341
 msgid "Use custom border color in window mode"
 msgstr "Folosește culoare personalizată pentru fundal în modul fereastră"
 
-#: ../src/preferences.c:2336
+#: ../src/preferences.c:2344
 msgid "Use custom border color in fullscreen mode"
 msgstr "Folosește culoare personalizată pentru margini în modul full screen"
 
-#: ../src/preferences.c:2339
+#: ../src/preferences.c:2347
 msgid "Border color"
 msgstr "Culoare fundal"
 
-#: ../src/preferences.c:2344
+#: ../src/preferences.c:2352
 msgid "Alpha channel color 1"
 msgstr ""
 
-#: ../src/preferences.c:2347
+#: ../src/preferences.c:2355
 msgid "Alpha channel color 2"
 msgstr ""
 
-#: ../src/preferences.c:2416
+#: ../src/preferences.c:2424
 msgid "Windows"
 msgstr "Ferestre"
 
-#: ../src/preferences.c:2418
+#: ../src/preferences.c:2426
 msgid "State"
 msgstr "Stare"
 
-#: ../src/preferences.c:2420
+#: ../src/preferences.c:2428
 #, fuzzy
 msgid "Remember session"
 msgstr "Salvează setări printare"
 
-#: ../src/preferences.c:2423
+#: ../src/preferences.c:2431
 msgid "Use saved window positions also for new windows"
 msgstr ""
 
-#: ../src/preferences.c:2427
+#: ../src/preferences.c:2435
 #, fuzzy
 msgid "Remember window workspace"
 msgstr "Memorează poziţia ferestrelor"
 
-#: ../src/preferences.c:2431
+#: ../src/preferences.c:2439
 msgid "Remember tool state (float/hidden)"
 msgstr "Memorează starea uneltelor (flotante, ascunse)"
 
-#: ../src/preferences.c:2434
+#: ../src/preferences.c:2442
 #, fuzzy
 msgid "Remember dialog window positions"
 msgstr "Memorează poziţia ferestrelor"
 
-#: ../src/preferences.c:2437
+#: ../src/preferences.c:2445
 #, fuzzy
 msgid "Show window IDs"
 msgstr "Fereastră nouă"
 
-#: ../src/preferences.c:2441
+#: ../src/preferences.c:2449
 msgid "Use current layout for default: "
 msgstr ""
 
-#: ../src/preferences.c:2447
+#: ../src/preferences.c:2455
 msgid ""
 "Current window layout\n"
 "has been set as default"
 msgstr ""
 
-#: ../src/preferences.c:2454
+#: ../src/preferences.c:2462
 msgid "Fit window to image when tools are hidden/floating"
 msgstr "Ajustează fereastra la imagine când uneltele sunt flotante/ascunse"
 
-#: ../src/preferences.c:2458
+#: ../src/preferences.c:2466
 msgid "Limit size when auto-sizing window (%):"
 msgstr "Limitare mărime la redimensionarea automată a ferestrei"
 
-#: ../src/preferences.c:2473
+#: ../src/preferences.c:2481
 msgid "Smooth image flip"
 msgstr "Smooth image flip"
 
-#: ../src/preferences.c:2475
+#: ../src/preferences.c:2483
 msgid "Disable screen saver"
 msgstr "Deactivează screen saver"
 
-#: ../src/preferences.c:2493
+#: ../src/preferences.c:2501
 msgid "OSD"
 msgstr ""
 
-#: ../src/preferences.c:2497
+#: ../src/preferences.c:2505
 msgid "Overlay Screen Display"
 msgstr "Afișare ecran overlay"
 
-#: ../src/preferences.c:2509
+#: ../src/preferences.c:2517
 msgid "Image overlay template"
 msgstr "Temnplate overlay imagine"
 
-#: ../src/preferences.c:2520 ../src/print.c:389
+#: ../src/preferences.c:2528 ../src/print.c:389
 msgid "Extensive formatting options are shown in the Help file"
 msgstr ""
 
-#: ../src/preferences.c:2528 ../src/print.c:410 ../src/print.c:471
+#: ../src/preferences.c:2536 ../src/print.c:410 ../src/print.c:471
 msgid "Font"
 msgstr "Font"
 
-#: ../src/preferences.c:2540
+#: ../src/preferences.c:2548
 msgid "Text"
 msgstr "Text"
 
-#: ../src/preferences.c:2545
+#: ../src/preferences.c:2553
 #, fuzzy
 msgid "Background"
 msgstr "Fundal negru"
 
-#: ../src/preferences.c:2551 ../src/preferences.c:2838
-#: ../src/preferences.c:3726
+#: ../src/preferences.c:2559 ../src/preferences.c:2846
+#: ../src/preferences.c:3734
 msgid "Defaults"
 msgstr "Implicite"
 
-#: ../src/preferences.c:2568
+#: ../src/preferences.c:2576
 msgid "Exif, XMP or IPTC tags"
 msgstr ""
 
-#: ../src/preferences.c:2572
+#: ../src/preferences.c:2580
 #, fuzzy
 msgid "%Exif.Image.Orientation%"
 msgstr "Orientare"
 
-#: ../src/preferences.c:2577
+#: ../src/preferences.c:2585
 #, fuzzy
 msgid "Field separators"
 msgstr "Acceleratori"
 
-#: ../src/preferences.c:2581
+#: ../src/preferences.c:2589
 msgid ""
 "Separator shown only if both fields are non-null:\n"
 "%formatted.ShutterSpeed%|%formatted.ISOSpeedRating%"
 msgstr ""
 
-#: ../src/preferences.c:2586
+#: ../src/preferences.c:2594
 msgid "Field maximum length"
 msgstr ""
 
-#: ../src/preferences.c:2590
+#: ../src/preferences.c:2598
 #, fuzzy
 msgid "%path:39%"
 msgstr "Cale"
 
-#: ../src/preferences.c:2595
+#: ../src/preferences.c:2603
 msgid "Pre- and post- text"
 msgstr ""
 
-#: ../src/preferences.c:2599
+#: ../src/preferences.c:2607
 msgid ""
 "Text shown only if the field is non-null:\n"
 "%formatted.Aperture:F no. * setting%\n"
 " %formatted.Aperture:10:F no. * setting%"
 msgstr ""
 
-#: ../src/preferences.c:2604
+#: ../src/preferences.c:2612
 msgid "Pango markup"
 msgstr ""
 
-#: ../src/preferences.c:2608
+#: ../src/preferences.c:2616
 msgid ""
 "<b>bold</b>\n"
 "<u>underline</u>\n"
@@ -5754,61 +5976,61 @@ msgid ""
 "<s>strikethrough</s>"
 msgstr ""
 
-#: ../src/preferences.c:2703
+#: ../src/preferences.c:2711
 msgid "Show hidden files or folders"
 msgstr "Arată fișierele și folderele  ascunse"
 
-#: ../src/preferences.c:2705
+#: ../src/preferences.c:2713
 msgid "Show parent folder (..)"
 msgstr ""
 
-#: ../src/preferences.c:2707
+#: ../src/preferences.c:2715
 msgid "Case sensitive sort"
 msgstr "Sortare case-sensitive"
 
-#: ../src/preferences.c:2709
+#: ../src/preferences.c:2717
 msgid "Natural sort order"
 msgstr ""
 
-#: ../src/preferences.c:2711
+#: ../src/preferences.c:2719
 #, fuzzy
 msgid "Disable file extension checks"
 msgstr "Dezactivează filtrarea fişierelor"
 
-#: ../src/preferences.c:2714
+#: ../src/preferences.c:2722
 msgid "Disable File Filtering"
 msgstr "Dezactivează filtrarea fişierelor"
 
-#: ../src/preferences.c:2718
+#: ../src/preferences.c:2726
 msgid "Grouping sidecar extensions"
 msgstr "Grupare extensii sidecar"
 
-#: ../src/preferences.c:2725
+#: ../src/preferences.c:2733
 msgid "File types"
 msgstr "Tip fișiere"
 
-#: ../src/preferences.c:2788 ../src/view_file/view_file.c:1202
+#: ../src/preferences.c:2796 ../src/view_file/view_file.c:1209
 msgid "Class"
 msgstr "Clasă"
 
-#: ../src/preferences.c:2807
+#: ../src/preferences.c:2815
 msgid "Writable"
 msgstr "Scrierea permisă"
 
-#: ../src/preferences.c:2820
+#: ../src/preferences.c:2828
 msgid "Sidecar is allowed"
 msgstr "Sidecar-urile sunt acceptate"
 
-#: ../src/preferences.c:2867
+#: ../src/preferences.c:2875
 msgid "Metadata writing process"
 msgstr "Proces scriere metadate"
 
-#: ../src/preferences.c:2869
+#: ../src/preferences.c:2877
 msgid "Warning: Geeqie is built without Exiv2. Some options are disabled."
 msgstr ""
 "Atenție: Geeqie este compilat fără Exiv2. Unele opțiuni sunt dezactivate."
 
-#: ../src/preferences.c:2871
+#: ../src/preferences.c:2879
 msgid ""
 "Metadata are written in the following order. The process ends after first "
 "success."
@@ -5816,7 +6038,7 @@ msgstr ""
 "Metadatele sunt scrise în ordinea următoare. Procesul se termină după primul "
 "succes."
 
-#: ../src/preferences.c:2879
+#: ../src/preferences.c:2887
 #, fuzzy
 msgid ""
 "1) Save metadata in image files, or sidecar files, according to the XMP "
@@ -5825,23 +6047,23 @@ msgstr ""
 "1) Salvează metadate în imagini, respectiv fișiere sidecar, după standardul "
 "XMP"
 
-#: ../src/preferences.c:2885
+#: ../src/preferences.c:2893
 msgid ""
 "2) Save metadata in '.metadata' folder, local to image folder (non-standard)"
 msgstr ""
 "2) Salvează metadate în folder-ul '.metadata', în folder-ul cu imagini (non-"
 "standard)"
 
-#: ../src/preferences.c:2888
+#: ../src/preferences.c:2896
 #, c-format
 msgid "3) Save metadata in Geeqie private directory '%s'"
 msgstr "3) Salvează metadate în directorul privat al Geeqie '%s'"
 
-#: ../src/preferences.c:2899
+#: ../src/preferences.c:2907
 msgid "Step 1: Write to image files"
 msgstr "Pasul 1: scrie în fișierele imagine"
 
-#: ../src/preferences.c:2907
+#: ../src/preferences.c:2915
 msgid ""
 "Store metadata also in legacy IPTC tags (converted according to IPTC4XMP "
 "standard)"
@@ -5849,23 +6071,23 @@ msgstr ""
 "Salvează metadate și în tag-urile IPTC de tip vechi (convertite după "
 "standardul IPTC4XMP)"
 
-#: ../src/preferences.c:2910
+#: ../src/preferences.c:2918
 msgid "Warn if the image files are unwritable"
 msgstr "Atenționează dacă fișierele imagine nu pot fi scrise"
 
-#: ../src/preferences.c:2913
+#: ../src/preferences.c:2921
 msgid "Ask before writing to image files"
 msgstr "Întreabă înainte de a scrie în fișierele imagine"
 
-#: ../src/preferences.c:2916
+#: ../src/preferences.c:2924
 msgid "Create sidecar files named image.ext.xmp (as opposed to image.xmp)"
 msgstr ""
 
-#: ../src/preferences.c:2919
+#: ../src/preferences.c:2927
 msgid "Step 2 and 3: write to Geeqie private files"
 msgstr "Pasul 2 și 3: scrie în fișiere private ale Geeqie"
 
-#: ../src/preferences.c:2924
+#: ../src/preferences.c:2932
 msgid ""
 "Use GQview legacy metadata format (supports only keywords and comments) "
 "instead of XMP"
@@ -5873,11 +6095,11 @@ msgstr ""
 "Folosește formatul vechi de metadate al GQview (suportă doar cuvinte cheie "
 "și comentarii) în loc de XMP"
 
-#: ../src/preferences.c:2928
+#: ../src/preferences.c:2936
 msgid "Miscellaneous"
 msgstr "Diverse"
 
-#: ../src/preferences.c:2929
+#: ../src/preferences.c:2937
 msgid ""
 "Write the same description tags (keywords, comment, etc.) to all grouped "
 "sidecars"
@@ -5885,442 +6107,446 @@ msgstr ""
 "Scrie aceleași tag-uri descriptive (cuvinte cheie, comenttarii, etc) în "
 "toate fișierele dintr-un grup"
 
-#: ../src/preferences.c:2932
+#: ../src/preferences.c:2940
 msgid "Allow keywords to differ only in case"
 msgstr "Cuvintele cheie cu capitalizări diferite vor fi considerate diferite"
 
-#: ../src/preferences.c:2935
+#: ../src/preferences.c:2943
 msgid "Write altered image orientation to the metadata"
 msgstr "Scrie orientarea modificată a imaginii în metadate"
 
-#: ../src/preferences.c:2941
+#: ../src/preferences.c:2949
 msgid "Auto-save options"
 msgstr "Salvează opțiunile automat"
 
-#: ../src/preferences.c:2943
+#: ../src/preferences.c:2951
 msgid "Write metadata after timeout"
 msgstr "Scrie metadate după un timp"
 
-#: ../src/preferences.c:2949
+#: ../src/preferences.c:2957
 msgid "Timeout (seconds):"
 msgstr "Limită de timp (secunde):"
 
-#: ../src/preferences.c:2952
+#: ../src/preferences.c:2960
 msgid "Write metadata on image change"
 msgstr "Scrie metadatele la schimbarea imaginii"
 
-#: ../src/preferences.c:2955
+#: ../src/preferences.c:2963
 msgid "Write metadata on directory change"
 msgstr "Scrie metadatele la schimbarea directorului"
 
-#: ../src/preferences.c:2958
+#: ../src/preferences.c:2966
 #, fuzzy
 msgid "Pre-load metadata"
 msgstr "Scrie metadate"
 
-#: ../src/preferences.c:2960
+#: ../src/preferences.c:2968
 msgid "Read metadata in background"
 msgstr ""
 
-#: ../src/preferences.c:3149 ../src/preferences.c:3163
+#: ../src/preferences.c:3157 ../src/preferences.c:3171
 #, fuzzy
 msgid "Search for keywords"
 msgstr "Cuvinte cheie"
 
-#: ../src/preferences.c:3261
+#: ../src/preferences.c:3269
 #, fuzzy
 msgid "Edit keywords autocompletion list"
 msgstr "Adaugă cuvinte cheie la fișierele selectate"
 
-#: ../src/preferences.c:3344
+#: ../src/preferences.c:3352
 msgid "Perceptual"
 msgstr ""
 
-#: ../src/preferences.c:3346
+#: ../src/preferences.c:3354
 msgid "Relative Colorimetric"
 msgstr ""
 
-#: ../src/preferences.c:3350
+#: ../src/preferences.c:3358
 msgid "Absolute Colorimetric"
 msgstr ""
 
-#: ../src/preferences.c:3374
+#: ../src/preferences.c:3382
 msgid "Color management"
 msgstr "Color management"
 
-#: ../src/preferences.c:3376
+#: ../src/preferences.c:3384
 msgid "Input profiles"
 msgstr "Profile de intrare"
 
-#: ../src/preferences.c:3384
+#: ../src/preferences.c:3392
 msgid "Type"
 msgstr "Tip"
 
-#: ../src/preferences.c:3387
+#: ../src/preferences.c:3395
 msgid "Menu name"
 msgstr "Nume meniu"
 
-#: ../src/preferences.c:3390 ../src/search.c:3399
+#: ../src/preferences.c:3398 ../src/search.c:3434
 msgid "File"
 msgstr "Fișier"
 
-#: ../src/preferences.c:3398
+#: ../src/preferences.c:3406
 #, c-format
 msgid "Input %d:"
 msgstr "Intrare %d:"
 
-#: ../src/preferences.c:3414 ../src/preferences.c:3434
+#: ../src/preferences.c:3422 ../src/preferences.c:3442
 msgid "Select color profile"
 msgstr "Selectare profil culoare"
 
-#: ../src/preferences.c:3422
+#: ../src/preferences.c:3430
 msgid "Screen profile"
 msgstr "Profil ecran"
 
-#: ../src/preferences.c:3426
+#: ../src/preferences.c:3434
 msgid "Use system screen profile if available"
 msgstr "Folosește profilul de ecran al sistemului, dacă este disponibil"
 
-#: ../src/preferences.c:3431
+#: ../src/preferences.c:3439
 msgid "Screen:"
 msgstr "Ecran:"
 
-#: ../src/preferences.c:3437
+#: ../src/preferences.c:3445
 #, fuzzy
 msgid "Render Intent:"
 msgstr "Randare"
 
-#: ../src/preferences.c:3490 ../src/preferences.c:3541
+#: ../src/preferences.c:3498 ../src/preferences.c:3549
 msgid "Behavior"
 msgstr "Comportament"
 
-#: ../src/preferences.c:3494
+#: ../src/preferences.c:3502
 #, fuzzy
 msgid "Confirm permanent file delete"
 msgstr "Confirmare pentru ştergerea fişierelor"
 
-#: ../src/preferences.c:3496
+#: ../src/preferences.c:3504
 #, fuzzy
 msgid "Confirm move file to Trash"
 msgstr "Confirmare pentru ştergerea fişierelor"
 
-#: ../src/preferences.c:3498
+#: ../src/preferences.c:3506
 msgid "Enable Delete key"
 msgstr "Activare tasta Delete"
 
-#: ../src/preferences.c:3501
+#: ../src/preferences.c:3509
 msgid "Use Geeqie trash location"
 msgstr ""
 
-#: ../src/preferences.c:3519
+#: ../src/preferences.c:3527
 msgid "Maximum size:"
 msgstr "Dimensiune maximă:"
 
-#: ../src/preferences.c:3519
+#: ../src/preferences.c:3527
 #, fuzzy
 msgid "MiB"
 msgstr "MB"
 
-#: ../src/preferences.c:3521
+#: ../src/preferences.c:3529
 msgid "Set to 0 for unlimited size"
 msgstr "0 pentru nelimitat"
 
-#: ../src/preferences.c:3522
-msgid "View"
-msgstr "Vizualizare"
-
-#: ../src/preferences.c:3530
+#: ../src/preferences.c:3538
 msgid "Use system Trash bin"
 msgstr ""
 
-#: ../src/preferences.c:3533
+#: ../src/preferences.c:3541
 msgid "Use no trash at all"
 msgstr ""
 
-#: ../src/preferences.c:3543
+#: ../src/preferences.c:3551
 msgid "Descend folders in tree view"
 msgstr "Coboară dosarele în arborescenţă"
 
-#: ../src/preferences.c:3546
+#: ../src/preferences.c:3554
 msgid "In place renaming"
 msgstr "Cu redenumire"
 
-#: ../src/preferences.c:3549
+#: ../src/preferences.c:3557
 msgid "List directory view uses single click to enter"
 msgstr ""
 
-#: ../src/preferences.c:3552
+#: ../src/preferences.c:3560
 #, fuzzy
 msgid "Circular selection lists"
 msgstr "Colecția există "
 
-#: ../src/preferences.c:3554
+#: ../src/preferences.c:3562
 msgid "Traverse selection lists in a circular manner"
 msgstr ""
 
-#: ../src/preferences.c:3556
+#: ../src/preferences.c:3564
 msgid "Save marks on exit"
 msgstr ""
 
-#: ../src/preferences.c:3560
-msgid "Use \"With Rename\" as default for Copy/Move dialogs"
-msgstr ""
-
-#: ../src/preferences.c:3564
-#, fuzzy
-msgid "Open collections on top"
-msgstr "Deschide colecţia"
-
 #: ../src/preferences.c:3568
-msgid "Hide window in fullscreen"
+msgid "Use \"With Rename\" as default for Copy/Move dialogs"
 msgstr ""
 
 #: ../src/preferences.c:3572
 #, fuzzy
+msgid "Open collections on top"
+msgstr "Deschide colecţia"
+
+#: ../src/preferences.c:3576
+msgid "Hide window in fullscreen"
+msgstr ""
+
+#: ../src/preferences.c:3580
+#, fuzzy
 msgid "Recent folder list maximum size"
 msgstr "Dimensiunea maximă a listei de fișiere recent accesate"
 
-#: ../src/preferences.c:3575
+#: ../src/preferences.c:3583
 msgid "Drag'n drop icon size"
 msgstr "Dimensiune icon pentru drag and drop"
 
-#: ../src/preferences.c:3579
+#: ../src/preferences.c:3587
 msgid "Drag`n drop default action:"
 msgstr ""
 
-#: ../src/preferences.c:3582
+#: ../src/preferences.c:3590
 #, fuzzy
 msgid "Copy path clipboard selection:"
 msgstr "Copiază cale în clipboard"
 
-#: ../src/preferences.c:3586
+#: ../src/preferences.c:3594
 msgid "Navigation"
 msgstr "Navigare"
 
-#: ../src/preferences.c:3588
+#: ../src/preferences.c:3596
 msgid "Progressive keyboard scrolling"
 msgstr "Deplasare progresivă cu tastatura"
 
-#: ../src/preferences.c:3590
+#: ../src/preferences.c:3598
 msgid "Keyboard scrolling step multiplier:"
 msgstr ""
 
-#: ../src/preferences.c:3592
+#: ../src/preferences.c:3600
 msgid "Mouse wheel scrolls image"
 msgstr "Rotiţa mouse-ului defilează imaginea"
 
-#: ../src/preferences.c:3594
+#: ../src/preferences.c:3602
 msgid "Navigation by left or middle click on image"
 msgstr ""
 
-#: ../src/preferences.c:3596
+#: ../src/preferences.c:3604
 msgid "Open archive by left click on image"
 msgstr ""
 
-#: ../src/preferences.c:3598
+#: ../src/preferences.c:3606
 msgid "Play video by left click on image"
 msgstr ""
 
-#: ../src/preferences.c:3601
+#: ../src/preferences.c:3609
 msgid "Play with:"
 msgstr ""
 
-#: ../src/preferences.c:3605
+#: ../src/preferences.c:3613
 msgid "Mouse button Back:"
 msgstr ""
 
-#: ../src/preferences.c:3607
+#: ../src/preferences.c:3615
 msgid "Mouse button Forward:"
 msgstr ""
 
-#: ../src/preferences.c:3611
+#: ../src/preferences.c:3619
 msgid "GPU"
 msgstr ""
 
-#: ../src/preferences.c:3613
+#: ../src/preferences.c:3621
 #, fuzzy
 msgid "Override disable GPU"
 msgstr "Suprascrie Fişier"
 
-#: ../src/preferences.c:3620
+#: ../src/preferences.c:3628
 msgid "Debugging"
 msgstr "Informații de depanare"
 
-#: ../src/preferences.c:3625
+#: ../src/preferences.c:3633
 #, fuzzy
 msgid "Timer data"
 msgstr "Dată fişier"
 
-#: ../src/preferences.c:3628
+#: ../src/preferences.c:3636
 #, fuzzy
 msgid "Log Window max. lines:"
 msgstr "Fereastra log"
 
-#: ../src/preferences.c:3646
+#: ../src/preferences.c:3654
 msgid "Keyboard"
 msgstr "Tastatură"
 
-#: ../src/preferences.c:3648
+#: ../src/preferences.c:3656
 msgid "Accelerators"
 msgstr "Acceleratori"
 
-#: ../src/preferences.c:3667
+#: ../src/preferences.c:3675
 msgid "Action"
 msgstr "Acţiune"
 
-#: ../src/preferences.c:3689
+#: ../src/preferences.c:3697
 msgid "KEY"
 msgstr "TASTA"
 
-#: ../src/preferences.c:3700
+#: ../src/preferences.c:3708
 msgid "Tooltip"
 msgstr "Tooltip"
 
-#: ../src/preferences.c:3731
+#: ../src/preferences.c:3739
 msgid "Reset selected"
 msgstr "Resetează selecția"
 
-#: ../src/preferences.c:3746
+#: ../src/preferences.c:3754
 #, fuzzy
 msgid "Toolbar Main"
 msgstr "Unelte"
 
-#: ../src/preferences.c:3762
+#: ../src/preferences.c:3770
 #, fuzzy
 msgid "Toolbar Status"
 msgstr "Unelte"
 
-#: ../src/preferences.c:3790
+#: ../src/preferences.c:3798
 msgid "Advanced"
 msgstr "Avansate"
 
-#: ../src/preferences.c:3791
+#: ../src/preferences.c:3799
 msgid "External preview extraction"
 msgstr ""
 
-#: ../src/preferences.c:3793
+#: ../src/preferences.c:3801
 msgid "Use external preview extraction -  Requires restart"
 msgstr ""
 
-#: ../src/preferences.c:3830
+#: ../src/preferences.c:3838
 #, fuzzy
 msgid "Usable file types:\n"
 msgstr "Include fişierele de tip:"
 
-#: ../src/preferences.c:3836
+#: ../src/preferences.c:3844
 #, fuzzy
 msgid "File identification tool"
 msgstr "Scrie în fișier"
 
-#: ../src/preferences.c:3839
+#: ../src/preferences.c:3847
 msgid "Select file identification tool"
 msgstr ""
 
-#: ../src/preferences.c:3843
+#: ../src/preferences.c:3851
 #, fuzzy
 msgid "Preview extraction tool"
 msgstr "Scrie în fișier"
 
-#: ../src/preferences.c:3846
+#: ../src/preferences.c:3854
 msgid "Select preview extraction tool"
 msgstr ""
 
-#: ../src/preferences.c:3859
+#: ../src/preferences.c:3867
 msgid "Thread pool limits"
 msgstr ""
 
-#: ../src/preferences.c:3866
+#: ../src/preferences.c:3874
 msgid "Duplicate check:"
 msgstr ""
 
-#: ../src/preferences.c:3866
+#: ../src/preferences.c:3874
 msgid "max. threads"
 msgstr ""
 
-#: ../src/preferences.c:3867
+#: ../src/preferences.c:3875
 #, fuzzy
 msgid "Set to 0 for unlimited"
 msgstr "0 pentru nelimitat"
 
-#: ../src/preferences.c:3880
+#: ../src/preferences.c:3888
 msgid "Stereo"
 msgstr ""
 
-#: ../src/preferences.c:3882 ../src/preferences.c:3885
+#: ../src/preferences.c:3890 ../src/preferences.c:3893
 msgid "Windowed stereo mode"
 msgstr ""
 
-#: ../src/preferences.c:3889 ../src/preferences.c:3914
+#: ../src/preferences.c:3897 ../src/preferences.c:3922
 #, fuzzy
 msgid "Mirror left image"
 msgstr "prima imagine"
 
-#: ../src/preferences.c:3892 ../src/preferences.c:3917
+#: ../src/preferences.c:3900 ../src/preferences.c:3925
 #, fuzzy
 msgid "Flip left image"
 msgstr "imaginea următoare"
 
-#: ../src/preferences.c:3895 ../src/preferences.c:3920
+#: ../src/preferences.c:3903 ../src/preferences.c:3928
 #, fuzzy
 msgid "Mirror right image"
 msgstr "prima imagine"
 
-#: ../src/preferences.c:3898 ../src/preferences.c:3923
+#: ../src/preferences.c:3906 ../src/preferences.c:3931
 #, fuzzy
 msgid "Flip right image"
 msgstr "prima imagine"
 
-#: ../src/preferences.c:3900 ../src/preferences.c:3925
+#: ../src/preferences.c:3908 ../src/preferences.c:3933
 msgid "Swap left and right images"
 msgstr ""
 
-#: ../src/preferences.c:3902 ../src/preferences.c:3927
+#: ../src/preferences.c:3910 ../src/preferences.c:3935
 msgid "Disable stereo mode on single image source"
 msgstr ""
 
-#: ../src/preferences.c:3905 ../src/preferences.c:3911
+#: ../src/preferences.c:3913 ../src/preferences.c:3919
 #, fuzzy
 msgid "Fullscreen stereo mode"
 msgstr "_Tot ecranul"
 
-#: ../src/preferences.c:3906
+#: ../src/preferences.c:3914
 msgid "Use different settings for fullscreen"
 msgstr ""
 
-#: ../src/preferences.c:3936
+#: ../src/preferences.c:3944
 #, fuzzy
 msgid "Left X"
 msgstr "Stânga:"
 
-#: ../src/preferences.c:3938
+#: ../src/preferences.c:3946
 #, fuzzy
 msgid "Left Y"
 msgstr "Stânga:"
 
-#: ../src/preferences.c:3940
+#: ../src/preferences.c:3948
 #, fuzzy
 msgid "Right X"
 msgstr "Dreapta:"
 
-#: ../src/preferences.c:3942
+#: ../src/preferences.c:3950
 #, fuzzy
 msgid "Right Y"
 msgstr "Dreapta:"
 
-#: ../src/preferences.c:4119
+#: ../src/preferences.c:4126
 #, fuzzy
 msgid "About Geeqie"
 msgstr "Despre - Geeqie"
 
-#: ../src/preferences.c:4129
+#: ../src/preferences.c:4136
 msgid "translator-credits"
 msgstr ""
 
-#: ../src/preferences.c:4185 ../src/preferences.c:4227
+#: ../src/preferences.c:4202 ../src/preferences.c:4210
+msgid "Warning: Cannot open timezone database file"
+msgstr ""
+
+#: ../src/preferences.c:4217
+msgid "Error: Timezone database download failed"
+msgstr ""
+
+#: ../src/preferences.c:4259
 msgid "Timezone database download failed"
 msgstr ""
 
-#: ../src/preferences.c:4238
+#: ../src/preferences.c:4270
 msgid "Downloading timezone database"
 msgstr ""
 
@@ -6495,198 +6721,199 @@ msgstr "prima imagine"
 msgid "toggle full screen"
 msgstr "comută full screen"
 
-#: ../src/remote.c:1412 ../src/remote.c:1413
+#: ../src/remote.c:1412 ../src/remote.c:1413 ../src/remote.c:1414
+#: ../src/remote.c:1415
 msgid "<FILE>|<URL>"
 msgstr ""
 
-#: ../src/remote.c:1412
+#: ../src/remote.c:1412 ../src/remote.c:1413
 #, fuzzy
 msgid "open FILE or URL, bring Geeqie window to the top"
 msgstr "deschide fișier în fereastră nouă"
 
-#: ../src/remote.c:1413
+#: ../src/remote.c:1414 ../src/remote.c:1415
 #, fuzzy
 msgid "open FILE or URL, do not bring Geeqie window to the top"
 msgstr "deschide fișier în fereastră nouă"
 
-#: ../src/remote.c:1414
+#: ../src/remote.c:1416
 msgid "start full screen"
 msgstr "pornește full screen"
 
-#: ../src/remote.c:1415
+#: ../src/remote.c:1417
 msgid "stop full screen"
 msgstr "oprește full screen"
 
-#: ../src/remote.c:1416
+#: ../src/remote.c:1418
 msgid "<GEOMETRY>"
 msgstr ""
 
-#: ../src/remote.c:1416
+#: ../src/remote.c:1418
 #, fuzzy
 msgid "set window geometry"
 msgstr "Date de geometrie invalide\n"
 
-#: ../src/remote.c:1417
+#: ../src/remote.c:1419
 msgid "<COLLECTION>"
-msgstr ""
-
-#: ../src/remote.c:1417
-#, fuzzy
-msgid "get collection content"
-msgstr "Colecţie nouă"
-
-#: ../src/remote.c:1418
-#, fuzzy
-msgid "get collection list"
-msgstr "Salvează colecţia ca:"
-
-#: ../src/remote.c:1419 ../src/remote.c:1425 ../src/remote.c:1428
-#: ../src/remote.c:1447
-msgid "<FILE>"
 msgstr ""
 
 #: ../src/remote.c:1419
 #, fuzzy
-msgid "get destination path of FILE (See Plugins Configuration)"
-msgstr "calea destinație pentru fișierul dat"
+msgid "get collection content"
+msgstr "Colecţie nouă"
 
 #: ../src/remote.c:1420
 #, fuzzy
-msgid "get file info"
-msgstr "Informații despre fișier"
+msgid "get collection list"
+msgstr "Salvează colecţia ca:"
 
-#: ../src/remote.c:1421 ../src/remote.c:1422
-msgid "[<FOLDER>]"
+#: ../src/remote.c:1421 ../src/remote.c:1427 ../src/remote.c:1430
+#: ../src/remote.c:1450 ../src/remote.c:1451
+msgid "<FILE>"
 msgstr ""
 
 #: ../src/remote.c:1421
 #, fuzzy
-msgid "get list of files and class"
-msgstr "lista de fișiere adiționale fișierului dat"
+msgid "get destination path of FILE (See Plugins Configuration)"
+msgstr "calea destinație pentru fișierul dat"
 
 #: ../src/remote.c:1422
-msgid "get list of files and class recursive"
+#, fuzzy
+msgid "get file info"
+msgstr "Informații despre fișier"
+
+#: ../src/remote.c:1423 ../src/remote.c:1424
+msgid "[<FOLDER>]"
 msgstr ""
 
 #: ../src/remote.c:1423
+#, fuzzy
+msgid "get list of files and class"
+msgstr "lista de fișiere adiționale fișierului dat"
+
+#: ../src/remote.c:1424
+msgid "get list of files and class recursive"
+msgstr ""
+
+#: ../src/remote.c:1425
 msgid "get rectangle co-ordinates"
 msgstr ""
 
-#: ../src/remote.c:1424
+#: ../src/remote.c:1426
 #, fuzzy
 msgid "get render intent"
 msgstr "Randare"
 
-#: ../src/remote.c:1425
+#: ../src/remote.c:1427
 #, fuzzy
 msgid "get list of sidecars of FILE"
 msgstr "lista de fișiere adiționale fișierului dat"
 
-#: ../src/remote.c:1426
+#: ../src/remote.c:1428
 msgid "<ID>"
 msgstr ""
 
-#: ../src/remote.c:1426
+#: ../src/remote.c:1428
 msgid "window id for following commands"
 msgstr ""
 
-#: ../src/remote.c:1427
+#: ../src/remote.c:1429
 msgid "last image"
 msgstr "ultima imagine"
 
-#: ../src/remote.c:1428
+#: ../src/remote.c:1430
 #, fuzzy
 msgid "add FILE to command line collection list"
 msgstr "Adaugă la colecţia nouă"
 
-#: ../src/remote.c:1429
+#: ../src/remote.c:1431
 msgid "clear command line collection list"
 msgstr ""
 
-#: ../src/remote.c:1431
+#: ../src/remote.c:1433
 msgid "<FILE>,<lua script>"
 msgstr ""
 
-#: ../src/remote.c:1431
+#: ../src/remote.c:1433
 msgid "run lua script on FILE"
 msgstr ""
 
-#: ../src/remote.c:1433
+#: ../src/remote.c:1435
 #, fuzzy
 msgid "new window"
 msgstr "Fereastră nouă"
 
-#: ../src/remote.c:1434
+#: ../src/remote.c:1436
 msgid "next image"
 msgstr "imaginea următoare"
 
-#: ../src/remote.c:1435
+#: ../src/remote.c:1437
 msgid "print pixel info of mouse pointer on current image"
 msgstr ""
 
-#: ../src/remote.c:1436
+#: ../src/remote.c:1438
 msgid "terminate returned data with null character instead of newline"
 msgstr ""
 
-#: ../src/remote.c:1437
+#: ../src/remote.c:1439
 msgid "<PWD>"
 msgstr ""
 
-#: ../src/remote.c:1437
+#: ../src/remote.c:1439
 msgid "use PWD as working directory for following commands"
 msgstr ""
 
-#: ../src/remote.c:1438
+#: ../src/remote.c:1440
 msgid "quit"
 msgstr "ieșire"
 
-#: ../src/remote.c:1439
+#: ../src/remote.c:1441 ../src/remote.c:1442
 msgid "bring the Geeqie window to the top"
 msgstr ""
 
-#: ../src/remote.c:1440
+#: ../src/remote.c:1443
 msgid "toggle slide show"
 msgstr "comută slide show"
 
-#: ../src/remote.c:1441
+#: ../src/remote.c:1444
 msgid "<FOLDER>"
 msgstr ""
 
-#: ../src/remote.c:1441
+#: ../src/remote.c:1444
 #, fuzzy
 msgid "start recursive slide show in FOLDER"
 msgstr "pornește slide show recursiv"
 
-#: ../src/remote.c:1442
+#: ../src/remote.c:1445
 msgid "start slide show"
 msgstr "pornește slide show"
 
-#: ../src/remote.c:1443
+#: ../src/remote.c:1446
 msgid "stop slide show"
 msgstr "oprește slide show"
 
-#: ../src/remote.c:1444
+#: ../src/remote.c:1447
 msgid "print filename [and Collection] of current image"
 msgstr ""
 
-#: ../src/remote.c:1445
+#: ../src/remote.c:1448
 msgid "show tools"
 msgstr "arată unelte"
 
-#: ../src/remote.c:1446
+#: ../src/remote.c:1449
 msgid "hide tools"
 msgstr "ascunde unelte"
 
-#: ../src/remote.c:1447
+#: ../src/remote.c:1450 ../src/remote.c:1451
 #, fuzzy
 msgid "open FILE in new window"
 msgstr "deschide fișier în fereastră nouă"
 
-#: ../src/remote.c:1512
+#: ../src/remote.c:1516
 msgid "Remote command list:\n"
 msgstr "Listă comenzi remote:\n"
 
-#: ../src/remote.c:1530
+#: ../src/remote.c:1534
 msgid ""
 "\n"
 "\n"
@@ -6696,12 +6923,12 @@ msgid ""
 "may be used.\n"
 msgstr ""
 
-#: ../src/remote.c:1580
+#: ../src/remote.c:1584
 #, c-format
 msgid "Remote %s not running, starting..."
 msgstr "%s remote nu rulează, îl pornesc..."
 
-#: ../src/remote.c:1718
+#: ../src/remote.c:1722
 msgid "Remote not available\n"
 msgstr "Operațiile remote nu sunt disponibile\n"
 
@@ -6794,162 +7021,166 @@ msgstr "este"
 msgid "is not"
 msgstr ""
 
-#: ../src/search.c:381
+#: ../src/search.c:368
+msgid "Start/stop search"
+msgstr ""
+
+#: ../src/search.c:410
 #, c-format
 msgid "%s, %d files (%s, %d)"
 msgstr "%s, %d fișiere (%s, %d)"
 
-#: ../src/search.c:386
+#: ../src/search.c:415
 #, c-format
 msgid "%s, %d files"
 msgstr "%s, %d fișiere"
 
-#: ../src/search.c:404
+#: ../src/search.c:433
 msgid "Searching..."
 msgstr "Caut..."
 
-#: ../src/search.c:2023
+#: ../src/search.c:2058
 #, fuzzy
 msgid "Changed"
 msgstr "Nicio schimbare"
 
-#: ../src/search.c:2028 ../src/search.c:3444
+#: ../src/search.c:2063 ../src/search.c:3479
 #, fuzzy
 msgid "Original"
 msgstr "Nume original"
 
-#: ../src/search.c:2034 ../src/search.c:3445
+#: ../src/search.c:2069 ../src/search.c:3480
 #, fuzzy
 msgid "Digitized"
 msgstr "Data digitizării"
 
-#: ../src/search.c:2231 ../src/search.c:3571
+#: ../src/search.c:2266 ../src/search.c:3606
 #, fuzzy
 msgid "Raw Image"
 msgstr "Imagine RAW"
 
-#: ../src/search.c:2295 ../src/search.c:3588
+#: ../src/search.c:2330 ../src/search.c:3623
 #, fuzzy
 msgid "Any mark"
 msgstr "Adaugă marcaj %d"
 
-#: ../src/search.c:2351 ../src/search.c:3544
+#: ../src/search.c:2386 ../src/search.c:3579
 msgid "km"
 msgstr ""
 
-#: ../src/search.c:2356 ../src/search.c:3545
+#: ../src/search.c:2391 ../src/search.c:3580
 #, fuzzy
 msgid "miles"
 msgstr "Fişiere"
 
-#: ../src/search.c:2678
+#: ../src/search.c:2713
 msgid "File not found"
 msgstr "Fișier de negăsit"
 
-#: ../src/search.c:2679
+#: ../src/search.c:2714
 msgid "Please enter an existing file for image content."
 msgstr "Vă rog introduceți un fișier existent pentru conținut imagine."
 
-#: ../src/search.c:2704
+#: ../src/search.c:2739
 msgid "Entry does not contain a valid lat/long value"
 msgstr ""
 
-#: ../src/search.c:2754
+#: ../src/search.c:2789
 msgid "Please enter an existing folder to search."
 msgstr "Vă rog selectați un director existent pentru căutare."
 
-#: ../src/search.c:2800
+#: ../src/search.c:2835
 #, fuzzy
 msgid "Collection not found"
 msgstr "directorul nu a fost găsit"
 
-#: ../src/search.c:2800
+#: ../src/search.c:2835
 #, fuzzy
 msgid "Please enter an existing collection name."
 msgstr "Vă rog selectați un director existent pentru căutare."
 
-#: ../src/search.c:3258
+#: ../src/search.c:3293
 #, fuzzy
 msgid "Select collection"
 msgstr "Salvează colecţia"
 
-#: ../src/search.c:3328
+#: ../src/search.c:3363
 msgid "Image search"
 msgstr "Căutare imagini"
 
-#: ../src/search.c:3367
+#: ../src/search.c:3402
 msgid "Search:"
 msgstr "Caută:"
 
-#: ../src/search.c:3381
+#: ../src/search.c:3416
 msgid "Recurse"
 msgstr "Recurse"
 
-#: ../src/search.c:3405 ../src/search.c:3514
+#: ../src/search.c:3440 ../src/search.c:3549
 msgid "Match case"
 msgstr "Match case"
 
-#: ../src/search.c:3411
+#: ../src/search.c:3446
 msgid "File size is"
 msgstr "Mărimea fișierului este"
 
-#: ../src/search.c:3418 ../src/search.c:3435 ../src/search.c:3464
-#: ../src/search.c:3527
+#: ../src/search.c:3453 ../src/search.c:3470 ../src/search.c:3499
+#: ../src/search.c:3562
 msgid "and"
 msgstr " și "
 
-#: ../src/search.c:3424
+#: ../src/search.c:3459
 msgid "File date is"
 msgstr "Data fișierului este"
 
-#: ../src/search.c:3442
+#: ../src/search.c:3477
 msgid "Modified"
 msgstr ""
 
-#: ../src/search.c:3443
+#: ../src/search.c:3478
 #, fuzzy
 msgid "Status Changed"
 msgstr ""
 "\n"
 "Stare: "
 
-#: ../src/search.c:3453
+#: ../src/search.c:3488
 msgid "Image dimensions are"
 msgstr "Dimensiunile imaginii sunt"
 
-#: ../src/search.c:3474
+#: ../src/search.c:3509
 msgid "Image content is"
 msgstr "Conținutul imaginii este"
 
-#: ../src/search.c:3480
+#: ../src/search.c:3515
 #, no-c-format
 msgid "% similar to"
 msgstr "% similar cu"
 
-#: ../src/search.c:3488
+#: ../src/search.c:3523
 #, fuzzy
 msgid "Ignore rotation"
 msgstr "Orientare"
 
-#: ../src/search.c:3520
+#: ../src/search.c:3555
 #, fuzzy
 msgid "Image rating is"
 msgstr "Conținutul imaginii este"
 
-#: ../src/search.c:3534
+#: ../src/search.c:3569
 #, fuzzy
 msgid "Image is"
 msgstr "_Lista imagini"
 
-#: ../src/search.c:3546
+#: ../src/search.c:3581
 msgid "n.m."
 msgstr ""
 
-#: ../src/search.c:3552
+#: ../src/search.c:3587
 msgid "from"
 msgstr ""
 
-#: ../src/search.c:3557
+#: ../src/search.c:3592
 msgid ""
 "Enter a coordinate in the form:\n"
 "89.123 179.456\n"
@@ -6960,16 +7191,16 @@ msgid ""
 "See the Help file"
 msgstr ""
 
-#: ../src/search.c:3565
+#: ../src/search.c:3600
 #, fuzzy
 msgid "Image class"
 msgstr "_Lista imagini"
 
-#: ../src/search.c:3576
+#: ../src/search.c:3611
 msgid "Broken"
 msgstr ""
 
-#: ../src/search.c:3583
+#: ../src/search.c:3618
 #, fuzzy
 msgid "Marks"
 msgstr "Arată marcaje"
@@ -7032,6 +7263,11 @@ msgstr "Informații pi_xel"
 #: ../src/toolbar.c:133
 msgid "Ignore Alpha"
 msgstr ""
+
+#: ../src/toolbar.c:134
+#, fuzzy
+msgid "Exif rotate"
+msgstr "Folosește data EXIF"
 
 #: ../src/toolbar.c:538
 msgid "Add Toolbar Item"
@@ -7670,7 +7906,7 @@ msgstr "Căutare recursivă a duplicatelor"
 msgid "_New folder..."
 msgstr "Dosar _nou..."
 
-#: ../src/view_dir.c:749 ../src/view_file/view_file.c:742
+#: ../src/view_dir.c:749
 msgid "View as _List"
 msgstr "Afișează ca _listă"
 
@@ -7682,49 +7918,55 @@ msgstr "Afișează ca ar_bore"
 msgid "Show _hidden files"
 msgstr "Afișează fişierele _ascunse"
 
-#: ../src/view_dir.c:768 ../src/view_file/view_file.c:772
+#: ../src/view_dir.c:768 ../src/view_file/view_file.c:779
 msgid "Re_fresh"
 msgstr "Actualizează"
 
-#: ../src/view_file/view_file.c:745
-msgid "View as _Icons"
-msgstr "Afișează ca _icon-uri"
+#: ../src/view_file/view_file.c:749
+#, fuzzy
+msgid "Images as List"
+msgstr "Afișează listă imagini"
 
-#: ../src/view_file/view_file.c:751
+#: ../src/view_file/view_file.c:752
+#, fuzzy
+msgid "Images as Icons"
+msgstr "Afișează imagini ca icon-uri"
+
+#: ../src/view_file/view_file.c:758
 msgid "Show _thumbnails"
 msgstr "Afişare miniaturi"
 
-#: ../src/view_file/view_file.c:897
+#: ../src/view_file/view_file.c:904
 #, fuzzy
 msgid "Mark text"
 msgstr "Marchează %d"
 
-#: ../src/view_file/view_file.c:900
+#: ../src/view_file/view_file.c:907
 #, fuzzy
 msgid "Set mark text"
 msgstr "Setează marcaj %d"
 
-#: ../src/view_file/view_file.c:901
+#: ../src/view_file/view_file.c:908
 #, fuzzy
 msgid "This will set or clear the mark text."
 msgstr "Se va goli conţinutul gunoiului"
 
-#: ../src/view_file/view_file.c:1194
+#: ../src/view_file/view_file.c:1201
 #, fuzzy
 msgid "Case sensitive"
 msgstr "Sortare case-sensitive"
 
-#: ../src/view_file/view_file.c:1203
+#: ../src/view_file/view_file.c:1210
 #, fuzzy
 msgid "Select Class filter"
 msgstr "Alegeți folder"
 
-#: ../src/view_file/view_file.c:1759
+#: ../src/view_file/view_file.c:1766
 #, fuzzy
 msgid "Loading meta..."
 msgstr "Încarc harta"
 
-#: ../src/view_file/view_file_icon.c:2171 ../src/view_file/view_file_list.c:930
+#: ../src/view_file/view_file_icon.c:2171 ../src/view_file/view_file_list.c:931
 msgid " [NO GROUPING]"
 msgstr " [FĂRĂ GRUPARE]"
 
@@ -7741,12 +7983,12 @@ msgstr ""
 msgid "Error renaming file"
 msgstr "Nu pot redenumi fişierul"
 
-#: ../src/view_file/view_file_list.c:2232
+#: ../src/view_file/view_file_list.c:2233
 #, fuzzy
 msgid "NameStars"
 msgstr "Nume"
 
-#: ../src/view_file/view_file_list.c:2236
+#: ../src/view_file/view_file_list.c:2237
 #, fuzzy
 msgid "Stars"
 msgstr "Start #"
@@ -7764,6 +8006,48 @@ msgstr "Caută:"
 #, fuzzy
 msgid "Search terms:"
 msgstr "Caută:"
+
+#~ msgid "Fit image to _window"
+#~ msgstr "Umple _fereastra cu imaginea"
+
+#~ msgid "_Stop slideshow"
+#~ msgstr "_Opreşte prezentarea de imagini"
+
+#~ msgid "_Start slideshow"
+#~ msgstr "_Porneşte prezentarea de imagini"
+
+#, fuzzy
+#~ msgid "Copy _image"
+#~ msgstr "Copiere eșuată"
+
+#, fuzzy
+#~ msgid "_Animate"
+#~ msgstr "Animal"
+
+#~ msgid "_Contents"
+#~ msgstr "_Conținut"
+
+#~ msgid "Contents"
+#~ msgstr "Conţinut"
+
+#~ msgid "_Release notes"
+#~ msgstr "Note _release"
+
+#~ msgid "Release notes"
+#~ msgstr "Note release"
+
+#~ msgid "I_cons"
+#~ msgstr "I_con-uri"
+
+#~ msgid "Split Single"
+#~ msgstr "Afișează o singură imagine"
+
+#, fuzzy
+#~ msgid "Rotate _180°"
+#~ msgstr "Rotire _180"
+
+#~ msgid "View as _Icons"
+#~ msgstr "Afișează ca _icon-uri"
 
 #~ msgid "UFRaw Batch"
 #~ msgstr "Batch UFRaw"
