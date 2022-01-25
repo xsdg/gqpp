@@ -15,7 +15,7 @@ dnl MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 dnl GNU General Public License for more details.
 
 AC_PREREQ(2.57)
-AC_INIT([geeqie], m4_translit(m4_esyscmd([if [ $(git tag --list 'v[1-9]*' --points-at HEAD | wc -c) -gt 0 ]; then git tag --list v[1-9]* --points-at HEAD | tail -n 1 | tr -d 'v' ; else git tag --list v[1-9]* | tail -n 1 | tr -d 'v' && echo "+git" && git log --max-count=1 --date=format:"%Y%m%d" --format="%ad" && echo "-" && git rev-parse --quiet --verify --short HEAD; fi ]), m4_newline), [geeqie@freelists.org], [], [http://www.geeqie.org/])
+AC_INIT([geeqie], m4_translit(m4_esyscmd([./version.sh]), m4_newline), [geeqie@freelists.org], [], [http://www.geeqie.org/])
 
 # Add -Werror to the default CFLAGS
 CFLAGS+=" -Werror -Wno-error=deprecated-declarations -Wno-error=sign-compare -Wno-error=return-type"
