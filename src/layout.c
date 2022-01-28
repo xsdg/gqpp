@@ -3090,7 +3090,7 @@ LayoutWindow *layout_new_from_default()
 		}
 	else
 		{
-		layout_new_from_config(NULL, NULL, TRUE);
+		lw = layout_new_from_config(NULL, NULL, TRUE);
 		}
 	return lw;
 }
