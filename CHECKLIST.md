@@ -65,48 +65,11 @@ make update-po
 
 Carry out the above actions to ensure the master branch is up to date, and then the following actions for new version \<n.m\>.
 
-```sh
-sudo make maintainer-clean
-
-git checkout -b stable/<n.m>
-git push git@geeqie.org:geeqie stable/<n.m>
-```
-
-Edit `org.geeqie.Geeqie.appdata.xml.in` - change date and version  
-Edit `NEWS` - the usual information
+Edit `org.geeqie.Geeqie.appdata.xml.in` - Change date and version \
+Edit `NEWS` - The usual information. Ensure the first line is of the form `Geeqie <n.m[.p]>`
 
 ```sh
-./autogen.sh
-make -j
-./scripts/generate-man-page.sh
-
-git add NEWS
-git add org.geeqie.Geeqie.appdata.xml.in
-git add geeqie.1
-git add doc/docbook/CommandLineOptions.xml
-git commit --message="Preparing for release v<n.m>"
-git push git@geeqie.org:geeqie
-
-git tag --sign v<n.m> --message="Release v<n.m>"
-git push git@geeqie.org:geeqie v<n.m>
-```
-
-Copy the changed files from the v\<n.m\> branch to master
-
-```sh
-git checkout master
-
-git checkout stable/<n.m> NEWS
-git checkout stable/<n.m> geeqie.1
-git checkout stable/<n.m> doc/docbook/CommandLineOptions.xml
-git checkout stable/<n.m> org.geeqie.Geeqie.appdata.xml.in
-
-git add NEWS
-git add org.geeqie.Geeqie.appdata.xml.in
-git add geeqie.1
-git add doc/docbook/CommandLineOptions.xml
-git commit --message="Release v<n.m> files"
-git push git@geeqie.org:geeqie
+./scripts/new-release.sh <-h for list of options>
 ```
 
 Go to `https://github.com/BestImageViewer/geeqie/releases` and click on `Draft a new release`.
@@ -116,5 +79,7 @@ Under `Release title` insert "Geeqie \<n.m\>"
 Under `Choose a tag` select `v<n.m>`
 
 In `Describe this release` copy-paste the relevant section of `NEWS`.
+
+Upload the `/tmp/geeqie-<n.m>.tar.xz` and `/tmp/geeqie-<n.m>.tar.xz.asc` files created above
 
 Click `Publish release`
