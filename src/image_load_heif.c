@@ -42,7 +42,7 @@ struct _ImageLoaderHEIF {
 
 static void free_buffer(guchar *pixels, gpointer data)
 {
-	g_free (pixels);
+	heif_image_release((const struct heif_image*)data);
 }
 
 static gboolean image_loader_heif_load(gpointer loader, const guchar *buf, gsize count, GError **error)
@@ -99,8 +99,9 @@ static gboolean image_loader_heif_load(gpointer loader, const guchar *buf, gsize
 		height = heif_image_get_height(img,heif_channel_interleaved);
 		width = heif_image_get_width(img,heif_channel_interleaved);
 		alpha = heif_image_handle_has_alpha_channel(handle);
+		heif_image_handle_release(handle);
 
-		ld->pixbuf = gdk_pixbuf_new_from_data(data, GDK_COLORSPACE_RGB, alpha, 8, width, height, stride, free_buffer, NULL);
+		ld->pixbuf = gdk_pixbuf_new_from_data(data, GDK_COLORSPACE_RGB, alpha, 8, width, height, stride, free_buffer, img);
 
 		ld->area_updated_cb(loader, 0, 0, width, height, ld->data);
 		}
