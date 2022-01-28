@@ -9,7 +9,7 @@ man_MANS = geeqie.1
 
 readmedir = @readmedir@
 
-if HAVE_MARKDOWN
+if HAVE_PANDOC
 readme_DATA = README.md COPYING ChangeLog TODO README.lirc AUTHORS README.html ChangeLog.html
 else
 readme_DATA = README.md COPYING ChangeLog TODO README.lirc AUTHORS ChangeLog.html

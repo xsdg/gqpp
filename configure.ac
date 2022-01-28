@@ -763,7 +763,7 @@ AC_SUBST(JPEGXL_LIBS)
 #  Markdown support
 # ----------------------------------------------------------------------
 
-AM_CONDITIONAL(HAVE_MARKDOWN, [ "$(command -v markdown)" ])
+AM_CONDITIONAL(HAVE_PANDOC, [ "$(command -v pandoc)" ])
 
 # _NL_TIME_FIRST_WEEKDAY support
 # note that it is an enum and not a define
