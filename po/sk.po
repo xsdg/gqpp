@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 10:56+0000\n"
+"POT-Creation-Date: 2022-01-31 17:46+0000\n"
 "PO-Revision-Date: 2022-01-29 12:26+0100\n"
 "Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: Peter Tuhársky <tuharsky@misbb.sk>\n"
@@ -695,6 +695,11 @@ msgstr "Geeqie: Načítavam údaje sim..."
 #: ../src/cache_maint.c:78
 msgid "Geeqie: Creating thumbs..."
 msgstr "Geeqie: Vytváram náhľady..."
+
+#: ../src/cache_maint.c:94
+#, fuzzy
+msgid "Exit Geeqie Cache Maintenance"
+msgstr "Údržba vyrovnávacej pamäte"
 
 # src/cache_maint.c:245
 #: ../src/cache_maint.c:111
@@ -3119,7 +3124,8 @@ msgstr "Vybrať poradie triedenia"
 msgid ""
 "Folder contents (files selected)\n"
 "Slideshow [time interval]"
-msgstr "Obsah priečinka (vybrané súbory)\n"
+msgstr ""
+"Obsah priečinka (vybrané súbory)\n"
 "Prezentácia [časový interval]"
 
 # src/utilops.c:539
@@ -3153,8 +3159,7 @@ msgstr "Všeobecné možnosti"
 #: ../src/layout.c:2381
 msgid "Home path (empty to use your home directory)"
 msgstr ""
-"Domovský adresár (prázdne, ak chcete použiť domovský adresár "
-"používateľa)"
+"Domovský adresár (prázdne, ak chcete použiť domovský adresár používateľa)"
 
 # src/preferences.c:581
 #: ../src/layout.c:2389
@@ -4758,7 +4763,8 @@ msgstr "      --blank                      začať s čistým zoznamom súborov\
 msgid ""
 "      --cache-maintenance <path>   run cache maintenance in non-GUI mode\n"
 msgstr ""
-"      --cache-maintenance <cesta>  spustiť údržbu vyrovnávacej pamäte v režime bez GUI\n"
+"      --cache-maintenance <cesta>  spustiť údržbu vyrovnávacej pamäte v "
+"režime bez GUI\n"
 
 #: ../src/main.c:597
 msgid ""
@@ -6197,9 +6203,9 @@ msgid ""
 "a large image is seen."
 msgstr ""
 "Táto hodnota mení veľkosť dlaždíc, na ktoré sú veľké obrázky rozdelené. "
-"Zväčšením veľkosti dlaždíc zmenšíte dlaždicový efekt pozorovateľný "
-"pri zmene obrázka, ale takisto mierne zvýšite oneskorenie pred tým,"
-"ako sa objaví prvá časť veľkého obrázka."
+"Zväčšením veľkosti dlaždíc zmenšíte dlaždicový efekt pozorovateľný pri zmene "
+"obrázka, ale takisto mierne zvýšite oneskorenie pred tým,ako sa objaví prvá "
+"časť veľkého obrázka."
 
 # src/collect-dlg.c:182
 #: ../src/preferences.c:2339
@@ -6987,6 +6993,10 @@ msgstr "Text strany"
 msgid "Show page text"
 msgstr "Zobraziť text strany"
 
+#: ../src/print.c:464
+msgid "Text shown on each page of a single or multi-page print job"
+msgstr ""
+
 # src/main.c:533
 #: ../src/rcfile.c:91
 #, c-format
@@ -7349,8 +7359,8 @@ msgstr ""
 "  Všetky ostatné parametre príkazového riadka sú interpretované ako súbory, "
 "ak existujú.\n"
 "\n"
-"  Môžete tiež použiť názov zbierky, buď s cestou alebo bez nej. Prípona (.gqv) "
-"takisto nie je povinná.\n"
+"  Môžete tiež použiť názov zbierky, buď s cestou alebo bez nej. Prípona (."
+"gqv) takisto nie je povinná.\n"
 
 #: ../src/remote.c:1584
 #, c-format
@@ -8460,6 +8470,10 @@ msgstr "Nastaviť text značky"
 #: ../src/view_file/view_file.c:908
 msgid "This will set or clear the mark text."
 msgstr "Týmto nastavíte alebo vyčistíte text značky."
+
+#: ../src/view_file/view_file.c:1199
+msgid "Case"
+msgstr ""
 
 #: ../src/view_file/view_file.c:1201
 msgid "Case sensitive"

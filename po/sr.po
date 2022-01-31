@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 10:56+0000\n"
+"POT-Creation-Date: 2022-01-31 17:46+0000\n"
 "PO-Revision-Date: 2010-01-05 17:36+0000\n"
 "Last-Translator: Милош Поповић <gpopac@gmail.com>\n"
 "Language-Team: Serbian <gnome@prevod.org>\n"
@@ -637,6 +637,11 @@ msgstr "Учитавам податке о слици..."
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "Чистим умањене приказе..."
+
+#: ../src/cache_maint.c:94
+#, fuzzy
+msgid "Exit Geeqie Cache Maintenance"
+msgstr "Одржавање оставе"
 
 #: ../src/cache_maint.c:111
 #, fuzzy
@@ -6534,6 +6539,10 @@ msgstr "Започни текст"
 msgid "Show page text"
 msgstr "_Текст са именом датотеке"
 
+#: ../src/print.c:464
+msgid "Text shown on each page of a single or multi-page print job"
+msgstr ""
+
 #: ../src/rcfile.c:91
 #, c-format
 msgid "Option %s ignored: %s\n"
@@ -7878,6 +7887,10 @@ msgstr "Поставља маркер %d"
 #, fuzzy
 msgid "This will set or clear the mark text."
 msgstr "Ово ће уклонити сав садржај из канте за смеће."
+
+#: ../src/view_file/view_file.c:1199
+msgid "Case"
+msgstr ""
 
 #: ../src/view_file/view_file.c:1201
 #, fuzzy

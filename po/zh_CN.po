@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 10:56+0000\n"
+"POT-Creation-Date: 2022-01-31 17:46+0000\n"
 "PO-Revision-Date: 2013-12-31 23:45+0100\n"
 "Last-Translator: Levin <zjlevin@hotmail.com>\n"
 "Language-Team: Levin <zjlevin@hotmail.com>\n"
@@ -634,6 +634,11 @@ msgstr "读取图像数据..."
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "清理缩略图..."
+
+#: ../src/cache_maint.c:94
+#, fuzzy
+msgid "Exit Geeqie Cache Maintenance"
+msgstr "缓存维护"
 
 #: ../src/cache_maint.c:111
 #, fuzzy
@@ -6576,6 +6581,10 @@ msgstr "前缀"
 msgid "Show page text"
 msgstr "显示文件名(_t)"
 
+#: ../src/print.c:464
+msgid "Text shown on each page of a single or multi-page print job"
+msgstr ""
+
 #: ../src/rcfile.c:91
 #, c-format
 msgid "Option %s ignored: %s\n"
@@ -7953,6 +7962,10 @@ msgstr "设置标记 %d"
 #, fuzzy
 msgid "This will set or clear the mark text."
 msgstr "将会移除回收站内容."
+
+#: ../src/view_file/view_file.c:1199
+msgid "Case"
+msgstr ""
 
 #: ../src/view_file/view_file.c:1201
 #, fuzzy

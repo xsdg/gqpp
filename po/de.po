@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 10:56+0000\n"
+"POT-Creation-Date: 2022-01-31 17:46+0000\n"
 "PO-Revision-Date: 2021-01-22 15:31+0100\n"
 "Last-Translator: Klaus Ethgen <Klaus@Ethgen.de>\n"
 "Language-Team: \n"
@@ -642,6 +642,11 @@ msgstr "Lese Bilddaten ..."
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "Lösche Vorschaubilder..."
+
+#: ../src/cache_maint.c:94
+#, fuzzy
+msgid "Exit Geeqie Cache Maintenance"
+msgstr "Cachewartung"
 
 #: ../src/cache_maint.c:111
 #, fuzzy
@@ -6406,6 +6411,10 @@ msgstr "Seitentext"
 msgid "Show page text"
 msgstr "Seitentext anzeigen"
 
+#: ../src/print.c:464
+msgid "Text shown on each page of a single or multi-page print job"
+msgstr ""
+
 #: ../src/rcfile.c:91
 #, c-format
 msgid "Option %s ignored: %s\n"
@@ -7736,6 +7745,10 @@ msgstr "Setze Markierung"
 #: ../src/view_file/view_file.c:908
 msgid "This will set or clear the mark text."
 msgstr "Dadurch wird der markierte Text festgelegt oder gelöscht."
+
+#: ../src/view_file/view_file.c:1199
+msgid "Case"
+msgstr ""
 
 #: ../src/view_file/view_file.c:1201
 msgid "Case sensitive"

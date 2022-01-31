@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 10:56+0000\n"
+"POT-Creation-Date: 2022-01-31 17:46+0000\n"
 "PO-Revision-Date: 2021-05-01 01:13+0500\n"
 "Last-Translator: ashed <ashed@shed>\n"
 "Language-Team: Russian <gnome-cyr@lists.gnome.org>\n"
@@ -649,6 +649,11 @@ msgstr "Загружаем данные об изображениях..."
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "Удаляются миниатюры..."
+
+#: ../src/cache_maint.c:94
+#, fuzzy
+msgid "Exit Geeqie Cache Maintenance"
+msgstr "Обслуживание кэша"
 
 #: ../src/cache_maint.c:111
 #, fuzzy
@@ -6484,6 +6489,10 @@ msgstr "Текст страницы"
 msgid "Show page text"
 msgstr "Показать текст страницы"
 
+#: ../src/print.c:464
+msgid "Text shown on each page of a single or multi-page print job"
+msgstr ""
+
 #: ../src/rcfile.c:91
 #, c-format
 msgid "Option %s ignored: %s\n"
@@ -7834,6 +7843,10 @@ msgstr "Установить отметку текста"
 #: ../src/view_file/view_file.c:908
 msgid "This will set or clear the mark text."
 msgstr "Установить/снять отметку текста."
+
+#: ../src/view_file/view_file.c:1199
+msgid "Case"
+msgstr ""
 
 #: ../src/view_file/view_file.c:1201
 msgid "Case sensitive"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 10:56+0000\n"
+"POT-Creation-Date: 2022-01-31 17:46+0000\n"
 "PO-Revision-Date: 2003-04-14 11:03GMT+0700\n"
 "Last-Translator: Tedi Heriyanto <tedi_h@gmx.net>\n"
 "Language-Team: Indonesian <translation-team-id@lists.sourceforge.net>\n"
@@ -665,6 +665,11 @@ msgstr "Membaca kemiripan data..."
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "Menghapus thumbnail..."
+
+#: ../src/cache_maint.c:94
+#, fuzzy
+msgid "Exit Geeqie Cache Maintenance"
+msgstr "Properti image.-.Geeqie"
 
 #: ../src/cache_maint.c:111
 #, fuzzy
@@ -6821,6 +6826,10 @@ msgstr "Teks awal"
 msgid "Show page text"
 msgstr "Tampilkan sembunyi"
 
+#: ../src/print.c:464
+msgid "Text shown on each page of a single or multi-page print job"
+msgstr ""
+
 #: ../src/rcfile.c:91
 #, fuzzy, c-format
 msgid "Option %s ignored: %s\n"
@@ -8282,6 +8291,10 @@ msgstr "Pilih semua"
 
 #: ../src/view_file/view_file.c:908
 msgid "This will set or clear the mark text."
+msgstr ""
+
+#: ../src/view_file/view_file.c:1199
+msgid "Case"
 msgstr ""
 
 #: ../src/view_file/view_file.c:1201

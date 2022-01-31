@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 10:56+0000\n"
+"POT-Creation-Date: 2022-01-31 17:46+0000\n"
 "PO-Revision-Date: 2006-10-14 10:09+0700\n"
 "Last-Translator: pclouds <pclouds@vnlinux.org>\n"
 "Language-Team: GnomeVI <gnomevi-list@lists.sourceforge.net>\n"
@@ -648,6 +648,11 @@ msgstr "Đang đọc dữ liệu ảnh..."
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "Đang xóa ảnh mẫu..."
+
+#: ../src/cache_maint.c:94
+#, fuzzy
+msgid "Exit Geeqie Cache Maintenance"
+msgstr "Bảo trì cache - Geeqie"
 
 #: ../src/cache_maint.c:111
 #, fuzzy
@@ -6753,6 +6758,10 @@ msgstr "Chuỗi đầu"
 msgid "Show page text"
 msgstr "Hiện _tên tập tin"
 
+#: ../src/print.c:464
+msgid "Text shown on each page of a single or multi-page print job"
+msgstr ""
+
 #: ../src/rcfile.c:91
 #, fuzzy, c-format
 msgid "Option %s ignored: %s\n"
@@ -8143,6 +8152,10 @@ msgstr "Chọn tất cả"
 #, fuzzy
 msgid "This will set or clear the mark text."
 msgstr "Hành động này sẽ loại bỏ những thứ có trong sọt rác."
+
+#: ../src/view_file/view_file.c:1199
+msgid "Case"
+msgstr ""
 
 #: ../src/view_file/view_file.c:1201
 #, fuzzy

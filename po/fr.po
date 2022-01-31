@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 10:56+0000\n"
+"POT-Creation-Date: 2022-01-31 17:46+0000\n"
 "PO-Revision-Date: 2012-08-16 23:32+0100\n"
 "Last-Translator: Laurent Monin <i18n@norz.org>\n"
 "Language-Team: french <geeqie-devel@lists.sourceforge.net>\n"
@@ -644,6 +644,11 @@ msgstr "Lecture des données de l'image..."
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "Suppression des vignettes..."
+
+#: ../src/cache_maint.c:94
+#, fuzzy
+msgid "Exit Geeqie Cache Maintenance"
+msgstr "Maintenance du cache"
 
 #: ../src/cache_maint.c:111
 #, fuzzy
@@ -6580,6 +6585,10 @@ msgstr "Texte de début"
 msgid "Show page text"
 msgstr "Montrer le _nom de fichier"
 
+#: ../src/print.c:464
+msgid "Text shown on each page of a single or multi-page print job"
+msgstr ""
+
 #: ../src/rcfile.c:91
 #, c-format
 msgid "Option %s ignored: %s\n"
@@ -7962,6 +7971,10 @@ msgstr "Ajout marque %d"
 #, fuzzy
 msgid "This will set or clear the mark text."
 msgstr "Ceci va supprimer le contenu de la corbeille."
+
+#: ../src/view_file/view_file.c:1199
+msgid "Case"
+msgstr ""
 
 #: ../src/view_file/view_file.c:1201
 #, fuzzy

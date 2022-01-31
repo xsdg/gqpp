@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 10:56+0000\n"
+"POT-Creation-Date: 2022-01-31 17:46+0000\n"
 "PO-Revision-Date: 2021-01-24 12:41+0000\n"
 "Last-Translator: Carles Pina i Estany <carles@pina.cat>\n"
 "Language-Team: Catalan <ca@dodds.net> <>\n"
@@ -649,6 +649,11 @@ msgstr "S'estan llegint les dades de la imatge..."
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "Esborrant miniatures..."
+
+#: ../src/cache_maint.c:94
+#, fuzzy
+msgid "Exit Geeqie Cache Maintenance"
+msgstr "Manteniment de la memòria cau"
 
 #: ../src/cache_maint.c:111
 #, fuzzy
@@ -6429,6 +6434,10 @@ msgstr "Text pàgina"
 msgid "Show page text"
 msgstr "Mostra el text pàgina"
 
+#: ../src/print.c:464
+msgid "Text shown on each page of a single or multi-page print job"
+msgstr ""
+
 #: ../src/rcfile.c:91
 #, c-format
 msgid "Option %s ignored: %s\n"
@@ -7759,6 +7768,10 @@ msgstr "Posa la marca al text"
 #: ../src/view_file/view_file.c:908
 msgid "This will set or clear the mark text."
 msgstr "Això posarà o treurà la marca del text."
+
+#: ../src/view_file/view_file.c:1199
+msgid "Case"
+msgstr ""
 
 #: ../src/view_file/view_file.c:1201
 msgid "Case sensitive"

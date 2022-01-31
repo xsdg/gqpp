@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 10:56+0000\n"
+"POT-Creation-Date: 2022-01-31 17:46+0000\n"
 "PO-Revision-Date: 2021-03-05 13:51+0100\n"
 "Last-Translator: Marcel Pol <marcel@timelord.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
@@ -649,6 +649,11 @@ msgstr "Lezen van afbeeldingsgegevens..."
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "De miniaturen worden opgeschoond..."
+
+#: ../src/cache_maint.c:94
+#, fuzzy
+msgid "Exit Geeqie Cache Maintenance"
+msgstr "Cache-beheer"
 
 #: ../src/cache_maint.c:111
 #, fuzzy
@@ -6475,6 +6480,10 @@ msgstr "Paginatekst"
 msgid "Show page text"
 msgstr "Paginatekst weergeven"
 
+#: ../src/print.c:464
+msgid "Text shown on each page of a single or multi-page print job"
+msgstr ""
+
 #: ../src/rcfile.c:91
 #, c-format
 msgid "Option %s ignored: %s\n"
@@ -7818,6 +7827,10 @@ msgstr "Geef markeertekst op"
 #: ../src/view_file/view_file.c:908
 msgid "This will set or clear the mark text."
 msgstr "Hiermee zal de markeertekst ingesteld of gewist worden."
+
+#: ../src/view_file/view_file.c:1199
+msgid "Case"
+msgstr ""
 
 #: ../src/view_file/view_file.c:1201
 msgid "Case sensitive"

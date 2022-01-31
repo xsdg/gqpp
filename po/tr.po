@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 10:56+0000\n"
+"POT-Creation-Date: 2022-01-31 17:46+0000\n"
 "PO-Revision-Date: 2000-04-07 17:09+0200\n"
 "Last-Translator: Yaşar Çiv <yasarciv67@gmail.com>\n"
 "Language-Team: Milis Linux Translation Team <https://milislinux.org>\n"
@@ -645,6 +645,11 @@ msgstr "Resim verileri okunuyor..."
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "Küçük resimler temizleniyor..."
+
+#: ../src/cache_maint.c:94
+#, fuzzy
+msgid "Exit Geeqie Cache Maintenance"
+msgstr "Önbellek Bakımı"
 
 #: ../src/cache_maint.c:111
 #, fuzzy
@@ -6511,6 +6516,10 @@ msgstr "Metne başla"
 msgid "Show page text"
 msgstr "Resim"
 
+#: ../src/print.c:464
+msgid "Text shown on each page of a single or multi-page print job"
+msgstr ""
+
 #: ../src/rcfile.c:91
 #, c-format
 msgid "Option %s ignored: %s\n"
@@ -7884,6 +7893,10 @@ msgstr "%d işaretini ayarla"
 #, fuzzy
 msgid "This will set or clear the mark text."
 msgstr "Bu, çöp içeriğini kaldıracak."
+
+#: ../src/view_file/view_file.c:1199
+msgid "Case"
+msgstr ""
 
 # programda bakmak lazım
 #: ../src/view_file/view_file.c:1201

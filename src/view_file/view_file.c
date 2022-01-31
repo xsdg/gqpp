@@ -1196,7 +1196,7 @@ static GtkWidget *vf_file_filter_init(ViewFile *vf)
 	gtk_container_add(GTK_CONTAINER(frame), hbox);
 	gtk_widget_show(hbox);
 
-	case_sensitive = gtk_check_button_new_with_label("Case");
+	case_sensitive = gtk_check_button_new_with_label(_("Case"));
 	gtk_box_pack_start(GTK_BOX(hbox), case_sensitive, FALSE, FALSE, 0);
 	gtk_widget_set_tooltip_text(GTK_WIDGET(case_sensitive), _("Case sensitive"));
 	g_signal_connect(G_OBJECT(case_sensitive), "clicked", G_CALLBACK(case_sensitive_cb), vf);

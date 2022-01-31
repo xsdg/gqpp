@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 10:56+0000\n"
+"POT-Creation-Date: 2022-01-31 17:46+0000\n"
 "PO-Revision-Date: 2004-02-22 17:20+0100\n"
 "Last-Translator: Sári Gábor <saga@externet.hu>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
@@ -720,6 +720,11 @@ msgstr "Hasonlósági adat olvasása..."
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "Indexképek törlése..."
+
+#: ../src/cache_maint.c:94
+#, fuzzy
+msgid "Exit Geeqie Cache Maintenance"
+msgstr "Kép tulajdonságai - Geeqie"
 
 # src/cache_maint.c:245
 #: ../src/cache_maint.c:111
@@ -7500,6 +7505,10 @@ msgstr "Kezdő szöveg"
 msgid "Show page text"
 msgstr "Fájlnév mu_tatása"
 
+#: ../src/print.c:464
+msgid "Text shown on each page of a single or multi-page print job"
+msgstr ""
+
 # src/main.c:533
 #: ../src/rcfile.c:91
 #, fuzzy, c-format
@@ -9077,6 +9086,10 @@ msgstr "Mindet kijelölni"
 #, fuzzy
 msgid "This will set or clear the mark text."
 msgstr "Ez eltávolítja a kukában lévő elemeket."
+
+#: ../src/view_file/view_file.c:1199
+msgid "Case"
+msgstr ""
 
 #: ../src/view_file/view_file.c:1201
 #, fuzzy

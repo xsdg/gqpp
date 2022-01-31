@@ -91,7 +91,7 @@ static void cache_maintenance_status_icon_activate_cb(GtkStatusIcon *status, gpo
 
 	menu = gtk_menu_new();
 
-	item = gtk_menu_item_new_with_label("Exit Geeqie Cache Maintenance");
+	item = gtk_menu_item_new_with_label(_("Exit Geeqie Cache Maintenance"));
 
 	g_signal_connect(G_OBJECT(item), "activate", cache_maintenance_user_cancel_cb, item);
 	gtk_menu_shell_append(GTK_MENU_SHELL(menu), item);

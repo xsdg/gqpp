@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-16 10:56+0000\n"
+"POT-Creation-Date: 2022-01-31 17:46+0000\n"
 "PO-Revision-Date: 2001-11-24 21:25+0100\n"
 "Last-Translator: Birger Langkjer <birger.langkjer@image.dk>\n"
 "Language-Team: Danish <sslug-locale@sslug.dk>\n"
@@ -660,6 +660,11 @@ msgstr "Læser lighedsdata..."
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "Rydder miniaturer..."
+
+#: ../src/cache_maint.c:94
+#, fuzzy
+msgid "Exit Geeqie Cache Maintenance"
+msgstr "Hjælp - Geeqie"
 
 #: ../src/cache_maint.c:111
 #, fuzzy
@@ -6806,6 +6811,10 @@ msgstr ""
 msgid "Show page text"
 msgstr "Vis skjulte"
 
+#: ../src/print.c:464
+msgid "Text shown on each page of a single or multi-page print job"
+msgstr ""
+
 #: ../src/rcfile.c:91
 #, fuzzy, c-format
 msgid "Option %s ignored: %s\n"
@@ -8219,6 +8228,10 @@ msgstr "Vælg alle"
 
 #: ../src/view_file/view_file.c:908
 msgid "This will set or clear the mark text."
+msgstr ""
+
+#: ../src/view_file/view_file.c:1199
+msgid "Case"
 msgstr ""
 
 #: ../src/view_file/view_file.c:1201
