@@ -143,8 +143,6 @@ Removal: `[sudo] make uninstall`
 
 #### Note
 
-The zip and gzip files at geeqie.org and GitHub contain only the sources - they cannot, by themselves, be used to install Geeqie.
-
 It is recommended to always use `git clone  git://git.geeqie.org/geeqie.git` to download Geeqie. After installing Geeqie you may delete the folder you have cloned Geeqie into.
 
 However if you leave the folder intact, whenever new features or patches are available, execute:
