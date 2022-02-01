@@ -398,8 +398,6 @@ void generic_dialog_windows_write_config(GString *outstr, gint indent)
 			}
 		indent--;
 		WRITE_NL(); WRITE_STRING("</%s>", "dialogs");
-
-		dialog_windows = NULL;
 		}
 }
 
