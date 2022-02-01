@@ -62,7 +62,7 @@ compile()
 	done
 }
 
-disable_list=" "$(awk -F'[\[\]]' '/AC_HELP_STRING\(\[--disable-/ {if ($2 != "gtk3") print $2}' configure.ac | tr '\n' ' ')
+disable_list=" "$(awk --field-separator '[][]' '/AC_HELP_STRING\(\[--disable-/ {if ($2 != "gtk3") print $2}' configure.ac | tr '\n' ' ')
 
 echo "Disabled list: :$disable_list"
 
