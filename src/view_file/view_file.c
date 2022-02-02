@@ -1165,12 +1165,15 @@ static GtkWidget *vf_file_filter_init(ViewFile *vf)
 	GtkWidget *menubar;
 	GtkWidget *menuitem;
 	GtkWidget *case_sensitive;
+	GtkWidget *box;
+	GtkWidget *icon;
+	GtkWidget *label;
 
 	vf->file_filter.combo = gtk_combo_box_text_new_with_entry();
 	combo_entry = gtk_bin_get_child(GTK_BIN(vf->file_filter.combo));
 	gtk_widget_show(gtk_bin_get_child(GTK_BIN(vf->file_filter.combo)));
 	gtk_widget_show((GTK_WIDGET(vf->file_filter.combo)));
-	gtk_widget_set_tooltip_text(GTK_WIDGET(vf->file_filter.combo), "Use regular expressions");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(vf->file_filter.combo), _("Use regular expressions"));
 
 	work = history_list_get_by_key("file_filter");
 	while (work)
@@ -1206,13 +1209,20 @@ static GtkWidget *vf_file_filter_init(ViewFile *vf)
 	gtk_box_pack_start(GTK_BOX(hbox), menubar, FALSE, TRUE, 0);
 	gtk_widget_show(menubar);
 
-	menuitem = gtk_menu_item_new_with_label(_("Class"));
-	gtk_widget_set_tooltip_text(GTK_WIDGET(menuitem), _("Select Class filter"));
-	gtk_menu_item_set_submenu(GTK_MENU_ITEM (menuitem), class_filter_menu(vf));
-	gtk_menu_shell_append(GTK_MENU_SHELL (menubar), menuitem);
-	gtk_widget_show(menuitem);
+	box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
+	icon = gtk_image_new_from_icon_name("pan-down", GTK_ICON_SIZE_MENU);
+	label = gtk_label_new(_("Class"));
 
-	gtk_widget_show(menuitem);
+	gtk_box_pack_start(GTK_BOX(box), label, FALSE, FALSE, 0);
+	gtk_box_pack_end(GTK_BOX(box), icon, FALSE, FALSE, 0);
+
+	menuitem = gtk_menu_item_new();
+
+	gtk_widget_set_tooltip_text(GTK_WIDGET(menuitem), _("Select Class filter"));
+	gtk_menu_item_set_submenu(GTK_MENU_ITEM(menuitem), class_filter_menu(vf));
+	gtk_menu_shell_append(GTK_MENU_SHELL(menubar), menuitem);
+	gtk_container_add(GTK_CONTAINER(menuitem), box);
+	gtk_widget_show_all(menuitem);
 
 	return frame;
 }
