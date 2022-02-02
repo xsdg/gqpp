@@ -3535,6 +3535,10 @@ static void config_tab_behavior(GtkWidget *notebook)
 	button = pref_button_new(NULL, GTK_STOCK_CLEAR, NULL, FALSE,
 				 G_CALLBACK(safe_delete_clear_cb), NULL);
 	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+
+	c_options->file_ops.no_trash = options->file_ops.no_trash;
+	c_options->file_ops.use_system_trash = options->file_ops.use_system_trash;
+
 	pref_radiobutton_new(group, ct_button, _("Use system Trash bin"),
 					options->file_ops.use_system_trash && !options->file_ops.no_trash, G_CALLBACK(use_system_trash_cb), NULL);
 
