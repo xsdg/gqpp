@@ -9,6 +9,7 @@
 [Documentation](#documentation)  
 [Documentation - C code](#c-code)  
 [Documentation - Script files](#script-files)  
+[Documentation - Markdown](#markdown)  
 [Doxygen](#doxygen)  
 
 ---
@@ -341,6 +342,10 @@ Doxygen comments should start each line with `##`, and each file should contain:
 ## <contents description>
 ##
 ```
+
+### Markdown
+
+For a newline use two spaces (a backslash is not interpreted correctly by Doxygen).
 
 ## Doxygen
 
