@@ -7,7 +7,7 @@
   </para>
   <para>
     Desktop files:
-    <ulink url="http://standards.freedesktop.org/desktop-entry-spec/">http://standards.freedesktop.org/desktop-entry-spec/</ulink>
+    <ulink url="https://specifications.freedesktop.org/desktop-entry-spec/latest/">https://standards.freedesktop.org/desktop-entry-spec/</ulink>
   </para>
   <para>
     XMP:
@@ -19,7 +19,7 @@
   </para>
   <para>
     Pango mark up:
-    <ulink url="https://developer.gnome.org/pygtk/stable/pango-markup-language.html" />
+    <ulink url="https://docs.gtk.org/Pango/pango_markup.html" />
   </para>
   <para>
     Thumbnails:

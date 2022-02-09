@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.  -*- Autoconf
  -*-
 
-dnl This file is a part of Geeqie project (http://www.geeqie.org/).
+dnl This file is a part of Geeqie project (https://www.geeqie.org/).
 dnl Copyright (C) 2008 - 2018 The Geeqie Team
 dnl
 dnl This program is free software; you can redistribute it and/or modify
@@ -15,7 +15,7 @@ dnl MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 dnl GNU General Public License for more details.
 
 AC_PREREQ(2.57)
-AC_INIT([geeqie], m4_translit(m4_esyscmd([./version.sh]), m4_newline), [geeqie@freelists.org], [], [http://www.geeqie.org/])
+AC_INIT([geeqie], m4_translit(m4_esyscmd([./version.sh]), m4_newline), [geeqie@freelists.org], [], [https://www.geeqie.org/])
 
 # Add -Werror to the default CFLAGS
 CFLAGS+=" -Werror -Wno-error=deprecated-declarations -Wno-error=sign-compare -Wno-error=return-type"
@@ -789,7 +789,7 @@ AH_TOP([
  */
 
 /*
- *  This file is a part of Geeqie project (http://www.geeqie.org/).
+ *  This file is a part of Geeqie project (https://www.geeqie.org/).
  *  Copyright (C) 2008 - 2016 The Geeqie Team
  *
  *  This program is free software; you can redistribute it and/or modify

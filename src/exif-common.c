@@ -1148,7 +1148,7 @@ gboolean exif_jpeg_parse_color(ExifData *exif, guchar *data, guint size)
  * it is here because it shares tag neming infrastructure with exif
  * we should probably not invest too much effort into this because
  * new exiv2 will support the same functionality
- * http://dev.exiv2.org/issues/show/505
+ * https://dev.exiv2.org/issues/505
  *-------------------------------------------------------------------
  */
 

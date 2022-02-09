@@ -39,8 +39,7 @@
  * This thumbnail caching implementation attempts to conform
  * to the Thumbnail Managing Standard proposed on freedesktop.org
  * The standard is documented here: \n
- *   http://triq.net/~jens/thumbnail-spec/index.html \n
- *  (why isn't it actually hosted on freedesktop.org?)
+ *   https://www.freedesktop.org/wiki/Specifications/thumbnails/ \n
  *
  * This code attempts to conform to version 0.7.0 of the standard.
  *

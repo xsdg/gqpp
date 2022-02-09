@@ -31,7 +31,7 @@ rotate()
 		    # exiftran ignores xmp, set it manually
 		    exiv2 -M "set Xmp.tiff.Orientation 1" "$1"
 			[ $? != 0 ] && exit 1
-		    #http://dev.exiv2.org/issues/show/639
+		    #http://dev.exiv2.org/issues/639
 			if [ -n "$gq_orientation" ] ; then
 				exiv2 -M "set Xmp.tiff.Orientation 1" \
 								-M "set Exif.Image.Orientation 1" "$gq_metadata"
@@ -52,7 +52,7 @@ rotate()
 		    # mogrify ignores xmp, set it manually
 		    exiv2 -M "set Xmp.tiff.Orientation 1" "$1"
 			[ $? != 0 ] && exit 1
-		    #http://dev.exiv2.org/issues/show/639
+		    #http://dev.exiv2.org/issues/639
 			if [ -n "$gq_orientation" ] ; then
 				exiv2 -M "set Xmp.tiff.Orientation 1" \
 								-M "set Exif.Image.Orientation 1" "$gq_metadata"
