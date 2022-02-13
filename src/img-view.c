@@ -1006,6 +1006,14 @@ static ViewWindow *real_view_window_new(FileData *fd, GList *list, CollectionDat
 
 	file_data_register_notify_func(view_window_notify_cb, vw, NOTIFY_PRIORITY_LOW);
 
+	/** @FIXME This is a hack to fix #965 View in new window - blank image
+	 * The problem occurs when zoom is set to Original Size and Preload
+	 * Next Image is set.
+	 * An extra reload is required to force the image to be displayed.
+	 * This is probably not the correct solution.
+	 **/
+	image_reload(vw->imd);
+
 	return vw;
 }
 
