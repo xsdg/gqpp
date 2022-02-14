@@ -1209,7 +1209,7 @@ static GtkWidget *vf_file_filter_init(ViewFile *vf)
 	gtk_box_pack_start(GTK_BOX(hbox), menubar, FALSE, TRUE, 0);
 	gtk_widget_show(menubar);
 
-	box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
+	box = gtk_hbox_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 	icon = gtk_image_new_from_icon_name("pan-down", GTK_ICON_SIZE_MENU);
 	label = gtk_label_new(_("Class"));
 
