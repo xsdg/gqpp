@@ -57,7 +57,7 @@ compile()
 
 		echo -e " \e[32m $1 $gtk $debug_flags $disabled "
 		sudo make maintainer-clean > /dev/null 2>&1
-		./autogen.sh " ${variant[$i]}" > /dev/null 2>&1
+		./autogen.sh "${variant[$i]}" > /dev/null 2>&1
 		make -j > /dev/null
 	done
 }
