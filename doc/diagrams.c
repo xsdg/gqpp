@@ -215,5 +215,67 @@
  */
   /**
   * @file
-  * @ref options_overview Options Overview
+  * @ref options_overview "Options Overview"
+  */
+
+/**
+ * @page diagrams Diagrams
+ * @section image_load_overview Image Load Overview
+ * @startuml
+ * object image_change
+ * object image_change_complete
+ * object image_load_begin
+ * object image_loader_start
+ * object image_loader_start_thread
+ * object image_loader_start_idle
+ * object image_loader_setup_source
+ * object image_loader_thread_run
+ * object image_loader_begin
+ * object image_loader_setuploader
+ * circle "il->memory_mapped"
+ * object exif_get_preview_
+ * object exif_get_preview
+ * object libraw_get_preview
+ * 
+ * image_change : image.c
+ * image_change_complete : image.c
+ * image_load_begin : image.c
+ * image_loader_start : image_load.c
+ * image_loader_start_thread : image_load.c
+ * image_loader_start_idle : image_load.c
+ * image_loader_thread_run : image_load.c
+ * image_loader_begin : image_load.c
+ * image_loader_setuploader : image_load.c
+ * image_loader_setuploader : -
+ * image_loader_setuploader : Select backend using magic
+ * image_loader_setup_source : image_load.c
+ * exif_get_preview : exiv2.cc
+ * exif_get_preview : EXIV2_TEST_VERSION(0,17,90)
+ * exif_get_preview_ : exif.c
+ * exif_get_preview_ : -
+ * exif_get_preview_ : If exiv2 not installed
+ * libraw_get_preview : image_load_libraw.c
+ * 
+ * image_change --> image_change_complete
+ * image_change_complete --> image_load_begin
+ * image_load_begin --> image_loader_start
+ * image_loader_start --> image_loader_start_thread
+ * image_loader_start --> image_loader_start_idle : Obsolete - no threads version
+ * image_loader_start_thread --> image_loader_thread_run
+ * image_loader_start_thread --> image_loader_setup_source
+ * image_loader_setup_source --> exif_get_preview_
+ * image_loader_setup_source --> exif_get_preview
+ * image_loader_setup_source --> libraw_get_preview : Try libraw if exiv2 fails
+ * exif_get_preview_ ..> "il->memory_mapped"
+ * exif_get_preview ..> "il->memory_mapped"
+ * libraw_get_preview ..> "il->memory_mapped"
+ * image_loader_thread_run --> image_loader_begin
+ * image_loader_begin --> image_loader_setuploader
+ * "il->memory_mapped" ..> image_loader_setuploader
+ * note left of "il->memory_mapped" : Points to first byte of embedded jpeg (#FFD8)\n if preview found, otherwise to first byte of file
+ * @enduml
+ */
+ /**
+  * @file
+  * @ref image_load_overview "Image Load Overview"
   */
