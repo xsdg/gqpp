@@ -84,7 +84,7 @@ static FileData *lua_check_image(lua_State *L, int index)
 /**
  * @brief Get exif structure of selected image
  * @param L 
- * @returns An @ref ExifData data structure containing the entire exif data
+ * @returns An #ExifData data structure containing the entire exif data
  * 
  * To be used in conjunction with @link lua_exif_get_datum <exif-structure>:get_datum() @endlink
  */
