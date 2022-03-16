@@ -39,7 +39,7 @@ export DOCDIR="$PWD/html/lua-api"
 export INLINE_SOURCES=NO
 export STRIP_CODE_COMMENTS=YES
 
-TMPFILE=$(mktemp) || exit 1
+TMPFILE=$(mktemp "$TMPDIR/geeqie.XXXXXXXX") || exit 1
 
 # Modify the Geeqie doxygen.conf file to produce
 # only the data needed for the lua API document
