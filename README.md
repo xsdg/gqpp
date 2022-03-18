@@ -100,7 +100,7 @@ Geeqie is available:
 
 * as an [AppImage](https://www.geeqie.org/AppImage/index.html) (Generated from the latest sources).
 
-* as a [Homebrew](https://formulae.brew.sh/formula/geeqie) package for macOS.
+* as a [Homebrew](https://formulae.brew.sh/formula/geeqie) or [MacPorts](https://ports.macports.org/port/geeqie) package for macOS.
 
 However Geeqie is stable and you may compile the latest version from sources.
 
