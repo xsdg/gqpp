@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 #**********************************************************************
 # Copyright (C) 2021 - The Geeqie Team
@@ -21,7 +21,7 @@
 #**********************************************************************
 
 ## @file
-## @brief This script will create the Lua API html document, which is part of
+## @brief Create the Lua API html document, which is part of
 ## the Geeqie Help file.
 ##
 ## It is run during the generation of the help files.
@@ -33,13 +33,14 @@
 ##
 
 export PROJECT="Geeqie"
-export VERSION=$(git tag --list v[1-9]* | tail -1)
+VERSION=$(git tag --list v[1-9]* | tail -1)
+export VERSION
 export SRCDIR="$PWD/.."
 export DOCDIR="$PWD/html/lua-api"
 export INLINE_SOURCES=NO
 export STRIP_CODE_COMMENTS=YES
 
-TMPFILE=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXX") || exit 1
+TMPFILE=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX") || exit 1
 
 # Modify the Geeqie doxygen.conf file to produce
 # only the data needed for the lua API document

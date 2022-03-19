@@ -4,6 +4,7 @@
 [GPL header](#gpl-header)  
 [Git change log](#git-change-log)  
 [Source Code Style](#source-code-style)  
+[Shell Script Style](#shell-script-style)  
 [External Software Tools](#external-software-tools)  
 [Geeqie Software Tools](#geeqie-software-tools)  
 [Documentation](#documentation)  
@@ -199,6 +200,25 @@ Use glib functions when possible (i.e. `g_ascii_isspace()` instead of `isspace()
 Check if used functions are not deprecated.
 
 ---
+
+## Shell Script Style
+
+Use `/bin/sh` as the interpreter directive.  
+Ensure the script is POSIX compliant.  
+Use `printf` rather than `echo` except for plain text.  
+There are several versions of `mktemp`. Using the following definition helps portability (note that `template` is not optional):
+
+```sh
+mktemp [-d] [-q] template ...
+```
+
+and use for example this style:
+
+```sh
+mktemp  "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX"
+```
+
+---
 ## External Software Tools
 
 ### astyle
@@ -262,6 +282,36 @@ Shell scripts may also be validated, e.g.
 
 ```sh
 shellcheck --enable=add-default-case,avoid-nullary-conditions,check-unassigned-uppercase,deprecate-which,quote-safe-variables
+```
+
+### shfmt
+
+Shell scripts may formatted to some extent with [shfmt](https://github.com/mvdan/sh). At the time of writing it does not format `if`, `for` or `while` statements in the style used by Geeqie.  
+However the following script can be used to achieve that:
+
+```sh
+#!/bin/sh
+
+shfmt -s -p -ci -sr -fn | awk '
+    {if ($0 ~ /; then/)
+        {
+        match($0, /^\t*/);
+        printf('%s\n', substr($0, 0, length($0) - 6));
+        printf('%s, substr("\t\t\t\t\t\t\t\t\t\t", 1, RLENGTH))
+        print("then")
+        }
+    else if ($0 ~ /; do/)
+        {
+        match($0, /^\t*/);
+        printf('%s\n', substr($0, 0, length($0) - 4));
+        printf('%s', substr("\t\t\t\t\t\t\t\t\t\t", 1, RLENGTH))
+        print("do")
+        }
+    else
+        {
+        print
+        }
+    }'
 ```
 
 ### xmllint

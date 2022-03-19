@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
 ## @file
-## @brief A simple script to locate strings not marked for translation
+## @brief Locate strings not marked for translation
 ##
 ## Checks all .c files under ./src
 ##
@@ -13,6 +13,6 @@ for file in src/*.c src/view_file/*.c
 do
 	for search_text in "label" "menu_item_add" "tooltip" "_button" "_text"
 	do
-		cat -n "$file" | grep --extended-regexp --ignore-case "$search_text.*\(\"" | grep --invert-match "_(" | grep --invert-match "(\"\")" && echo -e "$file \n"
+		cat -n "$file" | grep --extended-regexp --ignore-case "$search_text.*\(\"" | grep --invert-match "_(" | grep --invert-match "(\"\")" && printf '%s\n\n' "$file"
 	done
 done

@@ -1,59 +1,64 @@
-#!/bin/bash
+#!/bin/sh
 
 ## @file
 ## @brief Select and display a random image from a list of all images
 ## in Collections and the currently displayed folder
 ##
 
+IFS='
+'
+
 # get list of images in all collections
 collection_list=$(geeqie --remote --get-collection-list)
-OLDIFS=$IFS
-while IFS= read -r line
+
+for collection_name in $collection_list
 do
-	collection=$(geeqie --remote --get-collection:"$line")
-	list="$list""$collection"$'\n'
-done <<< "$collection_list"
-IFS=$OLDIFS
+	collection_file_list=$(geeqie --remote --get-collection:"$collection_name")
+	for collection_file in $collection_file_list
+		do
+		list="${list:+${list}}\n${collection_file}"
+		done
+done
 
 # get list of images in current folder
 file_list=$(geeqie --remote --get-filelist:)
-OLDIFS=$IFS
-while IFS= read -r line
+
+for file_name in $file_list
 do
-	class_whitespace="${line##*Class:}"
+	class_whitespace="${file_name##*Class:}"
 	class="${class_whitespace#"${class_whitespace%%[![:space:]]*}"}"
 
-	if [ "$class" == "Image" ]
+	if [ "$class" = "Image" ]
 	then
-		list="$list""${line%%Class*}"$'\n'
+		list="$list${file_name%%Class*}\n"
 	fi
 
-	if [ "$class" == "RAW Image" ]
+	if [ "$class" = "RAW Image" ]
 	then
-		list="$list""${line%%Class*}"$'\n'
+		list="$list""${file_name%%Class*}\n"
 	fi
-done <<< "$file_list"
-IFS=$OLDIFS
+done
 
 # remove blank lines
-files_no_blanks=$(echo "$list" | sed -e 's/^[[:blank:]]*$//')
+files_no_blanks=$(printf '%b\n' "$list" | sed -e 's/^[[:blank:]]*$//')
+
 # remove leading trailing whitespace
-files_no_spaces=$(echo "$files_no_blanks" | sed 's/^[ \t]*//;s/[ \t]*$//')
+files_no_spaces=$(printf '%b\n' "$files_no_blanks" | sed 's/^[ \t]*//;s/[ \t]*$//')
 
 # remove duplicate lines and select random line
-display_image="$(echo "$files_no_spaces" | sort --uniq | shuf -n 1)"
+display_image=$( (printf '%b\n'  "$files_no_spaces")  | sort --uniq | shuf -n 1)
 
 # get image currently displayed
 current_image_collection=$(geeqie --remote --tell)
 # remove collection name, if it is there
 current_image_spaces="${current_image_collection%%Collection:*}"
 # remove leading trailing whitespace
-curent_image=$(echo "$current_image_spaces" | sed 's/^[ \t]*//;s/[ \t]*$//')
+current_image=$(printf '%b\n' "$current_image_spaces" | sed 's/^[ \t]*//;s/[ \t]*$//')
 
 # if the selected random image is currently displayed, try again
-if [ "$current_image" == "$display_image" ]
+if [ "$current_image" = "$display_image" ]
 then
-	display_image="$(echo "$files_no_spaces" | sort --uniq | shuf -n 1)"
+	display_image=$(printf '%b' "$files_no_spaces" | sort --uniq | shuf -n 1)
 fi
 
 geeqie --remote file:"$display_image"

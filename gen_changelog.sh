@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ## @file
-## @brief Script to update ChangeLog file  
+## @brief Update ChangeLog file  
 ## - it keeps "pre-svn" history and inserts git log at top,  
 ## - it uses C locale for date format.  
 ## - It has to be run where ChangeLog.gqview is.  

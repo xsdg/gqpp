@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ## @file
 ## @brief Crop image
@@ -9,14 +9,13 @@
 
 process_raw ()
 {
-	tmpdir=$(mktemp --tmpdir --directory geeqie_crop_image_XXXXXX)
+	tmpdir=$(mktemp -d "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 
-	list=$(exiv2 -pp "$1")
-	if [[ ! -z "$list" ]]
+	array_length=$(exiv2 -pp "$1" | wc -l)
+
+	if [ "$array_length" -gt 0 ]
 	then
-		readarray -t split_list <<<"$list"
-
-		array_length="${#split_list[@]}" 
+		# Take last item - should be highest resolution
 		exiv2 --location "$tmpdir" -ep"$array_length" "$1"
 
 		src_filename=$(ls "$tmpdir/")
@@ -25,7 +24,7 @@ process_raw ()
 		rotation=$(exiftool -Orientation -n "$1" | cut -d':' -f2 | xargs)
 		convert "$tmpdir/$src_filename" -crop "$2" "$tmpdir/$filename-crop.$extension"
 
-		exiftool -Orientation=$rotation -n "$tmpdir/$filename-crop.$extension"
+		exiftool -Orientation="$rotation" -n "$tmpdir/$filename-crop.$extension"
 
 		rm "$tmpdir/$src_filename"
 
@@ -40,7 +39,7 @@ process_raw ()
 
 process_plain ()
 {
-	tmpdir=$(mktemp --tmpdir --directory geeqie_crop_image_XXXXXX)
+	tmpdir=$(mktemp -d "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 
 	src_filename=$(basename -- "$1")
 	filename="${src_filename%.*}"
@@ -67,45 +66,40 @@ then
 
 		if [ -z "$coords" ]
 		then
-			zenity --error --title="$title" --text="Rectangle coordinates have not been set" --width="$width" --window-icon="$window_icon" 2>/dev/null
+			zenity --error --title="$title" --text="Rectangle coordinates have not been set" --width="$width" --window-icon="$window_icon" 2> /dev/null
 			exit 0
 		fi
 
 		filename=$(basename -- "$1")
-		extension="${filename##*.}"
-
-		if [ "${extension,,}" = "jpeg" ]
+		extension=$(printf '%b' "${filename##*.}" | tr '[:upper:]' '[:lower:]')
+		if [ "${extension}" = "jpeg" ]
 		then
-			source_file="$1"
-			process_plain "$1" $coords
-		elif [ "${extension,,}" = "jpg" ]
+			process_plain "$1" "$coords"
+		elif [ "${extension}" = "jpg" ]
 		then
-			source_file="$1"
-			process_plain "$1" $coords
-		elif [ "${extension,,}" = "png" ]
+			process_plain "$1" "$coords"
+		elif [ "${extension}" = "png" ]
 		then
-			source_file="$1"
-			process_plain "$1" $coords
-		elif [ "${extension,,}" = "tif" ]
+			process_plain "$1" "$coords"
+		elif [ "${extension}" = "tif" ]
 		then
-			source_file="$1"
-			process_plain "$1" $coords
-		elif [ "${extension,,}" = "tiff" ]
+			process_plain "$1" "$coords"
+		elif [ "${extension}" = "tiff" ]
 		then
-			source_file="$1"
-			process_plain "$1" $coords
+			process_plain "$1" "$coords"
 		else
-			process_raw "$1" $coords
+			process_raw "$1" "$coords"
 			if [ $? = 1 ]
 			then
-				process_plain "$1" $coords
+				process_plain "$1" "$coords"
 			fi
 		fi
 	else
-		zenity --info --title="$title" --width="$width" --height=100 --text="Crop image\n\nexiftool is not installed" --title="$title" --window-icon="$window_icon" 2>/dev/null
+		zenity --info --title="$title" --width="$width" --height=100 --text="Crop image\n\nexiftool is not installed" --title="$title" --window-icon="$window_icon" 2> /dev/null
 		exit 0
 	fi
 else
-	zenity --info --title="$title" --width="$width" --height=100 --text="Crop image\n\nImageMagick is not installed" --title="$title" --window-icon="$window_icon" 2>/dev/null
+	zenity --info --title="$title" --width="$width" --height=100 --text="Crop image\n\nImageMagick is not installed" --title="$title" --window-icon="$window_icon" 2> /dev/null
 	exit 0
 fi
+

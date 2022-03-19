@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 #**********************************************************************
 # Copyright (C) 2021 - The Geeqie Team
@@ -128,19 +128,19 @@ $0 ~ /^  { "/ {
 '
 
 keys_xml=$(awk "$awk_window" ./src/dupe.c )
-echo -e "$pre_1_xml" "$duplicates_xml" "$pre_2_xml" "$keys_xml" "$post_xml" > ./doc/docbook/GuideReferenceDuplicatesShortcuts.xml
+printf '%b\n' "$pre_1_xml $duplicates_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceDuplicatesShortcuts.xml
 
 keys_xml=$(awk "$awk_window" ./src/search.c )
-echo -e "$pre_1_xml" "$search_xml" "$pre_2_xml" "$keys_xml" "$post_xml" > ./doc/docbook/GuideReferenceSearchShortcuts.xml
+printf '%b\n' "$pre_1_xml $search_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceSearchShortcuts.xml
 
 keys_xml=$(awk "$awk_window" ./src/pan-view/pan-view.c )
-echo -e "$pre_1_xml" "$pan_view_xml" "$pre_2_xml" "$keys_xml" "$post_xml" > ./doc/docbook/GuideReferencePanViewShortcuts.xml
+printf '%b\n' "$pre_1_xml $pan_view_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferencePanViewShortcuts.xml
 
 keys_xml=$(awk "$awk_window" ./src/collect-table.c)
-echo -e "$pre_1_xml" "$collections_xml" "$pre_2_xml" "$keys_xml" "$post_xml" > ./doc/docbook/GuideReferenceCollectionsShortcuts.xml
+printf '%b\n' "$pre_1_xml $collections_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceCollectionsShortcuts.xml
 
 keys_xml=$(awk "$awk_window" ./src/img-view.c)
-echo -e "$pre_1_xml" "$image_xml" "$pre_2_xml" "$keys_xml" "$post_xml" > ./doc/docbook/GuideReferenceImageViewShortcuts.xml
+printf '%b\n' "$pre_1_xml $image_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceImageViewShortcuts.xml
 
 keys_xml=$(awk "$awk_main_window" ./src/layout_util.c)
-echo -e "$pre_1_xml" "$main_window_xml" "$pre_2_xml" "$keys_xml" "$post_main_window_xml" > ./doc/docbook/GuideReferenceMainWindowShortcuts.xml
+printf '%b\n' "$pre_1_xml $main_window_xml $pre_2_xml $keys_xml $post_main_window_xml" > ./doc/docbook/GuideReferenceMainWindowShortcuts.xml

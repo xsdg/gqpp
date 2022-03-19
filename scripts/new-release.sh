@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ## @file
 ## @brief Create a new release
@@ -19,7 +19,7 @@
 
 if [ ! -d .git ]
 then
-	echo "Directory .git does not exist"
+	printf '%s\n' "Directory .git does not exist"
 	exit 1
 fi
 
@@ -35,7 +35,7 @@ push=
 while getopts "v:s:p:hr" option; do
 	case $option in
 	h)
-		echo -e "-v <a.b> release major.minor e.g 1.9\n-s <c> start hash e.g. 728172681 (optional)\n-p <d> release patch version e.g. 2 for 1.6.2\n-r push to repo.\n-h help"
+		printf '%s\n%s\n%s\n%s\n%s\n' "-v <a.b> release major.minor e.g 1.9" "-s <c> start hash e.g. 728172681 (optional)" "-p <d> release patch version e.g. 2 for 1.6.2" "-r push to repo." "-h help"
 		exit 0
 		;;
 	v) version="$OPTARG" ;;
@@ -48,13 +48,13 @@ done
 
 if [ "$start" ] && [ "$patch" ]
 then
-	echo "Cannot have start-hash and patch number together"
+	printf '%s\n' "Cannot have start-hash and patch number together"
 	exit 1
 fi
 
-if [ "$(echo "$version" | awk -F"." '{print NF-1}')" -ne 1 ]
+if [ "$(printf '%s\n' "$version" | awk -F"." '{print NF-1}')" -ne 1 ]
 then
-	echo "Version major.minor $version is not valid"
+	printf '%s\n' "Version major.minor $version is not valid"
 	exit 1
 fi
 
@@ -62,7 +62,7 @@ if [ "$start" ]
 then
 	if ! git branch master --contains "$start" > /dev/null 2>&1
 	then
-		echo "Start hash is not in master branch"
+		printf '%s\n' "Start hash is not in master branch"
 		exit 1
 	fi
 fi
@@ -71,19 +71,19 @@ if [ "$patch" ]
 then
 	if ! git rev-parse "v$version" > /dev/null 2>&1
 	then
-		echo "Version $version does not exist"
+		printf '%s\n' "Version $version does not exist"
 		exit 1
 	fi
 
-	if [[ ! $patch =~ ^-?[0-9]+$ ]]
+	if ! [ "$patch" -ge 0 ] 2>/dev/null
 	then
-		echo "Patch $patch is not an integer"
+		printf '%s\n' "Patch $patch is not an integer"
 		exit 1
 	fi
 else
 	if git rev-parse "v$version" > /dev/null 2>&1
 	then
-		echo "Version $version already exists"
+		printf '%s\n' "Version $version already exists"
 		exit 1
 	fi
 fi

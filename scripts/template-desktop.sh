@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/sh
 
 
 ## @file
@@ -7,7 +7,7 @@
 ## This needs to be run only when the menus have changed.
 ##
 
-tmp_file=$(mktemp)
+tmp_file=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 path=$(dirname "$(realpath "$0")")
 srcpath=$(dirname "$path")/src/layout_util.c
 templatepath=$(dirname "$path")/plugins/template.desktop.in
@@ -78,12 +78,10 @@ function get_menus()
 (template_flag == 0) {print}
 '  "$templatepath" > "$tmp_file"
 
-cat $tmp_file
-echo $PWD
+cat "$tmp_file"
+printf '%s\n' "$PWD"
 
-diff --unified=0 "./plugins/template.desktop.in" "$tmp_file" | zenity --title="Plugin template update" --text-info --width=700 --height=400
-
-if [ "$?" == 0 ]
+if diff --unified=0 "./plugins/template.desktop.in" "$tmp_file" | zenity --title="Plugin template update" --text-info --width=700 --height=400
 then
 	mv "$tmp_file" "$templatepath"
 else

@@ -1,20 +1,20 @@
-#!/bin/bash
+#!/bin/sh
 
 ## @file
 ## @brief Convert README.md to README.html
 ##
-## Script to create README.html file,
+## Ceate README.html file,
 ##
 
 if [ ! -e "README.md" ]
 then
-	echo "ERROR: README.md not found"
+	printf '%s\n' "ERROR: README.md not found"
 	exit 1
 fi
 
-if [ ! -x "$(command -v pandoc)" ]
+if ! command -v pandoc > /dev/null 2>&1
 then
-	echo "ERROR: File pandoc not installed"
+	printf '%s\n' "ERROR: File pandoc not installed"
 	exit 1
 fi
 

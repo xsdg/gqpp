@@ -1,7 +1,7 @@
 #!/usr/bin/awk -f
 #
 ## @file
-## @brief This file is used by the Search option "search on geo-position".
+## @brief Used by the Search option "search on geo-position".
 ##
 ## It is used to decode the results of internet or other searches
 ## to extract a geo-position from a text string.

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ## @file
-## @brief This is a helper script that symlinks grouped files
+## @brief Symlink grouped files
 ##
 ## It uses geeqie remote connection to get details about grouped files
 ##

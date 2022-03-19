@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ## @file
 ## @brief Generate the Geeqie version number
@@ -22,27 +22,27 @@ if [ -d .git ]
 then
 	branch=$(git rev-parse --abbrev-ref HEAD)
 
-	if [ "$branch" == "master" ]
+	if [ "$branch" = "master" ]
 	then
-		IFS=$'.'
-# shellcheck disable=SC2046
+		IFS='.'
+		# shellcheck disable=SC2046
 		set -- $(git tag --list v[1-9]* | tail -n 1 | tr -d 'v')
 
 		major_version=$1
 		minor_version=$2
 #		patch_version=$3  # not used on master branch
 
-		echo "$major_version" && echo "." && echo "$minor_version" && echo "+git" && git log --max-count=1 --date=format:"%Y%m%d" --format="%ad" && echo "-" && git rev-parse --quiet --verify --short HEAD
+		printf '%s' "$major_version" && printf '%s' "." && printf '%s' "$minor_version" && printf '%s' "+git" && git log --max-count=1 --date=format:"%Y%m%d" --format="%ad" && printf '%s' "-" && git rev-parse --quiet --verify --short HEAD
 	else
 		version=$(head -1 NEWS)
-# shellcheck disable=SC2086
+		# shellcheck disable=SC2086
 		set -- $version
-		echo "$2"
+		printf '%s' "$2"
 	fi
 else
 	version=$(head -1 NEWS)
-# shellcheck disable=SC2086
+	# shellcheck disable=SC2086
 	set -- $version
-	echo "$2"
+	printf '%s' "$2"
 fi
 

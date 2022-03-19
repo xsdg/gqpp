@@ -1,38 +1,35 @@
-#!/bin/bash
+#!/bin/sh
 
 ## @file
 ## @brief Import all images from camera
 ##
 ## Requires gphoto2
 ##
-
-function finish 
+finish()
 {
 	if [ -f /tmp/geeqie-camera-import-files ]
 	then
 		rm /tmp/geeqie-camera-import-files
 	fi
 
-	if [ -p $zen_pipe ]
+	if [ -p "$zen_pipe" ]
 	then
-		rm $zen_pipe
+		rm "$zen_pipe"
 	fi
 
 	if [ "$gphoto2_pid" != "" ]
 	then
-		ps -p $gphoto2_pid > /dev/null
-		if [ $? -eq 0 ]
+		if ps -p "$gphoto2_pid" > /dev/null
 		then
-			kill $gphoto2_pid
+			kill "$gphoto2_pid"
 		fi
 	fi
 
 	if [ "$zen_pid" != "" ]
 	then
-		ps -p $zen_pid > /dev/null
-		if [ $? -eq 0 ]
+		if ps -p "$zen_pid" > /dev/null
 		then
-			kill $zen_pid
+			kill "$zen_pid"
 		fi
 	fi
 }
@@ -40,7 +37,7 @@ trap finish EXIT
 
 if ! [ -x "$(command -v gphoto2)" ]
 then
-	zenity --title="Geeqie camera import" --info --width=200 --text="gphoto2 is not installed" 2>/dev/null
+	zenity --title="Geeqie camera import" --info --width=200 --text="gphoto2 is not installed" 2> /dev/null
 	exit 0
 fi
 
@@ -49,34 +46,35 @@ then
 	rm /tmp/geeqie-camera-import.log
 fi
 
-if [ $(gphoto2 --auto-detect | wc -l) -le 2 ]
+if [ "$(gphoto2 --auto-detect | wc -l)" -le 2 ]
 then
-	zenity --error --title="Geeqie camera import" --text="No camera detected" --window-icon=/usr/local/share/pixmaps/geeqie.png --width=250 2>/dev/null
+	zenity --error --title="Geeqie camera import" --text="No camera detected" --window-icon=/usr/local/share/pixmaps/geeqie.png --width=250 2> /dev/null
 	exit 0
 fi
 
-list=$(gphoto2 --auto-detect | tail +3)
-readarray -t split_list <<<"$list"
+IFS='
+'
 
+list=$(gphoto2 --auto-detect | tail -n +3)
 camera_list=""
 n=1
-count=$(gphoto2 --auto-detect | tail +3 | wc -l)
-if [[ $count -gt 1 ]]
+count=$(gphoto2 --auto-detect | tail -n +3 | wc -l)
+if [ "$count" -gt 1 ]
 then
-	for camera in "${split_list[@]}"
+	for camera in $list
 	do
-		if [[ $n -eq $count ]]
+		if [ "$n" -eq "$count" ]
 		then
-			camera_list="$camera_list"$'TRUE\n'"$camera"$'\n'"$n"
+			camera_list="${camera_list:+${camera_list}}TRUE\n$camera\n$n"
 		else
-			camera_list="$camera_list"$'FALSE\n'"$camera"$'\n'"$n"$'\n'
+			camera_list="${camera_list:+${camera_list}}FALSE\n$camera\n$n\n"
 		fi
-		n=$((n+1))
+		n=$((n + 1))
 	done
 
-	camera_selected=$(echo "$camera_list" | zenity  --width=500 --height=250 --title="Geeqie camera import" --list  --text "Select camera" --radiolist  --column "Select" --column "Camera" --column "n" --hide-column=3 --print-column=2 2>/dev/null) 
+	camera_selected=$(printf '%b' "$camera_list" | zenity --width=500 --height=250 --title="Geeqie camera import" --list --text "Select camera" --radiolist --column "Select" --column "Camera" --column "n" --print-column=2 2> /dev/null)
 
-	if [[ $? == 1 ]]
+	if [ $? = 1 ]
 	then
 		exit 0
 	fi
@@ -84,58 +82,56 @@ else
 	camera_selected=$(gphoto2 --auto-detect | tail +3)
 fi
 
-port_type=$(echo $camera_selected |awk -F ':' '{print $1}' | awk '{print $NF}')
-camera=$(echo $camera_selected | awk -F $port_type '{print $1}')
-port_address=$(echo $camera_selected | awk -F ':' '{print $2}')
+port_type=$(printf '%s\n' "$camera_selected" | awk -F ':' '{print $1}' | awk '{print $NF}')
+camera=$(printf '%s\n' "$camera_selected" | awk -F "$port_type" '{print $1}')
+port_address=$(printf '%s\n' "$camera_selected" | awk -F ':' '{print $2}')
 port="$port_type:$port_address"
 
 script_dir=$(dirname "$0")
 
-zenity --question --title="Geeqie camera import" --text="Camera: $camera\n\nDownloading to folder:\n<b>$PWD</b>" --ok-label="OK" --cancel-label="Cancel" --window-icon=/usr/local/share/pixmaps/geeqie.png --width=350 2>/dev/null
-
-if [[ $? == 1 ]]
+if ! zenity --question --title="Geeqie camera import" --text="Camera: $camera\n\nDownloading to folder:\n<b>$PWD</b>" --ok-label="OK" --cancel-label="Cancel" --window-icon=/usr/local/share/pixmaps/geeqie.png --width=350 2> /dev/null
 then
 	exit 0
 fi
 
-src_files_sorted=$(mktemp --tmpdir geeqie_camera_import_camera_files_sorted_XXXXXX)
-dest_files_sorted=$(mktemp --tmpdir geeqie_camera_import_computer_files_sorted_XXXXXX)
+src_files_sorted=$(mktemp -d "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
+dest_files_sorted=$(mktemp -d "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 
 (
-gphoto2 --port "$port" --list-files  2>/tmp/geeqie-camera-import.log | awk '/#/ {print $2}' | sort > $src_files_sorted
-) | zenity --progress --auto-close --auto-kill --title="Geeqie camera import" --text="Searching for files to download..."  --pulsate --window-icon=/usr/local/share/pixmaps/geeqie.png --width=250 
+	gphoto2 --port "$port" --list-files 2> /tmp/geeqie-camera-import.log | awk '/#/ {print $2}' | sort > "$src_files_sorted"
+) | zenity --progress --auto-close --auto-kill --title="Geeqie camera import" --text="Searching for files to download..." --pulsate --window-icon=/usr/local/share/pixmaps/geeqie.png --width=250
 
 error=$(grep -i error /tmp/geeqie-camera-import.log)
 
-if [ ! -z "$error" ]
+if [ -n "$error" ]
 then
-	cat /tmp/geeqie-camera-import.log | zenity --text-info --title="Geeqie camera import" - --window-icon=error --width=250 2>/dev/null
+	zenity --text-info --title="Geeqie camera import" - --window-icon=error --width=250 < /tmp/geeqie-camera-import.log 2> /dev/null
 	exit 1
 fi
 
-ls -1 | sort > $dest_files_sorted
-existing_file_count=$(comm -12 $src_files_sorted $dest_files_sorted | wc -l)
+find . -maxdepth 1 -type f | sort > "$dest_files_sorted"
+existing_file_count=$(comm -12 "$src_files_sorted" "$dest_files_sorted" | wc -l)
 
-repeated=$(uniq --repeated $src_files_sorted)
-if [ ! -z "$repeated" ]
+repeated=$(uniq --repeated "$src_files_sorted")
+if [ -n "$repeated" ]
 then
 	repeated="Warning: The following source filenames are not unique.\nSome files may not be downloaded.\nSee the Help file.\n\n$repeated"
-	zenity --question --text="$repeated" --title="Geeqie camera import" --cancel-label="OK" --ok-label="Cancel" --width=400 --window-icon=/usr/local/share/pixmaps/geeqie.png 2>/dev/null
-	if [[ $? == 0 ]]
+
+	if zenity --question --text="$repeated" --title="Geeqie camera import" --cancel-label="OK" --ok-label="Cancel" --width=400 --window-icon=/usr/local/share/pixmaps/geeqie.png 2> /dev/null
 	then
 		exit 1
 	fi
 fi
 
-total=$(cat $src_files_sorted | wc -l)
-files_to_load=$(( $total - $existing_file_count ))
+total=$(wc -l < "$src_files_sorted")
+files_to_load=$((total - existing_file_count))
 
-rm $src_files_sorted
-rm $dest_files_sorted
+rm "$src_files_sorted"
+rm "$dest_files_sorted"
 
 if [ "$files_to_load" -eq 0 ]
 then
-	zenity --info --title="Geeqie camera download" --text="No photos to download" --width=250 --window-icon=usr/local/share/pixmaps/geeqie.png 2>/dev/null
+	zenity --info --title="Geeqie camera download" --text="No photos to download" --width=250 --window-icon=usr/local/share/pixmaps/geeqie.png 2> /dev/null
 	exit 0
 fi
 
@@ -145,29 +141,29 @@ then
 fi
 touch /tmp/geeqie-camera-import-files
 
-zen_pipe=$(mktemp --dry-run --tmpdir geeqie_camera_import_pipe_XXXXXX)
-mkfifo $zen_pipe
+zen_pipe=$(mktemp -u "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
+mkfifo "$zen_pipe"
 
-gphoto2 --port "$port" --hook-script "$script_dir/"geeqie-camera-import-hook-script --get-all-files --skip-existing 2>/tmp/geeqie-camera-import.log &
+gphoto2 --port "$port" --hook-script "$script_dir/"geeqie-camera-import-hook-script --get-all-files --skip-existing 2> /tmp/geeqie-camera-import.log &
 
 gphoto2_pid=$!
 
-(tail -f $zen_pipe 2>/dev/null) | zenity --progress --title="Geeqie camera import" --width=370 --text="Downloading: total: $files_to_load existing: $existing_file_count\n" --auto-close --auto-kill --percentage=0 window-icon=/usr/local/share/pixmaps/geeqie.png 2>/dev/null &
+(tail -f "$zen_pipe" 2> /dev/null) | zenity --progress --title="Geeqie camera import" --width=370 --text="Downloading: total: $files_to_load existing: $existing_file_count\n" --auto-close --auto-kill --percentage=0 window-icon=/usr/local/share/pixmaps/geeqie.png 2> /dev/null &
 zen_pid=$!
 
 n=0
-while [ -f /tmp/geeqie-camera-import-files ] &&  [ "$n" -lt 100 ]
+while [ -f /tmp/geeqie-camera-import-files ] && [ "$n" -lt 100 ]
 do
-	i=$(cat "/tmp/geeqie-camera-import-files" | wc -l)
-	n=$(( $((i * 100)) / $files_to_load))
-	echo "$n" >$zen_pipe
+	i=$(wc -l < "/tmp/geeqie-camera-import-files")
+	n=$(($((i * 100)) / files_to_load))
+	printf '%s\n' "$n" > "$zen_pipe"
 
 	latest_file=$(tail -n 1 /tmp/geeqie-camera-import-files)
 	if [ -z "$latest_file" ]
 	then
 		latest_file="Skipping existing files, if any..."
 	fi
-	echo "#Downloading: total: $files_to_load existing: $existing_file_count\n$latest_file" >$zen_pipe
+	printf '#Downloading: total: %s existing: %s\n%s' "$files_to_load existing" "$existing_file_count" "$latest_file" > "$zen_pipe"
 
 	sleep 1
 done

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ## @file
 ## @brief Create the man page from the output of the "geeqie--help" command
@@ -9,24 +9,22 @@
 ## The programs help2man and doclifter are required - both are available as .deb packages.
 ##
 
-command -v help2man > /dev/null
-if [ $? -eq 1 ]
+if ! command -v help2man > /dev/null
 then
-	echo "help2man not installed"
-	exit
+	printf '%s\n' "help2man not installed"
+	exit 1
 fi
 
-command -v doclifter > /dev/null
-if [ $? -eq 1 ]
+if ! command -v doclifter > /dev/null
 then
-	echo "doclifter not installed"
-	exit
+	printf '%s\n' "doclifter not installed"
+	exit 1
 fi
 
-options_file=$(mktemp)
+options_file=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 year=$(date +"%Y")
 
-echo "[NAME]
+printf '%s\n' "[NAME]
 Geeqie - GTK based multiformat image viewer
 
 [DESCRIPTION]
@@ -45,7 +43,6 @@ Please send bug reports and feedback to https://github.com/BestImageViewer/geeqi
 Copyright (C) 1999-2004 by John Ellis. Copyright (C) 2004-$year by The Geeqie Team. Use this software  at  your
 own  risk! This  software released under the GNU General Public License. Please read the COPYING file for more
 information." > "$options_file"
-
 
 help2man --no-info --include="$options_file" src/geeqie > geeqie.1
 

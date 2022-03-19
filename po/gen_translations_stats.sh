@@ -1,14 +1,14 @@
-#!/bin/bash
+#!/bin/sh
 
 ## @file
-## @brief This script prints translations statistics for .po files
+## @brief Print translations statistics for .po files
 ## existing in the current directory
 ##
 
 export LC_ALL=C
 
 echo "Translations statistics"
-echo "Date: "$(date -R)
+echo "Date: $(date -R)"
 echo
 
 echo "Note: completion % in the chart below may not be quite correct"
@@ -19,7 +19,7 @@ echo
 
 (echo "Language  Comp(%) Trans Fuzzy Untrans Total"; \
 for i in *.po; do
-	msgfmt --statistics -o /dev/null $i 2>&1 \
+	msgfmt --statistics -o /dev/null "$i" 2>&1 \
 	| perl -ne '
 		my ($tr_done, $tr_fuzz, $tr_un) = (0, 0, 0);
 		$tr_done = $1 if /(\d+) translated messages?/;

@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 #**********************************************************************
 # Copyright (C) 2021 - The Geeqie Team
 #
@@ -20,27 +20,27 @@
 #**********************************************************************
 
 ## @file
-## @brief This script will generate a Geeqie AppImage.
+## @brief Generate a Geeqie AppImage.
 ##
 ## It must be run from the base Geeqie folder.  
 ## The single parameter is the directory where the AppDir
 ## will be created.
 ##
 
-if [[ ! -f geeqie.spec.in ]] || [[ ! -d .git ]]
+if [ ! -f geeqie.spec.in ] || [ ! -d .git ]
 then
-	echo "This is not a Geeqie folder"
+	printf '%s\n' "This is not a Geeqie folder"
 	exit 1
 fi
 
 if ! target_dir=$(realpath "$1");
 then
-	echo "No target dir specified"
+	printf '%s\n' "No target dir specified"
 	exit 1
 fi
 
 rm -rf "$target_dir"/AppDir
-mkdir "$target_dir"/AppDir || { echo "Cannot make $target_dir/AppDir"; exit 1; }
+mkdir "$target_dir"/AppDir || { printf '%s\n' "Cannot make $target_dir/AppDir"; exit 1; }
 
 sudo rm -rf doc/html
 
@@ -52,7 +52,7 @@ make install DESTDIR="$target_dir"/AppDir
 VERSION=$(git tag | tail -1)
 export VERSION
 
-cd "$target_dir" || { echo "Cannot cd to $target_dir"; exit 1; }
+cd "$target_dir" || { printf '%s\n' "Cannot cd to $target_dir"; exit 1; }
 
 linuxdeploy-x86_64.AppImage \
 	--appdir ./AppDir --output appimage \

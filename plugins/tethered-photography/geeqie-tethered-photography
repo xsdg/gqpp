@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ## @file
 ## @brief Simple tethered photography helper
@@ -12,7 +12,7 @@
 ## gphoto2=filename=<see the manual>
 ##
 
-n=$(ps -e | grep "geeqie-tethered" | wc -l)
+n=$(pgrep "geeqie-tethered" | wc -l)
 if [ "$n" -ge 3 ]
 then
 	exit 0
@@ -24,7 +24,7 @@ then
 	exit 0
 fi
 
-if [ $(gphoto2 --auto-detect | wc -l) -le 2 ]
+if [ "$(gphoto2 --auto-detect | wc -l)" -le 2 ]
 then
 	zenity --error --title="Geeqie tethered photography" --text="No camera detected" --window-icon=/usr/local/share/pixmaps/geeqie.png --width=250 2>/dev/null
 	exit 0
@@ -34,18 +34,18 @@ notify-send --expire-time=2000 "$(gphoto2 --auto-detect | sed -n '3p')" --icon=g
 
 script_dir=$(dirname "$0")
 
-tmpfile=$(mktemp --tmpdir geeqie_tethered_photography_XXXXXX)
+tmpfile=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 
-yes n | gphoto2 --hook-script "$script_dir/"geeqie-tethered-photography-hook-script --capture-tethered >$tmpfile &
+yes n | gphoto2 --hook-script "$script_dir/"geeqie-tethered-photography-hook-script --capture-tethered >"$tmpfile" &
 
 gphoto2_pid=$!
 
 zenity --question --title="Geeqie tethered photography" --ok-label="Stop" --cancel-label="Show log data" --text="Tethered photography is running.\n\n\nDownloading to folder:\n""$PWD\n\n\nExisting files will not be overwritten,\nbut the download will not take place.\n\n(Use gphoto2 --filename default option\nfor auto-rename on download)" --width=300 --window-icon=/usr/local/share/pixmaps/geeqie.png 2>/dev/null
 
-if [ $? == 1 ]
+if [ $? = 1 ]
 then
-	zenity --text-info --title="Geeqie tethered photography" --window-icon=/usr/local/share/pixmaps/geeqie.png --ok-label="Stop" --cancel-label="Abort" <$tmpfile 2>/dev/null
+	zenity --text-info --title="Geeqie tethered photography" --window-icon=/usr/local/share/pixmaps/geeqie.png --ok-label="Stop" --cancel-label="Abort" <"$tmpfile" 2>/dev/null
 fi
 
 kill $gphoto2_pid
-rm $tmpfile
+rm "$tmpfile"

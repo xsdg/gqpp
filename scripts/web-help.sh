@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ## @file
 ## @brief Update the Geeqie webpage Help files
@@ -25,18 +25,18 @@
 
 if [ ! -d ".git" ] || [ ! -d "src" ] || [ ! -f "geeqie.1" ]
 then
-	echo "This is not a Geeqie project folder"
+	printf '%s\n' "This is not a Geeqie project folder"
 	exit 1
 fi
 
 if [ ! -d "../geeqie.github.io/.git" ] || [ ! -d "../geeqie.github.io/help" ]
 then
-	echo "The Geeqie webpage project folder geeqie.github.io was not found"
+	printf '%s\n' "The Geeqie webpage project folder geeqie.github.io was not found"
 	exit 1
 fi
 
 rm -rf doc/html
-tmpdir=$(mktemp --tmpdir --directory)
+tmpdir=$(mktemp -d "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 
 make -j install DESTDIR="$tmpdir"
 rm -r "$tmpdir"

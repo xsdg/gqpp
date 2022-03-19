@@ -82,7 +82,7 @@ rotate_image_file()
 		;;
 
 	tif|tiff|png)
-		mogrify $2 "$3"
+		mogrify "$2" "$3"
 		[ $? != 0 ]  && return 7
 		return 0;
 		;;
@@ -153,7 +153,7 @@ for file in "$@" ; do
     if [ -n "$get_sidecars" ] ; then
         # we got only one file for each group, typically the main one
         # get the sidecars:
-        geeqie -r --get-sidecars:"$file" |while read sidecar ; do
+        geeqie -r --get-sidecars:"$file" |while read -r sidecar ; do
             # the main file is included in the sidecar file list, no special handling is required
 			[ ! -w "$sidecar" ] && exit 5
             rotate "$sidecar"
@@ -166,7 +166,7 @@ for file in "$@" ; do
 		[ ! -w "$file" ] && exit 5
 		if [ -n "$rotate_image_file" ] ; then
 			if [ -n "$preserve_mtime" ] ; then
-				mtime=`mktemp /tmp/geeqie-rotate.XXXXXXXXXX` || exit 3
+				mtime=`mktemp "${TMPDIR:-/tmp}/geeqie-rotate.XXXXXXXXXX"` || exit 3
 				touch --reference="$file" "$mtime"
 			fi
 

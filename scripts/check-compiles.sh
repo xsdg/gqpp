@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 #/*
 # * Copyright (C) 2021 The Geeqie Team
@@ -27,44 +27,48 @@
 
 compile()
 {
+	compiler="$1"
+
 	# Cannot have --enable-debug-flags with --disable-gtk3
+	set -- "$disable_list --disable-gtk3" "--disable-gtk3" "$disable_list --enable-debug-flags" "--enable-debug-flags" "$disable_list" ""
 
-	declare -A variant
-	variant[0]="$disable_list --disable-gtk3"
-	variant[1]="--disable-gtk3"
-	variant[2]="--enable-debug-flags $disable_list"
-	variant[3]="--enable-debug-flags"
-	variant[4]="$disable_list"
-	variant[5]=""
-
-	for ((i = 0; i <= 5; i++))
+	i=1
+	while [ $i -le 6 ]
 	do
-		if [[ "${variant[$i]}" =~ "gtk3" ]]; then
+		variant=""
+		eval variant="\$${i}"
+
+		if [ "$variant" != "${variant%gtk3*}" ]
+		then
 			gtk="GTK2"
 		else
 			gtk="GTK3"
 		fi
-		if [[ "${variant[$i]}" =~ "disable-threads" ]]; then
+		if [ "$variant" != "${variant%disable-threads*}" ]
+		then
 			disabled="all disabled"
 		else
 			disabled="none disabled"
 		fi
-		if [[ "${variant[$i]}" =~ "--enable-debug-flags" ]]; then
+		if [ "$variant" != "${variant%--enable-debug-flags*}" ]
+		then
 			debug_flags="enable-debug-flags"
 		else
 			debug_flags=""
 		fi
 
-		echo -e " \e[32m $1 $gtk $debug_flags $disabled "
+		printf '\e[32m%s\n' "$compiler $gtk $debug_flags $disabled"
 		sudo make maintainer-clean > /dev/null 2>&1
-		./autogen.sh "${variant[$i]}" > /dev/null 2>&1
+		./autogen.sh "$variant" > /dev/null 2>&1
 		make -j > /dev/null
+
+		i=$((i+1))
 	done
 }
 
-disable_list=" "$(awk --field-separator '[][]' '/AC_HELP_STRING\(\[--disable-/ {if ($2 != "gtk3") print $2}' configure.ac | tr '\n' ' ')
+disable_list=" "$(awk -F '[][]' '/AC_HELP_STRING\(\[--disable-/ {if ($2 != "gtk3") print $2}' configure.ac | tr '\n' ' ')
 
-echo "Disabled list: :$disable_list"
+printf '%s\n' "Disabled list: :$disable_list"
 
 export CFLAGS="-Wno-deprecated-declarations"
 

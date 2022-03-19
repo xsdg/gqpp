@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 #**********************************************************************
 # Copyright (C) 2021 - The Geeqie Team
@@ -51,13 +51,13 @@
 ## Then run 'doxygen doxygen.conf'
 ##
  
-if [[ -z "${DOCDIR}" ]]
+if [ -z "${DOCDIR}" ]
 then
-	echo "Environment variable DOCDIR not set"
+	printf '%s\n' "Environment variable DOCDIR not set"
 	zenity --title="Geeqie" --width=200 --warning --text="Environment variable DOCDIR not set"
-elif [[ -z "${PROJECT}" ]]
+elif [ -z "${PROJECT}" ]
 then
-	echo "Environment variable PROJECT not set"
+	printf '%s\n' "Environment variable PROJECT not set"
 	zenity --title="Geeqie" --width=200 --warning --text="Environment variable PROJECT not set"
 else
 	url_found=$(awk  -v search_param="$1" -v docdir="$DOCDIR" '
@@ -96,7 +96,7 @@ else
 			}
 		' "$DOCDIR"/"$PROJECT".tag)
 
-	if [[ -z $url_found ]]
+	if [ -z "$url_found" ]
 	then
 		exit 1
 	else

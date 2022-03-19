@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ## @file
 ## @brief Extract embedded jpegs from a raw file
@@ -9,14 +9,6 @@
 ##  and store in a new file
 ## - Set Geeqie focus to the newly generated image
 ##
-
-count=$(exiv2 -pp "$1" | wc -l)
-
-if [[ $count -eq 0 ]]
-then
-	zenity --info --width=300 --height=100 --text="Export jpeg from raw file\n\nFile contains no embedded images" --title="Geeqie export jpeg" 2>/dev/null
-	exit
-fi
 
 if ! [ -x "$(command -v exiv2)" ]
 then
@@ -29,28 +21,36 @@ then
 	zenity --info --width=300 --height=100 --text="Export jpeg from raw file\n\njpgicc is not installed\ncolor corrections will not be made\nYou may install via liblcms2-utils" --title="Geeqie export jpeg" 2>/dev/null
 fi
 
-list=$(exiv2 -pp "$1")
-readarray -t split_list <<<"$list"
+count=$(exiv2 -pp "$1" | wc -l)
+if [ "$count" -eq 0 ]
+then
+	zenity --info --width=300 --height=100 --text="Export jpeg from raw file\n\nFile contains no embedded images" --title="Geeqie export jpeg" 2>/dev/null
+	exit 1
+fi
 
+IFS='
+'
+
+list=$(exiv2 -pp "$1")
 image_list=""
 n=1
 
-for image in "${split_list[@]}"
+for image in $list
 do
-	if [[ $n -eq $count ]]
+	if [ "$n" -eq "$count" ]
 	then
-		image_list="$image_list"$'TRUE\n'"$image"$'\n'"$n"
+		image_list="${image_list:+${image_list}}TRUE\n$image\n$n"
 	else
-		image_list="$image_list"$'FALSE\n'"$image"$'\n'"$n"$'\n'
+		image_list="${image_list:+${image_list}}FALSE\n$image\n$n\n"
 	fi
-	n=$((n+1))
+	n=$((n + 1))
 done
 
 image_selected=$(echo "$image_list" | zenity  --width=500 --height=250 --title="Geeqie export jpeg" --list  --text "Select embedded image" --radiolist  --column "Select" --column "Image" --column "n" --hide-column=3 --print-column=3 2>/dev/null) 
 
-if [[ ! -z "$image_selected" ]]
+if [ -n "$image_selected" ]
 then
-	tmpdir=$(mktemp --tmpdir --directory geeqie_export_jpeg_XXXXXX)
+	tmpdir=$(mktemp -d "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 
 	exiv2 --location "$tmpdir" -ep"$image_selected" "$1"
 

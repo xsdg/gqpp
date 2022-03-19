@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 ## @file
 ## @brief Tethered photography hook script
 ##
 
-if [ "$ACTION" == "download" ]
+if [ "$ACTION" = "download" ]
 then
 	notify-send --expire-time=4000 "$ARGUMENT"  --icon=geeqie
 	geeqie --remote File:"$PWD/$ARGUMENT"
