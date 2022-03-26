@@ -17,6 +17,25 @@
 ## It is expected that the first line of NEWS is in the form "Geeqie \<a.b[.d]\>
 ##
 
+version=
+start=
+patch=
+push=
+while getopts "v:s:p:hr" option
+do
+	case $option in
+		h)
+			printf '%s\n%s\n%s\n%s\n%s\n' "-v <a.b> release major.minor e.g 1.9" "-s <c> start hash e.g. 728172681 (optional)" "-p <d> release patch version e.g. 2 for 1.6.2" "-r push to repo." "-h help"
+			exit 0
+			;;
+		v) version="$OPTARG" ;;
+		s) start="$OPTARG" ;;
+		p) patch="$OPTARG" ;;
+		r) push=true ;;
+		*) exit 1 ;;
+	esac
+done
+
 if [ ! -d .git ]
 then
 	printf '%s\n' "Directory .git does not exist"
@@ -28,25 +47,7 @@ then
 	exit 0
 fi
 
-version=
-start=
-patch=
-push=
-while getopts "v:s:p:hr" option; do
-	case $option in
-	h)
-		printf '%s\n%s\n%s\n%s\n%s\n' "-v <a.b> release major.minor e.g 1.9" "-s <c> start hash e.g. 728172681 (optional)" "-p <d> release patch version e.g. 2 for 1.6.2" "-r push to repo." "-h help"
-		exit 0
-		;;
-	v) version="$OPTARG" ;;
-	s) start="$OPTARG" ;;
-	p) patch="$OPTARG" ;;
-	r) push=true ;;
-	*) exit 1 ;;
-	esac
-done
-
-if [ "$start" ] && [ "$patch" ]
+if [ -n "$start" ] && [ -n "$patch" ]
 then
 	printf '%s\n' "Cannot have start-hash and patch number together"
 	exit 1
@@ -58,7 +59,7 @@ then
 	exit 1
 fi
 
-if [ "$start" ]
+if [ -n "$start" ]
 then
 	if ! git branch master --contains "$start" > /dev/null 2>&1
 	then
@@ -67,7 +68,7 @@ then
 	fi
 fi
 
-if [ "$patch" ]
+if [ -n "$patch" ]
 then
 	if ! git rev-parse "v$version" > /dev/null 2>&1
 	then
@@ -75,7 +76,7 @@ then
 		exit 1
 	fi
 
-	if ! [ "$patch" -ge 0 ] 2>/dev/null
+	if ! [ "$patch" -ge 0 ] 2> /dev/null
 	then
 		printf '%s\n' "Patch $patch is not an integer"
 		exit 1
@@ -88,14 +89,14 @@ else
 	fi
 fi
 
-if [ ! "$patch" ]
+if [ -z "$patch" ]
 then
 	revision="$version"
 else
 	revision="$version.$patch"
 fi
 
-if [ ! "$patch" ]
+if [ -z "$patch" ]
 then
 	if [ -z "$start" ]
 	then
@@ -104,7 +105,7 @@ then
 		git checkout -b stable/"$version" "$start"
 	fi
 
-	if [ "$push" ]
+	if [ "$push" = true ]
 	then
 		git push git@geeqie.org:geeqie stable/"$version"
 	fi
@@ -123,14 +124,14 @@ git add geeqie.1
 git add doc/docbook/CommandLineOptions.xml
 git commit --message="Preparing for release v$revision"
 
-if [ "$push" ]
+if [ "$push" = true ]
 then
 	git push git@geeqie.org:geeqie
 fi
 
 git tag --sign "v$revision" --message="Release v$revision"
 
-if [ "$push" ]
+if [ "$push" = true ]
 then
 	git push git@geeqie.org:geeqie "v$revision"
 fi
@@ -143,7 +144,7 @@ rm -rf /tmp/geeqie-"$revision".tar.xz.asc
 
 # shellcheck disable=SC2140
 tar --create --xz --file=/tmp/geeqie-"$revision".tar.xz --exclude=".git" --exclude="configure" --exclude="web" --transform s/"\bgeeqie\b"/"geeqie-$revision"/ ../geeqie
-gpg --armor --detach-sign --output /tmp/geeqie-"$revision".tar.xz.asc  /tmp/geeqie-"$revision".tar.xz
+gpg --armor --detach-sign --output /tmp/geeqie-"$revision".tar.xz.asc /tmp/geeqie-"$revision".tar.xz
 
 git checkout master
 
@@ -158,7 +159,7 @@ git add geeqie.1
 git add doc/docbook/CommandLineOptions.xml
 git commit --message="Release v$revision files"
 
-if [ "$push" ]
+if [ "$push" = true ]
 then
 	git push git@geeqie.org:geeqie
 fi
