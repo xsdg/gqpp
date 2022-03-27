@@ -324,22 +324,6 @@ static gboolean path_entry_tooltip_cb(GtkWidget *widget, gpointer data)
 	return FALSE;
 }
 
-void show_menu_scrollbar_cb(GtkWidget *widget, GdkRectangle *allocation, gpointer data)
-{
-	GtkRequisition requisition;
-
-	gtk_widget_size_request(widget, &requisition);
-
-	if (allocation->width <= requisition.width)
-		{
-		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(data), GTK_POLICY_AUTOMATIC,GTK_POLICY_AUTOMATIC);
-		}
-	else
-		{
-		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(data), GTK_POLICY_NEVER, GTK_POLICY_NEVER);
-		}
-}
-
 static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 {
 	GtkWidget *box;
@@ -361,7 +345,6 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 		scroll_window = gtk_scrolled_window_new(NULL, NULL);
 		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroll_window), GTK_POLICY_AUTOMATIC,GTK_POLICY_AUTOMATIC);
 		gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scroll_window), menu_bar);
-		g_signal_connect(G_OBJECT(menu_bar), "size-allocate", G_CALLBACK(show_menu_scrollbar_cb), scroll_window);
 
 		gtk_widget_show(scroll_window);
 		gtk_widget_show(menu_bar);
