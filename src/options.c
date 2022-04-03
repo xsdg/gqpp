@@ -164,6 +164,7 @@ ConfOptions *init_options(ConfOptions *options)
 	options->metadata.keywords_case_sensitive = FALSE;
 	options->metadata.write_orientation = TRUE;
 	options->metadata.sidecar_extended_name = FALSE;
+	options->metadata.check_spelling = TRUE;
 
 	options->show_icon_names = TRUE;
 	options->show_star_rating = FALSE;

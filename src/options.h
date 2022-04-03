@@ -290,6 +290,8 @@ struct _ConfOptions
 		gboolean keywords_case_sensitive;
 		gboolean write_orientation;
 		gboolean sidecar_extended_name;
+
+		gboolean check_spelling;
 	} metadata;
 
 	/* Stereo */

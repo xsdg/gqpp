@@ -415,6 +415,7 @@ static void config_window_apply(void)
 	options->metadata.confirm_on_dir_change = c_options->metadata.confirm_on_dir_change;
 	options->metadata.keywords_case_sensitive = c_options->metadata.keywords_case_sensitive;
 	options->metadata.write_orientation = c_options->metadata.write_orientation;
+	options->metadata.check_spelling = c_options->metadata.check_spelling;
 	options->stereo.mode = (c_options->stereo.mode & (PR_STEREO_HORIZ | PR_STEREO_VERT | PR_STEREO_FIXED | PR_STEREO_ANAGLYPH | PR_STEREO_HALF)) |
 	                       (c_options->stereo.tmp.mirror_right ? PR_STEREO_MIRROR_RIGHT : 0) |
 	                       (c_options->stereo.tmp.flip_right   ? PR_STEREO_FLIP_RIGHT : 0) |
@@ -2962,6 +2963,14 @@ static void config_tab_metadata(GtkWidget *notebook)
 
 	pref_checkbox_new_int(group, _("Write metadata on directory change"),
 			      options->metadata.confirm_on_dir_change, &c_options->metadata.confirm_on_dir_change);
+
+#ifdef HAVE_SPELL
+#if GTK_CHECK_VERSION(3,20,0)
+	group = pref_group_new(vbox, FALSE, _("Spelling checks"), GTK_ORIENTATION_VERTICAL);
+
+	ct_button = pref_checkbox_new_int(group, _("Check spelling -Requires restart"), options->metadata.check_spelling, &c_options->metadata.check_spelling);
+#endif
+#endif
 
 	group = pref_group_new(vbox, FALSE, _("Pre-load metadata"), GTK_ORIENTATION_VERTICAL);
 

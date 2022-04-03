@@ -30,6 +30,10 @@
 #include "rcfile.h"
 #include "layout.h"
 
+#ifdef HAVE_SPELL
+#include <gspell/gspell.h>
+#endif
+
 static void bar_pane_comment_changed(GtkTextBuffer *buffer, gpointer data);
 
 /*
@@ -253,6 +257,9 @@ static GtkWidget *bar_pane_comment_new(const gchar *id, const gchar *title, cons
 	PaneCommentData *pcd;
 	GtkWidget *scrolled;
 	GtkTextBuffer *buffer;
+#ifdef HAVE_SPELL
+	GspellTextView *gspell_view;
+#endif
 
 	pcd = g_new0(PaneCommentData, 1);
 
@@ -288,6 +295,19 @@ static GtkWidget *bar_pane_comment_new(const gchar *id, const gchar *title, cons
 	g_signal_connect(G_OBJECT(pcd->comment_view), "populate-popup",
 			 G_CALLBACK(bar_pane_comment_populate_popup), pcd);
 	gtk_widget_show(pcd->comment_view);
+
+#ifdef HAVE_SPELL
+#if GTK_CHECK_VERSION(3,20,0)
+	if (g_strcmp0(key, "Xmp.xmp.Rating") != 0)
+		{
+		if (options->metadata.check_spelling)
+			{
+			gspell_view = gspell_text_view_get_from_gtk_text_view(GTK_TEXT_VIEW(pcd->comment_view));
+			gspell_text_view_basic_setup(gspell_view);
+			}
+	}
+#endif
+#endif
 
 	buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(pcd->comment_view));
 	g_signal_connect(G_OBJECT(buffer), "changed",

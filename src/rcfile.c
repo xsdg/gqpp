@@ -488,6 +488,7 @@ static void write_global_attributes(GString *outstr, gint indent)
 	WRITE_NL(); WRITE_BOOL(*options, metadata.confirm_on_dir_change);
 	WRITE_NL(); WRITE_BOOL(*options, metadata.keywords_case_sensitive);
 	WRITE_NL(); WRITE_BOOL(*options, metadata.write_orientation);
+	WRITE_NL(); WRITE_BOOL(*options, metadata.check_spelling);
 
 	WRITE_NL(); WRITE_INT(*options, stereo.mode);
 	WRITE_NL(); WRITE_INT(*options, stereo.fsmode);
@@ -982,6 +983,7 @@ static gboolean load_global_params(const gchar **attribute_names, const gchar **
 		if (READ_BOOL(*options, metadata.confirm_on_dir_change)) continue;
 		if (READ_BOOL(*options, metadata.keywords_case_sensitive)) continue;
 		if (READ_BOOL(*options, metadata.write_orientation)) continue;
+		if (READ_BOOL(*options, metadata.check_spelling)) continue;
 
 		if (READ_INT(*options, stereo.mode)) continue;
 		if (READ_INT(*options, stereo.fsmode)) continue;

@@ -158,6 +158,28 @@
     </itemizedlist>
     <para />
   </section>
+  <section id="SpellCheck">
+    <title>Spelling Checks</title>
+    <para>If selected, spelling checks will be enabled on the following panes:</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <guilabel>Title</guilabel>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <guilabel>Comment</guilabel>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <guilabel>Headline</guilabel>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para />
+  </section>
   <section id="PreLoadMetadata">
     <title>Pre-load metadata</title>
     <itemizedlist>

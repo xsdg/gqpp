@@ -393,6 +393,31 @@ AM_CONDITIONAL(HAVE_RAW, [test "x$HAVE_RAW" = xyes])
 AC_SUBST(RAW_CFLAGS)
 AC_SUBST(RAW_LIBS)
 
+#  libgspell support
+# ----------------------------------------------------------------------
+
+AC_ARG_ENABLE([spell],
+  AC_HELP_STRING([--disable-spell], [disable libgspell support]),
+    [libgspell=$enableval], [libgspell=auto])
+
+if test "x${libgspell}" != "xno" -a "x${gtk3}" != "xno"; then
+  PKG_CHECK_MODULES(SPELL, [gspell-1 >= 1.6],
+    [
+      HAVE_SPELL=yes
+      AC_DEFINE(HAVE_SPELL, 1, [define to enable libgspell support])
+    ],
+    [
+      HAVE_SPELL=no
+      AC_MSG_WARN([$SPELL_PKG_ERRORS])
+    ])
+else
+  HAVE_SPELL=disabled
+fi
+
+AM_CONDITIONAL(HAVE_SPELL, [test "x$HAVE_SPELL" = xyes])
+AC_SUBST(SPELL_CFLAGS)
+AC_SUBST(SPELL_LIBS)
+
 #  libffmpegthumbnailer support
 # ----------------------------------------------------------------------
 
@@ -887,6 +912,7 @@ Support:
   LibRaw:        $HAVE_RAW
   Libjxl:        $HAVE_JPEGXL
   Libarchive:    $HAVE_ARCHIVE
+  Spelling       $HAVE_SPELL
 
 Documentation:
   Doxygen:       $DX_DOXYGEN
