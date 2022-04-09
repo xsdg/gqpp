@@ -343,7 +343,7 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 
 		toolbar = layout_actions_toolbar(lw, TOOLBAR_MAIN);
 		scroll_window = gtk_scrolled_window_new(NULL, NULL);
-		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroll_window), GTK_POLICY_AUTOMATIC,GTK_POLICY_AUTOMATIC);
+		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroll_window), GTK_POLICY_AUTOMATIC,GTK_POLICY_NEVER);
 		gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scroll_window), menu_bar);
 
 		gtk_widget_show(scroll_window);
