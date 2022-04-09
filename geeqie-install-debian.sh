@@ -8,7 +8,7 @@
 ## Dialogs allow the user to install additional features.
 ##
 
-version="2022-03-18"
+version="2022-04-09"
 description='
 Geeqie is an image viewer.
 This script will download, compile, and install Geeqie on Debian-based systems.
@@ -87,7 +87,9 @@ libchamplain-gtk-0.12-dev
 libchamplain (for GPS maps)
 libchamplain-0.12-dev
 libpoppler (for pdf file preview)
-libpoppler-glib-dev"
+libpoppler-glib-dev
+libgspell (for spelling checks)
+libgspell-1-dev"
 
 ####################################################################
 # Get System Info
