@@ -30,6 +30,7 @@
 #include "bar_exif.h"
 #include "bar_histogram.h"
 #include "bar_keywords.h"
+#include "bar_rating.h"
 #include "bar_sort.h"
 #include "editors.h"
 #include "filefilter.h"
@@ -1432,6 +1433,20 @@ static void options_parse_bar(GQParserData *parser_data, GMarkupParseContext *co
 		else
 			{
 			pane = bar_pane_histogram_new_from_config(attribute_names, attribute_values);
+			bar_add(bar, pane);
+			}
+		options_parse_func_push(parser_data, options_parse_leaf, NULL, NULL);
+		}
+	else if (g_ascii_strcasecmp(element_name, "pane_rating") == 0)
+		{
+		GtkWidget *pane = bar_find_pane_by_id(bar, PANE_RATING, options_get_id(attribute_names, attribute_values));
+		if (pane)
+			{
+			bar_pane_rating_update_from_config(pane, attribute_names, attribute_values);
+			}
+		else
+			{
+			pane = bar_pane_rating_new_from_config(attribute_names, attribute_values);
 			bar_add(bar, pane);
 			}
 		options_parse_func_push(parser_data, options_parse_leaf, NULL, NULL);

@@ -119,6 +119,8 @@ geeqie_SOURCES = \
 	bar_keywords.h	\
 	bar_exif.c	\
 	bar_exif.h	\
+	bar_rating.c	\
+	bar_rating.h	\
 	bar_sort.c	\
 	bar_sort.h	\
 	cache.c		\

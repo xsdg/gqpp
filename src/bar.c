@@ -98,7 +98,7 @@ static const gchar default_config_rating[] =
 "<gq>"
 "    <layout id = '_current_'>"
 "        <bar>"
-"            <pane_comment id = 'rating' expanded = 'true' key = '" RATING_KEY "' height = '10' />"
+"            <pane_rating id = 'rating' expanded = 'true' />"
 "        </bar>"
 "    </layout>"
 "</gq>";
@@ -202,7 +202,7 @@ static const KnownPanes known_panes[] = {
 	{PANE_COMMENT,		"title",	N_("Title"),		default_config_title},
 	{PANE_KEYWORDS,		"keywords",	N_("Keywords"),		default_config_keywords},
 	{PANE_COMMENT,		"comment",	N_("Comment"),		default_config_comment},
-	{PANE_COMMENT,		"rating",	N_("Rating"),		default_config_rating},
+	{PANE_RATING,		"rating",	N_("Star Rating"),	default_config_rating},
 	{PANE_COMMENT,		"headline",	N_("Headline"),		default_config_headline},
 	{PANE_EXIF,		"exif",		N_("Exif"),		default_config_exif},
 /* other pre-configured panes */
