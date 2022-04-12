@@ -70,7 +70,7 @@ fi
 
 if [ -n "$patch" ]
 then
-	if ! git rev-parse "v$version" > /dev/null 2>&1
+	if ! git rev-parse stable/"$version" > /dev/null 2>&1
 	then
 		printf '%s\n' "Version $version does not exist"
 		exit 1
@@ -82,7 +82,7 @@ then
 		exit 1
 	fi
 else
-	if git rev-parse "v$version" > /dev/null 2>&1
+	if git rev-parse stable/"$version" > /dev/null 2>&1
 	then
 		printf '%s\n' "Version $version already exists"
 		exit 1
