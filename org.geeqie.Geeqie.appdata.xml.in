@@ -16,14 +16,14 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image>https://cclark.uk/geeqie/screenshots/Screenshot_2017-08-13_12-02-32_rescaled.png</image>
+      <image>http://cclark.uk/geeqie/screenshots/Screenshot_2017-08-13_12-02-32_rescaled.png</image>
     </screenshot>
     <screenshot>
-      <image>https://cclark.uk/geeqie/screenshots/Screenshot_2017-08-13_12-29-44_rescaled.png</image>
+      <image>http://cclark.uk/geeqie/screenshots/Screenshot_2017-08-13_12-29-44_rescaled.png</image>
     </screenshot>
   </screenshots>
   <releases>
-    <release version="v1.7.2" date="2022-01-25"></release>
+    <release version="v1.7.3" date="2022-04-12"></release>
   </releases>
   <keywords>
     <keyword>image</keyword>
@@ -31,7 +31,7 @@
     <keyword>fast</keyword>
     <keyword>graphics</keyword>
   </keywords>
-  <url type="homepage">https://www.geeqie.org</url>
+  <url type="homepage">http://geeqie.org</url>
   <update_contact>geeqie@freelists.org</update_contact>
   <translation type="gettext">geeqie</translation>
 </component>
