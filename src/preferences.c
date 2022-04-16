@@ -63,6 +63,10 @@
 #endif
 #endif
 
+#ifdef HAVE_SPELL
+#include <gspell/gspell.h>
+#endif
+
 #define EDITOR_NAME_MAX_LENGTH 32
 #define EDITOR_COMMAND_MAX_LENGTH 1024
 
@@ -3272,6 +3276,9 @@ static void config_tab_keywords(GtkWidget *notebook)
 	GtkTextIter iter;
 	GtkTextBuffer *buffer;
 	gchar *tmp;
+#ifdef HAVE_SPELL
+	GspellTextView *gspell_view;
+#endif
 
 	vbox = scrolled_notebook_page(notebook, _("Keywords"));
 
@@ -3289,6 +3296,16 @@ static void config_tab_keywords(GtkWidget *notebook)
 	scrolled = gtk_scrolled_window_new(NULL, NULL);
 	gtk_box_pack_start(GTK_BOX(group), scrolled, TRUE, TRUE, 0);
 	gtk_widget_show(scrolled);
+
+#ifdef HAVE_SPELL
+#if GTK_CHECK_VERSION(3,20,0)
+	if (options->metadata.check_spelling)
+		{
+		gspell_view = gspell_text_view_get_from_gtk_text_view(GTK_TEXT_VIEW(keyword_text));
+		gspell_text_view_basic_setup(gspell_view);
+		}
+#endif
+#endif
 
 	gtk_container_add(GTK_CONTAINER(scrolled), keyword_text);
 	gtk_widget_show(keyword_text);
