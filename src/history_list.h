@@ -33,6 +33,7 @@ void history_list_add_to_key(const gchar *key, const gchar *path, gint max);
 void history_list_item_change(const gchar *key, const gchar *oldpath, const gchar *newpath);
 void history_list_item_move(const gchar *key, const gchar *path, gint direction);
 void history_list_item_remove(const gchar *key, const gchar *path);
+gchar *get_recent_viewed_folder_image(gchar *path);
 
 const gchar *history_list_find_last_path_by_key(const gchar *key);
 

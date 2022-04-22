@@ -145,6 +145,7 @@ ConfOptions *init_options(ConfOptions *options)
 	options->image_l_click_video = FALSE;
 	options->image_l_click_video_editor = NULL;
 	options->open_recent_list_maxsize = 10;
+	options->recent_folder_image_list_maxsize = 10;
 	options->place_dialogs_under_mouse = FALSE;
 
 	options->progressive_key_scrolling = TRUE;

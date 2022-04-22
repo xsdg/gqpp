@@ -24,6 +24,7 @@
 #include "secure_save.h"
 #include "ui_fileops.h"
 
+static void update_recent_viewed_folder_image_list(const gchar *path);
 
 /**
  * @file
@@ -140,6 +141,8 @@ const gchar *image_chain_forward()
  * Each time the user selects a new image it is appended to the chain
  * except when it is identical to the current last entry
  * The pointer is always moved to the end of the chain
+ *
+ * Updates the recent viewed image_list
  */
 void image_chain_append_end(const gchar *path)
 {
@@ -166,6 +169,8 @@ void image_chain_append_end(const gchar *path)
 				image_chain_index = g_list_length(image_chain) - 1;
 				}
 			}
+
+		update_recent_viewed_folder_image_list(path);
 		}
 	else
 		{
@@ -307,7 +312,11 @@ gboolean history_list_save(const gchar *path)
 		list_count = g_list_position(hd->list, g_list_last(hd->list)) + 1;
 		while (work && secsave_errno == SS_ERR_NONE)
 			{
-			if ((!(strcmp(hd->key, "path_list") == 0 && list_count > options->open_recent_list_maxsize)) && (!(strcmp(hd->key, "recent") == 0 && (!isfile(work->data)))))
+			if ((!(strcmp(hd->key, "path_list") == 0 && list_count > options->open_recent_list_maxsize))
+					&&
+					(!(strcmp(hd->key, "recent") == 0 && (!isfile(work->data))))
+					&&
+					(!(strcmp(hd->key, "image_list") == 0 && list_count > options->recent_folder_image_list_maxsize)))
 				{
 				secure_fprintf(ssi, "\"%s\"\n", (gchar *)work->data);
 				}
@@ -508,5 +517,106 @@ GList *history_list_get_by_key(const gchar *key)
 	if (!hd) return NULL;
 
 	return hd->list;
+}
+
+/**
+ * @brief Get image last viewed in a folder
+ * @param path Must be a folder
+ * @returns Last image viewed in folder or NULL
+ *
+ * Returned string should be freed
+ */
+gchar *get_recent_viewed_folder_image(gchar *path)
+{
+	HistoryData *hd;
+	GList *work;
+	gchar *dirname;
+	gchar *ret = NULL;
+
+	if (options->recent_folder_image_list_maxsize == 0)
+		{
+		return NULL;
+		}
+
+	hd = history_list_find_by_key("image_list");
+
+	if (!hd)
+		{
+		hd = g_new(HistoryData, 1);
+		hd->key = g_strdup("image_list");
+		hd->list = NULL;
+		history_list = g_list_prepend(history_list, hd);
+		}
+
+	work = hd->list;
+
+	while (work)
+		{
+		dirname = g_path_get_dirname(work->data);
+
+		if (g_strcmp0(dirname, path) == 0)
+			{
+			ret = g_strdup(work->data);
+			g_free(dirname);
+			break;
+			}
+
+		g_free(dirname);
+		work = work->next;
+		}
+
+	return ret;
+}
+
+static void update_recent_viewed_folder_image_list(const gchar *path)
+{
+	HistoryData *hd;
+	GList *work;
+	gchar *image_dir = NULL;
+	gchar *list_dir = NULL;
+	gboolean found = FALSE;
+
+	if (options->recent_folder_image_list_maxsize == 0)
+		{
+		return;
+		}
+
+	image_dir = g_path_get_dirname(path);
+	hd = history_list_find_by_key("image_list");
+	if (!hd)
+		{
+		hd = g_new(HistoryData, 1);
+		hd->key = g_strdup("image_list");
+		hd->list = NULL;
+		history_list = g_list_prepend(history_list, hd);
+		}
+
+	work = hd->list;
+
+	while (work)
+		{
+		list_dir = g_path_get_dirname(work->data);
+
+		/* If folder already in list, update and move to start of list */
+		if (g_strcmp0(list_dir, image_dir) == 0)
+			{
+			g_free(work->data);
+			work->data = g_strdup(path);
+			hd->list = g_list_remove_link(hd->list, work);
+			hd->list = g_list_concat(work, hd->list);
+			found = TRUE;
+			g_free(list_dir);
+			break;
+			}
+		g_free(list_dir);
+		work = work->next;
+		}
+
+	g_free(image_dir);
+
+	if (!found)
+		{
+		hd->list = g_list_prepend(hd->list, g_strdup(path));
+		}
 }
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

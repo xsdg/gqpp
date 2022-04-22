@@ -1184,6 +1184,7 @@ gboolean layout_set_fd(LayoutWindow *lw, FileData *fd)
 {
 	gboolean have_file = FALSE;
 	gboolean dir_changed = TRUE;
+	gchar *last_image;
 
 	if (!layout_valid(&lw)) return FALSE;
 
@@ -1202,6 +1203,16 @@ gboolean layout_set_fd(LayoutWindow *lw, FileData *fd)
 			}
 		lw->dir_fd = file_data_ref(fd);
 		file_data_register_real_time_monitor(fd);
+
+		last_image = get_recent_viewed_folder_image(fd->path);
+		if (last_image)
+			{
+			fd = file_data_new_group(last_image);
+			g_free(last_image);
+
+			if (isfile(fd->path)) have_file = TRUE;
+			}
+
 		}
 	else
 		{
@@ -2977,6 +2988,8 @@ static void layout_config_startup_path(LayoutOptions *lop, gchar **path)
 
 static void layout_config_commandline(LayoutOptions *lop, gchar **path)
 {
+	gchar *last_image;
+
 	if (command_line->startup_blank)
 		{
 		*path = NULL;
@@ -2990,6 +3003,16 @@ static void layout_config_commandline(LayoutOptions *lop, gchar **path)
 		*path = g_strdup(command_line->path);
 		}
 	else layout_config_startup_path(lop, path);
+
+	if (isdir(*path))
+		{
+		last_image = get_recent_viewed_folder_image(*path);
+		if (last_image)
+			{
+			g_free(*path);
+			*path = last_image;
+			}
+		}
 
 	if (command_line->tools_show)
 		{

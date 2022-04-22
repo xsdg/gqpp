@@ -177,7 +177,15 @@
           <guilabel>Recent folder list maximum size</guilabel>
         </term>
         <listitem>
-          <para>This is the number of entries to be saved from the recent open folder list drop-down box. The number of entries displayed in the current session is unlimited.</para>
+          <para>This is the maximum number of entries to be displayed in the recent open folder list drop-down box.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel>Recent folder-image list maximum size</guilabel>
+        </term>
+        <listitem>
+          <para>The last image viewed in a folder is stored in a list. This value is the maximum number of entries in the list. When a folder is subsequently re-opened, focus moves to the last image viewed in that folder.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
