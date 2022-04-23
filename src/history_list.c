@@ -556,7 +556,10 @@ gchar *get_recent_viewed_folder_image(gchar *path)
 
 		if (g_strcmp0(dirname, path) == 0)
 			{
-			ret = g_strdup(work->data);
+			if (isfile(work->data))
+				{
+				ret = g_strdup(work->data);
+				}
 			g_free(dirname);
 			break;
 			}
