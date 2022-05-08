@@ -1155,6 +1155,15 @@ static void case_sensitive_cb(GtkWidget *widget, gpointer data)
 	vf_refresh(vf);
 }
 
+static void file_filter_clear_cb(GtkEntry *entry, GtkEntryIconPosition pos, GdkEvent *event, gpointer userdata)
+{
+	if (pos == GTK_ENTRY_ICON_SECONDARY)
+		{
+		gtk_entry_set_text(GTK_ENTRY(userdata), "");
+		gtk_widget_grab_focus(GTK_WIDGET(userdata));
+		}
+}
+
 static GtkWidget *vf_file_filter_init(ViewFile *vf)
 {
 	GtkWidget *frame = gtk_frame_new(NULL);
@@ -1174,6 +1183,10 @@ static GtkWidget *vf_file_filter_init(ViewFile *vf)
 	gtk_widget_show(gtk_bin_get_child(GTK_BIN(vf->file_filter.combo)));
 	gtk_widget_show((GTK_WIDGET(vf->file_filter.combo)));
 	gtk_widget_set_tooltip_text(GTK_WIDGET(vf->file_filter.combo), _("Use regular expressions"));
+
+	gtk_entry_set_icon_from_stock(GTK_ENTRY(combo_entry), GTK_ENTRY_ICON_SECONDARY, GTK_STOCK_CLEAR);
+	gtk_entry_set_icon_tooltip_text (GTK_ENTRY(combo_entry), GTK_ENTRY_ICON_SECONDARY, _("Clear"));
+	g_signal_connect(GTK_ENTRY(combo_entry), "icon-press", G_CALLBACK(file_filter_clear_cb), combo_entry);
 
 	work = history_list_get_by_key("file_filter");
 	while (work)
