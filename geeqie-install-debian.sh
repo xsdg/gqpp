@@ -8,7 +8,7 @@
 ## Dialogs allow the user to install additional features.
 ##
 
-version="2022-04-09"
+version="2022-05-26"
 description='
 Geeqie is an image viewer.
 This script will download, compile, and install Geeqie on Debian-based systems.
@@ -79,7 +79,9 @@ libraw-dev
 libomp (required by libraw)
 libomp-dev
 libarchive (for compressed files e.g. zip, including timezone)
-libarchive-dev"
+libarchive-dev
+libgspell (for spelling checks)
+libgspell-1-dev"
 
 # Optional for GTK3 only
 optional_gtk3_array="libchamplain gtk (for GPS maps)
@@ -205,7 +207,8 @@ install_options()
 	then
 		OLDIFS=$IFS
 		IFS='|'
-		set "$options"
+		# shellcheck disable=SC2086
+		set $options
 		while [ $# -gt 0 ]
 		do
 			package_install "$1"
@@ -475,7 +478,7 @@ do
 		then
 			if [ -z "$option_string" ]
 			then
-				option_string="${install_option:+${install_option}}\n${file}\n${file}"
+				option_string="${install_option:+${install_option}}\n${package_title}\n${file}"
 			else
 				option_string="${option_string:+${option_string}}\n$install_option\n${package_title}\n${file}"
 			fi
