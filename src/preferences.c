@@ -117,7 +117,8 @@ enum {
 };
 
 enum {
-	FILETYPES_COLUMN_FILTER = 0,
+	FILETYPES_COLUMN_ENABLED = 0,
+	FILETYPES_COLUMN_FILTER,
 	FILETYPES_COLUMN_DESCRIPTION,
 	FILETYPES_COLUMN_CLASS,
 	FILETYPES_COLUMN_WRITABLE,
@@ -1329,6 +1330,10 @@ static gboolean filter_add_scroll(gpointer data)
 	GtkCellRenderer *cell;
 	GtkTreeViewColumn *column;
 	gint rows;
+	GtkTreeIter iter;
+	GtkTreeModel *store;
+	gboolean valid;
+	FilterEntry *filter;
 
 	rows = gtk_tree_model_iter_n_children(GTK_TREE_MODEL(filter_store), NULL);
 	path = gtk_tree_path_new_from_indices(rows-1, -1);
@@ -1337,6 +1342,22 @@ static gboolean filter_add_scroll(gpointer data)
 
 	list_cells = gtk_cell_layout_get_cells(GTK_CELL_LAYOUT(column));
 	cell = g_list_last(list_cells)->data;
+
+	store = gtk_tree_view_get_model(GTK_TREE_VIEW(data));
+	valid = gtk_tree_model_get_iter_first(store, &iter);
+
+	while (valid)
+		{
+		gtk_tree_model_get(store, &iter, 0, &filter, -1);
+
+		if (g_strcmp0(filter->extensions, ".new") == 0)
+			{
+			path = gtk_tree_model_get_path(GTK_TREE_MODEL(store), &iter);
+			break;
+			}
+
+		valid = gtk_tree_model_iter_next(GTK_TREE_MODEL(store), &iter);
+		}
 
 	gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(data),
 								path, column, FALSE, 0.0, 0.0 );
@@ -2654,6 +2675,16 @@ static gint filter_table_sort_cb(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIte
 
 	switch (n)
 		{
+		case FILETYPES_COLUMN_ENABLED:
+			{
+			ret = filter_a->enabled - filter_b->enabled;
+			break;
+			}
+		case FILETYPES_COLUMN_FILTER:
+			{
+			ret = g_utf8_collate(filter_a->extensions, filter_b->extensions);
+			break;
+			}
 		case FILETYPES_COLUMN_DESCRIPTION:
 			{
 			ret = g_utf8_collate(filter_a->description, filter_b->description);
@@ -2758,7 +2789,7 @@ static void config_tab_files(GtkWidget *notebook)
 	gtk_tree_view_set_enable_search(GTK_TREE_VIEW(filter_view), FALSE);
 
 	column = gtk_tree_view_column_new();
-	gtk_tree_view_column_set_title(column, _("Filter"));
+	gtk_tree_view_column_set_title(column, _("Enabled"));
 	gtk_tree_view_column_set_resizable(column, TRUE);
 
 	renderer = gtk_cell_renderer_toggle_new();
@@ -2767,6 +2798,15 @@ static void config_tab_files(GtkWidget *notebook)
 	gtk_tree_view_column_pack_start(column, renderer, FALSE);
 	gtk_tree_view_column_set_cell_data_func(column, renderer, filter_set_func,
 						GINT_TO_POINTER(FE_ENABLE), NULL);
+	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(filter_store), FILETYPES_COLUMN_ENABLED, filter_table_sort_cb, GINT_TO_POINTER(FILETYPES_COLUMN_ENABLED), NULL);
+	gtk_tree_view_column_set_sort_column_id(column, FILETYPES_COLUMN_ENABLED);
+	gtk_tree_view_append_column(GTK_TREE_VIEW(filter_view), column);
+
+	column = gtk_tree_view_column_new();
+	gtk_tree_view_column_set_title(column, _("Filter"));
+	gtk_tree_view_column_set_resizable(column, TRUE);
+	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(filter_store), FILETYPES_COLUMN_FILTER, filter_table_sort_cb, GINT_TO_POINTER(FILETYPES_COLUMN_FILTER), NULL);
+	gtk_tree_view_column_set_sort_column_id(column, FILETYPES_COLUMN_FILTER);
 
 	renderer = gtk_cell_renderer_text_new();
 	g_signal_connect(G_OBJECT(renderer), "edited",

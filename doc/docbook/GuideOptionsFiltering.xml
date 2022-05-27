@@ -131,6 +131,14 @@
       <variablelist>
         <varlistentry>
           <term>
+            <guilabel>Enabled</guilabel>
+          </term>
+          <listitem>
+            Whether or not the filter is used.
+          </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>
             <guilabel>Filter</guilabel>
           </term>
           <listitem>
