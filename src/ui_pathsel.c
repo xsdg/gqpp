@@ -410,7 +410,7 @@ static void dest_view_store_selection(Dest_Data *dd, GtkTreeView *view)
 	dd->right_click_path = gtk_tree_model_get_path(model, &iter);
 }
 
-static gint dest_view_rename_cb(TreeEditData *ted, const gchar *old, const gchar *new, gpointer data)
+static gint dest_view_rename_cb(TreeEditData *ted, const gchar *old_name, const gchar *new_name, gpointer data)
 {
 	Dest_Data *dd = data;
 	GtkTreeModel *model;
@@ -426,18 +426,18 @@ static gint dest_view_rename_cb(TreeEditData *ted, const gchar *old, const gchar
 	if (!old_path) return FALSE;
 
 	buf = remove_level_from_path(old_path);
-	new_path = g_build_filename(buf, new, NULL);
+	new_path = g_build_filename(buf, new_name, NULL);
 	g_free(buf);
 
 	if (isname(new_path))
 		{
-		buf = g_strdup_printf(_("A file with name %s already exists."), new);
+		buf = g_strdup_printf(_("A file with name %s already exists."), new_name);
 		warning_dialog(_("Rename failed"), buf, GTK_STOCK_DIALOG_INFO, dd->entry);
 		g_free(buf);
 		}
 	else if (!rename_file(old_path, new_path))
 		{
-		buf = g_strdup_printf(_("Failed to rename %s to %s."), old, new);
+		buf = g_strdup_printf(_("Failed to rename %s to %s."), old_name, new_name);
 		warning_dialog(_("Rename failed"), buf, GTK_STOCK_DIALOG_ERROR, dd->entry);
 		g_free(buf);
 		}
@@ -445,7 +445,7 @@ static gint dest_view_rename_cb(TreeEditData *ted, const gchar *old, const gchar
 		{
 		const gchar *text;
 
-		gtk_list_store_set(GTK_LIST_STORE(model), &iter, 0, new, 1, new_path, -1);
+		gtk_list_store_set(GTK_LIST_STORE(model), &iter, 0, new_name, 1, new_path, -1);
 
 		text = gtk_entry_get_text(GTK_ENTRY(dd->entry));
 		if (text && old_path && strcmp(text, old_path) == 0)

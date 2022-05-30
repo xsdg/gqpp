@@ -239,28 +239,28 @@ static void bookmark_edit_ok_cb(GenericDialog *gd, gpointer data)
 	const gchar *name;
 	gchar *path;
 	const gchar *icon;
-	gchar *new;
+	gchar *new_string;
 
 	name = gtk_entry_get_text(GTK_ENTRY(p->name_entry));
 	path = remove_trailing_slash(gtk_entry_get_text(GTK_ENTRY(p->path_entry)));
 	icon = gtk_entry_get_text(GTK_ENTRY(p->icon_entry));
 
-	new = bookmark_string(name, path, icon);
+	new_string = bookmark_string(name, path, icon);
 
 	if (p->bb->key)
 		{
-		history_list_item_change(p->bb->parent, p->bb->key, new);
+		history_list_item_change(p->bb->parent, p->bb->key, new_string);
 		}
 	else
 		{
-		history_list_add_to_key(p->bb->parent, new, 0);
+		history_list_add_to_key(p->bb->parent, new_string, 0);
 		}
 
 	if (path && strlen(path) > 0) tab_completion_append_to_history(p->path_entry, path);
 	if (icon && strlen(icon) > 0) tab_completion_append_to_history(p->icon_entry, icon);
 
 	g_free(path);
-	g_free(new);
+	g_free(new_string);
 
 	bookmark_populate_all(p->bb->parent);
 }

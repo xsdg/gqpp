@@ -833,7 +833,7 @@ static void gr_render_intent(const gchar *text, GIOChannel *channel, gpointer da
 static void get_filelist(const gchar *text, GIOChannel *channel, gboolean recurse)
 {
 	GList *list = NULL;
-	FileFormatClass class;
+	FileFormatClass format_class;
 	FileData *dir_fd;
 	FileData *fd;
 	GString *out_string = g_string_new(NULL);
@@ -880,9 +880,9 @@ static void get_filelist(const gchar *text, GIOChannel *channel, gboolean recurs
 		{
 		fd = work->data;
 		g_string_append_printf(out_string, "%s", fd->path);
-		class = filter_file_get_class(fd->path);
+		format_class = filter_file_get_class(fd->path);
 
-		switch (class)
+		switch (format_class)
 			{
 			case FORMAT_CLASS_IMAGE:
 				out_string = g_string_append(out_string, "    Class: Image");
@@ -1249,7 +1249,7 @@ static void gr_list_clear(const gchar *text, GIOChannel *channel, gpointer data)
 static void gr_list_add(const gchar *text, GIOChannel *channel, gpointer data)
 {
 	RemoteData *remote_data = data;
-	gboolean new = TRUE;
+	gboolean is_new = TRUE;
 	gchar *path = NULL;
 	FileData *fd;
 	FileData *first;
@@ -1312,13 +1312,13 @@ static void gr_list_add(const gchar *text, GIOChannel *channel, gpointer data)
 		}
 	else if (!remote_data->single_dir)
 		{
-		new = (!collection_get_first(remote_data->command_collection));
+		is_new = (!collection_get_first(remote_data->command_collection));
 		}
 
 	if (!remote_data->single_dir)
 		{
 		layout_image_set_collection(lw_id, remote_data->command_collection, collection_get_first(remote_data->command_collection));
-		if (collection_add(remote_data->command_collection, file_data_new_group(text), FALSE) && new)
+		if (collection_add(remote_data->command_collection, file_data_new_group(text), FALSE) && is_new)
 			{
 			layout_image_set_collection(lw_id, remote_data->command_collection, collection_get_first(remote_data->command_collection));
 			}

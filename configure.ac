@@ -18,7 +18,9 @@ AC_PREREQ(2.57)
 AC_INIT([geeqie], m4_translit(m4_esyscmd([./version.sh]), m4_newline), [geeqie@freelists.org], [], [https://www.geeqie.org/])
 
 # Add -Werror to the default CFLAGS
-CFLAGS+=" -Werror -Wno-error=deprecated-declarations -Wno-error=sign-compare -Wno-error=return-type"
+#CFLAGS+=" -Werror -Wno-error=deprecated-declarations -Wno-error=sign-compare -Wno-error=return-type"
+# TODO(xsdg): Re-enable -Werror once we're done compiling C as C++
+CFLAGS+=" -Wno-error=deprecated-declarations -Wno-error=sign-compare -Wno-error=return-type"
 
 # Check for rightly dirs
 AC_CONFIG_SRCDIR([src/main.c])

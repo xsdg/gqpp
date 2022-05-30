@@ -2254,7 +2254,7 @@ static gboolean search_file_next(SearchData *sd)
 		{
 		tested = TRUE;
 		match = FALSE;
-		FileFormatClass class;
+		FileFormatClass format_class;
 		FileFormatClass search_class;
 
 		if (g_strcmp0(gtk_combo_box_text_get_active_text(
@@ -2294,14 +2294,14 @@ static gboolean search_file_next(SearchData *sd)
 
 		if (search_class != FORMAT_CLASS_BROKEN)
 			{
-			class = fd->format_class;
+			format_class = fd->format_class;
 			if (sd->match_class == SEARCH_MATCH_EQUAL)
 				{
-				match = (class == search_class);
+				match = (format_class == search_class);
 				}
 			else if (sd->match_class == SEARCH_MATCH_NONE)
 				{
-				match = (class != search_class);
+				match = (format_class != search_class);
 				}
 			}
 		else
