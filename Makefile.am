@@ -2,7 +2,7 @@
 
 include $(top_srcdir)/aminclude.am
 
-SUBDIRS = src po doc plugins
+SUBDIRS = src tests po doc plugins
 DIST_SUBDIRS = src po doc plugins
 
 man_MANS = geeqie.1

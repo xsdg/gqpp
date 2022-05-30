@@ -29,6 +29,10 @@ AC_CONFIG_AUX_DIR(auxdir)
 # Require Automake 1.14 for %reldir% support
 AM_INIT_AUTOMAKE([1.14.1 subdir-objects foreign dist-xz no-dist-gzip tar-ustar])
 
+# Include libtool, for googletest integration.
+AM_PROG_AR
+LT_INIT
+
 AC_CONFIG_HEADER([config.h])
 
 # Only for developers
@@ -134,9 +138,8 @@ fi
 
 AC_ISC_POSIX
 AC_PROG_CC
-AC_PROG_CC_C99
 AC_PROG_CXX
-AC_STDC_HEADERS
+
 AC_ARG_PROGRAM
 AC_SYS_LARGEFILE
 IT_PROG_INTLTOOL([0.35.0])
@@ -844,6 +847,7 @@ AC_CONFIG_FILES([
     src/Makefile
     src/icons/Makefile
     src/icons/svg/Makefile
+    tests/Makefile
     po/Makefile.in
     doc/Makefile
     plugins/Makefile
