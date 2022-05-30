@@ -1173,27 +1173,27 @@ static void dupe_match_reset_list(GList *work)
 		}
 }
 
-static void dupe_match_reparent(DupeWindow *dw, DupeItem *old, DupeItem *new)
+static void dupe_match_reparent(DupeWindow *dw, DupeItem *old_parent, DupeItem *new_parent)
 {
 	GList *work;
 
-	if (!old || !new || !dupe_match_link_exists(old, new)) return;
+	if (!old_parent || !new_parent || !dupe_match_link_exists(old_parent, new_parent)) return;
 
-	dupe_match_link_clear(new, TRUE);
-	work = old->group;
+	dupe_match_link_clear(new_parent, TRUE);
+	work = old_parent->group;
 	while (work)
 		{
 		DupeMatch *dm = work->data;
-		dupe_match_unlink_child(old, dm->di);
-		dupe_match_link_child(new, dm->di, dm->rank);
+		dupe_match_unlink_child(old_parent, dm->di);
+		dupe_match_link_child(new_parent, dm->di, dm->rank);
 		work = work->next;
 		}
 
-	new->group = old->group;
-	old->group = NULL;
+	new_parent->group = old_parent->group;
+	old_parent->group = NULL;
 
-	work = g_list_find(dw->dupes, old);
-	if (work) work->data = new;
+	work = g_list_find(dw->dupes, old_parent);
+	if (work) work->data = new_parent;
 }
 
 static void dupe_match_print_group(DupeItem *di)

@@ -81,7 +81,7 @@ enum {
 
 
 static gboolean vflist_row_is_selected(ViewFile *vf, FileData *fd);
-static gboolean vflist_row_rename_cb(TreeEditData *td, const gchar *old, const gchar *new, gpointer data);
+static gboolean vflist_row_rename_cb(TreeEditData *td, const gchar *old_name, const gchar *new_name, gpointer data);
 static void vflist_populate_view(ViewFile *vf, gboolean force);
 static gboolean vflist_is_multiline(ViewFile *vf);
 static void vflist_set_expanded(ViewFile *vf, GtkTreeIter *iter, gboolean expanded);
@@ -501,24 +501,24 @@ void vflist_popup_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
  *-----------------------------------------------------------------------------
  */
 
-static gboolean vflist_row_rename_cb(TreeEditData *UNUSED(td), const gchar *old, const gchar *new, gpointer data)
+static gboolean vflist_row_rename_cb(TreeEditData *UNUSED(td), const gchar *old_name, const gchar *new_name, gpointer data)
 {
 	ViewFile *vf = data;
 	gchar *new_path;
 
-	if (!new || !new[0]) return FALSE;
+	if (!new_name || !new_name[0]) return FALSE;
 
-	new_path = g_build_filename(vf->dir_fd->path, new, NULL);
+	new_path = g_build_filename(vf->dir_fd->path, new_name, NULL);
 
-	if (strchr(new, G_DIR_SEPARATOR) != NULL)
+	if (strchr(new_name, G_DIR_SEPARATOR) != NULL)
 		{
-		gchar *text = g_strdup_printf(_("Invalid file name:\n%s"), new);
+		gchar *text = g_strdup_printf(_("Invalid file name:\n%s"), new_name);
 		file_util_warning_dialog(_("Error renaming file"), text, GTK_STOCK_DIALOG_ERROR, vf->listview);
 		g_free(text);
 		}
 	else
 		{
-		gchar *old_path = g_build_filename(vf->dir_fd->path, old, NULL);
+		gchar *old_path = g_build_filename(vf->dir_fd->path, old_name, NULL);
 		FileData *fd = file_data_new_group(old_path); /* get the fd from cache */
 		file_util_rename_simple(fd, new_path, vf->listview);
 		file_data_unref(fd);
@@ -1027,12 +1027,12 @@ static void vflist_setup_iter_recursive(ViewFile *vf, GtkTreeStore *store, GtkTr
 
 			if (match < 0)
 				{
-				GtkTreeIter new;
+				GtkTreeIter new_iter;
 
 				if (valid)
 					{
 					num_ordered++;
-					gtk_tree_store_insert_before(store, &new, parent_iter, &iter);
+					gtk_tree_store_insert_before(store, &new_iter, parent_iter, &iter);
 					}
 				else
 					{
@@ -1041,18 +1041,18 @@ static void vflist_setup_iter_recursive(ViewFile *vf, GtkTreeStore *store, GtkTr
 					    and it seems to be much faster to add new entries to the beginning and reorder later
 					*/
 					num_prepended++;
-					gtk_tree_store_prepend(store, &new, parent_iter);
+					gtk_tree_store_prepend(store, &new_iter, parent_iter);
 					}
 
-				vflist_setup_iter(vf, store, &new, file_data_ref(fd));
-				vflist_setup_iter_recursive(vf, store, &new, fd->sidecar_files, selected, force);
+				vflist_setup_iter(vf, store, &new_iter, file_data_ref(fd));
+				vflist_setup_iter_recursive(vf, store, &new_iter, fd->sidecar_files, selected, force);
 
 				if (g_list_find(selected, fd))
 					{
 					/* renamed files - the same fd appears at different position - select it again*/
 					GtkTreeSelection *selection;
 					selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(vf->listview));
-					gtk_tree_selection_select_iter(selection, &new);
+					gtk_tree_selection_select_iter(selection, &new_iter);
 					}
 
 				done = TRUE;

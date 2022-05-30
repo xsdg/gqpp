@@ -68,7 +68,7 @@ static guint signals[SIGNAL_COUNT] = { 0 };
 
 static void image_loader_init(GTypeInstance *instance, gpointer g_class);
 static void image_loader_class_init_wrapper(void *data, void *user_data);
-static void image_loader_class_init(ImageLoaderClass *class);
+static void image_loader_class_init(ImageLoaderClass *loader_class);
 static void image_loader_finalize(GObject *object);
 static void image_loader_stop(ImageLoader *il);
 
@@ -135,9 +135,9 @@ static void image_loader_class_init_wrapper(void *data, void *UNUSED(user_data))
 	image_loader_class_init(data);
 }
 
-static void image_loader_class_init(ImageLoaderClass *class)
+static void image_loader_class_init(ImageLoaderClass *loader_class)
 {
-	GObjectClass *gobject_class = G_OBJECT_CLASS (class);
+	GObjectClass *gobject_class = G_OBJECT_CLASS (loader_class);
 
 //	gobject_class->set_property = image_loader_set_property;
 //	gobject_class->get_property = image_loader_get_property;

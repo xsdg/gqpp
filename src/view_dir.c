@@ -267,7 +267,7 @@ static void vd_rename_finished_cb(gboolean success, const gchar *new_path, gpoin
 		}
 }
 
-static gboolean vd_rename_cb(TreeEditData *td, const gchar *UNUSED(old), const gchar *new, gpointer data)
+static gboolean vd_rename_cb(TreeEditData *td, const gchar *UNUSED(old_name), const gchar *new_name, gpointer data)
 {
 	ViewDir *vd = data;
 	FileData *fd;
@@ -278,7 +278,7 @@ static gboolean vd_rename_cb(TreeEditData *td, const gchar *UNUSED(old), const g
 	if (!fd) return FALSE;
 
 	base = remove_level_from_path(fd->path);
-	new_path = g_build_filename(base, new, NULL);
+	new_path = g_build_filename(base, new_name, NULL);
 	g_free(base);
 
 	file_util_rename_dir(fd, new_path, vd->view, vd_rename_finished_cb, vd);

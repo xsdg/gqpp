@@ -259,18 +259,18 @@ static gboolean vdlist_populate(ViewDir *vd, gboolean clear)
 
 			if (match < 0)
 				{
-				GtkTreeIter new;
+				GtkTreeIter new_iter;
 
 				if (valid)
 					{
-					gtk_list_store_insert_before(store, &new, &iter);
+					gtk_list_store_insert_before(store, &new_iter, &iter);
 					}
 				else
 					{
-					gtk_list_store_append(store, &new);
+					gtk_list_store_append(store, &new_iter);
 					}
 
-				gtk_list_store_set(store, &new,
+				gtk_list_store_set(store, &new_iter,
 						   DIR_COLUMN_POINTER, fd,
 						   DIR_COLUMN_ICON, pixbuf,
 						   DIR_COLUMN_NAME, fd->name,

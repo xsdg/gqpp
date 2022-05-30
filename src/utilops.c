@@ -3119,9 +3119,9 @@ void file_util_copy_path_to_clipboard(FileData *fd, gboolean quoted)
 void file_util_copy_path_list_to_clipboard(GList *list, gboolean quoted)
 {
 	GList *work;
-	GString *new;
+	GString *path_list_str;
 
-	new = g_string_new("");
+	path_list_str = g_string_new("");
 	work = list;
 	while (work) {
 		FileData *fd = work->data;
@@ -3131,30 +3131,30 @@ void file_util_copy_path_list_to_clipboard(GList *list, gboolean quoted)
 
 		if (quoted)
 			{
-			g_string_append(new, g_shell_quote(fd->path));
+			g_string_append(path_list_str, g_shell_quote(fd->path));
 			}
 		else
 			{
-			g_string_append(new, fd->path);
+			g_string_append(path_list_str, fd->path);
 			}
-		if (work) g_string_append_c(new, ' ');
+		if (work) g_string_append_c(path_list_str, ' ');
 		}
 
 	if (options->clipboard_selection == CLIPBOARD_PRIMARY)
 		{
-		gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_PRIMARY), new->str, new->len);
+		gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_PRIMARY), path_list_str->str, path_list_str->len);
 		}
 	else if  (options->clipboard_selection == CLIPBOARD_CLIPBOARD)
 		{
-		gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), new->str, new->len);
+		gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), path_list_str->str, path_list_str->len);
 		}
 	else
 		{
-		gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_PRIMARY), new->str, new->len);
-		gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), new->str, new->len);
+		gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_PRIMARY), path_list_str->str, path_list_str->len);
+		gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), path_list_str->str, path_list_str->len);
 		}
 
-	g_string_free(new, TRUE);
+	g_string_free(path_list_str, TRUE);
 	filelist_free(list);
 }
 

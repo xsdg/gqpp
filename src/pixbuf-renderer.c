@@ -122,7 +122,7 @@ static GtkEventBoxClass *parent_class = NULL;
 
 
 
-static void pixbuf_renderer_class_init(PixbufRendererClass *class);
+static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class);
 static void pixbuf_renderer_init(PixbufRenderer *pr);
 static void pixbuf_renderer_finalize(GObject *object);
 static void pixbuf_renderer_set_property(GObject *object, guint prop_id,
@@ -185,11 +185,11 @@ GType pixbuf_renderer_get_type(void)
 	return pixbuf_renderer_type;
 }
 
-static void pixbuf_renderer_class_init(PixbufRendererClass *class)
+static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 {
-	GObjectClass *gobject_class = G_OBJECT_CLASS(class);
+	GObjectClass *gobject_class = G_OBJECT_CLASS(renderer_class);
 
-	parent_class = g_type_class_peek_parent(class);
+	parent_class = g_type_class_peek_parent(renderer_class);
 
 	gobject_class->set_property = pixbuf_renderer_set_property;
 	gobject_class->get_property = pixbuf_renderer_get_property;
@@ -1667,7 +1667,7 @@ static gboolean pr_zoom_clamp(PixbufRenderer *pr, gdouble zoom,
 	gint w, h;
 	gdouble scale;
 	gboolean force = !!(flags & PR_ZOOM_FORCE);
-	gboolean new = !!(flags & PR_ZOOM_NEW);
+	gboolean new_z = !!(flags & PR_ZOOM_NEW);
 
 	zoom = CLAMP(zoom, pr->zoom_min, pr->zoom_max);
 
@@ -1686,7 +1686,7 @@ static gboolean pr_zoom_clamp(PixbufRenderer *pr, gdouble zoom,
 		gint max_h;
 		gboolean sizeable;
 
-		sizeable = (new && pr_parent_window_sizable(pr));
+		sizeable = (new_z && pr_parent_window_sizable(pr));
 
 		if (sizeable)
 			{
@@ -1777,7 +1777,7 @@ static void pr_zoom_sync(PixbufRenderer *pr, gdouble zoom,
 	gint old_cx, old_cy;
 	gboolean center_point = !!(flags & PR_ZOOM_CENTER);
 	gboolean force = !!(flags & PR_ZOOM_FORCE);
-	gboolean new = !!(flags & PR_ZOOM_NEW);
+	gboolean new_z = !!(flags & PR_ZOOM_NEW);
 	gboolean lazy = !!(flags & PR_ZOOM_LAZY);
 	PrZoomFlags clamp_flags = flags;
 	gdouble old_center_x = pr->norm_center_x;
@@ -1804,7 +1804,7 @@ static void pr_zoom_sync(PixbufRenderer *pr, gdouble zoom,
 	(void) pr_size_clamp(pr);
 	(void) pr_parent_window_resize(pr, pr->width, pr->height);
 
-	if (force && new)
+	if (force && new_z)
 		{
 		switch (pr->scroll_reset)
 			{
