@@ -1785,9 +1785,12 @@ void layout_image_first(LayoutWindow *lw)
 
 	if (cd && info)
 		{
-		CollectInfo *new;
-		new = collection_get_first(cd);
-		if (new != info) layout_image_set_collection_real(lw, cd, new, TRUE);
+		CollectInfo *first_collection;
+		first_collection = collection_get_first(cd);
+		if (first_collection != info)
+                	{
+                	layout_image_set_collection_real(lw, cd, first_collection, TRUE);
+                        }
 		return;
 		}
 
@@ -1811,9 +1814,12 @@ void layout_image_last(LayoutWindow *lw)
 
 	if (cd && info)
 		{
-		CollectInfo *new;
-		new = collection_get_last(cd);
-		if (new != info) layout_image_set_collection_real(lw, cd, new, FALSE);
+		CollectInfo *last_collection;
+		last_collection = collection_get_last(cd);
+		if (last_collection != info)
+                	{
+                	layout_image_set_collection_real(lw, cd, last_collection, FALSE);
+                        }
 		return;
 		}
 
@@ -2432,14 +2438,14 @@ static void layout_image_maint_removed(LayoutWindow *lw, FileData *fd)
 		cd = image_get_collection(lw->image, &info);
 		if (cd && info)
 			{
-			CollectInfo *new;
+			CollectInfo *next_collection;
 
-			new = collection_next_by_info(cd, info);
-			if (!new) new = collection_prev_by_info(cd, info);
+			next_collection = collection_next_by_info(cd, info);
+			if (!next_collection) next_collection = collection_prev_by_info(cd, info);
 
-			if (new)
+			if (next_collection)
 				{
-				layout_image_set_collection(lw, cd, new);
+				layout_image_set_collection(lw, cd, next_collection);
 				return;
 				}
 			layout_image_set_fd(lw, NULL);

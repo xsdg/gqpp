@@ -38,7 +38,7 @@ static void gqv_cell_renderer_icon_set_property(GObject		*object,
 static void gqv_cell_renderer_icon_init_wrapper(void *, void *);
 static void gqv_cell_renderer_icon_init(GQvCellRendererIcon *celltext);
 static void gqv_cell_renderer_icon_class_init_wrapper(void *, void *);
-static void gqv_cell_renderer_icon_class_init(GQvCellRendererIconClass *class);
+static void gqv_cell_renderer_icon_class_init(GQvCellRendererIconClass *icon_class);
 static void gqv_cell_renderer_icon_finalize(GObject *object);
 static void gqv_cell_renderer_icon_get_size(GtkCellRenderer    *cell,
 					    GtkWidget	       *widget,
@@ -139,12 +139,12 @@ gqv_cell_renderer_icon_class_init_wrapper(void *data, void *UNUSED(user_data))
 }
 
 static void
-gqv_cell_renderer_icon_class_init(GQvCellRendererIconClass *class)
+gqv_cell_renderer_icon_class_init(GQvCellRendererIconClass *icon_class)
 {
-	GObjectClass *object_class = G_OBJECT_CLASS(class);
-	GtkCellRendererClass *cell_class = GTK_CELL_RENDERER_CLASS(class);
+	GObjectClass *object_class = G_OBJECT_CLASS(icon_class);
+	GtkCellRendererClass *cell_class = GTK_CELL_RENDERER_CLASS(icon_class);
 
-	parent_class = g_type_class_peek_parent(class);
+	parent_class = g_type_class_peek_parent(icon_class);
 
 	object_class->finalize = gqv_cell_renderer_icon_finalize;
 

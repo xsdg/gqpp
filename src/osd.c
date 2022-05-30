@@ -248,12 +248,12 @@ gchar *image_osd_mkinfo(const gchar *str, FileData *fd, GHashTable *vars)
 	guint pos, prev;
 	gboolean want_separator = FALSE;
 	gchar *name, *data;
-	GString *new;
+	GString *osd_info;
 	gchar *ret;
 
 	if (!str || !*str) return g_strdup("");
 
-	new = g_string_new(str);
+	osd_info = g_string_new(str);
 
 	prev = -1;
 
@@ -266,7 +266,7 @@ gchar *image_osd_mkinfo(const gchar *str, FileData *fd, GHashTable *vars)
 		gchar *extrapos = NULL;
 		gchar *p;
 
-		start = strchr(new->str + (prev + 1), delim);
+		start = strchr(osd_info->str + (prev + 1), delim);
 		if (!start)
 			break;
 		end = strchr(start+1, delim);
@@ -301,7 +301,7 @@ gchar *image_osd_mkinfo(const gchar *str, FileData *fd, GHashTable *vars)
 			extra = g_strndup(extrapos, end - extrapos);
 
 		name = g_strndup(start+1, (trunc ? trunc : end)-start-1);
-		pos = start - new->str;
+		pos = start - osd_info->str;
 		data = NULL;
 
 		if (strcmp(name, "keywords") == 0)
@@ -407,30 +407,30 @@ gchar *image_osd_mkinfo(const gchar *str, FileData *fd, GHashTable *vars)
 			g_free(extra);
 			}
 
-		g_string_erase(new, pos, end-start+1);
+		g_string_erase(osd_info, pos, end-start+1);
 		if (data && *data)
 			{
 			if (want_separator)
 				{
 				/* insert separator */
-				g_string_insert(new, pos, sep);
+				g_string_insert(osd_info, pos, sep);
 				pos += strlen(sep);
 				want_separator = FALSE;
 				}
 
-			g_string_insert(new, pos, data);
+			g_string_insert(osd_info, pos, data);
 			pos += strlen(data);
 		}
 
-		if (pos-prev >= 1 && new->str[pos] == imp)
+		if (pos-prev >= 1 && osd_info->str[pos] == imp)
 			{
 			/* pipe character is replaced by a separator, delete it
 			 * and raise a flag if needed */
-			g_string_erase(new, pos--, 1);
+			g_string_erase(osd_info, pos--, 1);
 			want_separator |= (data && *data);
 			}
 
-		if (new->str[pos] == '\n') want_separator = FALSE;
+		if (osd_info->str[pos] == '\n') want_separator = FALSE;
 
 		prev = pos - 1;
 
@@ -439,19 +439,19 @@ gchar *image_osd_mkinfo(const gchar *str, FileData *fd, GHashTable *vars)
 		}
 
 	/* search and destroy empty lines */
-	end = new->str;
+	end = osd_info->str;
 	while ((start = strchr(end, '\n')))
 		{
 		end = start;
 		while (*++(end) == '\n')
 			;
-		g_string_erase(new, start-new->str, end-start-1);
+		g_string_erase(osd_info, start-osd_info->str, end-start-1);
 		}
 
-	g_strchomp(new->str);
+	g_strchomp(osd_info->str);
 
-	ret = new->str;
-	g_string_free(new, FALSE);
+	ret = osd_info->str;
+	g_string_free(osd_info, FALSE);
 
 	return ret;
 }
