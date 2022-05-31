@@ -363,6 +363,8 @@ static gboolean advanced_exif_mouseclick(GtkWidget *widget,
 
 		g_list_free(cols);
 		g_free(value);
+
+		gtk_tree_view_set_search_column(GTK_TREE_VIEW(ew->listview), gtk_tree_view_column_get_sort_column_id(column));
 		}
 
 	return TRUE;
@@ -391,6 +393,30 @@ static gboolean advanced_exif_keypress(GtkWidget *widget, GdkEventKey *event, gp
 
 	return stop_signal;
 } // static gboolean advanced_exif_...
+
+static gboolean search_function_cb(GtkTreeModel *model, gint column, const gchar *key, GtkTreeIter *iter, gpointer data)
+{
+	gboolean ret = TRUE;
+	gchar *field_contents;
+	gchar *field_contents_nocase;
+	gchar *key_nocase;
+
+	gtk_tree_model_get(model, iter, column, &field_contents, -1);
+
+	field_contents_nocase = g_utf8_casefold(field_contents, -1);
+	key_nocase = g_utf8_casefold(key, -1);
+
+	if (g_strstr_len(field_contents_nocase, -1, key_nocase))
+		{
+		ret = FALSE;
+		}
+
+	g_free(field_contents);
+	g_free(field_contents_nocase);
+	g_free(key_nocase);
+
+	return ret;
+}
 
 GtkWidget *advanced_exif_new(LayoutWindow *lw)
 {
@@ -469,6 +495,9 @@ GtkWidget *advanced_exif_new(LayoutWindow *lw)
 	advanced_exif_add_column(ew->listview, _("Format"), EXIF_ADVCOL_FORMAT, FALSE);
 	advanced_exif_add_column(ew->listview, _("Elements"), EXIF_ADVCOL_ELEMENTS, FALSE);
 
+	gtk_tree_view_set_enable_search(GTK_TREE_VIEW(ew->listview), TRUE);
+	gtk_tree_view_set_search_column(GTK_TREE_VIEW(ew->listview), EXIF_ADVCOL_DESCRIPTION);
+	gtk_tree_view_set_search_equal_func(GTK_TREE_VIEW(ew->listview), search_function_cb, ew, NULL);
 
 	gtk_drag_source_set(ew->listview,
 			   GDK_BUTTON1_MASK | GDK_BUTTON2_MASK,

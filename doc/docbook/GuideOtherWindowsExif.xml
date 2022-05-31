@@ -13,5 +13,8 @@
     <link linkend="GuideSidebarsInfo">Info Sidebar</link>
     , it is possible to drag-and-drop an item from the Exif window onto the Sidebar pane.
   </para>
+  <para>
+    A search of the Exif data can be initiated by clicking anywhere on the column you wish to search, and then type <code>Ctrl + F</code> or press any alpha-numeric key. The search is case-insensitive
+  </para>
   <para />
 </section>
