@@ -322,7 +322,8 @@ typedef struct _CollectWindow CollectWindow;
 
 typedef struct _ImageWindow ImageWindow;
 
-typedef struct _FileData FileData;
+// No need for the typedef trick in C++.  But we do still need to forward-declare.
+struct FileData;
 typedef struct _FileDataChangeInfo FileDataChangeInfo;
 
 typedef struct _LayoutWindow LayoutWindow;
@@ -596,7 +597,23 @@ struct _FileDataChangeInfo {
 	gboolean regroup_when_finished;
 };
 
-struct _FileData {
+// Struct organization:
+// public and private methods for each method grouping, followed by public and private members.
+struct FileData {
+    /**** CORE ****/
+    public:
+        int file_data_new_simple;
+
+    private:
+        static FileData *file_data_new(const gchar *path_utf8, struct stat *st, gboolean disable_sidecars);
+        int file_data_new_local;
+
+    /**** FILELIST ****/
+    private:
+        static gboolean filelist_read_real(const gchar *dir_path, GList **files, GList **dirs,
+                                           gboolean follow_symlinks);
+
+    public:
 	guint magick;
 	gint type;
 	gchar *original_path; /**< key to file_data_pool hash table */
