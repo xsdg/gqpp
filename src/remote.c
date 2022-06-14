@@ -1398,7 +1398,7 @@ static RemoteCommandEntry remote_commands[] = {
 	/* short, long                  callback,               extra, prefer, parameter, description */
 	{ "-b", "--back",               gr_image_prev,          FALSE, FALSE, NULL, N_("previous image") },
 	{ NULL, "--close-window",       gr_close_window,        FALSE, FALSE, NULL, N_("close window") },
-	{ NULL, "--config-load: ",       gr_config_load,         TRUE,  FALSE, N_("<FILE>|layout ID"), N_(" load configuration from FILE") },
+	{ NULL, "--config-load:",       gr_config_load,         TRUE,  FALSE, N_("<FILE>|layout ID"), N_("load configuration from FILE") },
 	{ "-cm","--cache-metadata",      gr_cache_metadata,               FALSE, FALSE, NULL, N_("clean the metadata cache") },
 	{ "-cr:", "--cache-render:",    gr_cache_render,        TRUE, FALSE, N_("<folder>  "), N_(" render thumbnails") },
 	{ "-crr:", "--cache-render-recurse:", gr_cache_render_recurse, TRUE, FALSE, N_("<folder> "), N_("render thumbnails recursively") },
