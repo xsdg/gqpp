@@ -2,12 +2,6 @@
 <section id="GuideOptionsMetadata">
   <title id="titleGuideOptionsMetadata">Metadata</title>
   <para>This section describes the options for metadata writing.</para>
-  <para />
-  <para>
-    The settings in the
-    <link linkend="Filetypes">Files tab of Preferences</link>
-    influence whether an attempt is made to write metadata to the file itself, to a sidecar file or to a local folder.
-  </para>
   <para>
     Refer also to
     <link linkend="GuideReferenceMetadata" endterm="titleGuideReferenceMetadata" />
@@ -16,13 +10,19 @@
   <section id="MetadataWritingProcess">
     <title id="titleMetadataWritingProcess">Metadata writing process</title>
     <para>
-      When writing metadata, Geeqie will follow three steps. This process will stop when the first successful write occurs.
+      When writing metadata, Geeqie will follow these steps. This process will stop when the first successful write occurs. A flowchart showing the sequence is
+      <link linkend="MetadataFlowchart">here</link>
+      .
       <orderedlist>
         <listitem>
           <para>
-            <guilabel>Save metadata in image files, resp. sidecar files, according to the XMP standard</guilabel>
+            <guilabel>Save metadata in image files or sidecar files, according to the XMP standard</guilabel>
             <para />
             If checked, Geeqie will attempt to write metadata to the file itself, or to an associated XMP sidecar file
+            <para />
+            The destination is dependent on the settings in the "Writable" and "Sidecar Is Allowed" columns of the
+            <link linkend="Filetypes">File Filters tab</link>
+            .
           </para>
         </listitem>
         <listitem>
@@ -45,7 +45,7 @@
     <para>When writing to local metadata folders, the directory structure duplicates that of the location of the source files.</para>
   </section>
   <section id="WriteToImageFiles">
-    <title>Step 1: Write to image files</title>
+    <title>Step 1 Options:</title>
     <para>If Step 1 above was successful, the following options take effect:</para>
     <itemizedlist>
       <listitem>
@@ -54,6 +54,10 @@
           <para />
           If checked, Geeqie will write IPTC tags as defined in
           <link linkend="GuideReferenceStandards" endterm="titleGuideReferenceStandards" />
+          <para />
+          The conversion from XMP tag to IPTC tag is performed by exiv2. A list of the XMP-IPTC conversions is at the end of
+          <ulink url="https://exiv2.org/conversion.html">this table</ulink>
+          .
         </para>
       </listitem>
       <listitem>
@@ -74,13 +78,13 @@
         <para>
           <guilabel>Create sidecar files named image.ext.xmp (as opposed to image.xmp)</guilabel>
           <para />
-          If checked, new sidecar files will use image.ext.xmp naming scheme
+          If checked, new sidecar files will use image.ext.xmp naming scheme. This scheme is used by Darktable.
         </para>
       </listitem>
     </itemizedlist>
   </section>
   <section id="WriteToGeeqiePrivateFiles">
-    <title>Steps 2 and 3: Write to Geeqie private files</title>
+    <title>Steps 2 and 3 Option:</title>
     <para>If Step 2 or 3 above was successful, the following option takes effect:</para>
     <itemizedlist>
       <listitem>
@@ -97,12 +101,37 @@
     <itemizedlist>
       <listitem>
         <para>
-          <guilabel>Write the same description tags (keywords, comment, title) to all grouped sidecars</guilabel>
+          <guilabel>Write the same description tags to all grouped sidecars</guilabel>
           <para />
           If checked the same descriptive tags are written to all files in a group. File grouping is as defined in the
-          <link linkend="Groupingsidecarextensions">Files tab</link>
+          <link linkend="Groupingsidecarextensions">File Filters tab</link>
           of main Preferences. Technical tags (exif) are handled separately for each file.
         </para>
+        <para>The tags written are:</para>
+        <programlisting xml:space="preserve">
+          "Xmp.dc.title"
+          "Xmp.photoshop.Urgency"
+          "Xmp.photoshop.Category",
+          "Xmp.photoshop.SupplementalCategory",
+          "Xmp.dc.subject",
+          "Xmp.iptc.Location",
+          "Xmp.photoshop.Instruction",
+          "Xmp.photoshop.DateCreated",
+          "Xmp.dc.creator",
+          "Xmp.photoshop.AuthorsPosition",
+          "Xmp.photoshop.City",
+          "Xmp.photoshop.State",
+          "Xmp.iptc.CountryCode",
+          "Xmp.photoshop.Country",
+          "Xmp.photoshop.TransmissionReference",
+          "Xmp.photoshop.Headline",
+          "Xmp.photoshop.Credit",
+          "Xmp.photoshop.Source",
+          "Xmp.dc.rights",
+          "Xmp.dc.description",
+          "Xmp.photoshop.CaptionWriter",
+        </programlisting>
+        <para />
       </listitem>
       <listitem>
         <para>
@@ -203,6 +232,13 @@
         </para>
       </listitem>
     </itemizedlist>
+    <para />
+  </section>
+  <section id="MetadataFlowchart">
+    <title>Metadata Write Sequence Flowchart</title>
+    <para>
+      <inlinegraphic fileref="metadata-flowchart.png" />
+    </para>
     <para />
   </section>
 </section>

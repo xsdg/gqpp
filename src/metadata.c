@@ -42,7 +42,11 @@ typedef enum {
 	MK_COMMENT
 } MetadataKey;
 
-static const gchar *group_keys[] = { /* tags that will be written to all files in a group, options->metadata.sync_grouped_files */
+/* If contents change, keep GuideOptionsMetadata.xml up to date */
+/**
+ *  @brief Tags that will be written to all files in a group - selected by: options->metadata.sync_grouped_files, Preferences/Metadata/Write The Same Description Tags To All Grouped Sidecars
+ */
+static const gchar *group_keys[] = {
 	"Xmp.dc.title",
 	"Xmp.photoshop.Urgency",
 	"Xmp.photoshop.Category",

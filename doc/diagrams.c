@@ -29,6 +29,136 @@
 
 /**
  * @page diagrams Diagrams
+ * @section metadata_write Metadata write sequence
+ *
+ * @startuml
+ * 
+ * group metadata write sequence
+ * start
+ *
+ * : write to file/sidecar = FALSE;
+ * if (//Preferences / Metadata//\n **Step 1:**\n Save in image file or sidecar file) then (yes)
+	 * if (extension in //File Filters / File Types / Writable// list) then (yes)
+		 * if (image file writable) then (yes)
+			 * : write to file/sidecar = TRUE;
+			 * : metadata_file = <image file>;
+		 * else (no)
+			 * : log warning;
+		 * endif
+	 * else (no)
+		 * if (extension in //File Filters / File Types / Sidecar Is Allowed// list) then (yes)
+			 * if (sidecar file or folder writable) then (yes)
+				 * : write to file/sidecar = TRUE;
+				 * : metadata_file = <sidecar file>;
+			 * else (no)
+				 * : log warning;
+			 * endif
+		 * else (no)
+		 * endif
+	 * endif
+ * else (no)
+ * endif
+ * 
+ * if (write to file/sidecar) then (yes)
+ * else (no)
+	 * group If a metadata file already exists, use it
+		 * start
+		 * group Look in user defined option
+			 * if (//Preferences / Metadata//\n **Step 2:**\n Save in sub-folder local to image folder) then (yes)
+				 * : metadata_file = \n<file_dir>/.metadata/<filename>.gq.xmp;
+			 * else (no)
+				 * if (XDG_DATA_HOME defined) then (yes)
+					 * : metadata_file = \nXDG_DATA_HOME/geeqie/metadata/<file_path>/<file_name>.gq.xmp;
+				 * else (no)
+					 * : metadata_file = \nHOME/.local/share/geeqie/metadata/<file_path>/<file_name>.gq.xmp;
+				 * endif
+			 * endif
+		 * end group
+		 * 
+		 * if (metadata_file exists) then (yes)
+		 * else (no)
+			 * group Ignore user defined option and try alternate
+				 * if (//Preferences / Metadata//\n **Step 2:**\n Save in sub-folder local to image) then (no)
+					 * : metadata_file = \n <file_dir>/.metadata/<filename>.gq.xmp;
+				 * else (yes)
+					 * if (XDG_DATA_HOME defined) then (yes)
+						 * : metadata_file = \n XDG_DATA_HOME/geeqie/metadata/<file_path>/<file_name>.gq.xmp;
+					 * else (no)
+						 * : metadata_file = \n HOME/.local/share/geeqie/metadata/<file_path>/<file_name>.gq.xmp;
+					 * endif
+				 * endif
+			 * end group
+		 * endif
+		 * 
+		 * if (metadata_file exists) then (yes)
+		 * else (no)
+			 * group Try GQview legacy format
+				 * if (//Preferences / Metadata//\n **Step 2:**\n Save in sub-folder local to image folder) then (yes)
+					 * : metadata_file = \n<file_dir>/.metadata/<filename>.meta;
+				 * else (no)
+					 * if (XDG_DATA_HOME defined) then (yes)
+						 * : metadata_file = \nXDG_DATA_HOME/geeqie/metadata/<file_path>/<file_name>.meta;
+					 * else (no)
+						 * : metadata_file = \nHOME/.local/share/geeqie/metadata/<file_path>/<file_name>.meta;
+					 * endif
+				 * endif
+			 * end group
+			 * 
+			 * if (metadata_file exists) then (yes)
+			 * else (no)
+				 * group Ignore user defined option and try alternate
+					 * if (//Preferences / Metadata//\n **Step 2:**\n Save in sub-folder local to image) then (no)
+						 * : metadata_file = \n <file_dir>/.metadata/<filename>.meta;
+					 * else (yes)
+						 * if (XDG_DATA_HOME defined) then (yes)
+							 * : metadata_file = \n XDG_DATA_HOME/geeqie/metadata/<file_path>/<file_name>.meta;
+						 * else (no)
+							 * : metadata_file = \n HOME/.local/share/geeqie/metadata/<file_path>/<file_name>.meta;
+						 * endif
+					 * endif
+				 * end group
+			 * endif
+		 * endif
+	 * end group
+	 * 
+	 * if (metadata_file exists) then (yes)
+	 * else (no)
+		 * group If no metadata file exists, use user defined option
+			 * if (//Preferences / Metadata//\n **Step 2:**\n Save in sub-folder local to image folder) then (yes)
+				 * : metadata_file = \n<file_dir>/.metadata/<filename>.gq.xmp;
+			 * else (no)
+				 * if (XDG_DATA_HOME defined) then (yes)
+					 * : metadata_file = \nXDG_DATA_HOME/geeqie/metadata/<file_path>/<file_name>.gq.xmp;
+				 * else (no)
+					 * : metadata_file = \nHOME/.local/share/geeqie/metadata/<file_path>/<file_name>.gq.xmp;
+				 * endif
+			 * endif
+		 * end group
+	 * endif
+	 * 
+	 * if (metadata_file writable) then (yes)
+	 * else (no)
+		 * if (XDG_DATA_HOME defined) then (yes)
+			 * : metadata_file = \nXDG_DATA_HOME/geeqie/metadata/<file_path>/<file_name>.gq.xmp;
+		 * else (no)
+		 * : metadata_file = \nHOME/.local/share/geeqie/metadata/<file_path>/<file_name>.gq.xmp;
+		 * endif
+	 * : Recursively create metadata_file_path\n if necessary;
+	 * endif
+ * endif
+ * : Write metadata;
+ * 
+ * end group
+ * @enduml
+ */
+  /**
+  * @file
+  * @ref metadata_write "Metadata write sequence"
+  */
+
+
+/**
+ * @page diagrams Diagrams
  * @section options_overview Options Overview
  * 
  * #_ConfOptions  #_LayoutOptions

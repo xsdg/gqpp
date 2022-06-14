@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <section id="GuideOptionsFiltering">
-  <title id="titleGuideOptionsFiltering">Files Options</title>
-  <para>This section describes the options presented under the Files Tab of the preferences dialogue.</para>
+  <title id="titleGuideOptionsFiltering">File Filters Options</title>
+  <para>This section describes the options presented under the File Filters Tab of the preferences dialogue.</para>
   <para />
   <section id="Filters">
     <title>Filters</title>
