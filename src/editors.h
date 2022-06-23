@@ -66,8 +66,8 @@ struct _EditorDescription {
 
 
 /**
- * @enum
- * return values from callback function
+ * @note EDITOR_CB_*:
+ * Return values from callback function
  */
 enum {
 	EDITOR_CB_CONTINUE = 0, /**< continue multiple editor execution on remaining files*/
