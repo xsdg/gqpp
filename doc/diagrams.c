@@ -409,3 +409,87 @@
   * @file
   * @ref image_load_overview "Image Load Overview"
   */
+
+/**
+ * @page diagrams Diagrams
+ * @section duplicates_data_layout Duplicates Data Layout
+ *
+ * #_DupeWindow  #_DupeItem #_DupeMatch
+ *
+ * @startuml
+ * 
+ * database DupeWindow [
+ * <b>DupeWindow->list</b>
+ * ====
+ * DupeItem
+ * ----
+ * DupeItem
+ * ----
+ * DupeItem
+ * ----
+ * .
+ * .
+ * .
+ * ]
+ * note left
+ * One entry for each file
+ * dropped onto the dupes window
+ * end note
+ * 
+ * card DupeItem [
+ * <b>DupeItem</b>
+ * (parent)
+ * ====
+ * .
+ * .
+ * .
+ * ----
+ * fd
+ * ----
+ * group (list)
+ * ----
+ * group_rank
+ * ----
+ * .
+ * .
+ * .
+ * ]
+ * note right
+ * group_rank: (sum of all child ranks) / n
+ * end note
+ *
+ * database group [
+ * <b>group (list)</b>
+ * (children)
+ * ====
+ * DupeMatch
+ * ----
+ * DupeMatch
+ * ----
+ * DupeMatch
+ * ----
+ * .
+ * .
+ * .
+ * ]
+ * note left
+ * One entry for each file
+ * matching parent
+ * end note
+ * 
+ * card DupeMatch [
+ * <b>DupeMatch</b>
+ * ====
+ * DupeItem
+ * ----
+ * rank
+ * ----
+ * ]
+ *
+ * DupeWindow -r-> DupeItem
+ * group -r-> DupeMatch
+ * DupeItem --> group
+ * @enduml
+ */
+
+
