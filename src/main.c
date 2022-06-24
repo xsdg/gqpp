@@ -1175,6 +1175,10 @@ gint main(gint argc, gchar *argv[])
 	gint fd_stderr[2];
 	GIOChannel *stderr_channel;
 
+#if GTK_CHECK_VERSION(3,10,0)
+	gdk_set_allowed_backends("x11,*");
+#endif
+
 #ifdef HAVE_GTHREAD
 #if !GLIB_CHECK_VERSION(2,32,0)
 	g_thread_init(NULL);
