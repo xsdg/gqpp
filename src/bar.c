@@ -186,7 +186,7 @@ static const gchar default_config_gps[] =
 "    <layout id = '_current_'>"
 "        <bar>"
 "            <pane_gps id = 'gps' expanded = 'true'"
-"                      map-id = 'CHAMPLAIN_MAP_SOURCE_OSM_MAPNIK'"
+"                      map-id = 'osm-mapnik'"
 "                      zoom-level = '8'"
 "                      latitude = '50116666'"
 "                      longitude = '8683333' />"
