@@ -1163,4 +1163,22 @@ gboolean rmdir_recursive(GFile *file, GCancellable *cancellable, GError **error)
 	return g_file_delete(file, cancellable, error);
 }
 
+/**
+ * @brief Retrieves the internal scale factor that maps from window coordinates to the actual device pixels
+ * @param  -
+ * @returns scale factor
+ * 
+ * 
+ */
+gint scale_factor()
+{
+	LayoutWindow *lw = NULL;
+
+#if GTK_CHECK_VERSION(3, 10, 0)
+	layout_valid(&lw);
+	return gtk_widget_get_scale_factor(lw->window);
+#else
+	return 1;
+#endif
+}
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */
