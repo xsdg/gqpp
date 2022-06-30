@@ -139,33 +139,37 @@ static void menu_item_add_main_window_accelerator(GtkWidget *menu, GtkAccelGroup
 
 	g_assert(lw && lw->ui_manager);
 	groups = gtk_ui_manager_get_action_groups(lw->ui_manager);
-	actions = gtk_action_group_list_actions(GTK_ACTION_GROUP(groups->data)); // Only the first group required
-	actions = g_list_sort(actions, actions_sort_cb);
 
-	while (actions)
+	while (groups)
 		{
-		action = GTK_ACTION(actions->data);
-		accel_path = gtk_action_get_accel_path(action);
-		if (accel_path && gtk_accel_map_lookup_entry(accel_path, &key))
+		actions = gtk_action_group_list_actions(GTK_ACTION_GROUP(groups->data));
+		actions = g_list_sort(actions, actions_sort_cb);
+
+		while (actions)
 			{
-			g_object_get(action, "label", &action_label, NULL);
-
-			pango_parse_markup(action_label, -1, '_', NULL, &action_label_text, NULL, NULL);
-
-			if (g_strcmp0(action_label_text, menu_label_text) == 0)
+			action = GTK_ACTION(actions->data);
+			accel_path = gtk_action_get_accel_path(action);
+			if (accel_path && gtk_accel_map_lookup_entry(accel_path, &key))
 				{
-				if (key.accel_key != 0)
+				g_object_get(action, "label", &action_label, NULL);
+
+				pango_parse_markup(action_label, -1, '_', NULL, &action_label_text, NULL, NULL);
+
+				if (g_strcmp0(action_label_text, menu_label_text) == 0)
 					{
-					gtk_widget_add_accelerator(menu, "activate", accel_group, key.accel_key, key.accel_mods, GTK_ACCEL_VISIBLE);
+					if (key.accel_key != 0)
+						{
+						gtk_widget_add_accelerator(menu, "activate", accel_group, key.accel_key, key.accel_mods, GTK_ACCEL_VISIBLE);
 
-					break;
+						break;
+						}
 					}
+				g_free(action_label_text);
+				g_free(action_label);
 				}
-
-			g_free(action_label_text);
-			g_free(action_label);
+			actions = actions->next;
 			}
-		actions = actions->next;
+		groups = groups->next;
 		}
 
 	g_free(menu_label);

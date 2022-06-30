@@ -115,11 +115,16 @@ GtkWidget *submenu_add_edit(GtkWidget *menu, GtkWidget **menu_item, GCallback fu
 {
 	GtkWidget *item;
 	GtkWidget *submenu;
+	GtkAccelGroup *accel_group;
 
+	accel_group = gtk_accel_group_new();
 	item = menu_item_add(menu, _("_Plugins"), NULL, NULL);
 
 	submenu = gtk_menu_new();
 	g_object_set_data(G_OBJECT(submenu), "submenu_data", data);
+	gtk_menu_set_accel_group(GTK_MENU(submenu), accel_group);
+	g_object_set_data(G_OBJECT(submenu), "accel_group", accel_group);
+
 	add_edit_items(submenu, func, fd_list);
 
 	gtk_menu_item_set_submenu(GTK_MENU_ITEM(item), submenu);
