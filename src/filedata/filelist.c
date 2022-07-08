@@ -39,7 +39,7 @@
 static SortType filelist_sort_method = SORT_NONE;
 static gboolean filelist_sort_ascend = TRUE;
 
-static gboolean filelist_read_real(const gchar *dir_path, GList **files, GList **dirs, gboolean follow_symlinks)
+/*static*/ gboolean filelist_read_real(const gchar *dir_path, GList **files, GList **dirs, gboolean follow_symlinks)
 {
 	DIR *dp;
 	struct dirent *dir;
@@ -264,7 +264,7 @@ GList *filelist_filter(GList *list, gboolean is_dir_list)
  *-----------------------------------------------------------------------------
  */
 
-static gint filelist_sort_path_cb(gconstpointer a, gconstpointer b)
+/*static*/ gint filelist_sort_path_cb(gconstpointer a, gconstpointer b)
 {
 	return CASE_SORT(((FileData *)a)->path, ((FileData *)b)->path);
 }
@@ -274,7 +274,7 @@ GList *filelist_sort_path(GList *list)
 	return g_list_sort(list, filelist_sort_path_cb);
 }
 
-static void filelist_recursive_append(GList **list, GList *dirs)
+/*static*/ void filelist_recursive_append(GList **list, GList *dirs)
 {
 	GList *work;
 
@@ -301,7 +301,7 @@ static void filelist_recursive_append(GList **list, GList *dirs)
 		}
 }
 
-static void filelist_recursive_append_full(GList **list, GList *dirs, SortType method, gboolean ascend)
+/*static*/ void filelist_recursive_append_full(GList **list, GList *dirs, SortType method, gboolean ascend)
 {
 	GList *work;
 
@@ -441,7 +441,7 @@ gint filelist_sort_compare_filedata_full(FileData *fa, FileData *fb, SortType me
 	return filelist_sort_compare_filedata(fa, fb);
 }
 
-static gint filelist_sort_file_cb(gpointer a, gpointer b)
+/*static*/ gint filelist_sort_file_cb(gpointer a, gpointer b)
 {
 	return filelist_sort_compare_filedata(a, b);
 }
@@ -476,7 +476,7 @@ GList *filelist_insert_sort(GList *list, FileData *fd, SortType method, gboolean
  *-----------------------------------------------------------------------------
  */
 
-static GList *filelist_filter_out_sidecars(GList *flist)
+/*static*/ GList *filelist_filter_out_sidecars(GList *flist)
 {
 	GList *work = flist;
 	GList *flist_filtered = NULL;

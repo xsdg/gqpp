@@ -159,7 +159,7 @@ GList *file_data_filter_file_filter_list(GList *list, GRegex *filter)
 	return list;
 }
 
-static gboolean file_data_filter_class(FileData *fd, guint filter)
+/*static*/ gboolean file_data_filter_class(FileData *fd, guint filter)
 {
 	gint i;
 
@@ -199,7 +199,7 @@ GList *file_data_filter_class_list(GList *list, guint filter)
 	return list;
 }
 
-static void file_data_notify_mark_func(gpointer key, gpointer value, gpointer user_data)
+/*static*/ void file_data_notify_mark_func(gpointer key, gpointer value, gpointer user_data)
 {
 	FileData *fd = value;
 	file_data_increment_version(fd);
@@ -240,7 +240,7 @@ void file_data_get_registered_mark_func(gint n, FileDataGetMarkFunc *get_mark_fu
  *-----------------------------------------------------------------------------
  */
 
-static void marks_get_files(gpointer key, gpointer value, gpointer userdata)
+/*static*/ void marks_get_files(gpointer key, gpointer value, gpointer userdata)
 {
 	gchar *file_name = key;
 	GString *result = userdata;
@@ -331,7 +331,7 @@ gboolean marks_list_save(gchar *path, gboolean save)
 	return (secure_close(ssi) == 0);
 }
 
-static void marks_clear(gpointer key, gpointer value, gpointer userdata)
+/*static*/ void marks_clear(gpointer key, gpointer value, gpointer userdata)
 {
 	gchar *file_name = key;
 	gint mark_no;

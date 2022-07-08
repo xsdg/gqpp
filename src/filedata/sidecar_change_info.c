@@ -36,7 +36,7 @@
 #include <errno.h>
 #include <grp.h>
 
-static gboolean file_data_sc_add_ci(FileData *fd, FileDataChangeType type)
+/*static*/ gboolean file_data_sc_add_ci(FileData *fd, FileDataChangeType type)
 {
 	GList *work;
 
@@ -67,7 +67,7 @@ static gboolean file_data_sc_add_ci(FileData *fd, FileDataChangeType type)
 	return TRUE;
 }
 
-static gboolean file_data_sc_check_ci(FileData *fd, FileDataChangeType type)
+/*static*/ gboolean file_data_sc_check_ci(FileData *fd, FileDataChangeType type)
 {
 	GList *work;
 
@@ -161,7 +161,7 @@ gboolean file_data_sc_add_ci_delete_list(GList *fd_list)
 	return ret;
 }
 
-static void file_data_sc_revert_ci_list(GList *fd_list)
+/*static*/ void file_data_sc_revert_ci_list(GList *fd_list)
 {
 	GList *work;
 
@@ -175,7 +175,7 @@ static void file_data_sc_revert_ci_list(GList *fd_list)
 		}
 }
 
-static gboolean file_data_sc_add_ci_list_call_func(GList *fd_list, const gchar *dest, gboolean (*func)(FileData *, const gchar *))
+/*static*/ gboolean file_data_sc_add_ci_list_call_func(GList *fd_list, const gchar *dest, gboolean (*func)(FileData *, const gchar *))
 {
 	GList *work;
 
@@ -229,7 +229,7 @@ void file_data_sc_free_ci_list(GList *fd_list)
 		}
 }
 
-static void file_data_sc_update_ci(FileData *fd, const gchar *dest_path)
+/*static*/ void file_data_sc_update_ci(FileData *fd, const gchar *dest_path)
 {
 	GList *work;
 	gchar *dest_path_full = NULL;
@@ -268,7 +268,7 @@ static void file_data_sc_update_ci(FileData *fd, const gchar *dest_path)
 	g_free(dest_path_full);
 }
 
-static gboolean file_data_sc_check_update_ci(FileData *fd, const gchar *dest_path, FileDataChangeType type)
+/*static*/ gboolean file_data_sc_check_update_ci(FileData *fd, const gchar *dest_path, FileDataChangeType type)
 {
 	if (!file_data_sc_check_ci(fd, type)) return FALSE;
 	file_data_sc_update_ci(fd, dest_path);

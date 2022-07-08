@@ -143,7 +143,7 @@ FileData *FileData::file_data_new(const gchar *path_utf8, struct stat *st, gbool
 }
 
 // private
-static FileData *FileData::file_data_new_local(const gchar *path, struct stat *st, gboolean disable_sidecars)
+/*static*/ FileData *FileData::file_data_new_local(const gchar *path, struct stat *st, gboolean disable_sidecars)
 {
 	gchar *path_utf8 = path_to_utf8(path);
 	FileData *ret = file_data_new(path_utf8, st, disable_sidecars);
@@ -152,7 +152,7 @@ static FileData *FileData::file_data_new_local(const gchar *path, struct stat *s
 	return ret;
 }
 
-static FileData *FileData::file_data_new_simple(const gchar *path_utf8)
+/*static*/ FileData *FileData::file_data_new_simple(const gchar *path_utf8)
 {
 	struct stat st;
 	FileData *fd;
@@ -205,7 +205,7 @@ FileData *file_data_new_group(const gchar *path_utf8)
 	return fd;
 }
 
-static FileData *FileData::file_data_new_no_grouping(const gchar *path_utf8)
+/*static*/ FileData *FileData::file_data_new_no_grouping(const gchar *path_utf8)
 {
 	struct stat st;
 
@@ -218,7 +218,7 @@ static FileData *FileData::file_data_new_no_grouping(const gchar *path_utf8)
 	return file_data_new(path_utf8, &st, TRUE);
 }
 
-static FileData *FileData::file_data_new_dir(const gchar *path_utf8)
+/*static*/ FileData *FileData::file_data_new_dir(const gchar *path_utf8)
 {
 	struct stat st;
 
@@ -264,7 +264,7 @@ FileData *file_data_ref(FileData *fd)
 	return fd;
 }
 
-static void file_data_free(FileData *fd)
+/*static*/ void file_data_free(FileData *fd)
 {
 	g_assert(fd->magick == FD_MAGICK);
 	g_assert(fd->ref == 0);
@@ -300,7 +300,7 @@ static void file_data_free(FileData *fd)
  *
  * Checks the refcount and whether the FileData is locked.
  */
-static gboolean file_data_check_has_ref(FileData *fd)
+/*static*/ gboolean file_data_check_has_ref(FileData *fd)
 {
 	return fd->ref > 0 || fd->locked;
 }
@@ -311,7 +311,7 @@ static gboolean file_data_check_has_ref(FileData *fd)
  * This function will free a FileData and its children provided that neither its parent nor it has
  * a positive refcount, and provided that neither is locked.
  */
-static void file_data_consider_free(FileData *fd)
+/*static*/ void file_data_consider_free(FileData *fd)
 {
 	GList *work;
 	FileData *parent = fd->parent ? fd->parent : fd;
@@ -467,7 +467,7 @@ void file_data_increment_version(FileData *fd)
 		}
 }
 
-static gboolean file_data_check_changed_single_file(FileData *fd, struct stat *st)
+/*static*/ gboolean file_data_check_changed_single_file(FileData *fd, struct stat *st)
 {
 	if (fd->size != st->st_size ||
 	    fd->date != st->st_mtime)
@@ -485,7 +485,7 @@ static gboolean file_data_check_changed_single_file(FileData *fd, struct stat *s
 	return FALSE;
 }
 
-static gboolean file_data_check_changed_files_recursive(FileData *fd, struct stat *st)
+/*static*/ gboolean file_data_check_changed_files_recursive(FileData *fd, struct stat *st)
 {
 	gboolean ret = FALSE;
 	GList *work;
@@ -566,7 +566,7 @@ gboolean file_data_check_changed_files(FileData *fd)
 static GHashTable *file_data_monitor_pool = NULL;
 static guint realtime_monitor_id = 0; /* event source id */
 
-static void realtime_monitor_check_cb(gpointer key, gpointer value, gpointer data)
+/*static*/ void realtime_monitor_check_cb(gpointer key, gpointer value, gpointer data)
 {
 	FileData *fd = key;
 
@@ -575,7 +575,7 @@ static void realtime_monitor_check_cb(gpointer key, gpointer value, gpointer dat
 	DEBUG_1("monitor %s", fd->path);
 }
 
-static gboolean realtime_monitor_cb(gpointer data)
+/*static*/ gboolean realtime_monitor_cb(gpointer data)
 {
 	if (!options->update_on_time_change) return TRUE;
 	g_hash_table_foreach(file_data_monitor_pool, realtime_monitor_check_cb, NULL);

@@ -81,7 +81,7 @@ gboolean file_data_add_ci(FileData *fd, FileDataChangeType type, const gchar *sr
 	return TRUE;
 }
 
-static void file_data_planned_change_remove(FileData *fd)
+/*static*/ void file_data_planned_change_remove(FileData *fd)
 {
 	if (file_data_planned_change_hash &&
 	    (fd->change->type == FILEDATA_CHANGE_MOVE || fd->change->type == FILEDATA_CHANGE_RENAME))
@@ -163,7 +163,7 @@ void file_data_free_ci_list(GList *fd_list)
  * fails if fd->change does not exist or the change type does not match
  */
 
-static void file_data_update_planned_change_hash(FileData *fd, const gchar *old_path, gchar *new_path)
+/*static*/ void file_data_update_planned_change_hash(FileData *fd, const gchar *old_path, gchar *new_path)
 {
 	FileDataChangeType type = fd->change->type;
 
@@ -198,7 +198,7 @@ static void file_data_update_planned_change_hash(FileData *fd, const gchar *old_
 		}
 }
 
-static void file_data_update_ci_dest(FileData *fd, const gchar *dest_path)
+/*static*/ void file_data_update_ci_dest(FileData *fd, const gchar *dest_path)
 {
 	gchar *old_path = fd->change->dest;
 
@@ -207,7 +207,7 @@ static void file_data_update_ci_dest(FileData *fd, const gchar *dest_path)
 	g_free(old_path);
 }
 
-static void file_data_update_ci_dest_preserve_ext(FileData *fd, const gchar *dest_path)
+/*static*/ void file_data_update_ci_dest_preserve_ext(FileData *fd, const gchar *dest_path)
 {
 	const gchar *extension = registered_extension_from_path(fd->change->source);
 	gchar *base = remove_extension_from_path(dest_path);
@@ -552,19 +552,19 @@ gint file_data_verify_ci_list(GList *list, gchar **desc, gboolean with_sidecars)
  * it should implement safe delete
  */
 
-static gboolean file_data_perform_move(FileData *fd)
+/*static*/ gboolean file_data_perform_move(FileData *fd)
 {
 	g_assert(!strcmp(fd->change->source, fd->path));
 	return move_file(fd->change->source, fd->change->dest);
 }
 
-static gboolean file_data_perform_copy(FileData *fd)
+/*static*/ gboolean file_data_perform_copy(FileData *fd)
 {
 	g_assert(!strcmp(fd->change->source, fd->path));
 	return copy_file(fd->change->source, fd->change->dest);
 }
 
-static gboolean file_data_perform_delete(FileData *fd)
+/*static*/ gboolean file_data_perform_delete(FileData *fd)
 {
 	if (isdir(fd->path) && !islink(fd->path))
 		return rmdir_utf8(fd->path);
@@ -660,7 +660,7 @@ struct _NotifyData {
 
 static GList *notify_func_list = NULL;
 
-static gint file_data_notify_sort(gconstpointer a, gconstpointer b)
+/*static*/ gint file_data_notify_sort(gconstpointer a, gconstpointer b)
 {
 	NotifyData *nda = (NotifyData *)a;
 	NotifyData *ndb = (NotifyData *)b;
