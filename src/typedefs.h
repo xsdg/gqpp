@@ -597,6 +597,11 @@ struct _FileDataChangeInfo {
 	gboolean regroup_when_finished;
 };
 
+// Public FileData typedefs.
+typedef gboolean (* FileDataGetMarkFunc)(FileData *fd, gint n, gpointer data);
+typedef gboolean (* FileDataSetMarkFunc)(FileData *fd, gint n, gboolean value, gpointer data);
+typedef void (*FileDataNotifyFunc)(FileData *fd, NotifyType type, gpointer data);
+
 // Struct organization:
 // public and private methods for each method grouping, followed by public and private members.
 struct FileData {
@@ -605,15 +610,15 @@ struct FileData {
         int file_data_new_simple;
 
     private:
-        FileData *file_data_new(const gchar *path_utf8, struct stat *st, gboolean disable_sidecars);
+        // FileData *file_data_new(const gchar *path_utf8, struct stat *st, gboolean disable_sidecars);
         int file_data_new_local;
         GHashTable *file_data_pool = NULL;
         GHashTable *file_data_planned_change_hash = NULL;
 
     /**** FILELIST ****/
     private:
-        static gboolean filelist_read_real(const gchar *dir_path, GList **files, GList **dirs,
-                                           gboolean follow_symlinks);
+        // static gboolean filelist_read_real(const gchar *dir_path, GList **files, GList **dirs,
+        //                                   gboolean follow_symlinks);
 
     /**** BULK PASTE ****/
     private:
@@ -634,7 +639,7 @@ struct FileData {
         /*static*/ gboolean file_data_perform_delete(FileData *fd);
         gboolean file_data_perform_ci(FileData *fd);
         gboolean file_data_apply_ci(FileData *fd);
-        /*static*/ gint file_data_notify_sort(gconstpointer a, gconstpointer b);
+        static gint file_data_notify_sort(gconstpointer a, gconstpointer b);
         gboolean file_data_register_notify_func(FileDataNotifyFunc func, gpointer data, NotifyPriority priority);
         gboolean file_data_unregister_notify_func(FileDataNotifyFunc func, gpointer data);
         gboolean file_data_send_notification_idle_cb(gpointer data);
@@ -642,6 +647,15 @@ struct FileData {
         void file_data_change_info_free(FileDataChangeInfo *fdci, FileData *fd);
 
         // core.c;
+        FileData *file_data_new(const gchar *path_utf8, struct stat *st, gboolean disable_sidecars);
+        /*static*/ FileData *file_data_new_local(const gchar *path, struct stat *st, gboolean disable_sidecars);
+        /*static*/ FileData *file_data_new_simple(const gchar *path_utf8);
+        FileData *file_data_new_group(const gchar *path_utf8);
+        /*static*/ FileData *file_data_new_no_grouping(const gchar *path_utf8);
+        /*static*/ FileData *file_data_new_dir(const gchar *path_utf8);
+        FileData *file_data_ref_debug(const gchar *file, gint line, FileData *fd);
+        FileData *file_data_ref(FileData *fd);
+
         /*static*/ void file_data_free(FileData *fd);
         /*static*/ gboolean file_data_check_has_ref(FileData *fd);
         /*static*/ void file_data_consider_free(FileData *fd);
@@ -661,6 +675,19 @@ struct FileData {
         gboolean file_data_unregister_real_time_monitor(FileData *fd);
 
         // filelist.c;
+        GList *filelist_copy(GList *list);
+        GList *filelist_from_path_list(GList *list);
+        GList *filelist_to_path_list(GList *list);
+        GList *filelist_filter(GList *list, gboolean is_dir_list);
+        GList *filelist_sort_path(GList *list);
+        GList *filelist_recursive(FileData *dir_fd);
+        GList *filelist_recursive_full(FileData *dir_fd, SortType method, gboolean ascend);
+        GList *filelist_sort_full(GList *list, SortType method, gboolean ascend, GCompareFunc cb);
+        GList *filelist_insert_sort_full(GList *list, gpointer data, SortType method, gboolean ascend, GCompareFunc cb);
+        GList *filelist_sort(GList *list, SortType method, gboolean ascend);
+        GList *filelist_insert_sort(GList *list, FileData *fd, SortType method, gboolean ascend);
+        /*static*/ GList *filelist_filter_out_sidecars(GList *flist);
+
         /*static*/ gboolean filelist_read_real(const gchar *dir_path, GList **files, GList **dirs, gboolean follow_symlinks);
         gboolean filelist_read(FileData *dir_fd, GList **files, GList **dirs);
         gboolean filelist_read_lstat(FileData *dir_fd, GList **files, GList **dirs);
@@ -673,6 +700,10 @@ struct FileData {
         /*static*/ gint filelist_sort_file_cb(gpointer a, gpointer b);
 
         // filter.c;
+        GList *file_data_filter_marks_list(GList *list, guint filter);
+        GList *file_data_filter_file_filter_list(GList *list, GRegex *filter);
+        GList *file_data_filter_class_list(GList *list, guint filter);
+
         gboolean file_data_get_mark(FileData *fd, gint n);
         guint file_data_get_marks(FileData *fd);
         void file_data_set_mark(FileData *fd, gint n, gboolean value);
@@ -699,6 +730,10 @@ struct FileData {
         void set_rating_data(GList *files);
 
         // sidecar.c;
+        gchar *file_data_get_sidecar_path(FileData *fd, gboolean existing_only);
+        gchar *file_data_sc_list_to_string(FileData *fd);
+        GList *file_data_process_groups_in_selection(GList *list, gboolean ungroup, GList **ungrouped_list);
+
         /*static*/ gboolean file_data_list_contains_whole_group(GList *list, FileData *fd);
         /*static*/ gint sidecar_file_priority(const gchar *extension);
         /*static*/ void file_data_check_sidecars(const GList *basename_list);
@@ -738,6 +773,12 @@ struct FileData {
         gboolean file_data_sc_apply_ci(FileData *fd);
 
         // util.c;
+        gchar *text_from_size(gint64 size);
+        gchar *text_from_size_abrev(gint64 size);
+        const gchar *text_from_time(time_t t);
+        /*static*/ GHashTable *file_data_basename_hash_new(void);
+        gchar *file_data_get_error_string(gint error);
+
         /*static*/ gint file_data_sort_by_ext(gconstpointer a, gconstpointer b);
         /*static*/ GList * file_data_basename_hash_insert(GHashTable *basename_hash, FileData *fd);
         /*static*/ void file_data_basename_hash_insert_cb(gpointer fd, gpointer basename_hash);
