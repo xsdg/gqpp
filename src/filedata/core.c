@@ -173,7 +173,7 @@ FileData *FileData::file_data_new(const gchar *path_utf8, struct stat *st, gbool
 	return fd;
 }
 
-FileData *file_data_new_group(const gchar *path_utf8)
+FileData *FileData::file_data_new_group(const gchar *path_utf8)
 {
 	gchar *dir;
 	struct stat st;
@@ -241,9 +241,9 @@ FileData *file_data_new_group(const gchar *path_utf8)
  */
 
 #ifdef DEBUG_FILEDATA
-FileData *file_data_ref_debug(const gchar *file, gint line, FileData *fd)
+FileData *FileData::file_data_ref_debug(const gchar *file, gint line, FileData *fd)
 #else
-FileData *file_data_ref(FileData *fd)
+FileData *FileData::file_data_ref(FileData *fd)
 #endif
 {
 	if (fd == NULL) return NULL;

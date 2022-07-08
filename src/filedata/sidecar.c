@@ -41,7 +41,7 @@
  * file_data_sc - operates on the given fd + sidecars - all fds linked via fd->sidecar_files or fd->parent
  */
 
-gchar *file_data_get_sidecar_path(FileData *fd, gboolean existing_only)
+gchar *FileData::file_data_get_sidecar_path(FileData *fd, gboolean existing_only)
 {
 	gchar *sidecar_path = NULL;
 	GList *work;
@@ -78,7 +78,7 @@ gchar *file_data_get_sidecar_path(FileData *fd, gboolean existing_only)
 }
 
 /* return list of sidecar file extensions in a string */
-gchar *file_data_sc_list_to_string(FileData *fd)
+gchar *FileData::file_data_sc_list_to_string(FileData *fd)
 {
 	GList *work;
 	GString *result = g_string_new("");
@@ -112,7 +112,7 @@ gchar *file_data_sc_list_to_string(FileData *fd)
 	return TRUE;
 }
 
-GList *file_data_process_groups_in_selection(GList *list, gboolean ungroup, GList **ungrouped_list)
+GList *FileData::file_data_process_groups_in_selection(GList *list, gboolean ungroup, GList **ungrouped_list)
 {
 	GList *out = NULL;
 	GList *work = list;

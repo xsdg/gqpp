@@ -42,7 +42,7 @@
  *-----------------------------------------------------------------------------
  */
 
-gchar *text_from_size(gint64 size)
+gchar *FileData::text_from_size(gint64 size)
 {
 	gchar *a, *b;
 	gchar *s, *d;
@@ -89,7 +89,7 @@ gchar *text_from_size(gint64 size)
 	return b;
 }
 
-gchar *text_from_size_abrev(gint64 size)
+gchar *FileData::text_from_size_abrev(gint64 size)
 {
 	if (size < (gint64)1024)
 		{
@@ -110,7 +110,7 @@ gchar *text_from_size_abrev(gint64 size)
 }
 
 /* note: returned string is valid until next call to text_from_time() */
-const gchar *text_from_time(time_t t)
+const gchar *FileData::text_from_time(time_t t)
 {
 	static gchar *ret = NULL;
 	gchar buf[128];
@@ -154,7 +154,7 @@ const gchar *text_from_time(time_t t)
  */
 
 
-/*static*/ GHashTable *file_data_basename_hash_new(void)
+/*static*/ GHashTable *FileData::file_data_basename_hash_new(void)
 {
 	return g_hash_table_new_full(g_str_hash, g_str_equal, g_free, NULL);
 }
@@ -263,7 +263,7 @@ void FileData::file_data_set_user_orientation(FileData *fd, gint value)
 	file_data_send_notification(fd, NOTIFY_ORIENTATION);
 }
 
-gchar *file_data_get_error_string(gint error)
+gchar *FileData::file_data_get_error_string(gint error)
 {
 	GString *result = g_string_new("");
 

@@ -110,7 +110,7 @@ gboolean FileData::file_data_filter_marks(FileData *fd, guint filter)
 	return ((fd->marks & filter) == filter);
 }
 
-GList *file_data_filter_marks_list(GList *list, guint filter)
+GList *FileData::file_data_filter_marks_list(GList *list, guint filter)
 {
 	GList *work;
 
@@ -137,7 +137,7 @@ gboolean FileData::file_data_filter_file_filter(FileData *fd, GRegex *filter)
 	return g_regex_match(filter, fd->name, 0, NULL);
 }
 
-GList *file_data_filter_file_filter_list(GList *list, GRegex *filter)
+GList *FileData::file_data_filter_file_filter_list(GList *list, GRegex *filter)
 {
 	GList *work;
 
@@ -177,7 +177,7 @@ GList *file_data_filter_file_filter_list(GList *list, GRegex *filter)
 	return FALSE;
 }
 
-GList *file_data_filter_class_list(GList *list, guint filter)
+GList *FileData::file_data_filter_class_list(GList *list, guint filter)
 {
 	GList *work;
 
