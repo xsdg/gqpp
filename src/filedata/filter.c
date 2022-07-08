@@ -41,7 +41,7 @@ static FileDataSetMarkFunc file_data_set_mark_func[FILEDATA_MARKS_SIZE];
 static gpointer file_data_mark_func_data[FILEDATA_MARKS_SIZE];
 static GDestroyNotify file_data_destroy_mark_func[FILEDATA_MARKS_SIZE];
 
-gboolean file_data_get_mark(FileData *fd, gint n)
+gboolean FileData::file_data_get_mark(FileData *fd, gint n)
 {
 	gboolean valid = (fd->valid_marks & (1 << n));
 
@@ -69,14 +69,14 @@ gboolean file_data_get_mark(FileData *fd, gint n)
 	return !!(fd->marks & (1 << n));
 }
 
-guint file_data_get_marks(FileData *fd)
+guint FileData::file_data_get_marks(FileData *fd)
 {
 	gint i;
 	for (i = 0; i < FILEDATA_MARKS_SIZE; i++) file_data_get_mark(fd, i);
 	return fd->marks;
 }
 
-void file_data_set_mark(FileData *fd, gint n, gboolean value)
+void FileData::file_data_set_mark(FileData *fd, gint n, gboolean value)
 {
 	guint old;
 	if (!value == !file_data_get_mark(fd, n)) return;
@@ -103,7 +103,7 @@ void file_data_set_mark(FileData *fd, gint n, gboolean value)
 	file_data_send_notification(fd, NOTIFY_MARKS);
 }
 
-gboolean file_data_filter_marks(FileData *fd, guint filter)
+gboolean FileData::file_data_filter_marks(FileData *fd, guint filter)
 {
 	gint i;
 	for (i = 0; i < FILEDATA_MARKS_SIZE; i++) if (filter & (1 << i)) file_data_get_mark(fd, i);
@@ -132,7 +132,7 @@ GList *file_data_filter_marks_list(GList *list, guint filter)
 	return list;
 }
 
-gboolean file_data_filter_file_filter(FileData *fd, GRegex *filter)
+gboolean FileData::file_data_filter_file_filter(FileData *fd, GRegex *filter)
 {
 	return g_regex_match(filter, fd->name, 0, NULL);
 }
@@ -159,7 +159,7 @@ GList *file_data_filter_file_filter_list(GList *list, GRegex *filter)
 	return list;
 }
 
-/*static*/ gboolean file_data_filter_class(FileData *fd, guint filter)
+/*static*/ gboolean FileData::file_data_filter_class(FileData *fd, guint filter)
 {
 	gint i;
 
@@ -199,14 +199,14 @@ GList *file_data_filter_class_list(GList *list, guint filter)
 	return list;
 }
 
-/*static*/ void file_data_notify_mark_func(gpointer key, gpointer value, gpointer user_data)
+/*static*/ void FileData::file_data_notify_mark_func(gpointer key, gpointer value, gpointer user_data)
 {
 	FileData *fd = value;
 	file_data_increment_version(fd);
 	file_data_send_notification(fd, NOTIFY_MARKS);
 }
 
-gboolean file_data_register_mark_func(gint n, FileDataGetMarkFunc get_mark_func, FileDataSetMarkFunc set_mark_func, gpointer data, GDestroyNotify notify)
+gboolean FileData::file_data_register_mark_func(gint n, FileDataGetMarkFunc get_mark_func, FileDataSetMarkFunc set_mark_func, gpointer data, GDestroyNotify notify)
 {
 	if (n < 0 || n >= FILEDATA_MARKS_SIZE) return FALSE;
 
@@ -226,7 +226,7 @@ gboolean file_data_register_mark_func(gint n, FileDataGetMarkFunc get_mark_func,
         return TRUE;
 }
 
-void file_data_get_registered_mark_func(gint n, FileDataGetMarkFunc *get_mark_func, FileDataSetMarkFunc *set_mark_func, gpointer *data)
+void FileData::file_data_get_registered_mark_func(gint n, FileDataGetMarkFunc *get_mark_func, FileDataSetMarkFunc *set_mark_func, gpointer *data)
 {
 	if (get_mark_func) *get_mark_func = file_data_get_mark_func[n];
 	if (set_mark_func) *set_mark_func = file_data_set_mark_func[n];
@@ -240,7 +240,7 @@ void file_data_get_registered_mark_func(gint n, FileDataGetMarkFunc *get_mark_fu
  *-----------------------------------------------------------------------------
  */
 
-/*static*/ void marks_get_files(gpointer key, gpointer value, gpointer userdata)
+/*static*/ void FileData::marks_get_files(gpointer key, gpointer value, gpointer userdata)
 {
 	gchar *file_name = key;
 	GString *result = userdata;
@@ -256,7 +256,7 @@ void file_data_get_registered_mark_func(gint n, FileDataGetMarkFunc *get_mark_fu
 		}
 }
 
-gboolean marks_list_load(const gchar *path)
+gboolean FileData::marks_list_load(const gchar *path)
 {
 	FILE *f;
 	gchar s_buf[1024];
@@ -303,7 +303,7 @@ gboolean marks_list_load(const gchar *path)
 	return TRUE;
 }
 
-gboolean marks_list_save(gchar *path, gboolean save)
+gboolean FileData::marks_list_save(gchar *path, gboolean save)
 {
 	SecureSaveInfo *ssi;
 	gchar *pathl;
@@ -331,7 +331,7 @@ gboolean marks_list_save(gchar *path, gboolean save)
 	return (secure_close(ssi) == 0);
 }
 
-/*static*/ void marks_clear(gpointer key, gpointer value, gpointer userdata)
+/*static*/ void FileData::marks_clear(gpointer key, gpointer value, gpointer userdata)
 {
 	gchar *file_name = key;
 	gint mark_no;
@@ -357,7 +357,7 @@ gboolean marks_list_save(gchar *path, gboolean save)
 		}
 }
 
-void marks_clear_all()
+void FileData::marks_clear_all()
 {
 	g_hash_table_foreach(file_data_pool, marks_clear, NULL);
 }

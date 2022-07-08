@@ -264,7 +264,7 @@ FileData *file_data_ref(FileData *fd)
 	return fd;
 }
 
-/*static*/ void file_data_free(FileData *fd)
+/*static*/ void FileData::file_data_free(FileData *fd)
 {
 	g_assert(fd->magick == FD_MAGICK);
 	g_assert(fd->ref == 0);
@@ -300,7 +300,7 @@ FileData *file_data_ref(FileData *fd)
  *
  * Checks the refcount and whether the FileData is locked.
  */
-/*static*/ gboolean file_data_check_has_ref(FileData *fd)
+/*static*/ gboolean FileData::file_data_check_has_ref(FileData *fd)
 {
 	return fd->ref > 0 || fd->locked;
 }
@@ -311,7 +311,7 @@ FileData *file_data_ref(FileData *fd)
  * This function will free a FileData and its children provided that neither its parent nor it has
  * a positive refcount, and provided that neither is locked.
  */
-/*static*/ void file_data_consider_free(FileData *fd)
+/*static*/ void FileData::file_data_consider_free(FileData *fd)
 {
 	GList *work;
 	FileData *parent = fd->parent ? fd->parent : fd;
@@ -347,9 +347,9 @@ FileData *file_data_ref(FileData *fd)
 }
 
 #ifdef DEBUG_FILEDATA
-void file_data_unref_debug(const gchar *file, gint line, FileData *fd)
+void FileData::file_data_unref_debug(const gchar *file, gint line, FileData *fd)
 #else
-void file_data_unref(FileData *fd)
+void FileData::file_data_unref(FileData *fd)
 #endif
 {
 	if (fd == NULL) return;
@@ -384,7 +384,7 @@ void file_data_unref(FileData *fd)
  * Note: This differs from file_data_ref in that the behavior is reentrant -- after N calls to
  * file_data_lock, a single call to file_data_unlock will unlock the FileData.
  */
-void file_data_lock(FileData *fd)
+void FileData::file_data_lock(FileData *fd)
 {
 	if (fd == NULL) return;
 	if (fd->magick != FD_MAGICK) log_printf("Error: fd magick mismatch fd=%p", fd);
@@ -402,7 +402,7 @@ void file_data_lock(FileData *fd)
  * the FileData if its refcount is already zero (which will happen if the lock is the only thing
  * keeping it from being freed.
  */
-void file_data_unlock(FileData *fd)
+void FileData::file_data_unlock(FileData *fd)
 {
 	if (fd == NULL) return;
 	if (fd->magick != FD_MAGICK) log_printf("Error: fd magick mismatch fd=%p", fd);
@@ -419,7 +419,7 @@ void file_data_unlock(FileData *fd)
  *
  * @see file_data_lock(#FileData)
  */
-void file_data_lock_list(GList *list)
+void FileData::file_data_lock_list(GList *list)
 {
 	GList *work;
 
@@ -437,7 +437,7 @@ void file_data_lock_list(GList *list)
  *
  * @see #file_data_unlock(#FileData)
  */
-void file_data_unlock_list(GList *list)
+void FileData::file_data_unlock_list(GList *list)
 {
 	GList *work;
 
@@ -456,7 +456,7 @@ void file_data_unlock_list(GList *list)
  *-----------------------------------------------------------------------------
  */
 
-void file_data_increment_version(FileData *fd)
+void FileData::file_data_increment_version(FileData *fd)
 {
 	fd->version++;
 	fd->valid_marks = 0;
@@ -467,7 +467,7 @@ void file_data_increment_version(FileData *fd)
 		}
 }
 
-/*static*/ gboolean file_data_check_changed_single_file(FileData *fd, struct stat *st)
+/*static*/ gboolean FileData::file_data_check_changed_single_file(FileData *fd, struct stat *st)
 {
 	if (fd->size != st->st_size ||
 	    fd->date != st->st_mtime)
@@ -485,7 +485,7 @@ void file_data_increment_version(FileData *fd)
 	return FALSE;
 }
 
-/*static*/ gboolean file_data_check_changed_files_recursive(FileData *fd, struct stat *st)
+/*static*/ gboolean FileData::file_data_check_changed_files_recursive(FileData *fd, struct stat *st)
 {
 	gboolean ret = FALSE;
 	GList *work;
@@ -518,7 +518,7 @@ void file_data_increment_version(FileData *fd)
 }
 
 
-gboolean file_data_check_changed_files(FileData *fd)
+gboolean FileData::file_data_check_changed_files(FileData *fd)
 {
 	gboolean ret = FALSE;
 	struct stat st;
@@ -566,7 +566,7 @@ gboolean file_data_check_changed_files(FileData *fd)
 static GHashTable *file_data_monitor_pool = NULL;
 static guint realtime_monitor_id = 0; /* event source id */
 
-/*static*/ void realtime_monitor_check_cb(gpointer key, gpointer value, gpointer data)
+/*static*/ void FileData::realtime_monitor_check_cb(gpointer key, gpointer value, gpointer data)
 {
 	FileData *fd = key;
 
@@ -575,14 +575,14 @@ static guint realtime_monitor_id = 0; /* event source id */
 	DEBUG_1("monitor %s", fd->path);
 }
 
-/*static*/ gboolean realtime_monitor_cb(gpointer data)
+/*static*/ gboolean FileData::realtime_monitor_cb(gpointer data)
 {
 	if (!options->update_on_time_change) return TRUE;
 	g_hash_table_foreach(file_data_monitor_pool, realtime_monitor_check_cb, NULL);
 	return TRUE;
 }
 
-gboolean file_data_register_real_time_monitor(FileData *fd)
+gboolean FileData::file_data_register_real_time_monitor(FileData *fd)
 {
 	gint count;
 
@@ -606,7 +606,7 @@ gboolean file_data_register_real_time_monitor(FileData *fd)
 	return TRUE;
 }
 
-gboolean file_data_unregister_real_time_monitor(FileData *fd)
+gboolean FileData::file_data_unregister_real_time_monitor(FileData *fd)
 {
 	gint count;
 

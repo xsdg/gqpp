@@ -42,7 +42,7 @@
  *-----------------------------------------------------------------------------
  */
 
-/*static*/ void file_data_set_collate_keys(FileData *fd)
+/*static*/ void FileData::file_data_set_collate_keys(FileData *fd)
 {
 	gchar *caseless_name;
 	gchar *valid_name;
@@ -73,7 +73,7 @@
 	g_free(caseless_name);
 }
 
-/*static*/ void file_data_set_path(FileData *fd, const gchar *path)
+/*static*/ void FileData::file_data_set_path(FileData *fd, const gchar *path)
 {
 	g_assert(path /* && *path*/); /* view_dir_tree uses FileData with zero length path */
 	g_assert(file_data_pool);
@@ -141,7 +141,7 @@
  */
 
 
-void read_exif_time_data(FileData *file)
+void FileData::read_exif_time_data(FileData *file)
 {
 	if (file->exifdate > 0)
 		{
@@ -179,7 +179,7 @@ void read_exif_time_data(FileData *file)
 		}
 }
 
-void read_exif_time_digitized_data(FileData *file)
+void FileData::read_exif_time_digitized_data(FileData *file)
 {
 	if (file->exifdate_digitized > 0)
 		{
@@ -217,7 +217,7 @@ void read_exif_time_digitized_data(FileData *file)
 		}
 }
 
-void read_rating_data(FileData *file)
+void FileData::read_rating_data(FileData *file)
 {
 	gchar *rating_str;
 
@@ -233,7 +233,7 @@ void read_rating_data(FileData *file)
 		}
 }
 
-void set_exif_time_data(GList *files)
+void FileData::set_exif_time_data(GList *files)
 {
 	DEBUG_1("%s set_exif_time_data: ...", get_exec_time());
 
@@ -246,7 +246,7 @@ void set_exif_time_data(GList *files)
 		}
 }
 
-void set_exif_time_digitized_data(GList *files)
+void FileData::set_exif_time_digitized_data(GList *files)
 {
 	DEBUG_1("%s set_exif_time_digitized_data: ...", get_exec_time());
 
@@ -259,7 +259,7 @@ void set_exif_time_digitized_data(GList *files)
 		}
 }
 
-void set_rating_data(GList *files)
+void FileData::set_rating_data(GList *files)
 {
 	gchar *rating_str;
 	DEBUG_1("%s set_rating_data: ...", get_exec_time());

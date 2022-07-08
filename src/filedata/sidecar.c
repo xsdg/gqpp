@@ -97,7 +97,7 @@ gchar *file_data_sc_list_to_string(FileData *fd)
 	return g_string_free(result, FALSE);
 }
 
-/*static*/ gboolean file_data_list_contains_whole_group(GList *list, FileData *fd)
+/*static*/ gboolean FileData::file_data_list_contains_whole_group(GList *list, FileData *fd)
 {
 	GList *work;
 	if (fd->parent) fd = fd->parent;
@@ -157,7 +157,7 @@ GList *file_data_process_groups_in_selection(GList *list, gboolean ungroup, GLis
 	return out;
 }
 
-/*static*/ gint sidecar_file_priority(const gchar *extension)
+/*static*/ gint FileData::sidecar_file_priority(const gchar *extension)
 {
 	gint i = 1;
 	GList *work;
@@ -177,7 +177,7 @@ GList *file_data_process_groups_in_selection(GList *list, gboolean ungroup, GLis
 	return 0;
 }
 
-/*static*/ void file_data_check_sidecars(const GList *basename_list)
+/*static*/ void FileData::file_data_check_sidecars(const GList *basename_list)
 {
 	/* basename_list contains the new group - first is the parent, then sorted sidecars */
 	/* all files in the list have ref count > 0 */
@@ -287,7 +287,7 @@ GList *file_data_process_groups_in_selection(GList *list, gboolean ungroup, GLis
 }
 
 
-/*static*/ void file_data_disconnect_sidecar_file(FileData *target, FileData *sfd)
+/*static*/ void FileData::file_data_disconnect_sidecar_file(FileData *target, FileData *sfd)
 {
 	g_assert(target->magick == FD_MAGICK);
 	g_assert(sfd->magick == FD_MAGICK);
@@ -310,7 +310,7 @@ GList *file_data_process_groups_in_selection(GList *list, gboolean ungroup, GLis
 }
 
 /* disables / enables grouping for particular file, sends UPDATE notification */
-void file_data_disable_grouping(FileData *fd, gboolean disable)
+void FileData::file_data_disable_grouping(FileData *fd, gboolean disable)
 {
 	if (!fd->disable_grouping == !disable) return;
 
@@ -352,7 +352,7 @@ void file_data_disable_grouping(FileData *fd, gboolean disable)
 	file_data_send_notification(fd, NOTIFY_GROUPING);
 }
 
-void file_data_disable_grouping_list(GList *fd_list, gboolean disable)
+void FileData::file_data_disable_grouping_list(GList *fd_list, gboolean disable)
 {
 	GList *work;
 

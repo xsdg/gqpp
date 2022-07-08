@@ -39,7 +39,7 @@
 static SortType filelist_sort_method = SORT_NONE;
 static gboolean filelist_sort_ascend = TRUE;
 
-/*static*/ gboolean filelist_read_real(const gchar *dir_path, GList **files, GList **dirs, gboolean follow_symlinks)
+/*static*/ gboolean FileData::filelist_read_real(const gchar *dir_path, GList **files, GList **dirs, gboolean follow_symlinks)
 {
 	DIR *dp;
 	struct dirent *dir;
@@ -145,18 +145,18 @@ static gboolean filelist_sort_ascend = TRUE;
 	return TRUE;
 }
 
-gboolean filelist_read(FileData *dir_fd, GList **files, GList **dirs)
+gboolean FileData::filelist_read(FileData *dir_fd, GList **files, GList **dirs)
 {
 	return filelist_read_real(dir_fd->path, files, dirs, TRUE);
 }
 
-gboolean filelist_read_lstat(FileData *dir_fd, GList **files, GList **dirs)
+gboolean FileData::filelist_read_lstat(FileData *dir_fd, GList **files, GList **dirs)
 {
 	return filelist_read_real(dir_fd->path, files, dirs, FALSE);
 }
 
 
-void filelist_free(GList *list)
+void FileData::filelist_free(GList *list)
 {
 	GList *work;
 
@@ -264,7 +264,7 @@ GList *filelist_filter(GList *list, gboolean is_dir_list)
  *-----------------------------------------------------------------------------
  */
 
-/*static*/ gint filelist_sort_path_cb(gconstpointer a, gconstpointer b)
+/*static*/ gint FileData::filelist_sort_path_cb(gconstpointer a, gconstpointer b)
 {
 	return CASE_SORT(((FileData *)a)->path, ((FileData *)b)->path);
 }
@@ -274,7 +274,7 @@ GList *filelist_sort_path(GList *list)
 	return g_list_sort(list, filelist_sort_path_cb);
 }
 
-/*static*/ void filelist_recursive_append(GList **list, GList *dirs)
+/*static*/ void FileData::filelist_recursive_append(GList **list, GList *dirs)
 {
 	GList *work;
 
@@ -301,7 +301,7 @@ GList *filelist_sort_path(GList *list)
 		}
 }
 
-/*static*/ void filelist_recursive_append_full(GList **list, GList *dirs, SortType method, gboolean ascend)
+/*static*/ void FileData::filelist_recursive_append_full(GList **list, GList *dirs, SortType method, gboolean ascend)
 {
 	GList *work;
 
@@ -362,7 +362,7 @@ GList *filelist_recursive_full(FileData *dir_fd, SortType method, gboolean ascen
 	return list;
 }
 
-gint filelist_sort_compare_filedata(FileData *fa, FileData *fb)
+gint FileData::filelist_sort_compare_filedata(FileData *fa, FileData *fb)
 {
 	gint ret;
 	if (!filelist_sort_ascend)
@@ -434,14 +434,14 @@ gint filelist_sort_compare_filedata(FileData *fa, FileData *fb)
 	return strcmp(fa->original_path, fb->original_path);
 }
 
-gint filelist_sort_compare_filedata_full(FileData *fa, FileData *fb, SortType method, gboolean ascend)
+gint FileData::filelist_sort_compare_filedata_full(FileData *fa, FileData *fb, SortType method, gboolean ascend)
 {
 	filelist_sort_method = method;
 	filelist_sort_ascend = ascend;
 	return filelist_sort_compare_filedata(fa, fb);
 }
 
-/*static*/ gint filelist_sort_file_cb(gpointer a, gpointer b)
+/*static*/ gint FileData::filelist_sort_file_cb(gpointer a, gpointer b)
 {
 	return filelist_sort_compare_filedata(a, b);
 }

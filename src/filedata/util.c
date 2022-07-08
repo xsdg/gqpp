@@ -136,7 +136,7 @@ const gchar *text_from_time(time_t t)
 	return ret;
 }
 
-/*static*/ gint file_data_sort_by_ext(gconstpointer a, gconstpointer b)
+/*static*/ gint FileData::file_data_sort_by_ext(gconstpointer a, gconstpointer b)
 {
 	const FileData *fda = a;
 	const FileData *fdb = b;
@@ -159,7 +159,7 @@ const gchar *text_from_time(time_t t)
 	return g_hash_table_new_full(g_str_hash, g_str_equal, g_free, NULL);
 }
 
-/*static*/ GList * file_data_basename_hash_insert(GHashTable *basename_hash, FileData *fd)
+/*static*/ GList * FileData::file_data_basename_hash_insert(GHashTable *basename_hash, FileData *fd)
 {
 	GList *list;
 	gchar *basename = g_strndup(fd->path, fd->extension - fd->path);
@@ -209,52 +209,52 @@ const gchar *text_from_time(time_t t)
 	return list;
 }
 
-/*static*/ void file_data_basename_hash_insert_cb(gpointer fd, gpointer basename_hash)
+/*static*/ void FileData::file_data_basename_hash_insert_cb(gpointer fd, gpointer basename_hash)
 {
 	file_data_basename_hash_insert((GHashTable *)basename_hash, (FileData *)fd);
 }
 
-/*static*/ void file_data_basename_hash_remove_list(gpointer key, gpointer value, gpointer data)
+/*static*/ void FileData::file_data_basename_hash_remove_list(gpointer key, gpointer value, gpointer data)
 {
 	filelist_free((GList *)value);
 }
 
-/*static*/ void file_data_basename_hash_free(GHashTable *basename_hash)
+/*static*/ void FileData::file_data_basename_hash_free(GHashTable *basename_hash)
 {
 	g_hash_table_foreach(basename_hash, file_data_basename_hash_remove_list, NULL);
 	g_hash_table_destroy(basename_hash);
 }
 
-/*static*/ void file_data_basename_hash_to_sidecars(gpointer key, gpointer value, gpointer data)
+/*static*/ void FileData::file_data_basename_hash_to_sidecars(gpointer key, gpointer value, gpointer data)
 {
 	GList *basename_list = (GList *)value;
 	file_data_check_sidecars(basename_list);
 }
 
 
-/*static*/ gboolean is_hidden_file(const gchar *name)
+/*static*/ gboolean FileData::is_hidden_file(const gchar *name)
 {
 	if (name[0] != '.') return FALSE;
 	if (name[1] == '\0' || (name[1] == '.' && name[2] == '\0')) return FALSE;
 	return TRUE;
 }
 
-/*static*/ gboolean file_data_can_write_directly(FileData *fd)
+/*static*/ gboolean FileData::file_data_can_write_directly(FileData *fd)
 {
 	return filter_name_is_writable(fd->extension);
 }
 
-/*static*/ gboolean file_data_can_write_sidecar(FileData *fd)
+/*static*/ gboolean FileData::file_data_can_write_sidecar(FileData *fd)
 {
 	return filter_name_allow_sidecar(fd->extension) && !filter_name_is_writable(fd->extension);
 }
 
-gint file_data_get_user_orientation(FileData *fd)
+gint FileData::file_data_get_user_orientation(FileData *fd)
 {
 	return fd->user_orientation;
 }
 
-void file_data_set_user_orientation(FileData *fd, gint value)
+void FileData::file_data_set_user_orientation(FileData *fd, gint value)
 {
 	if (fd->user_orientation == value) return;
 
@@ -348,7 +348,7 @@ gchar *file_data_get_error_string(gint error)
 	return g_string_free(result, FALSE);
 }
 
-void file_data_set_page_num(FileData *fd, gint page_num)
+void FileData::file_data_set_page_num(FileData *fd, gint page_num)
 {
 	if (fd->page_total > 1 && page_num < 0)
 		{
@@ -365,7 +365,7 @@ void file_data_set_page_num(FileData *fd, gint page_num)
 	file_data_send_notification(fd, NOTIFY_REREAD);
 }
 
-void file_data_inc_page_num(FileData *fd)
+void FileData::file_data_inc_page_num(FileData *fd)
 {
 	if (fd->page_total > 0 && fd->page_num < fd->page_total - 1)
 		{
@@ -378,7 +378,7 @@ void file_data_inc_page_num(FileData *fd)
 	file_data_send_notification(fd, NOTIFY_REREAD);
 }
 
-void file_data_dec_page_num(FileData *fd)
+void FileData::file_data_dec_page_num(FileData *fd)
 {
 	if (fd->page_num > 0)
 		{
@@ -387,7 +387,7 @@ void file_data_dec_page_num(FileData *fd)
 	file_data_send_notification(fd, NOTIFY_REREAD);
 }
 
-void file_data_set_page_total(FileData *fd, gint page_total)
+void FileData::file_data_set_page_total(FileData *fd, gint page_total)
 {
 	fd->page_total = page_total;
 }
