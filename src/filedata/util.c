@@ -18,6 +18,24 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#include "main.h"
+#include "filedata.h"
+
+#include "filefilter.h"
+#include "cache.h"
+#include "thumb_standard.h"
+#include "ui_fileops.h"
+#include "metadata.h"
+#include "trash.h"
+#include "histogram.h"
+#include "secure_save.h"
+
+#include "exif.h"
+#include "misc.h"
+
+#include <errno.h>
+#include <grp.h>
+
 /*
  *-----------------------------------------------------------------------------
  * text conversion utils

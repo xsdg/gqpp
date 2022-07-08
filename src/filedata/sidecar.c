@@ -18,6 +18,24 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#include "main.h"
+#include "filedata.h"
+
+#include "filefilter.h"
+#include "cache.h"
+#include "thumb_standard.h"
+#include "ui_fileops.h"
+#include "metadata.h"
+#include "trash.h"
+#include "histogram.h"
+#include "secure_save.h"
+
+#include "exif.h"
+#include "misc.h"
+
+#include <errno.h>
+#include <grp.h>
+
 /*
  * file_data    - operates on the given fd
  * file_data_sc - operates on the given fd + sidecars - all fds linked via fd->sidecar_files or fd->parent

@@ -94,6 +94,7 @@ CLEANFILES = $(noinst_DATA)
 extra_SLIK = \
 	$(extra_ICONS)
 
+include $(srcdir)/filedata/Makefile.am
 include $(srcdir)/pan-view/Makefile.am
 include $(srcdir)/view_file/Makefile.am
 
@@ -101,6 +102,7 @@ bin_PROGRAMS = geeqie
 
 geeqie_SOURCES = \
 	$(module_SLIK)	\
+	$(module_filedata)	\
 	$(module_pan_view)	\
 	$(module_view_file)	\
 	ClayRGB1998.icc \

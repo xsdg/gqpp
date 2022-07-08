@@ -18,6 +18,24 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#include "main.h"
+#include "filedata.h"
+
+#include "filefilter.h"
+#include "cache.h"
+#include "thumb_standard.h"
+#include "ui_fileops.h"
+#include "metadata.h"
+#include "trash.h"
+#include "histogram.h"
+#include "secure_save.h"
+
+#include "exif.h"
+#include "misc.h"
+
+#include <errno.h>
+#include <grp.h>
+
 static FileDataGetMarkFunc file_data_get_mark_func[FILEDATA_MARKS_SIZE];
 static FileDataSetMarkFunc file_data_set_mark_func[FILEDATA_MARKS_SIZE];
 static gpointer file_data_mark_func_data[FILEDATA_MARKS_SIZE];

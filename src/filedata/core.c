@@ -18,6 +18,24 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#include "main.h"
+#include "filedata.h"
+
+#include "filefilter.h"
+#include "cache.h"
+#include "thumb_standard.h"
+#include "ui_fileops.h"
+#include "metadata.h"
+#include "trash.h"
+#include "histogram.h"
+#include "secure_save.h"
+
+#include "exif.h"
+#include "misc.h"
+
+#include <errno.h>
+#include <grp.h>
+
 #ifdef DEBUG_FILEDATA
 gint global_file_data_count = 0;
 #endif
@@ -26,7 +44,7 @@ static GHashTable *file_data_pool = NULL;
 static GHashTable *file_data_planned_change_hash = NULL;
 
 // private
-static FileData *FileData::file_data_new(const gchar *path_utf8, struct stat *st, gboolean disable_sidecars)
+FileData *FileData::file_data_new(const gchar *path_utf8, struct stat *st, gboolean disable_sidecars)
 {
 	FileData *fd;
 	struct passwd *user;

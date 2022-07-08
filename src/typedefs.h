@@ -605,8 +605,10 @@ struct FileData {
         int file_data_new_simple;
 
     private:
-        static FileData *file_data_new(const gchar *path_utf8, struct stat *st, gboolean disable_sidecars);
+        FileData *file_data_new(const gchar *path_utf8, struct stat *st, gboolean disable_sidecars);
         int file_data_new_local;
+        GHashTable *file_data_pool = NULL;
+        GHashTable *file_data_planned_change_hash = NULL;
 
     /**** FILELIST ****/
     private:
