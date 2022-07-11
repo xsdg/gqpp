@@ -128,7 +128,9 @@ static gboolean filelist_sort_ascend = TRUE;
 
 	if (xmp_files)
 		{
-		g_list_foreach(xmp_files,file_data_basename_hash_insert_cb,basename_hash);
+        FileDataFunctor<void, void*> callback_functor = {
+            this, &FileData::file_data_basename_hash_insert_cb, basename_hash};
+		g_list_foreach(xmp_files, v_wrapper<void, void*>, &callback_functor);
 		g_list_free(xmp_files);
 		}
 
@@ -136,7 +138,10 @@ static gboolean filelist_sort_ascend = TRUE;
 
 	if (files)
 		{
-		g_hash_table_foreach(basename_hash, file_data_basename_hash_to_sidecars, NULL);
+        FileDataFunctor<void, void*, void*> callback_functor = {
+            this, &FileData::file_data_basename_hash_to_sidecars};
+		g_hash_table_foreach(
+                basename_hash, v_wrapper<void, void*, void*>, &callback_functor);
 
 		*files = filelist_filter_out_sidecars(flist);
 		}

@@ -175,7 +175,7 @@ gboolean FileData::file_data_sc_add_ci_delete_list(GList *fd_list)
 		}
 }
 
-/*static*/ gboolean FileData::file_data_sc_add_ci_list_call_func(GList *fd_list, const gchar *dest, gboolean (*func)(FileData *, const gchar *))
+/*static*/ gboolean FileData::file_data_sc_add_ci_list_call_func(GList *fd_list, const gchar *dest, CiListCallFunc func)
 {
 	GList *work;
 
@@ -184,7 +184,7 @@ gboolean FileData::file_data_sc_add_ci_delete_list(GList *fd_list)
 		{
 		FileData *fd = work->data;
 
-		if (!func(fd, dest))
+		if (!std::invoke(func, this, fd, dest))
 			{
 			file_data_sc_revert_ci_list(work->prev);
 			return FALSE;
@@ -197,22 +197,22 @@ gboolean FileData::file_data_sc_add_ci_delete_list(GList *fd_list)
 
 gboolean FileData::file_data_sc_add_ci_copy_list(GList *fd_list, const gchar *dest)
 {
-	return file_data_sc_add_ci_list_call_func(fd_list, dest, file_data_sc_add_ci_copy);
+	return file_data_sc_add_ci_list_call_func(fd_list, dest, &FileData::file_data_sc_add_ci_copy);
 }
 
 gboolean FileData::file_data_sc_add_ci_move_list(GList *fd_list, const gchar *dest)
 {
-	return file_data_sc_add_ci_list_call_func(fd_list, dest, file_data_sc_add_ci_move);
+	return file_data_sc_add_ci_list_call_func(fd_list, dest, &FileData::file_data_sc_add_ci_move);
 }
 
 gboolean FileData::file_data_sc_add_ci_rename_list(GList *fd_list, const gchar *dest)
 {
-	return file_data_sc_add_ci_list_call_func(fd_list, dest, file_data_sc_add_ci_rename);
+	return file_data_sc_add_ci_list_call_func(fd_list, dest, &FileData::file_data_sc_add_ci_rename);
 }
 
 gboolean FileData::file_data_sc_add_ci_unspecified_list(GList *fd_list, const gchar *dest)
 {
-	return file_data_sc_add_ci_list_call_func(fd_list, dest, file_data_sc_add_ci_unspecified);
+	return file_data_sc_add_ci_list_call_func(fd_list, dest, &FileData::file_data_sc_add_ci_unspecified);
 }
 
 void FileData::file_data_sc_free_ci_list(GList *fd_list)
@@ -295,9 +295,8 @@ gboolean FileData::file_data_sc_update_ci_unspecified(FileData *fd, const gchar 
 	return file_data_sc_check_update_ci(fd, dest_path, FILEDATA_CHANGE_UNSPECIFIED);
 }
 
-static gboolean file_data_sc_update_ci_list_call_func(GList *fd_list,
-						      const gchar *dest,
-						      gboolean (*func)(FileData *, const gchar *))
+/*static*/ gboolean FileData::file_data_sc_update_ci_list_call_func(
+        GList *fd_list, const gchar *dest, CiListCallFunc func)
 {
 	GList *work;
 	gboolean ret = TRUE;
@@ -307,7 +306,7 @@ static gboolean file_data_sc_update_ci_list_call_func(GList *fd_list,
 		{
 		FileData *fd = work->data;
 
-		if (!func(fd, dest)) ret = FALSE;
+		if (!std::invoke(func, this, fd, dest)) ret = FALSE;
 		work = work->next;
 		}
 
@@ -316,17 +315,17 @@ static gboolean file_data_sc_update_ci_list_call_func(GList *fd_list,
 
 gboolean FileData::file_data_sc_update_ci_move_list(GList *fd_list, const gchar *dest)
 {
-	return file_data_sc_update_ci_list_call_func(fd_list, dest, file_data_sc_update_ci_move);
+	return file_data_sc_update_ci_list_call_func(fd_list, dest, &FileData::file_data_sc_update_ci_move);
 }
 
 gboolean FileData::file_data_sc_update_ci_copy_list(GList *fd_list, const gchar *dest)
 {
-	return file_data_sc_update_ci_list_call_func(fd_list, dest, file_data_sc_update_ci_copy);
+	return file_data_sc_update_ci_list_call_func(fd_list, dest, &FileData::file_data_sc_update_ci_copy);
 }
 
 gboolean FileData::file_data_sc_update_ci_unspecified_list(GList *fd_list, const gchar *dest)
 {
-	return file_data_sc_update_ci_list_call_func(fd_list, dest, file_data_sc_update_ci_unspecified);
+	return file_data_sc_update_ci_list_call_func(fd_list, dest, &FileData::file_data_sc_update_ci_unspecified);
 }
 
 gint FileData::file_data_sc_verify_ci(FileData *fd, GList *list)

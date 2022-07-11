@@ -22,6 +22,8 @@
 #ifndef TYPEDEFS_H
 #define TYPEDEFS_H
 
+#include <functional>
+
 typedef enum {
 	ZOOM_RESET_ORIGINAL	= 0,
 	ZOOM_RESET_FIT_WINDOW	= 1,
@@ -602,6 +604,59 @@ typedef gboolean (* FileDataGetMarkFunc)(FileData *fd, gint n, gpointer data);
 typedef gboolean (* FileDataSetMarkFunc)(FileData *fd, gint n, gboolean value, gpointer data);
 typedef void (*FileDataNotifyFunc)(FileData *fd, NotifyType type, gpointer data);
 
+//// Callback infrastructure.
+// Function pointer to FileData::something with return type RType and argument
+// types ArgTypes...
+template <typename RType, typename... ArgTypes>
+using FileDataWrappedFunc = RType (FileData::*)(ArgTypes...);
+// Functor that will call obj->method(args with types ArgTypes..., userdata),
+// expecting a return type RType.
+template <typename RType, typename... ArgTypes>
+struct FileDataFunctor {
+    FileData *obj;
+    FileDataWrappedFunc<RType, ArgTypes..., void*> method;
+    void* user_data = NULL;
+};
+
+// Wrapper that can be called-back to execute a FileDataFunctor with a non-void
+// return type.  Will _not_ free the functor (so should be used when functor is
+// allocated on the stack).
+template <typename RType, typename... ArgTypes>
+RType wrapper(ArgTypes..., void* user_data) {
+    auto* functor = (FileDataFunctor<RType, ArgTypes...>*) user_data;
+    return std::invoke(functor->method, functor->obj, functor->user_data);
+}
+
+// Wrapper that can be called-back to execute a FileDataFunctor with a void
+// return type.  Will _not_ free the functor (so should be used when functor is
+// allocated on the stack).
+template <typename RType, typename... ArgTypes>
+void v_wrapper(ArgTypes... args, void* user_data) {
+    auto* functor = (FileDataFunctor<void, ArgTypes...>*) user_data;
+    std::invoke(functor->method, functor->obj, functor->user_data, args...);
+}
+
+// Wrapper that can be called-back to execute a FileDataFunctor with a non-void
+// return type.  _Will_ free the functor (so should be used when functor is
+// allocated via malloc).
+template <typename RType, typename... ArgTypes>
+RType free_wrapper(ArgTypes..., void* user_data) {
+    auto* functor = (FileDataFunctor<RType, ArgTypes...>*) user_data;
+    RType retval = std::invoke(functor->method, functor->obj, functor->user_data);
+    free(functor);
+    return retval;
+}
+
+// Wrapper that can be called-back to execute a FileDataFunctor with a void
+// return type.  _Will_ free the functor (so should be used when functor is
+// allocated via malloc).
+template <typename RType, typename... ArgTypes>
+void free_v_wrapper(ArgTypes... args, void* user_data) {
+    auto* functor = (FileDataFunctor<void, ArgTypes...>*) user_data;
+    std::invoke(functor->method, functor->obj, functor->user_data, args...);
+    free(functor);
+}
+
 // Struct organization:
 // public and private methods for each method grouping, followed by public and private members.
 struct FileData {
@@ -666,9 +721,9 @@ struct FileData {
         void file_data_increment_version(FileData *fd);
         /*static*/ gboolean file_data_check_changed_single_file(FileData *fd, struct stat *st);
         /*static*/ gboolean file_data_check_changed_files_recursive(FileData *fd, struct stat *st);
-        static gboolean file_data_check_changed_files(FileData *fd);
-        static void realtime_monitor_check_cb(gpointer key, gpointer value, gpointer data);
-        static gboolean realtime_monitor_cb(gpointer data);
+        /**static**/ gboolean file_data_check_changed_files(FileData *fd);
+        /**static**/ void realtime_monitor_check_cb(gpointer key, gpointer value, gpointer data);
+        /**static**/ gboolean realtime_monitor_cb(gpointer data);
         gboolean file_data_register_real_time_monitor(FileData *fd);
         gboolean file_data_unregister_real_time_monitor(FileData *fd);
 
@@ -690,12 +745,12 @@ struct FileData {
         gboolean filelist_read(FileData *dir_fd, GList **files, GList **dirs);
         gboolean filelist_read_lstat(FileData *dir_fd, GList **files, GList **dirs);
         void filelist_free(GList *list);
-        /*static*/ gint filelist_sort_path_cb(gconstpointer a, gconstpointer b);
+        static gint filelist_sort_path_cb(gconstpointer a, gconstpointer b);
         /*static*/ void filelist_recursive_append(GList **list, GList *dirs);
         /*static*/ void filelist_recursive_append_full(GList **list, GList *dirs, SortType method, gboolean ascend);
-        gint filelist_sort_compare_filedata(FileData *fa, FileData *fb);
+        static gint filelist_sort_compare_filedata(FileData *fa, FileData *fb);
         gint filelist_sort_compare_filedata_full(FileData *fa, FileData *fb, SortType method, gboolean ascend);
-        /*static*/ gint filelist_sort_file_cb(gpointer a, gpointer b);
+        static gint filelist_sort_file_cb(gpointer a, gpointer b);
 
         // filter.c;
         GList *file_data_filter_marks_list(GList *list, guint filter);
@@ -711,7 +766,7 @@ struct FileData {
         /*static*/ void file_data_notify_mark_func(gpointer key, gpointer value, gpointer user_data);
         gboolean file_data_register_mark_func(gint n, FileDataGetMarkFunc get_mark_func, FileDataSetMarkFunc set_mark_func, gpointer data, GDestroyNotify notify);
         void file_data_get_registered_mark_func(gint n, FileDataGetMarkFunc *get_mark_func, FileDataSetMarkFunc *set_mark_func, gpointer *data);
-        /*static*/ void marks_get_files(gpointer key, gpointer value, gpointer userdata);
+        static void marks_get_files(gpointer key, gpointer value, gpointer userdata);
         gboolean marks_list_load(const gchar *path);
         gboolean marks_list_save(gchar *path, gboolean save);
         /*static*/ void marks_clear(gpointer key, gpointer value, gpointer userdata);
@@ -751,7 +806,9 @@ struct FileData {
         void file_data_sc_free_ci(FileData *fd);
         gboolean file_data_sc_add_ci_delete_list(GList *fd_list);
         /*static*/ void file_data_sc_revert_ci_list(GList *fd_list);
-        /*static*/ gboolean file_data_sc_add_ci_list_call_func(GList *fd_list, const gchar *dest, gboolean (*func)(FileData *, const gchar *));
+        using CiListCallFunc = gboolean (FileData::*)(FileData *, const gchar *);
+        /*static*/ gboolean file_data_sc_add_ci_list_call_func(
+                GList *fd_list, const gchar *dest, CiListCallFunc func);
         gboolean file_data_sc_add_ci_copy_list(GList *fd_list, const gchar *dest);
         gboolean file_data_sc_add_ci_move_list(GList *fd_list, const gchar *dest);
         gboolean file_data_sc_add_ci_rename_list(GList *fd_list, const gchar *dest);
@@ -763,6 +820,8 @@ struct FileData {
         gboolean file_data_sc_update_ci_move(FileData *fd, const gchar *dest_path);
         gboolean file_data_sc_update_ci_rename(FileData *fd, const gchar *dest_path);
         gboolean file_data_sc_update_ci_unspecified(FileData *fd, const gchar *dest_path);
+        /*static*/ gboolean file_data_sc_update_ci_list_call_func(
+                GList *fd_list, const gchar *dest, CiListCallFunc func);
         gboolean file_data_sc_update_ci_move_list(GList *fd_list, const gchar *dest);
         gboolean file_data_sc_update_ci_copy_list(GList *fd_list, const gchar *dest);
         gboolean file_data_sc_update_ci_unspecified_list(GList *fd_list, const gchar *dest);
@@ -777,7 +836,7 @@ struct FileData {
         /*static*/ GHashTable *file_data_basename_hash_new(void);
         gchar *file_data_get_error_string(gint error);
 
-        /*static*/ gint file_data_sort_by_ext(gconstpointer a, gconstpointer b);
+        static gint file_data_sort_by_ext(gconstpointer a, gconstpointer b);
         /*static*/ GList * file_data_basename_hash_insert(GHashTable *basename_hash, FileData *fd);
         /*static*/ void file_data_basename_hash_insert_cb(gpointer fd, gpointer basename_hash);
         /*static*/ void file_data_basename_hash_remove_list(gpointer key, gpointer value, gpointer data);

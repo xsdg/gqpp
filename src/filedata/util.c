@@ -221,7 +221,10 @@ const gchar *FileData::text_from_time(time_t t)
 
 /*static*/ void FileData::file_data_basename_hash_free(GHashTable *basename_hash)
 {
-	g_hash_table_foreach(basename_hash, file_data_basename_hash_remove_list, NULL);
+    FileDataFunctor<void, void*, void*> callback_functor = {
+        this, &FileData::file_data_basename_hash_remove_list};
+	g_hash_table_foreach(
+            basename_hash, v_wrapper<void, void*, void*>, &callback_functor);
 	g_hash_table_destroy(basename_hash);
 }
 

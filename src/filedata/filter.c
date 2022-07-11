@@ -220,7 +220,11 @@ gboolean FileData::file_data_register_mark_func(gint n, FileDataGetMarkFunc get_
 	if (get_mark_func && file_data_pool)
 		{
 		/* this effectively changes all known files */
-		g_hash_table_foreach(file_data_pool, file_data_notify_mark_func, NULL);
+        FileDataFunctor<void, void*, void*> callback_functor = {
+            this, &FileData::file_data_notify_mark_func};
+		g_hash_table_foreach(file_data_pool,
+                             v_wrapper<void, void*, void*>,
+                             &callback_functor);
 		}
 
         return TRUE;
@@ -307,7 +311,7 @@ gboolean FileData::marks_list_save(gchar *path, gboolean save)
 {
 	SecureSaveInfo *ssi;
 	gchar *pathl;
-	GString  *marks = g_string_new("");
+	GString *marks = g_string_new("");
 
 	pathl = path_from_utf8(path);
 	ssi = secure_open(pathl);
@@ -359,5 +363,8 @@ gboolean FileData::marks_list_save(gchar *path, gboolean save)
 
 void FileData::marks_clear_all()
 {
-	g_hash_table_foreach(file_data_pool, marks_clear, NULL);
+    FileDataFunctor<void, void*, void*> callback_functor = {
+        this, &FileData::marks_clear};
+	g_hash_table_foreach(
+            file_data_pool, v_wrapper<void, void*, void*>, &callback_functor);
 }
