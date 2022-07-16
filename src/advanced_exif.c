@@ -280,18 +280,25 @@ void advanced_exif_close(ExifWin *ew)
 	if (!ew) return;
 
 	advanced_exif_window_get_geometry(ew);
+	file_data_unref(ew->fd);
 
 	gtk_widget_destroy(ew->window);
+
+	g_free(ew);
 }
 
-static void advanced_exif_delete_cb(GtkWidget *widget, GdkEvent *event, gpointer data)
+static gboolean advanced_exif_delete_cb(GtkWidget *widget, GdkEvent *event, gpointer data)
 {
 	ExifWin *ew = data;
 
-	advanced_exif_window_get_geometry(ew);
+	if (!ew) return FALSE;
 
+	advanced_exif_window_get_geometry(ew);
 	file_data_unref(ew->fd);
+
 	g_free(ew);
+
+	return FALSE;
 }
 
 static gint advanced_exif_sort_cb(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer data)

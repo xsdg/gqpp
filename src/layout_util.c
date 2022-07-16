@@ -4167,10 +4167,12 @@ void layout_bars_close(LayoutWindow *lw)
 	layout_bar_close(lw);
 }
 
-static void layout_exif_window_destroy(GtkWidget *widget, gpointer data)
+static gboolean layout_exif_window_destroy(GtkWidget *widget, gpointer data)
 {
 	LayoutWindow *lw = data;
 	lw->exif_window = NULL;
+
+	return TRUE;
 }
 
 void layout_exif_window_new(LayoutWindow *lw)
