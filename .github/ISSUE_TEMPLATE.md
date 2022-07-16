@@ -35,6 +35,7 @@ section.
 ### STEPS TO REPRODUCE
 <!---
 For bugs, please provide information how to reproduce the problem.
+If the problem affects an image or file, please upload a sample.
 For feature requests, please provide screenshots and other information that
 describe your idea the best.
 -->
