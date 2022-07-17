@@ -73,8 +73,8 @@ gchar *gq_prefix;
 gchar *gq_localedir;
 gchar *gq_helpdir;
 gchar *gq_htmldir;
-gchar *gq_app_dir;
-gchar *gq_bin_dir;
+gchar *gq_appdir;
+gchar *gq_bindir;
 gchar *gq_executable_path;
 gchar *desktop_file_template;
 gchar *instance_identifier;
@@ -712,7 +712,7 @@ static void process_command_line_for_cache_maintenance_option(gint argc, gchar *
 static void setup_env_path(void)
 {
 	const gchar *old_path = g_getenv("PATH");
-	gchar *path = g_strconcat(gq_bin_dir, ":", old_path, NULL);
+	gchar *path = g_strconcat(gq_bindir, ":", old_path, NULL);
         g_setenv("PATH", path, TRUE);
 	g_free(path);
 }
@@ -1109,18 +1109,16 @@ static void create_application_paths(gchar *argv[])
 	path[length] = '\0';
 
 	gq_executable_path = g_strdup(path);
-	dirname = g_path_get_dirname(gq_executable_path); // default is /usr/bin/
+	dirname = g_path_get_dirname(gq_executable_path);
 	gq_prefix = g_path_get_dirname(dirname);
 
-	gq_localedir = g_build_filename(gq_prefix, "share", "locale", NULL);
-	tmp = g_build_filename(gq_prefix, "share", "doc", NULL);
-	gq_helpdir = g_strconcat(tmp, G_DIR_SEPARATOR_S, "geeqie-", VERSION, NULL);
-	gq_htmldir = g_build_filename(gq_helpdir, "html", NULL);
-	gq_app_dir = g_build_filename(gq_prefix, "share", "geeqie", NULL);
-	gq_bin_dir = g_build_filename(gq_prefix, "lib", "geeqie", NULL);
-	desktop_file_template = g_build_filename(gq_app_dir, "template.desktop", NULL);
+	gq_localedir = g_build_filename(gq_prefix, GQ_LOCALEDIR, NULL);
+	gq_helpdir = g_build_filename(gq_prefix, GQ_HELPDIR, NULL);
+	gq_htmldir = g_build_filename(gq_prefix, GQ_HTMLDIR, NULL);
+	gq_appdir = g_build_filename(gq_prefix, GQ_APPDIR, NULL);
+	gq_bindir = g_build_filename(gq_prefix, GQ_BINDIR, NULL);
+	desktop_file_template = g_build_filename(gq_appdir, "template.desktop", NULL);
 
-	g_free(tmp);
 	g_free(dirname);
 	g_free(path);
 }

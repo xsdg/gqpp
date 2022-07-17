@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #**********************************************************************
-# Copyright (C) 2021 - The Geeqie Team
+# Copyright (C) 2022 - The Geeqie Team
 #
 # Author: Colin Clark
 #
@@ -35,8 +35,8 @@
 export PROJECT="Geeqie"
 VERSION=$(git tag --list v[1-9]* | tail -1)
 export VERSION
-export SRCDIR="$PWD/.."
-export DOCDIR="$PWD/html/lua-api"
+export SRCDIR="$1"
+export DOCDIR="$2"
 export INLINE_SOURCES=NO
 export STRIP_CODE_COMMENTS=YES
 

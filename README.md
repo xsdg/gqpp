@@ -22,9 +22,10 @@ The project website is <https://www.geeqie.org/> and you will find the latest so
 
 * [Features](#features)
 * [Downloading](#downloading)
-* [Installation](#manual-installation)
+* [Compiling and Installing](#compiling-and-installing)
 * [Notes and changes for the latest release](#notes-and-changes-for-the-latest-release)
 * [Requirements](#requirements)
+* [Required libraries](#required-libraries)
 
 ### Features
 
@@ -128,18 +129,31 @@ Either: `git clone git://git.geeqie.org/geeqie.git`
 
 Or: `git clone http://git.geeqie.org/git/geeqie.git`
 
-### Manual Installation
+### Compiling and Installing
 
-List compile options: `./autogen.sh --help`
+`meson setup build`  
+`ninja -C build install`
 
-Common options:
-`./autogen.sh --disable-gtk3`,
+List compile options:  
+`meson configure build`
 
-Compilation: `./autogen.sh [options]; make -j`
+Apply options e.g.:  
+`sudo ninja -C build uninstall`  
+`meson configure -Dpdf=enable -Dwebp=disable`  
+`ninja -C build install`
 
-Install: `[sudo] make install`
+Meaning of options:  
+`auto` If the library is not found, continue the installation  
+`enable` If the library is not found, stop the installation  
+`disable` Do not look for the library  
 
-Removal: `[sudo] make uninstall`
+Uninstall:  
+`sudo ninja -C build uninstall`
+
+Install new version:  
+`sudo ninja -C build uninstall`  
+`git pull`  
+`ninja -C build install`
 
 #### Note
 
@@ -147,7 +161,7 @@ It is recommended to always use `git clone  git://git.geeqie.org/geeqie.git` to 
 
 However if you leave the folder intact, whenever new features or patches are available, execute:
 
-`git pull; sudo make uninstall; sudo make maintainer-clean; ./autogen.sh; make -j<no. of cpu cores>; sudo make install`
+`sudo ninja -C build uninstall; git pull; ninja -C build install`
 
 Only the changed sources are downloaded, which makes this a quick operation.
 

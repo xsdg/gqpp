@@ -8,7 +8,7 @@
 ## Dialogs allow the user to install additional features.
 ##
 
-version="2022-05-26"
+version="2022-07-17"
 description='
 Geeqie is an image viewer.
 This script will download, compile, and install Geeqie on Debian-based systems.
@@ -23,17 +23,18 @@ Command line options are:
 -t --tag=TAG Checkout and compile TAG (e.g. v1.4 or v1.3)
 -b --back=N Checkout commit -N (e.g. "-b 1" for last-but-one commit)
 -l --list List required dependencies
--d --debug=yes Compile with debug output
 '
 
 # Essential for compiling
 essential_array="git
 build-essential
-autoconf
 libglib2.0-0
 intltool
 libtool
-yelp-tools"
+meson
+yelp-tools
+help2man
+doclifter"
 
 # Optional for both GTK2 and GTK3
 optional_array="LCMS (for color management)
@@ -224,7 +225,7 @@ uninstall()
 	if [ "$current_dir" = "geeqie" ]
 	then
 
-		sudo --askpass make uninstall
+		sudo --askpass  ninja -C build uninstall
 
 		if ! zenity --title="Uninstall Geeqie" --width=370 --text="WARNING.\nThis will delete folder:\n\n$PWD\n\nand all sub-folders!" --question --ok-label="Cancel" --cancel-label="OK" 2> /dev/null
 		then
@@ -342,11 +343,6 @@ do
 			;;
 		-l | --list)
 			LIST="$2"
-			shift
-			shift
-			;;
-		-d | --debug)
-			DEBUG="$2"
 			shift
 			shift
 			;;
@@ -573,10 +569,7 @@ if [ $mode = "install" ]
 then
 	cd geeqie || exit 1
 else
-	# shellcheck disable=SC2024
-	sudo --askpass make uninstall >> "$install_log" 2>&1
-	# shellcheck disable=SC2024
-	sudo --askpass make maintainer-clean >> "$install_log" 2>&1
+	sudo --askpass  ninja -C build uninstall
 fi
 
 printf '%b\n' "30" > "$zen_pipe"
@@ -609,44 +602,26 @@ then
 		exit
 	fi
 fi
-if [ "$DEBUG" = "yes" ]
-then
-	debug_opt=""
-else
-	debug_opt="--disable-debug-log"
-fi
 
 printf '%b\n' "40" > "$zen_pipe"
 printf '%b\n' "#Creating configuration files..." > "$zen_pipe"
 
 if [ -z "${gtk_version%%GTK3*}" ]
 then
-	./autogen.sh "$debug_opt" >> "$install_log" 2>&1
+	meson setup build
+	printf '%b\n' "90 " > "$zen_pipe"
+	printf '%b\n' "#Installing Geeqie..." > "$zen_pipe"
+	ninja -C build install
 else
-	./autogen.sh "$debug_opt" --disable-gtk3 >> "$install_log" 2>&1
+	meson setup build
+	meson configure build -Dgtk3=false
+	printf '%b\n' "90 " > "$zen_pipe"
+	printf '%b\n' "#Installing Geeqie..." > "$zen_pipe"
+	ninja -C build install
 fi
-
-printf '%b\n' "60" > "$zen_pipe"
-printf '%b\n' "#Compiling..." > "$zen_pipe"
-
-export CFLAGS=$CFLAGS" -Wno-deprecated-declarations"
-export CXXFLAGS=$CXXFLAGS" -Wno-deprecated-declarations"
-
-if ! make -j >> "$install_log" 2>&1
-then
-	zenity --title="$title" --width=370 --height=400 --error --text="Compile error" 2> /dev/null
-	exit_install
-	exit
-fi
-
-printf '%b\n' "90 " > "$zen_pipe"
-printf '%b\n' "#Installing Geeqie..." > "$zen_pipe"
-
-# shellcheck disable=SC2024
-sudo --askpass make install >> "$install_log" 2>&1
 
 rm "$install_pass_script"
-mv -f "$install_log" install.log
+mv -f "$install_log" "./build/install.log"
 
 printf '%b\n' "100 " > "$zen_pipe"
 rm "$zen_pipe"

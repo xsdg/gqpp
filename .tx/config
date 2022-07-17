@@ -1,7 +1,0 @@
-[main]
-host = https://www.transifex.com
-
-[geeqie.main]
-file_filter = po/<lang>.po
-source_file = po/geeqie.pot
-source_lang = en

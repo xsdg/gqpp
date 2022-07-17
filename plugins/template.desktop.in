@@ -3,7 +3,7 @@ Version=1.0
 Type=Application
 
 # The name which appears in the menu:
-_Name=Template
+Name=Template
 #Name[cs]=Šablona
 #Name[fr]=Modèle
 #Name[de]=Vorlage

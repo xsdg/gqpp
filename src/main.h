@@ -22,9 +22,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#ifdef HAVE_CONFIG_H
-#  include "config.h"
-#endif
+#include <config.h>
 
 #ifdef HAVE_STRVERSCMP
 #  ifndef _GNU_SOURCE
@@ -151,8 +149,8 @@ extern gchar *gq_prefix;
 extern gchar *gq_localedir;
 extern gchar *gq_helpdir;
 extern gchar *gq_htmldir;
-extern gchar *gq_app_dir;
-extern gchar *gq_bin_dir;
+extern gchar *gq_appdir;
+extern gchar *gq_bindir;
 extern gchar *gq_executable_path;
 extern gchar *desktop_file_template;
 extern gchar *instance_identifier;

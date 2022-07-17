@@ -15,7 +15,6 @@ Makefile.in
 /config.cache
 /config.guess
 /config.h
-/config.h.in
 /config.log
 /config.report
 /config.status
@@ -67,10 +66,10 @@ Makefile.in
 /src/view_file/.deps
 /src/view_file/.dirstamp
 
+/build
 /build-stamp
 /debian/geeqie*
 /debian/files
-/doc/html/
 
 # The files that are autocreated(!)
 /src/gq-marshal.[ch]

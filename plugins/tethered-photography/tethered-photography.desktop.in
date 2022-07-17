@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-_Name=Tethered photography
+Name=Tethered photography
 
 Exec=geeqie-tethered-photography
 

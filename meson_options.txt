@@ -1,0 +1,46 @@
+# This file is a part of Geeqie project (https://www.geeqie.org/).
+# Copyright (C) 2008 - 2022 The Geeqie Team
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# These gq_* paths are used relative to /prefix/ e.g.
+#               prefix
+# gq_bindir -> /user/local / 'lib/geeqie'
+# gq_helpdir -> /user/local / 'share/doc/geeqie'
+
+# Override the default values set in meson.build
+option('gq_appdir', type : 'string', value : '', description : 'Location of application data')
+option('gq_bindir', type : 'string', value : '', description : 'Location of plugin scripts and executables')
+option('gq_helpdir', type : 'string', value : '', description : 'Location of documentation files')
+option('gq_htmldir', type : 'string', value : '', description : 'Location of html documentation')
+option('gq_localedir', type : 'string', value : '', description : 'Location where the catalogs will be installed')
+
+option('gtk3', type : 'boolean', value : 'true', description : 'GTK3')
+
+option('archive', type : 'feature', value : 'auto', description : 'archive files e.g. zip, gz')
+option('clutter', type : 'feature', value : 'auto', description : 'clutter (for GPS maps)')
+option('cms', type : 'feature', value : 'auto', description : 'color management system')
+option('djvu', type : 'feature', value : 'auto', description : 'djvu')
+option('exiv2', type : 'feature', value : 'auto', description : 'exiv2')
+option('ffmpegthumbnailer', type : 'feature', value : 'auto', description : 'ffmpegthumbnailer')
+option('gps-map', type : 'feature', value : 'auto', description : 'gps map')
+option('heif', type : 'feature', value : 'auto', description : 'heif')
+option('j2k', type : 'feature', value : 'auto', description : 'j2k')
+option('jpeg', type : 'feature', value : 'auto', description : 'jpeg')
+option('jpegxl', type : 'feature', value : 'auto', description : 'jpegxl')
+option('libraw', type : 'feature', value : 'auto', description : 'libraw')
+option('lirc', type : 'feature', value : 'auto', description : 'lirc')
+option('lua', type : 'feature', value : 'auto', description : 'lua')
+option('markdown', type : 'feature', value : 'auto', description : 'markdown')
+option('pdf', type : 'feature', value : 'auto', description : 'pdf')
+option('spell', type : 'feature', value : 'auto', description : 'spelling checks')
+option('tiff', type : 'feature', value : 'auto', description : 'tiff')
+option('webp', type : 'feature', value : 'auto', description : 'webp')

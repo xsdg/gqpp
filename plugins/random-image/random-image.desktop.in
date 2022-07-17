@@ -1,8 +1,8 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-_Name=Random image
-_Comment=Display random image from Collections and current folder
+Name=Random image
+Comment=Display random image from Collections and current folder
 
 Exec=geeqie-random-image
 

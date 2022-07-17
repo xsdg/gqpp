@@ -1,8 +1,8 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-_Name=Camera import
-_Comment=Import all images from camera
+Name=Camera import
+Comment=Import all images from camera
 
 # Requires gphoto2
 # The gphoto2 file $HOME/.gphoto2/settings can

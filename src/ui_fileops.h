@@ -21,8 +21,7 @@
 
 #ifndef UI_FILEOPS_H
 #define UI_FILEOPS_H
-
-#include "config.h"
+#include <config.h>
 #include <sys/stat.h>
 #include <sys/time.h>
 #include <sys/types.h>

@@ -45,9 +45,7 @@
  *     Add support for marker tag 0x0000
  */
 
-#ifdef HAVE_CONFIG_H
-#  include "config.h"
-#endif
+#include <config.h>
 
 #ifndef HAVE_EXIV2
 

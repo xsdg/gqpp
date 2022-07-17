@@ -1,6 +1,6 @@
 #! /bin/sh
 #**********************************************************************
-# Copyright (C) 2021 - The Geeqie Team
+# Copyright (C) 2022 - The Geeqie Team
 #
 # Author: Colin Clark
 #
@@ -39,15 +39,13 @@ then
 	exit 1
 fi
 
+rm -rf ./build-appimge
 rm -rf "$target_dir"/AppDir
 mkdir "$target_dir"/AppDir || { printf '%s\n' "Cannot make $target_dir/AppDir"; exit 1; }
 
-sudo rm -rf doc/html
-
-sudo make maintainer-clean
-./autogen.sh --prefix="/usr/"
-make -j
-make install DESTDIR="$target_dir"/AppDir
+meson setup build-appimage
+meson configure build-appimage -Dprefix="/usr/"
+DESTDIR=/"$target_dir"/AppDir ninja -C build-appimage install
 
 VERSION=$(git tag | tail -1)
 export VERSION
