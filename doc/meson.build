@@ -11,6 +11,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #
 
+subdir('html')
+
 guideindex = files('docbook/GuideIndex.xml')
 destdir = join_paths(meson.project_build_root(), 'doc', 'html/')
 iconsdir = join_paths(meson.project_source_root(), 'doc', 'icons/')
