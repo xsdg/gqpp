@@ -47,22 +47,35 @@ const gchar *text_from_time(time_t t);
  * @headerfile file_data_new_group
  * scan for sidecar files - expensive
  */
-FileData *file_data_new_group(const gchar *path_utf8);
+FileData *file_data_new_group(const gchar *path_utf8)
+{
+    return FileData::file_data_new_group(path_utf8);
+}
 
 /**
  * @headerfile file_data_new_no_grouping
  * should be used on helper files which can't have sidecars
  */
-FileData *file_data_new_no_grouping(const gchar *path_utf8);
+FileData *file_data_new_no_grouping(const gchar *path_utf8)
+{
+    return FileData::file_data_new_no_grouping(path_utf8);
+}
 
 /**
  * @headerfile file_data_new_dir
  * should be used on dirs
  */
-FileData *file_data_new_dir(const gchar *path_utf8);
+FileData *file_data_new_dir(const gchar *path_utf8)
+{
+    return FileData::file_data_new_dir(path_utf8);
+}
 
-FileData *file_data_new_simple(const gchar *path_utf8);
+FileData *file_data_new_simple(const gchar *path_utf8)
+{
+    return FileData::file_data_new_simple(path_utf8);
+}
 
+/*
 #ifdef DEBUG_FILEDATA
 FileData *file_data_ref_debug(const gchar *file, gint line, FileData *fd);
 void file_data_unref_debug(const gchar *file, gint line, FileData *fd);
@@ -72,6 +85,7 @@ void file_data_unref_debug(const gchar *file, gint line, FileData *fd);
 FileData *file_data_ref(FileData *fd);
 void file_data_unref(FileData *fd);
 #endif
+*/
 
 void file_data_lock(FileData *fd);
 void file_data_unlock(FileData *fd);
@@ -83,7 +97,10 @@ void file_data_unlock_list(GList *list);
 
 gboolean file_data_check_changed_files(FileData *fd);
 
-void file_data_increment_version(FileData *fd);
+void file_data_increment_version(FileData *fd)
+{
+    fd->file_data_increment_version(fd);
+}
 
 gboolean file_data_add_change_info(FileData *fd, FileDataChangeType type, const gchar *src, const gchar *dest);
 void file_data_change_info_free(FileDataChangeInfo *fdci, FileData *fd);
@@ -117,8 +134,8 @@ GList *filelist_recursive_full(FileData *dir_fd, SortType method, gboolean ascen
 
 /***************** MARKS *****************/
 
-typedef gboolean (* FileDataGetMarkFunc)(FileData *fd, gint n, gpointer data);
-typedef gboolean (* FileDataSetMarkFunc)(FileData *fd, gint n, gboolean value, gpointer data);
+// typedef gboolean (* FileDataGetMarkFunc)(FileData *fd, gint n, gpointer data);
+// typedef gboolean (* FileDataSetMarkFunc)(FileData *fd, gint n, gboolean value, gpointer data);
 gboolean file_data_register_mark_func(gint n, FileDataGetMarkFunc get_mark_func, FileDataSetMarkFunc set_mark_func, gpointer data, GDestroyNotify notify);
 void file_data_get_registered_mark_func(gint n, FileDataGetMarkFunc *get_mark_func, FileDataSetMarkFunc *set_mark_func, gpointer *data);
 
@@ -190,7 +207,7 @@ void file_data_sc_free_ci_list(GList *fd_list);
 GList *file_data_process_groups_in_selection(GList *list, gboolean ungroup, GList **ungrouped);
 
 
-typedef void (*FileDataNotifyFunc)(FileData *fd, NotifyType type, gpointer data);
+// typedef void (*FileDataNotifyFunc)(FileData *fd, NotifyType type, gpointer data);
 gboolean file_data_register_notify_func(FileDataNotifyFunc func, gpointer data, NotifyPriority priority);
 gboolean file_data_unregister_notify_func(FileDataNotifyFunc func, gpointer data);
 void file_data_send_notification(FileData *fd, NotifyType type);

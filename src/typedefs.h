@@ -664,14 +664,11 @@ struct FileData {
     public:
 
     private:
-        // FileData *file_data_new(const gchar *path_utf8, struct stat *st, gboolean disable_sidecars);
-        GHashTable *file_data_pool = NULL;
-        GHashTable *file_data_planned_change_hash = NULL;
+        static GHashTable *file_data_pool;  // = NULL;
+        static GHashTable *file_data_planned_change_hash;  // = NULL;
 
     /**** FILELIST ****/
     private:
-        // static gboolean filelist_read_real(const gchar *dir_path, GList **files, GList **dirs,
-        //                                   gboolean follow_symlinks);
 
     /**** BULK PASTE ****/
     private:
@@ -695,30 +692,38 @@ struct FileData {
         static gint file_data_notify_sort(gconstpointer a, gconstpointer b);
         gboolean file_data_register_notify_func(FileDataNotifyFunc func, gpointer data, NotifyPriority priority);
         gboolean file_data_unregister_notify_func(FileDataNotifyFunc func, gpointer data);
-        gboolean file_data_send_notification_idle_cb(gpointer data);
-        void file_data_send_notification(FileData *fd, NotifyType type);
+        static gboolean file_data_send_notification_idle_cb(gpointer data);
+        static void file_data_send_notification(FileData *fd, NotifyType type);
         void file_data_change_info_free(FileDataChangeInfo *fdci, FileData *fd);
 
         // core.c;
-        FileData *file_data_new(const gchar *path_utf8, struct stat *st, gboolean disable_sidecars);
-        /*static*/ FileData *file_data_new_local(const gchar *path, struct stat *st, gboolean disable_sidecars);
-        /*static*/ FileData *file_data_new_simple(const gchar *path_utf8);
-        FileData *file_data_new_group(const gchar *path_utf8);
-        /*static*/ FileData *file_data_new_no_grouping(const gchar *path_utf8);
-        /*static*/ FileData *file_data_new_dir(const gchar *path_utf8);
+        static FileData *file_data_new(const gchar *path_utf8, struct stat *st, gboolean disable_sidecars);
+        /**/static/**/ FileData *file_data_new_local(const gchar *path, struct stat *st, gboolean disable_sidecars);
+    public:
+        static FileData *file_data_new_simple(const gchar *path_utf8);
+        static FileData *file_data_new_group(const gchar *path_utf8);
+        static FileData *file_data_new_no_grouping(const gchar *path_utf8);
+        /**/static/**/ FileData *file_data_new_dir(const gchar *path_utf8);
+    public:
+        // file_data_ref and file_data_unref are part of the public API.
         FileData *file_data_ref_debug(const gchar *file, gint line, FileData *fd);
         FileData *file_data_ref(FileData *fd);
+    private:
 
         /*static*/ void file_data_free(FileData *fd);
         /*static*/ gboolean file_data_check_has_ref(FileData *fd);
         /*static*/ void file_data_consider_free(FileData *fd);
+    public:
         void file_data_unref_debug(const gchar *file, gint line, FileData *fd);
         void file_data_unref(FileData *fd);
         void file_data_lock(FileData *fd);
         void file_data_unlock(FileData *fd);
         void file_data_lock_list(GList *list);
         void file_data_unlock_list(GList *list);
+        // TODO(xsdg): Make metadata.c a friend class and then make
+        // increment_version a private method.
         void file_data_increment_version(FileData *fd);
+    private:
         /*static*/ gboolean file_data_check_changed_single_file(FileData *fd, struct stat *st);
         /*static*/ gboolean file_data_check_changed_files_recursive(FileData *fd, struct stat *st);
         /**static**/ gboolean file_data_check_changed_files(FileData *fd);
@@ -739,12 +744,12 @@ struct FileData {
         GList *filelist_insert_sort_full(GList *list, gpointer data, SortType method, gboolean ascend, GCompareFunc cb);
         GList *filelist_sort(GList *list, SortType method, gboolean ascend);
         GList *filelist_insert_sort(GList *list, FileData *fd, SortType method, gboolean ascend);
-        /*static*/ GList *filelist_filter_out_sidecars(GList *flist);
+        /**/static/**/ GList *filelist_filter_out_sidecars(GList *flist);
 
-        /*static*/ gboolean filelist_read_real(const gchar *dir_path, GList **files, GList **dirs, gboolean follow_symlinks);
+        /**/static/**/ gboolean filelist_read_real(const gchar *dir_path, GList **files, GList **dirs, gboolean follow_symlinks);
         gboolean filelist_read(FileData *dir_fd, GList **files, GList **dirs);
         gboolean filelist_read_lstat(FileData *dir_fd, GList **files, GList **dirs);
-        void filelist_free(GList *list);
+        static void filelist_free(GList *list);
         static gint filelist_sort_path_cb(gconstpointer a, gconstpointer b);
         /*static*/ void filelist_recursive_append(GList **list, GList *dirs);
         /*static*/ void filelist_recursive_append_full(GList **list, GList *dirs, SortType method, gboolean ascend);
@@ -789,8 +794,8 @@ struct FileData {
 
         /*static*/ gboolean file_data_list_contains_whole_group(GList *list, FileData *fd);
         /*static*/ gint sidecar_file_priority(const gchar *extension);
-        /*static*/ void file_data_check_sidecars(const GList *basename_list);
-        /*static*/ void file_data_disconnect_sidecar_file(FileData *target, FileData *sfd);
+        /**/static/**/ void file_data_check_sidecars(const GList *basename_list);
+        /**/static/**/ void file_data_disconnect_sidecar_file(FileData *target, FileData *sfd);
         void file_data_disable_grouping(FileData *fd, gboolean disable);
         void file_data_disable_grouping_list(GList *fd_list, gboolean disable);
 
@@ -833,18 +838,18 @@ struct FileData {
         gchar *text_from_size(gint64 size);
         gchar *text_from_size_abrev(gint64 size);
         const gchar *text_from_time(time_t t);
-        /*static*/ GHashTable *file_data_basename_hash_new(void);
+        /**/static/**/ GHashTable *file_data_basename_hash_new(void);
         gchar *file_data_get_error_string(gint error);
 
         static gint file_data_sort_by_ext(gconstpointer a, gconstpointer b);
-        /*static*/ GList * file_data_basename_hash_insert(GHashTable *basename_hash, FileData *fd);
-        /*static*/ void file_data_basename_hash_insert_cb(gpointer fd, gpointer basename_hash);
-        /*static*/ void file_data_basename_hash_remove_list(gpointer key, gpointer value, gpointer data);
-        /*static*/ void file_data_basename_hash_free(GHashTable *basename_hash);
-        /*static*/ void file_data_basename_hash_to_sidecars(gpointer key, gpointer value, gpointer data);
-        /*static*/ gboolean is_hidden_file(const gchar *name);
-        /*static*/ gboolean file_data_can_write_directly(FileData *fd);
-        /*static*/ gboolean file_data_can_write_sidecar(FileData *fd);
+        /**/static/**/ GList * file_data_basename_hash_insert(GHashTable *basename_hash, FileData *fd);
+        /**/static/**/ void file_data_basename_hash_insert_cb(gpointer fd, gpointer basename_hash);
+        /**/static/**/ void file_data_basename_hash_remove_list(gpointer key, gpointer value, gpointer data);
+        /**/static/**/ void file_data_basename_hash_free(GHashTable *basename_hash);
+        /**/static/**/ void file_data_basename_hash_to_sidecars(gpointer key, gpointer value, gpointer data);
+        /**/static/**/ gboolean is_hidden_file(const gchar *name);
+        /**/static/**/ gboolean file_data_can_write_directly(FileData *fd);
+        /**/static/**/ gboolean file_data_can_write_sidecar(FileData *fd);
         gint file_data_get_user_orientation(FileData *fd);
         void file_data_set_user_orientation(FileData *fd, gint value);
         void file_data_set_page_num(FileData *fd, gint page_num);

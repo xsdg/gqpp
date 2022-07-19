@@ -298,7 +298,7 @@ GList *FileData::file_data_process_groups_in_selection(GList *list, gboolean ung
 
 	g_assert(sfd->parent == target);
 
-	file_data_increment_version(sfd); /* increments both sfd and target */
+	sfd->file_data_increment_version(sfd); /* increments both sfd and target */
 
 	target->sidecar_files = g_list_remove(target->sidecar_files, sfd);
 	sfd->parent = NULL;

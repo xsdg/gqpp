@@ -227,7 +227,8 @@ static gboolean slideshow_step(SlideShowData *ss, gboolean forward)
 
 	if (ss->filelist)
 		{
-		ss->slide_fd = file_data_ref((FileData *)g_list_nth_data(ss->filelist, row));
+		ss->slide_fd = file_data_ref(
+                        static_cast<FileData *>(g_list_nth_data(ss->filelist, row)));
 		if (ss->lw)
 			layout_set_fd(ss->lw, ss->slide_fd);
 		else

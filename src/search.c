@@ -3836,7 +3836,7 @@ void mfd_list_free(GList *list)
 	while (work)
 		{
 		MatchFileData *mfd = work->data;
-		file_data_unref((FileData *)mfd->fd);
+		file_data_unref(static_cast<FileData *>(mfd->fd));
 		work = work->next;
 		}
 

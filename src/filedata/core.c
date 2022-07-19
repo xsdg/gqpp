@@ -40,8 +40,8 @@
 gint global_file_data_count = 0;
 #endif
 
-static GHashTable *file_data_pool = NULL;
-static GHashTable *file_data_planned_change_hash = NULL;
+GHashTable *file_data_pool = NULL;
+GHashTable *file_data_planned_change_hash = NULL;
 
 // private
 FileData *FileData::file_data_new(const gchar *path_utf8, struct stat *st, gboolean disable_sidecars)
@@ -72,7 +72,7 @@ FileData *FileData::file_data_new(const gchar *path_utf8, struct stat *st, gbool
 			if (!isfile(fd->path))
 				{
 				file_data_ref(fd);
-				file_data_apply_ci(fd);
+				fd->file_data_apply_ci(fd);
 				}
 			else
 				{
@@ -85,10 +85,10 @@ FileData *FileData::file_data_new(const gchar *path_utf8, struct stat *st, gbool
 		{
 		gboolean changed;
 
-		if (disable_sidecars) file_data_disable_grouping(fd, TRUE);
+		if (disable_sidecars) fd->file_data_disable_grouping(fd, TRUE);
 
 
-		changed = file_data_check_changed_single_file(fd, st);
+		changed = fd->file_data_check_changed_single_file(fd, st);
 
 		DEBUG_2("file_data_pool hit: '%s' %s", fd->path, changed ? "(changed)" : "");
 
@@ -137,7 +137,7 @@ FileData *FileData::file_data_new(const gchar *path_utf8, struct stat *st, gbool
 
 	if (disable_sidecars) fd->disable_grouping = TRUE;
 
-	file_data_set_path(fd, path_utf8); /* set path, name, collate_key_*, original_path */
+	fd->file_data_set_path(fd, path_utf8); /* set path, name, collate_key_*, original_path */
 
 	return fd;
 }

@@ -3013,7 +3013,7 @@ void dupe_window_add_files(DupeWindow *dw, GList *list, gboolean recurse)
 					{
 					/* Add only the files, ignore the dirs when no recurse */
 					dw->add_files_queue = g_list_prepend(dw->add_files_queue, work_file->data);
-					file_data_ref((FileData *)work_file->data);
+					file_data_ref(static_cast<FileData *>(work_file->data));
 					work_file = work_file->next;
 					}
 				g_list_free(f);
