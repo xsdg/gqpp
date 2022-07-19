@@ -13,11 +13,14 @@
 
 subdir('html')
 
-guideindex = files('docbook/GuideIndex.xml')
+guideindex_xml = files('docbook/GuideIndex.xml')
 destdir = join_paths(meson.project_build_root(), 'doc', 'html/')
 iconsdir = join_paths(meson.project_source_root(), 'doc', 'icons/')
+guideindex_html = join_paths(destdir, 'GuideIndex.html')
+guideindex_ln = join_paths(destdir, 'index.html')
 
-run_command(gnome_doc_tool, 'html', '-o', destdir, '-p', iconsdir, guideindex, check : false)
+run_command(gnome_doc_tool, 'html', '-o', destdir, '-p', iconsdir, guideindex_xml, check : false)
+run_command(find_program('ln'), '-s', '-f', guideindex_html, guideindex_ln, check : false)
 
 install_subdir(destdir, install_dir : helpdir, install_tag : 'help')
 
