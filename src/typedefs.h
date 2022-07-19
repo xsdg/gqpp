@@ -661,17 +661,13 @@ void free_v_wrapper(ArgTypes... args, void* user_data) {
 // public and private methods for each method grouping, followed by public and private members.
 struct FileData {
     /**** CORE ****/
-    public:
-
     private:
         static GHashTable *file_data_pool;  // = NULL;
         static GHashTable *file_data_planned_change_hash;  // = NULL;
 
-    /**** FILELIST ****/
-    private:
-
     /**** BULK PASTE ****/
-    private:
+    // TODO(xsdg): Mark non-public APIs as private.
+    public:
         // change_info.c;
         gboolean file_data_add_ci(FileData *fd, FileDataChangeType type, const gchar *src, const gchar *dest);
         /*static*/ void file_data_planned_change_remove(FileData *fd);
@@ -708,7 +704,7 @@ struct FileData {
         // file_data_ref and file_data_unref are part of the public API.
         FileData *file_data_ref_debug(const gchar *file, gint line, FileData *fd);
         FileData *file_data_ref(FileData *fd);
-    private:
+    /*private:*/
 
         /*static*/ void file_data_free(FileData *fd);
         /*static*/ gboolean file_data_check_has_ref(FileData *fd);
@@ -723,7 +719,7 @@ struct FileData {
         // TODO(xsdg): Make metadata.c a friend class and then make
         // increment_version a private method.
         void file_data_increment_version(FileData *fd);
-    private:
+    /*private:*/
         /*static*/ gboolean file_data_check_changed_single_file(FileData *fd, struct stat *st);
         /*static*/ gboolean file_data_check_changed_files_recursive(FileData *fd, struct stat *st);
         /**static**/ gboolean file_data_check_changed_files(FileData *fd);

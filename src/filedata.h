@@ -75,7 +75,8 @@ gboolean file_data_check_changed_files(FileData *fd);
 
 void file_data_increment_version(FileData *fd);
 
-gboolean file_data_add_change_info(FileData *fd, FileDataChangeType type, const gchar *src, const gchar *dest);
+// Was not actually defined anywhere.
+//gboolean file_data_add_change_info(FileData *fd, FileDataChangeType type, const gchar *src, const gchar *dest);
 void file_data_change_info_free(FileDataChangeInfo *fdci, FileData *fd);
 
 void file_data_disable_grouping(FileData *fd, gboolean disable);
