@@ -40,8 +40,8 @@
 gint global_file_data_count = 0;
 #endif
 
-GHashTable *file_data_pool = NULL;
-GHashTable *file_data_planned_change_hash = NULL;
+GHashTable *FileData::file_data_pool = NULL;
+GHashTable *FileData::file_data_planned_change_hash = NULL;
 
 // private
 FileData *FileData::file_data_new(const gchar *path_utf8, struct stat *st, gboolean disable_sidecars)
