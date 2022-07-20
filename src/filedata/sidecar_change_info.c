@@ -154,7 +154,7 @@ gboolean FileData::file_data_sc_add_ci_delete_list(GList *fd_list)
 		{
 		FileData *fd = work->data;
 
-		if (!file_data_sc_add_ci_delete(fd)) ret = FALSE;
+		if (!::file_data_sc_add_ci_delete(fd)) ret = FALSE;
 		work = work->next;
 		}
 
@@ -170,7 +170,7 @@ gboolean FileData::file_data_sc_add_ci_delete_list(GList *fd_list)
 		{
 		FileData *fd = work->data;
 
-		file_data_sc_free_ci(fd);
+		::file_data_sc_free_ci(fd);
 		work = work->prev;
 		}
 }
@@ -184,7 +184,7 @@ gboolean FileData::file_data_sc_add_ci_delete_list(GList *fd_list)
 		{
 		FileData *fd = work->data;
 
-		if (!std::invoke(func, this, fd, dest))
+		if (!std::invoke(func, fd, fd, dest))
 			{
 			file_data_sc_revert_ci_list(work->prev);
 			return FALSE;
@@ -224,7 +224,7 @@ void FileData::file_data_sc_free_ci_list(GList *fd_list)
 		{
 		FileData *fd = work->data;
 
-		file_data_sc_free_ci(fd);
+		::file_data_sc_free_ci(fd);
 		work = work->next;
 		}
 }
@@ -306,7 +306,7 @@ gboolean FileData::file_data_sc_update_ci_unspecified(FileData *fd, const gchar 
 		{
 		FileData *fd = work->data;
 
-		if (!std::invoke(func, this, fd, dest)) ret = FALSE;
+		if (!std::invoke(func, fd, fd, dest)) ret = FALSE;
 		work = work->next;
 		}
 

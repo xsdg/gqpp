@@ -428,7 +428,7 @@ void FileData::file_data_lock_list(GList *list)
 		{
 		FileData *fd = work->data;
 		work = work->next;
-		file_data_lock(fd);
+		fd->file_data_lock(fd);
 		}
 }
 
@@ -446,7 +446,7 @@ void FileData::file_data_unlock_list(GList *list)
 		{
 		FileData *fd = work->data;
 		work = work->next;
-		file_data_unlock(fd);
+		fd->file_data_unlock(fd);
 		}
 }
 

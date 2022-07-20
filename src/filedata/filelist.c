@@ -36,6 +36,8 @@
 #include <errno.h>
 #include <grp.h>
 
+// TODO(xsdg): Replace g_list_sort with g_list_sort_with_data to get rid of
+// these globals.
 static SortType filelist_sort_method = SORT_NONE;
 static gboolean filelist_sort_ascend = TRUE;
 
@@ -137,10 +139,6 @@ static gboolean filelist_sort_ascend = TRUE;
 
 	if (files)
 		{
-/*        FileDataFunctor<void, void*, void*> callback_functor = {
-            this, &FileData::file_data_basename_hash_to_sidecars};
-		g_hash_table_foreach(
-                basename_hash, v_wrapper<void, void*, void*>, &callback_functor);*/
         g_hash_table_foreach(basename_hash,
                              &FileData::file_data_basename_hash_to_sidecars,
                              NULL);

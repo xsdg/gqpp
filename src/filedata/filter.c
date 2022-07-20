@@ -353,7 +353,7 @@ gboolean FileData::marks_list_save(gchar *path, gboolean save)
 				mark_no = 1 << n;
 				if (fd->marks & mark_no)
 					{
-					file_data_set_mark(fd, n , 0);
+					::file_data_set_mark(fd, n , 0);
 					}
 				n++;
 				}
@@ -363,8 +363,5 @@ gboolean FileData::marks_list_save(gchar *path, gboolean save)
 
 void FileData::marks_clear_all()
 {
-    FileDataFunctor<void, void*, void*> callback_functor = {
-        this, &FileData::marks_clear};
-	g_hash_table_foreach(
-            file_data_pool, v_wrapper<void, void*, void*>, &callback_functor);
+	g_hash_table_foreach(file_data_pool, &FileData::marks_clear, NULL);
 }

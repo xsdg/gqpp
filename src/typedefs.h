@@ -714,8 +714,8 @@ struct FileData {
         void file_data_unref(FileData *fd);
         void file_data_lock(FileData *fd);
         void file_data_unlock(FileData *fd);
-        void file_data_lock_list(GList *list);
-        void file_data_unlock_list(GList *list);
+        static void file_data_lock_list(GList *list);
+        static void file_data_unlock_list(GList *list);
         // TODO(xsdg): Make metadata.c a friend class and then make
         // increment_version a private method.
         void file_data_increment_version(FileData *fd);
@@ -729,28 +729,30 @@ struct FileData {
         gboolean file_data_unregister_real_time_monitor(FileData *fd);
 
         // filelist.c;
-        GList *filelist_copy(GList *list);
-        GList *filelist_from_path_list(GList *list);
-        GList *filelist_to_path_list(GList *list);
-        GList *filelist_filter(GList *list, gboolean is_dir_list);
-        GList *filelist_sort_path(GList *list);
-        GList *filelist_recursive(FileData *dir_fd);
-        GList *filelist_recursive_full(FileData *dir_fd, SortType method, gboolean ascend);
-        GList *filelist_sort_full(GList *list, SortType method, gboolean ascend, GCompareFunc cb);
-        GList *filelist_insert_sort_full(GList *list, gpointer data, SortType method, gboolean ascend, GCompareFunc cb);
-        GList *filelist_sort(GList *list, SortType method, gboolean ascend);
-        GList *filelist_insert_sort(GList *list, FileData *fd, SortType method, gboolean ascend);
+        // TODO(xsdg): filelist.c should be its own class, which should be a
+        // friend class to FileData.
+        static GList *filelist_copy(GList *list);
+        static GList *filelist_from_path_list(GList *list);
+        static GList *filelist_to_path_list(GList *list);
+        static GList *filelist_filter(GList *list, gboolean is_dir_list);
+        static GList *filelist_sort_path(GList *list);
+        static GList *filelist_recursive(FileData *dir_fd);
+        static GList *filelist_recursive_full(FileData *dir_fd, SortType method, gboolean ascend);
+        static GList *filelist_sort_full(GList *list, SortType method, gboolean ascend, GCompareFunc cb);
+        static GList *filelist_insert_sort_full(GList *list, gpointer data, SortType method, gboolean ascend, GCompareFunc cb);
+        static GList *filelist_sort(GList *list, SortType method, gboolean ascend);
+        static GList *filelist_insert_sort(GList *list, FileData *fd, SortType method, gboolean ascend);
         /**/static/**/ GList *filelist_filter_out_sidecars(GList *flist);
 
         /**/static/**/ gboolean filelist_read_real(const gchar *dir_path, GList **files, GList **dirs, gboolean follow_symlinks);
-        gboolean filelist_read(FileData *dir_fd, GList **files, GList **dirs);
-        gboolean filelist_read_lstat(FileData *dir_fd, GList **files, GList **dirs);
+        static gboolean filelist_read(FileData *dir_fd, GList **files, GList **dirs);
+        static gboolean filelist_read_lstat(FileData *dir_fd, GList **files, GList **dirs);
         static void filelist_free(GList *list);
         static gint filelist_sort_path_cb(gconstpointer a, gconstpointer b);
-        /*static*/ void filelist_recursive_append(GList **list, GList *dirs);
-        /*static*/ void filelist_recursive_append_full(GList **list, GList *dirs, SortType method, gboolean ascend);
+        static void filelist_recursive_append(GList **list, GList *dirs);
+        static void filelist_recursive_append_full(GList **list, GList *dirs, SortType method, gboolean ascend);
         static gint filelist_sort_compare_filedata(FileData *fa, FileData *fb);
-        gint filelist_sort_compare_filedata_full(FileData *fa, FileData *fb, SortType method, gboolean ascend);
+        static gint filelist_sort_compare_filedata_full(FileData *fa, FileData *fb, SortType method, gboolean ascend);
         static gint filelist_sort_file_cb(gpointer a, gpointer b);
 
         // filter.c;
@@ -770,8 +772,8 @@ struct FileData {
         static void marks_get_files(gpointer key, gpointer value, gpointer userdata);
         gboolean marks_list_load(const gchar *path);
         gboolean marks_list_save(gchar *path, gboolean save);
-        /*static*/ void marks_clear(gpointer key, gpointer value, gpointer userdata);
-        void marks_clear_all();
+        static void marks_clear(gpointer key, gpointer value, gpointer userdata);
+        static void marks_clear_all();
 
         // metadata.c;
         /*static*/ void file_data_set_collate_keys(FileData *fd);
@@ -793,7 +795,7 @@ struct FileData {
         /**/static/**/ void file_data_check_sidecars(const GList *basename_list);
         /**/static/**/ void file_data_disconnect_sidecar_file(FileData *target, FileData *sfd);
         void file_data_disable_grouping(FileData *fd, gboolean disable);
-        void file_data_disable_grouping_list(GList *fd_list, gboolean disable);
+        static void file_data_disable_grouping_list(GList *fd_list, gboolean disable);
 
         // sidecar_change_info.c;
         /*static*/ gboolean file_data_sc_add_ci(FileData *fd, FileDataChangeType type);
@@ -805,37 +807,38 @@ struct FileData {
         gboolean file_data_sc_add_ci_unspecified(FileData *fd, const gchar *dest_path);
         gboolean file_data_add_ci_write_metadata(FileData *fd);
         void file_data_sc_free_ci(FileData *fd);
-        gboolean file_data_sc_add_ci_delete_list(GList *fd_list);
-        /*static*/ void file_data_sc_revert_ci_list(GList *fd_list);
+        static gboolean file_data_sc_add_ci_delete_list(GList *fd_list);
+        static void file_data_sc_revert_ci_list(GList *fd_list);
         using CiListCallFunc = gboolean (FileData::*)(FileData *, const gchar *);
-        /*static*/ gboolean file_data_sc_add_ci_list_call_func(
+        // using CiListCallFunc = gboolean (*)(FileData *, const gchar *);
+        static gboolean file_data_sc_add_ci_list_call_func(
                 GList *fd_list, const gchar *dest, CiListCallFunc func);
-        gboolean file_data_sc_add_ci_copy_list(GList *fd_list, const gchar *dest);
-        gboolean file_data_sc_add_ci_move_list(GList *fd_list, const gchar *dest);
-        gboolean file_data_sc_add_ci_rename_list(GList *fd_list, const gchar *dest);
-        gboolean file_data_sc_add_ci_unspecified_list(GList *fd_list, const gchar *dest);
-        void file_data_sc_free_ci_list(GList *fd_list);
+        static gboolean file_data_sc_add_ci_copy_list(GList *fd_list, const gchar *dest);
+        static gboolean file_data_sc_add_ci_move_list(GList *fd_list, const gchar *dest);
+        static gboolean file_data_sc_add_ci_rename_list(GList *fd_list, const gchar *dest);
+        static gboolean file_data_sc_add_ci_unspecified_list(GList *fd_list, const gchar *dest);
+        static void file_data_sc_free_ci_list(GList *fd_list);
         /*static*/ void file_data_sc_update_ci(FileData *fd, const gchar *dest_path);
         /*static*/ gboolean file_data_sc_check_update_ci(FileData *fd, const gchar *dest_path, FileDataChangeType type);
         gboolean file_data_sc_update_ci_copy(FileData *fd, const gchar *dest_path);
         gboolean file_data_sc_update_ci_move(FileData *fd, const gchar *dest_path);
         gboolean file_data_sc_update_ci_rename(FileData *fd, const gchar *dest_path);
         gboolean file_data_sc_update_ci_unspecified(FileData *fd, const gchar *dest_path);
-        /*static*/ gboolean file_data_sc_update_ci_list_call_func(
+        static gboolean file_data_sc_update_ci_list_call_func(
                 GList *fd_list, const gchar *dest, CiListCallFunc func);
-        gboolean file_data_sc_update_ci_move_list(GList *fd_list, const gchar *dest);
-        gboolean file_data_sc_update_ci_copy_list(GList *fd_list, const gchar *dest);
-        gboolean file_data_sc_update_ci_unspecified_list(GList *fd_list, const gchar *dest);
+        static gboolean file_data_sc_update_ci_move_list(GList *fd_list, const gchar *dest);
+        static gboolean file_data_sc_update_ci_copy_list(GList *fd_list, const gchar *dest);
+        static gboolean file_data_sc_update_ci_unspecified_list(GList *fd_list, const gchar *dest);
         gint file_data_sc_verify_ci(FileData *fd, GList *list);
         gboolean file_data_sc_perform_ci(FileData *fd);
         gboolean file_data_sc_apply_ci(FileData *fd);
 
         // util.c;
-        gchar *text_from_size(gint64 size);
-        gchar *text_from_size_abrev(gint64 size);
-        const gchar *text_from_time(time_t t);
+        static gchar *text_from_size(gint64 size);
+        static gchar *text_from_size_abrev(gint64 size);
+        static const gchar *text_from_time(time_t t);
         /**/static/**/ GHashTable *file_data_basename_hash_new(void);
-        gchar *file_data_get_error_string(gint error);
+        static gchar *file_data_get_error_string(gint error);
 
         static gint file_data_sort_by_ext(gconstpointer a, gconstpointer b);
         /**/static/**/ GList * file_data_basename_hash_insert(GHashTable *basename_hash, FileData *fd);

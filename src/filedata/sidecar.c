@@ -361,7 +361,7 @@ void FileData::file_data_disable_grouping_list(GList *fd_list, gboolean disable)
 		{
 		FileData *fd = work->data;
 
-		file_data_disable_grouping(fd, disable);
+		::file_data_disable_grouping(fd, disable);
 		work = work->next;
 		}
 }

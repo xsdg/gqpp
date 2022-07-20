@@ -123,12 +123,12 @@ void file_data_unlock(FileData *fd)
 
 void file_data_lock_list(GList *list)
 {
-    FileData::file_data_lock_list( list);
+    FileData::file_data_lock_list(list);
 }
 
 void file_data_unlock_list(GList *list)
 {
-    FileData::file_data_unlock_list( list);
+    FileData::file_data_unlock_list(list);
 }
 
 
@@ -148,7 +148,7 @@ void file_data_increment_version(FileData *fd)
 
 void file_data_change_info_free(FileDataChangeInfo *fdci, FileData *fd)
 {
-    FileData::file_data_change_info_free( fdci, fd);
+    fd->file_data_change_info_free(fdci, fd);
 }
 
 
