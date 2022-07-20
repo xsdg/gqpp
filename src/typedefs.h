@@ -660,6 +660,9 @@ void free_v_wrapper(ArgTypes... args, void* user_data) {
 // Struct organization:
 // public and private methods for each method grouping, followed by public and private members.
 struct FileData {
+    // Child classes that encapsulate some functionality.
+    struct FileList;
+
     /**** CORE ****/
     private:
         static GHashTable *file_data_pool;  // = NULL;
@@ -727,33 +730,6 @@ struct FileData {
         static gboolean realtime_monitor_cb(gpointer data);
         gboolean file_data_register_real_time_monitor(FileData *fd);
         gboolean file_data_unregister_real_time_monitor(FileData *fd);
-
-        // filelist.c;
-        // TODO(xsdg): filelist.c should be its own class, which should be a
-        // friend class to FileData.
-        static GList *filelist_copy(GList *list);
-        static GList *filelist_from_path_list(GList *list);
-        static GList *filelist_to_path_list(GList *list);
-        static GList *filelist_filter(GList *list, gboolean is_dir_list);
-        static GList *filelist_sort_path(GList *list);
-        static GList *filelist_recursive(FileData *dir_fd);
-        static GList *filelist_recursive_full(FileData *dir_fd, SortType method, gboolean ascend);
-        static GList *filelist_sort_full(GList *list, SortType method, gboolean ascend, GCompareFunc cb);
-        static GList *filelist_insert_sort_full(GList *list, gpointer data, SortType method, gboolean ascend, GCompareFunc cb);
-        static GList *filelist_sort(GList *list, SortType method, gboolean ascend);
-        static GList *filelist_insert_sort(GList *list, FileData *fd, SortType method, gboolean ascend);
-        /**/static/**/ GList *filelist_filter_out_sidecars(GList *flist);
-
-        /**/static/**/ gboolean filelist_read_real(const gchar *dir_path, GList **files, GList **dirs, gboolean follow_symlinks);
-        static gboolean filelist_read(FileData *dir_fd, GList **files, GList **dirs);
-        static gboolean filelist_read_lstat(FileData *dir_fd, GList **files, GList **dirs);
-        static void filelist_free(GList *list);
-        static gint filelist_sort_path_cb(gconstpointer a, gconstpointer b);
-        static void filelist_recursive_append(GList **list, GList *dirs);
-        static void filelist_recursive_append_full(GList **list, GList *dirs, SortType method, gboolean ascend);
-        static gint filelist_sort_compare_filedata(FileData *fa, FileData *fb);
-        static gint filelist_sort_compare_filedata_full(FileData *fa, FileData *fb, SortType method, gboolean ascend);
-        static gint filelist_sort_file_cb(gpointer a, gpointer b);
 
         // filter.c;
         static GList *file_data_filter_marks_list(GList *list, guint filter);
@@ -914,6 +890,38 @@ struct FileData {
 
 	gint page_num;
 	gint page_total;
+};
+
+struct FileData::FileList
+{
+        FileList() = delete;
+
+    public:
+        static GList *copy(GList *list);
+        static GList *from_path_list(GList *list);
+        static GList *to_path_list(GList *list);
+        static GList *filter(GList *list, gboolean is_dir_list);
+        static GList *sort_path(GList *list);
+        static GList *recursive(FileData *dir_fd);
+        static GList *recursive_full(FileData *dir_fd, SortType method, gboolean ascend);
+        static GList *sort_full(GList *list, SortType method, gboolean ascend, GCompareFunc cb);
+        static GList *insert_sort_full(GList *list, gpointer data, SortType method, gboolean ascend, GCompareFunc cb);
+        static GList *sort(GList *list, SortType method, gboolean ascend);
+        static GList *insert_sort(GList *list, FileData *fd, SortType method, gboolean ascend);
+        static gboolean read(FileData *dir_fd, GList **files, GList **dirs);
+        static gboolean read_lstat(FileData *dir_fd, GList **files, GList **dirs);
+        static void fl_free(GList *list);
+        static gint sort_compare_filedata(FileData *fa, FileData *fb);
+        static gint sort_compare_filedata_full(FileData *fa, FileData *fb, SortType method, gboolean ascend);
+
+        // Were static, but called from elsewhere.
+        static gboolean read_real(const gchar *dir_path, GList **files, GList **dirs, gboolean follow_symlinks);
+    private:
+        static gint sort_path_cb(gconstpointer a, gconstpointer b);
+        static void recursive_append(GList **list, GList *dirs);
+        static void recursive_append_full(GList **list, GList *dirs, SortType method, gboolean ascend);
+        static gint sort_file_cb(gpointer a, gpointer b);
+        static GList *filter_out_sidecars(GList *flist);
 };
 
 struct _LayoutOptions

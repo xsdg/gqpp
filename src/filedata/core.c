@@ -191,7 +191,7 @@ FileData *FileData::file_data_new_group(const gchar *path_utf8)
 
 	dir = remove_level_from_path(path_utf8);
 
-	filelist_read_real(dir, &files, NULL, TRUE);
+	FileList::read_real(dir, &files, NULL, TRUE);
 
 	fd = g_hash_table_lookup(file_data_pool, path_utf8);
 	if (!fd) fd = file_data_new(path_utf8, &st, TRUE);
@@ -200,7 +200,7 @@ FileData *FileData::file_data_new_group(const gchar *path_utf8)
 		file_data_ref(fd);
 		}
 
-	filelist_free(files);
+	FileList::fl_free(files);
 	g_free(dir);
 	return fd;
 }
@@ -538,7 +538,7 @@ gboolean FileData::file_data_check_changed_files(FileData *fd)
 
 		/* file_data_disconnect_sidecar_file might delete the file,
 		   we have to keep the reference to prevent this */
-		sidecars = filelist_copy(fd->sidecar_files);
+		sidecars = FileList::copy(fd->sidecar_files);
 		file_data_ref(fd);
 		work = sidecars;
 		while (work)
@@ -550,7 +550,7 @@ gboolean FileData::file_data_check_changed_files(FileData *fd)
 			}
 		file_data_check_sidecars(sidecars); /* this will group the sidecars back together */
 		/* now we can release the sidecars */
-		filelist_free(sidecars);
+		FileList::fl_free(sidecars);
 		file_data_increment_version(fd);
 		file_data_send_notification(fd, NOTIFY_REREAD);
 		file_data_unref(fd);
