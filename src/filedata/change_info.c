@@ -137,7 +137,7 @@ gboolean FileData::file_data_add_ci_write_metadata_list(GList *fd_list)
 		{
 		FileData *fd = work->data;
 
-		if (!file_data_add_ci_write_metadata(fd)) ret = FALSE;
+		if (!fd->file_data_add_ci_write_metadata(fd)) ret = FALSE;
 		work = work->next;
 		}
 
@@ -153,7 +153,7 @@ void FileData::file_data_free_ci_list(GList *fd_list)
 		{
 		FileData *fd = work->data;
 
-		file_data_free_ci(fd);
+		::file_data_free_ci(fd);
 		work = work->next;
 		}
 }
@@ -495,7 +495,8 @@ gint FileData::file_data_verify_ci_list(GList *list, gchar **desc, gboolean with
 		fd = work->data;
 		work = work->next;
 
-		error = with_sidecars ? file_data_sc_verify_ci(fd, list) : file_data_verify_ci(fd, list);
+		error = with_sidecars ? ::file_data_sc_verify_ci(fd, list)
+                              : ::file_data_verify_ci(fd, list);
 		all_errors |= error;
 		common_errors &= error;
 

@@ -127,7 +127,7 @@ GList *FileData::file_data_process_groups_in_selection(GList *list, gboolean ung
 
 			if (!file_data_list_contains_whole_group(list, fd))
 				{
-				file_data_disable_grouping(fd, TRUE);
+				::file_data_disable_grouping(fd, TRUE);
 				if (ungrouped_list)
 					{
 					*ungrouped_list = g_list_prepend(*ungrouped_list, file_data_ref(fd));

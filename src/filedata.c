@@ -48,7 +48,10 @@ gchar *text_from_size_abrev(gint64 size)
     return FileData::text_from_size_abrev( size);
 }
 
-const gchar *text_from_time(time_t t);
+const gchar *text_from_time(time_t t)
+{
+    return FileData::text_from_time(t);
+}
 
 /***************** CORE *****************/
 /**
@@ -323,13 +326,13 @@ void file_data_set_user_orientation(FileData *fd, gint value)
 
 gchar *file_data_sc_list_to_string(FileData *fd)
 {
-    return FileData::file_data_sc_list_to_string( fd);
+    return fd->file_data_sc_list_to_string( fd);
 }
 
 
 gchar *file_data_get_sidecar_path(FileData *fd, gboolean existing_only)
 {
-    return FileData::file_data_get_sidecar_path( fd, existing_only);
+    return fd->file_data_get_sidecar_path( fd, existing_only);
 }
 
 

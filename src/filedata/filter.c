@@ -121,7 +121,7 @@ GList *FileData::file_data_filter_marks_list(GList *list, guint filter)
 		GList *link = work;
 		work = work->next;
 
-		if (!file_data_filter_marks(fd, filter))
+		if (!::file_data_filter_marks(fd, filter))
 			{
 			list = g_list_remove_link(list, link);
 			file_data_unref(fd);
@@ -148,7 +148,7 @@ GList *FileData::file_data_filter_file_filter_list(GList *list, GRegex *filter)
 		GList *link = work;
 		work = work->next;
 
-		if (!file_data_filter_file_filter(fd, filter))
+		if (!::file_data_filter_file_filter(fd, filter))
 			{
 			list = g_list_remove_link(list, link);
 			file_data_unref(fd);
@@ -202,7 +202,7 @@ GList *FileData::file_data_filter_class_list(GList *list, guint filter)
 /*static*/ void FileData::file_data_notify_mark_func(gpointer key, gpointer value, gpointer user_data)
 {
 	FileData *fd = value;
-	file_data_increment_version(fd);
+	::file_data_increment_version(fd);
 	file_data_send_notification(fd, NOTIFY_MARKS);
 }
 
@@ -220,11 +220,8 @@ gboolean FileData::file_data_register_mark_func(gint n, FileDataGetMarkFunc get_
 	if (get_mark_func && file_data_pool)
 		{
 		/* this effectively changes all known files */
-        FileDataFunctor<void, void*, void*> callback_functor = {
-            this, &FileData::file_data_notify_mark_func};
 		g_hash_table_foreach(file_data_pool,
-                             v_wrapper<void, void*, void*>,
-                             &callback_functor);
+                             &FileData::file_data_notify_mark_func, NULL);
 		}
 
         return TRUE;
@@ -296,7 +293,7 @@ gboolean FileData::marks_list_load(const gchar *path)
 					gint mark_no = 1 << n;
 					if (atoi(marks_value) & mark_no)
 						{
-						file_data_set_mark(fd, n , 1);
+						::file_data_set_mark(fd, n , 1);
 						}
 					n++;
 					}

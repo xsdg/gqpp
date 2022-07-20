@@ -673,21 +673,21 @@ struct FileData {
         /*static*/ void file_data_planned_change_remove(FileData *fd);
         void file_data_free_ci(FileData *fd);
         void file_data_set_regroup_when_finished(FileData *fd, gboolean enable);
-        gboolean file_data_add_ci_write_metadata_list(GList *fd_list);
-        void file_data_free_ci_list(GList *fd_list);
+        static gboolean file_data_add_ci_write_metadata_list(GList *fd_list);
+        static void file_data_free_ci_list(GList *fd_list);
         /*static*/ void file_data_update_planned_change_hash(FileData *fd, const gchar *old_path, gchar *new_path);
         /*static*/ void file_data_update_ci_dest(FileData *fd, const gchar *dest_path);
         /*static*/ void file_data_update_ci_dest_preserve_ext(FileData *fd, const gchar *dest_path);
         gint file_data_verify_ci(FileData *fd, GList *list);
-        gint file_data_verify_ci_list(GList *list, gchar **desc, gboolean with_sidecars);
+        static gint file_data_verify_ci_list(GList *list, gchar **desc, gboolean with_sidecars);
         /*static*/ gboolean file_data_perform_move(FileData *fd);
         /*static*/ gboolean file_data_perform_copy(FileData *fd);
         /*static*/ gboolean file_data_perform_delete(FileData *fd);
         gboolean file_data_perform_ci(FileData *fd);
         gboolean file_data_apply_ci(FileData *fd);
         static gint file_data_notify_sort(gconstpointer a, gconstpointer b);
-        gboolean file_data_register_notify_func(FileDataNotifyFunc func, gpointer data, NotifyPriority priority);
-        gboolean file_data_unregister_notify_func(FileDataNotifyFunc func, gpointer data);
+        static gboolean file_data_register_notify_func(FileDataNotifyFunc func, gpointer data, NotifyPriority priority);
+        static gboolean file_data_unregister_notify_func(FileDataNotifyFunc func, gpointer data);
         static gboolean file_data_send_notification_idle_cb(gpointer data);
         static void file_data_send_notification(FileData *fd, NotifyType type);
         void file_data_change_info_free(FileDataChangeInfo *fdci, FileData *fd);
@@ -756,22 +756,22 @@ struct FileData {
         static gint filelist_sort_file_cb(gpointer a, gpointer b);
 
         // filter.c;
-        GList *file_data_filter_marks_list(GList *list, guint filter);
-        GList *file_data_filter_file_filter_list(GList *list, GRegex *filter);
-        GList *file_data_filter_class_list(GList *list, guint filter);
+        static GList *file_data_filter_marks_list(GList *list, guint filter);
+        static GList *file_data_filter_file_filter_list(GList *list, GRegex *filter);
+        static GList *file_data_filter_class_list(GList *list, guint filter);
 
         gboolean file_data_get_mark(FileData *fd, gint n);
         guint file_data_get_marks(FileData *fd);
         void file_data_set_mark(FileData *fd, gint n, gboolean value);
         gboolean file_data_filter_marks(FileData *fd, guint filter);
         gboolean file_data_filter_file_filter(FileData *fd, GRegex *filter);
-        /*static*/ gboolean file_data_filter_class(FileData *fd, guint filter);
-        /*static*/ void file_data_notify_mark_func(gpointer key, gpointer value, gpointer user_data);
-        gboolean file_data_register_mark_func(gint n, FileDataGetMarkFunc get_mark_func, FileDataSetMarkFunc set_mark_func, gpointer data, GDestroyNotify notify);
-        void file_data_get_registered_mark_func(gint n, FileDataGetMarkFunc *get_mark_func, FileDataSetMarkFunc *set_mark_func, gpointer *data);
+        static gboolean file_data_filter_class(FileData *fd, guint filter);
+        static void file_data_notify_mark_func(gpointer key, gpointer value, gpointer user_data);
+        static gboolean file_data_register_mark_func(gint n, FileDataGetMarkFunc get_mark_func, FileDataSetMarkFunc set_mark_func, gpointer data, GDestroyNotify notify);
+        static void file_data_get_registered_mark_func(gint n, FileDataGetMarkFunc *get_mark_func, FileDataSetMarkFunc *set_mark_func, gpointer *data);
         static void marks_get_files(gpointer key, gpointer value, gpointer userdata);
-        gboolean marks_list_load(const gchar *path);
-        gboolean marks_list_save(gchar *path, gboolean save);
+        static gboolean marks_list_load(const gchar *path);
+        static gboolean marks_list_save(gchar *path, gboolean save);
         static void marks_clear(gpointer key, gpointer value, gpointer userdata);
         static void marks_clear_all();
 
@@ -788,9 +788,9 @@ struct FileData {
         // sidecar.c;
         gchar *file_data_get_sidecar_path(FileData *fd, gboolean existing_only);
         gchar *file_data_sc_list_to_string(FileData *fd);
-        GList *file_data_process_groups_in_selection(GList *list, gboolean ungroup, GList **ungrouped_list);
+        static GList *file_data_process_groups_in_selection(GList *list, gboolean ungroup, GList **ungrouped_list);
 
-        /*static*/ gboolean file_data_list_contains_whole_group(GList *list, FileData *fd);
+        static gboolean file_data_list_contains_whole_group(GList *list, FileData *fd);
         /*static*/ gint sidecar_file_priority(const gchar *extension);
         /**/static/**/ void file_data_check_sidecars(const GList *basename_list);
         /**/static/**/ void file_data_disconnect_sidecar_file(FileData *target, FileData *sfd);
