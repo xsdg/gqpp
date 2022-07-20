@@ -292,7 +292,7 @@ gint FileData::file_data_verify_ci(FileData *fd, GList *list)
 
 		if (options->metadata.save_in_image_file)
 			{
-			if (file_data_can_write_directly(fd))
+			if (Util::can_write_directly(fd))
 				{
 				/* we can write the file directly */
 				if (access_file(fd->path, W_OK))
@@ -308,7 +308,7 @@ gint FileData::file_data_verify_ci(FileData *fd, GList *list)
 						}
 					}
 				}
-			else if (file_data_can_write_sidecar(fd))
+			else if (Util::can_write_sidecar(fd))
 				{
 				/* we can write sidecar */
 				gchar *sidecar = file_data_get_sidecar_path(fd, FALSE);

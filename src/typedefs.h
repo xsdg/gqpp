@@ -662,6 +662,7 @@ void free_v_wrapper(ArgTypes... args, void* user_data) {
 struct FileData {
     // Child classes that encapsulate some functionality.
     struct FileList;
+    struct Util;
 
     /**** CORE ****/
     private:
@@ -809,29 +810,6 @@ struct FileData {
         gboolean file_data_sc_perform_ci(FileData *fd);
         gboolean file_data_sc_apply_ci(FileData *fd);
 
-        // util.c;
-        static gchar *text_from_size(gint64 size);
-        static gchar *text_from_size_abrev(gint64 size);
-        static const gchar *text_from_time(time_t t);
-        /**/static/**/ GHashTable *file_data_basename_hash_new(void);
-        static gchar *file_data_get_error_string(gint error);
-
-        static gint file_data_sort_by_ext(gconstpointer a, gconstpointer b);
-        /**/static/**/ GList * file_data_basename_hash_insert(GHashTable *basename_hash, FileData *fd);
-        /**/static/**/ void file_data_basename_hash_insert_cb(gpointer fd, gpointer basename_hash);
-        /**/static/**/ void file_data_basename_hash_remove_list(gpointer key, gpointer value, gpointer data);
-        /**/static/**/ void file_data_basename_hash_free(GHashTable *basename_hash);
-        /**/static/**/ void file_data_basename_hash_to_sidecars(gpointer key, gpointer value, gpointer data);
-        /**/static/**/ gboolean is_hidden_file(const gchar *name);
-        /**/static/**/ gboolean file_data_can_write_directly(FileData *fd);
-        /**/static/**/ gboolean file_data_can_write_sidecar(FileData *fd);
-        gint file_data_get_user_orientation(FileData *fd);
-        void file_data_set_user_orientation(FileData *fd, gint value);
-        void file_data_set_page_num(FileData *fd, gint page_num);
-        void file_data_inc_page_num(FileData *fd);
-        void file_data_dec_page_num(FileData *fd);
-        void file_data_set_page_total(FileData *fd, gint page_total);
-
 
     /**** ORIGINAL PUBLIC INTERFACE ****/
     public:
@@ -922,6 +900,35 @@ struct FileData::FileList
         static void recursive_append_full(GList **list, GList *dirs, SortType method, gboolean ascend);
         static gint sort_file_cb(gpointer a, gpointer b);
         static GList *filter_out_sidecars(GList *flist);
+};
+
+struct FileData::Util
+{
+        Util() = delete;
+
+    public:
+        static gchar *text_from_size(gint64 size);
+        static gchar *text_from_size_abrev(gint64 size);
+        static const gchar *text_from_time(time_t t);
+        static GHashTable *basename_hash_new(void);
+        static gchar *get_error_string(gint error);
+
+        static gint sort_by_ext(gconstpointer a, gconstpointer b);
+        static GList * basename_hash_insert(GHashTable *basename_hash, FileData *fd);
+        static void basename_hash_insert_cb(gpointer fd, gpointer basename_hash);
+        static void basename_hash_remove_list(gpointer key, gpointer value, gpointer data);
+        static void basename_hash_free(GHashTable *basename_hash);
+        static void basename_hash_to_sidecars(gpointer key, gpointer value, gpointer data);
+        static gboolean is_hidden_file(const gchar *name);
+        static gboolean can_write_directly(FileData *fd);
+        static gboolean can_write_sidecar(FileData *fd);
+
+        static gint get_user_orientation(FileData *fd);
+        static void set_user_orientation(FileData *fd, gint value);
+        static void set_page_num(FileData *fd, gint page_num);
+        static void inc_page_num(FileData *fd);
+        static void dec_page_num(FileData *fd);
+        static void set_page_total(FileData *fd, gint page_total);
 };
 
 struct _LayoutOptions

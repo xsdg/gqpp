@@ -46,7 +46,7 @@ gchar *FileData::file_data_get_sidecar_path(FileData *fd, gboolean existing_only
 	gchar *sidecar_path = NULL;
 	GList *work;
 
-	if (!file_data_can_write_sidecar(fd)) return NULL;
+	if (!Util::can_write_sidecar(fd)) return NULL;
 
 	work = fd->parent ? fd->parent->sidecar_files : fd->sidecar_files;
 	gchar *extended_extension = g_strconcat(fd->parent ? fd->parent->extension : fd->extension, ".xmp", NULL);

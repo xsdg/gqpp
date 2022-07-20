@@ -42,7 +42,7 @@
  *-----------------------------------------------------------------------------
  */
 
-gchar *FileData::text_from_size(gint64 size)
+gchar *FileData::Util::text_from_size(gint64 size)
 {
 	gchar *a, *b;
 	gchar *s, *d;
@@ -89,7 +89,7 @@ gchar *FileData::text_from_size(gint64 size)
 	return b;
 }
 
-gchar *FileData::text_from_size_abrev(gint64 size)
+gchar *FileData::Util::text_from_size_abrev(gint64 size)
 {
 	if (size < (gint64)1024)
 		{
@@ -110,7 +110,7 @@ gchar *FileData::text_from_size_abrev(gint64 size)
 }
 
 /* note: returned string is valid until next call to text_from_time() */
-const gchar *FileData::text_from_time(time_t t)
+const gchar *FileData::Util::text_from_time(time_t t)
 {
 	static gchar *ret = NULL;
 	gchar buf[128];
@@ -136,7 +136,7 @@ const gchar *FileData::text_from_time(time_t t)
 	return ret;
 }
 
-/*static*/ gint FileData::file_data_sort_by_ext(gconstpointer a, gconstpointer b)
+/*static*/ gint FileData::Util::sort_by_ext(gconstpointer a, gconstpointer b)
 {
 	const FileData *fda = a;
 	const FileData *fdb = b;
@@ -154,12 +154,12 @@ const gchar *FileData::text_from_time(time_t t)
  */
 
 
-/*static*/ GHashTable *FileData::file_data_basename_hash_new(void)
+/*static*/ GHashTable *FileData::Util::basename_hash_new(void)
 {
 	return g_hash_table_new_full(g_str_hash, g_str_equal, g_free, NULL);
 }
 
-/*static*/ GList * FileData::file_data_basename_hash_insert(GHashTable *basename_hash, FileData *fd)
+/*static*/ GList * FileData::Util::basename_hash_insert(GHashTable *basename_hash, FileData *fd)
 {
 	GList *list;
 	gchar *basename = g_strndup(fd->path, fd->extension - fd->path);
@@ -199,7 +199,7 @@ const gchar *FileData::text_from_time(time_t t)
 
 	if (!g_list_find(list, fd))
 		{
-		list = g_list_insert_sorted(list, file_data_ref(fd), file_data_sort_by_ext);
+		list = g_list_insert_sorted(list, file_data_ref(fd), sort_by_ext);
 		g_hash_table_insert(basename_hash, basename, list);
 		}
 	else
@@ -209,62 +209,62 @@ const gchar *FileData::text_from_time(time_t t)
 	return list;
 }
 
-/*static*/ void FileData::file_data_basename_hash_insert_cb(gpointer fd, gpointer basename_hash)
+/*static*/ void FileData::Util::basename_hash_insert_cb(gpointer fd, gpointer basename_hash)
 {
-	file_data_basename_hash_insert((GHashTable *)basename_hash, (FileData *)fd);
+	basename_hash_insert((GHashTable *)basename_hash, (FileData *)fd);
 }
 
-/*static*/ void FileData::file_data_basename_hash_remove_list(gpointer key, gpointer value, gpointer data)
+/*static*/ void FileData::Util::basename_hash_remove_list(gpointer key, gpointer value, gpointer data)
 {
 	filelist_free((GList *)value);
 }
 
-/*static*/ void FileData::file_data_basename_hash_free(GHashTable *basename_hash)
+/*static*/ void FileData::Util::basename_hash_free(GHashTable *basename_hash)
 {
     g_hash_table_foreach(
-            basename_hash, &FileData::file_data_basename_hash_remove_list, NULL);
+            basename_hash, &FileData::Util::basename_hash_remove_list, NULL);
 	g_hash_table_destroy(basename_hash);
 }
 
-/*static*/ void FileData::file_data_basename_hash_to_sidecars(gpointer key, gpointer value, gpointer data)
+/*static*/ void FileData::Util::basename_hash_to_sidecars(gpointer key, gpointer value, gpointer data)
 {
 	GList *basename_list = (GList *)value;
 	file_data_check_sidecars(basename_list);
 }
 
 
-/*static*/ gboolean FileData::is_hidden_file(const gchar *name)
+/*static*/ gboolean FileData::Util::is_hidden_file(const gchar *name)
 {
 	if (name[0] != '.') return FALSE;
 	if (name[1] == '\0' || (name[1] == '.' && name[2] == '\0')) return FALSE;
 	return TRUE;
 }
 
-/*static*/ gboolean FileData::file_data_can_write_directly(FileData *fd)
+/*static*/ gboolean FileData::Util::can_write_directly(FileData *fd)
 {
 	return filter_name_is_writable(fd->extension);
 }
 
-/*static*/ gboolean FileData::file_data_can_write_sidecar(FileData *fd)
+/*static*/ gboolean FileData::Util::can_write_sidecar(FileData *fd)
 {
 	return filter_name_allow_sidecar(fd->extension) && !filter_name_is_writable(fd->extension);
 }
 
-gint FileData::file_data_get_user_orientation(FileData *fd)
+gint FileData::Util::get_user_orientation(FileData *fd)
 {
 	return fd->user_orientation;
 }
 
-void FileData::file_data_set_user_orientation(FileData *fd, gint value)
+void FileData::Util::set_user_orientation(FileData *fd, gint value)
 {
 	if (fd->user_orientation == value) return;
 
 	fd->user_orientation = value;
-	file_data_increment_version(fd);
+	fd->file_data_increment_version(fd);
 	file_data_send_notification(fd, NOTIFY_ORIENTATION);
 }
 
-gchar *FileData::file_data_get_error_string(gint error)
+gchar *FileData::Util::get_error_string(gint error)
 {
 	GString *result = g_string_new("");
 
@@ -349,7 +349,7 @@ gchar *FileData::file_data_get_error_string(gint error)
 	return g_string_free(result, FALSE);
 }
 
-void FileData::file_data_set_page_num(FileData *fd, gint page_num)
+void FileData::Util::set_page_num(FileData *fd, gint page_num)
 {
 	if (fd->page_total > 1 && page_num < 0)
 		{
@@ -366,7 +366,7 @@ void FileData::file_data_set_page_num(FileData *fd, gint page_num)
 	file_data_send_notification(fd, NOTIFY_REREAD);
 }
 
-void FileData::file_data_inc_page_num(FileData *fd)
+void FileData::Util::inc_page_num(FileData *fd)
 {
 	if (fd->page_total > 0 && fd->page_num < fd->page_total - 1)
 		{
@@ -379,7 +379,7 @@ void FileData::file_data_inc_page_num(FileData *fd)
 	file_data_send_notification(fd, NOTIFY_REREAD);
 }
 
-void FileData::file_data_dec_page_num(FileData *fd)
+void FileData::Util::dec_page_num(FileData *fd)
 {
 	if (fd->page_num > 0)
 		{
@@ -388,7 +388,7 @@ void FileData::file_data_dec_page_num(FileData *fd)
 	file_data_send_notification(fd, NOTIFY_REREAD);
 }
 
-void FileData::file_data_set_page_total(FileData *fd, gint page_total)
+void FileData::Util::set_page_total(FileData *fd, gint page_total)
 {
 	fd->page_total = page_total;
 }

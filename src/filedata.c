@@ -40,17 +40,17 @@
 
 gchar *text_from_size(gint64 size)
 {
-    return FileData::text_from_size( size);
+    return FileData::Util::text_from_size( size);
 }
 
 gchar *text_from_size_abrev(gint64 size)
 {
-    return FileData::text_from_size_abrev( size);
+    return FileData::Util::text_from_size_abrev( size);
 }
 
 const gchar *text_from_time(time_t t)
 {
-    return FileData::text_from_time(t);
+    return FileData::Util::text_from_time(t);
 }
 
 /***************** CORE *****************/
@@ -315,12 +315,12 @@ GList *file_data_filter_class_list(GList *list, guint filter)
 
 gint file_data_get_user_orientation(FileData *fd)
 {
-    return fd->file_data_get_user_orientation(fd);
+    return FileData::Util::get_user_orientation(fd);
 }
 
 void file_data_set_user_orientation(FileData *fd, gint value)
 {
-    fd->file_data_set_user_orientation(fd, value);
+    FileData::Util::set_user_orientation(fd, value);
 }
 
 
@@ -441,7 +441,7 @@ gboolean file_data_sc_update_ci_unspecified(FileData *fd, const gchar *dest_path
 
 gchar *file_data_get_error_string(gint error)
 {
-    return FileData::file_data_get_error_string( error);
+    return FileData::Util::get_error_string( error);
 }
 
 
@@ -579,22 +579,22 @@ void read_rating_data(FileData *file)
 
 void file_data_inc_page_num(FileData *fd)
 {
-    fd->file_data_inc_page_num(fd);
+    FileData::Util::inc_page_num(fd);
 }
 
 void file_data_dec_page_num(FileData *fd)
 {
-    fd->file_data_dec_page_num(fd);
+    FileData::Util::dec_page_num(fd);
 }
 
 void file_data_set_page_total(FileData *fd, gint page_total)
 {
-    fd->file_data_set_page_total(fd, page_total);
+    FileData::Util::set_page_total(fd, page_total);
 }
 
 void file_data_set_page_num(FileData *fd, gint page_num)
 {
-    fd->file_data_set_page_num(fd, page_num);
+    FileData::Util::set_page_num(fd, page_num);
 }
 
 

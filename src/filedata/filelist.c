@@ -67,7 +67,7 @@ static gboolean filelist_sort_ascend = TRUE;
 		return FALSE;
 		}
 
-	if (files) basename_hash = file_data_basename_hash_new();
+	if (files) basename_hash = Util::basename_hash_new();
 
 	if (follow_symlinks)
 		stat_func = stat;
@@ -80,7 +80,7 @@ static gboolean filelist_sort_ascend = TRUE;
 		const gchar *name = dir->d_name;
 		gchar *filepath;
 
-		if (!options->file_filter.show_hidden_files && is_hidden_file(name))
+		if (!options->file_filter.show_hidden_files && Util::is_hidden_file(name))
 			continue;
 
 		filepath = g_build_filename(pathl, name, NULL);
@@ -107,7 +107,7 @@ static gboolean filelist_sort_ascend = TRUE;
 					if (fd->sidecar_priority && !fd->disable_grouping)
 						{
 						if (strcmp(fd->extension, ".xmp") != 0)
-							file_data_basename_hash_insert(basename_hash, fd);
+							Util::basename_hash_insert(basename_hash, fd);
 						else
 							xmp_files = g_list_append(xmp_files, fd);
 						}
@@ -130,7 +130,7 @@ static gboolean filelist_sort_ascend = TRUE;
 
 	if (xmp_files)
 		{
-        g_list_foreach(xmp_files, &FileData::file_data_basename_hash_insert_cb,
+        g_list_foreach(xmp_files, &Util::basename_hash_insert_cb,
                        basename_hash);
 		g_list_free(xmp_files);
 		}
@@ -139,13 +139,12 @@ static gboolean filelist_sort_ascend = TRUE;
 
 	if (files)
 		{
-        g_hash_table_foreach(basename_hash,
-                             &FileData::file_data_basename_hash_to_sidecars,
+        g_hash_table_foreach(basename_hash, &Util::basename_hash_to_sidecars,
                              NULL);
 
 		*files = filter_out_sidecars(flist);
 		}
-	if (basename_hash) file_data_basename_hash_free(basename_hash);
+	if (basename_hash) Util::basename_hash_free(basename_hash);
 
 	return TRUE;
 }
@@ -245,7 +244,7 @@ GList *FileData::FileList::filter(GList *list, gboolean is_dir_list)
 		FileData *fd = (FileData *)(work->data);
 		const gchar *name = fd->name;
 
-		if ((!options->file_filter.show_hidden_files && is_hidden_file(name)) ||
+		if ((!options->file_filter.show_hidden_files && Util::is_hidden_file(name)) ||
 		    (!is_dir_list && !filter_name_exists(name)) ||
 		    (is_dir_list && name[0] == '.' && (strcmp(name, GQ_CACHE_LOCAL_THUMB) == 0 ||
 						       strcmp(name, GQ_CACHE_LOCAL_METADATA) == 0)) )
