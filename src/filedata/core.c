@@ -570,7 +570,7 @@ static guint realtime_monitor_id = 0; /* event source id */
 {
 	FileData *fd = key;
 
-	file_data_check_changed_files(fd);
+	::file_data_check_changed_files(fd);
 
 	DEBUG_1("monitor %s", fd->path);
 }
@@ -578,9 +578,8 @@ static guint realtime_monitor_id = 0; /* event source id */
 /*static*/ gboolean FileData::realtime_monitor_cb(gpointer data)
 {
 	if (!options->update_on_time_change) return TRUE;
-    FileDataFunctor<void, void*, void*> callback_functor = {
-        this, &FileData::realtime_monitor_check_cb};
-	g_hash_table_foreach(file_data_monitor_pool, v_wrapper<void, void*, void*>, &callback_functor);
+	g_hash_table_foreach(
+            file_data_monitor_pool, &FileData::realtime_monitor_check_cb, NULL);
 	return TRUE;
 }
 
@@ -602,12 +601,8 @@ gboolean FileData::file_data_register_real_time_monitor(FileData *fd)
 
 	if (!realtime_monitor_id)
 		{
-        FileDataFunctor<gboolean> *callback_functor =
-            malloc(sizeof(FileDataFunctor<gboolean>));
-        callback_functor->obj = this;
-        callback_functor->method = &FileData::realtime_monitor_cb;
 		realtime_monitor_id = g_timeout_add(
-                5000, free_wrapper<gboolean>, &callback_functor);
+                5000, &FileData::realtime_monitor_cb, NULL);
 		}
 
 	return TRUE;

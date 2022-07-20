@@ -723,8 +723,8 @@ struct FileData {
         /*static*/ gboolean file_data_check_changed_single_file(FileData *fd, struct stat *st);
         /*static*/ gboolean file_data_check_changed_files_recursive(FileData *fd, struct stat *st);
         /**static**/ gboolean file_data_check_changed_files(FileData *fd);
-        /**static**/ void realtime_monitor_check_cb(gpointer key, gpointer value, gpointer data);
-        /**static**/ gboolean realtime_monitor_cb(gpointer data);
+        static void realtime_monitor_check_cb(gpointer key, gpointer value, gpointer data);
+        static gboolean realtime_monitor_cb(gpointer data);
         gboolean file_data_register_real_time_monitor(FileData *fd);
         gboolean file_data_unregister_real_time_monitor(FileData *fd);
 
