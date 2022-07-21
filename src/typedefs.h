@@ -24,6 +24,9 @@
 
 #include <functional>
 
+// The FileData interface spec.
+#include "ifiledata.h"
+
 typedef enum {
 	ZOOM_RESET_ORIGINAL	= 0,
 	ZOOM_RESET_FIT_WINDOW	= 1,
@@ -132,15 +135,6 @@ typedef enum {
 } ImageSplitMode;
 
 typedef enum {
-	FILEDATA_CHANGE_DELETE,
-	FILEDATA_CHANGE_MOVE,
-	FILEDATA_CHANGE_RENAME,
-	FILEDATA_CHANGE_COPY,
-	FILEDATA_CHANGE_UNSPECIFIED,
-	FILEDATA_CHANGE_WRITE_METADATA
-} FileDataChangeType;
-
-typedef enum {
 	MTS_MODE_MINUS,
 	MTS_MODE_SET,
 	MTS_MODE_OR,
@@ -184,23 +178,6 @@ typedef enum {
 	SS_ERR_RENAME,
 	SS_ERR_OTHER,
 } SecureSaveErrno;
-
-typedef enum {
-	NOTIFY_PRIORITY_HIGH = 0,
-	NOTIFY_PRIORITY_MEDIUM,
-	NOTIFY_PRIORITY_LOW
-} NotifyPriority;
-
-typedef enum {
-	NOTIFY_MARKS		= 1 << 1, /**< changed marks */
-	NOTIFY_PIXBUF		= 1 << 2, /**< image was read into fd->pixbuf */
-	NOTIFY_HISTMAP		= 1 << 3, /**< histmap was read into fd->histmap */
-	NOTIFY_ORIENTATION	= 1 << 4, /**< image was rotated */
-	NOTIFY_METADATA		= 1 << 5, /**< changed image metadata, not yet written */
-	NOTIFY_GROUPING		= 1 << 6, /**< change in fd->sidecar_files or fd->parent */
-	NOTIFY_REREAD		= 1 << 7, /**< changed file size, date, etc., file name remains unchanged */
-	NOTIFY_CHANGE		= 1 << 8  /**< generic change described by fd->change */
-} NotifyType;
 
 typedef enum {
 	CHANGE_OK                      = 0,
@@ -326,7 +303,7 @@ typedef struct _ImageWindow ImageWindow;
 
 // No need for the typedef trick in C++.  But we do still need to forward-declare.
 struct FileData;
-typedef struct _FileDataChangeInfo FileDataChangeInfo;
+//typedef struct _FileDataChangeInfo FileDataChangeInfo;
 
 typedef struct _LayoutWindow LayoutWindow;
 typedef struct _LayoutOptions LayoutOptions;
@@ -588,21 +565,6 @@ struct _ImageWindow
 
 	gboolean mouse_wheel_mode;
 };
-
-#define FILEDATA_MARKS_SIZE 10
-
-struct _FileDataChangeInfo {
-	FileDataChangeType type;
-	gchar *source;
-	gchar *dest;
-	gint error;
-	gboolean regroup_when_finished;
-};
-
-// Public FileData typedefs.
-typedef gboolean (* FileDataGetMarkFunc)(FileData *fd, gint n, gpointer data);
-typedef gboolean (* FileDataSetMarkFunc)(FileData *fd, gint n, gboolean value, gpointer data);
-typedef void (*FileDataNotifyFunc)(FileData *fd, NotifyType type, gpointer data);
 
 //// Callback infrastructure.
 // Function pointer to FileData::something with return type RType and argument

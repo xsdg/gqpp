@@ -185,6 +185,7 @@ geeqie_SOURCES = \
 	histogram.h	\
 	history_list.c	\
 	history_list.h	\
+	ifiledata.h  \
 	image.c		\
 	image.h		\
 	image-load.c	\
