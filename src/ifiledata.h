@@ -33,6 +33,18 @@ typedef enum {
 } FileDataChangeType;
 
 typedef enum {
+	FORMAT_CLASS_UNKNOWN,
+	FORMAT_CLASS_IMAGE,
+	FORMAT_CLASS_RAWIMAGE,
+	FORMAT_CLASS_META,
+	FORMAT_CLASS_VIDEO,
+	FORMAT_CLASS_COLLECTION,
+	FORMAT_CLASS_DOCUMENT,
+	FORMAT_CLASS_ARCHIVE,
+	FILE_FORMAT_CLASSES
+} FileFormatClass;
+
+typedef enum {
 	NOTIFY_PRIORITY_HIGH = 0,
 	NOTIFY_PRIORITY_MEDIUM,
 	NOTIFY_PRIORITY_LOW
@@ -49,6 +61,13 @@ typedef enum {
 	NOTIFY_CHANGE		= 1 << 8  /**< generic change described by fd->change */
 } NotifyType;
 
+typedef enum {
+	SELECTION_NONE		= 0,
+	SELECTION_SELECTED	= 1 << 0,
+	SELECTION_PRELIGHT	= 1 << 1,
+	SELECTION_FOCUS		= 1 << 2
+} SelectionType;
+
 #define FILEDATA_MARKS_SIZE 10
 
 struct FileDataChangeInfo {
@@ -64,6 +83,10 @@ struct FileData;
 typedef gboolean (* FileDataGetMarkFunc)(FileData *fd, gint n, gpointer data);
 typedef gboolean (* FileDataSetMarkFunc)(FileData *fd, gint n, gboolean value, gpointer data);
 typedef void (*FileDataNotifyFunc)(FileData *fd, NotifyType type, gpointer data);
+
+// Forward declarations of objects defined elsewhere
+typedef struct _ExifData ExifData;
+typedef struct _HistMap HistMap;
 
 struct IFileData {
     // Child classes that encapsulate some functionality.
@@ -179,6 +202,65 @@ struct IFileData {
         gint file_data_sc_verify_ci(FileData *fd, GList *list);
         gboolean file_data_sc_perform_ci(FileData *fd);
         gboolean file_data_sc_apply_ci(FileData *fd);
+
+    /**** ORIGINAL PUBLIC INTERFACE ****/
+    public:
+	guint magick;
+	gint type;
+	gchar *original_path; /**< key to file_data_pool hash table */
+	gchar *path;
+	const gchar *name;
+	const gchar *extension;
+	gchar *extended_extension;
+	FileFormatClass format_class;
+	gchar *format_name; /**< set by the image loader */
+	gchar *collate_key_name;
+	gchar *collate_key_name_nocase;
+	gint64 size;
+	time_t date;
+	time_t cdate;
+	mode_t mode; /**< this is needed at least for notification in view_dir because it is preserved after the file/directory is deleted */
+	gint sidecar_priority;
+
+	guint marks; /**< each bit represents one mark */
+	guint valid_marks; /**< zero bit means that the corresponding mark needs to be reread */
+
+
+	GList *sidecar_files;
+	FileData *parent; /**< parent file if this is a sidecar file, NULL otherwise */
+	FileDataChangeInfo *change; /**< for rename, move ... */
+	GdkPixbuf *thumb_pixbuf;
+
+	GdkPixbuf *pixbuf; /**< full-size image, only complete images, NULL during loading
+			      all FileData with non-NULL pixbuf are referenced by image_cache */
+
+	HistMap *histmap;
+
+	gboolean locked;
+	gint ref;
+	gint version; /**< increased when any field in this structure is changed */
+	gboolean disable_grouping;
+
+	gint user_orientation;
+	gint exif_orientation;
+
+	ExifData *exif;
+	time_t exifdate;
+	time_t exifdate_digitized;
+	GHashTable *modified_xmp; /**< hash table which contains unwritten xmp metadata in format: key->list of string values */
+	GList *cached_metadata;
+	gint rating;
+	gboolean metadata_in_idle_loaded;
+
+	gchar *owner;
+	gchar *group;
+	gchar *sym_link;
+
+	SelectionType selected;  /**< Used by view_file_icon. */
+
+	gint page_num;
+	gint page_total;
 };
 
 #endif  // IFILEDATA_H
+/* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

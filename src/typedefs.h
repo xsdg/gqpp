@@ -147,18 +147,6 @@ typedef enum {
 	STM_MODE_TOGGLE
 } SelectionToMarkMode;
 
-typedef enum {
-	FORMAT_CLASS_UNKNOWN,
-	FORMAT_CLASS_IMAGE,
-	FORMAT_CLASS_RAWIMAGE,
-	FORMAT_CLASS_META,
-	FORMAT_CLASS_VIDEO,
-	FORMAT_CLASS_COLLECTION,
-	FORMAT_CLASS_DOCUMENT,
-	FORMAT_CLASS_ARCHIVE,
-	FILE_FORMAT_CLASSES
-} FileFormatClass;
-
 extern gchar *format_class_list[]; /**< defined in preferences.c */
 
 /**
@@ -282,13 +270,6 @@ typedef enum {
 
 #define MAX_SPLIT_IMAGES 4
 
-typedef enum {
-	SELECTION_NONE		= 0,
-	SELECTION_SELECTED	= 1 << 0,
-	SELECTION_PRELIGHT	= 1 << 1,
-	SELECTION_FOCUS		= 1 << 2
-} SelectionType;
-
 typedef struct _ImageLoader ImageLoader;
 typedef struct _ThumbLoader ThumbLoader;
 
@@ -300,10 +281,6 @@ typedef struct _CollectTable CollectTable;
 typedef struct _CollectWindow CollectWindow;
 
 typedef struct _ImageWindow ImageWindow;
-
-// No need for the typedef trick in C++.  But we do still need to forward-declare.
-struct FileData;
-//typedef struct _FileDataChangeInfo FileDataChangeInfo;
 
 typedef struct _LayoutWindow LayoutWindow;
 typedef struct _LayoutOptions LayoutOptions;
@@ -321,11 +298,8 @@ typedef struct _FullScreenData FullScreenData;
 
 typedef struct _PixmapFolders PixmapFolders;
 typedef struct _Histogram Histogram;
-typedef struct _HistMap HistMap;
 
 typedef struct _SecureSaveInfo SecureSaveInfo;
-
-typedef struct _ExifData ExifData;
 
 typedef struct _EditorDescription EditorDescription;
 
@@ -619,8 +593,6 @@ void free_v_wrapper(ArgTypes... args, void* user_data) {
     free(functor);
 }
 
-// Struct organization:
-// public and private methods for each method grouping, followed by public and private members.
 struct FileData {
     // Child classes that encapsulate some functionality.
     struct FileList;
