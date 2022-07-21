@@ -260,56 +260,56 @@ GList *filelist_recursive_full(FileData *dir_fd, SortType method, gboolean ascen
 // typedef gboolean (* FileDataSetMarkFunc)(FileData *fd, gint n, gboolean value, gpointer data);
 gboolean file_data_register_mark_func(gint n, FileDataGetMarkFunc get_mark_func, FileDataSetMarkFunc set_mark_func, gpointer data, GDestroyNotify notify)
 {
-    return FileData::file_data_register_mark_func( n, get_mark_func, set_mark_func, data, notify);
+    return FileData::Filter::register_mark_func( n, get_mark_func, set_mark_func, data, notify);
 }
 
 void file_data_get_registered_mark_func(gint n, FileDataGetMarkFunc *get_mark_func, FileDataSetMarkFunc *set_mark_func, gpointer *data)
 {
-    FileData::file_data_get_registered_mark_func( n, get_mark_func, set_mark_func, data);
+    FileData::Filter::get_registered_mark_func( n, get_mark_func, set_mark_func, data);
 }
 
 
 
 gboolean file_data_get_mark(FileData *fd, gint n)
 {
-    return fd->file_data_get_mark(fd, n);
+    return FileData::Filter::get_mark(fd, n);
 }
 
 guint file_data_get_marks(FileData *fd)
 {
-    return fd->file_data_get_marks(fd);
+    return FileData::Filter::get_marks(fd);
 }
 
 void file_data_set_mark(FileData *fd, gint n, gboolean value)
 {
-    fd->file_data_set_mark(fd, n, value);
+    FileData::Filter::set_mark(fd, n, value);
 }
 
 gboolean file_data_filter_marks(FileData *fd, guint filter)
 {
-    return fd->file_data_filter_marks(fd, filter);
+    return FileData::Filter::by_marks(fd, filter);
 }
 
 GList *file_data_filter_marks_list(GList *list, guint filter)
 {
-    return FileData::file_data_filter_marks_list( list, filter);
+    return FileData::Filter::by_marks(list, filter);
 }
 
 
 gboolean file_data_filter_file_filter(FileData *fd, GRegex *filter)
 {
-    return fd->file_data_filter_file_filter(fd, filter);
+    return FileData::Filter::by_file_filter(fd, filter);
 }
 
 GList *file_data_filter_file_filter_list(GList *list, GRegex *filter)
 {
-    return FileData::file_data_filter_file_filter_list( list, filter);
+    return FileData::Filter::by_file_filter( list, filter);
 }
 
 
 GList *file_data_filter_class_list(GList *list, guint filter)
 {
-    return FileData::file_data_filter_class_list( list, filter);
+    return FileData::Filter::by_class( list, filter);
 }
 
 
@@ -558,17 +558,17 @@ void read_exif_time_digitized_data(FileData *file)
 
 gboolean marks_list_save(gchar *path, gboolean clear)
 {
-    return FileData::marks_list_save( path, clear);
+    return FileData::Filter::save_marks_list(path, clear);
 }
 
 gboolean marks_list_load(const gchar *path)
 {
-    return FileData::marks_list_load( path);
+    return FileData::Filter::load_marks_list(path);
 }
 
 void marks_clear_all()
 {
-    FileData::marks_clear_all();
+    FileData::Filter::clear_all_marks();
 }
 
 void read_rating_data(FileData *file)

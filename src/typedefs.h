@@ -662,6 +662,7 @@ void free_v_wrapper(ArgTypes... args, void* user_data) {
 struct FileData {
     // Child classes that encapsulate some functionality.
     struct FileList;
+    struct Filter;
     struct Sidecar;
     struct Util;
 
@@ -732,26 +733,6 @@ struct FileData {
         static gboolean realtime_monitor_cb(gpointer data);
         gboolean file_data_register_real_time_monitor(FileData *fd);
         gboolean file_data_unregister_real_time_monitor(FileData *fd);
-
-        // filter.c;
-        static GList *file_data_filter_marks_list(GList *list, guint filter);
-        static GList *file_data_filter_file_filter_list(GList *list, GRegex *filter);
-        static GList *file_data_filter_class_list(GList *list, guint filter);
-
-        gboolean file_data_get_mark(FileData *fd, gint n);
-        guint file_data_get_marks(FileData *fd);
-        void file_data_set_mark(FileData *fd, gint n, gboolean value);
-        gboolean file_data_filter_marks(FileData *fd, guint filter);
-        gboolean file_data_filter_file_filter(FileData *fd, GRegex *filter);
-        static gboolean file_data_filter_class(FileData *fd, guint filter);
-        static void file_data_notify_mark_func(gpointer key, gpointer value, gpointer user_data);
-        static gboolean file_data_register_mark_func(gint n, FileDataGetMarkFunc get_mark_func, FileDataSetMarkFunc set_mark_func, gpointer data, GDestroyNotify notify);
-        static void file_data_get_registered_mark_func(gint n, FileDataGetMarkFunc *get_mark_func, FileDataSetMarkFunc *set_mark_func, gpointer *data);
-        static void marks_get_files(gpointer key, gpointer value, gpointer userdata);
-        static gboolean marks_list_load(const gchar *path);
-        static gboolean marks_list_save(gchar *path, gboolean save);
-        static void marks_clear(gpointer key, gpointer value, gpointer userdata);
-        static void marks_clear_all();
 
         // metadata.c;
         /*static*/ void file_data_set_collate_keys(FileData *fd);
@@ -889,6 +870,39 @@ struct FileData::FileList
         static void recursive_append_full(GList **list, GList *dirs, SortType method, gboolean ascend);
         static gint sort_file_cb(gpointer a, gpointer b);
         static GList *filter_out_sidecars(GList *flist);
+};
+
+struct FileData::Filter
+{
+        Filter() = delete;
+
+    public:
+        static gboolean get_mark(FileData *fd, gint n);
+        static guint get_marks(FileData *fd);
+        static void set_mark(FileData *fd, gint n, gboolean value);
+
+        static gboolean by_marks(FileData *fd, guint filter);
+        static GList *by_marks(GList *list, guint filter);
+        static gboolean by_file_filter(FileData *fd, GRegex *filter);
+        static GList *by_file_filter(GList *list, GRegex *filter);
+        static gboolean by_class(FileData *fd, guint filter);
+        static GList *by_class(GList *list, guint filter);
+
+        static void notify_mark_func(
+                gpointer key, gpointer value, gpointer user_data);
+        static gboolean register_mark_func(
+                gint n, FileDataGetMarkFunc get_mark_func,
+                FileDataSetMarkFunc set_mark_func, gpointer data,
+                GDestroyNotify notify);
+        static void get_registered_mark_func(
+                gint n, FileDataGetMarkFunc *get_mark_func,
+                FileDataSetMarkFunc *set_mark_func, gpointer *data);
+
+        static void get_marks_files(gpointer key, gpointer value, gpointer userdata);
+        static gboolean load_marks_list(const gchar *path);
+        static gboolean save_marks_list(gchar *path, gboolean save);
+        static void clear_marks(gpointer key, gpointer value, gpointer userdata);
+        static void clear_all_marks();
 };
 
 struct FileData::Sidecar

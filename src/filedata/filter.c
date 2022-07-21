@@ -41,7 +41,7 @@ static FileDataSetMarkFunc file_data_set_mark_func[FILEDATA_MARKS_SIZE];
 static gpointer file_data_mark_func_data[FILEDATA_MARKS_SIZE];
 static GDestroyNotify file_data_destroy_mark_func[FILEDATA_MARKS_SIZE];
 
-gboolean FileData::file_data_get_mark(FileData *fd, gint n)
+gboolean FileData::Filter::get_mark(FileData *fd, gint n)
 {
 	gboolean valid = (fd->valid_marks & (1 << n));
 
@@ -69,14 +69,14 @@ gboolean FileData::file_data_get_mark(FileData *fd, gint n)
 	return !!(fd->marks & (1 << n));
 }
 
-guint FileData::file_data_get_marks(FileData *fd)
+guint FileData::Filter::get_marks(FileData *fd)
 {
 	gint i;
 	for (i = 0; i < FILEDATA_MARKS_SIZE; i++) file_data_get_mark(fd, i);
 	return fd->marks;
 }
 
-void FileData::file_data_set_mark(FileData *fd, gint n, gboolean value)
+void FileData::Filter::set_mark(FileData *fd, gint n, gboolean value)
 {
 	guint old;
 	if (!value == !file_data_get_mark(fd, n)) return;
@@ -99,18 +99,21 @@ void FileData::file_data_set_mark(FileData *fd, gint n, gboolean value)
 		file_data_ref(fd);
 		}
 
-	file_data_increment_version(fd);
+	::file_data_increment_version(fd);
 	file_data_send_notification(fd, NOTIFY_MARKS);
 }
 
-gboolean FileData::file_data_filter_marks(FileData *fd, guint filter)
+gboolean FileData::Filter::by_marks(FileData *fd, guint filter)
 {
 	gint i;
-	for (i = 0; i < FILEDATA_MARKS_SIZE; i++) if (filter & (1 << i)) file_data_get_mark(fd, i);
+	for (i = 0; i < FILEDATA_MARKS_SIZE; i++)
+        {
+        if (filter & (1 << i)) file_data_get_mark(fd, i);
+        }
 	return ((fd->marks & filter) == filter);
 }
 
-GList *FileData::file_data_filter_marks_list(GList *list, guint filter)
+GList *FileData::Filter::by_marks(GList *list, guint filter)
 {
 	GList *work;
 
@@ -121,7 +124,7 @@ GList *FileData::file_data_filter_marks_list(GList *list, guint filter)
 		GList *link = work;
 		work = work->next;
 
-		if (!::file_data_filter_marks(fd, filter))
+		if (!by_marks(fd, filter))
 			{
 			list = g_list_remove_link(list, link);
 			file_data_unref(fd);
@@ -132,12 +135,12 @@ GList *FileData::file_data_filter_marks_list(GList *list, guint filter)
 	return list;
 }
 
-gboolean FileData::file_data_filter_file_filter(FileData *fd, GRegex *filter)
+gboolean FileData::Filter::by_file_filter(FileData *fd, GRegex *filter)
 {
 	return g_regex_match(filter, fd->name, 0, NULL);
 }
 
-GList *FileData::file_data_filter_file_filter_list(GList *list, GRegex *filter)
+GList *FileData::Filter::by_file_filter(GList *list, GRegex *filter)
 {
 	GList *work;
 
@@ -148,7 +151,7 @@ GList *FileData::file_data_filter_file_filter_list(GList *list, GRegex *filter)
 		GList *link = work;
 		work = work->next;
 
-		if (!::file_data_filter_file_filter(fd, filter))
+		if (!by_file_filter(fd, filter))
 			{
 			list = g_list_remove_link(list, link);
 			file_data_unref(fd);
@@ -159,7 +162,7 @@ GList *FileData::file_data_filter_file_filter_list(GList *list, GRegex *filter)
 	return list;
 }
 
-/*static*/ gboolean FileData::file_data_filter_class(FileData *fd, guint filter)
+/*static*/ gboolean FileData::Filter::by_class(FileData *fd, guint filter)
 {
 	gint i;
 
@@ -177,7 +180,7 @@ GList *FileData::file_data_filter_file_filter_list(GList *list, GRegex *filter)
 	return FALSE;
 }
 
-GList *FileData::file_data_filter_class_list(GList *list, guint filter)
+GList *FileData::Filter::by_class(GList *list, guint filter)
 {
 	GList *work;
 
@@ -188,7 +191,7 @@ GList *FileData::file_data_filter_class_list(GList *list, guint filter)
 		GList *link = work;
 		work = work->next;
 
-		if (!file_data_filter_class(fd, filter))
+		if (!by_class(fd, filter))
 			{
 			list = g_list_remove_link(list, link);
 			file_data_unref(fd);
@@ -199,14 +202,14 @@ GList *FileData::file_data_filter_class_list(GList *list, guint filter)
 	return list;
 }
 
-/*static*/ void FileData::file_data_notify_mark_func(gpointer key, gpointer value, gpointer user_data)
+/*static*/ void FileData::Filter::notify_mark_func(gpointer key, gpointer value, gpointer user_data)
 {
 	FileData *fd = value;
 	::file_data_increment_version(fd);
 	file_data_send_notification(fd, NOTIFY_MARKS);
 }
 
-gboolean FileData::file_data_register_mark_func(gint n, FileDataGetMarkFunc get_mark_func, FileDataSetMarkFunc set_mark_func, gpointer data, GDestroyNotify notify)
+gboolean FileData::Filter::register_mark_func(gint n, FileDataGetMarkFunc get_mark_func, FileDataSetMarkFunc set_mark_func, gpointer data, GDestroyNotify notify)
 {
 	if (n < 0 || n >= FILEDATA_MARKS_SIZE) return FALSE;
 
@@ -221,13 +224,13 @@ gboolean FileData::file_data_register_mark_func(gint n, FileDataGetMarkFunc get_
 		{
 		/* this effectively changes all known files */
 		g_hash_table_foreach(file_data_pool,
-                             &FileData::file_data_notify_mark_func, NULL);
+                             &notify_mark_func, NULL);
 		}
 
         return TRUE;
 }
 
-void FileData::file_data_get_registered_mark_func(gint n, FileDataGetMarkFunc *get_mark_func, FileDataSetMarkFunc *set_mark_func, gpointer *data)
+void FileData::Filter::get_registered_mark_func(gint n, FileDataGetMarkFunc *get_mark_func, FileDataSetMarkFunc *set_mark_func, gpointer *data)
 {
 	if (get_mark_func) *get_mark_func = file_data_get_mark_func[n];
 	if (set_mark_func) *set_mark_func = file_data_set_mark_func[n];
@@ -241,7 +244,7 @@ void FileData::file_data_get_registered_mark_func(gint n, FileDataGetMarkFunc *g
  *-----------------------------------------------------------------------------
  */
 
-/*static*/ void FileData::marks_get_files(gpointer key, gpointer value, gpointer userdata)
+/*static*/ void FileData::Filter::get_marks_files(gpointer key, gpointer value, gpointer userdata)
 {
 	gchar *file_name = key;
 	GString *result = userdata;
@@ -257,7 +260,7 @@ void FileData::file_data_get_registered_mark_func(gint n, FileDataGetMarkFunc *g
 		}
 }
 
-gboolean FileData::marks_list_load(const gchar *path)
+gboolean FileData::Filter::load_marks_list(const gchar *path)
 {
 	FILE *f;
 	gchar s_buf[1024];
@@ -293,7 +296,7 @@ gboolean FileData::marks_list_load(const gchar *path)
 					gint mark_no = 1 << n;
 					if (atoi(marks_value) & mark_no)
 						{
-						::file_data_set_mark(fd, n , 1);
+						set_mark(fd, n , 1);
 						}
 					n++;
 					}
@@ -304,7 +307,7 @@ gboolean FileData::marks_list_load(const gchar *path)
 	return TRUE;
 }
 
-gboolean FileData::marks_list_save(gchar *path, gboolean save)
+gboolean FileData::Filter::save_marks_list(gchar *path, gboolean save)
 {
 	SecureSaveInfo *ssi;
 	gchar *pathl;
@@ -323,7 +326,7 @@ gboolean FileData::marks_list_save(gchar *path, gboolean save)
 
 	if (save)
 		{
-		g_hash_table_foreach(file_data_pool, marks_get_files, marks);
+		g_hash_table_foreach(file_data_pool, get_marks_files, marks);
 		}
 	secure_fprintf(ssi, "%s", marks->str);
 	g_string_free(marks, FALSE);
@@ -332,7 +335,7 @@ gboolean FileData::marks_list_save(gchar *path, gboolean save)
 	return (secure_close(ssi) == 0);
 }
 
-/*static*/ void FileData::marks_clear(gpointer key, gpointer value, gpointer userdata)
+/*static*/ void FileData::Filter::clear_marks(gpointer key, gpointer value, gpointer userdata)
 {
 	gchar *file_name = key;
 	gint mark_no;
@@ -350,7 +353,7 @@ gboolean FileData::marks_list_save(gchar *path, gboolean save)
 				mark_no = 1 << n;
 				if (fd->marks & mark_no)
 					{
-					::file_data_set_mark(fd, n , 0);
+					set_mark(fd, n , 0);
 					}
 				n++;
 				}
@@ -358,7 +361,7 @@ gboolean FileData::marks_list_save(gchar *path, gboolean save)
 		}
 }
 
-void FileData::marks_clear_all()
+void FileData::Filter::clear_all_marks()
 {
-	g_hash_table_foreach(file_data_pool, &FileData::marks_clear, NULL);
+	g_hash_table_foreach(file_data_pool, &clear_marks, NULL);
 }
