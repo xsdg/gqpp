@@ -1187,7 +1187,7 @@ static gchar *mode_number(mode_t m)
 	return g_strdup_printf("%s (%d%d%d%d)", pbuf, mb, mu, mg, mo);
 }
 
-gchar *metadata_file_info(FileData *fd, const gchar *key, MetadataFormat format)
+gchar *metadata_file_info(FileData *fd, const gchar *key, MetadataFormat UNUSED(format))
 {
 	gchar *page_n_of_m;
 
@@ -1239,7 +1239,7 @@ gchar *metadata_file_info(FileData *fd, const gchar *key, MetadataFormat format)
 }
 
 #ifdef HAVE_LUA
-gchar *metadata_lua_info(FileData *fd, const gchar *key, MetadataFormat format)
+gchar *metadata_lua_info(FileData *fd, const gchar *key, MetadataFormat UNUSED(format))
 {
 	gchar *script_name;
 	gchar *script_name_utf8;

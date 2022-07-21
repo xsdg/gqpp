@@ -44,10 +44,9 @@ mkdir <target dir>/AppDir
 Generate the Geeqie executable:
 
 ```sh
-sudo make maintainer-clean
-./autogen.sh --prefix="/usr/"
-make -j
-make install DESTDIR=<full path to target dir>/AppDir
+meson setup appimage-build
+meson configure -Dprefix=/usr appimage-build
+DESTDIR=<full path to target dir>/AppDir ninja -C build-appimage install
 ```
 
 ## Generate the AppImage

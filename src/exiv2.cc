@@ -124,7 +124,7 @@ struct _ExifData
 	{
 	}
 
-	virtual void writeMetadata(gchar *path = NULL)
+	virtual void writeMetadata(gchar *UNUSED(path) = NULL)
 	{
 		g_critical("Unsupported method of writing metadata");
 	}
@@ -767,7 +767,7 @@ guint exif_item_get_format_id(ExifItem *item)
 	}
 }
 
-const char *exif_item_get_format_name(ExifItem *item, gboolean brief)
+const char *exif_item_get_format_name(ExifItem *item, gboolean UNUSED(brief))
 {
 	try {
 		if (!item) return NULL;

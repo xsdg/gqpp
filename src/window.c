@@ -235,7 +235,7 @@ static void help_browser_run(const gchar *path)
 
 static GtkWidget *help_window = NULL;
 
-static void help_window_destroy_cb(GtkWidget *window, gpointer data)
+static void help_window_destroy_cb(GtkWidget *UNUSED(window), gpointer UNUSED(data))
 {
 	help_window = NULL;
 }
@@ -328,8 +328,8 @@ struct _HelpSearchData {
 	gchar *text_entry;
 };
 
-static void help_search_window_show_icon_press(GtkEntry *entry, GtkEntryIconPosition pos,
-									GdkEvent *event, gpointer userdata)
+static void help_search_window_show_icon_press(GtkEntry *UNUSED(entry), GtkEntryIconPosition UNUSED(pos),
+									GdkEvent *UNUSED(event), gpointer userdata)
 {
 	HelpSearchData *hsd = userdata;
 
@@ -338,7 +338,7 @@ static void help_search_window_show_icon_press(GtkEntry *entry, GtkEntryIconPosi
 	gtk_entry_set_text(GTK_ENTRY(hsd->edit_widget), hsd->text_entry);
 }
 
-static void help_search_window_ok_cb(GenericDialog *gd, gpointer data)
+static void help_search_window_ok_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
 	HelpSearchData *hsd = data;
 	gchar *search_command;
@@ -352,7 +352,7 @@ static void help_search_window_ok_cb(GenericDialog *gd, gpointer data)
 	g_free(hsd);
 }
 
-static void help_search_window_cancel_cb(GenericDialog *gd, gpointer data)
+static void help_search_window_cancel_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
 	HelpSearchData *hsd = data;
 
@@ -377,20 +377,13 @@ void help_search_window_show()
 				  help_search_window_ok_cb, TRUE);
 
 	label1 = pref_label_new(GENERIC_DIALOG(gd)->vbox, _("Search engine:"));
-#if GTK_CHECK_VERSION(3,16,0)
 	gtk_label_set_xalign(GTK_LABEL(label1), 0.0);
 	gtk_label_set_yalign(GTK_LABEL(label1), 0.5);
-#else
-   gtk_misc_set_alignment(GTK_MISC(label1), 0.0, 0.5);
-#endif
 
 	label2 = pref_label_new(GENERIC_DIALOG(gd)->vbox, options->help_search_engine);
-#if GTK_CHECK_VERSION(3,16,0)
 	gtk_label_set_xalign(GTK_LABEL(label2), 0.0);
 	gtk_label_set_yalign(GTK_LABEL(label2), 0.5);
-#else
-   gtk_misc_set_alignment(GTK_MISC(label2), 0.0, 0.5);
-#endif
+
 	pref_spacer(GENERIC_DIALOG(gd)->vbox, 0);
 
 	table = pref_table_new(gd->vbox, 3, 1, FALSE, TRUE);

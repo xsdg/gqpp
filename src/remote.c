@@ -211,7 +211,7 @@ static void remote_server_clients_close(RemoteConnection *rc)
 		}
 }
 
-static gboolean remote_server_read_cb(GIOChannel *source, GIOCondition condition, gpointer data)
+static gboolean remote_server_read_cb(GIOChannel *UNUSED(source), GIOCondition UNUSED(condition), gpointer data)
 {
 	RemoteConnection *rc = data;
 	gint fd;
@@ -330,7 +330,7 @@ static RemoteConnection *remote_client_open(const gchar *path)
 
 static sig_atomic_t sigpipe_occurred = FALSE;
 
-static void sighandler_sigpipe(gint sig)
+static void sighandler_sigpipe(gint UNUSED(sig))
 {
 	sigpipe_occurred = TRUE;
 }
@@ -449,12 +449,12 @@ void remote_close(RemoteConnection *rc)
  *-----------------------------------------------------------------------------
  */
 
-static void gr_image_next(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_image_next(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	layout_image_next(lw_id);
 }
 
-static void gr_new_window(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_new_window(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	LayoutWindow *lw = NULL;
 
@@ -474,42 +474,42 @@ static gboolean gr_close_window_cb()
 	return FALSE;
 }
 
-static void gr_close_window(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_close_window(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	g_idle_add(gr_close_window_cb, NULL);
 }
 
-static void gr_image_prev(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_image_prev(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	layout_image_prev(lw_id);
 }
 
-static void gr_image_first(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_image_first(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	layout_image_first(lw_id);
 }
 
-static void gr_image_last(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_image_last(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	layout_image_last(lw_id);
 }
 
-static void gr_fullscreen_toggle(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_fullscreen_toggle(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	layout_image_full_screen_toggle(lw_id);
 }
 
-static void gr_fullscreen_start(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_fullscreen_start(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	layout_image_full_screen_start(lw_id);
 }
 
-static void gr_fullscreen_stop(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_fullscreen_stop(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	layout_image_full_screen_stop(lw_id);
 }
 
-static void gr_lw_id(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_lw_id(const gchar *text, GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	lw_id = layout_find_by_layout_id(text);
 	if (!lw_id)
@@ -519,7 +519,7 @@ static void gr_lw_id(const gchar *text, GIOChannel *channel, gpointer data)
 	layout_valid(&lw_id);
 }
 
-static void gr_slideshow_start_rec(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_slideshow_start_rec(const gchar *text, GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	GList *list;
 	gchar *tilde_filename;
@@ -538,7 +538,7 @@ static void gr_slideshow_start_rec(const gchar *text, GIOChannel *channel, gpoin
 	layout_image_slideshow_start_from_list(lw_id, list);
 }
 
-static void gr_cache_thumb(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_cache_thumb(const gchar *text, GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	if (!g_strcmp0(text, "clear"))
 		{
@@ -550,7 +550,7 @@ static void gr_cache_thumb(const gchar *text, GIOChannel *channel, gpointer data
 		}
 }
 
-static void gr_cache_shared(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_cache_shared(const gchar *text, GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	if (!g_strcmp0(text, "clear"))
 		cache_manager_standard_process_remote(TRUE);
@@ -558,22 +558,22 @@ static void gr_cache_shared(const gchar *text, GIOChannel *channel, gpointer dat
 		cache_manager_standard_process_remote(FALSE);
 }
 
-static void gr_cache_metadata(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_cache_metadata(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	cache_maintain_home_remote(TRUE, FALSE, NULL);
 }
 
-static void gr_cache_render(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_cache_render(const gchar *text, GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	cache_manager_render_remote(text, FALSE, FALSE, NULL);
 }
 
-static void gr_cache_render_recurse(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_cache_render_recurse(const gchar *text, GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	cache_manager_render_remote(text, TRUE, FALSE, NULL);
 }
 
-static void gr_cache_render_standard(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_cache_render_standard(const gchar *text, GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	if(options->thumbnails.spec_standard)
 		{
@@ -581,7 +581,7 @@ static void gr_cache_render_standard(const gchar *text, GIOChannel *channel, gpo
 		}
 }
 
-static void gr_cache_render_standard_recurse(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_cache_render_standard_recurse(const gchar *text, GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	if(options->thumbnails.spec_standard)
 		{
@@ -589,22 +589,22 @@ static void gr_cache_render_standard_recurse(const gchar *text, GIOChannel *chan
 		}
 }
 
-static void gr_slideshow_toggle(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_slideshow_toggle(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	layout_image_slideshow_toggle(lw_id);
 }
 
-static void gr_slideshow_start(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_slideshow_start(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	layout_image_slideshow_start(lw_id);
 }
 
-static void gr_slideshow_stop(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_slideshow_stop(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	layout_image_slideshow_stop(lw_id);
 }
 
-static void gr_slideshow_delay(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_slideshow_delay(const gchar *text, GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	gdouble t1, t2, t3, n;
 	gint res;
@@ -650,7 +650,7 @@ static void gr_slideshow_delay(const gchar *text, GIOChannel *channel, gpointer 
 	options->slideshow.delay = (gint)(n * 10.0 + 0.01);
 }
 
-static void gr_tools_show(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_tools_show(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	gboolean popped;
 	gboolean hidden;
@@ -661,7 +661,7 @@ static void gr_tools_show(const gchar *text, GIOChannel *channel, gpointer data)
 		}
 }
 
-static void gr_tools_hide(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_tools_hide(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	gboolean popped;
 	gboolean hidden;
@@ -672,14 +672,14 @@ static void gr_tools_hide(const gchar *text, GIOChannel *channel, gpointer data)
 		}
 }
 
-static gboolean gr_quit_idle_cb(gpointer data)
+static gboolean gr_quit_idle_cb(gpointer UNUSED(data))
 {
 	exit_program();
 
 	return FALSE;
 }
 
-static void gr_quit(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_quit(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	/* schedule exit when idle, if done from within a
 	 * remote handler remote_close will crash
@@ -687,7 +687,7 @@ static void gr_quit(const gchar *text, GIOChannel *channel, gpointer data)
 	g_idle_add(gr_quit_idle_cb, NULL);
 }
 
-static void gr_file_load_no_raise(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_file_load_no_raise(const gchar *text, GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	gchar *filename;
 	gchar *tilde_filename;
@@ -730,7 +730,7 @@ static void gr_file_load(const gchar *text, GIOChannel *channel, gpointer data)
 	gr_raise(text, channel, data);
 }
 
-static void gr_pixel_info(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_pixel_info(const gchar *UNUSED(text), GIOChannel *channel, gpointer UNUSED(data))
 {
 	gchar *pixel_info;
 	gint x_pixel, y_pixel;
@@ -774,7 +774,7 @@ static void gr_pixel_info(const gchar *text, GIOChannel *channel, gpointer data)
 		}
 }
 
-static void gr_rectangle(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_rectangle(const gchar *UNUSED(text), GIOChannel *channel, gpointer UNUSED(data))
 {
 	gchar *rectangle_info;
 	PixbufRenderer *pr;
@@ -801,7 +801,7 @@ static void gr_rectangle(const gchar *text, GIOChannel *channel, gpointer data)
 		}
 }
 
-static void gr_render_intent(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_render_intent(const gchar *UNUSED(text), GIOChannel *channel, gpointer UNUSED(data))
 {
 	gchar *render_intent;
 
@@ -924,7 +924,7 @@ static void get_filelist(const gchar *text, GIOChannel *channel, gboolean recurs
 	file_data_unref(dir_fd);
 }
 
-static void gr_collection(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_collection(const gchar *text, GIOChannel *channel, gpointer UNUSED(data))
 {
 	GString *contents = g_string_new(NULL);
 
@@ -943,7 +943,7 @@ static void gr_collection(const gchar *text, GIOChannel *channel, gpointer data)
 	g_string_free(contents, TRUE);
 }
 
-static void gr_collection_list(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_collection_list(const gchar *UNUSED(text), GIOChannel *channel, gpointer UNUSED(data))
 {
 
 	GList *collection_list = NULL;
@@ -980,7 +980,7 @@ static gboolean wait_cb(const gpointer data)
 	return FALSE;
 }
 
-static void gr_geometry(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_geometry(const gchar *text, GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	gchar **geometry;
 
@@ -1013,17 +1013,17 @@ static void gr_geometry(const gchar *text, GIOChannel *channel, gpointer data)
 	g_strfreev(geometry);
 }
 
-static void gr_filelist(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_filelist(const gchar *text, GIOChannel *channel, gpointer UNUSED(data))
 {
 	get_filelist(text, channel, FALSE);
 }
 
-static void gr_filelist_recurse(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_filelist_recurse(const gchar *text, GIOChannel *channel, gpointer UNUSED(data))
 {
 	get_filelist(text, channel, TRUE);
 }
 
-static void gr_file_tell(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_file_tell(const gchar *UNUSED(text), GIOChannel *channel, gpointer UNUSED(data))
 {
 	gchar *out_string;
 	gchar *collection_name = NULL;
@@ -1054,7 +1054,7 @@ static void gr_file_tell(const gchar *text, GIOChannel *channel, gpointer data)
 	g_free(out_string);
 }
 
-static void gr_file_info(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_file_info(const gchar *UNUSED(text), GIOChannel *channel, gpointer UNUSED(data))
 {
 	gchar *filename;
 	FileData *fd;
@@ -1162,7 +1162,7 @@ static gboolean is_config_file(const gchar *param)
 	return FALSE;
 }
 
-static void gr_config_load(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_config_load(const gchar *text, GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	gchar *filename = expand_tilde(text);
 
@@ -1189,7 +1189,7 @@ static void gr_config_load(const gchar *text, GIOChannel *channel, gpointer data
 	g_free(filename);
 }
 
-static void gr_get_sidecars(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_get_sidecars(const gchar *text, GIOChannel *channel, gpointer UNUSED(data))
 {
 	gchar *filename = expand_tilde(text);
 	FileData *fd = file_data_new_group(filename);
@@ -1212,7 +1212,7 @@ static void gr_get_sidecars(const gchar *text, GIOChannel *channel, gpointer dat
 	g_free(filename);
 }
 
-static void gr_get_destination(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_get_destination(const gchar *text, GIOChannel *channel, gpointer UNUSED(data))
 {
 	gchar *filename = expand_tilde(text);
 	FileData *fd = file_data_new_group(filename);
@@ -1225,7 +1225,7 @@ static void gr_get_destination(const gchar *text, GIOChannel *channel, gpointer 
 	g_free(filename);
 }
 
-static void gr_file_view(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_file_view(const gchar *text, GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	gchar *filename;
 	gchar *tilde_filename = expand_tilde(text);
@@ -1237,7 +1237,7 @@ static void gr_file_view(const gchar *text, GIOChannel *channel, gpointer data)
 	g_free(tilde_filename);
 }
 
-static void gr_list_clear(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_list_clear(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer data)
 {
 	RemoteData *remote_data = data;
 
@@ -1246,7 +1246,7 @@ static void gr_list_clear(const gchar *text, GIOChannel *channel, gpointer data)
 	remote_data->single_dir = TRUE;
 }
 
-static void gr_list_add(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_list_add(const gchar *text, GIOChannel *UNUSED(channel), gpointer data)
 {
 	RemoteData *remote_data = data;
 	gboolean new = TRUE;
@@ -1325,7 +1325,7 @@ static void gr_list_add(const gchar *text, GIOChannel *channel, gpointer data)
 		}
 }
 
-static void gr_raise(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_raise(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	if (layout_valid(&lw_id))
 		{
@@ -1333,7 +1333,7 @@ static void gr_raise(const gchar *text, GIOChannel *channel, gpointer data)
 		}
 }
 
-static void gr_pwd(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_pwd(const gchar *text, GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
 	LayoutWindow *lw = NULL;
 
@@ -1344,14 +1344,14 @@ static void gr_pwd(const gchar *text, GIOChannel *channel, gpointer data)
 	lw_id = lw;
 }
 
-static void gr_print0(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_print0(const gchar *UNUSED(text), GIOChannel *channel, gpointer UNUSED(data))
 {
 	g_io_channel_write_chars(channel, "print0", -1, NULL, NULL);
 	g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
 }
 
 #ifdef HAVE_LUA
-static void gr_lua(const gchar *text, GIOChannel *channel, gpointer data)
+static void gr_lua(const gchar *text, GIOChannel *channel, gpointer UNUSED(data))
 {
 	gchar *result = NULL;
 	gchar **lua_command;
@@ -1491,7 +1491,7 @@ static RemoteCommandEntry *remote_command_find(const gchar *text, const gchar **
 	return NULL;
 }
 
-static void remote_cb(RemoteConnection *rc, const gchar *text, GIOChannel *channel, gpointer data)
+static void remote_cb(RemoteConnection *UNUSED(rc), const gchar *text, GIOChannel *channel, gpointer data)
 {
 	RemoteCommandEntry *entry;
 	const gchar *offset;

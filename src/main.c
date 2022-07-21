@@ -152,8 +152,8 @@ static void parse_command_line_add_file(const gchar *file_path, gchar **path, gc
 		}
 }
 
-static void parse_command_line_add_dir(const gchar *dir, gchar **path, gchar **file,
-				       GList **list)
+static void parse_command_line_add_dir(const gchar *dir, gchar **UNUSED(path), gchar **UNUSED(file),
+				       GList **UNUSED(list))
 {
 #if 0
 	/* This is broken because file filter is not initialized yet.
@@ -948,13 +948,13 @@ static void exit_program_final(void)
 
 static GenericDialog *exit_dialog = NULL;
 
-static void exit_confirm_cancel_cb(GenericDialog *gd, gpointer data)
+static void exit_confirm_cancel_cb(GenericDialog *gd, gpointer UNUSED(data))
 {
 	exit_dialog = NULL;
 	generic_dialog_close(gd);
 }
 
-static void exit_confirm_exit_cb(GenericDialog *gd, gpointer data)
+static void exit_confirm_exit_cb(GenericDialog *gd, gpointer UNUSED(data))
 {
 	exit_dialog = NULL;
 	generic_dialog_close(gd);
@@ -998,7 +998,7 @@ static gint exit_confirm_dlg(void)
 	return TRUE;
 }
 
-static void exit_program_write_metadata_cb(gint success, const gchar *dest_path, gpointer data)
+static void exit_program_write_metadata_cb(gint success, const gchar *UNUSED(dest_path), gpointer UNUSED(data))
 {
 	if (success) exit_program();
 }
@@ -1027,7 +1027,7 @@ void exit_program(void)
 /** @FIXME this probably needs some better ifdefs. Please report any compilation problems */
 
 #if defined(SIGBUS) && defined(SA_SIGINFO)
-static void sigbus_handler_cb(int signum, siginfo_t *info, void *context)
+static void sigbus_handler_cb(int UNUSED(signum), siginfo_t *info, void *UNUSED(context))
 {
 	unsigned long pagesize = sysconf(_SC_PAGE_SIZE);
 	DEBUG_1("SIGBUS %p", info->si_addr);
@@ -1049,7 +1049,6 @@ static void setup_sigbus_handler(void)
 
 static void set_theme_bg_color()
 {
-#if GTK_CHECK_VERSION(3,0,0)
 	GdkRGBA bg_color;
 	GdkColor theme_color;
 	GtkStyleContext *style_context;
@@ -1077,10 +1076,9 @@ static void set_theme_bg_color()
 		}
 
 	view_window_colors_update();
-#endif
 }
 
-static gboolean theme_change_cb(GObject *gobject, GParamSpec *pspec, gpointer data)
+static gboolean theme_change_cb(GObject *UNUSED(gobject), GParamSpec *UNUSED(pspec), gpointer UNUSED(data))
 {
 	set_theme_bg_color();
 
@@ -1096,10 +1094,9 @@ static gboolean theme_change_cb(GObject *gobject, GParamSpec *pspec, gpointer da
  * They are now variables, all defined relative to one level above the
  * directory that the executable is run from.
  */
-static void create_application_paths(gchar *argv[])
+static void create_application_paths()
 {
 	gchar *dirname;
-	gchar *tmp;
 	gint length;
 	gchar *path;
 
@@ -1123,7 +1120,7 @@ static void create_application_paths(gchar *argv[])
 	g_free(path);
 }
 
-gboolean stderr_channel_cb(GIOChannel *source, GIOCondition condition, gpointer data)
+gboolean stderr_channel_cb(GIOChannel *source, GIOCondition UNUSED(condition), gpointer UNUSED(data))
 {
 	static GString *message_str = NULL;
 	gchar buf[10] = {0};
@@ -1168,23 +1165,17 @@ gint main(gint argc, gchar *argv[])
 	gint fd_stderr[2];
 	GIOChannel *stderr_channel;
 
-#if GTK_CHECK_VERSION(3,10,0)
 	gdk_set_allowed_backends("x11,*");
-#endif
 
 #ifdef HAVE_GTHREAD
-#if !GLIB_CHECK_VERSION(2,32,0)
-	g_thread_init(NULL);
-#endif
 	gdk_threads_init();
 	gdk_threads_enter();
-
 #endif
 
 	/* init execution time counter (debug only) */
 	init_exec_time();
 
-	create_application_paths(argv);
+	create_application_paths();
 
 	/* setup locale, i18n */
 	setlocale(LC_ALL, "");

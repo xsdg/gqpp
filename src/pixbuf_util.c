@@ -847,7 +847,7 @@ static void pixbuf_copy_font(GdkPixbuf *src, gint sx, gint sy,
 		}
 }
 
-void pixbuf_draw_layout(GdkPixbuf *pixbuf, PangoLayout *layout, GtkWidget *widget,
+void pixbuf_draw_layout(GdkPixbuf *pixbuf, PangoLayout *layout, GtkWidget *UNUSED(widget),
 			gint x, gint y,
 			guint8 r, guint8 g, guint8 b, guint8 a)
 {
@@ -1283,7 +1283,7 @@ static void pixbuf_draw_fade_linear(guchar *p_pix, gint prs, gboolean has_alpha,
 static void pixbuf_draw_fade_radius(guchar *p_pix, gint prs, gboolean has_alpha,
 				    gint sx, gint sy, gint border,
 				    gint x1, gint y1, gint x2, gint y2,
-				    guint8 r, guint8 g, guint8 b, guint8 a)
+				    guint8 UNUSED(r), guint8 g, guint8 b, guint8 a)
 {
 	guchar *pp;
 	gint p_step;

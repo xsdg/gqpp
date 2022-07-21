@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #/*
-# * Copyright (C) 2021 The Geeqie Team
+# * Copyright (C) 2022 The Geeqie Team
 # *
 # * Author: Colin Clark  
 # *  
@@ -22,55 +22,23 @@
 
 ## @file
 ## @brief Check that Geeqie compiles with both gcc and clang,
-## for both GTK2 and GTK3, and with and without optional modules.
+## for GTK3, and with and without optional modules.
 ## 
 
 compile()
 {
-	compiler="$1"
+compiler="$1"
 
-	# Cannot have --enable-debug-flags with --disable-gtk3
-	set -- "$disable_list --disable-gtk3" "--disable-gtk3" "$disable_list --enable-debug-flags" "--enable-debug-flags" "$disable_list" ""
+printf '\e[32m%s\n' "$compiler all disabled"
+meson configure build -Darchive=disabled -Dcms=disabled -Ddjvu=disabled -Dexiv2=disabled -Dffmpegthumbnailer=disabled -Dgps-map=disabled -Dheif=disabled -Dj2k=disabled -Djpeg=disabled -Djpegxl=disabled -Dlibraw=disabled -Dlua=disabled -Dmarkdown=disabled -Dpdf=disabled -Dspell=disabled -Dtiff=disabled -Dwebp=disabled
+ninja -C build clean > /dev/null 2>&1
+ninja -C build > /dev/null 2>&1
 
-	i=1
-	while [ $i -le 6 ]
-	do
-		variant=""
-		eval variant="\$${i}"
-
-		if [ "$variant" != "${variant%gtk3*}" ]
-		then
-			gtk="GTK2"
-		else
-			gtk="GTK3"
-		fi
-		if [ "$variant" != "${variant%disable-threads*}" ]
-		then
-			disabled="all disabled"
-		else
-			disabled="none disabled"
-		fi
-		if [ "$variant" != "${variant%--enable-debug-flags*}" ]
-		then
-			debug_flags="enable-debug-flags"
-		else
-			debug_flags=""
-		fi
-
-		printf '\e[32m%s\n' "$compiler $gtk $debug_flags $disabled"
-		sudo make maintainer-clean > /dev/null 2>&1
-		./autogen.sh "$variant" > /dev/null 2>&1
-		make -j > /dev/null
-
-		i=$((i+1))
-	done
+printf '\e[32m%s\n' "$compiler none disabled"
+meson configure build -Darchive=auto -Dcms=auto -Ddjvu=auto -Dexiv2=auto -Dffmpegthumbnailer=auto -Dgps-map=auto -Dheif=auto -Dj2k=auto -Djpeg=auto -Djpegxl=auto -Dlibraw=auto -Dlua=auto -Dmarkdown=auto -Dpdf=auto -Dspell=auto -Dtiff=auto -Dwebp=auto
+ninja -C build clean > /dev/null 2>&1
+ninja -C build > /dev/null 2>&1
 }
-
-disable_list=" "$(awk -F '[][]' '/AC_HELP_STRING\(\[--disable-/ {if ($2 != "gtk3") print $2}' configure.ac | tr '\n' ' ')
-
-printf '%s\n' "Disabled list: :$disable_list"
-
-export CFLAGS="-Wno-deprecated-declarations"
 
 export CC=clang
 export CXX=clang++

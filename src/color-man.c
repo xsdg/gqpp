@@ -317,11 +317,8 @@ void color_man_correct_region(ColorMan *cm, GdkPixbuf *pixbuf, gint x, gint y, g
 	rs = gdk_pixbuf_get_rowstride(pixbuf);
 
 	/** @FIXME: x,y expected to be = 0. Maybe this is not the right place for scaling */
-	if (!options->image.use_clutter_renderer)
-		{
-		w = w * scale_factor();
-		h = h * scale_factor();
-		}
+	w = w * scale_factor();
+	h = h * scale_factor();
 
 	w = MIN(w, pixbuf_width - x);
 	h = MIN(h, pixbuf_height - y);

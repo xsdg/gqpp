@@ -247,7 +247,7 @@ gboolean metadata_write_queue_remove_list(GList *list)
 	return ret;
 }
 
-void metadata_notify_cb(FileData *fd, NotifyType type, gpointer data)
+void metadata_notify_cb(FileData *fd, NotifyType type, gpointer UNUSED(data))
 {
 	if (type & (NOTIFY_REREAD | NOTIFY_CHANGE))
 		{
@@ -293,7 +293,7 @@ gboolean metadata_write_queue_confirm(gboolean force_dialog, FileUtilDoneFunc do
 	return (metadata_write_queue != NULL);
 }
 
-static gboolean metadata_write_queue_idle_cb(gpointer data)
+static gboolean metadata_write_queue_idle_cb(gpointer UNUSED(data))
 {
 	metadata_write_queue_confirm(FALSE, NULL, NULL);
 	metadata_write_idle_id = 0;
@@ -1049,7 +1049,7 @@ GList *string_to_keywords_list(const gchar *text)
  */
 
 
-gboolean meta_data_get_keyword_mark(FileData *fd, gint n, gpointer data)
+gboolean meta_data_get_keyword_mark(FileData *fd, gint UNUSED(n), gpointer data)
 {
 	/** @FIXME do not use global keyword_tree */
 	GList *path = data;
@@ -1067,7 +1067,7 @@ gboolean meta_data_get_keyword_mark(FileData *fd, gint n, gpointer data)
 	return found;
 }
 
-gboolean meta_data_set_keyword_mark(FileData *fd, gint n, gboolean value, gpointer data)
+gboolean meta_data_set_keyword_mark(FileData *fd, gint UNUSED(n), gboolean value, gpointer data)
 {
 	GList *path = data;
 	GList *keywords = NULL;
@@ -1633,7 +1633,7 @@ gboolean keyword_is_hidden_in(GtkTreeModel *keyword_tree, GtkTreeIter *iter, gpo
 	return !!g_list_find(list, id);
 }
 
-static gboolean keyword_show_all_in_cb(GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *iter, gpointer data)
+static gboolean keyword_show_all_in_cb(GtkTreeModel *model, GtkTreePath *UNUSED(path), GtkTreeIter *iter, gpointer data)
 {
 	keyword_show_in(GTK_TREE_STORE(model), iter, data);
 	return FALSE;
@@ -1644,7 +1644,7 @@ void keyword_show_all_in(GtkTreeStore *keyword_tree, gpointer id)
 	gtk_tree_model_foreach(GTK_TREE_MODEL(keyword_tree), keyword_show_all_in_cb, id);
 }
 
-static gboolean keyword_revert_hidden_in_cb(GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *iter, gpointer data)
+static gboolean keyword_revert_hidden_in_cb(GtkTreeModel *model, GtkTreePath *UNUSED(path), GtkTreeIter *iter, gpointer data)
 {
 	if (keyword_is_hidden_in(GTK_TREE_MODEL(keyword_tree), iter, data))
 		{
@@ -1687,7 +1687,7 @@ void keyword_hide_unset_in(GtkTreeStore *keyword_tree, gpointer id, GList *keywo
 	keyword_hide_unset_in_recursive(keyword_tree, &iter, id, keywords);
 }
 
-static gboolean keyword_show_set_in_cb(GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *iter_ptr, gpointer data)
+static gboolean keyword_show_set_in_cb(GtkTreeModel *model, GtkTreePath *UNUSED(path), GtkTreeIter *iter_ptr, gpointer data)
 {
 	GtkTreeIter iter = *iter_ptr;
 	GList *keywords = data;

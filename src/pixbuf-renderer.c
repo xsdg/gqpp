@@ -27,7 +27,6 @@
 #include "main.h"
 #include "pixbuf-renderer.h"
 #include "renderer-tiles.h"
-#include "renderer-clutter.h"
 
 #include "intl.h"
 #include "layout.h"
@@ -149,12 +148,12 @@ static void pr_stereo_temp_disable(PixbufRenderer *pr, gboolean disable);
  *-------------------------------------------------------------------
  */
 
-static void pixbuf_renderer_class_init_wrapper(void *g_class, void *class_data)
+static void pixbuf_renderer_class_init_wrapper(void *g_class, void *UNUSED(class_data))
 {
 	pixbuf_renderer_class_init(g_class);
 }
 
-static void pixbuf_renderer_init_wrapper(PixbufRenderer *pr, void *class_data)
+static void pixbuf_renderer_init_wrapper(PixbufRenderer *pr, void *UNUSED(class_data))
 {
 	pixbuf_renderer_init(pr);
 }
@@ -411,14 +410,14 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *class)
 
 static RendererFuncs *pr_backend_renderer_new(PixbufRenderer *pr)
 {
-	if (options->image.use_clutter_renderer && !options->disable_gpu)
-		{
-#ifdef HAVE_CLUTTER
-		return renderer_clutter_new(pr);
-#else
-		log_printf("Warning: Geeqie is built without clutter renderer support");
-#endif
-		}
+	//~ if (options->image.use_clutter_renderer && !options->disable_gpu)
+		//~ {
+//~ #ifdef HAVE_CLUTTER
+		//~ return renderer_clutter_new(pr);
+//~ #else
+		//~ log_printf("Warning: Geeqie is built without clutter renderer support");
+//~ #endif
+		//~ }
 	return renderer_tiles_new(pr);
 }
 
@@ -650,7 +649,7 @@ static void widget_set_cursor(GtkWidget *widget, gint icon)
 
 	gdk_window_set_cursor(gtk_widget_get_window(widget), cursor);
 
-	if (cursor) gdk_cursor_unref(cursor);
+	if (cursor) g_object_unref(G_OBJECT(cursor));
 }
 
 gboolean pr_clip_region(gint x, gint y, gint w, gint h,
@@ -1336,7 +1335,7 @@ static void pr_zoom_adjust_real(PixbufRenderer *pr, gdouble increment,
 
 static void pr_update_signal(PixbufRenderer *pr)
 {
-	DEBUG_1("%s pixbuf renderer updated - started drawing %p, img: %dx%d", get_exec_time(), pr, pr->image_width, pr->image_height);
+	DEBUG_1("%s pixbuf renderer updated - started drawing %p, img: %dx%d", get_exec_time(), (void *)pr, pr->image_width, pr->image_height);
 	pr->debug_updated = TRUE;
 }
 
@@ -1364,7 +1363,7 @@ void pr_render_complete_signal(PixbufRenderer *pr)
 		}
 	if (pr->debug_updated)
 		{
-		DEBUG_1("%s pixbuf renderer done %p", get_exec_time(), pr);
+		DEBUG_1("%s pixbuf renderer done %p", get_exec_time(), (void *)pr);
 		pr->debug_updated = FALSE;
 		}
 }
@@ -1943,7 +1942,7 @@ static void pr_size_sync(PixbufRenderer *pr, gint new_width, gint new_height)
 	pr_update_signal(pr);
 }
 
-static void pr_size_cb(GtkWidget *widget, GtkAllocation *allocation, gpointer data)
+static void pr_size_cb(GtkWidget *UNUSED(widget), GtkAllocation *allocation, gpointer data)
 {
 	PixbufRenderer *pr = data;
 
@@ -2031,25 +2030,20 @@ void pixbuf_renderer_set_scroll_center(PixbufRenderer *pr, gdouble x, gdouble y)
  *-------------------------------------------------------------------
  */
 
-static gboolean pr_mouse_motion_cb(GtkWidget *widget, GdkEventMotion *event, gpointer data)
+static gboolean pr_mouse_motion_cb(GtkWidget *widget, GdkEventMotion *event, gpointer UNUSED(data))
 {
 	PixbufRenderer *pr;
 	gint accel;
-#if GTK_CHECK_VERSION(3,0,0)
 	GdkDeviceManager *device_manager;
 	GdkDevice *device;
-#endif
 
 	/* This is a hack, but work far the best, at least for single pointer systems.
 	 * See https://bugzilla.gnome.org/show_bug.cgi?id=587714 for more. */
 	gint x, y;
-#if GTK_CHECK_VERSION(3,0,0)
 	device_manager = gdk_display_get_device_manager(gdk_window_get_display(event->window));
 	device = gdk_device_manager_get_client_pointer(device_manager);
 	gdk_window_get_device_position(event->window, device, &x, &y, NULL);
-#else
-	gdk_window_get_pointer (event->window, &x, &y, NULL);
-#endif
+
 	event->x = x;
 	event->y = y;
 
@@ -2104,7 +2098,7 @@ static gboolean pr_mouse_motion_cb(GtkWidget *widget, GdkEventMotion *event, gpo
 	return FALSE;
 }
 
-static gboolean pr_leave_notify_cb(GtkWidget *widget, GdkEventCrossing *cevent, gpointer data)
+static gboolean pr_leave_notify_cb(GtkWidget *widget, GdkEventCrossing *UNUSED(cevent), gpointer UNUSED(data))
 {
 	PixbufRenderer *pr;
 
@@ -2116,7 +2110,7 @@ static gboolean pr_leave_notify_cb(GtkWidget *widget, GdkEventCrossing *cevent, 
 	return FALSE;
 }
 
-static gboolean pr_mouse_press_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer data)
+static gboolean pr_mouse_press_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer UNUSED(data))
 {
 	PixbufRenderer *pr;
 	GtkWidget *parent;
@@ -2156,7 +2150,7 @@ static gboolean pr_mouse_press_cb(GtkWidget *widget, GdkEventButton *bevent, gpo
 	return FALSE;
 }
 
-static gboolean pr_mouse_release_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer data)
+static gboolean pr_mouse_release_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer UNUSED(data))
 {
 	PixbufRenderer *pr;
 
@@ -2192,7 +2186,7 @@ static gboolean pr_mouse_release_cb(GtkWidget *widget, GdkEventButton *bevent, g
 	return FALSE;
 }
 
-static gboolean pr_mouse_leave_cb(GtkWidget *widget, GdkEventCrossing *event, gpointer data)
+static gboolean pr_mouse_leave_cb(GtkWidget *widget, GdkEventCrossing *UNUSED(event), gpointer UNUSED(data))
 {
 	PixbufRenderer *pr;
 
@@ -2209,7 +2203,7 @@ static gboolean pr_mouse_leave_cb(GtkWidget *widget, GdkEventCrossing *event, gp
 	return FALSE;
 }
 
-static void pr_mouse_drag_cb(GtkWidget *widget, GdkDragContext *context, gpointer data)
+static void pr_mouse_drag_cb(GtkWidget *widget, GdkDragContext *UNUSED(context), gpointer UNUSED(data))
 {
 	PixbufRenderer *pr;
 
@@ -3011,7 +3005,7 @@ gboolean pixbuf_renderer_get_virtual_rect(PixbufRenderer *pr, GdkRectangle *rect
 	return TRUE;
 }
 
-void pixbuf_renderer_set_size_early(PixbufRenderer *pr, guint width, guint height)
+void pixbuf_renderer_set_size_early(PixbufRenderer *UNUSED(pr), guint UNUSED(width), guint UNUSED(height))
 {
 #if 0
 	/** @FIXME this function does not consider the image orientation,

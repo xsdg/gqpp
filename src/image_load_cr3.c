@@ -168,7 +168,7 @@ fatal_error_handler (j_common_ptr cinfo)
 }
 
 static void
-output_message_handler (j_common_ptr cinfo)
+output_message_handler (j_common_ptr UNUSED(cinfo))
 {
   /* This method keeps libjpeg from dumping crap to stderr */
 
@@ -208,7 +208,7 @@ static void image_loader_cr3_read_scanline(struct jpeg_decompress_struct *cinfo,
 }
 
 
-static void init_source (j_decompress_ptr cinfo) {}
+static void init_source (j_decompress_ptr UNUSED(cinfo)) {}
 static boolean fill_input_buffer (j_decompress_ptr cinfo)
 {
 	ERREXIT(cinfo, JERR_INPUT_EMPTY);
@@ -228,7 +228,7 @@ static void skip_input_data (j_decompress_ptr cinfo, long num_bytes)
 		src->bytes_in_buffer -= (size_t) num_bytes;
 		}
 }
-static void term_source (j_decompress_ptr cinfo) {}
+static void term_source (j_decompress_ptr UNUSED(cinfo)) {}
 static void set_mem_src (j_decompress_ptr cinfo, void* buffer, long nbytes)
 {
 	struct jpeg_source_mgr* src;
@@ -478,17 +478,17 @@ static GdkPixbuf* image_loader_cr3_get_pixbuf(gpointer loader)
 	return lj->pixbuf;
 }
 
-static gchar* image_loader_cr3_get_format_name(gpointer loader)
+static gchar* image_loader_cr3_get_format_name(gpointer UNUSED(loader))
 {
 	return g_strdup("cr3");
 }
-static gchar** image_loader_cr3_get_format_mime_types(gpointer loader)
+static gchar** image_loader_cr3_get_format_mime_types(gpointer UNUSED(loader))
 {
 	static gchar *mime[] = {"image/x-canon-cr3", NULL};
 	return g_strdupv(mime);
 }
 
-static gboolean image_loader_cr3_close(gpointer loader, GError **error)
+static gboolean image_loader_cr3_close(gpointer UNUSED(loader), GError **UNUSED(error))
 {
 	return TRUE;
 }

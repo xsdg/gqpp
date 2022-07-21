@@ -99,14 +99,14 @@ static GtkTargetEntry bar_pane_gps_drop_types[] = {
 };
 static gint n_gps_entry_drop_types = 2;
 
-static void bar_pane_gps_close_cancel_cb(GenericDialog *gd, gpointer data)
+static void bar_pane_gps_close_cancel_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
 	PaneGPSData *pgd = data;
 
 	g_list_free(pgd->geocode_list);
 }
 
-static void bar_pane_gps_close_save_cb(GenericDialog *gd, gpointer data)
+static void bar_pane_gps_close_save_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
 	PaneGPSData *pgd = data;
 	FileData *fd;
@@ -127,10 +127,10 @@ static void bar_pane_gps_close_save_cb(GenericDialog *gd, gpointer data)
 	g_list_free(pgd->geocode_list);
 }
 
- static void bar_pane_gps_dnd_receive(GtkWidget *pane, GdkDragContext *context,
+ static void bar_pane_gps_dnd_receive(GtkWidget *pane, GdkDragContext *UNUSED(context),
 									  gint x, gint y,
 									  GtkSelectionData *selection_data, guint info,
-									  guint time, gpointer data)
+									  guint UNUSED(time), gpointer UNUSED(data))
 {
 	PaneGPSData *pgd;
 	GenericDialog *gd;
@@ -258,8 +258,8 @@ static void bar_pane_gps_dnd_init(gpointer data)
 
 }
 
-static gboolean bar_gps_draw_direction (ClutterCanvas *canvas,
-				cairo_t *cr, gpointer data)
+static gboolean bar_gps_draw_direction (ClutterCanvas *UNUSED(canvas),
+				cairo_t *cr, gpointer UNUSED(data))
 {
 	cairo_set_source_rgb(cr, 255, 0, 0);
 
@@ -289,12 +289,12 @@ static void bar_pane_gps_thumb_done_cb(ThumbLoader *tl, gpointer data)
 	thumb_loader_free(tl);
 }
 
-static void bar_pane_gps_thumb_error_cb(ThumbLoader *tl, gpointer data)
+static void bar_pane_gps_thumb_error_cb(ThumbLoader *tl, gpointer UNUSED(data))
 {
 	thumb_loader_free(tl);
 }
 
-static gboolean bar_pane_gps_marker_keypress_cb(GtkWidget *widget, ClutterButtonEvent *bevent, gpointer data)
+static gboolean bar_pane_gps_marker_keypress_cb(GtkWidget *widget, ClutterButtonEvent *bevent, gpointer UNUSED(data))
 {
 	//PaneGPSData *pgd = data;
 	FileData *fd;
@@ -585,7 +585,7 @@ void bar_pane_gps_set_map_source(PaneGPSData *pgd, const gchar *map_id)
 	g_object_unref(map_factory);
 }
 
-void bar_pane_gps_enable_markers_checked_toggle_cb(GtkWidget *menu_widget, gpointer data)
+void bar_pane_gps_enable_markers_checked_toggle_cb(GtkWidget *UNUSED(menu_widget), gpointer data)
 {
 	PaneGPSData *pgd = data;
 
@@ -599,7 +599,7 @@ void bar_pane_gps_enable_markers_checked_toggle_cb(GtkWidget *menu_widget, gpoin
 		}
 }
 
-static void bar_pane_gps_centre_map_checked_toggle_cb(GtkWidget *menu_widget, gpointer data)
+static void bar_pane_gps_centre_map_checked_toggle_cb(GtkWidget *UNUSED(menu_widget), gpointer data)
 {
 	PaneGPSData *pgd = data;
 
@@ -737,7 +737,7 @@ static void bar_pane_gps_slider_changed_cb(GtkScaleButton *slider,
 
 }
 static void bar_pane_gps_view_state_changed_cb(ChamplainView *view,
-           				       GParamSpec *gobject,
+           				       GParamSpec *UNUSED(gobject),
            				       gpointer data)
 {
 	PaneGPSData *pgd = data;
@@ -862,7 +862,7 @@ void bar_pane_gps_map_centreing(PaneGPSData *pgd)
 	g_string_free(message, TRUE);
 }
 
-static gboolean bar_pane_gps_map_keypress_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer data)
+static gboolean bar_pane_gps_map_keypress_cb(GtkWidget *UNUSED(widget), GdkEventButton *bevent, gpointer data)
 {
 	PaneGPSData *pgd = data;
 	GtkWidget *menu;
@@ -900,7 +900,7 @@ static gboolean bar_pane_gps_map_keypress_cb(GtkWidget *widget, GdkEventButton *
 		}
 }
 
-static void bar_pane_gps_destroy(GtkWidget *widget, gpointer data)
+static void bar_pane_gps_destroy(GtkWidget *UNUSED(widget), gpointer data)
 {
 	PaneGPSData *pgd = data;
 
@@ -960,10 +960,9 @@ GtkWidget *bar_pane_gps_new(const gchar *id, const gchar *title, const gchar *ma
 	gtk_scale_button_set_value(GTK_SCALE_BUTTON(slider), (gdouble)zoom);
 
 	progress = gtk_progress_bar_new();
-#if GTK_CHECK_VERSION(3,0,0)
 	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(progress), "");
 	gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(progress), TRUE);
-#endif
+
 	state = gtk_label_new("");
 	gtk_label_set_justify(GTK_LABEL(state), GTK_JUSTIFY_LEFT);
 	gtk_label_set_ellipsize(GTK_LABEL(state), PANGO_ELLIPSIZE_START);

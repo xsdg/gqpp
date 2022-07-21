@@ -158,7 +158,7 @@ static void layout_image_slideshow_prev(LayoutWindow *lw)
 	if (lw->slideshow) slideshow_prev(lw->slideshow);
 }
 
-static void layout_image_slideshow_stop_func(SlideShowData *ss, gpointer data)
+static void layout_image_slideshow_stop_func(SlideShowData *UNUSED(ss), gpointer data)
 {
 	LayoutWindow *lw = data;
 
@@ -374,7 +374,7 @@ static void layout_image_animate_update_image(LayoutWindow *lw)
 }
 
 
-static void animation_async_ready_cb(GObject *source_object, GAsyncResult *res, gpointer data)
+static void animation_async_ready_cb(GObject *UNUSED(source_object), GAsyncResult *res, gpointer data)
 {
 	GError *error = NULL;
 	AnimationData *animation = data;
@@ -475,27 +475,27 @@ void layout_image_animate_toggle(LayoutWindow *lw)
  *----------------------------------------------------------------------------
  */
 
-static void li_pop_menu_zoom_in_cb(GtkWidget *widget, gpointer data)
+static void li_pop_menu_zoom_in_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 
 	layout_image_zoom_adjust(lw, get_zoom_increment(), FALSE);
 }
 
-static void li_pop_menu_zoom_out_cb(GtkWidget *widget, gpointer data)
+static void li_pop_menu_zoom_out_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 	layout_image_zoom_adjust(lw, -get_zoom_increment(), FALSE);
 }
 
-static void li_pop_menu_zoom_1_1_cb(GtkWidget *widget, gpointer data)
+static void li_pop_menu_zoom_1_1_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 
 	layout_image_zoom_set(lw, 1.0, FALSE);
 }
 
-static void li_pop_menu_zoom_fit_cb(GtkWidget *widget, gpointer data)
+static void li_pop_menu_zoom_fit_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 
@@ -516,15 +516,6 @@ static void li_pop_menu_edit_cb(GtkWidget *widget, gpointer data)
 	file_util_start_editor_from_file(key, layout_image_get_fd(lw), lw->window);
 }
 
-#if !GTK_CHECK_VERSION(3,0,0)
-static void li_pop_menu_wallpaper_cb(GtkWidget *widget, gpointer data)
-{
-	LayoutWindow *lw = data;
-
-	layout_image_to_root(lw);
-}
-#endif
-
 static void li_pop_menu_alter_cb(GtkWidget *widget, gpointer data)
 {
 	LayoutWindow *lw = data;
@@ -536,7 +527,7 @@ static void li_pop_menu_alter_cb(GtkWidget *widget, gpointer data)
 	image_alter_orientation(lw->image, lw->image->image_fd, type);
 }
 
-static void li_pop_menu_new_cb(GtkWidget *widget, gpointer data)
+static void li_pop_menu_new_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 
@@ -569,21 +560,21 @@ static void li_pop_menu_copy_cb(GtkWidget *widget, gpointer data)
 		       li_pop_menu_click_parent(widget, lw));
 }
 
-static void li_pop_menu_copy_path_cb(GtkWidget *widget, gpointer data)
+static void li_pop_menu_copy_path_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 
 	file_util_copy_path_to_clipboard(layout_image_get_fd(lw), TRUE);
 }
 
-static void li_pop_menu_copy_path_unquoted_cb(GtkWidget *widget, gpointer data)
+static void li_pop_menu_copy_path_unquoted_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 
 	file_util_copy_path_to_clipboard(layout_image_get_fd(lw), FALSE);
 }
 
-static void li_pop_menu_copy_image_cb(GtkWidget *widget, gpointer data)
+static void li_pop_menu_copy_image_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 	ImageWindow *imd = lw->image;
@@ -628,49 +619,49 @@ static void li_pop_menu_move_to_trash_cb(GtkWidget *widget, gpointer data)
 			 li_pop_menu_click_parent(widget, lw));
 }
 
-static void li_pop_menu_slide_start_cb(GtkWidget *widget, gpointer data)
+static void li_pop_menu_slide_start_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 
 	layout_image_slideshow_start(lw);
 }
 
-static void li_pop_menu_slide_stop_cb(GtkWidget *widget, gpointer data)
+static void li_pop_menu_slide_stop_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 
 	layout_image_slideshow_stop(lw);
 }
 
-static void li_pop_menu_slide_pause_cb(GtkWidget *widget, gpointer data)
+static void li_pop_menu_slide_pause_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 
 	layout_image_slideshow_pause_toggle(lw);
 }
 
-static void li_pop_menu_full_screen_cb(GtkWidget *widget, gpointer data)
+static void li_pop_menu_full_screen_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 
 	layout_image_full_screen_toggle(lw);
 }
 
-static void li_pop_menu_animate_cb(GtkWidget *widget, gpointer data)
+static void li_pop_menu_animate_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 
 	layout_image_animate_toggle(lw);
 }
 
-static void li_pop_menu_hide_cb(GtkWidget *widget, gpointer data)
+static void li_pop_menu_hide_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 
 	layout_tools_hide_toggle(lw);
 }
 
-static void li_set_layout_path_cb(GtkWidget *widget, gpointer data)
+static void li_set_layout_path_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 	FileData *fd;
@@ -681,7 +672,7 @@ static void li_set_layout_path_cb(GtkWidget *widget, gpointer data)
 	if (fd) layout_set_fd(lw, fd);
 }
 
-static void li_open_archive_cb(GtkWidget *widget, gpointer data)
+static void li_open_archive_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 	LayoutWindow *lw_new;
@@ -715,7 +706,7 @@ static gboolean li_check_if_current_path(LayoutWindow *lw, const gchar *path)
 	return ret;
 }
 
-static void layout_image_popup_menu_destroy_cb(GtkWidget *widget, gpointer data)
+static void layout_image_popup_menu_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	GList *editmenu_fd_list = data;
 
@@ -791,9 +782,6 @@ static GtkWidget *layout_image_pop_menu(LayoutWindow *lw)
 	submenu = submenu_add_edit(menu, &item, G_CALLBACK(li_pop_menu_edit_cb), lw, editmenu_fd_list);
 	if (!path) gtk_widget_set_sensitive(item, FALSE);
 	menu_item_add_divider(submenu);
-#if !GTK_CHECK_VERSION(3,0,0)
-	menu_item_add(submenu, _("Set as _wallpaper"), G_CALLBACK(li_pop_menu_wallpaper_cb), lw);
-#endif
 	item = submenu_add_alter(menu, G_CALLBACK(li_pop_menu_alter_cb), lw);
 
 	item = menu_item_add_stock(menu, _("View in _new window"), GTK_STOCK_NEW, G_CALLBACK(li_pop_menu_new_cb), lw);
@@ -829,7 +817,7 @@ static GtkWidget *layout_image_pop_menu(LayoutWindow *lw)
 	if (!path) gtk_widget_set_sensitive(item, FALSE);
 	item = menu_item_add_stock(menu,
 				options->file_ops.confirm_delete ? _("_Delete...") :
-					_("_Delete"), GTK_STOCK_DELETE,
+					_("_Delete"), "edit-delete",
 								G_CALLBACK(li_pop_menu_delete_cb), lw);
 	if (!path) gtk_widget_set_sensitive(item, FALSE);
 	menu_item_add_divider(menu);
@@ -880,7 +868,7 @@ static GtkWidget *layout_image_pop_menu(LayoutWindow *lw)
 	return menu;
 }
 
-static void layout_image_menu_pos_cb(GtkMenu *menu, gint *x, gint *y, gboolean *push_in, gpointer data)
+static void layout_image_menu_pos_cb(GtkMenu *menu, gint *x, gint *y, gboolean *UNUSED(push_in), gpointer data)
 {
 	LayoutWindow *lw = data;
 
@@ -902,10 +890,10 @@ void layout_image_menu_popup(LayoutWindow *lw)
  *----------------------------------------------------------------------------
  */
 
-static void layout_image_dnd_receive(GtkWidget *widget, GdkDragContext *context,
-				     gint x, gint y,
+static void layout_image_dnd_receive(GtkWidget *widget, GdkDragContext *UNUSED(context),
+				     gint UNUSED(x), gint UNUSED(y),
 				     GtkSelectionData *selection_data, guint info,
-				     guint time, gpointer data)
+				     guint UNUSED(time), gpointer data)
 {
 	LayoutWindow *lw = data;
 	gint i;
@@ -991,9 +979,9 @@ static void layout_image_dnd_receive(GtkWidget *widget, GdkDragContext *context,
 		}
 }
 
-static void layout_image_dnd_get(GtkWidget *widget, GdkDragContext *context,
-				 GtkSelectionData *selection_data, guint info,
-				 guint time, gpointer data)
+static void layout_image_dnd_get(GtkWidget *widget, GdkDragContext *UNUSED(context),
+				 GtkSelectionData *selection_data, guint UNUSED(info),
+				 guint UNUSED(time), gpointer data)
 {
 	LayoutWindow *lw = data;
 	FileData *fd;
@@ -1028,7 +1016,7 @@ static void layout_image_dnd_get(GtkWidget *widget, GdkDragContext *context,
 		}
 }
 
-static void layout_image_dnd_end(GtkWidget *widget, GdkDragContext *context, gpointer data)
+static void layout_image_dnd_end(GtkWidget *UNUSED(widget), GdkDragContext *context, gpointer data)
 {
 	LayoutWindow *lw = data;
 	if (gdk_drag_context_get_selected_action(context) == GDK_ACTION_MOVE)
@@ -2147,7 +2135,7 @@ void layout_status_update_pixel_cb(PixbufRenderer *pr, gpointer data)
  *----------------------------------------------------------------------------
  */
 
-static void layout_image_update_cb(ImageWindow *imd, gpointer data)
+static void layout_image_update_cb(ImageWindow *UNUSED(imd), gpointer data)
 {
 	LayoutWindow *lw = data;
 	layout_status_update_image(lw);

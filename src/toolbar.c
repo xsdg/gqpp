@@ -159,7 +159,7 @@ static const UseableToolbarItems useable_toolbar_items[] = {
  * @param single_step Move up/down one step, or to top/bottom
  * 
  */
-static void toolbar_item_move(GtkWidget *widget, gpointer data,
+static void toolbar_item_move(GtkWidget *UNUSED(widget), gpointer data,
 									gboolean up, gboolean single_step)
 {
 	GtkWidget *list_item = data;
@@ -205,7 +205,7 @@ static void toolbar_item_move_bottom_cb(GtkWidget *widget, gpointer data)
 	toolbar_item_move(widget, data, FALSE, FALSE);
 }
 
-static void toolbar_item_delete_cb(GtkWidget *widget, gpointer data)
+static void toolbar_item_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	gtk_widget_destroy(data);
 }
@@ -233,7 +233,7 @@ static void toolbar_menu_popup(GtkWidget *widget)
 	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, vbox, 0, GDK_CURRENT_TIME);
 }
 
-static gboolean toolbar_press_cb(GtkWidget *button, GdkEventButton *event, gpointer data)
+static gboolean toolbar_press_cb(GtkWidget *UNUSED(button), GdkEventButton *event, gpointer data)
 {
 	ToolbarButtonData *button_data = data;
 
@@ -295,7 +295,7 @@ static void toolbarlist_add_button(const gchar *name, const gchar *label,
 	g_object_set_data_full(G_OBJECT(toolbar_entry->button), "toolbarbuttondata",
 	toolbar_entry, (GDestroyNotify)toolbar_item_free);
 
-	hbox = gtk_hbox_new(FALSE, PREF_PAD_BUTTON_GAP);
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
 	gtk_container_add(GTK_CONTAINER(toolbar_entry->button), hbox);
 	gtk_widget_show(hbox);
 
@@ -514,7 +514,7 @@ GtkWidget *toolbar_select_new(LayoutWindow *lw, ToolbarType bar)
 		}
 	toolbarlist[bar]->lw = lw;
 
-	toolbarlist[bar]->widget = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+	toolbarlist[bar]->widget = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	gtk_widget_show(toolbarlist[bar]->widget);
 
 	scrolled = gtk_scrolled_window_new(NULL, NULL);
@@ -524,13 +524,13 @@ GtkWidget *toolbar_select_new(LayoutWindow *lw, ToolbarType bar)
 	gtk_box_pack_start(GTK_BOX(toolbarlist[bar]->widget), scrolled, TRUE, TRUE, 0);
 	gtk_widget_show(scrolled);
 
-	toolbarlist[bar]->vbox = gtk_vbox_new(FALSE, 0);
+	toolbarlist[bar]->vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show(toolbarlist[bar]->vbox);
-	gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scrolled), toolbarlist[bar]->vbox);
+	gtk_container_add(GTK_CONTAINER(scrolled), toolbarlist[bar]->vbox);
 	gtk_viewport_set_shadow_type(GTK_VIEWPORT(gtk_bin_get_child(GTK_BIN(scrolled))),
 																GTK_SHADOW_NONE);
 
-	add_box = gtk_vbox_new(FALSE, 0);
+	add_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show(add_box);
 	gtk_box_pack_end(GTK_BOX(toolbarlist[bar]->widget), add_box, FALSE, FALSE, 0);
 	tbar = pref_toolbar_new(add_box, GTK_TOOLBAR_ICONS);

@@ -740,7 +740,7 @@ static void image_osd_timer_schedule(OverlayStateData *osd)
 		}
 }
 
-static void image_osd_state_cb(ImageWindow *imd, ImageState state, gpointer data)
+static void image_osd_state_cb(ImageWindow *UNUSED(imd), ImageState state, gpointer data)
 {
 	OverlayStateData *osd = data;
 
@@ -786,7 +786,7 @@ static void image_osd_free(OverlayStateData *osd)
 	g_free(osd);
 }
 
-static void image_osd_destroy_cb(GtkWidget *widget, gpointer data)
+static void image_osd_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	OverlayStateData *osd = data;
 

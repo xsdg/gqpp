@@ -297,7 +297,7 @@ struct _ConfOptions
 
 	/* Stereo */
 	struct {
-		gint mode;;
+		gint mode;
 		gint fsmode;
 		gboolean enable_fsmode;
 		gint fixed_w, fixed_h;

@@ -54,7 +54,7 @@ static void clear_mouse_cursor(GtkWidget *widget, gint state)
 
 		cursor = gdk_cursor_new(GDK_WATCH);
 		gdk_window_set_cursor(window, cursor);
-		gdk_cursor_unref(cursor);
+		g_object_unref(G_OBJECT(cursor));
 		}
 	else if (state & FULLSCREEN_CURSOR_NORMAL)
 		{
@@ -66,7 +66,7 @@ static void clear_mouse_cursor(GtkWidget *widget, gint state)
 
 		cursor = gdk_cursor_new(GDK_BLANK_CURSOR);
 		gdk_window_set_cursor(window, cursor);
-		gdk_cursor_unref(cursor);
+		g_object_unref(G_OBJECT(cursor));
 		}
 }
 
@@ -99,7 +99,7 @@ static void fullscreen_hide_mouse_reset(FullScreenData *fs)
 	fs->hide_mouse_id = g_timeout_add(FULL_SCREEN_HIDE_MOUSE_DELAY, fullscreen_hide_mouse_cb, fs);
 }
 
-static gboolean fullscreen_mouse_moved(GtkWidget *widget, GdkEventMotion *event, gpointer data)
+static gboolean fullscreen_mouse_moved(GtkWidget *UNUSED(widget), GdkEventMotion *UNUSED(event), gpointer data)
 {
 	FullScreenData *fs = data;
 
@@ -158,7 +158,7 @@ static void fullscreen_mouse_set_busy_idle(FullScreenData *fs)
 		}
 }
 
-static void fullscreen_image_update_cb(ImageWindow *imd, gpointer data)
+static void fullscreen_image_update_cb(ImageWindow *UNUSED(imd), gpointer data)
 {
 	FullScreenData *fs = data;
 
@@ -169,7 +169,7 @@ static void fullscreen_image_update_cb(ImageWindow *imd, gpointer data)
 		}
 }
 
-static void fullscreen_image_complete_cb(ImageWindow *imd, gboolean preload, gpointer data)
+static void fullscreen_image_complete_cb(ImageWindow *UNUSED(imd), gboolean preload, gpointer data)
 {
 	FullScreenData *fs = data;
 
@@ -196,7 +196,7 @@ static void fullscreen_saver_deactivate(void)
 		}
 }
 
-static gboolean fullscreen_saver_block_cb(gpointer data)
+static gboolean fullscreen_saver_block_cb(gpointer UNUSED(data))
 {
 	if (options->fullscreen.disable_saver)
 		{
@@ -206,7 +206,7 @@ static gboolean fullscreen_saver_block_cb(gpointer data)
 	return TRUE;
 }
 
-static gboolean fullscreen_delete_cb(GtkWidget *widget, GdkEventAny *event, gpointer data)
+static gboolean fullscreen_delete_cb(GtkWidget *UNUSED(widget), GdkEventAny *UNUSED(event), gpointer data)
 {
 	FullScreenData *fs = data;
 
@@ -274,7 +274,7 @@ FullScreenData *fullscreen_start(GtkWidget *window, ImageWindow *imd,
 			GDK_HINT_WIN_GRAVITY | GDK_HINT_USER_POS | GDK_HINT_USER_SIZE);
 
 	gtk_widget_realize(fs->window);
-#if GTK_CHECK_VERSION(3,8,0)
+
 	if ((options->fullscreen.screen % 100) == 0)
 		{
 		GdkWindow *gdkwin;
@@ -282,7 +282,7 @@ FullScreenData *fullscreen_start(GtkWidget *window, ImageWindow *imd,
 		if (gdkwin != NULL)
 			gdk_window_set_fullscreen_mode(gdkwin, GDK_FULLSCREEN_ON_ALL_MONITORS);
 		}
-#endif
+
 	/* make window fullscreen -- let Gtk do it's job, don't screw it in any way */
 	gtk_window_fullscreen(GTK_WINDOW(fs->window));
 
@@ -643,7 +643,7 @@ static void fullscreen_prefs_selection_add(GtkListStore *store, const gchar *tex
 					 FS_MENU_COLUMN_VALUE, value, -1);
 }
 
-GtkWidget *fullscreen_prefs_selection_new(const gchar *text, gint *screen_value, gboolean *above_value)
+GtkWidget *fullscreen_prefs_selection_new(const gchar *text, gint *screen_value, gboolean *UNUSED(above_value))
 {
 	GtkWidget *vbox;
 	GtkWidget *hbox;

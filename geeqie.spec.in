@@ -1,6 +1,6 @@
 # norootforbuild
 
-BuildRequires:  gtk2-devel gcc-c++ intltool gnome-doc-utils libjpeg-devel libtiff-devel
+BuildRequires:  libgtk-3-dev gcc-c++ intltool gnome-doc-utils libjpeg-devel libtiff-devel
 %if 0%{?suse_version}
 BuildRequires:  liblcms-devel update-desktop-files
 %define docname	%{name}
@@ -81,7 +81,7 @@ make install DESTDIR=%{buildroot}
 %suse_update_desktop_file -n geeqie
 %endif
 
-%__install -m 644 AUTHORS COPYING ChangeLog NEWS README.md README.lirc "%{buildroot}/%{_docdir}/%{docname}/"
+%__install -m 644 AUTHORS COPYING ChangeLog NEWS README.md "%{buildroot}/%{_docdir}/%{docname}/"
 
 %clean
 %__rm -rf "%{buildroot}"

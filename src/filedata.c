@@ -282,7 +282,6 @@ static void file_data_set_collate_keys(FileData *fd)
 	g_free(fd->collate_key_name);
 	g_free(fd->collate_key_name_nocase);
 
-#if GTK_CHECK_VERSION(2, 8, 0)
 	if (options->file_sort.natural)
 		{
 	 	fd->collate_key_name = g_utf8_collate_key_for_filename(fd->name, -1);
@@ -293,10 +292,6 @@ static void file_data_set_collate_keys(FileData *fd)
 		fd->collate_key_name = g_utf8_collate_key(valid_name, -1);
 		fd->collate_key_name_nocase = g_utf8_collate_key(caseless_name, -1);
 		}
-#else
-	fd->collate_key_name = g_utf8_collate_key(valid_name, -1);
-	fd->collate_key_name_nocase = g_utf8_collate_key(caseless_name, -1);
-#endif
 
 	g_free(valid_name);
 	g_free(caseless_name);
@@ -513,7 +508,7 @@ void read_exif_time_data(FileData *file)
 	if (file->exif)
 		{
 		gchar *tmp = exif_get_data_as_text(file->exif, "Exif.Photo.DateTimeOriginal");
-		DEBUG_2("%s set_exif_time_data: reading %p %s", get_exec_time(), file, file->path);
+		DEBUG_2("%s set_exif_time_data: reading %p %s", get_exec_time(), (void *)file, file->path);
 
 		if (tmp)
 			{
@@ -551,7 +546,7 @@ void read_exif_time_digitized_data(FileData *file)
 	if (file->exif)
 		{
 		gchar *tmp = exif_get_data_as_text(file->exif, "Exif.Photo.DateTimeDigitized");
-		DEBUG_2("%s set_exif_time_digitized_data: reading %p %s", get_exec_time(), file, file->path);
+		DEBUG_2("%s set_exif_time_digitized_data: reading %p %s", get_exec_time(), (void *)file, file->path);
 
 		if (tmp)
 			{
@@ -677,7 +672,7 @@ FileData *file_data_ref(FileData *fd)
 	if (fd == NULL) return NULL;
 	if (fd->magick != FD_MAGICK)
 #ifdef DEBUG_FILEDATA
-		log_printf("Error: fd magick mismatch @ %s:%d  fd=%p", file, line, fd);
+		log_printf("Error: fd magick mismatch @ %s:%d  fd=%p", file, line, (void *)fd);
 #else
 		log_printf("Error: fd magick mismatch fd=%p", fd);
 #endif
@@ -685,7 +680,7 @@ FileData *file_data_ref(FileData *fd)
 	fd->ref++;
 
 #ifdef DEBUG_FILEDATA
-	DEBUG_2("file_data_ref fd=%p (%d): '%s' @ %s:%d", fd, fd->ref, fd->path, file, line);
+	DEBUG_2("file_data_ref fd=%p (%d): '%s' @ %s:%d", (void *)fd, fd->ref, fd->path, file, line);
 #else
 	DEBUG_2("file_data_ref fd=%p (%d): '%s'", fd, fd->ref, fd->path);
 #endif
@@ -783,7 +778,7 @@ void file_data_unref(FileData *fd)
 	if (fd == NULL) return;
 	if (fd->magick != FD_MAGICK)
 #ifdef DEBUG_FILEDATA
-		log_printf("Error: fd magick mismatch @ %s:%d  fd=%p", file, line, fd);
+		log_printf("Error: fd magick mismatch @ %s:%d  fd=%p", file, line, (void *)fd);
 #else
 		log_printf("Error: fd magick mismatch fd=%p", fd);
 #endif
@@ -791,7 +786,7 @@ void file_data_unref(FileData *fd)
 
 	fd->ref--;
 #ifdef DEBUG_FILEDATA
-	DEBUG_2("file_data_unref fd=%p (%d:%d): '%s' @ %s:%d", fd, fd->ref, fd->locked, fd->path,
+	DEBUG_2("file_data_unref fd=%p (%d:%d): '%s' @ %s:%d", (void *)fd, fd->ref, fd->locked, fd->path,
 		file, line);
 #else
 	DEBUG_2("file_data_unref fd=%p (%d:%d): '%s'", fd, fd->ref, fd->locked, fd->path);
@@ -815,12 +810,12 @@ void file_data_unref(FileData *fd)
 void file_data_lock(FileData *fd)
 {
 	if (fd == NULL) return;
-	if (fd->magick != FD_MAGICK) log_printf("Error: fd magick mismatch fd=%p", fd);
+	if (fd->magick != FD_MAGICK) log_printf("Error: fd magick mismatch fd=%p", (void *)fd);
 
 	g_assert(fd->magick == FD_MAGICK);
 	fd->locked = TRUE;
 
-	DEBUG_2("file_data_ref fd=%p (%d): '%s'", fd, fd->ref, fd->path);
+	DEBUG_2("file_data_ref fd=%p (%d): '%s'", (void *)fd, fd->ref, fd->path);
 }
 
 /**
@@ -833,7 +828,7 @@ void file_data_lock(FileData *fd)
 void file_data_unlock(FileData *fd)
 {
 	if (fd == NULL) return;
-	if (fd->magick != FD_MAGICK) log_printf("Error: fd magick mismatch fd=%p", fd);
+	if (fd->magick != FD_MAGICK) log_printf("Error: fd magick mismatch fd=%p", (void *)fd);
 
 	g_assert(fd->magick == FD_MAGICK);
 	fd->locked = FALSE;
@@ -935,11 +930,11 @@ static void file_data_check_sidecars(const GList *basename_list)
 		FileData *fd = work->data;
 		work = work->next;
 		g_assert(fd->magick == FD_MAGICK);
-		DEBUG_2("basename: %p %s", fd, fd->name);
+		DEBUG_2("basename: %p %s", (void *)fd, fd->name);
 		if (fd->parent)
 			{
 			g_assert(fd->parent->magick == FD_MAGICK);
-			DEBUG_2("                  parent: %p", fd->parent);
+			DEBUG_2("                  parent: %p", (void *)fd->parent);
 			}
 		s_work = fd->sidecar_files;
 		while (s_work)
@@ -947,7 +942,7 @@ static void file_data_check_sidecars(const GList *basename_list)
 			FileData *sfd = s_work->data;
 			s_work = s_work->next;
 			g_assert(sfd->magick == FD_MAGICK);
-			DEBUG_2("                  sidecar: %p %s", sfd, sfd->name);
+			DEBUG_2("                  sidecar: %p %s", (void *)sfd, sfd->name);
 			}
 
 		g_assert(fd->parent == NULL || fd->sidecar_files == NULL);
@@ -1289,7 +1284,7 @@ static void file_data_basename_hash_insert_cb(gpointer fd, gpointer basename_has
 	file_data_basename_hash_insert((GHashTable *)basename_hash, (FileData *)fd);
 }
 
-static void file_data_basename_hash_remove_list(gpointer key, gpointer value, gpointer data)
+static void file_data_basename_hash_remove_list(gpointer UNUSED(key), gpointer value, gpointer UNUSED(data))
 {
 	filelist_free((GList *)value);
 }
@@ -1326,7 +1321,7 @@ static GList *filelist_filter_out_sidecars(GList *flist)
 	return flist_filtered;
 }
 
-static void file_data_basename_hash_to_sidecars(gpointer key, gpointer value, gpointer data)
+static void file_data_basename_hash_to_sidecars(gpointer UNUSED(key), gpointer value, gpointer UNUSED(data))
 {
 	GList *basename_list = (GList *)value;
 	file_data_check_sidecars(basename_list);
@@ -1935,7 +1930,7 @@ GList *file_data_filter_class_list(GList *list, guint filter)
 	return list;
 }
 
-static void file_data_notify_mark_func(gpointer key, gpointer value, gpointer user_data)
+static void file_data_notify_mark_func(gpointer UNUSED(key), gpointer value, gpointer UNUSED(user_data))
 {
 	FileData *fd = value;
 	file_data_increment_version(fd);
@@ -3176,7 +3171,7 @@ gboolean file_data_register_notify_func(FileDataNotifyFunc func, gpointer data, 
 	nd->priority = priority;
 
 	notify_func_list = g_list_insert_sorted(notify_func_list, nd, file_data_notify_sort);
-	DEBUG_2("Notify func registered: %p", nd);
+	DEBUG_2("Notify func registered: %p", (void *)nd);
 
 	return TRUE;
 }
@@ -3193,7 +3188,7 @@ gboolean file_data_unregister_notify_func(FileDataNotifyFunc func, gpointer data
 			{
 			notify_func_list = g_list_delete_link(notify_func_list, work);
 			g_free(nd);
-			DEBUG_2("Notify func unregistered: %p", nd);
+			DEBUG_2("Notify func unregistered: %p", (void *)nd);
 			return TRUE;
 			}
 		work = work->next;
@@ -3243,7 +3238,7 @@ void file_data_send_notification(FileData *fd, NotifyType type)
 static GHashTable *file_data_monitor_pool = NULL;
 static guint realtime_monitor_id = 0; /* event source id */
 
-static void realtime_monitor_check_cb(gpointer key, gpointer value, gpointer data)
+static void realtime_monitor_check_cb(gpointer key, gpointer UNUSED(value), gpointer UNUSED(data))
 {
 	FileData *fd = key;
 
@@ -3252,7 +3247,7 @@ static void realtime_monitor_check_cb(gpointer key, gpointer value, gpointer dat
 	DEBUG_1("monitor %s", fd->path);
 }
 
-static gboolean realtime_monitor_cb(gpointer data)
+static gboolean realtime_monitor_cb(gpointer UNUSED(data))
 {
 	if (!options->update_on_time_change) return TRUE;
 	g_hash_table_foreach(file_data_monitor_pool, realtime_monitor_check_cb, NULL);
@@ -3412,7 +3407,7 @@ gboolean marks_list_save(gchar *path, gboolean save)
 	return (secure_close(ssi) == 0);
 }
 
-static void marks_clear(gpointer key, gpointer value, gpointer userdata)
+static void marks_clear(gpointer key, gpointer value, gpointer UNUSED(userdata))
 {
 	gchar *file_name = key;
 	gint mark_no;

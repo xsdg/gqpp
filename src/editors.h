@@ -42,7 +42,7 @@ typedef enum {
 	EDITOR_ERROR_STATUS       = 0x00400000,
 	EDITOR_ERROR_SKIPPED      = 0x00800000,
 	/**< mask to match errors only */
-	EDITOR_ERROR_MASK         = 0xffff0000,
+	EDITOR_ERROR_MASK         = ~0xffff,
 } EditorFlags;
 
 struct _EditorDescription {

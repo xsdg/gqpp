@@ -55,7 +55,7 @@ struct _ImageLoaderTiff {
 	gint page_total;
 };
 
-static void free_buffer (guchar *pixels, gpointer data)
+static void free_buffer (guchar *pixels, gpointer UNUSED(data))
 {
 	g_free (pixels);
 }
@@ -74,7 +74,7 @@ tiff_load_read (thandle_t handle, tdata_t buf, tsize_t size)
 }
 
 static tsize_t
-tiff_load_write (thandle_t handle, tdata_t buf, tsize_t size)
+tiff_load_write (thandle_t UNUSED(handle), tdata_t UNUSED(buf), tsize_t UNUSED(size))
 {
 	return -1;
 }
@@ -109,7 +109,7 @@ tiff_load_seek (thandle_t handle, toff_t offset, int whence)
 }
 
 static int
-tiff_load_close (thandle_t context)
+tiff_load_close (thandle_t UNUSED(context))
 {
 	return 0;
 }
@@ -133,11 +133,11 @@ tiff_load_map_file (thandle_t handle, tdata_t *buf, toff_t *size)
 }
 
 static void
-tiff_load_unmap_file (thandle_t handle, tdata_t data, toff_t offset)
+tiff_load_unmap_file (thandle_t UNUSED(handle), tdata_t UNUSED(data), toff_t UNUSED(offset))
 {
 }
 
-static gboolean image_loader_tiff_load (gpointer loader, const guchar *buf, gsize count, GError **error)
+static gboolean image_loader_tiff_load (gpointer loader, const guchar *buf, gsize count, GError **UNUSED(error))
 {
 	ImageLoaderTiff *lt = (ImageLoaderTiff *) loader;
 
@@ -353,17 +353,17 @@ static GdkPixbuf* image_loader_tiff_get_pixbuf(gpointer loader)
 	return lt->pixbuf;
 }
 
-static gchar* image_loader_tiff_get_format_name(gpointer loader)
+static gchar* image_loader_tiff_get_format_name(gpointer UNUSED(loader))
 {
 	return g_strdup("tiff");
 }
-static gchar** image_loader_tiff_get_format_mime_types(gpointer loader)
+static gchar** image_loader_tiff_get_format_mime_types(gpointer UNUSED(loader))
 {
 	static gchar *mime[] = {"image/tiff", NULL};
 	return g_strdupv(mime);
 }
 
-static gboolean image_loader_tiff_close(gpointer loader, GError **error)
+static gboolean image_loader_tiff_close(gpointer UNUSED(loader), GError **UNUSED(error))
 {
 	return TRUE;
 }

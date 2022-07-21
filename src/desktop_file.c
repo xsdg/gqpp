@@ -112,7 +112,7 @@ static gboolean editor_window_save(EditorWindow *ew)
 	return ret;
 }
 
-static void editor_window_close_cb(GtkWidget *widget, gpointer data)
+static void editor_window_close_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	EditorWindow *ew = data;
 
@@ -121,13 +121,13 @@ static void editor_window_close_cb(GtkWidget *widget, gpointer data)
 	g_free(ew);
 }
 
-static gint editor_window_delete_cb(GtkWidget *w, GdkEventAny *event, gpointer data)
+static gint editor_window_delete_cb(GtkWidget *w, GdkEventAny *UNUSED(event), gpointer data)
 {
 	editor_window_close_cb(w, data);
 	return TRUE;
 }
 
-static void editor_window_save_cb(GtkWidget *widget, gpointer data)
+static void editor_window_save_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	EditorWindow *ew = data;
 
@@ -141,7 +141,7 @@ static void editor_window_save_cb(GtkWidget *widget, gpointer data)
 	ew->modified = FALSE;
 }
 
-static void editor_window_text_modified_cb(GtkWidget *widget, gpointer data)
+static void editor_window_text_modified_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	EditorWindow *ew = data;
 
@@ -152,7 +152,7 @@ static void editor_window_text_modified_cb(GtkWidget *widget, gpointer data)
 		}
 }
 
-static void editor_window_entry_changed_cb(GtkWidget *widget, gpointer data)
+static void editor_window_entry_changed_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	EditorWindow *ew = data;
 	const gchar *content = gtk_entry_get_text(GTK_ENTRY(ew->entry));
@@ -199,11 +199,11 @@ static void editor_window_new(const gchar *src_path, const gchar *desktop_name)
 	gtk_window_set_resizable(GTK_WINDOW(ew->window), TRUE);
 	gtk_container_set_border_width(GTK_CONTAINER(ew->window), PREF_PAD_BORDER);
 
-	win_vbox = gtk_vbox_new(FALSE, PREF_PAD_SPACE);
+	win_vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_SPACE);
 	gtk_container_add(GTK_CONTAINER(ew->window), win_vbox);
 	gtk_widget_show(win_vbox);
 
-	hbox = gtk_hbox_new(FALSE, PREF_PAD_SPACE);
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 	gtk_box_pack_end(GTK_BOX(win_vbox), hbox, FALSE, FALSE, 0);
 	gtk_widget_show(hbox);
 
@@ -268,14 +268,14 @@ static void editor_window_new(const gchar *src_path, const gchar *desktop_name)
 }
 
 
-static void editor_list_window_close_cb(GtkWidget *widget, gpointer data)
+static void editor_list_window_close_cb(GtkWidget *UNUSED(widget), gpointer UNUSED(data))
 {
 	gtk_widget_destroy(editor_list_window->window);
 	g_free(editor_list_window);
 	editor_list_window = NULL;
 }
 
-static gboolean editor_list_window_delete(GtkWidget *widget, GdkEventAny *event, gpointer data)
+static gboolean editor_list_window_delete(GtkWidget *UNUSED(widget), GdkEventAny *UNUSED(event), gpointer UNUSED(data))
 {
 	editor_list_window_close_cb(NULL, NULL);
 	return TRUE;
@@ -283,7 +283,7 @@ static gboolean editor_list_window_delete(GtkWidget *widget, GdkEventAny *event,
 
 static void editor_list_window_delete_dlg_cancel(GenericDialog *gd, gpointer data);
 
-static void editor_list_window_delete_dlg_cancel(GenericDialog *gd, gpointer data)
+static void editor_list_window_delete_dlg_cancel(GenericDialog *UNUSED(gd), gpointer data)
 {
 	EditorWindowDel_Data *ewdl = data;
 
@@ -313,7 +313,7 @@ static void editor_list_window_delete_dlg_ok_cb(GenericDialog *gd, gpointer data
 	editor_list_window_delete_dlg_cancel(gd, data);
 }
 
-static void editor_list_window_delete_cb(GtkWidget *widget, gpointer data)
+static void editor_list_window_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	EditorListWindow *ewl = data;
 	GtkTreeSelection *sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(ewl->view));
@@ -358,7 +358,7 @@ static void editor_list_window_delete_cb(GtkWidget *widget, gpointer data)
 		}
 }
 
-static void editor_list_window_edit_cb(GtkWidget *widget, gpointer data)
+static void editor_list_window_edit_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	EditorListWindow *ewl = data;
 	GtkTreeSelection *sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(ewl->view));
@@ -379,17 +379,17 @@ static void editor_list_window_edit_cb(GtkWidget *widget, gpointer data)
 		}
 }
 
-static void editor_list_window_new_cb(GtkWidget *widget, gpointer data)
+static void editor_list_window_new_cb(GtkWidget *UNUSED(widget), gpointer UNUSED(data))
 {
 	editor_window_new(desktop_file_template, _("new.desktop"));
 }
 
-static void editor_list_window_help_cb(GtkWidget *widget, gpointer data)
+static void editor_list_window_help_cb(GtkWidget *UNUSED(widget), gpointer UNUSED(data))
 {
 	help_window_show("GuidePluginsConfig.html");
 }
 
-static void editor_list_window_selection_changed_cb(GtkWidget *widget, gpointer data)
+static void editor_list_window_selection_changed_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	EditorListWindow *ewl = data;
 	GtkTreeSelection *sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(ewl->view));
@@ -470,7 +470,7 @@ static gint editor_list_window_sort_cb(GtkTreeModel *model, GtkTreeIter *a, GtkT
 	return ret;
 }
 
-static void plugin_disable_cb(GtkCellRendererToggle *renderer, gchar *path_str, gpointer data)
+static void plugin_disable_cb(GtkCellRendererToggle *UNUSED(renderer), gchar *path_str, gpointer data)
 {
 	EditorListWindow *ewl = data;
 	GtkTreePath *tpath;
@@ -514,8 +514,8 @@ static void plugin_disable_cb(GtkCellRendererToggle *renderer, gchar *path_str, 
 	layout_editors_reload_finish();
 }
 
-static void plugin_disable_set_func(GtkTreeViewColumn *tree_column, GtkCellRenderer *cell,
-							GtkTreeModel *tree_model, GtkTreeIter *iter, gpointer data)
+static void plugin_disable_set_func(GtkTreeViewColumn *UNUSED(tree_column), GtkCellRenderer *cell,
+							GtkTreeModel *tree_model, GtkTreeIter *iter, gpointer UNUSED(data))
 {
 	gboolean disabled;
 
@@ -555,7 +555,7 @@ static void editor_list_window_create(void)
 	gtk_window_set_resizable(GTK_WINDOW(ewl->window), TRUE);
 	gtk_container_set_border_width(GTK_CONTAINER(ewl->window), PREF_PAD_BORDER);
 
-	win_vbox = gtk_vbox_new(FALSE, PREF_PAD_SPACE);
+	win_vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_SPACE);
 	gtk_container_add(GTK_CONTAINER(ewl->window), win_vbox);
 	gtk_widget_show(win_vbox);
 

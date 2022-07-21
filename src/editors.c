@@ -383,7 +383,7 @@ gboolean editor_read_desktop_file(const gchar *path)
 	return TRUE;
 }
 
-static gboolean editor_remove_desktop_file_cb(gpointer key, gpointer value, gpointer user_data)
+static gboolean editor_remove_desktop_file_cb(gpointer UNUSED(key), gpointer value, gpointer UNUSED(user_data))
 {
 	EditorDescription *editor = value;
 	return editor->hidden || editor->ignored;
@@ -478,7 +478,7 @@ GList *editor_get_desktop_files(void)
 	return list;
 }
 
-static void editor_list_add_cb(gpointer key, gpointer value, gpointer data)
+static void editor_list_add_cb(gpointer UNUSED(key), gpointer value, gpointer data)
 {
 	GList **listp = data;
 	EditorDescription *editor = value;
@@ -563,7 +563,7 @@ static void editor_verbose_window_close(GenericDialog *gd, gpointer data)
 	if (ed->pid == -1) editor_data_free(ed); /* the process has already terminated */
 }
 
-static void editor_verbose_window_stop(GenericDialog *gd, gpointer data)
+static void editor_verbose_window_stop(GenericDialog *UNUSED(gd), gpointer data)
 {
 	EditorData *ed = data;
 	ed->stopping = TRUE;
@@ -595,7 +595,9 @@ static EditorVerboseData *editor_verbose_window(EditorData *ed, const gchar *tex
 	buf = g_strdup_printf(_("Output of %s"), text);
 	generic_dialog_add_message(vd->gd, NULL, buf, NULL, FALSE);
 	g_free(buf);
-	vd->button_stop = generic_dialog_add_button(vd->gd, GTK_STOCK_STOP, NULL,
+	//~ vd->button_stop = generic_dialog_add_button(vd->gd, GTK_STOCK_STOP, NULL,
+						   //~ editor_verbose_window_stop, FALSE);
+	vd->button_stop = generic_dialog_add_button(vd->gd, "process-stop", NULL,
 						   editor_verbose_window_stop, FALSE);
 	gtk_widget_set_sensitive(vd->button_stop, FALSE);
 	vd->button_close = generic_dialog_add_button(vd->gd, GTK_STOCK_CLOSE, NULL,
@@ -615,17 +617,15 @@ static EditorVerboseData *editor_verbose_window(EditorData *ed, const gchar *tex
 	gtk_container_add(GTK_CONTAINER(scrolled), vd->text);
 	gtk_widget_show(vd->text);
 
-	hbox = gtk_hbox_new(FALSE, 0);
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_box_pack_start(GTK_BOX(vd->gd->vbox), hbox, FALSE, FALSE, 0);
 	gtk_widget_show(hbox);
 
 	vd->progress = gtk_progress_bar_new();
 	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(vd->progress), 0.0);
 	gtk_box_pack_start(GTK_BOX(hbox), vd->progress, TRUE, TRUE, 0);
-#if GTK_CHECK_VERSION(3,0,0)
 	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(vd->progress), "");
 	gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(vd->progress), TRUE);
-#endif
 	gtk_widget_show(vd->progress);
 
 	vd->spinner = spinner_new(NULL, SPINNER_SPEED);

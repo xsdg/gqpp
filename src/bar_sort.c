@@ -292,7 +292,7 @@ static void bar_sort_undo_cb(GtkWidget *button, gpointer data)
 		}
 }
 
-static void bar_sort_bookmark_select_folder(SortData *sd, FileData *source, const gchar *path)
+static void bar_sort_bookmark_select_folder(SortData *sd, FileData *UNUSED(source), const gchar *path)
 {
 	GList *orig_list;
 	GList *action_list;
@@ -421,12 +421,12 @@ static void bar_sort_set_filter_cb(GtkWidget *button, gpointer data)
 	bar_sort_set_action(sd, BAR_SORT_FILTER, key);
 }
 
-static void bar_filter_help_cb(GenericDialog *gd, gpointer data)
+static void bar_filter_help_cb(GenericDialog *UNUSED(gd), gpointer UNUSED(data))
 {
 	help_window_show("GuidePluginsConfig.html#Geeqieextensions");
 }
 
-static gboolean bar_filter_message_cb(GtkWidget *widget, GdkEventButton *event, gpointer data)
+static gboolean bar_filter_message_cb(GtkWidget *UNUSED(widget), GdkEventButton *event, gpointer UNUSED(data))
 {
 	GenericDialog *gd;
 
@@ -533,7 +533,7 @@ static void bar_sort_add_ok_cb(FileDialog *fd, gpointer data)
 	bar_sort_add_close(sd);
 }
 
-static void bar_sort_add_cancel_cb(FileDialog *fd, gpointer data)
+static void bar_sort_add_cancel_cb(FileDialog *UNUSED(fd), gpointer data)
 {
 	SortData *sd = data;
 
@@ -600,7 +600,7 @@ void bar_sort_close(GtkWidget *bar)
 	gtk_widget_destroy(sd->vbox);
 }
 
-static void bar_sort_destroy(GtkWidget *widget, gpointer data)
+static void bar_sort_destroy(GtkWidget *UNUSED(widget), gpointer data)
 {
 	SortData *sd = data;
 
@@ -747,7 +747,7 @@ static GtkWidget *bar_sort_new(LayoutWindow *lw, SortActionType action,
 	return sd->vbox;
 }
 
-GtkWidget *bar_sort_new_from_config(LayoutWindow *lw, const gchar **attribute_names, const gchar **attribute_values)
+GtkWidget *bar_sort_new_from_config(LayoutWindow *lw, const gchar **UNUSED(attribute_names), const gchar **UNUSED(attribute_values))
 {
 	GtkWidget *bar;
 

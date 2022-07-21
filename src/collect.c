@@ -80,7 +80,7 @@ static void collection_notify_cb(FileData *fd, NotifyType type, gpointer data);
  *-------------------------------------------------------------------
  */
 
-CollectInfo *collection_info_new(FileData *fd, struct stat *st, GdkPixbuf *pixbuf)
+CollectInfo *collection_info_new(FileData *fd, struct stat *UNUSED(st), GdkPixbuf *pixbuf)
 {
 	CollectInfo *ci;
 
@@ -437,7 +437,6 @@ GList *collection_contents_fd(const gchar *name)
 	CollectionData *cd;
 	CollectInfo *ci;
 	GList *work;
-	FileData *fd;
 	GList *list = NULL;
 
 	if (is_collection(name))
@@ -449,7 +448,6 @@ GList *collection_contents_fd(const gchar *name)
 		while (work)
 			{
 			ci = work->data;
-			fd = ci->fd;
 			list = g_list_append(list, ci->fd);
 
 			work = work->next;
@@ -944,7 +942,7 @@ static void collection_notify_cb(FileData *fd, NotifyType type, gpointer data)
  *-------------------------------------------------------------------
  */
 
-static gboolean collection_window_keypress(GtkWidget *widget, GdkEventKey *event, gpointer data)
+static gboolean collection_window_keypress(GtkWidget *UNUSED(widget), GdkEventKey *event, gpointer data)
 {
 	CollectWindow *cw = data;
 	gboolean stop_signal = FALSE;
@@ -1146,7 +1144,7 @@ static void collection_window_update_title(CollectWindow *cw)
 	g_free(buf);
 }
 
-static void collection_window_update_info(CollectionData *cd, CollectInfo *ci, gpointer data)
+static void collection_window_update_info(CollectionData *UNUSED(cd), CollectInfo *ci, gpointer data)
 {
 	CollectWindow *cw = data;
 
@@ -1321,7 +1319,7 @@ gboolean collection_window_modified_exists(void)
 	return ret;
 }
 
-static gboolean collection_window_delete(GtkWidget *widget, GdkEvent *event, gpointer data)
+static gboolean collection_window_delete(GtkWidget *UNUSED(widget), GdkEvent *UNUSED(event), gpointer data)
 {
 	CollectWindow *cw = data;
 	collection_window_close(cw);
@@ -1386,7 +1384,7 @@ CollectWindow *collection_window_new(const gchar *path)
 	g_signal_connect(G_OBJECT(cw->window), "key_press_event",
 			 G_CALLBACK(collection_window_keypress), cw);
 
-	vbox = gtk_vbox_new(FALSE, 0);
+	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	gtk_container_add(GTK_CONTAINER(cw->window), vbox);
 	gtk_widget_show(vbox);
 
@@ -1394,7 +1392,7 @@ CollectWindow *collection_window_new(const gchar *path)
 	gtk_box_pack_start(GTK_BOX(vbox), cw->table->scrolled, TRUE, TRUE, 0);
 	gtk_widget_show(cw->table->scrolled);
 
-	cw->status_box = gtk_hbox_new(TRUE, 0);
+	cw->status_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), cw->status_box, FALSE, FALSE, 0);
 	gtk_widget_show(cw->status_box);
 
@@ -1410,10 +1408,9 @@ CollectWindow *collection_window_new(const gchar *path)
 
 	extra_label = gtk_progress_bar_new();
 	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(extra_label), 0.0);
-#if GTK_CHECK_VERSION(3,0,0)
 	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(extra_label), "");
 	gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(extra_label), TRUE);
-#endif
+
 	gtk_box_pack_start(GTK_BOX(cw->status_box), extra_label, TRUE, TRUE, 0);
 	gtk_widget_show(extra_label);
 

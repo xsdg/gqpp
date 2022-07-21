@@ -23,12 +23,12 @@
 #include "image_load_svgz.h"
 
 
-static gchar* image_loader_svgz_get_format_name(gpointer loader)
+static gchar* image_loader_svgz_get_format_name(gpointer UNUSED(loader))
 {
 	return g_strdup("svg");
 
 }
-static gchar** image_loader_svgz_get_format_mime_types(gpointer loader)
+static gchar** image_loader_svgz_get_format_mime_types(gpointer UNUSED(loader))
 {
 	static gchar *mime[] = {"image/svg", NULL};
 	return g_strdupv(mime);
@@ -51,7 +51,7 @@ static gpointer image_loader_svgz_new(ImageLoaderBackendCbAreaUpdated area_updat
 	return (gpointer) loader;
 }
 
-static void image_loader_svgz_abort(gpointer loader)
+static void image_loader_svgz_abort(gpointer UNUSED(loader))
 {
 }
 

@@ -8,7 +8,7 @@
 ## Dialogs allow the user to install additional features.
 ##
 
-version="2022-07-17"
+version="2022-07-21"
 description='
 Geeqie is an image viewer.
 This script will download, compile, and install Geeqie on Debian-based systems.
@@ -36,11 +36,13 @@ yelp-tools
 help2man
 doclifter"
 
-# Optional for both GTK2 and GTK3
+# Optional for GTK3
 optional_array="LCMS (for color management)
 liblcms2-dev
 exiv2 (for exif handling)
 libgexiv2-dev
+evince (for print preview)
+evince
 lua (for --remote commands)
 liblua5.1-0-dev
 libffmpegthumbnailer (for mpeg thumbnails)
@@ -82,17 +84,13 @@ libomp-dev
 libarchive (for compressed files e.g. zip, including timezone)
 libarchive-dev
 libgspell (for spelling checks)
-libgspell-1-dev"
-
-# Optional for GTK3 only
-optional_gtk3_array="libchamplain gtk (for GPS maps)
+libgspell-1-dev
+libchamplain gtk (for GPS maps)
 libchamplain-gtk-0.12-dev
 libchamplain (for GPS maps)
 libchamplain-0.12-dev
 libpoppler (for pdf file preview)
-libpoppler-glib-dev
-libgspell (for spelling checks)
-libgspell-1-dev"
+libpoppler-glib-dev"
 
 ####################################################################
 # Get System Info
@@ -367,13 +365,6 @@ then
 		printf '%b\n' "$file"
 	done
 
-	printf '\n'
-	printf '%b\n' "Optional for GTK3:"
-	for file in $optional_gtk3_array
-	do
-		printf '%b\n' "$file"
-	done
-
 	exit
 fi
 
@@ -402,38 +393,24 @@ else
 fi
 
 # Use GTK3 as default
-gtk2_installed=FALSE
 gtk3_installed=TRUE
 
 if [ "$mode" = "install" ]
 then
-	message="This script is for use on Ubuntu and other\nDebian-based installations.\nIt will download, compile, and install Geeqie source\ncode and its dependencies.\n\nA sub-folder named \"geeqie\" will be created in the\nfolder this script is run from, and the source code\nwill be downloaded to that sub-folder.\n\nIn this dialog you must select whether to compile\nfor GTK2 or GTK3.\nIf you want to use GPS maps or pdf preview,\nyou must choose GTK3.\nThe GTK2 version has a slightly different\nlook-and-feel compared to the GTK3 version,\nbut otherwise has the same features.\nYou may easily switch between the two after\ninstallation.\n\nIn subsequent dialogs you may choose which\noptional features to install."
+	message="This script is for use on Ubuntu and other\nDebian-based installations.\nIt will download, compile, and install Geeqie source\ncode and its dependencies.\n\nA sub-folder named \"geeqie\" will be created in the\nfolder this script is run from, and the source code\nwill be downloaded to that sub-folder.\n\nIn subsequent dialogs you may choose which\noptional features to install."
 
 	title="Install Geeqie and dependencies"
 	install_option=TRUE
 else
-	message="This script is for use on Ubuntu and other\nDebian-based installations.\nIt will update the Geeqie source code and its\ndependencies, and will compile and install Geeqie.\n\nYou may also switch the installed version from\nGTK2 to GTK3 and vice versa.\n\nIn this dialog you must select whether to compile\nfor GTK2 or GTK3.\nIf you want to use GPS maps or pdf preview,\nyou must choose GTK3.\nThe GTK2 version has a slightly different\nlook-and-feel compared to the GTK3 version,\nbut otherwise has the same features.\n\nIn subsequent dialogs you may choose which\noptional features to install."
+	message="This script is for use on Ubuntu and other\nDebian-based installations.\nIt will update the Geeqie source code and its\ndependencies, and will compile and install Geeqie.\n\nIn subsequent dialogs you may choose which\noptional features to install."
 
 	title="Update Geeqie and re-install"
 	install_option=FALSE
-
-	# When updating, use previous installation as default
-	if [ -f config.log ]
-	then
-		if grep gtk-2.0 config.log > /dev/null
-		then
-			gtk2_installed=TRUE
-			gtk3_installed=FALSE
-		else
-			gtk2_installed=FALSE
-			gtk3_installed=TRUE
-		fi
-	fi
 fi
 
-# Ask whether to install GTK2 or GTK3 or uninstall
+# Ask whether to install GTK3 or uninstall
 
-if ! gtk_version=$(zenity --title="$title" --width=370 --text="$message" --list --radiolist --column "" --column "" "$gtk3_installed" "GTK3 (required for GPS maps and pdf preview)" "$gtk2_installed" "GTK2" FALSE "Uninstall" --cancel-label="Cancel" --ok-label="OK" --hide-header 2> /dev/null)
+if ! gtk_version=$(zenity --title="$title" --width=370 --text="$message" --list --radiolist --column "" --column "" "$gtk3_installed" "Install" FALSE "Uninstall" --cancel-label="Cancel" --ok-label="OK" --hide-header 2> /dev/null)
 then
 	exit
 fi
@@ -482,30 +459,6 @@ do
 	fi
 	i=$((i + 1))
 done
-
-# If GTK3 required, get the GTK3 options not yet installed
-if [ -z "${gtk_version%%GTK3*}" ]
-then
-	i=0
-	for file in $optional_gtk3_array
-	do
-		if [ $((i % 2)) -eq 0 ]
-		then
-			package_title="$file"
-		else
-			if package_query "$file"
-			then
-				if [ -z "$option_string" ]
-				then
-					option_string="${install_option:+${install_option}}\n${file}\n${file}"
-				else
-					option_string="${option_string:+${option_string}}\n$install_option\n${package_title}\n${file}"
-				fi
-			fi
-		fi
-		i=$((i + 1))
-	done
-fi
 
 kill $zen_pid 2> /dev/null
 

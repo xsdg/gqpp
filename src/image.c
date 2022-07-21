@@ -63,7 +63,7 @@ static gint rect_id = 0;
  *-------------------------------------------------------------------
  */
 
-static void image_click_cb(PixbufRenderer *pr, GdkEventButton *event, gpointer data)
+static void image_click_cb(PixbufRenderer *UNUSED(pr), GdkEventButton *event, gpointer data)
 {
 	ImageWindow *imd = data;
 	if (!options->image_lm_click_nav && event->button == MOUSE_BUTTON_MIDDLE)
@@ -292,7 +292,7 @@ static void image_complete_util(ImageWindow *imd, gboolean preload)
 	if (imd->func_complete) imd->func_complete(imd, preload, imd->data_complete);
 }
 
-static void image_render_complete_cb(PixbufRenderer *pr, gpointer data)
+static void image_render_complete_cb(PixbufRenderer *UNUSED(pr), gpointer data)
 {
 	ImageWindow *imd = data;
 
@@ -318,7 +318,7 @@ static void image_state_unset(ImageWindow *imd, ImageState state)
 	if (imd->func_state) imd->func_state(imd, state, imd->data_state);
 }
 
-static void image_zoom_cb(PixbufRenderer *pr, gdouble zoom, gpointer data)
+static void image_zoom_cb(PixbufRenderer *UNUSED(pr), gdouble UNUSED(zoom), gpointer data)
 {
 	ImageWindow *imd = data;
 
@@ -560,7 +560,7 @@ static gboolean image_post_process_color(ImageWindow *imd, gint start_row, gbool
 }
 
 
-static void image_post_process_tile_color_cb(PixbufRenderer *pr, GdkPixbuf **pixbuf, gint x, gint y, gint w, gint h, gpointer data)
+static void image_post_process_tile_color_cb(PixbufRenderer *UNUSED(pr), GdkPixbuf **pixbuf, gint x, gint y, gint w, gint h, gpointer data)
 {
 	ImageWindow *imd = (ImageWindow *)data;
 	if (imd->cm) color_man_correct_region(imd->cm, *pixbuf, x, y, w, h);
@@ -726,7 +726,7 @@ static void image_read_ahead_cancel(ImageWindow *imd)
 	imd->read_ahead_fd = NULL;
 }
 
-static void image_read_ahead_done_cb(ImageLoader *il, gpointer data)
+static void image_read_ahead_done_cb(ImageLoader *UNUSED(il), gpointer data)
 {
 	ImageWindow *imd = data;
 
@@ -812,7 +812,7 @@ static FileCacheData *image_get_cache(void)
 	return cache;
 }
 
-static void image_cache_set(ImageWindow *imd, FileData *fd)
+static void image_cache_set(ImageWindow *UNUSED(imd), FileData *fd)
 {
 	g_assert(fd->pixbuf);
 
@@ -866,7 +866,7 @@ static void image_load_area_cb(ImageLoader *il, guint x, guint y, guint w, guint
 	pixbuf_renderer_area_changed(pr, x, y, w, h);
 }
 
-static void image_load_done_cb(ImageLoader *il, gpointer data)
+static void image_load_done_cb(ImageLoader *UNUSED(il), gpointer data)
 {
 	ImageWindow *imd = data;
 
@@ -929,7 +929,7 @@ static void image_load_done_cb(ImageLoader *il, gpointer data)
 	image_read_ahead_start(imd);
 }
 
-static void image_load_size_cb(ImageLoader *il, guint width, guint height, gpointer data)
+static void image_load_size_cb(ImageLoader *UNUSED(il), guint width, guint height, gpointer data)
 {
 	ImageWindow *imd = data;
 
@@ -1173,7 +1173,7 @@ static void image_change_real(ImageWindow *imd, FileData *fd,
  *-------------------------------------------------------------------
  */
 
-static gboolean image_focus_in_cb(GtkWidget *widget, GdkEventFocus *event, gpointer data)
+static gboolean image_focus_in_cb(GtkWidget *UNUSED(widget), GdkEventFocus *UNUSED(event), gpointer data)
 {
 	ImageWindow *imd = data;
 
@@ -1185,7 +1185,7 @@ static gboolean image_focus_in_cb(GtkWidget *widget, GdkEventFocus *event, gpoin
 	return TRUE;
 }
 
-static gboolean image_scroll_cb(GtkWidget *widget, GdkEventScroll *event, gpointer data)
+static gboolean image_scroll_cb(GtkWidget *UNUSED(widget), GdkEventScroll *event, gpointer data)
 {
 	ImageWindow *imd = data;
 	gboolean in_lw = FALSE;
@@ -1495,23 +1495,23 @@ CollectionData *image_get_collection(ImageWindow *imd, CollectInfo **info)
 
 static void image_loader_sync_read_ahead_data(ImageLoader *il, gpointer old_data, gpointer data)
 {
-	if (g_signal_handlers_disconnect_by_func(G_OBJECT(il), (GCallback)image_read_ahead_error_cb, old_data))
-		g_signal_connect(G_OBJECT(il), "error", (GCallback)image_read_ahead_error_cb, data);
+	if (g_signal_handlers_disconnect_by_func(G_OBJECT(il), (gpointer)image_read_ahead_error_cb, old_data))
+		g_signal_connect(G_OBJECT(il), "error", G_CALLBACK(image_read_ahead_error_cb), data);
 
-	if (g_signal_handlers_disconnect_by_func(G_OBJECT(il), (GCallback)image_read_ahead_done_cb, old_data))
-		g_signal_connect(G_OBJECT(il), "done", (GCallback)image_read_ahead_done_cb, data);
+	if (g_signal_handlers_disconnect_by_func(G_OBJECT(il), (gpointer)image_read_ahead_done_cb, old_data))
+		g_signal_connect(G_OBJECT(il), "done", G_CALLBACK(image_read_ahead_done_cb), data);
 }
 
 static void image_loader_sync_data(ImageLoader *il, gpointer old_data, gpointer data)
 {
-	if (g_signal_handlers_disconnect_by_func(G_OBJECT(il), (GCallback)image_load_area_cb, old_data))
-		g_signal_connect(G_OBJECT(il), "area_ready", (GCallback)image_load_area_cb, data);
+	if (g_signal_handlers_disconnect_by_func(G_OBJECT(il), (gpointer)image_load_area_cb, old_data))
+		g_signal_connect(G_OBJECT(il), "area_ready", G_CALLBACK(image_load_area_cb), data);
 
-	if (g_signal_handlers_disconnect_by_func(G_OBJECT(il), (GCallback)image_load_error_cb, old_data))
-		g_signal_connect(G_OBJECT(il), "error", (GCallback)image_load_error_cb, data);
+	if (g_signal_handlers_disconnect_by_func(G_OBJECT(il), (gpointer)image_load_error_cb, old_data))
+		g_signal_connect(G_OBJECT(il), "error", G_CALLBACK(image_load_error_cb), data);
 
-	if (g_signal_handlers_disconnect_by_func(G_OBJECT(il), (GCallback)image_load_done_cb, old_data))
-		g_signal_connect(G_OBJECT(il), "done", (GCallback)image_load_done_cb, data);
+	if (g_signal_handlers_disconnect_by_func(G_OBJECT(il), (gpointer)image_load_done_cb, old_data))
+		g_signal_connect(G_OBJECT(il), "done", G_CALLBACK(image_load_done_cb), data);
 }
 
 /* this is more like a move function
@@ -1800,7 +1800,7 @@ gint image_stereo_get(ImageWindow *imd)
 
 void image_stereo_set(ImageWindow *imd, gint stereo_mode)
 {
-	DEBUG_1("Setting stereo mode %04x for imd %p", stereo_mode, imd);
+	DEBUG_1("Setting stereo mode %04x for imd %p", stereo_mode, (void *)imd);
 	pixbuf_renderer_stereo_set((PixbufRenderer *)imd->pr, stereo_mode);
 }
 
@@ -1888,12 +1888,10 @@ void image_background_set_color(ImageWindow *imd, GdkColor *color)
 void image_background_set_color_from_options(ImageWindow *imd, gboolean fullscreen)
 {
 	GdkColor *color = NULL;
-#if GTK_CHECK_VERSION(3,0,0)
 	GdkColor theme_color;
 	GdkRGBA bg_color;
 	GtkStyleContext *style_context;
 	LayoutWindow *lw = NULL;
-#endif
 
 	if ((options->image.use_custom_border_color && !fullscreen) ||
 	    (options->image.use_custom_border_color_in_fullscreen && fullscreen))
@@ -1901,7 +1899,6 @@ void image_background_set_color_from_options(ImageWindow *imd, gboolean fullscre
 		color = &options->image.border_color;
 		}
 
-#if GTK_CHECK_VERSION(3,0,0)
 	else
 		{
 		if (!layout_valid(&lw)) return;
@@ -1915,7 +1912,6 @@ void image_background_set_color_from_options(ImageWindow *imd, gboolean fullscre
 
 		color = &theme_color;
 		}
-#endif
 
 	image_background_set_color(imd, color);
 }
@@ -1995,45 +1991,8 @@ void image_set_delay_flip(ImageWindow *imd, gboolean delay)
 		}
 }
 
-void image_to_root_window(ImageWindow *imd, gboolean scaled)
+void image_to_root_window(ImageWindow *UNUSED(imd), gboolean UNUSED(scaled))
 {
-#if !GTK_CHECK_VERSION(3,0,0)
-	GdkScreen *screen;
-	GdkWindow *rootwindow;
-	GdkPixmap *pixmap;
-	GdkPixbuf *pixbuf;
-	GdkPixbuf *pb;
-	gint width, height;
-
-	if (!imd) return;
-
-	pixbuf = image_get_pixbuf(imd);
-	if (!pixbuf) return;
-
-	screen = gtk_widget_get_screen(imd->widget);
-	rootwindow = gdk_screen_get_root_window(screen);
-	if (gdk_window_get_visual(rootwindow) != gdk_visual_get_system()) return;
-
-	if (scaled)
-		{
-		width = gdk_screen_width();
-		height = gdk_screen_height();
-		}
-	else
-		{
-		pixbuf_renderer_get_scaled_size((PixbufRenderer *)imd->pr, &width, &height);
-		}
-
-	pb = gdk_pixbuf_scale_simple(pixbuf, width, height, (GdkInterpType)options->image.zoom_quality);
-
-	gdk_pixbuf_render_pixmap_and_mask(pb, &pixmap, NULL, 128);
-	gdk_window_set_back_pixmap(rootwindow, pixmap, FALSE);
-	gdk_window_clear(rootwindow);
-	g_object_unref(pb);
-	g_object_unref(pixmap);
-
-	gdk_flush();
-#endif
 }
 
 void image_select(ImageWindow *imd, gboolean select)
@@ -2142,13 +2101,13 @@ static void image_free(ImageWindow *imd)
 	g_free(imd);
 }
 
-static void image_destroy_cb(GtkWidget *widget, gpointer data)
+static void image_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ImageWindow *imd = data;
 	image_free(imd);
 }
-#if GTK_CHECK_VERSION(3,0,0)
-gboolean selectable_frame_draw_cb(GtkWidget *widget, cairo_t *cr, gpointer data)
+
+gboolean selectable_frame_draw_cb(GtkWidget *widget, cairo_t *cr, gpointer UNUSED(data))
 {
 	GtkAllocation allocation;
 	gtk_widget_get_allocation(widget, &allocation);
@@ -2178,40 +2137,6 @@ gboolean selectable_frame_draw_cb(GtkWidget *widget, cairo_t *cr, gpointer data)
 	return FALSE;
 }
 
-#else
-gboolean selectable_frame_expose_cb(GtkWidget *widget, GdkEventExpose *event, gpointer data)
-{
-	GtkAllocation allocation;
-	gtk_widget_get_allocation(widget, &allocation);
-	gtk_paint_flat_box(gtk_widget_get_style(widget),
-			   gtk_widget_get_window(widget),
-			   gtk_widget_get_state(widget),
-			   gtk_frame_get_shadow_type(GTK_FRAME(widget)),
-			   NULL,
-			   widget,
-			   NULL,
-			   allocation.x + 3, allocation.y + 3,
-			   allocation.width - 6, allocation.height - 6);
-
-	if (gtk_widget_has_focus(widget))
-		{
-		gtk_paint_focus(gtk_widget_get_style(widget), gtk_widget_get_window(widget), GTK_STATE_ACTIVE,
-				&event->area, widget, "image_window",
-				allocation.x, allocation.y,
-				allocation.width - 1, allocation.height - 1);
-		}
-	else
-		{
-		gtk_paint_shadow(gtk_widget_get_style(widget), gtk_widget_get_window(widget), GTK_STATE_NORMAL, GTK_SHADOW_IN,
-				 &event->area, widget, "image_window",
-				 allocation.x, allocation.y,
-				 allocation.width - 1, allocation.height - 1);
-		}
-	return FALSE;
-}
-#endif
-
-
 void image_set_frame(ImageWindow *imd, gboolean frame)
 {
 	frame = !!frame;
@@ -2232,13 +2157,8 @@ void image_set_frame(ImageWindow *imd, gboolean frame)
 		gtk_widget_set_can_focus(imd->frame, TRUE);
 		gtk_widget_set_app_paintable(imd->frame, TRUE);
 
-#if GTK_CHECK_VERSION(3,0,0)
 		g_signal_connect(G_OBJECT(imd->frame), "draw",
 				 G_CALLBACK(selectable_frame_draw_cb), NULL);
-#else
-		g_signal_connect(G_OBJECT(imd->frame), "expose_event",
-				 G_CALLBACK(selectable_frame_expose_cb), NULL);
-#endif
 		g_signal_connect(G_OBJECT(imd->frame), "focus_in_event",
 				 G_CALLBACK(image_focus_in_cb), imd);
 

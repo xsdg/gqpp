@@ -134,7 +134,6 @@ static void print_set_font_cb(GtkWidget *widget, gpointer data)
 		option = options->printer.page_font;
 		}
 
-#if GTK_CHECK_VERSION(3,4,0)
 	GtkWidget *dialog;
 	char *font;
 	PangoFontDescription *font_desc;
@@ -152,12 +151,6 @@ static void print_set_font_cb(GtkWidget *widget, gpointer data)
 		}
 
 	gtk_widget_destroy(dialog);
-#else
-	const char *font;
-
-	font = gtk_font_button_get_font_name(GTK_FONT_BUTTON(widget));
-	option = g_strdup(font);
-#endif
 }
 
 static gint set_toggle(GSList *list, TextPosition pos)
@@ -316,7 +309,7 @@ static void set_print_image_text_string(gchar **template_string, const gchar *va
 	*template_string = g_strdup(value);
 }
 
-static void image_text_template_view_changed_cb(GtkWidget *widget, gpointer data)
+static void image_text_template_view_changed_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	GtkWidget *pTextView;
 	GtkTextBuffer *pTextBuffer;
@@ -359,7 +352,7 @@ static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 
 	pref_checkbox_link_sensitivity(image_text_button, subgroup);
 
-	hbox = gtk_hbox_new(FALSE, 0);
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_box_pack_start(GTK_BOX(subgroup), hbox, FALSE, FALSE, 0);
 
 	/* order is important */
@@ -406,16 +399,9 @@ static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 
 	hbox = pref_box_new(subgroup, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
 
-#if GTK_CHECK_VERSION(3,4,0)
 	button = pref_button_new(NULL, GTK_STOCK_SELECT_FONT, _("Font"), FALSE,
 				 G_CALLBACK(print_set_font_cb), "Image text font");
-#else
-	button = gtk_font_button_new();
-	gtk_font_button_set_title(GTK_FONT_BUTTON(button), "Image text Font");
-	gtk_font_button_set_font_name(GTK_FONT_BUTTON(button), options->printer.image_font);
-	g_signal_connect(G_OBJECT(button), "font-set",
-				 G_CALLBACK(print_set_font_cb), "Image text font");
-#endif
+
 	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
@@ -429,7 +415,7 @@ static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 	subgroup = pref_box_new(group, FALSE, GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	pref_checkbox_link_sensitivity(page_text_button, subgroup);
 
-	hbox = gtk_hbox_new(FALSE, 0);
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_box_pack_start(GTK_BOX(subgroup), hbox, FALSE, FALSE, 0);
 
 	/* order is important */
@@ -467,22 +453,15 @@ static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 
 	hbox = pref_box_new(subgroup, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
 
-#if GTK_CHECK_VERSION(3,4,0)
 	button = pref_button_new(NULL, GTK_STOCK_SELECT_FONT, _("Font"), FALSE,
 				 G_CALLBACK(print_set_font_cb), "Page text font");
-#else
-	button = gtk_font_button_new();
-	gtk_font_button_set_title(GTK_FONT_BUTTON(button), "Page text Font");
-	gtk_font_button_set_font_name(GTK_FONT_BUTTON(button), options->printer.page_font);
-	g_signal_connect(G_OBJECT(button), "font-set",
-				 G_CALLBACK(print_set_font_cb), "Page text font");
-#endif
+
 	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 }
 
-static gboolean paginate_cb(GtkPrintOperation *operation,
-									GtkPrintContext *context,
+static gboolean paginate_cb(GtkPrintOperation *UNUSED(operation),
+									GtkPrintContext *UNUSED(context),
 									gpointer data)
 {
 	PrintWindow *pw = data;
@@ -560,7 +539,7 @@ gchar *form_image_text(const gchar *template_string, FileData *fd, PrintWindow *
 	return text;
 }
 
-static void draw_page(GtkPrintOperation *operation, GtkPrintContext *context,
+static void draw_page(GtkPrintOperation *UNUSED(operation), GtkPrintContext *context,
 									gint page_nr, gpointer data)
 {
 	PrintWindow *pw = data;
@@ -775,7 +754,7 @@ static void draw_page(GtkPrintOperation *operation, GtkPrintContext *context,
 }
 
 static void begin_print(GtkPrintOperation *operation,
-						GtkPrintContext *context,
+						GtkPrintContext *UNUSED(context),
 						gpointer user_data)
 {
 	PrintWindow *pw = user_data;
@@ -788,7 +767,7 @@ static void begin_print(GtkPrintOperation *operation,
 }
 
 
-GObject *option_tab_cb(GtkPrintOperation *operation, gpointer user_data)
+GObject *option_tab_cb(GtkPrintOperation *UNUSED(operation), gpointer user_data)
 {
 	PrintWindow *pw = user_data;
 
@@ -808,7 +787,7 @@ static void print_pref_store(PrintWindow *pw)
 }
 
 static void end_print_cb(GtkPrintOperation *operation,
-								GtkPrintContext *context, gpointer data)
+								GtkPrintContext *UNUSED(context), gpointer data)
 {
 	PrintWindow *pw = data;
 	GList *work;
@@ -861,7 +840,7 @@ static void end_print_cb(GtkPrintOperation *operation,
 	g_free(pw);
 }
 
-void print_window_new(FileData *fd, GList *selection, GList *list, GtkWidget *parent)
+void print_window_new(FileData *UNUSED(fd), GList *selection, GList *UNUSED(list), GtkWidget *parent)
 {
 	PrintWindow *pw;
 	GtkWidget *vbox;
@@ -884,7 +863,7 @@ void print_window_new(FileData *fd, GList *selection, GList *list, GtkWidget *pa
 
 	pw->parent = parent;
 
-	vbox = gtk_vbox_new(FALSE, 0);
+	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	gtk_container_set_border_width(GTK_CONTAINER(vbox), PREF_PAD_BORDER);
 	gtk_widget_show(vbox);
 

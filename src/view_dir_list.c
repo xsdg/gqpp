@@ -435,7 +435,7 @@ gboolean vdlist_press_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer dat
 	return options->view_dir_list_single_click_enter;
 }
 
-void vdlist_destroy_cb(GtkWidget *widget, gpointer data)
+void vdlist_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewDir *vd = data;
 
@@ -445,7 +445,7 @@ void vdlist_destroy_cb(GtkWidget *widget, gpointer data)
 	filelist_free(VDLIST(vd)->list);
 }
 
-ViewDir *vdlist_new(ViewDir *vd, FileData *dir_fd)
+ViewDir *vdlist_new(ViewDir *vd, FileData *UNUSED(dir_fd))
 {
 	GtkListStore *store;
 	GtkTreeSelection *selection;

@@ -46,7 +46,7 @@ struct _SarData
 	gboolean match_found;
 };
 
-static gint sort_iter_compare_func (GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer data)
+static gint sort_iter_compare_func (GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer UNUSED(data))
 {
 	gint ret = 0;
 	gchar *label1, *label2;
@@ -185,7 +185,7 @@ static gboolean search_and_run_destroy(gpointer data)
 	return TRUE;
 }
 
-static gboolean entry_box_activate_cb(GtkWidget *widget, gpointer data)
+static gboolean entry_box_activate_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	SarData *sar = data;
 
@@ -199,7 +199,7 @@ static gboolean entry_box_activate_cb(GtkWidget *widget, gpointer data)
 	return TRUE;
 }
 
-static gboolean keypress_cb(GtkWidget *widget, GdkEventKey *event, gpointer data)
+static gboolean keypress_cb(GtkWidget *UNUSED(widget), GdkEventKey *event, gpointer data)
 {
 	SarData *sar = data;
 	gboolean ret = FALSE;
@@ -220,7 +220,7 @@ static gboolean keypress_cb(GtkWidget *widget, GdkEventKey *event, gpointer data
 	return ret;
 }
 
-static gboolean match_selected_cb(GtkEntryCompletion *widget, GtkTreeModel *model, GtkTreeIter *iter, gpointer data)
+static gboolean match_selected_cb(GtkEntryCompletion *UNUSED(widget), GtkTreeModel *model, GtkTreeIter *iter, gpointer data)
 {
 	SarData *sar = data;
 
@@ -254,7 +254,7 @@ static gboolean match_func(GtkEntryCompletion *completion, const gchar *key, Gtk
 
 	normalized = g_utf8_normalize(label, -1, G_NORMALIZE_DEFAULT);
 
-	reg_exp_str = g_string_new("\\b\(\?=.*:)");
+	reg_exp_str = g_string_new("\\b(\?=.*:)");
 	reg_exp_str = g_string_append(reg_exp_str, key);
 
 	reg_exp = g_regex_new(reg_exp_str->str, G_REGEX_CASELESS, 0, &error);

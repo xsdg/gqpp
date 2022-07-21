@@ -149,13 +149,13 @@ static void help_window_load_text(GtkWidget *text, const gchar *path)
 	gtk_text_view_scroll_to_iter(GTK_TEXT_VIEW(text), &iter, 0.0, TRUE, 0, 0);
 }
 
-static gboolean help_window_delete_cb(GtkWidget *widget, GdkEventAny *event, gpointer data)
+static gboolean help_window_delete_cb(GtkWidget *widget, GdkEventAny *UNUSED(event), gpointer UNUSED(data))
 {
 	gtk_widget_destroy(widget);
 	return TRUE;
 }
 
-static void help_window_close(GtkWidget *widget, gpointer data)
+static void help_window_close(GtkWidget *UNUSED(widget), gpointer data)
 {
 	GtkWidget *window = data;
 	gtk_widget_destroy(window);
@@ -212,7 +212,7 @@ GtkWidget *help_window_new(const gchar *title,
 	g_signal_connect(G_OBJECT(window), "delete_event",
 			 G_CALLBACK(help_window_delete_cb), NULL);
 
-	vbox = gtk_vbox_new(FALSE, 0);
+	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	gtk_container_add(GTK_CONTAINER(window), vbox);
 	gtk_widget_show(vbox);
 
@@ -220,7 +220,7 @@ GtkWidget *help_window_new(const gchar *title,
 
 	/* text window */
 
-	hbox = gtk_hbox_new(FALSE, 0);
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, TRUE, 0);
 	gtk_widget_show(hbox);
 

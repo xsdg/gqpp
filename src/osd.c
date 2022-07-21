@@ -104,9 +104,9 @@ static void tag_button_cb(GtkWidget *widget, gpointer data)
 	gtk_widget_grab_focus(GTK_WIDGET(image_overlay_template_view));
 }
 
-static void osd_dnd_get_cb(GtkWidget *btn, GdkDragContext *context,
-								GtkSelectionData *selection_data, guint info,
-								guint time, gpointer data)
+static void osd_dnd_get_cb(GtkWidget *btn, GdkDragContext *UNUSED(context),
+								GtkSelectionData *selection_data, guint UNUSED(info),
+								guint UNUSED(time), gpointer data)
 {
 	TagData *td;
 	GtkTextView *image_overlay_template_view = data;
@@ -117,9 +117,9 @@ static void osd_dnd_get_cb(GtkWidget *btn, GdkDragContext *context,
 	gtk_widget_grab_focus(GTK_WIDGET(image_overlay_template_view));
 }
 
-static void osd_btn_destroy_cb(GtkWidget *btn, GdkDragContext *context,
-								GtkSelectionData *selection_data, guint info,
-								guint time, gpointer data)
+static void osd_btn_destroy_cb(GtkWidget *btn, GdkDragContext *UNUSED(context),
+								GtkSelectionData *UNUSED(selection_data), guint UNUSED(info),
+								guint UNUSED(time), gpointer UNUSED(data))
 {
 	TagData *td;
 

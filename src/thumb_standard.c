@@ -711,7 +711,7 @@ static void thumb_loader_std_error_cb(ImageLoader *il, gpointer data)
 	if (tl->func_error) tl->func_error(tl, tl->data);
 }
 
-static void thumb_loader_std_progress_cb(ImageLoader *il, gdouble percent, gpointer data)
+static void thumb_loader_std_progress_cb(ImageLoader *UNUSED(il), gdouble percent, gpointer data)
 {
 	ThumbLoaderStd *tl = data;
 
@@ -909,7 +909,7 @@ static void thumb_loader_std_thumb_file_validate_finish(ThumbValidate *tv, gbool
 	thumb_loader_std_thumb_file_validate_free(tv);
 }
 
-static void thumb_loader_std_thumb_file_validate_done_cb(ThumbLoaderStd *tl, gpointer data)
+static void thumb_loader_std_thumb_file_validate_done_cb(ThumbLoaderStd *UNUSED(tl), gpointer data)
 {
 	ThumbValidate *tv = data;
 	GdkPixbuf *pixbuf;
@@ -967,7 +967,7 @@ static void thumb_loader_std_thumb_file_validate_done_cb(ThumbLoaderStd *tl, gpo
 	thumb_loader_std_thumb_file_validate_finish(tv, valid);
 }
 
-static void thumb_loader_std_thumb_file_validate_error_cb(ThumbLoaderStd *tl, gpointer data)
+static void thumb_loader_std_thumb_file_validate_error_cb(ThumbLoaderStd *UNUSED(tl), gpointer data)
 {
 	ThumbValidate *tv = data;
 
@@ -1077,7 +1077,7 @@ static void thumb_std_maint_move_step(TMaintMove *tm);
 static gboolean thumb_std_maint_move_idle(gpointer data);
 
 
-static void thumb_std_maint_move_validate_cb(const gchar *path, gboolean valid, gpointer data)
+static void thumb_std_maint_move_validate_cb(const gchar *UNUSED(path), gboolean UNUSED(valid), gpointer data)
 {
 	TMaintMove *tm = data;
 	GdkPixbuf *pixbuf;
@@ -1160,7 +1160,7 @@ static void thumb_std_maint_move_step(TMaintMove *tm)
 						      thumb_std_maint_move_validate_cb, tm);
 }
 
-static gboolean thumb_std_maint_move_idle(gpointer data)
+static gboolean thumb_std_maint_move_idle(gpointer UNUSED(data))
 {
 	TMaintMove *tm;
 	gchar *pathl;

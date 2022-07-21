@@ -189,9 +189,9 @@ static GtkTargetEntry advanced_exif_drag_types[] = {
 static gint n_exif_drag_types = 1;
 
 
-static void advanced_exif_dnd_get(GtkWidget *listview, GdkDragContext *context,
-				  GtkSelectionData *selection_data, guint info,
-				  guint time, gpointer data)
+static void advanced_exif_dnd_get(GtkWidget *listview, GdkDragContext *UNUSED(context),
+				  GtkSelectionData *selection_data, guint UNUSED(info),
+				  guint UNUSED(time), gpointer UNUSED(data))
 {
 	//ExifWin *ew = data;
 	GtkTreeSelection *sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(listview));
@@ -211,7 +211,7 @@ static void advanced_exif_dnd_get(GtkWidget *listview, GdkDragContext *context,
 }
 
 
-static void advanced_exif_dnd_begin(GtkWidget *listview, GdkDragContext *context, gpointer data)
+static void advanced_exif_dnd_begin(GtkWidget *listview, GdkDragContext *context, gpointer UNUSED(data))
 {
 	//ExifWin *ew = data;
 	GtkTreeSelection *sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(listview));
@@ -249,9 +249,7 @@ static void advanced_exif_add_column(GtkWidget *listview, const gchar *title, gi
 		gtk_tree_view_column_set_sizing(column, GTK_TREE_VIEW_COLUMN_AUTOSIZE);
 		}
 
-#if GTK_CHECK_VERSION(3,0,0)
 	gtk_tree_view_column_set_resizable(column, TRUE);
-#endif
 	gtk_tree_view_column_set_sort_column_id(column, n);
 
 	renderer = gtk_cell_renderer_text_new();
@@ -287,7 +285,7 @@ void advanced_exif_close(ExifWin *ew)
 	g_free(ew);
 }
 
-static gboolean advanced_exif_delete_cb(GtkWidget *widget, GdkEvent *event, gpointer data)
+static gboolean advanced_exif_delete_cb(GtkWidget *UNUSED(widget), GdkEvent *UNUSED(event), gpointer data)
 {
 	ExifWin *ew = data;
 
@@ -342,8 +340,8 @@ static gint advanced_exif_sort_cb(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIt
 	return ret;
 }
 
-static gboolean advanced_exif_mouseclick(GtkWidget *widget,
-						GdkEventButton *bevent, gpointer data)
+static gboolean advanced_exif_mouseclick(GtkWidget *UNUSED(widget),
+						GdkEventButton *UNUSED(bevent), gpointer data)
 {
 	ExifWin *ew = data;
 	GtkTreePath *path;
@@ -377,7 +375,7 @@ static gboolean advanced_exif_mouseclick(GtkWidget *widget,
 	return TRUE;
 }
 
-static gboolean advanced_exif_keypress(GtkWidget *widget, GdkEventKey *event, gpointer data)
+static gboolean advanced_exif_keypress(GtkWidget *UNUSED(widget), GdkEventKey *event, gpointer data)
 {
 	ExifWin *ew = data;
 	gboolean stop_signal = FALSE;
@@ -401,7 +399,7 @@ static gboolean advanced_exif_keypress(GtkWidget *widget, GdkEventKey *event, gp
 	return stop_signal;
 } // static gboolean advanced_exif_...
 
-static gboolean search_function_cb(GtkTreeModel *model, gint column, const gchar *key, GtkTreeIter *iter, gpointer data)
+static gboolean search_function_cb(GtkTreeModel *model, gint column, const gchar *key, GtkTreeIter *iter, gpointer UNUSED(data))
 {
 	gboolean ret = TRUE;
 	gchar *field_contents;
@@ -454,21 +452,18 @@ GtkWidget *advanced_exif_new(LayoutWindow *lw)
 	g_object_set_data(G_OBJECT(ew->window), "advanced_exif_data", ew);
 	g_signal_connect(G_OBJECT(ew->window), "delete_event", G_CALLBACK(advanced_exif_delete_cb), ew);
 
-	ew->vbox = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+	ew->vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	gtk_container_add(GTK_CONTAINER(ew->window), ew->vbox);
 	gtk_widget_show(ew->vbox);
 
-	box = gtk_hbox_new(FALSE, 0);
+	box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 
 	ew->label_file_name = gtk_label_new("");
 	gtk_label_set_ellipsize(GTK_LABEL(ew->label_file_name), PANGO_ELLIPSIZE_START);
 	gtk_label_set_selectable(GTK_LABEL(ew->label_file_name), TRUE);
-#if GTK_CHECK_VERSION(3,16,0)
 	gtk_label_set_xalign(GTK_LABEL(ew->label_file_name), 0.5);
 	gtk_label_set_yalign(GTK_LABEL(ew->label_file_name), 0.5);
-#else
-	gtk_misc_set_alignment(GTK_MISC(ew->label_file_name), 0.5, 0.5);
-#endif
+
 	gtk_box_pack_start(GTK_BOX(box), ew->label_file_name, TRUE, TRUE, 0);
 	gtk_widget_show(ew->label_file_name);
 

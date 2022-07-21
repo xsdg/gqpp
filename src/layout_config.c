@@ -67,7 +67,7 @@ static gint layout_config_style_count = sizeof(layout_config_styles) / sizeof(La
 static gchar *layout_titles[] = { N_("Tools"), N_("Files"), N_("Image") };
 
 
-static void layout_config_destroy(GtkWidget *widget, gpointer data)
+static void layout_config_destroy(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutConfig * lc = data;
 
@@ -273,8 +273,8 @@ static GtkWidget *layout_config_widget(GtkWidget *group, GtkWidget *box, gint st
 	return group;
 }
 
-static void layout_config_number_cb(GtkTreeViewColumn *tree_column, GtkCellRenderer *cell,
-				    GtkTreeModel *store, GtkTreeIter *iter, gpointer data)
+static void layout_config_number_cb(GtkTreeViewColumn *UNUSED(tree_column), GtkCellRenderer *cell,
+				    GtkTreeModel *store, GtkTreeIter *iter, gpointer UNUSED(data))
 {
 	GtkTreePath *tpath;
 	gint *indices;
@@ -301,13 +301,13 @@ GtkWidget *layout_config_new(void)
 
 	lc = g_new0(LayoutConfig, 1);
 
-	lc->box = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+	lc->box = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	g_object_set_data(G_OBJECT(lc->box), "layout_config", lc);
 
 	g_signal_connect(G_OBJECT(lc->box), "destroy",
 			 G_CALLBACK(layout_config_destroy), lc);
 
-	hbox = gtk_hbox_new(TRUE, PREF_PAD_SPACE);
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 	gtk_box_pack_start(GTK_BOX(lc->box), hbox, FALSE, FALSE, 0);
 	for (i = 0; i < layout_config_style_count; i++)
 		{

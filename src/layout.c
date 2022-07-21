@@ -49,13 +49,8 @@
 #include "bar_sort.h"
 #include "preferences.h"
 #include "shortcuts.h"
-#ifdef HAVE_LIRC
-#include "lirc.h"
-#endif
 #ifdef GDK_WINDOWING_X11
-#if GTK_CHECK_VERSION(3,10,0)
 #include <gdk/gdkx.h>
-#endif
 #endif
 
 #define MAINWINDOW_DEF_WIDTH 700
@@ -194,14 +189,14 @@ static void layout_set_unique_id(LayoutWindow *lw)
 		}
 }
 
-static gboolean layout_set_current_cb(GtkWidget *widget, GdkEventFocus *event, gpointer data)
+static gboolean layout_set_current_cb(GtkWidget *UNUSED(widget), GdkEventFocus *UNUSED(event), gpointer data)
 {
 	LayoutWindow *lw = data;
 	current_lw = lw;
 	return FALSE;
 }
 
-static void layout_box_folders_changed_cb(GtkWidget *widget, gpointer data)
+static void layout_box_folders_changed_cb(GtkWidget *widget, gpointer UNUSED(data))
 {
 	LayoutWindow *lw;
 	GList *work;
@@ -289,14 +284,14 @@ static void layout_path_entry_cb(const gchar *path, gpointer data)
 	g_free(buf);
 }
 
-static void layout_vd_select_cb(ViewDir *vd, FileData *fd, gpointer data)
+static void layout_vd_select_cb(ViewDir *UNUSED(vd), FileData *fd, gpointer data)
 {
 	LayoutWindow *lw = data;
 
 	layout_set_fd(lw, fd);
 }
 
-static void layout_path_entry_tab_append_cb(const gchar *path, gpointer data, gint n)
+static void layout_path_entry_tab_append_cb(const gchar *UNUSED(path), gpointer data, gint n)
 {
 	LayoutWindow *lw = data;
 
@@ -307,7 +302,7 @@ static void layout_path_entry_tab_append_cb(const gchar *path, gpointer data, gi
 	gtk_widget_set_sensitive(lw->back_button, (n > 1));
 }
 
-static gboolean path_entry_tooltip_cb(GtkWidget *widget, gpointer data)
+static gboolean path_entry_tooltip_cb(GtkWidget *widget, gpointer UNUSED(data))
 {
 	GList *box_child_list;
 	GtkComboBox *path_entry;
@@ -335,7 +330,7 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 	GtkWidget *toolbar;
 	GtkWidget *scroll_window;
 
-	box = gtk_vbox_new(FALSE, 0);
+	box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 
 	if (!options->expand_menu_toolbar)
 		{
@@ -344,7 +339,7 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 		toolbar = layout_actions_toolbar(lw, TOOLBAR_MAIN);
 		scroll_window = gtk_scrolled_window_new(NULL, NULL);
 		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroll_window), GTK_POLICY_AUTOMATIC,GTK_POLICY_NEVER);
-		gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scroll_window), menu_bar);
+		gtk_container_add(GTK_CONTAINER(scroll_window), menu_bar);
 
 		gtk_widget_show(scroll_window);
 		gtk_widget_show(menu_bar);
@@ -372,13 +367,8 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 	gtk_widget_set_has_tooltip(GTK_WIDGET(tabcomp), TRUE);
 	g_signal_connect(G_OBJECT(tabcomp), "query_tooltip", G_CALLBACK(path_entry_tooltip_cb), lw);
 
-#if GTK_CHECK_VERSION(3,20,0)
 	g_signal_connect(G_OBJECT(gtk_widget_get_parent(gtk_widget_get_parent(lw->path_entry))), "changed",
 			 G_CALLBACK(layout_path_entry_changed_cb), lw);
-#else
-	g_signal_connect(G_OBJECT(gtk_widget_get_parent(lw->path_entry)), "changed",
-			 G_CALLBACK(layout_path_entry_changed_cb), lw);
-#endif
 
 	box_folders = GTK_WIDGET(gtk_hpaned_new());
 	DEBUG_NAME(box_folders);
@@ -433,20 +423,20 @@ static void layout_sort_menu_cb(GtkWidget *widget, gpointer data)
 	layout_sort_set(lw, type, lw->sort_ascend);
 }
 
-static void layout_sort_menu_ascend_cb(GtkWidget *widget, gpointer data)
+static void layout_sort_menu_ascend_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 
 	layout_sort_set(lw, lw->sort_method, !lw->sort_ascend);
 }
 
-static void layout_sort_menu_hide_cb(GtkWidget *widget, gpointer data)
+static void layout_sort_menu_hide_cb(GtkWidget *widget, gpointer UNUSED(data))
 {
 	/* destroy the menu */
 	g_object_unref(widget);
 }
 
-static void layout_sort_button_press_cb(GtkWidget *widget, gpointer data)
+static void layout_sort_button_press_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 	GtkWidget *menu;
@@ -533,13 +523,13 @@ static void layout_scroll_menu_cb(GtkWidget *widget, gpointer data)
 	image_options_sync();
 }
 
-static void layout_zoom_menu_hide_cb(GtkWidget *widget, gpointer data)
+static void layout_zoom_menu_hide_cb(GtkWidget *widget, gpointer UNUSED(data))
 {
 	/* destroy the menu */
 	g_object_unref(widget);
 }
 
-static void layout_zoom_button_press_cb(GtkWidget *widget, gpointer data)
+static void layout_zoom_button_press_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutWindow *lw = data;
 	GtkWidget *menu;
@@ -594,7 +584,7 @@ static void layout_zoom_button_press_cb(GtkWidget *widget, gpointer data)
 	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 0, etime);
 }
 
-static GtkWidget *layout_zoom_button(LayoutWindow *lw, GtkWidget *box, gint size, gboolean expand)
+static GtkWidget *layout_zoom_button(LayoutWindow *lw, GtkWidget *box, gint size, gboolean UNUSED(expand))
 {
 	GtkWidget *button;
 	GtkWidget *frame;
@@ -865,12 +855,12 @@ static void layout_status_setup(LayoutWindow *lw, GtkWidget *box, gboolean small
 
 	if (small_format)
 		{
-		lw->info_box = gtk_vbox_new(FALSE, 0);
+		lw->info_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 		DEBUG_NAME(lw->info_box);
 		}
 	else
 		{
-		lw->info_box = gtk_hbox_new(FALSE, 0);
+		lw->info_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 		DEBUG_NAME(lw->info_box);
 		}
 	gtk_box_pack_end(GTK_BOX(box), lw->info_box, FALSE, FALSE, 0);
@@ -878,7 +868,7 @@ static void layout_status_setup(LayoutWindow *lw, GtkWidget *box, gboolean small
 
 	if (small_format)
 		{
-		hbox = gtk_hbox_new(FALSE, 0);
+		hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 		DEBUG_NAME(hbox);
 		gtk_box_pack_start(GTK_BOX(lw->info_box), hbox, FALSE, FALSE, 0);
 		gtk_widget_show(hbox);
@@ -890,10 +880,10 @@ static void layout_status_setup(LayoutWindow *lw, GtkWidget *box, gboolean small
 	lw->info_progress_bar = gtk_progress_bar_new();
 	DEBUG_NAME(lw->info_progress_bar);
 	gtk_widget_set_size_request(lw->info_progress_bar, PROGRESS_WIDTH, -1);
-#if GTK_CHECK_VERSION(3,0,0)
+
 	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(lw->info_progress_bar), "");
 	gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(lw->info_progress_bar), TRUE);
-#endif
+
 	gtk_box_pack_start(GTK_BOX(hbox), lw->info_progress_bar, FALSE, FALSE, 0);
 	gtk_widget_show(lw->info_progress_bar);
 
@@ -907,7 +897,7 @@ static void layout_status_setup(LayoutWindow *lw, GtkWidget *box, gboolean small
 
 	if (small_format)
 		{
-		hbox = gtk_hbox_new(FALSE, 0);
+		hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 		DEBUG_NAME(hbox);
 		gtk_box_pack_start(GTK_BOX(lw->info_box), hbox, FALSE, FALSE, 0);
 		gtk_widget_show(hbox);
@@ -930,7 +920,7 @@ static void layout_status_setup(LayoutWindow *lw, GtkWidget *box, gboolean small
 
 	if (small_format)
 		{
-		hbox = gtk_hbox_new(FALSE, 0);
+		hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 		DEBUG_NAME(hbox);
 		gtk_box_pack_start(GTK_BOX(lw->info_box), hbox, FALSE, FALSE, 0);
 		gtk_widget_show(hbox);
@@ -953,14 +943,14 @@ static GtkWidget *layout_tools_new(LayoutWindow *lw)
 	return lw->dir_view;
 }
 
-static void layout_list_status_cb(ViewFile *vf, gpointer data)
+static void layout_list_status_cb(ViewFile *UNUSED(vf), gpointer data)
 {
 	LayoutWindow *lw = data;
 
 	layout_status_update_info(lw, NULL);
 }
 
-static void layout_list_thumb_cb(ViewFile *vf, gdouble val, const gchar *text, gpointer data)
+static void layout_list_thumb_cb(ViewFile *UNUSED(vf), gdouble val, const gchar *text, gpointer data)
 {
 	LayoutWindow *lw = data;
 
@@ -998,7 +988,7 @@ static void layout_list_sync_marks(LayoutWindow *lw)
 	if (lw->vf) vf_marks_set(lw->vf, lw->options.show_marks);
 }
 
-static void layout_list_scroll_to_subpart(LayoutWindow *lw, const gchar *needle)
+static void layout_list_scroll_to_subpart(LayoutWindow *lw, const gchar *UNUSED(needle))
 {
 	if (!lw) return;
 }
@@ -1605,7 +1595,7 @@ static void layout_tools_hide(LayoutWindow *lw, gboolean hide)
 	lw->options.tools_hidden = hide;
 }
 
-static gboolean layout_tools_delete_cb(GtkWidget *widget, GdkEventAny *event, gpointer data)
+static gboolean layout_tools_delete_cb(GtkWidget *UNUSED(widget), GdkEventAny *UNUSED(event), gpointer data)
 {
 	LayoutWindow *lw = data;
 
@@ -1670,7 +1660,7 @@ static void layout_tools_setup(LayoutWindow *lw, GtkWidget *tools, GtkWidget *fi
 
 	layout_actions_add_window(lw, lw->tools);
 
-	vbox = gtk_vbox_new(FALSE, 0);
+	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	DEBUG_NAME(vbox);
 	gtk_container_add(GTK_CONTAINER(lw->tools), vbox);
 	if (options->expand_menu_toolbar) gtk_box_pack_start(GTK_BOX(vbox), GTK_WIDGET(lw->menu_tool_bar), FALSE, FALSE, 0);
@@ -1824,7 +1814,7 @@ static void layout_grid_setup(LayoutWindow *lw)
 
 	layout_actions_setup(lw);
 
-	lw->group_box = gtk_vbox_new(FALSE, 0);
+	lw->group_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	DEBUG_NAME(lw->group_box);
 	if (options->expand_menu_toolbar)
 		{
@@ -2200,7 +2190,7 @@ struct _LayoutConfig
 
 static gint layout_config_delete_cb(GtkWidget *w, GdkEventAny *event, gpointer data);
 
-static void layout_config_close_cb(GtkWidget *widget, gpointer data)
+static void layout_config_close_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutConfig *lc = data;
 
@@ -2209,13 +2199,13 @@ static void layout_config_close_cb(GtkWidget *widget, gpointer data)
 	g_free(lc);
 }
 
-static gint layout_config_delete_cb(GtkWidget *w, GdkEventAny *event, gpointer data)
+static gint layout_config_delete_cb(GtkWidget *w, GdkEventAny *UNUSED(event), gpointer data)
 {
 	layout_config_close_cb(w, data);
 	return TRUE;
 }
 
-static void layout_config_apply_cb(GtkWidget *widget, gpointer data)
+static void layout_config_apply_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutConfig *lc = data;
 
@@ -2227,7 +2217,7 @@ static void layout_config_apply_cb(GtkWidget *widget, gpointer data)
 	layout_apply_options(lc->lw, &lc->options);
 }
 
-static void layout_config_help_cb(GtkWidget *widget, gpointer data)
+static void layout_config_help_cb(GtkWidget *UNUSED(widget), gpointer UNUSED(data))
 {
 	help_window_show("GuideOptionsLayout.html");
 }
@@ -2239,7 +2229,7 @@ static void layout_config_ok_cb(GtkWidget *widget, gpointer data)
 	layout_config_close_cb(widget, lc);
 }
 
-static void home_path_set_current_cb(GtkWidget *widget, gpointer data)
+static void home_path_set_current_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	LayoutConfig *lc = data;
 	gtk_entry_set_text(GTK_ENTRY(lc->home_path_entry), layout_get_path(lc->lw));
@@ -2312,7 +2302,7 @@ void layout_show_config_window(LayoutWindow *lw)
 	gtk_window_set_resizable(GTK_WINDOW(lc->configwindow), TRUE);
 	gtk_container_set_border_width(GTK_CONTAINER(lc->configwindow), PREF_PAD_BORDER);
 
-	win_vbox = gtk_vbox_new(FALSE, PREF_PAD_SPACE);
+	win_vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_SPACE);
 	DEBUG_NAME(win_vbox);
 	gtk_container_add(GTK_CONTAINER(lc->configwindow), win_vbox);
 	gtk_widget_show(win_vbox);
@@ -2364,7 +2354,7 @@ void layout_show_config_window(LayoutWindow *lw)
 	frame = pref_frame_new(win_vbox, TRUE, NULL, GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	DEBUG_NAME(frame);
 
-	vbox = gtk_vbox_new(FALSE, PREF_PAD_SPACE);
+	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_SPACE);
 	DEBUG_NAME(vbox);
 	gtk_container_add(GTK_CONTAINER(frame), vbox);
 	gtk_widget_show(vbox);
@@ -2419,9 +2409,7 @@ void layout_sync_options_with_current_state(LayoutWindow *lw)
 {
 	Histogram *histogram;
 #ifdef GDK_WINDOWING_X11
-#if GTK_CHECK_VERSION(3,10,0)
 	GdkWindow *window;
-#endif
 #endif
 
 	if (!layout_valid(&lw)) return;
@@ -2453,7 +2441,6 @@ void layout_sync_options_with_current_state(LayoutWindow *lw)
 	                                 &lw->options.log_window.w, &lw->options.log_window.h);
 
 #ifdef GDK_WINDOWING_X11
-#if GTK_CHECK_VERSION(3,10,0)
 	GdkDisplay *display;
 
 	if (options->save_window_workspace)
@@ -2466,7 +2453,6 @@ void layout_sync_options_with_current_state(LayoutWindow *lw)
 			lw->options.workspace = gdk_x11_window_get_desktop(window);
 			}
 		}
-#endif
 #endif
 	return;
 }
@@ -2553,7 +2539,7 @@ void layout_free(LayoutWindow *lw)
 	g_free(lw);
 }
 
-static gboolean layout_delete_cb(GtkWidget *widget, GdkEventAny *event, gpointer data)
+static gboolean layout_delete_cb(GtkWidget *UNUSED(widget), GdkEventAny *UNUSED(event), gpointer data)
 {
 	LayoutWindow *lw = data;
 
@@ -2574,7 +2560,6 @@ gboolean release_cb(GtkWidget *widget, GdkEventButton *event, gpointer data)
 static gboolean move_window_to_workspace_cb(gpointer data)
 {
 #ifdef GDK_WINDOWING_X11
-#if GTK_CHECK_VERSION(3,10,0)
 	LayoutWindow *lw = data;
 	GdkWindow *window;
 	GdkDisplay *display;
@@ -2592,7 +2577,6 @@ static gboolean move_window_to_workspace_cb(gpointer data)
 				}
 			}
 		}
-#endif
 #endif
 	return FALSE;
 }
@@ -2694,11 +2678,7 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 
 	layout_keyboard_init(lw, lw->window);
 
-#ifdef HAVE_LIRC
-	layout_image_lirc_init(lw);
-#endif
-
-	lw->main_box = gtk_vbox_new(FALSE, 0);
+	lw->main_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	DEBUG_NAME(lw->main_box);
 	gtk_container_add(GTK_CONTAINER(lw->window), lw->main_box);
 	gtk_widget_show(lw->main_box);

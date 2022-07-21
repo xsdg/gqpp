@@ -43,14 +43,6 @@
       </varlistentry>
       <varlistentry>
         <term>
-          <guilabel>Use GPU acceleration via Clutter library</guilabel>
-        </term>
-        <listitem>
-          <para>Use alternate renderer. Geeqie must be compiled with the --enable-gpu-accel option.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
           <guilabel>Two pass zooming</guilabel>
         </term>
         <listitem>

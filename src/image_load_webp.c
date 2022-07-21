@@ -38,12 +38,12 @@ struct _ImageLoaderWEBP {
 	gboolean abort;
 };
 
-static void free_buffer(guchar *pixels, gpointer data)
+static void free_buffer(guchar *pixels, gpointer UNUSED(data))
 {
 	g_free(pixels);
 }
 
-static gboolean image_loader_webp_load(gpointer loader, const guchar *buf, gsize count, GError **error)
+static gboolean image_loader_webp_load(gpointer loader, const guchar *buf, gsize count, GError **UNUSED(error))
 {
 	ImageLoaderWEBP *ld = (ImageLoaderWEBP *) loader;
 	guint8* data;
@@ -105,18 +105,18 @@ static GdkPixbuf* image_loader_webp_get_pixbuf(gpointer loader)
 	return ld->pixbuf;
 }
 
-static gchar* image_loader_webp_get_format_name(gpointer loader)
+static gchar* image_loader_webp_get_format_name(gpointer UNUSED(loader))
 {
 	return g_strdup("webp");
 }
 
-static gchar** image_loader_webp_get_format_mime_types(gpointer loader)
+static gchar** image_loader_webp_get_format_mime_types(gpointer UNUSED(loader))
 {
 	static gchar *mime[] = {"image/webp", NULL};
 	return g_strdupv(mime);
 }
 
-static gboolean image_loader_webp_close(gpointer loader, GError **error)
+static gboolean image_loader_webp_close(gpointer UNUSED(loader), GError **UNUSED(error))
 {
 	return TRUE;
 }

@@ -145,7 +145,7 @@ static void generic_dialog_click_cb(GtkWidget *widget, gpointer data)
 	void (*func)(GenericDialog *, gpointer);
 	gboolean auto_close;
 
-	func = g_object_get_data(G_OBJECT(widget), "dialog_function");
+	func = (void(*)(GenericDialog *, gpointer))(g_object_get_data(G_OBJECT(widget), "dialog_function"));
 	auto_close = gd->auto_close;
 
 	if (func) func(gd, gd->data);
@@ -198,7 +198,7 @@ static gboolean generic_dialog_key_press_cb(GtkWidget *widget, GdkEventKey *even
 	return FALSE;
 }
 
-static gboolean generic_dialog_delete_cb(GtkWidget *w, GdkEventAny *event, gpointer data)
+static gboolean generic_dialog_delete_cb(GtkWidget *UNUSED(w), GdkEventAny *UNUSED(event), gpointer data)
 {
 	GenericDialog *gd = data;
 	gboolean auto_close;
@@ -219,8 +219,7 @@ static void generic_dialog_show_cb(GtkWidget *widget, gpointer data)
 		gtk_box_reorder_child(GTK_BOX(gd->hbox), gd->cancel_button, -1);
 		}
 
-	g_signal_handlers_disconnect_by_func(G_OBJECT(widget),
-					     G_CALLBACK(generic_dialog_show_cb), gd);
+	g_signal_handlers_disconnect_by_func(G_OBJECT(widget), (gpointer)(generic_dialog_show_cb), gd);
 }
 
 gboolean generic_dialog_get_alternative_button_order(GtkWidget *widget)
@@ -249,7 +248,7 @@ GtkWidget *generic_dialog_add_button(GenericDialog *gd, const gchar *stock_id, c
 				 G_CALLBACK(generic_dialog_click_cb), gd);
 
 	gtk_widget_set_can_default(button, TRUE);
-	g_object_set_data(G_OBJECT(button), "dialog_function", func_cb);
+	g_object_set_data(G_OBJECT(button), "dialog_function", (void *)func_cb);
 
 	gtk_container_add(GTK_CONTAINER(gd->hbox), button);
 
@@ -297,12 +296,8 @@ GtkWidget *generic_dialog_add_message(GenericDialog *gd, const gchar *icon_stock
 		GtkWidget *image;
 
 		image = gtk_image_new_from_stock(icon_stock_id, GTK_ICON_SIZE_DIALOG);
-#if GTK_CHECK_VERSION(3,16,0)
 		gtk_widget_set_halign(GTK_WIDGET(image), GTK_ALIGN_CENTER);
 		gtk_widget_set_valign(GTK_WIDGET(image), GTK_ALIGN_START);
-#else
-		gtk_misc_set_alignment(GTK_MISC(image), 0.5, 0.0);
-#endif
 		gtk_box_pack_start(GTK_BOX(hbox), image, FALSE, FALSE, 0);
 		gtk_widget_show(image);
 		}
@@ -312,22 +307,14 @@ GtkWidget *generic_dialog_add_message(GenericDialog *gd, const gchar *icon_stock
 		{
 		label = pref_label_new(vbox, heading);
 		pref_label_bold(label, TRUE, TRUE);
-#if GTK_CHECK_VERSION(3,16,0)
 		gtk_label_set_xalign(GTK_LABEL(label), 0.0);
 		gtk_label_set_yalign(GTK_LABEL(label), 0.5);
-#else
-		gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-#endif
 		}
 	if (text)
 		{
 		label = pref_label_new(vbox, text);
-#if GTK_CHECK_VERSION(3,16,0)
 		gtk_label_set_xalign(GTK_LABEL(label), 0.0);
 		gtk_label_set_yalign(GTK_LABEL(label), 0.5);
-#else
-		gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-#endif
 		gtk_label_set_line_wrap(GTK_LABEL(label), TRUE);
 		}
 
@@ -453,21 +440,17 @@ static void generic_dialog_setup(GenericDialog *gd,
 	gtk_window_set_resizable(GTK_WINDOW(gd->dialog), TRUE);
 	gtk_container_set_border_width(GTK_CONTAINER(gd->dialog), PREF_PAD_BORDER);
 
-#if GTK_CHECK_VERSION(3,22,0)
 	scrolled = gtk_scrolled_window_new(NULL, NULL);
 	gtk_scrolled_window_set_propagate_natural_height(GTK_SCROLLED_WINDOW(scrolled), TRUE);
 	gtk_scrolled_window_set_propagate_natural_width(GTK_SCROLLED_WINDOW(scrolled), TRUE);
-	vbox = gtk_vbox_new(FALSE, PREF_PAD_BUTTON_SPACE);
+	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_BUTTON_SPACE);
 	gtk_container_add(GTK_CONTAINER(scrolled), vbox);
 	gtk_container_add(GTK_CONTAINER(gd->dialog), scrolled);
 	gtk_widget_show(scrolled);
-#else
-	vbox = gtk_vbox_new(FALSE, PREF_PAD_BUTTON_SPACE);
-	gtk_container_add(GTK_CONTAINER(gd->dialog), vbox);
-#endif
+
 	gtk_widget_show(vbox);
 
-	gd->vbox = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+	gd->vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	gtk_box_pack_start(GTK_BOX(vbox), gd->vbox, TRUE, TRUE, 0);
 	gtk_widget_show(gd->vbox);
 
@@ -513,7 +496,7 @@ GenericDialog *generic_dialog_new(const gchar *title,
  *-----------------------------------------------------------------------------
  */
 
-static void warning_dialog_ok_cb(GenericDialog *gd, gpointer data)
+static void warning_dialog_ok_cb(GenericDialog *UNUSED(gd), gpointer UNUSED(data))
 {
 	/* no op */
 }
@@ -559,7 +542,7 @@ FileDialog *file_dialog_new(const gchar *title,
 
 	generic_dialog_setup(GENERIC_DIALOG(fdlg), title,
 			     role, parent, FALSE,
-			     (gpointer)cancel_cb, data);
+			     (void(*)(GenericDialog *, gpointer))cancel_cb, data);
 
 	return fdlg;
 }
@@ -568,17 +551,17 @@ GtkWidget *file_dialog_add_button(FileDialog *fdlg, const gchar *stock_id, const
 				  void (*func_cb)(FileDialog *, gpointer), gboolean is_default)
 {
 	return generic_dialog_add_button(GENERIC_DIALOG(fdlg), stock_id, text,
-					 (gpointer)func_cb, is_default);
+					 (void(*)(GenericDialog *, gpointer))func_cb, is_default);
 }
 
-static void file_dialog_entry_cb(GtkWidget *widget, gpointer data)
+static void file_dialog_entry_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	FileDialog *fdlg = data;
 	g_free(fdlg->dest_path);
 	fdlg->dest_path = remove_trailing_slash(gtk_entry_get_text(GTK_ENTRY(fdlg->entry)));
 }
 
-static void file_dialog_entry_enter_cb(const gchar *path, gpointer data)
+static void file_dialog_entry_enter_cb(const gchar *UNUSED(path), gpointer data)
 {
 	GenericDialog *gd = data;
 

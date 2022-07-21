@@ -36,11 +36,11 @@ PanViewSearchUi *pan_search_ui_new(PanWindow *pw)
 	GtkWidget *hbox;
 
 	// Build the actual search UI.
-	ui->search_box = gtk_hbox_new(FALSE, PREF_PAD_SPACE);
+	ui->search_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 	pref_spacer(ui->search_box, 0);
 	pref_label_new(ui->search_box, _("Find:"));
 
-	hbox = gtk_hbox_new(TRUE, PREF_PAD_SPACE);
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 	gtk_box_pack_start(GTK_BOX(ui->search_box), hbox, TRUE, TRUE, 0);
 	gtk_widget_show(hbox);
 
@@ -57,7 +57,7 @@ PanViewSearchUi *pan_search_ui_new(PanWindow *pw)
 	ui->search_button = gtk_toggle_button_new();
 	gtk_button_set_relief(GTK_BUTTON(ui->search_button), GTK_RELIEF_NONE);
 	gtk_button_set_focus_on_click(GTK_BUTTON(ui->search_button), FALSE);
-	hbox = gtk_hbox_new(FALSE, PREF_PAD_GAP);
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 	gtk_container_add(GTK_CONTAINER(ui->search_button), hbox);
 	gtk_widget_show(hbox);
 	ui->search_button_arrow = gtk_arrow_new(GTK_ARROW_UP, GTK_SHADOW_NONE);

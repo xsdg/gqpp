@@ -1712,7 +1712,8 @@ void exif_free_preview(guchar *buf)
 void exif_init(void)
 {
 }
-
+#else
+typedef int dummy_variable;
 #endif
 /* not HAVE_EXIV2 */
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

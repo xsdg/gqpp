@@ -49,11 +49,11 @@ GtkWidget *pref_box_new(GtkWidget *parent_box, gboolean fill,
 
 	if (orientation == GTK_ORIENTATION_HORIZONTAL)
 		{
-		box = gtk_hbox_new(FALSE, padding);
+		box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, padding);
 		}
 	else
 		{
-		box = gtk_vbox_new(FALSE, padding);
+		box = gtk_box_new(GTK_ORIENTATION_VERTICAL, padding);
 		}
 
 	gtk_box_pack_start(GTK_BOX(parent_box), box, fill, fill, 0);
@@ -70,7 +70,7 @@ GtkWidget *pref_group_new(GtkWidget *parent_box, gboolean fill,
 	GtkWidget *hbox;
 	GtkWidget *label;
 
-	vbox = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 
 	/* add additional spacing if necessary */
 	if (GTK_IS_VBOX(parent_box))
@@ -87,18 +87,14 @@ GtkWidget *pref_group_new(GtkWidget *parent_box, gboolean fill,
 	gtk_widget_show(vbox);
 
 	label = gtk_label_new(text);
-#if GTK_CHECK_VERSION(3,16,0)
 	gtk_label_set_xalign(GTK_LABEL(label), 0.0);
 	gtk_label_set_yalign(GTK_LABEL(label), 0.5);
-#else
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-#endif
 	pref_label_bold(label, TRUE, FALSE);
 
 	gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0);
 	gtk_widget_show(label);
 
-	hbox = gtk_hbox_new(FALSE, PREF_PAD_INDENT);
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_INDENT);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, TRUE, 0);
 	gtk_widget_show(hbox);
 
@@ -107,11 +103,11 @@ GtkWidget *pref_group_new(GtkWidget *parent_box, gboolean fill,
 
 	if (orientation == GTK_ORIENTATION_HORIZONTAL)
 		{
-		box = gtk_hbox_new(FALSE, PREF_PAD_SPACE);
+		box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 		}
 	else
 		{
-		box = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+		box = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 		}
 	gtk_box_pack_start(GTK_BOX(hbox), box, TRUE, TRUE, 0);
 	gtk_widget_show(box);
@@ -152,11 +148,11 @@ GtkWidget *pref_frame_new(GtkWidget *parent_box, gboolean fill,
 
 	if (orientation == GTK_ORIENTATION_HORIZONTAL)
 		{
-		box = gtk_hbox_new(FALSE, padding);
+		box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, padding);
 		}
 	else
 		{
-		box = gtk_vbox_new(FALSE, padding);
+		box = gtk_box_new(GTK_ORIENTATION_VERTICAL, padding);
 		}
 	gtk_container_add(GTK_CONTAINER(frame), box);
 	gtk_container_set_border_width(GTK_CONTAINER(box), PREF_PAD_BORDER);
@@ -169,7 +165,7 @@ GtkWidget *pref_spacer(GtkWidget *parent_box, gboolean padding)
 {
 	GtkWidget *spacer;
 
-	spacer = gtk_hbox_new(FALSE, 0);
+	spacer = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_box_pack_start(GTK_BOX(parent_box), spacer, FALSE, FALSE, padding / 2);
 	gtk_widget_show(spacer);
 
@@ -264,16 +260,12 @@ GtkWidget *pref_button_new(GtkWidget *parent_box, const gchar *stock_id,
 
 		button = gtk_button_new();
 
-		if (stock_id) image = gtk_image_new_from_stock(stock_id, GTK_ICON_SIZE_BUTTON);
+		if (stock_id) image = gtk_image_new_from_icon_name(stock_id, GTK_ICON_SIZE_BUTTON);
 		if (text)
 			{
 			label = gtk_label_new_with_mnemonic(text);
-#if GTK_CHECK_VERSION(3,16,0)
 			gtk_label_set_xalign(GTK_LABEL(label), 0.5);
 			gtk_label_set_yalign(GTK_LABEL(label), 0.5);
-#else
-			gtk_misc_set_alignment(GTK_MISC(label), 0.5, 0.5);
-#endif
 			gtk_label_set_mnemonic_widget(GTK_LABEL(label), button);
 			}
 
@@ -282,7 +274,7 @@ GtkWidget *pref_button_new(GtkWidget *parent_box, const gchar *stock_id,
 			GtkWidget *align;
 			GtkWidget *hbox;
 
-			hbox = gtk_hbox_new(FALSE, PREF_PAD_BUTTON_ICON_GAP);
+			hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_ICON_GAP);
 
 			align = gtk_alignment_new(0.5, 0.5, 0.0, 0.0);
 			gtk_container_add(GTK_CONTAINER(button), align);
@@ -467,7 +459,7 @@ static void pref_radiobutton_int_cb(GtkWidget *widget, gpointer data)
 GtkWidget *pref_radiobutton_new_int(GtkWidget *parent_box, GtkWidget *sibling,
 				    const gchar *text, gboolean active,
 				    gboolean *result, gboolean value,
-				    GCallback func, gpointer data)
+				    GCallback UNUSED(func), gpointer UNUSED(data))
 {
 	GtkWidget *button;
 
@@ -561,7 +553,7 @@ GtkWidget *pref_spin_new_int(GtkWidget *parent_box, const gchar *text, const gch
 			     G_CALLBACK(pref_spin_int_cb), value_var);
 }
 
-static void pref_link_sensitivity_cb(GtkWidget *watch, GtkStateType prev_state, gpointer data)
+static void pref_link_sensitivity_cb(GtkWidget *watch, GtkStateType UNUSED(prev_state), gpointer data)
 {
 	GtkWidget *widget = data;
 
@@ -612,18 +604,18 @@ GtkWidget *pref_table_box(GtkWidget *table, gint column, gint row,
 
 	if (text)
 		{
-		shell = gtk_vbox_new(FALSE, 0);
+		shell = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 		box = pref_group_new(shell, TRUE, text, orientation);
 		}
 	else
 		{
 		if (orientation == GTK_ORIENTATION_HORIZONTAL)
 			{
-			box = gtk_hbox_new(FALSE, PREF_PAD_SPACE);
+			box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 			}
 		else
 			{
-			box = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+			box = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 			}
 		shell = box;
 		}
@@ -694,7 +686,7 @@ GtkWidget *pref_table_spin(GtkWidget *table, gint column, gint row,
 
 	if (suffix)
 		{
-		box = gtk_hbox_new(FALSE, PREF_PAD_SPACE);
+		box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 		gtk_box_pack_start(GTK_BOX(box), spin, FALSE, FALSE, 0);
 		gtk_widget_show(spin);
 
@@ -856,7 +848,7 @@ static void date_selection_popup_hide(DateSelection *ds)
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ds->button), FALSE);
 }
 
-static gboolean date_selection_popup_release_cb(GtkWidget *widget, GdkEventButton *event, gpointer data)
+static gboolean date_selection_popup_release_cb(GtkWidget *UNUSED(widget), GdkEventButton *UNUSED(event), gpointer data)
 {
 	DateSelection *ds = data;
 
@@ -864,7 +856,7 @@ static gboolean date_selection_popup_release_cb(GtkWidget *widget, GdkEventButto
 	return TRUE;
 }
 
-static gboolean date_selection_popup_press_cb(GtkWidget *widget, GdkEventButton *event, gpointer data)
+static gboolean date_selection_popup_press_cb(GtkWidget *UNUSED(widget), GdkEventButton *event, gpointer data)
 {
 	DateSelection *ds = data;
 	gint x, y;
@@ -898,7 +890,7 @@ static void date_selection_popup_sync(DateSelection *ds)
 	date_selection_set(ds->box, day, month + 1, year);
 }
 
-static gboolean date_selection_popup_keypress_cb(GtkWidget *widget, GdkEventKey *event, gpointer data)
+static gboolean date_selection_popup_keypress_cb(GtkWidget *UNUSED(widget), GdkEventKey *event, gpointer data)
 {
 	DateSelection *ds = data;
 
@@ -921,14 +913,14 @@ static gboolean date_selection_popup_keypress_cb(GtkWidget *widget, GdkEventKey 
 	return FALSE;
 }
 
-static void date_selection_day_cb(GtkWidget *widget, gpointer data)
+static void date_selection_day_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	DateSelection *ds = data;
 
 	date_selection_popup_sync(ds);
 }
 
-static void date_selection_doubleclick_cb(GtkWidget *widget, gpointer data)
+static void date_selection_doubleclick_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	DateSelection *ds = data;
 
@@ -995,7 +987,7 @@ static void date_selection_popup(DateSelection *ds)
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ds->button), TRUE);
 }
 
-static void date_selection_button_cb(GtkWidget *widget, gpointer data)
+static void date_selection_button_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	DateSelection *ds = data;
 
@@ -1033,7 +1025,7 @@ static void spin_increase(GtkWidget *spin, gint value)
 	gtk_widget_set_size_request(spin, req.width + value, -1);
 }
 
-static void date_selection_destroy_cb(GtkWidget *widget, gpointer data)
+static void date_selection_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	DateSelection *ds = data;
 
@@ -1051,7 +1043,7 @@ GtkWidget *date_selection_new(void)
 	gchar *date_format;
 	gint i;
 
-	ds->box = gtk_hbox_new(FALSE, 2);
+	ds->box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 2);
 	g_signal_connect(G_OBJECT(ds->box), "destroy",
 			 G_CALLBACK(date_selection_destroy_cb), ds);
 
@@ -1209,7 +1201,7 @@ static gint sizer_default_handle_size(void)
 	return handle_size;
 }
 
-static gboolean sizer_motion_cb(GtkWidget *widget, GdkEventMotion *event, gpointer data)
+static gboolean sizer_motion_cb(GtkWidget *UNUSED(widget), GdkEventMotion *event, gpointer data)
 {
 	SizerData *sd = data;
 	gint x, y;
@@ -1274,7 +1266,7 @@ static gboolean sizer_motion_cb(GtkWidget *widget, GdkEventMotion *event, gpoint
 	return TRUE;
 }
 
-static gboolean sizer_press_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer data)
+static gboolean sizer_press_cb(GtkWidget *UNUSED(widget), GdkEventButton *bevent, gpointer data)
 {
 	SizerData *sd = data;
 	GtkAllocation parent_allocation;
@@ -1297,7 +1289,7 @@ static gboolean sizer_press_cb(GtkWidget *widget, GdkEventButton *bevent, gpoint
 	return TRUE;
 }
 
-static gboolean sizer_release_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer data)
+static gboolean sizer_release_cb(GtkWidget *UNUSED(widget), GdkEventButton *bevent, gpointer data)
 {
 	SizerData *sd = data;
 
@@ -1324,7 +1316,7 @@ static void sizer_set_prelight(SizerData *sd, gboolean prelit)
 				   sizer_allocation.width, sizer_allocation.height);
 }
 
-static gboolean sizer_enter_cb(GtkWidget *widget, GdkEventCrossing *event, gpointer data)
+static gboolean sizer_enter_cb(GtkWidget *UNUSED(widget), GdkEventCrossing *UNUSED(event), gpointer data)
 {
 	SizerData *sd = data;
 
@@ -1332,7 +1324,7 @@ static gboolean sizer_enter_cb(GtkWidget *widget, GdkEventCrossing *event, gpoin
 	return TRUE;
 }
 
-static gboolean sizer_leave_cb(GtkWidget *widget, GdkEventCrossing *event, gpointer data)
+static gboolean sizer_leave_cb(GtkWidget *UNUSED(widget), GdkEventCrossing *UNUSED(event), gpointer data)
 {
 	SizerData *sd = data;
 
@@ -1340,9 +1332,8 @@ static gboolean sizer_leave_cb(GtkWidget *widget, GdkEventCrossing *event, gpoin
 	return TRUE;
 }
 
-static gboolean sizer_expose_cb(GtkWidget *widget, GdkEventExpose *event, gpointer data)
+static gboolean sizer_expose_cb(GtkWidget *widget, GdkEventExpose *UNUSED(event), gpointer UNUSED(data))
 {
-#if GTK_CHECK_VERSION(3,0,0)
 	GtkAllocation allocation;
 
 	gtk_widget_get_allocation(widget, &allocation);
@@ -1352,41 +1343,6 @@ static gboolean sizer_expose_cb(GtkWidget *widget, GdkEventExpose *event, gpoint
 	gtk_render_handle (gtk_widget_get_style_context (widget),
 	                   cr, allocation.x, allocation.y, allocation.width, allocation.height);
 	cairo_destroy(cr);
-#else
-	SizerData *sd = data;
-	GdkRectangle clip;
-	GtkOrientation orientation;
-	GtkStateType state;
-	GtkAllocation allocation;
-
-	gtk_widget_get_allocation(widget, &allocation);
-
-	if (sd->position & SIZER_POS_LEFT || sd->position & SIZER_POS_RIGHT)
-		{
-		orientation = GTK_ORIENTATION_VERTICAL;
-		}
-	else
-		{
-		orientation = GTK_ORIENTATION_HORIZONTAL;
-		}
-
-	if (sd->handle_prelit)
-		{
-		state = GTK_STATE_PRELIGHT;
-		}
-	else
-		{
-		state = gtk_widget_get_state(widget);
-		}
-
-	gdk_region_get_clipbox(event->region, &clip);
-
-	gtk_paint_handle(gtk_widget_get_style(widget), gtk_widget_get_window(widget), state,
-			 GTK_SHADOW_NONE, &clip, widget, "paned",
-			 0, 0,
-			 allocation.width, allocation.height,
-			 orientation);
-#endif
 
 	return TRUE;
 }
@@ -1411,11 +1367,11 @@ static void sizer_realize_cb(GtkWidget *widget, gpointer data)
 		GdkCursor *cursor;
 		cursor = gdk_cursor_new(n);
 		gdk_window_set_cursor(gtk_widget_get_window(widget), cursor);
-		gdk_cursor_unref(cursor);
+		g_object_unref(G_OBJECT(cursor));
 		}
 }
 
-static void sizer_destroy_cb(GtkWidget *widget, gpointer data)
+static void sizer_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	SizerData *sd = data;
 
@@ -1695,7 +1651,7 @@ GtkWidget *pref_color_button_new(GtkWidget *parent_box,
 		gtk_color_button_set_title(GTK_COLOR_BUTTON(button), title);
 		label = gtk_label_new(title);
 
-		hbox = gtk_hbox_new(TRUE, 0);
+		hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 		gtk_box_pack_start(GTK_BOX(parent_box), hbox, TRUE, TRUE, 0);
 
 		gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
@@ -1768,7 +1724,7 @@ gchar *text_widget_text_pull_selected(GtkWidget *text_widget)
 		}
 }
 
-gboolean defined_mouse_buttons(GtkWidget *widget, GdkEventButton *event, gpointer data)
+gboolean defined_mouse_buttons(GtkWidget *UNUSED(widget), GdkEventButton *event, gpointer data)
 {
 	LayoutWindow *lw = data;
 	GtkAction *action;

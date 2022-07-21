@@ -230,7 +230,7 @@ struct _BarData
 	gint width;
 };
 
-static void bar_expander_move(GtkWidget *widget, gpointer data, gboolean up, gboolean single_step)
+static void bar_expander_move(GtkWidget *UNUSED(widget), gpointer data, gboolean up, gboolean single_step)
 {
 	GtkWidget *expander = data;
 	GtkWidget *box;
@@ -282,7 +282,7 @@ static void height_spin_changed_cb(GtkSpinButton *spin, gpointer data)
 	gtk_widget_set_size_request(GTK_WIDGET(data), -1, gtk_spin_button_get_value_as_int(spin));
 }
 
-static gboolean height_spin_key_press_cb(GtkWidget *widget, GdkEventKey *event, gpointer data)
+static gboolean height_spin_key_press_cb(GtkWidget *UNUSED(widget), GdkEventKey *event, gpointer data)
 {
 	if ((event->keyval == GDK_KEY_Return || event->keyval == GDK_KEY_Escape))
 		{
@@ -292,7 +292,7 @@ static gboolean height_spin_key_press_cb(GtkWidget *widget, GdkEventKey *event, 
 	return TRUE;
 }
 
-static void bar_expander_height_cb(GtkWidget *widget, gpointer data)
+static void bar_expander_height_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	GtkWidget *expander = data;
 	GtkWidget *spin;
@@ -301,20 +301,14 @@ static void bar_expander_height_cb(GtkWidget *widget, gpointer data)
 	GList *list;
 	gint x, y;
 	gint w, h;
-#if GTK_CHECK_VERSION(3,0,0)
 	GdkDisplay *display;
 	GdkDeviceManager *device_manager;
 	GdkDevice *device;
-#endif
 
-#if GTK_CHECK_VERSION(3,0,0)
 	display = gdk_display_get_default();
 	device_manager = gdk_display_get_device_manager(display);
 	device = gdk_device_manager_get_client_pointer(device_manager);
 	gdk_device_get_position(device, NULL, &x, &y);
-#else
-	gdk_window_get_pointer(NULL, &x, &y, NULL);
-#endif
 
 	list = gtk_container_get_children(GTK_CONTAINER(expander));
 	data_box = list->data;
@@ -342,13 +336,13 @@ static void bar_expander_height_cb(GtkWidget *widget, gpointer data)
 	g_list_free(list);
 }
 
-static void bar_expander_delete_cb(GtkWidget *widget, gpointer data)
+static void bar_expander_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	GtkWidget *expander = data;
 	gtk_widget_destroy(expander);
 }
 
-static void bar_expander_add_cb(GtkWidget *widget, gpointer data)
+static void bar_expander_add_cb(GtkWidget *widget, gpointer UNUSED(data))
 {
 	//GtkWidget *bar = data;
 	const KnownPanes *pane = known_panes;
@@ -447,7 +441,7 @@ static void bar_menu_add_popup(GtkWidget *widget)
 }
 
 
-static gboolean bar_menu_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer data)
+static gboolean bar_menu_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer UNUSED(data))
 {
 	if (bevent->button == MOUSE_BUTTON_RIGHT)
 		{
@@ -457,7 +451,7 @@ static gboolean bar_menu_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer 
 	return FALSE;
 }
 
-static void bar_expander_cb(GObject *object, GParamSpec *param_spec, gpointer data)
+static void bar_expander_cb(GObject *object, GParamSpec *UNUSED(param_spec), gpointer UNUSED(data))
 {
 	GtkExpander *expander;
 	GtkWidget *child;
@@ -475,7 +469,7 @@ static void bar_expander_cb(GObject *object, GParamSpec *param_spec, gpointer da
 		}
 }
 
-static gboolean bar_menu_add_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer data)
+static gboolean bar_menu_add_cb(GtkWidget *widget, GdkEventButton *UNUSED(bevent), gpointer UNUSED(data))
 {
 	bar_menu_add_popup(widget);
 	return TRUE;
@@ -687,7 +681,7 @@ void bar_add(GtkWidget *bar, GtkWidget *pane)
 
 }
 
-void bar_populate_default(GtkWidget *bar)
+void bar_populate_default(GtkWidget *UNUSED(bar))
 {
 	const gchar *populate_id[] = {"histogram", "title", "keywords", "comment", "rating", "exif", NULL};
 	const gchar **id = populate_id;
@@ -700,7 +694,7 @@ void bar_populate_default(GtkWidget *bar)
 		}
 }
 
-static void bar_size_allocate(GtkWidget *widget, GtkAllocation *allocation, gpointer data)
+static void bar_size_allocate(GtkWidget *UNUSED(widget), GtkAllocation *UNUSED(allocation), gpointer data)
 {
 	BarData *bd = data;
 
@@ -727,7 +721,7 @@ void bar_close(GtkWidget *bar)
 	gtk_widget_destroy(bd->widget);
 }
 
-static void bar_destroy(GtkWidget *widget, gpointer data)
+static void bar_destroy(GtkWidget *UNUSED(widget), gpointer data)
 {
 	BarData *bd = data;
 
@@ -743,7 +737,7 @@ static void bar_destroy(GtkWidget *widget, gpointer data)
    it should be removed as soon as a better solution exists
 */
 
-static void bar_unrealize_clutter_fix_cb(GtkWidget *widget, gpointer data)
+static void bar_unrealize_clutter_fix_cb(GtkWidget *widget, gpointer UNUSED(data))
 {
 	GtkWidget *child = gtk_bin_get_child(GTK_BIN(widget));
 	if (child) gtk_widget_unrealize(child);
@@ -762,7 +756,7 @@ GtkWidget *bar_new(LayoutWindow *lw)
 
 	bd->lw = lw;
 
-	bd->widget = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+	bd->widget = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	DEBUG_NAME(bd->widget);
 	g_object_set_data(G_OBJECT(bd->widget), "bar_data", bd);
 	g_signal_connect(G_OBJECT(bd->widget), "destroy",
@@ -775,18 +769,15 @@ GtkWidget *bar_new(LayoutWindow *lw)
 
 	bd->width = SIDEBAR_DEFAULT_WIDTH;
 
-	box = gtk_hbox_new(FALSE, 0);
+	box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	DEBUG_NAME(box);
 
 	bd->label_file_name = gtk_label_new("");
 	gtk_label_set_ellipsize(GTK_LABEL(bd->label_file_name), PANGO_ELLIPSIZE_END);
 	gtk_label_set_selectable(GTK_LABEL(bd->label_file_name), TRUE);
-#if GTK_CHECK_VERSION(3,16,0)
 	gtk_label_set_xalign(GTK_LABEL(bd->label_file_name), 0.5);
 	gtk_label_set_yalign(GTK_LABEL(bd->label_file_name), 0.5);
-#else
-	gtk_misc_set_alignment(GTK_MISC(bd->label_file_name), 0.5, 0.5);
-#endif
+
 	gtk_box_pack_start(GTK_BOX(box), bd->label_file_name, TRUE, TRUE, 0);
 	gtk_widget_show(bd->label_file_name);
 
@@ -801,11 +792,11 @@ GtkWidget *bar_new(LayoutWindow *lw)
 	gtk_widget_show(scrolled);
 
 
-	bd->vbox = gtk_vbox_new(FALSE, 0);
-	gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scrolled), bd->vbox);
+	bd->vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+	gtk_container_add(GTK_CONTAINER(scrolled), bd->vbox);
 	gtk_viewport_set_shadow_type(GTK_VIEWPORT(gtk_bin_get_child(GTK_BIN(scrolled))), GTK_SHADOW_NONE);
 
-	add_box = gtk_vbox_new(FALSE, 0);
+	add_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	DEBUG_NAME(add_box);
 	gtk_box_pack_end(GTK_BOX(bd->widget), add_box, FALSE, FALSE, 0);
 	tbar = pref_toolbar_new(add_box, GTK_TOOLBAR_ICONS);

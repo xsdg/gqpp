@@ -205,14 +205,11 @@ feed_buffer (guchar*        buffer,
 static gboolean
 skip_block (PsdContext* context, const guchar** data, guint* size)
 {
-	static guint counter;
-
 	if (!context->bytes_to_skip_known) {
 		context->bytes_read = 0;
 		if (feed_buffer(context->buffer, &context->bytes_read, data, size, 4)) {
 			context->bytes_to_skip = read_uint32(context->buffer);
 			context->bytes_to_skip_known = TRUE;
-			counter = 0;
 		} else {
 			return FALSE;
 		}
@@ -220,11 +217,9 @@ skip_block (PsdContext* context, const guchar** data, guint* size)
 	if (*size < context->bytes_to_skip) {
 		*data += *size;
 		context->bytes_to_skip -= *size;
-		counter += *size;
 		*size = 0;
 		return FALSE;
 	} else {
-		counter += context->bytes_to_skip;
 		*size -= context->bytes_to_skip;
 		*data += context->bytes_to_skip;
 		return TRUE;
@@ -289,7 +284,7 @@ static void free_context(PsdContext *ctx)
 	g_free(ctx);
 }
 
-static gboolean image_loader_psd_load(gpointer loader, const guchar *buf, gsize count, GError **error)
+static gboolean image_loader_psd_load(gpointer loader, const guchar *buf, gsize count, GError **UNUSED(error))
 {
 	ImageLoaderPSD *ld = (ImageLoaderPSD *) loader;
 	PsdContext* ctx = g_new0(PsdContext, 1);
@@ -555,18 +550,18 @@ static GdkPixbuf* image_loader_psd_get_pixbuf(gpointer loader)
 	return ld->pixbuf;
 }
 
-static gchar* image_loader_psd_get_format_name(gpointer loader)
+static gchar* image_loader_psd_get_format_name(gpointer UNUSED(loader))
 {
 	return g_strdup("psd");
 }
 
-static gchar** image_loader_psd_get_format_mime_types(gpointer loader)
+static gchar** image_loader_psd_get_format_mime_types(gpointer UNUSED(loader))
 {
 	static gchar *mime[] = {"application/psd", NULL};
 	return g_strdupv(mime);
 }
 
-static gboolean image_loader_psd_close(gpointer loader, GError **error)
+static gboolean image_loader_psd_close(gpointer UNUSED(loader), GError **UNUSED(error))
 {
 	return TRUE;
 }

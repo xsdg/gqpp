@@ -23,10 +23,7 @@ option('gq_helpdir', type : 'string', value : '', description : 'Location of doc
 option('gq_htmldir', type : 'string', value : '', description : 'Location of html documentation')
 option('gq_localedir', type : 'string', value : '', description : 'Location where the catalogs will be installed')
 
-option('gtk3', type : 'boolean', value : 'true', description : 'GTK3')
-
 option('archive', type : 'feature', value : 'auto', description : 'archive files e.g. zip, gz')
-option('clutter', type : 'feature', value : 'auto', description : 'clutter (for GPS maps)')
 option('cms', type : 'feature', value : 'auto', description : 'color management system')
 option('djvu', type : 'feature', value : 'auto', description : 'djvu')
 option('exiv2', type : 'feature', value : 'auto', description : 'exiv2')
@@ -37,7 +34,6 @@ option('j2k', type : 'feature', value : 'auto', description : 'j2k')
 option('jpeg', type : 'feature', value : 'auto', description : 'jpeg')
 option('jpegxl', type : 'feature', value : 'auto', description : 'jpegxl')
 option('libraw', type : 'feature', value : 'auto', description : 'libraw')
-option('lirc', type : 'feature', value : 'auto', description : 'lirc')
 option('lua', type : 'feature', value : 'auto', description : 'lua')
 option('markdown', type : 'feature', value : 'auto', description : 'markdown')
 option('pdf', type : 'feature', value : 'auto', description : 'pdf')

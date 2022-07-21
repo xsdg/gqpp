@@ -32,14 +32,14 @@
 
 static gboolean cache_loader_phase2_idle_cb(gpointer data);
 
-static void cache_loader_phase1_done_cb(ImageLoader *il, gpointer data)
+static void cache_loader_phase1_done_cb(ImageLoader *UNUSED(il), gpointer data)
 {
 	CacheLoader *cl = data;
 
 	cl->idle_id = g_idle_add(cache_loader_phase2_idle_cb, cl);
 }
 
-static void cache_loader_phase1_error_cb(ImageLoader *il, gpointer data)
+static void cache_loader_phase1_error_cb(ImageLoader *UNUSED(il), gpointer data)
 {
 	CacheLoader *cl = data;
 

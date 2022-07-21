@@ -105,7 +105,7 @@ static void dest_view_delete_dlg_cancel(GenericDialog *gd, gpointer data);
  *-----------------------------------------------------------------------------
  */
 
-static void dest_free_data(GtkWidget *widget, gpointer data)
+static void dest_free_data(GtkWidget *UNUSED(widget), gpointer data)
 {
 	Dest_Data *dd = data;
 
@@ -336,8 +336,8 @@ static GtkTargetEntry dest_drag_types[] = {
 
 
 static void dest_dnd_set_data(GtkWidget *view,
-			      GdkDragContext *context, GtkSelectionData *selection_data,
-			      guint info, guint time, gpointer data)
+			      GdkDragContext *UNUSED(context), GtkSelectionData *selection_data,
+			      guint UNUSED(info), guint UNUSED(time), gpointer UNUSED(data))
 {
 	gchar *path = NULL;
 	GList *list = NULL;
@@ -476,7 +476,7 @@ static void dest_view_rename(Dest_Data *dd, GtkTreeView *view)
 	g_free(text);
 }
 
-static void dest_view_delete_dlg_cancel(GenericDialog *gd, gpointer data)
+static void dest_view_delete_dlg_cancel(GenericDialog *UNUSED(gd), gpointer data)
 {
 	DestDel_Data *dl = data;
 
@@ -564,38 +564,38 @@ static void dest_view_bookmark(Dest_Data *dd, GtkTreeView *view)
 	g_free(path);
 }
 
-static void dest_popup_dir_rename_cb(GtkWidget *widget, gpointer data)
+static void dest_popup_dir_rename_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	Dest_Data *dd = data;
 	dest_view_rename(dd, GTK_TREE_VIEW(dd->d_view));
 }
 
-static void dest_popup_dir_bookmark_cb(GtkWidget *widget, gpointer data)
+static void dest_popup_dir_bookmark_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	Dest_Data *dd = data;
 	dest_view_bookmark(dd, GTK_TREE_VIEW(dd->d_view));
 }
 
-static void dest_popup_file_rename_cb(GtkWidget *widget, gpointer data)
+static void dest_popup_file_rename_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	Dest_Data *dd = data;
 	dest_view_rename(dd, GTK_TREE_VIEW(dd->f_view));
 }
 
-static void dest_popup_file_delete_cb(GtkWidget *widget, gpointer data)
+static void dest_popup_file_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	Dest_Data *dd = data;
 	dest_view_delete(dd, GTK_TREE_VIEW(dd->f_view));
 }
 
-static void dest_popup_file_bookmark_cb(GtkWidget *widget, gpointer data)
+static void dest_popup_file_bookmark_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	Dest_Data *dd = data;
 	dest_view_bookmark(dd, GTK_TREE_VIEW(dd->f_view));
 }
 
 static void dest_popup_position_cb(GtkMenu *menu, gint *x, gint *y,
-				   gboolean *push_in, gpointer data)
+				   gboolean *UNUSED(push_in), gpointer data)
 {
 	Dest_Data *dd = data;
 	GtkTreeView *view;
@@ -816,7 +816,7 @@ static void dest_select_cb(GtkTreeSelection *selection, gpointer data)
 	g_free(path);
 }
 
-static void dest_activate_cb(GtkWidget *view, GtkTreePath *tpath, GtkTreeViewColumn *column, gpointer data)
+static void dest_activate_cb(GtkWidget *view, GtkTreePath *tpath, GtkTreeViewColumn *UNUSED(column), gpointer data)
 {
 	Dest_Data *dd = data;
 	GtkTreeModel *store;
@@ -842,14 +842,14 @@ static void dest_activate_cb(GtkWidget *view, GtkTreePath *tpath, GtkTreeViewCol
 	g_free(path);
 }
 
-static void dest_home_cb(GtkWidget *widget, gpointer data)
+static void dest_home_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	Dest_Data *dd = data;
 
 	dest_change_dir(dd, homedir(), (dd->f_view != NULL));
 }
 
-static void dest_show_hidden_cb(GtkWidget *widget, gpointer data)
+static void dest_show_hidden_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	Dest_Data *dd = data;
 	gchar *buf;
@@ -861,7 +861,7 @@ static void dest_show_hidden_cb(GtkWidget *widget, gpointer data)
 	g_free(buf);
 }
 
-static void dest_entry_changed_cb(GtkEditable *editable, gpointer data)
+static void dest_entry_changed_cb(GtkEditable *UNUSED(editable), gpointer data)
 {
 	Dest_Data *dd = data;
 	const gchar *path;
@@ -980,7 +980,7 @@ static void dest_filter_clear(Dest_Data *dd)
 	dest_filter_add(dd, "*", _("All Files"), TRUE);
 }
 
-static void dest_filter_changed_cb(GtkEditable *editable, gpointer data)
+static void dest_filter_changed_cb(GtkEditable *UNUSED(editable), gpointer data)
 {
 	Dest_Data *dd = data;
 	GtkWidget *entry;
@@ -1055,7 +1055,7 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 	gtk_box_pack_end(GTK_BOX(hbox2), dd->hidden_button, FALSE, FALSE, 0);
 	gtk_widget_show(dd->hidden_button);
 
-	hbox2 = gtk_hbox_new(FALSE, PREF_PAD_GAP);
+	hbox2 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 	if (filter)
 		{
 		paned = gtk_hpaned_new();

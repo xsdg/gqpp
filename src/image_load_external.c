@@ -38,7 +38,7 @@ struct _ImageLoaderExternal {
 	gboolean abort;
 };
 
-static gboolean image_loader_external_load(gpointer loader, const guchar *buf, gsize count, GError **error)
+static gboolean image_loader_external_load(gpointer loader, const guchar *UNUSED(buf), gsize UNUSED(count), GError **UNUSED(error))
 {
 	ImageLoaderExternal *ld = (ImageLoaderExternal *) loader;
 	ImageLoader *il = ld->data;
@@ -90,18 +90,18 @@ static GdkPixbuf* image_loader_external_get_pixbuf(gpointer loader)
 	return ld->pixbuf;
 }
 
-static gchar* image_loader_external_get_format_name(gpointer loader)
+static gchar* image_loader_external_get_format_name(gpointer UNUSED(loader))
 {
 	return g_strdup("external");
 }
 
-static gchar** image_loader_external_get_format_mime_types(gpointer loader)
+static gchar** image_loader_external_get_format_mime_types(gpointer UNUSED(loader))
 {
 	static gchar *mime[] = {"application/octet-stream", NULL};
 	return g_strdupv(mime);
 }
 
-static gboolean image_loader_external_close(gpointer loader, GError **error)
+static gboolean image_loader_external_close(gpointer UNUSED(loader), GError **UNUSED(error))
 {
 	return TRUE;
 }

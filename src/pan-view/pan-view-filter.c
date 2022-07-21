@@ -265,7 +265,7 @@ void pan_filter_toggle_visible(PanWindow *pw, gboolean enable)
 		}
 }
 
-void pan_filter_toggle_button_cb(GtkWidget *button, gpointer data)
+void pan_filter_toggle_button_cb(GtkWidget *UNUSED(button), gpointer data)
 {
 	PanWindow *pw = data;
 	PanViewFilterUi *ui = pw->filter_ui;

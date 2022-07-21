@@ -97,7 +97,7 @@ static void bar_pane_rating_notify_cb(FileData *fd, NotifyType type, gpointer da
 		}
 }
 
-static void bar_pane_rating_destroy(GtkWidget *widget, gpointer data)
+static void bar_pane_rating_destroy(GtkWidget *UNUSED(widget), gpointer data)
 {
 	PaneRatingData *prd = data;
 
@@ -156,12 +156,12 @@ static GtkWidget *bar_pane_rating_new(const gchar *id, const gchar *title, gbool
 
 	prd->pane.expanded = expanded;
 
-	prd->widget = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+	prd->widget = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 
 	g_object_set_data(G_OBJECT(prd->widget), "pane_data", prd);
 	g_signal_connect(G_OBJECT(prd->widget), "destroy", G_CALLBACK(bar_pane_rating_destroy), prd);
 
-	row_1 = gtk_hbox_new(FALSE, PREF_PAD_GAP);
+	row_1 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 	gtk_box_pack_start(GTK_BOX(prd->widget), row_1, FALSE, FALSE, 0);
 
 	radio_rejected = gtk_radio_button_new_with_label(NULL, _("Rejected"));
@@ -172,7 +172,7 @@ static GtkWidget *bar_pane_rating_new(const gchar *id, const gchar *title, gbool
 	gtk_box_pack_start(GTK_BOX(row_1), radio_unrated, FALSE, FALSE, 0);
 	g_signal_connect(radio_unrated, "released", G_CALLBACK(bar_pane_rating_selected_cb), prd);
 
-	row_2 = gtk_hbox_new(FALSE, PREF_PAD_GAP);
+	row_2 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 	gtk_box_pack_start(GTK_BOX(prd->widget), row_2, FALSE, FALSE, 0);
 
 	i = 1;

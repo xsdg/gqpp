@@ -50,12 +50,6 @@
     <programlisting xml:space="preserve">($HOME/.local/share/geeqie/collections)</programlisting>
   </para>
   <para>
-    The lirc
-    <link linkend="GuideReferenceLIRC" endterm="titleGuideReferenceLIRC" />
-    configuration file must be located at:
-    <programlisting xml:space="preserve">$HOME/.lircrc</programlisting>
-  </para>
-  <para>
     Thumbnails are stored in a location specified in
     <link linkend="PreferencesThumbnails">Thumbnail Preferences</link>
   </para>

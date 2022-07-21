@@ -267,7 +267,7 @@ static void vd_rename_finished_cb(gboolean success, const gchar *new_path, gpoin
 		}
 }
 
-static gboolean vd_rename_cb(TreeEditData *td, const gchar *old, const gchar *new, gpointer data)
+static gboolean vd_rename_cb(TreeEditData *td, const gchar *UNUSED(old), const gchar *new, gpointer data)
 {
 	ViewDir *vd = data;
 	FileData *fd;
@@ -323,7 +323,7 @@ void vd_color_set(ViewDir *vd, FileData *fd, gint color_set)
 	}
 }
 
-void vd_popup_destroy_cb(GtkWidget *widget, gpointer data)
+void vd_popup_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewDir *vd = data;
 
@@ -343,7 +343,7 @@ void vd_popup_destroy_cb(GtkWidget *widget, gpointer data)
  *-----------------------------------------------------------------------------
  */
 
-static void vd_drop_menu_copy_cb(GtkWidget *widget, gpointer data)
+static void vd_drop_menu_copy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewDir *vd = data;
 	const gchar *path;
@@ -358,7 +358,7 @@ static void vd_drop_menu_copy_cb(GtkWidget *widget, gpointer data)
 	file_util_copy_simple(list, path, vd->widget);
 }
 
-static void vd_drop_menu_move_cb(GtkWidget *widget, gpointer data)
+static void vd_drop_menu_move_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewDir *vd = data;
 	const gchar *path;
@@ -439,7 +439,7 @@ GtkWidget *vd_drop_menu(ViewDir *vd, gint active)
  *-----------------------------------------------------------------------------
  */
 
-static void vd_pop_menu_up_cb(GtkWidget *widget, gpointer data)
+static void vd_pop_menu_up_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewDir *vd = data;
 	gchar *path;
@@ -457,7 +457,7 @@ static void vd_pop_menu_up_cb(GtkWidget *widget, gpointer data)
 	g_free(path);
 }
 
-static void vd_pop_menu_slide_cb(GtkWidget *widget, gpointer data)
+static void vd_pop_menu_slide_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewDir *vd = data;
 
@@ -470,7 +470,7 @@ static void vd_pop_menu_slide_cb(GtkWidget *widget, gpointer data)
 	layout_image_slideshow_start(vd->layout);
 }
 
-static void vd_pop_menu_slide_rec_cb(GtkWidget *widget, gpointer data)
+static void vd_pop_menu_slide_rec_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewDir *vd = data;
 	GList *list;
@@ -507,19 +507,19 @@ static void vd_pop_menu_dupe(ViewDir *vd, gint recursive)
 	filelist_free(list);
 }
 
-static void vd_pop_menu_dupe_cb(GtkWidget *widget, gpointer data)
+static void vd_pop_menu_dupe_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewDir *vd = data;
 	vd_pop_menu_dupe(vd, FALSE);
 }
 
-static void vd_pop_menu_dupe_rec_cb(GtkWidget *widget, gpointer data)
+static void vd_pop_menu_dupe_rec_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewDir *vd = data;
 	vd_pop_menu_dupe(vd, TRUE);
 }
 
-static void vd_pop_menu_delete_cb(GtkWidget *widget, gpointer data)
+static void vd_pop_menu_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewDir *vd = data;
 
@@ -527,7 +527,7 @@ static void vd_pop_menu_delete_cb(GtkWidget *widget, gpointer data)
 	file_util_delete_dir(vd->click_fd, vd->widget);
 }
 
-static void vd_pop_menu_copy_path_cb(GtkWidget *widget, gpointer data)
+static void vd_pop_menu_copy_path_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewDir *vd = data;
 
@@ -536,7 +536,7 @@ static void vd_pop_menu_copy_path_cb(GtkWidget *widget, gpointer data)
 	file_util_copy_path_to_clipboard(vd->click_fd, TRUE);
 }
 
-static void vd_pop_menu_copy_path_unquoted_cb(GtkWidget *widget, gpointer data)
+static void vd_pop_menu_copy_path_unquoted_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewDir *vd = data;
 
@@ -553,14 +553,14 @@ static void vd_pop_submenu_dir_view_as_cb(GtkWidget *widget, gpointer data)
 	layout_views_set(vd->layout, new_type, vd->layout->options.file_view_type);
 }
 
-static void vd_pop_menu_refresh_cb(GtkWidget *widget, gpointer data)
+static void vd_pop_menu_refresh_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewDir *vd = data;
 
 	if (vd->layout) layout_refresh(vd->layout);
 }
 
-static void vd_toggle_show_hidden_files_cb(GtkWidget *widget, gpointer data)
+static void vd_toggle_show_hidden_files_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewDir *vd = data;
 
@@ -603,7 +603,7 @@ static void vd_pop_menu_new_folder_cb(gboolean success, const gchar *new_path, g
 	gtk_tree_path_free(tpath);
 }
 
-static void vd_pop_menu_new_cb(GtkWidget *widget, gpointer data)
+static void vd_pop_menu_new_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewDir *vd = data;
 	FileData *dir_fd = NULL;
@@ -627,7 +627,7 @@ static void vd_pop_menu_new_cb(GtkWidget *widget, gpointer data)
 	file_util_create_dir(dir_fd, vd->layout->window, vd_pop_menu_new_folder_cb, vd);
 }
 
-static void vd_pop_menu_rename_cb(GtkWidget *widget, gpointer data)
+static void vd_pop_menu_rename_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewDir *vd = data;
 
@@ -802,9 +802,9 @@ static void vd_dest_set(ViewDir *vd, gint enable)
 		}
 }
 
-static void vd_dnd_get(GtkWidget *widget, GdkDragContext *context,
+static void vd_dnd_get(GtkWidget *UNUSED(widget), GdkDragContext *UNUSED(context),
 			   GtkSelectionData *selection_data, guint info,
-			   guint time, gpointer data)
+			   guint UNUSED(time), gpointer data)
 {
 	ViewDir *vd = data;
 	GList *list;
@@ -822,7 +822,7 @@ static void vd_dnd_get(GtkWidget *widget, GdkDragContext *context,
 		}
 }
 
-static void vd_dnd_begin(GtkWidget *widget, GdkDragContext *context, gpointer data)
+static void vd_dnd_begin(GtkWidget *UNUSED(widget), GdkDragContext *UNUSED(context), gpointer data)
 {
 	ViewDir *vd = data;
 
@@ -830,7 +830,7 @@ static void vd_dnd_begin(GtkWidget *widget, GdkDragContext *context, gpointer da
 	vd_dest_set(vd, FALSE);
 }
 
-static void vd_dnd_end(GtkWidget *widget, GdkDragContext *context, gpointer data)
+static void vd_dnd_end(GtkWidget *UNUSED(widget), GdkDragContext *context, gpointer data)
 {
 	ViewDir *vd = data;
 
@@ -844,14 +844,14 @@ static void vd_dnd_end(GtkWidget *widget, GdkDragContext *context, gpointer data
 }
 
 static void vd_dnd_drop_receive(GtkWidget *widget,
-				GdkDragContext *context, gint x, gint y,
+				GdkDragContext *UNUSED(context), gint x, gint y,
 				GtkSelectionData *selection_data, guint info,
 				guint time, gpointer data)
 {
 	ViewDir *vd = data;
 	GtkTreePath *tpath;
 	FileData *fd = NULL;
-	GdkDragAction action;
+	GdkDragAction action = GDK_ACTION_ASK;
 
 	vd->click_fd = NULL;
 
@@ -883,7 +883,6 @@ static void vd_dnd_drop_receive(GtkWidget *widget,
  * shift and control keys during the drag operation. With GTK3 this is not
  * so. This is a workaround.
  */
-#if GTK_CHECK_VERSION(3,0,0)
 			GdkModifierType mask;
 
 			gdk_window_get_pointer(gtk_widget_get_window(widget), NULL, NULL, &mask);
@@ -895,9 +894,7 @@ static void vd_dnd_drop_receive(GtkWidget *widget,
 				{
 				action = GDK_ACTION_MOVE;
 				}
-#else
-			action = (gdk_drag_context_get_actions(context));
-#endif
+
 			if (action != GDK_ACTION_COPY && action != GDK_ACTION_MOVE)
 				{
 				if (options->dnd_default_action == DND_ACTION_COPY)
@@ -969,10 +966,8 @@ void vd_dnd_drop_scroll_cancel(ViewDir *vd)
 static gboolean vd_auto_scroll_idle_cb(gpointer data)
 {
 	ViewDir *vd = data;
-#if GTK_CHECK_VERSION(3,0,0)
 	GdkDeviceManager *device_manager;
 	GdkDevice *device;
-#endif
 
 	if (vd->drop_fd)
 		{
@@ -981,13 +976,10 @@ static gboolean vd_auto_scroll_idle_cb(gpointer data)
 		gint w, h;
 
 		window = gtk_widget_get_window(vd->view);
-#if GTK_CHECK_VERSION(3,0,0)
 		device_manager = gdk_display_get_device_manager(gdk_window_get_display(window));
 		device = gdk_device_manager_get_client_pointer(device_manager);
 		gdk_window_get_device_position(window, device, &x, &y, NULL);
-#else
-		gdk_window_get_pointer(window, &x, &y, NULL);
-#endif
+
 		w = gdk_window_get_width(window);
 		h = gdk_window_get_height(window);
 		if (x >= 0 && x < w && y >= 0 && y < h)
@@ -1000,7 +992,7 @@ static gboolean vd_auto_scroll_idle_cb(gpointer data)
 	return FALSE;
 }
 
-static gboolean vd_auto_scroll_notify_cb(GtkWidget *widget, gint x, gint y, gpointer data)
+static gboolean vd_auto_scroll_notify_cb(GtkWidget *UNUSED(widget), gint UNUSED(x), gint UNUSED(y), gpointer data)
 {
 	ViewDir *vd = data;
 
@@ -1011,7 +1003,7 @@ static gboolean vd_auto_scroll_notify_cb(GtkWidget *widget, gint x, gint y, gpoi
 	return TRUE;
 }
 
-static gboolean vd_dnd_drop_motion(GtkWidget *widget, GdkDragContext *context,
+static gboolean vd_dnd_drop_motion(GtkWidget *UNUSED(widget), GdkDragContext *context,
 				   gint x, gint y, guint time, gpointer data)
 {
 	ViewDir *vd = data;
@@ -1040,7 +1032,7 @@ static gboolean vd_dnd_drop_motion(GtkWidget *widget, GdkDragContext *context,
 	return FALSE;
 }
 
-static void vd_dnd_drop_leave(GtkWidget *widget, GdkDragContext *context, guint time, gpointer data)
+static void vd_dnd_drop_leave(GtkWidget *UNUSED(widget), GdkDragContext *UNUSED(context), guint UNUSED(time), gpointer data)
 {
 	ViewDir *vd = data;
 
@@ -1078,7 +1070,7 @@ void vd_dnd_init(ViewDir *vd)
  *----------------------------------------------------------------------------
  */
 
-void vd_menu_position_cb(GtkMenu *menu, gint *x, gint *y, gboolean *push_in, gpointer data)
+void vd_menu_position_cb(GtkMenu *menu, gint *x, gint *y, gboolean *UNUSED(push_in), gpointer data)
 {
 	ViewDir *vd = data;
 	GtkTreeModel *store;
@@ -1095,7 +1087,7 @@ void vd_menu_position_cb(GtkMenu *menu, gint *x, gint *y, gboolean *push_in, gpo
 	popup_menu_position_clamp(menu, x, y, 0);
 }
 
-void vd_activate_cb(GtkTreeView *tview, GtkTreePath *tpath, GtkTreeViewColumn *column, gpointer data)
+void vd_activate_cb(GtkTreeView *tview, GtkTreePath *tpath, GtkTreeViewColumn *UNUSED(column), gpointer data)
 {
 	ViewDir *vd = data;
 	FileData *fd = vd_get_fd_from_tree_path(vd, tview, tpath);
@@ -1121,7 +1113,7 @@ static GdkColor *vd_color_shifted(GtkWidget *widget)
 	return &color;
 }
 
-void vd_color_cb(GtkTreeViewColumn *tree_column, GtkCellRenderer *cell,
+void vd_color_cb(GtkTreeViewColumn *UNUSED(tree_column), GtkCellRenderer *cell,
 		 GtkTreeModel *tree_model, GtkTreeIter *iter, gpointer data)
 {
 	ViewDir *vd = data;

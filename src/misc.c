@@ -382,7 +382,7 @@ gint get_cpu_cores(void)
     return sysconf(_SC_NPROCESSORS_ONLN);
 }
 
-void tree_path_free_wrapper(void *data, void *useradata)
+void tree_path_free_wrapper(void *data, void *UNUSED(useradata))
 {
 	gtk_tree_path_free(data);
 }

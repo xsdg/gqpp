@@ -731,7 +731,7 @@ gchar *get_current_dir(void)
 	return path8;
 }
 
-void list_free_wrapper(void *data, void *userdata)
+void list_free_wrapper(void *data, void *UNUSED(userdata))
 {
 	g_free(data);
 }
@@ -1063,7 +1063,7 @@ static void web_file_progress_cb(goffset current_num_bytes, goffset total_num_by
 		}
 }
 
-static void download_web_file_cancel_button_cb(GenericDialog *gd, gpointer data)
+static void download_web_file_cancel_button_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
 	WebData* web = data;
 
@@ -1078,7 +1078,7 @@ gboolean download_web_file(const gchar *text, gboolean minimized, gpointer data)
 	GError *error = NULL;
 	WebData *web;
 	gchar *base;
-	gboolean ret;
+	gboolean ret = FALSE;
 	gchar *message;
 	FileFormatClass format_class;
 
@@ -1172,11 +1172,7 @@ gint scale_factor()
 {
 	LayoutWindow *lw = NULL;
 
-#if GTK_CHECK_VERSION(3, 10, 0)
 	layout_valid(&lw);
 	return gtk_widget_get_scale_factor(lw->window);
-#else
-	return 1;
-#endif
 }
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

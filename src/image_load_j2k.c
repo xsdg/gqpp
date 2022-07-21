@@ -41,7 +41,7 @@ struct _ImageLoaderJ2K {
 	gboolean abort;
 };
 
-static void free_buffer(guchar *pixels, gpointer data)
+static void free_buffer(guchar *pixels, gpointer UNUSED(data))
 {
 	g_free (pixels);
 }
@@ -80,7 +80,7 @@ static OPJ_SIZE_T opj_write_to_buffer (void* p_buffer, OPJ_SIZE_T p_nb_bytes,
     if (0 == len)
         len = 1;
 
-    OPJ_SIZE_T dist = pcur - pbuf, n = len - dist;
+    OPJ_SIZE_T dist = (guchar *)pcur - (guchar *)pbuf, n = len - dist;
     g_assert (dist <= len);
 
     while (n < p_nb_bytes) {
@@ -100,7 +100,7 @@ static OPJ_SIZE_T opj_write_to_buffer (void* p_buffer, OPJ_SIZE_T p_nb_bytes,
         }
 
         p_source_buffer->buf = pbuf;
-        p_source_buffer->cur = pbuf + dist;
+        p_source_buffer->cur = (guchar *)pbuf + dist;
         p_source_buffer->len = len;
     }
 
@@ -167,7 +167,7 @@ opj_stream_t* OPJ_CALLCONV opj_stream_create_buffer_stream (opj_buffer_info_t* p
     return ps;
 }
 
-static gboolean image_loader_j2k_load(gpointer loader, const guchar *buf, gsize count, GError **error)
+static gboolean image_loader_j2k_load(gpointer loader, const guchar *buf, gsize count, GError **UNUSED(error))
 {
 	ImageLoaderJ2K *ld = (ImageLoaderJ2K *) loader;
 	opj_stream_t *stream;
@@ -303,18 +303,18 @@ static GdkPixbuf* image_loader_j2k_get_pixbuf(gpointer loader)
 	return ld->pixbuf;
 }
 
-static gchar* image_loader_j2k_get_format_name(gpointer loader)
+static gchar* image_loader_j2k_get_format_name(gpointer UNUSED(loader))
 {
 	return g_strdup("j2k");
 }
 
-static gchar** image_loader_j2k_get_format_mime_types(gpointer loader)
+static gchar** image_loader_j2k_get_format_mime_types(gpointer UNUSED(loader))
 {
 	static gchar *mime[] = {"image/jp2", NULL};
 	return g_strdupv(mime);
 }
 
-static gboolean image_loader_j2k_close(gpointer loader, GError **error)
+static gboolean image_loader_j2k_close(gpointer UNUSED(loader), GError **UNUSED(error))
 {
 	return TRUE;
 }

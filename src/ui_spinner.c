@@ -100,7 +100,7 @@ static void spinner_set_timeout(SpinnerData *sp, gint interval)
 	gtk_widget_set_sensitive(sp->image, (interval >= 0));
 }
 
-static void spinner_destroy_cb(GtkWidget *widget, gpointer data)
+static void spinner_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	SpinnerData *sp = data;
 	GList *work;

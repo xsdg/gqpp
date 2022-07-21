@@ -40,12 +40,12 @@ struct _ImageLoaderHEIF {
 	gint page_total;
 };
 
-static void free_buffer(guchar *pixels, gpointer data)
+static void free_buffer(guchar *UNUSED(pixels), gpointer data)
 {
 	heif_image_release((const struct heif_image*)data);
 }
 
-static gboolean image_loader_heif_load(gpointer loader, const guchar *buf, gsize count, GError **error)
+static gboolean image_loader_heif_load(gpointer loader, const guchar *buf, gsize count, GError **UNUSED(error))
 {
 	ImageLoaderHEIF *ld = (ImageLoaderHEIF *) loader;
 	struct heif_context* ctx;
@@ -135,12 +135,12 @@ static GdkPixbuf* image_loader_heif_get_pixbuf(gpointer loader)
 	return ld->pixbuf;
 }
 
-static gchar* image_loader_heif_get_format_name(gpointer loader)
+static gchar* image_loader_heif_get_format_name(gpointer UNUSED(loader))
 {
 	return g_strdup("heif");
 }
 
-static gchar** image_loader_heif_get_format_mime_types(gpointer loader)
+static gchar** image_loader_heif_get_format_mime_types(gpointer UNUSED(loader))
 {
 	static gchar *mime[] = {"image/heic", NULL};
 	return g_strdupv(mime);
@@ -160,7 +160,7 @@ static gint image_loader_heif_get_page_total(gpointer loader)
 	return ld->page_total;
 }
 
-static gboolean image_loader_heif_close(gpointer loader, GError **error)
+static gboolean image_loader_heif_close(gpointer UNUSED(loader), GError **UNUSED(error))
 {
 	return TRUE;
 }

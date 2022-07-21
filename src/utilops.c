@@ -75,7 +75,7 @@ static void generic_dialog_add_image(GenericDialog *gd, GtkWidget *box,
 
 	/* image 1 */
 
-	vbox = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	if (preview_box)
 		{
 		GtkWidget *sep;
@@ -98,12 +98,8 @@ static void generic_dialog_add_image(GenericDialog *gd, GtkWidget *box,
 
 		head = pref_label_new(vbox, header1);
 		pref_label_bold(head, TRUE, FALSE);
-#if GTK_CHECK_VERSION(3,16,0)
 		gtk_label_set_xalign(GTK_LABEL(head), 0.0);
 		gtk_label_set_yalign(GTK_LABEL(head), 0.5);
-#else
-		gtk_misc_set_alignment(GTK_MISC(head), 0.0, 0.5);
-#endif
 		}
 
 	imd = image_new(FALSE);
@@ -135,12 +131,8 @@ static void generic_dialog_add_image(GenericDialog *gd, GtkWidget *box,
 
 			head = pref_label_new(vbox, header2);
 			pref_label_bold(head, TRUE, FALSE);
-#if GTK_CHECK_VERSION(3,16,0)
 			gtk_label_set_xalign(GTK_LABEL(head), 0.0);
 			gtk_label_set_yalign(GTK_LABEL(head), 0.5);
-#else
-			gtk_misc_set_alignment(GTK_MISC(head), 0.0, 0.5);
-#endif
 			}
 
 		imd = image_new(FALSE);
@@ -201,7 +193,7 @@ FileDialog *file_util_file_dlg(const gchar *title,
  * because it does not have a mouse center option,
  * and we must center it before show, implement it here.
  */
-static void file_util_warning_dialog_ok_cb(GenericDialog *gd, gpointer data)
+static void file_util_warning_dialog_ok_cb(GenericDialog *UNUSED(gd), gpointer UNUSED(data))
 {
 	/* no op */
 }
@@ -553,7 +545,7 @@ static gint file_util_perform_ci_cb(gpointer resume_data, EditorFlags flags, GLi
 /* call file_util_perform_ci_internal or start_editor_from_filelist_full */
 
 
-static void file_util_resume_cb(GenericDialog *gd, gpointer data)
+static void file_util_resume_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
 	UtilityData *ud = data;
 	if (ud->external)
@@ -562,7 +554,7 @@ static void file_util_resume_cb(GenericDialog *gd, gpointer data)
 		file_util_perform_ci_internal(ud);
 }
 
-static void file_util_abort_cb(GenericDialog *gd, gpointer data)
+static void file_util_abort_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
 	UtilityData *ud = data;
 	if (ud->external)
@@ -860,7 +852,7 @@ static void file_util_perform_ci_dir(UtilityData *ud, gboolean internal, gboolea
 	file_util_dialog_run(ud);
 }
 
-static gint file_util_perform_ci_dir_cb(gpointer resume_data, EditorFlags flags, GList *list, gpointer data)
+static gint file_util_perform_ci_dir_cb(gpointer UNUSED(resume_data), EditorFlags flags, GList *UNUSED(list), gpointer data)
 {
 	UtilityData *ud = data;
 	file_util_perform_ci_dir(ud, FALSE, !EDITOR_ERRORS_BUT_SKIPPED(flags));
@@ -984,14 +976,14 @@ static GdkPixbuf *file_util_get_error_icon(FileData *fd, GList *list, GtkWidget 
 		}
 }
 
-static void file_util_check_resume_cb(GenericDialog *gd, gpointer data)
+static void file_util_check_resume_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
 	UtilityData *ud = data;
 	ud->phase = UTILITY_PHASE_CHECKED;
 	file_util_dialog_run(ud);
 }
 
-static void file_util_check_abort_cb(GenericDialog *gd, gpointer data)
+static void file_util_check_abort_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
 	UtilityData *ud = data;
 	ud->phase = UTILITY_PHASE_START;
@@ -1205,7 +1197,7 @@ static void file_util_fdlg_ok_cb(FileDialog *fdlg, gpointer data)
 	return;
 }
 
-static void file_util_dest_folder_entry_cb(GtkWidget *entry, gpointer data)
+static void file_util_dest_folder_entry_cb(GtkWidget *UNUSED(entry), gpointer data)
 {
 	UtilityData *ud = data;
 	file_util_dest_folder_update_path(ud);
@@ -1426,13 +1418,13 @@ static void file_util_rename_preview_update(UtilityData *ud)
 
 }
 
-static void file_util_rename_preview_entry_cb(GtkWidget *entry, gpointer data)
+static void file_util_rename_preview_entry_cb(GtkWidget *UNUSED(entry), gpointer data)
 {
 	UtilityData *ud = data;
 	file_util_rename_preview_update(ud);
 }
 
-static void file_util_rename_preview_adj_cb(GtkWidget *spin, gpointer data)
+static void file_util_rename_preview_adj_cb(GtkWidget *UNUSED(spin), gpointer data)
 {
 	UtilityData *ud = data;
 	file_util_rename_preview_update(ud);
@@ -1448,8 +1440,8 @@ static gboolean file_util_rename_idle_cb(gpointer data)
 	return FALSE;
 }
 
-static void file_util_rename_preview_order_cb(GtkTreeModel *treemodel, GtkTreePath *tpath,
-					      GtkTreeIter *iter, gpointer data)
+static void file_util_rename_preview_order_cb(GtkTreeModel *UNUSED(treemodel), GtkTreePath *UNUSED(tpath),
+					      GtkTreeIter *UNUSED(iter), gpointer data)
 {
 	UtilityData *ud = data;
 
@@ -1459,7 +1451,7 @@ static void file_util_rename_preview_order_cb(GtkTreeModel *treemodel, GtkTreePa
 }
 
 
-static gboolean file_util_preview_cb(GtkTreeSelection *selection, GtkTreeModel *store,
+static gboolean file_util_preview_cb(GtkTreeSelection *UNUSED(selection), GtkTreeModel *store,
 				     GtkTreePath *tpath, gboolean path_currently_selected,
 				     gpointer data)
 {
@@ -1481,10 +1473,10 @@ static gboolean file_util_preview_cb(GtkTreeSelection *selection, GtkTreeModel *
 
 		gtk_widget_grab_focus(ud->rename_entry);
 		gtk_label_set_text(GTK_LABEL(ud->rename_label), fd->name);
-		g_signal_handlers_block_by_func(ud->rename_entry, G_CALLBACK(file_util_rename_preview_entry_cb), ud);
+		g_signal_handlers_block_by_func(ud->rename_entry, (gpointer)(file_util_rename_preview_entry_cb), ud);
 		gtk_entry_set_text(GTK_ENTRY(ud->rename_entry), name);
 		gtk_editable_select_region(GTK_EDITABLE(ud->rename_entry), 0, filename_base_length(name));
-		g_signal_handlers_unblock_by_func(ud->rename_entry, G_CALLBACK(file_util_rename_preview_entry_cb), ud);
+		g_signal_handlers_unblock_by_func(ud->rename_entry, (gpointer)file_util_rename_preview_entry_cb, ud);
 		}
 
 	return TRUE;
@@ -1501,16 +1493,12 @@ static void box_append_safe_delete_status(GenericDialog *gd)
 	label = pref_label_new(gd->vbox, buf);
 	g_free(buf);
 
-#if GTK_CHECK_VERSION(3,16,0)
 	gtk_label_set_xalign(GTK_LABEL(label), 1.0);
 	gtk_label_set_yalign(GTK_LABEL(label), 0.5);
-#else
-	gtk_misc_set_alignment(GTK_MISC(label), 1.0, 0.5);
-#endif
 	gtk_widget_set_sensitive(label, FALSE);
 }
 
-static void file_util_details_cb(GenericDialog *gd, gpointer data)
+static void file_util_details_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
 	UtilityData *ud = data;
 	if (ud->details_func && ud->sel_fd)
@@ -1607,12 +1595,9 @@ static void file_util_dialog_init_dest_folder(UtilityData *ud)
 	generic_dialog_add_message(GENERIC_DIALOG(fdlg), NULL, ud->messages.question, NULL, FALSE);
 
 	label = pref_label_new(GENERIC_DIALOG(fdlg)->vbox, _("Choose the destination folder."));
-#if GTK_CHECK_VERSION(3,16,0)
 	gtk_label_set_xalign(GTK_LABEL(label), 0.0);
 	gtk_label_set_yalign(GTK_LABEL(label), 0.5);
-#else
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-#endif
+
 	pref_spacer(GENERIC_DIALOG(fdlg)->vbox, 0);
 
 	if (options->with_rename)
@@ -1640,7 +1625,7 @@ static GtkWidget *furm_simple_vlabel(GtkWidget *box, const gchar *text, gboolean
 	GtkWidget *vbox;
 	GtkWidget *label;
 
-	vbox = gtk_vbox_new(FALSE, 0);
+	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	gtk_box_pack_start(GTK_BOX(box), vbox, expand, expand, 0);
 	gtk_widget_show(vbox);
 
@@ -1725,7 +1710,7 @@ static void file_util_dialog_init_source_dest(UtilityData *ud, gboolean second_i
 	gtk_widget_show(ud->notebook);
 
 
-	page = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+	page = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	gtk_notebook_append_page(GTK_NOTEBOOK(ud->notebook), page, gtk_label_new(_("Manual rename")));
 	gtk_widget_show(page);
 
@@ -1746,7 +1731,7 @@ static void file_util_dialog_init_source_dest(UtilityData *ud, gboolean second_i
 
 	gtk_widget_show(ud->rename_entry);
 
-	page = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+	page = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	gtk_notebook_append_page(GTK_NOTEBOOK(ud->notebook), page, gtk_label_new(_("Auto rename")));
 	gtk_widget_show(page);
 
@@ -1779,7 +1764,7 @@ static void file_util_dialog_init_source_dest(UtilityData *ud, gboolean second_i
 					  1.0, 8.0, 1.0, 0, options->cp_mv_rn.auto_padding,
 					  G_CALLBACK(file_util_rename_preview_adj_cb), ud);
 
-	page = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+	page = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	gtk_notebook_append_page(GTK_NOTEBOOK(ud->notebook), page, gtk_label_new(_("Formatted rename")));
 	gtk_widget_show(page);
 
@@ -1940,7 +1925,7 @@ static void file_util_warn_op_in_progress(const gchar *title)
 	file_util_warning_dialog(title, _("Another operation in progress.\n"), GTK_STOCK_DIALOG_ERROR, NULL);
 }
 
-static void file_util_details_dialog_close_cb(GtkWidget *widget, gpointer data)
+static void file_util_details_dialog_close_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	gtk_widget_destroy(data);
 
@@ -1949,11 +1934,11 @@ static void file_util_details_dialog_close_cb(GtkWidget *widget, gpointer data)
 static void file_util_details_dialog_destroy_cb(GtkWidget *widget, gpointer data)
 {
 	UtilityData *ud = data;
-	g_signal_handlers_disconnect_by_func(ud->gd->dialog, G_CALLBACK(file_util_details_dialog_close_cb), widget);
+	g_signal_handlers_disconnect_by_func(ud->gd->dialog, (gpointer)(file_util_details_dialog_close_cb), widget);
 }
 
 
-static void file_util_details_dialog_ok_cb(GenericDialog *gd, gpointer data)
+static void file_util_details_dialog_ok_cb(GenericDialog *UNUSED(gd), gpointer UNUSED(data))
 {
 	/* no op */
 }
@@ -1972,8 +1957,8 @@ static void file_util_details_dialog_exclude(GenericDialog *gd, gpointer data, g
 	if (!ud->flist)
 		{
 		/* both dialogs will be closed anyway, the signals would cause duplicate calls */
-		g_signal_handlers_disconnect_by_func(ud->gd->dialog, G_CALLBACK(file_util_details_dialog_close_cb), gd->dialog);
-		g_signal_handlers_disconnect_by_func(gd->dialog, G_CALLBACK(file_util_details_dialog_destroy_cb), ud);
+		g_signal_handlers_disconnect_by_func(ud->gd->dialog, (gpointer)(file_util_details_dialog_close_cb), gd->dialog);
+		g_signal_handlers_disconnect_by_func(gd->dialog, (gpointer)(file_util_details_dialog_destroy_cb), ud);
 
 		file_util_cancel_cb(ud->gd, ud);
 		}
@@ -2125,12 +2110,9 @@ static void file_util_write_metadata_details_dialog(UtilityData *ud, FileData *f
 
 
 		label = gtk_label_new(title_f);
-#if GTK_CHECK_VERSION(3,16,0)
 		gtk_label_set_xalign(GTK_LABEL(label), 1.0);
 		gtk_label_set_yalign(GTK_LABEL(label), 0.0);
-#else
-		gtk_misc_set_alignment(GTK_MISC(label), 1.0, 0.0);
-#endif
+
 		pref_label_bold(label, TRUE, FALSE);
 		gtk_table_attach(GTK_TABLE(table), label,
 				 0, 1, i, i + 1,
@@ -2140,12 +2122,9 @@ static void file_util_write_metadata_details_dialog(UtilityData *ud, FileData *f
 
 		label = gtk_label_new(value);
 
-#if GTK_CHECK_VERSION(3,16,0)
 		gtk_label_set_xalign(GTK_LABEL(label), 0.0);
 		gtk_label_set_yalign(GTK_LABEL(label), 0.0);
-#else
-		gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.0);
-#endif
+
 		gtk_label_set_line_wrap(GTK_LABEL(label), TRUE);
 		gtk_table_attach(GTK_TABLE(table), label,
 				 1, 2, i, i + 1,
@@ -2968,7 +2947,7 @@ static gboolean file_util_write_metadata_first_after_done(gpointer data)
 	return FALSE;
 }
 
-static void file_util_write_metadata_first_done(gboolean success, const gchar *done_path, gpointer data)
+static void file_util_write_metadata_first_done(gboolean success, const gchar *UNUSED(done_path), gpointer data)
 {
 	UtilityDelayData *dd = data;
 
@@ -3179,7 +3158,7 @@ void file_util_copy_path_list_to_clipboard(GList *list, gboolean quoted)
 	filelist_free(list);
 }
 
-static void new_folder_entry_activate_cb(GtkWidget *widget, gpointer data)
+static void new_folder_entry_activate_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	GtkDialog *dialog = data;
 
@@ -3226,10 +3205,10 @@ gchar *new_folder(GtkWindow *window , gchar *path)
 	gtk_window_set_default_size(GTK_WINDOW(dialog), width * 2, -1);
 
 	content_area = gtk_dialog_get_content_area(GTK_DIALOG(dialog));
-	vbox = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	gtk_box_pack_start(GTK_BOX(content_area), vbox, FALSE, FALSE, 0);
 
-	hbox = gtk_hbox_new(FALSE, PREF_PAD_GAP);
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 	gtk_container_set_border_width(GTK_CONTAINER(hbox), PREF_PAD_GAP);
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 	image = gtk_image_new_from_icon_name("dialog-question", GTK_ICON_SIZE_DIALOG);

@@ -84,7 +84,7 @@ static void shortcuts_add_ok_cb(FileDialog *fd, gpointer data)
 	shortcuts_add_close(scd);
 }
 
-static void shortcuts_add_cancel_cb(FileDialog *fd, gpointer data)
+static void shortcuts_add_cancel_cb(FileDialog *UNUSED(fd), gpointer data)
 {
 	ShortcutsData *scd = data;
 
@@ -125,7 +125,7 @@ static void shortcuts_add_cb(GtkWidget *button, gpointer data)
 	gtk_widget_show(GENERIC_DIALOG(scd->dialog)->dialog);
 }
 
-static void shortcuts_destroy(GtkWidget *widget, gpointer data)
+static void shortcuts_destroy(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ShortcutsData *scd = data;
 
@@ -163,7 +163,7 @@ static GtkWidget *shortcuts_new(LayoutWindow *lw)
 	return scd->vbox;
 }
 
-GtkWidget *shortcuts_new_from_config(LayoutWindow *lw, const gchar **attribute_names, const gchar **attribute_values)
+GtkWidget *shortcuts_new_from_config(LayoutWindow *lw, const gchar **UNUSED(attribute_names), const gchar **UNUSED(attribute_values))
 {
 	GtkWidget *shortcuts_bar;
 

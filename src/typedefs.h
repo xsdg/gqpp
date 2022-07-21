@@ -208,7 +208,7 @@ typedef enum {
 	CHANGE_WARN_CHANGED_EXT        = 1 << 3,
 	CHANGE_WARN_UNSAVED_META       = 1 << 4,
 	CHANGE_WARN_NO_WRITE_PERM_DEST_DIR  = 1 << 5,
-	CHANGE_ERROR_MASK              = (~0U) << 8, /**< the values below are fatal errors */
+	CHANGE_ERROR_MASK              = ~0xff, /**< the values below are fatal errors */
 	CHANGE_NO_READ_PERM            = 1 << 8,
 	CHANGE_NO_WRITE_PERM_DIR       = 1 << 9,
 	CHANGE_NO_DEST_DIR             = 1 << 10,

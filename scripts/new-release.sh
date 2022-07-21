@@ -113,10 +113,8 @@ else
 	git checkout stable/"$version"
 fi
 
-sudo make maintainer-clean
-./autogen.sh
-make -j
 ./scripts/generate-man-page.sh
+./doc/create-shortcuts-xml.sh
 
 git add NEWS
 git add org.geeqie.Geeqie.appdata.xml.in
@@ -135,9 +133,6 @@ if [ "$push" = true ]
 then
 	git push git@geeqie.org:geeqie "v$revision"
 fi
-
-sudo make maintainer-clean
-./gen_changelog.sh
 
 rm -rf /tmp/geeqie-"$revision".tar.xz
 rm -rf /tmp/geeqie-"$revision".tar.xz.asc

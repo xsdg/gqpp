@@ -264,7 +264,7 @@ static gint mpo_parse_Index_IFD_entry(const guchar *tiff, guint offset,
 }
 
 static gint mpo_parse_Attributes_IFD_entry(const guchar *tiff, guint offset,
-				 guint size, TiffByteOrder bo,
+				 guint UNUSED(size), TiffByteOrder bo,
 				 gpointer data)
 {
 	guint tag;

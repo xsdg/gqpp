@@ -94,7 +94,7 @@ GType image_loader_get_type(void)
 	return type;
 }
 
-static void image_loader_init(GTypeInstance *instance, gpointer g_class)
+static void image_loader_init(GTypeInstance *instance, gpointer UNUSED(g_class))
 {
 	ImageLoader *il = (ImageLoader *)instance;
 
@@ -133,10 +133,10 @@ static void image_loader_init(GTypeInstance *instance, gpointer g_class)
 	il->can_destroy_cond = g_cond_new();
 #endif
 #endif
-	DEBUG_1("new image loader %p, bufsize=%" G_GSIZE_FORMAT " idle_loop=%u", il, il->read_buffer_size, il->idle_read_loop_count);
+	DEBUG_1("new image loader %p, bufsize=%" G_GSIZE_FORMAT " idle_loop=%u", (void *)il, il->read_buffer_size, il->idle_read_loop_count);
 }
 
-static void image_loader_class_init_wrapper(void *data, void *user_data)
+static void image_loader_class_init_wrapper(void *data, void *UNUSED(user_data))
 {
 	image_loader_class_init(data);
 }
@@ -213,7 +213,7 @@ static void image_loader_finalize(GObject *object)
 
 	if (il->error) DEBUG_1("%s", image_loader_get_error(il));
 
-	DEBUG_1("freeing image loader %p bytes_read=%" G_GSIZE_FORMAT, il, il->bytes_read);
+	DEBUG_1("freeing image loader %p bytes_read=%" G_GSIZE_FORMAT, (void *)il, il->bytes_read);
 
 	if (il->idle_done_id)
 		{
@@ -484,7 +484,7 @@ static void image_loader_sync_pixbuf(ImageLoader *il)
 	g_mutex_unlock(il->data_mutex);
 }
 
-static void image_loader_area_updated_cb(gpointer loader,
+static void image_loader_area_updated_cb(gpointer UNUSED(loader),
 				 guint x, guint y, guint w, guint h,
 				 gpointer data)
 {
@@ -1250,7 +1250,7 @@ static void image_loader_thread_wait_high(void)
 }
 
 
-static void image_loader_thread_run(gpointer data, gpointer user_data)
+static void image_loader_thread_run(gpointer data, gpointer UNUSED(user_data))
 {
 	ImageLoader *il = data;
 	gboolean cont;

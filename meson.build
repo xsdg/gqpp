@@ -45,8 +45,11 @@ project(
     version : run_command('./version.sh', check : true).stdout().strip(),
     license : ['GPL-2.0-or-later'],
     meson_version : '>= 0.60.0',
-    default_options : ['warning_level=0', 'buildtype=debugoptimized']
+    default_options : ['warning_level=3', 'buildtype=debugoptimized']
 )
+
+# To inhibit warnings from the generated files icons_inline.h and ui_icons.h
+add_global_arguments('-Wno-overlength-strings', language : 'c')
 
 # Project requirements
 project_sources = []
@@ -123,28 +126,13 @@ conf_data = configuration_data()
 conf_data.set_quoted('VERSION', run_command('./version.sh', check : true).stdout())
 conf_data.set('DEBUG', debug)
 
-if get_option('gtk3')
-    gtk_dep = dependency('gtk+-3.0', version : '>=3.0', required: true) 
-else
-    gtk_dep = dependency('gtk+-2.0', version : '>=2.20', required: true)
-endif
-
+gtk_dep = dependency('gtk+-3.0', version : '>=3.22', required: true)
 glib_dep = dependency('glib-2.0', version: '>=2.52', required: true)
 
 libarchive_dep = []
 libarchive_dep = dependency('libarchive', version: '>=3.4.0', required : get_option('archive'))
 if libarchive_dep.found()
     conf_data.set('HAVE_ARCHIVE', 1)
-endif
-
-clutter_dep = []
-clutter_gtk_dep = []
-if get_option('gtk3')
-    clutter_dep = dependency('clutter-1.0', required : get_option('clutter'))
-    clutter_gtk_dep = dependency('clutter-gtk-1.0', required : get_option('clutter'))
-    if clutter_dep.found() and clutter_gtk_dep.found()
-        conf_data.set('HAVE_CLUTTER', 1)
-    endif
 endif
 
 lcms_dep = []
@@ -195,10 +183,15 @@ endif
 
 champlain_dep = []
 champlain_gtk_dep = []
-if conf_data.has('HAVE_CLUTTER')
-    champlain_dep = dependency('champlain-0.12', version: '>=0.12', required : get_option('gps-map'))
-    champlain_gtk_dep = dependency('champlain-gtk-0.12', version: '>=0.12', required : get_option('gps-map'))
-    if champlain_dep.found() and champlain_gtk_dep.found()
+champlain_dep = dependency('champlain-0.12', version: '>=0.12', required : get_option('gps-map'))
+champlain_gtk_dep = dependency('champlain-gtk-0.12', version: '>=0.12', required : get_option('gps-map'))
+if champlain_dep.found() and champlain_gtk_dep.found()
+    clutter_dep = []
+    clutter_gtk_dep = []
+    clutter_dep = dependency('clutter-1.0', required : true)
+    clutter_gtk_dep = dependency('clutter-gtk-1.0', required : true)
+    if clutter_dep.found() and clutter_gtk_dep.found()
+        conf_data.set('HAVE_CLUTTER', 1)
         conf_data.set('HAVE_LIBCHAMPLAIN', 1)
         conf_data.set('HAVE_LIBCHAMPLAIN_GTK', 1)
     endif
@@ -238,12 +231,6 @@ if libraw_dep.found()
     conf_data.set('HAVE_RAW', 1)
 endif
 
-lirc_dep = []
-lirc_dep = dependency('lirc', version: '>=0.6.1', required : get_option('lirc'))
-if lirc_dep.found()
-    conf_data.set('HAVE_LIRC', 1)
-endif
-
 lua_dep = []
 lua_dep = dependency('lua5.1', required : get_option('lua'))
 if lua_dep.found()
@@ -251,19 +238,15 @@ if lua_dep.found()
 endif
 
 poppler_glib_dep = []
-if get_option('gtk3')
-    poppler_glib_dep = dependency('poppler-glib', version: '>=0.62', required : get_option('pdf'))
-    if poppler_glib_dep.found()
-        conf_data.set('HAVE_PDF', 1)
-    endif
+poppler_glib_dep = dependency('poppler-glib', version: '>=0.62', required : get_option('pdf'))
+if poppler_glib_dep.found()
+    conf_data.set('HAVE_PDF', 1)
 endif
 
 gspell_dep = []
-if get_option('gtk3')
-    gspell_dep = dependency('gspell-1', required: get_option('spell'))
-    if gspell_dep.found()
-        conf_data.set('HAVE_SPELL', 1)
-    endif
+gspell_dep = dependency('gspell-1', required: get_option('spell'))
+if gspell_dep.found()
+    conf_data.set('HAVE_SPELL', 1)
 endif
 
 tiff_dep = []
@@ -328,7 +311,7 @@ run_command(find_program('gen_readme.sh'), meson.project_source_root(), meson.pr
 
 pandoc = find_program('pandoc')
 if pandoc.found()
-    install_data('README.md', 'COPYING', join_paths(meson.project_build_root(), 'ChangeLog'), 'TODO', 'README.lirc', 'AUTHORS', join_paths(meson.project_build_root(), 'README.html'), join_paths(meson.project_build_root(), 'ChangeLog.html'), install_dir : helpdir, install_tag : 'help')
+    install_data('README.md', 'COPYING', join_paths(meson.project_build_root(), 'ChangeLog'), 'TODO', 'AUTHORS', join_paths(meson.project_build_root(), 'README.html'), join_paths(meson.project_build_root(), 'ChangeLog.html'), install_dir : helpdir, install_tag : 'help')
 else
     install_data('README.md', 'COPYING', join_paths(meson.project_build_root(), 'ChangeLog'), 'TODO', 'README.lirc', 'AUTHORS', install_dir : helpdir, install_tag : 'help')
 endif

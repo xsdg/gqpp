@@ -62,18 +62,18 @@ struct _CMData
 static gchar *cache_maintenance_path = NULL;
 static GtkStatusIcon *status_icon;
 
-static void cache_maintenance_sim_stop_cb(gpointer data)
+static void cache_maintenance_sim_stop_cb(gpointer UNUSED(data))
 {
 	exit(EXIT_SUCCESS);
 }
 
-static void cache_maintenance_render_stop_cb(gpointer data)
+static void cache_maintenance_render_stop_cb(gpointer UNUSED(data))
 {
 	gtk_status_icon_set_tooltip_text(status_icon, _("Geeqie: Creating sim data..."));
 	cache_manager_sim_remote(cache_maintenance_path, TRUE, (GDestroyNotify *)cache_maintenance_sim_stop_cb);
 }
 
-static void cache_maintenance_clean_stop_cb(gpointer data)
+static void cache_maintenance_clean_stop_cb(gpointer UNUSED(data))
 {
 	gtk_status_icon_set_tooltip_text(status_icon, _("Geeqie: Creating thumbs..."));
 	cache_manager_render_remote(cache_maintenance_path, TRUE, options->thumbnails.cache_into_dirs, (GDestroyNotify *)cache_maintenance_render_stop_cb);
@@ -84,7 +84,7 @@ static void cache_maintenance_user_cancel_cb()
 	exit(EXIT_FAILURE);
 }
 
-static void cache_maintenance_status_icon_activate_cb(GtkStatusIcon *status, gpointer data)
+static void cache_maintenance_status_icon_activate_cb(GtkStatusIcon *UNUSED(status), gpointer UNUSED(data))
 {
 	GtkWidget *menu;
 	GtkWidget *item;
@@ -318,7 +318,7 @@ static gboolean cache_maintain_home_cb(gpointer data)
 	return TRUE;
 }
 
-static void cache_maintain_home_close_cb(GenericDialog *gd, gpointer data)
+static void cache_maintain_home_close_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
 	CMData *cm = data;
 
@@ -327,7 +327,7 @@ static void cache_maintain_home_close_cb(GenericDialog *gd, gpointer data)
 	cache_maintain_home_close(cm);
 }
 
-static void cache_maintain_home_stop_cb(GenericDialog *gd, gpointer data)
+static void cache_maintain_home_stop_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
 	CMData *cm = data;
 
@@ -396,7 +396,7 @@ void cache_maintain_home(gboolean metadata, gboolean clear, GtkWidget *parent)
 	generic_dialog_add_message(cm->gd, NULL, msg, NULL, FALSE);
 	gtk_window_set_default_size(GTK_WINDOW(cm->gd->dialog), PURGE_DIALOG_WIDTH, -1);
 
-	hbox = gtk_hbox_new(FALSE, 0);
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_box_pack_start(GTK_BOX(cm->gd->vbox), hbox, FALSE, FALSE, 5);
 	gtk_widget_show(hbox);
 
@@ -575,7 +575,7 @@ static void cache_maint_copied(FileData *fd)
 	g_free(src_cache);
 }
 
-void cache_notify_cb(FileData *fd, NotifyType type, gpointer data)
+void cache_notify_cb(FileData *fd, NotifyType type, gpointer UNUSED(data))
 {
 	if (!(type & NOTIFY_CHANGE) || !fd->change) return;
 
@@ -665,7 +665,7 @@ static void cache_manager_render_reset(CacheOpsData *cd)
 	cd->tl = NULL;
 }
 
-static void cache_manager_render_close_cb(GenericDialog *fd, gpointer data)
+static void cache_manager_render_close_cb(GenericDialog *UNUSED(fd), gpointer data)
 {
 	CacheOpsData *cd = data;
 
@@ -691,7 +691,7 @@ static void cache_manager_render_finish(CacheOpsData *cd)
 		}
 }
 
-static void cache_manager_render_stop_cb(GenericDialog *fd, gpointer data)
+static void cache_manager_render_stop_cb(GenericDialog *UNUSED(fd), gpointer data)
 {
 	CacheOpsData *cd = data;
 
@@ -722,7 +722,7 @@ static void cache_manager_render_folder(CacheOpsData *cd, FileData *dir_fd)
 
 static gboolean cache_manager_render_file(CacheOpsData *cd);
 
-static void cache_manager_render_thumb_done_cb(ThumbLoader *tl, gpointer data)
+static void cache_manager_render_thumb_done_cb(ThumbLoader *UNUSED(tl), gpointer data)
 {
 	CacheOpsData *cd = data;
 
@@ -796,7 +796,7 @@ static gboolean cache_manager_render_file(CacheOpsData *cd)
 	return FALSE;
 }
 
-static void cache_manager_render_start_cb(GenericDialog *fd, gpointer data)
+static void cache_manager_render_start_cb(GenericDialog *UNUSED(fd), gpointer data)
 {
 	CacheOpsData *cd = data;
 	gchar *path;
@@ -960,7 +960,7 @@ void cache_manager_render_remote(const gchar *path, gboolean recurse, gboolean l
 	cache_manager_render_start_render_remote(cd, path);
 }
 
-static void cache_manager_standard_clean_close_cb(GenericDialog *gd, gpointer data)
+static void cache_manager_standard_clean_close_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
 	CacheOpsData *cd = data;
 
@@ -996,7 +996,7 @@ static void cache_manager_standard_clean_done(CacheOpsData *cd)
 	cd->list = NULL;
 }
 
-static void cache_manager_standard_clean_stop_cb(GenericDialog *gd, gpointer data)
+static void cache_manager_standard_clean_stop_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
 	CacheOpsData *cd = data;
 
@@ -1078,7 +1078,7 @@ static void cache_manager_standard_clean_valid_cb(const gchar *path, gboolean va
 		}
 }
 
-static void cache_manager_standard_clean_start(GenericDialog *gd, gpointer data)
+static void cache_manager_standard_clean_start(GenericDialog *UNUSED(gd), gpointer data)
 {
 	CacheOpsData *cd = data;
 	GList *list;
@@ -1174,9 +1174,7 @@ static void cache_manager_standard_process(GtkWidget *widget, gboolean clear)
 
 	cd->progress = gtk_progress_bar_new();
 	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(cd->progress), _("click start to begin"));
-#if GTK_CHECK_VERSION(3,0,0)
 	gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(cd->progress), TRUE);
-#endif
 	gtk_box_pack_start(GTK_BOX(cd->gd->vbox), cd->progress, FALSE, FALSE, 0);
 	gtk_widget_show(cd->progress);
 
@@ -1201,29 +1199,29 @@ void cache_manager_standard_process_remote(gboolean clear)
 	cache_manager_standard_clean_start(NULL, cd);
 }
 
-static void cache_manager_standard_clean_cb(GtkWidget *widget, gpointer data)
+static void cache_manager_standard_clean_cb(GtkWidget *widget, gpointer UNUSED(data))
 {
 	cache_manager_standard_process(widget, FALSE);
 }
 
-static void cache_manager_standard_clear_cb(GtkWidget *widget, gpointer data)
+static void cache_manager_standard_clear_cb(GtkWidget *widget, gpointer UNUSED(data))
 {
 	cache_manager_standard_process(widget, TRUE);
 }
 
 
-static void cache_manager_main_clean_cb(GtkWidget *widget, gpointer data)
+static void cache_manager_main_clean_cb(GtkWidget *widget, gpointer UNUSED(data))
 {
 	cache_maintain_home(FALSE, FALSE, widget);
 }
 
 
-static void dummy_cancel_cb(GenericDialog *gd, gpointer data)
+static void dummy_cancel_cb(GenericDialog *UNUSED(gd), gpointer UNUSED(data))
 {
 	/* no op, only so cancel button appears */
 }
 
-static void cache_manager_main_clear_ok_cb(GenericDialog *gd, gpointer data)
+static void cache_manager_main_clear_ok_cb(GenericDialog *UNUSED(gd), gpointer UNUSED(data))
 {
 	cache_maintain_home(FALSE, TRUE, NULL);
 }
@@ -1242,12 +1240,12 @@ void cache_manager_main_clear_confirm(GtkWidget *parent)
 	gtk_widget_show(gd->dialog);
 }
 
-static void cache_manager_main_clear_cb(GtkWidget *widget, gpointer data)
+static void cache_manager_main_clear_cb(GtkWidget *widget, gpointer UNUSED(data))
 {
 	cache_manager_main_clear_confirm(widget);
 }
 
-static void cache_manager_render_cb(GtkWidget *widget, gpointer data)
+static void cache_manager_render_cb(GtkWidget *widget, gpointer UNUSED(data))
 {
 	const gchar *path = layout_get_path(NULL);
 
@@ -1255,7 +1253,7 @@ static void cache_manager_render_cb(GtkWidget *widget, gpointer data)
 	cache_manager_render_dialog(widget, path);
 }
 
-static void cache_manager_metadata_clean_cb(GtkWidget *widget, gpointer data)
+static void cache_manager_metadata_clean_cb(GtkWidget *widget, gpointer UNUSED(data))
 {
 	cache_maintain_home(TRUE, FALSE, widget);
 }
@@ -1263,7 +1261,7 @@ static void cache_manager_metadata_clean_cb(GtkWidget *widget, gpointer data)
 
 static CacheManager *cache_manager = NULL;
 
-static void cache_manager_close_cb(GenericDialog *gd, gpointer data)
+static void cache_manager_close_cb(GenericDialog *gd, gpointer UNUSED(data))
 {
 	generic_dialog_close(gd);
 
@@ -1271,7 +1269,7 @@ static void cache_manager_close_cb(GenericDialog *gd, gpointer data)
 	cache_manager = NULL;
 }
 
-static void cache_manager_help_cb(GenericDialog *gd, gpointer data)
+static void cache_manager_help_cb(GenericDialog *UNUSED(gd), gpointer UNUSED(data))
 {
 	help_window_show("GuideReferenceManagement.html");
 }
@@ -1284,12 +1282,8 @@ static GtkWidget *cache_manager_location_label(GtkWidget *group, const gchar *su
 	buf = g_strdup_printf(_("Location: %s"), subdir);
 	label = pref_label_new(group, buf);
 	g_free(buf);
-#if GTK_CHECK_VERSION(3,16,0)
 	gtk_label_set_xalign(GTK_LABEL(label), 0.0);
 	gtk_label_set_yalign(GTK_LABEL(label), 0.5);
-#else
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-#endif
 
 	return label;
 }
@@ -1308,7 +1302,7 @@ static void cache_manager_sim_reset(CacheOpsData *cd)
 	cd->cl = NULL;
 }
 
-static void cache_manager_sim_close_cb(GenericDialog *fd, gpointer data)
+static void cache_manager_sim_close_cb(GenericDialog *UNUSED(fd), gpointer data)
 {
 	CacheOpsData *cd = data;
 
@@ -1333,7 +1327,7 @@ static void cache_manager_sim_finish(CacheOpsData *cd)
 		}
 }
 
-static void cache_manager_sim_stop_cb(GenericDialog *fd, gpointer data)
+static void cache_manager_sim_stop_cb(GenericDialog *UNUSED(fd), gpointer data)
 {
 	CacheOpsData *cd = data;
 
@@ -1362,7 +1356,7 @@ static void cache_manager_sim_folder(CacheOpsData *cd, FileData *dir_fd)
 	cd->list_dir = g_list_concat(list_d, cd->list_dir);
 }
 
-static void cache_manager_sim_file_done_cb(CacheLoader *cl, gint error, gpointer data)
+static void cache_manager_sim_file_done_cb(CacheLoader *UNUSED(cl), gint UNUSED(error), gpointer data)
 {
 	CacheOpsData *cd = data;
 
@@ -1471,7 +1465,7 @@ static gboolean cache_manager_sim_file(CacheOpsData *cd)
 	return FALSE;
 }
 
-static void cache_manager_sim_start_cb(GenericDialog *fd, gpointer data)
+static void cache_manager_sim_start_cb(GenericDialog *UNUSED(fd), gpointer data)
 {
 	CacheOpsData *cd = data;
 	gchar *path;
@@ -1582,7 +1576,7 @@ static void cache_manager_sim_load_dialog(GtkWidget *widget, const gchar *path)
 	gtk_widget_show(cd->gd->dialog);
 }
 
-static void cache_manager_sim_load_cb(GtkWidget *widget, gpointer data)
+static void cache_manager_sim_load_cb(GtkWidget *widget, gpointer UNUSED(data))
 {
 	const gchar *path = layout_get_path(NULL);
 
@@ -1590,7 +1584,7 @@ static void cache_manager_sim_load_cb(GtkWidget *widget, gpointer data)
 	cache_manager_sim_load_dialog(widget, path);
 }
 
-static void cache_manager_cache_maintenance_close_cb(GenericDialog *fd, gpointer data)
+static void cache_manager_cache_maintenance_close_cb(GenericDialog *UNUSED(fd), gpointer data)
 {
 	CacheOpsData *cd = data;
 
@@ -1601,7 +1595,7 @@ static void cache_manager_cache_maintenance_close_cb(GenericDialog *fd, gpointer
 	g_free(cd);
 }
 
-static void cache_manager_cache_maintenance_start_cb(GenericDialog *fd, gpointer data)
+static void cache_manager_cache_maintenance_start_cb(GenericDialog *UNUSED(fd), gpointer data)
 {
 	CacheOpsData *cd = data;
 	gchar *path;
@@ -1680,7 +1674,7 @@ static void cache_manager_cache_maintenance_load_dialog(GtkWidget *widget, const
 	gtk_widget_show(cd->gd->dialog);
 }
 
-static void cache_manager_cache_maintenance_load_cb(GtkWidget *widget, gpointer data)
+static void cache_manager_cache_maintenance_load_cb(GtkWidget *widget, gpointer UNUSED(data))
 {
 	const gchar *path = layout_get_path(NULL);
 
@@ -1760,7 +1754,7 @@ void cache_manager_show(void)
 
 	table = pref_table_new(group, 2, 1, FALSE, FALSE);
 
-	button = pref_table_button(table, 0, 1, GTK_STOCK_EXECUTE, _("Render"), FALSE,
+	button = pref_table_button(table, 0, 1, "system-run", _("Render"), FALSE,
 				   G_CALLBACK(cache_manager_render_cb), cache_manager);
 	gtk_size_group_add_widget(sizegroup, button);
 	pref_table_label(table, 1, 1, _("Render thumbnails for a specific folder."), 0.0);

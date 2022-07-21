@@ -91,9 +91,9 @@ static void bar_pane_comment_update(PaneCommentData *pcd)
 
 	if (strcmp(orig_comment, comment_not_null) != 0)
 		{
-		g_signal_handlers_block_by_func(comment_buffer, bar_pane_comment_changed, pcd);
+		g_signal_handlers_block_by_func(comment_buffer, (gpointer)bar_pane_comment_changed, pcd);
 		gtk_text_buffer_set_text(comment_buffer, comment_not_null, -1);
-		g_signal_handlers_unblock_by_func(comment_buffer, bar_pane_comment_changed, pcd);
+		g_signal_handlers_unblock_by_func(comment_buffer, (gpointer)bar_pane_comment_changed, pcd);
 		}
 	g_free(comment);
 	g_free(orig_comment);
@@ -133,14 +133,14 @@ static void bar_pane_comment_set_selection(PaneCommentData *pcd, gboolean append
 	g_free(comment);
 }
 
-static void bar_pane_comment_sel_add_cb(GtkWidget *button, gpointer data)
+static void bar_pane_comment_sel_add_cb(GtkWidget *UNUSED(button), gpointer data)
 {
 	PaneCommentData *pcd = data;
 
 	bar_pane_comment_set_selection(pcd, TRUE);
 }
 
-static void bar_pane_comment_sel_replace_cb(GtkWidget *button, gpointer data)
+static void bar_pane_comment_sel_replace_cb(GtkWidget *UNUSED(button), gpointer data)
 {
 	PaneCommentData *pcd = data;
 
@@ -220,7 +220,7 @@ static void bar_pane_comment_notify_cb(FileData *fd, NotifyType type, gpointer d
 		}
 }
 
-static void bar_pane_comment_changed(GtkTextBuffer *buffer, gpointer data)
+static void bar_pane_comment_changed(GtkTextBuffer *UNUSED(buffer), gpointer data)
 {
 	PaneCommentData *pcd = data;
 
@@ -228,7 +228,7 @@ static void bar_pane_comment_changed(GtkTextBuffer *buffer, gpointer data)
 }
 
 
-static void bar_pane_comment_populate_popup(GtkTextView *textview, GtkMenu *menu, gpointer data)
+static void bar_pane_comment_populate_popup(GtkTextView *UNUSED(textview), GtkMenu *menu, gpointer data)
 {
 	PaneCommentData *pcd = data;
 
@@ -237,7 +237,7 @@ static void bar_pane_comment_populate_popup(GtkTextView *textview, GtkMenu *menu
 	menu_item_add_stock(GTK_WIDGET(menu), _("Replace existing text in selected files"), GTK_STOCK_CONVERT, G_CALLBACK(bar_pane_comment_sel_replace_cb), data);
 }
 
-static void bar_pane_comment_destroy(GtkWidget *widget, gpointer data)
+static void bar_pane_comment_destroy(GtkWidget *UNUSED(widget), gpointer data)
 {
 	PaneCommentData *pcd = data;
 
@@ -297,7 +297,6 @@ static GtkWidget *bar_pane_comment_new(const gchar *id, const gchar *title, cons
 	gtk_widget_show(pcd->comment_view);
 
 #ifdef HAVE_SPELL
-#if GTK_CHECK_VERSION(3,20,0)
 	if (g_strcmp0(key, "Xmp.xmp.Rating") != 0)
 		{
 		if (options->metadata.check_spelling)
@@ -306,7 +305,6 @@ static GtkWidget *bar_pane_comment_new(const gchar *id, const gchar *title, cons
 			gspell_text_view_basic_setup(gspell_view);
 			}
 	}
-#endif
 #endif
 
 	buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(pcd->comment_view));

@@ -74,7 +74,7 @@ gpointer submenu_item_get_data(GtkWidget *menu)
  * edit menu
  *-----------------------------------------------------------------------------
  */
-static void edit_item_destroy_cb(GtkWidget *widget, gpointer data)
+static void edit_item_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	g_free(data);
 }
@@ -308,7 +308,7 @@ static GtkWidget *submenu_add_zoom_item(GtkWidget *menu,
 }
 
 GtkWidget *submenu_add_zoom(GtkWidget *menu, GCallback func, gpointer data,
-			    gboolean include_none, gboolean include_path,
+			    gboolean UNUSED(include_none), gboolean UNUSED(include_path),
 			    gboolean show_current, ZoomMode mode)
 {
 	GtkWidget *submenu;
@@ -440,7 +440,7 @@ GtkWidget *submenu_add_alter(GtkWidget *menu, GCallback func, gpointer data)
  *  Used by all image windows
  */
 static void add_collection_list(GtkWidget *menu, GCallback func,
-								GList *collection_list, gpointer data)
+								GList *collection_list, gpointer UNUSED(data))
 {
 	GList *work;
 	gint index = 0; /* index to existing collection list menu item selected */

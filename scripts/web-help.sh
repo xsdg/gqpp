@@ -35,13 +35,9 @@ then
 	exit 1
 fi
 
-rm -rf doc/html
-tmpdir=$(mktemp -d "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
-
-make -j install DESTDIR="$tmpdir"
-rm -r "$tmpdir"
+ninja -C build
 
 find ../geeqie.github.io/help/ -type f -exec rm "{}" \;
-cp -a doc/html/* ../geeqie.github.io/help
+cp -a build/doc/html/* ../geeqie.github.io/help
 
 exit 0

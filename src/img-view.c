@@ -386,7 +386,7 @@ static void view_step_to_end(ViewWindow *vw, gboolean last)
  *-----------------------------------------------------------------------------
  */
 
-static void view_window_menu_pos_cb(GtkMenu *menu, gint *x, gint *y, gboolean *push_in, gpointer data)
+static void view_window_menu_pos_cb(GtkMenu *menu, gint *x, gint *y, gboolean *UNUSED(push_in), gpointer data)
 {
 	ViewWindow *vw = data;
 	ImageWindow *imd;
@@ -396,7 +396,7 @@ static void view_window_menu_pos_cb(GtkMenu *menu, gint *x, gint *y, gboolean *p
 	popup_menu_position_clamp(menu, x, y, 0);
 }
 
-static gboolean view_window_key_press_cb(GtkWidget *widget, GdkEventKey *event, gpointer data)
+static gboolean view_window_key_press_cb(GtkWidget *UNUSED(widget), GdkEventKey *event, gpointer data)
 {
 	ViewWindow *vw = data;
 	ImageWindow *imd;
@@ -753,7 +753,7 @@ static void view_image_set_buttons(ViewWindow *vw, ImageWindow *imd)
 	image_set_scroll_func(imd, scroll_cb, vw);
 }
 
-static void view_fullscreen_stop_func(FullScreenData *fs, gpointer data)
+static void view_fullscreen_stop_func(FullScreenData *UNUSED(fs), gpointer data)
 {
 	ViewWindow *vw = data;
 
@@ -810,7 +810,7 @@ static void view_slideshow_prev(ViewWindow *vw)
 	if (vw->ss) slideshow_prev(vw->ss);
 }
 
-static void view_slideshow_stop_func(SlideShowData *fs, gpointer data)
+static void view_slideshow_stop_func(SlideShowData *UNUSED(fs), gpointer data)
 {
 	ViewWindow *vw = data;
 	GList *work;
@@ -867,7 +867,7 @@ static void view_slideshow_stop(ViewWindow *vw)
 	if (vw->ss) slideshow_free(vw->ss);
 }
 
-static void view_window_destroy_cb(GtkWidget *widget, gpointer data)
+static void view_window_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 
@@ -890,7 +890,7 @@ static void view_window_close(ViewWindow *vw)
 	gtk_widget_destroy(vw->window);
 }
 
-static gboolean view_window_delete_cb(GtkWidget *w, GdkEventAny *event, gpointer data)
+static gboolean view_window_delete_cb(GtkWidget *UNUSED(w), GdkEventAny *UNUSED(event), gpointer data)
 {
 	ViewWindow *vw = data;
 
@@ -995,10 +995,6 @@ static ViewWindow *real_view_window_new(FileData *fd, GList *list, CollectionDat
 	req_size.height = h;
 	gtk_widget_size_allocate(GTK_WIDGET(vw->window), &req_size);
 
-#if !GTK_CHECK_VERSION(3,0,0)
-	gtk_widget_set_size_request(vw->imd->pr, w, h);
-#endif
-
 	gtk_window_set_focus_on_map(GTK_WINDOW(vw->window), FALSE);
 	gtk_widget_show(vw->window);
 
@@ -1017,7 +1013,7 @@ static ViewWindow *real_view_window_new(FileData *fd, GList *list, CollectionDat
 	return vw;
 }
 
-static void view_window_collection_unref_cb(GtkWidget *widget, gpointer data)
+static void view_window_collection_unref_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	CollectionData *cd = data;
 
@@ -1140,7 +1136,7 @@ gboolean view_window_find_image(ImageWindow *imd, gint *index, gint *total)
  *-----------------------------------------------------------------------------
  */
 
-static void view_new_window_cb(GtkWidget *widget, gpointer data)
+static void view_new_window_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 	CollectionData *cd;
@@ -1188,46 +1184,35 @@ static void view_alter_cb(GtkWidget *widget, gpointer data)
 	image_alter_orientation(vw->imd, vw->imd->image_fd, type);
 }
 
-#if !GTK_CHECK_VERSION(3,0,0)
-static void view_wallpaper_cb(GtkWidget *widget, gpointer data)
-{
-	ViewWindow *vw = data;
-	ImageWindow *imd;
-
-	imd = view_window_active_image(vw);
-	image_to_root_window(imd, (image_zoom_get(imd) == 0.0));
-}
-#endif
-
-static void view_zoom_in_cb(GtkWidget *widget, gpointer data)
+static void view_zoom_in_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 
 	image_zoom_adjust(view_window_active_image(vw), get_zoom_increment());
 }
 
-static void view_zoom_out_cb(GtkWidget *widget, gpointer data)
+static void view_zoom_out_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 
 	image_zoom_adjust(view_window_active_image(vw), -get_zoom_increment());
 }
 
-static void view_zoom_1_1_cb(GtkWidget *widget, gpointer data)
+static void view_zoom_1_1_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 
 	image_zoom_set(view_window_active_image(vw), 1.0);
 }
 
-static void view_zoom_fit_cb(GtkWidget *widget, gpointer data)
+static void view_zoom_fit_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 
 	image_zoom_set(view_window_active_image(vw), 0.0);
 }
 
-static void view_copy_cb(GtkWidget *widget, gpointer data)
+static void view_copy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 	ImageWindow *imd;
@@ -1236,7 +1221,7 @@ static void view_copy_cb(GtkWidget *widget, gpointer data)
 	file_util_copy(image_get_fd(imd), NULL, NULL, imd->widget);
 }
 
-static void view_move_cb(GtkWidget *widget, gpointer data)
+static void view_move_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 	ImageWindow *imd;
@@ -1245,7 +1230,7 @@ static void view_move_cb(GtkWidget *widget, gpointer data)
 	file_util_move(image_get_fd(imd), NULL, NULL, imd->widget);
 }
 
-static void view_rename_cb(GtkWidget *widget, gpointer data)
+static void view_rename_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 	ImageWindow *imd;
@@ -1254,7 +1239,7 @@ static void view_rename_cb(GtkWidget *widget, gpointer data)
 	file_util_rename(image_get_fd(imd), NULL, imd->widget);
 }
 
-static void view_delete_cb(GtkWidget *widget, gpointer data)
+static void view_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 	ImageWindow *imd;
@@ -1264,7 +1249,7 @@ static void view_delete_cb(GtkWidget *widget, gpointer data)
 	file_util_delete(image_get_fd(imd), NULL, imd->widget);
 }
 
-static void view_move_to_trash_cb(GtkWidget *widget, gpointer data)
+static void view_move_to_trash_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 	ImageWindow *imd;
@@ -1274,7 +1259,7 @@ static void view_move_to_trash_cb(GtkWidget *widget, gpointer data)
 	file_util_delete(image_get_fd(imd), NULL, imd->widget);
 }
 
-static void view_copy_path_cb(GtkWidget *widget, gpointer data)
+static void view_copy_path_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 	ImageWindow *imd;
@@ -1283,7 +1268,7 @@ static void view_copy_path_cb(GtkWidget *widget, gpointer data)
 	file_util_copy_path_to_clipboard(image_get_fd(imd), TRUE);
 }
 
-static void view_copy_path_unquoted_cb(GtkWidget *widget, gpointer data)
+static void view_copy_path_unquoted_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 	ImageWindow *imd;
@@ -1292,35 +1277,35 @@ static void view_copy_path_unquoted_cb(GtkWidget *widget, gpointer data)
 	file_util_copy_path_to_clipboard(image_get_fd(imd), FALSE);
 }
 
-static void view_fullscreen_cb(GtkWidget *widget, gpointer data)
+static void view_fullscreen_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 
 	view_fullscreen_toggle(vw, FALSE);
 }
 
-static void view_slideshow_start_cb(GtkWidget *widget, gpointer data)
+static void view_slideshow_start_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 
 	view_slideshow_start(vw);
 }
 
-static void view_slideshow_stop_cb(GtkWidget *widget, gpointer data)
+static void view_slideshow_stop_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 
 	view_slideshow_stop(vw);
 }
 
-static void view_slideshow_pause_cb(GtkWidget *widget, gpointer data)
+static void view_slideshow_pause_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 
 	slideshow_pause_toggle(vw->ss);
 }
 
-static void view_close_cb(GtkWidget *widget, gpointer data)
+static void view_close_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 
@@ -1338,7 +1323,7 @@ static LayoutWindow *view_new_layout_with_fd(FileData *fd)
 }
 
 
-static void view_set_layout_path_cb(GtkWidget *widget, gpointer data)
+static void view_set_layout_path_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	ViewWindow *vw = data;
 	LayoutWindow *lw;
@@ -1356,7 +1341,7 @@ static void view_set_layout_path_cb(GtkWidget *widget, gpointer data)
 	view_window_close(vw);
 }
 
-static void view_popup_menu_destroy_cb(GtkWidget *widget, gpointer data)
+static void view_popup_menu_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
 	GList *editmenu_fd_list = data;
 
@@ -1426,9 +1411,7 @@ static GtkWidget *view_popup_menu(ViewWindow *vw)
 			 G_CALLBACK(view_popup_menu_destroy_cb), editmenu_fd_list);
 	item = submenu_add_edit(menu, NULL, G_CALLBACK(view_edit_cb), vw, editmenu_fd_list);
 	menu_item_add_divider(item);
-#if !GTK_CHECK_VERSION(3,0,0)
-	menu_item_add(item, _("Set as _wallpaper"), G_CALLBACK(view_wallpaper_cb), vw);
-#endif
+
 	submenu_add_alter(menu, G_CALLBACK(view_alter_cb), vw);
 
 	menu_item_add_stock(menu, _("View in _new window"), GTK_STOCK_NEW, G_CALLBACK(view_new_window_cb), vw);
@@ -1506,7 +1489,7 @@ typedef struct {
 	GList *list;
 } CViewConfirmD;
 
-static void view_dir_list_cancel(GtkWidget *widget, gpointer data)
+static void view_dir_list_cancel(GtkWidget *UNUSED(widget), gpointer UNUSED(data))
 {
 	/* do nothing */
 }
@@ -1570,25 +1553,25 @@ static void view_dir_list_do(ViewWindow *vw, GList *list, gboolean skip, gboolea
 		}
 }
 
-static void view_dir_list_add(GtkWidget *widget, gpointer data)
+static void view_dir_list_add(GtkWidget *UNUSED(widget), gpointer data)
 {
 	CViewConfirmD *d = data;
 	view_dir_list_do(d->vw, d->list, FALSE, FALSE);
 }
 
-static void view_dir_list_recurse(GtkWidget *widget, gpointer data)
+static void view_dir_list_recurse(GtkWidget *UNUSED(widget), gpointer data)
 {
 	CViewConfirmD *d = data;
 	view_dir_list_do(d->vw, d->list, FALSE, TRUE);
 }
 
-static void view_dir_list_skip(GtkWidget *widget, gpointer data)
+static void view_dir_list_skip(GtkWidget *UNUSED(widget), gpointer data)
 {
 	CViewConfirmD *d = data;
 	view_dir_list_do(d->vw, d->list, TRUE, FALSE);
 }
 
-static void view_dir_list_destroy(GtkWidget *widget, gpointer data)
+static void view_dir_list_destroy(GtkWidget *UNUSED(widget), gpointer data)
 {
 	CViewConfirmD *d = data;
 	filelist_free(d->list);
@@ -1625,8 +1608,8 @@ static GtkWidget *view_confirm_dir_list(ViewWindow *vw, GList *list)
  *-----------------------------------------------------------------------------
  */
 
-static void view_window_get_dnd_data(GtkWidget *widget, GdkDragContext *context,
-				     gint x, gint y,
+static void view_window_get_dnd_data(GtkWidget *UNUSED(widget), GdkDragContext *context,
+				     gint UNUSED(x), gint UNUSED(y),
 				     GtkSelectionData *selection_data, guint info,
 				     guint time, gpointer data)
 {
@@ -1705,9 +1688,9 @@ static void view_window_get_dnd_data(GtkWidget *widget, GdkDragContext *context,
 		}
 }
 
-static void view_window_set_dnd_data(GtkWidget *widget, GdkDragContext *context,
-				     GtkSelectionData *selection_data, guint info,
-				     guint time, gpointer data)
+static void view_window_set_dnd_data(GtkWidget *UNUSED(widget), GdkDragContext *UNUSED(context),
+				     GtkSelectionData *selection_data, guint UNUSED(info),
+				     guint UNUSED(time), gpointer data)
 {
 	ViewWindow *vw = data;
 	FileData *fd;
