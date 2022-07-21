@@ -41,7 +41,7 @@
  * file_data_sc - operates on the given fd + sidecars - all fds linked via fd->sidecar_files or fd->parent
  */
 
-gchar *FileData::file_data_get_sidecar_path(FileData *fd, gboolean existing_only)
+gchar *FileData::Sidecar::get_sidecar_path(FileData *fd, gboolean existing_only)
 {
 	gchar *sidecar_path = NULL;
 	GList *work;
@@ -78,7 +78,7 @@ gchar *FileData::file_data_get_sidecar_path(FileData *fd, gboolean existing_only
 }
 
 /* return list of sidecar file extensions in a string */
-gchar *FileData::file_data_sc_list_to_string(FileData *fd)
+gchar *FileData::Sidecar::sc_list_to_string(FileData *fd)
 {
 	GList *work;
 	GString *result = g_string_new("");
@@ -97,7 +97,7 @@ gchar *FileData::file_data_sc_list_to_string(FileData *fd)
 	return g_string_free(result, FALSE);
 }
 
-/*static*/ gboolean FileData::file_data_list_contains_whole_group(GList *list, FileData *fd)
+/*static*/ gboolean FileData::Sidecar::list_contains_whole_group(GList *list, FileData *fd)
 {
 	GList *work;
 	if (fd->parent) fd = fd->parent;
@@ -112,7 +112,7 @@ gchar *FileData::file_data_sc_list_to_string(FileData *fd)
 	return TRUE;
 }
 
-GList *FileData::file_data_process_groups_in_selection(GList *list, gboolean ungroup, GList **ungrouped_list)
+GList *FileData::Sidecar::process_groups_in_selection(GList *list, gboolean ungroup, GList **ungrouped_list)
 {
 	GList *out = NULL;
 	GList *work = list;
@@ -125,7 +125,7 @@ GList *FileData::file_data_process_groups_in_selection(GList *list, gboolean ung
 			FileData *fd = work->data;
 			work = work->next;
 
-			if (!file_data_list_contains_whole_group(list, fd))
+			if (!list_contains_whole_group(list, fd))
 				{
 				::file_data_disable_grouping(fd, TRUE);
 				if (ungrouped_list)
@@ -145,7 +145,7 @@ GList *FileData::file_data_process_groups_in_selection(GList *list, gboolean ung
 		work = work->next;
 
 		if (!fd->parent ||
-		    (!ungroup && !file_data_list_contains_whole_group(list, fd)))
+		    (!ungroup && !list_contains_whole_group(list, fd)))
 			{
 			out = g_list_prepend(out, file_data_ref(fd));
 			}
@@ -157,7 +157,7 @@ GList *FileData::file_data_process_groups_in_selection(GList *list, gboolean ung
 	return out;
 }
 
-/*static*/ gint FileData::sidecar_file_priority(const gchar *extension)
+/*static*/ gint FileData::Sidecar::sidecar_file_priority(const gchar *extension)
 {
 	gint i = 1;
 	GList *work;
@@ -177,7 +177,7 @@ GList *FileData::file_data_process_groups_in_selection(GList *list, gboolean ung
 	return 0;
 }
 
-/*static*/ void FileData::file_data_check_sidecars(const GList *basename_list)
+/*static*/ void FileData::Sidecar::check_sidecars(const GList *basename_list)
 {
 	/* basename_list contains the new group - first is the parent, then sorted sidecars */
 	/* all files in the list have ref count > 0 */
@@ -250,7 +250,7 @@ GList *FileData::file_data_process_groups_in_selection(GList *list, gboolean ung
 			FileData *old_parent = fd->parent;
 			g_assert(old_parent->parent == NULL || old_parent->sidecar_files == NULL);
 			file_data_ref(old_parent);
-			file_data_disconnect_sidecar_file(old_parent, fd);
+			disconnect_sidecar_file(old_parent, fd);
 			file_data_send_notification(old_parent, NOTIFY_REREAD);
 			file_data_unref(old_parent);
 			}
@@ -260,7 +260,7 @@ GList *FileData::file_data_process_groups_in_selection(GList *list, gboolean ung
 			FileData *sfd = fd->sidecar_files->data;
 			g_assert(sfd->parent == NULL || sfd->sidecar_files == NULL);
 			file_data_ref(sfd);
-			file_data_disconnect_sidecar_file(fd, sfd);
+			disconnect_sidecar_file(fd, sfd);
 			file_data_send_notification(sfd, NOTIFY_REREAD);
 			file_data_unref(sfd);
 			}
@@ -287,7 +287,7 @@ GList *FileData::file_data_process_groups_in_selection(GList *list, gboolean ung
 }
 
 
-/*static*/ void FileData::file_data_disconnect_sidecar_file(FileData *target, FileData *sfd)
+/*static*/ void FileData::Sidecar::disconnect_sidecar_file(FileData *target, FileData *sfd)
 {
 	g_assert(target->magick == FD_MAGICK);
 	g_assert(sfd->magick == FD_MAGICK);
@@ -310,7 +310,7 @@ GList *FileData::file_data_process_groups_in_selection(GList *list, gboolean ung
 }
 
 /* disables / enables grouping for particular file, sends UPDATE notification */
-void FileData::file_data_disable_grouping(FileData *fd, gboolean disable)
+void FileData::Sidecar::disable_grouping(FileData *fd, gboolean disable)
 {
 	if (!fd->disable_grouping == !disable) return;
 
@@ -321,7 +321,7 @@ void FileData::file_data_disable_grouping(FileData *fd, gboolean disable)
 		if (fd->parent)
 			{
 			FileData *parent = file_data_ref(fd->parent);
-			file_data_disconnect_sidecar_file(parent, fd);
+			disconnect_sidecar_file(parent, fd);
 			file_data_send_notification(parent, NOTIFY_GROUPING);
 			file_data_unref(parent);
 			}
@@ -333,26 +333,26 @@ void FileData::file_data_disable_grouping(FileData *fd, gboolean disable)
 				{
 				FileData *sfd = work->data;
 				work = work->next;
-				file_data_disconnect_sidecar_file(fd, sfd);
+				disconnect_sidecar_file(fd, sfd);
 				file_data_send_notification(sfd, NOTIFY_GROUPING);
 				}
-			file_data_check_sidecars(sidecar_files); /* this will group the sidecars back together */
+			check_sidecars(sidecar_files); /* this will group the sidecars back together */
 			filelist_free(sidecar_files);
 			}
 		else
 			{
-			file_data_increment_version(fd); /* the functions called in the cases above increments the version too */
+			fd->file_data_increment_version(fd); /* the functions called in the cases above increments the version too */
 			}
 		}
 	else
 		{
-		file_data_increment_version(fd);
+		fd->file_data_increment_version(fd);
 		/* file_data_check_sidecars call is not necessary - the file will be re-grouped on next dir read */
 		}
 	file_data_send_notification(fd, NOTIFY_GROUPING);
 }
 
-void FileData::file_data_disable_grouping_list(GList *fd_list, gboolean disable)
+void FileData::Sidecar::disable_grouping_list(GList *fd_list, gboolean disable)
 {
 	GList *work;
 

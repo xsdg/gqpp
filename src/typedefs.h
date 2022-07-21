@@ -662,6 +662,7 @@ void free_v_wrapper(ArgTypes... args, void* user_data) {
 struct FileData {
     // Child classes that encapsulate some functionality.
     struct FileList;
+    struct Sidecar;
     struct Util;
 
     /**** CORE ****/
@@ -761,18 +762,6 @@ struct FileData {
         void set_exif_time_data(GList *files);
         void set_exif_time_digitized_data(GList *files);
         void set_rating_data(GList *files);
-
-        // sidecar.c;
-        gchar *file_data_get_sidecar_path(FileData *fd, gboolean existing_only);
-        gchar *file_data_sc_list_to_string(FileData *fd);
-        static GList *file_data_process_groups_in_selection(GList *list, gboolean ungroup, GList **ungrouped_list);
-
-        static gboolean file_data_list_contains_whole_group(GList *list, FileData *fd);
-        /*static*/ gint sidecar_file_priority(const gchar *extension);
-        /**/static/**/ void file_data_check_sidecars(const GList *basename_list);
-        /**/static/**/ void file_data_disconnect_sidecar_file(FileData *target, FileData *sfd);
-        void file_data_disable_grouping(FileData *fd, gboolean disable);
-        static void file_data_disable_grouping_list(GList *fd_list, gboolean disable);
 
         // sidecar_change_info.c;
         /*static*/ gboolean file_data_sc_add_ci(FileData *fd, FileDataChangeType type);
@@ -900,6 +889,23 @@ struct FileData::FileList
         static void recursive_append_full(GList **list, GList *dirs, SortType method, gboolean ascend);
         static gint sort_file_cb(gpointer a, gpointer b);
         static GList *filter_out_sidecars(GList *flist);
+};
+
+struct FileData::Sidecar
+{
+        Sidecar() = delete;
+
+    public:
+        static gchar *get_sidecar_path(FileData *fd, gboolean existing_only);
+        static gchar *sc_list_to_string(FileData *fd);
+        static GList *process_groups_in_selection(GList *list, gboolean ungroup, GList **ungrouped_list);
+
+        static gboolean list_contains_whole_group(GList *list, FileData *fd);
+        static gint sidecar_file_priority(const gchar *extension);
+        static void check_sidecars(const GList *basename_list);
+        static void disconnect_sidecar_file(FileData *target, FileData *sfd);
+        static void disable_grouping(FileData *fd, gboolean disable);
+        static void disable_grouping_list(GList *fd_list, gboolean disable);
 };
 
 struct FileData::Util

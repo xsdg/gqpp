@@ -85,7 +85,7 @@ FileData *FileData::file_data_new(const gchar *path_utf8, struct stat *st, gbool
 		{
 		gboolean changed;
 
-		if (disable_sidecars) fd->file_data_disable_grouping(fd, TRUE);
+		if (disable_sidecars) Sidecar::disable_grouping(fd, TRUE);
 
 
 		changed = fd->file_data_check_changed_single_file(fd, st);
@@ -504,7 +504,7 @@ void FileData::file_data_increment_version(FileData *fd)
 			fd->size = 0;
 			fd->date = 0;
 			file_data_ref(sfd);
-			file_data_disconnect_sidecar_file(fd, sfd);
+			Sidecar::disconnect_sidecar_file(fd, sfd);
 			ret = TRUE;
 			file_data_increment_version(sfd);
 			file_data_send_notification(sfd, NOTIFY_REREAD);
@@ -546,9 +546,9 @@ gboolean FileData::file_data_check_changed_files(FileData *fd)
 			sfd = work->data;
 			work = work->next;
 
-			file_data_disconnect_sidecar_file(fd, sfd);
+			Sidecar::disconnect_sidecar_file(fd, sfd);
 			}
-		file_data_check_sidecars(sidecars); /* this will group the sidecars back together */
+		Sidecar::check_sidecars(sidecars); /* this will group the sidecars back together */
 		/* now we can release the sidecars */
 		FileList::fl_free(sidecars);
 		file_data_increment_version(fd);

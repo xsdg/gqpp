@@ -229,7 +229,7 @@ const gchar *FileData::Util::text_from_time(time_t t)
 /*static*/ void FileData::Util::basename_hash_to_sidecars(gpointer key, gpointer value, gpointer data)
 {
 	GList *basename_list = (GList *)value;
-	file_data_check_sidecars(basename_list);
+	Sidecar::check_sidecars(basename_list);
 }
 
 

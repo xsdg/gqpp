@@ -157,12 +157,12 @@ void file_data_change_info_free(FileDataChangeInfo *fdci, FileData *fd)
 
 void file_data_disable_grouping(FileData *fd, gboolean disable)
 {
-    fd->file_data_disable_grouping(fd, disable);
+    FileData::Sidecar::disable_grouping(fd, disable);
 }
 
 void file_data_disable_grouping_list(GList *fd_list, gboolean disable)
 {
-    FileData::file_data_disable_grouping_list( fd_list, disable);
+    FileData::Sidecar::disable_grouping_list( fd_list, disable);
 }
 
 
@@ -326,13 +326,13 @@ void file_data_set_user_orientation(FileData *fd, gint value)
 
 gchar *file_data_sc_list_to_string(FileData *fd)
 {
-    return fd->file_data_sc_list_to_string( fd);
+    return FileData::Sidecar::sc_list_to_string(fd);
 }
 
 
 gchar *file_data_get_sidecar_path(FileData *fd, gboolean existing_only)
 {
-    return fd->file_data_get_sidecar_path( fd, existing_only);
+    return FileData::Sidecar::get_sidecar_path(fd, existing_only);
 }
 
 
@@ -512,7 +512,7 @@ void file_data_sc_free_ci_list(GList *fd_list)
 
 GList *file_data_process_groups_in_selection(GList *list, gboolean ungroup, GList **ungrouped)
 {
-    return FileData::file_data_process_groups_in_selection( list, ungroup, ungrouped);
+    return FileData::Sidecar::process_groups_in_selection(list, ungroup, ungrouped);
 }
 
 
