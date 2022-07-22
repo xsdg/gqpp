@@ -130,7 +130,7 @@
 		fd->extension = fd->name + strlen(fd->name);
 		}
 
-	fd->sidecar_priority = Sidecar::sidecar_file_priority(fd->extension);
+	fd->sidecar_priority = fd->sidecar->sidecar_file_priority(fd->extension);
 	file_data_set_collate_keys(fd);
 }
 

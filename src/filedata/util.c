@@ -229,7 +229,9 @@ const gchar *FileData::Util::text_from_time(time_t t)
 /*static*/ void FileData::Util::basename_hash_to_sidecars(gpointer key, gpointer value, gpointer data)
 {
 	GList *basename_list = (GList *)value;
-	Sidecar::check_sidecars(basename_list);
+    // TODO(xsdg): Get the sidecar instance from somewhere else?
+    FileData *first_fd = first_fd_from_list(basename_list);
+    if (first_fd) first_fd->sidecar->check_sidecars(basename_list);
 }
 
 

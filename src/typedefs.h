@@ -593,6 +593,12 @@ void free_v_wrapper(ArgTypes... args, void* user_data) {
     free(functor);
 }
 
+static FileData *first_fd_from_list(GList *list)
+{
+    if (!list) return nullptr;
+    return (FileData *)list->data;
+}
+
 struct FileData {
         // Child classes that encapsulate some functionality.
         struct FileList;
@@ -849,16 +855,16 @@ struct FileData::Sidecar
         // Sidecar() = delete;
 
     public:
-        static gchar *get_sidecar_path(FileData *fd, gboolean existing_only);
-        static gchar *sc_list_to_string(FileData *fd);
-        static GList *process_groups_in_selection(GList *list, gboolean ungroup, GList **ungrouped_list);
+        gchar *get_sidecar_path(FileData *fd, gboolean existing_only);
+        gchar *sc_list_to_string(FileData *fd);
+        GList *process_groups_in_selection(GList *list, gboolean ungroup, GList **ungrouped_list);
 
-        static gboolean list_contains_whole_group(GList *list, FileData *fd);
-        static gint sidecar_file_priority(const gchar *extension);
-        static void check_sidecars(const GList *basename_list);
-        static void disconnect_sidecar_file(FileData *target, FileData *sfd);
-        static void disable_grouping(FileData *fd, gboolean disable);
-        static void disable_grouping_list(GList *fd_list, gboolean disable);
+        gboolean list_contains_whole_group(GList *list, FileData *fd);
+        gint sidecar_file_priority(const gchar *extension);
+        void check_sidecars(const GList *basename_list);
+        void disconnect_sidecar_file(FileData *target, FileData *sfd);
+        void disable_grouping(FileData *fd, gboolean disable);
+        void disable_grouping_list(GList *fd_list, gboolean disable);
 };
 
 struct FileData::Util
