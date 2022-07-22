@@ -25,16 +25,6 @@
 #include "cache.h"
 #include "thumb_standard.h"
 #include "ui_fileops.h"
-#include "metadata.h"
-#include "trash.h"
-#include "histogram.h"
-#include "secure_save.h"
-
-#include "exif.h"
-#include "misc.h"
-
-#include <errno.h>
-#include <grp.h>
 
 // TODO(xsdg): Replace g_list_sort with g_list_sort_with_data to get rid of
 // these globals.

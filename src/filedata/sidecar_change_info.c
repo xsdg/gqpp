@@ -21,20 +21,7 @@
 #include "main.h"
 #include "filedata.h"
 
-#include "filefilter.h"
-#include "cache.h"
-#include "thumb_standard.h"
 #include "ui_fileops.h"
-#include "metadata.h"
-#include "trash.h"
-#include "histogram.h"
-#include "secure_save.h"
-
-#include "exif.h"
-#include "misc.h"
-
-#include <errno.h>
-#include <grp.h>
 
 /*static*/ gboolean FileData::file_data_sc_add_ci(FileData *fd, FileDataChangeType type)
 {
