@@ -594,11 +594,16 @@ void free_v_wrapper(ArgTypes... args, void* user_data) {
 }
 
 struct FileData {
-    // Child classes that encapsulate some functionality.
-    struct FileList;
-    struct Filter;
-    struct Sidecar;
-    struct Util;
+        // Child classes that encapsulate some functionality.
+        struct FileList;
+        struct Filter;
+        struct Sidecar;
+        struct Util;
+
+        FileList *file_list;
+        Filter *filter;
+        Sidecar *sidecar;
+        Util *util;
 
     /**** CORE ****/
     private:
@@ -776,7 +781,7 @@ struct FileData {
 
 struct FileData::FileList
 {
-        FileList() = delete;
+        // FileList() = delete;
 
     public:
         static GList *copy(GList *list);
@@ -808,7 +813,7 @@ struct FileData::FileList
 
 struct FileData::Filter
 {
-        Filter() = delete;
+        // Filter() = delete;
 
     public:
         static gboolean get_mark(FileData *fd, gint n);
@@ -841,7 +846,7 @@ struct FileData::Filter
 
 struct FileData::Sidecar
 {
-        Sidecar() = delete;
+        // Sidecar() = delete;
 
     public:
         static gchar *get_sidecar_path(FileData *fd, gboolean existing_only);
@@ -858,7 +863,7 @@ struct FileData::Sidecar
 
 struct FileData::Util
 {
-        Util() = delete;
+        // Util() = delete;
 
     public:
         static gchar *text_from_size(gint64 size);

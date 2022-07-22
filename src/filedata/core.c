@@ -95,11 +95,23 @@ FileData *FileData::file_data_new(const gchar *path_utf8, struct stat *st, gbool
 		return fd;
 		}
 
-	fd = g_new0(FileData, 1);
+    // TODO(xsdg): Make sure this doesn't explode :D
+    // We use placement new, which will call the constructor and initialize the
+    // object.
+    // General pattern:
+    // T* t = malloc(sizeof(T));
+    // t = new (t) T;
+    fd = new(g_new0(FileData, 1)) FileData;
+
 #ifdef DEBUG_FILEDATA
 	global_file_data_count++;
 	DEBUG_2("file data count++: %d", global_file_data_count);
 #endif
+
+    fd->file_list = new (g_new0(FileList, 1)) FileList;
+    fd->filter = new (g_new0(Filter, 1)) Filter;
+    fd->sidecar = new (g_new0(Sidecar, 1)) Sidecar;
+    fd->util = new (g_new0(Util, 1)) Util;
 
 	fd->size = st->st_size;
 	fd->date = st->st_mtime;
@@ -292,6 +304,19 @@ FileData *FileData::file_data_ref(FileData *fd)
 	g_assert(fd->sidecar_files == NULL); /* sidecar files must be freed before calling this */
 
 	file_data_change_info_free(NULL, fd);
+
+    // Because we used placement new, we need to call the object destructors by
+    // hand.
+    fd->util->~Util();
+    g_free(fd->util);
+    fd->sidecar->~Sidecar();
+    g_free(fd->sidecar);
+    fd->filter->~Filter();
+    g_free(fd->filter);
+    fd->file_list->~FileList();
+    g_free(fd->file_list);
+
+    fd->~FileData();
 	g_free(fd);
 }
 
