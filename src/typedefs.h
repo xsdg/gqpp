@@ -852,19 +852,17 @@ struct FileData::Filter
 
 struct FileData::Sidecar
 {
-        // Sidecar() = delete;
-
     public:
-        gchar *get_sidecar_path(FileData *fd, gboolean existing_only);
-        gchar *sc_list_to_string(FileData *fd);
-        GList *process_groups_in_selection(GList *list, gboolean ungroup, GList **ungrouped_list);
+        virtual gchar *get_sidecar_path(FileData *fd, gboolean existing_only);
+        virtual gchar *sc_list_to_string(FileData *fd);
+        virtual GList *process_groups_in_selection(GList *list, gboolean ungroup, GList **ungrouped_list);
 
-        gboolean list_contains_whole_group(GList *list, FileData *fd);
-        gint sidecar_file_priority(const gchar *extension);
-        void check_sidecars(const GList *basename_list);
-        void disconnect_sidecar_file(FileData *target, FileData *sfd);
-        void disable_grouping(FileData *fd, gboolean disable);
-        void disable_grouping_list(GList *fd_list, gboolean disable);
+        virtual gboolean list_contains_whole_group(GList *list, FileData *fd);
+        virtual gint sidecar_file_priority(const gchar *extension);
+        virtual void check_sidecars(const GList *basename_list);
+        virtual void disconnect_sidecar_file(FileData *target, FileData *sfd);
+        virtual void disable_grouping(FileData *fd, gboolean disable);
+        virtual void disable_grouping_list(GList *fd_list, gboolean disable);
 };
 
 struct FileData::Util
