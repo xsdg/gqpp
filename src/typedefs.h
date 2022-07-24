@@ -867,7 +867,8 @@ struct FileData::Sidecar
 
 struct FileData::Util
 {
-        // Util() = delete;
+    // Allows the unit test to access private and protected fields.
+    friend class FileDataUtilTest;
 
     public:
         static gchar *text_from_size(gint64 size);
@@ -876,7 +877,9 @@ struct FileData::Util
         static GHashTable *basename_hash_new(void);
         static gchar *get_error_string(gint error);
 
+    private:
         static gint sort_by_ext(gconstpointer a, gconstpointer b);
+    public:
         static GList * basename_hash_insert(GHashTable *basename_hash, FileData *fd);
         static void basename_hash_insert_cb(gpointer fd, gpointer basename_hash);
         static void basename_hash_remove_list(gpointer key, gpointer value, gpointer data);

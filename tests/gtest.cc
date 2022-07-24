@@ -15,6 +15,16 @@ namespace t = ::testing;
 class FileDataUtilTest : public t::Test
 {
     protected:
+        // Trampoline that allows us to unit-test private method.  Done this way
+        // because in GTest, every testcase is implemented as its own class
+        // which is derived from the fixture class.  So we specify the fixture
+        // class as a friend of the class-under-test, and then the fixture
+        // provides access to its child classes.
+        gint sort_by_ext(gconstpointer a, gconstpointer b)
+        {
+            return util.sort_by_ext(a, b);
+        }
+
         FileData::Util util;
 };
 
@@ -86,24 +96,24 @@ TEST_F(FileDataUtilTest, sort_by_ext_test)
 
     // Sidecar priority should be the first consideration, regardless of
     // extension.
-    ASSERT_THAT(util.sort_by_ext(&hipri_jpg_fd, &lopri_gif_fd), t::Gt(0));
-    ASSERT_THAT(util.sort_by_ext(&hipri_jpg_fd, &lopri_jpg_fd), t::Gt(0));
-    ASSERT_THAT(util.sort_by_ext(&hipri_gif_fd, &lopri_gif_fd), t::Gt(0));
-    ASSERT_THAT(util.sort_by_ext(&hipri_gif_fd, &lopri_jpg_fd), t::Gt(0));
+    ASSERT_THAT(sort_by_ext(&hipri_jpg_fd, &lopri_gif_fd), t::Gt(0));
+    ASSERT_THAT(sort_by_ext(&hipri_jpg_fd, &lopri_jpg_fd), t::Gt(0));
+    ASSERT_THAT(sort_by_ext(&hipri_gif_fd, &lopri_gif_fd), t::Gt(0));
+    ASSERT_THAT(sort_by_ext(&hipri_gif_fd, &lopri_jpg_fd), t::Gt(0));
 
     // For equivalent sidecar priority, we should sort lexicographically by
     // extension.
-    ASSERT_THAT(util.sort_by_ext(&hipri_jpg_fd, &hipri_gif_fd), t::Lt(0));
-    ASSERT_THAT(util.sort_by_ext(&hipri_gif_fd, &hipri_jpg_fd), t::Gt(0));
-    ASSERT_THAT(util.sort_by_ext(&lopri_jpg_fd, &lopri_gif_fd), t::Lt(0));
-    ASSERT_THAT(util.sort_by_ext(&lopri_gif_fd, &lopri_jpg_fd), t::Gt(0));
+    ASSERT_THAT(sort_by_ext(&hipri_jpg_fd, &hipri_gif_fd), t::Lt(0));
+    ASSERT_THAT(sort_by_ext(&hipri_gif_fd, &hipri_jpg_fd), t::Gt(0));
+    ASSERT_THAT(sort_by_ext(&lopri_jpg_fd, &lopri_gif_fd), t::Lt(0));
+    ASSERT_THAT(sort_by_ext(&lopri_gif_fd, &lopri_jpg_fd), t::Gt(0));
 
     // Lastly, FileDatas with matching sidecar priority and extension should
     // be sorted equivalently.
-    ASSERT_THAT(util.sort_by_ext(&hipri_jpg_fd, &hipri_jpg_fd), t::Eq(0));
-    ASSERT_THAT(util.sort_by_ext(&hipri_gif_fd, &hipri_gif_fd), t::Eq(0));
-    ASSERT_THAT(util.sort_by_ext(&lopri_jpg_fd, &lopri_jpg_fd), t::Eq(0));
-    ASSERT_THAT(util.sort_by_ext(&lopri_gif_fd, &lopri_gif_fd), t::Eq(0));
+    ASSERT_THAT(sort_by_ext(&hipri_jpg_fd, &hipri_jpg_fd), t::Eq(0));
+    ASSERT_THAT(sort_by_ext(&hipri_gif_fd, &hipri_gif_fd), t::Eq(0));
+    ASSERT_THAT(sort_by_ext(&lopri_jpg_fd, &lopri_jpg_fd), t::Eq(0));
+    ASSERT_THAT(sort_by_ext(&lopri_gif_fd, &lopri_gif_fd), t::Eq(0));
 }
 
 TEST_F(FileDataUtilTest, is_hidden_file_test)
