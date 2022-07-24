@@ -9,15 +9,7 @@ check_PROGRAMS = gtest
 
 gtest_SOURCES = \
 	gtest.cc \
-	$(top_srcdir)/src/debug.c \
-	$(top_srcdir)/src/filedata.c \
-	$(top_srcdir)/src/filedata/change_info.c \
-	$(top_srcdir)/src/filedata/core.c \
-	$(top_srcdir)/src/filedata/filelist.c \
-	$(top_srcdir)/src/filedata/filter.c \
-	$(top_srcdir)/src/filedata/metadata.c \
-	$(top_srcdir)/src/filedata/sidecar.c \
-	$(top_srcdir)/src/filedata/sidecar_change_info.c \
+	mock_debug.c \
 	$(top_srcdir)/src/filedata/util.c
 
 gtest_LDADD = libgtest.la $(GTK_LIBS) $(GLIB_LIBS)
