@@ -5,6 +5,11 @@ libgtest_la_SOURCES = ../googletest/googletest/src/gtest-all.cc
 libgtest_la_CPPFLAGS = -I$(top_srcdir)/googletest/googletest/include -I$(top_srcdir)/googletest/googletest
 libgtest_la_LDFLAGS = -pthread
 
+check_LTLIBRARIES = libgmock.la
+libgmock_la_SOURCES = ../googletest/googlemock/src/gmock-all.cc
+libgmock_la_CPPFLAGS = -I$(top_srcdir)/googletest/googlemock/include -I$(top_srcdir)/googletest/googlemock
+libgmock_la_LDFLAGS = -pthread
+
 check_PROGRAMS = gtest
 
 gtest_SOURCES = \
@@ -12,13 +17,16 @@ gtest_SOURCES = \
 	mock_debug.c \
 	$(top_srcdir)/src/filedata/util.c
 
-gtest_LDADD = libgtest.la $(GTK_LIBS) $(GLIB_LIBS)
+gtest_LDADD = libgtest.la libgmock.la $(GTK_LIBS) $(GLIB_LIBS)
 
 gtest_LDFLAGS = -pthread
 
 gtest_CPPFLAGS = \
 	-I$(top_srcdir)/googletest/googletest/include \
-	-I$(top_srcdir)/googletest/googletest -pthread \
+	-I$(top_srcdir)/googletest/googletest \
+	-I$(top_srcdir)/googletest/googlemock/include \
+	-I$(top_srcdir)/googletest/googlemock \
+	-pthread \
 	-I$(top_srcdir)/src $(GLIB_CFLAGS) $(GTK_CFLAGS)
 
 TESTS = gtest
