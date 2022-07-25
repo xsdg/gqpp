@@ -142,6 +142,9 @@ Apply options e.g.:
 `meson configure -Dpdf=enable -Dwebp=disable`  
 `ninja -C build install`
 
+Re-display configuration data:  
+`ninja -C build reconfigure`
+
 Meaning of options:  
 `auto` If the library is not found, continue the installation  
 `enable` If the library is not found, stop the installation  

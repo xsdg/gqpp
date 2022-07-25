@@ -175,7 +175,7 @@ EXIF_MARKER_LIST_END
 
 
 gboolean format_fuji_makernote(ExifData *exif, guchar *tiff, guint offset,
-			       guint size, ExifByteOrder bo)
+			       guint size, ExifByteOrder UNUSED(bo))
 {
 	guchar *data;
 	guint ifdstart;

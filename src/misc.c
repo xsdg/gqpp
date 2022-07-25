@@ -390,7 +390,7 @@ void tree_path_free_wrapper(void *data, void *UNUSED(useradata))
 /* Copied from the libarchive .repo. examples */
 
 #ifndef HAVE_ARCHIVE
-gchar *open_archive(FileData *fd)
+gchar *open_archive(FileData *UNUSED(fd))
 {
 	log_printf("%s", _("Warning: libarchive not installed"));
 	return NULL;

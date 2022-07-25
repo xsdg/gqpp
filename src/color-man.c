@@ -494,25 +494,25 @@ void color_man_update(void)
 /*** color support not enabled ***/
 
 
-ColorMan *color_man_new(ImageWindow *imd, GdkPixbuf *pixbuf,
-			ColorManProfileType input_type, const gchar *input_file,
-			ColorManProfileType screen_type, const gchar *screen_file,
-			guchar *screen_data, guint screen_data_len)
+ColorMan *color_man_new(ImageWindow *UNUSED(imd), GdkPixbuf *UNUSED(pixbuf),
+			ColorManProfileType UNUSED(input_type), const gchar *UNUSED(input_file),
+			ColorManProfileType UNUSED(screen_type), const gchar *UNUSED(screen_file),
+			guchar *UNUSED(screen_data), guint UNUSED(screen_data_len))
 {
 	/* no op */
 	return NULL;
 }
 
-ColorMan *color_man_new_embedded(ImageWindow *imd, GdkPixbuf *pixbuf,
-				 guchar *input_data, guint input_data_len,
-				 ColorManProfileType screen_type, const gchar *screen_file,
-				 guchar *screen_data, guint screen_data_len)
+ColorMan *color_man_new_embedded(ImageWindow *UNUSED(imd), GdkPixbuf *UNUSED(pixbuf),
+				 guchar *UNUSED(input_data), guint UNUSED(input_data_len),
+				 ColorManProfileType UNUSED(screen_type), const gchar *UNUSED(screen_file),
+				 guchar *UNUSED(screen_data), guint UNUSED(screen_data_len))
 {
 	/* no op */
 	return NULL;
 }
 
-void color_man_free(ColorMan *cm)
+void color_man_free(ColorMan *UNUSED(cm))
 {
 	/* no op */
 }
@@ -522,17 +522,17 @@ void color_man_update(void)
 	/* no op */
 }
 
-void color_man_correct_region(ColorMan *cm, GdkPixbuf *pixbuf, gint x, gint y, gint w, gint h)
+void color_man_correct_region(ColorMan *UNUSED(cm), GdkPixbuf *UNUSED(pixbuf), gint UNUSED(x), gint UNUSED(y), gint UNUSED(w), gint UNUSED(h))
 {
 	/* no op */
 }
 
-void color_man_start_bg(ColorMan *cm, ColorManDoneFunc done_func, gpointer done_data)
+void color_man_start_bg(ColorMan *UNUSED(cm), ColorManDoneFunc UNUSED(done_func), gpointer UNUSED(done_data))
 {
 	/* no op */
 }
 
-gboolean color_man_get_status(ColorMan *cm, gchar **image_profile, gchar **screen_profile)
+gboolean color_man_get_status(ColorMan *UNUSED(cm), gchar **UNUSED(image_profile), gchar **UNUSED(screen_profile))
 {
 	return FALSE;
 }

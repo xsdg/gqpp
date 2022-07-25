@@ -1167,10 +1167,8 @@ gint main(gint argc, gchar *argv[])
 
 	gdk_set_allowed_backends("x11,*");
 
-#ifdef HAVE_GTHREAD
 	gdk_threads_init();
 	gdk_threads_enter();
-#endif
 
 	/* init execution time counter (debug only) */
 	init_exec_time();
@@ -1469,9 +1467,8 @@ gint main(gint argc, gchar *argv[])
 
 	DEBUG_1("%s main: gtk_main", get_exec_time());
 	gtk_main();
-#ifdef HAVE_GTHREAD
+
 	gdk_threads_leave();
-#endif
 	return 0;
 }
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

@@ -1809,10 +1809,9 @@ static void layout_menu_keyword_autocomplete_cb(GtkAction *UNUSED(action), gpoin
  * color profile button (and menu)
  *-----------------------------------------------------------------------------
  */
-
+#ifdef HAVE_LCMS
 static void layout_color_menu_enable_cb(GtkToggleAction *action, gpointer data)
 {
-#ifdef HAVE_LCMS
 	LayoutWindow *lw = data;
 
 	if (layout_image_color_profile_get_use(lw) == gtk_toggle_action_get_active(action)) return;
@@ -1820,12 +1819,16 @@ static void layout_color_menu_enable_cb(GtkToggleAction *action, gpointer data)
 	layout_image_color_profile_set_use(lw, gtk_toggle_action_get_active(action));
 	layout_util_sync_color(lw);
 	layout_image_refresh(lw);
-#endif
 }
+#else
+static void layout_color_menu_enable_cb()
+{
+}
+#endif
 
+#ifdef HAVE_LCMS
 static void layout_color_menu_use_image_cb(GtkToggleAction *action, gpointer data)
 {
-#ifdef HAVE_LCMS
 	LayoutWindow *lw = data;
 	gint input;
 	gboolean use_image;
@@ -1835,12 +1838,16 @@ static void layout_color_menu_use_image_cb(GtkToggleAction *action, gpointer dat
 	layout_image_color_profile_set(lw, input, gtk_toggle_action_get_active(action));
 	layout_util_sync_color(lw);
 	layout_image_refresh(lw);
-#endif
 }
+#else
+static void layout_color_menu_use_image_cb()
+{
+}
+#endif
 
+#ifdef HAVE_LCMS
 static void layout_color_menu_input_cb(GtkRadioAction *action, GtkRadioAction *UNUSED(current), gpointer data)
 {
-#ifdef HAVE_LCMS
 	LayoutWindow *lw = data;
 	gint type;
 	gint input;
@@ -1854,8 +1861,12 @@ static void layout_color_menu_input_cb(GtkRadioAction *action, GtkRadioAction *U
 
 	layout_image_color_profile_set(lw, type, use_image);
 	layout_image_refresh(lw);
-#endif
 }
+#else
+static void layout_color_menu_input_cb()
+{
+}
+#endif
 
 
 /*

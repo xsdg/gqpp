@@ -11,4 +11,4 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #
 
-install_data('geocode-parameters.awk', install_dir : gq_bindir, install_tag : 'plugins')
+install_data('geocode-parameters.awk', install_dir : gq_bindir)

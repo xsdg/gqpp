@@ -11,7 +11,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #
 
-install_data('geeqie-camera-import', 'geeqie-camera-import-hook-script', install_dir : gq_bindir, install_tag : 'plugins')
+install_data('geeqie-camera-import', 'geeqie-camera-import-hook-script', install_dir : gq_bindir)
 
 i18n.merge_file(
     input : 'camera-import.desktop.in',

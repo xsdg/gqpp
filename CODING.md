@@ -197,7 +197,8 @@ Variables declarations should be followed by a blank line and should always be a
 
 Use glib types when possible (ie. gint and gchar instead of int and char).  
 Use glib functions when possible (i.e. `g_ascii_isspace()` instead of `isspace()`).  
-Check if used functions are not deprecated.
+Check if used functions are not deprecated.  
+Use UNUSED() for unused function parameters.
 
 ---
 

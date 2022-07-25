@@ -122,17 +122,11 @@ static void image_loader_init(GTypeInstance *instance, gpointer UNUSED(g_class))
 
 	il->can_destroy = TRUE;
 
-#ifdef HAVE_GTHREAD
-#if GLIB_CHECK_VERSION(2,32,0)
 	il->data_mutex = g_new(GMutex, 1);
 	g_mutex_init(il->data_mutex);
 	il->can_destroy_cond = g_new(GCond, 1);
 	g_cond_init(il->can_destroy_cond);
-#else
-	il->data_mutex = g_mutex_new();
-	il->can_destroy_cond = g_cond_new();
-#endif
-#endif
+
 	DEBUG_1("new image loader %p, bufsize=%" G_GSIZE_FORMAT " idle_loop=%u", (void *)il, il->read_buffer_size, il->idle_read_loop_count);
 }
 
@@ -245,17 +239,11 @@ static void image_loader_finalize(GObject *object)
 	if (il->error) g_error_free(il->error);
 
 	file_data_unref(il->fd);
-#ifdef HAVE_GTHREAD
-#if GLIB_CHECK_VERSION(2,32,0)
+
 	g_mutex_clear(il->data_mutex);
 	g_free(il->data_mutex);
 	g_cond_clear(il->can_destroy_cond);
 	g_free(il->can_destroy_cond);
-#else
-	g_mutex_free(il->data_mutex);
-	g_cond_free(il->can_destroy_cond);
-#endif
-#endif
 }
 
 void image_loader_free(ImageLoader *il)
@@ -1215,7 +1203,6 @@ static gboolean image_loader_start_idle(ImageLoader *il)
 /**************************************************************************************/
 /* execution via thread */
 
-#ifdef HAVE_GTHREAD
 static GThreadPool *image_loader_thread_pool = NULL;
 
 static GCond *image_loader_prio_cond = NULL;
@@ -1319,15 +1306,10 @@ static gboolean image_loader_start_thread(ImageLoader *il)
         if (!image_loader_thread_pool)
 		{
 		image_loader_thread_pool = g_thread_pool_new(image_loader_thread_run, NULL, -1, FALSE, NULL);
-#if GLIB_CHECK_VERSION(2,32,0)
 		if (!image_loader_prio_cond) image_loader_prio_cond = g_new(GCond, 1);
 		g_cond_init(image_loader_prio_cond);
 		if (!image_loader_prio_mutex) image_loader_prio_mutex = g_new(GMutex, 1);
 		g_mutex_init(image_loader_prio_mutex);
-#else
-		image_loader_prio_cond = g_cond_new();
-		image_loader_prio_mutex = g_mutex_new();
-#endif
 		}
 
 	il->can_destroy = FALSE; /* ImageLoader can't be freed until image_loader_thread_run finishes */
@@ -1337,7 +1319,6 @@ static gboolean image_loader_start_thread(ImageLoader *il)
 
 	return TRUE;
 }
-#endif /* HAVE_GTHREAD */
 
 
 /**************************************************************************************/
@@ -1350,11 +1331,7 @@ gboolean image_loader_start(ImageLoader *il)
 
 	if (!il->fd) return FALSE;
 
-#ifdef HAVE_GTHREAD
 	return image_loader_start_thread(il);
-#else
-	return image_loader_start_idle(il);
-#endif
 }
 
 

@@ -62,7 +62,7 @@ icons_inline_pairs = [
 'icon_split_pane_sync', files('icon_split_pane_sync.png')
 ]
 
-icons_inline_h = custom_target( output : 'icons_inline.h',
+icons_inline_h = custom_target('icons_inline', output : 'icons_inline.h',
         command : [gdk_pixbuf_csource, '--raw', '--extern', '--build-list', icons_inline_pairs],
         capture : true)
 

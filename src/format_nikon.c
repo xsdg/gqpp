@@ -137,7 +137,7 @@ static guint nikon_tiff_table(guchar *data, const guint len, guint offset, ExifB
 }
 
 gboolean format_nikon_raw(guchar *data, const guint len,
-		          guint *image_offset, guint *exif_offset)
+		          guint *image_offset, guint *UNUSED(exif_offset))
 {
 	guint i_off = 0;
 	guint i_len = 0;
@@ -410,7 +410,7 @@ gboolean format_nikon_makernote(ExifData *exif, guchar *tiff, guint offset,
 		ExifItem *shadow;
 
 		shadow = exif_item_new(marker.format, marker.tag, 1, &marker);
-		memcpy(shadow->data, item->data + 2, 2);
+		memcpy(shadow->data, (char *)item->data + 2, 2);
 
 		exif->items = g_list_prepend(exif->items, shadow);
 		}

@@ -48,7 +48,7 @@ static guint olympus_tiff_table(guchar *data, const guint len, guint offset, Exi
 
 
 static void olympus_tiff_entry(guchar *data, const guint len, guint offset, ExifByteOrder bo,
-			       gint level,
+			       gint UNUSED(level),
 			       guint *image_offset, guint *exif_offset)
 {
 	guint tag;

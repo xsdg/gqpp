@@ -357,7 +357,6 @@
  * object image_load_begin
  * object image_loader_start
  * object image_loader_start_thread
- * object image_loader_start_idle
  * object image_loader_setup_source
  * object image_loader_thread_run
  * object image_loader_begin
@@ -372,7 +371,6 @@
  * image_load_begin : image.c
  * image_loader_start : image_load.c
  * image_loader_start_thread : image_load.c
- * image_loader_start_idle : image_load.c
  * image_loader_thread_run : image_load.c
  * image_loader_begin : image_load.c
  * image_loader_setuploader : image_load.c
@@ -390,7 +388,6 @@
  * image_change_complete --> image_load_begin
  * image_load_begin --> image_loader_start
  * image_loader_start --> image_loader_start_thread
- * image_loader_start --> image_loader_start_idle : Obsolete - no threads version
  * image_loader_start_thread --> image_loader_thread_run
  * image_loader_start_thread --> image_loader_setup_source
  * image_loader_setup_source --> exif_get_preview_
@@ -491,5 +488,3 @@
  * DupeItem --> group
  * @enduml
  */
-
-

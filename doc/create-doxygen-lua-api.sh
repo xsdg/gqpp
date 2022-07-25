@@ -32,6 +32,12 @@
 ## that are useful as part of an API description.
 ##
 
+if ! command -v doxygen > /dev/null
+then
+	printf '%s\n' "doxygen not installed"
+	exit 1
+fi
+
 export PROJECT="Geeqie"
 VERSION=$(git tag --list v[1-9]* | tail -1)
 export VERSION

@@ -44,12 +44,18 @@ project(
     'cpp',
     version : run_command('./version.sh', check : true).stdout().strip(),
     license : ['GPL-2.0-or-later'],
-    meson_version : '>= 0.60.0',
+    meson_version : '>=0.53.0',
     default_options : ['warning_level=3', 'buildtype=debugoptimized']
 )
 
 # To inhibit warnings from the generated files icons_inline.h and ui_icons.h
 add_global_arguments('-Wno-overlength-strings', language : 'c')
+
+# Used for colored text in user messages
+c_red = '\033[91m'
+c_end = '\033[0m'
+disabled = c_red + 'DISABLED' + c_end
+notfound = c_red + ' NOT FOUND' + c_end
 
 # Project requirements
 project_sources = []
@@ -59,12 +65,18 @@ cc = meson.get_compiler('c')
 i18n = import('i18n')
 configuration_inc = include_directories('.')
 
+user_options_message = 'Optional features:\n'
+user_documentation_message = 'Documentation and other features:\n'
+user_thumbnailer_message = 'Thumbnailer options:\n'
+
 # External programs
 gdk_pixbuf_csource = find_program('gdk-pixbuf-csource', required : true)
 glib_genmarshal = find_program('glib-genmarshal', required : true)
 gnome_doc_tool = find_program('yelp-build', required : false)
-if not gnome_doc_tool.found()
-    message('yelp-build not found. Help files not created.')
+if gnome_doc_tool.found()
+    user_documentation_message += 'Help files will be created\n'
+else
+    user_documentation_message += 'yelp-build ' + notfound + ' - Help files not created\n'
 endif
 
 debug = get_option('debug')
@@ -119,7 +131,7 @@ htmldir = join_paths(prefix, gq_htmldir)
 icondir = join_paths(datadir, 'pixmaps')
 mandir1 = join_paths(datadir, 'man', 'man1')
 
-podir = join_paths(meson.project_source_root(), 'po')
+podir = join_paths(meson.source_root(), 'po')
 
 # Create the define constants used in the sources. Set via config.h.in
 conf_data = configuration_data()
@@ -127,143 +139,311 @@ conf_data.set_quoted('VERSION', run_command('./version.sh', check : true).stdout
 conf_data.set('DEBUG', debug)
 
 gtk_dep = dependency('gtk+-3.0', version : '>=3.22', required: true)
-glib_dep = dependency('glib-2.0', version: '>=2.52', required: true)
+glib_dep = dependency('glib-2.0', version : '>=2.52', required: true)
 
 libarchive_dep = []
-libarchive_dep = dependency('libarchive', version: '>=3.4.0', required : get_option('archive'))
-if libarchive_dep.found()
-    conf_data.set('HAVE_ARCHIVE', 1)
+req_version = '>=3.4.0'
+option = get_option('archive')
+if not option.disabled()
+    libarchive_dep = dependency('libarchive', version : req_version, required : get_option('archive'))
+    if libarchive_dep.found()
+        conf_data.set('HAVE_ARCHIVE', 1)
+        user_options_message += 'archive: archive files e.g. .zip supported\n'
+    else
+        user_options_message += 'archive: libarchive ' + req_version + notfound + ' - archive files e.g. .zip not supported\n'
+    endif
+else
+    user_options_message += 'archive: ' + disabled + ' - archive files e.g. .zip not supported\n'
 endif
 
 lcms_dep = []
-lcms_dep = dependency('lcms2', version: '>=2.0', required : get_option('cms'))
-if lcms_dep.found()
-    conf_data.set('HAVE_LCMS', 1)
-    conf_data.set('HAVE_LCMS2', 1)
+req_version = '>=2.0'
+option = get_option('cms')
+if not option.disabled()
+    lcms_dep = dependency('lcms2', version : req_version, required : get_option('cms'))
+    if lcms_dep.found()
+        conf_data.set('HAVE_LCMS', 1)
+        conf_data.set('HAVE_LCMS2', 1)
+        user_options_message += 'cms: color management supported\n'
+    else
+        user_options_message += 'cms: lcms2 '+ req_version + notfound + ' - color management not supported\n'
+    endif
+else
+    user_options_message += 'cms: ' + disabled + ' - color management not supported\n'
 endif
 
 ddjvuapi_dep = []
-ddjvuapi_dep = dependency('ddjvuapi', version: '>=3.5.27', required : get_option('djvu'))
-if ddjvuapi_dep.found()
-    conf_data.set('HAVE_DJVU', 1)
+req_version = '>=2.5.27'
+option = get_option('djvu')
+if not option.disabled()
+    ddjvuapi_dep = dependency('ddjvuapi', version : req_version, required : get_option('djvu'))
+    if ddjvuapi_dep.found()
+        conf_data.set('HAVE_DJVU', 1)
+        user_options_message += 'djvu: djvu files supported\n'
+    else
+        user_options_message += 'djvu: ddjvuapi ' + req_version + notfound + ' - djvu files not supported\n'
+    endif
+else
+    user_options_message += 'djvu: ' + disabled + ' - djvu files not supported\n'
 endif
 
 exiv2_dep = []
-exiv2_dep = dependency('exiv2', version: '>=0.11', required : get_option('exiv2'))
-if exiv2_dep.found()
-    conf_data.set('HAVE_EXIV2', 1)
+req_version = '>=0.11'
+option = get_option('exiv2')
+if not option.disabled()
+    exiv2_dep = dependency('exiv2', version : req_version, required : get_option('exiv2'))
+    if exiv2_dep.found()
+        conf_data.set('HAVE_EXIV2', 1)
+        user_options_message += 'exiv2: image metadata processed by exiv2\n'
+    else
+        user_options_message += 'exiv2: exiv2 ' + req_version + notfound + ' - image data not processed by exiv2\n'
+    endif
+else
+    user_options_message += 'exiv2: ' + disabled + '- image data not processed by exiv2\n'
 endif
 
 libffmpegthumbnailer_dep = []
-libffmpegthumbnailer_dep = dependency('libffmpegthumbnailer',
-    version: '>=2.1.0',
-    required : get_option('ffmpegthumbnailer'))
+req_version = '>=2.1.0'
+option = get_option('videothumbnailer')
+if not option.disabled()
+    libffmpegthumbnailer_dep = dependency('libffmpegthumbnailer',
+        version : req_version,
+        required : get_option('videothumbnailer'))
 
-if libffmpegthumbnailer_dep.found()
-    conf_data.set('HAVE_FFMPEGTHUMBNAILER', 1)
+    if libffmpegthumbnailer_dep.found()
+        conf_data.set('HAVE_FFMPEGTHUMBNAILER', 1)
+        user_options_message += 'videothumbnailer: thumbnails of video files supported\n'
 
-    if cc.has_member('struct video_thumbnailer_struct', 'prefer_embedded_metadata',
-        prefix : '#include <libffmpegthumbnailer/videothumbnailerc.h>')
+        if cc.has_member('struct video_thumbnailer_struct', 'prefer_embedded_metadata',
+            prefix : '#include <libffmpegthumbnailer/videothumbnailerc.h>')
 
-        conf_data.set('HAVE_FFMPEGTHUMBNAILER_METADATA', 1)
+            conf_data.set('HAVE_FFMPEGTHUMBNAILER_METADATA', 1)
+            user_thumbnailer_message += 'fmpegthumbnailer_metadata: found\n'
+        else
+            user_thumbnailer_message += 'ffmpegthumbnailer_metadata: ' + notfound + '\n'
+        endif
+
+        if cc.has_member('struct image_data_struct', 'image_data_width',
+            prefix : '#include <libffmpegthumbnailer/videothumbnailerc.h>' )
+
+            conf_data.set('HAVE_FFMPEGTHUMBNAILER_RGB', 1)
+            user_thumbnailer_message += 'ffmpegthumbnailer_rgb: found\n'
+        else
+            user_thumbnailer_message += 'ffmpegthumbnailer_rgb: ' + notfound + '\n'
+        endif
+
+        if cc.has_function('video_thumbnailer_set_size',
+            dependencies : libffmpegthumbnailer_dep)
+
+            conf_data.set('HAVE_FFMPEGTHUMBNAILER_WH', 1)
+            user_thumbnailer_message += 'ffmpegthumbnailer_set_size: found\n'
+        else
+            user_thumbnailer_message += 'ffmpegthumbnailer_set_size: ' + notfound + '\n'
+        endif
+    else
+        user_options_message += 'videothumbnailer: libvideothumbnailer ' + req_version + notfound + ' - no thumbnails of video files\n'
     endif
-
-    if cc.has_member('struct image_data_struct', 'image_data_width',
-        prefix : '#include <libffmpegthumbnailer/videothumbnailerc.h>' )
-
-        conf_data.set('HAVE_FFMPEGTHUMBNAILER_RGB', 1)
-    endif
-
-    if cc.has_function('video_thumbnailer_set_size',
-        dependencies : libffmpegthumbnailer_dep)
-
-        conf_data.set('HAVE_FFMPEGTHUMBNAILER_WH', 1)
-    endif 
+else
+    user_options_message += 'videothumbnailer: ' + disabled + '- no thumbnails of video files\n'
 endif
 
 champlain_dep = []
 champlain_gtk_dep = []
-champlain_dep = dependency('champlain-0.12', version: '>=0.12', required : get_option('gps-map'))
-champlain_gtk_dep = dependency('champlain-gtk-0.12', version: '>=0.12', required : get_option('gps-map'))
-if champlain_dep.found() and champlain_gtk_dep.found()
-    clutter_dep = []
-    clutter_gtk_dep = []
-    clutter_dep = dependency('clutter-1.0', required : true)
-    clutter_gtk_dep = dependency('clutter-gtk-1.0', required : true)
-    if clutter_dep.found() and clutter_gtk_dep.found()
-        conf_data.set('HAVE_CLUTTER', 1)
-        conf_data.set('HAVE_LIBCHAMPLAIN', 1)
-        conf_data.set('HAVE_LIBCHAMPLAIN_GTK', 1)
+clutter_dep = []
+clutter_gtk_dep = []
+req_version_champlain = '>=0.12'
+req_version_champlain_gtk = '>=0.12'
+req_version_clutter = '>=1.0'
+req_version_clutter_gtk = '>=1.0'
+option = get_option('gps-map')
+if not option.disabled()
+    champlain_dep = dependency('champlain-0.12', version : req_version_champlain, required : get_option('gps-map'))
+    champlain_gtk_dep = dependency('champlain-gtk-0.12', version : req_version_champlain_gtk, required : get_option('gps-map'))
+    if champlain_dep.found() and champlain_gtk_dep.found()
+        clutter_dep = dependency('clutter-1.0', version : req_version_clutter, required : get_option('gps-map'))
+        clutter_gtk_dep = dependency('clutter-gtk-1.0', version : req_version_clutter_gtk, required : get_option('gps-map'))
+        if clutter_dep.found() and clutter_gtk_dep.found()
+            conf_data.set('HAVE_CLUTTER', 1)
+            conf_data.set('HAVE_LIBCHAMPLAIN', 1)
+            conf_data.set('HAVE_LIBCHAMPLAIN_GTK', 1)
+            user_options_message += 'gps-map: GPS map displayed\n'
+        else
+            if not clutter_dep.found()
+                user_options_message += 'gps-map: clutter-1.0 ' + req_version_clutter + notfound + ' - GPS map not displayed\n'
+            endif
+            if not clutter_gtk_dep.found()
+                user_options_message += 'gps-map: clutter-gtk-1.0 ' + req_version_clutter_gtk + notfound + ' - GPS map not displayed\n'
+            endif
+        endif
+    else
+        if not champlain_dep.found()
+            user_options_message += 'gps-map: champlain-0.12 ' + req_version_champlain + notfound + ' - GPS map not displayed\n'
+        endif
+        if not champlain_gtk_dep.found()
+            user_options_message += 'gps-map: champlain-gtk-0.12 ' + req_version_champlain_gtk + notfound + ' - GPS map not displayed\n'
+        endif
     endif
+else
+    user_options_message += 'gps-map: ' + disabled + ' - GPS map not displayed\n'
 endif
 
 libheif_dep = []
-libheif_dep = dependency('libheif', version: '>=1.3.2', required : get_option('heif'))
-if libheif_dep.found()
-    conf_data.set('HAVE_HEIF', 1)
+req_version = '>=1.3.2'
+option = get_option('heif')
+if not option.disabled()
+    libheif_dep = dependency('libheif', version : req_version, required : get_option('heif'))
+    if libheif_dep.found()
+        conf_data.set('HAVE_HEIF', 1)
+        user_options_message += 'heif: heif files supported\n'
+    else
+        user_options_message += 'heif: libheif ' + req_version + notfound + ' - heif files not supported\n'
+    endif
+else
+    user_options_message += 'heif: ' + disabled + ' - heif files not supported\n'
 endif
 
 libopenjp2_dep = []
-libopenjp2_dep = dependency('libopenjp2', version: '>=2.3.0', required : get_option('j2k'))
-if libopenjp2_dep.found()
-    conf_data.set('HAVE_J2K', 1)
+req_version = '>=2.3.0'
+option = get_option('j2k')
+if not option.disabled()
+    libopenjp2_dep = dependency('libopenjp2', version : req_version, required : get_option('j2k'))
+    if libopenjp2_dep.found()
+        conf_data.set('HAVE_J2K', 1)
+        user_options_message += 'j2k: j2k files supported\n'
+    else
+        user_options_message += 'j2k: libopenjp2 ' + req_version + notfound + ' - j2k files not supported\n'
+    endif
+else
+    user_options_message += 'j2k: ' + disabled + ' - j2k files not supported\n'
 endif
 
 libjpeg_dep = []
+option = get_option('jpeg')
+if not option.disabled()
 libjpeg_dep = dependency('libjpeg', required : get_option('jpeg'))
-if libjpeg_dep.found()
-    if cc.has_function('jpeg_destroy_decompress',
-        dependencies : libjpeg_dep)
-
-        conf_data.set('HAVE_JPEG', 1)
+    if libjpeg_dep.found()
+        if cc.has_function('jpeg_destroy_decompress', dependencies : libjpeg_dep)
+            conf_data.set('HAVE_JPEG', 1)
+            user_options_message += 'jpeg: jpeg files supported\n'
+        else
+            user_options_message += 'jpeg: jpeg_destroy_decompress ' + notfound + ' - jpeg files not supported\n'
+        endif
+    else
+        user_options_message += 'jpeg: libjpeg: ' + notfound + '\n'
     endif
+else
+    user_options_message += 'jpeg: ' + disabled + ' - jpeg files not supported\n'
 endif
 
 libjxl_dep = []
-libjxl_dep = dependency('libjxl', version: '>=0.3.7', required : get_option('jpegxl'))
-if libjxl_dep.found()
-    conf_data.set('HAVE_JPEGXL', 1)
+req_version = '>=0.3.7'
+option = get_option('jpegxl')
+if not option.disabled()
+    libjxl_dep = dependency('libjxl', version : req_version, required : get_option('jpegxl'))
+    if libjxl_dep.found()
+        conf_data.set('HAVE_JPEGXL', 1)
+        user_options_message += 'jpegxl: jpegxl files supported\n'
+    else
+        user_options_message += 'jpegxl: libjxl ' + req_version + notfound + ' - jpegxl files not supported\n'
+    endif
+else
+    user_options_message += 'jpegxl: ' + disabled + ' - jpegxl files not supported\n'
 endif
 
 libraw_dep = []
-libraw_dep = dependency('libraw', version: '>=0.20', required : get_option('libraw'))
-if libraw_dep.found()
-    conf_data.set('HAVE_RAW', 1)
+req_version = '>=0.20'
+option = get_option('libraw')
+if not option.disabled()
+    libraw_dep = dependency('libraw', version : req_version, required : get_option('libraw'))
+    if libraw_dep.found()
+        conf_data.set('HAVE_RAW', 1)
+        user_options_message += 'libraw: .cr3 files supported\n'
+    else
+        user_options_message += 'libraw: libraw ' + req_version + notfound + ' - .cr3 files not supported\n'
+    endif
+else
+    user_options_message += 'libraw: ' + disabled + ' - .cr3 files not supported\n'
 endif
 
 lua_dep = []
-lua_dep = dependency('lua5.1', required : get_option('lua'))
-if lua_dep.found()
-    conf_data.set('HAVE_LUA', 1)
+req_version = '>=5.1'
+option = get_option('lua')
+if not option.disabled()
+    lua_dep = dependency('lua5.1',  version : req_version, required : get_option('lua'))
+    if lua_dep.found()
+        conf_data.set('HAVE_LUA', 1)
+        user_options_message += 'lua: lua supported\n'
+    else
+        user_options_message += 'lua: lua5.1 ' + req_version + notfound + ' - lua not supported\n'
+    endif
+else
+    user_options_message += 'lua: ' + disabled + ' - lua not supported\n'
 endif
 
 poppler_glib_dep = []
-poppler_glib_dep = dependency('poppler-glib', version: '>=0.62', required : get_option('pdf'))
-if poppler_glib_dep.found()
-    conf_data.set('HAVE_PDF', 1)
+req_version = '>=0.62'
+option = get_option('pdf')
+if not option.disabled()
+    poppler_glib_dep = dependency('poppler-glib', version : req_version, required : get_option('pdf'))
+    if poppler_glib_dep.found()
+        conf_data.set('HAVE_PDF', 1)
+        user_options_message += 'pdf: pdf files supported\n'
+    else
+        user_options_message += 'pdf: poppler-glib ' + req_version + notfound + ' - pdf files not supported\n'
+    endif
+else
+    user_options_message += 'pdf: ' + disabled + ' - pdf files not supported\n'
 endif
 
 gspell_dep = []
-gspell_dep = dependency('gspell-1', required: get_option('spell'))
-if gspell_dep.found()
-    conf_data.set('HAVE_SPELL', 1)
+req_version = '>=1.6'
+option = get_option('spell')
+if not option.disabled()
+    gspell_dep = dependency('gspell-1', version : req_version, required: get_option('spell'))
+    if gspell_dep.found()
+        conf_data.set('HAVE_SPELL', 1)
+        user_options_message += 'spell: spelling checks enabled\n'
+    else
+        user_options_message += 'spell: gspell-1 ' + req_version + notfound + ' - spelling checks not enabled\n'
+    endif
+else
+    user_options_message += 'spell: ' + disabled + ' - spelling checks not enabled\n'
 endif
 
 tiff_dep = []
-tiff_dep = cc.find_library('tiff', required: get_option('tiff'))
-if tiff_dep.found()
-    if cc.has_function('TIFFClientOpen',
-        dependencies : tiff_dep)
+option = get_option('tiff')
+if not option.disabled()
+    tiff_dep = cc.find_library('libtiff', required: get_option('tiff'))
+    if tiff_dep.found()
+        if cc.has_function('TIFFClientOpen',
+            dependencies : tiff_dep)
 
-        conf_data.set('HAVE_TIFF', 1)
+            conf_data.set('HAVE_TIFF', 1)
+            user_options_message += 'tiff: tiff files supported\n'
+        else
+            user_options_message += 'tiff: TIFFClientOpen ' + notfound + ' - tiff files not supported\n'
+        endif
+    else
+        user_options_message += 'tiff: libtiff ' + notfound + ' - tiff files not supported\n'
     endif
+else
+    user_options_message += 'tiff: ' + disabled + ' - tiff files not supported\n'
 endif
 
 libwebp_dep = []
-    libwebp_dep = dependency('libwebp', version: '>=0.6.1', required : get_option('webp'))
+req_version = '>=0.6.1'
+option = get_option('webp')
+if not option.disabled()
+    libwebp_dep = dependency('libwebp', version : req_version, required : get_option('webp'))
     if libwebp_dep.found()
         conf_data.set('HAVE_WEBP', 1)
+        user_options_message += 'webp: webp files supported\n'
+    else
+        user_options_message += 'webp: libwebp ' + req_version + notfound + ' - webp files not supported\n'
     endif
+else
+    user_options_message += 'webp: ' + disabled + ' - webp files not supported\n'
+endif
 
 # Check for nl_langinfo and _NL_TIME_FIRST_WEEKDAY
 code = '''#include <langinfo.h>
@@ -275,6 +455,9 @@ int main (int argc, char ** argv) {
 }'''
 if cc.links(code, name : 'nl_langinfo and _NL_TIME_FIRST_WEEKDAY')
     conf_data.set('HAVE__NL_TIME_FIRST_WEEKDAY', 1)
+    user_documentation_message += 'nl_langinfo - first weekday depends on locale\n'
+else
+    user_documentation_message += 'nl_langinfo ' + notfound + ' - first weekday defaults to Monday\n'
 endif
 
 conf_data.set_quoted('GETTEXT_PACKAGE', meson.project_name())
@@ -300,24 +483,44 @@ configure_file(input : 'config.h.in',
 subdir('po')
 subdir('plugins')
 
-# Generate the executable and the help files
+# Generate the executable
 subdir('src')
+
+# Generate the help files
 subdir('doc')
 
 # Install other project files
-run_command(find_program('gen_changelog.sh'), meson.project_source_root(), meson.project_build_root(), check : true)
+run_command(find_program('gen_changelog.sh'), meson.source_root(), meson.build_root(), check : true)
 
-run_command(find_program('gen_readme.sh'), meson.project_source_root(), meson.project_build_root(), check : true)
-
-pandoc = find_program('pandoc')
+pandoc = find_program('pandoc', required : false)
 if pandoc.found()
-    install_data('README.md', 'COPYING', join_paths(meson.project_build_root(), 'ChangeLog'), 'TODO', 'AUTHORS', join_paths(meson.project_build_root(), 'README.html'), join_paths(meson.project_build_root(), 'ChangeLog.html'), install_dir : helpdir, install_tag : 'help')
+    run_command(find_program('gen_readme.sh'), meson.source_root(), meson.build_root(), check : false)
+
+    install_data('README.md', 'COPYING', 'TODO', 'AUTHORS',
+        join_paths(meson.build_root(), 'ChangeLog'),
+        join_paths(meson.build_root(), 'README.html'),
+        join_paths(meson.build_root(), 'ChangeLog.html'),
+        install_dir : helpdir)
+
+    user_documentation_message += 'README.html created\n'
 else
-    install_data('README.md', 'COPYING', join_paths(meson.project_build_root(), 'ChangeLog'), 'TODO', 'README.lirc', 'AUTHORS', install_dir : helpdir, install_tag : 'help')
+    install_data('README.md', 'COPYING', 'TODO', 'AUTHORS',
+        join_paths(meson.build_root(), 'ChangeLog'),
+        join_paths(meson.build_root(), 'ChangeLog.html'),
+        install_dir : helpdir)
+
+    user_documentation_message += 'pandoc ' + notfound + ' - README.html not created\n'
 endif
 
-install_data('geeqie.png', install_dir : icondir, install_tag : 'icons')
-install_data('geeqie.1', install_dir : mandir1, install_tag : 'man')
+evince = find_program('evince', required : false)
+if evince.found()
+    user_documentation_message += 'print preview supported \n'
+else
+    user_documentation_message += 'evince ' + notfound + ' - print preview not available\n'
+endif
+
+install_data('geeqie.png', install_dir : icondir)
+install_data('geeqie.1', install_dir : mandir1)
 
 i18n.merge_file(
     input : 'geeqie.desktop.in',
@@ -336,3 +539,6 @@ i18n.merge_file(
     install_dir : appdatadir)
 
 configure_file(input: 'geeqie.spec.in', output: 'geeqie.spec', configuration: conf_data)
+
+user_message = ''.join('Configuration Summary -\n\n', user_options_message, '\n', user_documentation_message, '\n', user_thumbnailer_message)
+message(user_message)

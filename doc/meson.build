@@ -14,19 +14,24 @@
 subdir('html')
 
 guideindex_xml = files('docbook/GuideIndex.xml')
-destdir = join_paths(meson.project_build_root(), 'doc', 'html/')
-iconsdir = join_paths(meson.project_source_root(), 'doc', 'icons/')
+destdir = join_paths(meson.current_build_dir(), 'html/')
+iconsdir = join_paths(meson.current_source_dir(), 'icons/')
 guideindex_html = join_paths(destdir, 'GuideIndex.html')
 guideindex_ln = join_paths(destdir, 'index.html')
 
 run_command(gnome_doc_tool, 'html', '-o', destdir, '-p', iconsdir, guideindex_xml, check : false)
 run_command(find_program('ln'), '-s', '-f', guideindex_html, guideindex_ln, check : false)
 
-install_subdir(destdir, install_dir : helpdir, install_tag : 'help')
+install_subdir(destdir, install_dir : helpdir, exclude_directories : 'lua-api/latex')
 
-srcdir = join_paths(meson.project_source_root())
-destdir = join_paths(meson.project_build_root(), 'doc', 'html', 'lua-api')
+doxygen = find_program('doxygen', required : false)
+if doxygen.found()
+    srcdir = join_paths(meson.source_root())
+    destdir = join_paths(meson.build_root(), 'doc', 'html', 'lua-api')
 
-run_command(find_program('create-doxygen-lua-api.sh'), srcdir, destdir, check : false)
+    run_command(find_program('create-doxygen-lua-api.sh'), srcdir, destdir, check : false)
 
-install_subdir(destdir, install_dir : htmldir, install_tag : 'html')
+    user_documentation_message += 'lua-api help file will be created\n'
+else
+    user_documentation_message += 'doxygen ' + notfound + ' - lua-api help file will not be created\n'
+endif

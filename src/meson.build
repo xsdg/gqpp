@@ -250,19 +250,20 @@ icon_pairs = [
 'icon_tabcomp', files('ui_tabcomp.png'),
 ]
 
-ui_icons_h = custom_target(output : 'ui_icons.h',
+ui_icons_h = custom_target('ui_icons', output : 'ui_icons.h',
                 command : [gdk_pixbuf_csource, '--raw', '--extern', '--build-list', icon_pairs],
                 capture : true)
 
 project_sources += ui_icons_h
 
-xxd = find_program('xxd')
-run_command(xxd, '-i',
-            'ClayRGB1998.icc',
-            join_paths(meson.project_build_root(), 'src', 'ClayRGB1998_icc.h'),
-            check : true)
+xxd = find_program('generate-ClayRGB1998-icc-h.sh', dirs : join_paths(meson.source_root(), 'scripts'))
 
-project_sources += 'ClayRGB1998_icc.h'
+ClayRGB1998_icc_h = custom_target('ClayRGB1998',
+                    output : 'ClayRGB1998_icc.h',
+                    command : [xxd, join_paths(meson.current_source_dir(), 'ClayRGB1998.icc')],
+                    capture : true)
+
+project_sources += ClayRGB1998_icc_h
 
 executable('geeqie', project_sources,
 dependencies : [

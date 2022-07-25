@@ -11,7 +11,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #
 
-install_data('geeqie-random-image', install_dir : gq_bindir, install_tag : 'plugins')
+install_data('geeqie-random-image', install_dir : gq_bindir)
 
 i18n.merge_file(
     input : 'random-image.desktop.in',
