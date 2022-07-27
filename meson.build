@@ -51,12 +51,6 @@ project(
 # To inhibit warnings from the generated files icons_inline.h and ui_icons.h
 add_global_arguments('-Wno-overlength-strings', language : 'c')
 
-# Used for colored text in user messages
-c_red = '\033[91m'
-c_end = '\033[0m'
-disabled = c_red + 'DISABLED' + c_end
-notfound = c_red + ' NOT FOUND' + c_end
-
 # Project requirements
 project_sources = []
 gnome = import('gnome')
@@ -65,18 +59,14 @@ cc = meson.get_compiler('c')
 i18n = import('i18n')
 configuration_inc = include_directories('.')
 
-user_options_message = 'Optional features:\n'
-user_documentation_message = 'Documentation and other features:\n'
-user_thumbnailer_message = 'Thumbnailer options:\n'
-
 # External programs
 gdk_pixbuf_csource = find_program('gdk-pixbuf-csource', required : true)
 glib_genmarshal = find_program('glib-genmarshal', required : true)
 gnome_doc_tool = find_program('yelp-build', required : false)
 if gnome_doc_tool.found()
-    user_documentation_message += 'Help files will be created\n'
+    summary({'help' : ['Help files created:', true]}, section : 'Documentation', bool_yn : true)
 else
-    user_documentation_message += 'yelp-build ' + notfound + ' - Help files not created\n'
+    summary({'help' : ['yelp-build not found - Help files created:', false]}, section : 'Documentation', bool_yn : true)
 endif
 
 debug = get_option('debug')
@@ -133,6 +123,13 @@ mandir1 = join_paths(datadir, 'man', 'man1')
 
 podir = join_paths(meson.source_root(), 'po')
 
+summary({'gq_appdir': gq_appdir,
+        'gq_bindir': gq_helpdir,
+        'gq_helpdir': gq_helpdir,
+        'gq_htmldir': gq_htmldir,
+        'gq_localedir': gq_localedir,
+        }, section: 'Directories')
+
 # Create the define constants used in the sources. Set via config.h.in
 conf_data = configuration_data()
 conf_data.set_quoted('VERSION', run_command('./version.sh', check : true).stdout())
@@ -148,12 +145,12 @@ if not option.disabled()
     libarchive_dep = dependency('libarchive', version : req_version, required : get_option('archive'))
     if libarchive_dep.found()
         conf_data.set('HAVE_ARCHIVE', 1)
-        user_options_message += 'archive: archive files e.g. .zip supported\n'
+        summary({'archive' : ['archive files e.g. .zip supported:', true]}, section : 'Configuration', bool_yn : true)
     else
-        user_options_message += 'archive: libarchive ' + req_version + notfound + ' - archive files e.g. .zip not supported\n'
+        summary({'archive' : ['libarchive ' + req_version + ' not found - archive files e.g. .zip supported::', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    user_options_message += 'archive: ' + disabled + ' - archive files e.g. .zip not supported\n'
+    summary({'archive' : ['disabled - archive files e.g. .zip supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 lcms_dep = []
@@ -164,12 +161,12 @@ if not option.disabled()
     if lcms_dep.found()
         conf_data.set('HAVE_LCMS', 1)
         conf_data.set('HAVE_LCMS2', 1)
-        user_options_message += 'cms: color management supported\n'
+        summary({'cms' : ['color management supported:', true]}, section : 'Configuration', bool_yn : true)
     else
-        user_options_message += 'cms: lcms2 '+ req_version + notfound + ' - color management not supported\n'
+        summary({'cms' : ['lcms2' + req_version + ' not found - color management supported:', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    user_options_message += 'cms: ' + disabled + ' - color management not supported\n'
+    summary({'cms' : ['disabled - color management supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 ddjvuapi_dep = []
@@ -179,12 +176,12 @@ if not option.disabled()
     ddjvuapi_dep = dependency('ddjvuapi', version : req_version, required : get_option('djvu'))
     if ddjvuapi_dep.found()
         conf_data.set('HAVE_DJVU', 1)
-        user_options_message += 'djvu: djvu files supported\n'
+        summary({'djvu' : ['djvu files supported:', true]}, section : 'Configuration', bool_yn : true)
     else
-        user_options_message += 'djvu: ddjvuapi ' + req_version + notfound + ' - djvu files not supported\n'
+        summary({'djvu' : ['ddjvuapi ' + req_version + ' not found - djvu files supported:', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    user_options_message += 'djvu: ' + disabled + ' - djvu files not supported\n'
+    summary({'djvu' : ['disabled - djvu files supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 exiv2_dep = []
@@ -194,12 +191,12 @@ if not option.disabled()
     exiv2_dep = dependency('exiv2', version : req_version, required : get_option('exiv2'))
     if exiv2_dep.found()
         conf_data.set('HAVE_EXIV2', 1)
-        user_options_message += 'exiv2: image metadata processed by exiv2\n'
+        summary({'exiv2' : ['image metadata processed by exiv2:', true]}, section : 'Configuration', bool_yn : true)
     else
-        user_options_message += 'exiv2: exiv2 ' + req_version + notfound + ' - image data not processed by exiv2\n'
+        summary({'exiv2' : ['exiv2 ' + req_version + ' not found - image data not processed by exiv2:', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    user_options_message += 'exiv2: ' + disabled + '- image data not processed by exiv2\n'
+    summary({'exiv2' : ['disabled - image data processed by exiv2:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 libffmpegthumbnailer_dep = []
@@ -212,39 +209,30 @@ if not option.disabled()
 
     if libffmpegthumbnailer_dep.found()
         conf_data.set('HAVE_FFMPEGTHUMBNAILER', 1)
-        user_options_message += 'videothumbnailer: thumbnails of video files supported\n'
+        summary({'videothumbnailer' : ['thumbnails of video files supported:', true]}, section : 'Configuration', bool_yn : true)
 
-        if cc.has_member('struct video_thumbnailer_struct', 'prefer_embedded_metadata',
-            prefix : '#include <libffmpegthumbnailer/videothumbnailerc.h>')
-
+        result = cc.has_member('struct video_thumbnailer_struct', 'prefer_embedded_metadata', prefix : '#include <libffmpegthumbnailer/videothumbnailerc.h>')
+        if result
             conf_data.set('HAVE_FFMPEGTHUMBNAILER_METADATA', 1)
-            user_thumbnailer_message += 'fmpegthumbnailer_metadata: found\n'
-        else
-            user_thumbnailer_message += 'ffmpegthumbnailer_metadata: ' + notfound + '\n'
         endif
+        summary({'fmpegthumbnailer_metadata' : ['fmpegthumbnailer_metadata found:', result]}, section : 'Thumbnailer', bool_yn : true)
 
-        if cc.has_member('struct image_data_struct', 'image_data_width',
-            prefix : '#include <libffmpegthumbnailer/videothumbnailerc.h>' )
-
+        result = cc.has_member('struct image_data_struct', 'image_data_width', prefix : '#include <libffmpegthumbnailer/videothumbnailerc.h>' )
+        if result
             conf_data.set('HAVE_FFMPEGTHUMBNAILER_RGB', 1)
-            user_thumbnailer_message += 'ffmpegthumbnailer_rgb: found\n'
-        else
-            user_thumbnailer_message += 'ffmpegthumbnailer_rgb: ' + notfound + '\n'
         endif
+        summary({'fmpegthumbnailer_rgb' : ['fmpegthumbnailer_rgb found:', result]}, section : 'Thumbnailer', bool_yn : true)
 
-        if cc.has_function('video_thumbnailer_set_size',
-            dependencies : libffmpegthumbnailer_dep)
-
+        result = cc.has_function('video_thumbnailer_set_size', dependencies : libffmpegthumbnailer_dep)
+        if result
             conf_data.set('HAVE_FFMPEGTHUMBNAILER_WH', 1)
-            user_thumbnailer_message += 'ffmpegthumbnailer_set_size: found\n'
-        else
-            user_thumbnailer_message += 'ffmpegthumbnailer_set_size: ' + notfound + '\n'
         endif
+        summary({'fmpegthumbnailer_set_size' : ['fmpegthumbnailer_set_size found:', result]}, section : 'Thumbnailer', bool_yn : true)
     else
-        user_options_message += 'videothumbnailer: libvideothumbnailer ' + req_version + notfound + ' - no thumbnails of video files\n'
+        summary({'videothumbnailer' : ['libvideothumbnailer ' + req_version + ' not found - thumbnails of video files supported', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    user_options_message += 'videothumbnailer: ' + disabled + '- no thumbnails of video files\n'
+    summary({'videothumbnailer' : ['disabled -thumbnails of video files supported', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 champlain_dep = []
@@ -266,25 +254,25 @@ if not option.disabled()
             conf_data.set('HAVE_CLUTTER', 1)
             conf_data.set('HAVE_LIBCHAMPLAIN', 1)
             conf_data.set('HAVE_LIBCHAMPLAIN_GTK', 1)
-            user_options_message += 'gps-map: GPS map displayed\n'
+            summary({'gps-map' : ['GPS map displayed', true]}, section : 'Configuration', bool_yn : true)
         else
             if not clutter_dep.found()
-                user_options_message += 'gps-map: clutter-1.0 ' + req_version_clutter + notfound + ' - GPS map not displayed\n'
+                summary({'gps-map-clutter' : ['clutter-1.0 ' + req_version_clutter + ' not found - GPS map displayed:', false]}, section : 'Configuration', bool_yn : true)
             endif
             if not clutter_gtk_dep.found()
-                user_options_message += 'gps-map: clutter-gtk-1.0 ' + req_version_clutter_gtk + notfound + ' - GPS map not displayed\n'
+                summary({'gps-map-clutter-gtk' : ['clutter-gtk-1.0 ' + req_version_clutter_gtk + ' not found - GPS map displayed:', false]}, section : 'Configuration', bool_yn : true)
             endif
         endif
     else
         if not champlain_dep.found()
-            user_options_message += 'gps-map: champlain-0.12 ' + req_version_champlain + notfound + ' - GPS map not displayed\n'
+            summary({'gps-map-champlain' : ['champlain-0.12 ' + req_version_champlain + ' not found - GPS map displayed:', false]}, section : 'Configuration', bool_yn : true)
         endif
         if not champlain_gtk_dep.found()
-            user_options_message += 'gps-map: champlain-gtk-0.12 ' + req_version_champlain_gtk + notfound + ' - GPS map not displayed\n'
+            summary({'gps-map-champlain-gtk' : ['champlain-gtk-0.12 ' + req_version_champlain_gtk + ' not found - GPS map displayed:', false]}, section : 'Configuration', bool_yn : true)
         endif
     endif
 else
-    user_options_message += 'gps-map: ' + disabled + ' - GPS map not displayed\n'
+    summary({'gps-map' : ['disabled - GPS map displayed:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 libheif_dep = []
@@ -294,12 +282,12 @@ if not option.disabled()
     libheif_dep = dependency('libheif', version : req_version, required : get_option('heif'))
     if libheif_dep.found()
         conf_data.set('HAVE_HEIF', 1)
-        user_options_message += 'heif: heif files supported\n'
+        summary({'heif' : ['heif files supported:', true]}, section : 'Configuration', bool_yn : true)
     else
-        user_options_message += 'heif: libheif ' + req_version + notfound + ' - heif files not supported\n'
+        summary({'heif' : ['libheif ' + req_version + ' not found - heif files supported:', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    user_options_message += 'heif: ' + disabled + ' - heif files not supported\n'
+    summary({'heif' : ['disabled - heif files supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 libopenjp2_dep = []
@@ -309,12 +297,12 @@ if not option.disabled()
     libopenjp2_dep = dependency('libopenjp2', version : req_version, required : get_option('j2k'))
     if libopenjp2_dep.found()
         conf_data.set('HAVE_J2K', 1)
-        user_options_message += 'j2k: j2k files supported\n'
+        summary({'j2k' : ['j2k files supported:', true]}, section : 'Configuration', bool_yn : true)
     else
-        user_options_message += 'j2k: libopenjp2 ' + req_version + notfound + ' - j2k files not supported\n'
+        summary({'j2k' : ['libopenjp2 ' + req_version + ' not found - j2k files supported:', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    user_options_message += 'j2k: ' + disabled + ' - j2k files not supported\n'
+    summary({'j2k' : ['disabled - j2k files supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 libjpeg_dep = []
@@ -324,15 +312,15 @@ libjpeg_dep = dependency('libjpeg', required : get_option('jpeg'))
     if libjpeg_dep.found()
         if cc.has_function('jpeg_destroy_decompress', dependencies : libjpeg_dep)
             conf_data.set('HAVE_JPEG', 1)
-            user_options_message += 'jpeg: jpeg files supported\n'
+            summary({'jpeg' : ['jpeg files supported:', true]}, section : 'Configuration', bool_yn : true)
         else
-            user_options_message += 'jpeg: jpeg_destroy_decompress ' + notfound + ' - jpeg files not supported\n'
+            summary({'jpeg' : ['jpeg_destroy_decompress not found - jpeg files supported:', false]}, section : 'Configuration', bool_yn : true)
         endif
     else
-        user_options_message += 'jpeg: libjpeg: ' + notfound + '\n'
+        summary({'jpeg' : ['libjpeg: not found', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    user_options_message += 'jpeg: ' + disabled + ' - jpeg files not supported\n'
+    summary({'jpeg' : ['disabled - jpeg files supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 libjxl_dep = []
@@ -342,12 +330,12 @@ if not option.disabled()
     libjxl_dep = dependency('libjxl', version : req_version, required : get_option('jpegxl'))
     if libjxl_dep.found()
         conf_data.set('HAVE_JPEGXL', 1)
-        user_options_message += 'jpegxl: jpegxl files supported\n'
+        summary({'jpegxl' : ['jpegxl files supported:', true]}, section : 'Configuration', bool_yn : true)
     else
-        user_options_message += 'jpegxl: libjxl ' + req_version + notfound + ' - jpegxl files not supported\n'
+        summary({'jpegxl' : ['libjxl ' + req_version + ' not found - jpegxl files supported:', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    user_options_message += 'jpegxl: ' + disabled + ' - jpegxl files not supported\n'
+    summary({'jpegxl' : ['disabled - jpegxl files supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 libraw_dep = []
@@ -357,12 +345,12 @@ if not option.disabled()
     libraw_dep = dependency('libraw', version : req_version, required : get_option('libraw'))
     if libraw_dep.found()
         conf_data.set('HAVE_RAW', 1)
-        user_options_message += 'libraw: .cr3 files supported\n'
+        summary({'libraw' : ['.cr3 files supported:', true]}, section : 'Configuration', bool_yn : true)
     else
-        user_options_message += 'libraw: libraw ' + req_version + notfound + ' - .cr3 files not supported\n'
+        summary({'libraw' : ['libraw ' + req_version + ' not found - .cr3 files supported:', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    user_options_message += 'libraw: ' + disabled + ' - .cr3 files not supported\n'
+    summary({'libraw' : ['disabled - .cr3 files supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 lua_dep = []
@@ -372,12 +360,12 @@ if not option.disabled()
     lua_dep = dependency('lua5.1',  version : req_version, required : get_option('lua'))
     if lua_dep.found()
         conf_data.set('HAVE_LUA', 1)
-        user_options_message += 'lua: lua supported\n'
+        summary({'lua' : ['lua supported:', true]}, section : 'Configuration', bool_yn : true)
     else
-        user_options_message += 'lua: lua5.1 ' + req_version + notfound + ' - lua not supported\n'
+        summary({'lua' : ['lua5.1 ' + req_version + ' not found - lua supported:', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    user_options_message += 'lua: ' + disabled + ' - lua not supported\n'
+    summary({'lua' : ['disabled - lua supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 poppler_glib_dep = []
@@ -387,12 +375,12 @@ if not option.disabled()
     poppler_glib_dep = dependency('poppler-glib', version : req_version, required : get_option('pdf'))
     if poppler_glib_dep.found()
         conf_data.set('HAVE_PDF', 1)
-        user_options_message += 'pdf: pdf files supported\n'
+        summary({'pdf'  : ['pdf files supported:', true]}, section : 'Configuration', bool_yn : true)
     else
-        user_options_message += 'pdf: poppler-glib ' + req_version + notfound + ' - pdf files not supported\n'
+        summary({'pdf' : ['poppler-glib ' + req_version + ' not found - pdf files supported:', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    user_options_message += 'pdf: ' + disabled + ' - pdf files not supported\n'
+    summary({'pdf' : ['disabled - pdf files supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 gspell_dep = []
@@ -402,12 +390,12 @@ if not option.disabled()
     gspell_dep = dependency('gspell-1', version : req_version, required: get_option('spell'))
     if gspell_dep.found()
         conf_data.set('HAVE_SPELL', 1)
-        user_options_message += 'spell: spelling checks enabled\n'
+        summary({'spell' : ['spelling checks enabled', true]}, section : 'Configuration', bool_yn : true)
     else
-        user_options_message += 'spell: gspell-1 ' + req_version + notfound + ' - spelling checks not enabled\n'
+        summary({'spell' : ['gspell-1 ' + req_version + ' not found - spelling checks not enabled', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    user_options_message += 'spell: ' + disabled + ' - spelling checks not enabled\n'
+    summary({'spell' : ['disabled - spelling checks not enabled', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 tiff_dep = []
@@ -415,19 +403,17 @@ option = get_option('tiff')
 if not option.disabled()
     tiff_dep = cc.find_library('libtiff', required: get_option('tiff'))
     if tiff_dep.found()
-        if cc.has_function('TIFFClientOpen',
-            dependencies : tiff_dep)
-
+        if cc.has_function('TIFFClientOpen', dependencies : tiff_dep)
             conf_data.set('HAVE_TIFF', 1)
-            user_options_message += 'tiff: tiff files supported\n'
+            summary({'tiff' : ['tiff files supported:', true]}, section : 'Configuration', bool_yn : true)
         else
-            user_options_message += 'tiff: TIFFClientOpen ' + notfound + ' - tiff files not supported\n'
+            summary({'tiff' : ['TIFFClientOpen not found - tiff files supported:', false]}, section : 'Configuration', bool_yn : true)
         endif
     else
-        user_options_message += 'tiff: libtiff ' + notfound + ' - tiff files not supported\n'
+        summary({'tiff' : ['libtiff not found - tiff files supported:', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    user_options_message += 'tiff: ' + disabled + ' - tiff files not supported\n'
+    summary({'tiff' : ['disabled - tiff files supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 libwebp_dep = []
@@ -437,12 +423,12 @@ if not option.disabled()
     libwebp_dep = dependency('libwebp', version : req_version, required : get_option('webp'))
     if libwebp_dep.found()
         conf_data.set('HAVE_WEBP', 1)
-        user_options_message += 'webp: webp files supported\n'
+        summary({'webp' : ['webp files supported:', true]}, section : 'Configuration', bool_yn : true)
     else
-        user_options_message += 'webp: libwebp ' + req_version + notfound + ' - webp files not supported\n'
+        summary({'webp' : ['libwebp ' + req_version + ' not found - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    user_options_message += 'webp: ' + disabled + ' - webp files not supported\n'
+    summary({'webp' : ['disabled - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 # Check for nl_langinfo and _NL_TIME_FIRST_WEEKDAY
@@ -455,9 +441,9 @@ int main (int argc, char ** argv) {
 }'''
 if cc.links(code, name : 'nl_langinfo and _NL_TIME_FIRST_WEEKDAY')
     conf_data.set('HAVE__NL_TIME_FIRST_WEEKDAY', 1)
-    user_documentation_message += 'nl_langinfo - first weekday depends on locale\n'
+    summary({'nl_langinfo' : ['first weekday depends on locale:', true]}, section : 'Documentation', bool_yn : true)
 else
-    user_documentation_message += 'nl_langinfo ' + notfound + ' - first weekday defaults to Monday\n'
+    summary({'nl_langinfo' : ['nl_langinfo not found - first weekday depends on locale:', false, 'first weekday defaults to Monday']}, section : 'Documentation', bool_yn : true)
 endif
 
 conf_data.set_quoted('GETTEXT_PACKAGE', meson.project_name())
@@ -497,26 +483,24 @@ if pandoc.found()
     run_command(find_program('gen_readme.sh'), meson.source_root(), meson.build_root(), check : false)
 
     install_data('README.md', 'COPYING', 'TODO', 'AUTHORS',
-        join_paths(meson.build_root(), 'ChangeLog'),
-        join_paths(meson.build_root(), 'README.html'),
-        join_paths(meson.build_root(), 'ChangeLog.html'),
-        install_dir : helpdir)
-
-    user_documentation_message += 'README.html created\n'
+                 join_paths(meson.build_root(), 'ChangeLog'),
+                 join_paths(meson.build_root(), 'README.html'),
+                 join_paths(meson.build_root(), 'ChangeLog.html'),
+                 install_dir : helpdir)
+    summary({'README' : ['README.html created:', true]}, section : 'Documentation', bool_yn : true)
 else
     install_data('README.md', 'COPYING', 'TODO', 'AUTHORS',
-        join_paths(meson.build_root(), 'ChangeLog'),
-        join_paths(meson.build_root(), 'ChangeLog.html'),
-        install_dir : helpdir)
-
-    user_documentation_message += 'pandoc ' + notfound + ' - README.html not created\n'
+                 join_paths(meson.build_root(), 'ChangeLog'),
+                 join_paths(meson.build_root(), 'ChangeLog.html'),
+                 install_dir : helpdir)
+    summary({'README' : ['pandoc not found - README.html created:', false]}, section : 'Documentation', bool_yn : true)
 endif
 
 evince = find_program('evince', required : false)
 if evince.found()
-    user_documentation_message += 'print preview supported \n'
+    summary({'print preview' : ['print preview supported:', true]}, section : 'Documentation', bool_yn : true)
 else
-    user_documentation_message += 'evince ' + notfound + ' - print preview not available\n'
+    summary({'print preview' : ['evince not found - print preview supported:', false]}, section : 'Documentation', bool_yn : true)
 endif
 
 install_data('geeqie.png', install_dir : icondir)
@@ -539,6 +523,3 @@ i18n.merge_file(
     install_dir : appdatadir)
 
 configure_file(input: 'geeqie.spec.in', output: 'geeqie.spec', configuration: conf_data)
-
-user_message = ''.join(['Configuration Summary -\n\n', user_options_message, '\n', user_documentation_message, '\n', user_thumbnailer_message])
-message(user_message)

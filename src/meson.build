@@ -259,9 +259,9 @@ project_sources += ui_icons_h
 xxd = find_program('generate-ClayRGB1998-icc-h.sh', dirs : join_paths(meson.source_root(), 'scripts'))
 
 ClayRGB1998_icc_h = custom_target('ClayRGB1998',
+                    input: 'ClayRGB1998.icc',
                     output : 'ClayRGB1998_icc.h',
-                    command : [xxd, join_paths(meson.current_source_dir(), 'ClayRGB1998.icc')],
-                    capture : true)
+                    command : [xxd, '@INPUT@', '@OUTPUT@'])
 
 project_sources += ClayRGB1998_icc_h
 

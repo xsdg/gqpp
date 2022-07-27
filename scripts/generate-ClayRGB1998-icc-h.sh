@@ -13,5 +13,8 @@
 # GNU General Public License for more details.
 
 # To generate the required code, xxd has to run in the same folder as the source
+build_dir="$PWD"
+
 cd "$(dirname "$1")" || return 1
-xxd -i "$(basename "$1")"
+
+xxd -i "$(basename "$1")" "$build_dir/$2"

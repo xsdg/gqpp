@@ -31,7 +31,7 @@ if doxygen.found()
 
     run_command(find_program('create-doxygen-lua-api.sh'), srcdir, destdir, check : false)
 
-    user_documentation_message += 'lua-api help file will be created\n'
+    summary({'lua-api' : ['lua-api help file created:', true]}, section : 'Documentation', bool_yn : true)
 else
-    user_documentation_message += 'doxygen ' + notfound + ' - lua-api help file will not be created\n'
+    summary({'lua-api' : ['doxygen not found - lua-api help file created:', false]}, section : 'Documentation', bool_yn : true)
 endif
