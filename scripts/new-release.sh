@@ -113,8 +113,21 @@ else
 	git checkout stable/"$version"
 fi
 
-./scripts/generate-man-page.sh
-./doc/create-shortcuts-xml.sh
+# Regenerate to get the new version number in the man page
+rm -rf build
+meson setup build
+ninja -C build
+
+if ! ./scripts/generate-man-page.sh
+then
+	printf '%s\n' "generate-man-page.sh failed"
+	exit 1
+fi
+if ! ./doc/create-shortcuts-xml.sh
+then
+	printf '%s\n' "create-shortcuts-xml.sh failed"
+	exit 1
+fi
 
 git add NEWS
 git add org.geeqie.Geeqie.appdata.xml.in

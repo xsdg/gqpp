@@ -21,6 +21,12 @@ then
 	exit 1
 fi
 
+if  [ ! -f build/src/geeqie  ]
+then
+	printf '%s\n' "geeqie executable has not been built"
+	exit 1
+fi
+
 options_file=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 year=$(date +"%Y")
 
@@ -44,7 +50,7 @@ Copyright (C) 1999-2004 by John Ellis. Copyright (C) 2004-$year by The Geeqie Te
 own  risk! This  software released under the GNU General Public License. Please read the COPYING file for more
 information." > "$options_file"
 
-help2man --no-info --include="$options_file" src/geeqie > geeqie.1
+help2man --no-info --include="$options_file" build/src/geeqie > geeqie.1
 
 doclifter geeqie.1
 mv geeqie.1.xml doc/docbook/CommandLineOptions.xml

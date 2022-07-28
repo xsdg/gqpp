@@ -3,7 +3,7 @@
 ## @file
 ## @brief Generate the Geeqie version number
 ##
-## This script is called from configure.ac
+## This script is called from meson.build
 ##
 ## If the current branch is "master" a revison number is generated of the form:  
 ## <n.m>+git<date of last commit>-<last commit hash>  
