@@ -8,7 +8,7 @@
 ## Dialogs allow the user to install additional features.
 ##
 
-version="2022-07-21"
+version="2022-07-30"
 description='
 Geeqie is an image viewer.
 This script will download, compile, and install Geeqie on Debian-based systems.
@@ -44,7 +44,7 @@ libgexiv2-dev
 evince (for print preview)
 evince
 lua (for --remote commands)
-liblua5.1-0-dev
+liblua5.3-dev
 libffmpegthumbnailer (for mpeg thumbnails)
 libffmpegthumbnailer-dev
 libtiff (for tiff support)
@@ -567,7 +567,7 @@ then
 	ninja -C build install
 else
 	meson setup build
-	meson configure build -Dgtk3=false
+	meson configure build
 	printf '%b\n' "90 " > "$zen_pipe"
 	printf '%b\n' "#Installing Geeqie..." > "$zen_pipe"
 	ninja -C build install
