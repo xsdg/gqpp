@@ -14,8 +14,8 @@ builddir="$2"
 cd "$1"
 
 [ ! -e "ChangeLog.gqview" ] && exit 1
-[ ! -x "$(command -v git)" ] && exit 0
-[ ! -d ".git" ] && exit 0
+[ ! -x "$(command -v git)" ] && exit 1
+[ ! -d ".git" ] && exit 1
 
 LC_ALL=C git log --no-merges --no-notes --encoding=UTF-8 --no-follow --use-mailmap 1b58572cf58e9d2d4a0305108395dab5c66d3a09..HEAD > "$builddir/ChangeLog.$$.new" && \
 cat ChangeLog.gqview >> "$builddir/ChangeLog.$$.new" && \

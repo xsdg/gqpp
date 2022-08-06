@@ -476,22 +476,25 @@ subdir('src')
 subdir('doc')
 
 # Install other project files
-run_command(find_program('gen_changelog.sh'), meson.source_root(), meson.build_root(), check : true)
+res = run_command(find_program('gen_changelog.sh'), meson.source_root(), meson.build_root(), check : false)
+
+if res.returncode() == 0
+    install_data(join_paths(meson.build_root(), 'ChangeLog'), join_paths(meson.build_root(), 'ChangeLog.html'), install_dir : helpdir)
+    summary({'ChangeLog' : ['ChangeLog, ChangeLog.html created:', true]}, section : 'Documentation', bool_yn : true)
+else
+    summary({'ChangeLog' : ['ChangeLog, ChangeLog.html created:', false]}, section : 'Documentation', bool_yn : true)
+endif
 
 pandoc = find_program('pandoc', required : false)
 if pandoc.found()
     run_command(find_program('gen_readme.sh'), meson.source_root(), meson.build_root(), check : false)
 
     install_data('README.md', 'COPYING', 'TODO', 'AUTHORS',
-                 join_paths(meson.build_root(), 'ChangeLog'),
                  join_paths(meson.build_root(), 'README.html'),
-                 join_paths(meson.build_root(), 'ChangeLog.html'),
                  install_dir : helpdir)
     summary({'README' : ['README.html created:', true]}, section : 'Documentation', bool_yn : true)
 else
     install_data('README.md', 'COPYING', 'TODO', 'AUTHORS',
-                 join_paths(meson.build_root(), 'ChangeLog'),
-                 join_paths(meson.build_root(), 'ChangeLog.html'),
                  install_dir : helpdir)
     summary({'README' : ['pandoc not found - README.html created:', false]}, section : 'Documentation', bool_yn : true)
 endif

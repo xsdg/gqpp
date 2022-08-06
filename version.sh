@@ -18,7 +18,7 @@
 ## Geeqie <n.m[.p]>
 ##
 
-if [ -d .git ]
+if [ -d .git ] && [ -x "$(command -v git)" ]
 then
 	branch=$(git rev-parse --abbrev-ref HEAD)
 
