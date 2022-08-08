@@ -2322,9 +2322,9 @@ static gboolean search_file_next(SearchData *sd)
 		{
 		tested = TRUE;
 		match = FALSE;
-		gint search_marks;
-		gint i;
-		gchar *marks_string;
+		gint search_marks = -1;
+		gint i = 0;
+		gchar *marks_string = NULL;
 
 		if (g_strcmp0(gtk_combo_box_text_get_active_text(
 						GTK_COMBO_BOX_TEXT(sd->marks_type)), _("Any mark")) == 0)
@@ -2350,6 +2350,7 @@ static gboolean search_file_next(SearchData *sd)
 					search_marks = 1 << i;
 					}
 				g_free(marks_string);
+				marks_string = NULL;
 				}
 			}
 
