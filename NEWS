@@ -1,3 +1,19 @@
+Geeqie 2.0
+============
+
+- GTK2 no longer supported
+- Configuration system moved from Autotools to Meson
+- Spelling checks for metadata
+- When navigation folders, on return to a folder select last image viewed
+- Search facility in Exif window
+- Display keyboard shortcuts in popup menus
+- LIRC deleted
+- renderer-clutter() deleted
+
+And as usual:
+- Many bug fixes
+- Updated language support
+
 Geeqie 1.7.3
 ============
 
