@@ -1788,9 +1788,9 @@ void layout_image_first(LayoutWindow *lw)
 		CollectInfo *first_collection;
 		first_collection = collection_get_first(cd);
 		if (first_collection != info)
-                	{
-                	layout_image_set_collection_real(lw, cd, first_collection, TRUE);
-                        }
+			{
+			layout_image_set_collection_real(lw, cd, first_collection, TRUE);
+			}
 		return;
 		}
 
@@ -1817,9 +1817,9 @@ void layout_image_last(LayoutWindow *lw)
 		CollectInfo *last_collection;
 		last_collection = collection_get_last(cd);
 		if (last_collection != info)
-                	{
-                	layout_image_set_collection_real(lw, cd, last_collection, FALSE);
-                        }
+			{
+			layout_image_set_collection_real(lw, cd, last_collection, FALSE);
+			}
 		return;
 		}
 
