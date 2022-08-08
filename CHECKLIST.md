@@ -16,8 +16,9 @@ cd ./po
 * Keep translations in sync with the code
 
 ```sh
-cd ./po
-make update-po
+cd ./build
+meson compile geeqie-pot
+meson compile geeqie-update-po
 ```
 
 * Update the desktop template if menus have changed

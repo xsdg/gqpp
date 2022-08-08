@@ -13,7 +13,7 @@ echo
 
 echo "Note: completion % in the chart below may not be quite correct"
 echo "      when fuzzy translations exist but do not appear in the source."
-echo "      For exact results, run make update-po with up to date POTFILES.in."
+echo "      For exact results, run make update-po with up to date POTFILES."
 echo "      comp % = trans / (trans + fuzzy + untrans)"
 echo
 
