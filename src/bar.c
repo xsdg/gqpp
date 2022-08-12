@@ -815,7 +815,7 @@ GtkWidget *bar_new(LayoutWindow *lw)
 }
 
 
-GtkWidget *bar_update_from_config(GtkWidget *bar, const gchar **attribute_names, const gchar **attribute_values, LayoutWindow *lw)
+GtkWidget *bar_update_from_config(GtkWidget *bar, const gchar **attribute_names, const gchar **attribute_values, LayoutWindow *lw, gboolean startup)
 {
 	gboolean enabled = TRUE;
 	gint width = SIDEBAR_DEFAULT_WIDTH;
@@ -832,7 +832,10 @@ GtkWidget *bar_update_from_config(GtkWidget *bar, const gchar **attribute_names,
 		log_printf("unknown attribute %s = %s\n", option, value);
 		}
 
-	gtk_paned_set_position(GTK_PANED(lw->utility_paned), width);
+	if (startup)
+		{
+		gtk_paned_set_position(GTK_PANED(lw->utility_paned), width);
+		}
 
 	if (enabled)
 		{
@@ -848,7 +851,7 @@ GtkWidget *bar_update_from_config(GtkWidget *bar, const gchar **attribute_names,
 GtkWidget *bar_new_from_config(LayoutWindow *lw, const gchar **attribute_names, const gchar **attribute_values)
 {
 	GtkWidget *bar = bar_new(lw);
-	return bar_update_from_config(bar, attribute_names, attribute_values, lw);
+	return bar_update_from_config(bar, attribute_names, attribute_values, lw, TRUE);
 }
 
 GtkWidget *bar_pane_expander_title(const gchar *title)
