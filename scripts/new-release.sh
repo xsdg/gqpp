@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ## @file
 ## @brief Create a new release
@@ -16,6 +16,14 @@
 ##
 ## It is expected that the first line of NEWS is in the form "Geeqie \<a.b[.d]\>
 ##
+
+error_handler ()
+{
+	echo "Error on line: $1"
+	exit 1
+}
+trap 'error_handler ${LINENO}' ERR
+
 
 version=
 start=
@@ -149,6 +157,7 @@ fi
 
 rm -rf /tmp/geeqie-"$revision".tar.xz
 rm -rf /tmp/geeqie-"$revision".tar.xz.asc
+rm -rf build
 
 # shellcheck disable=SC2140
 tar --create --xz --file=/tmp/geeqie-"$revision".tar.xz --exclude=".git" --exclude="configure" --exclude="web" --transform s/"\bgeeqie\b"/"geeqie-$revision"/ ../geeqie
