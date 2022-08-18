@@ -646,6 +646,10 @@ static void gqv_cell_renderer_icon_render(GtkCellRenderer *cell,
 
 	pixbuf = cellicon->pixbuf;
 	text = cellicon->text;
+	if (!text)
+		{
+		return;
+		}
 
 	gtk_cell_renderer_get_padding(cell, &xpad, &ypad);
 
@@ -778,10 +782,13 @@ static void gqv_cell_renderer_icon_render(GtkCellRenderer *cell,
 				gtk_style_context_add_provider(context, provider,
 							GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-				gtk_render_check(context, cr,
-					 pix_rect.x + i * TOGGLE_SPACING + (TOGGLE_WIDTH - TOGGLE_SPACING) / 2,
-					 pix_rect.y,
-					 TOGGLE_WIDTH, TOGGLE_WIDTH);
+				if (state & GTK_STATE_FLAG_CHECKED)
+					{
+					gtk_render_check(context, cr,
+						pix_rect.x + i * TOGGLE_SPACING + (TOGGLE_WIDTH - TOGGLE_SPACING) / 2,
+						pix_rect.y,
+						TOGGLE_WIDTH, TOGGLE_WIDTH);
+					}
 				gtk_render_frame(context, cr,
 					 pix_rect.x + i * TOGGLE_SPACING + (TOGGLE_WIDTH - TOGGLE_SPACING) / 2,
 					 pix_rect.y,
@@ -795,6 +802,8 @@ static void gqv_cell_renderer_icon_render(GtkCellRenderer *cell,
 					}
 				gtk_style_context_restore(context);
 				cairo_restore(cr);
+				gtk_style_context_remove_provider(context, provider);
+				g_object_unref(provider);
 				}
 			}
 		}
