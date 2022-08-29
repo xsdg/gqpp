@@ -267,6 +267,7 @@ project_sources += ClayRGB1998_icc_h
 
 executable('geeqie', project_sources,
 dependencies : [
+gtk_dep,
 champlain_dep,
 champlain_gtk_dep,
 clutter_dep,
@@ -275,7 +276,6 @@ ddjvuapi_dep,
 exiv2_dep,
 glib_dep,
 gspell_dep,
-gtk_dep,
 lcms_dep,
 libarchive_dep,
 libffmpegthumbnailer_dep,
