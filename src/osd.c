@@ -29,8 +29,8 @@
 #include "exif.h"
 #include "glua.h"
 #include "metadata.h"
-#include "ui_fileops.h"
-#include "ui_misc.h"
+#include "ui-fileops.h"
+#include "ui-misc.h"
 
 #include <math.h>
 

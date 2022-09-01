@@ -19,10 +19,10 @@
  */
 
 #include "main.h"
-#include "history_list.h"
+#include "history-list.h"
 
-#include "secure_save.h"
-#include "ui_fileops.h"
+#include "secure-save.h"
+#include "ui-fileops.h"
 
 static void update_recent_viewed_folder_image_list(const gchar *path);
 

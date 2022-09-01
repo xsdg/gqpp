@@ -20,13 +20,13 @@
  */
 
 #include "main.h"
-#include "bar_rating.h"
+#include "bar-rating.h"
 
 #include "bar.h"
 #include "filedata.h"
 #include "metadata.h"
 #include "rcfile.h"
-#include "ui_misc.h"
+#include "ui-misc.h"
 
 /**
  * @file

@@ -20,27 +20,27 @@
  */
 
 #include "main.h"
-#include "view_file_list.h"
+#include "view-file-list.h"
 
 #include "bar.h"
-#include "cache_maint.h"
+#include "cache-maint.h"
 #include "collect.h"
 #include "dnd.h"
 #include "editors.h"
 #include "img-view.h"
 #include "layout.h"
-#include "layout_image.h"
+#include "layout-image.h"
 #include "menu.h"
 #include "metadata.h"
 #include "misc.h"
 #include "thumb.h"
 #include "utilops.h"
-#include "ui_fileops.h"
-#include "ui_menu.h"
-#include "ui_misc.h"
-#include "ui_tree_edit.h"
-#include "uri_utils.h"
-#include "view_file.h"
+#include "ui-fileops.h"
+#include "ui-menu.h"
+#include "ui-misc.h"
+#include "ui-tree-edit.h"
+#include "uri-utils.h"
+#include "view-file.h"
 
 
 #include <gdk/gdkkeysyms.h> /* for keyboard values */

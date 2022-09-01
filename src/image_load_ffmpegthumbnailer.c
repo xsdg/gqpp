@@ -21,7 +21,7 @@
 
 #include "main.h"
 #include "image-load.h"
-#include "image_load_ffmpegthumbnailer.h"
+#include "image-load-ffmpegthumbnailer.h"
 
 #ifdef HAVE_FFMPEGTHUMBNAILER
 #include <libffmpegthumbnailer/videothumbnailerc.h>

@@ -27,7 +27,7 @@
 #include "main.h"
 
 #include "image-load.h"
-#include "image_load_dds.h"
+#include "image-load-dds.h"
 
 typedef struct _ImageLoaderDDS ImageLoaderDDS;
 struct _ImageLoaderDDS {

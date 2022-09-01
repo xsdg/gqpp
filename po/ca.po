@@ -101,34 +101,34 @@ msgstr "Plantilla"
 msgid "Tethered photography"
 msgstr "Fotografia tethered"
 
-#: src/advanced_exif.c:437 src/cache_maint.c:1773 src/preferences.c:2851
+#: src/advanced-exif.c:437 src/cache-maint.c:1773 src/preferences.c:2851
 #: src/search.c:2281 src/search.c:3609
 msgid "Metadata"
 msgstr "Metadades"
 
-#: src/advanced_exif.c:493 src/preferences.c:2756
+#: src/advanced-exif.c:493 src/preferences.c:2756
 msgid "Description"
 msgstr "Descripció"
 
-#: src/advanced_exif.c:494
+#: src/advanced-exif.c:494
 msgid "Value"
 msgstr "Valor"
 
-#: src/advanced_exif.c:495 src/desktop_file.c:631 src/dupe.c:3978
+#: src/advanced-exif.c:495 src/desktop-file.c:631 src/dupe.c:3978
 #: src/dupe.c:4703 src/dupe.c:5287 src/search.c:3693 src/utilops.c:507
-#: src/view_file/view_file_list.c:2228
+#: src/view-file/view-file-list.c:2228
 msgid "Name"
 msgstr "Nom"
 
-#: src/advanced_exif.c:496
+#: src/advanced-exif.c:496
 msgid "Tag"
 msgstr "Marcador"
 
-#: src/advanced_exif.c:497
+#: src/advanced-exif.c:497
 msgid "Format"
 msgstr "Format"
 
-#: src/advanced_exif.c:498
+#: src/advanced-exif.c:498
 msgid "Elements"
 msgstr "Elements"
 
@@ -136,11 +136,11 @@ msgstr "Elements"
 msgid "Move to _top"
 msgstr "Mou a _dalt de tot"
 
-#: src/bar.c:404 src/toolbar.c:225 src/ui_bookmark.c:414
+#: src/bar.c:404 src/toolbar.c:225 src/ui-bookmark.c:414
 msgid "Move _up"
 msgstr "Mou _amunt"
 
-#: src/bar.c:405 src/toolbar.c:226 src/ui_bookmark.c:416
+#: src/bar.c:405 src/toolbar.c:226 src/ui-bookmark.c:416
 msgid "Move _down"
 msgstr "Mou a_vall"
 
@@ -160,62 +160,62 @@ msgstr "Suprimeix"
 msgid "Add Pane"
 msgstr "Afegeix Panell"
 
-#: src/bar_comment.c:236
+#: src/bar-comment.c:236
 msgid "Add text to selected files"
 msgstr "Afegeix un text als fitxers seleccionats"
 
-#: src/bar_comment.c:237
+#: src/bar-comment.c:237
 msgid "Replace existing text in selected files"
 msgstr "Reemplaça el text existent als fitxers seleccionats"
 
-#: src/bar_exif.c:225
+#: src/bar-exif.c:225
 msgid "<empty label, fixme>"
 msgstr "<etiqueta buida, cal arreglar-la>"
 
-#: src/bar_exif.c:562 src/bar_exif.c:572
+#: src/bar-exif.c:562 src/bar-exif.c:572
 msgid "Configure entry"
 msgstr "Configura el registre"
 
-#: src/bar_exif.c:562 src/bar_exif.c:572 src/bar_exif.c:660
+#: src/bar-exif.c:562 src/bar-exif.c:572 src/bar-exif.c:660
 msgid "Add entry"
 msgstr "Afegeix un registre"
 
-#: src/bar_exif.c:578
+#: src/bar-exif.c:578
 msgid "Key:"
 msgstr "Clau:"
 
-#: src/bar_exif.c:587
+#: src/bar-exif.c:587
 msgid "Title:"
 msgstr "Títol:"
 
-#: src/bar_exif.c:596
+#: src/bar-exif.c:596
 msgid "Show only if set"
 msgstr "Mostra'l només si no és buit"
 
-#: src/bar_exif.c:597
+#: src/bar-exif.c:597
 msgid "Editable (supported only for XMP)"
 msgstr "Editable (només suportat per XMP)"
 
-#: src/bar_exif.c:646
+#: src/bar-exif.c:646
 #, c-format
 msgid "Configure \"%s\""
 msgstr "Configura «%s»"
 
-#: src/bar_exif.c:647 src/bar_keywords.c:1369
+#: src/bar-exif.c:647 src/bar-keywords.c:1369
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Suprimeix «%s»"
 
-#: src/bar_exif.c:648
+#: src/bar-exif.c:648
 #, c-format
 msgid "Copy \"%s\""
 msgstr "Còpia «%s»"
 
-#: src/bar_exif.c:661
+#: src/bar-exif.c:661
 msgid "Show hidden entries"
 msgstr "Mostra els registres ocults"
 
-#: src/bar_gps.c:187
+#: src/bar-gps.c:187
 #, c-format
 msgid ""
 "\n"
@@ -224,7 +224,7 @@ msgstr ""
 "\n"
 "Voleu geocodificar la imatge %s?"
 
-#: src/bar_gps.c:192
+#: src/bar-gps.c:192
 #, c-format
 msgid ""
 "\n"
@@ -233,7 +233,7 @@ msgstr ""
 "\n"
 "Voleu geocodificar %i imatges?"
 
-#: src/bar_gps.c:197
+#: src/bar-gps.c:197
 msgid ""
 "\n"
 "This image is already geocoded!"
@@ -241,7 +241,7 @@ msgstr ""
 "\n"
 "La imatge ja és geocodificada!"
 
-#: src/bar_gps.c:202
+#: src/bar-gps.c:202
 msgid ""
 "\n"
 "One image is already geocoded!"
@@ -249,7 +249,7 @@ msgstr ""
 "\n"
 "Una imatge ja és geocodificada!"
 
-#: src/bar_gps.c:207
+#: src/bar-gps.c:207
 #, c-format
 msgid ""
 "\n"
@@ -258,7 +258,7 @@ msgstr ""
 "\n"
 "%i imatges ja son geocodificades!"
 
-#: src/bar_gps.c:212
+#: src/bar-gps.c:212
 #, c-format
 msgid ""
 "\n"
@@ -269,37 +269,37 @@ msgstr ""
 "\n"
 "Ubicació: %s \n"
 
-#: src/bar_gps.c:214
+#: src/bar-gps.c:214
 msgid "Geocode images"
 msgstr "Geocodifica imatges"
 
-#: src/bar_gps.c:218
+#: src/bar-gps.c:218
 msgid "Write lat/long to meta-data?"
 msgstr "Escriure latitud/longitud a les meta-dades?"
 
-#: src/bar_gps.c:732
+#: src/bar-gps.c:732
 #, c-format
 msgid "Zoom %i"
 msgstr "Zoom %i"
 
-#: src/bar_gps.c:750
+#: src/bar-gps.c:750
 #, c-format
 msgid "Zoom level %i"
 msgstr "Nivell de zoom %i"
 
-#: src/bar_gps.c:755
+#: src/bar-gps.c:755
 msgid "Loading map"
 msgstr "Estic carregant el mapa"
 
-#: src/bar_gps.c:821
+#: src/bar-gps.c:821
 msgid "Enable markers"
 msgstr "Habilita els marcadors"
 
-#: src/bar_gps.c:823
+#: src/bar-gps.c:823
 msgid "Centre map on marker"
 msgstr "Centra el mapa al marcador"
 
-#: src/bar_gps.c:845
+#: src/bar-gps.c:845
 msgid ""
 "Move map centre to marker\n"
 " is disabled"
@@ -307,7 +307,7 @@ msgstr ""
 "Moure el centre del mapa al marcador\n"
 "està deshabilitat"
 
-#: src/bar_gps.c:850
+#: src/bar-gps.c:850
 msgid ""
 "Move map centre to marker\n"
 " is enabled"
@@ -315,182 +315,182 @@ msgstr ""
 "Moure el centre del mapa al marcador\n"
 "està habilitat"
 
-#: src/bar_gps.c:854
+#: src/bar-gps.c:854
 msgid "Map centering"
 msgstr "Centra mapa"
 
-#: src/bar_gps.c:959 src/menu.c:334 src/preferences.c:2244
+#: src/bar-gps.c:959 src/menu.c:334 src/preferences.c:2244
 msgid "Zoom"
 msgstr "Ampliació"
 
-#: src/bar_gps.c:969
+#: src/bar-gps.c:969
 msgid "Zoom level"
 msgstr "Nivell de zoom"
 
-#: src/bar_gps.c:1023
+#: src/bar-gps.c:1023
 msgid "GPS Map"
 msgstr "Mapa GPS"
 
-#: src/bar_histogram.c:234
+#: src/bar-histogram.c:234
 msgid "Histogram on _Red"
 msgstr "Histograma del ve_rmell"
 
-#: src/bar_histogram.c:235
+#: src/bar-histogram.c:235
 msgid "Histogram on _Green"
 msgstr "Histograma del _verd"
 
-#: src/bar_histogram.c:236
+#: src/bar-histogram.c:236
 msgid "Histogram on _Blue"
 msgstr "Histograma del _blau"
 
-#: src/bar_histogram.c:237
+#: src/bar-histogram.c:237
 msgid "_Histogram on RGB"
 msgstr "_Histograma del RGB"
 
-#: src/bar_histogram.c:238
+#: src/bar-histogram.c:238
 msgid "Histogram on _Value"
 msgstr "Histograma _segons el valor"
 
-#: src/bar_histogram.c:242
+#: src/bar-histogram.c:242
 msgid "Li_near Histogram"
 msgstr "Histograma li_neal"
 
-#: src/bar_histogram.c:243
+#: src/bar-histogram.c:243
 msgid "L_og Histogram"
 msgstr "Histograma l_ogarítmic"
 
-#: src/bar_keywords.c:490
+#: src/bar-keywords.c:490
 msgid "Add selected keywords to selected files"
 msgstr "Afegeix paraules clau als fitxers seleccionats"
 
-#: src/bar_keywords.c:491
+#: src/bar-keywords.c:491
 msgid "Replace existing keywords in selected files with selected keywords"
 msgstr ""
 "Reemplaça les paraules clau dels fitxers seleccionats amb les paraules claus "
 "seleccionades"
 
-#: src/bar_keywords.c:962
+#: src/bar-keywords.c:962
 msgid "Edit keyword"
 msgstr "Edita la paraula clau"
 
-#: src/bar_keywords.c:962 src/bar_keywords.c:969 src/bar_keywords.c:1314
+#: src/bar-keywords.c:962 src/bar-keywords.c:969 src/bar-keywords.c:1314
 msgid "New keyword"
 msgstr "Afegeix una paraula clau"
 
-#: src/bar_keywords.c:969
+#: src/bar-keywords.c:969
 msgid "Configure keyword"
 msgstr "Configura la paraula clau"
 
-#: src/bar_keywords.c:975
+#: src/bar-keywords.c:975
 msgid "Keyword:"
 msgstr "Paraula clau:"
 
-#: src/bar_keywords.c:984
+#: src/bar-keywords.c:984
 msgid "Keyword type:"
 msgstr "Tipus de paraula clau:"
 
-#: src/bar_keywords.c:986
+#: src/bar-keywords.c:986
 msgid "Active keyword"
 msgstr "Paraula clau activa"
 
-#: src/bar_keywords.c:989
+#: src/bar-keywords.c:989
 msgid "Helper"
 msgstr "Ajuda"
 
-#: src/bar_keywords.c:1063
+#: src/bar-keywords.c:1063
 msgid "This will disconnect all Marks Keywords connections"
 msgstr "Això desconnectarà les connexions amb les Marques de Paraules Clau"
 
-#: src/bar_keywords.c:1065
+#: src/bar-keywords.c:1065
 msgid "Marks Keywords"
 msgstr "Marca les Paraules Clau"
 
-#: src/bar_keywords.c:1338
+#: src/bar-keywords.c:1338
 #, c-format
 msgid "Add \"%s\" to all selected images"
 msgstr "Afegeix «%s» a totes les imatges seleccionades"
 
-#: src/bar_keywords.c:1344
+#: src/bar-keywords.c:1344
 #, c-format
 msgid "Hide \"%s\""
 msgstr "Oculta «%s»"
 
-#: src/bar_keywords.c:1351
+#: src/bar-keywords.c:1351
 #, c-format
 msgid "Mark %d"
 msgstr "Marca _%d"
 
-#: src/bar_keywords.c:1359
+#: src/bar-keywords.c:1359
 #, c-format
 msgid "Connect \"%s\" to mark"
 msgstr "Connecta «%s» a la marca"
 
-#: src/bar_keywords.c:1366
+#: src/bar-keywords.c:1366
 #, c-format
 msgid "Edit \"%s\""
 msgstr "Edita «%s»"
 
-#: src/bar_keywords.c:1376
+#: src/bar-keywords.c:1376
 #, c-format
 msgid "Disconnect \"%s\" from mark %s"
 msgstr "Desconnecta «%s» de la marca %s"
 
-#: src/bar_keywords.c:1383
+#: src/bar-keywords.c:1383
 msgid "Disconnect all Mark Keyword connections"
 msgstr "Desconnectar totes les connexions amb les Marques de Paraules Clau"
 
-#: src/bar_keywords.c:1394 src/bar_keywords.c:1408
+#: src/bar-keywords.c:1394 src/bar-keywords.c:1408
 msgid "Expand checked"
 msgstr "Amplia els seleccionats"
 
-#: src/bar_keywords.c:1395 src/bar_keywords.c:1409
+#: src/bar-keywords.c:1395 src/bar-keywords.c:1409
 msgid "Collapse unchecked"
 msgstr "Redueix els seleccionats"
 
-#: src/bar_keywords.c:1396 src/bar_keywords.c:1410
+#: src/bar-keywords.c:1396 src/bar-keywords.c:1410
 msgid "Hide unchecked"
 msgstr "Oculta els seleccionats"
 
-#: src/bar_keywords.c:1397
+#: src/bar-keywords.c:1397
 msgid "Revert all hidden"
 msgstr "Reverteix tots els amagats"
 
-#: src/bar_keywords.c:1399 src/dupe.c:3991
+#: src/bar-keywords.c:1399 src/dupe.c:3991
 msgid "Show all"
 msgstr "Mostra'ls tots"
 
-#: src/bar_keywords.c:1400
+#: src/bar-keywords.c:1400
 msgid "Collapse all"
 msgstr "Redueix tot"
 
-#: src/bar_keywords.c:1401
+#: src/bar-keywords.c:1401
 msgid "Revert"
 msgstr "Reverteix"
 
-#: src/bar_keywords.c:1405
+#: src/bar-keywords.c:1405
 msgid "On any change"
 msgstr "Si hi ha algun canvi"
 
-#: src/bar_keywords.c:1901
+#: src/bar-keywords.c:1901
 #, c-format
 msgid "Error: Unable to write keywords list to: %s\n"
 msgstr "Error: No és possible escriure llistats d'històrics a: %s\n"
 
-#: src/bar_rating.c:167
+#: src/bar-rating.c:167
 #, fuzzy
 msgid "Rejected"
 msgstr "Reinicia els seleccionats"
 
-#: src/bar_rating.c:171
+#: src/bar-rating.c:171
 #, fuzzy
 msgid "Unrated"
 msgstr "sense calibrar"
 
-#: src/bar_sort.c:435
+#: src/bar-sort.c:435
 msgid "Sort Manager Operations"
 msgstr "Gestor d'Operacions d'Ordenacions"
 
-#: src/bar_sort.c:438
+#: src/bar-sort.c:438
 msgid ""
 "Additional operations utilising plugins\n"
 "may be included by setting:\n"
@@ -506,7 +506,7 @@ msgstr ""
 "\n"
 "al fitxer del connector."
 
-#: src/bar_sort.c:506
+#: src/bar-sort.c:506
 #, c-format
 msgid ""
 "The collection:\n"
@@ -517,11 +517,11 @@ msgstr ""
 "%s\n"
 "ja existeix."
 
-#: src/bar_sort.c:507
+#: src/bar-sort.c:507
 msgid "Collection exists"
 msgstr "Col·lecció existent"
 
-#: src/bar_sort.c:521 src/collect.c:1216 src/collect-dlg.c:93
+#: src/bar-sort.c:521 src/collect.c:1216 src/collect-dlg.c:93
 #, c-format
 msgid ""
 "Failed to save the collection:\n"
@@ -530,51 +530,51 @@ msgstr ""
 "No s'ha pogut desar la col·lecció:\n"
 "%s"
 
-#: src/bar_sort.c:522 src/collect.c:1217 src/collect-dlg.c:94
+#: src/bar-sort.c:522 src/collect.c:1217 src/collect-dlg.c:94
 msgid "Save Failed"
 msgstr "No s'ha pogut desar"
 
-#: src/bar_sort.c:557 src/bar_sort.c:737
+#: src/bar-sort.c:557 src/bar-sort.c:737
 msgid "Add Bookmark"
 msgstr "Afegeix a les adreces d'interès"
 
-#: src/bar_sort.c:561
+#: src/bar-sort.c:561
 msgid "Add Collection"
 msgstr "Afegeix Col·lecció"
 
-#: src/bar_sort.c:578 src/shortcuts.c:118 src/ui_bookmark.c:295
+#: src/bar-sort.c:578 src/shortcuts.c:118 src/ui-bookmark.c:295
 msgid "Name:"
 msgstr "Nom:"
 
-#: src/bar_sort.c:658
+#: src/bar-sort.c:658
 msgid "Sort Manager"
 msgstr "Gestor d'ordenació"
 
-#: src/bar_sort.c:667 src/pan-view/pan-view.c:1909 src/ui_pathsel.c:1100
+#: src/bar-sort.c:667 src/pan-view/pan-view.c:1909 src/ui-pathsel.c:1100
 msgid "Folders"
 msgstr "Carpetes"
 
-#: src/bar_sort.c:668 src/options.c:248
+#: src/bar-sort.c:668 src/options.c:248
 msgid "Collections"
 msgstr "Col·leccions"
 
-#: src/bar_sort.c:677 src/preferences.c:693 src/utilops.c:2350
+#: src/bar-sort.c:677 src/preferences.c:693 src/utilops.c:2350
 msgid "Copy"
 msgstr "Copia"
 
-#: src/bar_sort.c:681 src/preferences.c:695 src/utilops.c:2300
+#: src/bar-sort.c:681 src/preferences.c:695 src/utilops.c:2300
 msgid "Move"
 msgstr "Mou"
 
-#: src/bar_sort.c:722
+#: src/bar-sort.c:722
 msgid "Add image"
 msgstr "Afegeix imatge"
 
-#: src/bar_sort.c:725
+#: src/bar-sort.c:725
 msgid "Add selection"
 msgstr "Afegeix selecció"
 
-#: src/bar_sort.c:740
+#: src/bar-sort.c:740
 msgid "Undo last image"
 msgstr "Desfés la darrera imatge"
 
@@ -588,104 +588,104 @@ msgstr ""
 "%s\n"
 "error: %s\n"
 
-#: src/cache_maint.c:72
+#: src/cache-maint.c:72
 msgid "Geeqie: Creating sim data..."
 msgstr "Geeqie: creant dades sim..."
 
-#: src/cache_maint.c:78
+#: src/cache-maint.c:78
 msgid "Geeqie: Creating thumbs..."
 msgstr "Geeqie: creant miniatures..."
 
-#: src/cache_maint.c:94
+#: src/cache-maint.c:94
 msgid "Exit Geeqie Cache Maintenance"
 msgstr "Surt del manteniment de la memòria cau"
 
-#: src/cache_maint.c:111
+#: src/cache-maint.c:111
 msgid "Geeqie: Cleaning thumbs..."
 msgstr "Geeqie: netejant miniatures..."
 
-#: src/cache_maint.c:184 src/cache_maint.c:684 src/cache_maint.c:787
-#: src/cache_maint.c:984 src/cache_maint.c:1455 src/editors.c:1245
+#: src/cache-maint.c:184 src/cache-maint.c:684 src/cache-maint.c:787
+#: src/cache-maint.c:984 src/cache-maint.c:1455 src/editors.c:1245
 #: src/preferences.c:3043
 msgid "done"
 msgstr "fet"
 
-#: src/cache_maint.c:374
+#: src/cache-maint.c:374
 msgid "Removing old metadata..."
 msgstr "S'estan esborrant les metadades antigues..."
 
-#: src/cache_maint.c:378
+#: src/cache-maint.c:378
 msgid "Clearing cached thumbnails..."
 msgstr "Netejant les miniatures de la memòria cau..."
 
-#: src/cache_maint.c:382 src/cache_maint.c:1157
+#: src/cache-maint.c:382 src/cache-maint.c:1157
 msgid "Removing old thumbnails..."
 msgstr "S'estan esborrant les miniatures antigues..."
 
-#: src/cache_maint.c:385 src/cache_maint.c:1160
+#: src/cache-maint.c:385 src/cache-maint.c:1160
 msgid "Maintenance"
 msgstr "Manteniment"
 
-#: src/cache_maint.c:698 src/cache_maint.c:1334
+#: src/cache-maint.c:698 src/cache-maint.c:1334
 msgid "stopped"
 msgstr "aturat"
 
-#: src/cache_maint.c:817 src/cache_maint.c:1486 src/cache_maint.c:1616
+#: src/cache-maint.c:817 src/cache-maint.c:1486 src/cache-maint.c:1616
 #: src/preferences.c:3125
 msgid "Invalid folder"
 msgstr "Carpeta no vàlida"
 
-#: src/cache_maint.c:818 src/cache_maint.c:1487 src/cache_maint.c:1617
+#: src/cache-maint.c:818 src/cache-maint.c:1487 src/cache-maint.c:1617
 #: src/preferences.c:3126
 msgid "The specified folder can not be found."
 msgstr "No s'ha pogut trobar la carpeta especificada."
 
-#: src/cache_maint.c:886 src/cache_maint.c:900 src/cache_maint.c:1753
+#: src/cache-maint.c:886 src/cache-maint.c:900 src/cache-maint.c:1753
 msgid "Create thumbnails"
 msgstr "Crea miniatures"
 
-#: src/cache_maint.c:894 src/cache_maint.c:1167 src/cache_maint.c:1536
-#: src/cache_maint.c:1655 src/preferences.c:3164
+#: src/cache-maint.c:894 src/cache-maint.c:1167 src/cache-maint.c:1536
+#: src/cache-maint.c:1655 src/preferences.c:3164
 msgid "S_tart"
 msgstr "I_nici"
 
-#: src/cache_maint.c:907 src/cache_maint.c:1549 src/cache_maint.c:1665
+#: src/cache-maint.c:907 src/cache-maint.c:1549 src/cache-maint.c:1665
 #: src/preferences.c:3177 src/preferences.c:3526
 msgid "Folder:"
 msgstr "Carpeta:"
 
-#: src/cache_maint.c:910 src/cache_maint.c:1552 src/cache_maint.c:1668
+#: src/cache-maint.c:910 src/cache-maint.c:1552 src/cache-maint.c:1668
 #: src/preferences.c:3180
 msgid "Select folder"
 msgstr "Seleccioneu una carpeta"
 
-#: src/cache_maint.c:914 src/preferences.c:3184
+#: src/cache-maint.c:914 src/preferences.c:3184
 msgid "Include subfolders"
 msgstr "Inclou les subcarpetes"
 
-#: src/cache_maint.c:915
+#: src/cache-maint.c:915
 msgid "Store thumbnails local to source images"
 msgstr "Desa les miniatures al mateix lloc que les imatges originals"
 
-#: src/cache_maint.c:924 src/cache_maint.c:1176 src/cache_maint.c:1562
+#: src/cache-maint.c:924 src/cache-maint.c:1176 src/cache-maint.c:1562
 #: src/preferences.c:3192
 msgid "click start to begin"
 msgstr "feu clic a inici per començar"
 
-#: src/cache_maint.c:1096 src/editors.c:1171
+#: src/cache-maint.c:1096 src/editors.c:1171
 msgid "running..."
 msgstr "executant..."
 
-#: src/cache_maint.c:1152
+#: src/cache-maint.c:1152
 msgid "Clearing thumbnails..."
 msgstr "Esborrant miniatures..."
 
-#: src/cache_maint.c:1233 src/cache_maint.c:1236 src/cache_maint.c:1729
-#: src/cache_maint.c:1748
+#: src/cache-maint.c:1233 src/cache-maint.c:1236 src/cache-maint.c:1729
+#: src/cache-maint.c:1748
 msgid "Clear cache"
 msgstr "Buida la memòria cau"
 
-#: src/cache_maint.c:1237
+#: src/cache-maint.c:1237
 msgid ""
 "This will remove all thumbnails and sim. files\n"
 "that have been saved to disk, continue?"
@@ -693,24 +693,24 @@ msgstr ""
 "Aquesta operació esborrarà tots els fitxers de miniatures i \n"
 "i semblances que han estat desats al disc, voleu continuar?"
 
-#: src/cache_maint.c:1282
+#: src/cache-maint.c:1282
 #, c-format
 msgid "Location: %s"
 msgstr "Ubicació: %s"
 
-#: src/cache_maint.c:1531
+#: src/cache-maint.c:1531
 msgid "Create sim. files"
 msgstr "Crear fitxers de semblances"
 
-#: src/cache_maint.c:1542
+#: src/cache-maint.c:1542
 msgid "Create sim. files recursively"
 msgstr "Genera els fitxers de semblances recursivament"
 
-#: src/cache_maint.c:1650 src/cache_maint.c:1784
+#: src/cache-maint.c:1650 src/cache-maint.c:1784
 msgid "Background cache maintenance"
 msgstr "Manteniment de la memòria cau en segon pla"
 
-#: src/cache_maint.c:1658
+#: src/cache-maint.c:1658
 msgid ""
 "Recursively delete orphaned thumbnails\n"
 "and .sim files, and create new\n"
@@ -720,72 +720,72 @@ msgstr ""
 "i els fitxers .sim, i crea nou\n"
 "fitxers de miniatures i .sim"
 
-#: src/cache_maint.c:1702
+#: src/cache-maint.c:1702
 msgid "Cache Maintenance"
 msgstr "Manteniment de la memòria cau"
 
-#: src/cache_maint.c:1714
+#: src/cache-maint.c:1714
 msgid "Cache and Data Maintenance"
 msgstr "Manteniment de Memòria cau i Dades"
 
-#: src/cache_maint.c:1718
+#: src/cache-maint.c:1718
 msgid "Geeqie thumbnail and sim. cache"
 msgstr "Memòria cau de miniatures i de semblances"
 
-#: src/cache_maint.c:1724 src/cache_maint.c:1743 src/cache_maint.c:1779
+#: src/cache-maint.c:1724 src/cache-maint.c:1743 src/cache-maint.c:1779
 msgid "Clean up"
 msgstr "Neteja"
 
-#: src/cache_maint.c:1727
+#: src/cache-maint.c:1727
 msgid "Remove orphaned or outdated thumbnails and sim. files."
 msgstr ""
 "Suprimeix els fitxers de miniatures i de semblances orfes o desactualitzats."
 
-#: src/cache_maint.c:1732
+#: src/cache-maint.c:1732
 msgid "Delete all cached data."
 msgstr "Suprimeix totes les dades de la memòria cau."
 
-#: src/cache_maint.c:1735
+#: src/cache-maint.c:1735
 msgid "Shared thumbnail cache"
 msgstr "Miniatures de la memòria cau compartides"
 
-#: src/cache_maint.c:1746
+#: src/cache-maint.c:1746
 msgid "Remove orphaned or outdated thumbnails."
 msgstr "Suprimeix les miniatures orfes o desactualitzades."
 
-#: src/cache_maint.c:1751
+#: src/cache-maint.c:1751
 msgid "Delete all cached thumbnails."
 msgstr "Suprimeix totes les miniatures de la memòria cau."
 
-#: src/cache_maint.c:1757
+#: src/cache-maint.c:1757
 msgid "Render"
 msgstr "Renderitza"
 
-#: src/cache_maint.c:1760
+#: src/cache-maint.c:1760
 msgid "Render thumbnails for a specific folder."
 msgstr "Renderitza les miniatures per a una carpeta específica."
 
-#: src/cache_maint.c:1763
+#: src/cache-maint.c:1763
 msgid "File similarity cache"
 msgstr "Memòria cau de semblances"
 
-#: src/cache_maint.c:1767
+#: src/cache-maint.c:1767
 msgid "Create"
 msgstr "Crear"
 
-#: src/cache_maint.c:1770
+#: src/cache-maint.c:1770
 msgid "Create sim. files recursively."
 msgstr "Genera fitxers de semblances recursivament."
 
-#: src/cache_maint.c:1782
+#: src/cache-maint.c:1782
 msgid "Remove orphaned keywords and comments."
 msgstr "Suprimeix les paraules clau i els comentaris orfes."
 
-#: src/cache_maint.c:1788
+#: src/cache-maint.c:1788
 msgid "Select"
 msgstr "Selecciona"
 
-#: src/cache_maint.c:1791
+#: src/cache-maint.c:1791
 msgid "Run cache maintenance as a background job."
 msgstr "Executa feina de manteniment de la memòria cau en segon pla."
 
@@ -910,12 +910,12 @@ msgstr "%s, %d imatges (%s, %d)"
 msgid "%s, %d images"
 msgstr "%s, %d imatges"
 
-#: src/collect-table.c:261 src/layout_util.c:1935 src/layout_util.c:3672
+#: src/collect-table.c:261 src/layout-util.c:1935 src/layout-util.c:3672
 msgid "Empty"
 msgstr "Buida"
 
 #: src/collect-table.c:275 src/dupe.c:2172 src/search.c:435
-#: src/view_file/view_file.c:1376 src/view_file/view_file.c:1485
+#: src/view-file/view-file.c:1376 src/view-file/view-file.c:1485
 msgid "Loading thumbs..."
 msgstr "S'estan carregant les miniatures..."
 
@@ -924,8 +924,8 @@ msgid "_View"
 msgstr "_Visualitza"
 
 #: src/collect-table.c:990 src/dupe.c:3529 src/dupe.c:3867 src/img-view.c:1417
-#: src/layout_image.c:787 src/pan-view/pan-view.c:2397 src/search.c:1155
-#: src/view_file/view_file.c:698
+#: src/layout-image.c:787 src/pan-view/pan-view.c:2397 src/search.c:1155
+#: src/view-file/view-file.c:698
 msgid "View in _new window"
 msgstr "Visualitza en una finestra _nova"
 
@@ -950,12 +950,12 @@ msgid "_Selection"
 msgstr "_Selecciona"
 
 #: src/collect-table.c:1006 src/dupe.c:3532 src/dupe.c:3870 src/search.c:1158
-#: src/view_file/view_file.c:1087 src/view_file/view_file.c:1137
+#: src/view-file/view-file.c:1087 src/view-file/view-file.c:1137
 msgid "Select all"
 msgstr "Selecciona-ho tot"
 
 #: src/collect-table.c:1008 src/dupe.c:3534 src/dupe.c:3872 src/search.c:1160
-#: src/view_file/view_file.c:1142
+#: src/view-file/view-file.c:1142
 msgid "Select none"
 msgstr "Desfés la selecció"
 
@@ -968,54 +968,54 @@ msgid "Rectangular selection"
 msgstr "Selecció rectangular"
 
 #: src/collect-table.c:1024 src/dupe.c:3559 src/img-view.c:1421
-#: src/layout_image.c:801 src/pan-view/pan-view.c:2403 src/search.c:1177
-#: src/view_file/view_file.c:704
+#: src/layout-image.c:801 src/pan-view/pan-view.c:2403 src/search.c:1177
+#: src/view-file/view-file.c:704
 msgid "_Copy..."
 msgstr "_Copia..."
 
 #: src/collect-table.c:1026 src/dupe.c:3561 src/img-view.c:1422
-#: src/layout_image.c:803 src/pan-view/pan-view.c:2405 src/search.c:1179
-#: src/view_file/view_file.c:706
+#: src/layout-image.c:803 src/pan-view/pan-view.c:2405 src/search.c:1179
+#: src/view-file/view-file.c:706
 msgid "_Move..."
 msgstr "_Mou..."
 
 #: src/collect-table.c:1028 src/dupe.c:3563 src/img-view.c:1423
-#: src/layout_image.c:805 src/pan-view/pan-view.c:2407 src/search.c:1181
-#: src/view_dir.c:735 src/view_file/view_file.c:708
+#: src/layout-image.c:805 src/pan-view/pan-view.c:2407 src/search.c:1181
+#: src/view-dir.c:735 src/view-file/view-file.c:708
 msgid "_Rename..."
 msgstr "Can_via el nom..."
 
 #: src/collect-table.c:1030 src/dupe.c:3565 src/img-view.c:1424
-#: src/search.c:1183 src/view_dir.c:738
+#: src/search.c:1183 src/view-dir.c:738
 msgid "_Copy path"
 msgstr "_Copia el camí"
 
 #: src/collect-table.c:1032 src/dupe.c:3567 src/img-view.c:1425
-#: src/search.c:1185 src/view_dir.c:741
+#: src/search.c:1185 src/view-dir.c:741
 msgid "_Copy path unquoted"
 msgstr "_Copia el camí sense cometes"
 
 #: src/collect-table.c:1037 src/dupe.c:3572 src/img-view.c:1429
-#: src/layout_image.c:814 src/pan-view/pan-view.c:2416 src/search.c:1190
-#: src/view_file/view_file.c:716
+#: src/layout-image.c:814 src/pan-view/pan-view.c:2416 src/search.c:1190
+#: src/view-file/view-file.c:716
 msgid "Move to Trash..."
 msgstr "Mou a la Paperera..."
 
 #: src/collect-table.c:1038 src/dupe.c:3573 src/img-view.c:1430
-#: src/layout_image.c:815 src/pan-view/pan-view.c:2417 src/search.c:1191
-#: src/view_file/view_file.c:717
+#: src/layout-image.c:815 src/pan-view/pan-view.c:2417 src/search.c:1191
+#: src/view-file/view-file.c:717
 msgid "Move to Trash"
 msgstr "Mou a la Paperera"
 
 #: src/collect-table.c:1041 src/dupe.c:3576 src/img-view.c:1433
-#: src/layout_image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
-#: src/view_dir.c:744 src/view_file/view_file.c:720
+#: src/layout-image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
+#: src/view-dir.c:744 src/view-file/view-file.c:720
 msgid "_Delete..."
 msgstr "_Suprimeix..."
 
 #: src/collect-table.c:1042 src/dupe.c:3577 src/img-view.c:1434
-#: src/layout_image.c:820 src/pan-view/pan-view.c:2421 src/search.c:1195
-#: src/ui_pathsel.c:644 src/view_file/view_file.c:721
+#: src/layout-image.c:820 src/pan-view/pan-view.c:2421 src/search.c:1195
+#: src/ui-pathsel.c:644 src/view-file/view-file.c:721
 msgid "_Delete"
 msgstr "_Suprimeix"
 
@@ -1023,16 +1023,16 @@ msgstr "_Suprimeix"
 msgid "Randomize"
 msgstr "Barreja-les"
 
-#: src/collect-table.c:1050 src/view_dir.c:759 src/view_file/view_file.c:746
+#: src/collect-table.c:1050 src/view-dir.c:759 src/view-file/view-file.c:746
 msgid "_Sort"
 msgstr "_Ordena"
 
-#: src/collect-table.c:1053 src/view_file/view_file.c:762
+#: src/collect-table.c:1053 src/view-file/view-file.c:762
 msgid "Show filename _text"
 msgstr "Mostra el _nom del fitxer"
 
-#: src/collect-table.c:1055 src/view_file/view_file.c:770
-#: src/view_file/view_file.c:774
+#: src/collect-table.c:1055 src/view-file/view-file.c:770
+#: src/view-file/view-file.c:774
 msgid "Show star rating"
 msgstr "Ordena per puntuació"
 
@@ -1044,7 +1044,7 @@ msgstr "_Desa la col·lecció"
 msgid "Save collection _as..."
 msgstr "_Anomena i desa la col·lecció..."
 
-#: src/collect-table.c:1063 src/view_file/view_file.c:731
+#: src/collect-table.c:1063 src/view-file/view-file.c:731
 msgid "_Find duplicates..."
 msgstr "_Cerca imatges duplicades..."
 
@@ -1069,7 +1069,7 @@ msgid "_Skip folders"
 msgstr "_Omet carpetes"
 
 #: src/collect-table.c:2248 src/dupe.c:4972 src/img-view.c:1600
-#: src/view_dir.c:431
+#: src/view-dir.c:431
 msgid "Cancel"
 msgstr "Cancel·la"
 
@@ -1093,23 +1093,23 @@ msgstr "error"
 msgid "warning"
 msgstr "avís"
 
-#: src/desktop_file.c:83 src/desktop_file.c:95 src/desktop_file.c:101
+#: src/desktop-file.c:83 src/desktop-file.c:95 src/desktop-file.c:101
 msgid "Can't save"
 msgstr "No es pot desar"
 
-#: src/desktop_file.c:83
+#: src/desktop-file.c:83
 msgid "Please specify file name."
 msgstr "Si us plau, especifiqueu un nom de fitxer."
 
-#: src/desktop_file.c:95
+#: src/desktop-file.c:95
 msgid "Could not create directory"
 msgstr "No es pot crear el directori"
 
-#: src/desktop_file.c:191 src/desktop_file.c:650
+#: src/desktop-file.c:191 src/desktop-file.c:650
 msgid "Desktop file"
 msgstr "Fitxer desktop"
 
-#: src/desktop_file.c:301 src/ui_pathsel.c:494
+#: src/desktop-file.c:301 src/ui-pathsel.c:494
 #, c-format
 msgid ""
 "Unable to delete file:\n"
@@ -1118,17 +1118,17 @@ msgstr ""
 "No es pot suprimir el fitxer:\n"
 "%s"
 
-#: src/desktop_file.c:302 src/ui_pathsel.c:495 src/utilops.c:2177
+#: src/desktop-file.c:302 src/ui-pathsel.c:495 src/utilops.c:2177
 #: src/utilops.c:2213 src/utilops.c:2735
 msgid "File deletion failed"
 msgstr "No es pot suprimir el fitxer"
 
-#: src/desktop_file.c:346 src/desktop_file.c:354 src/ui_pathsel.c:537
-#: src/ui_pathsel.c:545
+#: src/desktop-file.c:346 src/desktop-file.c:354 src/ui-pathsel.c:537
+#: src/ui-pathsel.c:545
 msgid "Delete file"
 msgstr "Suprimeix l'arxiu"
 
-#: src/desktop_file.c:352 src/ui_pathsel.c:543
+#: src/desktop-file.c:352 src/ui-pathsel.c:543
 #, c-format
 msgid ""
 "About to delete the file:\n"
@@ -1137,24 +1137,24 @@ msgstr ""
 "Se suprimirà el fitxer:\n"
 " %s"
 
-#: src/desktop_file.c:384
+#: src/desktop-file.c:384
 msgid "new.desktop"
 msgstr "nou.desktop"
 
-#: src/desktop_file.c:549
+#: src/desktop-file.c:549
 msgid "Plugins"
 msgstr "Connectors"
 
-#: src/desktop_file.c:618
+#: src/desktop-file.c:618
 msgid "Disabled"
 msgstr "Desactivat"
 
-#: src/desktop_file.c:640
+#: src/desktop-file.c:640
 msgid "Hidden"
 msgstr "Ocult"
 
-#: src/desktop_file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/search.c:3697
-#: src/ui_pathsel.c:1112 src/utilops.c:503
+#: src/desktop-file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/search.c:3697
+#: src/ui-pathsel.c:1112 src/utilops.c:503
 msgid "Path"
 msgstr "Camí"
 
@@ -1230,12 +1230,12 @@ msgid "Name case-insensitive"
 msgstr "El nom no distingeix entre majúscules i minúscules"
 
 #: src/dupe.c:3980 src/dupe.c:4704 src/dupe.c:5287 src/preferences.c:2425
-#: src/search.c:3694 src/view_file/view_file_list.c:2240
+#: src/search.c:3694 src/view-file/view-file-list.c:2240
 msgid "Size"
 msgstr "Mida"
 
 #: src/dupe.c:3981 src/dupe.c:4705 src/dupe.c:5287 src/search.c:3695
-#: src/view_file/view_file_list.c:2244
+#: src/view-file/view-file-list.c:2244
 msgid "Date"
 msgstr "Data"
 
@@ -1667,7 +1667,7 @@ msgstr "Histograma Lineal del RGB"
 msgid "Linear Histogram on value"
 msgstr "Histograma Lineal segons el valor"
 
-#: src/history_list.c:291
+#: src/history-list.c:291
 #, c-format
 msgid "Unable to write history lists to: %s\n"
 msgstr "No és possible escriure llistats d'històrics a: %s\n"
@@ -1677,90 +1677,90 @@ msgstr "No és possible escriure llistats d'històrics a: %s\n"
 msgid " (Collection %s)"
 msgstr " (Col·leccions %s)"
 
-#: src/image_load_cr3.c:161 src/image_load_jpeg.c:164
+#: src/image-load-cr3.c:161 src/image-load-jpeg.c:164
 #, c-format
 msgid "Error interpreting JPEG image file (%s)"
 msgstr ""
 "S'ha produït un error en la interpretació del fitxer d'imatge JPEG (%s)"
 
-#: src/image_load_j2k.c:202
+#: src/image-load-j2k.c:202
 msgid "Could not open file for reading"
 msgstr "No es pot obrir per lectura el fitxer"
 
-#: src/image_load_j2k.c:212
+#: src/image-load-j2k.c:212
 msgid "Unknown jpeg2000 decoder type"
 msgstr "Tipus de descodificar jpeg2000 desconegut"
 
-#: src/image_load_j2k.c:219
+#: src/image-load-j2k.c:219
 msgid "Couldn't set parameters on decoder for file."
 msgstr "No s'han pogut establir els paràmetres al descodificador del fitxer."
 
-#: src/image_load_j2k.c:227
+#: src/image-load-j2k.c:227
 msgid "Couldn't read JP2 header from file"
 msgstr "No s'ha pogut llegir la capçalera JP2 del fitxer"
 
-#: src/image_load_j2k.c:233
+#: src/image-load-j2k.c:233
 msgid "Couldn't decode JP2 image in file"
 msgstr "No s'ha pogut descodificar la imatge JP2 del fitxer"
 
-#: src/image_load_j2k.c:239
+#: src/image-load-j2k.c:239
 msgid "Couldn't decompress JP2 image in file"
 msgstr "No s'ha pogut descomprimir la imatge JP2 del fitxer"
 
-#: src/image_load_j2k.c:246
+#: src/image-load-j2k.c:246
 msgid "JP2 image not rgb"
 msgstr "La imatge JP2 no és rgb"
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1885
-#: src/layout_util.c:914 src/view_file/view_file.c:396
+#: src/img-view.c:672 src/layout-image.c:692 src/layout-image.c:1885
+#: src/layout-util.c:914 src/view-file/view-file.c:396
 msgid "Cannot open archive file"
 msgstr "No es pot obrir el fitxer d'arxiu"
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1885
-#: src/layout_util.c:914 src/preferences.c:4219 src/preferences.c:4227
-#: src/view_file/view_file.c:396
+#: src/img-view.c:672 src/layout-image.c:692 src/layout-image.c:1885
+#: src/layout-util.c:914 src/preferences.c:4219 src/preferences.c:4227
+#: src/view-file/view-file.c:396
 msgid "See the Log Window"
 msgstr "Veure la Finestra de Registre"
 
-#: src/img-view.c:1403 src/layout_image.c:773 src/pan-view/pan-view.c:2382
+#: src/img-view.c:1403 src/layout-image.c:773 src/pan-view/pan-view.c:2382
 msgid "Zoom _in"
 msgstr "Apropa"
 
-#: src/img-view.c:1404 src/layout_image.c:774 src/pan-view/pan-view.c:2384
+#: src/img-view.c:1404 src/layout-image.c:774 src/pan-view/pan-view.c:2384
 msgid "Zoom _out"
 msgstr "Allunya"
 
-#: src/img-view.c:1405 src/layout_image.c:775 src/pan-view/pan-view.c:2386
+#: src/img-view.c:1405 src/layout-image.c:775 src/pan-view/pan-view.c:2386
 msgid "Zoom _1:1"
 msgstr "Escala real"
 
-#: src/img-view.c:1406 src/layout_image.c:776
+#: src/img-view.c:1406 src/layout-image.c:776
 msgid "Zoom to fit"
 msgstr "Amplia fins que encaixi"
 
-#: src/img-view.c:1418 src/layout_image.c:790
+#: src/img-view.c:1418 src/layout-image.c:790
 msgid "_Go to directory view"
 msgstr "_Ves a la vista de directoris"
 
-#: src/img-view.c:1446 src/img-view.c:1460 src/layout_image.c:832
-#: src/layout_image.c:846
+#: src/img-view.c:1446 src/img-view.c:1460 src/layout-image.c:832
+#: src/layout-image.c:846
 msgid "Toggle _slideshow"
 msgstr "_Commuta la projecció de diapositives"
 
-#: src/img-view.c:1449 src/layout_image.c:835
+#: src/img-view.c:1449 src/layout-image.c:835
 msgid "Continue slides_how"
 msgstr "_Continua mostrant diapositives"
 
-#: src/img-view.c:1454 src/img-view.c:1462 src/layout_image.c:840
-#: src/layout_image.c:847
+#: src/img-view.c:1454 src/img-view.c:1462 src/layout-image.c:840
+#: src/layout-image.c:847
 msgid "Pause slides_how"
 msgstr "_Pausa la seqüència de diapositives"
 
-#: src/img-view.c:1468 src/layout_image.c:857 src/pan-view/pan-view.c:2474
+#: src/img-view.c:1468 src/layout-image.c:857 src/pan-view/pan-view.c:2474
 msgid "Exit _full screen"
 msgstr "Sortir del mode _pantalla completa"
 
-#: src/img-view.c:1472 src/layout_image.c:853 src/pan-view/pan-view.c:2478
+#: src/img-view.c:1472 src/layout-image.c:853 src/pan-view/pan-view.c:2478
 msgid "_Full screen"
 msgstr "_Pantalla completa"
 
@@ -1768,7 +1768,7 @@ msgstr "_Pantalla completa"
 msgid "C_lose window"
 msgstr "_Tanca la finestra"
 
-#: src/layout.c:460 src/view_dir.c:758 src/view_file/view_file.c:743
+#: src/layout.c:460 src/view-dir.c:758 src/view-file/view-file.c:743
 msgid "Ascending"
 msgstr "Ascendent"
 
@@ -1899,212 +1899,212 @@ msgstr "Disposició"
 msgid "Invalid geometry\n"
 msgstr "Geometria invàlida\n"
 
-#: src/layout_config.c:358
+#: src/layout-config.c:358
 msgid "(drag to change order)"
 msgstr "(arrossegueu per canviar l'ordre)"
 
-#: src/layout_image.c:793 src/layout_util.c:2285 src/view_file/view_file.c:701
+#: src/layout-image.c:793 src/layout-util.c:2285 src/view-file/view-file.c:701
 msgid "Open archive"
 msgstr "Obre arxiu"
 
-#: src/layout_image.c:807 src/pan-view/pan-view.c:2409
-#: src/view_file/view_file.c:710
+#: src/layout-image.c:807 src/pan-view/pan-view.c:2409
+#: src/view-file/view-file.c:710
 msgid "_Copy path to clipboard"
 msgstr "_Copia el camí al porta-retalls"
 
-#: src/layout_image.c:808 src/pan-view/pan-view.c:2411
-#: src/view_file/view_file.c:712
+#: src/layout-image.c:808 src/pan-view/pan-view.c:2411
+#: src/view-file/view-file.c:712
 msgid "_Copy path unquoted to clipboard"
 msgstr "_Copia el camí sense cometes al porta-retalls"
 
-#: src/layout_image.c:809
+#: src/layout-image.c:809
 msgid "Copy _image to clipboard"
 msgstr "Copia _imatge al portapapers"
 
-#: src/layout_image.c:860
+#: src/layout-image.c:860
 msgid "GIF _animation"
 msgstr "_Animació GIF"
 
-#: src/layout_image.c:864
+#: src/layout-image.c:864
 msgid "Hide file _list"
 msgstr "Oculta la _llista de fitxers"
 
-#: src/layout_image.c:2110
+#: src/layout-image.c:2110
 #, c-format
 msgid "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 msgstr "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 
-#: src/layout_image.c:2118
+#: src/layout-image.c:2118
 #, c-format
 msgid "[%*s,%*s]: RGB(---,---,---)"
 msgstr "[%*s,%*s]: RGB(---,---,---)"
 
-#: src/layout_util.c:244
+#: src/layout-util.c:244
 msgid "Clear Marks"
 msgstr "Netejar marques"
 
-#: src/layout_util.c:591
+#: src/layout-util.c:591
 msgid "Operation failed:\n"
 msgstr "Operació fallada:\n"
 
-#: src/layout_util.c:594
+#: src/layout-util.c:594
 msgid "No file extension\n"
 msgstr "Sense extensió de fitxer\n"
 
-#: src/layout_util.c:596
+#: src/layout-util.c:596
 msgid "Cannot create tmp file\n"
 msgstr "No es pot crear el fitxer temporal\n"
 
-#: src/layout_util.c:598
+#: src/layout-util.c:598
 msgid "Operation not supported for filetype\n"
 msgstr "L'operació no està suportada pel tipus de fitxer\n"
 
-#: src/layout_util.c:600
+#: src/layout-util.c:600
 msgid "File is not writable\n"
 msgstr "El fitxer no és escribible\n"
 
-#: src/layout_util.c:602
+#: src/layout-util.c:602
 msgid "Exiftran error\n"
 msgstr "Error de Exiftran\n"
 
-#: src/layout_util.c:604
+#: src/layout-util.c:604
 msgid "Mogrify error\n"
 msgstr "Error de Mogrify\n"
 
-#: src/layout_util.c:608
+#: src/layout-util.c:608
 msgid "Image orientation"
 msgstr "Orientació d'imatge"
 
-#: src/layout_util.c:2080
+#: src/layout-util.c:2080
 #, c-format
 msgid "Error: window layout name: %s does not exist\n"
 msgstr "Error: la disposició de finestra amb nom: %s no existeix\n"
 
-#: src/layout_util.c:2154
+#: src/layout-util.c:2154
 #, c-format
 msgid "Window layout name \"%s\" already exists."
 msgstr "Ja existeix una disposició de finestra anomenada «%s»."
 
-#: src/layout_util.c:2155 src/layout_util.c:2404
+#: src/layout-util.c:2155 src/layout-util.c:2404
 msgid "Rename window"
 msgstr "Canvia el nom de la finestra"
 
-#: src/layout_util.c:2255 src/layout_util.c:2435
+#: src/layout-util.c:2255 src/layout-util.c:2435
 msgid "Delete window"
 msgstr "Suprimeix la finestra"
 
-#: src/layout_util.c:2405 src/layout_util.c:2436
+#: src/layout-util.c:2405 src/layout-util.c:2436
 msgid "OK"
 msgstr "D'acord"
 
-#: src/layout_util.c:2407
+#: src/layout-util.c:2407
 msgid "rename window"
 msgstr "canvia el nom de la finestra"
 
-#: src/layout_util.c:2438
+#: src/layout-util.c:2438
 msgid "Delete window layout"
 msgstr "Suprimeix la disposició de la finestra"
 
-#: src/layout_util.c:3021
+#: src/layout-util.c:3021
 #, c-format
 msgid "Mark _%d"
 msgstr "Marca _%d"
 
-#: src/layout_util.c:3022 src/view_file/view_file.c:650
+#: src/layout-util.c:3022 src/view-file/view-file.c:650
 #, c-format
 msgid "_Set mark %d"
 msgstr "_Posa marca %d"
 
-#: src/layout_util.c:3022
+#: src/layout-util.c:3022
 #, c-format
 msgid "Set mark %d"
 msgstr "Posa marca %d"
 
-#: src/layout_util.c:3023 src/view_file/view_file.c:651
+#: src/layout-util.c:3023 src/view-file/view-file.c:651
 #, c-format
 msgid "_Reset mark %d"
 msgstr "_Esborra marca %d"
 
-#: src/layout_util.c:3023
+#: src/layout-util.c:3023
 #, c-format
 msgid "Reset mark %d"
 msgstr "Esborra marca %d"
 
-#: src/layout_util.c:3024 src/layout_util.c:3025 src/view_file/view_file.c:652
+#: src/layout-util.c:3024 src/layout-util.c:3025 src/view-file/view-file.c:652
 #, c-format
 msgid "_Toggle mark %d"
 msgstr "_Commuta la marca %d"
 
-#: src/layout_util.c:3024 src/layout_util.c:3025
+#: src/layout-util.c:3024 src/layout-util.c:3025
 #, c-format
 msgid "Toggle mark %d"
 msgstr "Commuta la marca %d"
 
-#: src/layout_util.c:3026
+#: src/layout-util.c:3026
 #, c-format
 msgid "Se_lect mark %d"
 msgstr "Se_lecciona la marca %d"
 
-#: src/layout_util.c:3026 src/layout_util.c:3027
+#: src/layout-util.c:3026 src/layout-util.c:3027
 #, c-format
 msgid "Select mark %d"
 msgstr "Selecciona la marca %d"
 
-#: src/layout_util.c:3027 src/view_file/view_file.c:653
+#: src/layout-util.c:3027 src/view-file/view-file.c:653
 #, c-format
 msgid "_Select mark %d"
 msgstr "_Selecciona la marca %d"
 
-#: src/layout_util.c:3028 src/view_file/view_file.c:654
+#: src/layout-util.c:3028 src/view-file/view-file.c:654
 #, c-format
 msgid "_Add mark %d"
 msgstr "_Afegeix la marca %d"
 
-#: src/layout_util.c:3028
+#: src/layout-util.c:3028
 #, c-format
 msgid "Add mark %d"
 msgstr "Afegeix la marca %d"
 
-#: src/layout_util.c:3029 src/view_file/view_file.c:655
+#: src/layout-util.c:3029 src/view-file/view-file.c:655
 #, c-format
 msgid "_Intersection with mark %d"
 msgstr "_Intersecció amb la marca %d"
 
-#: src/layout_util.c:3029
+#: src/layout-util.c:3029
 #, c-format
 msgid "Intersection with mark %d"
 msgstr "Intersecció amb la marca %d"
 
-#: src/layout_util.c:3030 src/view_file/view_file.c:656
+#: src/layout-util.c:3030 src/view-file/view-file.c:656
 #, c-format
 msgid "_Unselect mark %d"
 msgstr "_Deselecciona la marca %d"
 
-#: src/layout_util.c:3030
+#: src/layout-util.c:3030
 #, c-format
 msgid "Unselect mark %d"
 msgstr "Deselecciona la marca %d"
 
-#: src/layout_util.c:3031
+#: src/layout-util.c:3031
 #, c-format
 msgid "_Filter mark %d"
 msgstr "_Filtra la marca %d"
 
-#: src/layout_util.c:3031
+#: src/layout-util.c:3031
 #, c-format
 msgid "Filter mark %d"
 msgstr "Filtra la marca %d"
 
-#: src/layout_util.c:3646
+#: src/layout-util.c:3646
 #, c-format
 msgid "Number of files with unsaved metadata: %d"
 msgstr "Número de fitxers amb medades sense desar: %d"
 
-#: src/layout_util.c:3652
+#: src/layout-util.c:3652
 msgid "No unsaved metadata"
 msgstr "No hi ha metadades sense desar"
 
-#: src/layout_util.c:3700
+#: src/layout-util.c:3700
 #, c-format
 msgid ""
 "Image profile: %s\n"
@@ -2113,15 +2113,15 @@ msgstr ""
 "Perfil d'imatge: %s\n"
 "Perfil de pantalla: %s"
 
-#: src/layout_util.c:3708
+#: src/layout-util.c:3708
 msgid "Click to enable color management"
 msgstr "Fes clic per habilitar la gestió de color"
 
-#: src/layout_util.c:3713
+#: src/layout-util.c:3713
 msgid "Color profiles not supported"
 msgstr "Perfils de color no suportats"
 
-#: src/layout_util.c:3735
+#: src/layout-util.c:3735
 #, c-format
 msgid "Input _%d: %s"
 msgstr "Entrada _%d: %s"
@@ -2678,16 +2678,16 @@ msgstr ""
 "\n"
 "Codi d'error: "
 
-#: src/options.c:244 src/ui_bookmark.c:560 src/ui_pathsel.c:1047
+#: src/options.c:244 src/ui-bookmark.c:560 src/ui-pathsel.c:1047
 msgid "Home"
 msgstr "Directori de l'usuari"
 
-#: src/options.c:246 src/ui_bookmark.c:571
+#: src/options.c:246 src/ui-bookmark.c:571
 msgid "Desktop"
 msgstr "Escriptori"
 
 #: src/options.c:267 src/search.c:2338 src/search.c:2342 src/search.c:3626
-#: src/search.c:3630 src/view_file/view_file.c:915
+#: src/search.c:3630 src/view-file/view-file.c:915
 msgid "Mark "
 msgstr "Marca "
 
@@ -3145,7 +3145,7 @@ msgstr ""
 "llistat de tots els caràcters Unicode."
 
 #: src/preferences.c:2058 src/preferences.c:2090 src/preferences.c:2218
-#: src/view_file/view_file.c:1188 src/window.c:400
+#: src/view-file/view-file.c:1188 src/window.c:400
 msgid "Clear"
 msgstr "Neteja"
 
@@ -3547,7 +3547,7 @@ msgstr "Tipus de fitxers"
 msgid "Enabled"
 msgstr "Desactivat"
 
-#: src/preferences.c:2773 src/view_file/view_file.c:1227
+#: src/preferences.c:2773 src/view-file/view-file.c:1227
 msgid "Class"
 msgstr "Clase"
 
@@ -4289,7 +4289,7 @@ msgstr "El %s remot no s'està executant, s'està iniciant..."
 msgid "Remote not available\n"
 msgstr "Geeqie remot no està disponible\n"
 
-#: src/search_and_run.c:291
+#: src/search-and-run.c:291
 msgid "Search and Run command"
 msgstr "Cerca i Executa commanda"
 
@@ -4478,39 +4478,39 @@ msgstr "Trencat"
 msgid "Marks"
 msgstr "Marques"
 
-#: src/secure_save.c:407
+#: src/secure-save.c:407
 msgid "Cannot read the file"
 msgstr "No es pot llegir el fitxer"
 
-#: src/secure_save.c:409
+#: src/secure-save.c:409
 msgid "Cannot get file status"
 msgstr "No es pot llegir l'estat del fitxer"
 
-#: src/secure_save.c:411
+#: src/secure-save.c:411
 msgid "Cannot access the file"
 msgstr "No es pot accedir al fitxer"
 
-#: src/secure_save.c:413
+#: src/secure-save.c:413
 msgid "Cannot create temp file"
 msgstr "No es pot crear el fitxer temporal"
 
-#: src/secure_save.c:415
+#: src/secure-save.c:415
 msgid "Cannot rename the file"
 msgstr "No es pot canviar el nom del fitxer"
 
-#: src/secure_save.c:417
+#: src/secure-save.c:417
 msgid "File saving disabled by option"
 msgstr "Desar el fitxer està deshabilitat per una opció"
 
-#: src/secure_save.c:419
+#: src/secure-save.c:419
 msgid "Out of memory"
 msgstr "S'ha quedat sense memòria"
 
-#: src/secure_save.c:421
+#: src/secure-save.c:421
 msgid "Cannot write the file"
 msgstr "No es pot escriure el fitxer"
 
-#: src/secure_save.c:425
+#: src/secure-save.c:425
 msgid "Secure file saving error"
 msgstr "Error en desar el fitxer amb seguretat"
 
@@ -4584,35 +4584,35 @@ msgstr ""
 msgid "Using system Trash bin"
 msgstr "Utilitza la Paperera del sistema"
 
-#: src/ui_bookmark.c:137 src/ui_bookmark.c:200
+#: src/ui-bookmark.c:137 src/ui-bookmark.c:200
 msgid "New Bookmark"
 msgstr "Nou adreça d'interès"
 
-#: src/ui_bookmark.c:283 src/ui_bookmark.c:289
+#: src/ui-bookmark.c:283 src/ui-bookmark.c:289
 msgid "Edit Bookmark"
 msgstr "Edita Adreçes d'interès"
 
-#: src/ui_bookmark.c:304
+#: src/ui-bookmark.c:304
 msgid "Path:"
 msgstr "Camí:"
 
-#: src/ui_bookmark.c:313
+#: src/ui-bookmark.c:313
 msgid "Icon:"
 msgstr "Icona:"
 
-#: src/ui_bookmark.c:319
+#: src/ui-bookmark.c:319
 msgid "Select icon"
 msgstr "Selecciona la icona"
 
-#: src/ui_bookmark.c:412
+#: src/ui-bookmark.c:412
 msgid "_Properties..."
 msgstr "_Propietats..."
 
-#: src/ui_bookmark.c:418
+#: src/ui-bookmark.c:418
 msgid "_Remove"
 msgstr "_Suprimeix"
 
-#: src/ui_fileops.c:88
+#: src/ui-fileops.c:88
 msgid ""
 "One or more filenames are not encoded with the preferred locale character "
 "set.\n"
@@ -4620,12 +4620,12 @@ msgstr ""
 "Un o més noms de fitxer no estan codificats amb el grup de caràcters de "
 "l'idioma preferit.\n"
 
-#: src/ui_fileops.c:89
+#: src/ui-fileops.c:89
 #, c-format
 msgid "Operations on, and display of these files with %s may not succeed.\n"
 msgstr "No es podran operar ni mostrar aquests fitxers amb %s.\n"
 
-#: src/ui_fileops.c:91
+#: src/ui-fileops.c:91
 msgid ""
 "If your filenames are not encoded in utf-8, try setting the environment "
 "variable G_BROKEN_FILENAMES=1\n"
@@ -4633,16 +4633,16 @@ msgstr ""
 "Si els noms dels fitxers no estan codificats en UTF-8, prova de posar la "
 "variable de sistema G_BROKEN_FILENAMES=1\n"
 
-#: src/ui_fileops.c:93
+#: src/ui-fileops.c:93
 #, c-format
 msgid "It appears G_BROKEN_FILENAMES is set to %s\n"
 msgstr "Sembla que BROKEN_FILENAMES val %s\n"
 
-#: src/ui_fileops.c:95
+#: src/ui-fileops.c:95
 msgid "It appears G_BROKEN_FILENAMES is not set\n"
 msgstr "Sembla que BROKEN_FILENAMES no està establert\n"
 
-#: src/ui_fileops.c:97
+#: src/ui-fileops.c:97
 #, c-format
 msgid ""
 "The locale appears to be set to \"%s\"\n"
@@ -4651,7 +4651,7 @@ msgstr ""
 "L'idioma sembla establert a «%s»\n"
 "(establert per la variable de sistema LANG)\n"
 
-#: src/ui_fileops.c:102
+#: src/ui-fileops.c:102
 msgid ""
 "\n"
 "Preferred encoding appears to be UTF-8, however the file:\n"
@@ -4659,37 +4659,37 @@ msgstr ""
 "\n"
 "La codificació preferida sembla ser UTF-8, tanmateix el fitxer:\n"
 
-#: src/ui_fileops.c:103 src/ui_fileops.c:106 src/ui_fileops.c:108
+#: src/ui-fileops.c:103 src/ui-fileops.c:106 src/ui-fileops.c:108
 msgid "[name not displayable]"
 msgstr "[no es pot mostrar el nom]"
 
-#: src/ui_fileops.c:106
+#: src/ui-fileops.c:106
 #, c-format
 msgid "\"%s\" is encoded in valid UTF-8."
 msgstr "«%s» està codificat en UTF-8 vàlid."
 
-#: src/ui_fileops.c:108
+#: src/ui-fileops.c:108
 #, c-format
 msgid "\"%s\" is not encoded in valid UTF-8."
 msgstr "«%s» no està codificat en UTF-8 vàlid."
 
-#: src/ui_fileops.c:113 src/ui_fileops.c:118
+#: src/ui-fileops.c:113 src/ui-fileops.c:118
 msgid "Filename encoding locale mismatch"
 msgstr "Codificació incorrecta de l'idioma del nom del fitxer"
 
-#: src/ui_fileops.c:1047
+#: src/ui-fileops.c:1047
 msgid "Web file download failed"
 msgstr "Ha fallat la baixada de la web"
 
-#: src/ui_fileops.c:1110
+#: src/ui-fileops.c:1110
 msgid "Download web file"
 msgstr "Baixa el fitxer de la Web"
 
-#: src/ui_fileops.c:1112
+#: src/ui-fileops.c:1112
 msgid "Downloading "
 msgstr "Baixant "
 
-#: src/ui_help.c:117
+#: src/ui-help.c:117
 #, c-format
 msgid ""
 "Unable to load:\n"
@@ -4698,30 +4698,30 @@ msgstr ""
 "No es pot carregar:\n"
 "%s"
 
-#: src/ui_pathsel.c:432
+#: src/ui-pathsel.c:432
 #, c-format
 msgid "A file with name %s already exists."
 msgstr "Ja existeix un fitxer anomenat %s."
 
-#: src/ui_pathsel.c:433 src/ui_pathsel.c:439 src/utilops.c:2373
+#: src/ui-pathsel.c:433 src/ui-pathsel.c:439 src/utilops.c:2373
 #: src/utilops.c:2400 src/utilops.c:2866
 msgid "Rename failed"
 msgstr "Canvi de nom ha fallat"
 
-#: src/ui_pathsel.c:438
+#: src/ui-pathsel.c:438
 #, c-format
 msgid "Failed to rename %s to %s."
 msgstr "És impossible canviar el nom de %s a %s."
 
-#: src/ui_pathsel.c:634 src/ui_pathsel.c:642
+#: src/ui-pathsel.c:634 src/ui-pathsel.c:642
 msgid "_Rename"
 msgstr "Canvia el _nom"
 
-#: src/ui_pathsel.c:636 src/ui_pathsel.c:646
+#: src/ui-pathsel.c:636 src/ui-pathsel.c:646
 msgid "Add _Bookmark"
 msgstr "Afegeix _adreça d'interès"
 
-#: src/ui_pathsel.c:759
+#: src/ui-pathsel.c:759
 #, c-format
 msgid ""
 "Unable to create folder:\n"
@@ -4730,39 +4730,39 @@ msgstr ""
 "No es pot crear la carpeta:\n"
 "%s"
 
-#: src/ui_pathsel.c:760
+#: src/ui-pathsel.c:760
 msgid "Error creating folder"
 msgstr "Error quan s'intentava crear la carpeta"
 
-#: src/ui_pathsel.c:980
+#: src/ui-pathsel.c:980
 msgid "All Files"
 msgstr "Tots els Fitxers"
 
-#: src/ui_pathsel.c:1049 src/utilops.c:3189
+#: src/ui-pathsel.c:1049 src/utilops.c:3189
 msgid "New folder"
 msgstr "Nova carpeta"
 
-#: src/ui_pathsel.c:1052
+#: src/ui-pathsel.c:1052
 msgid "Show hidden"
 msgstr "Mostra els ocults"
 
-#: src/ui_pathsel.c:1137
+#: src/ui-pathsel.c:1137
 msgid "Filter:"
 msgstr "Filtra:"
 
-#: src/ui_pathsel.c:1179
+#: src/ui-pathsel.c:1179
 msgid "Files"
 msgstr "Fitxers"
 
-#: src/ui_tabcomp.c:945
+#: src/ui-tabcomp.c:945
 msgid "Select path"
 msgstr "Seleccioneu el camí"
 
-#: src/ui_tabcomp.c:967
+#: src/ui-tabcomp.c:967
 msgid "All files"
 msgstr "Tots els fitxers"
 
-#: src/uri_utils.c:43
+#: src/uri-utils.c:43
 msgid "Drag and Drop failed"
 msgstr "Arrossega i deixa anar ha fallat"
 
@@ -5122,111 +5122,111 @@ msgstr "Crea la carpeta"
 msgid "Cannot create folder:"
 msgstr "No es pot crear la carpeta:"
 
-#: src/view_dir.c:411
+#: src/view-dir.c:411
 msgid "_Copy"
 msgstr "_Copia"
 
-#: src/view_dir.c:413
+#: src/view-dir.c:413
 msgid "_Move"
 msgstr "_Mou"
 
-#: src/view_dir.c:714
+#: src/view-dir.c:714
 msgid "_Up to parent"
 msgstr "_Puja una carpeta"
 
-#: src/view_dir.c:719
+#: src/view-dir.c:719
 msgid "_Slideshow"
 msgstr "Seqüència de _diapositives"
 
-#: src/view_dir.c:721
+#: src/view-dir.c:721
 msgid "Slideshow recursive"
 msgstr "Seqüència de _diapositives recursiva"
 
-#: src/view_dir.c:725
+#: src/view-dir.c:725
 msgid "Find _duplicates..."
 msgstr "Busca _duplicats..."
 
-#: src/view_dir.c:727
+#: src/view-dir.c:727
 msgid "Find duplicates recursive..."
 msgstr "Busca duplicats recursivament..."
 
-#: src/view_dir.c:732
+#: src/view-dir.c:732
 msgid "_New folder..."
 msgstr "_Nova carpeta..."
 
-#: src/view_dir.c:749
+#: src/view-dir.c:749
 msgid "View as _List"
 msgstr "Veure com una _Llista"
 
-#: src/view_dir.c:752
+#: src/view-dir.c:752
 msgid "View as _Tree"
 msgstr "Veure com un _Arbre"
 
-#: src/view_dir.c:765
+#: src/view-dir.c:765
 msgid "Show _hidden files"
 msgstr "Mostra els fitxers _ocults"
 
-#: src/view_dir.c:768 src/view_file/view_file.c:779
+#: src/view-dir.c:768 src/view-file/view-file.c:779
 msgid "Re_fresh"
 msgstr "Ac_tualitza"
 
-#: src/view_file/view_file.c:725
+#: src/view-file/view-file.c:725
 msgid "Enable file _grouping"
 msgstr "Habilita els _grups de fitxers"
 
-#: src/view_file/view_file.c:727
+#: src/view-file/view-file.c:727
 msgid "Disable file groupi_ng"
 msgstr "I_nhabilita els grups de fitxers"
 
-#: src/view_file/view_file.c:749
+#: src/view-file/view-file.c:749
 msgid "Images as List"
 msgstr "Imatges com a llista"
 
-#: src/view_file/view_file.c:752
+#: src/view-file/view-file.c:752
 msgid "Images as Icons"
 msgstr "Imatges com a icones"
 
-#: src/view_file/view_file.c:758
+#: src/view-file/view-file.c:758
 msgid "Show _thumbnails"
 msgstr "Mostra les _miniatures"
 
-#: src/view_file/view_file.c:904
+#: src/view-file/view-file.c:904
 msgid "Mark text"
 msgstr "Marca de text"
 
-#: src/view_file/view_file.c:907
+#: src/view-file/view-file.c:907
 msgid "Set mark text"
 msgstr "Posa la marca al text"
 
-#: src/view_file/view_file.c:908
+#: src/view-file/view-file.c:908
 msgid "This will set or clear the mark text."
 msgstr "Això posarà o treurà la marca del text."
 
-#: src/view_file/view_file.c:1185
+#: src/view-file/view-file.c:1185
 msgid "Use regular expressions"
 msgstr ""
 
-#: src/view_file/view_file.c:1215
+#: src/view-file/view-file.c:1215
 msgid "Case"
 msgstr "Diferència majúscules/minúscules"
 
-#: src/view_file/view_file.c:1217
+#: src/view-file/view-file.c:1217
 msgid "Case sensitive"
 msgstr "Distingeix entre majúscules i minúscules"
 
-#: src/view_file/view_file.c:1234
+#: src/view-file/view-file.c:1234
 msgid "Select Class filter"
 msgstr "Selecciona el filtre de Classe"
 
-#: src/view_file/view_file.c:1789
+#: src/view-file/view-file.c:1789
 msgid "Loading meta..."
 msgstr "S'està carregant meta..."
 
-#: src/view_file/view_file_icon.c:2153 src/view_file/view_file_list.c:930
+#: src/view-file/view-file-icon.c:2153 src/view-file/view-file-list.c:930
 msgid " [NO GROUPING]"
 msgstr " [NO S'AGRUPEN]"
 
-#: src/view_file/view_file_list.c:515
+#: src/view-file/view-file-list.c:515
 #, c-format
 msgid ""
 "Invalid file name:\n"
@@ -5235,15 +5235,15 @@ msgstr ""
 "Nom de fitxer invàlid:\n"
 "%s"
 
-#: src/view_file/view_file_list.c:516
+#: src/view-file/view-file-list.c:516
 msgid "Error renaming file"
 msgstr "Error en canviar el nom del fitxer"
 
-#: src/view_file/view_file_list.c:2232
+#: src/view-file/view-file-list.c:2232
 msgid "NameStars"
 msgstr "NomEstrelles"
 
-#: src/view_file/view_file_list.c:2236
+#: src/view-file/view-file-list.c:2236
 msgid "Stars"
 msgstr "Estrelles"
 

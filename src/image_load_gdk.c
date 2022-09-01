@@ -21,7 +21,7 @@
 
 #include "main.h"
 #include "image-load.h"
-#include "image_load_gdk.h"
+#include "image-load-gdk.h"
 
 
 static gchar* image_loader_gdk_get_format_name(gpointer loader)

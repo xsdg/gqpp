@@ -19,24 +19,24 @@
  */
 
 #include "main.h"
-#include "view_file.h"
+#include "view-file.h"
 
 #include "dupe.h"
 #include "collect.h"
 #include "collect-table.h"
 #include "editors.h"
-#include "history_list.h"
+#include "history-list.h"
 #include "layout.h"
 #include "menu.h"
 #include "misc.h"
-#include "pixbuf_util.h"
+#include "pixbuf-util.h"
 #include "thumb.h"
-#include "ui_menu.h"
-#include "ui_fileops.h"
-#include "ui_misc.h"
+#include "ui-menu.h"
+#include "ui-fileops.h"
+#include "ui-misc.h"
 #include "utilops.h"
-#include "view_file/view_file_list.h"
-#include "view_file/view_file_icon.h"
+#include "view-file/view-file-list.h"
+#include "view-file/view-file-icon.h"
 #include "window.h"
 
 /*

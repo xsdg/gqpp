@@ -23,7 +23,7 @@
 #define UTILOPS_H
 
 
-#include "ui_utildlg.h"
+#include "ui-utildlg.h"
 
 void file_maint_renamed(FileData *fd);
 void file_maint_moved(FileData *fd, GList *ignore_list);

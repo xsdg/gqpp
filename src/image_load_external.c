@@ -21,10 +21,10 @@
 #include "main.h"
 
 #include "image-load.h"
-#include "image_load_external.h"
+#include "image-load-external.h"
 
 #include "misc.h"
-#include "ui_fileops.h"
+#include "ui-fileops.h"
 
 typedef struct _ImageLoaderExternal ImageLoaderExternal;
 struct _ImageLoaderExternal {

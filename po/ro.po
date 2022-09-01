@@ -90,34 +90,34 @@ msgstr ""
 msgid "Tethered photography"
 msgstr ""
 
-#: src/advanced_exif.c:437 src/cache_maint.c:1773 src/preferences.c:2851
+#: src/advanced-exif.c:437 src/cache-maint.c:1773 src/preferences.c:2851
 #: src/search.c:2281 src/search.c:3609
 msgid "Metadata"
 msgstr "Metadate"
 
-#: src/advanced_exif.c:493 src/preferences.c:2756
+#: src/advanced-exif.c:493 src/preferences.c:2756
 msgid "Description"
 msgstr "Descriere"
 
-#: src/advanced_exif.c:494
+#: src/advanced-exif.c:494
 msgid "Value"
 msgstr "Valoare"
 
-#: src/advanced_exif.c:495 src/desktop_file.c:631 src/dupe.c:3978
+#: src/advanced-exif.c:495 src/desktop-file.c:631 src/dupe.c:3978
 #: src/dupe.c:4703 src/dupe.c:5287 src/search.c:3693 src/utilops.c:507
-#: src/view_file/view_file_list.c:2228
+#: src/view-file/view-file-list.c:2228
 msgid "Name"
 msgstr "Nume"
 
-#: src/advanced_exif.c:496
+#: src/advanced-exif.c:496
 msgid "Tag"
 msgstr "Etichetă"
 
-#: src/advanced_exif.c:497
+#: src/advanced-exif.c:497
 msgid "Format"
 msgstr "Format"
 
-#: src/advanced_exif.c:498
+#: src/advanced-exif.c:498
 msgid "Elements"
 msgstr "Elemente"
 
@@ -125,11 +125,11 @@ msgstr "Elemente"
 msgid "Move to _top"
 msgstr "Mu_tă sus"
 
-#: src/bar.c:404 src/toolbar.c:225 src/ui_bookmark.c:414
+#: src/bar.c:404 src/toolbar.c:225 src/ui-bookmark.c:414
 msgid "Move _up"
 msgstr "Mută s_us"
 
-#: src/bar.c:405 src/toolbar.c:226 src/ui_bookmark.c:416
+#: src/bar.c:405 src/toolbar.c:226 src/ui-bookmark.c:416
 msgid "Move _down"
 msgstr "Mută _jos"
 
@@ -151,95 +151,95 @@ msgstr "Şterge"
 msgid "Add Pane"
 msgstr "Adaugă imagine"
 
-#: src/bar_comment.c:236
+#: src/bar-comment.c:236
 msgid "Add text to selected files"
 msgstr "Adaugă text la fișierele selectate"
 
-#: src/bar_comment.c:237
+#: src/bar-comment.c:237
 msgid "Replace existing text in selected files"
 msgstr "Înlocuiește textul existent în fișierele selectate"
 
-#: src/bar_exif.c:225
+#: src/bar-exif.c:225
 msgid "<empty label, fixme>"
 msgstr "<empty label, fixme>"
 
-#: src/bar_exif.c:562 src/bar_exif.c:572
+#: src/bar-exif.c:562 src/bar-exif.c:572
 msgid "Configure entry"
 msgstr "Configurează element"
 
-#: src/bar_exif.c:562 src/bar_exif.c:572 src/bar_exif.c:660
+#: src/bar-exif.c:562 src/bar-exif.c:572 src/bar-exif.c:660
 msgid "Add entry"
 msgstr "Adaugă element"
 
-#: src/bar_exif.c:578
+#: src/bar-exif.c:578
 msgid "Key:"
 msgstr "Cheie: "
 
-#: src/bar_exif.c:587
+#: src/bar-exif.c:587
 msgid "Title:"
 msgstr "Titlu:"
 
-#: src/bar_exif.c:596
+#: src/bar-exif.c:596
 msgid "Show only if set"
 msgstr "Afișează doar dacă e setat"
 
-#: src/bar_exif.c:597
+#: src/bar-exif.c:597
 msgid "Editable (supported only for XMP)"
 msgstr "Editabil (doar XMP)"
 
-#: src/bar_exif.c:646
+#: src/bar-exif.c:646
 #, c-format
 msgid "Configure \"%s\""
 msgstr "Configurează \"%s\""
 
-#: src/bar_exif.c:647 src/bar_keywords.c:1369
+#: src/bar-exif.c:647 src/bar-keywords.c:1369
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Șterge \"%s\""
 
-#: src/bar_exif.c:648
+#: src/bar-exif.c:648
 #, fuzzy, c-format
 msgid "Copy \"%s\""
 msgstr "Copiază"
 
-#: src/bar_exif.c:661
+#: src/bar-exif.c:661
 msgid "Show hidden entries"
 msgstr "Arată  elementele ascunse"
 
-#: src/bar_gps.c:187
+#: src/bar-gps.c:187
 #, c-format
 msgid ""
 "\n"
 "Do you want to geocode image %s?"
 msgstr ""
 
-#: src/bar_gps.c:192
+#: src/bar-gps.c:192
 #, c-format
 msgid ""
 "\n"
 "Do you want to geocode %i images?"
 msgstr ""
 
-#: src/bar_gps.c:197
+#: src/bar-gps.c:197
 msgid ""
 "\n"
 "This image is already geocoded!"
 msgstr ""
 
-#: src/bar_gps.c:202
+#: src/bar-gps.c:202
 msgid ""
 "\n"
 "One image is already geocoded!"
 msgstr ""
 
-#: src/bar_gps.c:207
+#: src/bar-gps.c:207
 #, c-format
 msgid ""
 "\n"
 "%i Images are already geocoded!"
 msgstr ""
 
-#: src/bar_gps.c:212
+#: src/bar-gps.c:212
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -247,39 +247,39 @@ msgid ""
 "Position: %s \n"
 msgstr "Locație: %s"
 
-#: src/bar_gps.c:214
+#: src/bar-gps.c:214
 #, fuzzy
 msgid "Geocode images"
 msgstr "Preîncarcă următoarea imagine"
 
-#: src/bar_gps.c:218
+#: src/bar-gps.c:218
 #, fuzzy
 msgid "Write lat/long to meta-data?"
 msgstr "Scriu metadate?"
 
-#: src/bar_gps.c:732
+#: src/bar-gps.c:732
 #, c-format
 msgid "Zoom %i"
 msgstr "Zoom %i"
 
-#: src/bar_gps.c:750
+#: src/bar-gps.c:750
 #, c-format
 msgid "Zoom level %i"
 msgstr "Nivel zoom %i"
 
-#: src/bar_gps.c:755
+#: src/bar-gps.c:755
 msgid "Loading map"
 msgstr "Încarc harta"
 
-#: src/bar_gps.c:821
+#: src/bar-gps.c:821
 msgid "Enable markers"
 msgstr "Activează markeri"
 
-#: src/bar_gps.c:823
+#: src/bar-gps.c:823
 msgid "Centre map on marker"
 msgstr "Centrează harta pe marker"
 
-#: src/bar_gps.c:845
+#: src/bar-gps.c:845
 msgid ""
 "Move map centre to marker\n"
 " is disabled"
@@ -287,7 +287,7 @@ msgstr ""
 "Mutarea centrului hărții pe marker\n"
 " este dezactivată"
 
-#: src/bar_gps.c:850
+#: src/bar-gps.c:850
 msgid ""
 "Move map centre to marker\n"
 " is enabled"
@@ -295,188 +295,188 @@ msgstr ""
 "Mutarea centrului hărții pe marker\n"
 " este activată"
 
-#: src/bar_gps.c:854
+#: src/bar-gps.c:854
 #, fuzzy
 msgid "Map centering"
 msgstr "Centrare pe hartă"
 
-#: src/bar_gps.c:959 src/menu.c:334 src/preferences.c:2244
+#: src/bar-gps.c:959 src/menu.c:334 src/preferences.c:2244
 msgid "Zoom"
 msgstr "Zoom"
 
-#: src/bar_gps.c:969
+#: src/bar-gps.c:969
 #, fuzzy
 msgid "Zoom level"
 msgstr "Nivel zoom %i"
 
-#: src/bar_gps.c:1023
+#: src/bar-gps.c:1023
 msgid "GPS Map"
 msgstr "Hartă GPS"
 
-#: src/bar_histogram.c:234
+#: src/bar-histogram.c:234
 msgid "Histogram on _Red"
 msgstr "Histogramă pe _roșu"
 
-#: src/bar_histogram.c:235
+#: src/bar-histogram.c:235
 msgid "Histogram on _Green"
 msgstr "Histo_gramă pe verde"
 
-#: src/bar_histogram.c:236
+#: src/bar-histogram.c:236
 msgid "Histogram on _Blue"
 msgstr "Histogramă pe al_bastru"
 
-#: src/bar_histogram.c:237
+#: src/bar-histogram.c:237
 msgid "_Histogram on RGB"
 msgstr "_Histogramă pe RGB"
 
-#: src/bar_histogram.c:238
+#: src/bar-histogram.c:238
 msgid "Histogram on _Value"
 msgstr "Histogramă pe _valoare"
 
-#: src/bar_histogram.c:242
+#: src/bar-histogram.c:242
 msgid "Li_near Histogram"
 msgstr "Histogramă li_niară"
 
-#: src/bar_histogram.c:243
+#: src/bar-histogram.c:243
 msgid "L_og Histogram"
 msgstr "Histogramă l_ogaritmică"
 
-#: src/bar_keywords.c:490
+#: src/bar-keywords.c:490
 #, fuzzy
 msgid "Add selected keywords to selected files"
 msgstr "Adaugă cuvinte cheie la fișierele selectate"
 
-#: src/bar_keywords.c:491
+#: src/bar-keywords.c:491
 #, fuzzy
 msgid "Replace existing keywords in selected files with selected keywords"
 msgstr "Înlocuiește cuvintele cheie existente în fișierele selectate"
 
-#: src/bar_keywords.c:962
+#: src/bar-keywords.c:962
 msgid "Edit keyword"
 msgstr "Editează cuvânt cheie"
 
-#: src/bar_keywords.c:962 src/bar_keywords.c:969 src/bar_keywords.c:1314
+#: src/bar-keywords.c:962 src/bar-keywords.c:969 src/bar-keywords.c:1314
 #, fuzzy
 msgid "New keyword"
 msgstr "Adaugă cuvânt cheie"
 
-#: src/bar_keywords.c:969
+#: src/bar-keywords.c:969
 msgid "Configure keyword"
 msgstr "Configurează cuvânt cheie"
 
-#: src/bar_keywords.c:975
+#: src/bar-keywords.c:975
 msgid "Keyword:"
 msgstr "Cuvânt cheie:"
 
-#: src/bar_keywords.c:984
+#: src/bar-keywords.c:984
 msgid "Keyword type:"
 msgstr "Tip cuvânt cheie:"
 
-#: src/bar_keywords.c:986
+#: src/bar-keywords.c:986
 msgid "Active keyword"
 msgstr "Cuvânt  cheie activ"
 
-#: src/bar_keywords.c:989
+#: src/bar-keywords.c:989
 msgid "Helper"
 msgstr "Etichetă"
 
-#: src/bar_keywords.c:1063
+#: src/bar-keywords.c:1063
 msgid "This will disconnect all Marks Keywords connections"
 msgstr ""
 
-#: src/bar_keywords.c:1065
+#: src/bar-keywords.c:1065
 #, fuzzy
 msgid "Marks Keywords"
 msgstr "Cuvinte cheie"
 
-#: src/bar_keywords.c:1338
+#: src/bar-keywords.c:1338
 #, fuzzy, c-format
 msgid "Add \"%s\" to all selected images"
 msgstr "Adaugă cuvinte cheie la fișierele selectate"
 
-#: src/bar_keywords.c:1344
+#: src/bar-keywords.c:1344
 #, c-format
 msgid "Hide \"%s\""
 msgstr "Ascunde \"%s\""
 
-#: src/bar_keywords.c:1351
+#: src/bar-keywords.c:1351
 #, c-format
 msgid "Mark %d"
 msgstr "Marchează %d"
 
-#: src/bar_keywords.c:1359
+#: src/bar-keywords.c:1359
 #, c-format
 msgid "Connect \"%s\" to mark"
 msgstr "Conectează \"%s\" la marcaj"
 
-#: src/bar_keywords.c:1366
+#: src/bar-keywords.c:1366
 #, c-format
 msgid "Edit \"%s\""
 msgstr "Editează \"%s\""
 
-#: src/bar_keywords.c:1376
+#: src/bar-keywords.c:1376
 #, c-format
 msgid "Disconnect \"%s\" from mark %s"
 msgstr "Deconectează \"%s\" de marcajul %s"
 
-#: src/bar_keywords.c:1383
+#: src/bar-keywords.c:1383
 msgid "Disconnect all Mark Keyword connections"
 msgstr ""
 
-#: src/bar_keywords.c:1394 src/bar_keywords.c:1408
+#: src/bar-keywords.c:1394 src/bar-keywords.c:1408
 msgid "Expand checked"
 msgstr "Extinde bifate"
 
-#: src/bar_keywords.c:1395 src/bar_keywords.c:1409
+#: src/bar-keywords.c:1395 src/bar-keywords.c:1409
 msgid "Collapse unchecked"
 msgstr "Închide ce nu e bifat"
 
-#: src/bar_keywords.c:1396 src/bar_keywords.c:1410
+#: src/bar-keywords.c:1396 src/bar-keywords.c:1410
 msgid "Hide unchecked"
 msgstr "Ascunde nebifate"
 
-#: src/bar_keywords.c:1397
+#: src/bar-keywords.c:1397
 msgid "Revert all hidden"
 msgstr ""
 
-#: src/bar_keywords.c:1399 src/dupe.c:3991
+#: src/bar-keywords.c:1399 src/dupe.c:3991
 msgid "Show all"
 msgstr "Arată tot"
 
-#: src/bar_keywords.c:1400
+#: src/bar-keywords.c:1400
 #, fuzzy
 msgid "Collapse all"
 msgstr "Închide ce nu e bifat"
 
-#: src/bar_keywords.c:1401
+#: src/bar-keywords.c:1401
 msgid "Revert"
 msgstr ""
 
-#: src/bar_keywords.c:1405
+#: src/bar-keywords.c:1405
 msgid "On any change"
 msgstr "La orice schimbare"
 
-#: src/bar_keywords.c:1901
+#: src/bar-keywords.c:1901
 #, fuzzy, c-format
 msgid "Error: Unable to write keywords list to: %s\n"
 msgstr "Nu pot scrie istoricul în: %s\n"
 
-#: src/bar_rating.c:167
+#: src/bar-rating.c:167
 #, fuzzy
 msgid "Rejected"
 msgstr "Resetează selecția"
 
-#: src/bar_rating.c:171
+#: src/bar-rating.c:171
 #, fuzzy
 msgid "Unrated"
 msgstr "necalibrat"
 
-#: src/bar_sort.c:435
+#: src/bar-sort.c:435
 #, fuzzy
 msgid "Sort Manager Operations"
 msgstr "Gestionar de sortare"
 
-#: src/bar_sort.c:438
+#: src/bar-sort.c:438
 msgid ""
 "Additional operations utilising plugins\n"
 "may be included by setting:\n"
@@ -486,7 +486,7 @@ msgid ""
 "in the plugin file."
 msgstr ""
 
-#: src/bar_sort.c:506
+#: src/bar-sort.c:506
 #, c-format
 msgid ""
 "The collection:\n"
@@ -497,11 +497,11 @@ msgstr ""
 "%s\n"
 "există deja."
 
-#: src/bar_sort.c:507
+#: src/bar-sort.c:507
 msgid "Collection exists"
 msgstr "Colecția există "
 
-#: src/bar_sort.c:521 src/collect.c:1216 src/collect-dlg.c:93
+#: src/bar-sort.c:521 src/collect.c:1216 src/collect-dlg.c:93
 #, c-format
 msgid ""
 "Failed to save the collection:\n"
@@ -510,51 +510,51 @@ msgstr ""
 "Nu am putut salva colecţia:\n"
 "%s"
 
-#: src/bar_sort.c:522 src/collect.c:1217 src/collect-dlg.c:94
+#: src/bar-sort.c:522 src/collect.c:1217 src/collect-dlg.c:94
 msgid "Save Failed"
 msgstr "Nu am putut salva datele!"
 
-#: src/bar_sort.c:557 src/bar_sort.c:737
+#: src/bar-sort.c:557 src/bar-sort.c:737
 msgid "Add Bookmark"
 msgstr "Adaugă semn de carte"
 
-#: src/bar_sort.c:561
+#: src/bar-sort.c:561
 msgid "Add Collection"
 msgstr "Adaugă colecţie"
 
-#: src/bar_sort.c:578 src/shortcuts.c:118 src/ui_bookmark.c:295
+#: src/bar-sort.c:578 src/shortcuts.c:118 src/ui-bookmark.c:295
 msgid "Name:"
 msgstr "Nume:"
 
-#: src/bar_sort.c:658
+#: src/bar-sort.c:658
 msgid "Sort Manager"
 msgstr "Gestionar de sortare"
 
-#: src/bar_sort.c:667 src/pan-view/pan-view.c:1909 src/ui_pathsel.c:1100
+#: src/bar-sort.c:667 src/pan-view/pan-view.c:1909 src/ui-pathsel.c:1100
 msgid "Folders"
 msgstr "Dosare"
 
-#: src/bar_sort.c:668 src/options.c:248
+#: src/bar-sort.c:668 src/options.c:248
 msgid "Collections"
 msgstr "Colecţii"
 
-#: src/bar_sort.c:677 src/preferences.c:693 src/utilops.c:2350
+#: src/bar-sort.c:677 src/preferences.c:693 src/utilops.c:2350
 msgid "Copy"
 msgstr "Copiază"
 
-#: src/bar_sort.c:681 src/preferences.c:695 src/utilops.c:2300
+#: src/bar-sort.c:681 src/preferences.c:695 src/utilops.c:2300
 msgid "Move"
 msgstr "Mută"
 
-#: src/bar_sort.c:722
+#: src/bar-sort.c:722
 msgid "Add image"
 msgstr "Adaugă imagine"
 
-#: src/bar_sort.c:725
+#: src/bar-sort.c:725
 msgid "Add selection"
 msgstr "Adaugă selecție"
 
-#: src/bar_sort.c:740
+#: src/bar-sort.c:740
 msgid "Undo last image"
 msgstr "Des-face ultima imagine"
 
@@ -567,109 +567,109 @@ msgstr ""
 "error saving sim cache data: %s\n"
 "error: %s\n"
 
-#: src/cache_maint.c:72
+#: src/cache-maint.c:72
 #, fuzzy
 msgid "Geeqie: Creating sim data..."
 msgstr "Citesc date imagine..."
 
-#: src/cache_maint.c:78
+#: src/cache-maint.c:78
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "Şterg miniaturile..."
 
-#: src/cache_maint.c:94
+#: src/cache-maint.c:94
 #, fuzzy
 msgid "Exit Geeqie Cache Maintenance"
 msgstr "Administrare cache"
 
-#: src/cache_maint.c:111
+#: src/cache-maint.c:111
 #, fuzzy
 msgid "Geeqie: Cleaning thumbs..."
 msgstr "Şterg miniaturile..."
 
-#: src/cache_maint.c:184 src/cache_maint.c:684 src/cache_maint.c:787
-#: src/cache_maint.c:984 src/cache_maint.c:1455 src/editors.c:1245
+#: src/cache-maint.c:184 src/cache-maint.c:684 src/cache-maint.c:787
+#: src/cache-maint.c:984 src/cache-maint.c:1455 src/editors.c:1245
 #: src/preferences.c:3043
 msgid "done"
 msgstr "terminat"
 
-#: src/cache_maint.c:374
+#: src/cache-maint.c:374
 msgid "Removing old metadata..."
 msgstr "Șterg metadate vechi..."
 
-#: src/cache_maint.c:378
+#: src/cache-maint.c:378
 msgid "Clearing cached thumbnails..."
 msgstr "Șterg cache thumbnail-uri..."
 
-#: src/cache_maint.c:382 src/cache_maint.c:1157
+#: src/cache-maint.c:382 src/cache-maint.c:1157
 msgid "Removing old thumbnails..."
 msgstr "Șterg thumbnail-uri vechi..."
 
-#: src/cache_maint.c:385 src/cache_maint.c:1160
+#: src/cache-maint.c:385 src/cache-maint.c:1160
 msgid "Maintenance"
 msgstr "întreținere"
 
-#: src/cache_maint.c:698 src/cache_maint.c:1334
+#: src/cache-maint.c:698 src/cache-maint.c:1334
 #, fuzzy
 msgid "stopped"
 msgstr "oprit de către utilizator"
 
-#: src/cache_maint.c:817 src/cache_maint.c:1486 src/cache_maint.c:1616
+#: src/cache-maint.c:817 src/cache-maint.c:1486 src/cache-maint.c:1616
 #: src/preferences.c:3125
 msgid "Invalid folder"
 msgstr "Folder invalid"
 
-#: src/cache_maint.c:818 src/cache_maint.c:1487 src/cache_maint.c:1617
+#: src/cache-maint.c:818 src/cache-maint.c:1487 src/cache-maint.c:1617
 #: src/preferences.c:3126
 msgid "The specified folder can not be found."
 msgstr "Folder-ul specificat nu a putut fi găsit"
 
-#: src/cache_maint.c:886 src/cache_maint.c:900 src/cache_maint.c:1753
+#: src/cache-maint.c:886 src/cache-maint.c:900 src/cache-maint.c:1753
 msgid "Create thumbnails"
 msgstr "Creează thumbnail-uri"
 
-#: src/cache_maint.c:894 src/cache_maint.c:1167 src/cache_maint.c:1536
-#: src/cache_maint.c:1655 src/preferences.c:3164
+#: src/cache-maint.c:894 src/cache-maint.c:1167 src/cache-maint.c:1536
+#: src/cache-maint.c:1655 src/preferences.c:3164
 msgid "S_tart"
 msgstr "S_tart"
 
-#: src/cache_maint.c:907 src/cache_maint.c:1549 src/cache_maint.c:1665
+#: src/cache-maint.c:907 src/cache-maint.c:1549 src/cache-maint.c:1665
 #: src/preferences.c:3177 src/preferences.c:3526
 msgid "Folder:"
 msgstr "Dosar:"
 
-#: src/cache_maint.c:910 src/cache_maint.c:1552 src/cache_maint.c:1668
+#: src/cache-maint.c:910 src/cache-maint.c:1552 src/cache-maint.c:1668
 #: src/preferences.c:3180
 msgid "Select folder"
 msgstr "Alegeți folder"
 
-#: src/cache_maint.c:914 src/preferences.c:3184
+#: src/cache-maint.c:914 src/preferences.c:3184
 msgid "Include subfolders"
 msgstr "Include subfoldere"
 
-#: src/cache_maint.c:915
+#: src/cache-maint.c:915
 msgid "Store thumbnails local to source images"
 msgstr "Salvează thumbnail-uri în imaginile sursă"
 
-#: src/cache_maint.c:924 src/cache_maint.c:1176 src/cache_maint.c:1562
+#: src/cache-maint.c:924 src/cache-maint.c:1176 src/cache-maint.c:1562
 #: src/preferences.c:3192
 msgid "click start to begin"
 msgstr "click pe start pentru a începe"
 
-#: src/cache_maint.c:1096 src/editors.c:1171
+#: src/cache-maint.c:1096 src/editors.c:1171
 msgid "running..."
 msgstr "rulează..."
 
-#: src/cache_maint.c:1152
+#: src/cache-maint.c:1152
 msgid "Clearing thumbnails..."
 msgstr "Şterg miniaturile..."
 
-#: src/cache_maint.c:1233 src/cache_maint.c:1236 src/cache_maint.c:1729
-#: src/cache_maint.c:1748
+#: src/cache-maint.c:1233 src/cache-maint.c:1236 src/cache-maint.c:1729
+#: src/cache-maint.c:1748
 msgid "Clear cache"
 msgstr "Şterge memoria tampon"
 
-#: src/cache_maint.c:1237
+#: src/cache-maint.c:1237
 #, fuzzy
 msgid ""
 "This will remove all thumbnails and sim. files\n"
@@ -678,105 +678,105 @@ msgstr ""
 "Doriţi să ştergeţi toate miniaturile\n"
 "salvate pe disc?"
 
-#: src/cache_maint.c:1282
+#: src/cache-maint.c:1282
 #, c-format
 msgid "Location: %s"
 msgstr "Locație: %s"
 
-#: src/cache_maint.c:1531
+#: src/cache-maint.c:1531
 #, fuzzy
 msgid "Create sim. files"
 msgstr "Nu pot crea fişier temporar"
 
-#: src/cache_maint.c:1542
+#: src/cache-maint.c:1542
 #, fuzzy
 msgid "Create sim. files recursively"
 msgstr "Generează thumbnail-uri pentru un folder anume."
 
-#: src/cache_maint.c:1650 src/cache_maint.c:1784
+#: src/cache-maint.c:1650 src/cache-maint.c:1784
 #, fuzzy
 msgid "Background cache maintenance"
 msgstr "Administrare cache"
 
-#: src/cache_maint.c:1658
+#: src/cache-maint.c:1658
 msgid ""
 "Recursively delete orphaned thumbnails\n"
 "and .sim files, and create new\n"
 "thumbnails and .sim files"
 msgstr ""
 
-#: src/cache_maint.c:1702
+#: src/cache-maint.c:1702
 msgid "Cache Maintenance"
 msgstr "Administrare cache"
 
-#: src/cache_maint.c:1714
+#: src/cache-maint.c:1714
 msgid "Cache and Data Maintenance"
 msgstr "Administrare cache și date"
 
-#: src/cache_maint.c:1718
+#: src/cache-maint.c:1718
 #, fuzzy
 msgid "Geeqie thumbnail and sim. cache"
 msgstr "Cache comun"
 
-#: src/cache_maint.c:1724 src/cache_maint.c:1743 src/cache_maint.c:1779
+#: src/cache-maint.c:1724 src/cache-maint.c:1743 src/cache-maint.c:1779
 msgid "Clean up"
 msgstr "Curățenie"
 
-#: src/cache_maint.c:1727
+#: src/cache-maint.c:1727
 #, fuzzy
 msgid "Remove orphaned or outdated thumbnails and sim. files."
 msgstr "Șterge thumbnail-urile vechi și/sau \"orfane\"."
 
-#: src/cache_maint.c:1732
+#: src/cache-maint.c:1732
 #, fuzzy
 msgid "Delete all cached data."
 msgstr "Șterge toate thumbnail-urile din cache."
 
-#: src/cache_maint.c:1735
+#: src/cache-maint.c:1735
 msgid "Shared thumbnail cache"
 msgstr "Cache comun"
 
-#: src/cache_maint.c:1746
+#: src/cache-maint.c:1746
 msgid "Remove orphaned or outdated thumbnails."
 msgstr "Șterge thumbnail-urile vechi și/sau \"orfane\"."
 
-#: src/cache_maint.c:1751
+#: src/cache-maint.c:1751
 msgid "Delete all cached thumbnails."
 msgstr "Șterge toate thumbnail-urile din cache."
 
-#: src/cache_maint.c:1757
+#: src/cache-maint.c:1757
 msgid "Render"
 msgstr "Randare"
 
-#: src/cache_maint.c:1760
+#: src/cache-maint.c:1760
 msgid "Render thumbnails for a specific folder."
 msgstr "Generează thumbnail-uri pentru un folder anume."
 
-#: src/cache_maint.c:1763
+#: src/cache-maint.c:1763
 #, fuzzy
 msgid "File similarity cache"
 msgstr "Şterge memoria tampon"
 
-#: src/cache_maint.c:1767
+#: src/cache-maint.c:1767
 #, fuzzy
 msgid "Create"
 msgstr "creativ(e)"
 
-#: src/cache_maint.c:1770
+#: src/cache-maint.c:1770
 #, fuzzy
 msgid "Create sim. files recursively."
 msgstr "Generează thumbnail-uri pentru un folder anume."
 
-#: src/cache_maint.c:1782
+#: src/cache-maint.c:1782
 msgid "Remove orphaned keywords and comments."
 msgstr "Șterge comentariile și cuvintele cheie \"orfane\"."
 
-#: src/cache_maint.c:1788
+#: src/cache-maint.c:1788
 #, fuzzy
 msgid "Select"
 msgstr "_Selectează"
 
-#: src/cache_maint.c:1791
+#: src/cache-maint.c:1791
 msgid "Run cache maintenance as a background job."
 msgstr ""
 
@@ -901,12 +901,12 @@ msgstr "%s, %d imagini (%s, %d)"
 msgid "%s, %d images"
 msgstr "%s, %d imagini"
 
-#: src/collect-table.c:261 src/layout_util.c:1935 src/layout_util.c:3672
+#: src/collect-table.c:261 src/layout-util.c:1935 src/layout-util.c:3672
 msgid "Empty"
 msgstr "Gol"
 
 #: src/collect-table.c:275 src/dupe.c:2172 src/search.c:435
-#: src/view_file/view_file.c:1376 src/view_file/view_file.c:1485
+#: src/view-file/view-file.c:1376 src/view-file/view-file.c:1485
 msgid "Loading thumbs..."
 msgstr "Încarc miniaturile..."
 
@@ -915,8 +915,8 @@ msgid "_View"
 msgstr "_Vizualizare"
 
 #: src/collect-table.c:990 src/dupe.c:3529 src/dupe.c:3867 src/img-view.c:1417
-#: src/layout_image.c:787 src/pan-view/pan-view.c:2397 src/search.c:1155
-#: src/view_file/view_file.c:698
+#: src/layout-image.c:787 src/pan-view/pan-view.c:2397 src/search.c:1155
+#: src/view-file/view-file.c:698
 msgid "View in _new window"
 msgstr "Vizualizează în fereastră _nouă"
 
@@ -943,12 +943,12 @@ msgid "_Selection"
 msgstr "_Selecție"
 
 #: src/collect-table.c:1006 src/dupe.c:3532 src/dupe.c:3870 src/search.c:1158
-#: src/view_file/view_file.c:1087 src/view_file/view_file.c:1137
+#: src/view-file/view-file.c:1087 src/view-file/view-file.c:1137
 msgid "Select all"
 msgstr "Selectează tot"
 
 #: src/collect-table.c:1008 src/dupe.c:3534 src/dupe.c:3872 src/search.c:1160
-#: src/view_file/view_file.c:1142
+#: src/view-file/view-file.c:1142
 msgid "Select none"
 msgstr "Nu selecta nimic"
 
@@ -962,57 +962,57 @@ msgid "Rectangular selection"
 msgstr "Selecție rectangulară în modul  de afișare cu icon-uri"
 
 #: src/collect-table.c:1024 src/dupe.c:3559 src/img-view.c:1421
-#: src/layout_image.c:801 src/pan-view/pan-view.c:2403 src/search.c:1177
-#: src/view_file/view_file.c:704
+#: src/layout-image.c:801 src/pan-view/pan-view.c:2403 src/search.c:1177
+#: src/view-file/view-file.c:704
 msgid "_Copy..."
 msgstr "_Copiere..."
 
 #: src/collect-table.c:1026 src/dupe.c:3561 src/img-view.c:1422
-#: src/layout_image.c:803 src/pan-view/pan-view.c:2405 src/search.c:1179
-#: src/view_file/view_file.c:706
+#: src/layout-image.c:803 src/pan-view/pan-view.c:2405 src/search.c:1179
+#: src/view-file/view-file.c:706
 msgid "_Move..."
 msgstr "_Mutare..."
 
 #: src/collect-table.c:1028 src/dupe.c:3563 src/img-view.c:1423
-#: src/layout_image.c:805 src/pan-view/pan-view.c:2407 src/search.c:1181
-#: src/view_dir.c:735 src/view_file/view_file.c:708
+#: src/layout-image.c:805 src/pan-view/pan-view.c:2407 src/search.c:1181
+#: src/view-dir.c:735 src/view-file/view-file.c:708
 msgid "_Rename..."
 msgstr "_Redenumire..."
 
 #: src/collect-table.c:1030 src/dupe.c:3565 src/img-view.c:1424
-#: src/search.c:1183 src/view_dir.c:738
+#: src/search.c:1183 src/view-dir.c:738
 msgid "_Copy path"
 msgstr "_Copiază cale"
 
 #: src/collect-table.c:1032 src/dupe.c:3567 src/img-view.c:1425
-#: src/search.c:1185 src/view_dir.c:741
+#: src/search.c:1185 src/view-dir.c:741
 #, fuzzy
 msgid "_Copy path unquoted"
 msgstr "_Copiază cale"
 
 #: src/collect-table.c:1037 src/dupe.c:3572 src/img-view.c:1429
-#: src/layout_image.c:814 src/pan-view/pan-view.c:2416 src/search.c:1190
-#: src/view_file/view_file.c:716
+#: src/layout-image.c:814 src/pan-view/pan-view.c:2416 src/search.c:1190
+#: src/view-file/view-file.c:716
 #, fuzzy
 msgid "Move to Trash..."
 msgstr "Mută..."
 
 #: src/collect-table.c:1038 src/dupe.c:3573 src/img-view.c:1430
-#: src/layout_image.c:815 src/pan-view/pan-view.c:2417 src/search.c:1191
-#: src/view_file/view_file.c:717
+#: src/layout-image.c:815 src/pan-view/pan-view.c:2417 src/search.c:1191
+#: src/view-file/view-file.c:717
 #, fuzzy
 msgid "Move to Trash"
 msgstr "Mu_tă sus"
 
 #: src/collect-table.c:1041 src/dupe.c:3576 src/img-view.c:1433
-#: src/layout_image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
-#: src/view_dir.c:744 src/view_file/view_file.c:720
+#: src/layout-image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
+#: src/view-dir.c:744 src/view-file/view-file.c:720
 msgid "_Delete..."
 msgstr "_Ştergere..."
 
 #: src/collect-table.c:1042 src/dupe.c:3577 src/img-view.c:1434
-#: src/layout_image.c:820 src/pan-view/pan-view.c:2421 src/search.c:1195
-#: src/ui_pathsel.c:644 src/view_file/view_file.c:721
+#: src/layout-image.c:820 src/pan-view/pan-view.c:2421 src/search.c:1195
+#: src/ui-pathsel.c:644 src/view-file/view-file.c:721
 msgid "_Delete"
 msgstr "_Şterge"
 
@@ -1020,16 +1020,16 @@ msgstr "_Şterge"
 msgid "Randomize"
 msgstr "Amestecă"
 
-#: src/collect-table.c:1050 src/view_dir.c:759 src/view_file/view_file.c:746
+#: src/collect-table.c:1050 src/view-dir.c:759 src/view-file/view-file.c:746
 msgid "_Sort"
 msgstr "_Sortare"
 
-#: src/collect-table.c:1053 src/view_file/view_file.c:762
+#: src/collect-table.c:1053 src/view-file/view-file.c:762
 msgid "Show filename _text"
 msgstr "Afişează numele fişierelor"
 
-#: src/collect-table.c:1055 src/view_file/view_file.c:770
-#: src/view_file/view_file.c:774
+#: src/collect-table.c:1055 src/view-file/view-file.c:770
+#: src/view-file/view-file.c:774
 #, fuzzy
 msgid "Show star rating"
 msgstr "Sortare după dată"
@@ -1042,7 +1042,7 @@ msgstr "_Salvează colecţia"
 msgid "Save collection _as..."
 msgstr "Salvează colecţia c_a..."
 
-#: src/collect-table.c:1063 src/view_file/view_file.c:731
+#: src/collect-table.c:1063 src/view-file/view-file.c:731
 msgid "_Find duplicates..."
 msgstr "_Caută duplicatele..."
 
@@ -1067,7 +1067,7 @@ msgid "_Skip folders"
 msgstr "_Sari peste directoare"
 
 #: src/collect-table.c:2248 src/dupe.c:4972 src/img-view.c:1600
-#: src/view_dir.c:431
+#: src/view-dir.c:431
 msgid "Cancel"
 msgstr "Renunţă"
 
@@ -1092,23 +1092,23 @@ msgstr "Oglindește"
 msgid "warning"
 msgstr ""
 
-#: src/desktop_file.c:83 src/desktop_file.c:95 src/desktop_file.c:101
+#: src/desktop-file.c:83 src/desktop-file.c:95 src/desktop-file.c:101
 msgid "Can't save"
 msgstr "Nu pot salva"
 
-#: src/desktop_file.c:83
+#: src/desktop-file.c:83
 msgid "Please specify file name."
 msgstr "Vă rog specificați numele fișierului."
 
-#: src/desktop_file.c:95
+#: src/desktop-file.c:95
 msgid "Could not create directory"
 msgstr "Nu am putut crea directorul."
 
-#: src/desktop_file.c:191 src/desktop_file.c:650
+#: src/desktop-file.c:191 src/desktop-file.c:650
 msgid "Desktop file"
 msgstr "Fişier desktop"
 
-#: src/desktop_file.c:301 src/ui_pathsel.c:494
+#: src/desktop-file.c:301 src/ui-pathsel.c:494
 #, c-format
 msgid ""
 "Unable to delete file:\n"
@@ -1117,17 +1117,17 @@ msgstr ""
 "Nu pot şterge fişierul:\n"
 "%s"
 
-#: src/desktop_file.c:302 src/ui_pathsel.c:495 src/utilops.c:2177
+#: src/desktop-file.c:302 src/ui-pathsel.c:495 src/utilops.c:2177
 #: src/utilops.c:2213 src/utilops.c:2735
 msgid "File deletion failed"
 msgstr "Nu am putut şterge!"
 
-#: src/desktop_file.c:346 src/desktop_file.c:354 src/ui_pathsel.c:537
-#: src/ui_pathsel.c:545
+#: src/desktop-file.c:346 src/desktop-file.c:354 src/ui-pathsel.c:537
+#: src/ui-pathsel.c:545
 msgid "Delete file"
 msgstr "Ştergere fişiere"
 
-#: src/desktop_file.c:352 src/ui_pathsel.c:543
+#: src/desktop-file.c:352 src/ui-pathsel.c:543
 #, c-format
 msgid ""
 "About to delete the file:\n"
@@ -1136,25 +1136,25 @@ msgstr ""
 "Voi şterge fişierul:\n"
 "%s"
 
-#: src/desktop_file.c:384
+#: src/desktop-file.c:384
 msgid "new.desktop"
 msgstr "new.desktop"
 
-#: src/desktop_file.c:549
+#: src/desktop-file.c:549
 msgid "Plugins"
 msgstr ""
 
-#: src/desktop_file.c:618
+#: src/desktop-file.c:618
 #, fuzzy
 msgid "Disabled"
 msgstr "Scrierea permisă"
 
-#: src/desktop_file.c:640
+#: src/desktop-file.c:640
 msgid "Hidden"
 msgstr "Ascuns"
 
-#: src/desktop_file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/search.c:3697
-#: src/ui_pathsel.c:1112 src/utilops.c:503
+#: src/desktop-file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/search.c:3697
+#: src/ui-pathsel.c:1112 src/utilops.c:503
 msgid "Path"
 msgstr "Cale"
 
@@ -1232,12 +1232,12 @@ msgid "Name case-insensitive"
 msgstr "Nume case-insensitive"
 
 #: src/dupe.c:3980 src/dupe.c:4704 src/dupe.c:5287 src/preferences.c:2425
-#: src/search.c:3694 src/view_file/view_file_list.c:2240
+#: src/search.c:3694 src/view-file/view-file-list.c:2240
 msgid "Size"
 msgstr "Mărime"
 
 #: src/dupe.c:3981 src/dupe.c:4705 src/dupe.c:5287 src/search.c:3695
-#: src/view_file/view_file_list.c:2244
+#: src/view-file/view-file-list.c:2244
 msgid "Date"
 msgstr "Data"
 
@@ -1685,7 +1685,7 @@ msgstr "Histogramă liniară pe RGB."
 msgid "Linear Histogram on value"
 msgstr "Histogramă liniară pe valoare"
 
-#: src/history_list.c:291
+#: src/history-list.c:291
 #, c-format
 msgid "Unable to write history lists to: %s\n"
 msgstr "Nu pot scrie istoricul în: %s\n"
@@ -1695,91 +1695,91 @@ msgstr "Nu pot scrie istoricul în: %s\n"
 msgid " (Collection %s)"
 msgstr " (Colecția %s)"
 
-#: src/image_load_cr3.c:161 src/image_load_jpeg.c:164
+#: src/image-load-cr3.c:161 src/image-load-jpeg.c:164
 #, c-format
 msgid "Error interpreting JPEG image file (%s)"
 msgstr ""
 
-#: src/image_load_j2k.c:202
+#: src/image-load-j2k.c:202
 msgid "Could not open file for reading"
 msgstr ""
 
-#: src/image_load_j2k.c:212
+#: src/image-load-j2k.c:212
 msgid "Unknown jpeg2000 decoder type"
 msgstr ""
 
-#: src/image_load_j2k.c:219
+#: src/image-load-j2k.c:219
 msgid "Couldn't set parameters on decoder for file."
 msgstr ""
 
-#: src/image_load_j2k.c:227
+#: src/image-load-j2k.c:227
 msgid "Couldn't read JP2 header from file"
 msgstr ""
 
-#: src/image_load_j2k.c:233
+#: src/image-load-j2k.c:233
 msgid "Couldn't decode JP2 image in file"
 msgstr ""
 
-#: src/image_load_j2k.c:239
+#: src/image-load-j2k.c:239
 msgid "Couldn't decompress JP2 image in file"
 msgstr ""
 
-#: src/image_load_j2k.c:246
+#: src/image-load-j2k.c:246
 msgid "JP2 image not rgb"
 msgstr ""
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1885
-#: src/layout_util.c:914 src/view_file/view_file.c:396
+#: src/img-view.c:672 src/layout-image.c:692 src/layout-image.c:1885
+#: src/layout-util.c:914 src/view-file/view-file.c:396
 #, fuzzy
 msgid "Cannot open archive file"
 msgstr "Nu pot redenumi fișierul"
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1885
-#: src/layout_util.c:914 src/preferences.c:4219 src/preferences.c:4227
-#: src/view_file/view_file.c:396
+#: src/img-view.c:672 src/layout-image.c:692 src/layout-image.c:1885
+#: src/layout-util.c:914 src/preferences.c:4219 src/preferences.c:4227
+#: src/view-file/view-file.c:396
 #, fuzzy
 msgid "See the Log Window"
 msgstr "Fereastra log"
 
-#: src/img-view.c:1403 src/layout_image.c:773 src/pan-view/pan-view.c:2382
+#: src/img-view.c:1403 src/layout-image.c:773 src/pan-view/pan-view.c:2382
 msgid "Zoom _in"
 msgstr "Măr_ire"
 
-#: src/img-view.c:1404 src/layout_image.c:774 src/pan-view/pan-view.c:2384
+#: src/img-view.c:1404 src/layout-image.c:774 src/pan-view/pan-view.c:2384
 msgid "Zoom _out"
 msgstr "Micş_orare"
 
-#: src/img-view.c:1405 src/layout_image.c:775 src/pan-view/pan-view.c:2386
+#: src/img-view.c:1405 src/layout-image.c:775 src/pan-view/pan-view.c:2386
 msgid "Zoom _1:1"
 msgstr "Scara _1:1"
 
-#: src/img-view.c:1406 src/layout_image.c:776
+#: src/img-view.c:1406 src/layout-image.c:776
 msgid "Zoom to fit"
 msgstr "Zoom la dimensiunea ferestrei"
 
-#: src/img-view.c:1418 src/layout_image.c:790
+#: src/img-view.c:1418 src/layout-image.c:790
 msgid "_Go to directory view"
 msgstr "Mer_gi la afișare director"
 
-#: src/img-view.c:1446 src/img-view.c:1460 src/layout_image.c:832
-#: src/layout_image.c:846
+#: src/img-view.c:1446 src/img-view.c:1460 src/layout-image.c:832
+#: src/layout-image.c:846
 msgid "Toggle _slideshow"
 msgstr "Comută _slideshow"
 
-#: src/img-view.c:1449 src/layout_image.c:835
+#: src/img-view.c:1449 src/layout-image.c:835
 msgid "Continue slides_how"
 msgstr "_Continuă prezentarea de imagini"
 
-#: src/img-view.c:1454 src/img-view.c:1462 src/layout_image.c:840
-#: src/layout_image.c:847
+#: src/img-view.c:1454 src/img-view.c:1462 src/layout-image.c:840
+#: src/layout-image.c:847
 msgid "Pause slides_how"
 msgstr "_Întrerupe prezentarea de imagini"
 
-#: src/img-view.c:1468 src/layout_image.c:857 src/pan-view/pan-view.c:2474
+#: src/img-view.c:1468 src/layout-image.c:857 src/pan-view/pan-view.c:2474
 msgid "Exit _full screen"
 msgstr "_Ieşire din mod tot ecranul"
 
-#: src/img-view.c:1472 src/layout_image.c:853 src/pan-view/pan-view.c:2478
+#: src/img-view.c:1472 src/layout-image.c:853 src/pan-view/pan-view.c:2478
 msgid "_Full screen"
 msgstr "_Tot ecranul"
 
@@ -1787,7 +1787,7 @@ msgstr "_Tot ecranul"
 msgid "C_lose window"
 msgstr "Î_nchide fereastra"
 
-#: src/layout.c:460 src/view_dir.c:758 src/view_file/view_file.c:743
+#: src/layout.c:460 src/view-dir.c:758 src/view-file/view-file.c:743
 msgid "Ascending"
 msgstr "Ascendentă"
 
@@ -1922,226 +1922,226 @@ msgstr "Aranjare"
 msgid "Invalid geometry\n"
 msgstr "Date de geometrie invalide\n"
 
-#: src/layout_config.c:358
+#: src/layout-config.c:358
 msgid "(drag to change order)"
 msgstr "(trageţi pentru schimbare ordine)"
 
-#: src/layout_image.c:793 src/layout_util.c:2285 src/view_file/view_file.c:701
+#: src/layout-image.c:793 src/layout-util.c:2285 src/view-file/view-file.c:701
 #, fuzzy
 msgid "Open archive"
 msgstr "Deschide recent"
 
-#: src/layout_image.c:807 src/pan-view/pan-view.c:2409
-#: src/view_file/view_file.c:710
+#: src/layout-image.c:807 src/pan-view/pan-view.c:2409
+#: src/view-file/view-file.c:710
 msgid "_Copy path to clipboard"
 msgstr "_Copiază cale în clipboard"
 
-#: src/layout_image.c:808 src/pan-view/pan-view.c:2411
-#: src/view_file/view_file.c:712
+#: src/layout-image.c:808 src/pan-view/pan-view.c:2411
+#: src/view-file/view-file.c:712
 #, fuzzy
 msgid "_Copy path unquoted to clipboard"
 msgstr "_Copiază cale în clipboard"
 
-#: src/layout_image.c:809
+#: src/layout-image.c:809
 #, fuzzy
 msgid "Copy _image to clipboard"
 msgstr "Copiază cale în clipboard"
 
-#: src/layout_image.c:860
+#: src/layout-image.c:860
 msgid "GIF _animation"
 msgstr ""
 
-#: src/layout_image.c:864
+#: src/layout-image.c:864
 msgid "Hide file _list"
 msgstr "Ascunde _listă fişiere"
 
-#: src/layout_image.c:2110
+#: src/layout-image.c:2110
 #, c-format
 msgid "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 msgstr "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 
-#: src/layout_image.c:2118
+#: src/layout-image.c:2118
 #, c-format
 msgid "[%*s,%*s]: RGB(---,---,---)"
 msgstr "[%*s,%*s]: RGB(---,---,---)"
 
-#: src/layout_util.c:244
+#: src/layout-util.c:244
 #, fuzzy
 msgid "Clear Marks"
 msgstr "Şterge gunoi"
 
-#: src/layout_util.c:591
+#: src/layout-util.c:591
 #, fuzzy
 msgid "Operation failed:\n"
 msgstr "Nu am putut şterge!"
 
-#: src/layout_util.c:594
+#: src/layout-util.c:594
 #, fuzzy
 msgid "No file extension\n"
 msgstr "Dezactivează filtrarea fişierelor"
 
-#: src/layout_util.c:596
+#: src/layout-util.c:596
 #, fuzzy
 msgid "Cannot create tmp file\n"
 msgstr "Nu pot crea fişier temporar"
 
-#: src/layout_util.c:598
+#: src/layout-util.c:598
 msgid "Operation not supported for filetype\n"
 msgstr ""
 
-#: src/layout_util.c:600
+#: src/layout-util.c:600
 #, fuzzy
 msgid "File is not writable\n"
 msgstr "nu se poate scrie în directorul sursă"
 
-#: src/layout_util.c:602
+#: src/layout-util.c:602
 #, fuzzy
 msgid "Exiftran error\n"
 msgstr "Eroare de imprimare"
 
-#: src/layout_util.c:604
+#: src/layout-util.c:604
 #, fuzzy
 msgid "Mogrify error\n"
 msgstr "Oglindește"
 
-#: src/layout_util.c:608
+#: src/layout-util.c:608
 #, fuzzy
 msgid "Image orientation"
 msgstr "Orientare"
 
-#: src/layout_util.c:2080
+#: src/layout-util.c:2080
 #, c-format
 msgid "Error: window layout name: %s does not exist\n"
 msgstr ""
 
-#: src/layout_util.c:2154
+#: src/layout-util.c:2154
 #, fuzzy, c-format
 msgid "Window layout name \"%s\" already exists."
 msgstr "Fişierul cu numele %s există deja."
 
-#: src/layout_util.c:2155 src/layout_util.c:2404
+#: src/layout-util.c:2155 src/layout-util.c:2404
 #, fuzzy
 msgid "Rename window"
 msgstr "Fereastră nouă"
 
-#: src/layout_util.c:2255 src/layout_util.c:2435
+#: src/layout-util.c:2255 src/layout-util.c:2435
 #, fuzzy
 msgid "Delete window"
 msgstr "Închide fereastra"
 
-#: src/layout_util.c:2405 src/layout_util.c:2436
+#: src/layout-util.c:2405 src/layout-util.c:2436
 msgid "OK"
 msgstr ""
 
-#: src/layout_util.c:2407
+#: src/layout-util.c:2407
 #, fuzzy
 msgid "rename window"
 msgstr "Fereastră nouă"
 
-#: src/layout_util.c:2438
+#: src/layout-util.c:2438
 msgid "Delete window layout"
 msgstr ""
 
-#: src/layout_util.c:3021
+#: src/layout-util.c:3021
 #, c-format
 msgid "Mark _%d"
 msgstr "Marcaj _%d"
 
-#: src/layout_util.c:3022 src/view_file/view_file.c:650
+#: src/layout-util.c:3022 src/view-file/view-file.c:650
 #, c-format
 msgid "_Set mark %d"
 msgstr "_Setează marcaj %d"
 
-#: src/layout_util.c:3022
+#: src/layout-util.c:3022
 #, c-format
 msgid "Set mark %d"
 msgstr "Setează marcaj %d"
 
-#: src/layout_util.c:3023 src/view_file/view_file.c:651
+#: src/layout-util.c:3023 src/view-file/view-file.c:651
 #, c-format
 msgid "_Reset mark %d"
 msgstr "_Resetează marcaj %d"
 
-#: src/layout_util.c:3023
+#: src/layout-util.c:3023
 #, c-format
 msgid "Reset mark %d"
 msgstr "Resetează marcaj %d"
 
-#: src/layout_util.c:3024 src/layout_util.c:3025 src/view_file/view_file.c:652
+#: src/layout-util.c:3024 src/layout-util.c:3025 src/view-file/view-file.c:652
 #, c-format
 msgid "_Toggle mark %d"
 msgstr "Comu_tă marcaj %d"
 
-#: src/layout_util.c:3024 src/layout_util.c:3025
+#: src/layout-util.c:3024 src/layout-util.c:3025
 #, c-format
 msgid "Toggle mark %d"
 msgstr "Comută marcaj %d"
 
-#: src/layout_util.c:3026
+#: src/layout-util.c:3026
 #, c-format
 msgid "Se_lect mark %d"
 msgstr "Se_lectează marcaj %d"
 
-#: src/layout_util.c:3026 src/layout_util.c:3027
+#: src/layout-util.c:3026 src/layout-util.c:3027
 #, c-format
 msgid "Select mark %d"
 msgstr "Selectează marcaj %d"
 
-#: src/layout_util.c:3027 src/view_file/view_file.c:653
+#: src/layout-util.c:3027 src/view-file/view-file.c:653
 #, c-format
 msgid "_Select mark %d"
 msgstr "_Selectează marcaj %d"
 
-#: src/layout_util.c:3028 src/view_file/view_file.c:654
+#: src/layout-util.c:3028 src/view-file/view-file.c:654
 #, c-format
 msgid "_Add mark %d"
 msgstr "_Adaugă marcaj %d"
 
-#: src/layout_util.c:3028
+#: src/layout-util.c:3028
 #, c-format
 msgid "Add mark %d"
 msgstr "Adaugă marcaj %d"
 
-#: src/layout_util.c:3029 src/view_file/view_file.c:655
+#: src/layout-util.c:3029 src/view-file/view-file.c:655
 #, c-format
 msgid "_Intersection with mark %d"
 msgstr "_Intersectează cu marcaj %d"
 
-#: src/layout_util.c:3029
+#: src/layout-util.c:3029
 #, c-format
 msgid "Intersection with mark %d"
 msgstr "Intersectează cu marcaj %d"
 
-#: src/layout_util.c:3030 src/view_file/view_file.c:656
+#: src/layout-util.c:3030 src/view-file/view-file.c:656
 #, c-format
 msgid "_Unselect mark %d"
 msgstr "_Deselectează marcaj %d"
 
-#: src/layout_util.c:3030
+#: src/layout-util.c:3030
 #, c-format
 msgid "Unselect mark %d"
 msgstr "Deselectează marcaj %d"
 
-#: src/layout_util.c:3031
+#: src/layout-util.c:3031
 #, c-format
 msgid "_Filter mark %d"
 msgstr "_Filtrează marcaj %d"
 
-#: src/layout_util.c:3031
+#: src/layout-util.c:3031
 #, c-format
 msgid "Filter mark %d"
 msgstr "Filtrează marcaj %d"
 
-#: src/layout_util.c:3646
+#: src/layout-util.c:3646
 #, c-format
 msgid "Number of files with unsaved metadata: %d"
 msgstr "Număr de fișiere cu metadate nesalvate: %d"
 
-#: src/layout_util.c:3652
+#: src/layout-util.c:3652
 msgid "No unsaved metadata"
 msgstr "Nu există metadate nesalvate"
 
-#: src/layout_util.c:3700
+#: src/layout-util.c:3700
 #, c-format
 msgid ""
 "Image profile: %s\n"
@@ -2150,15 +2150,15 @@ msgstr ""
 "Profil imagine: %s\n"
 "Profil ecran: %s"
 
-#: src/layout_util.c:3708
+#: src/layout-util.c:3708
 msgid "Click to enable color management"
 msgstr "Click pentru a activa color management"
 
-#: src/layout_util.c:3713
+#: src/layout-util.c:3713
 msgid "Color profiles not supported"
 msgstr "Profilele de culoare nu sunt suportate"
 
-#: src/layout_util.c:3735
+#: src/layout-util.c:3735
 #, c-format
 msgid "Input _%d: %s"
 msgstr "Intrare _%d: %s"
@@ -2734,16 +2734,16 @@ msgid ""
 "  Error code: "
 msgstr ""
 
-#: src/options.c:244 src/ui_bookmark.c:560 src/ui_pathsel.c:1047
+#: src/options.c:244 src/ui-bookmark.c:560 src/ui-pathsel.c:1047
 msgid "Home"
 msgstr "Acasă"
 
-#: src/options.c:246 src/ui_bookmark.c:571
+#: src/options.c:246 src/ui-bookmark.c:571
 msgid "Desktop"
 msgstr "Ecran"
 
 #: src/options.c:267 src/search.c:2338 src/search.c:2342 src/search.c:3626
-#: src/search.c:3630 src/view_file/view_file.c:915
+#: src/search.c:3630 src/view-file/view-file.c:915
 #, fuzzy
 msgid "Mark "
 msgstr "Marchează %d"
@@ -3210,7 +3210,7 @@ msgid ""
 msgstr ""
 
 #: src/preferences.c:2058 src/preferences.c:2090 src/preferences.c:2218
-#: src/view_file/view_file.c:1188 src/window.c:400
+#: src/view-file/view-file.c:1188 src/window.c:400
 #, fuzzy
 msgid "Clear"
 msgstr "_Şterge"
@@ -3596,7 +3596,7 @@ msgstr "Tip fișiere"
 msgid "Enabled"
 msgstr "Scrierea permisă"
 
-#: src/preferences.c:2773 src/view_file/view_file.c:1227
+#: src/preferences.c:2773 src/view-file/view-file.c:1227
 msgid "Class"
 msgstr "Clasă"
 
@@ -4362,7 +4362,7 @@ msgstr "%s remote nu rulează, îl pornesc..."
 msgid "Remote not available\n"
 msgstr "Operațiile remote nu sunt disponibile\n"
 
-#: src/search_and_run.c:291
+#: src/search-and-run.c:291
 msgid "Search and Run command"
 msgstr ""
 
@@ -4562,39 +4562,39 @@ msgstr ""
 msgid "Marks"
 msgstr "Arată marcaje"
 
-#: src/secure_save.c:407
+#: src/secure-save.c:407
 msgid "Cannot read the file"
 msgstr " Nu pot citi fişieru"
 
-#: src/secure_save.c:409
+#: src/secure-save.c:409
 msgid "Cannot get file status"
 msgstr "Nu pot citi starea fișierului"
 
-#: src/secure_save.c:411
+#: src/secure-save.c:411
 msgid "Cannot access the file"
 msgstr "Nu pot accesa fişierul"
 
-#: src/secure_save.c:413
+#: src/secure-save.c:413
 msgid "Cannot create temp file"
 msgstr "Nu pot crea fişier temporar"
 
-#: src/secure_save.c:415
+#: src/secure-save.c:415
 msgid "Cannot rename the file"
 msgstr "Nu pot redenumi fișierul"
 
-#: src/secure_save.c:417
+#: src/secure-save.c:417
 msgid "File saving disabled by option"
 msgstr "Salvarea fișierelor a fost dezactivată din configurație"
 
-#: src/secure_save.c:419
+#: src/secure-save.c:419
 msgid "Out of memory"
 msgstr "Nu mai există memorie disponibilă"
 
-#: src/secure_save.c:421
+#: src/secure-save.c:421
 msgid "Cannot write the file"
 msgstr "Nu pot scrie fişierul"
 
-#: src/secure_save.c:425
+#: src/secure-save.c:425
 msgid "Secure file saving error"
 msgstr "Eroare la salvarea sigură a fișierului"
 
@@ -4670,35 +4670,35 @@ msgstr ""
 msgid "Using system Trash bin"
 msgstr ""
 
-#: src/ui_bookmark.c:137 src/ui_bookmark.c:200
+#: src/ui-bookmark.c:137 src/ui-bookmark.c:200
 msgid "New Bookmark"
 msgstr "Semn de carte nou"
 
-#: src/ui_bookmark.c:283 src/ui_bookmark.c:289
+#: src/ui-bookmark.c:283 src/ui-bookmark.c:289
 msgid "Edit Bookmark"
 msgstr "Editare semn de carte"
 
-#: src/ui_bookmark.c:304
+#: src/ui-bookmark.c:304
 msgid "Path:"
 msgstr "Cale:"
 
-#: src/ui_bookmark.c:313
+#: src/ui-bookmark.c:313
 msgid "Icon:"
 msgstr "Icon:"
 
-#: src/ui_bookmark.c:319
+#: src/ui-bookmark.c:319
 msgid "Select icon"
 msgstr "Selectează icon"
 
-#: src/ui_bookmark.c:412
+#: src/ui-bookmark.c:412
 msgid "_Properties..."
 msgstr "_Proprietăţi..."
 
-#: src/ui_bookmark.c:418
+#: src/ui-bookmark.c:418
 msgid "_Remove"
 msgstr "_Şterge"
 
-#: src/ui_fileops.c:88
+#: src/ui-fileops.c:88
 msgid ""
 "One or more filenames are not encoded with the preferred locale character "
 "set.\n"
@@ -4706,13 +4706,13 @@ msgstr ""
 "Unul sau mai multe nume de fișiere nu sunt scrise cu setul de caractere "
 "recomandat.\n"
 
-#: src/ui_fileops.c:89
+#: src/ui-fileops.c:89
 #, c-format
 msgid "Operations on, and display of these files with %s may not succeed.\n"
 msgstr ""
 "Lucrul cu, si afișarea acestor fișiere cu %s s-ar putea să nu fie posibile.\n"
 
-#: src/ui_fileops.c:91
+#: src/ui-fileops.c:91
 msgid ""
 "If your filenames are not encoded in utf-8, try setting the environment "
 "variable G_BROKEN_FILENAMES=1\n"
@@ -4720,16 +4720,16 @@ msgstr ""
 "Dacă numele de fisiere nu sunt scrise cu utf-8, încercați să setați "
 "variabila de mediu G_BROKEN_FILENAMES=1\n"
 
-#: src/ui_fileops.c:93
+#: src/ui-fileops.c:93
 #, c-format
 msgid "It appears G_BROKEN_FILENAMES is set to %s\n"
 msgstr "Se pare că G_BROKEN_FILENAMES este %s\n"
 
-#: src/ui_fileops.c:95
+#: src/ui-fileops.c:95
 msgid "It appears G_BROKEN_FILENAMES is not set\n"
 msgstr "Se pare că G_BROKEN_FILENAMES nu există\n"
 
-#: src/ui_fileops.c:97
+#: src/ui-fileops.c:97
 #, c-format
 msgid ""
 "The locale appears to be set to \"%s\"\n"
@@ -4738,7 +4738,7 @@ msgstr ""
 "Localizarea pare să fie \"%s\"\n"
 "(din variabila de mediu LANG)\n"
 
-#: src/ui_fileops.c:102
+#: src/ui-fileops.c:102
 msgid ""
 "\n"
 "Preferred encoding appears to be UTF-8, however the file:\n"
@@ -4746,40 +4746,40 @@ msgstr ""
 "\n"
 "Codarea preferabilă pare să fie UTF-8; cu toate acestea, fișierul:\n"
 
-#: src/ui_fileops.c:103 src/ui_fileops.c:106 src/ui_fileops.c:108
+#: src/ui-fileops.c:103 src/ui-fileops.c:106 src/ui-fileops.c:108
 msgid "[name not displayable]"
 msgstr "[numele nu poate fi afișat]"
 
-#: src/ui_fileops.c:106
+#: src/ui-fileops.c:106
 #, c-format
 msgid "\"%s\" is encoded in valid UTF-8."
 msgstr "\"%s\" e codat corect UTF-8."
 
-#: src/ui_fileops.c:108
+#: src/ui-fileops.c:108
 #, c-format
 msgid "\"%s\" is not encoded in valid UTF-8."
 msgstr "\"%s\" nu este codat valid UTF-8."
 
-#: src/ui_fileops.c:113 src/ui_fileops.c:118
+#: src/ui-fileops.c:113 src/ui-fileops.c:118
 msgid "Filename encoding locale mismatch"
 msgstr "Codarea denumirii fișierelor nu se potrivește cu localizarea aleasă"
 
-#: src/ui_fileops.c:1047
+#: src/ui-fileops.c:1047
 #, fuzzy
 msgid "Web file download failed"
 msgstr "Nu am putut şterge!"
 
-#: src/ui_fileops.c:1110
+#: src/ui-fileops.c:1110
 #, fuzzy
 msgid "Download web file"
 msgstr " încarcă fişierul de configurare "
 
-#: src/ui_fileops.c:1112
+#: src/ui-fileops.c:1112
 #, fuzzy
 msgid "Downloading "
 msgstr "Încarc harta"
 
-#: src/ui_help.c:117
+#: src/ui-help.c:117
 #, c-format
 msgid ""
 "Unable to load:\n"
@@ -4788,30 +4788,30 @@ msgstr ""
 "Nu pot încărca:\n"
 "%s"
 
-#: src/ui_pathsel.c:432
+#: src/ui-pathsel.c:432
 #, c-format
 msgid "A file with name %s already exists."
 msgstr "Fişierul cu numele %s există deja."
 
-#: src/ui_pathsel.c:433 src/ui_pathsel.c:439 src/utilops.c:2373
+#: src/ui-pathsel.c:433 src/ui-pathsel.c:439 src/utilops.c:2373
 #: src/utilops.c:2400 src/utilops.c:2866
 msgid "Rename failed"
 msgstr "Redenumire eșuată"
 
-#: src/ui_pathsel.c:438
+#: src/ui-pathsel.c:438
 #, c-format
 msgid "Failed to rename %s to %s."
 msgstr "Nu pot redenumi %s în %s."
 
-#: src/ui_pathsel.c:634 src/ui_pathsel.c:642
+#: src/ui-pathsel.c:634 src/ui-pathsel.c:642
 msgid "_Rename"
 msgstr "_Redenumeşte"
 
-#: src/ui_pathsel.c:636 src/ui_pathsel.c:646
+#: src/ui-pathsel.c:636 src/ui-pathsel.c:646
 msgid "Add _Bookmark"
 msgstr "Adaugă _semn de carte"
 
-#: src/ui_pathsel.c:759
+#: src/ui-pathsel.c:759
 #, c-format
 msgid ""
 "Unable to create folder:\n"
@@ -4820,39 +4820,39 @@ msgstr ""
 "Nu se poate crea directorul:\n"
 "%s"
 
-#: src/ui_pathsel.c:760
+#: src/ui-pathsel.c:760
 msgid "Error creating folder"
 msgstr "Eroare la crearea directorului"
 
-#: src/ui_pathsel.c:980
+#: src/ui-pathsel.c:980
 msgid "All Files"
 msgstr "Toate fişierele"
 
-#: src/ui_pathsel.c:1049 src/utilops.c:3189
+#: src/ui-pathsel.c:1049 src/utilops.c:3189
 msgid "New folder"
 msgstr "Director nou"
 
-#: src/ui_pathsel.c:1052
+#: src/ui-pathsel.c:1052
 msgid "Show hidden"
 msgstr "Afişează fişierele ascunse"
 
-#: src/ui_pathsel.c:1137
+#: src/ui-pathsel.c:1137
 msgid "Filter:"
 msgstr "Filtru:"
 
-#: src/ui_pathsel.c:1179
+#: src/ui-pathsel.c:1179
 msgid "Files"
 msgstr "Fişiere"
 
-#: src/ui_tabcomp.c:945
+#: src/ui-tabcomp.c:945
 msgid "Select path"
 msgstr "Selectați cale"
 
-#: src/ui_tabcomp.c:967
+#: src/ui-tabcomp.c:967
 msgid "All files"
 msgstr "Toate fișierele"
 
-#: src/uri_utils.c:43
+#: src/uri-utils.c:43
 #, fuzzy
 msgid "Drag and Drop failed"
 msgstr "Comanda externă a eșuat"
@@ -5218,119 +5218,119 @@ msgstr "Creez director?"
 msgid "Cannot create folder:"
 msgstr "Nu pot crea director"
 
-#: src/view_dir.c:411
+#: src/view-dir.c:411
 msgid "_Copy"
 msgstr "_Copiază"
 
-#: src/view_dir.c:413
+#: src/view-dir.c:413
 msgid "_Move"
 msgstr "_Mută"
 
-#: src/view_dir.c:714
+#: src/view-dir.c:714
 msgid "_Up to parent"
 msgstr "S_us până la părinte"
 
-#: src/view_dir.c:719
+#: src/view-dir.c:719
 msgid "_Slideshow"
 msgstr "_Prezentare de imagini"
 
-#: src/view_dir.c:721
+#: src/view-dir.c:721
 msgid "Slideshow recursive"
 msgstr "Prezentare de imagini recursivă"
 
-#: src/view_dir.c:725
+#: src/view-dir.c:725
 msgid "Find _duplicates..."
 msgstr "Caută _duplicatele..."
 
-#: src/view_dir.c:727
+#: src/view-dir.c:727
 msgid "Find duplicates recursive..."
 msgstr "Căutare recursivă a duplicatelor"
 
-#: src/view_dir.c:732
+#: src/view-dir.c:732
 msgid "_New folder..."
 msgstr "Dosar _nou..."
 
-#: src/view_dir.c:749
+#: src/view-dir.c:749
 msgid "View as _List"
 msgstr "Afișează ca _listă"
 
-#: src/view_dir.c:752
+#: src/view-dir.c:752
 msgid "View as _Tree"
 msgstr "Afișează ca ar_bore"
 
-#: src/view_dir.c:765
+#: src/view-dir.c:765
 msgid "Show _hidden files"
 msgstr "Afișează fişierele _ascunse"
 
-#: src/view_dir.c:768 src/view_file/view_file.c:779
+#: src/view-dir.c:768 src/view-file/view-file.c:779
 msgid "Re_fresh"
 msgstr "Actualizează"
 
-#: src/view_file/view_file.c:725
+#: src/view-file/view-file.c:725
 msgid "Enable file _grouping"
 msgstr "Activează _grupare fișiere"
 
-#: src/view_file/view_file.c:727
+#: src/view-file/view-file.c:727
 msgid "Disable file groupi_ng"
 msgstr "Dezactivează g_rupare fişiere"
 
-#: src/view_file/view_file.c:749
+#: src/view-file/view-file.c:749
 #, fuzzy
 msgid "Images as List"
 msgstr "Afișează listă imagini"
 
-#: src/view_file/view_file.c:752
+#: src/view-file/view-file.c:752
 #, fuzzy
 msgid "Images as Icons"
 msgstr "Afișează imagini ca icon-uri"
 
-#: src/view_file/view_file.c:758
+#: src/view-file/view-file.c:758
 msgid "Show _thumbnails"
 msgstr "Afişare miniaturi"
 
-#: src/view_file/view_file.c:904
+#: src/view-file/view-file.c:904
 #, fuzzy
 msgid "Mark text"
 msgstr "Marchează %d"
 
-#: src/view_file/view_file.c:907
+#: src/view-file/view-file.c:907
 #, fuzzy
 msgid "Set mark text"
 msgstr "Setează marcaj %d"
 
-#: src/view_file/view_file.c:908
+#: src/view-file/view-file.c:908
 #, fuzzy
 msgid "This will set or clear the mark text."
 msgstr "Se va goli conţinutul gunoiului"
 
-#: src/view_file/view_file.c:1185
+#: src/view-file/view-file.c:1185
 msgid "Use regular expressions"
 msgstr ""
 
-#: src/view_file/view_file.c:1215
+#: src/view-file/view-file.c:1215
 msgid "Case"
 msgstr ""
 
-#: src/view_file/view_file.c:1217
+#: src/view-file/view-file.c:1217
 #, fuzzy
 msgid "Case sensitive"
 msgstr "Sortare case-sensitive"
 
-#: src/view_file/view_file.c:1234
+#: src/view-file/view-file.c:1234
 #, fuzzy
 msgid "Select Class filter"
 msgstr "Alegeți folder"
 
-#: src/view_file/view_file.c:1789
+#: src/view-file/view-file.c:1789
 #, fuzzy
 msgid "Loading meta..."
 msgstr "Încarc harta"
 
-#: src/view_file/view_file_icon.c:2153 src/view_file/view_file_list.c:930
+#: src/view-file/view-file-icon.c:2153 src/view-file/view-file-list.c:930
 msgid " [NO GROUPING]"
 msgstr " [FĂRĂ GRUPARE]"
 
-#: src/view_file/view_file_list.c:515
+#: src/view-file/view-file-list.c:515
 #, c-format
 msgid ""
 "Invalid file name:\n"
@@ -5339,16 +5339,16 @@ msgstr ""
 "Nume fişier incorect:\n"
 "%s"
 
-#: src/view_file/view_file_list.c:516
+#: src/view-file/view-file-list.c:516
 msgid "Error renaming file"
 msgstr "Nu pot redenumi fişierul"
 
-#: src/view_file/view_file_list.c:2232
+#: src/view-file/view-file-list.c:2232
 #, fuzzy
 msgid "NameStars"
 msgstr "Nume"
 
-#: src/view_file/view_file_list.c:2236
+#: src/view-file/view-file-list.c:2236
 #, fuzzy
 msgid "Stars"
 msgstr "Start #"

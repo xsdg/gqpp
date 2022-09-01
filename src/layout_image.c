@@ -20,7 +20,7 @@
  */
 
 #include "main.h"
-#include "layout_image.h"
+#include "layout-image.h"
 
 #include "collect.h"
 #include "color-man.h"
@@ -29,23 +29,23 @@
 #include "exif.h"
 #include "filedata.h"
 #include "fullscreen.h"
-#include "history_list.h"
+#include "history-list.h"
 #include "image.h"
 #include "image-overlay.h"
 #include "img-view.h"
 #include "layout.h"
-#include "layout_util.h"
+#include "layout-util.h"
 #include "menu.h"
 #include "metadata.h"
 #include "misc.h"
-#include "pixbuf_util.h"
+#include "pixbuf-util.h"
 #include "pixbuf-renderer.h"
 #include "slideshow.h"
-#include "ui_fileops.h"
-#include "ui_menu.h"
-#include "uri_utils.h"
+#include "ui-fileops.h"
+#include "ui-menu.h"
+#include "uri-utils.h"
 #include "utilops.h"
-#include "view_file.h"
+#include "view-file.h"
 
 #include <gdk/gdkkeysyms.h> /* for keyboard values */
 

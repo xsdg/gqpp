@@ -25,10 +25,10 @@
 #include "filedata.h"
 #include "filefilter.h"
 #include "misc.h"
-#include "pixbuf_util.h"
-#include "ui_fileops.h"
-#include "ui_spinner.h"
-#include "ui_utildlg.h"
+#include "pixbuf-util.h"
+#include "ui-fileops.h"
+#include "ui-spinner.h"
+#include "ui-utildlg.h"
 #include "utilops.h"
 
 #include <errno.h>

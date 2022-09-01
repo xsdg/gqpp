@@ -59,7 +59,7 @@ extern "C" {
 #include "exif.h"
 
 #include "filefilter.h"
-#include "ui_fileops.h"
+#include "ui-fileops.h"
 
 #include "misc.h"
 }

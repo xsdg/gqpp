@@ -30,8 +30,8 @@
 #include "intl.h"
 
 #include "main.h"
-#include "format_olympus.h"
-#include "format_raw.h"
+#include "format-olympus.h"
+#include "format-raw.h"
 
 #include "exif.h"
 

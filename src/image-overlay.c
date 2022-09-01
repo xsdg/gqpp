@@ -29,8 +29,8 @@
 #include "layout.h"
 #include "osd.h"
 #include "pixbuf-renderer.h"
-#include "pixbuf_util.h"
-#include "ui_fileops.h"
+#include "pixbuf-util.h"
+#include "ui-fileops.h"
 #include "image-load.h"
 
 /*

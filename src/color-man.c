@@ -23,7 +23,7 @@
 #include "color-man.h"
 
 #include "image.h"
-#include "ui_fileops.h"
+#include "ui-fileops.h"
 
 
 #ifdef HAVE_LCMS

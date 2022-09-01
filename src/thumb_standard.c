@@ -20,13 +20,13 @@
  */
 
 #include "main.h"
-#include "thumb_standard.h"
+#include "thumb-standard.h"
 
 #include "cache.h"
 #include "image-load.h"
 #include "md5-util.h"
-#include "pixbuf_util.h"
-#include "ui_fileops.h"
+#include "pixbuf-util.h"
+#include "ui-fileops.h"
 #include "filedata.h"
 #include "exif.h"
 #include "metadata.h"

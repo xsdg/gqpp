@@ -25,9 +25,9 @@
 #include "filedata.h"
 #include "image-load.h"
 #include "osd.h"
-#include "pixbuf_util.h"
-#include "ui_misc.h"
-#include "ui_fileops.h"
+#include "pixbuf-util.h"
+#include "ui-misc.h"
+#include "ui-fileops.h"
 
 #define PRINT_SETTINGS "print_settings" // filename save printer settings
 #define PAGE_SETUP "page_setup" // filename save page setup

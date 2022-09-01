@@ -19,11 +19,11 @@
  */
 
 #include "main.h"
-#include "uri_utils.h"
+#include "uri-utils.h"
 
 #include "filedata.h"
-#include "ui_fileops.h"
-#include "ui_utildlg.h"
+#include "ui-fileops.h"
+#include "ui-utildlg.h"
 
 void warning_dialog_dnd_uri_error(GList *uri_error_list)
 {

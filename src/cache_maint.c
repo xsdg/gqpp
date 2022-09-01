@@ -20,20 +20,20 @@
  */
 
 #include "main.h"
-#include "cache_maint.h"
+#include "cache-maint.h"
 
 #include "cache.h"
 #include "cache-loader.h"
 #include "filedata.h"
 #include "layout.h"
-#include "pixbuf_util.h"
+#include "pixbuf-util.h"
 #include "thumb.h"
-#include "thumb_standard.h"
-#include "ui_fileops.h"
-#include "ui_misc.h"
-#include "ui_spinner.h"
-#include "ui_tabcomp.h"
-#include "ui_utildlg.h"
+#include "thumb-standard.h"
+#include "ui-fileops.h"
+#include "ui-misc.h"
+#include "ui-spinner.h"
+#include "ui-tabcomp.h"
+#include "ui-utildlg.h"
 #include "window.h"
 
 

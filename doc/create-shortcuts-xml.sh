@@ -28,7 +28,7 @@
 ## For separate windows, source code files are searched for the string "hard_coded_window_keys"  
 ## which is an array containing the shortcut key and the menu label.
 ##
-## For the main window the source file ./src/layout_util.c is searched for
+## For the main window the source file ./src/layout-util.c is searched for
 ## lines which contain shortcut definitions.
 ##
 ## This needs to be run only when the sortcut keys have been changed
@@ -97,7 +97,7 @@ gsub(/"/, "", $3);
 {print "<row> <entry> <code>", $1, "<keycap>", $2, "</keycap> </code> </entry> <entry>", $3, "</entry> </row>"}
 '
 
-# This assumes that lines beginning with /^  { "/ are the only ones in layout_util.c containing key shortcuts
+# This assumes that lines beginning with /^  { "/ are the only ones in layout-util.c containing key shortcuts
 # shellcheck disable=SC2016
 awk_main_window='BEGIN {
 	{FS=","}
@@ -142,5 +142,5 @@ printf '%b\n' "$pre_1_xml $collections_xml $pre_2_xml $keys_xml $post_xml" > ./d
 keys_xml=$(awk "$awk_window" ./src/img-view.c)
 printf '%b\n' "$pre_1_xml $image_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceImageViewShortcuts.xml
 
-keys_xml=$(awk "$awk_main_window" ./src/layout_util.c)
+keys_xml=$(awk "$awk_main_window" ./src/layout-util.c)
 printf '%b\n' "$pre_1_xml $main_window_xml $pre_2_xml $keys_xml $post_main_window_xml" > ./doc/docbook/GuideReferenceMainWindowShortcuts.xml

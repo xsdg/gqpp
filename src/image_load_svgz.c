@@ -20,7 +20,7 @@
 
 #include "main.h"
 #include "image-load.h"
-#include "image_load_svgz.h"
+#include "image-load-svgz.h"
 
 
 static gchar* image_loader_svgz_get_format_name(gpointer UNUSED(loader))

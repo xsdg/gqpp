@@ -95,34 +95,34 @@ msgstr ""
 msgid "Tethered photography"
 msgstr ""
 
-#: src/advanced_exif.c:437 src/cache_maint.c:1773 src/preferences.c:2851
+#: src/advanced-exif.c:437 src/cache-maint.c:1773 src/preferences.c:2851
 #: src/search.c:2281 src/search.c:3609
 msgid "Metadata"
 msgstr "Metadatos"
 
-#: src/advanced_exif.c:493 src/preferences.c:2756
+#: src/advanced-exif.c:493 src/preferences.c:2756
 msgid "Description"
 msgstr "Descripción"
 
-#: src/advanced_exif.c:494
+#: src/advanced-exif.c:494
 msgid "Value"
 msgstr "Valor"
 
-#: src/advanced_exif.c:495 src/desktop_file.c:631 src/dupe.c:3978
+#: src/advanced-exif.c:495 src/desktop-file.c:631 src/dupe.c:3978
 #: src/dupe.c:4703 src/dupe.c:5287 src/search.c:3693 src/utilops.c:507
-#: src/view_file/view_file_list.c:2228
+#: src/view-file/view-file-list.c:2228
 msgid "Name"
 msgstr "Nombre"
 
-#: src/advanced_exif.c:496
+#: src/advanced-exif.c:496
 msgid "Tag"
 msgstr "Etiqueta"
 
-#: src/advanced_exif.c:497
+#: src/advanced-exif.c:497
 msgid "Format"
 msgstr "Formato"
 
-#: src/advanced_exif.c:498
+#: src/advanced-exif.c:498
 msgid "Elements"
 msgstr "Elementos"
 
@@ -130,11 +130,11 @@ msgstr "Elementos"
 msgid "Move to _top"
 msgstr "Mover al principio"
 
-#: src/bar.c:404 src/toolbar.c:225 src/ui_bookmark.c:414
+#: src/bar.c:404 src/toolbar.c:225 src/ui-bookmark.c:414
 msgid "Move _up"
 msgstr "_Subir"
 
-#: src/bar.c:405 src/toolbar.c:226 src/ui_bookmark.c:416
+#: src/bar.c:405 src/toolbar.c:226 src/ui-bookmark.c:416
 msgid "Move _down"
 msgstr "_Bajar"
 
@@ -155,62 +155,62 @@ msgstr "Eliminar"
 msgid "Add Pane"
 msgstr "Añadir panel"
 
-#: src/bar_comment.c:236
+#: src/bar-comment.c:236
 msgid "Add text to selected files"
 msgstr "Añadir texto a los archivos seleccionados"
 
-#: src/bar_comment.c:237
+#: src/bar-comment.c:237
 msgid "Replace existing text in selected files"
 msgstr "Sustituir texto en los archivos seleccionados"
 
-#: src/bar_exif.c:225
+#: src/bar-exif.c:225
 msgid "<empty label, fixme>"
 msgstr "<etiqueta vacía, arréglame>"
 
-#: src/bar_exif.c:562 src/bar_exif.c:572
+#: src/bar-exif.c:562 src/bar-exif.c:572
 msgid "Configure entry"
 msgstr "Configurar la entrada"
 
-#: src/bar_exif.c:562 src/bar_exif.c:572 src/bar_exif.c:660
+#: src/bar-exif.c:562 src/bar-exif.c:572 src/bar-exif.c:660
 msgid "Add entry"
 msgstr "_Añadir entrada"
 
-#: src/bar_exif.c:578
+#: src/bar-exif.c:578
 msgid "Key:"
 msgstr "Clave:"
 
-#: src/bar_exif.c:587
+#: src/bar-exif.c:587
 msgid "Title:"
 msgstr "Título:"
 
-#: src/bar_exif.c:596
+#: src/bar-exif.c:596
 msgid "Show only if set"
 msgstr "Mostrar solo si está activa"
 
-#: src/bar_exif.c:597
+#: src/bar-exif.c:597
 msgid "Editable (supported only for XMP)"
 msgstr "Editable (solo lo admite XMP)"
 
-#: src/bar_exif.c:646
+#: src/bar-exif.c:646
 #, c-format
 msgid "Configure \"%s\""
 msgstr "Configurar «%s»"
 
-#: src/bar_exif.c:647 src/bar_keywords.c:1369
+#: src/bar-exif.c:647 src/bar-keywords.c:1369
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Eliminar «%s»"
 
-#: src/bar_exif.c:648
+#: src/bar-exif.c:648
 #, c-format
 msgid "Copy \"%s\""
 msgstr "Copiar «%s»"
 
-#: src/bar_exif.c:661
+#: src/bar-exif.c:661
 msgid "Show hidden entries"
 msgstr "Mostrar los elementos ocultos"
 
-#: src/bar_gps.c:187
+#: src/bar-gps.c:187
 #, c-format
 msgid ""
 "\n"
@@ -219,7 +219,7 @@ msgstr ""
 "\n"
 "¿Quiere geocodificar la imagen %s?"
 
-#: src/bar_gps.c:192
+#: src/bar-gps.c:192
 #, c-format
 msgid ""
 "\n"
@@ -228,7 +228,7 @@ msgstr ""
 "\n"
 "¿Quiere geocodificar %i imágenes?"
 
-#: src/bar_gps.c:197
+#: src/bar-gps.c:197
 msgid ""
 "\n"
 "This image is already geocoded!"
@@ -236,7 +236,7 @@ msgstr ""
 "\n"
 "¡La imagen ya está geocodificada!"
 
-#: src/bar_gps.c:202
+#: src/bar-gps.c:202
 msgid ""
 "\n"
 "One image is already geocoded!"
@@ -244,7 +244,7 @@ msgstr ""
 "\n"
 "¡Una imagen ya está geocodificada!"
 
-#: src/bar_gps.c:207
+#: src/bar-gps.c:207
 #, c-format
 msgid ""
 "\n"
@@ -253,7 +253,7 @@ msgstr ""
 "\n"
 "¡%i imágenes ya están geocodificadas!"
 
-#: src/bar_gps.c:212
+#: src/bar-gps.c:212
 #, c-format
 msgid ""
 "\n"
@@ -264,37 +264,37 @@ msgstr ""
 "\n"
 "Posición: %s \n"
 
-#: src/bar_gps.c:214
+#: src/bar-gps.c:214
 msgid "Geocode images"
 msgstr "Geocodificar imágenes"
 
-#: src/bar_gps.c:218
+#: src/bar-gps.c:218
 msgid "Write lat/long to meta-data?"
 msgstr "¿Quiere escribir la latitud/longitud en los metadatos?"
 
-#: src/bar_gps.c:732
+#: src/bar-gps.c:732
 #, c-format
 msgid "Zoom %i"
 msgstr "Zum %i"
 
-#: src/bar_gps.c:750
+#: src/bar-gps.c:750
 #, c-format
 msgid "Zoom level %i"
 msgstr "Nivel de zum %i"
 
-#: src/bar_gps.c:755
+#: src/bar-gps.c:755
 msgid "Loading map"
 msgstr "Cargando mapa"
 
-#: src/bar_gps.c:821
+#: src/bar-gps.c:821
 msgid "Enable markers"
 msgstr "Habilitar marcadores"
 
-#: src/bar_gps.c:823
+#: src/bar-gps.c:823
 msgid "Centre map on marker"
 msgstr "Centrar el mapa en el marcador"
 
-#: src/bar_gps.c:845
+#: src/bar-gps.c:845
 msgid ""
 "Move map centre to marker\n"
 " is disabled"
@@ -302,7 +302,7 @@ msgstr ""
 "Mover el centro del mapa al marcador\n"
 "está deshabilitado"
 
-#: src/bar_gps.c:850
+#: src/bar-gps.c:850
 msgid ""
 "Move map centre to marker\n"
 " is enabled"
@@ -310,184 +310,184 @@ msgstr ""
 "Mover el centro del mapa al marcador\n"
 "está habilitado"
 
-#: src/bar_gps.c:854
+#: src/bar-gps.c:854
 msgid "Map centering"
 msgstr "Centrado del mapa"
 
-#: src/bar_gps.c:959 src/menu.c:334 src/preferences.c:2244
+#: src/bar-gps.c:959 src/menu.c:334 src/preferences.c:2244
 msgid "Zoom"
 msgstr "Zum"
 
-#: src/bar_gps.c:969
+#: src/bar-gps.c:969
 #, fuzzy
 msgid "Zoom level"
 msgstr "Nivel de zum %i"
 
-#: src/bar_gps.c:1023
+#: src/bar-gps.c:1023
 msgid "GPS Map"
 msgstr "Mapa GPS"
 
-#: src/bar_histogram.c:234
+#: src/bar-histogram.c:234
 msgid "Histogram on _Red"
 msgstr "Histograma sobre _Rojo"
 
-#: src/bar_histogram.c:235
+#: src/bar-histogram.c:235
 msgid "Histogram on _Green"
 msgstr "Histograma sobre (_G) Verde"
 
-#: src/bar_histogram.c:236
+#: src/bar-histogram.c:236
 msgid "Histogram on _Blue"
 msgstr "Histograma sobre (_B) Azul"
 
-#: src/bar_histogram.c:237
+#: src/bar-histogram.c:237
 msgid "_Histogram on RGB"
 msgstr "_Histograma sobre RGB"
 
-#: src/bar_histogram.c:238
+#: src/bar-histogram.c:238
 msgid "Histogram on _Value"
 msgstr "Histograma sobre _Valor"
 
-#: src/bar_histogram.c:242
+#: src/bar-histogram.c:242
 msgid "Li_near Histogram"
 msgstr "Histograma li_neal"
 
-#: src/bar_histogram.c:243
+#: src/bar-histogram.c:243
 msgid "L_og Histogram"
 msgstr "Histograma l_ogarítmico"
 
-#: src/bar_keywords.c:490
+#: src/bar-keywords.c:490
 #, fuzzy
 msgid "Add selected keywords to selected files"
 msgstr "Añadir palabras clave a los archivos seleccionados"
 
-#: src/bar_keywords.c:491
+#: src/bar-keywords.c:491
 #, fuzzy
 msgid "Replace existing keywords in selected files with selected keywords"
 msgstr "Sustituir palabras clave existentes en los archivos seleccionados"
 
-#: src/bar_keywords.c:962
+#: src/bar-keywords.c:962
 msgid "Edit keyword"
 msgstr "Editar palabra clave"
 
-#: src/bar_keywords.c:962 src/bar_keywords.c:969 src/bar_keywords.c:1314
+#: src/bar-keywords.c:962 src/bar-keywords.c:969 src/bar-keywords.c:1314
 msgid "New keyword"
 msgstr "Nueva palabra clave"
 
-#: src/bar_keywords.c:969
+#: src/bar-keywords.c:969
 msgid "Configure keyword"
 msgstr "Configurar palabra clave"
 
-#: src/bar_keywords.c:975
+#: src/bar-keywords.c:975
 msgid "Keyword:"
 msgstr "Palabra clave:"
 
-#: src/bar_keywords.c:984
+#: src/bar-keywords.c:984
 msgid "Keyword type:"
 msgstr "Tipo de palabra clave:"
 
-#: src/bar_keywords.c:986
+#: src/bar-keywords.c:986
 msgid "Active keyword"
 msgstr "Activar palabra clave"
 
-#: src/bar_keywords.c:989
+#: src/bar-keywords.c:989
 msgid "Helper"
 msgstr "Ayudante"
 
-#: src/bar_keywords.c:1063
+#: src/bar-keywords.c:1063
 msgid "This will disconnect all Marks Keywords connections"
 msgstr "Esto desconecta todas las conexiones de palabras clave de marca"
 
-#: src/bar_keywords.c:1065
+#: src/bar-keywords.c:1065
 msgid "Marks Keywords"
 msgstr "Palabras clave de marcas"
 
-#: src/bar_keywords.c:1338
+#: src/bar-keywords.c:1338
 #, c-format
 msgid "Add \"%s\" to all selected images"
 msgstr "Añadir «%s» a todas las imágenes seleccionadas"
 
-#: src/bar_keywords.c:1344
+#: src/bar-keywords.c:1344
 #, c-format
 msgid "Hide \"%s\""
 msgstr "Ocultar «%s»"
 
-#: src/bar_keywords.c:1351
+#: src/bar-keywords.c:1351
 #, c-format
 msgid "Mark %d"
 msgstr "Marca %d"
 
-#: src/bar_keywords.c:1359
+#: src/bar-keywords.c:1359
 #, c-format
 msgid "Connect \"%s\" to mark"
 msgstr "Conectar «%s» a la marca"
 
-#: src/bar_keywords.c:1366
+#: src/bar-keywords.c:1366
 #, c-format
 msgid "Edit \"%s\""
 msgstr "Editar «%s»"
 
-#: src/bar_keywords.c:1376
+#: src/bar-keywords.c:1376
 #, c-format
 msgid "Disconnect \"%s\" from mark %s"
 msgstr "Desconectar «%s» de la marca «%s»"
 
-#: src/bar_keywords.c:1383
+#: src/bar-keywords.c:1383
 msgid "Disconnect all Mark Keyword connections"
 msgstr "Desconectar todas las conexiones de palabras clave de marca"
 
-#: src/bar_keywords.c:1394 src/bar_keywords.c:1408
+#: src/bar-keywords.c:1394 src/bar-keywords.c:1408
 msgid "Expand checked"
 msgstr "Expandir lo marcado"
 
-#: src/bar_keywords.c:1395 src/bar_keywords.c:1409
+#: src/bar-keywords.c:1395 src/bar-keywords.c:1409
 msgid "Collapse unchecked"
 msgstr "Contraer lo desmarcado"
 
-#: src/bar_keywords.c:1396 src/bar_keywords.c:1410
+#: src/bar-keywords.c:1396 src/bar-keywords.c:1410
 msgid "Hide unchecked"
 msgstr "Ocultar lo desmarcado"
 
-#: src/bar_keywords.c:1397
+#: src/bar-keywords.c:1397
 msgid "Revert all hidden"
 msgstr "Revertir todo lo ocultado"
 
-#: src/bar_keywords.c:1399 src/dupe.c:3991
+#: src/bar-keywords.c:1399 src/dupe.c:3991
 msgid "Show all"
 msgstr "Mostrar todo"
 
-#: src/bar_keywords.c:1400
+#: src/bar-keywords.c:1400
 msgid "Collapse all"
 msgstr "Contraer todo"
 
-#: src/bar_keywords.c:1401
+#: src/bar-keywords.c:1401
 msgid "Revert"
 msgstr "Revertir"
 
-#: src/bar_keywords.c:1405
+#: src/bar-keywords.c:1405
 msgid "On any change"
 msgstr "En cualquier cambio"
 
-#: src/bar_keywords.c:1901
+#: src/bar-keywords.c:1901
 #, fuzzy, c-format
 msgid "Error: Unable to write keywords list to: %s\n"
 msgstr "Error: no se pueden escribir listas de historial en: %s\n"
 
-#: src/bar_rating.c:167
+#: src/bar-rating.c:167
 #, fuzzy
 msgid "Rejected"
 msgstr "Reiniciar selección"
 
-#: src/bar_rating.c:171
+#: src/bar-rating.c:171
 #, fuzzy
 msgid "Unrated"
 msgstr "sin calibrar"
 
-#: src/bar_sort.c:435
+#: src/bar-sort.c:435
 #, fuzzy
 msgid "Sort Manager Operations"
 msgstr "Clasificador"
 
-#: src/bar_sort.c:438
+#: src/bar-sort.c:438
 msgid ""
 "Additional operations utilising plugins\n"
 "may be included by setting:\n"
@@ -497,7 +497,7 @@ msgid ""
 "in the plugin file."
 msgstr ""
 
-#: src/bar_sort.c:506
+#: src/bar-sort.c:506
 #, c-format
 msgid ""
 "The collection:\n"
@@ -508,11 +508,11 @@ msgstr ""
 "%s\n"
 "ya existe."
 
-#: src/bar_sort.c:507
+#: src/bar-sort.c:507
 msgid "Collection exists"
 msgstr "La colección existe"
 
-#: src/bar_sort.c:521 src/collect.c:1216 src/collect-dlg.c:93
+#: src/bar-sort.c:521 src/collect.c:1216 src/collect-dlg.c:93
 #, c-format
 msgid ""
 "Failed to save the collection:\n"
@@ -521,51 +521,51 @@ msgstr ""
 "Error al guardar la colección:\n"
 "%s"
 
-#: src/bar_sort.c:522 src/collect.c:1217 src/collect-dlg.c:94
+#: src/bar-sort.c:522 src/collect.c:1217 src/collect-dlg.c:94
 msgid "Save Failed"
 msgstr "Error al guardar"
 
-#: src/bar_sort.c:557 src/bar_sort.c:737
+#: src/bar-sort.c:557 src/bar-sort.c:737
 msgid "Add Bookmark"
 msgstr "Añadir marcador"
 
-#: src/bar_sort.c:561
+#: src/bar-sort.c:561
 msgid "Add Collection"
 msgstr "Añadir colección"
 
-#: src/bar_sort.c:578 src/shortcuts.c:118 src/ui_bookmark.c:295
+#: src/bar-sort.c:578 src/shortcuts.c:118 src/ui-bookmark.c:295
 msgid "Name:"
 msgstr "Nombre:"
 
-#: src/bar_sort.c:658
+#: src/bar-sort.c:658
 msgid "Sort Manager"
 msgstr "Clasificador"
 
-#: src/bar_sort.c:667 src/pan-view/pan-view.c:1909 src/ui_pathsel.c:1100
+#: src/bar-sort.c:667 src/pan-view/pan-view.c:1909 src/ui-pathsel.c:1100
 msgid "Folders"
 msgstr "Carpetas"
 
-#: src/bar_sort.c:668 src/options.c:248
+#: src/bar-sort.c:668 src/options.c:248
 msgid "Collections"
 msgstr "Colecciones"
 
-#: src/bar_sort.c:677 src/preferences.c:693 src/utilops.c:2350
+#: src/bar-sort.c:677 src/preferences.c:693 src/utilops.c:2350
 msgid "Copy"
 msgstr "Copiar"
 
-#: src/bar_sort.c:681 src/preferences.c:695 src/utilops.c:2300
+#: src/bar-sort.c:681 src/preferences.c:695 src/utilops.c:2300
 msgid "Move"
 msgstr "Mover"
 
-#: src/bar_sort.c:722
+#: src/bar-sort.c:722
 msgid "Add image"
 msgstr "Añadir imagen"
 
-#: src/bar_sort.c:725
+#: src/bar-sort.c:725
 msgid "Add selection"
 msgstr "Añadir selección"
 
-#: src/bar_sort.c:740
+#: src/bar-sort.c:740
 msgid "Undo last image"
 msgstr "Deshacer última imagen"
 
@@ -578,109 +578,109 @@ msgstr ""
 "error al guardar datos de caché sim: %s\n"
 "error: %s\n"
 
-#: src/cache_maint.c:72
+#: src/cache-maint.c:72
 #, fuzzy
 msgid "Geeqie: Creating sim data..."
 msgstr "Leyendo datos de la imagen..."
 
-#: src/cache_maint.c:78
+#: src/cache-maint.c:78
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "Borrando miniaturas..."
 
-#: src/cache_maint.c:94
+#: src/cache-maint.c:94
 #, fuzzy
 msgid "Exit Geeqie Cache Maintenance"
 msgstr "Mantenimiento de la caché"
 
-#: src/cache_maint.c:111
+#: src/cache-maint.c:111
 #, fuzzy
 msgid "Geeqie: Cleaning thumbs..."
 msgstr "Borrando miniaturas..."
 
-#: src/cache_maint.c:184 src/cache_maint.c:684 src/cache_maint.c:787
-#: src/cache_maint.c:984 src/cache_maint.c:1455 src/editors.c:1245
+#: src/cache-maint.c:184 src/cache-maint.c:684 src/cache-maint.c:787
+#: src/cache-maint.c:984 src/cache-maint.c:1455 src/editors.c:1245
 #: src/preferences.c:3043
 msgid "done"
 msgstr "listo"
 
-#: src/cache_maint.c:374
+#: src/cache-maint.c:374
 msgid "Removing old metadata..."
 msgstr "Borrando metadatos viejos..."
 
-#: src/cache_maint.c:378
+#: src/cache-maint.c:378
 msgid "Clearing cached thumbnails..."
 msgstr "Borrando miniaturas en caché..."
 
-#: src/cache_maint.c:382 src/cache_maint.c:1157
+#: src/cache-maint.c:382 src/cache-maint.c:1157
 msgid "Removing old thumbnails..."
 msgstr "Borrando miniaturas viejas..."
 
-#: src/cache_maint.c:385 src/cache_maint.c:1160
+#: src/cache-maint.c:385 src/cache-maint.c:1160
 msgid "Maintenance"
 msgstr "Mantenimiento"
 
-#: src/cache_maint.c:698 src/cache_maint.c:1334
+#: src/cache-maint.c:698 src/cache-maint.c:1334
 #, fuzzy
 msgid "stopped"
 msgstr "detenido por el usuario"
 
-#: src/cache_maint.c:817 src/cache_maint.c:1486 src/cache_maint.c:1616
+#: src/cache-maint.c:817 src/cache-maint.c:1486 src/cache-maint.c:1616
 #: src/preferences.c:3125
 msgid "Invalid folder"
 msgstr "Carpeta no válida"
 
-#: src/cache_maint.c:818 src/cache_maint.c:1487 src/cache_maint.c:1617
+#: src/cache-maint.c:818 src/cache-maint.c:1487 src/cache-maint.c:1617
 #: src/preferences.c:3126
 msgid "The specified folder can not be found."
 msgstr "La carpeta especificada no se puede encontrar."
 
-#: src/cache_maint.c:886 src/cache_maint.c:900 src/cache_maint.c:1753
+#: src/cache-maint.c:886 src/cache-maint.c:900 src/cache-maint.c:1753
 msgid "Create thumbnails"
 msgstr "Crear miniaturas"
 
-#: src/cache_maint.c:894 src/cache_maint.c:1167 src/cache_maint.c:1536
-#: src/cache_maint.c:1655 src/preferences.c:3164
+#: src/cache-maint.c:894 src/cache-maint.c:1167 src/cache-maint.c:1536
+#: src/cache-maint.c:1655 src/preferences.c:3164
 msgid "S_tart"
 msgstr "_Iniciar"
 
-#: src/cache_maint.c:907 src/cache_maint.c:1549 src/cache_maint.c:1665
+#: src/cache-maint.c:907 src/cache-maint.c:1549 src/cache-maint.c:1665
 #: src/preferences.c:3177 src/preferences.c:3526
 msgid "Folder:"
 msgstr "Carpeta:"
 
-#: src/cache_maint.c:910 src/cache_maint.c:1552 src/cache_maint.c:1668
+#: src/cache-maint.c:910 src/cache-maint.c:1552 src/cache-maint.c:1668
 #: src/preferences.c:3180
 msgid "Select folder"
 msgstr "Seleccionar carpeta"
 
-#: src/cache_maint.c:914 src/preferences.c:3184
+#: src/cache-maint.c:914 src/preferences.c:3184
 msgid "Include subfolders"
 msgstr "Incluir subcarpetas"
 
-#: src/cache_maint.c:915
+#: src/cache-maint.c:915
 msgid "Store thumbnails local to source images"
 msgstr "Almacenar miniaturas junto a las imágenes de origen"
 
-#: src/cache_maint.c:924 src/cache_maint.c:1176 src/cache_maint.c:1562
+#: src/cache-maint.c:924 src/cache-maint.c:1176 src/cache-maint.c:1562
 #: src/preferences.c:3192
 msgid "click start to begin"
 msgstr "haga clic en Iniciar para comenzar"
 
-#: src/cache_maint.c:1096 src/editors.c:1171
+#: src/cache-maint.c:1096 src/editors.c:1171
 msgid "running..."
 msgstr "ejecutándose..."
 
-#: src/cache_maint.c:1152
+#: src/cache-maint.c:1152
 msgid "Clearing thumbnails..."
 msgstr "Borrando miniaturas..."
 
-#: src/cache_maint.c:1233 src/cache_maint.c:1236 src/cache_maint.c:1729
-#: src/cache_maint.c:1748
+#: src/cache-maint.c:1233 src/cache-maint.c:1236 src/cache-maint.c:1729
+#: src/cache-maint.c:1748
 msgid "Clear cache"
 msgstr "Borrar la caché"
 
-#: src/cache_maint.c:1237
+#: src/cache-maint.c:1237
 #, fuzzy
 msgid ""
 "This will remove all thumbnails and sim. files\n"
@@ -689,104 +689,104 @@ msgstr ""
 "Esto borrará todas las miniaturas que fueron\n"
 "guardadas en el disco; ¿quiere continuar?"
 
-#: src/cache_maint.c:1282
+#: src/cache-maint.c:1282
 #, c-format
 msgid "Location: %s"
 msgstr "Ubicación: %s"
 
-#: src/cache_maint.c:1531
+#: src/cache-maint.c:1531
 #, fuzzy
 msgid "Create sim. files"
 msgstr "No se puede crear archivo temporal\n"
 
-#: src/cache_maint.c:1542
+#: src/cache-maint.c:1542
 #, fuzzy
 msgid "Create sim. files recursively"
 msgstr "generar miniaturas recursivamente"
 
-#: src/cache_maint.c:1650 src/cache_maint.c:1784
+#: src/cache-maint.c:1650 src/cache-maint.c:1784
 #, fuzzy
 msgid "Background cache maintenance"
 msgstr "Mantenimiento de la caché"
 
-#: src/cache_maint.c:1658
+#: src/cache-maint.c:1658
 msgid ""
 "Recursively delete orphaned thumbnails\n"
 "and .sim files, and create new\n"
 "thumbnails and .sim files"
 msgstr ""
 
-#: src/cache_maint.c:1702
+#: src/cache-maint.c:1702
 msgid "Cache Maintenance"
 msgstr "Mantenimiento de la caché"
 
-#: src/cache_maint.c:1714
+#: src/cache-maint.c:1714
 msgid "Cache and Data Maintenance"
 msgstr "Mantenimiento de caché y datos"
 
-#: src/cache_maint.c:1718
+#: src/cache-maint.c:1718
 #, fuzzy
 msgid "Geeqie thumbnail and sim. cache"
 msgstr "Caché de miniaturas de Geeqie"
 
-#: src/cache_maint.c:1724 src/cache_maint.c:1743 src/cache_maint.c:1779
+#: src/cache-maint.c:1724 src/cache-maint.c:1743 src/cache-maint.c:1779
 msgid "Clean up"
 msgstr "Limpiar"
 
-#: src/cache_maint.c:1727
+#: src/cache-maint.c:1727
 #, fuzzy
 msgid "Remove orphaned or outdated thumbnails and sim. files."
 msgstr "Borrar miniaturas huérfanas o desactualizadas."
 
-#: src/cache_maint.c:1732
+#: src/cache-maint.c:1732
 msgid "Delete all cached data."
 msgstr "Borrar todos los datos en caché."
 
-#: src/cache_maint.c:1735
+#: src/cache-maint.c:1735
 msgid "Shared thumbnail cache"
 msgstr "Caché de miniaturas compartido"
 
-#: src/cache_maint.c:1746
+#: src/cache-maint.c:1746
 msgid "Remove orphaned or outdated thumbnails."
 msgstr "Borrar miniaturas huérfanas o desactualizadas."
 
-#: src/cache_maint.c:1751
+#: src/cache-maint.c:1751
 msgid "Delete all cached thumbnails."
 msgstr "Borrar todas las miniaturas en caché."
 
-#: src/cache_maint.c:1757
+#: src/cache-maint.c:1757
 msgid "Render"
 msgstr "Generar"
 
-#: src/cache_maint.c:1760
+#: src/cache-maint.c:1760
 msgid "Render thumbnails for a specific folder."
 msgstr "Generar miniaturas para una carpeta específica."
 
-#: src/cache_maint.c:1763
+#: src/cache-maint.c:1763
 #, fuzzy
 msgid "File similarity cache"
 msgstr "Borrar la caché"
 
-#: src/cache_maint.c:1767
+#: src/cache-maint.c:1767
 #, fuzzy
 msgid "Create"
 msgstr "creativo"
 
-#: src/cache_maint.c:1770
+#: src/cache-maint.c:1770
 #, fuzzy
 msgid "Create sim. files recursively."
 msgstr "generar miniaturas recursivamente"
 
-#: src/cache_maint.c:1782
+#: src/cache-maint.c:1782
 msgid "Remove orphaned keywords and comments."
 msgstr "Borrar palabras clave y comentarios huérfanos."
 
-#: src/cache_maint.c:1788
+#: src/cache-maint.c:1788
 #, fuzzy
 msgid "Select"
 msgstr "_Seleccionar"
 
-#: src/cache_maint.c:1791
+#: src/cache-maint.c:1791
 msgid "Run cache maintenance as a background job."
 msgstr ""
 
@@ -911,12 +911,12 @@ msgstr "%s, %d imágenes (%s, %d)"
 msgid "%s, %d images"
 msgstr "%s, %d imágenes"
 
-#: src/collect-table.c:261 src/layout_util.c:1935 src/layout_util.c:3672
+#: src/collect-table.c:261 src/layout-util.c:1935 src/layout-util.c:3672
 msgid "Empty"
 msgstr "Vacía"
 
 #: src/collect-table.c:275 src/dupe.c:2172 src/search.c:435
-#: src/view_file/view_file.c:1376 src/view_file/view_file.c:1485
+#: src/view-file/view-file.c:1376 src/view-file/view-file.c:1485
 msgid "Loading thumbs..."
 msgstr "Cargando miniaturas..."
 
@@ -925,8 +925,8 @@ msgid "_View"
 msgstr "_Ver"
 
 #: src/collect-table.c:990 src/dupe.c:3529 src/dupe.c:3867 src/img-view.c:1417
-#: src/layout_image.c:787 src/pan-view/pan-view.c:2397 src/search.c:1155
-#: src/view_file/view_file.c:698
+#: src/layout-image.c:787 src/pan-view/pan-view.c:2397 src/search.c:1155
+#: src/view-file/view-file.c:698
 msgid "View in _new window"
 msgstr "Ver en una ventana _nueva"
 
@@ -951,12 +951,12 @@ msgid "_Selection"
 msgstr "_Selección"
 
 #: src/collect-table.c:1006 src/dupe.c:3532 src/dupe.c:3870 src/search.c:1158
-#: src/view_file/view_file.c:1087 src/view_file/view_file.c:1137
+#: src/view-file/view-file.c:1087 src/view-file/view-file.c:1137
 msgid "Select all"
 msgstr "Seleccionar todo"
 
 #: src/collect-table.c:1008 src/dupe.c:3534 src/dupe.c:3872 src/search.c:1160
-#: src/view_file/view_file.c:1142
+#: src/view-file/view-file.c:1142
 msgid "Select none"
 msgstr "No seleccionar nada"
 
@@ -969,56 +969,56 @@ msgid "Rectangular selection"
 msgstr "Selección rectangular"
 
 #: src/collect-table.c:1024 src/dupe.c:3559 src/img-view.c:1421
-#: src/layout_image.c:801 src/pan-view/pan-view.c:2403 src/search.c:1177
-#: src/view_file/view_file.c:704
+#: src/layout-image.c:801 src/pan-view/pan-view.c:2403 src/search.c:1177
+#: src/view-file/view-file.c:704
 msgid "_Copy..."
 msgstr "_Copiar..."
 
 #: src/collect-table.c:1026 src/dupe.c:3561 src/img-view.c:1422
-#: src/layout_image.c:803 src/pan-view/pan-view.c:2405 src/search.c:1179
-#: src/view_file/view_file.c:706
+#: src/layout-image.c:803 src/pan-view/pan-view.c:2405 src/search.c:1179
+#: src/view-file/view-file.c:706
 msgid "_Move..."
 msgstr "_Mover..."
 
 #: src/collect-table.c:1028 src/dupe.c:3563 src/img-view.c:1423
-#: src/layout_image.c:805 src/pan-view/pan-view.c:2407 src/search.c:1181
-#: src/view_dir.c:735 src/view_file/view_file.c:708
+#: src/layout-image.c:805 src/pan-view/pan-view.c:2407 src/search.c:1181
+#: src/view-dir.c:735 src/view-file/view-file.c:708
 msgid "_Rename..."
 msgstr "_Renombrar..."
 
 #: src/collect-table.c:1030 src/dupe.c:3565 src/img-view.c:1424
-#: src/search.c:1183 src/view_dir.c:738
+#: src/search.c:1183 src/view-dir.c:738
 msgid "_Copy path"
 msgstr "_Copiar la ruta"
 
 #: src/collect-table.c:1032 src/dupe.c:3567 src/img-view.c:1425
-#: src/search.c:1185 src/view_dir.c:741
+#: src/search.c:1185 src/view-dir.c:741
 msgid "_Copy path unquoted"
 msgstr "Copiar la ruta sin entrecomillarla"
 
 #: src/collect-table.c:1037 src/dupe.c:3572 src/img-view.c:1429
-#: src/layout_image.c:814 src/pan-view/pan-view.c:2416 src/search.c:1190
-#: src/view_file/view_file.c:716
+#: src/layout-image.c:814 src/pan-view/pan-view.c:2416 src/search.c:1190
+#: src/view-file/view-file.c:716
 #, fuzzy
 msgid "Move to Trash..."
 msgstr "Mover..."
 
 #: src/collect-table.c:1038 src/dupe.c:3573 src/img-view.c:1430
-#: src/layout_image.c:815 src/pan-view/pan-view.c:2417 src/search.c:1191
-#: src/view_file/view_file.c:717
+#: src/layout-image.c:815 src/pan-view/pan-view.c:2417 src/search.c:1191
+#: src/view-file/view-file.c:717
 #, fuzzy
 msgid "Move to Trash"
 msgstr "Mover al principio"
 
 #: src/collect-table.c:1041 src/dupe.c:3576 src/img-view.c:1433
-#: src/layout_image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
-#: src/view_dir.c:744 src/view_file/view_file.c:720
+#: src/layout-image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
+#: src/view-dir.c:744 src/view-file/view-file.c:720
 msgid "_Delete..."
 msgstr "Borrar..."
 
 #: src/collect-table.c:1042 src/dupe.c:3577 src/img-view.c:1434
-#: src/layout_image.c:820 src/pan-view/pan-view.c:2421 src/search.c:1195
-#: src/ui_pathsel.c:644 src/view_file/view_file.c:721
+#: src/layout-image.c:820 src/pan-view/pan-view.c:2421 src/search.c:1195
+#: src/ui-pathsel.c:644 src/view-file/view-file.c:721
 msgid "_Delete"
 msgstr "_Borrar"
 
@@ -1026,16 +1026,16 @@ msgstr "_Borrar"
 msgid "Randomize"
 msgstr "Aleatorio"
 
-#: src/collect-table.c:1050 src/view_dir.c:759 src/view_file/view_file.c:746
+#: src/collect-table.c:1050 src/view-dir.c:759 src/view-file/view-file.c:746
 msgid "_Sort"
 msgstr "_Ordenar"
 
-#: src/collect-table.c:1053 src/view_file/view_file.c:762
+#: src/collect-table.c:1053 src/view-file/view-file.c:762
 msgid "Show filename _text"
 msgstr "M_ostrar los nombres de archivos"
 
-#: src/collect-table.c:1055 src/view_file/view_file.c:770
-#: src/view_file/view_file.c:774
+#: src/collect-table.c:1055 src/view-file/view-file.c:770
+#: src/view-file/view-file.c:774
 #, fuzzy
 msgid "Show star rating"
 msgstr "Ordenar por valoración"
@@ -1048,7 +1048,7 @@ msgstr "_Guardar colección"
 msgid "Save collection _as..."
 msgstr "G_uardar colección como..."
 
-#: src/collect-table.c:1063 src/view_file/view_file.c:731
+#: src/collect-table.c:1063 src/view-file/view-file.c:731
 msgid "_Find duplicates..."
 msgstr "Buscar _duplicados..."
 
@@ -1073,7 +1073,7 @@ msgid "_Skip folders"
 msgstr "_Omitir carpetas"
 
 #: src/collect-table.c:2248 src/dupe.c:4972 src/img-view.c:1600
-#: src/view_dir.c:431
+#: src/view-dir.c:431
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -1097,23 +1097,23 @@ msgstr "error"
 msgid "warning"
 msgstr "aviso"
 
-#: src/desktop_file.c:83 src/desktop_file.c:95 src/desktop_file.c:101
+#: src/desktop-file.c:83 src/desktop-file.c:95 src/desktop-file.c:101
 msgid "Can't save"
 msgstr "No se puede guardar"
 
-#: src/desktop_file.c:83
+#: src/desktop-file.c:83
 msgid "Please specify file name."
 msgstr "Indique el nombre del archivo."
 
-#: src/desktop_file.c:95
+#: src/desktop-file.c:95
 msgid "Could not create directory"
 msgstr "No se puede crear el directorio"
 
-#: src/desktop_file.c:191 src/desktop_file.c:650
+#: src/desktop-file.c:191 src/desktop-file.c:650
 msgid "Desktop file"
 msgstr "Archivo desktop"
 
-#: src/desktop_file.c:301 src/ui_pathsel.c:494
+#: src/desktop-file.c:301 src/ui-pathsel.c:494
 #, c-format
 msgid ""
 "Unable to delete file:\n"
@@ -1122,17 +1122,17 @@ msgstr ""
 "No se puede borrar el archivo:\n"
 "%s"
 
-#: src/desktop_file.c:302 src/ui_pathsel.c:495 src/utilops.c:2177
+#: src/desktop-file.c:302 src/ui-pathsel.c:495 src/utilops.c:2177
 #: src/utilops.c:2213 src/utilops.c:2735
 msgid "File deletion failed"
 msgstr "Error al borrar el archivo"
 
-#: src/desktop_file.c:346 src/desktop_file.c:354 src/ui_pathsel.c:537
-#: src/ui_pathsel.c:545
+#: src/desktop-file.c:346 src/desktop-file.c:354 src/ui-pathsel.c:537
+#: src/ui-pathsel.c:545
 msgid "Delete file"
 msgstr "Borrar archivo"
 
-#: src/desktop_file.c:352 src/ui_pathsel.c:543
+#: src/desktop-file.c:352 src/ui-pathsel.c:543
 #, c-format
 msgid ""
 "About to delete the file:\n"
@@ -1141,25 +1141,25 @@ msgstr ""
 "A punto de borrar el archivo:\n"
 "%s"
 
-#: src/desktop_file.c:384
+#: src/desktop-file.c:384
 msgid "new.desktop"
 msgstr "nuevo.desktop"
 
-#: src/desktop_file.c:549
+#: src/desktop-file.c:549
 msgid "Plugins"
 msgstr "Complementos"
 
-#: src/desktop_file.c:618
+#: src/desktop-file.c:618
 #, fuzzy
 msgid "Disabled"
 msgstr "Se puede escribir"
 
-#: src/desktop_file.c:640
+#: src/desktop-file.c:640
 msgid "Hidden"
 msgstr "Oculto"
 
-#: src/desktop_file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/search.c:3697
-#: src/ui_pathsel.c:1112 src/utilops.c:503
+#: src/desktop-file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/search.c:3697
+#: src/ui-pathsel.c:1112 src/utilops.c:503
 msgid "Path"
 msgstr "Ruta"
 
@@ -1237,12 +1237,12 @@ msgid "Name case-insensitive"
 msgstr "Nombre sin distinguir mayúsculas de minúsculas"
 
 #: src/dupe.c:3980 src/dupe.c:4704 src/dupe.c:5287 src/preferences.c:2425
-#: src/search.c:3694 src/view_file/view_file_list.c:2240
+#: src/search.c:3694 src/view-file/view-file-list.c:2240
 msgid "Size"
 msgstr "Tamaño"
 
 #: src/dupe.c:3981 src/dupe.c:4705 src/dupe.c:5287 src/search.c:3695
-#: src/view_file/view_file_list.c:2244
+#: src/view-file/view-file-list.c:2244
 msgid "Date"
 msgstr "Fecha"
 
@@ -1695,7 +1695,7 @@ msgstr "Histograma lineal sobre RGB"
 msgid "Linear Histogram on value"
 msgstr "Histograma lineal sobre Valor"
 
-#: src/history_list.c:291
+#: src/history-list.c:291
 #, c-format
 msgid "Unable to write history lists to: %s\n"
 msgstr "No se pueden escribir listas de historial en: %s\n"
@@ -1705,91 +1705,91 @@ msgstr "No se pueden escribir listas de historial en: %s\n"
 msgid " (Collection %s)"
 msgstr " (Colección %s)"
 
-#: src/image_load_cr3.c:161 src/image_load_jpeg.c:164
+#: src/image-load-cr3.c:161 src/image-load-jpeg.c:164
 #, c-format
 msgid "Error interpreting JPEG image file (%s)"
 msgstr "Error al interpretar el archivo de imagen JPEG (%s)"
 
-#: src/image_load_j2k.c:202
+#: src/image-load-j2k.c:202
 msgid "Could not open file for reading"
 msgstr ""
 
-#: src/image_load_j2k.c:212
+#: src/image-load-j2k.c:212
 msgid "Unknown jpeg2000 decoder type"
 msgstr ""
 
-#: src/image_load_j2k.c:219
+#: src/image-load-j2k.c:219
 msgid "Couldn't set parameters on decoder for file."
 msgstr ""
 
-#: src/image_load_j2k.c:227
+#: src/image-load-j2k.c:227
 msgid "Couldn't read JP2 header from file"
 msgstr ""
 
-#: src/image_load_j2k.c:233
+#: src/image-load-j2k.c:233
 msgid "Couldn't decode JP2 image in file"
 msgstr ""
 
-#: src/image_load_j2k.c:239
+#: src/image-load-j2k.c:239
 msgid "Couldn't decompress JP2 image in file"
 msgstr ""
 
-#: src/image_load_j2k.c:246
+#: src/image-load-j2k.c:246
 msgid "JP2 image not rgb"
 msgstr ""
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1885
-#: src/layout_util.c:914 src/view_file/view_file.c:396
+#: src/img-view.c:672 src/layout-image.c:692 src/layout-image.c:1885
+#: src/layout-util.c:914 src/view-file/view-file.c:396
 #, fuzzy
 msgid "Cannot open archive file"
 msgstr "No se puede renombrar archivo"
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1885
-#: src/layout_util.c:914 src/preferences.c:4219 src/preferences.c:4227
-#: src/view_file/view_file.c:396
+#: src/img-view.c:672 src/layout-image.c:692 src/layout-image.c:1885
+#: src/layout-util.c:914 src/preferences.c:4219 src/preferences.c:4227
+#: src/view-file/view-file.c:396
 #, fuzzy
 msgid "See the Log Window"
 msgstr "Ventana del registro"
 
-#: src/img-view.c:1403 src/layout_image.c:773 src/pan-view/pan-view.c:2382
+#: src/img-view.c:1403 src/layout-image.c:773 src/pan-view/pan-view.c:2382
 msgid "Zoom _in"
 msgstr "Ampl_iar"
 
-#: src/img-view.c:1404 src/layout_image.c:774 src/pan-view/pan-view.c:2384
+#: src/img-view.c:1404 src/layout-image.c:774 src/pan-view/pan-view.c:2384
 msgid "Zoom _out"
 msgstr "Reducir"
 
-#: src/img-view.c:1405 src/layout_image.c:775 src/pan-view/pan-view.c:2386
+#: src/img-view.c:1405 src/layout-image.c:775 src/pan-view/pan-view.c:2386
 msgid "Zoom _1:1"
 msgstr "Zum _1:1"
 
-#: src/img-view.c:1406 src/layout_image.c:776
+#: src/img-view.c:1406 src/layout-image.c:776
 msgid "Zoom to fit"
 msgstr "Zum para ajustar"
 
-#: src/img-view.c:1418 src/layout_image.c:790
+#: src/img-view.c:1418 src/layout-image.c:790
 msgid "_Go to directory view"
 msgstr "_Ir a la vista de directorio"
 
-#: src/img-view.c:1446 src/img-view.c:1460 src/layout_image.c:832
-#: src/layout_image.c:846
+#: src/img-view.c:1446 src/img-view.c:1460 src/layout-image.c:832
+#: src/layout-image.c:846
 msgid "Toggle _slideshow"
 msgstr "Conmutar el pase de diapo_sitivas"
 
-#: src/img-view.c:1449 src/layout_image.c:835
+#: src/img-view.c:1449 src/layout-image.c:835
 msgid "Continue slides_how"
 msgstr "Contin_uar el pase de diapositivas"
 
-#: src/img-view.c:1454 src/img-view.c:1462 src/layout_image.c:840
-#: src/layout_image.c:847
+#: src/img-view.c:1454 src/img-view.c:1462 src/layout-image.c:840
+#: src/layout-image.c:847
 msgid "Pause slides_how"
 msgstr "Pa_usar el pase diapositivas"
 
-#: src/img-view.c:1468 src/layout_image.c:857 src/pan-view/pan-view.c:2474
+#: src/img-view.c:1468 src/layout-image.c:857 src/pan-view/pan-view.c:2474
 msgid "Exit _full screen"
 msgstr "_Salir de pantalla completa"
 
-#: src/img-view.c:1472 src/layout_image.c:853 src/pan-view/pan-view.c:2478
+#: src/img-view.c:1472 src/layout-image.c:853 src/pan-view/pan-view.c:2478
 msgid "_Full screen"
 msgstr "Pan_talla completa"
 
@@ -1797,7 +1797,7 @@ msgstr "Pan_talla completa"
 msgid "C_lose window"
 msgstr "Cerrar la _ventana"
 
-#: src/layout.c:460 src/view_dir.c:758 src/view_file/view_file.c:743
+#: src/layout.c:460 src/view-dir.c:758 src/view-file/view-file.c:743
 msgid "Ascending"
 msgstr "Ascendente"
 
@@ -1931,217 +1931,217 @@ msgstr "Disposición"
 msgid "Invalid geometry\n"
 msgstr "Geometría inválida\n"
 
-#: src/layout_config.c:358
+#: src/layout-config.c:358
 msgid "(drag to change order)"
 msgstr "(arrastre para cambiar el orden)"
 
-#: src/layout_image.c:793 src/layout_util.c:2285 src/view_file/view_file.c:701
+#: src/layout-image.c:793 src/layout-util.c:2285 src/view-file/view-file.c:701
 #, fuzzy
 msgid "Open archive"
 msgstr "Abrir reciente"
 
-#: src/layout_image.c:807 src/pan-view/pan-view.c:2409
-#: src/view_file/view_file.c:710
+#: src/layout-image.c:807 src/pan-view/pan-view.c:2409
+#: src/view-file/view-file.c:710
 msgid "_Copy path to clipboard"
 msgstr "_Copiar la ruta al portapapeles"
 
-#: src/layout_image.c:808 src/pan-view/pan-view.c:2411
-#: src/view_file/view_file.c:712
+#: src/layout-image.c:808 src/pan-view/pan-view.c:2411
+#: src/view-file/view-file.c:712
 msgid "_Copy path unquoted to clipboard"
 msgstr "_Copiar la ruta sin entrecomillar al portapapeles"
 
-#: src/layout_image.c:809
+#: src/layout-image.c:809
 #, fuzzy
 msgid "Copy _image to clipboard"
 msgstr "Copiar la ruta al portapapeles"
 
-#: src/layout_image.c:860
+#: src/layout-image.c:860
 msgid "GIF _animation"
 msgstr "_Animación GIF"
 
-#: src/layout_image.c:864
+#: src/layout-image.c:864
 msgid "Hide file _list"
 msgstr "Ocultar la _lista de archivos"
 
-#: src/layout_image.c:2110
+#: src/layout-image.c:2110
 #, c-format
 msgid "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 msgstr "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 
-#: src/layout_image.c:2118
+#: src/layout-image.c:2118
 #, c-format
 msgid "[%*s,%*s]: RGB(---,---,---)"
 msgstr "[%*s,%*s]: RGB(---,---,---)"
 
-#: src/layout_util.c:244
+#: src/layout-util.c:244
 msgid "Clear Marks"
 msgstr "Borrar las marcas"
 
-#: src/layout_util.c:591
+#: src/layout-util.c:591
 msgid "Operation failed:\n"
 msgstr "La operación ha fallado:\n"
 
-#: src/layout_util.c:594
+#: src/layout-util.c:594
 msgid "No file extension\n"
 msgstr "Sin extensión de archivo\n"
 
-#: src/layout_util.c:596
+#: src/layout-util.c:596
 msgid "Cannot create tmp file\n"
 msgstr "No se puede crear archivo temporal\n"
 
-#: src/layout_util.c:598
+#: src/layout-util.c:598
 msgid "Operation not supported for filetype\n"
 msgstr "Operación no permitida para el tipo de archivo\n"
 
-#: src/layout_util.c:600
+#: src/layout-util.c:600
 msgid "File is not writable\n"
 msgstr "No se puede escribir en el archivo\n"
 
-#: src/layout_util.c:602
+#: src/layout-util.c:602
 msgid "Exiftran error\n"
 msgstr "Error de Exiftran\n"
 
-#: src/layout_util.c:604
+#: src/layout-util.c:604
 msgid "Mogrify error\n"
 msgstr "Error de Mogrify\n"
 
-#: src/layout_util.c:608
+#: src/layout-util.c:608
 msgid "Image orientation"
 msgstr "Orientación de la imagen"
 
-#: src/layout_util.c:2080
+#: src/layout-util.c:2080
 #, c-format
 msgid "Error: window layout name: %s does not exist\n"
 msgstr ""
 
-#: src/layout_util.c:2154
+#: src/layout-util.c:2154
 #, fuzzy, c-format
 msgid "Window layout name \"%s\" already exists."
 msgstr "Ya existe un archivo con el nombre %s."
 
-#: src/layout_util.c:2155 src/layout_util.c:2404
+#: src/layout-util.c:2155 src/layout-util.c:2404
 #, fuzzy
 msgid "Rename window"
 msgstr "nueva ventana"
 
-#: src/layout_util.c:2255 src/layout_util.c:2435
+#: src/layout-util.c:2255 src/layout-util.c:2435
 #, fuzzy
 msgid "Delete window"
 msgstr "Cerrar la ventana"
 
-#: src/layout_util.c:2405 src/layout_util.c:2436
+#: src/layout-util.c:2405 src/layout-util.c:2436
 msgid "OK"
 msgstr ""
 
-#: src/layout_util.c:2407
+#: src/layout-util.c:2407
 #, fuzzy
 msgid "rename window"
 msgstr "nueva ventana"
 
-#: src/layout_util.c:2438
+#: src/layout-util.c:2438
 msgid "Delete window layout"
 msgstr ""
 
-#: src/layout_util.c:3021
+#: src/layout-util.c:3021
 #, c-format
 msgid "Mark _%d"
 msgstr "Marca _%d"
 
-#: src/layout_util.c:3022 src/view_file/view_file.c:650
+#: src/layout-util.c:3022 src/view-file/view-file.c:650
 #, c-format
 msgid "_Set mark %d"
 msgstr "Poner la marca %d"
 
-#: src/layout_util.c:3022
+#: src/layout-util.c:3022
 #, c-format
 msgid "Set mark %d"
 msgstr "Poner la marca %d"
 
-#: src/layout_util.c:3023 src/view_file/view_file.c:651
+#: src/layout-util.c:3023 src/view-file/view-file.c:651
 #, c-format
 msgid "_Reset mark %d"
 msgstr "_Quitar la marca %d"
 
-#: src/layout_util.c:3023
+#: src/layout-util.c:3023
 #, c-format
 msgid "Reset mark %d"
 msgstr "Quitar la marca %d"
 
-#: src/layout_util.c:3024 src/layout_util.c:3025 src/view_file/view_file.c:652
+#: src/layout-util.c:3024 src/layout-util.c:3025 src/view-file/view-file.c:652
 #, c-format
 msgid "_Toggle mark %d"
 msgstr "_Conmutar la marca %d"
 
-#: src/layout_util.c:3024 src/layout_util.c:3025
+#: src/layout-util.c:3024 src/layout-util.c:3025
 #, c-format
 msgid "Toggle mark %d"
 msgstr "Conmutar la marca %d"
 
-#: src/layout_util.c:3026
+#: src/layout-util.c:3026
 #, c-format
 msgid "Se_lect mark %d"
 msgstr "_Seleccionar marca %d"
 
-#: src/layout_util.c:3026 src/layout_util.c:3027
+#: src/layout-util.c:3026 src/layout-util.c:3027
 #, c-format
 msgid "Select mark %d"
 msgstr "Seleccionar marca %d"
 
-#: src/layout_util.c:3027 src/view_file/view_file.c:653
+#: src/layout-util.c:3027 src/view-file/view-file.c:653
 #, c-format
 msgid "_Select mark %d"
 msgstr "_Seleccionar la marca %d"
 
-#: src/layout_util.c:3028 src/view_file/view_file.c:654
+#: src/layout-util.c:3028 src/view-file/view-file.c:654
 #, c-format
 msgid "_Add mark %d"
 msgstr "_Añadir marca %d"
 
-#: src/layout_util.c:3028
+#: src/layout-util.c:3028
 #, c-format
 msgid "Add mark %d"
 msgstr "Añadir marca %d"
 
-#: src/layout_util.c:3029 src/view_file/view_file.c:655
+#: src/layout-util.c:3029 src/view-file/view-file.c:655
 #, c-format
 msgid "_Intersection with mark %d"
 msgstr "_Intersección con la marca %d"
 
-#: src/layout_util.c:3029
+#: src/layout-util.c:3029
 #, c-format
 msgid "Intersection with mark %d"
 msgstr "Intersección con la marca %d"
 
-#: src/layout_util.c:3030 src/view_file/view_file.c:656
+#: src/layout-util.c:3030 src/view-file/view-file.c:656
 #, c-format
 msgid "_Unselect mark %d"
 msgstr "_Deseleccionar la marca %d"
 
-#: src/layout_util.c:3030
+#: src/layout-util.c:3030
 #, c-format
 msgid "Unselect mark %d"
 msgstr "Deseleccionar la marca %d"
 
-#: src/layout_util.c:3031
+#: src/layout-util.c:3031
 #, c-format
 msgid "_Filter mark %d"
 msgstr "_Filtrar marca %d"
 
-#: src/layout_util.c:3031
+#: src/layout-util.c:3031
 #, c-format
 msgid "Filter mark %d"
 msgstr "Filtrar marca %d"
 
-#: src/layout_util.c:3646
+#: src/layout-util.c:3646
 #, c-format
 msgid "Number of files with unsaved metadata: %d"
 msgstr "Número de archivos con metadatos sin guardar: %d"
 
-#: src/layout_util.c:3652
+#: src/layout-util.c:3652
 msgid "No unsaved metadata"
 msgstr "No hay metadatos sin guardar"
 
-#: src/layout_util.c:3700
+#: src/layout-util.c:3700
 #, c-format
 msgid ""
 "Image profile: %s\n"
@@ -2150,15 +2150,15 @@ msgstr ""
 "Perfil de imagen: %s\n"
 "Perfil de pantalla: %s"
 
-#: src/layout_util.c:3708
+#: src/layout-util.c:3708
 msgid "Click to enable color management"
 msgstr "Clic para activar la gestión de color"
 
-#: src/layout_util.c:3713
+#: src/layout-util.c:3713
 msgid "Color profiles not supported"
 msgstr "Perfiles de color no soportados"
 
-#: src/layout_util.c:3735
+#: src/layout-util.c:3735
 #, c-format
 msgid "Input _%d: %s"
 msgstr "Entrada _%d: %s"
@@ -2741,16 +2741,16 @@ msgid ""
 "  Error code: "
 msgstr ""
 
-#: src/options.c:244 src/ui_bookmark.c:560 src/ui_pathsel.c:1047
+#: src/options.c:244 src/ui-bookmark.c:560 src/ui-pathsel.c:1047
 msgid "Home"
 msgstr "Carpeta de inicio"
 
-#: src/options.c:246 src/ui_bookmark.c:571
+#: src/options.c:246 src/ui-bookmark.c:571
 msgid "Desktop"
 msgstr "Escritorio"
 
 #: src/options.c:267 src/search.c:2338 src/search.c:2342 src/search.c:3626
-#: src/search.c:3630 src/view_file/view_file.c:915
+#: src/search.c:3630 src/view-file/view-file.c:915
 msgid "Mark "
 msgstr "Marca"
 
@@ -3207,7 +3207,7 @@ msgid ""
 msgstr ""
 
 #: src/preferences.c:2058 src/preferences.c:2090 src/preferences.c:2218
-#: src/view_file/view_file.c:1188 src/window.c:400
+#: src/view-file/view-file.c:1188 src/window.c:400
 msgid "Clear"
 msgstr "Borrar"
 
@@ -3601,7 +3601,7 @@ msgstr "Tipos de archivo"
 msgid "Enabled"
 msgstr "Se puede escribir"
 
-#: src/preferences.c:2773 src/view_file/view_file.c:1227
+#: src/preferences.c:2773 src/view-file/view-file.c:1227
 msgid "Class"
 msgstr "Clase"
 
@@ -4355,7 +4355,7 @@ msgstr "%s remoto no está ejecutándose; iniciando..."
 msgid "Remote not available\n"
 msgstr "Geeqie remoto no está disponible\n"
 
-#: src/search_and_run.c:291
+#: src/search-and-run.c:291
 msgid "Search and Run command"
 msgstr ""
 
@@ -4548,39 +4548,39 @@ msgstr ""
 msgid "Marks"
 msgstr "Marcas"
 
-#: src/secure_save.c:407
+#: src/secure-save.c:407
 msgid "Cannot read the file"
 msgstr "No se puede leer el archivo"
 
-#: src/secure_save.c:409
+#: src/secure-save.c:409
 msgid "Cannot get file status"
 msgstr "No se puede obtener estado del archivo"
 
-#: src/secure_save.c:411
+#: src/secure-save.c:411
 msgid "Cannot access the file"
 msgstr "No se puede acceder al archivo"
 
-#: src/secure_save.c:413
+#: src/secure-save.c:413
 msgid "Cannot create temp file"
 msgstr "No se puede crear archivo temporal"
 
-#: src/secure_save.c:415
+#: src/secure-save.c:415
 msgid "Cannot rename the file"
 msgstr "No se puede renombrar archivo"
 
-#: src/secure_save.c:417
+#: src/secure-save.c:417
 msgid "File saving disabled by option"
 msgstr "Guardado deshabilitado por opción"
 
-#: src/secure_save.c:419
+#: src/secure-save.c:419
 msgid "Out of memory"
 msgstr "Memoria agotada"
 
-#: src/secure_save.c:421
+#: src/secure-save.c:421
 msgid "Cannot write the file"
 msgstr "No se puede escribir el archivo"
 
-#: src/secure_save.c:425
+#: src/secure-save.c:425
 msgid "Secure file saving error"
 msgstr "Error de guardado seguro"
 
@@ -4655,35 +4655,35 @@ msgstr ""
 msgid "Using system Trash bin"
 msgstr ""
 
-#: src/ui_bookmark.c:137 src/ui_bookmark.c:200
+#: src/ui-bookmark.c:137 src/ui-bookmark.c:200
 msgid "New Bookmark"
 msgstr "Nuevo marcador"
 
-#: src/ui_bookmark.c:283 src/ui_bookmark.c:289
+#: src/ui-bookmark.c:283 src/ui-bookmark.c:289
 msgid "Edit Bookmark"
 msgstr "Editar marcador"
 
-#: src/ui_bookmark.c:304
+#: src/ui-bookmark.c:304
 msgid "Path:"
 msgstr "Ruta:"
 
-#: src/ui_bookmark.c:313
+#: src/ui-bookmark.c:313
 msgid "Icon:"
 msgstr "Icono:"
 
-#: src/ui_bookmark.c:319
+#: src/ui-bookmark.c:319
 msgid "Select icon"
 msgstr "Seleccionar icono"
 
-#: src/ui_bookmark.c:412
+#: src/ui-bookmark.c:412
 msgid "_Properties..."
 msgstr "_Propiedades..."
 
-#: src/ui_bookmark.c:418
+#: src/ui-bookmark.c:418
 msgid "_Remove"
 msgstr "_Quitar"
 
-#: src/ui_fileops.c:88
+#: src/ui-fileops.c:88
 msgid ""
 "One or more filenames are not encoded with the preferred locale character "
 "set.\n"
@@ -4691,13 +4691,13 @@ msgstr ""
 "Uno o varios archivos no están codificados en el juego de caracteres "
 "establecido por defecto.\n"
 
-#: src/ui_fileops.c:89
+#: src/ui-fileops.c:89
 #, c-format
 msgid "Operations on, and display of these files with %s may not succeed.\n"
 msgstr ""
 "Pueden no ejecutarse las operaciones o no mostrarse estos archivos con %s.\n"
 
-#: src/ui_fileops.c:91
+#: src/ui-fileops.c:91
 msgid ""
 "If your filenames are not encoded in utf-8, try setting the environment "
 "variable G_BROKEN_FILENAMES=1\n"
@@ -4705,16 +4705,16 @@ msgstr ""
 "Si tus archivos no están en UTF-8, prueba a establecer la variable del "
 "sistema G_BROKEN_FILENAMES=1\n"
 
-#: src/ui_fileops.c:93
+#: src/ui-fileops.c:93
 #, c-format
 msgid "It appears G_BROKEN_FILENAMES is set to %s\n"
 msgstr "Parece que G_BROKEN_FILENAMES está establecida a %s\n"
 
-#: src/ui_fileops.c:95
+#: src/ui-fileops.c:95
 msgid "It appears G_BROKEN_FILENAMES is not set\n"
 msgstr "Parece que G_BROKEN_FILENAMES no está establecida\n"
 
-#: src/ui_fileops.c:97
+#: src/ui-fileops.c:97
 #, c-format
 msgid ""
 "The locale appears to be set to \"%s\"\n"
@@ -4723,7 +4723,7 @@ msgstr ""
 "La configuración regional parece ser «%s»\n"
 "(Establecido por la variable de entorno LANG)\n"
 
-#: src/ui_fileops.c:102
+#: src/ui-fileops.c:102
 msgid ""
 "\n"
 "Preferred encoding appears to be UTF-8, however the file:\n"
@@ -4731,42 +4731,42 @@ msgstr ""
 "\n"
 "La codificación preferida parece ser UTF-8, sin embargo el archivo:\n"
 
-#: src/ui_fileops.c:103 src/ui_fileops.c:106 src/ui_fileops.c:108
+#: src/ui-fileops.c:103 src/ui-fileops.c:106 src/ui-fileops.c:108
 msgid "[name not displayable]"
 msgstr "[nombre no reproducible]"
 
-#: src/ui_fileops.c:106
+#: src/ui-fileops.c:106
 #, c-format
 msgid "\"%s\" is encoded in valid UTF-8."
 msgstr "«%s» está codificado en UTF-8 válido."
 
-#: src/ui_fileops.c:108
+#: src/ui-fileops.c:108
 #, c-format
 msgid "\"%s\" is not encoded in valid UTF-8."
 msgstr "«%s» no está codificado en UTF-8 válido."
 
-#: src/ui_fileops.c:113 src/ui_fileops.c:118
+#: src/ui-fileops.c:113 src/ui-fileops.c:118
 msgid "Filename encoding locale mismatch"
 msgstr ""
 "La codificación del nombre del archivo no coincide con la configuración "
 "regional"
 
-#: src/ui_fileops.c:1047
+#: src/ui-fileops.c:1047
 #, fuzzy
 msgid "Web file download failed"
 msgstr "Error al borrar el archivo"
 
-#: src/ui_fileops.c:1110
+#: src/ui-fileops.c:1110
 #, fuzzy
 msgid "Download web file"
 msgstr "cargar archivo de configuración"
 
-#: src/ui_fileops.c:1112
+#: src/ui-fileops.c:1112
 #, fuzzy
 msgid "Downloading "
 msgstr "Cargando mapa"
 
-#: src/ui_help.c:117
+#: src/ui-help.c:117
 #, c-format
 msgid ""
 "Unable to load:\n"
@@ -4775,30 +4775,30 @@ msgstr ""
 "No se puede cargar:\n"
 "%s"
 
-#: src/ui_pathsel.c:432
+#: src/ui-pathsel.c:432
 #, c-format
 msgid "A file with name %s already exists."
 msgstr "Ya existe un archivo con el nombre %s."
 
-#: src/ui_pathsel.c:433 src/ui_pathsel.c:439 src/utilops.c:2373
+#: src/ui-pathsel.c:433 src/ui-pathsel.c:439 src/utilops.c:2373
 #: src/utilops.c:2400 src/utilops.c:2866
 msgid "Rename failed"
 msgstr "Error al renombrar"
 
-#: src/ui_pathsel.c:438
+#: src/ui-pathsel.c:438
 #, c-format
 msgid "Failed to rename %s to %s."
 msgstr "Error al renombrar %s a %s."
 
-#: src/ui_pathsel.c:634 src/ui_pathsel.c:642
+#: src/ui-pathsel.c:634 src/ui-pathsel.c:642
 msgid "_Rename"
 msgstr "_Renombrar"
 
-#: src/ui_pathsel.c:636 src/ui_pathsel.c:646
+#: src/ui-pathsel.c:636 src/ui-pathsel.c:646
 msgid "Add _Bookmark"
 msgstr "_Añadir marcador"
 
-#: src/ui_pathsel.c:759
+#: src/ui-pathsel.c:759
 #, c-format
 msgid ""
 "Unable to create folder:\n"
@@ -4807,39 +4807,39 @@ msgstr ""
 "No se puede crear la carpeta:\n"
 "%s"
 
-#: src/ui_pathsel.c:760
+#: src/ui-pathsel.c:760
 msgid "Error creating folder"
 msgstr "Error al crear carpeta"
 
-#: src/ui_pathsel.c:980
+#: src/ui-pathsel.c:980
 msgid "All Files"
 msgstr "Todos los archivos"
 
-#: src/ui_pathsel.c:1049 src/utilops.c:3189
+#: src/ui-pathsel.c:1049 src/utilops.c:3189
 msgid "New folder"
 msgstr "Nueva carpeta"
 
-#: src/ui_pathsel.c:1052
+#: src/ui-pathsel.c:1052
 msgid "Show hidden"
 msgstr "Mostrar ocultos"
 
-#: src/ui_pathsel.c:1137
+#: src/ui-pathsel.c:1137
 msgid "Filter:"
 msgstr "Filtro:"
 
-#: src/ui_pathsel.c:1179
+#: src/ui-pathsel.c:1179
 msgid "Files"
 msgstr "Archivos"
 
-#: src/ui_tabcomp.c:945
+#: src/ui-tabcomp.c:945
 msgid "Select path"
 msgstr "Seleccionar ruta"
 
-#: src/ui_tabcomp.c:967
+#: src/ui-tabcomp.c:967
 msgid "All files"
 msgstr "Todos los archivos"
 
-#: src/uri_utils.c:43
+#: src/uri-utils.c:43
 msgid "Drag and Drop failed"
 msgstr "Error al arrastrar y soltar"
 
@@ -5204,116 +5204,116 @@ msgstr "¿Quiere crear la carpeta?"
 msgid "Cannot create folder:"
 msgstr "No se puede crear la carpeta"
 
-#: src/view_dir.c:411
+#: src/view-dir.c:411
 msgid "_Copy"
 msgstr "_Copiar"
 
-#: src/view_dir.c:413
+#: src/view-dir.c:413
 msgid "_Move"
 msgstr "_Mover"
 
-#: src/view_dir.c:714
+#: src/view-dir.c:714
 msgid "_Up to parent"
 msgstr "_Subir un nivel"
 
-#: src/view_dir.c:719
+#: src/view-dir.c:719
 msgid "_Slideshow"
 msgstr "Pa_se de diapositivas"
 
-#: src/view_dir.c:721
+#: src/view-dir.c:721
 msgid "Slideshow recursive"
 msgstr "Pase de diapositivas _recursivo"
 
-#: src/view_dir.c:725
+#: src/view-dir.c:725
 msgid "Find _duplicates..."
 msgstr "Bus_car duplicados..."
 
-#: src/view_dir.c:727
+#: src/view-dir.c:727
 msgid "Find duplicates recursive..."
 msgstr "Buscar duplicados recursivamente..."
 
-#: src/view_dir.c:732
+#: src/view-dir.c:732
 msgid "_New folder..."
 msgstr "N_ueva carpeta..."
 
-#: src/view_dir.c:749
+#: src/view-dir.c:749
 msgid "View as _List"
 msgstr "Ver como _lista"
 
-#: src/view_dir.c:752
+#: src/view-dir.c:752
 msgid "View as _Tree"
 msgstr "Ver como árbol (_T)"
 
-#: src/view_dir.c:765
+#: src/view-dir.c:765
 msgid "Show _hidden files"
 msgstr "Mostrar los arc_hivos ocultos"
 
-#: src/view_dir.c:768 src/view_file/view_file.c:779
+#: src/view-dir.c:768 src/view-file/view-file.c:779
 msgid "Re_fresh"
 msgstr "_Actualizar"
 
-#: src/view_file/view_file.c:725
+#: src/view-file/view-file.c:725
 msgid "Enable file _grouping"
 msgstr "Activar la a_grupación de archivos"
 
-#: src/view_file/view_file.c:727
+#: src/view-file/view-file.c:727
 msgid "Disable file groupi_ng"
 msgstr "Desactivar la agrupación de archivos"
 
-#: src/view_file/view_file.c:749
+#: src/view-file/view-file.c:749
 #, fuzzy
 msgid "Images as List"
 msgstr "Ver imágenes como lista"
 
-#: src/view_file/view_file.c:752
+#: src/view-file/view-file.c:752
 #, fuzzy
 msgid "Images as Icons"
 msgstr "Ver imágenes como iconos"
 
-#: src/view_file/view_file.c:758
+#: src/view-file/view-file.c:758
 msgid "Show _thumbnails"
 msgstr "_Mostrar las miniaturas"
 
-#: src/view_file/view_file.c:904
+#: src/view-file/view-file.c:904
 msgid "Mark text"
 msgstr "Texto de la marca"
 
-#: src/view_file/view_file.c:907
+#: src/view-file/view-file.c:907
 msgid "Set mark text"
 msgstr "Establecer texto de marca"
 
-#: src/view_file/view_file.c:908
+#: src/view-file/view-file.c:908
 msgid "This will set or clear the mark text."
 msgstr "Establece o borra la marca de texto."
 
-#: src/view_file/view_file.c:1185
+#: src/view-file/view-file.c:1185
 msgid "Use regular expressions"
 msgstr ""
 
-#: src/view_file/view_file.c:1215
+#: src/view-file/view-file.c:1215
 msgid "Case"
 msgstr ""
 
-#: src/view_file/view_file.c:1217
+#: src/view-file/view-file.c:1217
 #, fuzzy
 msgid "Case sensitive"
 msgstr "Ordenar distinguiendo mayúsculas de minúsculas"
 
-#: src/view_file/view_file.c:1234
+#: src/view-file/view-file.c:1234
 #, fuzzy
 msgid "Select Class filter"
 msgstr "Seleccionar carpeta"
 
-#: src/view_file/view_file.c:1789
+#: src/view-file/view-file.c:1789
 #, fuzzy
 msgid "Loading meta..."
 msgstr "Cargando mapa"
 
-#: src/view_file/view_file_icon.c:2153 src/view_file/view_file_list.c:930
+#: src/view-file/view-file-icon.c:2153 src/view-file/view-file-list.c:930
 msgid " [NO GROUPING]"
 msgstr " [NO AGRUPAR]"
 
-#: src/view_file/view_file_list.c:515
+#: src/view-file/view-file-list.c:515
 #, c-format
 msgid ""
 "Invalid file name:\n"
@@ -5322,16 +5322,16 @@ msgstr ""
 "Nombre de archivo no válido:\n"
 "%s"
 
-#: src/view_file/view_file_list.c:516
+#: src/view-file/view-file-list.c:516
 msgid "Error renaming file"
 msgstr "Error al renombrar archivo"
 
-#: src/view_file/view_file_list.c:2232
+#: src/view-file/view-file-list.c:2232
 #, fuzzy
 msgid "NameStars"
 msgstr "Nombre"
 
-#: src/view_file/view_file_list.c:2236
+#: src/view-file/view-file-list.c:2236
 #, fuzzy
 msgid "Stars"
 msgstr "Nº inicial"

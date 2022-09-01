@@ -97,36 +97,36 @@ msgstr ""
 msgid "Tethered photography"
 msgstr ""
 
-#: src/advanced_exif.c:437 src/cache_maint.c:1773 src/preferences.c:2851
+#: src/advanced-exif.c:437 src/cache-maint.c:1773 src/preferences.c:2851
 #: src/search.c:2281 src/search.c:3609
 msgid "Metadata"
 msgstr "Metatiedot"
 
-#: src/advanced_exif.c:493 src/preferences.c:2756
+#: src/advanced-exif.c:493 src/preferences.c:2756
 msgid "Description"
 msgstr "Kuvaus"
 
-#: src/advanced_exif.c:494
+#: src/advanced-exif.c:494
 msgid "Value"
 msgstr "Arvo"
 
 # src/dupe.c:1652 src/dupe.c:1941
-#: src/advanced_exif.c:495 src/desktop_file.c:631 src/dupe.c:3978
+#: src/advanced-exif.c:495 src/desktop-file.c:631 src/dupe.c:3978
 #: src/dupe.c:4703 src/dupe.c:5287 src/search.c:3693 src/utilops.c:507
-#: src/view_file/view_file_list.c:2228
+#: src/view-file/view-file-list.c:2228
 msgid "Name"
 msgstr "Nimi"
 
-#: src/advanced_exif.c:496
+#: src/advanced-exif.c:496
 msgid "Tag"
 msgstr "Tunniste"
 
 # src/preferences.c:401
-#: src/advanced_exif.c:497
+#: src/advanced-exif.c:497
 msgid "Format"
 msgstr "Muoto"
 
-#: src/advanced_exif.c:498
+#: src/advanced-exif.c:498
 msgid "Elements"
 msgstr "Alkioita"
 
@@ -137,12 +137,12 @@ msgid "Move to _top"
 msgstr "Siirrä _ylös"
 
 # src/utilops.c:601
-#: src/bar.c:404 src/toolbar.c:225 src/ui_bookmark.c:414
+#: src/bar.c:404 src/toolbar.c:225 src/ui-bookmark.c:414
 msgid "Move _up"
 msgstr "Siirrä _ylös"
 
 # src/utilops.c:601
-#: src/bar.c:405 src/toolbar.c:226 src/ui_bookmark.c:416
+#: src/bar.c:405 src/toolbar.c:226 src/ui-bookmark.c:416
 msgid "Move _down"
 msgstr "Siirrä _alas"
 
@@ -167,106 +167,106 @@ msgstr "Poista"
 msgid "Add Pane"
 msgstr "Lisää kuva"
 
-#: src/bar_comment.c:236
+#: src/bar-comment.c:236
 #, fuzzy
 msgid "Add text to selected files"
 msgstr "Lisää avainsanoja valituille tiedostoille"
 
-#: src/bar_comment.c:237
+#: src/bar-comment.c:237
 #, fuzzy
 msgid "Replace existing text in selected files"
 msgstr "Korvaa olemassaoleva tiedosto uudella."
 
-#: src/bar_exif.c:225
+#: src/bar-exif.c:225
 msgid "<empty label, fixme>"
 msgstr ""
 
 # src/menu.c:1087
-#: src/bar_exif.c:562 src/bar_exif.c:572
+#: src/bar-exif.c:562 src/bar-exif.c:572
 #, fuzzy
 msgid "Configure entry"
 msgstr "Muuta asetuksia"
 
 # src/collect-table.c:1820 src/dupe.c:2172
-#: src/bar_exif.c:562 src/bar_exif.c:572 src/bar_exif.c:660
+#: src/bar-exif.c:562 src/bar-exif.c:572 src/bar-exif.c:660
 #, fuzzy
 msgid "Add entry"
 msgstr "Lisää sisältö"
 
-#: src/bar_exif.c:578
+#: src/bar-exif.c:578
 msgid "Key:"
 msgstr ""
 
-#: src/bar_exif.c:587
+#: src/bar-exif.c:587
 msgid "Title:"
 msgstr ""
 
-#: src/bar_exif.c:596
+#: src/bar-exif.c:596
 msgid "Show only if set"
 msgstr ""
 
-#: src/bar_exif.c:597
+#: src/bar-exif.c:597
 msgid "Editable (supported only for XMP)"
 msgstr ""
 
 # src/menu.c:1087
-#: src/bar_exif.c:646
+#: src/bar-exif.c:646
 #, fuzzy, c-format
 msgid "Configure \"%s\""
 msgstr "Muuta asetuksia"
 
 # src/collect-table.c:622 src/dupe.c:1410 src/dupe.c:1568
-#: src/bar_exif.c:647 src/bar_keywords.c:1369
+#: src/bar-exif.c:647 src/bar-keywords.c:1369
 #, fuzzy, c-format
 msgid "Remove \"%s\""
 msgstr "Poista"
 
 # src/utilops.c:592
-#: src/bar_exif.c:648
+#: src/bar-exif.c:648
 #, fuzzy, c-format
 msgid "Copy \"%s\""
 msgstr "Kopioi"
 
-# src/ui_pathsel.c:764
-#: src/bar_exif.c:661
+# src/ui-pathsel.c:764
+#: src/bar-exif.c:661
 #, fuzzy
 msgid "Show hidden entries"
 msgstr "Näytä piilotetut"
 
-#: src/bar_gps.c:187
+#: src/bar-gps.c:187
 #, c-format
 msgid ""
 "\n"
 "Do you want to geocode image %s?"
 msgstr ""
 
-#: src/bar_gps.c:192
+#: src/bar-gps.c:192
 #, c-format
 msgid ""
 "\n"
 "Do you want to geocode %i images?"
 msgstr ""
 
-#: src/bar_gps.c:197
+#: src/bar-gps.c:197
 msgid ""
 "\n"
 "This image is already geocoded!"
 msgstr ""
 
-#: src/bar_gps.c:202
+#: src/bar-gps.c:202
 msgid ""
 "\n"
 "One image is already geocoded!"
 msgstr ""
 
-#: src/bar_gps.c:207
+#: src/bar-gps.c:207
 #, c-format
 msgid ""
 "\n"
 "%i Images are already geocoded!"
 msgstr ""
 
-#: src/bar_gps.c:212
+#: src/bar-gps.c:212
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -275,251 +275,251 @@ msgid ""
 msgstr "Sijainti:"
 
 # src/preferences.c:660
-#: src/bar_gps.c:214
+#: src/bar-gps.c:214
 #, fuzzy
 msgid "Geocode images"
 msgstr "Lataa seuraava kuva etukäteen"
 
-#: src/bar_gps.c:218
+#: src/bar-gps.c:218
 #, fuzzy
 msgid "Write lat/long to meta-data?"
 msgstr "Metatiedot"
 
 # src/img-view.c:789 src/menu.c:944 src/menu.c:1079
-#: src/bar_gps.c:732
+#: src/bar-gps.c:732
 #, fuzzy, c-format
 msgid "Zoom %i"
 msgstr "Lähennä"
 
 # src/img-view.c:789 src/menu.c:944 src/menu.c:1079
-#: src/bar_gps.c:750
+#: src/bar-gps.c:750
 #, fuzzy, c-format
 msgid "Zoom level %i"
 msgstr "Lähennä"
 
 # src/collect-table.c:100 src/dupe.c:668 src/filelist.c:1813
-#: src/bar_gps.c:755
+#: src/bar-gps.c:755
 #, fuzzy
 msgid "Loading map"
 msgstr "Ladataan pienoiskuvia..."
 
-#: src/bar_gps.c:821
+#: src/bar-gps.c:821
 msgid "Enable markers"
 msgstr ""
 
-#: src/bar_gps.c:823
+#: src/bar-gps.c:823
 msgid "Centre map on marker"
 msgstr ""
 
-#: src/bar_gps.c:845
+#: src/bar-gps.c:845
 msgid ""
 "Move map centre to marker\n"
 " is disabled"
 msgstr ""
 
-#: src/bar_gps.c:850
+#: src/bar-gps.c:850
 msgid ""
 "Move map centre to marker\n"
 " is enabled"
 msgstr ""
 
 # src/preferences.c:693
-#: src/bar_gps.c:854
+#: src/bar-gps.c:854
 #, fuzzy
 msgid "Map centering"
 msgstr "Mittaustapa"
 
 # src/img-view.c:789 src/menu.c:944 src/menu.c:1079
-#: src/bar_gps.c:959 src/menu.c:334 src/preferences.c:2244
+#: src/bar-gps.c:959 src/menu.c:334 src/preferences.c:2244
 msgid "Zoom"
 msgstr "Lähennys ja loitonnus"
 
 # src/img-view.c:789 src/menu.c:944 src/menu.c:1079
-#: src/bar_gps.c:969
+#: src/bar-gps.c:969
 #, fuzzy
 msgid "Zoom level"
 msgstr "Lähennä"
 
-#: src/bar_gps.c:1023
+#: src/bar-gps.c:1023
 msgid "GPS Map"
 msgstr ""
 
-#: src/bar_histogram.c:234
+#: src/bar-histogram.c:234
 msgid "Histogram on _Red"
 msgstr ""
 
-#: src/bar_histogram.c:235
+#: src/bar-histogram.c:235
 msgid "Histogram on _Green"
 msgstr ""
 
-#: src/bar_histogram.c:236
+#: src/bar-histogram.c:236
 msgid "Histogram on _Blue"
 msgstr ""
 
-#: src/bar_histogram.c:237
+#: src/bar-histogram.c:237
 msgid "_Histogram on RGB"
 msgstr ""
 
-#: src/bar_histogram.c:238
+#: src/bar-histogram.c:238
 msgid "Histogram on _Value"
 msgstr ""
 
-#: src/bar_histogram.c:242
+#: src/bar-histogram.c:242
 msgid "Li_near Histogram"
 msgstr ""
 
-#: src/bar_histogram.c:243
+#: src/bar-histogram.c:243
 msgid "L_og Histogram"
 msgstr ""
 
-#: src/bar_keywords.c:490
+#: src/bar-keywords.c:490
 #, fuzzy
 msgid "Add selected keywords to selected files"
 msgstr "Lisää avainsanoja valituille tiedostoille"
 
-#: src/bar_keywords.c:491
+#: src/bar-keywords.c:491
 #, fuzzy
 msgid "Replace existing keywords in selected files with selected keywords"
 msgstr "Lisää avainsanoja valituille tiedostoille"
 
 # src/preferences.c:915
-#: src/bar_keywords.c:962
+#: src/bar-keywords.c:962
 #, fuzzy
 msgid "Edit keyword"
 msgstr "Muokkaus"
 
-#: src/bar_keywords.c:962 src/bar_keywords.c:969 src/bar_keywords.c:1314
+#: src/bar-keywords.c:962 src/bar-keywords.c:969 src/bar-keywords.c:1314
 #, fuzzy
 msgid "New keyword"
 msgstr "Avainsanat"
 
 # src/menu.c:1087
-#: src/bar_keywords.c:969
+#: src/bar-keywords.c:969
 #, fuzzy
 msgid "Configure keyword"
 msgstr "Muuta asetuksia"
 
-#: src/bar_keywords.c:975
+#: src/bar-keywords.c:975
 #, fuzzy
 msgid "Keyword:"
 msgstr "Avainsanat:"
 
-#: src/bar_keywords.c:984
+#: src/bar-keywords.c:984
 #, fuzzy
 msgid "Keyword type:"
 msgstr "Avainsanat:"
 
-#: src/bar_keywords.c:986
+#: src/bar-keywords.c:986
 #, fuzzy
 msgid "Active keyword"
 msgstr "Aktiivinen näyttö"
 
 # src/menu.c:771
-#: src/bar_keywords.c:989
+#: src/bar-keywords.c:989
 #, fuzzy
 msgid "Helper"
 msgstr "Ohje"
 
-#: src/bar_keywords.c:1063
+#: src/bar-keywords.c:1063
 msgid "This will disconnect all Marks Keywords connections"
 msgstr ""
 
-#: src/bar_keywords.c:1065
+#: src/bar-keywords.c:1065
 #, fuzzy
 msgid "Marks Keywords"
 msgstr "Avainsanat"
 
-#: src/bar_keywords.c:1338
+#: src/bar-keywords.c:1338
 #, fuzzy, c-format
 msgid "Add \"%s\" to all selected images"
 msgstr "Lisää avainsanoja valituille tiedostoille"
 
-#: src/bar_keywords.c:1344
+#: src/bar-keywords.c:1344
 #, c-format
 msgid "Hide \"%s\""
 msgstr ""
 
-#: src/bar_keywords.c:1351
+#: src/bar-keywords.c:1351
 #, fuzzy, c-format
 msgid "Mark %d"
 msgstr "Lisää kirjanmerkki"
 
-#: src/bar_keywords.c:1359
+#: src/bar-keywords.c:1359
 #, c-format
 msgid "Connect \"%s\" to mark"
 msgstr ""
 
 # src/preferences.c:915
-#: src/bar_keywords.c:1366
+#: src/bar-keywords.c:1366
 #, fuzzy, c-format
 msgid "Edit \"%s\""
 msgstr "Muokkaus"
 
-#: src/bar_keywords.c:1376
+#: src/bar-keywords.c:1376
 #, c-format
 msgid "Disconnect \"%s\" from mark %s"
 msgstr ""
 
-#: src/bar_keywords.c:1383
+#: src/bar-keywords.c:1383
 msgid "Disconnect all Mark Keyword connections"
 msgstr ""
 
-#: src/bar_keywords.c:1394 src/bar_keywords.c:1408
+#: src/bar-keywords.c:1394 src/bar-keywords.c:1408
 msgid "Expand checked"
 msgstr ""
 
-#: src/bar_keywords.c:1395 src/bar_keywords.c:1409
+#: src/bar-keywords.c:1395 src/bar-keywords.c:1409
 msgid "Collapse unchecked"
 msgstr ""
 
-#: src/bar_keywords.c:1396 src/bar_keywords.c:1410
+#: src/bar-keywords.c:1396 src/bar-keywords.c:1410
 msgid "Hide unchecked"
 msgstr ""
 
-#: src/bar_keywords.c:1397
+#: src/bar-keywords.c:1397
 msgid "Revert all hidden"
 msgstr ""
 
-#: src/bar_keywords.c:1399 src/dupe.c:3991
+#: src/bar-keywords.c:1399 src/dupe.c:3991
 #, fuzzy
 msgid "Show all"
 msgstr "Näytä"
 
-#: src/bar_keywords.c:1400
+#: src/bar-keywords.c:1400
 msgid "Collapse all"
 msgstr ""
 
-#: src/bar_keywords.c:1401
+#: src/bar-keywords.c:1401
 msgid "Revert"
 msgstr ""
 
-#: src/bar_keywords.c:1405
+#: src/bar-keywords.c:1405
 msgid "On any change"
 msgstr ""
 
-# src/ui_tabcomp.c:171
-#: src/bar_keywords.c:1901
+# src/ui-tabcomp.c:171
+#: src/bar-keywords.c:1901
 #, fuzzy, c-format
 msgid "Error: Unable to write keywords list to: %s\n"
 msgstr "Historialistojen kirjoitus ei onnistunut kohteeseen: %s\n"
 
 # src/utilops.c:707
-#: src/bar_rating.c:167
+#: src/bar-rating.c:167
 #, fuzzy
 msgid "Rejected"
 msgstr "Suodattimien oletukset"
 
-#: src/bar_rating.c:171
+#: src/bar-rating.c:171
 msgid "Unrated"
 msgstr ""
 
 # src/menu.c:526
-#: src/bar_sort.c:435
+#: src/bar-sort.c:435
 #, fuzzy
 msgid "Sort Manager Operations"
 msgstr "Lajittelunhallinta"
 
-#: src/bar_sort.c:438
+#: src/bar-sort.c:438
 msgid ""
 "Additional operations utilising plugins\n"
 "may be included by setting:\n"
@@ -530,7 +530,7 @@ msgid ""
 msgstr ""
 
 # src/utilops.c:1144
-#: src/bar_sort.c:506
+#: src/bar-sort.c:506
 #, c-format
 msgid ""
 "The collection:\n"
@@ -542,12 +542,12 @@ msgstr ""
 "on jo olemassa."
 
 # src/collect-dlg.c:206
-#: src/bar_sort.c:507
+#: src/bar-sort.c:507
 msgid "Collection exists"
 msgstr "Kokoelma on olemassa"
 
 # src/collect-dlg.c:82 src/collect.c:1011
-#: src/bar_sort.c:521 src/collect.c:1216 src/collect-dlg.c:93
+#: src/bar-sort.c:521 src/collect.c:1216 src/collect-dlg.c:93
 #, c-format
 msgid ""
 "Failed to save the collection:\n"
@@ -557,60 +557,60 @@ msgstr ""
 "%s"
 
 # src/collect-dlg.c:83 src/collect.c:1012
-#: src/bar_sort.c:522 src/collect.c:1217 src/collect-dlg.c:94
+#: src/bar-sort.c:522 src/collect.c:1217 src/collect-dlg.c:94
 msgid "Save Failed"
 msgstr "Tallennus epäonnistui"
 
-#: src/bar_sort.c:557 src/bar_sort.c:737
+#: src/bar-sort.c:557 src/bar-sort.c:737
 msgid "Add Bookmark"
 msgstr "Lisää kirjanmerkki"
 
 # src/preferences.c:897
-#: src/bar_sort.c:561
+#: src/bar-sort.c:561
 msgid "Add Collection"
 msgstr "Lisää kokoelma"
 
 # src/dupe.c:1652 src/dupe.c:1941
-#: src/bar_sort.c:578 src/shortcuts.c:118 src/ui_bookmark.c:295
+#: src/bar-sort.c:578 src/shortcuts.c:118 src/ui-bookmark.c:295
 msgid "Name:"
 msgstr "Nimi:"
 
 # src/menu.c:526
-#: src/bar_sort.c:658
+#: src/bar-sort.c:658
 msgid "Sort Manager"
 msgstr "Lajittelunhallinta"
 
 # src/preferences.c:368
-#: src/bar_sort.c:667 src/pan-view/pan-view.c:1909 src/ui_pathsel.c:1100
+#: src/bar-sort.c:667 src/pan-view/pan-view.c:1909 src/ui-pathsel.c:1100
 msgid "Folders"
 msgstr "Kansiot"
 
 # src/preferences.c:897
-#: src/bar_sort.c:668 src/options.c:248
+#: src/bar-sort.c:668 src/options.c:248
 msgid "Collections"
 msgstr "Kokoelmat"
 
 # src/utilops.c:592
-#: src/bar_sort.c:677 src/preferences.c:693 src/utilops.c:2350
+#: src/bar-sort.c:677 src/preferences.c:693 src/utilops.c:2350
 msgid "Copy"
 msgstr "Kopioi"
 
 # src/utilops.c:601
-#: src/bar_sort.c:681 src/preferences.c:695 src/utilops.c:2300
+#: src/bar-sort.c:681 src/preferences.c:695 src/utilops.c:2300
 msgid "Move"
 msgstr "Siirrä"
 
 # src/collect-table.c:86
-#: src/bar_sort.c:722
+#: src/bar-sort.c:722
 msgid "Add image"
 msgstr "Lisää kuva"
 
 # src/collect-table.c:628 src/dupe.c:1393 src/dupe.c:1565
-#: src/bar_sort.c:725
+#: src/bar-sort.c:725
 msgid "Add selection"
 msgstr "Lisää valinta"
 
-#: src/bar_sort.c:740
+#: src/bar-sort.c:740
 msgid "Undo last image"
 msgstr "Peru edellinen kuva"
 
@@ -623,125 +623,125 @@ msgid ""
 msgstr "virhe tallennettaessa asetustiedostoa: %s\n"
 
 # src/dupe.c:841
-#: src/cache_maint.c:72
+#: src/cache-maint.c:72
 #, fuzzy
 msgid "Geeqie: Creating sim data..."
 msgstr "Luetaan yhtäläisyystietoja..."
 
-# src/cache_maint.c:245
-#: src/cache_maint.c:78
+# src/cache-maint.c:245
+#: src/cache-maint.c:78
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "Poistetaan pienoiskuvia..."
 
-#: src/cache_maint.c:94
+#: src/cache-maint.c:94
 #, fuzzy
 msgid "Exit Geeqie Cache Maintenance"
 msgstr "Välimuistin hallinta - Geeqie"
 
-# src/cache_maint.c:245
-#: src/cache_maint.c:111
+# src/cache-maint.c:245
+#: src/cache-maint.c:111
 #, fuzzy
 msgid "Geeqie: Cleaning thumbs..."
 msgstr "Poistetaan pienoiskuvia..."
 
 # src/preferences.c:400
-#: src/cache_maint.c:184 src/cache_maint.c:684 src/cache_maint.c:787
-#: src/cache_maint.c:984 src/cache_maint.c:1455 src/editors.c:1245
+#: src/cache-maint.c:184 src/cache-maint.c:684 src/cache-maint.c:787
+#: src/cache-maint.c:984 src/cache-maint.c:1455 src/editors.c:1245
 #: src/preferences.c:3043
 msgid "done"
 msgstr "valmis"
 
 # src/dupe.c:841
-#: src/cache_maint.c:374
+#: src/cache-maint.c:374
 msgid "Removing old metadata..."
 msgstr "Poistetaan vanhoja metatietoja..."
 
-# src/cache_maint.c:245
-#: src/cache_maint.c:378
+# src/cache-maint.c:245
+#: src/cache-maint.c:378
 msgid "Clearing cached thumbnails..."
 msgstr "Poistetaan pienoiskuvia välimuistista..."
 
-# src/cache_maint.c:249
-#: src/cache_maint.c:382 src/cache_maint.c:1157
+# src/cache-maint.c:249
+#: src/cache-maint.c:382 src/cache-maint.c:1157
 msgid "Removing old thumbnails..."
 msgstr "Poistetaan vanhoja pienoiskuvia..."
 
-#: src/cache_maint.c:385 src/cache_maint.c:1160
+#: src/cache-maint.c:385 src/cache-maint.c:1160
 msgid "Maintenance"
 msgstr "Hallinta"
 
 # src/menu.c:522
-#: src/cache_maint.c:698 src/cache_maint.c:1334
+#: src/cache-maint.c:698 src/cache-maint.c:1334
 #, fuzzy
 msgid "stopped"
 msgstr "käyttäjä pysäytti"
 
 # src/collect-dlg.c:59
-#: src/cache_maint.c:817 src/cache_maint.c:1486 src/cache_maint.c:1616
+#: src/cache-maint.c:817 src/cache-maint.c:1486 src/cache-maint.c:1616
 #: src/preferences.c:3125
 msgid "Invalid folder"
 msgstr "Virheellinen kansio"
 
-#: src/cache_maint.c:818 src/cache_maint.c:1487 src/cache_maint.c:1617
+#: src/cache-maint.c:818 src/cache-maint.c:1487 src/cache-maint.c:1617
 #: src/preferences.c:3126
 msgid "The specified folder can not be found."
 msgstr "Annettua kansiota ei löydy."
 
 # src/preferences.c:603
-#: src/cache_maint.c:886 src/cache_maint.c:900 src/cache_maint.c:1753
+#: src/cache-maint.c:886 src/cache-maint.c:900 src/cache-maint.c:1753
 msgid "Create thumbnails"
 msgstr "Luo pienoiskuvat"
 
-#: src/cache_maint.c:894 src/cache_maint.c:1167 src/cache_maint.c:1536
-#: src/cache_maint.c:1655 src/preferences.c:3164
+#: src/cache-maint.c:894 src/cache-maint.c:1167 src/cache-maint.c:1536
+#: src/cache-maint.c:1655 src/preferences.c:3164
 msgid "S_tart"
 msgstr "_Aloita"
 
 # src/preferences.c:368
-#: src/cache_maint.c:907 src/cache_maint.c:1549 src/cache_maint.c:1665
+#: src/cache-maint.c:907 src/cache-maint.c:1549 src/cache-maint.c:1665
 #: src/preferences.c:3177 src/preferences.c:3526
 msgid "Folder:"
 msgstr "Kansio:"
 
 # src/collect-table.c:628 src/dupe.c:1393 src/dupe.c:1565
-#: src/cache_maint.c:910 src/cache_maint.c:1552 src/cache_maint.c:1668
+#: src/cache-maint.c:910 src/cache-maint.c:1552 src/cache-maint.c:1668
 #: src/preferences.c:3180
 msgid "Select folder"
 msgstr "Valitse kansio"
 
 # src/collect-dlg.c:59
-#: src/cache_maint.c:914 src/preferences.c:3184
+#: src/cache-maint.c:914 src/preferences.c:3184
 msgid "Include subfolders"
 msgstr "Käy läpi myös alikansiot"
 
-#: src/cache_maint.c:915
+#: src/cache-maint.c:915
 msgid "Store thumbnails local to source images"
 msgstr "Tallenna pienoiskuvat lähdekuvien luokse"
 
-#: src/cache_maint.c:924 src/cache_maint.c:1176 src/cache_maint.c:1562
+#: src/cache-maint.c:924 src/cache-maint.c:1176 src/cache-maint.c:1562
 #: src/preferences.c:3192
 msgid "click start to begin"
 msgstr "napsauta ”aloita”"
 
 # src/dupe.c:871 src/dupe.c:892
-#: src/cache_maint.c:1096 src/editors.c:1171
+#: src/cache-maint.c:1096 src/editors.c:1171
 msgid "running..."
 msgstr "ajetaan..."
 
-# src/cache_maint.c:245
-#: src/cache_maint.c:1152
+# src/cache-maint.c:245
+#: src/cache-maint.c:1152
 msgid "Clearing thumbnails..."
 msgstr "Poistetaan pienoiskuvia..."
 
 # src/preferences.c:163 src/preferences.c:604
-#: src/cache_maint.c:1233 src/cache_maint.c:1236 src/cache_maint.c:1729
-#: src/cache_maint.c:1748
+#: src/cache-maint.c:1233 src/cache-maint.c:1236 src/cache-maint.c:1729
+#: src/cache-maint.c:1748
 msgid "Clear cache"
 msgstr "Tyhjennä välimuisti"
 
 # src/preferences.c:163
-#: src/cache_maint.c:1237
+#: src/cache-maint.c:1237
 #, fuzzy
 msgid ""
 "This will remove all thumbnails and sim. files\n"
@@ -750,116 +750,116 @@ msgstr ""
 "Tämä toiminto poistaa kaikki levylle tallennetut\n"
 "pienoiskuvat, jatketaanko?"
 
-#: src/cache_maint.c:1282
+#: src/cache-maint.c:1282
 #, fuzzy, c-format
 msgid "Location: %s"
 msgstr "Sijainti:"
 
 # src/utilops.c:1151
-#: src/cache_maint.c:1531
+#: src/cache-maint.c:1531
 #, fuzzy
 msgid "Create sim. files"
 msgstr "Kansiota ei voitu luoda"
 
-#: src/cache_maint.c:1542
+#: src/cache-maint.c:1542
 #, fuzzy
 msgid "Create sim. files recursively"
 msgstr "Luo pienoiskuvat valitulle kansiolle."
 
-#: src/cache_maint.c:1650 src/cache_maint.c:1784
+#: src/cache-maint.c:1650 src/cache-maint.c:1784
 #, fuzzy
 msgid "Background cache maintenance"
 msgstr "Välimuistin hallinta - Geeqie"
 
-#: src/cache_maint.c:1658
+#: src/cache-maint.c:1658
 msgid ""
 "Recursively delete orphaned thumbnails\n"
 "and .sim files, and create new\n"
 "thumbnails and .sim files"
 msgstr ""
 
-#: src/cache_maint.c:1702
+#: src/cache-maint.c:1702
 #, fuzzy
 msgid "Cache Maintenance"
 msgstr "Välimuistin hallinta - Geeqie"
 
-#: src/cache_maint.c:1714
+#: src/cache-maint.c:1714
 msgid "Cache and Data Maintenance"
 msgstr "Välimuistin ja tiedon hallinta"
 
 # src/preferences.c:603
-#: src/cache_maint.c:1718
+#: src/cache-maint.c:1718
 #, fuzzy
 msgid "Geeqie thumbnail and sim. cache"
 msgstr "Jaettu pienoiskuvien välimuisti"
 
 # src/dupe.c:1412 src/dupe.c:1570
-#: src/cache_maint.c:1724 src/cache_maint.c:1743 src/cache_maint.c:1779
+#: src/cache-maint.c:1724 src/cache-maint.c:1743 src/cache-maint.c:1779
 msgid "Clean up"
 msgstr "Siivoa"
 
-#: src/cache_maint.c:1727
+#: src/cache-maint.c:1727
 #, fuzzy
 msgid "Remove orphaned or outdated thumbnails and sim. files."
 msgstr "Poista orvot ja vanhentuneet pienoiskuvat."
 
 # src/preferences.c:603
-#: src/cache_maint.c:1732
+#: src/cache-maint.c:1732
 #, fuzzy
 msgid "Delete all cached data."
 msgstr "Poista kaikki pienoiskuvat välimuistista."
 
 # src/preferences.c:603
-#: src/cache_maint.c:1735
+#: src/cache-maint.c:1735
 msgid "Shared thumbnail cache"
 msgstr "Jaettu pienoiskuvien välimuisti"
 
-#: src/cache_maint.c:1746
+#: src/cache-maint.c:1746
 msgid "Remove orphaned or outdated thumbnails."
 msgstr "Poista orvot ja vanhentuneet pienoiskuvat."
 
 # src/preferences.c:603
-#: src/cache_maint.c:1751
+#: src/cache-maint.c:1751
 msgid "Delete all cached thumbnails."
 msgstr "Poista kaikki pienoiskuvat välimuistista."
 
-# src/ui_pathsel.c:437 src/ui_pathsel.c:460 src/utilops.c:944
+# src/ui-pathsel.c:437 src/ui-pathsel.c:460 src/utilops.c:944
 # src/utilops.c:1095
-#: src/cache_maint.c:1757
+#: src/cache-maint.c:1757
 msgid "Render"
 msgstr "Luo"
 
-#: src/cache_maint.c:1760
+#: src/cache-maint.c:1760
 msgid "Render thumbnails for a specific folder."
 msgstr "Luo pienoiskuvat valitulle kansiolle."
 
 # src/preferences.c:163 src/preferences.c:604
-#: src/cache_maint.c:1763
+#: src/cache-maint.c:1763
 #, fuzzy
 msgid "File similarity cache"
 msgstr "Tyhjennä välimuisti"
 
 # src/utilops.c:1216
-#: src/cache_maint.c:1767
+#: src/cache-maint.c:1767
 msgid "Create"
 msgstr "Luo"
 
-#: src/cache_maint.c:1770
+#: src/cache-maint.c:1770
 #, fuzzy
 msgid "Create sim. files recursively."
 msgstr "Luo pienoiskuvat valitulle kansiolle."
 
-#: src/cache_maint.c:1782
+#: src/cache-maint.c:1782
 msgid "Remove orphaned keywords and comments."
 msgstr "Poista orvot avainsanat ja kommentit."
 
 # src/collect-table.c:628 src/dupe.c:1393 src/dupe.c:1565
-#: src/cache_maint.c:1788
+#: src/cache-maint.c:1788
 #, fuzzy
 msgid "Select"
 msgstr "Valinta"
 
-#: src/cache_maint.c:1791
+#: src/cache-maint.c:1791
 msgid "Run cache maintenance as a background job."
 msgstr ""
 
@@ -1008,13 +1008,13 @@ msgid "%s, %d images"
 msgstr "%d kuvaa"
 
 # src/collect-table.c:78 src/menu.c:684
-#: src/collect-table.c:261 src/layout_util.c:1935 src/layout_util.c:3672
+#: src/collect-table.c:261 src/layout-util.c:1935 src/layout-util.c:3672
 msgid "Empty"
 msgstr "Tyhjä"
 
 # src/collect-table.c:100 src/dupe.c:668 src/filelist.c:1813
 #: src/collect-table.c:275 src/dupe.c:2172 src/search.c:435
-#: src/view_file/view_file.c:1376 src/view_file/view_file.c:1485
+#: src/view-file/view-file.c:1376 src/view-file/view-file.c:1485
 msgid "Loading thumbs..."
 msgstr "Ladataan pienoiskuvia..."
 
@@ -1026,8 +1026,8 @@ msgstr "_Näytä"
 # src/collect-table.c:620 src/dupe.c:1388 src/dupe.c:1560 src/img-view.c:801
 # src/menu.c:906 src/menu.c:964
 #: src/collect-table.c:990 src/dupe.c:3529 src/dupe.c:3867 src/img-view.c:1417
-#: src/layout_image.c:787 src/pan-view/pan-view.c:2397 src/search.c:1155
-#: src/view_file/view_file.c:698
+#: src/layout-image.c:787 src/pan-view/pan-view.c:2397 src/search.c:1155
+#: src/view-file/view-file.c:698
 msgid "View in _new window"
 msgstr "Näytä _uudessa ikkunassa"
 
@@ -1061,13 +1061,13 @@ msgstr "Valinta"
 
 # src/collect-table.c:627 src/dupe.c:1391 src/dupe.c:1563
 #: src/collect-table.c:1006 src/dupe.c:3532 src/dupe.c:3870 src/search.c:1158
-#: src/view_file/view_file.c:1087 src/view_file/view_file.c:1137
+#: src/view-file/view-file.c:1087 src/view-file/view-file.c:1137
 msgid "Select all"
 msgstr "Valitse kaikki"
 
 # src/collect-table.c:628 src/dupe.c:1393 src/dupe.c:1565
 #: src/collect-table.c:1008 src/dupe.c:3534 src/dupe.c:3872 src/search.c:1160
-#: src/view_file/view_file.c:1142
+#: src/view-file/view-file.c:1142
 msgid "Select none"
 msgstr "Valinnat pois"
 
@@ -1086,37 +1086,37 @@ msgstr "Nelikulmiovalinta kuvakenäkymässä"
 # src/collect-table.c:633 src/dupe.c:1401 src/img-view.c:804 src/menu.c:910
 # src/menu.c:969
 #: src/collect-table.c:1024 src/dupe.c:3559 src/img-view.c:1421
-#: src/layout_image.c:801 src/pan-view/pan-view.c:2403 src/search.c:1177
-#: src/view_file/view_file.c:704
+#: src/layout-image.c:801 src/pan-view/pan-view.c:2403 src/search.c:1177
+#: src/view-file/view-file.c:704
 msgid "_Copy..."
 msgstr "_Kopioi..."
 
 # src/collect-table.c:634 src/dupe.c:1403 src/img-view.c:805 src/menu.c:912
 # src/menu.c:971
 #: src/collect-table.c:1026 src/dupe.c:3561 src/img-view.c:1422
-#: src/layout_image.c:803 src/pan-view/pan-view.c:2405 src/search.c:1179
-#: src/view_file/view_file.c:706
+#: src/layout-image.c:803 src/pan-view/pan-view.c:2405 src/search.c:1179
+#: src/view-file/view-file.c:706
 msgid "_Move..."
 msgstr "Sii_rrä..."
 
 # src/collect-table.c:635 src/dupe.c:1405 src/img-view.c:806 src/menu.c:914
 # src/menu.c:973
 #: src/collect-table.c:1028 src/dupe.c:3563 src/img-view.c:1423
-#: src/layout_image.c:805 src/pan-view/pan-view.c:2407 src/search.c:1181
-#: src/view_dir.c:735 src/view_file/view_file.c:708
+#: src/layout-image.c:805 src/pan-view/pan-view.c:2407 src/search.c:1181
+#: src/view-dir.c:735 src/view-file/view-file.c:708
 msgid "_Rename..."
 msgstr "_Nimeä uudelleen..."
 
 # src/utilops.c:592
 #: src/collect-table.c:1030 src/dupe.c:3565 src/img-view.c:1424
-#: src/search.c:1183 src/view_dir.c:738
+#: src/search.c:1183 src/view-dir.c:738
 #, fuzzy
 msgid "_Copy path"
 msgstr "_Kopioi"
 
 # src/utilops.c:592
 #: src/collect-table.c:1032 src/dupe.c:3567 src/img-view.c:1425
-#: src/search.c:1185 src/view_dir.c:741
+#: src/search.c:1185 src/view-dir.c:741
 #, fuzzy
 msgid "_Copy path unquoted"
 msgstr "_Kopioi"
@@ -1124,16 +1124,16 @@ msgstr "_Kopioi"
 # src/collect-table.c:634 src/dupe.c:1403 src/img-view.c:805 src/menu.c:912
 # src/menu.c:971
 #: src/collect-table.c:1037 src/dupe.c:3572 src/img-view.c:1429
-#: src/layout_image.c:814 src/pan-view/pan-view.c:2416 src/search.c:1190
-#: src/view_file/view_file.c:716
+#: src/layout-image.c:814 src/pan-view/pan-view.c:2416 src/search.c:1190
+#: src/view-file/view-file.c:716
 #, fuzzy
 msgid "Move to Trash..."
 msgstr "Sii_rrä..."
 
 # src/utilops.c:601
 #: src/collect-table.c:1038 src/dupe.c:3573 src/img-view.c:1430
-#: src/layout_image.c:815 src/pan-view/pan-view.c:2417 src/search.c:1191
-#: src/view_file/view_file.c:717
+#: src/layout-image.c:815 src/pan-view/pan-view.c:2417 src/search.c:1191
+#: src/view-file/view-file.c:717
 #, fuzzy
 msgid "Move to Trash"
 msgstr "Siirrä _ylös"
@@ -1141,16 +1141,16 @@ msgstr "Siirrä _ylös"
 # src/collect-table.c:636 src/dupe.c:1407 src/img-view.c:807 src/menu.c:916
 # src/menu.c:975
 #: src/collect-table.c:1041 src/dupe.c:3576 src/img-view.c:1433
-#: src/layout_image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
-#: src/view_dir.c:744 src/view_file/view_file.c:720
+#: src/layout-image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
+#: src/view-dir.c:744 src/view-file/view-file.c:720
 msgid "_Delete..."
 msgstr "_Poista..."
 
-# src/ui_pathsel.c:402 src/ui_pathsel.c:461 src/utilops.c:711
+# src/ui-pathsel.c:402 src/ui-pathsel.c:461 src/utilops.c:711
 # src/utilops.c:764
 #: src/collect-table.c:1042 src/dupe.c:3577 src/img-view.c:1434
-#: src/layout_image.c:820 src/pan-view/pan-view.c:2421 src/search.c:1195
-#: src/ui_pathsel.c:644 src/view_file/view_file.c:721
+#: src/layout-image.c:820 src/pan-view/pan-view.c:2421 src/search.c:1195
+#: src/ui-pathsel.c:644 src/view-file/view-file.c:721
 msgid "_Delete"
 msgstr "_Poista"
 
@@ -1161,17 +1161,17 @@ msgid "Randomize"
 msgstr "Satunnainen"
 
 # src/menu.c:559
-#: src/collect-table.c:1050 src/view_dir.c:759 src/view_file/view_file.c:746
+#: src/collect-table.c:1050 src/view-dir.c:759 src/view-file/view-file.c:746
 msgid "_Sort"
 msgstr "_Lajittele"
 
-#: src/collect-table.c:1053 src/view_file/view_file.c:762
+#: src/collect-table.c:1053 src/view-file/view-file.c:762
 msgid "Show filename _text"
 msgstr "_Näytä tiedostonimet"
 
 # src/menu.c:513
-#: src/collect-table.c:1055 src/view_file/view_file.c:770
-#: src/view_file/view_file.c:774
+#: src/collect-table.c:1055 src/view-file/view-file.c:770
+#: src/view-file/view-file.c:774
 #, fuzzy
 msgid "Show star rating"
 msgstr "Lajittelu päiväyksen mukaan"
@@ -1187,7 +1187,7 @@ msgid "Save collection _as..."
 msgstr "T_allenna kokoelma nimellä..."
 
 # src/collect-table.c:644 src/menu.c:885
-#: src/collect-table.c:1063 src/view_file/view_file.c:731
+#: src/collect-table.c:1063 src/view-file/view-file.c:731
 msgid "_Find duplicates..."
 msgstr "Etsi kaks_oiskappaleita..."
 
@@ -1217,9 +1217,9 @@ msgid "_Skip folders"
 msgstr "_Ohita kansiot"
 
 # src/collect-table.c:1824 src/dupe.c:2176 src/preferences.c:536
-# src/ui_utildlg.c:105
+# src/ui-utildlg.c:105
 #: src/collect-table.c:2248 src/dupe.c:4972 src/img-view.c:1600
-#: src/view_dir.c:431
+#: src/view-dir.c:431
 msgid "Cancel"
 msgstr "Peru"
 
@@ -1247,28 +1247,28 @@ msgstr "_Peilikuva"
 msgid "warning"
 msgstr ""
 
-#: src/desktop_file.c:83 src/desktop_file.c:95 src/desktop_file.c:101
+#: src/desktop-file.c:83 src/desktop-file.c:95 src/desktop-file.c:101
 msgid "Can't save"
 msgstr ""
 
-#: src/desktop_file.c:83
+#: src/desktop-file.c:83
 msgid "Please specify file name."
 msgstr ""
 
 # src/utilops.c:1151
-#: src/desktop_file.c:95
+#: src/desktop-file.c:95
 #, fuzzy
 msgid "Could not create directory"
 msgstr "Kansiota ei voitu luoda"
 
 # src/utilops.c:989
-#: src/desktop_file.c:191 src/desktop_file.c:650
+#: src/desktop-file.c:191 src/desktop-file.c:650
 #, fuzzy
 msgid "Desktop file"
 msgstr "Työpöytä"
 
-# src/ui_pathsel.c:343 src/utilops.c:675 src/utilops.c:727
-#: src/desktop_file.c:301 src/ui_pathsel.c:494
+# src/ui-pathsel.c:343 src/utilops.c:675 src/utilops.c:727
+#: src/desktop-file.c:301 src/ui-pathsel.c:494
 #, c-format
 msgid ""
 "Unable to delete file:\n"
@@ -1277,20 +1277,20 @@ msgstr ""
 "Tiedoston: %s\n"
 " poistaminen ei onnistunut."
 
-# src/ui_pathsel.c:344 src/utilops.c:728
-#: src/desktop_file.c:302 src/ui_pathsel.c:495 src/utilops.c:2177
+# src/ui-pathsel.c:344 src/utilops.c:728
+#: src/desktop-file.c:302 src/ui-pathsel.c:495 src/utilops.c:2177
 #: src/utilops.c:2213 src/utilops.c:2735
 msgid "File deletion failed"
 msgstr "Tiedostojen poistaminen epäonnistui"
 
-# src/ui_pathsel.c:398 src/utilops.c:760
-#: src/desktop_file.c:346 src/desktop_file.c:354 src/ui_pathsel.c:537
-#: src/ui_pathsel.c:545
+# src/ui-pathsel.c:398 src/utilops.c:760
+#: src/desktop-file.c:346 src/desktop-file.c:354 src/ui-pathsel.c:537
+#: src/ui-pathsel.c:545
 msgid "Delete file"
 msgstr "Poista tiedosto"
 
-# src/ui_pathsel.c:397 src/utilops.c:759
-#: src/desktop_file.c:352 src/ui_pathsel.c:543
+# src/ui-pathsel.c:397 src/utilops.c:759
+#: src/desktop-file.c:352 src/ui-pathsel.c:543
 #, c-format
 msgid ""
 "About to delete the file:\n"
@@ -1300,26 +1300,26 @@ msgstr ""
 " %s"
 
 # src/utilops.c:989
-#: src/desktop_file.c:384
+#: src/desktop-file.c:384
 #, fuzzy
 msgid "new.desktop"
 msgstr "Työpöytä"
 
-#: src/desktop_file.c:549
+#: src/desktop-file.c:549
 msgid "Plugins"
 msgstr ""
 
-#: src/desktop_file.c:618
+#: src/desktop-file.c:618
 msgid "Disabled"
 msgstr ""
 
-#: src/desktop_file.c:640
+#: src/desktop-file.c:640
 msgid "Hidden"
 msgstr ""
 
 # src/dupe.c:1657 src/dupe.c:1945
-#: src/desktop_file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/search.c:3697
-#: src/ui_pathsel.c:1112 src/utilops.c:503
+#: src/desktop-file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/search.c:3697
+#: src/ui-pathsel.c:1112 src/utilops.c:503
 msgid "Path"
 msgstr "Polku"
 
@@ -1412,13 +1412,13 @@ msgstr "Kirjainkoon huomioiva lajittelu"
 
 # src/dupe.c:1653 src/dupe.c:1942
 #: src/dupe.c:3980 src/dupe.c:4704 src/dupe.c:5287 src/preferences.c:2425
-#: src/search.c:3694 src/view_file/view_file_list.c:2240
+#: src/search.c:3694 src/view-file/view-file-list.c:2240
 msgid "Size"
 msgstr "Koko"
 
 # src/dupe.c:1654 src/dupe.c:1943
 #: src/dupe.c:3981 src/dupe.c:4705 src/dupe.c:5287 src/search.c:3695
-#: src/view_file/view_file_list.c:2244
+#: src/view-file/view-file-list.c:2244
 msgid "Date"
 msgstr "Päiväys"
 
@@ -1619,7 +1619,7 @@ msgstr "Muokkauskomennon tulokset"
 msgid "Output of %s"
 msgstr "Ohjelman %s tuloste"
 
-# src/ui_help.c:191
+# src/ui-help.c:191
 #: src/editors.c:1122
 #, c-format
 msgid ""
@@ -1827,7 +1827,7 @@ msgstr ""
 msgid "another destination file has the same filename"
 msgstr ""
 
-# src/ui_tabcomp.c:171
+# src/ui-tabcomp.c:171
 #: src/filedata.c:3393
 #, fuzzy, c-format
 msgid "Error: Unable to write marks lists to: %s\n"
@@ -1903,8 +1903,8 @@ msgstr ""
 msgid "Linear Histogram on value"
 msgstr ""
 
-# src/ui_tabcomp.c:171
-#: src/history_list.c:291
+# src/ui-tabcomp.c:171
+#: src/history-list.c:291
 #, c-format
 msgid "Unable to write history lists to: %s\n"
 msgstr "Historialistojen kirjoitus ei onnistunut kohteeseen: %s\n"
@@ -1915,103 +1915,103 @@ msgstr "Historialistojen kirjoitus ei onnistunut kohteeseen: %s\n"
 msgid " (Collection %s)"
 msgstr "Kokoelmat"
 
-#: src/image_load_cr3.c:161 src/image_load_jpeg.c:164
+#: src/image-load-cr3.c:161 src/image-load-jpeg.c:164
 #, c-format
 msgid "Error interpreting JPEG image file (%s)"
 msgstr ""
 
-#: src/image_load_j2k.c:202
+#: src/image-load-j2k.c:202
 msgid "Could not open file for reading"
 msgstr ""
 
-#: src/image_load_j2k.c:212
+#: src/image-load-j2k.c:212
 msgid "Unknown jpeg2000 decoder type"
 msgstr ""
 
-#: src/image_load_j2k.c:219
+#: src/image-load-j2k.c:219
 msgid "Couldn't set parameters on decoder for file."
 msgstr ""
 
-#: src/image_load_j2k.c:227
+#: src/image-load-j2k.c:227
 msgid "Couldn't read JP2 header from file"
 msgstr ""
 
-#: src/image_load_j2k.c:233
+#: src/image-load-j2k.c:233
 msgid "Couldn't decode JP2 image in file"
 msgstr ""
 
-#: src/image_load_j2k.c:239
+#: src/image-load-j2k.c:239
 msgid "Couldn't decompress JP2 image in file"
 msgstr ""
 
-#: src/image_load_j2k.c:246
+#: src/image-load-j2k.c:246
 msgid "JP2 image not rgb"
 msgstr ""
 
 # src/utilops.c:1151
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1885
-#: src/layout_util.c:914 src/view_file/view_file.c:396
+#: src/img-view.c:672 src/layout-image.c:692 src/layout-image.c:1885
+#: src/layout-util.c:914 src/view-file/view-file.c:396
 #, fuzzy
 msgid "Cannot open archive file"
 msgstr "Kansiota ei voitu luoda"
 
 # src/preferences.c:773
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1885
-#: src/layout_util.c:914 src/preferences.c:4219 src/preferences.c:4227
-#: src/view_file/view_file.c:396
+#: src/img-view.c:672 src/layout-image.c:692 src/layout-image.c:1885
+#: src/layout-util.c:914 src/preferences.c:4219 src/preferences.c:4227
+#: src/view-file/view-file.c:396
 #, fuzzy
 msgid "See the Log Window"
 msgstr "Ikkunat"
 
 # src/img-view.c:789 src/menu.c:944 src/menu.c:1079
-#: src/img-view.c:1403 src/layout_image.c:773 src/pan-view/pan-view.c:2382
+#: src/img-view.c:1403 src/layout-image.c:773 src/pan-view/pan-view.c:2382
 msgid "Zoom _in"
 msgstr "L_ähennä"
 
 # src/img-view.c:790 src/menu.c:945 src/menu.c:1081
-#: src/img-view.c:1404 src/layout_image.c:774 src/pan-view/pan-view.c:2384
+#: src/img-view.c:1404 src/layout-image.c:774 src/pan-view/pan-view.c:2384
 msgid "Zoom _out"
 msgstr "L_oitonna"
 
 # src/img-view.c:791 src/menu.c:946
-#: src/img-view.c:1405 src/layout_image.c:775 src/pan-view/pan-view.c:2386
+#: src/img-view.c:1405 src/layout-image.c:775 src/pan-view/pan-view.c:2386
 msgid "Zoom _1:1"
 msgstr "Suhde _1:1"
 
 # src/menu.c:758
-#: src/img-view.c:1406 src/layout_image.c:776
+#: src/img-view.c:1406 src/layout-image.c:776
 #, fuzzy
 msgid "Zoom to fit"
 msgstr "_Sovita"
 
-#: src/img-view.c:1418 src/layout_image.c:790
+#: src/img-view.c:1418 src/layout-image.c:790
 msgid "_Go to directory view"
 msgstr ""
 
 # src/img-view.c:813 src/menu.c:982
-#: src/img-view.c:1446 src/img-view.c:1460 src/layout_image.c:832
-#: src/layout_image.c:846
+#: src/img-view.c:1446 src/img-view.c:1460 src/layout-image.c:832
+#: src/layout-image.c:846
 msgid "Toggle _slideshow"
 msgstr "_Diaesitys päälle/pois"
 
 # src/img-view.c:816 src/menu.c:985
-#: src/img-view.c:1449 src/layout_image.c:835
+#: src/img-view.c:1449 src/layout-image.c:835
 msgid "Continue slides_how"
 msgstr "Jatka _diaesitystä"
 
 # src/img-view.c:820 src/img-view.c:827 src/menu.c:989 src/menu.c:995
-#: src/img-view.c:1454 src/img-view.c:1462 src/layout_image.c:840
-#: src/layout_image.c:847
+#: src/img-view.c:1454 src/img-view.c:1462 src/layout-image.c:840
+#: src/layout-image.c:847
 msgid "Pause slides_how"
 msgstr "Pysäytä _diaesitys"
 
 # src/img-view.c:833 src/menu.c:1005
-#: src/img-view.c:1468 src/layout_image.c:857 src/pan-view/pan-view.c:2474
+#: src/img-view.c:1468 src/layout-image.c:857 src/pan-view/pan-view.c:2474
 msgid "Exit _full screen"
 msgstr "Poistu k_okoruudusta"
 
 # src/img-view.c:837 src/menu.c:1001
-#: src/img-view.c:1472 src/layout_image.c:853 src/pan-view/pan-view.c:2478
+#: src/img-view.c:1472 src/layout-image.c:853 src/pan-view/pan-view.c:2478
 msgid "_Full screen"
 msgstr "Koko_ruutu"
 
@@ -2021,7 +2021,7 @@ msgid "C_lose window"
 msgstr "_Sulje ikkuna"
 
 # src/window.c:87
-#: src/layout.c:460 src/view_dir.c:758 src/view_file/view_file.c:743
+#: src/layout.c:460 src/view-dir.c:758 src/view-file/view-file.c:743
 msgid "Ascending"
 msgstr "Nouseva"
 
@@ -2143,7 +2143,7 @@ msgstr ""
 msgid "Use current"
 msgstr "Käytä nykyistä"
 
-# src/ui_pathsel.c:507 src/ui_pathsel.c:759
+# src/ui-pathsel.c:507 src/ui-pathsel.c:759
 #: src/layout.c:2376
 #, fuzzy
 msgid "Show date in directories list view"
@@ -2181,268 +2181,268 @@ msgstr "Näkymä"
 msgid "Invalid geometry\n"
 msgstr "Virheellinen kansio"
 
-#: src/layout_config.c:358
+#: src/layout-config.c:358
 msgid "(drag to change order)"
 msgstr "(vedä järjestyksen vaihtamiseksi)"
 
 # src/menu.c:713
-#: src/layout_image.c:793 src/layout_util.c:2285 src/view_file/view_file.c:701
+#: src/layout-image.c:793 src/layout-util.c:2285 src/view-file/view-file.c:701
 #, fuzzy
 msgid "Open archive"
 msgstr "Avaa _äskettäin käytetty"
 
 # src/utilops.c:592
-#: src/layout_image.c:807 src/pan-view/pan-view.c:2409
-#: src/view_file/view_file.c:710
+#: src/layout-image.c:807 src/pan-view/pan-view.c:2409
+#: src/view-file/view-file.c:710
 #, fuzzy
 msgid "_Copy path to clipboard"
 msgstr "_Kopioi"
 
 # src/utilops.c:592
-#: src/layout_image.c:808 src/pan-view/pan-view.c:2411
-#: src/view_file/view_file.c:712
+#: src/layout-image.c:808 src/pan-view/pan-view.c:2411
+#: src/view-file/view-file.c:712
 #, fuzzy
 msgid "_Copy path unquoted to clipboard"
 msgstr "_Kopioi"
 
 # src/utilops.c:592
-#: src/layout_image.c:809
+#: src/layout-image.c:809
 #, fuzzy
 msgid "Copy _image to clipboard"
 msgstr "_Kopioi"
 
-#: src/layout_image.c:860
+#: src/layout-image.c:860
 msgid "GIF _animation"
 msgstr ""
 
 # src/menu.c:1010
-#: src/layout_image.c:864
+#: src/layout-image.c:864
 msgid "Hide file _list"
 msgstr "Piilota _tiedostoluettelo"
 
-#: src/layout_image.c:2110
+#: src/layout-image.c:2110
 #, c-format
 msgid "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 msgstr ""
 
-#: src/layout_image.c:2118
+#: src/layout-image.c:2118
 #, c-format
 msgid "[%*s,%*s]: RGB(---,---,---)"
 msgstr ""
 
 # src/preferences.c:163 src/preferences.c:604
-#: src/layout_util.c:244
+#: src/layout-util.c:244
 #, fuzzy
 msgid "Clear Marks"
 msgstr "Roskakorin tyhjennys"
 
-# src/ui_pathsel.c:344 src/utilops.c:728
-#: src/layout_util.c:591
+# src/ui-pathsel.c:344 src/utilops.c:728
+#: src/layout-util.c:591
 #, fuzzy
 msgid "Operation failed:\n"
 msgstr "Tiedostojen poistaminen epäonnistui"
 
 # src/preferences.c:823
-#: src/layout_util.c:594
+#: src/layout-util.c:594
 #, fuzzy
 msgid "No file extension\n"
 msgstr "Ei tiedostojen suodatusta"
 
 # src/utilops.c:1151
-#: src/layout_util.c:596
+#: src/layout-util.c:596
 #, fuzzy
 msgid "Cannot create tmp file\n"
 msgstr "Kansiota ei voitu luoda"
 
-#: src/layout_util.c:598
+#: src/layout-util.c:598
 msgid "Operation not supported for filetype\n"
 msgstr ""
 
-#: src/layout_util.c:600
+#: src/layout-util.c:600
 msgid "File is not writable\n"
 msgstr ""
 
-# src/ui_pathsel.c:799
-#: src/layout_util.c:602
+# src/ui-pathsel.c:799
+#: src/layout-util.c:602
 #, fuzzy
 msgid "Exiftran error\n"
 msgstr "Tulostusvirhe"
 
 # src/menu.c:581
-#: src/layout_util.c:604
+#: src/layout-util.c:604
 #, fuzzy
 msgid "Mogrify error\n"
 msgstr "_Peilikuva"
 
 # src/dupe.c:1655 src/dupe.c:1944
-#: src/layout_util.c:608
+#: src/layout-util.c:608
 #, fuzzy
 msgid "Image orientation"
 msgstr "Suunta"
 
-#: src/layout_util.c:2080
+#: src/layout-util.c:2080
 #, c-format
 msgid "Error: window layout name: %s does not exist\n"
 msgstr ""
 
-# src/ui_pathsel.c:307
-#: src/layout_util.c:2154
+# src/ui-pathsel.c:307
+#: src/layout-util.c:2154
 #, fuzzy, c-format
 msgid "Window layout name \"%s\" already exists."
 msgstr "Tiedosto %s on jo olemassa."
 
 # src/menu.c:711
-#: src/layout_util.c:2155 src/layout_util.c:2404
+#: src/layout-util.c:2155 src/layout-util.c:2404
 #, fuzzy
 msgid "Rename window"
 msgstr "Uusi _ikkuna"
 
 # src/dupe.c:1415 src/dupe.c:1573 src/img-view.c:841
-#: src/layout_util.c:2255 src/layout_util.c:2435
+#: src/layout-util.c:2255 src/layout-util.c:2435
 #, fuzzy
 msgid "Delete window"
 msgstr "_Sulje ikkuna"
 
-#: src/layout_util.c:2405 src/layout_util.c:2436
+#: src/layout-util.c:2405 src/layout-util.c:2436
 msgid "OK"
 msgstr ""
 
 # src/menu.c:711
-#: src/layout_util.c:2407
+#: src/layout-util.c:2407
 #, fuzzy
 msgid "rename window"
 msgstr "Uusi _ikkuna"
 
-#: src/layout_util.c:2438
+#: src/layout-util.c:2438
 msgid "Delete window layout"
 msgstr ""
 
-#: src/layout_util.c:3021
+#: src/layout-util.c:3021
 #, c-format
 msgid "Mark _%d"
 msgstr ""
 
-#: src/layout_util.c:3022 src/view_file/view_file.c:650
+#: src/layout-util.c:3022 src/view-file/view-file.c:650
 #, c-format
 msgid "_Set mark %d"
 msgstr ""
 
 # src/collect-table.c:627 src/dupe.c:1391 src/dupe.c:1563
-#: src/layout_util.c:3022
+#: src/layout-util.c:3022
 #, fuzzy, c-format
 msgid "Set mark %d"
 msgstr "Valitse kaikki"
 
-#: src/layout_util.c:3023 src/view_file/view_file.c:651
+#: src/layout-util.c:3023 src/view-file/view-file.c:651
 #, c-format
 msgid "_Reset mark %d"
 msgstr ""
 
 # src/collect-table.c:627 src/dupe.c:1391 src/dupe.c:1563
-#: src/layout_util.c:3023
+#: src/layout-util.c:3023
 #, fuzzy, c-format
 msgid "Reset mark %d"
 msgstr "Valitse kaikki"
 
-#: src/layout_util.c:3024 src/layout_util.c:3025 src/view_file/view_file.c:652
+#: src/layout-util.c:3024 src/layout-util.c:3025 src/view-file/view-file.c:652
 #, c-format
 msgid "_Toggle mark %d"
 msgstr ""
 
 # src/collect-table.c:627 src/dupe.c:1391 src/dupe.c:1563
-#: src/layout_util.c:3024 src/layout_util.c:3025
+#: src/layout-util.c:3024 src/layout-util.c:3025
 #, fuzzy, c-format
 msgid "Toggle mark %d"
 msgstr "Valitse kaikki"
 
 # src/collect-table.c:627 src/dupe.c:1391 src/dupe.c:1563
-#: src/layout_util.c:3026
+#: src/layout-util.c:3026
 #, fuzzy, c-format
 msgid "Se_lect mark %d"
 msgstr "Valitse kaikki"
 
 # src/collect-table.c:627 src/dupe.c:1391 src/dupe.c:1563
-#: src/layout_util.c:3026 src/layout_util.c:3027
+#: src/layout-util.c:3026 src/layout-util.c:3027
 #, fuzzy, c-format
 msgid "Select mark %d"
 msgstr "Valitse kaikki"
 
 # src/collect-table.c:627 src/dupe.c:1391 src/dupe.c:1563
-#: src/layout_util.c:3027 src/view_file/view_file.c:653
+#: src/layout-util.c:3027 src/view-file/view-file.c:653
 #, fuzzy, c-format
 msgid "_Select mark %d"
 msgstr "Valitse kaikki"
 
-#: src/layout_util.c:3028 src/view_file/view_file.c:654
+#: src/layout-util.c:3028 src/view-file/view-file.c:654
 #, fuzzy, c-format
 msgid "_Add mark %d"
 msgstr "Lisää kirjanmerkki"
 
-#: src/layout_util.c:3028
+#: src/layout-util.c:3028
 #, fuzzy, c-format
 msgid "Add mark %d"
 msgstr "Lisää kirjanmerkki"
 
-#: src/layout_util.c:3029 src/view_file/view_file.c:655
+#: src/layout-util.c:3029 src/view-file/view-file.c:655
 #, c-format
 msgid "_Intersection with mark %d"
 msgstr ""
 
 # src/collect-table.c:627 src/dupe.c:1391 src/dupe.c:1563
-#: src/layout_util.c:3029
+#: src/layout-util.c:3029
 #, fuzzy, c-format
 msgid "Intersection with mark %d"
 msgstr "Valitse kaikki"
 
-#: src/layout_util.c:3030 src/view_file/view_file.c:656
+#: src/layout-util.c:3030 src/view-file/view-file.c:656
 #, c-format
 msgid "_Unselect mark %d"
 msgstr ""
 
 # src/collect-table.c:627 src/dupe.c:1391 src/dupe.c:1563
-#: src/layout_util.c:3030
+#: src/layout-util.c:3030
 #, fuzzy, c-format
 msgid "Unselect mark %d"
 msgstr "Valitse kaikki"
 
 # src/collect-table.c:627 src/dupe.c:1391 src/dupe.c:1563
-#: src/layout_util.c:3031
+#: src/layout-util.c:3031
 #, fuzzy, c-format
 msgid "_Filter mark %d"
 msgstr "Valitse kaikki"
 
 # src/collect-table.c:627 src/dupe.c:1391 src/dupe.c:1563
-#: src/layout_util.c:3031
+#: src/layout-util.c:3031
 #, fuzzy, c-format
 msgid "Filter mark %d"
 msgstr "Valitse kaikki"
 
-#: src/layout_util.c:3646
+#: src/layout-util.c:3646
 #, c-format
 msgid "Number of files with unsaved metadata: %d"
 msgstr ""
 
-#: src/layout_util.c:3652
+#: src/layout-util.c:3652
 msgid "No unsaved metadata"
 msgstr ""
 
-#: src/layout_util.c:3700
+#: src/layout-util.c:3700
 #, c-format
 msgid ""
 "Image profile: %s\n"
 "Screen profile: %s"
 msgstr ""
 
-#: src/layout_util.c:3708
+#: src/layout-util.c:3708
 msgid "Click to enable color management"
 msgstr ""
 
-#: src/layout_util.c:3713
+#: src/layout-util.c:3713
 #, fuzzy
 msgid "Color profiles not supported"
 msgstr "Kansiota ei löydy"
 
-#: src/layout_util.c:3735
+#: src/layout-util.c:3735
 #, c-format
 msgid "Input _%d: %s"
 msgstr ""
@@ -2467,7 +2467,7 @@ msgstr "Hiiren rulla vierittää kuvaa"
 msgid "Enable line wrap"
 msgstr "Ei tiedostojen suodatusta"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #: src/logwindow.c:397
 #, fuzzy
 msgid "Enable timer data"
@@ -2923,7 +2923,7 @@ msgstr "Taide"
 msgid "Statue"
 msgstr "Tila"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #: src/metadata.c:1763
 #, fuzzy
 msgid "Painting"
@@ -3096,18 +3096,18 @@ msgid ""
 "  Error code: "
 msgstr ""
 
-# src/ui_pathsel.c:754
-#: src/options.c:244 src/ui_bookmark.c:560 src/ui_pathsel.c:1047
+# src/ui-pathsel.c:754
+#: src/options.c:244 src/ui-bookmark.c:560 src/ui-pathsel.c:1047
 msgid "Home"
 msgstr "Koti"
 
 # src/utilops.c:989
-#: src/options.c:246 src/ui_bookmark.c:571
+#: src/options.c:246 src/ui-bookmark.c:571
 msgid "Desktop"
 msgstr "Työpöytä"
 
 #: src/options.c:267 src/search.c:2338 src/search.c:2342 src/search.c:3626
-#: src/search.c:3630 src/view_file/view_file.c:915
+#: src/search.c:3630 src/view-file/view-file.c:915
 #, fuzzy
 msgid "Mark "
 msgstr "Lisää kirjanmerkki"
@@ -3224,7 +3224,7 @@ msgstr "Pienoiskuvat"
 msgid "Normal Thumbnails"
 msgstr "Pienoiskuvat"
 
-# src/cache_maint.c:252
+# src/cache-maint.c:252
 #: src/pan-view/pan-view.c:1924
 #, fuzzy
 msgid "Large Thumbnails"
@@ -3294,7 +3294,7 @@ msgstr "Lajittelu päiväyksen mukaan"
 msgid "_Show Exif information"
 msgstr ""
 
-# src/ui_pathsel.c:764
+# src/ui-pathsel.c:764
 #: src/pan-view/pan-view.c:2440
 #, fuzzy
 msgid "Show im_age"
@@ -3347,7 +3347,7 @@ msgstr ""
 msgid "Keyword Filter:"
 msgstr "Avainsanat:"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #: src/pan-view/pan-view-filter.c:104 src/preferences.c:2737
 msgid "Filter"
 msgstr "Suodatin"
@@ -3357,7 +3357,7 @@ msgstr "Suodatin"
 msgid "Removed keyword…"
 msgstr "Aktiivinen näyttö"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #: src/pan-view/pan-view-search.c:41
 #, fuzzy
 msgid "Find:"
@@ -3598,7 +3598,7 @@ msgstr ""
 msgid "Use embedded metadata in video files as thumbnails when available"
 msgstr ""
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #: src/preferences.c:2033
 #, fuzzy
 msgid "Star Rating"
@@ -3620,7 +3620,7 @@ msgstr ""
 
 # src/dupe.c:1412 src/dupe.c:1570
 #: src/preferences.c:2058 src/preferences.c:2090 src/preferences.c:2218
-#: src/view_file/view_file.c:1188 src/window.c:400
+#: src/view-file/view-file.c:1188 src/window.c:400
 #, fuzzy
 msgid "Clear"
 msgstr "T_yhjennä"
@@ -3689,7 +3689,7 @@ msgstr ""
 msgid "Expand the menu and toolbar to the full width of the window"
 msgstr ""
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #: src/preferences.c:2165 src/preferences.c:4285
 #, fuzzy
 msgid "Timezone database"
@@ -3786,7 +3786,7 @@ msgstr ""
 msgid "Tile size"
 msgstr "Tiedoston koko:"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #: src/preferences.c:2303
 #, fuzzy
 msgid "Pixels"
@@ -3990,7 +3990,7 @@ msgid ""
 "<s>strikethrough</s>"
 msgstr ""
 
-# src/ui_pathsel.c:764
+# src/ui-pathsel.c:764
 #: src/preferences.c:2675
 #, fuzzy
 msgid "File Filters"
@@ -4027,7 +4027,7 @@ msgstr "Ei tiedostojen suodatusta"
 msgid "Grouping sidecar extensions"
 msgstr ""
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #: src/preferences.c:2701
 msgid "File types"
 msgstr "Tiedostolajit"
@@ -4036,7 +4036,7 @@ msgstr "Tiedostolajit"
 msgid "Enabled"
 msgstr ""
 
-#: src/preferences.c:2773 src/view_file/view_file.c:1227
+#: src/preferences.c:2773 src/view-file/view-file.c:1227
 msgid "Class"
 msgstr ""
 
@@ -4284,7 +4284,7 @@ msgstr ""
 msgid "Color management"
 msgstr "Lajittelun_hallinta"
 
-# src/ui_pathsel.c:697
+# src/ui-pathsel.c:697
 #: src/preferences.c:3394
 #, fuzzy
 msgid "Input profiles"
@@ -4299,7 +4299,7 @@ msgstr ""
 msgid "Menu name"
 msgstr "Nimi valikossa"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #: src/preferences.c:3408 src/search.c:3434
 #, fuzzy
 msgid "File"
@@ -4316,7 +4316,7 @@ msgstr ""
 msgid "Select color profile"
 msgstr "Valitse kansio"
 
-# src/ui_pathsel.c:697
+# src/ui-pathsel.c:697
 #: src/preferences.c:3440
 #, fuzzy
 msgid "Screen profile"
@@ -4331,7 +4331,7 @@ msgstr ""
 msgid "Screen:"
 msgstr "Työpöytä"
 
-# src/ui_pathsel.c:437 src/ui_pathsel.c:460 src/utilops.c:944
+# src/ui-pathsel.c:437 src/ui-pathsel.c:460 src/utilops.c:944
 # src/utilops.c:1095
 #: src/preferences.c:3455
 #, fuzzy
@@ -4342,7 +4342,7 @@ msgstr "Luo"
 msgid "Behavior"
 msgstr "Toiminta"
 
-# src/ui_pathsel.c:402 src/ui_pathsel.c:461 src/utilops.c:711
+# src/ui-pathsel.c:402 src/ui-pathsel.c:461 src/utilops.c:711
 # src/utilops.c:764
 #: src/preferences.c:3510 src/utilops.c:2209
 msgid "Delete"
@@ -4520,7 +4520,7 @@ msgstr "Korvaa tiedosto"
 msgid "Debugging"
 msgstr ""
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #: src/preferences.c:3650
 #, fuzzy
 msgid "Timer data"
@@ -4730,7 +4730,7 @@ msgstr ""
 msgid "Image text"
 msgstr "Korkeus"
 
-# src/ui_pathsel.c:764
+# src/ui-pathsel.c:764
 #: src/print.c:348
 #, fuzzy
 msgid "Show image text"
@@ -4834,7 +4834,7 @@ msgstr "Etä-Geeqie ei ole käynnissä, käynnistetään..."
 msgid "Remote not available\n"
 msgstr "Etäkäyttö ei ole käytettävissä\n"
 
-#: src/search_and_run.c:291
+#: src/search-and-run.c:291
 msgid "Search and Run command"
 msgstr ""
 
@@ -4969,7 +4969,7 @@ msgstr "Tiedoston koko on"
 msgid "and"
 msgstr "—"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #: src/search.c:3459
 msgid "File date is"
 msgstr "Tiedoston päiväys on"
@@ -5051,53 +5051,53 @@ msgstr "Kuvatiedosto"
 msgid "Broken"
 msgstr ""
 
-# src/ui_pathsel.c:764
+# src/ui-pathsel.c:764
 #: src/search.c:3618
 #, fuzzy
 msgid "Marks"
 msgstr "Näytä piilotetut"
 
 # src/utilops.c:1151
-#: src/secure_save.c:407
+#: src/secure-save.c:407
 #, fuzzy
 msgid "Cannot read the file"
 msgstr "Kansiota ei voitu luoda"
 
 # src/dupe.c:2060
-#: src/secure_save.c:409
+#: src/secure-save.c:409
 #, fuzzy
 msgid "Cannot get file status"
 msgstr "Vertaa kahta tiedostoryhmää"
 
-#: src/secure_save.c:411
+#: src/secure-save.c:411
 msgid "Cannot access the file"
 msgstr ""
 
 # src/utilops.c:1151
-#: src/secure_save.c:413
+#: src/secure-save.c:413
 #, fuzzy
 msgid "Cannot create temp file"
 msgstr "Kansiota ei voitu luoda"
 
 # src/utilops.c:1151
-#: src/secure_save.c:415
+#: src/secure-save.c:415
 #, fuzzy
 msgid "Cannot rename the file"
 msgstr "Kansiota ei voitu luoda"
 
-#: src/secure_save.c:417
+#: src/secure-save.c:417
 msgid "File saving disabled by option"
 msgstr ""
 
-#: src/secure_save.c:419
+#: src/secure-save.c:419
 msgid "Out of memory"
 msgstr ""
 
-#: src/secure_save.c:421
+#: src/secure-save.c:421
 msgid "Cannot write the file"
 msgstr ""
 
-#: src/secure_save.c:425
+#: src/secure-save.c:425
 msgid "Secure file saving error"
 msgstr ""
 
@@ -5146,7 +5146,7 @@ msgstr "Kansiota ei voitu luoda"
 msgid "Permission denied"
 msgstr "Lupa evätty"
 
-# src/ui_pathsel.c:517 src/utilops.c:1158
+# src/ui-pathsel.c:517 src/utilops.c:1158
 #: src/trash.c:177
 #, c-format
 msgid ""
@@ -5180,114 +5180,114 @@ msgstr ""
 msgid "Using system Trash bin"
 msgstr ""
 
-#: src/ui_bookmark.c:137 src/ui_bookmark.c:200
+#: src/ui-bookmark.c:137 src/ui-bookmark.c:200
 msgid "New Bookmark"
 msgstr "Uusi kirjanmerkki"
 
 # src/preferences.c:915
-#: src/ui_bookmark.c:283 src/ui_bookmark.c:289
+#: src/ui-bookmark.c:283 src/ui-bookmark.c:289
 msgid "Edit Bookmark"
 msgstr "Muokkaa kirjanmerkkiä"
 
 # src/dupe.c:1657 src/dupe.c:1945
-#: src/ui_bookmark.c:304
+#: src/ui-bookmark.c:304
 msgid "Path:"
 msgstr "Polku:"
 
-#: src/ui_bookmark.c:313
+#: src/ui-bookmark.c:313
 msgid "Icon:"
 msgstr "Kuvake:"
 
 # src/collect-table.c:628 src/dupe.c:1393 src/dupe.c:1565
-#: src/ui_bookmark.c:319
+#: src/ui-bookmark.c:319
 msgid "Select icon"
 msgstr "Valitse kuvake"
 
-#: src/ui_bookmark.c:412
+#: src/ui-bookmark.c:412
 msgid "_Properties..."
 msgstr "_Ominaisuudet..."
 
 # src/collect-table.c:622 src/dupe.c:1410 src/dupe.c:1568
-#: src/ui_bookmark.c:418
+#: src/ui-bookmark.c:418
 msgid "_Remove"
 msgstr "_Poista"
 
-#: src/ui_fileops.c:88
+#: src/ui-fileops.c:88
 msgid ""
 "One or more filenames are not encoded with the preferred locale character "
 "set.\n"
 msgstr ""
 
-#: src/ui_fileops.c:89
+#: src/ui-fileops.c:89
 #, c-format
 msgid "Operations on, and display of these files with %s may not succeed.\n"
 msgstr ""
 
-#: src/ui_fileops.c:91
+#: src/ui-fileops.c:91
 msgid ""
 "If your filenames are not encoded in utf-8, try setting the environment "
 "variable G_BROKEN_FILENAMES=1\n"
 msgstr ""
 
-#: src/ui_fileops.c:93
+#: src/ui-fileops.c:93
 #, c-format
 msgid "It appears G_BROKEN_FILENAMES is set to %s\n"
 msgstr ""
 
-#: src/ui_fileops.c:95
+#: src/ui-fileops.c:95
 msgid "It appears G_BROKEN_FILENAMES is not set\n"
 msgstr ""
 
-#: src/ui_fileops.c:97
+#: src/ui-fileops.c:97
 #, c-format
 msgid ""
 "The locale appears to be set to \"%s\"\n"
 "(set by the LANG environment variable)\n"
 msgstr ""
 
-#: src/ui_fileops.c:102
+#: src/ui-fileops.c:102
 msgid ""
 "\n"
 "Preferred encoding appears to be UTF-8, however the file:\n"
 msgstr ""
 
-#: src/ui_fileops.c:103 src/ui_fileops.c:106 src/ui_fileops.c:108
+#: src/ui-fileops.c:103 src/ui-fileops.c:106 src/ui-fileops.c:108
 #, fuzzy
 msgid "[name not displayable]"
 msgstr "Etäkäyttö ei ole käytettävissä\n"
 
-#: src/ui_fileops.c:106
+#: src/ui-fileops.c:106
 #, c-format
 msgid "\"%s\" is encoded in valid UTF-8."
 msgstr ""
 
-#: src/ui_fileops.c:108
+#: src/ui-fileops.c:108
 #, c-format
 msgid "\"%s\" is not encoded in valid UTF-8."
 msgstr ""
 
-#: src/ui_fileops.c:113 src/ui_fileops.c:118
+#: src/ui-fileops.c:113 src/ui-fileops.c:118
 msgid "Filename encoding locale mismatch"
 msgstr ""
 
-# src/ui_pathsel.c:344 src/utilops.c:728
-#: src/ui_fileops.c:1047
+# src/ui-pathsel.c:344 src/utilops.c:728
+#: src/ui-fileops.c:1047
 #, fuzzy
 msgid "Web file download failed"
 msgstr "Tiedostojen poistaminen epäonnistui"
 
-#: src/ui_fileops.c:1110
+#: src/ui-fileops.c:1110
 msgid "Download web file"
 msgstr ""
 
 # src/collect-table.c:100 src/dupe.c:668 src/filelist.c:1813
-#: src/ui_fileops.c:1112
+#: src/ui-fileops.c:1112
 #, fuzzy
 msgid "Downloading "
 msgstr "Ladataan pienoiskuvia..."
 
-# src/ui_help.c:191
-#: src/ui_help.c:117
+# src/ui-help.c:191
+#: src/ui-help.c:117
 #, c-format
 msgid ""
 "Unable to load:\n"
@@ -5296,38 +5296,38 @@ msgstr ""
 "Tiedoston:\n"
 "%s lataaminen ei onnistunut."
 
-# src/ui_pathsel.c:307
-#: src/ui_pathsel.c:432
+# src/ui-pathsel.c:307
+#: src/ui-pathsel.c:432
 #, c-format
 msgid "A file with name %s already exists."
 msgstr "Tiedosto %s on jo olemassa."
 
 # src/utilops.c:1090
-#: src/ui_pathsel.c:433 src/ui_pathsel.c:439 src/utilops.c:2373
+#: src/ui-pathsel.c:433 src/ui-pathsel.c:439 src/utilops.c:2373
 #: src/utilops.c:2400 src/utilops.c:2866
 #, fuzzy
 msgid "Rename failed"
 msgstr "Nimeä tiedosto uudelleen"
 
-# src/ui_pathsel.c:313
-#: src/ui_pathsel.c:438
+# src/ui-pathsel.c:313
+#: src/ui-pathsel.c:438
 #, c-format
 msgid "Failed to rename %s to %s."
 msgstr "Tiedoston nimeäminen %s -> %s epäonnistui."
 
-# src/ui_pathsel.c:437 src/ui_pathsel.c:460 src/utilops.c:944
+# src/ui-pathsel.c:437 src/ui-pathsel.c:460 src/utilops.c:944
 # src/utilops.c:1095
-#: src/ui_pathsel.c:634 src/ui_pathsel.c:642
+#: src/ui-pathsel.c:634 src/ui-pathsel.c:642
 msgid "_Rename"
 msgstr "Nimeä _uudelleen"
 
 # src/preferences.c:915
-#: src/ui_pathsel.c:636 src/ui_pathsel.c:646
+#: src/ui-pathsel.c:636 src/ui-pathsel.c:646
 msgid "Add _Bookmark"
 msgstr "Lisää _kirjanmerkki"
 
-# src/ui_pathsel.c:517 src/utilops.c:1158
-#: src/ui_pathsel.c:759
+# src/ui-pathsel.c:517 src/utilops.c:1158
+#: src/ui-pathsel.c:759
 #, c-format
 msgid ""
 "Unable to create folder:\n"
@@ -5336,46 +5336,46 @@ msgstr ""
 "Kansion luominen epäonnistui:\n"
 "%s"
 
-# src/ui_pathsel.c:518 src/utilops.c:1159
-#: src/ui_pathsel.c:760
+# src/ui-pathsel.c:518 src/utilops.c:1159
+#: src/ui-pathsel.c:760
 msgid "Error creating folder"
 msgstr "Virhe kansion luonnissa"
 
-# src/ui_pathsel.c:697
-#: src/ui_pathsel.c:980
+# src/ui-pathsel.c:697
+#: src/ui-pathsel.c:980
 msgid "All Files"
 msgstr "Kaikki tiedostot"
 
-#: src/ui_pathsel.c:1049 src/utilops.c:3189
+#: src/ui-pathsel.c:1049 src/utilops.c:3189
 msgid "New folder"
 msgstr "Uusi kansio"
 
-# src/ui_pathsel.c:764
-#: src/ui_pathsel.c:1052
+# src/ui-pathsel.c:764
+#: src/ui-pathsel.c:1052
 msgid "Show hidden"
 msgstr "Näytä piilotetut"
 
-# src/ui_pathsel.c:799
-#: src/ui_pathsel.c:1137
+# src/ui-pathsel.c:799
+#: src/ui-pathsel.c:1137
 msgid "Filter:"
 msgstr "Suodatin:"
 
 # src/preferences.c:368
-#: src/ui_pathsel.c:1179
+#: src/ui-pathsel.c:1179
 msgid "Files"
 msgstr "Tiedostot"
 
 # src/collect-table.c:627 src/dupe.c:1391 src/dupe.c:1563
-#: src/ui_tabcomp.c:945
+#: src/ui-tabcomp.c:945
 msgid "Select path"
 msgstr "Valitse polku"
 
-# src/ui_pathsel.c:697
-#: src/ui_tabcomp.c:967
+# src/ui-pathsel.c:697
+#: src/ui-tabcomp.c:967
 msgid "All files"
 msgstr "Kaikki tiedostot"
 
-#: src/uri_utils.c:43
+#: src/uri-utils.c:43
 msgid "Drag and Drop failed"
 msgstr ""
 
@@ -5403,7 +5403,7 @@ msgid ""
 "%s"
 msgstr ""
 
-# src/ui_pathsel.c:343 src/utilops.c:675 src/utilops.c:727
+# src/ui-pathsel.c:343 src/utilops.c:675 src/utilops.c:727
 #: src/utilops.c:920
 #, fuzzy, c-format
 msgid ""
@@ -5438,7 +5438,7 @@ msgstr ""
 msgid "Discard changes"
 msgstr "_Hylkää"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #: src/utilops.c:1533 src/utilops.c:1658 src/utilops.c:2022 src/utilops.c:2038
 #, fuzzy
 msgid "File details"
@@ -5513,7 +5513,7 @@ msgstr ""
 msgid "Another operation in progress.\n"
 msgstr ""
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #: src/utilops.c:1981
 #, fuzzy, c-format
 msgid "File: '%s'\n"
@@ -5568,7 +5568,7 @@ msgstr "Roskakorin sisältö poistetaan."
 msgid "This will permanently delete the following files"
 msgstr "Roskakorin sisältö poistetaan."
 
-# src/ui_pathsel.c:398 src/utilops.c:760
+# src/ui-pathsel.c:398 src/utilops.c:760
 #: src/utilops.c:2210
 #, fuzzy
 msgid "Delete files?"
@@ -5632,7 +5632,7 @@ msgstr "Kopioi tiedosto"
 msgid "This will copy the following files"
 msgstr ""
 
-# src/ui_pathsel.c:437 src/ui_pathsel.c:460 src/utilops.c:944
+# src/ui-pathsel.c:437 src/ui-pathsel.c:460 src/utilops.c:944
 # src/utilops.c:1095
 #: src/utilops.c:2396 src/utilops.c:2862
 msgid "Rename"
@@ -5677,7 +5677,7 @@ msgstr "Ota käyttöön Delete-näppäin"
 msgid "Delete folder"
 msgstr "Valitse kansio"
 
-# src/ui_pathsel.c:517 src/utilops.c:1158
+# src/ui-pathsel.c:517 src/utilops.c:1158
 #: src/utilops.c:2658
 #, fuzzy
 msgid "Delete symbolic link?"
@@ -5691,7 +5691,7 @@ msgid ""
 "The folder this link points to will not be deleted."
 msgstr ""
 
-# src/ui_pathsel.c:344 src/utilops.c:728
+# src/ui-pathsel.c:344 src/utilops.c:728
 #: src/utilops.c:2662
 #, fuzzy
 msgid "Link deletion failed"
@@ -5705,7 +5705,7 @@ msgid ""
 "Permissions do not allow writing to the folder."
 msgstr "Vanhan tiedoston poisto roskakorikansiosta ei onnistunut."
 
-# src/ui_pathsel.c:517 src/utilops.c:1158
+# src/ui-pathsel.c:517 src/utilops.c:1158
 #: src/utilops.c:2684 src/utilops.c:2741
 #, fuzzy, c-format
 msgid "Unable to list contents of folder %s"
@@ -5735,7 +5735,7 @@ msgstr ""
 msgid "Subfolders:"
 msgstr "kansiosta"
 
-# src/ui_pathsel.c:398 src/utilops.c:760
+# src/ui-pathsel.c:398 src/utilops.c:760
 #: src/utilops.c:2731
 #, fuzzy
 msgid "Delete folder?"
@@ -5771,7 +5771,7 @@ msgstr "Käy läpi myös alikansiot"
 msgid "Create Folder"
 msgstr "Valitse kansio"
 
-# src/ui_pathsel.c:398 src/utilops.c:760
+# src/ui-pathsel.c:398 src/utilops.c:760
 #: src/utilops.c:2918
 #, fuzzy
 msgid "Create folder?"
@@ -5789,7 +5789,7 @@ msgstr "Kansiota ei voitu luoda"
 msgid "Create Folder - "
 msgstr "Valitse kansio"
 
-# src/ui_pathsel.c:398 src/utilops.c:760
+# src/ui-pathsel.c:398 src/utilops.c:760
 #: src/utilops.c:3216
 #, fuzzy
 msgid "Create new folder"
@@ -5802,142 +5802,142 @@ msgid "Cannot create folder:"
 msgstr "Kansiota ei voitu luoda"
 
 # src/utilops.c:592
-#: src/view_dir.c:411
+#: src/view-dir.c:411
 msgid "_Copy"
 msgstr "_Kopioi"
 
 # src/utilops.c:601
-#: src/view_dir.c:413
+#: src/view-dir.c:413
 msgid "_Move"
 msgstr "_Siirrä"
 
-#: src/view_dir.c:714
+#: src/view-dir.c:714
 msgid "_Up to parent"
 msgstr "_Yläkansioon"
 
 # src/menu.c:879
-#: src/view_dir.c:719
+#: src/view-dir.c:719
 msgid "_Slideshow"
 msgstr "_Diaesitys"
 
 # src/menu.c:881
-#: src/view_dir.c:721
+#: src/view-dir.c:721
 msgid "Slideshow recursive"
 msgstr "Diaesitys alikansiot mukana"
 
 # src/collect-table.c:644 src/menu.c:885
-#: src/view_dir.c:725
+#: src/view-dir.c:725
 msgid "Find _duplicates..."
 msgstr "Etsi _kaksoiskappaleet..."
 
 # src/menu.c:887
-#: src/view_dir.c:727
+#: src/view-dir.c:727
 msgid "Find duplicates recursive..."
 msgstr "Etsi kaksoiskappaleet myös alikansioista..."
 
-#: src/view_dir.c:732
+#: src/view-dir.c:732
 msgid "_New folder..."
 msgstr "_Uusi kansio..."
 
 # src/dupe.c:1655 src/dupe.c:1944
-#: src/view_dir.c:749
+#: src/view-dir.c:749
 #, fuzzy
 msgid "View as _List"
 msgstr "Näytä _kuvakkeina"
 
 # src/menu.c:761
-#: src/view_dir.c:752
+#: src/view-dir.c:752
 #, fuzzy
 msgid "View as _Tree"
 msgstr "Näytä _puuna"
 
-# src/ui_pathsel.c:764
-#: src/view_dir.c:765
+# src/ui-pathsel.c:764
+#: src/view-dir.c:765
 #, fuzzy
 msgid "Show _hidden files"
 msgstr "Näytä piilotetut"
 
 # src/menu.c:891 src/menu.c:920
-#: src/view_dir.c:768 src/view_file/view_file.c:779
+#: src/view-dir.c:768 src/view-file/view-file.c:779
 msgid "Re_fresh"
 msgstr "V_irkistä"
 
 # src/preferences.c:823
-#: src/view_file/view_file.c:725
+#: src/view-file/view-file.c:725
 #, fuzzy
 msgid "Enable file _grouping"
 msgstr "Ei tiedostojen suodatusta"
 
 # src/preferences.c:823
-#: src/view_file/view_file.c:727
+#: src/view-file/view-file.c:727
 #, fuzzy
 msgid "Disable file groupi_ng"
 msgstr "Ei tiedostojen suodatusta"
 
 # src/menu.c:769
-#: src/view_file/view_file.c:749
+#: src/view-file/view-file.c:749
 #, fuzzy
 msgid "Images as List"
 msgstr "/Näytä/_Diaesitys"
 
 # src/dupe.c:1655 src/dupe.c:1944
-#: src/view_file/view_file.c:752
+#: src/view-file/view-file.c:752
 #, fuzzy
 msgid "Images as Icons"
 msgstr "Näytä _kuvakkeina"
 
 # src/preferences.c:603
-#: src/view_file/view_file.c:758
+#: src/view-file/view-file.c:758
 msgid "Show _thumbnails"
 msgstr "Näytä _pienoiskuvat"
 
-#: src/view_file/view_file.c:904
+#: src/view-file/view-file.c:904
 #, fuzzy
 msgid "Mark text"
 msgstr "Lisää kirjanmerkki"
 
 # src/collect-table.c:627 src/dupe.c:1391 src/dupe.c:1563
-#: src/view_file/view_file.c:907
+#: src/view-file/view-file.c:907
 #, fuzzy
 msgid "Set mark text"
 msgstr "Valitse kaikki"
 
-#: src/view_file/view_file.c:908
+#: src/view-file/view-file.c:908
 #, fuzzy
 msgid "This will set or clear the mark text."
 msgstr "Roskakorin sisältö poistetaan."
 
-#: src/view_file/view_file.c:1185
+#: src/view-file/view-file.c:1185
 msgid "Use regular expressions"
 msgstr ""
 
-#: src/view_file/view_file.c:1215
+#: src/view-file/view-file.c:1215
 msgid "Case"
 msgstr ""
 
-#: src/view_file/view_file.c:1217
+#: src/view-file/view-file.c:1217
 #, fuzzy
 msgid "Case sensitive"
 msgstr "Kirjainkoon huomioiva lajittelu"
 
 # src/collect-table.c:628 src/dupe.c:1393 src/dupe.c:1565
-#: src/view_file/view_file.c:1234
+#: src/view-file/view-file.c:1234
 #, fuzzy
 msgid "Select Class filter"
 msgstr "Valitse kansio"
 
 # src/collect-table.c:100 src/dupe.c:668 src/filelist.c:1813
-#: src/view_file/view_file.c:1789
+#: src/view-file/view-file.c:1789
 #, fuzzy
 msgid "Loading meta..."
 msgstr "Ladataan pienoiskuvia..."
 
-#: src/view_file/view_file_icon.c:2153 src/view_file/view_file_list.c:930
+#: src/view-file/view-file-icon.c:2153 src/view-file/view-file-list.c:930
 msgid " [NO GROUPING]"
 msgstr ""
 
 # src/filelist.c:810
-#: src/view_file/view_file_list.c:515
+#: src/view-file/view-file-list.c:515
 #, c-format
 msgid ""
 "Invalid file name:\n"
@@ -5948,17 +5948,17 @@ msgstr ""
 
 # src/filelist.c:811 src/filelist.c:817 src/filelist.c:823 src/utilops.c:845
 # src/utilops.c:1048
-#: src/view_file/view_file_list.c:516
+#: src/view-file/view-file-list.c:516
 msgid "Error renaming file"
 msgstr "Virhe nimettäessä tiedostoa"
 
 # src/dupe.c:1652 src/dupe.c:1941
-#: src/view_file/view_file_list.c:2232
+#: src/view-file/view-file-list.c:2232
 #, fuzzy
 msgid "NameStars"
 msgstr "Nimi"
 
-#: src/view_file/view_file_list.c:2236
+#: src/view-file/view-file-list.c:2236
 #, fuzzy
 msgid "Stars"
 msgstr "Alku"
@@ -5993,7 +5993,7 @@ msgstr "Etsi:"
 #~ msgid "Title"
 #~ msgstr "Nimetön"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #, fuzzy
 #~ msgid "Rating"
 #~ msgstr "Tulostusvirhe"
@@ -6054,7 +6054,7 @@ msgstr "Etsi:"
 #~ msgid "Show filename text"
 #~ msgstr "_Näytä tiedostonimet"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #, fuzzy
 #~ msgid "Print"
 #~ msgstr "Tulostin"
@@ -6082,7 +6082,7 @@ msgstr "Etsi:"
 #~ msgid "Select group 2 duplicates"
 #~ msgstr "Valitse ryhmän _2 kaksoiskappaleet"
 
-# src/ui_pathsel.c:402 src/ui_pathsel.c:461 src/utilops.c:711
+# src/ui-pathsel.c:402 src/ui-pathsel.c:461 src/utilops.c:711
 # src/utilops.c:764
 #~ msgid "top left"
 #~ msgstr "ylin vasemmalla"
@@ -6096,7 +6096,7 @@ msgstr "Etsi:"
 #~ msgid "bottom left"
 #~ msgstr "alin vasemmalla"
 
-# src/ui_pathsel.c:402 src/ui_pathsel.c:461 src/utilops.c:711
+# src/ui-pathsel.c:402 src/ui-pathsel.c:461 src/utilops.c:711
 # src/utilops.c:764
 #~ msgid "left top"
 #~ msgstr "vasen ylimpänä"
@@ -6247,7 +6247,7 @@ msgstr "Etsi:"
 #~ msgid "high"
 #~ msgstr "Korkeus"
 
-# src/collect.c:1053 src/ui_help.c:302
+# src/collect.c:1053 src/ui-help.c:302
 #, fuzzy
 #~ msgid "close"
 #~ msgstr "Sulje"
@@ -6318,7 +6318,7 @@ msgstr "Etsi:"
 #~ msgid "Date digitized"
 #~ msgstr "Digitointipäiväys"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #, fuzzy
 #~ msgid "Pixel format"
 #~ msgstr "Tiedoston muoto:"
@@ -6374,7 +6374,7 @@ msgstr "Etsi:"
 #~ msgid "Subsecond time digitized"
 #~ msgstr "Digitointipäiväys"
 
-# src/collect.c:1053 src/ui_help.c:302
+# src/collect.c:1053 src/ui-help.c:302
 #, fuzzy
 #~ msgid "Colorspace"
 #~ msgstr "Sulje"
@@ -6407,7 +6407,7 @@ msgstr "Etsi:"
 #~ msgid "Scene type"
 #~ msgstr "senttimetri"
 
-# src/ui_pathsel.c:437 src/ui_pathsel.c:460 src/utilops.c:944
+# src/ui-pathsel.c:437 src/ui-pathsel.c:460 src/utilops.c:944
 # src/utilops.c:1095
 #, fuzzy
 #~ msgid "Render process"
@@ -6456,7 +6456,7 @@ msgstr "Etsi:"
 #~ msgid "Resolution"
 #~ msgstr "Tarkkuus"
 
-# src/ui_pathsel.c:697
+# src/ui-pathsel.c:697
 #, fuzzy
 #~ msgid "Color profile"
 #~ msgstr "Kaikki tiedostot"
@@ -6485,7 +6485,7 @@ msgstr "Etsi:"
 #~ msgid "File size"
 #~ msgstr "Tiedoston koko:"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #, fuzzy
 #~ msgid "File date"
 #~ msgstr "Tiedoston päiväys:"
@@ -6654,7 +6654,7 @@ msgstr "Etsi:"
 #~ msgid "_Select"
 #~ msgstr "Valinta"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #, fuzzy
 #~ msgid "_Rating"
 #~ msgstr "Tulostusvirhe"
@@ -6797,7 +6797,7 @@ msgstr "Etsi:"
 #~ msgid "Last Image"
 #~ msgstr "viimeinen kuva"
 
-# src/ui_pathsel.c:754
+# src/ui-pathsel.c:754
 #, fuzzy
 #~ msgid "_Home"
 #~ msgstr "Koti"
@@ -6896,32 +6896,32 @@ msgstr "Etsi:"
 #~ msgid "Copy path unquoted to clipboard"
 #~ msgstr "_Kopioi"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #, fuzzy
 #~ msgid "Rating 0"
 #~ msgstr "Tulostusvirhe"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #, fuzzy
 #~ msgid "Rating 1"
 #~ msgstr "Tulostusvirhe"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #, fuzzy
 #~ msgid "Rating 2"
 #~ msgstr "Tulostusvirhe"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #, fuzzy
 #~ msgid "Rating 3"
 #~ msgstr "Tulostusvirhe"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #, fuzzy
 #~ msgid "Rating 4"
 #~ msgstr "Tulostusvirhe"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #, fuzzy
 #~ msgid "Rating 5"
 #~ msgstr "Tulostusvirhe"
@@ -7263,22 +7263,22 @@ msgstr "Etsi:"
 #~ msgid "Show Thumbnails"
 #~ msgstr "Näytä pienoiskuvat"
 
-# src/ui_pathsel.c:764
+# src/ui-pathsel.c:764
 #, fuzzy
 #~ msgid "Show _Marks"
 #~ msgstr "Näytä piilotetut"
 
-# src/ui_pathsel.c:764
+# src/ui-pathsel.c:764
 #, fuzzy
 #~ msgid "Show Marks"
 #~ msgstr "Näytä piilotetut"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #, fuzzy
 #~ msgid "Pi_xel Info"
 #~ msgstr "Tiedoston muoto:"
 
-# src/ui_pathsel.c:764
+# src/ui-pathsel.c:764
 #, fuzzy
 #~ msgid "Show Pixel Info"
 #~ msgstr "Näytä piilotetut"
@@ -7320,7 +7320,7 @@ msgstr "Etsi:"
 #~ msgid "Hide Bars"
 #~ msgstr "Piilota ty_ökalurivi"
 
-# src/ui_pathsel.c:697
+# src/ui-pathsel.c:697
 #, fuzzy
 #~ msgid "Use color profiles"
 #~ msgstr "Kaikki tiedostot"
@@ -7425,7 +7425,7 @@ msgstr "Etsi:"
 #~ msgid "Images total"
 #~ msgstr "Kuvaus"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #, fuzzy
 #~ msgid "File page no."
 #~ msgstr "Tiedoston päiväys on"
@@ -7461,7 +7461,7 @@ msgstr "Etsi:"
 #~ msgid "Start search"
 #~ msgstr "Kuvahaku - Geeqie"
 
-# src/ui_pathsel.c:402 src/ui_pathsel.c:461 src/utilops.c:711
+# src/ui-pathsel.c:402 src/ui-pathsel.c:461 src/utilops.c:711
 # src/utilops.c:764
 #, fuzzy
 #~ msgid "Scroll left"
@@ -7516,7 +7516,7 @@ msgstr "Etsi:"
 #~ msgid "Select invert"
 #~ msgstr "Valitse kuvake"
 
-# src/ui_pathsel.c:764
+# src/ui-pathsel.c:764
 #, fuzzy
 #~ msgid "Show file filter"
 #~ msgstr "Näytä piilotetut"
@@ -7558,7 +7558,7 @@ msgstr "Etsi:"
 #~ msgid "Show thumbnails"
 #~ msgstr "Näytä _pienoiskuvat"
 
-# src/ui_pathsel.c:764
+# src/ui-pathsel.c:764
 #, fuzzy
 #~ msgid "Show marks"
 #~ msgstr "Näytä piilotetut"
@@ -7662,7 +7662,7 @@ msgstr "Etsi:"
 #~ msgid "get file info"
 #~ msgstr "Tiedostoa ei löydy"
 
-# src/ui_pathsel.c:437 src/ui_pathsel.c:460 src/utilops.c:944
+# src/ui-pathsel.c:437 src/ui-pathsel.c:460 src/utilops.c:944
 # src/utilops.c:1095
 #, fuzzy
 #~ msgid "get render intent"
@@ -7764,7 +7764,7 @@ msgstr "Etsi:"
 #~ msgid "before"
 #~ msgstr "aiempi kuin"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #~ msgid "after"
 #~ msgstr "myöhempi kuin"
 
@@ -7793,7 +7793,7 @@ msgstr "Etsi:"
 #~ msgid "Open Archive"
 #~ msgstr "Avaa _äskettäin käytetty"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #, fuzzy
 #~ msgid "Pixel Info"
 #~ msgstr "Tiedoston muoto:"
@@ -7856,17 +7856,17 @@ msgstr "Etsi:"
 #~ msgid "View as _Icons"
 #~ msgstr "Näytä _kuvakkeina"
 
-# src/ui_pathsel.c:764
+# src/ui-pathsel.c:764
 #, fuzzy
 #~ msgid "_Show Guidelines"
 #~ msgstr "Näytä piilotetut"
 
-# src/ui_pathsel.c:764
+# src/ui-pathsel.c:764
 #, fuzzy
 #~ msgid "Show Guidelines"
 #~ msgstr "Näytä piilotetut"
 
-# src/ui_pathsel.c:764
+# src/ui-pathsel.c:764
 #, fuzzy
 #~ msgid "Show guidelines"
 #~ msgstr "Näytä piilotetut"
@@ -7880,7 +7880,7 @@ msgstr "Etsi:"
 #~ msgid "Comment:"
 #~ msgstr "Kommentit:"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #, fuzzy
 #~ msgid "Rating:"
 #~ msgstr "Tulostusvirhe"
@@ -7902,7 +7902,7 @@ msgstr "Etsi:"
 #~ msgid "Ignore Rotation"
 #~ msgstr "Suunta"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #, fuzzy
 #~ msgid "File: "
 #~ msgstr "Tiedosto:"
@@ -8120,15 +8120,15 @@ msgstr "Etsi:"
 #~ msgid "Bottom:"
 #~ msgstr "Ala:"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #~ msgid "Printer"
 #~ msgstr "Tulostin"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #~ msgid "File:"
 #~ msgstr "Tiedosto:"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #~ msgid "File format:"
 #~ msgstr "Tiedoston muoto:"
 
@@ -8361,7 +8361,7 @@ msgstr "Etsi:"
 #~ msgid "Compress ratio:"
 #~ msgstr "Pakkaussuhde:"
 
-# src/ui_pathsel.c:799
+# src/ui-pathsel.c:799
 #~ msgid "File type:"
 #~ msgstr "Tiedoston laji:"
 
@@ -8390,7 +8390,7 @@ msgstr "Etsi:"
 #~ msgid "_Adjust"
 #~ msgstr "_Säädä"
 
-# src/ui_pathsel.c:507 src/ui_pathsel.c:759
+# src/ui-pathsel.c:507 src/ui-pathsel.c:759
 #, fuzzy
 #~ msgid "_View Directory as"
 #~ msgstr "Uusi kansio"
@@ -8645,7 +8645,7 @@ msgstr "Etsi:"
 #~ msgid "File name:"
 #~ msgstr "Tiedostonimi:"
 
-# src/ui_pathsel.c:343 src/utilops.c:675 src/utilops.c:727
+# src/ui-pathsel.c:343 src/utilops.c:675 src/utilops.c:727
 #, fuzzy
 #~ msgid ""
 #~ "\n"
@@ -8675,7 +8675,7 @@ msgstr "Etsi:"
 #~ msgid "Review %d files"
 #~ msgstr "Tarkastele %d tiedostoa"
 
-# src/ui_pathsel.c:343 src/utilops.c:675 src/utilops.c:727
+# src/ui-pathsel.c:343 src/utilops.c:675 src/utilops.c:727
 #, fuzzy
 #~ msgid ""
 #~ "%s\n"
@@ -8685,7 +8685,7 @@ msgstr "Etsi:"
 #~ "Tiedoston: %s\n"
 #~ " poistaminen ei onnistunut."
 
-# src/ui_pathsel.c:398 src/utilops.c:760
+# src/ui-pathsel.c:398 src/utilops.c:760
 #~ msgid "Delete file?"
 #~ msgstr "Poistaetaanko tiedosto?"
 
@@ -8713,7 +8713,7 @@ msgstr "Etsi:"
 #~ "useampi olemassaoleva tiedostonimi vastaa\n"
 #~ "kohdeluettelon nimiä.\n"
 
-# src/ui_pathsel.c:313
+# src/ui-pathsel.c:313
 #~ msgid ""
 #~ "Failed to rename\n"
 #~ "%s\n"
@@ -8768,7 +8768,7 @@ msgstr "Etsi:"
 #~ "%s\n"
 #~ "kansio:"
 
-# src/ui_pathsel.c:343 src/utilops.c:675 src/utilops.c:727
+# src/ui-pathsel.c:343 src/utilops.c:675 src/utilops.c:727
 #, fuzzy
 #~ msgid ""
 #~ "Unable to delete folder:\n"
@@ -8855,7 +8855,7 @@ msgstr "Etsi:"
 #~ msgid "Delete files - Geeqie"
 #~ msgstr "Tiedostojen poisto - Geeqie"
 
-# src/ui_pathsel.c:398 src/utilops.c:760
+# src/ui-pathsel.c:398 src/utilops.c:760
 #~ msgid "Delete file - Geeqie"
 #~ msgstr "Tiedoston poisto - Geeqie"
 
@@ -9161,7 +9161,7 @@ msgstr "Etsi:"
 #~ msgid "Exit"
 #~ msgstr "Lopeta"
 
-# src/preferences.c:165 src/preferences.c:523 src/ui_utildlg.c:208
+# src/preferences.c:165 src/preferences.c:523 src/ui-utildlg.c:208
 # src/utilops.c:220
 #~ msgid "Ok"
 #~ msgstr "Ok"
@@ -9264,7 +9264,7 @@ msgstr "Etsi:"
 #~ msgid "to:"
 #~ msgstr "nimelle:"
 
-# src/ui_pathsel.c:517 src/utilops.c:1158
+# src/ui-pathsel.c:517 src/utilops.c:1158
 #~ msgid ""
 #~ "Unable to create directory:\n"
 #~ "%s"
@@ -9272,7 +9272,7 @@ msgstr "Etsi:"
 #~ "Kansion luominen epäonnistui:\n"
 #~ "%s"
 
-# src/ui_pathsel.c:518 src/utilops.c:1159
+# src/ui-pathsel.c:518 src/utilops.c:1159
 #~ msgid "Error creating directory"
 #~ msgstr "Virhe kansion luonnissa"
 

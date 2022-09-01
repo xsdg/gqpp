@@ -28,7 +28,7 @@
 #include "main.h"
 
 #include "image-load.h"
-#include "image_load_tiff.h"
+#include "image-load-tiff.h"
 
 #ifdef HAVE_TIFF
 
