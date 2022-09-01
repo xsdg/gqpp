@@ -648,7 +648,7 @@ struct _FileData {
 	gchar *group;
 	gchar *sym_link;
 
-	SelectionType selected;  /**< Used by view_file_icon. */
+	SelectionType selected;  /**< Used by view-file-icon. */
 
 	gint page_num;
 	gint page_total;
