@@ -401,7 +401,7 @@ endif
 tiff_dep = []
 option = get_option('tiff')
 if not option.disabled()
-    tiff_dep = cc.find_library('libtiff', required: get_option('tiff'))
+    tiff_dep = dependency('libtiff-4', required: get_option('tiff'))
     if tiff_dep.found()
         if cc.has_function('TIFFClientOpen', dependencies : tiff_dep)
             conf_data.set('HAVE_TIFF', 1)
@@ -444,6 +444,11 @@ if cc.links(code, name : 'nl_langinfo and _NL_TIME_FIRST_WEEKDAY')
     summary({'nl_langinfo' : ['first weekday depends on locale:', true]}, section : 'Documentation', bool_yn : true)
 else
     summary({'nl_langinfo' : ['nl_langinfo not found - first weekday depends on locale:', false, 'first weekday defaults to Monday']}, section : 'Documentation', bool_yn : true)
+endif
+
+result = cc.has_function('strverscmp', prefix : '#include <string.h>')
+if result
+    conf_data.set('HAVE_STRVERSCMP', 1)
 endif
 
 conf_data.set_quoted('GETTEXT_PACKAGE', meson.project_name())
