@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-08 13:00+0100\n"
+"POT-Creation-Date: 2022-09-05 19:35+0100\n"
 "PO-Revision-Date: 2006-10-14 23:08+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: librezale <librezale@librezale.org>\n"
@@ -53,8 +53,9 @@ msgid "Import all images from camera"
 msgstr ""
 
 #: plugins/export-jpeg/export-jpeg.desktop.in:5
+#, fuzzy
 msgid "Export jpeg"
-msgstr ""
+msgstr "Agerpena alborapena"
 
 #: plugins/export-jpeg/export-jpeg.desktop.in:6
 msgid "Extract embedded jpegs from a raw file"
@@ -95,8 +96,8 @@ msgstr ""
 msgid "Tethered photography"
 msgstr ""
 
-#: src/advanced_exif.c:437 src/cache_maint.c:1773 src/preferences.c:2851
-#: src/search.c:2281 src/search.c:3609
+#: src/advanced_exif.c:437 src/cache_maint.c:1773 src/preferences.c:133
+#: src/preferences.c:2851 src/search.c:2281 src/search.c:3610
 msgid "Metadata"
 msgstr "Metadatuak"
 
@@ -109,8 +110,8 @@ msgid "Value"
 msgstr "Balioa"
 
 #: src/advanced_exif.c:495 src/desktop_file.c:631 src/dupe.c:3978
-#: src/dupe.c:4703 src/dupe.c:5287 src/search.c:3693 src/utilops.c:507
-#: src/view_file/view_file_list.c:2228
+#: src/dupe.c:4703 src/dupe.c:5287 src/osd.c:38 src/search.c:3694
+#: src/utilops.c:507 src/view_file/view_file_list.c:2228
 msgid "Name"
 msgstr "Izena"
 
@@ -125,6 +126,56 @@ msgstr "Formatua"
 #: src/advanced_exif.c:498
 msgid "Elements"
 msgstr "Elementuak"
+
+#: src/bar.c:201
+msgid "Histogram"
+msgstr ""
+
+#: src/bar.c:202
+#, fuzzy
+msgid "Title"
+msgstr "Izengabea"
+
+#: src/bar.c:203 src/osd.c:48 src/preferences.c:3269 src/search.c:3529
+msgid "Keywords"
+msgstr "Gako-hitzak"
+
+#: src/bar.c:204 src/osd.c:47 src/search.c:3541
+#, fuzzy
+msgid "Comment"
+msgstr "Iruzkina:"
+
+#: src/bar.c:205 src/preferences.c:2033
+#, fuzzy
+msgid "Star Rating"
+msgstr "Inprimatze errorea"
+
+#: src/bar.c:206
+#, fuzzy
+msgid "Headline"
+msgstr "Denbora-lerroa"
+
+#: src/bar.c:207
+msgid "Exif"
+msgstr "Exif"
+
+#: src/bar.c:209
+#, fuzzy
+msgid "File info"
+msgstr "Ez da fitxategia aurkitu"
+
+#: src/bar.c:210
+#, fuzzy
+msgid "Location and GPS"
+msgstr "Kokalekua:"
+
+#: src/bar.c:211 src/exif.c:340
+msgid "Copyright"
+msgstr "Copyright-a"
+
+#: src/bar.c:214 src/bar_gps.c:1023
+msgid "GPS Map"
+msgstr ""
 
 #: src/bar.c:403 src/toolbar.c:224
 #, fuzzy
@@ -149,7 +200,8 @@ msgstr "ezkerrean behean"
 msgid "Height..."
 msgstr "Altuera"
 
-#: src/bar.c:415 src/toolbar.c:229
+#: src/bar.c:415 src/collect-table.c:87 src/dupe.c:156 src/search.c:359
+#: src/toolbar.c:229
 #, fuzzy
 msgid "Remove"
 msgstr "_Kendu"
@@ -310,7 +362,7 @@ msgstr ""
 msgid "Map centering"
 msgstr "Neurtze modua"
 
-#: src/bar_gps.c:959 src/menu.c:334 src/preferences.c:2244
+#: src/bar_gps.c:959 src/menu.c:334 src/osd.c:42 src/preferences.c:2244
 msgid "Zoom"
 msgstr "Zooma"
 
@@ -319,31 +371,27 @@ msgstr "Zooma"
 msgid "Zoom level"
 msgstr "Zooma handiagotu"
 
-#: src/bar_gps.c:1023
-msgid "GPS Map"
-msgstr ""
-
-#: src/bar_histogram.c:234
+#: src/bar_histogram.c:234 src/layout_util.c:2672
 msgid "Histogram on _Red"
 msgstr ""
 
-#: src/bar_histogram.c:235
+#: src/bar_histogram.c:235 src/layout_util.c:2673
 msgid "Histogram on _Green"
 msgstr ""
 
-#: src/bar_histogram.c:236
+#: src/bar_histogram.c:236 src/layout_util.c:2674
 msgid "Histogram on _Blue"
 msgstr ""
 
-#: src/bar_histogram.c:237
+#: src/bar_histogram.c:237 src/layout_util.c:2675
 msgid "_Histogram on RGB"
 msgstr ""
 
-#: src/bar_histogram.c:238
+#: src/bar_histogram.c:238 src/layout_util.c:2676
 msgid "Histogram on _Value"
 msgstr ""
 
-#: src/bar_histogram.c:242
+#: src/bar_histogram.c:242 src/layout_util.c:2680
 msgid "Li_near Histogram"
 msgstr ""
 
@@ -553,11 +601,15 @@ msgstr "Karpetak"
 msgid "Collections"
 msgstr "Bildumak"
 
-#: src/bar_sort.c:677 src/preferences.c:693 src/utilops.c:2350
+#: src/bar_sort.c:677 src/collect-table.c:82 src/dupe.c:151 src/img-view.c:92
+#: src/pan-view/pan-view.c:99 src/preferences.c:693 src/preferences.c:804
+#: src/search.c:354 src/toolbar.c:94 src/utilops.c:2350
 msgid "Copy"
 msgstr "Kopiatu"
 
-#: src/bar_sort.c:681 src/preferences.c:695 src/utilops.c:2300
+#: src/bar_sort.c:681 src/collect-table.c:83 src/dupe.c:152 src/img-view.c:93
+#: src/pan-view/pan-view.c:100 src/preferences.c:695 src/preferences.c:805
+#: src/search.c:355 src/toolbar.c:95 src/utilops.c:2300
 msgid "Move"
 msgstr "Lekuz aldatu"
 
@@ -874,11 +926,11 @@ msgstr ""
 "Huts bilduma gordetzerakoan:\n"
 "%s"
 
-#: src/collect-dlg.c:203
+#: src/collect-dlg.c:203 src/collect-table.c:97
 msgid "Save collection"
 msgstr "Bilduma gorde"
 
-#: src/collect-dlg.c:210
+#: src/collect-dlg.c:210 src/preferences.c:800 src/toolbar.c:90
 msgid "Open collection"
 msgstr "Bilduma ireki"
 
@@ -890,7 +942,7 @@ msgstr "Bilduma erantsi"
 msgid "_Append"
 msgstr "Er_antsi"
 
-#: src/collect-dlg.c:236 src/search.c:3303
+#: src/collect-dlg.c:236 src/search.c:3304
 msgid "Collection Files"
 msgstr "Bilduma Fitxategiak"
 
@@ -907,6 +959,113 @@ msgid ""
 "error saving collection file: %s\n"
 "error: %s\n"
 msgstr "erreoa konfigurazio fitxategia gordetzerakoan: %s\n"
+
+#: src/collect-table.c:84 src/dupe.c:153 src/img-view.c:94
+#: src/pan-view/pan-view.c:101 src/preferences.c:806 src/search.c:356
+#: src/toolbar.c:96 src/utilops.c:2396 src/utilops.c:2862
+msgid "Rename"
+msgstr "Berrizendatu"
+
+#: src/collect-table.c:85 src/collect-table.c:1038 src/dupe.c:154
+#: src/dupe.c:3573 src/img-view.c:95 src/img-view.c:96 src/img-view.c:1430
+#: src/layout_image.c:815 src/pan-view/pan-view.c:102
+#: src/pan-view/pan-view.c:2417 src/search.c:357 src/search.c:1191
+#: src/view_file/view_file.c:717
+#, fuzzy
+msgid "Move to Trash"
+msgstr "Lekuz aldatu gora"
+
+#: src/collect-table.c:86 src/dupe.c:161 src/img-view.c:98 src/img-view.c:136
+#: src/layout_util.c:2493 src/pan-view/pan-view.c:103 src/search.c:364
+#, fuzzy
+msgid "Close window"
+msgstr "Leihoa it_xi"
+
+#: src/collect-table.c:88 src/dupe.c:162 src/preferences.c:3540
+#: src/search.c:365
+msgid "View"
+msgstr "Ikusi"
+
+#: src/collect-table.c:89 src/dupe.c:163 src/layout_util.c:2586
+#: src/search.c:366
+#, fuzzy
+msgid "View in new window"
+msgstr "Leiho _berrian ikusi"
+
+#: src/collect-table.c:90 src/collect-table.c:1006 src/dupe.c:158
+#: src/dupe.c:3532 src/dupe.c:3870 src/layout_util.c:2490 src/preferences.c:810
+#: src/search.c:360 src/search.c:1158 src/toolbar.c:101
+#: src/view_file/view_file.c:1087 src/view_file/view_file.c:1137
+msgid "Select all"
+msgstr "Hautatu dena"
+
+#: src/collect-table.c:91 src/collect-table.c:1008 src/dupe.c:159
+#: src/dupe.c:166 src/dupe.c:3534 src/dupe.c:3872 src/layout_util.c:2491
+#: src/preferences.c:811 src/search.c:361 src/search.c:1160 src/toolbar.c:102
+#: src/view_file/view_file.c:1142
+msgid "Select none"
+msgstr "Bat ere ez hautatu"
+
+#: src/collect-table.c:92 src/collect-table.c:1012
+#, fuzzy
+msgid "Rectangular selection"
+msgstr "Hautapen karratua ikono ikuspegian"
+
+#: src/collect-table.c:93
+#, fuzzy
+msgid "Select single file"
+msgstr "Hautatu karpeta"
+
+#: src/collect-table.c:94
+#, fuzzy
+msgid "Toggle select image"
+msgstr "hurrengo irudia"
+
+#: src/collect-table.c:95 src/collect-table.c:998
+#, fuzzy
+msgid "Append from file selection"
+msgstr "Fitxategi zerrendatik erantsi"
+
+#: src/collect-table.c:96
+#, fuzzy
+msgid "Append from collection"
+msgstr "Bildumatik erantsi..."
+
+#: src/collect-table.c:98
+#, fuzzy
+msgid "Save collection as"
+msgstr "Bilduma gorde"
+
+#: src/collect-table.c:99
+#, fuzzy
+msgid "Show filename text"
+msgstr "Erakutsi fitxategi-izen _testua"
+
+#: src/collect-table.c:100 src/menu.c:179
+msgid "Sort by name"
+msgstr "Izenez ordenatu"
+
+#: src/collect-table.c:101 src/menu.c:169
+msgid "Sort by number"
+msgstr "Zenbakiz ordenatu"
+
+#: src/collect-table.c:102 src/menu.c:151
+msgid "Sort by date"
+msgstr "Dataz ordenatu"
+
+#: src/collect-table.c:103 src/menu.c:148
+msgid "Sort by size"
+msgstr "Tamainaz ordenatu"
+
+#: src/collect-table.c:104 src/menu.c:166
+msgid "Sort by path"
+msgstr "Bidez ordenatu"
+
+#: src/collect-table.c:105 src/img-view.c:138 src/preferences.c:815
+#: src/toolbar.c:106
+#, fuzzy
+msgid "Print"
+msgstr "Inprimagailua"
 
 #: src/collect-table.c:249
 #, fuzzy, c-format
@@ -927,7 +1086,8 @@ msgstr "Hutsik"
 msgid "Loading thumbs..."
 msgstr "Argazkitxoak kargatzen..."
 
-#: src/collect-table.c:988 src/dupe.c:3527 src/dupe.c:3865 src/search.c:1153
+#: src/collect-table.c:988 src/dupe.c:3527 src/dupe.c:3865
+#: src/layout_util.c:2471 src/search.c:1153
 msgid "_View"
 msgstr "_Ikusi"
 
@@ -946,11 +1106,6 @@ msgstr "Zoom-a jatorrziko tamainan"
 msgid "Rem_ove"
 msgstr "Ken_du"
 
-#: src/collect-table.c:998
-#, fuzzy
-msgid "Append from file selection"
-msgstr "Fitxategi zerrendatik erantsi"
-
 #: src/collect-table.c:1000
 msgid "Append from collection..."
 msgstr "Bildumatik erantsi..."
@@ -960,41 +1115,26 @@ msgstr "Bildumatik erantsi..."
 msgid "_Selection"
 msgstr "Hautapena"
 
-#: src/collect-table.c:1006 src/dupe.c:3532 src/dupe.c:3870 src/search.c:1158
-#: src/view_file/view_file.c:1087 src/view_file/view_file.c:1137
-msgid "Select all"
-msgstr "Hautatu dena"
-
-#: src/collect-table.c:1008 src/dupe.c:3534 src/dupe.c:3872 src/search.c:1160
-#: src/view_file/view_file.c:1142
-msgid "Select none"
-msgstr "Bat ere ez hautatu"
-
 #: src/collect-table.c:1010
 #, fuzzy
 msgid "Invert selection"
 msgstr "Hautapena"
 
-#: src/collect-table.c:1012
-#, fuzzy
-msgid "Rectangular selection"
-msgstr "Hautapen karratua ikono ikuspegian"
-
 #: src/collect-table.c:1024 src/dupe.c:3559 src/img-view.c:1421
-#: src/layout_image.c:801 src/pan-view/pan-view.c:2403 src/search.c:1177
-#: src/view_file/view_file.c:704
+#: src/layout_image.c:801 src/layout_util.c:2483 src/pan-view/pan-view.c:2403
+#: src/search.c:1177 src/view_file/view_file.c:704
 msgid "_Copy..."
 msgstr "K_opiatu..."
 
 #: src/collect-table.c:1026 src/dupe.c:3561 src/img-view.c:1422
-#: src/layout_image.c:803 src/pan-view/pan-view.c:2405 src/search.c:1179
-#: src/view_file/view_file.c:706
+#: src/layout_image.c:803 src/layout_util.c:2484 src/pan-view/pan-view.c:2405
+#: src/search.c:1179 src/view_file/view_file.c:706
 msgid "_Move..."
 msgstr "_Lekuz aldatu..."
 
 #: src/collect-table.c:1028 src/dupe.c:3563 src/img-view.c:1423
-#: src/layout_image.c:805 src/pan-view/pan-view.c:2407 src/search.c:1181
-#: src/view_dir.c:735 src/view_file/view_file.c:708
+#: src/layout_image.c:805 src/layout_util.c:2485 src/pan-view/pan-view.c:2407
+#: src/search.c:1181 src/view_dir.c:735 src/view_file/view_file.c:708
 msgid "_Rename..."
 msgstr "I_zena aldatu..."
 
@@ -1011,18 +1151,12 @@ msgid "_Copy path unquoted"
 msgstr "K_opiatu"
 
 #: src/collect-table.c:1037 src/dupe.c:3572 src/img-view.c:1429
-#: src/layout_image.c:814 src/pan-view/pan-view.c:2416 src/search.c:1190
+#: src/layout_image.c:814 src/layout_util.c:2486 src/layout_util.c:2487
+#: src/layout_util.c:2488 src/pan-view/pan-view.c:2416 src/search.c:1190
 #: src/view_file/view_file.c:716
 #, fuzzy
 msgid "Move to Trash..."
 msgstr "_Lekuz aldatu..."
-
-#: src/collect-table.c:1038 src/dupe.c:3573 src/img-view.c:1430
-#: src/layout_image.c:815 src/pan-view/pan-view.c:2417 src/search.c:1191
-#: src/view_file/view_file.c:717
-#, fuzzy
-msgid "Move to Trash"
-msgstr "Lekuz aldatu gora"
 
 #: src/collect-table.c:1041 src/dupe.c:3576 src/img-view.c:1433
 #: src/layout_image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
@@ -1063,11 +1197,13 @@ msgstr "Bilduma _gorde"
 msgid "Save collection _as..."
 msgstr "Gorde bilduma _horrela..."
 
-#: src/collect-table.c:1063 src/view_file/view_file.c:731
+#: src/collect-table.c:1063 src/layout_util.c:2526
+#: src/view_file/view_file.c:731
 msgid "_Find duplicates..."
 msgstr "Bikoi_ztuak bilatu..."
 
-#: src/collect-table.c:1065 src/dupe.c:3556 src/search.c:1174
+#: src/collect-table.c:1065 src/dupe.c:3556 src/layout_util.c:2528
+#: src/search.c:1174
 msgid "Print..."
 msgstr "Inprimatu..."
 
@@ -1092,7 +1228,7 @@ msgstr "_Saltatu karpetak"
 msgid "Cancel"
 msgstr "Utzi"
 
-#: src/color-man.c:438 src/exif-common.c:502
+#: src/color-man.c:438 src/exif.c:225 src/exif-common.c:502
 msgid "sRGB"
 msgstr ""
 
@@ -1177,10 +1313,47 @@ msgstr ""
 msgid "Hidden"
 msgstr ""
 
-#: src/desktop_file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/search.c:3697
-#: src/ui_pathsel.c:1112 src/utilops.c:503
+#: src/desktop_file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/osd.c:39
+#: src/search.c:3698 src/ui_pathsel.c:1112 src/utilops.c:503
 msgid "Path"
 msgstr "Bidea"
+
+#: src/dupe.c:155 src/img-view.c:97 src/preferences.c:807
+#: src/preferences.c:3510 src/search.c:358 src/toolbar.c:97 src/utilops.c:2209
+msgid "Delete"
+msgstr "Ezabatu"
+
+#: src/dupe.c:157 src/preferences.c:2058 src/preferences.c:2090
+#: src/preferences.c:2218 src/search.c:362 src/view_file/view_file.c:1188
+#: src/window.c:400
+#, fuzzy
+msgid "Clear"
+msgstr "G_arbitu"
+
+#: src/dupe.c:160 src/search.c:363
+#, fuzzy
+msgid "Toggle thumbs"
+msgstr "Argazkitxoak kargatzen..."
+
+#: src/dupe.c:164 src/search.c:367
+#, fuzzy
+msgid "Collection from selection"
+msgstr "Fitxategi zerrendatik erantsi"
+
+#: src/dupe.c:165
+#, fuzzy
+msgid "Append list"
+msgstr "Er_antsi"
+
+#: src/dupe.c:167
+#, fuzzy
+msgid "Select group 1 duplicates"
+msgstr "_1 Taldearen bikoiztutakoak hautatu"
+
+#: src/dupe.c:168
+#, fuzzy
+msgid "Select group 2 duplicates"
+msgstr "_2 Taldearen bikoiztutakoak hautatu"
 
 #: src/dupe.c:255
 msgid "Drop files to compare them."
@@ -1256,17 +1429,18 @@ msgstr "%d fitxategiak (2 sorta)"
 msgid "Name case-insensitive"
 msgstr "Larri/xeheak bereiziz ordenatu"
 
-#: src/dupe.c:3980 src/dupe.c:4704 src/dupe.c:5287 src/preferences.c:2425
-#: src/search.c:3694 src/view_file/view_file_list.c:2240
+#: src/dupe.c:3980 src/dupe.c:4704 src/dupe.c:5287 src/osd.c:41
+#: src/preferences.c:2425 src/search.c:3695 src/view_file/view_file_list.c:2240
 msgid "Size"
 msgstr "Tamaina"
 
-#: src/dupe.c:3981 src/dupe.c:4705 src/dupe.c:5287 src/search.c:3695
+#: src/dupe.c:3981 src/dupe.c:4705 src/dupe.c:5287 src/exif.c:334
+#: src/exif-common.c:916 src/osd.c:40 src/search.c:3696
 #: src/view_file/view_file_list.c:2244
 msgid "Date"
 msgstr "Data"
 
-#: src/dupe.c:3982 src/dupe.c:4706 src/search.c:3696
+#: src/dupe.c:3982 src/dupe.c:4706 src/osd.c:43 src/search.c:3697
 msgid "Dimensions"
 msgstr "Neurriak"
 
@@ -1303,16 +1477,17 @@ msgstr "Irudi edukia"
 msgid "Name case-insensitive ≠ content"
 msgstr "Larri/xeheak bereiziz ordenatu"
 
-#: src/dupe.c:4639 src/dupe.c:5028
+#: src/dupe.c:4639 src/dupe.c:5028 src/preferences.c:802 src/search.c:369
+#: src/toolbar.c:92
 #, fuzzy
 msgid "Find duplicates"
 msgstr "Bikoi_ztuak bilatu..."
 
-#: src/dupe.c:4701 src/search.c:3691
+#: src/dupe.c:4701 src/search.c:3692
 msgid "Rank"
 msgstr "Sailkapena"
 
-#: src/dupe.c:4702 src/search.c:3692
+#: src/dupe.c:4702 src/search.c:3693
 #, fuzzy
 msgid "Thumb"
 msgstr "Argazkitxoak"
@@ -1327,7 +1502,7 @@ msgstr "Bilatu:"
 msgid "Compare to:"
 msgstr "Honekin parekatu:"
 
-#: src/dupe.c:4782 src/preferences.c:1973 src/search.c:3710
+#: src/dupe.c:4782 src/preferences.c:1973 src/search.c:3711
 msgid "Thumbnails"
 msgstr "Argazkitxoak"
 
@@ -1381,11 +1556,11 @@ msgstr "Antzekotasuna"
 msgid "Thumbnail"
 msgstr "Argazkitxoak"
 
-#: src/dupe.c:5287 src/preferences.c:3957
+#: src/dupe.c:5287 src/exif.c:373 src/preferences.c:3957
 msgid "Width"
 msgstr "Zabalera"
 
-#: src/dupe.c:5287 src/preferences.c:3959
+#: src/dupe.c:5287 src/exif.c:374 src/preferences.c:3959
 msgid "Height"
 msgstr "Altuera"
 
@@ -1417,11 +1592,11 @@ msgstr ""
 msgid "Desktop file '%s' should not include extension in Icon key: '%s'\n"
 msgstr ""
 
-#: src/editors.c:379 src/exif-common.c:428
+#: src/editors.c:379 src/exif.c:218 src/exif-common.c:428
 msgid "yes"
 msgstr "bai"
 
-#: src/editors.c:379 src/exif-common.c:428
+#: src/editors.c:379 src/exif.c:217 src/exif-common.c:428
 msgid "no"
 msgstr "ez"
 
@@ -1495,10 +1670,650 @@ msgstr ""
 msgid "Unknown error."
 msgstr ""
 
+#: src/exif.c:140 src/exif.c:153 src/exif.c:167 src/exif.c:192 src/exif.c:309
 #: src/exif.c:656 src/exif-common.c:404 src/exif-common.c:407
 #: src/exif-common.c:474
 msgid "unknown"
 msgstr "ezezaguna"
+
+#: src/exif.c:141
+msgid "top left"
+msgstr "goian ezkerrean"
+
+#: src/exif.c:142
+msgid "top right"
+msgstr "goian eskuinean"
+
+#: src/exif.c:143
+msgid "bottom right"
+msgstr "behean eskuinean"
+
+#: src/exif.c:144
+msgid "bottom left"
+msgstr "behean ezkerrean"
+
+#: src/exif.c:145
+msgid "left top"
+msgstr "ezkerrean goian"
+
+#: src/exif.c:146
+msgid "right top"
+msgstr "eskuinean goian"
+
+#: src/exif.c:147
+msgid "right bottom"
+msgstr "eskuinean behean"
+
+#: src/exif.c:148
+msgid "left bottom"
+msgstr "ezkerrean behean"
+
+#: src/exif.c:155
+msgid "inch"
+msgstr "hazbete"
+
+#: src/exif.c:156
+msgid "centimeter"
+msgstr "zentimetro"
+
+#: src/exif.c:168
+msgid "average"
+msgstr "batez bestekoa"
+
+#: src/exif.c:169
+msgid "center weighted"
+msgstr "erdian haztaturik"
+
+#: src/exif.c:170
+msgid "spot"
+msgstr "puntua"
+
+#: src/exif.c:171
+msgid "multi-spot"
+msgstr "puntu anitz"
+
+#: src/exif.c:172
+msgid "multi-segment"
+msgstr "segmentu-anitzekoa"
+
+#: src/exif.c:173
+msgid "partial"
+msgstr "partziala"
+
+#: src/exif.c:174 src/exif.c:212
+msgid "other"
+msgstr "bestelakoa"
+
+#: src/exif.c:179 src/exif.c:231
+msgid "not defined"
+msgstr "ezarri gabe"
+
+#: src/exif.c:180 src/exif.c:259 src/exif.c:266
+msgid "manual"
+msgstr "eskuz"
+
+#: src/exif.c:181 src/exif.c:252 src/exif.c:288 src/exif.c:295 src/exif.c:302
+msgid "normal"
+msgstr "normala"
+
+#: src/exif.c:182
+msgid "aperture"
+msgstr "irekiera"
+
+#: src/exif.c:183
+msgid "shutter"
+msgstr "obturadorea"
+
+#: src/exif.c:184
+msgid "creative"
+msgstr "sortzaile"
+
+#: src/exif.c:185
+msgid "action"
+msgstr "ekintza"
+
+#: src/exif.c:186 src/exif.c:273
+msgid "portrait"
+msgstr "erretratu"
+
+#: src/exif.c:187 src/exif.c:272
+msgid "landscape"
+msgstr "paisaia"
+
+#: src/exif.c:193
+msgid "daylight"
+msgstr "egun-argiz"
+
+#: src/exif.c:194
+msgid "fluorescent"
+msgstr "fluoreszentea"
+
+#: src/exif.c:195
+msgid "tungsten (incandescent)"
+msgstr "tungstenioa (goritasun)"
+
+#: src/exif.c:196
+msgid "flash"
+msgstr "flash-a"
+
+#: src/exif.c:197
+#, fuzzy
+msgid "fine weather"
+msgstr "bestelakoa"
+
+#: src/exif.c:198
+msgid "cloudy weather"
+msgstr ""
+
+#: src/exif.c:199
+msgid "shade"
+msgstr ""
+
+#: src/exif.c:200
+#, fuzzy
+msgid "daylight fluorescent"
+msgstr "fluoreszentea"
+
+#: src/exif.c:201
+#, fuzzy
+msgid "day white fluorescent"
+msgstr "fluoreszentea"
+
+#: src/exif.c:202
+#, fuzzy
+msgid "cool white fluorescent"
+msgstr "fluoreszentea"
+
+#: src/exif.c:203
+#, fuzzy
+msgid "white fluorescent"
+msgstr "fluoreszentea"
+
+#: src/exif.c:204
+#, fuzzy
+msgid "standard light A"
+msgstr "Egutegia"
+
+#: src/exif.c:205
+#, fuzzy
+msgid "standard light B"
+msgstr "Egutegia"
+
+#: src/exif.c:206
+#, fuzzy
+msgid "standard light C"
+msgstr "Egutegia"
+
+#: src/exif.c:207
+msgid "D55"
+msgstr ""
+
+#: src/exif.c:208
+msgid "D65"
+msgstr ""
+
+#: src/exif.c:209
+msgid "D75"
+msgstr ""
+
+#: src/exif.c:210
+msgid "D50"
+msgstr ""
+
+#: src/exif.c:211
+msgid "ISO studio tungsten"
+msgstr ""
+
+#: src/exif.c:219
+msgid "yes, not detected by strobe"
+msgstr "bai, ez da strobe bidez atzeman"
+
+#: src/exif.c:220
+msgid "yes, detected by strobe"
+msgstr "bai, estrobe bidez atzemanda"
+
+#: src/exif.c:226
+msgid "uncalibrated"
+msgstr ""
+
+#: src/exif.c:232
+msgid "1 chip color area"
+msgstr ""
+
+#: src/exif.c:233
+msgid "2 chip color area"
+msgstr ""
+
+#: src/exif.c:234
+msgid "3 chip color area"
+msgstr ""
+
+#: src/exif.c:235
+msgid "color sequential area"
+msgstr ""
+
+#: src/exif.c:236
+#, fuzzy
+msgid "trilinear"
+msgstr "Bilineala"
+
+#: src/exif.c:237
+msgid "color sequential linear"
+msgstr ""
+
+#: src/exif.c:242
+msgid "digital still camera"
+msgstr ""
+
+#: src/exif.c:247
+msgid "direct photo"
+msgstr ""
+
+#: src/exif.c:253
+#, fuzzy
+msgid "custom"
+msgstr "Pertsonalizatua"
+
+#: src/exif.c:258 src/exif.c:265 src/exif-common.c:442
+msgid "auto"
+msgstr "automatikoa"
+
+#: src/exif.c:260
+#, fuzzy
+msgid "auto bracket"
+msgstr "Berrizendaketa automatikoa"
+
+#: src/exif.c:271
+#, fuzzy
+msgid "standard"
+msgstr "Egutegia"
+
+#: src/exif.c:274
+#, fuzzy
+msgid "night scene"
+msgstr "Argi jatorria"
+
+#: src/exif.c:279
+#, fuzzy
+msgid "none"
+msgstr "eginda"
+
+#: src/exif.c:280
+#, fuzzy
+msgid "low gain up"
+msgstr "Garbitu"
+
+#: src/exif.c:281
+#, fuzzy
+msgid "high gain up"
+msgstr "Garbitu"
+
+#: src/exif.c:282
+#, fuzzy
+msgid "low gain down"
+msgstr "_Leiho itxi"
+
+#: src/exif.c:283
+#, fuzzy
+msgid "high gain down"
+msgstr "_Leiho itxi"
+
+#: src/exif.c:289 src/exif.c:303
+#, fuzzy
+msgid "soft"
+msgstr "puntua"
+
+#: src/exif.c:290 src/exif.c:304
+msgid "hard"
+msgstr ""
+
+#: src/exif.c:296
+msgid "low"
+msgstr ""
+
+#: src/exif.c:297
+#, fuzzy
+msgid "high"
+msgstr "Altuera"
+
+#: src/exif.c:310
+msgid "macro"
+msgstr ""
+
+#: src/exif.c:311
+msgid "close"
+msgstr ""
+
+#: src/exif.c:312
+msgid "distant"
+msgstr ""
+
+#: src/exif.c:322
+#, fuzzy
+msgid "Image Width"
+msgstr "Irudi fitxategia"
+
+#: src/exif.c:323
+#, fuzzy
+msgid "Image Height"
+msgstr "Altuera"
+
+#: src/exif.c:324
+msgid "Bits per Sample/Pixel"
+msgstr ""
+
+#: src/exif.c:325
+#, fuzzy
+msgid "Compression"
+msgstr "Konpresio erratioa:"
+
+#: src/exif.c:326
+msgid "Image description"
+msgstr "Irudia azalpena"
+
+#: src/exif.c:327
+#, fuzzy
+msgid "Camera make"
+msgstr "Kamara"
+
+#: src/exif.c:328
+#, fuzzy
+msgid "Camera model"
+msgstr "Kamara"
+
+#: src/exif.c:329
+msgid "Orientation"
+msgstr "Orientazioa"
+
+#: src/exif.c:330
+#, fuzzy
+msgid "X resolution"
+msgstr "Bereizmena"
+
+#: src/exif.c:331
+#, fuzzy
+msgid "Y Resolution"
+msgstr "Bereizmena"
+
+#: src/exif.c:332
+#, fuzzy
+msgid "Resolution units"
+msgstr "Bereizmena"
+
+#: src/exif.c:333
+msgid "Firmware"
+msgstr ""
+
+#: src/exif.c:335
+msgid "White point"
+msgstr ""
+
+#: src/exif.c:336
+msgid "Primary chromaticities"
+msgstr ""
+
+#: src/exif.c:337
+msgid "YCbCy coefficients"
+msgstr ""
+
+#: src/exif.c:338
+msgid "YCbCr positioning"
+msgstr ""
+
+#: src/exif.c:339
+#, fuzzy
+msgid "Black white reference"
+msgstr "Geeqie Hobespenak"
+
+#: src/exif.c:341
+msgid "SubIFD Exif offset"
+msgstr ""
+
+#: src/exif.c:343
+#, fuzzy
+msgid "Exposure time (seconds)"
+msgstr "Agerpena alborapena"
+
+#: src/exif.c:344
+msgid "FNumber"
+msgstr ""
+
+#: src/exif.c:345
+msgid "Exposure program"
+msgstr "Agerpen programa"
+
+#: src/exif.c:346
+#, fuzzy
+msgid "Spectral Sensitivity"
+msgstr "ISO sentsibilitatea"
+
+#: src/exif.c:347 src/exif.c:383 src/exif-common.c:921
+msgid "ISO sensitivity"
+msgstr "ISO sentsibilitatea"
+
+#: src/exif.c:348
+#, fuzzy
+msgid "Optoelectric conversion factor"
+msgstr "Bilduma ireki"
+
+#: src/exif.c:349
+#, fuzzy
+msgid "Exif version"
+msgstr "Lei_ho berria"
+
+#: src/exif.c:350
+msgid "Date original"
+msgstr "Jatorrizko data"
+
+#: src/exif.c:351 src/osd.c:57
+msgid "Date digitized"
+msgstr "Digitalizazio data"
+
+#: src/exif.c:352
+#, fuzzy
+msgid "Pixel format"
+msgstr "Fitxategi formatua:"
+
+#: src/exif.c:353
+#, fuzzy
+msgid "Compression ratio"
+msgstr "Konpresio erratioa:"
+
+#: src/exif.c:354 src/exif-common.c:918
+msgid "Shutter speed"
+msgstr "Obturadore abiadura"
+
+#: src/exif.c:355 src/exif-common.c:919 src/osd.c:59
+msgid "Aperture"
+msgstr "Irekiera"
+
+#: src/exif.c:356
+#, fuzzy
+msgid "Brightness"
+msgstr "Argi jatorria"
+
+#: src/exif.c:357 src/exif-common.c:920 src/osd.c:60
+msgid "Exposure bias"
+msgstr "Agerpena alborapena"
+
+#: src/exif.c:358
+#, fuzzy
+msgid "Maximum aperture"
+msgstr "irekiera"
+
+#: src/exif.c:359 src/exif-common.c:924 src/osd.c:67
+msgid "Subject distance"
+msgstr "Elementu distantzia"
+
+#: src/exif.c:360
+msgid "Metering mode"
+msgstr "Neurtze modua"
+
+#: src/exif.c:361
+msgid "Light source"
+msgstr "Argi jatorria"
+
+#: src/exif.c:362 src/exif-common.c:925 src/osd.c:68
+msgid "Flash"
+msgstr "Flash-a"
+
+#: src/exif.c:363 src/exif-common.c:922 src/osd.c:65
+msgid "Focal length"
+msgstr "Fokuaren luzera"
+
+#: src/exif.c:364
+#, fuzzy
+msgid "Subject area"
+msgstr "Elementu distantzia"
+
+#: src/exif.c:365
+msgid "MakerNote"
+msgstr ""
+
+#: src/exif.c:366
+#, fuzzy
+msgid "UserComment"
+msgstr "Iruzkina:"
+
+#: src/exif.c:367
+#, fuzzy
+msgid "Subsecond time"
+msgstr "Jatorrizko data"
+
+#: src/exif.c:368
+#, fuzzy
+msgid "Subsecond time original"
+msgstr "Jatorrizko data"
+
+#: src/exif.c:369
+#, fuzzy
+msgid "Subsecond time digitized"
+msgstr "Digitalizazio data"
+
+#: src/exif.c:370
+msgid "FlashPix version"
+msgstr ""
+
+#: src/exif.c:371
+#, fuzzy
+msgid "Colorspace"
+msgstr "Fitxategi guztiak"
+
+#: src/exif.c:375
+#, fuzzy
+msgid "Audio data"
+msgstr "E_xif datuak"
+
+#: src/exif.c:376
+#, fuzzy
+msgid "ExifR98 extension"
+msgstr "Fitxategi Iragaztea Ezgaitu"
+
+#: src/exif.c:377
+#, fuzzy
+msgid "Flash strength"
+msgstr "Fokuaren luzera"
+
+#: src/exif.c:378
+msgid "Spatial frequency response"
+msgstr ""
+
+#: src/exif.c:379
+msgid "X Pixel density"
+msgstr ""
+
+#: src/exif.c:380
+msgid "Y Pixel density"
+msgstr ""
+
+#: src/exif.c:381
+msgid "Pixel density units"
+msgstr ""
+
+#: src/exif.c:382
+#, fuzzy
+msgid "Subject location"
+msgstr "Hautapena"
+
+#: src/exif.c:384
+#, fuzzy
+msgid "Sensor type"
+msgstr "Ordenatu gabe"
+
+#: src/exif.c:385
+#, fuzzy
+msgid "Source type"
+msgstr "Iturburua"
+
+#: src/exif.c:386
+#, fuzzy
+msgid "Scene type"
+msgstr "zentimetro"
+
+#: src/exif.c:387
+msgid "Color filter array pattern"
+msgstr ""
+
+#: src/exif.c:389
+#, fuzzy
+msgid "Render process"
+msgstr "Errendatu"
+
+#: src/exif.c:390
+#, fuzzy
+msgid "Exposure mode"
+msgstr "Agerpena alborapena"
+
+#: src/exif.c:391
+msgid "White balance"
+msgstr ""
+
+#: src/exif.c:392
+msgid "Digital zoom ratio"
+msgstr ""
+
+#: src/exif.c:393
+#, fuzzy
+msgid "Focal length (35mm)"
+msgstr "Fokuaren luzera"
+
+#: src/exif.c:394
+#, fuzzy
+msgid "Scene capture type"
+msgstr "zentimetro"
+
+#: src/exif.c:395
+#, fuzzy
+msgid "Gain control"
+msgstr "Kontrol Mugikorrak"
+
+#: src/exif.c:396
+#, fuzzy
+msgid "Contrast"
+msgstr "erretratu"
+
+#: src/exif.c:397 src/preferences.c:3366
+#, fuzzy
+msgid "Saturation"
+msgstr "ekintza"
+
+#: src/exif.c:398
+msgid "Sharpness"
+msgstr ""
+
+#: src/exif.c:399
+msgid "Device setting"
+msgstr ""
+
+#: src/exif.c:400
+#, fuzzy
+msgid "Subject range"
+msgstr "Elementu distantzia"
+
+#: src/exif.c:401
+#, fuzzy
+msgid "Image serial number"
+msgstr "Irudi fitxategia"
 
 #: src/exif.c:1108
 msgid "Can't get image comment: not compiled with Exiv2.\n"
@@ -1523,10 +2338,6 @@ msgstr "aktibatuta"
 #: src/exif-common.c:439
 msgid "off"
 msgstr "desaktibatuta"
-
-#: src/exif-common.c:442
-msgid "auto"
-msgstr "automatikoa"
 
 #: src/exif-common.c:448
 msgid "not detected by strobe"
@@ -1558,6 +2369,113 @@ msgstr ""
 
 #: src/exif-common.c:610
 msgid "Below Sea Level"
+msgstr ""
+
+#: src/exif-common.c:915 src/osd.c:62
+#, fuzzy
+msgid "Camera"
+msgstr "Kamara"
+
+#: src/exif-common.c:917
+#, fuzzy
+msgid "DateDigitized"
+msgstr "Digitalizazio data"
+
+#: src/exif-common.c:923
+#, fuzzy
+msgid "Focal length 35mm"
+msgstr "Fokuaren luzera"
+
+#: src/exif-common.c:926 src/osd.c:61
+#, fuzzy
+msgid "Resolution"
+msgstr "Bereizmena"
+
+#: src/exif-common.c:927 src/osd.c:69
+#, fuzzy
+msgid "Color profile"
+msgstr "Fitxategi guztiak"
+
+#: src/exif-common.c:928
+msgid "GPS position"
+msgstr ""
+
+#: src/exif-common.c:929
+msgid "GPS altitude"
+msgstr ""
+
+#: src/exif-common.c:930 src/osd.c:72
+#, fuzzy
+msgid "Local time"
+msgstr "Kokalekua:"
+
+#: src/exif-common.c:931
+#, fuzzy
+msgid "Time zone"
+msgstr "Denbora-lerroa"
+
+#: src/exif-common.c:932 src/osd.c:74
+#, fuzzy
+msgid "Country name"
+msgstr "Izenez ordenatu"
+
+#: src/exif-common.c:933 src/osd.c:75
+#, fuzzy
+msgid "Country code"
+msgstr "Izenez ordenatu"
+
+#: src/exif-common.c:934 src/osd.c:77
+#, fuzzy
+msgid "Star rating"
+msgstr "Dataz ordenatu"
+
+#: src/exif-common.c:935
+#, fuzzy
+msgid "File size"
+msgstr "Fitxategi tamaina:"
+
+#: src/exif-common.c:936
+#, fuzzy
+msgid "File date"
+msgstr "Fitxategia data:"
+
+#: src/exif-common.c:937 src/osd.c:50
+#, fuzzy
+msgid "File mode"
+msgstr "Fitxategi izena"
+
+#: src/exif-common.c:938 src/osd.c:49
+#, fuzzy
+msgid "File ctime"
+msgstr "Fitxategi tamaina:"
+
+#: src/exif-common.c:939 src/osd.c:51
+#, fuzzy
+msgid "File owner"
+msgstr "Fitxategi izena"
+
+#: src/exif-common.c:940 src/osd.c:52
+#, fuzzy
+msgid "File group"
+msgstr "Ez da fitxategia aurkitu"
+
+#: src/exif-common.c:941 src/osd.c:53
+#, fuzzy
+msgid "File link"
+msgstr "Ez da fitxategia aurkitu"
+
+#: src/exif-common.c:942 src/osd.c:54
+#, fuzzy
+msgid "File class"
+msgstr "Fitxategiak"
+
+#: src/exif-common.c:943
+#, fuzzy
+msgid "Page no."
+msgstr "%d orrialdea"
+
+#: src/exif-common.c:944 src/osd.c:63
+msgid "Lens"
 msgstr ""
 
 #: src/filedata.c:112
@@ -1644,7 +2562,10 @@ msgstr ""
 msgid "Error: Unable to write marks lists to: %s\n"
 msgstr "Ezin da historioa zerrenda hemen idatzi: %s\n"
 
-#: src/fullscreen.c:242 src/preferences.c:2438
+#: src/fullscreen.c:242 src/img-view.c:131 src/layout_util.c:2588
+#: src/layout_util.c:2589 src/layout_util.c:2590 src/pan-view/pan-view.c:120
+#: src/pan-view/pan-view.c:121 src/pan-view/pan-view.c:122
+#: src/preferences.c:2438
 msgid "Full screen"
 msgstr "Pantaila osoa"
 
@@ -1755,42 +2676,186 @@ msgstr ""
 msgid "JP2 image not rgb"
 msgstr ""
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1885
+#: src/img-view.c:99 src/menu.c:359 src/preferences.c:821 src/toolbar.c:112
+#, fuzzy
+msgid "Rotate 180°"
+msgstr "1_80 Biratu"
+
+#: src/img-view.c:100
+#, fuzzy
+msgid "Rotate mirror"
+msgstr "Irudi fitxategia"
+
+#: src/img-view.c:101
+#, fuzzy
+msgid "Rotate flip"
+msgstr "Irudi iraulketa leuna"
+
+#: src/img-view.c:102
+#, fuzzy
+msgid " Rotate counterclockwise 90°"
+msgstr "Biratu e_zkerretaraka"
+
+#: src/img-view.c:103
+#, fuzzy
+msgid " Rotate clockwise 90°"
+msgstr "_Biratu eskuinetaraka"
+
+#: src/img-view.c:104 src/img-view.c:105 src/img-view.c:106 src/img-view.c:107
+#, fuzzy
+msgid "Previous"
+msgstr "aurreko irudia"
+
+#: src/img-view.c:108 src/img-view.c:109 src/img-view.c:110 src/img-view.c:111
+#, fuzzy
+msgid "Next"
+msgstr "hurrengo irudia"
+
+#: src/img-view.c:112 src/img-view.c:113 src/layout_util.c:2554
+#: src/layout_util.c:2555 src/pan-view/pan-view.c:108
+#: src/pan-view/pan-view.c:109 src/preferences.c:825 src/toolbar.c:116
+msgid "Zoom in"
+msgstr "Zooma handiagotu"
+
+#: src/img-view.c:114 src/layout_util.c:2556 src/layout_util.c:2557
+#: src/pan-view/pan-view.c:110 src/preferences.c:826 src/toolbar.c:117
+msgid "Zoom out"
+msgstr "Zooma txikiagotu"
+
+#: src/img-view.c:115 src/img-view.c:116 src/img-view.c:1406
+#: src/layout_image.c:776 src/layout_util.c:2560 src/layout_util.c:2561
+#: src/preferences.c:828 src/toolbar.c:119
+#, fuzzy
+msgid "Zoom to fit"
+msgstr "Gerturatu _doitzeko"
+
+#: src/img-view.c:117 src/img-view.c:118 src/img-view.c:119
+#: src/layout_util.c:2558 src/layout_util.c:2559 src/pan-view/pan-view.c:111
+#: src/pan-view/pan-view.c:112 src/pan-view/pan-view.c:113
+#: src/preferences.c:827 src/toolbar.c:118
+#, fuzzy
+msgid "Zoom 1:1"
+msgstr "Zooma _1:1"
+
+#: src/img-view.c:120 src/layout_util.c:2564 src/pan-view/pan-view.c:114
+#: src/preferences.c:831 src/toolbar.c:122
+#, fuzzy
+msgid "Zoom 2:1"
+msgstr "Zooma _1:1"
+
+#: src/img-view.c:121 src/layout_util.c:2565 src/pan-view/pan-view.c:115
+#: src/preferences.c:832 src/toolbar.c:123
+#, fuzzy
+msgid "Zoom 3:1"
+msgstr "Zooma _1:1"
+
+#: src/img-view.c:122 src/layout_util.c:2566 src/pan-view/pan-view.c:116
+#: src/preferences.c:833 src/toolbar.c:124
+#, fuzzy
+msgid "Zoom 4:1"
+msgstr "Zooma _1:1"
+
+#: src/img-view.c:123 src/layout_util.c:2569 src/layout_util.c:2585
+#: src/pan-view/pan-view.c:117 src/preferences.c:836 src/toolbar.c:127
+#, fuzzy
+msgid "Zoom 1:4"
+msgstr "Zooma _1:1"
+
+#: src/img-view.c:124 src/layout_util.c:2568 src/layout_util.c:2584
+#: src/pan-view/pan-view.c:118
+#, fuzzy
+msgid "Zoom 1:3"
+msgstr "Zooma _1:1"
+
+#: src/img-view.c:125 src/layout_util.c:2567 src/layout_util.c:2583
+#: src/pan-view/pan-view.c:119 src/preferences.c:834 src/toolbar.c:125
+#, fuzzy
+msgid "Zoom 1:2"
+msgstr "Zooma _1:1"
+
+#: src/img-view.c:126
+#, fuzzy
+msgid "Zoom fit window width"
+msgstr "Gerturatu _doitzeko"
+
+#: src/img-view.c:127
+#, fuzzy
+msgid "Zoom fit window height"
+msgstr "Gerturatu _doitzeko"
+
+#: src/img-view.c:128 src/layout_util.c:2632
+#, fuzzy
+msgid "Toggle slideshow"
+msgstr "Aurkezpena _txandakatu"
+
+#: src/img-view.c:129 src/layout_util.c:2597 src/preferences.c:842
+#: src/toolbar.c:138
+#, fuzzy
+msgid "Pause slideshow"
+msgstr "Aurkezpena _pausarazi"
+
+#: src/img-view.c:130
+#, fuzzy
+msgid "Reload image"
+msgstr "Ausazkoa"
+
+#: src/img-view.c:132 src/img-view.c:133
+#, fuzzy
+msgid "Fullscreen"
+msgstr "Pantaila osoa"
+
+#: src/img-view.c:134
+#, fuzzy
+msgid "Image overlay"
+msgstr "Irudi bilaketa - Geeqie"
+
+#: src/img-view.c:135 src/pan-view/pan-view.c:106
+#, fuzzy
+msgid "Exit fullscreen"
+msgstr "Irten _pantaila osotik"
+
+#: src/img-view.c:137
+#, fuzzy
+msgid "Desaturate"
+msgstr "Natura"
+
+#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1891
 #: src/layout_util.c:914 src/view_file/view_file.c:396
 #, fuzzy
 msgid "Cannot open archive file"
 msgstr "Ezin da karpeta sortu"
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1885
+#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1891
 #: src/layout_util.c:914 src/preferences.c:4219 src/preferences.c:4227
 #: src/view_file/view_file.c:396
 #, fuzzy
 msgid "See the Log Window"
 msgstr "Leihoak"
 
-#: src/img-view.c:1403 src/layout_image.c:773 src/pan-view/pan-view.c:2382
+#: src/img-view.c:1403 src/layout_image.c:773 src/layout_util.c:2554
+#: src/layout_util.c:2555 src/layout_util.c:2570 src/layout_util.c:2571
+#: src/pan-view/pan-view.c:2382
 msgid "Zoom _in"
 msgstr "Zooma _handiagotu"
 
-#: src/img-view.c:1404 src/layout_image.c:774 src/pan-view/pan-view.c:2384
+#: src/img-view.c:1404 src/layout_image.c:774 src/layout_util.c:2556
+#: src/layout_util.c:2557 src/layout_util.c:2572 src/layout_util.c:2573
+#: src/pan-view/pan-view.c:2384
 msgid "Zoom _out"
 msgstr "Zooma _txikiagotu"
 
-#: src/img-view.c:1405 src/layout_image.c:775 src/pan-view/pan-view.c:2386
+#: src/img-view.c:1405 src/layout_image.c:775 src/layout_util.c:2558
+#: src/layout_util.c:2559 src/layout_util.c:2574 src/layout_util.c:2575
+#: src/pan-view/pan-view.c:2386
 msgid "Zoom _1:1"
 msgstr "Zooma _1:1"
-
-#: src/img-view.c:1406 src/layout_image.c:776
-#, fuzzy
-msgid "Zoom to fit"
-msgstr "Gerturatu _doitzeko"
 
 #: src/img-view.c:1418 src/layout_image.c:790
 msgid "_Go to directory view"
 msgstr ""
 
 #: src/img-view.c:1446 src/img-view.c:1460 src/layout_image.c:832
-#: src/layout_image.c:846
+#: src/layout_image.c:846 src/layout_util.c:2632
 msgid "Toggle _slideshow"
 msgstr "Aurkezpena _txandakatu"
 
@@ -1811,7 +2876,7 @@ msgstr "Irten _pantaila osotik"
 msgid "_Full screen"
 msgstr "_Pantaila osoa"
 
-#: src/img-view.c:1476 src/pan-view/pan-view.c:2482
+#: src/img-view.c:1476 src/layout_util.c:2493 src/pan-view/pan-view.c:2482
 msgid "C_lose window"
 msgstr "Leihoa it_xi"
 
@@ -1902,7 +2967,7 @@ msgstr "Hautatu karpeta"
 msgid "[Pixel x,y coord]: (Pixel R,G,B value)"
 msgstr ""
 
-#: src/layout.c:1625
+#: src/layout.c:1625 src/layout_config.c:67
 msgid "Tools"
 msgstr "Tresnak"
 
@@ -1954,22 +3019,32 @@ msgstr "Diseinua"
 msgid "Invalid geometry\n"
 msgstr "Karpeta baliogabea"
 
+#: src/layout_config.c:67 src/ui_pathsel.c:1179
+msgid "Files"
+msgstr "Fitxategiak"
+
+#: src/layout_config.c:67 src/preferences.c:131 src/preferences.c:2242
+#: src/search.c:2261 src/search.c:3606
+msgid "Image"
+msgstr "Irudia"
+
 #: src/layout_config.c:358
 msgid "(drag to change order)"
 msgstr "(mugitu ordena aldatzeko)"
 
-#: src/layout_image.c:793 src/layout_util.c:2285 src/view_file/view_file.c:701
+#: src/layout_image.c:793 src/layout_util.c:2285 src/layout_util.c:2587
+#: src/view_file/view_file.c:701
 #, fuzzy
 msgid "Open archive"
 msgstr "_Azkenak ireki"
 
-#: src/layout_image.c:807 src/pan-view/pan-view.c:2409
+#: src/layout_image.c:807 src/layout_util.c:2532 src/pan-view/pan-view.c:2409
 #: src/view_file/view_file.c:710
 #, fuzzy
 msgid "_Copy path to clipboard"
 msgstr "K_opiatu"
 
-#: src/layout_image.c:808 src/pan-view/pan-view.c:2411
+#: src/layout_image.c:808 src/layout_util.c:2533 src/pan-view/pan-view.c:2411
 #: src/view_file/view_file.c:712
 #, fuzzy
 msgid "_Copy path unquoted to clipboard"
@@ -1980,7 +3055,7 @@ msgstr "K_opiatu"
 msgid "Copy _image to clipboard"
 msgstr "K_opiatu"
 
-#: src/layout_image.c:860
+#: src/layout_image.c:860 src/layout_util.c:2639
 msgid "GIF _animation"
 msgstr ""
 
@@ -1988,17 +3063,17 @@ msgstr ""
 msgid "Hide file _list"
 msgstr "Fitxategi _zerrenda ezkutatu"
 
-#: src/layout_image.c:2110
+#: src/layout_image.c:2116
 #, c-format
 msgid "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 msgstr ""
 
-#: src/layout_image.c:2118
+#: src/layout_image.c:2124
 #, c-format
 msgid "[%*s,%*s]: RGB(---,---,---)"
 msgstr ""
 
-#: src/layout_util.c:244
+#: src/layout_util.c:244 src/layout_util.c:2618
 #, fuzzy
 msgid "Clear Marks"
 msgstr "Zakarrontzia hustu"
@@ -2051,12 +3126,12 @@ msgstr ""
 msgid "Window layout name \"%s\" already exists."
 msgstr "%s izeneko fitxategi bat badago dagoeneko."
 
-#: src/layout_util.c:2155 src/layout_util.c:2404
+#: src/layout_util.c:2155 src/layout_util.c:2404 src/layout_util.c:2520
 #, fuzzy
 msgid "Rename window"
 msgstr "Lei_ho berria"
 
-#: src/layout_util.c:2255 src/layout_util.c:2435
+#: src/layout_util.c:2255 src/layout_util.c:2435 src/layout_util.c:2521
 #, fuzzy
 msgid "Delete window"
 msgstr "Leihoa it_xi"
@@ -2072,6 +3147,1266 @@ msgstr "Lei_ho berria"
 
 #: src/layout_util.c:2438
 msgid "Delete window layout"
+msgstr ""
+
+#: src/layout_util.c:2464
+msgid "_File"
+msgstr "_Fitxategia"
+
+#: src/layout_util.c:2465
+msgid "_Go"
+msgstr ""
+
+#: src/layout_util.c:2466
+msgid "_Edit"
+msgstr "_Editatu"
+
+#: src/layout_util.c:2467
+#, fuzzy
+msgid "_Select"
+msgstr "Hautapena"
+
+#: src/layout_util.c:2468 src/menu.c:411
+#, fuzzy
+msgid "_Orientation"
+msgstr "Orientazioa"
+
+#: src/layout_util.c:2469
+#, fuzzy
+msgid "_Rating"
+msgstr "Inprimatze errorea"
+
+#: src/layout_util.c:2470
+#, fuzzy
+msgid "P_references"
+msgstr "H_obespenak..."
+
+#: src/layout_util.c:2472
+#, fuzzy
+msgid "_Files and Folders"
+msgstr "Erakutsi ezkutukoak"
+
+#: src/layout_util.c:2473
+#, fuzzy
+msgid "_Zoom"
+msgstr "Zooma"
+
+#: src/layout_util.c:2474
+#, fuzzy
+msgid "_Color Management"
+msgstr "Ordenatze Kudeatzailea"
+
+#: src/layout_util.c:2475
+#, fuzzy
+msgid "_Connected Zoom"
+msgstr "Zooma txikiagotu"
+
+#: src/layout_util.c:2476
+msgid "Spli_t"
+msgstr ""
+
+#: src/layout_util.c:2477
+msgid "Stere_o"
+msgstr ""
+
+#: src/layout_util.c:2478 src/layout_util.c:2636
+#, fuzzy
+msgid "Image _Overlay"
+msgstr "Irudi bilaketa - Geeqie"
+
+#: src/layout_util.c:2479 src/menu.c:121
+msgid "_Plugins"
+msgstr ""
+
+#: src/layout_util.c:2480
+#, fuzzy
+msgid "_Windows"
+msgstr "Leihoak"
+
+#: src/layout_util.c:2481
+msgid "_Help"
+msgstr "_Laguntza"
+
+#: src/layout_util.c:2483
+#, fuzzy
+msgid "Copy..."
+msgstr "K_opiatu..."
+
+#: src/layout_util.c:2484
+#, fuzzy
+msgid "Move..."
+msgstr "_Lekuz aldatu..."
+
+#: src/layout_util.c:2485
+#, fuzzy
+msgid "Rename..."
+msgstr "I_zena aldatu..."
+
+#: src/layout_util.c:2489
+#, fuzzy
+msgid "Delete..."
+msgstr "_Ezabatu..."
+
+#: src/layout_util.c:2490
+msgid "Select _all"
+msgstr "_Hautatu denak"
+
+#: src/layout_util.c:2491
+msgid "Select _none"
+msgstr "_Bat ere ez hautatu"
+
+#: src/layout_util.c:2492
+#, fuzzy
+msgid "_Invert Selection"
+msgstr "Hautapena"
+
+#: src/layout_util.c:2492
+#, fuzzy
+msgid "Invert Selection"
+msgstr "Hautapena"
+
+#: src/layout_util.c:2494
+msgid "_Quit"
+msgstr "Irte_n"
+
+#: src/layout_util.c:2494 src/preferences.c:854 src/toolbar.c:150
+#, fuzzy
+msgid "Quit"
+msgstr "Irte_n"
+
+#: src/layout_util.c:2495
+#, fuzzy
+msgid "_First Image"
+msgstr "lehen irudia"
+
+#: src/layout_util.c:2495 src/preferences.c:786 src/toolbar.c:74
+#, fuzzy
+msgid "First Image"
+msgstr "lehen irudia"
+
+#: src/layout_util.c:2496 src/layout_util.c:2497 src/layout_util.c:2498
+#, fuzzy
+msgid "_Previous Image"
+msgstr "aurreko irudia"
+
+#: src/layout_util.c:2496 src/layout_util.c:2497 src/layout_util.c:2498
+#: src/preferences.c:787 src/toolbar.c:75
+#, fuzzy
+msgid "Previous Image"
+msgstr "aurreko irudia"
+
+#: src/layout_util.c:2499 src/layout_util.c:2500 src/layout_util.c:2511
+#, fuzzy
+msgid "_Next Image"
+msgstr "hurrengo irudia"
+
+#: src/layout_util.c:2499 src/layout_util.c:2500 src/layout_util.c:2511
+#: src/preferences.c:788 src/toolbar.c:76
+#, fuzzy
+msgid "Next Image"
+msgstr "hurrengo irudia"
+
+#: src/layout_util.c:2502 src/toolbar.c:86
+#, fuzzy
+msgid "Image Forward"
+msgstr "Irudi fitxategia"
+
+#: src/layout_util.c:2502
+msgid "Forward in image history"
+msgstr ""
+
+#: src/layout_util.c:2503 src/toolbar.c:87
+#, fuzzy
+msgid "Image Back"
+msgstr "Irudi bilaketa - Geeqie"
+
+#: src/layout_util.c:2503
+msgid "Back in image history"
+msgstr ""
+
+#: src/layout_util.c:2505
+#, fuzzy
+msgid "_First Page"
+msgstr "lehen irudia"
+
+#: src/layout_util.c:2505
+msgid "First Page of multi-page image"
+msgstr ""
+
+#: src/layout_util.c:2506
+#, fuzzy
+msgid "_Last Page"
+msgstr "azken irudia"
+
+#: src/layout_util.c:2506
+msgid "Last Page of multi-page image"
+msgstr ""
+
+#: src/layout_util.c:2507
+#, fuzzy
+msgid "_Next Page"
+msgstr "hurrengo irudia"
+
+#: src/layout_util.c:2507
+msgid "Next Page of multi-page image"
+msgstr ""
+
+#: src/layout_util.c:2508
+#, fuzzy
+msgid "_Previous Page"
+msgstr "aurreko irudia"
+
+#: src/layout_util.c:2508
+msgid "Previous Page of multi-page image"
+msgstr ""
+
+#: src/layout_util.c:2512
+#, fuzzy
+msgid "_Last Image"
+msgstr "azken irudia"
+
+#: src/layout_util.c:2512 src/preferences.c:789 src/toolbar.c:77
+#, fuzzy
+msgid "Last Image"
+msgstr "azken irudia"
+
+#: src/layout_util.c:2513
+msgid "_Back"
+msgstr ""
+
+#: src/layout_util.c:2513
+msgid "Back in folder history"
+msgstr ""
+
+#: src/layout_util.c:2514
+#, fuzzy
+msgid "_Forward"
+msgstr "Irudi fitxategia"
+
+#: src/layout_util.c:2514
+msgid "Forward in folder history"
+msgstr ""
+
+#: src/layout_util.c:2515
+#, fuzzy
+msgid "_Home"
+msgstr "Etxea"
+
+#: src/layout_util.c:2515 src/options.c:244 src/preferences.c:792
+#: src/toolbar.c:80 src/ui_bookmark.c:560 src/ui_pathsel.c:1047
+msgid "Home"
+msgstr "Etxea"
+
+#: src/layout_util.c:2516
+msgid "_Up"
+msgstr ""
+
+#: src/layout_util.c:2516
+#, fuzzy
+msgid "Up one folder"
+msgstr "Karpeta berria"
+
+#: src/layout_util.c:2517 src/toolbar.c:88
+#, fuzzy
+msgid "New window"
+msgstr "Lei_ho berria"
+
+#: src/layout_util.c:2518
+#, fuzzy
+msgid "default"
+msgstr "Lehenespenak"
+
+#: src/layout_util.c:2518
+#, fuzzy
+msgid "New window (default)"
+msgstr "Lei_ho berria"
+
+#: src/layout_util.c:2519
+#, fuzzy
+msgid "from current"
+msgstr "Erabili unekoa"
+
+#: src/layout_util.c:2522
+msgid "_New collection"
+msgstr "Bildu_ma berria"
+
+#: src/layout_util.c:2522 src/menu.c:472 src/preferences.c:799 src/toolbar.c:89
+#, fuzzy
+msgid "New collection"
+msgstr "Bildu_ma berria"
+
+#: src/layout_util.c:2523
+msgid "_Open collection..."
+msgstr "Bilduma _ireki..."
+
+#: src/layout_util.c:2523
+#, fuzzy
+msgid "Open collection..."
+msgstr "Bilduma _ireki..."
+
+#: src/layout_util.c:2524
+#, fuzzy
+msgid "Open recen_t"
+msgstr "_Azkenak ireki"
+
+#: src/layout_util.c:2524
+#, fuzzy
+msgid "Open recent collection"
+msgstr "Bilduma ireki"
+
+#: src/layout_util.c:2525
+msgid "_Search..."
+msgstr "_Bilatu..."
+
+#: src/layout_util.c:2525
+#, fuzzy
+msgid "Search..."
+msgstr "_Bilatu..."
+
+#: src/layout_util.c:2526
+#, fuzzy
+msgid "Find duplicates..."
+msgstr "Bikoi_ztuak bilatu..."
+
+#: src/layout_util.c:2527
+#, fuzzy
+msgid "Pa_n view"
+msgstr "Pan _ikuspegia"
+
+#: src/layout_util.c:2527 src/preferences.c:809 src/toolbar.c:99
+#, fuzzy
+msgid "Pan view"
+msgstr "Pan _ikuspegia"
+
+#: src/layout_util.c:2528
+msgid "_Print..."
+msgstr "In_primatu..."
+
+#: src/layout_util.c:2529
+msgid "N_ew folder..."
+msgstr "Karpe_ta berria..."
+
+#: src/layout_util.c:2529
+#, fuzzy
+msgid "New folder..."
+msgstr "Ka_rpeta berria..."
+
+#: src/layout_util.c:2530 src/view_file/view_file.c:725
+#, fuzzy
+msgid "Enable file _grouping"
+msgstr "Fitxategi Iragaztea Ezgaitu"
+
+#: src/layout_util.c:2530
+#, fuzzy
+msgid "Enable file grouping"
+msgstr "Fitxategi Iragaztea Ezgaitu"
+
+#: src/layout_util.c:2531 src/view_file/view_file.c:727
+#, fuzzy
+msgid "Disable file groupi_ng"
+msgstr "Fitxategi Iragaztea Ezgaitu"
+
+#: src/layout_util.c:2531
+#, fuzzy
+msgid "Disable file grouping"
+msgstr "Fitxategi Iragaztea Ezgaitu"
+
+#: src/layout_util.c:2532
+#, fuzzy
+msgid "Copy path to clipboard"
+msgstr "K_opiatu"
+
+#: src/layout_util.c:2533
+#, fuzzy
+msgid "Copy path unquoted to clipboard"
+msgstr "K_opiatu"
+
+#: src/layout_util.c:2534
+#, fuzzy
+msgid "_Rating 0"
+msgstr "Inprimatze errorea"
+
+#: src/layout_util.c:2534
+#, fuzzy
+msgid "Rating 0"
+msgstr "Inprimatze errorea"
+
+#: src/layout_util.c:2535
+#, fuzzy
+msgid "_Rating 1"
+msgstr "Inprimatze errorea"
+
+#: src/layout_util.c:2535
+#, fuzzy
+msgid "Rating 1"
+msgstr "Inprimatze errorea"
+
+#: src/layout_util.c:2536
+#, fuzzy
+msgid "_Rating 2"
+msgstr "Inprimatze errorea"
+
+#: src/layout_util.c:2536
+#, fuzzy
+msgid "Rating 2"
+msgstr "Inprimatze errorea"
+
+#: src/layout_util.c:2537
+#, fuzzy
+msgid "_Rating 3"
+msgstr "Inprimatze errorea"
+
+#: src/layout_util.c:2537
+#, fuzzy
+msgid "Rating 3"
+msgstr "Inprimatze errorea"
+
+#: src/layout_util.c:2538
+#, fuzzy
+msgid "_Rating 4"
+msgstr "Inprimatze errorea"
+
+#: src/layout_util.c:2538
+#, fuzzy
+msgid "Rating 4"
+msgstr "Inprimatze errorea"
+
+#: src/layout_util.c:2539
+#, fuzzy
+msgid "_Rating 5"
+msgstr "Inprimatze errorea"
+
+#: src/layout_util.c:2539
+#, fuzzy
+msgid "Rating 5"
+msgstr "Inprimatze errorea"
+
+#: src/layout_util.c:2540
+#, fuzzy
+msgid "_Rating -1"
+msgstr "Inprimatze errorea"
+
+#: src/layout_util.c:2540
+#, fuzzy
+msgid "Rating -1"
+msgstr "Inprimatze errorea"
+
+#: src/layout_util.c:2541
+#, fuzzy
+msgid "_Rotate clockwise 90°"
+msgstr "_Biratu eskuinetaraka"
+
+#: src/layout_util.c:2541
+#, fuzzy
+msgid "Image Rotate clockwise 90°"
+msgstr "_Biratu eskuinetaraka"
+
+#: src/layout_util.c:2542
+#, fuzzy
+msgid "Rotate _counterclockwise 90°"
+msgstr "Biratu e_zkerretaraka"
+
+#: src/layout_util.c:2542 src/menu.c:356 src/preferences.c:820
+#: src/toolbar.c:111
+#, fuzzy
+msgid "Rotate counterclockwise 90°"
+msgstr "Biratu e_zkerretaraka"
+
+#: src/layout_util.c:2543
+#, fuzzy
+msgid "Rotate 1_80°"
+msgstr "1_80 Biratu"
+
+#: src/layout_util.c:2543
+#, fuzzy
+msgid "Image Rotate 180°"
+msgstr "1_80 Biratu"
+
+#: src/layout_util.c:2544
+msgid "_Mirror"
+msgstr "Is_pilua"
+
+#: src/layout_util.c:2544
+#, fuzzy
+msgid "Image Mirror"
+msgstr "Irudi fitxategia"
+
+#: src/layout_util.c:2545
+msgid "_Flip"
+msgstr "_Irauli"
+
+#: src/layout_util.c:2545
+#, fuzzy
+msgid "Image Flip"
+msgstr "Irudi fitxategia"
+
+#: src/layout_util.c:2546
+#, fuzzy
+msgid "_Original state"
+msgstr "Jatorrizko Izena"
+
+#: src/layout_util.c:2546
+#, fuzzy
+msgid "Image rotate Original state"
+msgstr "Jatorrizko Izena"
+
+#: src/layout_util.c:2547
+msgid "P_references..."
+msgstr "H_obespenak..."
+
+#: src/layout_util.c:2547
+#, fuzzy
+msgid "Preferences..."
+msgstr "H_obespenak..."
+
+#: src/layout_util.c:2548
+#, fuzzy
+msgid "Configure _Plugins..."
+msgstr "Aukerak konfiguratu"
+
+#: src/layout_util.c:2548
+#, fuzzy
+msgid "Configure Plugins..."
+msgstr "Aukerak konfiguratu"
+
+#: src/layout_util.c:2549
+#, fuzzy
+msgid "_Configure this window..."
+msgstr "Aukerak konfiguratu"
+
+#: src/layout_util.c:2549
+#, fuzzy
+msgid "Configure this window..."
+msgstr "Aukerak konfiguratu"
+
+#: src/layout_util.c:2550
+#, fuzzy
+msgid "_Cache maintenance..."
+msgstr "Katxe Mantenua - Geeqie"
+
+#: src/layout_util.c:2550
+#, fuzzy
+msgid "Cache maintenance..."
+msgstr "Katxe Mantenua - Geeqie"
+
+#: src/layout_util.c:2551
+msgid "Set as _wallpaper"
+msgstr "Ida_zmahai atzealde bezala ezarri"
+
+#: src/layout_util.c:2551
+#, fuzzy
+msgid "Set as wallpaper"
+msgstr "Ida_zmahai atzealde bezala ezarri"
+
+#: src/layout_util.c:2552
+#, fuzzy
+msgid "_Save metadata"
+msgstr "Metadatuak"
+
+#: src/layout_util.c:2552 src/toolbar.c:136
+#, fuzzy
+msgid "Save metadata"
+msgstr "Metadatuak"
+
+#: src/layout_util.c:2553
+#, fuzzy
+msgid "Keyword autocomplete"
+msgstr "Gako-hitzak:"
+
+#: src/layout_util.c:2553
+#, fuzzy
+msgid "Keyword Autocomplete"
+msgstr "Gako-hitzak:"
+
+#: src/layout_util.c:2560 src/layout_util.c:2561 src/layout_util.c:2576
+#: src/layout_util.c:2577
+msgid "_Zoom to fit"
+msgstr "Gerturatu _doitzeko"
+
+#: src/layout_util.c:2562 src/layout_util.c:2578
+#, fuzzy
+msgid "Fit _Horizontally"
+msgstr "partziala"
+
+#: src/layout_util.c:2562
+#, fuzzy
+msgid "Fit Horizontally"
+msgstr "partziala"
+
+#: src/layout_util.c:2563 src/layout_util.c:2579
+#, fuzzy
+msgid "Fit _Vertically"
+msgstr "partziala"
+
+#: src/layout_util.c:2563
+#, fuzzy
+msgid "Fit Vertically"
+msgstr "partziala"
+
+#: src/layout_util.c:2564 src/layout_util.c:2580
+#, fuzzy
+msgid "Zoom _2:1"
+msgstr "Zooma _1:1"
+
+#: src/layout_util.c:2565 src/layout_util.c:2581
+#, fuzzy
+msgid "Zoom _3:1"
+msgstr "Zooma _1:1"
+
+#: src/layout_util.c:2566 src/layout_util.c:2582
+#, fuzzy
+msgid "Zoom _4:1"
+msgstr "Zooma _1:1"
+
+#: src/layout_util.c:2570 src/layout_util.c:2571 src/preferences.c:837
+#: src/toolbar.c:128
+#, fuzzy
+msgid "Connected Zoom in"
+msgstr "Zooma txikiagotu"
+
+#: src/layout_util.c:2572 src/layout_util.c:2573
+#, fuzzy
+msgid "Connected Zoom out"
+msgstr "Zooma txikiagotu"
+
+#: src/layout_util.c:2574 src/layout_util.c:2575
+#, fuzzy
+msgid "Connected Zoom 1:1"
+msgstr "1:1 Zooma ezarri"
+
+#: src/layout_util.c:2576 src/layout_util.c:2577
+#, fuzzy
+msgid "Connected Zoom to fit"
+msgstr "Gerturatu _doitzeko"
+
+#: src/layout_util.c:2578
+#, fuzzy
+msgid "Connected Fit Horizontally"
+msgstr "partziala"
+
+#: src/layout_util.c:2579
+#, fuzzy
+msgid "Connected Fit Vertically"
+msgstr "partziala"
+
+#: src/layout_util.c:2580
+#, fuzzy
+msgid "Connected Zoom 2:1"
+msgstr "1:1 Zooma ezarri"
+
+#: src/layout_util.c:2581
+#, fuzzy
+msgid "Connected Zoom 3:1"
+msgstr "1:1 Zooma ezarri"
+
+#: src/layout_util.c:2582
+#, fuzzy
+msgid "Connected Zoom 4:1"
+msgstr "1:1 Zooma ezarri"
+
+#: src/layout_util.c:2583
+#, fuzzy
+msgid "Connected Zoom 1:2"
+msgstr "Zooma _1:1"
+
+#: src/layout_util.c:2584
+#, fuzzy
+msgid "Connected Zoom 1:3"
+msgstr "Zooma _1:1"
+
+#: src/layout_util.c:2585
+#, fuzzy
+msgid "Connected Zoom 1:4"
+msgstr "Zooma _1:1"
+
+#: src/layout_util.c:2586
+#, fuzzy
+msgid "_View in new window"
+msgstr "Leiho _berrian ikusi"
+
+#: src/layout_util.c:2588 src/layout_util.c:2589 src/layout_util.c:2590
+msgid "F_ull screen"
+msgstr "Pa_ntaila osoa"
+
+#: src/layout_util.c:2591 src/layout_util.c:2592
+#, fuzzy
+msgid "_Leave full screen"
+msgstr "Geeqie pantaila osoa"
+
+#: src/layout_util.c:2591 src/layout_util.c:2592
+#, fuzzy
+msgid "Leave full screen"
+msgstr "Geeqie pantaila osoa"
+
+#: src/layout_util.c:2593
+msgid "_Cycle through overlay modes"
+msgstr ""
+
+#: src/layout_util.c:2593
+msgid "Cycle through Overlay modes"
+msgstr ""
+
+#: src/layout_util.c:2594
+msgid "Cycle through histogram ch_annels"
+msgstr ""
+
+#: src/layout_util.c:2594
+msgid "Cycle through histogram channels"
+msgstr ""
+
+#: src/layout_util.c:2595
+msgid "Cycle through histogram mo_des"
+msgstr ""
+
+#: src/layout_util.c:2595
+msgid "Cycle through histogram modes"
+msgstr ""
+
+#: src/layout_util.c:2596
+msgid "_Hide file list"
+msgstr "Fitxategi zerrenda _ezkutatu"
+
+#: src/layout_util.c:2596 src/preferences.c:841 src/toolbar.c:137
+#, fuzzy
+msgid "Hide file list"
+msgstr "Fitxategi zerrenda _ezkutatu"
+
+#: src/layout_util.c:2597
+#, fuzzy
+msgid "_Pause slideshow"
+msgstr "Aurkezpena _pausarazi"
+
+#: src/layout_util.c:2598
+msgid "Faster"
+msgstr ""
+
+#: src/layout_util.c:2598 src/preferences.c:843 src/toolbar.c:139
+#, fuzzy
+msgid "Slideshow Faster"
+msgstr " Aurkezpena"
+
+#: src/layout_util.c:2599
+msgid "Slower"
+msgstr ""
+
+#: src/layout_util.c:2599 src/preferences.c:844 src/toolbar.c:140
+#, fuzzy
+msgid "Slideshow Slower"
+msgstr " Aurkezpena"
+
+#: src/layout_util.c:2600
+msgid "_Refresh"
+msgstr "_Freskatu"
+
+#: src/layout_util.c:2600 src/preferences.c:845 src/toolbar.c:141
+#, fuzzy
+msgid "Refresh"
+msgstr "_Freskatu"
+
+#: src/layout_util.c:2601
+#, fuzzy
+msgid "_Help manual"
+msgstr "eskuz"
+
+#: src/layout_util.c:2601
+#, fuzzy
+msgid "Help manual"
+msgstr "eskuz"
+
+#: src/layout_util.c:2602 src/window.c:371
+msgid "On-line help search"
+msgstr ""
+
+#: src/layout_util.c:2603
+msgid "_Keyboard shortcuts"
+msgstr "_Teklatu laster-teklak"
+
+#: src/layout_util.c:2603
+#, fuzzy
+msgid "Keyboard shortcuts"
+msgstr "_Teklatu laster-teklak"
+
+#: src/layout_util.c:2604
+#, fuzzy
+msgid "_Keyboard map"
+msgstr "_Gako-hitzak"
+
+#: src/layout_util.c:2604
+#, fuzzy
+msgid "Keyboard map"
+msgstr "Argazkitxoak kargatzen..."
+
+#: src/layout_util.c:2605
+msgid "_Readme"
+msgstr ""
+
+#: src/layout_util.c:2605
+msgid "Readme"
+msgstr ""
+
+#: src/layout_util.c:2606
+#, fuzzy
+msgid "_ChangeLog"
+msgstr "Karpeta honetara aldatu:"
+
+#: src/layout_util.c:2606
+#, fuzzy
+msgid "ChangeLog notes"
+msgstr "Karpeta honetara aldatu:"
+
+#: src/layout_util.c:2607 src/search_and_run.c:291
+msgid "Search and Run command"
+msgstr ""
+
+#: src/layout_util.c:2607
+msgid "Search commands by keyword and run them"
+msgstr ""
+
+#: src/layout_util.c:2608
+msgid "_About"
+msgstr "_Honi buruz"
+
+#: src/layout_util.c:2608
+#, fuzzy
+msgid "About"
+msgstr "_Honi buruz"
+
+#: src/layout_util.c:2609
+#, fuzzy
+msgid "_Log Window"
+msgstr "Leihoak"
+
+#: src/layout_util.c:2609
+#, fuzzy
+msgid "Log Window"
+msgstr "Leihoak"
+
+#: src/layout_util.c:2610
+#, fuzzy
+msgid "_Exif window"
+msgstr "Leihoa it_xi"
+
+#: src/layout_util.c:2610 src/preferences.c:847 src/toolbar.c:143
+#, fuzzy
+msgid "Exif window"
+msgstr "Lei_ho berria"
+
+#: src/layout_util.c:2611
+msgid "_Cycle through stereo modes"
+msgstr ""
+
+#: src/layout_util.c:2611
+msgid "Cycle through stereo modes"
+msgstr ""
+
+#: src/layout_util.c:2612
+#, fuzzy
+msgid "_Next Pane"
+msgstr "hurrengo irudia"
+
+#: src/layout_util.c:2612
+#, fuzzy
+msgid "Next Split Pane"
+msgstr "hurrengo irudia"
+
+#: src/layout_util.c:2613
+#, fuzzy
+msgid "_Previous Pane"
+msgstr "aurreko irudia"
+
+#: src/layout_util.c:2613
+#, fuzzy
+msgid "Previous Split Pane"
+msgstr "aurreko irudia"
+
+#: src/layout_util.c:2614
+#, fuzzy
+msgid "_Up Pane"
+msgstr "hurrengo irudia"
+
+#: src/layout_util.c:2614
+#, fuzzy
+msgid "Up Split Pane"
+msgstr "Tamaina"
+
+#: src/layout_util.c:2615
+#, fuzzy
+msgid "_Down Pane"
+msgstr "hurrengo irudia"
+
+#: src/layout_util.c:2615
+#, fuzzy
+msgid "Down Split Pane"
+msgstr "Tamaina"
+
+#: src/layout_util.c:2616
+#, fuzzy
+msgid "_Write orientation to file"
+msgstr "Fitxategia gainidatzi"
+
+#: src/layout_util.c:2616
+#, fuzzy
+msgid "Write orientation to file"
+msgstr "Fitxategia gainidatzi"
+
+#: src/layout_util.c:2617
+#, fuzzy
+msgid "_Write orientation to file (preserve timestamp)"
+msgstr "Fitxategia gainidatzi"
+
+#: src/layout_util.c:2617
+#, fuzzy
+msgid "Write orientation to file (preserve timestamp)"
+msgstr "Fitxategia gainidatzi"
+
+#: src/layout_util.c:2618
+#, fuzzy
+msgid "Clear Marks..."
+msgstr "Zakarrontzia hustu"
+
+#: src/layout_util.c:2622
+#, fuzzy
+msgid "Show _Thumbnails"
+msgstr "Ar_gazkitxoak bistarazi"
+
+#: src/layout_util.c:2622
+#, fuzzy
+msgid "Show Thumbnails"
+msgstr "Argazkitxoak erakutsi"
+
+#: src/layout_util.c:2623
+#, fuzzy
+msgid "Show _Marks"
+msgstr "Erakutsi ezkutukoak"
+
+#: src/layout_util.c:2623
+#, fuzzy
+msgid "Show Marks"
+msgstr "Erakutsi ezkutukoak"
+
+#: src/layout_util.c:2624
+#, fuzzy
+msgid "Show File Filter"
+msgstr "Erakutsi ezkutukoak"
+
+#: src/layout_util.c:2625
+#, fuzzy
+msgid "Pi_xel Info"
+msgstr "Fitxategi formatua:"
+
+#: src/layout_util.c:2625
+#, fuzzy
+msgid "Show Pixel Info"
+msgstr "Erakutsi ezkutukoak"
+
+#: src/layout_util.c:2626
+#, fuzzy
+msgid "Hide _alpha"
+msgstr "Tresna_barra ezkutatu"
+
+#: src/layout_util.c:2626
+#, fuzzy
+msgid "Hide alpha channel"
+msgstr "Tresna_barra ezkutatu"
+
+#: src/layout_util.c:2627
+msgid "_Float file list"
+msgstr "_Fitxategi zerrenda mugikorra"
+
+#: src/layout_util.c:2627 src/preferences.c:851 src/toolbar.c:147
+#, fuzzy
+msgid "Float file list"
+msgstr "_Fitxategi zerrenda mugikorra"
+
+#: src/layout_util.c:2628
+msgid "Hide tool_bar"
+msgstr "Tresna_barra ezkutatu"
+
+#: src/layout_util.c:2628
+#, fuzzy
+msgid "Hide toolbar"
+msgstr "Tresna_barra ezkutatu"
+
+#: src/layout_util.c:2629
+msgid "_Info sidebar"
+msgstr ""
+
+#: src/layout_util.c:2629 src/preferences.c:852 src/toolbar.c:148
+msgid "Info sidebar"
+msgstr ""
+
+#: src/layout_util.c:2630
+msgid "Sort _manager"
+msgstr "Ordenatze _kudeatzailea"
+
+#: src/layout_util.c:2630 src/preferences.c:853 src/toolbar.c:149
+#, fuzzy
+msgid "Sort manager"
+msgstr "Ordenatze _kudeatzailea"
+
+#: src/layout_util.c:2631
+#, fuzzy
+msgid "Hide Bars"
+msgstr "Tresna_barra ezkutatu"
+
+#: src/layout_util.c:2633
+#, fuzzy
+msgid "Use _color profiles"
+msgstr "Fitxategi guztiak"
+
+#: src/layout_util.c:2633 src/toolbar.c:135
+#, fuzzy
+msgid "Use color profiles"
+msgstr "Fitxategi guztiak"
+
+#: src/layout_util.c:2634
+msgid "Use profile from _image"
+msgstr ""
+
+#: src/layout_util.c:2634
+msgid "Use profile from image"
+msgstr ""
+
+#: src/layout_util.c:2635
+#, fuzzy
+msgid "Toggle _grayscale"
+msgstr "Aurkezpena _txandakatu"
+
+#: src/layout_util.c:2635
+#, fuzzy
+msgid "Toggle grayscale"
+msgstr "Aurkezpena _txandakatu"
+
+#: src/layout_util.c:2636
+#, fuzzy
+msgid "Image Overlay"
+msgstr "Irudi bilaketa - Geeqie"
+
+#: src/layout_util.c:2637
+msgid "_Show Histogram"
+msgstr ""
+
+#: src/layout_util.c:2637
+#, fuzzy
+msgid "Show Histogram"
+msgstr "Dataz ordenatu"
+
+#: src/layout_util.c:2638
+#, fuzzy
+msgid "Rectangular Selection"
+msgstr "Hautapen karratua ikono ikuspegian"
+
+#: src/layout_util.c:2639
+msgid "Toggle GIF animation"
+msgstr ""
+
+#: src/layout_util.c:2640
+#, fuzzy
+msgid "_Exif rotate"
+msgstr "Exif data erabili"
+
+#: src/layout_util.c:2640
+#, fuzzy
+msgid "Toggle Exif rotate"
+msgstr "Exif data erabili"
+
+#: src/layout_util.c:2641 src/preferences.c:850 src/toolbar.c:146
+#, fuzzy
+msgid "Draw Rectangle"
+msgstr "Hautatu dena"
+
+#: src/layout_util.c:2642
+msgid "Over/Under Exposed"
+msgstr ""
+
+#: src/layout_util.c:2642
+msgid "Highlight over/under exposed"
+msgstr ""
+
+#: src/layout_util.c:2643 src/preferences.c:838 src/toolbar.c:129
+#, fuzzy
+msgid "Split Pane Sync"
+msgstr "Tamaina"
+
+#: src/layout_util.c:2647
+#, fuzzy
+msgid "Images as _List"
+msgstr "Irudi fitxategia"
+
+#: src/layout_util.c:2647
+#, fuzzy
+msgid "View Images as List"
+msgstr "Ikonoak bezala _ikusi"
+
+#: src/layout_util.c:2648
+#, fuzzy
+msgid "Images as I_cons"
+msgstr "Ikonoak bezala _ikusi"
+
+#: src/layout_util.c:2648
+#, fuzzy
+msgid "View Images as Icons"
+msgstr "Ikonoak bezala _ikusi"
+
+#: src/layout_util.c:2652
+#, fuzzy
+msgid "T_oggle Folder View"
+msgstr "Aurkezpena _txandakatu"
+
+#: src/layout_util.c:2652
+#, fuzzy
+msgid "Toggle Folders View"
+msgstr "Aurkezpena _txandakatu"
+
+#: src/layout_util.c:2656
+#, fuzzy
+msgid "_Horizontal"
+msgstr "partziala"
+
+#: src/layout_util.c:2656
+#, fuzzy
+msgid "Split panes horizontal."
+msgstr "partziala"
+
+#: src/layout_util.c:2657
+#, fuzzy
+msgid "_Vertical"
+msgstr "partziala"
+
+#: src/layout_util.c:2657
+#, fuzzy
+msgid "Split panes vertical"
+msgstr "partziala"
+
+#: src/layout_util.c:2658
+msgid "_Quad"
+msgstr ""
+
+#: src/layout_util.c:2658
+#, fuzzy
+msgid "Split panes quad"
+msgstr "Tamaina"
+
+#: src/layout_util.c:2659
+#, fuzzy
+msgid "_Single"
+msgstr "Tamaina"
+
+#: src/layout_util.c:2659
+#, fuzzy
+msgid "Single pane"
+msgstr "hurrengo irudia"
+
+#: src/layout_util.c:2663
+msgid "Input _0: sRGB"
+msgstr ""
+
+#: src/layout_util.c:2663
+msgid "Input 0: sRGB"
+msgstr ""
+
+#: src/layout_util.c:2664
+msgid "Input _1: AdobeRGB compatible"
+msgstr ""
+
+#: src/layout_util.c:2664
+msgid "Input 1: AdobeRGB compatible"
+msgstr ""
+
+#: src/layout_util.c:2665
+msgid "Input _2"
+msgstr ""
+
+#: src/layout_util.c:2665
+msgid "Input 2"
+msgstr ""
+
+#: src/layout_util.c:2666
+msgid "Input _3"
+msgstr ""
+
+#: src/layout_util.c:2666
+msgid "Input 3"
+msgstr ""
+
+#: src/layout_util.c:2667
+msgid "Input _4"
+msgstr ""
+
+#: src/layout_util.c:2667
+msgid "Input 4"
+msgstr ""
+
+#: src/layout_util.c:2668
+msgid "Input _5"
+msgstr ""
+
+#: src/layout_util.c:2668
+msgid "Input 5"
+msgstr ""
+
+#: src/layout_util.c:2672
+msgid "Histogram on Red"
+msgstr ""
+
+#: src/layout_util.c:2673
+msgid "Histogram on Green"
+msgstr ""
+
+#: src/layout_util.c:2674
+msgid "Histogram on Blue"
+msgstr ""
+
+#: src/layout_util.c:2675
+msgid "Histogram on RGB"
+msgstr ""
+
+#: src/layout_util.c:2676
+msgid "Histogram on Value"
+msgstr ""
+
+#: src/layout_util.c:2680
+msgid "Linear Histogram"
+msgstr ""
+
+#: src/layout_util.c:2681
+msgid "_Log Histogram"
+msgstr ""
+
+#: src/layout_util.c:2681
+msgid "Log Histogram"
+msgstr ""
+
+#: src/layout_util.c:2685
+msgid "_Auto"
+msgstr ""
+
+#: src/layout_util.c:2685
+msgid "Stereo Auto"
+msgstr ""
+
+#: src/layout_util.c:2686
+msgid "_Side by Side"
+msgstr ""
+
+#: src/layout_util.c:2686
+msgid "Stereo Side by Side"
+msgstr ""
+
+#: src/layout_util.c:2687
+msgid "_Cross"
+msgstr ""
+
+#: src/layout_util.c:2687
+msgid "Stereo Cross"
+msgstr ""
+
+#: src/layout_util.c:2688
+msgid "_Off"
+msgstr ""
+
+#: src/layout_util.c:2688
+msgid "Stereo Off"
 msgstr ""
 
 #: src/layout_util.c:3021
@@ -2402,18 +4737,6 @@ msgstr "Irte_n"
 msgid "Collections have been modified. Quit anyway?"
 msgstr "Bildumak aldatu egin dira. Irten hala ere?"
 
-#: src/menu.c:121
-msgid "_Plugins"
-msgstr ""
-
-#: src/menu.c:148
-msgid "Sort by size"
-msgstr "Tamainaz ordenatu"
-
-#: src/menu.c:151
-msgid "Sort by date"
-msgstr "Dataz ordenatu"
-
 #: src/menu.c:154
 #, fuzzy
 msgid "Sort by file creation date"
@@ -2433,14 +4756,6 @@ msgstr "E_xif data bidez ordenatu"
 msgid "Unsorted"
 msgstr "Ordenatu gabe"
 
-#: src/menu.c:166
-msgid "Sort by path"
-msgstr "Bidez ordenatu"
-
-#: src/menu.c:169
-msgid "Sort by number"
-msgstr "Zenbakiz ordenatu"
-
 #: src/menu.c:172
 #, fuzzy
 msgid "Sort by rating"
@@ -2450,10 +4765,6 @@ msgstr "Dataz ordenatu"
 #, fuzzy
 msgid "Sort by class"
 msgstr "Tamainaz ordenatu"
-
-#: src/menu.c:179
-msgid "Sort by name"
-msgstr "Izenez ordenatu"
 
 #: src/menu.c:273 src/menu.c:282
 msgid "Zoom to original size"
@@ -2467,50 +4778,30 @@ msgstr "Doitu irudia leihora"
 msgid "Leave Zoom at previous setting"
 msgstr "Zooma dagoen bezala utzi"
 
-#: src/menu.c:353
+#: src/menu.c:353 src/preferences.c:819 src/toolbar.c:110
 #, fuzzy
 msgid "Rotate clockwise 90°"
 msgstr "_Biratu eskuinetaraka"
 
-#: src/menu.c:356
-#, fuzzy
-msgid "Rotate counterclockwise 90°"
-msgstr "Biratu e_zkerretaraka"
-
-#: src/menu.c:359
-#, fuzzy
-msgid "Rotate 180°"
-msgstr "1_80 Biratu"
-
-#: src/menu.c:362
+#: src/menu.c:362 src/preferences.c:822 src/toolbar.c:113
 #, fuzzy
 msgid "Mirror"
 msgstr "Is_pilua"
 
-#: src/menu.c:365
+#: src/menu.c:365 src/preferences.c:823 src/toolbar.c:114
 #, fuzzy
 msgid "Flip"
 msgstr "_Irauli"
 
-#: src/menu.c:368
+#: src/menu.c:368 src/preferences.c:824 src/toolbar.c:115
 #, fuzzy
 msgid "Original state"
 msgstr "Jatorrizko Izena"
-
-#: src/menu.c:411
-#, fuzzy
-msgid "_Orientation"
-msgstr "Orientazioa"
 
 #: src/menu.c:467
 #, fuzzy
 msgid "_Add to Collection"
 msgstr "Bilduma Gehitu"
-
-#: src/menu.c:472
-#, fuzzy
-msgid "New collection"
-msgstr "Bildu_ma berria"
 
 #: src/metadata.c:1739
 msgid "People"
@@ -2781,23 +5072,159 @@ msgid ""
 "  Error code: "
 msgstr ""
 
-#: src/options.c:244 src/ui_bookmark.c:560 src/ui_pathsel.c:1047
-msgid "Home"
-msgstr "Etxea"
-
 #: src/options.c:246 src/ui_bookmark.c:571
 msgid "Desktop"
 msgstr "Mahaigaina"
 
-#: src/options.c:267 src/search.c:2338 src/search.c:2342 src/search.c:3626
-#: src/search.c:3630 src/view_file/view_file.c:915
+#: src/options.c:267 src/search.c:2338 src/search.c:2342 src/search.c:3627
+#: src/search.c:3631 src/view_file/view_file.c:915
 #, fuzzy
 msgid "Mark "
 msgstr "Laster-marka gehitu"
 
+#: src/osd.c:44 src/preferences.c:135
+#, fuzzy
+msgid "Collection"
+msgstr "Bildumak"
+
+#: src/osd.c:45
+#, fuzzy
+msgid "Image index"
+msgstr "Irudi fitxategia"
+
+#: src/osd.c:46
+#, fuzzy
+msgid "Images total"
+msgstr "Irudi fitxategia"
+
+#: src/osd.c:55
+#, fuzzy
+msgid "File page no."
+msgstr "Fitxategia data"
+
+#: src/osd.c:56
+#, fuzzy
+msgid "Image date"
+msgstr "Irudi fitxategia"
+
+#: src/osd.c:58
+#, fuzzy
+msgid "ShutterSpeed"
+msgstr "Obturadore abiadura"
+
+#: src/osd.c:64
+msgid "ISO"
+msgstr ""
+
+#: src/osd.c:66
+#, fuzzy
+msgid "Focal len. 35mm"
+msgstr "Fokuaren luzera"
+
+#: src/osd.c:70
+msgid "Lat, Long"
+msgstr ""
+
+#: src/osd.c:71
+msgid "Altitude"
+msgstr ""
+
+#: src/osd.c:73
+#, fuzzy
+msgid "Timezone"
+msgstr "Denbora-lerroa"
+
+#: src/osd.c:76
+#, fuzzy
+msgid "Rating"
+msgstr "Inprimatze errorea"
+
+#: src/osd.c:78
+#, fuzzy
+msgid "© Creator"
+msgstr "Hautatu karpeta"
+
+#: src/osd.c:79
+msgid "© Contributor"
+msgstr ""
+
+#: src/osd.c:80
+#, fuzzy
+msgid "© Rights"
+msgstr "Argi jatorria"
+
 #: src/osd.c:169
 msgid ""
 "To include predefined tags in the template, click a button or drag-and-drop"
+msgstr ""
+
+#: src/pan-view/pan-view.c:104 src/pan-view/pan-view.c:123
+msgid "Display Find search bar"
+msgstr ""
+
+#: src/pan-view/pan-view.c:105
+#, fuzzy
+msgid "Start search"
+msgstr "Irudi bilaketa - Geeqie"
+
+#: src/pan-view/pan-view.c:107
+msgid "Hide Find search bar"
+msgstr ""
+
+#: src/pan-view/pan-view.c:124
+#, fuzzy
+msgid "Scroll left"
+msgstr "goian ezkerrean"
+
+#: src/pan-view/pan-view.c:125
+#, fuzzy
+msgid "Scroll right"
+msgstr "goian eskuinean"
+
+#: src/pan-view/pan-view.c:126
+#, fuzzy
+msgid "Scroll up"
+msgstr "goian ezkerrean"
+
+#: src/pan-view/pan-view.c:127
+#, fuzzy
+msgid "Scroll down"
+msgstr " Aurkezpena"
+
+#: src/pan-view/pan-view.c:128
+#, fuzzy
+msgid "Scroll left faster"
+msgstr " Aurkezpena"
+
+#: src/pan-view/pan-view.c:129
+#, fuzzy
+msgid "Scroll right faster"
+msgstr "goian eskuinean"
+
+#: src/pan-view/pan-view.c:130
+#, fuzzy
+msgid "Scroll up faster"
+msgstr " Aurkezpena"
+
+#: src/pan-view/pan-view.c:131
+#, fuzzy
+msgid "Scroll down faster"
+msgstr " Aurkezpena"
+
+#: src/pan-view/pan-view.c:132
+msgid "Scroll display half screen up"
+msgstr ""
+
+#: src/pan-view/pan-view.c:133
+msgid "Scroll display half screen down"
+msgstr ""
+
+#: src/pan-view/pan-view.c:134
+msgid "Scroll display half screen left"
+msgstr ""
+
+#: src/pan-view/pan-view.c:135
+msgid "Scroll display half screen right"
 msgstr ""
 
 #: src/pan-view/pan-view.c:510
@@ -2839,7 +5266,7 @@ msgstr "Data:"
 msgid "Size:"
 msgstr "Tamaina:"
 
-#: src/pan-view/pan-view.c:1796 src/search.c:2788
+#: src/pan-view/pan-view.c:1796 src/search.c:2789
 msgid "Folder not found"
 msgstr "Karpeta ez da aurkitu"
 
@@ -3035,6 +5462,30 @@ msgstr "parekatze partziala"
 msgid "no match"
 msgstr "ez dago parekatzerik"
 
+#: src/preferences.c:130 src/search.c:2286 src/search.c:3611
+#, fuzzy
+msgid "Unknown"
+msgstr "ezezaguna"
+
+#: src/preferences.c:132
+#, fuzzy
+msgid "RAW Image"
+msgstr "Irudia"
+
+#: src/preferences.c:134 src/search.c:2271 src/search.c:3608
+msgid "Video"
+msgstr ""
+
+#: src/preferences.c:136 src/search.c:2276 src/search.c:3609
+#, fuzzy
+msgid "Document"
+msgstr "Iruzkina:"
+
+#: src/preferences.c:137
+#, fuzzy
+msgid "Archive"
+msgstr "Irekiera"
+
 #: src/preferences.c:664
 msgid "Nearest (worst, but fastest)"
 msgstr "Gertuen (okerro baina azkarrena)"
@@ -3071,6 +5522,127 @@ msgstr ""
 #: src/preferences.c:765
 msgid "Arithmetic"
 msgstr ""
+
+#: src/preferences.c:790 src/toolbar.c:78
+msgid "Back"
+msgstr ""
+
+#: src/preferences.c:791 src/toolbar.c:79
+#, fuzzy
+msgid "Forward"
+msgstr "Irudi fitxategia"
+
+#: src/preferences.c:793 src/toolbar.c:81
+msgid "Up"
+msgstr ""
+
+#: src/preferences.c:794 src/toolbar.c:82
+#, fuzzy
+msgid "First page"
+msgstr "lehen irudia"
+
+#: src/preferences.c:795 src/toolbar.c:83
+#, fuzzy
+msgid "Last Page"
+msgstr "azken irudia"
+
+#: src/preferences.c:796 src/toolbar.c:84
+#, fuzzy
+msgid "Next page"
+msgstr "hurrengo irudia"
+
+#: src/preferences.c:797 src/toolbar.c:85
+#, fuzzy
+msgid "Previous Page"
+msgstr "aurreko irudia"
+
+#: src/preferences.c:798
+msgid "New _window"
+msgstr "Lei_ho berria"
+
+#: src/preferences.c:801 src/preferences.c:3275 src/toolbar.c:91
+#, fuzzy
+msgid "Search"
+msgstr "Bilatu:"
+
+#: src/preferences.c:803 src/toolbar.c:93 src/ui_pathsel.c:1049
+#: src/utilops.c:3189
+msgid "New folder"
+msgstr "Karpeta berria"
+
+#: src/preferences.c:808 src/toolbar.c:98
+#, fuzzy
+msgid "Close Window"
+msgstr "Leihoa it_xi"
+
+#: src/preferences.c:812 src/toolbar.c:103
+#, fuzzy
+msgid "Select invert"
+msgstr "Hautatu ikonoa"
+
+#: src/preferences.c:813 src/toolbar.c:104
+#, fuzzy
+msgid "Show file filter"
+msgstr "Erakutsi ezkutukoak"
+
+#: src/preferences.c:814 src/toolbar.c:105
+#, fuzzy
+msgid "Select rectangle"
+msgstr "Hautatu dena"
+
+#: src/preferences.c:816 src/preferences.c:3983 src/toolbar.c:107
+#, fuzzy
+msgid "Preferences"
+msgstr "H_obespenak..."
+
+#: src/preferences.c:817 src/toolbar.c:108
+#, fuzzy
+msgid "Configure this window"
+msgstr "Aukerak konfiguratu"
+
+#: src/preferences.c:818 src/toolbar.c:109
+#, fuzzy
+msgid "Cache maintenance"
+msgstr "Katxe Mantenua - Geeqie"
+
+#: src/preferences.c:829 src/toolbar.c:120
+#, fuzzy
+msgid "Fit Horizontaly"
+msgstr "partziala"
+
+#: src/preferences.c:830 src/toolbar.c:121
+#, fuzzy
+msgid "Fit vertically"
+msgstr "partziala"
+
+#: src/preferences.c:835 src/toolbar.c:126
+#, fuzzy
+msgid "Zoom1:3"
+msgstr "Zooma _1:1"
+
+#: src/preferences.c:839 src/toolbar.c:130
+#, fuzzy
+msgid "Grayscale"
+msgstr "Aurkezpena _txandakatu"
+
+#: src/preferences.c:840 src/toolbar.c:131
+msgid "Over Under Exposed"
+msgstr ""
+
+#: src/preferences.c:846 src/toolbar.c:142 src/window.c:287 src/window.c:308
+#, fuzzy
+msgid "Help"
+msgstr "_Laguntza"
+
+#: src/preferences.c:848 src/toolbar.c:144
+#, fuzzy
+msgid "Show thumbnails"
+msgstr "Ar_gazkitxoak bistarazi"
+
+#: src/preferences.c:849 src/toolbar.c:145
+#, fuzzy
+msgid "Show marks"
+msgstr "Erakutsi ezkutukoak"
 
 #: src/preferences.c:968
 msgid "Custom"
@@ -3235,11 +5807,6 @@ msgstr ""
 msgid "Use embedded metadata in video files as thumbnails when available"
 msgstr ""
 
-#: src/preferences.c:2033
-#, fuzzy
-msgid "Star Rating"
-msgstr "Inprimatze errorea"
-
 #: src/preferences.c:2040
 msgid "Star character: "
 msgstr ""
@@ -3253,12 +5820,6 @@ msgid ""
 "Hexadecimal representation of a Unicode character. A list of all Unicode "
 "characters may be found on the Internet."
 msgstr ""
-
-#: src/preferences.c:2058 src/preferences.c:2090 src/preferences.c:2218
-#: src/view_file/view_file.c:1188 src/window.c:400
-#, fuzzy
-msgid "Clear"
-msgstr "G_arbitu"
 
 #: src/preferences.c:2062 src/preferences.c:2094 src/preferences.c:2222
 #, fuzzy
@@ -3357,10 +5918,6 @@ msgid ""
 "https://www.search_engine.com/search?q=site:geeqie.org/help\n"
 "https://www.search_engine.com/?q=site:geeqie.org/help"
 msgstr ""
-
-#: src/preferences.c:2242 src/search.c:2261 src/search.c:3605
-msgid "Image"
-msgstr "Irudia"
 
 #: src/preferences.c:2262
 msgid "Two pass rendering (apply HQ zoom and color correction in second pass)"
@@ -3845,19 +6402,10 @@ msgstr ""
 msgid "Search for keywords"
 msgstr "Gako-hitzak"
 
-#: src/preferences.c:3269 src/search.c:3528
-msgid "Keywords"
-msgstr "Gako-hitzak"
-
 #: src/preferences.c:3271
 #, fuzzy
 msgid "Edit keywords autocompletion list"
 msgstr "Gehitu gako-hitzak hautatutakoa fitxategietara"
-
-#: src/preferences.c:3275
-#, fuzzy
-msgid "Search"
-msgstr "Bilatu:"
 
 #: src/preferences.c:3362
 msgid "Perceptual"
@@ -3866,11 +6414,6 @@ msgstr ""
 #: src/preferences.c:3364
 msgid "Relative Colorimetric"
 msgstr ""
-
-#: src/preferences.c:3366
-#, fuzzy
-msgid "Saturation"
-msgstr "ekintza"
 
 #: src/preferences.c:3368
 msgid "Absolute Colorimetric"
@@ -3894,7 +6437,7 @@ msgstr ""
 msgid "Menu name"
 msgstr "Menu izena"
 
-#: src/preferences.c:3408 src/search.c:3434
+#: src/preferences.c:3408 src/search.c:3435
 #, fuzzy
 msgid "File"
 msgstr "Fitxategia:"
@@ -3932,10 +6475,6 @@ msgstr "Errendatu"
 msgid "Behavior"
 msgstr "Portaera"
 
-#: src/preferences.c:3510 src/utilops.c:2209
-msgid "Delete"
-msgstr "Ezabatu"
-
 #: src/preferences.c:3512
 #, fuzzy
 msgid "Confirm permanent file delete"
@@ -3966,10 +6505,6 @@ msgstr "MB"
 #: src/preferences.c:3539
 msgid "Set to 0 for unlimited size"
 msgstr ""
-
-#: src/preferences.c:3540
-msgid "View"
-msgstr "Ikusi"
 
 #: src/preferences.c:3552
 msgid "Use system Trash bin"
@@ -4260,11 +6795,6 @@ msgstr "Eskuinean:"
 msgid "Right Y"
 msgstr "Eskuinean:"
 
-#: src/preferences.c:3983
-#, fuzzy
-msgid "Preferences"
-msgstr "H_obespenak..."
-
 #: src/preferences.c:4143
 #, fuzzy
 msgid "About Geeqie"
@@ -4371,6 +6901,285 @@ msgstr ""
 msgid "Timezone: %s\n"
 msgstr ""
 
+#: src/remote.c:1371 src/remote.c:1376
+msgid "lua error: no data"
+msgstr ""
+
+#: src/remote.c:1399
+msgid "previous image"
+msgstr "aurreko irudia"
+
+#: src/remote.c:1400
+#, fuzzy
+msgid "close window"
+msgstr "Leihoa it_xi"
+
+#: src/remote.c:1401
+msgid "<FILE>|layout ID"
+msgstr ""
+
+#: src/remote.c:1401
+msgid "load configuration from FILE"
+msgstr ""
+
+#: src/remote.c:1402
+msgid "clean the metadata cache"
+msgstr ""
+
+#: src/remote.c:1403
+#, fuzzy
+msgid "<folder>  "
+msgstr "karpeta"
+
+#: src/remote.c:1403
+#, fuzzy
+msgid " render thumbnails"
+msgstr "Argazkitxoak sortu"
+
+#: src/remote.c:1404 src/remote.c:1405
+#, fuzzy
+msgid "<folder> "
+msgstr "karpeta"
+
+#: src/remote.c:1404
+#, fuzzy
+msgid "render thumbnails recursively"
+msgstr "Karpeta baten argazkitxoak errendatu."
+
+#: src/remote.c:1405
+#, fuzzy
+msgid " render thumbnails (see Help)"
+msgstr "Karpeta baten argazkitxoak errendatu."
+
+#: src/remote.c:1406
+#, fuzzy
+msgid "<folder>"
+msgstr "karpeta"
+
+#: src/remote.c:1406
+#, fuzzy
+msgid " render thumbnails recursively (see Help)"
+msgstr "Karpeta baten argazkitxoak errendatu."
+
+#: src/remote.c:1407 src/remote.c:1408
+msgid "clear|clean"
+msgstr ""
+
+#: src/remote.c:1407
+#, fuzzy
+msgid "clear or clean shared thumbnail cache"
+msgstr "Partekatutako argazkitxo katxea erabili"
+
+#: src/remote.c:1408
+#, fuzzy
+msgid "clear or clean thumbnail cache"
+msgstr "Partekatutako argazkitxo katxea"
+
+#: src/remote.c:1409
+msgid "<[H:][M:][N][.M]>"
+msgstr ""
+
+#: src/remote.c:1409
+#, fuzzy
+msgid "set slide show delay to Hrs Mins N.M seconds"
+msgstr "aurkezpen atzerapena ezarri segundutan"
+
+#: src/remote.c:1410
+msgid "first image"
+msgstr "lehen irudia"
+
+#: src/remote.c:1411
+msgid "toggle full screen"
+msgstr "pantaila oso egoera txandakatu"
+
+#: src/remote.c:1412 src/remote.c:1413 src/remote.c:1414 src/remote.c:1415
+msgid "<FILE>|<URL>"
+msgstr ""
+
+#: src/remote.c:1412 src/remote.c:1413
+#, fuzzy
+msgid "open FILE or URL, bring Geeqie window to the top"
+msgstr "ireki fitxategia leiho berrian"
+
+#: src/remote.c:1414 src/remote.c:1415
+#, fuzzy
+msgid "open FILE or URL, do not bring Geeqie window to the top"
+msgstr "ireki fitxategia leiho berrian"
+
+#: src/remote.c:1416
+msgid "start full screen"
+msgstr "pantaila osoa gaitu"
+
+#: src/remote.c:1417
+msgid "stop full screen"
+msgstr "pantaila osoa ezgaitu"
+
+#: src/remote.c:1418
+msgid "<GEOMETRY>"
+msgstr ""
+
+#: src/remote.c:1418
+#, fuzzy
+msgid "set window geometry"
+msgstr "Karpeta baliogabea"
+
+#: src/remote.c:1419
+msgid "<COLLECTION>"
+msgstr ""
+
+#: src/remote.c:1419
+#, fuzzy
+msgid "get collection content"
+msgstr "Bildu_ma berria"
+
+#: src/remote.c:1420
+#, fuzzy
+msgid "get collection list"
+msgstr "Bildu_ma berria"
+
+#: src/remote.c:1421 src/remote.c:1427 src/remote.c:1430 src/remote.c:1450
+#: src/remote.c:1451
+msgid "<FILE>"
+msgstr ""
+
+#: src/remote.c:1421
+msgid "get destination path of FILE (See Plugins Configuration)"
+msgstr ""
+
+#: src/remote.c:1422
+#, fuzzy
+msgid "get file info"
+msgstr "Ez da fitxategia aurkitu"
+
+#: src/remote.c:1423 src/remote.c:1424
+msgid "[<FOLDER>]"
+msgstr ""
+
+#: src/remote.c:1423
+msgid "get list of files and class"
+msgstr ""
+
+#: src/remote.c:1424
+#, fuzzy
+msgid "get list of files and class recursive"
+msgstr "Karpeta baten argazkitxoak errendatu."
+
+#: src/remote.c:1425
+#, fuzzy
+msgid "get rectangle co-ordinates"
+msgstr "Errendatu"
+
+#: src/remote.c:1426
+#, fuzzy
+msgid "get render intent"
+msgstr "Errendatu"
+
+#: src/remote.c:1427
+msgid "get list of sidecars of FILE"
+msgstr ""
+
+#: src/remote.c:1428
+msgid "<ID>"
+msgstr ""
+
+#: src/remote.c:1428
+msgid "window id for following commands"
+msgstr ""
+
+#: src/remote.c:1429
+msgid "last image"
+msgstr "azken irudia"
+
+#: src/remote.c:1430
+#, fuzzy
+msgid "add FILE to command line collection list"
+msgstr "Bilduma berria gehitu"
+
+#: src/remote.c:1431
+#, fuzzy
+msgid "clear command line collection list"
+msgstr "Bilduma berria gehitu"
+
+#: src/remote.c:1433
+msgid "<FILE>,<lua script>"
+msgstr ""
+
+#: src/remote.c:1433
+msgid "run lua script on FILE"
+msgstr ""
+
+#: src/remote.c:1435
+#, fuzzy
+msgid "new window"
+msgstr "Lei_ho berria"
+
+#: src/remote.c:1436
+msgid "next image"
+msgstr "hurrengo irudia"
+
+#: src/remote.c:1437
+msgid "print pixel info of mouse pointer on current image"
+msgstr ""
+
+#: src/remote.c:1438
+msgid "terminate returned data with null character instead of newline"
+msgstr ""
+
+#: src/remote.c:1439
+msgid "<PWD>"
+msgstr ""
+
+#: src/remote.c:1439
+msgid "use PWD as working directory for following commands"
+msgstr ""
+
+#: src/remote.c:1440
+msgid "quit"
+msgstr "irten"
+
+#: src/remote.c:1441 src/remote.c:1442
+#, fuzzy
+msgid "bring the Geeqie window to the top"
+msgstr "ireki fitxategia leiho berrian"
+
+#: src/remote.c:1443
+msgid "toggle slide show"
+msgstr "aurkezpena txandakatu"
+
+#: src/remote.c:1444
+msgid "<FOLDER>"
+msgstr ""
+
+#: src/remote.c:1444
+#, fuzzy
+msgid "start recursive slide show in FOLDER"
+msgstr "aurkezpen errekurtsiboa hasi"
+
+#: src/remote.c:1445
+msgid "start slide show"
+msgstr "aurkezpena hasi"
+
+#: src/remote.c:1446
+msgid "stop slide show"
+msgstr "aurkezpena gelditu"
+
+#: src/remote.c:1447
+msgid "print filename [and Collection] of current image"
+msgstr ""
+
+#: src/remote.c:1448
+msgid "show tools"
+msgstr "tresnak ikusi"
+
+#: src/remote.c:1449
+msgid "hide tools"
+msgstr "tresnak ezkutatu"
+
+#: src/remote.c:1450 src/remote.c:1451
+#, fuzzy
+msgid "open FILE in new window"
+msgstr "ireki fitxategia leiho berrian"
+
 #: src/remote.c:1516
 msgid "Remote command list:\n"
 msgstr "Urrunekoa komando zerrenda:\n"
@@ -4394,9 +7203,99 @@ msgstr "Urruneko Geeqie ez dago martxan, abiarazten..."
 msgid "Remote not available\n"
 msgstr "Urrunekoa ez dago erabilgarri\n"
 
-#: src/search_and_run.c:291
-msgid "Search and Run command"
+#: src/search.c:270
+msgid "folder"
+msgstr "karpeta"
+
+#: src/search.c:271
+msgid "comments"
+msgstr "iruzkinak"
+
+#: src/search.c:272
+msgid "results"
+msgstr "emaitzak"
+
+#: src/search.c:273
+#, fuzzy
+msgid "collection"
+msgstr "Bildumak"
+
+#: src/search.c:277
+#, fuzzy
+msgid "name contains"
+msgstr "edukia"
+
+#: src/search.c:278
+#, fuzzy
+msgid "name is"
+msgstr "Fitxategia berrizendatu"
+
+#: src/search.c:279
+#, fuzzy
+msgid "path contains"
+msgstr "edukia"
+
+#: src/search.c:283 src/search.c:290 src/search.c:309
+msgid "equal to"
+msgstr "berdin"
+
+#: src/search.c:284 src/search.c:310 src/search.c:317
+msgid "less than"
+msgstr "txikiago"
+
+#: src/search.c:285 src/search.c:311 src/search.c:318
+msgid "greater than"
+msgstr "handiago"
+
+#: src/search.c:286 src/search.c:293 src/search.c:312
+msgid "between"
+msgstr "tartean"
+
+#: src/search.c:291
+msgid "before"
+msgstr "lehenago"
+
+#: src/search.c:292
+msgid "after"
+msgstr "geroago"
+
+#: src/search.c:297
+msgid "match all"
+msgstr "denak aurkitu"
+
+#: src/search.c:298
+msgid "match any"
+msgstr "edozein aurkitu"
+
+#: src/search.c:299
+msgid "exclude"
+msgstr "alboan utzi"
+
+#: src/search.c:303
+msgid "contains"
+msgstr "edukia"
+
+#: src/search.c:304
+msgid "miss"
 msgstr ""
+
+#: src/search.c:316
+#, fuzzy
+msgid "not geocoded"
+msgstr "ezarri gabe"
+
+#: src/search.c:322 src/search.c:327
+msgid "is"
+msgstr " - "
+
+#: src/search.c:323 src/search.c:328
+msgid "is not"
+msgstr ""
+
+#: src/search.c:368
+#, fuzzy
+msgid "Start/stop search"
+msgstr "Irudi bilaketa - Geeqie"
 
 #: src/search.c:410
 #, c-format
@@ -4416,160 +7315,141 @@ msgstr "Bilatzen..."
 msgid "Changed"
 msgstr ""
 
-#: src/search.c:2063 src/search.c:3479
+#: src/search.c:2063 src/search.c:3480
 #, fuzzy
 msgid "Original"
 msgstr "Jatorrizko Izena"
 
-#: src/search.c:2069 src/search.c:3480
+#: src/search.c:2069 src/search.c:3481
 #, fuzzy
 msgid "Digitized"
 msgstr "Digitalizazio data"
 
-#: src/search.c:2266 src/search.c:3606
+#: src/search.c:2266 src/search.c:3607
 #, fuzzy
 msgid "Raw Image"
 msgstr "Irudia"
 
-#: src/search.c:2271 src/search.c:3607
-msgid "Video"
-msgstr ""
-
-#: src/search.c:2276 src/search.c:3608
-#, fuzzy
-msgid "Document"
-msgstr "Iruzkina:"
-
-#: src/search.c:2286 src/search.c:3610
-#, fuzzy
-msgid "Unknown"
-msgstr "ezezaguna"
-
-#: src/search.c:2330 src/search.c:3623
+#: src/search.c:2330 src/search.c:3624
 #, fuzzy
 msgid "Any mark"
 msgstr "Laster-marka gehitu"
 
-#: src/search.c:2386 src/search.c:3579
+#: src/search.c:2387 src/search.c:3580
 msgid "km"
 msgstr ""
 
-#: src/search.c:2391 src/search.c:3580
+#: src/search.c:2392 src/search.c:3581
 #, fuzzy
 msgid "miles"
 msgstr "Fitxategiak"
 
-#: src/search.c:2713
+#: src/search.c:2714
 msgid "File not found"
 msgstr "Ez da fitxategia aurkitu"
 
-#: src/search.c:2714
+#: src/search.c:2715
 msgid "Please enter an existing file for image content."
 msgstr "Idatzi dagoen fitxategi bat irudi edukiarentzat."
 
-#: src/search.c:2739
+#: src/search.c:2740
 msgid "Entry does not contain a valid lat/long value"
 msgstr ""
 
-#: src/search.c:2789
+#: src/search.c:2790
 msgid "Please enter an existing folder to search."
 msgstr "Hauatatu karpeta bat bilaketarako."
 
-#: src/search.c:2835
+#: src/search.c:2836
 #, fuzzy
 msgid "Collection not found"
 msgstr "Karpeta ez da aurkitu"
 
-#: src/search.c:2835
+#: src/search.c:2836
 #, fuzzy
 msgid "Please enter an existing collection name."
 msgstr "Hauatatu karpeta bat bilaketarako."
 
-#: src/search.c:3293
+#: src/search.c:3294
 #, fuzzy
 msgid "Select collection"
 msgstr "Bilduma gorde"
 
-#: src/search.c:3363
+#: src/search.c:3364
 #, fuzzy
 msgid "Image search"
 msgstr "Irudi bilaketa - Geeqie"
 
-#: src/search.c:3402
+#: src/search.c:3403
 msgid "Search:"
 msgstr "Bilatu:"
 
-#: src/search.c:3416
+#: src/search.c:3417
 msgid "Recurse"
 msgstr "Errekurtsiboa"
 
-#: src/search.c:3440 src/search.c:3549
+#: src/search.c:3441 src/search.c:3550
 msgid "Match case"
 msgstr "Parekatze kasua"
 
-#: src/search.c:3446
+#: src/search.c:3447
 msgid "File size is"
 msgstr "Fitxategia tamaina"
 
-#: src/search.c:3453 src/search.c:3470 src/search.c:3499 src/search.c:3562
+#: src/search.c:3454 src/search.c:3471 src/search.c:3500 src/search.c:3563
 msgid "and"
 msgstr "eta"
 
-#: src/search.c:3459
+#: src/search.c:3460
 msgid "File date is"
 msgstr "Fitxategia data"
 
-#: src/search.c:3477
+#: src/search.c:3478
 msgid "Modified"
 msgstr ""
 
-#: src/search.c:3478
+#: src/search.c:3479
 #, fuzzy
 msgid "Status Changed"
 msgstr "Egoera"
 
-#: src/search.c:3488
+#: src/search.c:3489
 msgid "Image dimensions are"
 msgstr "Irudi dimentsioak"
 
-#: src/search.c:3509
+#: src/search.c:3510
 msgid "Image content is"
 msgstr "Irudi edukia"
 
-#: src/search.c:3515
+#: src/search.c:3516
 #, no-c-format
 msgid "% similar to"
 msgstr "% antzekotasuna"
 
-#: src/search.c:3523
+#: src/search.c:3524
 #, fuzzy
 msgid "Ignore rotation"
 msgstr "Orientazioa"
 
-#: src/search.c:3540
-#, fuzzy
-msgid "Comment"
-msgstr "Iruzkina:"
-
-#: src/search.c:3555
+#: src/search.c:3556
 #, fuzzy
 msgid "Image rating is"
 msgstr "Irudi edukia"
 
-#: src/search.c:3569
+#: src/search.c:3570
 #, fuzzy
 msgid "Image is"
 msgstr "Irudi fitxategia"
 
-#: src/search.c:3581
+#: src/search.c:3582
 msgid "n.m."
 msgstr ""
 
-#: src/search.c:3587
+#: src/search.c:3588
 msgid "from"
 msgstr ""
 
-#: src/search.c:3592
+#: src/search.c:3593
 msgid ""
 "Enter a coordinate in the form:\n"
 "89.123 179.456\n"
@@ -4580,16 +7460,16 @@ msgid ""
 "See the Help file"
 msgstr ""
 
-#: src/search.c:3600
+#: src/search.c:3601
 #, fuzzy
 msgid "Image class"
 msgstr "Irudi fitxategia"
 
-#: src/search.c:3611
+#: src/search.c:3612
 msgid "Broken"
 msgstr ""
 
-#: src/search.c:3618
+#: src/search.c:3619
 #, fuzzy
 msgid "Marks"
 msgstr "Erakutsi ezkutukoak"
@@ -4643,6 +7523,25 @@ msgstr "_Teklatu laster-teklak"
 msgid "Thumbnail image in cache failed to load, trying to recreate.\n"
 msgstr ""
 "Huts katxeko irudiaren argazkitxoa kargatzerakoan, birsortzen saiatzen.\n"
+
+#: src/toolbar.c:100
+#, fuzzy
+msgid "Open Archive"
+msgstr "_Azkenak ireki"
+
+#: src/toolbar.c:132
+#, fuzzy
+msgid "Pixel Info"
+msgstr "Fitxategi formatua:"
+
+#: src/toolbar.c:133
+msgid "Ignore Alpha"
+msgstr ""
+
+#: src/toolbar.c:134
+#, fuzzy
+msgid "Exif rotate"
+msgstr "Exif data erabili"
 
 #: src/toolbar.c:538
 msgid "Add Toolbar Item"
@@ -4855,10 +7754,6 @@ msgstr "Errorea karpeta sortzerakoan"
 msgid "All Files"
 msgstr "Fitxategi denak"
 
-#: src/ui_pathsel.c:1049 src/utilops.c:3189
-msgid "New folder"
-msgstr "Karpeta berria"
-
 #: src/ui_pathsel.c:1052
 msgid "Show hidden"
 msgstr "Erakutsi ezkutukoak"
@@ -4866,10 +7761,6 @@ msgstr "Erakutsi ezkutukoak"
 #: src/ui_pathsel.c:1137
 msgid "Filter:"
 msgstr "Iragazkia:"
-
-#: src/ui_pathsel.c:1179
-msgid "Files"
-msgstr "Fitxategiak"
 
 #: src/ui_tabcomp.c:945
 msgid "Select path"
@@ -5120,10 +8011,6 @@ msgstr "Fitxategia kopiatu"
 msgid "This will copy the following files"
 msgstr ""
 
-#: src/utilops.c:2396 src/utilops.c:2862
-msgid "Rename"
-msgstr "Berrizendatu"
-
 #: src/utilops.c:2397
 #, fuzzy
 msgid "Rename files?"
@@ -5317,16 +8204,6 @@ msgstr "Erakutsi ezkutukoak"
 msgid "Re_fresh"
 msgstr "_Freskatu"
 
-#: src/view_file/view_file.c:725
-#, fuzzy
-msgid "Enable file _grouping"
-msgstr "Fitxategi Iragaztea Ezgaitu"
-
-#: src/view_file/view_file.c:727
-#, fuzzy
-msgid "Disable file groupi_ng"
-msgstr "Fitxategi Iragaztea Ezgaitu"
-
 #: src/view_file/view_file.c:749
 #, fuzzy
 msgid "Images as List"
@@ -5406,15 +8283,6 @@ msgstr "Izena"
 msgid "Stars"
 msgstr "Hasi #"
 
-#: src/window.c:287 src/window.c:308
-#, fuzzy
-msgid "Help"
-msgstr "_Laguntza"
-
-#: src/window.c:371
-msgid "On-line help search"
-msgstr ""
-
 #: src/window.c:374
 msgid "Search the on-line help files.\n"
 msgstr ""
@@ -5428,1536 +8296,6 @@ msgstr "Bilatu:"
 #, fuzzy
 msgid "Search terms:"
 msgstr "Bilatu:"
-
-#, fuzzy
-#~ msgid "Title"
-#~ msgstr "Izengabea"
-
-#, fuzzy
-#~ msgid "Rating"
-#~ msgstr "Inprimatze errorea"
-
-#, fuzzy
-#~ msgid "Headline"
-#~ msgstr "Denbora-lerroa"
-
-#~ msgid "Exif"
-#~ msgstr "Exif"
-
-#, fuzzy
-#~ msgid "File info"
-#~ msgstr "Ez da fitxategia aurkitu"
-
-#, fuzzy
-#~ msgid "Location and GPS"
-#~ msgstr "Kokalekua:"
-
-#~ msgid "Copyright"
-#~ msgstr "Copyright-a"
-
-#, fuzzy
-#~ msgid "Close window"
-#~ msgstr "Leihoa it_xi"
-
-#, fuzzy
-#~ msgid "View in new window"
-#~ msgstr "Leiho _berrian ikusi"
-
-#, fuzzy
-#~ msgid "Select single file"
-#~ msgstr "Hautatu karpeta"
-
-#, fuzzy
-#~ msgid "Toggle select image"
-#~ msgstr "hurrengo irudia"
-
-#, fuzzy
-#~ msgid "Append from collection"
-#~ msgstr "Bildumatik erantsi..."
-
-#, fuzzy
-#~ msgid "Save collection as"
-#~ msgstr "Bilduma gorde"
-
-#, fuzzy
-#~ msgid "Show filename text"
-#~ msgstr "Erakutsi fitxategi-izen _testua"
-
-#, fuzzy
-#~ msgid "Print"
-#~ msgstr "Inprimagailua"
-
-#, fuzzy
-#~ msgid "Toggle thumbs"
-#~ msgstr "Argazkitxoak kargatzen..."
-
-#, fuzzy
-#~ msgid "Collection from selection"
-#~ msgstr "Fitxategi zerrendatik erantsi"
-
-#, fuzzy
-#~ msgid "Append list"
-#~ msgstr "Er_antsi"
-
-#, fuzzy
-#~ msgid "Select group 1 duplicates"
-#~ msgstr "_1 Taldearen bikoiztutakoak hautatu"
-
-#, fuzzy
-#~ msgid "Select group 2 duplicates"
-#~ msgstr "_2 Taldearen bikoiztutakoak hautatu"
-
-#~ msgid "top left"
-#~ msgstr "goian ezkerrean"
-
-#~ msgid "top right"
-#~ msgstr "goian eskuinean"
-
-#~ msgid "bottom right"
-#~ msgstr "behean eskuinean"
-
-#~ msgid "bottom left"
-#~ msgstr "behean ezkerrean"
-
-#~ msgid "left top"
-#~ msgstr "ezkerrean goian"
-
-#~ msgid "right top"
-#~ msgstr "eskuinean goian"
-
-#~ msgid "right bottom"
-#~ msgstr "eskuinean behean"
-
-#~ msgid "left bottom"
-#~ msgstr "ezkerrean behean"
-
-#~ msgid "inch"
-#~ msgstr "hazbete"
-
-#~ msgid "centimeter"
-#~ msgstr "zentimetro"
-
-#~ msgid "average"
-#~ msgstr "batez bestekoa"
-
-#~ msgid "center weighted"
-#~ msgstr "erdian haztaturik"
-
-#~ msgid "spot"
-#~ msgstr "puntua"
-
-#~ msgid "multi-spot"
-#~ msgstr "puntu anitz"
-
-#~ msgid "multi-segment"
-#~ msgstr "segmentu-anitzekoa"
-
-#~ msgid "partial"
-#~ msgstr "partziala"
-
-#~ msgid "other"
-#~ msgstr "bestelakoa"
-
-#~ msgid "not defined"
-#~ msgstr "ezarri gabe"
-
-#~ msgid "manual"
-#~ msgstr "eskuz"
-
-#~ msgid "normal"
-#~ msgstr "normala"
-
-#~ msgid "aperture"
-#~ msgstr "irekiera"
-
-#~ msgid "shutter"
-#~ msgstr "obturadorea"
-
-#~ msgid "creative"
-#~ msgstr "sortzaile"
-
-#~ msgid "action"
-#~ msgstr "ekintza"
-
-#~ msgid "portrait"
-#~ msgstr "erretratu"
-
-#~ msgid "landscape"
-#~ msgstr "paisaia"
-
-#~ msgid "daylight"
-#~ msgstr "egun-argiz"
-
-#~ msgid "fluorescent"
-#~ msgstr "fluoreszentea"
-
-#~ msgid "tungsten (incandescent)"
-#~ msgstr "tungstenioa (goritasun)"
-
-#~ msgid "flash"
-#~ msgstr "flash-a"
-
-#, fuzzy
-#~ msgid "daylight fluorescent"
-#~ msgstr "fluoreszentea"
-
-#, fuzzy
-#~ msgid "day white fluorescent"
-#~ msgstr "fluoreszentea"
-
-#, fuzzy
-#~ msgid "cool white fluorescent"
-#~ msgstr "fluoreszentea"
-
-#, fuzzy
-#~ msgid "white fluorescent"
-#~ msgstr "fluoreszentea"
-
-#~ msgid "yes, not detected by strobe"
-#~ msgstr "bai, ez da strobe bidez atzeman"
-
-#~ msgid "yes, detected by strobe"
-#~ msgstr "bai, estrobe bidez atzemanda"
-
-#, fuzzy
-#~ msgid "trilinear"
-#~ msgstr "Bilineala"
-
-#, fuzzy
-#~ msgid "custom"
-#~ msgstr "Pertsonalizatua"
-
-#, fuzzy
-#~ msgid "auto bracket"
-#~ msgstr "Berrizendaketa automatikoa"
-
-#, fuzzy
-#~ msgid "standard"
-#~ msgstr "Egutegia"
-
-#, fuzzy
-#~ msgid "night scene"
-#~ msgstr "Argi jatorria"
-
-#, fuzzy
-#~ msgid "none"
-#~ msgstr "eginda"
-
-#, fuzzy
-#~ msgid "low gain up"
-#~ msgstr "Garbitu"
-
-#, fuzzy
-#~ msgid "low gain down"
-#~ msgstr "_Leiho itxi"
-
-#, fuzzy
-#~ msgid "soft"
-#~ msgstr "puntua"
-
-#, fuzzy
-#~ msgid "high"
-#~ msgstr "Altuera"
-
-#, fuzzy
-#~ msgid "Image Width"
-#~ msgstr "Irudi fitxategia"
-
-#, fuzzy
-#~ msgid "Image Height"
-#~ msgstr "Altuera"
-
-#, fuzzy
-#~ msgid "Compression"
-#~ msgstr "Konpresio erratioa:"
-
-#~ msgid "Image description"
-#~ msgstr "Irudia azalpena"
-
-#, fuzzy
-#~ msgid "Camera make"
-#~ msgstr "Kamara"
-
-#, fuzzy
-#~ msgid "Camera model"
-#~ msgstr "Kamara"
-
-#~ msgid "Orientation"
-#~ msgstr "Orientazioa"
-
-#, fuzzy
-#~ msgid "X resolution"
-#~ msgstr "Bereizmena"
-
-#, fuzzy
-#~ msgid "Y Resolution"
-#~ msgstr "Bereizmena"
-
-#, fuzzy
-#~ msgid "Resolution units"
-#~ msgstr "Bereizmena"
-
-#, fuzzy
-#~ msgid "Black white reference"
-#~ msgstr "Geeqie Hobespenak"
-
-#, fuzzy
-#~ msgid "Exposure time (seconds)"
-#~ msgstr "Agerpena alborapena"
-
-#~ msgid "Exposure program"
-#~ msgstr "Agerpen programa"
-
-#, fuzzy
-#~ msgid "Spectral Sensitivity"
-#~ msgstr "ISO sentsibilitatea"
-
-#~ msgid "ISO sensitivity"
-#~ msgstr "ISO sentsibilitatea"
-
-#~ msgid "Date original"
-#~ msgstr "Jatorrizko data"
-
-#~ msgid "Date digitized"
-#~ msgstr "Digitalizazio data"
-
-#, fuzzy
-#~ msgid "Pixel format"
-#~ msgstr "Fitxategi formatua:"
-
-#, fuzzy
-#~ msgid "Compression ratio"
-#~ msgstr "Konpresio erratioa:"
-
-#~ msgid "Shutter speed"
-#~ msgstr "Obturadore abiadura"
-
-#~ msgid "Aperture"
-#~ msgstr "Irekiera"
-
-#~ msgid "Exposure bias"
-#~ msgstr "Agerpena alborapena"
-
-#, fuzzy
-#~ msgid "Maximum aperture"
-#~ msgstr "irekiera"
-
-#~ msgid "Subject distance"
-#~ msgstr "Elementu distantzia"
-
-#~ msgid "Metering mode"
-#~ msgstr "Neurtze modua"
-
-#~ msgid "Light source"
-#~ msgstr "Argi jatorria"
-
-#~ msgid "Flash"
-#~ msgstr "Flash-a"
-
-#~ msgid "Focal length"
-#~ msgstr "Fokuaren luzera"
-
-#, fuzzy
-#~ msgid "Subject area"
-#~ msgstr "Elementu distantzia"
-
-#, fuzzy
-#~ msgid "UserComment"
-#~ msgstr "Iruzkina:"
-
-#, fuzzy
-#~ msgid "Subsecond time original"
-#~ msgstr "Jatorrizko data"
-
-#, fuzzy
-#~ msgid "Subsecond time digitized"
-#~ msgstr "Digitalizazio data"
-
-#, fuzzy
-#~ msgid "Audio data"
-#~ msgstr "E_xif datuak"
-
-#, fuzzy
-#~ msgid "Flash strength"
-#~ msgstr "Fokuaren luzera"
-
-#, fuzzy
-#~ msgid "Subject location"
-#~ msgstr "Hautapena"
-
-#, fuzzy
-#~ msgid "Sensor type"
-#~ msgstr "Ordenatu gabe"
-
-#, fuzzy
-#~ msgid "Source type"
-#~ msgstr "Iturburua"
-
-#, fuzzy
-#~ msgid "Scene type"
-#~ msgstr "zentimetro"
-
-#, fuzzy
-#~ msgid "Render process"
-#~ msgstr "Errendatu"
-
-#, fuzzy
-#~ msgid "Exposure mode"
-#~ msgstr "Agerpena alborapena"
-
-#, fuzzy
-#~ msgid "Focal length (35mm)"
-#~ msgstr "Fokuaren luzera"
-
-#, fuzzy
-#~ msgid "Gain control"
-#~ msgstr "Kontrol Mugikorrak"
-
-#, fuzzy
-#~ msgid "Contrast"
-#~ msgstr "erretratu"
-
-#, fuzzy
-#~ msgid "Subject range"
-#~ msgstr "Elementu distantzia"
-
-#, fuzzy
-#~ msgid "Image serial number"
-#~ msgstr "Irudi fitxategia"
-
-#, fuzzy
-#~ msgid "Camera"
-#~ msgstr "Kamara"
-
-#, fuzzy
-#~ msgid "DateDigitized"
-#~ msgstr "Digitalizazio data"
-
-#, fuzzy
-#~ msgid "Focal length 35mm"
-#~ msgstr "Fokuaren luzera"
-
-#, fuzzy
-#~ msgid "Resolution"
-#~ msgstr "Bereizmena"
-
-#, fuzzy
-#~ msgid "Color profile"
-#~ msgstr "Fitxategi guztiak"
-
-#, fuzzy
-#~ msgid "Local time"
-#~ msgstr "Kokalekua:"
-
-#, fuzzy
-#~ msgid "Time zone"
-#~ msgstr "Denbora-lerroa"
-
-#, fuzzy
-#~ msgid "Country name"
-#~ msgstr "Izenez ordenatu"
-
-#, fuzzy
-#~ msgid "Star rating"
-#~ msgstr "Dataz ordenatu"
-
-#, fuzzy
-#~ msgid "File size"
-#~ msgstr "Fitxategi tamaina:"
-
-#, fuzzy
-#~ msgid "File date"
-#~ msgstr "Fitxategia data:"
-
-#, fuzzy
-#~ msgid "File mode"
-#~ msgstr "Fitxategi izena"
-
-#, fuzzy
-#~ msgid "File ctime"
-#~ msgstr "Fitxategi tamaina:"
-
-#, fuzzy
-#~ msgid "File owner"
-#~ msgstr "Fitxategi izena"
-
-#, fuzzy
-#~ msgid "File group"
-#~ msgstr "Ez da fitxategia aurkitu"
-
-#, fuzzy
-#~ msgid "File link"
-#~ msgstr "Ez da fitxategia aurkitu"
-
-#, fuzzy
-#~ msgid "File class"
-#~ msgstr "Fitxategiak"
-
-#, fuzzy
-#~ msgid "Page no."
-#~ msgstr "%d orrialdea"
-
-#, fuzzy
-#~ msgid "Rotate mirror"
-#~ msgstr "Irudi fitxategia"
-
-#, fuzzy
-#~ msgid "Rotate flip"
-#~ msgstr "Irudi iraulketa leuna"
-
-#, fuzzy
-#~ msgid " Rotate counterclockwise 90°"
-#~ msgstr "Biratu e_zkerretaraka"
-
-#, fuzzy
-#~ msgid " Rotate clockwise 90°"
-#~ msgstr "_Biratu eskuinetaraka"
-
-#, fuzzy
-#~ msgid "Previous"
-#~ msgstr "aurreko irudia"
-
-#, fuzzy
-#~ msgid "Next"
-#~ msgstr "hurrengo irudia"
-
-#~ msgid "Zoom in"
-#~ msgstr "Zooma handiagotu"
-
-#~ msgid "Zoom out"
-#~ msgstr "Zooma txikiagotu"
-
-#, fuzzy
-#~ msgid "Zoom 1:1"
-#~ msgstr "Zooma _1:1"
-
-#, fuzzy
-#~ msgid "Zoom 2:1"
-#~ msgstr "Zooma _1:1"
-
-#, fuzzy
-#~ msgid "Zoom 3:1"
-#~ msgstr "Zooma _1:1"
-
-#, fuzzy
-#~ msgid "Zoom 4:1"
-#~ msgstr "Zooma _1:1"
-
-#, fuzzy
-#~ msgid "Zoom 1:4"
-#~ msgstr "Zooma _1:1"
-
-#, fuzzy
-#~ msgid "Zoom 1:3"
-#~ msgstr "Zooma _1:1"
-
-#, fuzzy
-#~ msgid "Zoom 1:2"
-#~ msgstr "Zooma _1:1"
-
-#, fuzzy
-#~ msgid "Zoom fit window width"
-#~ msgstr "Gerturatu _doitzeko"
-
-#, fuzzy
-#~ msgid "Zoom fit window height"
-#~ msgstr "Gerturatu _doitzeko"
-
-#, fuzzy
-#~ msgid "Toggle slideshow"
-#~ msgstr "Aurkezpena _txandakatu"
-
-#, fuzzy
-#~ msgid "Pause slideshow"
-#~ msgstr "Aurkezpena _pausarazi"
-
-#, fuzzy
-#~ msgid "Reload image"
-#~ msgstr "Ausazkoa"
-
-#, fuzzy
-#~ msgid "Fullscreen"
-#~ msgstr "Pantaila osoa"
-
-#, fuzzy
-#~ msgid "Image overlay"
-#~ msgstr "Irudi bilaketa - Geeqie"
-
-#, fuzzy
-#~ msgid "Exit fullscreen"
-#~ msgstr "Irten _pantaila osotik"
-
-#, fuzzy
-#~ msgid "Desaturate"
-#~ msgstr "Natura"
-
-#~ msgid "Set as _wallpaper"
-#~ msgstr "Ida_zmahai atzealde bezala ezarri"
-
-#~ msgid "_File"
-#~ msgstr "_Fitxategia"
-
-#~ msgid "_Edit"
-#~ msgstr "_Editatu"
-
-#, fuzzy
-#~ msgid "_Select"
-#~ msgstr "Hautapena"
-
-#, fuzzy
-#~ msgid "_Rating"
-#~ msgstr "Inprimatze errorea"
-
-#, fuzzy
-#~ msgid "P_references"
-#~ msgstr "H_obespenak..."
-
-#, fuzzy
-#~ msgid "_Zoom"
-#~ msgstr "Zooma"
-
-#, fuzzy
-#~ msgid "_Color Management"
-#~ msgstr "Ordenatze Kudeatzailea"
-
-#, fuzzy
-#~ msgid "Image _Overlay"
-#~ msgstr "Irudi bilaketa - Geeqie"
-
-#, fuzzy
-#~ msgid "_Windows"
-#~ msgstr "Leihoak"
-
-#~ msgid "_Help"
-#~ msgstr "_Laguntza"
-
-#, fuzzy
-#~ msgid "Copy..."
-#~ msgstr "K_opiatu..."
-
-#, fuzzy
-#~ msgid "Move..."
-#~ msgstr "_Lekuz aldatu..."
-
-#, fuzzy
-#~ msgid "Rename..."
-#~ msgstr "I_zena aldatu..."
-
-#, fuzzy
-#~ msgid "Delete..."
-#~ msgstr "_Ezabatu..."
-
-#~ msgid "Select _all"
-#~ msgstr "_Hautatu denak"
-
-#~ msgid "Select _none"
-#~ msgstr "_Bat ere ez hautatu"
-
-#, fuzzy
-#~ msgid "_Invert Selection"
-#~ msgstr "Hautapena"
-
-#, fuzzy
-#~ msgid "Invert Selection"
-#~ msgstr "Hautapena"
-
-#~ msgid "_Quit"
-#~ msgstr "Irte_n"
-
-#, fuzzy
-#~ msgid "Quit"
-#~ msgstr "Irte_n"
-
-#, fuzzy
-#~ msgid "_First Image"
-#~ msgstr "lehen irudia"
-
-#, fuzzy
-#~ msgid "First Image"
-#~ msgstr "lehen irudia"
-
-#, fuzzy
-#~ msgid "_Previous Image"
-#~ msgstr "aurreko irudia"
-
-#, fuzzy
-#~ msgid "Previous Image"
-#~ msgstr "aurreko irudia"
-
-#, fuzzy
-#~ msgid "_Next Image"
-#~ msgstr "hurrengo irudia"
-
-#, fuzzy
-#~ msgid "Next Image"
-#~ msgstr "hurrengo irudia"
-
-#, fuzzy
-#~ msgid "Image Forward"
-#~ msgstr "Irudi fitxategia"
-
-#, fuzzy
-#~ msgid "Image Back"
-#~ msgstr "Irudi bilaketa - Geeqie"
-
-#, fuzzy
-#~ msgid "_First Page"
-#~ msgstr "lehen irudia"
-
-#, fuzzy
-#~ msgid "_Last Page"
-#~ msgstr "azken irudia"
-
-#, fuzzy
-#~ msgid "_Next Page"
-#~ msgstr "hurrengo irudia"
-
-#, fuzzy
-#~ msgid "_Previous Page"
-#~ msgstr "aurreko irudia"
-
-#, fuzzy
-#~ msgid "_Last Image"
-#~ msgstr "azken irudia"
-
-#, fuzzy
-#~ msgid "Last Image"
-#~ msgstr "azken irudia"
-
-#, fuzzy
-#~ msgid "_Home"
-#~ msgstr "Etxea"
-
-#, fuzzy
-#~ msgid "Up one folder"
-#~ msgstr "Karpeta berria"
-
-#, fuzzy
-#~ msgid "New window"
-#~ msgstr "Lei_ho berria"
-
-#, fuzzy
-#~ msgid "default"
-#~ msgstr "Lehenespenak"
-
-#, fuzzy
-#~ msgid "New window (default)"
-#~ msgstr "Lei_ho berria"
-
-#, fuzzy
-#~ msgid "from current"
-#~ msgstr "Erabili unekoa"
-
-#~ msgid "_New collection"
-#~ msgstr "Bildu_ma berria"
-
-#~ msgid "_Open collection..."
-#~ msgstr "Bilduma _ireki..."
-
-#, fuzzy
-#~ msgid "Open collection..."
-#~ msgstr "Bilduma _ireki..."
-
-#, fuzzy
-#~ msgid "Open recen_t"
-#~ msgstr "_Azkenak ireki"
-
-#, fuzzy
-#~ msgid "Open recent collection"
-#~ msgstr "Bilduma ireki"
-
-#~ msgid "_Search..."
-#~ msgstr "_Bilatu..."
-
-#, fuzzy
-#~ msgid "Search..."
-#~ msgstr "_Bilatu..."
-
-#, fuzzy
-#~ msgid "Find duplicates..."
-#~ msgstr "Bikoi_ztuak bilatu..."
-
-#, fuzzy
-#~ msgid "Pa_n view"
-#~ msgstr "Pan _ikuspegia"
-
-#, fuzzy
-#~ msgid "Pan view"
-#~ msgstr "Pan _ikuspegia"
-
-#~ msgid "_Print..."
-#~ msgstr "In_primatu..."
-
-#~ msgid "N_ew folder..."
-#~ msgstr "Karpe_ta berria..."
-
-#, fuzzy
-#~ msgid "New folder..."
-#~ msgstr "Ka_rpeta berria..."
-
-#, fuzzy
-#~ msgid "Enable file grouping"
-#~ msgstr "Fitxategi Iragaztea Ezgaitu"
-
-#, fuzzy
-#~ msgid "Disable file grouping"
-#~ msgstr "Fitxategi Iragaztea Ezgaitu"
-
-#, fuzzy
-#~ msgid "Copy path unquoted to clipboard"
-#~ msgstr "K_opiatu"
-
-#, fuzzy
-#~ msgid "Rating 0"
-#~ msgstr "Inprimatze errorea"
-
-#, fuzzy
-#~ msgid "Rating 1"
-#~ msgstr "Inprimatze errorea"
-
-#, fuzzy
-#~ msgid "Rating 2"
-#~ msgstr "Inprimatze errorea"
-
-#, fuzzy
-#~ msgid "Rating 3"
-#~ msgstr "Inprimatze errorea"
-
-#, fuzzy
-#~ msgid "Rating 4"
-#~ msgstr "Inprimatze errorea"
-
-#, fuzzy
-#~ msgid "Rating 5"
-#~ msgstr "Inprimatze errorea"
-
-#, fuzzy
-#~ msgid "_Rotate clockwise 90°"
-#~ msgstr "_Biratu eskuinetaraka"
-
-#, fuzzy
-#~ msgid "Image Rotate clockwise 90°"
-#~ msgstr "_Biratu eskuinetaraka"
-
-#, fuzzy
-#~ msgid "Rotate _counterclockwise 90°"
-#~ msgstr "Biratu e_zkerretaraka"
-
-#, fuzzy
-#~ msgid "Rotate 1_80°"
-#~ msgstr "1_80 Biratu"
-
-#, fuzzy
-#~ msgid "Image Rotate 180°"
-#~ msgstr "1_80 Biratu"
-
-#~ msgid "_Mirror"
-#~ msgstr "Is_pilua"
-
-#, fuzzy
-#~ msgid "Image Mirror"
-#~ msgstr "Irudi fitxategia"
-
-#~ msgid "_Flip"
-#~ msgstr "_Irauli"
-
-#, fuzzy
-#~ msgid "Image Flip"
-#~ msgstr "Irudi fitxategia"
-
-#, fuzzy
-#~ msgid "_Original state"
-#~ msgstr "Jatorrizko Izena"
-
-#, fuzzy
-#~ msgid "Image rotate Original state"
-#~ msgstr "Jatorrizko Izena"
-
-#~ msgid "P_references..."
-#~ msgstr "H_obespenak..."
-
-#, fuzzy
-#~ msgid "Preferences..."
-#~ msgstr "H_obespenak..."
-
-#, fuzzy
-#~ msgid "Configure _Plugins..."
-#~ msgstr "Aukerak konfiguratu"
-
-#, fuzzy
-#~ msgid "Configure Plugins..."
-#~ msgstr "Aukerak konfiguratu"
-
-#, fuzzy
-#~ msgid "_Configure this window..."
-#~ msgstr "Aukerak konfiguratu"
-
-#, fuzzy
-#~ msgid "Configure this window..."
-#~ msgstr "Aukerak konfiguratu"
-
-#, fuzzy
-#~ msgid "_Cache maintenance..."
-#~ msgstr "Katxe Mantenua - Geeqie"
-
-#, fuzzy
-#~ msgid "Cache maintenance..."
-#~ msgstr "Katxe Mantenua - Geeqie"
-
-#, fuzzy
-#~ msgid "Set as wallpaper"
-#~ msgstr "Ida_zmahai atzealde bezala ezarri"
-
-#, fuzzy
-#~ msgid "_Save metadata"
-#~ msgstr "Metadatuak"
-
-#, fuzzy
-#~ msgid "Keyword autocomplete"
-#~ msgstr "Gako-hitzak:"
-
-#, fuzzy
-#~ msgid "Keyword Autocomplete"
-#~ msgstr "Gako-hitzak:"
-
-#~ msgid "_Zoom to fit"
-#~ msgstr "Gerturatu _doitzeko"
-
-#, fuzzy
-#~ msgid "Fit _Vertically"
-#~ msgstr "partziala"
-
-#, fuzzy
-#~ msgid "Fit Vertically"
-#~ msgstr "partziala"
-
-#, fuzzy
-#~ msgid "Zoom _2:1"
-#~ msgstr "Zooma _1:1"
-
-#, fuzzy
-#~ msgid "Zoom _3:1"
-#~ msgstr "Zooma _1:1"
-
-#, fuzzy
-#~ msgid "Zoom _4:1"
-#~ msgstr "Zooma _1:1"
-
-#, fuzzy
-#~ msgid "Connected Zoom out"
-#~ msgstr "Zooma txikiagotu"
-
-#, fuzzy
-#~ msgid "Connected Zoom 1:1"
-#~ msgstr "1:1 Zooma ezarri"
-
-#, fuzzy
-#~ msgid "Connected Zoom to fit"
-#~ msgstr "Gerturatu _doitzeko"
-
-#, fuzzy
-#~ msgid "Connected Zoom 2:1"
-#~ msgstr "1:1 Zooma ezarri"
-
-#, fuzzy
-#~ msgid "Connected Zoom 3:1"
-#~ msgstr "1:1 Zooma ezarri"
-
-#, fuzzy
-#~ msgid "Connected Zoom 4:1"
-#~ msgstr "1:1 Zooma ezarri"
-
-#, fuzzy
-#~ msgid "Connected Zoom 1:2"
-#~ msgstr "Zooma _1:1"
-
-#, fuzzy
-#~ msgid "Connected Zoom 1:3"
-#~ msgstr "Zooma _1:1"
-
-#, fuzzy
-#~ msgid "Connected Zoom 1:4"
-#~ msgstr "Zooma _1:1"
-
-#, fuzzy
-#~ msgid "_View in new window"
-#~ msgstr "Leiho _berrian ikusi"
-
-#~ msgid "F_ull screen"
-#~ msgstr "Pa_ntaila osoa"
-
-#, fuzzy
-#~ msgid "_Leave full screen"
-#~ msgstr "Geeqie pantaila osoa"
-
-#, fuzzy
-#~ msgid "Leave full screen"
-#~ msgstr "Geeqie pantaila osoa"
-
-#~ msgid "_Hide file list"
-#~ msgstr "Fitxategi zerrenda _ezkutatu"
-
-#, fuzzy
-#~ msgid "Hide file list"
-#~ msgstr "Fitxategi zerrenda _ezkutatu"
-
-#, fuzzy
-#~ msgid "_Pause slideshow"
-#~ msgstr "Aurkezpena _pausarazi"
-
-#, fuzzy
-#~ msgid "Slideshow Faster"
-#~ msgstr " Aurkezpena"
-
-#, fuzzy
-#~ msgid "Slideshow Slower"
-#~ msgstr " Aurkezpena"
-
-#~ msgid "_Refresh"
-#~ msgstr "_Freskatu"
-
-#, fuzzy
-#~ msgid "Refresh"
-#~ msgstr "_Freskatu"
-
-#, fuzzy
-#~ msgid "_Help manual"
-#~ msgstr "eskuz"
-
-#, fuzzy
-#~ msgid "Help manual"
-#~ msgstr "eskuz"
-
-#~ msgid "_Keyboard shortcuts"
-#~ msgstr "_Teklatu laster-teklak"
-
-#, fuzzy
-#~ msgid "Keyboard shortcuts"
-#~ msgstr "_Teklatu laster-teklak"
-
-#, fuzzy
-#~ msgid "_Keyboard map"
-#~ msgstr "_Gako-hitzak"
-
-#, fuzzy
-#~ msgid "Keyboard map"
-#~ msgstr "Argazkitxoak kargatzen..."
-
-#, fuzzy
-#~ msgid "ChangeLog notes"
-#~ msgstr "Karpeta honetara aldatu:"
-
-#~ msgid "_About"
-#~ msgstr "_Honi buruz"
-
-#, fuzzy
-#~ msgid "About"
-#~ msgstr "_Honi buruz"
-
-#, fuzzy
-#~ msgid "_Log Window"
-#~ msgstr "Leihoak"
-
-#, fuzzy
-#~ msgid "Log Window"
-#~ msgstr "Leihoak"
-
-#, fuzzy
-#~ msgid "_Exif window"
-#~ msgstr "Leihoa it_xi"
-
-#, fuzzy
-#~ msgid "Exif window"
-#~ msgstr "Lei_ho berria"
-
-#, fuzzy
-#~ msgid "_Next Pane"
-#~ msgstr "hurrengo irudia"
-
-#, fuzzy
-#~ msgid "Next Split Pane"
-#~ msgstr "hurrengo irudia"
-
-#, fuzzy
-#~ msgid "_Previous Pane"
-#~ msgstr "aurreko irudia"
-
-#, fuzzy
-#~ msgid "Previous Split Pane"
-#~ msgstr "aurreko irudia"
-
-#, fuzzy
-#~ msgid "Up Split Pane"
-#~ msgstr "Tamaina"
-
-#, fuzzy
-#~ msgid "_Write orientation to file"
-#~ msgstr "Fitxategia gainidatzi"
-
-#, fuzzy
-#~ msgid "Write orientation to file"
-#~ msgstr "Fitxategia gainidatzi"
-
-#, fuzzy
-#~ msgid "Clear Marks..."
-#~ msgstr "Zakarrontzia hustu"
-
-#, fuzzy
-#~ msgid "Show _Thumbnails"
-#~ msgstr "Ar_gazkitxoak bistarazi"
-
-#, fuzzy
-#~ msgid "Show Thumbnails"
-#~ msgstr "Argazkitxoak erakutsi"
-
-#, fuzzy
-#~ msgid "Show _Marks"
-#~ msgstr "Erakutsi ezkutukoak"
-
-#, fuzzy
-#~ msgid "Show Marks"
-#~ msgstr "Erakutsi ezkutukoak"
-
-#, fuzzy
-#~ msgid "Pi_xel Info"
-#~ msgstr "Fitxategi formatua:"
-
-#, fuzzy
-#~ msgid "Show Pixel Info"
-#~ msgstr "Erakutsi ezkutukoak"
-
-#, fuzzy
-#~ msgid "Hide _alpha"
-#~ msgstr "Tresna_barra ezkutatu"
-
-#~ msgid "_Float file list"
-#~ msgstr "_Fitxategi zerrenda mugikorra"
-
-#, fuzzy
-#~ msgid "Float file list"
-#~ msgstr "_Fitxategi zerrenda mugikorra"
-
-#~ msgid "Hide tool_bar"
-#~ msgstr "Tresna_barra ezkutatu"
-
-#, fuzzy
-#~ msgid "Hide toolbar"
-#~ msgstr "Tresna_barra ezkutatu"
-
-#~ msgid "Sort _manager"
-#~ msgstr "Ordenatze _kudeatzailea"
-
-#, fuzzy
-#~ msgid "Sort manager"
-#~ msgstr "Ordenatze _kudeatzailea"
-
-#, fuzzy
-#~ msgid "Hide Bars"
-#~ msgstr "Tresna_barra ezkutatu"
-
-#, fuzzy
-#~ msgid "Use color profiles"
-#~ msgstr "Fitxategi guztiak"
-
-#, fuzzy
-#~ msgid "Toggle _grayscale"
-#~ msgstr "Aurkezpena _txandakatu"
-
-#, fuzzy
-#~ msgid "Toggle grayscale"
-#~ msgstr "Aurkezpena _txandakatu"
-
-#, fuzzy
-#~ msgid "Image Overlay"
-#~ msgstr "Irudi bilaketa - Geeqie"
-
-#, fuzzy
-#~ msgid "Rectangular Selection"
-#~ msgstr "Hautapen karratua ikono ikuspegian"
-
-#, fuzzy
-#~ msgid "_Exif rotate"
-#~ msgstr "Exif data erabili"
-
-#, fuzzy
-#~ msgid "Toggle Exif rotate"
-#~ msgstr "Exif data erabili"
-
-#, fuzzy
-#~ msgid "Images as _List"
-#~ msgstr "Irudi fitxategia"
-
-#, fuzzy
-#~ msgid "View Images as List"
-#~ msgstr "Ikonoak bezala _ikusi"
-
-#, fuzzy
-#~ msgid "Images as I_cons"
-#~ msgstr "Ikonoak bezala _ikusi"
-
-#, fuzzy
-#~ msgid "View Images as Icons"
-#~ msgstr "Ikonoak bezala _ikusi"
-
-#, fuzzy
-#~ msgid "T_oggle Folder View"
-#~ msgstr "Aurkezpena _txandakatu"
-
-#, fuzzy
-#~ msgid "Toggle Folders View"
-#~ msgstr "Aurkezpena _txandakatu"
-
-#, fuzzy
-#~ msgid "Split panes horizontal."
-#~ msgstr "partziala"
-
-#, fuzzy
-#~ msgid "_Vertical"
-#~ msgstr "partziala"
-
-#, fuzzy
-#~ msgid "Split panes vertical"
-#~ msgstr "partziala"
-
-#, fuzzy
-#~ msgid "Split panes quad"
-#~ msgstr "Tamaina"
-
-#, fuzzy
-#~ msgid "_Single"
-#~ msgstr "Tamaina"
-
-#, fuzzy
-#~ msgid "Single pane"
-#~ msgstr "hurrengo irudia"
-
-#, fuzzy
-#~ msgid "Collection"
-#~ msgstr "Bildumak"
-
-#, fuzzy
-#~ msgid "Image index"
-#~ msgstr "Irudi fitxategia"
-
-#, fuzzy
-#~ msgid "Images total"
-#~ msgstr "Irudi fitxategia"
-
-#, fuzzy
-#~ msgid "File page no."
-#~ msgstr "Fitxategia data"
-
-#, fuzzy
-#~ msgid "Image date"
-#~ msgstr "Irudi fitxategia"
-
-#, fuzzy
-#~ msgid "ShutterSpeed"
-#~ msgstr "Obturadore abiadura"
-
-#, fuzzy
-#~ msgid "Focal len. 35mm"
-#~ msgstr "Fokuaren luzera"
-
-#, fuzzy
-#~ msgid "Timezone"
-#~ msgstr "Denbora-lerroa"
-
-#, fuzzy
-#~ msgid "© Creator"
-#~ msgstr "Hautatu karpeta"
-
-#, fuzzy
-#~ msgid "© Rights"
-#~ msgstr "Argi jatorria"
-
-#, fuzzy
-#~ msgid "Start search"
-#~ msgstr "Irudi bilaketa - Geeqie"
-
-#, fuzzy
-#~ msgid "Scroll left"
-#~ msgstr "goian ezkerrean"
-
-#, fuzzy
-#~ msgid "Scroll right"
-#~ msgstr "goian eskuinean"
-
-#, fuzzy
-#~ msgid "Scroll down faster"
-#~ msgstr " Aurkezpena"
-
-#, fuzzy
-#~ msgid "RAW Image"
-#~ msgstr "Irudia"
-
-#, fuzzy
-#~ msgid "Archive"
-#~ msgstr "Irekiera"
-
-#, fuzzy
-#~ msgid "First page"
-#~ msgstr "lehen irudia"
-
-#, fuzzy
-#~ msgid "Last Page"
-#~ msgstr "azken irudia"
-
-#, fuzzy
-#~ msgid "Next page"
-#~ msgstr "hurrengo irudia"
-
-#, fuzzy
-#~ msgid "Previous Page"
-#~ msgstr "aurreko irudia"
-
-#~ msgid "New _window"
-#~ msgstr "Lei_ho berria"
-
-#, fuzzy
-#~ msgid "Close Window"
-#~ msgstr "Leihoa it_xi"
-
-#, fuzzy
-#~ msgid "Select invert"
-#~ msgstr "Hautatu ikonoa"
-
-#, fuzzy
-#~ msgid "Show file filter"
-#~ msgstr "Erakutsi ezkutukoak"
-
-#, fuzzy
-#~ msgid "Select rectangle"
-#~ msgstr "Hautatu dena"
-
-#, fuzzy
-#~ msgid "Configure this window"
-#~ msgstr "Aukerak konfiguratu"
-
-#, fuzzy
-#~ msgid "Cache maintenance"
-#~ msgstr "Katxe Mantenua - Geeqie"
-
-#, fuzzy
-#~ msgid "Fit Horizontaly"
-#~ msgstr "partziala"
-
-#, fuzzy
-#~ msgid "Fit vertically"
-#~ msgstr "partziala"
-
-#, fuzzy
-#~ msgid "Zoom1:3"
-#~ msgstr "Zooma _1:1"
-
-#, fuzzy
-#~ msgid "Grayscale"
-#~ msgstr "Aurkezpena _txandakatu"
-
-#, fuzzy
-#~ msgid "Show thumbnails"
-#~ msgstr "Ar_gazkitxoak bistarazi"
-
-#, fuzzy
-#~ msgid "Show marks"
-#~ msgstr "Erakutsi ezkutukoak"
-
-#~ msgid "previous image"
-#~ msgstr "aurreko irudia"
-
-#, fuzzy
-#~ msgid "close window"
-#~ msgstr "Leihoa it_xi"
-
-#, fuzzy
-#~ msgid "<folder>  "
-#~ msgstr "karpeta"
-
-#, fuzzy
-#~ msgid " render thumbnails"
-#~ msgstr "Argazkitxoak sortu"
-
-#, fuzzy
-#~ msgid "<folder> "
-#~ msgstr "karpeta"
-
-#, fuzzy
-#~ msgid "render thumbnails recursively"
-#~ msgstr "Karpeta baten argazkitxoak errendatu."
-
-#, fuzzy
-#~ msgid " render thumbnails (see Help)"
-#~ msgstr "Karpeta baten argazkitxoak errendatu."
-
-#, fuzzy
-#~ msgid "<folder>"
-#~ msgstr "karpeta"
-
-#, fuzzy
-#~ msgid "clear or clean shared thumbnail cache"
-#~ msgstr "Partekatutako argazkitxo katxea erabili"
-
-#, fuzzy
-#~ msgid "clear or clean thumbnail cache"
-#~ msgstr "Partekatutako argazkitxo katxea"
-
-#, fuzzy
-#~ msgid "set slide show delay to Hrs Mins N.M seconds"
-#~ msgstr "aurkezpen atzerapena ezarri segundutan"
-
-#~ msgid "first image"
-#~ msgstr "lehen irudia"
-
-#~ msgid "toggle full screen"
-#~ msgstr "pantaila oso egoera txandakatu"
-
-#, fuzzy
-#~ msgid "open FILE or URL, bring Geeqie window to the top"
-#~ msgstr "ireki fitxategia leiho berrian"
-
-#, fuzzy
-#~ msgid "open FILE or URL, do not bring Geeqie window to the top"
-#~ msgstr "ireki fitxategia leiho berrian"
-
-#~ msgid "start full screen"
-#~ msgstr "pantaila osoa gaitu"
-
-#~ msgid "stop full screen"
-#~ msgstr "pantaila osoa ezgaitu"
-
-#, fuzzy
-#~ msgid "set window geometry"
-#~ msgstr "Karpeta baliogabea"
-
-#, fuzzy
-#~ msgid "get collection content"
-#~ msgstr "Bildu_ma berria"
-
-#, fuzzy
-#~ msgid "get collection list"
-#~ msgstr "Bildu_ma berria"
-
-#, fuzzy
-#~ msgid "get file info"
-#~ msgstr "Ez da fitxategia aurkitu"
-
-#, fuzzy
-#~ msgid "get render intent"
-#~ msgstr "Errendatu"
-
-#~ msgid "last image"
-#~ msgstr "azken irudia"
-
-#, fuzzy
-#~ msgid "add FILE to command line collection list"
-#~ msgstr "Bilduma berria gehitu"
-
-#, fuzzy
-#~ msgid "new window"
-#~ msgstr "Lei_ho berria"
-
-#~ msgid "next image"
-#~ msgstr "hurrengo irudia"
-
-#~ msgid "quit"
-#~ msgstr "irten"
-
-#~ msgid "toggle slide show"
-#~ msgstr "aurkezpena txandakatu"
-
-#, fuzzy
-#~ msgid "start recursive slide show in FOLDER"
-#~ msgstr "aurkezpen errekurtsiboa hasi"
-
-#~ msgid "start slide show"
-#~ msgstr "aurkezpena hasi"
-
-#~ msgid "stop slide show"
-#~ msgstr "aurkezpena gelditu"
-
-#~ msgid "show tools"
-#~ msgstr "tresnak ikusi"
-
-#~ msgid "hide tools"
-#~ msgstr "tresnak ezkutatu"
-
-#, fuzzy
-#~ msgid "open FILE in new window"
-#~ msgstr "ireki fitxategia leiho berrian"
-
-#~ msgid "folder"
-#~ msgstr "karpeta"
-
-#~ msgid "comments"
-#~ msgstr "iruzkinak"
-
-#~ msgid "results"
-#~ msgstr "emaitzak"
-
-#, fuzzy
-#~ msgid "collection"
-#~ msgstr "Bildumak"
-
-#, fuzzy
-#~ msgid "name contains"
-#~ msgstr "edukia"
-
-#, fuzzy
-#~ msgid "name is"
-#~ msgstr "Fitxategia berrizendatu"
-
-#, fuzzy
-#~ msgid "path contains"
-#~ msgstr "edukia"
-
-#~ msgid "equal to"
-#~ msgstr "berdin"
-
-#~ msgid "less than"
-#~ msgstr "txikiago"
-
-#~ msgid "greater than"
-#~ msgstr "handiago"
-
-#~ msgid "between"
-#~ msgstr "tartean"
-
-#~ msgid "before"
-#~ msgstr "lehenago"
-
-#~ msgid "after"
-#~ msgstr "geroago"
-
-#~ msgid "match all"
-#~ msgstr "denak aurkitu"
-
-#~ msgid "match any"
-#~ msgstr "edozein aurkitu"
-
-#~ msgid "exclude"
-#~ msgstr "alboan utzi"
-
-#~ msgid "contains"
-#~ msgstr "edukia"
-
-#, fuzzy
-#~ msgid "not geocoded"
-#~ msgstr "ezarri gabe"
-
-#~ msgid "is"
-#~ msgstr " - "
-
-#, fuzzy
-#~ msgid "Open Archive"
-#~ msgstr "_Azkenak ireki"
-
-#, fuzzy
-#~ msgid "Pixel Info"
-#~ msgstr "Fitxategi formatua:"
-
-#, fuzzy
-#~ msgid "Exif rotate"
-#~ msgstr "Exif data erabili"
 
 #~ msgid "Fit image to _window"
 #~ msgstr "Doitu irudia leiho tamainara"

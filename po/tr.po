@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-08 13:00+0100\n"
+"POT-Creation-Date: 2022-09-05 19:35+0100\n"
 "PO-Revision-Date: 2000-04-07 17:09+0200\n"
 "Last-Translator: Yaşar Çiv <yasarciv67@gmail.com>\n"
 "Language-Team: Milis Linux Translation Team <https://milislinux.org>\n"
@@ -50,8 +50,9 @@ msgid "Import all images from camera"
 msgstr ""
 
 #: plugins/export-jpeg/export-jpeg.desktop.in:5
+#, fuzzy
 msgid "Export jpeg"
-msgstr ""
+msgstr "Pozlama eğilimi"
 
 #: plugins/export-jpeg/export-jpeg.desktop.in:6
 msgid "Extract embedded jpegs from a raw file"
@@ -91,8 +92,8 @@ msgstr ""
 msgid "Tethered photography"
 msgstr ""
 
-#: src/advanced_exif.c:437 src/cache_maint.c:1773 src/preferences.c:2851
-#: src/search.c:2281 src/search.c:3609
+#: src/advanced_exif.c:437 src/cache_maint.c:1773 src/preferences.c:133
+#: src/preferences.c:2851 src/search.c:2281 src/search.c:3610
 msgid "Metadata"
 msgstr "Metaveri"
 
@@ -105,8 +106,8 @@ msgid "Value"
 msgstr "Değer"
 
 #: src/advanced_exif.c:495 src/desktop_file.c:631 src/dupe.c:3978
-#: src/dupe.c:4703 src/dupe.c:5287 src/search.c:3693 src/utilops.c:507
-#: src/view_file/view_file_list.c:2228
+#: src/dupe.c:4703 src/dupe.c:5287 src/osd.c:38 src/search.c:3694
+#: src/utilops.c:507 src/view_file/view_file_list.c:2228
 msgid "Name"
 msgstr "Ad"
 
@@ -121,6 +122,52 @@ msgstr "Biçim"
 #: src/advanced_exif.c:498
 msgid "Elements"
 msgstr "Öğeler"
+
+#: src/bar.c:201
+msgid "Histogram"
+msgstr "Histogram"
+
+#: src/bar.c:202
+msgid "Title"
+msgstr "Başlık"
+
+#: src/bar.c:203 src/osd.c:48 src/preferences.c:3269 src/search.c:3529
+msgid "Keywords"
+msgstr "Anahtar kelimeler"
+
+#: src/bar.c:204 src/osd.c:47 src/search.c:3541
+msgid "Comment"
+msgstr "Yorum"
+
+#: src/bar.c:205 src/preferences.c:2033
+#, fuzzy
+msgid "Star Rating"
+msgstr "Derecelendirme"
+
+#: src/bar.c:206
+#, fuzzy
+msgid "Headline"
+msgstr "Zaman çizelgesi"
+
+#: src/bar.c:207
+msgid "Exif"
+msgstr "Exif"
+
+#: src/bar.c:209
+msgid "File info"
+msgstr "Dosya bilgisi"
+
+#: src/bar.c:210
+msgid "Location and GPS"
+msgstr "Konum ve GPS"
+
+#: src/bar.c:211 src/exif.c:340
+msgid "Copyright"
+msgstr "Telif Hakkı"
+
+#: src/bar.c:214 src/bar_gps.c:1023
+msgid "GPS Map"
+msgstr "GPS Haritası"
 
 # Yukarı taşı da olabilir
 #: src/bar.c:403 src/toolbar.c:224
@@ -144,7 +191,8 @@ msgstr "Alta _taşı"
 msgid "Height..."
 msgstr "Yükseklik"
 
-#: src/bar.c:415 src/toolbar.c:229
+#: src/bar.c:415 src/collect-table.c:87 src/dupe.c:156 src/search.c:359
+#: src/toolbar.c:229
 msgid "Remove"
 msgstr "Kaldır"
 
@@ -313,7 +361,7 @@ msgstr ""
 msgid "Map centering"
 msgstr "Harita ortalanıyor"
 
-#: src/bar_gps.c:959 src/menu.c:334 src/preferences.c:2244
+#: src/bar_gps.c:959 src/menu.c:334 src/osd.c:42 src/preferences.c:2244
 msgid "Zoom"
 msgstr "Yakınlaştır"
 
@@ -322,31 +370,27 @@ msgstr "Yakınlaştır"
 msgid "Zoom level"
 msgstr "Yakınlaştırma seviyesi %i"
 
-#: src/bar_gps.c:1023
-msgid "GPS Map"
-msgstr "GPS Haritası"
-
-#: src/bar_histogram.c:234
+#: src/bar_histogram.c:234 src/layout_util.c:2672
 msgid "Histogram on _Red"
 msgstr "Kı_rmızı Histogram"
 
-#: src/bar_histogram.c:235
+#: src/bar_histogram.c:235 src/layout_util.c:2673
 msgid "Histogram on _Green"
 msgstr "_Yeşil Histogram"
 
-#: src/bar_histogram.c:236
+#: src/bar_histogram.c:236 src/layout_util.c:2674
 msgid "Histogram on _Blue"
 msgstr "_Mavi Histogram"
 
-#: src/bar_histogram.c:237
+#: src/bar_histogram.c:237 src/layout_util.c:2675
 msgid "_Histogram on RGB"
 msgstr "RGB _Histogram"
 
-#: src/bar_histogram.c:238
+#: src/bar_histogram.c:238 src/layout_util.c:2676
 msgid "Histogram on _Value"
 msgstr "_Değer Üzerinde Histogram"
 
-#: src/bar_histogram.c:242
+#: src/bar_histogram.c:242 src/layout_util.c:2680
 msgid "Li_near Histogram"
 msgstr "Doğrusa_l Histogram"
 
@@ -550,11 +594,15 @@ msgstr "Dizinler"
 msgid "Collections"
 msgstr "Koleksiyonlar"
 
-#: src/bar_sort.c:677 src/preferences.c:693 src/utilops.c:2350
+#: src/bar_sort.c:677 src/collect-table.c:82 src/dupe.c:151 src/img-view.c:92
+#: src/pan-view/pan-view.c:99 src/preferences.c:693 src/preferences.c:804
+#: src/search.c:354 src/toolbar.c:94 src/utilops.c:2350
 msgid "Copy"
 msgstr "Kopyala"
 
-#: src/bar_sort.c:681 src/preferences.c:695 src/utilops.c:2300
+#: src/bar_sort.c:681 src/collect-table.c:83 src/dupe.c:152 src/img-view.c:93
+#: src/pan-view/pan-view.c:100 src/preferences.c:695 src/preferences.c:805
+#: src/search.c:355 src/toolbar.c:95 src/utilops.c:2300
 msgid "Move"
 msgstr "Taşı"
 
@@ -867,11 +915,11 @@ msgstr "'%s' dosyasında okuma izniniz yok."
 msgid "Can not open collection file"
 msgstr "Koleksiyon dosyası açılamıyor"
 
-#: src/collect-dlg.c:203
+#: src/collect-dlg.c:203 src/collect-table.c:97
 msgid "Save collection"
 msgstr "Koleksiyonu kaydet"
 
-#: src/collect-dlg.c:210
+#: src/collect-dlg.c:210 src/preferences.c:800 src/toolbar.c:90
 msgid "Open collection"
 msgstr "Koleksiyon aç"
 
@@ -883,7 +931,7 @@ msgstr "Koleksiyon ekle"
 msgid "_Append"
 msgstr "_Ekle"
 
-#: src/collect-dlg.c:236 src/search.c:3303
+#: src/collect-dlg.c:236 src/search.c:3304
 msgid "Collection Files"
 msgstr "Koleksiyon Dosyaları"
 
@@ -900,6 +948,109 @@ msgid ""
 msgstr ""
 "koleksiyon dosyası kaydedilirken hata oluştu: %s\n"
 "hata: %s\n"
+
+#: src/collect-table.c:84 src/dupe.c:153 src/img-view.c:94
+#: src/pan-view/pan-view.c:101 src/preferences.c:806 src/search.c:356
+#: src/toolbar.c:96 src/utilops.c:2396 src/utilops.c:2862
+msgid "Rename"
+msgstr "Yeniden adlandır"
+
+# Yukarı taşı da olabilir
+#: src/collect-table.c:85 src/collect-table.c:1038 src/dupe.c:154
+#: src/dupe.c:3573 src/img-view.c:95 src/img-view.c:96 src/img-view.c:1430
+#: src/layout_image.c:815 src/pan-view/pan-view.c:102
+#: src/pan-view/pan-view.c:2417 src/search.c:357 src/search.c:1191
+#: src/view_file/view_file.c:717
+#, fuzzy
+msgid "Move to Trash"
+msgstr "Üste _taşı"
+
+#: src/collect-table.c:86 src/dupe.c:161 src/img-view.c:98 src/img-view.c:136
+#: src/layout_util.c:2493 src/pan-view/pan-view.c:103 src/search.c:364
+msgid "Close window"
+msgstr "Pencereyi kapat"
+
+#: src/collect-table.c:88 src/dupe.c:162 src/preferences.c:3540
+#: src/search.c:365
+msgid "View"
+msgstr "Göster"
+
+#: src/collect-table.c:89 src/dupe.c:163 src/layout_util.c:2586
+#: src/search.c:366
+msgid "View in new window"
+msgstr "Yeni pencerede göster"
+
+#: src/collect-table.c:90 src/collect-table.c:1006 src/dupe.c:158
+#: src/dupe.c:3532 src/dupe.c:3870 src/layout_util.c:2490 src/preferences.c:810
+#: src/search.c:360 src/search.c:1158 src/toolbar.c:101
+#: src/view_file/view_file.c:1087 src/view_file/view_file.c:1137
+msgid "Select all"
+msgstr "Tümünü seç"
+
+#: src/collect-table.c:91 src/collect-table.c:1008 src/dupe.c:159
+#: src/dupe.c:166 src/dupe.c:3534 src/dupe.c:3872 src/layout_util.c:2491
+#: src/preferences.c:811 src/search.c:361 src/search.c:1160 src/toolbar.c:102
+#: src/view_file/view_file.c:1142
+msgid "Select none"
+msgstr "Hiçbirini seçme"
+
+#: src/collect-table.c:92 src/collect-table.c:1012
+msgid "Rectangular selection"
+msgstr "Dikdörtgen seçimi"
+
+#: src/collect-table.c:93
+#, fuzzy
+msgid "Select single file"
+msgstr "Dizin seç"
+
+#: src/collect-table.c:94
+#, fuzzy
+msgid "Toggle select image"
+msgstr "Resmi sola çevir"
+
+#: src/collect-table.c:95 src/collect-table.c:998
+msgid "Append from file selection"
+msgstr "Dosya seçiminden ekle"
+
+#: src/collect-table.c:96
+#, fuzzy
+msgid "Append from collection"
+msgstr "Koleksiyondan ekle..."
+
+#: src/collect-table.c:98
+#, fuzzy
+msgid "Save collection as"
+msgstr "Koleksiyonu kaydet"
+
+#: src/collect-table.c:99
+#, fuzzy
+msgid "Show filename text"
+msgstr "Dosya ismi me_tnini göster"
+
+#: src/collect-table.c:100 src/menu.c:179
+msgid "Sort by name"
+msgstr "Ada göre sırala"
+
+#: src/collect-table.c:101 src/menu.c:169
+msgid "Sort by number"
+msgstr "Numaraya göre sırala"
+
+#: src/collect-table.c:102 src/menu.c:151
+msgid "Sort by date"
+msgstr "Tarihe göre sırala"
+
+#: src/collect-table.c:103 src/menu.c:148
+msgid "Sort by size"
+msgstr "Boyuta göre sırala"
+
+#: src/collect-table.c:104 src/menu.c:166
+msgid "Sort by path"
+msgstr "Yola göre sırala"
+
+#: src/collect-table.c:105 src/img-view.c:138 src/preferences.c:815
+#: src/toolbar.c:106
+msgid "Print"
+msgstr "Yazdır"
 
 #: src/collect-table.c:249
 #, c-format
@@ -920,7 +1071,8 @@ msgstr "Boş"
 msgid "Loading thumbs..."
 msgstr "Küçük resimler yükleniyor..."
 
-#: src/collect-table.c:988 src/dupe.c:3527 src/dupe.c:3865 src/search.c:1153
+#: src/collect-table.c:988 src/dupe.c:3527 src/dupe.c:3865
+#: src/layout_util.c:2471 src/search.c:1153
 msgid "_View"
 msgstr "_Görünüm"
 
@@ -939,10 +1091,6 @@ msgstr "Asıl boyuta getir"
 msgid "Rem_ove"
 msgstr "_Kaldır"
 
-#: src/collect-table.c:998
-msgid "Append from file selection"
-msgstr "Dosya seçiminden ekle"
-
 #: src/collect-table.c:1000
 msgid "Append from collection..."
 msgstr "Koleksiyondan ekle..."
@@ -951,39 +1099,25 @@ msgstr "Koleksiyondan ekle..."
 msgid "_Selection"
 msgstr "_Seçim"
 
-#: src/collect-table.c:1006 src/dupe.c:3532 src/dupe.c:3870 src/search.c:1158
-#: src/view_file/view_file.c:1087 src/view_file/view_file.c:1137
-msgid "Select all"
-msgstr "Tümünü seç"
-
-#: src/collect-table.c:1008 src/dupe.c:3534 src/dupe.c:3872 src/search.c:1160
-#: src/view_file/view_file.c:1142
-msgid "Select none"
-msgstr "Hiçbirini seçme"
-
 #: src/collect-table.c:1010
 msgid "Invert selection"
 msgstr "Zıt seçim"
 
-#: src/collect-table.c:1012
-msgid "Rectangular selection"
-msgstr "Dikdörtgen seçimi"
-
 #: src/collect-table.c:1024 src/dupe.c:3559 src/img-view.c:1421
-#: src/layout_image.c:801 src/pan-view/pan-view.c:2403 src/search.c:1177
-#: src/view_file/view_file.c:704
+#: src/layout_image.c:801 src/layout_util.c:2483 src/pan-view/pan-view.c:2403
+#: src/search.c:1177 src/view_file/view_file.c:704
 msgid "_Copy..."
 msgstr "_Kopyala..."
 
 #: src/collect-table.c:1026 src/dupe.c:3561 src/img-view.c:1422
-#: src/layout_image.c:803 src/pan-view/pan-view.c:2405 src/search.c:1179
-#: src/view_file/view_file.c:706
+#: src/layout_image.c:803 src/layout_util.c:2484 src/pan-view/pan-view.c:2405
+#: src/search.c:1179 src/view_file/view_file.c:706
 msgid "_Move..."
 msgstr "_Taşı..."
 
 #: src/collect-table.c:1028 src/dupe.c:3563 src/img-view.c:1423
-#: src/layout_image.c:805 src/pan-view/pan-view.c:2407 src/search.c:1181
-#: src/view_dir.c:735 src/view_file/view_file.c:708
+#: src/layout_image.c:805 src/layout_util.c:2485 src/pan-view/pan-view.c:2407
+#: src/search.c:1181 src/view_dir.c:735 src/view_file/view_file.c:708
 msgid "_Rename..."
 msgstr "Yeniden adlandı_r..."
 
@@ -998,19 +1132,12 @@ msgid "_Copy path unquoted"
 msgstr "Alıntı olmayan yolu kopyala"
 
 #: src/collect-table.c:1037 src/dupe.c:3572 src/img-view.c:1429
-#: src/layout_image.c:814 src/pan-view/pan-view.c:2416 src/search.c:1190
+#: src/layout_image.c:814 src/layout_util.c:2486 src/layout_util.c:2487
+#: src/layout_util.c:2488 src/pan-view/pan-view.c:2416 src/search.c:1190
 #: src/view_file/view_file.c:716
 #, fuzzy
 msgid "Move to Trash..."
 msgstr "Taşı..."
-
-# Yukarı taşı da olabilir
-#: src/collect-table.c:1038 src/dupe.c:3573 src/img-view.c:1430
-#: src/layout_image.c:815 src/pan-view/pan-view.c:2417 src/search.c:1191
-#: src/view_file/view_file.c:717
-#, fuzzy
-msgid "Move to Trash"
-msgstr "Üste _taşı"
 
 #: src/collect-table.c:1041 src/dupe.c:3576 src/img-view.c:1433
 #: src/layout_image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
@@ -1050,11 +1177,13 @@ msgstr "Kolek_siyonu kaydet"
 msgid "Save collection _as..."
 msgstr "Koleksiyonu f_arklı kaydet..."
 
-#: src/collect-table.c:1063 src/view_file/view_file.c:731
+#: src/collect-table.c:1063 src/layout_util.c:2526
+#: src/view_file/view_file.c:731
 msgid "_Find duplicates..."
 msgstr "_Kopyaları bul..."
 
-#: src/collect-table.c:1065 src/dupe.c:3556 src/search.c:1174
+#: src/collect-table.c:1065 src/dupe.c:3556 src/layout_util.c:2528
+#: src/search.c:1174
 msgid "Print..."
 msgstr "Yazdır..."
 
@@ -1079,7 +1208,7 @@ msgstr "Di_zinleri atla"
 msgid "Cancel"
 msgstr "Vazgeç"
 
-#: src/color-man.c:438 src/exif-common.c:502
+#: src/color-man.c:438 src/exif.c:225 src/exif-common.c:502
 msgid "sRGB"
 msgstr "sRGB"
 
@@ -1160,10 +1289,47 @@ msgstr "Yazılabilir"
 msgid "Hidden"
 msgstr "Gizli"
 
-#: src/desktop_file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/search.c:3697
-#: src/ui_pathsel.c:1112 src/utilops.c:503
+#: src/desktop_file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/osd.c:39
+#: src/search.c:3698 src/ui_pathsel.c:1112 src/utilops.c:503
 msgid "Path"
 msgstr "Yol"
+
+#: src/dupe.c:155 src/img-view.c:97 src/preferences.c:807
+#: src/preferences.c:3510 src/search.c:358 src/toolbar.c:97 src/utilops.c:2209
+msgid "Delete"
+msgstr "Sil"
+
+#: src/dupe.c:157 src/preferences.c:2058 src/preferences.c:2090
+#: src/preferences.c:2218 src/search.c:362 src/view_file/view_file.c:1188
+#: src/window.c:400
+#, fuzzy
+msgid "Clear"
+msgstr "Temiz_le"
+
+#: src/dupe.c:160 src/search.c:363
+#, fuzzy
+msgid "Toggle thumbs"
+msgstr "Küçük resimler yükleniyor..."
+
+#: src/dupe.c:164 src/search.c:367
+#, fuzzy
+msgid "Collection from selection"
+msgstr "Dosya seçiminden ekle"
+
+#: src/dupe.c:165
+#, fuzzy
+msgid "Append list"
+msgstr "_Ekle"
+
+#: src/dupe.c:167
+#, fuzzy
+msgid "Select group 1 duplicates"
+msgstr "Grup _1 kopyalarını seç"
+
+#: src/dupe.c:168
+#, fuzzy
+msgid "Select group 2 duplicates"
+msgstr "Grup _2 kopyalarını seç"
 
 #: src/dupe.c:255
 msgid "Drop files to compare them."
@@ -1238,17 +1404,18 @@ msgstr "%d dosya (ayar 2)"
 msgid "Name case-insensitive"
 msgstr "Ad büyük/küçük harfe duyarlı"
 
-#: src/dupe.c:3980 src/dupe.c:4704 src/dupe.c:5287 src/preferences.c:2425
-#: src/search.c:3694 src/view_file/view_file_list.c:2240
+#: src/dupe.c:3980 src/dupe.c:4704 src/dupe.c:5287 src/osd.c:41
+#: src/preferences.c:2425 src/search.c:3695 src/view_file/view_file_list.c:2240
 msgid "Size"
 msgstr "Boyut"
 
-#: src/dupe.c:3981 src/dupe.c:4705 src/dupe.c:5287 src/search.c:3695
+#: src/dupe.c:3981 src/dupe.c:4705 src/dupe.c:5287 src/exif.c:334
+#: src/exif-common.c:916 src/osd.c:40 src/search.c:3696
 #: src/view_file/view_file_list.c:2244
 msgid "Date"
 msgstr "Tarih"
 
-#: src/dupe.c:3982 src/dupe.c:4706 src/search.c:3696
+#: src/dupe.c:3982 src/dupe.c:4706 src/osd.c:43 src/search.c:3697
 msgid "Dimensions"
 msgstr "Boyutlar"
 
@@ -1285,15 +1452,16 @@ msgstr "Resim içeriği"
 msgid "Name case-insensitive ≠ content"
 msgstr "Ad büyük/küçük harfe duyarlı"
 
-#: src/dupe.c:4639 src/dupe.c:5028
+#: src/dupe.c:4639 src/dupe.c:5028 src/preferences.c:802 src/search.c:369
+#: src/toolbar.c:92
 msgid "Find duplicates"
 msgstr "Kopyaları bul"
 
-#: src/dupe.c:4701 src/search.c:3691
+#: src/dupe.c:4701 src/search.c:3692
 msgid "Rank"
 msgstr "Rütbe"
 
-#: src/dupe.c:4702 src/search.c:3692
+#: src/dupe.c:4702 src/search.c:3693
 #, fuzzy
 msgid "Thumb"
 msgstr "Küçük resimler"
@@ -1308,7 +1476,7 @@ msgstr "Deniz"
 msgid "Compare to:"
 msgstr "Şununla karşılaştır:"
 
-#: src/dupe.c:4782 src/preferences.c:1973 src/search.c:3710
+#: src/dupe.c:4782 src/preferences.c:1973 src/search.c:3711
 msgid "Thumbnails"
 msgstr "Küçük resimler"
 
@@ -1362,11 +1530,11 @@ msgstr "Benzerlik"
 msgid "Thumbnail"
 msgstr "Küçük resimler"
 
-#: src/dupe.c:5287 src/preferences.c:3957
+#: src/dupe.c:5287 src/exif.c:373 src/preferences.c:3957
 msgid "Width"
 msgstr "Genişlik"
 
-#: src/dupe.c:5287 src/preferences.c:3959
+#: src/dupe.c:5287 src/exif.c:374 src/preferences.c:3959
 msgid "Height"
 msgstr "Yükseklik"
 
@@ -1398,11 +1566,11 @@ msgstr ""
 msgid "Desktop file '%s' should not include extension in Icon key: '%s'\n"
 msgstr "'%s' masaüstü dosyası simge anahtarında uzantı içermemelidir: '%s'\n"
 
-#: src/editors.c:379 src/exif-common.c:428
+#: src/editors.c:379 src/exif.c:218 src/exif-common.c:428
 msgid "yes"
 msgstr "evet"
 
-#: src/editors.c:379 src/exif-common.c:428
+#: src/editors.c:379 src/exif.c:217 src/exif-common.c:428
 msgid "no"
 msgstr "hayır"
 
@@ -1477,10 +1645,593 @@ msgstr "Dosya atlanmış."
 msgid "Unknown error."
 msgstr "Bilinmeyen hata."
 
+#: src/exif.c:140 src/exif.c:153 src/exif.c:167 src/exif.c:192 src/exif.c:309
 #: src/exif.c:656 src/exif-common.c:404 src/exif-common.c:407
 #: src/exif-common.c:474
 msgid "unknown"
 msgstr "bilinmeyen"
+
+#: src/exif.c:141
+msgid "top left"
+msgstr "üst sol"
+
+#: src/exif.c:142
+msgid "top right"
+msgstr "üst sağ"
+
+#: src/exif.c:143
+msgid "bottom right"
+msgstr "alt sağ"
+
+#: src/exif.c:144
+msgid "bottom left"
+msgstr "alt sol"
+
+#: src/exif.c:145
+msgid "left top"
+msgstr "sol üst"
+
+#: src/exif.c:146
+msgid "right top"
+msgstr "sağ üst"
+
+#: src/exif.c:147
+msgid "right bottom"
+msgstr "sağ alt"
+
+#: src/exif.c:148
+msgid "left bottom"
+msgstr "sol alt"
+
+#: src/exif.c:155
+msgid "inch"
+msgstr "inç"
+
+#: src/exif.c:156
+msgid "centimeter"
+msgstr "santimetre"
+
+#: src/exif.c:168
+msgid "average"
+msgstr "ortalama"
+
+#: src/exif.c:169
+msgid "center weighted"
+msgstr "merkez ağırlıklı"
+
+# programda bakmalı
+#: src/exif.c:170
+msgid "spot"
+msgstr "nokta"
+
+#: src/exif.c:171
+msgid "multi-spot"
+msgstr "çoklu nokta"
+
+#: src/exif.c:172
+msgid "multi-segment"
+msgstr "çok kademeli"
+
+#: src/exif.c:173
+msgid "partial"
+msgstr "kısmi"
+
+#: src/exif.c:174 src/exif.c:212
+msgid "other"
+msgstr "diğer"
+
+#: src/exif.c:179 src/exif.c:231
+msgid "not defined"
+msgstr "tanımlanmamış"
+
+#: src/exif.c:180 src/exif.c:259 src/exif.c:266
+msgid "manual"
+msgstr "el ile"
+
+#: src/exif.c:181 src/exif.c:252 src/exif.c:288 src/exif.c:295 src/exif.c:302
+msgid "normal"
+msgstr "olağan"
+
+#: src/exif.c:182
+msgid "aperture"
+msgstr "açıklık"
+
+#: src/exif.c:183
+msgid "shutter"
+msgstr "deklanşör"
+
+#: src/exif.c:184
+msgid "creative"
+msgstr "oluşturucu"
+
+#: src/exif.c:185
+msgid "action"
+msgstr "eylem"
+
+#: src/exif.c:186 src/exif.c:273
+msgid "portrait"
+msgstr "portre"
+
+#: src/exif.c:187 src/exif.c:272
+msgid "landscape"
+msgstr "manzara"
+
+#: src/exif.c:193
+msgid "daylight"
+msgstr "gün ışığı"
+
+#: src/exif.c:194
+msgid "fluorescent"
+msgstr "floresan"
+
+#: src/exif.c:195
+msgid "tungsten (incandescent)"
+msgstr "tungsten (akkor)"
+
+#: src/exif.c:196
+msgid "flash"
+msgstr "flaş"
+
+#: src/exif.c:197
+msgid "fine weather"
+msgstr "güzel hava"
+
+#: src/exif.c:198
+msgid "cloudy weather"
+msgstr "bulutlu hava"
+
+#: src/exif.c:199
+msgid "shade"
+msgstr "gölge"
+
+#: src/exif.c:200
+msgid "daylight fluorescent"
+msgstr "gün ışığı floresan"
+
+#: src/exif.c:201
+msgid "day white fluorescent"
+msgstr "gün beyazı floresan"
+
+#: src/exif.c:202
+msgid "cool white fluorescent"
+msgstr "soğuk beyaz floresan"
+
+#: src/exif.c:203
+msgid "white fluorescent"
+msgstr "beyaz floresan"
+
+#: src/exif.c:204
+msgid "standard light A"
+msgstr "standart ışık A"
+
+#: src/exif.c:205
+msgid "standard light B"
+msgstr "standart ışık B"
+
+#: src/exif.c:206
+msgid "standard light C"
+msgstr "standart ışık C"
+
+#: src/exif.c:207
+msgid "D55"
+msgstr "D55"
+
+#: src/exif.c:208
+msgid "D65"
+msgstr "D65"
+
+#: src/exif.c:209
+msgid "D75"
+msgstr "D75"
+
+#: src/exif.c:210
+msgid "D50"
+msgstr "D50"
+
+#: src/exif.c:211
+msgid "ISO studio tungsten"
+msgstr "ISO stüdyosu tungsten"
+
+#: src/exif.c:219
+msgid "yes, not detected by strobe"
+msgstr "evet, çakar tarafından algılanmadı"
+
+#: src/exif.c:220
+msgid "yes, detected by strobe"
+msgstr "evet, çakar tarafından algılandı"
+
+#: src/exif.c:226
+#, fuzzy
+msgid "uncalibrated"
+msgstr "kalibre edilmemiş"
+
+#: src/exif.c:232
+msgid "1 chip color area"
+msgstr "1 çip renk alanı"
+
+#: src/exif.c:233
+msgid "2 chip color area"
+msgstr "2 çip renk alanı"
+
+#: src/exif.c:234
+msgid "3 chip color area"
+msgstr "3 çip renk alanı"
+
+#: src/exif.c:235
+msgid "color sequential area"
+msgstr "renk sıralı alanı"
+
+#: src/exif.c:236
+msgid "trilinear"
+msgstr "üç çizgili"
+
+#: src/exif.c:237
+msgid "color sequential linear"
+msgstr "renk sıralı doğrusal"
+
+#: src/exif.c:242
+msgid "digital still camera"
+msgstr "dijital sabit kamera"
+
+#: src/exif.c:247
+msgid "direct photo"
+msgstr "doğrudan fotoğraf"
+
+#: src/exif.c:253
+msgid "custom"
+msgstr "özel"
+
+#: src/exif.c:258 src/exif.c:265 src/exif-common.c:442
+msgid "auto"
+msgstr "otomatik"
+
+#: src/exif.c:260
+msgid "auto bracket"
+msgstr "otomatik destek"
+
+#: src/exif.c:271
+msgid "standard"
+msgstr "standart"
+
+#: src/exif.c:274
+msgid "night scene"
+msgstr "gece çekimi"
+
+#: src/exif.c:279
+msgid "none"
+msgstr "yok"
+
+#: src/exif.c:280
+msgid "low gain up"
+msgstr "düşük kazanç"
+
+#: src/exif.c:281
+msgid "high gain up"
+msgstr "yüksek kazanç"
+
+#: src/exif.c:282
+msgid "low gain down"
+msgstr "düşük kayıp"
+
+#: src/exif.c:283
+msgid "high gain down"
+msgstr "yüksek kayıp"
+
+#: src/exif.c:289 src/exif.c:303
+msgid "soft"
+msgstr "yumuşak"
+
+#: src/exif.c:290 src/exif.c:304
+msgid "hard"
+msgstr "sert"
+
+#: src/exif.c:296
+msgid "low"
+msgstr "düşük"
+
+#: src/exif.c:297
+msgid "high"
+msgstr "yüksek"
+
+#: src/exif.c:310
+msgid "macro"
+msgstr "makro"
+
+#: src/exif.c:311
+msgid "close"
+msgstr "kapat"
+
+#: src/exif.c:312
+msgid "distant"
+msgstr "uzak"
+
+#: src/exif.c:322
+msgid "Image Width"
+msgstr "Resim Genişliği"
+
+#: src/exif.c:323
+msgid "Image Height"
+msgstr "Resim Yüksekliği"
+
+#: src/exif.c:324
+msgid "Bits per Sample/Pixel"
+msgstr "Örnek/Piksel başına bit"
+
+#: src/exif.c:325
+msgid "Compression"
+msgstr "Sıkıştırma"
+
+#: src/exif.c:326
+msgid "Image description"
+msgstr "Resim açıklaması"
+
+#: src/exif.c:327
+msgid "Camera make"
+msgstr "Kamera yapma"
+
+#: src/exif.c:328
+msgid "Camera model"
+msgstr "Kamera modeli"
+
+#: src/exif.c:329
+msgid "Orientation"
+msgstr "Yönlendirme"
+
+#: src/exif.c:330
+msgid "X resolution"
+msgstr "X çözünürlüğü"
+
+#: src/exif.c:331
+msgid "Y Resolution"
+msgstr "Y çözünürlüğü"
+
+#: src/exif.c:332
+msgid "Resolution units"
+msgstr "Çözünürlük birimleri"
+
+#: src/exif.c:333
+msgid "Firmware"
+msgstr "Yazılım"
+
+#: src/exif.c:335
+msgid "White point"
+msgstr "Beyaz nokta"
+
+#: src/exif.c:336
+msgid "Primary chromaticities"
+msgstr "Birincil kromatiklikler"
+
+#: src/exif.c:337
+msgid "YCbCy coefficients"
+msgstr "YCbCy katsayıları"
+
+#: src/exif.c:338
+msgid "YCbCr positioning"
+msgstr "YCbCr konumlandırma"
+
+#: src/exif.c:339
+msgid "Black white reference"
+msgstr "Siyah beyaz referans"
+
+#: src/exif.c:341
+msgid "SubIFD Exif offset"
+msgstr "SubIFD Exif baskı"
+
+#: src/exif.c:343
+msgid "Exposure time (seconds)"
+msgstr "Pozlama süresi (saniye)"
+
+#: src/exif.c:344
+msgid "FNumber"
+msgstr "Oransal açıklık"
+
+#: src/exif.c:345
+msgid "Exposure program"
+msgstr "Pozlama programı"
+
+#: src/exif.c:346
+msgid "Spectral Sensitivity"
+msgstr "Görüntüsel Duyarlılık"
+
+#: src/exif.c:347 src/exif.c:383 src/exif-common.c:921
+msgid "ISO sensitivity"
+msgstr "ISO Duyarlılığı"
+
+#: src/exif.c:348
+msgid "Optoelectric conversion factor"
+msgstr "Optoelektrik dönüşüm etkeni"
+
+#: src/exif.c:349
+msgid "Exif version"
+msgstr "Exif sürümü"
+
+#: src/exif.c:350
+msgid "Date original"
+msgstr "Özgün tarih"
+
+#: src/exif.c:351 src/osd.c:57
+msgid "Date digitized"
+msgstr "Sayısallaştırılmış tarih"
+
+#: src/exif.c:352
+msgid "Pixel format"
+msgstr "Piksel biçimi"
+
+#: src/exif.c:353
+msgid "Compression ratio"
+msgstr "Sıkıştırma oranı"
+
+#: src/exif.c:354 src/exif-common.c:918
+msgid "Shutter speed"
+msgstr "Deklanşör hızı"
+
+#: src/exif.c:355 src/exif-common.c:919 src/osd.c:59
+msgid "Aperture"
+msgstr "Açıklık"
+
+#: src/exif.c:356
+msgid "Brightness"
+msgstr "Parlaklık"
+
+#: src/exif.c:357 src/exif-common.c:920 src/osd.c:60
+msgid "Exposure bias"
+msgstr "Pozlama eğilimi"
+
+#: src/exif.c:358
+msgid "Maximum aperture"
+msgstr "En fazla açıklık"
+
+#: src/exif.c:359 src/exif-common.c:924 src/osd.c:67
+msgid "Subject distance"
+msgstr "Özne uzaklığı"
+
+#: src/exif.c:360
+msgid "Metering mode"
+msgstr "Ölçme kipi"
+
+#: src/exif.c:361
+msgid "Light source"
+msgstr "Işık kaynağı"
+
+#: src/exif.c:362 src/exif-common.c:925 src/osd.c:68
+msgid "Flash"
+msgstr "Flaş"
+
+#: src/exif.c:363 src/exif-common.c:922 src/osd.c:65
+msgid "Focal length"
+msgstr "Odak uzaklığı"
+
+#: src/exif.c:364
+msgid "Subject area"
+msgstr "Özne alanı"
+
+#: src/exif.c:365
+msgid "MakerNote"
+msgstr "YapanNotu"
+
+#: src/exif.c:366
+msgid "UserComment"
+msgstr "KullanıcıYorumu"
+
+#: src/exif.c:367
+msgid "Subsecond time"
+msgstr "Alt İkinci zaman"
+
+#: src/exif.c:368
+msgid "Subsecond time original"
+msgstr "Özgün Alt İkinci zaman"
+
+#: src/exif.c:369
+msgid "Subsecond time digitized"
+msgstr "Alt İkinci zaman sayısallaştırılmış"
+
+#: src/exif.c:370
+msgid "FlashPix version"
+msgstr "FlashPix sürümü"
+
+#: src/exif.c:371
+msgid "Colorspace"
+msgstr "Renkalanı"
+
+#: src/exif.c:375
+msgid "Audio data"
+msgstr "Ses verisi"
+
+#: src/exif.c:376
+msgid "ExifR98 extension"
+msgstr "ExifR98 uzantısı"
+
+#: src/exif.c:377
+msgid "Flash strength"
+msgstr "Flaş gücü"
+
+#: src/exif.c:378
+msgid "Spatial frequency response"
+msgstr "Mekansal frekans cevabı"
+
+#: src/exif.c:379
+msgid "X Pixel density"
+msgstr "X Piksel yoğunluğu"
+
+#: src/exif.c:380
+msgid "Y Pixel density"
+msgstr "Y Piksel yoğunluğu"
+
+#: src/exif.c:381
+msgid "Pixel density units"
+msgstr "Piksel yoğunluğu birimleri"
+
+#: src/exif.c:382
+msgid "Subject location"
+msgstr "Özne konumu"
+
+#: src/exif.c:384
+msgid "Sensor type"
+msgstr "Algılayıcı türü"
+
+#: src/exif.c:385
+msgid "Source type"
+msgstr "Kaynak türü"
+
+#: src/exif.c:386
+msgid "Scene type"
+msgstr "Sahne türü"
+
+#: src/exif.c:387
+msgid "Color filter array pattern"
+msgstr "Renk süzgeci sıra deseni"
+
+#: src/exif.c:389
+msgid "Render process"
+msgstr "Oluşturma işlemi"
+
+#: src/exif.c:390
+msgid "Exposure mode"
+msgstr "Pozlama kipi"
+
+#: src/exif.c:391
+msgid "White balance"
+msgstr "Beyaz dengesi"
+
+#: src/exif.c:392
+msgid "Digital zoom ratio"
+msgstr "Sayısal yakınlaştırma oranı"
+
+#: src/exif.c:393
+msgid "Focal length (35mm)"
+msgstr "Odak uzaklığı (35mm)"
+
+#: src/exif.c:394
+msgid "Scene capture type"
+msgstr "Sahne yakalama türü"
+
+#: src/exif.c:395
+msgid "Gain control"
+msgstr "Kazanç denetimi"
+
+#: src/exif.c:396
+msgid "Contrast"
+msgstr "Karşıtlık"
+
+#: src/exif.c:397 src/preferences.c:3366
+msgid "Saturation"
+msgstr "Doygunluk"
+
+#: src/exif.c:398
+msgid "Sharpness"
+msgstr "Netlik"
+
+#: src/exif.c:399
+msgid "Device setting"
+msgstr "Aygıt ayarları"
+
+#: src/exif.c:400
+msgid "Subject range"
+msgstr "Özne alanı"
+
+#: src/exif.c:401
+msgid "Image serial number"
+msgstr "Resmin seri numarası"
 
 #: src/exif.c:1108
 msgid "Can't get image comment: not compiled with Exiv2.\n"
@@ -1505,10 +2256,6 @@ msgstr "açık"
 #: src/exif-common.c:439
 msgid "off"
 msgstr "kapalı"
-
-#: src/exif-common.c:442
-msgid "auto"
-msgstr "otomatik"
 
 #: src/exif-common.c:448
 msgid "not detected by strobe"
@@ -1541,6 +2288,106 @@ msgstr "Deniz seviyesinden yukarıda"
 #: src/exif-common.c:610
 msgid "Below Sea Level"
 msgstr "Deniz seviyesinin altında"
+
+#: src/exif-common.c:915 src/osd.c:62
+msgid "Camera"
+msgstr "Kamera"
+
+#: src/exif-common.c:917
+#, fuzzy
+msgid "DateDigitized"
+msgstr "Sayısallaştırılmış tarih"
+
+#: src/exif-common.c:923
+msgid "Focal length 35mm"
+msgstr "Odak uzaklığı 35mm"
+
+#: src/exif-common.c:926 src/osd.c:61
+msgid "Resolution"
+msgstr "Çözünürlük"
+
+#: src/exif-common.c:927 src/osd.c:69
+msgid "Color profile"
+msgstr "Renk düzeni"
+
+#: src/exif-common.c:928
+msgid "GPS position"
+msgstr "GPS konumu"
+
+#: src/exif-common.c:929
+msgid "GPS altitude"
+msgstr "GPS yüksekliği"
+
+#: src/exif-common.c:930 src/osd.c:72
+#, fuzzy
+msgid "Local time"
+msgstr "Konum:"
+
+#: src/exif-common.c:931
+#, fuzzy
+msgid "Time zone"
+msgstr "Zaman çizelgesi"
+
+#: src/exif-common.c:932 src/osd.c:74
+#, fuzzy
+msgid "Country name"
+msgstr "Ada göre sırala"
+
+#: src/exif-common.c:933 src/osd.c:75
+#, fuzzy
+msgid "Country code"
+msgstr "Ada göre sırala"
+
+#: src/exif-common.c:934 src/osd.c:77
+#, fuzzy
+msgid "Star rating"
+msgstr "Derecelendirmeye göre sırala"
+
+#: src/exif-common.c:935
+msgid "File size"
+msgstr "Dosya boyutu"
+
+#: src/exif-common.c:936
+msgid "File date"
+msgstr "Dosya tarihi"
+
+#: src/exif-common.c:937 src/osd.c:50
+msgid "File mode"
+msgstr "Dosya kipi"
+
+#: src/exif-common.c:938 src/osd.c:49
+#, fuzzy
+msgid "File ctime"
+msgstr "Dosya boyutu"
+
+#: src/exif-common.c:939 src/osd.c:51
+#, fuzzy
+msgid "File owner"
+msgstr "Dosya kipi"
+
+#: src/exif-common.c:940 src/osd.c:52
+#, fuzzy
+msgid "File group"
+msgstr "Dosya bilgisi"
+
+#: src/exif-common.c:941 src/osd.c:53
+#, fuzzy
+msgid "File link"
+msgstr "Dosya bilgisi"
+
+#: src/exif-common.c:942 src/osd.c:54
+#, fuzzy
+msgid "File class"
+msgstr "Dosyalar"
+
+#: src/exif-common.c:943
+#, fuzzy
+msgid "Page no."
+msgstr "%d sayfası"
+
+#: src/exif-common.c:944 src/osd.c:63
+msgid "Lens"
+msgstr ""
 
 #: src/filedata.c:112
 #, c-format
@@ -1619,7 +2466,10 @@ msgstr "başka bir hedef dosya aynı dosya adına sahip"
 msgid "Error: Unable to write marks lists to: %s\n"
 msgstr "Geçmiş listeleri yazılamıyor: %s\n"
 
-#: src/fullscreen.c:242 src/preferences.c:2438
+#: src/fullscreen.c:242 src/img-view.c:131 src/layout_util.c:2588
+#: src/layout_util.c:2589 src/layout_util.c:2590 src/pan-view/pan-view.c:120
+#: src/pan-view/pan-view.c:121 src/pan-view/pan-view.c:122
+#: src/preferences.c:2438
 msgid "Full screen"
 msgstr "Tam ekran"
 
@@ -1730,41 +2580,176 @@ msgstr ""
 msgid "JP2 image not rgb"
 msgstr ""
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1885
+#: src/img-view.c:99 src/menu.c:359 src/preferences.c:821 src/toolbar.c:112
+#, fuzzy
+msgid "Rotate 180°"
+msgstr "180 derece döndür"
+
+#: src/img-view.c:100
+#, fuzzy
+msgid "Rotate mirror"
+msgstr "Resim"
+
+#: src/img-view.c:101
+#, fuzzy
+msgid "Rotate flip"
+msgstr "Düzgün resim çevirme"
+
+#: src/img-view.c:102
+#, fuzzy
+msgid " Rotate counterclockwise 90°"
+msgstr "Saat yönünün tersine çevir"
+
+#: src/img-view.c:103
+#, fuzzy
+msgid " Rotate clockwise 90°"
+msgstr "Saat yönünde döndür"
+
+#: src/img-view.c:104 src/img-view.c:105 src/img-view.c:106 src/img-view.c:107
+#, fuzzy
+msgid "Previous"
+msgstr "Önceki Bölme"
+
+#: src/img-view.c:108 src/img-view.c:109 src/img-view.c:110 src/img-view.c:111
+#, fuzzy
+msgid "Next"
+msgstr "Sonraki Resim"
+
+#: src/img-view.c:112 src/img-view.c:113 src/layout_util.c:2554
+#: src/layout_util.c:2555 src/pan-view/pan-view.c:108
+#: src/pan-view/pan-view.c:109 src/preferences.c:825 src/toolbar.c:116
+msgid "Zoom in"
+msgstr "Büyüt"
+
+#: src/img-view.c:114 src/layout_util.c:2556 src/layout_util.c:2557
+#: src/pan-view/pan-view.c:110 src/preferences.c:826 src/toolbar.c:117
+msgid "Zoom out"
+msgstr "Küçült"
+
+#: src/img-view.c:115 src/img-view.c:116 src/img-view.c:1406
+#: src/layout_image.c:776 src/layout_util.c:2560 src/layout_util.c:2561
+#: src/preferences.c:828 src/toolbar.c:119
+msgid "Zoom to fit"
+msgstr "Sığdırmak için yakınlaştır"
+
+#: src/img-view.c:117 src/img-view.c:118 src/img-view.c:119
+#: src/layout_util.c:2558 src/layout_util.c:2559 src/pan-view/pan-view.c:111
+#: src/pan-view/pan-view.c:112 src/pan-view/pan-view.c:113
+#: src/preferences.c:827 src/toolbar.c:118
+msgid "Zoom 1:1"
+msgstr "1:1 yakınlaştır"
+
+#: src/img-view.c:120 src/layout_util.c:2564 src/pan-view/pan-view.c:114
+#: src/preferences.c:831 src/toolbar.c:122
+msgid "Zoom 2:1"
+msgstr "2:1 Yakınlaştır"
+
+#: src/img-view.c:121 src/layout_util.c:2565 src/pan-view/pan-view.c:115
+#: src/preferences.c:832 src/toolbar.c:123
+msgid "Zoom 3:1"
+msgstr "3:1 Yakınlaştır"
+
+#: src/img-view.c:122 src/layout_util.c:2566 src/pan-view/pan-view.c:116
+#: src/preferences.c:833 src/toolbar.c:124
+msgid "Zoom 4:1"
+msgstr "4:1 Yakınlaştır"
+
+#: src/img-view.c:123 src/layout_util.c:2569 src/layout_util.c:2585
+#: src/pan-view/pan-view.c:117 src/preferences.c:836 src/toolbar.c:127
+msgid "Zoom 1:4"
+msgstr "1:4 Yakınlaştır"
+
+#: src/img-view.c:124 src/layout_util.c:2568 src/layout_util.c:2584
+#: src/pan-view/pan-view.c:118
+msgid "Zoom 1:3"
+msgstr "1:3 Yakınlaştır"
+
+#: src/img-view.c:125 src/layout_util.c:2567 src/layout_util.c:2583
+#: src/pan-view/pan-view.c:119 src/preferences.c:834 src/toolbar.c:125
+msgid "Zoom 1:2"
+msgstr "1:2 Yakınlaştır"
+
+#: src/img-view.c:126
+#, fuzzy
+msgid "Zoom fit window width"
+msgstr "Sığdırmak için yakınlaştır"
+
+#: src/img-view.c:127
+#, fuzzy
+msgid "Zoom fit window height"
+msgstr "Sığdırmak için yakınlaştır"
+
+#: src/img-view.c:128 src/layout_util.c:2632
+msgid "Toggle slideshow"
+msgstr "Resim gösterisini aç"
+
+#: src/img-view.c:129 src/layout_util.c:2597 src/preferences.c:842
+#: src/toolbar.c:138
+msgid "Pause slideshow"
+msgstr "Resim gösterisini duraklat"
+
+#: src/img-view.c:130
+#, fuzzy
+msgid "Reload image"
+msgstr "Gelişigüzel"
+
+#: src/img-view.c:132 src/img-view.c:133
+#, fuzzy
+msgid "Fullscreen"
+msgstr "Tam ekran"
+
+#: src/img-view.c:134
+#, fuzzy
+msgid "Image overlay"
+msgstr "Resim Yerleşimi"
+
+#: src/img-view.c:135 src/pan-view/pan-view.c:106
+#, fuzzy
+msgid "Exit fullscreen"
+msgstr "Tam _ekrandan çık"
+
+#: src/img-view.c:137
+#, fuzzy
+msgid "Desaturate"
+msgstr "Doğa"
+
+#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1891
 #: src/layout_util.c:914 src/view_file/view_file.c:396
 #, fuzzy
 msgid "Cannot open archive file"
 msgstr "Dosya yeniden adlandırılamıyor"
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1885
+#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1891
 #: src/layout_util.c:914 src/preferences.c:4219 src/preferences.c:4227
 #: src/view_file/view_file.c:396
 #, fuzzy
 msgid "See the Log Window"
 msgstr "Günlük Penceresi"
 
-#: src/img-view.c:1403 src/layout_image.c:773 src/pan-view/pan-view.c:2382
+#: src/img-view.c:1403 src/layout_image.c:773 src/layout_util.c:2554
+#: src/layout_util.c:2555 src/layout_util.c:2570 src/layout_util.c:2571
+#: src/pan-view/pan-view.c:2382
 msgid "Zoom _in"
 msgstr "_Yakınlaştır"
 
-#: src/img-view.c:1404 src/layout_image.c:774 src/pan-view/pan-view.c:2384
+#: src/img-view.c:1404 src/layout_image.c:774 src/layout_util.c:2556
+#: src/layout_util.c:2557 src/layout_util.c:2572 src/layout_util.c:2573
+#: src/pan-view/pan-view.c:2384
 msgid "Zoom _out"
 msgstr "_Uzaklaştır"
 
-#: src/img-view.c:1405 src/layout_image.c:775 src/pan-view/pan-view.c:2386
+#: src/img-view.c:1405 src/layout_image.c:775 src/layout_util.c:2558
+#: src/layout_util.c:2559 src/layout_util.c:2574 src/layout_util.c:2575
+#: src/pan-view/pan-view.c:2386
 msgid "Zoom _1:1"
 msgstr "_1:1 Yakınlaştır"
-
-#: src/img-view.c:1406 src/layout_image.c:776
-msgid "Zoom to fit"
-msgstr "Sığdırmak için yakınlaştır"
 
 #: src/img-view.c:1418 src/layout_image.c:790
 msgid "_Go to directory view"
 msgstr "Dizin görünümüne _git"
 
 #: src/img-view.c:1446 src/img-view.c:1460 src/layout_image.c:832
-#: src/layout_image.c:846
+#: src/layout_image.c:846 src/layout_util.c:2632
 msgid "Toggle _slideshow"
 msgstr "Re_sim gösterisini aç"
 
@@ -1785,7 +2770,7 @@ msgstr "Tam _ekrandan çık"
 msgid "_Full screen"
 msgstr "_Tam ekran"
 
-#: src/img-view.c:1476 src/pan-view/pan-view.c:2482
+#: src/img-view.c:1476 src/layout_util.c:2493 src/pan-view/pan-view.c:2482
 msgid "C_lose window"
 msgstr "Pencereyi _kapat"
 
@@ -1875,7 +2860,7 @@ msgstr "Yakınlaştırma kipini seç"
 msgid "[Pixel x,y coord]: (Pixel R,G,B value)"
 msgstr "[Piksel x, y koordinatı]: (Piksel R, G, B değeri)"
 
-#: src/layout.c:1625
+#: src/layout.c:1625 src/layout_config.c:67
 msgid "Tools"
 msgstr "Araçlar"
 
@@ -1923,21 +2908,31 @@ msgstr "Düzen"
 msgid "Invalid geometry\n"
 msgstr "Geçersiz geometri\n"
 
+#: src/layout_config.c:67 src/ui_pathsel.c:1179
+msgid "Files"
+msgstr "Dosyalar"
+
+#: src/layout_config.c:67 src/preferences.c:131 src/preferences.c:2242
+#: src/search.c:2261 src/search.c:3606
+msgid "Image"
+msgstr "Resim"
+
 #: src/layout_config.c:358
 msgid "(drag to change order)"
 msgstr "(sırayı değiştirmek için sürükleyin)"
 
-#: src/layout_image.c:793 src/layout_util.c:2285 src/view_file/view_file.c:701
+#: src/layout_image.c:793 src/layout_util.c:2285 src/layout_util.c:2587
+#: src/view_file/view_file.c:701
 #, fuzzy
 msgid "Open archive"
 msgstr "Son kullanılanı aç"
 
-#: src/layout_image.c:807 src/pan-view/pan-view.c:2409
+#: src/layout_image.c:807 src/layout_util.c:2532 src/pan-view/pan-view.c:2409
 #: src/view_file/view_file.c:710
 msgid "_Copy path to clipboard"
 msgstr "Yolu panoya _kopyala"
 
-#: src/layout_image.c:808 src/pan-view/pan-view.c:2411
+#: src/layout_image.c:808 src/layout_util.c:2533 src/pan-view/pan-view.c:2411
 #: src/view_file/view_file.c:712
 msgid "_Copy path unquoted to clipboard"
 msgstr "Alıntılanmamış yolu panoya _kopyala"
@@ -1947,7 +2942,7 @@ msgstr "Alıntılanmamış yolu panoya _kopyala"
 msgid "Copy _image to clipboard"
 msgstr "Yolu panoya kopyala"
 
-#: src/layout_image.c:860
+#: src/layout_image.c:860 src/layout_util.c:2639
 msgid "GIF _animation"
 msgstr "GIF c_anlandırması"
 
@@ -1955,17 +2950,17 @@ msgstr "GIF c_anlandırması"
 msgid "Hide file _list"
 msgstr "Dosya _listesini gizle"
 
-#: src/layout_image.c:2110
+#: src/layout_image.c:2116
 #, c-format
 msgid "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 msgstr "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 
-#: src/layout_image.c:2118
+#: src/layout_image.c:2124
 #, c-format
 msgid "[%*s,%*s]: RGB(---,---,---)"
 msgstr "[%*s,%*s]: RGB(---,---,---)"
 
-#: src/layout_util.c:244
+#: src/layout_util.c:244 src/layout_util.c:2618
 #, fuzzy
 msgid "Clear Marks"
 msgstr "Çöpü temizle"
@@ -2017,12 +3012,12 @@ msgstr ""
 msgid "Window layout name \"%s\" already exists."
 msgstr "%s isimli bir dosya zaten var."
 
-#: src/layout_util.c:2155 src/layout_util.c:2404
+#: src/layout_util.c:2155 src/layout_util.c:2404 src/layout_util.c:2520
 #, fuzzy
 msgid "Rename window"
 msgstr "Yeni pencere"
 
-#: src/layout_util.c:2255 src/layout_util.c:2435
+#: src/layout_util.c:2255 src/layout_util.c:2435 src/layout_util.c:2521
 #, fuzzy
 msgid "Delete window"
 msgstr "Pencereyi kapat"
@@ -2039,6 +3034,1132 @@ msgstr "Yeni pencere"
 #: src/layout_util.c:2438
 msgid "Delete window layout"
 msgstr ""
+
+#: src/layout_util.c:2464
+msgid "_File"
+msgstr "_Dosya"
+
+#: src/layout_util.c:2465
+msgid "_Go"
+msgstr "_Git"
+
+#: src/layout_util.c:2466
+msgid "_Edit"
+msgstr "_Düzenle"
+
+#: src/layout_util.c:2467
+msgid "_Select"
+msgstr "_Seç"
+
+#: src/layout_util.c:2468 src/menu.c:411
+msgid "_Orientation"
+msgstr "_Yönlendirme"
+
+#: src/layout_util.c:2469
+msgid "_Rating"
+msgstr "De_recelendirme"
+
+#: src/layout_util.c:2470
+msgid "P_references"
+msgstr "Te_rcihler"
+
+#: src/layout_util.c:2472
+msgid "_Files and Folders"
+msgstr "_Dosya ve Dizinler"
+
+#: src/layout_util.c:2473
+msgid "_Zoom"
+msgstr "_Yakınlaştırma"
+
+#: src/layout_util.c:2474
+msgid "_Color Management"
+msgstr "_Renk Yönetimi"
+
+#: src/layout_util.c:2475
+msgid "_Connected Zoom"
+msgstr "_Bağlı Yakınlaştırma"
+
+#: src/layout_util.c:2476
+msgid "Spli_t"
+msgstr "_Bölümleme"
+
+#: src/layout_util.c:2477
+msgid "Stere_o"
+msgstr "Stere_o"
+
+#: src/layout_util.c:2478 src/layout_util.c:2636
+msgid "Image _Overlay"
+msgstr "Resim _Yerleşimi"
+
+#: src/layout_util.c:2479 src/menu.c:121
+msgid "_Plugins"
+msgstr "_Eklentiler"
+
+#: src/layout_util.c:2480
+#, fuzzy
+msgid "_Windows"
+msgstr "Pencereler"
+
+#: src/layout_util.c:2481
+msgid "_Help"
+msgstr "_Yardım"
+
+#: src/layout_util.c:2483
+msgid "Copy..."
+msgstr "Kopyala..."
+
+#: src/layout_util.c:2484
+msgid "Move..."
+msgstr "Taşı..."
+
+#: src/layout_util.c:2485
+msgid "Rename..."
+msgstr "Yeniden adlandır..."
+
+#: src/layout_util.c:2489
+msgid "Delete..."
+msgstr "Sil..."
+
+#: src/layout_util.c:2490
+msgid "Select _all"
+msgstr "_Tümünü seç"
+
+#: src/layout_util.c:2491
+msgid "Select _none"
+msgstr "Hiçbir şey seçme"
+
+#: src/layout_util.c:2492
+msgid "_Invert Selection"
+msgstr "Zıt Seç_im"
+
+#: src/layout_util.c:2492
+msgid "Invert Selection"
+msgstr "Zıt Seçim"
+
+#: src/layout_util.c:2494
+msgid "_Quit"
+msgstr "Çı_k"
+
+#: src/layout_util.c:2494 src/preferences.c:854 src/toolbar.c:150
+msgid "Quit"
+msgstr "Çık"
+
+#: src/layout_util.c:2495
+msgid "_First Image"
+msgstr "İlk _Resim"
+
+#: src/layout_util.c:2495 src/preferences.c:786 src/toolbar.c:74
+msgid "First Image"
+msgstr "İlk Resim"
+
+#: src/layout_util.c:2496 src/layout_util.c:2497 src/layout_util.c:2498
+msgid "_Previous Image"
+msgstr "Önceki Res_im"
+
+#: src/layout_util.c:2496 src/layout_util.c:2497 src/layout_util.c:2498
+#: src/preferences.c:787 src/toolbar.c:75
+msgid "Previous Image"
+msgstr "Önceki Resim"
+
+#: src/layout_util.c:2499 src/layout_util.c:2500 src/layout_util.c:2511
+msgid "_Next Image"
+msgstr "So_nraki Resim"
+
+#: src/layout_util.c:2499 src/layout_util.c:2500 src/layout_util.c:2511
+#: src/preferences.c:788 src/toolbar.c:76
+msgid "Next Image"
+msgstr "Sonraki Resim"
+
+#: src/layout_util.c:2502 src/toolbar.c:86
+#, fuzzy
+msgid "Image Forward"
+msgstr "İleri"
+
+#: src/layout_util.c:2502
+msgid "Forward in image history"
+msgstr ""
+
+#: src/layout_util.c:2503 src/toolbar.c:87
+#, fuzzy
+msgid "Image Back"
+msgstr "Resim ara"
+
+#: src/layout_util.c:2503
+msgid "Back in image history"
+msgstr ""
+
+#: src/layout_util.c:2505
+#, fuzzy
+msgid "_First Page"
+msgstr "İlk _Resim"
+
+#: src/layout_util.c:2505
+msgid "First Page of multi-page image"
+msgstr ""
+
+#: src/layout_util.c:2506
+#, fuzzy
+msgid "_Last Page"
+msgstr "_Son Resim"
+
+#: src/layout_util.c:2506
+msgid "Last Page of multi-page image"
+msgstr ""
+
+#: src/layout_util.c:2507
+#, fuzzy
+msgid "_Next Page"
+msgstr "So_nraki Bölme"
+
+#: src/layout_util.c:2507
+msgid "Next Page of multi-page image"
+msgstr ""
+
+#: src/layout_util.c:2508
+#, fuzzy
+msgid "_Previous Page"
+msgstr "Önceki _Bölme"
+
+#: src/layout_util.c:2508
+msgid "Previous Page of multi-page image"
+msgstr ""
+
+#: src/layout_util.c:2512
+msgid "_Last Image"
+msgstr "_Son Resim"
+
+#: src/layout_util.c:2512 src/preferences.c:789 src/toolbar.c:77
+msgid "Last Image"
+msgstr "Son Resim"
+
+#: src/layout_util.c:2513
+msgid "_Back"
+msgstr "_Geri"
+
+#: src/layout_util.c:2513
+msgid "Back in folder history"
+msgstr ""
+
+#: src/layout_util.c:2514
+msgid "_Forward"
+msgstr "İle_ri"
+
+#: src/layout_util.c:2514
+msgid "Forward in folder history"
+msgstr ""
+
+#: src/layout_util.c:2515
+msgid "_Home"
+msgstr "_Ev"
+
+#: src/layout_util.c:2515 src/options.c:244 src/preferences.c:792
+#: src/toolbar.c:80 src/ui_bookmark.c:560 src/ui_pathsel.c:1047
+msgid "Home"
+msgstr "Ev"
+
+#: src/layout_util.c:2516
+msgid "_Up"
+msgstr "Y_ukarı"
+
+#: src/layout_util.c:2516
+#, fuzzy
+msgid "Up one folder"
+msgstr "Yeni dizin"
+
+#: src/layout_util.c:2517 src/toolbar.c:88
+msgid "New window"
+msgstr "Yeni pencere"
+
+#: src/layout_util.c:2518
+#, fuzzy
+msgid "default"
+msgstr "Varsayılan"
+
+#: src/layout_util.c:2518
+#, fuzzy
+msgid "New window (default)"
+msgstr "Yeni pencere"
+
+#: src/layout_util.c:2519
+#, fuzzy
+msgid "from current"
+msgstr "Geçerliyi kullan"
+
+#: src/layout_util.c:2522
+msgid "_New collection"
+msgstr "Ye_ni koleksiyon"
+
+#: src/layout_util.c:2522 src/menu.c:472 src/preferences.c:799 src/toolbar.c:89
+msgid "New collection"
+msgstr "Yeni koleksiyon"
+
+#: src/layout_util.c:2523
+msgid "_Open collection..."
+msgstr "K_oleksiyon aç..."
+
+#: src/layout_util.c:2523
+msgid "Open collection..."
+msgstr "Koleksiyon aç..."
+
+#: src/layout_util.c:2524
+msgid "Open recen_t"
+msgstr "_Son kullanılanı aç"
+
+#: src/layout_util.c:2524
+#, fuzzy
+msgid "Open recent collection"
+msgstr "Koleksiyon aç"
+
+#: src/layout_util.c:2525
+msgid "_Search..."
+msgstr "_Ara..."
+
+#: src/layout_util.c:2525
+msgid "Search..."
+msgstr "Ara..."
+
+#: src/layout_util.c:2526
+msgid "Find duplicates..."
+msgstr "Kopayarı bul..."
+
+#: src/layout_util.c:2527
+msgid "Pa_n view"
+msgstr "Tava Görü_nümü"
+
+#: src/layout_util.c:2527 src/preferences.c:809 src/toolbar.c:99
+msgid "Pan view"
+msgstr "Tava görünümü"
+
+#: src/layout_util.c:2528
+msgid "_Print..."
+msgstr "_Yazdır..."
+
+#: src/layout_util.c:2529
+msgid "N_ew folder..."
+msgstr "Y_eni dizin..."
+
+#: src/layout_util.c:2529
+msgid "New folder..."
+msgstr "Yeni dizin..."
+
+#: src/layout_util.c:2530 src/view_file/view_file.c:725
+msgid "Enable file _grouping"
+msgstr "Dosya _gruplamasını etkinleştir"
+
+#: src/layout_util.c:2530
+msgid "Enable file grouping"
+msgstr "Dosya gruplamasını etkinleştir"
+
+#: src/layout_util.c:2531 src/view_file/view_file.c:727
+msgid "Disable file groupi_ng"
+msgstr "Dosya grupla_mayı devre dışı bırak"
+
+#: src/layout_util.c:2531
+msgid "Disable file grouping"
+msgstr "Dosya gruplamayı devre dışı bırak"
+
+#: src/layout_util.c:2532
+msgid "Copy path to clipboard"
+msgstr "Yolu panoya kopyala"
+
+#: src/layout_util.c:2533
+msgid "Copy path unquoted to clipboard"
+msgstr "Alıntılanmamış yolu panoya kopyala"
+
+#: src/layout_util.c:2534
+msgid "_Rating 0"
+msgstr "De_recelendirme 0"
+
+#: src/layout_util.c:2534
+msgid "Rating 0"
+msgstr "Derecelendirme 0"
+
+#: src/layout_util.c:2535
+msgid "_Rating 1"
+msgstr "De_recelendirme 1"
+
+#: src/layout_util.c:2535
+msgid "Rating 1"
+msgstr "Derecelendirme 1"
+
+#: src/layout_util.c:2536
+msgid "_Rating 2"
+msgstr "De_recelendirme 2"
+
+#: src/layout_util.c:2536
+msgid "Rating 2"
+msgstr "Derecelendirme 2"
+
+#: src/layout_util.c:2537
+msgid "_Rating 3"
+msgstr "De_recelendirme 3"
+
+#: src/layout_util.c:2537
+msgid "Rating 3"
+msgstr "Derecelendirme 3"
+
+#: src/layout_util.c:2538
+msgid "_Rating 4"
+msgstr "De_recelendirme 4"
+
+#: src/layout_util.c:2538
+msgid "Rating 4"
+msgstr "Derecelendirme 4"
+
+#: src/layout_util.c:2539
+msgid "_Rating 5"
+msgstr "De_recelendirme 5"
+
+#: src/layout_util.c:2539
+msgid "Rating 5"
+msgstr "Derecelendirme 5"
+
+#: src/layout_util.c:2540
+msgid "_Rating -1"
+msgstr "De_recelendirme -1"
+
+#: src/layout_util.c:2540
+msgid "Rating -1"
+msgstr "Derecelendirme -1"
+
+#: src/layout_util.c:2541
+#, fuzzy
+msgid "_Rotate clockwise 90°"
+msgstr "Saat yönünde döndü_r"
+
+#: src/layout_util.c:2541
+#, fuzzy
+msgid "Image Rotate clockwise 90°"
+msgstr "Saat yönünde döndür"
+
+#: src/layout_util.c:2542
+#, fuzzy
+msgid "Rotate _counterclockwise 90°"
+msgstr "_Saat yönünün tersine çevir"
+
+#: src/layout_util.c:2542 src/menu.c:356 src/preferences.c:820
+#: src/toolbar.c:111
+#, fuzzy
+msgid "Rotate counterclockwise 90°"
+msgstr "Saat yönünün tersine çevir"
+
+#: src/layout_util.c:2543
+#, fuzzy
+msgid "Rotate 1_80°"
+msgstr "1_80 derece döndür"
+
+#: src/layout_util.c:2543
+#, fuzzy
+msgid "Image Rotate 180°"
+msgstr "180 derece döndür"
+
+#: src/layout_util.c:2544
+msgid "_Mirror"
+msgstr "_Ayna"
+
+#: src/layout_util.c:2544
+#, fuzzy
+msgid "Image Mirror"
+msgstr "Resim"
+
+#: src/layout_util.c:2545
+msgid "_Flip"
+msgstr "Çe_vir"
+
+#: src/layout_util.c:2545
+#, fuzzy
+msgid "Image Flip"
+msgstr "Resim"
+
+#: src/layout_util.c:2546
+msgid "_Original state"
+msgstr "Özgün hali"
+
+#: src/layout_util.c:2546
+#, fuzzy
+msgid "Image rotate Original state"
+msgstr "Özgün hali"
+
+#: src/layout_util.c:2547
+msgid "P_references..."
+msgstr "Seçenekle_r..."
+
+#: src/layout_util.c:2547
+msgid "Preferences..."
+msgstr "Seçenekler..."
+
+#: src/layout_util.c:2548
+msgid "Configure _Plugins..."
+msgstr "Eklentileri Ya_pılandır..."
+
+#: src/layout_util.c:2548
+msgid "Configure Plugins..."
+msgstr "Eklentileri Yapılandır..."
+
+#: src/layout_util.c:2549
+msgid "_Configure this window..."
+msgstr "Bu pen_cereyi yapılandır..."
+
+#: src/layout_util.c:2549
+msgid "Configure this window..."
+msgstr "Bu pencereyi yapılandır..."
+
+#: src/layout_util.c:2550
+#, fuzzy
+msgid "_Cache maintenance..."
+msgstr "Önbellek Bakımı"
+
+#: src/layout_util.c:2550
+#, fuzzy
+msgid "Cache maintenance..."
+msgstr "Önbellek Bakımı"
+
+#: src/layout_util.c:2551
+msgid "Set as _wallpaper"
+msgstr "_Duvar kağıdı olarak ayarla"
+
+#: src/layout_util.c:2551
+msgid "Set as wallpaper"
+msgstr "Duvar kağıdı olarak ayarla"
+
+#: src/layout_util.c:2552
+msgid "_Save metadata"
+msgstr "Meta verileri _kaydet"
+
+#: src/layout_util.c:2552 src/toolbar.c:136
+msgid "Save metadata"
+msgstr "Meta verileri kaydet"
+
+#: src/layout_util.c:2553
+#, fuzzy
+msgid "Keyword autocomplete"
+msgstr "Anahtar kelime türü:"
+
+#: src/layout_util.c:2553
+#, fuzzy
+msgid "Keyword Autocomplete"
+msgstr "Anahtar kelime türü:"
+
+#: src/layout_util.c:2560 src/layout_util.c:2561 src/layout_util.c:2576
+#: src/layout_util.c:2577
+msgid "_Zoom to fit"
+msgstr "Sığdırmak için _yakınlaştır"
+
+#: src/layout_util.c:2562 src/layout_util.c:2578
+msgid "Fit _Horizontally"
+msgstr "_Yatay Olarak Sığdır"
+
+#: src/layout_util.c:2562
+msgid "Fit Horizontally"
+msgstr "Yatay Olarak Sığdır"
+
+#: src/layout_util.c:2563 src/layout_util.c:2579
+msgid "Fit _Vertically"
+msgstr "_Dikey Olarak Sığdır"
+
+#: src/layout_util.c:2563
+msgid "Fit Vertically"
+msgstr "Dikey Olarak Sığdır"
+
+#: src/layout_util.c:2564 src/layout_util.c:2580
+msgid "Zoom _2:1"
+msgstr "_2:1 Yakınlaştır"
+
+#: src/layout_util.c:2565 src/layout_util.c:2581
+msgid "Zoom _3:1"
+msgstr "_3:1 Yakınlaştır"
+
+#: src/layout_util.c:2566 src/layout_util.c:2582
+msgid "Zoom _4:1"
+msgstr "_4:1 Yakınlaştır"
+
+#: src/layout_util.c:2570 src/layout_util.c:2571 src/preferences.c:837
+#: src/toolbar.c:128
+msgid "Connected Zoom in"
+msgstr "Bağlı Yakınlaştır"
+
+#: src/layout_util.c:2572 src/layout_util.c:2573
+msgid "Connected Zoom out"
+msgstr "Bağlı Uzaklaştır"
+
+#: src/layout_util.c:2574 src/layout_util.c:2575
+msgid "Connected Zoom 1:1"
+msgstr "Bağlı Yakınlaştırma 1:1"
+
+#: src/layout_util.c:2576 src/layout_util.c:2577
+msgid "Connected Zoom to fit"
+msgstr "Sığdırmak İçin Bağlı Yakınlaştır"
+
+#: src/layout_util.c:2578
+msgid "Connected Fit Horizontally"
+msgstr "Bağlı Yatay Sığdırma"
+
+#: src/layout_util.c:2579
+msgid "Connected Fit Vertically"
+msgstr "Bağlı Dikey Sığdırma"
+
+#: src/layout_util.c:2580
+msgid "Connected Zoom 2:1"
+msgstr "Bağlı Yakınlaştırma 2:1"
+
+#: src/layout_util.c:2581
+msgid "Connected Zoom 3:1"
+msgstr "Bağlı Yakınlaştırma 3:1"
+
+#: src/layout_util.c:2582
+msgid "Connected Zoom 4:1"
+msgstr "Bağlı Yakınlaştırma 4:1"
+
+#: src/layout_util.c:2583
+msgid "Connected Zoom 1:2"
+msgstr "Bağlı Yakınlaştırma 1:2"
+
+#: src/layout_util.c:2584
+msgid "Connected Zoom 1:3"
+msgstr "Bağlı Yakınlaştırma 1:3"
+
+#: src/layout_util.c:2585
+msgid "Connected Zoom 1:4"
+msgstr "Bağlı Yakınlaştırma 1:4"
+
+#: src/layout_util.c:2586
+msgid "_View in new window"
+msgstr "_Yeni pencerede göster"
+
+#: src/layout_util.c:2588 src/layout_util.c:2589 src/layout_util.c:2590
+msgid "F_ull screen"
+msgstr "T_am ekran"
+
+#: src/layout_util.c:2591 src/layout_util.c:2592
+msgid "_Leave full screen"
+msgstr "Tam ekrandan çık"
+
+#: src/layout_util.c:2591 src/layout_util.c:2592
+msgid "Leave full screen"
+msgstr "Tam ekrandan çık"
+
+#: src/layout_util.c:2593
+msgid "_Cycle through overlay modes"
+msgstr "_Kaplama kipleriyle dolaş"
+
+#: src/layout_util.c:2593
+msgid "Cycle through Overlay modes"
+msgstr "Kaplama kipleriyle dolaş"
+
+#: src/layout_util.c:2594
+msgid "Cycle through histogram ch_annels"
+msgstr "Histogram k_anallarıyla dolaş"
+
+#: src/layout_util.c:2594
+msgid "Cycle through histogram channels"
+msgstr "Histogram kanallarıyla dolaş"
+
+#: src/layout_util.c:2595
+msgid "Cycle through histogram mo_des"
+msgstr "Histogram kipleriyle _dolaş"
+
+#: src/layout_util.c:2595
+msgid "Cycle through histogram modes"
+msgstr "Histogram kipleriyle dolaş"
+
+#: src/layout_util.c:2596
+msgid "_Hide file list"
+msgstr "Dosya listesini _gizle"
+
+#: src/layout_util.c:2596 src/preferences.c:841 src/toolbar.c:137
+msgid "Hide file list"
+msgstr "Dosya listesini gizle"
+
+#: src/layout_util.c:2597
+msgid "_Pause slideshow"
+msgstr "_Resim gösterisini duraklat"
+
+#: src/layout_util.c:2598
+msgid "Faster"
+msgstr "Daha hızlı"
+
+#: src/layout_util.c:2598 src/preferences.c:843 src/toolbar.c:139
+msgid "Slideshow Faster"
+msgstr "Resim Gösterisi Daha Hızlı"
+
+#: src/layout_util.c:2599
+msgid "Slower"
+msgstr "Daha yavaş"
+
+#: src/layout_util.c:2599 src/preferences.c:844 src/toolbar.c:140
+msgid "Slideshow Slower"
+msgstr "Resim Gösterisi Daha Yavaş"
+
+#: src/layout_util.c:2600
+msgid "_Refresh"
+msgstr "_Yenile"
+
+#: src/layout_util.c:2600 src/preferences.c:845 src/toolbar.c:141
+msgid "Refresh"
+msgstr "Yenile"
+
+#: src/layout_util.c:2601
+#, fuzzy
+msgid "_Help manual"
+msgstr "el ile"
+
+#: src/layout_util.c:2601
+#, fuzzy
+msgid "Help manual"
+msgstr "el ile"
+
+#: src/layout_util.c:2602 src/window.c:371
+msgid "On-line help search"
+msgstr ""
+
+#: src/layout_util.c:2603
+msgid "_Keyboard shortcuts"
+msgstr "_Klavye kısayolları"
+
+#: src/layout_util.c:2603
+msgid "Keyboard shortcuts"
+msgstr "Klavye kısayolları"
+
+#: src/layout_util.c:2604
+msgid "_Keyboard map"
+msgstr "_Klavye haritası"
+
+#: src/layout_util.c:2604
+msgid "Keyboard map"
+msgstr "Klavye haritası"
+
+#: src/layout_util.c:2605
+msgid "_Readme"
+msgstr ""
+
+#: src/layout_util.c:2605
+msgid "Readme"
+msgstr ""
+
+#: src/layout_util.c:2606
+msgid "_ChangeLog"
+msgstr "_Değişiklikler"
+
+#: src/layout_util.c:2606
+msgid "ChangeLog notes"
+msgstr "Değişiklik notları"
+
+#: src/layout_util.c:2607 src/search_and_run.c:291
+msgid "Search and Run command"
+msgstr ""
+
+#: src/layout_util.c:2607
+msgid "Search commands by keyword and run them"
+msgstr ""
+
+#: src/layout_util.c:2608
+msgid "_About"
+msgstr "H_akkında"
+
+#: src/layout_util.c:2608
+msgid "About"
+msgstr "Hakkında"
+
+#: src/layout_util.c:2609
+msgid "_Log Window"
+msgstr "Gün_lük Penceresi"
+
+#: src/layout_util.c:2609
+msgid "Log Window"
+msgstr "Günlük Penceresi"
+
+#: src/layout_util.c:2610
+msgid "_Exif window"
+msgstr "Exif Penceresi"
+
+#: src/layout_util.c:2610 src/preferences.c:847 src/toolbar.c:143
+msgid "Exif window"
+msgstr "Exif penceresi"
+
+#: src/layout_util.c:2611
+msgid "_Cycle through stereo modes"
+msgstr "_Stereo kipleri arasında geçiş yap"
+
+#: src/layout_util.c:2611
+msgid "Cycle through stereo modes"
+msgstr "Stereo kipleri arasında geçiş yap"
+
+#: src/layout_util.c:2612
+msgid "_Next Pane"
+msgstr "So_nraki Bölme"
+
+#: src/layout_util.c:2612
+#, fuzzy
+msgid "Next Split Pane"
+msgstr "Sonraki Bölme"
+
+#: src/layout_util.c:2613
+msgid "_Previous Pane"
+msgstr "Önceki _Bölme"
+
+#: src/layout_util.c:2613
+#, fuzzy
+msgid "Previous Split Pane"
+msgstr "Önceki Bölme"
+
+#: src/layout_util.c:2614
+msgid "_Up Pane"
+msgstr "Y_ukarı Bölme"
+
+#: src/layout_util.c:2614
+#, fuzzy
+msgid "Up Split Pane"
+msgstr "Yukarı Bölme"
+
+#: src/layout_util.c:2615
+msgid "_Down Pane"
+msgstr "_Aşağı Bölme"
+
+#: src/layout_util.c:2615
+#, fuzzy
+msgid "Down Split Pane"
+msgstr "Aşağı Bölme"
+
+#: src/layout_util.c:2616
+msgid "_Write orientation to file"
+msgstr "Yönlendirmeyi dosyaya _yaz"
+
+#: src/layout_util.c:2616
+msgid "Write orientation to file"
+msgstr "Yönlendirmeyi dosyaya yaz"
+
+#: src/layout_util.c:2617
+msgid "_Write orientation to file (preserve timestamp)"
+msgstr "Yönlendirmeyi dosyaya _yaz (zaman damgasını koru)"
+
+#: src/layout_util.c:2617
+msgid "Write orientation to file (preserve timestamp)"
+msgstr "Yönlendirmeyi dosyaya yaz (zaman damgasını koru)"
+
+#: src/layout_util.c:2618
+#, fuzzy
+msgid "Clear Marks..."
+msgstr "Çöpü temizle"
+
+#: src/layout_util.c:2622
+msgid "Show _Thumbnails"
+msgstr "Küçük Resimleri Gös_ter"
+
+#: src/layout_util.c:2622
+msgid "Show Thumbnails"
+msgstr "Küçük Resimleri Göster"
+
+#: src/layout_util.c:2623
+msgid "Show _Marks"
+msgstr "İşaretleri _Göster"
+
+#: src/layout_util.c:2623
+msgid "Show Marks"
+msgstr "İşaretleri Göster"
+
+#: src/layout_util.c:2624
+#, fuzzy
+msgid "Show File Filter"
+msgstr "_Gizli dosyaları göster"
+
+#: src/layout_util.c:2625
+msgid "Pi_xel Info"
+msgstr "Pi_ksel Bilgisi"
+
+#: src/layout_util.c:2625
+msgid "Show Pixel Info"
+msgstr "Piksel Bilgisini Göster"
+
+#: src/layout_util.c:2626
+#, fuzzy
+msgid "Hide _alpha"
+msgstr "Araç çubuğunu gizle"
+
+#: src/layout_util.c:2626
+#, fuzzy
+msgid "Hide alpha channel"
+msgstr "Alfa kanalı rengi 1"
+
+#: src/layout_util.c:2627
+msgid "_Float file list"
+msgstr "_Kayan dosya listesi"
+
+#: src/layout_util.c:2627 src/preferences.c:851 src/toolbar.c:147
+msgid "Float file list"
+msgstr "Kayan dosya listesi"
+
+#: src/layout_util.c:2628
+msgid "Hide tool_bar"
+msgstr "Araç çu_buğunu gizle"
+
+#: src/layout_util.c:2628
+msgid "Hide toolbar"
+msgstr "Araç çubuğunu gizle"
+
+#: src/layout_util.c:2629
+msgid "_Info sidebar"
+msgstr "Yan çubuk b_ilgisi"
+
+#: src/layout_util.c:2629 src/preferences.c:852 src/toolbar.c:148
+msgid "Info sidebar"
+msgstr "Yan çubuk bilgisi"
+
+#: src/layout_util.c:2630
+msgid "Sort _manager"
+msgstr "Sırala_ma yöneticisi"
+
+#: src/layout_util.c:2630 src/preferences.c:853 src/toolbar.c:149
+msgid "Sort manager"
+msgstr "Sıralama yöneticisi"
+
+#: src/layout_util.c:2631
+msgid "Hide Bars"
+msgstr "Çubukları Gizle"
+
+#: src/layout_util.c:2633
+msgid "Use _color profiles"
+msgstr "_Renk düzenlerini kullan"
+
+#: src/layout_util.c:2633 src/toolbar.c:135
+msgid "Use color profiles"
+msgstr "Renk düzenlerini kullan"
+
+#: src/layout_util.c:2634
+msgid "Use profile from _image"
+msgstr "Res_imdeki düzeni kullan"
+
+#: src/layout_util.c:2634
+msgid "Use profile from image"
+msgstr "Resimdeki düzeni kullan"
+
+#: src/layout_util.c:2635
+msgid "Toggle _grayscale"
+msgstr "_Gri tonlamalı geçiş yap"
+
+#: src/layout_util.c:2635
+msgid "Toggle grayscale"
+msgstr "Gri tonlamalı geçiş yap"
+
+#: src/layout_util.c:2636
+msgid "Image Overlay"
+msgstr "Resim Yerleşimi"
+
+#: src/layout_util.c:2637
+msgid "_Show Histogram"
+msgstr "Histogramı Gö_ster"
+
+#: src/layout_util.c:2637
+msgid "Show Histogram"
+msgstr "Histogramı Göster"
+
+#: src/layout_util.c:2638
+msgid "Rectangular Selection"
+msgstr "Dikdörtgen Seçimi"
+
+#: src/layout_util.c:2639
+msgid "Toggle GIF animation"
+msgstr "GIF canlandırmasını aç"
+
+#: src/layout_util.c:2640
+msgid "_Exif rotate"
+msgstr "_Exif döndür"
+
+#: src/layout_util.c:2640
+#, fuzzy
+msgid "Toggle Exif rotate"
+msgstr "Exif döndür"
+
+#: src/layout_util.c:2641 src/preferences.c:850 src/toolbar.c:146
+#, fuzzy
+msgid "Draw Rectangle"
+msgstr "Tümünü seç"
+
+#: src/layout_util.c:2642
+msgid "Over/Under Exposed"
+msgstr ""
+
+#: src/layout_util.c:2642
+msgid "Highlight over/under exposed"
+msgstr ""
+
+#: src/layout_util.c:2643 src/preferences.c:838 src/toolbar.c:129
+#, fuzzy
+msgid "Split Pane Sync"
+msgstr "Yukarı Bölme"
+
+#: src/layout_util.c:2647
+#, fuzzy
+msgid "Images as _List"
+msgstr "Resim _Listesi"
+
+#: src/layout_util.c:2647
+msgid "View Images as List"
+msgstr "Resimeleri Liste olarak görüntüle"
+
+#: src/layout_util.c:2648
+#, fuzzy
+msgid "Images as I_cons"
+msgstr "Resimleri Simge olarak görüntüle"
+
+#: src/layout_util.c:2648
+msgid "View Images as Icons"
+msgstr "Resimleri Simge olarak görüntüle"
+
+#: src/layout_util.c:2652
+msgid "T_oggle Folder View"
+msgstr "Dizin Görünümünü _Değiştir"
+
+#: src/layout_util.c:2652
+msgid "Toggle Folders View"
+msgstr "Dizin Görünümünü Değiştir"
+
+#: src/layout_util.c:2656
+msgid "_Horizontal"
+msgstr "_Yatay"
+
+#: src/layout_util.c:2656
+#, fuzzy
+msgid "Split panes horizontal."
+msgstr "Yatay Böl"
+
+#: src/layout_util.c:2657
+msgid "_Vertical"
+msgstr "_Dikey"
+
+#: src/layout_util.c:2657
+#, fuzzy
+msgid "Split panes vertical"
+msgstr "Dikey Böl"
+
+#: src/layout_util.c:2658
+msgid "_Quad"
+msgstr "_Dörtlü"
+
+#: src/layout_util.c:2658
+#, fuzzy
+msgid "Split panes quad"
+msgstr "Dörde Böl"
+
+#: src/layout_util.c:2659
+msgid "_Single"
+msgstr "_Tekli"
+
+#: src/layout_util.c:2659
+#, fuzzy
+msgid "Single pane"
+msgstr "Tek resim"
+
+#: src/layout_util.c:2663
+msgid "Input _0: sRGB"
+msgstr "Giriş _0: sRGB"
+
+#: src/layout_util.c:2663
+msgid "Input 0: sRGB"
+msgstr "Giriş 0: sRGB"
+
+#: src/layout_util.c:2664
+msgid "Input _1: AdobeRGB compatible"
+msgstr "Giriş _1: AdobeRGB uyumlu"
+
+#: src/layout_util.c:2664
+msgid "Input 1: AdobeRGB compatible"
+msgstr "Giriş 1: AdobeRGB uyumlu"
+
+#: src/layout_util.c:2665
+msgid "Input _2"
+msgstr "Giriş _2"
+
+#: src/layout_util.c:2665
+msgid "Input 2"
+msgstr "Giriş 2"
+
+#: src/layout_util.c:2666
+msgid "Input _3"
+msgstr "Giriş _3"
+
+#: src/layout_util.c:2666
+msgid "Input 3"
+msgstr "Giriş 3"
+
+#: src/layout_util.c:2667
+msgid "Input _4"
+msgstr "Giriş _4"
+
+#: src/layout_util.c:2667
+msgid "Input 4"
+msgstr "Giriş 4"
+
+#: src/layout_util.c:2668
+msgid "Input _5"
+msgstr "Giriş _5"
+
+#: src/layout_util.c:2668
+msgid "Input 5"
+msgstr "Giriş 5"
+
+#: src/layout_util.c:2672
+msgid "Histogram on Red"
+msgstr "Kırmızı Histogram"
+
+#: src/layout_util.c:2673
+msgid "Histogram on Green"
+msgstr "Yeşil Histogram"
+
+#: src/layout_util.c:2674
+msgid "Histogram on Blue"
+msgstr "Mavi Histogram"
+
+#: src/layout_util.c:2675
+msgid "Histogram on RGB"
+msgstr "RGB Histogram"
+
+#: src/layout_util.c:2676
+msgid "Histogram on Value"
+msgstr "Değer Üzerinde Histogram"
+
+#: src/layout_util.c:2680
+msgid "Linear Histogram"
+msgstr "Doğrusal Histogram"
+
+#: src/layout_util.c:2681
+msgid "_Log Histogram"
+msgstr "Gün_lük Histogramı"
+
+#: src/layout_util.c:2681
+msgid "Log Histogram"
+msgstr "Günlük Histogramı"
+
+#: src/layout_util.c:2685
+msgid "_Auto"
+msgstr "_Otomatik"
+
+#: src/layout_util.c:2685
+msgid "Stereo Auto"
+msgstr "Stereo Otomatik"
+
+#: src/layout_util.c:2686
+msgid "_Side by Side"
+msgstr "_Yan yana"
+
+#: src/layout_util.c:2686
+msgid "Stereo Side by Side"
+msgstr "Stereo Yan Yana"
+
+#: src/layout_util.c:2687
+msgid "_Cross"
+msgstr "Çapra_z"
+
+#: src/layout_util.c:2687
+msgid "Stereo Cross"
+msgstr "Stereo Çapraz"
+
+#: src/layout_util.c:2688
+msgid "_Off"
+msgstr "_Kapalı"
+
+#: src/layout_util.c:2688
+msgid "Stereo Off"
+msgstr "Stereo Kapalı"
 
 #: src/layout_util.c:3021
 #, c-format
@@ -2369,18 +4490,6 @@ msgstr "%s 'den çık"
 msgid "Collections have been modified. Quit anyway?"
 msgstr "Koleksiyonlar değiştirildi. Yine de çıkılsın mı?"
 
-#: src/menu.c:121
-msgid "_Plugins"
-msgstr "_Eklentiler"
-
-#: src/menu.c:148
-msgid "Sort by size"
-msgstr "Boyuta göre sırala"
-
-#: src/menu.c:151
-msgid "Sort by date"
-msgstr "Tarihe göre sırala"
-
 #: src/menu.c:154
 msgid "Sort by file creation date"
 msgstr "Dosya oluşturma tarihine göre sırala"
@@ -2399,14 +4508,6 @@ msgstr "E_xif tarihine göre sırala"
 msgid "Unsorted"
 msgstr "Sıralanmamış"
 
-#: src/menu.c:166
-msgid "Sort by path"
-msgstr "Yola göre sırala"
-
-#: src/menu.c:169
-msgid "Sort by number"
-msgstr "Numaraya göre sırala"
-
 #: src/menu.c:172
 msgid "Sort by rating"
 msgstr "Derecelendirmeye göre sırala"
@@ -2415,10 +4516,6 @@ msgstr "Derecelendirmeye göre sırala"
 #, fuzzy
 msgid "Sort by class"
 msgstr "Boyuta göre sırala"
-
-#: src/menu.c:179
-msgid "Sort by name"
-msgstr "Ada göre sırala"
 
 #: src/menu.c:273 src/menu.c:282
 msgid "Zoom to original size"
@@ -2432,44 +4529,26 @@ msgstr "Resmi pencereye sığdır"
 msgid "Leave Zoom at previous setting"
 msgstr "Yakınlaştırma önceki ayarlarda kalsın"
 
-#: src/menu.c:353
+#: src/menu.c:353 src/preferences.c:819 src/toolbar.c:110
 #, fuzzy
 msgid "Rotate clockwise 90°"
 msgstr "Saat yönünde döndür"
 
-#: src/menu.c:356
-#, fuzzy
-msgid "Rotate counterclockwise 90°"
-msgstr "Saat yönünün tersine çevir"
-
-#: src/menu.c:359
-#, fuzzy
-msgid "Rotate 180°"
-msgstr "180 derece döndür"
-
-#: src/menu.c:362
+#: src/menu.c:362 src/preferences.c:822 src/toolbar.c:113
 msgid "Mirror"
 msgstr "Ayna"
 
-#: src/menu.c:365
+#: src/menu.c:365 src/preferences.c:823 src/toolbar.c:114
 msgid "Flip"
 msgstr "Çevir"
 
-#: src/menu.c:368
+#: src/menu.c:368 src/preferences.c:824 src/toolbar.c:115
 msgid "Original state"
 msgstr "Özgün hali"
-
-#: src/menu.c:411
-msgid "_Orientation"
-msgstr "_Yönlendirme"
 
 #: src/menu.c:467
 msgid "_Add to Collection"
 msgstr "Koleksiyon_a Ekle"
-
-#: src/menu.c:472
-msgid "New collection"
-msgstr "Yeni koleksiyon"
 
 #: src/metadata.c:1739
 msgid "People"
@@ -2722,23 +4801,159 @@ msgid ""
 "  Error code: "
 msgstr ""
 
-#: src/options.c:244 src/ui_bookmark.c:560 src/ui_pathsel.c:1047
-msgid "Home"
-msgstr "Ev"
-
 #: src/options.c:246 src/ui_bookmark.c:571
 msgid "Desktop"
 msgstr "Masaüstü"
 
-#: src/options.c:267 src/search.c:2338 src/search.c:2342 src/search.c:3626
-#: src/search.c:3630 src/view_file/view_file.c:915
+#: src/options.c:267 src/search.c:2338 src/search.c:2342 src/search.c:3627
+#: src/search.c:3631 src/view_file/view_file.c:915
 #, fuzzy
 msgid "Mark "
 msgstr "%d'i işaretle"
 
+#: src/osd.c:44 src/preferences.c:135
+#, fuzzy
+msgid "Collection"
+msgstr "Koleksiyonlar"
+
+#: src/osd.c:45
+#, fuzzy
+msgid "Image index"
+msgstr "Resim dosyası"
+
+#: src/osd.c:46
+#, fuzzy
+msgid "Images total"
+msgstr "Resim dosyası"
+
+#: src/osd.c:55
+#, fuzzy
+msgid "File page no."
+msgstr "Dosya tarihi"
+
+#: src/osd.c:56
+#, fuzzy
+msgid "Image date"
+msgstr "Resim Genişliği"
+
+#: src/osd.c:58
+#, fuzzy
+msgid "ShutterSpeed"
+msgstr "Deklanşör hızı"
+
+#: src/osd.c:64
+msgid "ISO"
+msgstr ""
+
+#: src/osd.c:66
+#, fuzzy
+msgid "Focal len. 35mm"
+msgstr "Odak uzaklığı 35mm"
+
+#: src/osd.c:70
+msgid "Lat, Long"
+msgstr ""
+
+#: src/osd.c:71
+#, fuzzy
+msgid "Altitude"
+msgstr "GPS yüksekliği"
+
+#: src/osd.c:73
+#, fuzzy
+msgid "Timezone"
+msgstr "Zaman çizelgesi"
+
+#: src/osd.c:76
+msgid "Rating"
+msgstr "Derecelendirme"
+
+#: src/osd.c:78
+#, fuzzy
+msgid "© Creator"
+msgstr "Yarat"
+
+#: src/osd.c:79
+msgid "© Contributor"
+msgstr ""
+
+#: src/osd.c:80
+#, fuzzy
+msgid "© Rights"
+msgstr "Işıklar"
+
 #: src/osd.c:169
 msgid ""
 "To include predefined tags in the template, click a button or drag-and-drop"
+msgstr ""
+
+#: src/pan-view/pan-view.c:104 src/pan-view/pan-view.c:123
+msgid "Display Find search bar"
+msgstr ""
+
+#: src/pan-view/pan-view.c:105
+#, fuzzy
+msgid "Start search"
+msgstr "Resim ara"
+
+#: src/pan-view/pan-view.c:107
+msgid "Hide Find search bar"
+msgstr ""
+
+#: src/pan-view/pan-view.c:124
+#, fuzzy
+msgid "Scroll left"
+msgstr "üst sol"
+
+#: src/pan-view/pan-view.c:125
+#, fuzzy
+msgid "Scroll right"
+msgstr "üst sağ"
+
+#: src/pan-view/pan-view.c:126
+#, fuzzy
+msgid "Scroll up"
+msgstr "Sol üst köşeye kaydır"
+
+#: src/pan-view/pan-view.c:127
+#, fuzzy
+msgid "Scroll down"
+msgstr "Resim merkezine kaydır"
+
+#: src/pan-view/pan-view.c:128
+#, fuzzy
+msgid "Scroll left faster"
+msgstr "Sol üst köşeye kaydır"
+
+#: src/pan-view/pan-view.c:129
+#, fuzzy
+msgid "Scroll right faster"
+msgstr "Resim merkezine kaydır"
+
+#: src/pan-view/pan-view.c:130
+#, fuzzy
+msgid "Scroll up faster"
+msgstr "Sol üst köşeye kaydır"
+
+#: src/pan-view/pan-view.c:131
+#, fuzzy
+msgid "Scroll down faster"
+msgstr "Resim merkezine kaydır"
+
+#: src/pan-view/pan-view.c:132
+msgid "Scroll display half screen up"
+msgstr ""
+
+#: src/pan-view/pan-view.c:133
+msgid "Scroll display half screen down"
+msgstr ""
+
+#: src/pan-view/pan-view.c:134
+msgid "Scroll display half screen left"
+msgstr ""
+
+#: src/pan-view/pan-view.c:135
+msgid "Scroll display half screen right"
 msgstr ""
 
 #: src/pan-view/pan-view.c:510
@@ -2780,7 +4995,7 @@ msgstr "Tarih:"
 msgid "Size:"
 msgstr "Boyut:"
 
-#: src/pan-view/pan-view.c:1796 src/search.c:2788
+#: src/pan-view/pan-view.c:1796 src/search.c:2789
 msgid "Folder not found"
 msgstr "Dizin yok"
 
@@ -2969,6 +5184,28 @@ msgstr "kısmi eşleşme"
 msgid "no match"
 msgstr "eşleşme yok"
 
+#: src/preferences.c:130 src/search.c:2286 src/search.c:3611
+msgid "Unknown"
+msgstr "Bilinmeyen"
+
+#: src/preferences.c:132
+msgid "RAW Image"
+msgstr "Ham Resim"
+
+#: src/preferences.c:134 src/search.c:2271 src/search.c:3608
+msgid "Video"
+msgstr "Vidyo"
+
+#: src/preferences.c:136 src/search.c:2276 src/search.c:3609
+#, fuzzy
+msgid "Document"
+msgstr "Yorum"
+
+#: src/preferences.c:137
+#, fuzzy
+msgid "Archive"
+msgstr "Mimari"
+
 #: src/preferences.c:664
 msgid "Nearest (worst, but fastest)"
 msgstr "En yakın (en kötü ama en hızlı)"
@@ -3005,6 +5242,117 @@ msgstr ""
 #: src/preferences.c:765
 msgid "Arithmetic"
 msgstr ""
+
+#: src/preferences.c:790 src/toolbar.c:78
+msgid "Back"
+msgstr "Geri"
+
+#: src/preferences.c:791 src/toolbar.c:79
+msgid "Forward"
+msgstr "İleri"
+
+#: src/preferences.c:793 src/toolbar.c:81
+msgid "Up"
+msgstr "Yukarı"
+
+#: src/preferences.c:794 src/toolbar.c:82
+#, fuzzy
+msgid "First page"
+msgstr "İlk Resim"
+
+#: src/preferences.c:795 src/toolbar.c:83
+#, fuzzy
+msgid "Last Page"
+msgstr "Son Resim"
+
+#: src/preferences.c:796 src/toolbar.c:84
+#, fuzzy
+msgid "Next page"
+msgstr "Sonraki Resim"
+
+#: src/preferences.c:797 src/toolbar.c:85
+#, fuzzy
+msgid "Previous Page"
+msgstr "Önceki Bölme"
+
+#: src/preferences.c:798
+msgid "New _window"
+msgstr "Yeni _pencere"
+
+#: src/preferences.c:801 src/preferences.c:3275 src/toolbar.c:91
+msgid "Search"
+msgstr "Ara"
+
+#: src/preferences.c:803 src/toolbar.c:93 src/ui_pathsel.c:1049
+#: src/utilops.c:3189
+msgid "New folder"
+msgstr "Yeni dizin"
+
+#: src/preferences.c:808 src/toolbar.c:98
+#, fuzzy
+msgid "Close Window"
+msgstr "Pencereyi kapat"
+
+#: src/preferences.c:812 src/toolbar.c:103
+#, fuzzy
+msgid "Select invert"
+msgstr "Simge seç"
+
+#: src/preferences.c:813 src/toolbar.c:104
+#, fuzzy
+msgid "Show file filter"
+msgstr "_Gizli dosyaları göster"
+
+#: src/preferences.c:814 src/toolbar.c:105
+#, fuzzy
+msgid "Select rectangle"
+msgstr "Tümünü seç"
+
+#: src/preferences.c:816 src/preferences.c:3983 src/toolbar.c:107
+msgid "Preferences"
+msgstr "Tercihler"
+
+#: src/preferences.c:817 src/toolbar.c:108
+msgid "Configure this window"
+msgstr "Bu pencereyi yapılandır"
+
+#: src/preferences.c:818 src/toolbar.c:109
+#, fuzzy
+msgid "Cache maintenance"
+msgstr "Önbellek Bakımı"
+
+#: src/preferences.c:829 src/toolbar.c:120
+msgid "Fit Horizontaly"
+msgstr "Yatay Olarak Sığdır"
+
+#: src/preferences.c:830 src/toolbar.c:121
+msgid "Fit vertically"
+msgstr "Dikey olarak sığdır"
+
+#: src/preferences.c:835 src/toolbar.c:126
+msgid "Zoom1:3"
+msgstr "1:3 Yakınlaştır"
+
+#: src/preferences.c:839 src/toolbar.c:130
+#, fuzzy
+msgid "Grayscale"
+msgstr "Gri tonlamalı geçiş yap"
+
+#: src/preferences.c:840 src/toolbar.c:131
+msgid "Over Under Exposed"
+msgstr ""
+
+#: src/preferences.c:846 src/toolbar.c:142 src/window.c:287 src/window.c:308
+msgid "Help"
+msgstr "Yardım"
+
+#: src/preferences.c:848 src/toolbar.c:144
+msgid "Show thumbnails"
+msgstr "Küçük resimleri göster"
+
+#: src/preferences.c:849 src/toolbar.c:145
+msgid "Show marks"
+msgstr "İşaretleri göster"
 
 #: src/preferences.c:968
 msgid "Custom"
@@ -3168,11 +5516,6 @@ msgid "Use embedded metadata in video files as thumbnails when available"
 msgstr ""
 "Vidyo dosyalarında gömülü meta verileri mümkünse küçük resimler olarak kullan"
 
-#: src/preferences.c:2033
-#, fuzzy
-msgid "Star Rating"
-msgstr "Derecelendirme"
-
 #: src/preferences.c:2040
 msgid "Star character: "
 msgstr ""
@@ -3186,12 +5529,6 @@ msgid ""
 "Hexadecimal representation of a Unicode character. A list of all Unicode "
 "characters may be found on the Internet."
 msgstr ""
-
-#: src/preferences.c:2058 src/preferences.c:2090 src/preferences.c:2218
-#: src/view_file/view_file.c:1188 src/window.c:400
-#, fuzzy
-msgid "Clear"
-msgstr "Temiz_le"
 
 #: src/preferences.c:2062 src/preferences.c:2094 src/preferences.c:2222
 #, fuzzy
@@ -3291,10 +5628,6 @@ msgid ""
 "https://www.search_engine.com/search?q=site:geeqie.org/help\n"
 "https://www.search_engine.com/?q=site:geeqie.org/help"
 msgstr ""
-
-#: src/preferences.c:2242 src/search.c:2261 src/search.c:3605
-msgid "Image"
-msgstr "Resim"
 
 #: src/preferences.c:2262
 msgid "Two pass rendering (apply HQ zoom and color correction in second pass)"
@@ -3803,18 +6136,10 @@ msgstr ""
 msgid "Search for keywords"
 msgstr "Anahtar Kelimeler"
 
-#: src/preferences.c:3269 src/search.c:3528
-msgid "Keywords"
-msgstr "Anahtar kelimeler"
-
 #: src/preferences.c:3271
 #, fuzzy
 msgid "Edit keywords autocompletion list"
 msgstr "Seçilen dosyalara anahtar kelimeler ekle"
-
-#: src/preferences.c:3275
-msgid "Search"
-msgstr "Ara"
 
 #: src/preferences.c:3362
 msgid "Perceptual"
@@ -3824,10 +6149,6 @@ msgstr "Algısal"
 #: src/preferences.c:3364
 msgid "Relative Colorimetric"
 msgstr "Göreceli Renkölçüm"
-
-#: src/preferences.c:3366
-msgid "Saturation"
-msgstr "Doygunluk"
 
 #: src/preferences.c:3368
 msgid "Absolute Colorimetric"
@@ -3849,7 +6170,7 @@ msgstr "Tür"
 msgid "Menu name"
 msgstr "Menü adı"
 
-#: src/preferences.c:3408 src/search.c:3434
+#: src/preferences.c:3408 src/search.c:3435
 msgid "File"
 msgstr "Dosya"
 
@@ -3882,10 +6203,6 @@ msgstr "Oluşturma Amacı:"
 msgid "Behavior"
 msgstr "Davranış"
 
-#: src/preferences.c:3510 src/utilops.c:2209
-msgid "Delete"
-msgstr "Sil"
-
 #: src/preferences.c:3512
 #, fuzzy
 msgid "Confirm permanent file delete"
@@ -3916,10 +6233,6 @@ msgstr "MB"
 #: src/preferences.c:3539
 msgid "Set to 0 for unlimited size"
 msgstr "Sınırsız boyut için 0'a ayarlayın"
-
-#: src/preferences.c:3540
-msgid "View"
-msgstr "Göster"
 
 #: src/preferences.c:3552
 msgid "Use system Trash bin"
@@ -4198,10 +6511,6 @@ msgstr "Sağ X"
 msgid "Right Y"
 msgstr "Sağ Y"
 
-#: src/preferences.c:3983
-msgid "Preferences"
-msgstr "Tercihler"
-
 #: src/preferences.c:4143
 msgid "About Geeqie"
 msgstr "Geeqie Hakkında"
@@ -4309,6 +6618,278 @@ msgstr ""
 msgid "Timezone: %s\n"
 msgstr ""
 
+#: src/remote.c:1371 src/remote.c:1376
+msgid "lua error: no data"
+msgstr "lua hatası: veri yok"
+
+#: src/remote.c:1399
+msgid "previous image"
+msgstr "önceki resim"
+
+#: src/remote.c:1400
+#, fuzzy
+msgid "close window"
+msgstr "Pencereyi kapat"
+
+#: src/remote.c:1401
+msgid "<FILE>|layout ID"
+msgstr ""
+
+#: src/remote.c:1401
+#, fuzzy
+msgid "load configuration from FILE"
+msgstr "DOSYA'dan yapılandırma yükle"
+
+#: src/remote.c:1402
+#, fuzzy
+msgid "clean the metadata cache"
+msgstr "    meta veri önbelleğini temizle"
+
+#: src/remote.c:1403
+msgid "<folder>  "
+msgstr "<folder>  "
+
+#: src/remote.c:1403
+msgid " render thumbnails"
+msgstr " küçük resimler oluştur"
+
+#: src/remote.c:1404 src/remote.c:1405
+msgid "<folder> "
+msgstr "<folder> "
+
+#: src/remote.c:1404
+msgid "render thumbnails recursively"
+msgstr "küçük resimleri özyinelemeli oluştur"
+
+#: src/remote.c:1405
+msgid " render thumbnails (see Help)"
+msgstr " küçük resimler oluştur (Yardım'a bakın)"
+
+#: src/remote.c:1406
+msgid "<folder>"
+msgstr "<folder>"
+
+#: src/remote.c:1406
+msgid " render thumbnails recursively (see Help)"
+msgstr " küçük resimleri özyinelemeli oluştur (Yardım'a bakın)"
+
+#: src/remote.c:1407 src/remote.c:1408
+msgid "clear|clean"
+msgstr "berrak|temiz"
+
+#: src/remote.c:1407
+msgid "clear or clean shared thumbnail cache"
+msgstr "paylaşılan küçük resim önbelleğini temizle veya boşalt"
+
+#: src/remote.c:1408
+msgid "clear or clean thumbnail cache"
+msgstr "küçük resim önbelleğini temizle veya boşalt"
+
+#: src/remote.c:1409
+msgid "<[H:][M:][N][.M]>"
+msgstr "<[H:][M:][N][.M]>"
+
+#: src/remote.c:1409
+msgid "set slide show delay to Hrs Mins N.M seconds"
+msgstr "resim gösterisi gecikmesini Saat Dk N.M saniye olarak ayarlayın"
+
+#: src/remote.c:1410
+msgid "first image"
+msgstr "ilk resim"
+
+#: src/remote.c:1411
+msgid "toggle full screen"
+msgstr "tam ekrana geç"
+
+#: src/remote.c:1412 src/remote.c:1413 src/remote.c:1414 src/remote.c:1415
+#, fuzzy
+msgid "<FILE>|<URL>"
+msgstr "<FILE>"
+
+#: src/remote.c:1412 src/remote.c:1413
+#, fuzzy
+msgid "open FILE or URL, bring Geeqie window to the top"
+msgstr "DOSYA'yı açın, Geeqie penceresini üstüne getirin"
+
+#: src/remote.c:1414 src/remote.c:1415
+#, fuzzy
+msgid "open FILE or URL, do not bring Geeqie window to the top"
+msgstr "DOSYA açın, Geeqie penceresini yukarı getirmeyin"
+
+#: src/remote.c:1416
+msgid "start full screen"
+msgstr "Tam ekranı başlat"
+
+#: src/remote.c:1417
+msgid "stop full screen"
+msgstr "Tam ekranı durdur"
+
+#: src/remote.c:1418
+msgid "<GEOMETRY>"
+msgstr ""
+
+#: src/remote.c:1418
+#, fuzzy
+msgid "set window geometry"
+msgstr "Geçersiz geometri\n"
+
+#: src/remote.c:1419
+msgid "<COLLECTION>"
+msgstr ""
+
+#: src/remote.c:1419
+#, fuzzy
+msgid "get collection content"
+msgstr "Yeni koleksiyon"
+
+#: src/remote.c:1420
+#, fuzzy
+msgid "get collection list"
+msgstr "Yeni koleksiyon"
+
+#: src/remote.c:1421 src/remote.c:1427 src/remote.c:1430 src/remote.c:1450
+#: src/remote.c:1451
+msgid "<FILE>"
+msgstr "<FILE>"
+
+#: src/remote.c:1421
+#, fuzzy
+msgid "get destination path of FILE (See Plugins Configuration)"
+msgstr "DOSYA hedef yolunu al"
+
+#: src/remote.c:1422
+#, fuzzy
+msgid "get file info"
+msgstr "Dosya bilgisi"
+
+#: src/remote.c:1423 src/remote.c:1424
+#, fuzzy
+msgid "[<FOLDER>]"
+msgstr "<FOLDER>"
+
+#: src/remote.c:1423
+#, fuzzy
+msgid "get list of files and class"
+msgstr "DOSYA yan sepetlerinin listesini al"
+
+#: src/remote.c:1424
+#, fuzzy
+msgid "get list of files and class recursive"
+msgstr "DOSYA yan sepetlerinin listesini al"
+
+#: src/remote.c:1425
+#, fuzzy
+msgid "get rectangle co-ordinates"
+msgstr "Oluşturma Amacı:"
+
+#: src/remote.c:1426
+#, fuzzy
+msgid "get render intent"
+msgstr "Oluşturma Amacı:"
+
+#: src/remote.c:1427
+msgid "get list of sidecars of FILE"
+msgstr "DOSYA yan sepetlerinin listesini al"
+
+#: src/remote.c:1428
+msgid "<ID>"
+msgstr ""
+
+#: src/remote.c:1428
+msgid "window id for following commands"
+msgstr ""
+
+#: src/remote.c:1429
+msgid "last image"
+msgstr "son resim"
+
+#: src/remote.c:1430
+msgid "add FILE to command line collection list"
+msgstr "komut satırı koleksiyon listesine DOSYA ekleyin"
+
+#: src/remote.c:1431
+msgid "clear command line collection list"
+msgstr "komut satırı koleksiyon listesini temizle"
+
+#: src/remote.c:1433
+msgid "<FILE>,<lua script>"
+msgstr "<FILE>,<lua script>"
+
+#: src/remote.c:1433
+msgid "run lua script on FILE"
+msgstr "DOSYA üzerinde lua betiği çalıştır"
+
+#: src/remote.c:1435
+#, fuzzy
+msgid "new window"
+msgstr "Yeni pencere"
+
+#: src/remote.c:1436
+msgid "next image"
+msgstr "sonraki resim"
+
+#: src/remote.c:1437
+#, fuzzy
+msgid "print pixel info of mouse pointer on current image"
+msgstr "geçerli resmin dosya adını yazdır"
+
+#: src/remote.c:1438
+msgid "terminate returned data with null character instead of newline"
+msgstr ""
+
+#: src/remote.c:1439
+msgid "<PWD>"
+msgstr ""
+
+#: src/remote.c:1439
+msgid "use PWD as working directory for following commands"
+msgstr ""
+
+#: src/remote.c:1440
+msgid "quit"
+msgstr "çık"
+
+#: src/remote.c:1441 src/remote.c:1442
+msgid "bring the Geeqie window to the top"
+msgstr "Geeqie penceresini üste getir"
+
+#: src/remote.c:1443
+msgid "toggle slide show"
+msgstr "resim gösterisine geç"
+
+#: src/remote.c:1444
+msgid "<FOLDER>"
+msgstr "<FOLDER>"
+
+#: src/remote.c:1444
+msgid "start recursive slide show in FOLDER"
+msgstr "DİZİN'de özyinelemeli resim gösterisi başlat"
+
+#: src/remote.c:1445
+msgid "start slide show"
+msgstr "resim gösterisini başlat"
+
+#: src/remote.c:1446
+msgid "stop slide show"
+msgstr "resim gösterisini durdur"
+
+#: src/remote.c:1447
+#, fuzzy
+msgid "print filename [and Collection] of current image"
+msgstr "geçerli resmin dosya adını yazdır"
+
+#: src/remote.c:1448
+msgid "show tools"
+msgstr "araçları göster"
+
+#: src/remote.c:1449
+msgid "hide tools"
+msgstr "araçları gizle"
+
+#: src/remote.c:1450 src/remote.c:1451
+msgid "open FILE in new window"
+msgstr "yeni pencerede DOSYA aç"
+
 #: src/remote.c:1516
 msgid "Remote command list:\n"
 msgstr "Uzaktan komut listesi:\n"
@@ -4336,9 +6917,98 @@ msgstr "Uzaktan %s çalışmıyor, başlıyor..."
 msgid "Remote not available\n"
 msgstr "Uzaktan mevcut değil\n"
 
-#: src/search_and_run.c:291
-msgid "Search and Run command"
+#: src/search.c:270
+msgid "folder"
+msgstr "dizin"
+
+#: src/search.c:271
+msgid "comments"
+msgstr "yorumlar"
+
+#: src/search.c:272
+msgid "results"
+msgstr "sonuçlar"
+
+#: src/search.c:273
+#, fuzzy
+msgid "collection"
+msgstr "Koleksiyonlar"
+
+#: src/search.c:277
+#, fuzzy
+msgid "name contains"
+msgstr "içeren"
+
+#: src/search.c:278
+#, fuzzy
+msgid "name is"
+msgstr "Dosyalar yeniden adlandırılsın mı?"
+
+#: src/search.c:279
+#, fuzzy
+msgid "path contains"
+msgstr "içeren"
+
+#: src/search.c:283 src/search.c:290 src/search.c:309
+msgid "equal to"
+msgstr "eşittir"
+
+#: src/search.c:284 src/search.c:310 src/search.c:317
+msgid "less than"
+msgstr "daha az"
+
+#: src/search.c:285 src/search.c:311 src/search.c:318
+msgid "greater than"
+msgstr "daha büyük"
+
+#: src/search.c:286 src/search.c:293 src/search.c:312
+msgid "between"
+msgstr "arasında"
+
+#: src/search.c:291
+msgid "before"
+msgstr "önce"
+
+#: src/search.c:292
+msgid "after"
+msgstr "sonra"
+
+#: src/search.c:297
+msgid "match all"
+msgstr "tümüyle eşleş"
+
+#: src/search.c:298
+msgid "match any"
+msgstr "herhangi biriyle eşleş"
+
+#: src/search.c:299
+msgid "exclude"
+msgstr "dışla"
+
+#: src/search.c:303
+msgid "contains"
+msgstr "içeren"
+
+#: src/search.c:304
+msgid "miss"
+msgstr "bayan"
+
+#: src/search.c:316
+msgid "not geocoded"
+msgstr "coğrafi kodlanmamış"
+
+#: src/search.c:322 src/search.c:327
+msgid "is"
+msgstr "eşittir"
+
+#: src/search.c:323 src/search.c:328
+msgid "is not"
 msgstr ""
+
+#: src/search.c:368
+#, fuzzy
+msgid "Start/stop search"
+msgstr "Resim ara"
 
 #: src/search.c:410
 #, c-format
@@ -4359,155 +7029,138 @@ msgstr "Aranıyor..."
 msgid "Changed"
 msgstr "_Değişiklikler"
 
-#: src/search.c:2063 src/search.c:3479
+#: src/search.c:2063 src/search.c:3480
 #, fuzzy
 msgid "Original"
 msgstr "Özgün hali"
 
-#: src/search.c:2069 src/search.c:3480
+#: src/search.c:2069 src/search.c:3481
 #, fuzzy
 msgid "Digitized"
 msgstr "Sayısallaştırılmış tarih"
 
-#: src/search.c:2266 src/search.c:3606
+#: src/search.c:2266 src/search.c:3607
 #, fuzzy
 msgid "Raw Image"
 msgstr "Ham Resim"
 
-#: src/search.c:2271 src/search.c:3607
-msgid "Video"
-msgstr "Vidyo"
-
-#: src/search.c:2276 src/search.c:3608
-#, fuzzy
-msgid "Document"
-msgstr "Yorum"
-
-#: src/search.c:2286 src/search.c:3610
-msgid "Unknown"
-msgstr "Bilinmeyen"
-
-#: src/search.c:2330 src/search.c:3623
+#: src/search.c:2330 src/search.c:3624
 #, fuzzy
 msgid "Any mark"
 msgstr "%d işareti ekle"
 
-#: src/search.c:2386 src/search.c:3579
+#: src/search.c:2387 src/search.c:3580
 msgid "km"
 msgstr "km"
 
-#: src/search.c:2391 src/search.c:3580
+#: src/search.c:2392 src/search.c:3581
 msgid "miles"
 msgstr "mil"
 
-#: src/search.c:2713
+#: src/search.c:2714
 msgid "File not found"
 msgstr "Dosya yok"
 
-#: src/search.c:2714
+#: src/search.c:2715
 msgid "Please enter an existing file for image content."
 msgstr "Lütfen resim içeriği için mevcut bir dosyayı girin."
 
-#: src/search.c:2739
+#: src/search.c:2740
 msgid "Entry does not contain a valid lat/long value"
 msgstr "Giriş geçerli bir lat/long değeri içermiyor"
 
-#: src/search.c:2789
+#: src/search.c:2790
 msgid "Please enter an existing folder to search."
 msgstr "Lütfen aramak için mevcut bir dizin girin."
 
-#: src/search.c:2835
+#: src/search.c:2836
 #, fuzzy
 msgid "Collection not found"
 msgstr "Dizin yok"
 
-#: src/search.c:2835
+#: src/search.c:2836
 #, fuzzy
 msgid "Please enter an existing collection name."
 msgstr "Lütfen aramak için mevcut bir dizin girin."
 
-#: src/search.c:3293
+#: src/search.c:3294
 #, fuzzy
 msgid "Select collection"
 msgstr "Koleksiyonu kaydet"
 
-#: src/search.c:3363
+#: src/search.c:3364
 msgid "Image search"
 msgstr "Resim ara"
 
-#: src/search.c:3402
+#: src/search.c:3403
 msgid "Search:"
 msgstr "Ara:"
 
-#: src/search.c:3416
+#: src/search.c:3417
 msgid "Recurse"
 msgstr "Özyinelemeli"
 
-#: src/search.c:3440 src/search.c:3549
+#: src/search.c:3441 src/search.c:3550
 msgid "Match case"
 msgstr "Durum eşleşmesi"
 
-#: src/search.c:3446
+#: src/search.c:3447
 msgid "File size is"
 msgstr "Dosya boyutu"
 
-#: src/search.c:3453 src/search.c:3470 src/search.c:3499 src/search.c:3562
+#: src/search.c:3454 src/search.c:3471 src/search.c:3500 src/search.c:3563
 msgid "and"
 msgstr "ve"
 
-#: src/search.c:3459
+#: src/search.c:3460
 msgid "File date is"
 msgstr "Dosya tarihi"
 
-#: src/search.c:3477
+#: src/search.c:3478
 msgid "Modified"
 msgstr ""
 
-#: src/search.c:3478
+#: src/search.c:3479
 #, fuzzy
 msgid "Status Changed"
 msgstr ""
 "\n"
 "Durum: "
 
-#: src/search.c:3488
+#: src/search.c:3489
 msgid "Image dimensions are"
 msgstr "Resim boyutları"
 
-#: src/search.c:3509
+#: src/search.c:3510
 msgid "Image content is"
 msgstr "Resim içeriği"
 
-#: src/search.c:3515
+#: src/search.c:3516
 #, no-c-format
 msgid "% similar to"
 msgstr "% benzer"
 
-#: src/search.c:3523
+#: src/search.c:3524
 msgid "Ignore rotation"
 msgstr "Döndürmeyi yoksay"
 
-#: src/search.c:3540
-msgid "Comment"
-msgstr "Yorum"
-
-#: src/search.c:3555
+#: src/search.c:3556
 msgid "Image rating is"
 msgstr "Resim derecelendirmesi"
 
-#: src/search.c:3569
+#: src/search.c:3570
 msgid "Image is"
 msgstr "Resim"
 
-#: src/search.c:3581
+#: src/search.c:3582
 msgid "n.m."
 msgstr "n.m."
 
-#: src/search.c:3587
+#: src/search.c:3588
 msgid "from"
 msgstr "şuradan"
 
-#: src/search.c:3592
+#: src/search.c:3593
 msgid ""
 "Enter a coordinate in the form:\n"
 "89.123 179.456\n"
@@ -4525,16 +7178,16 @@ msgstr ""
 "bir internet arama URL'si\n"
 "Yardım dosyasına bakın"
 
-#: src/search.c:3600
+#: src/search.c:3601
 #, fuzzy
 msgid "Image class"
 msgstr "Resim"
 
-#: src/search.c:3611
+#: src/search.c:3612
 msgid "Broken"
 msgstr ""
 
-#: src/search.c:3618
+#: src/search.c:3619
 #, fuzzy
 msgid "Marks"
 msgstr "İşaretleri Göster"
@@ -4583,6 +7236,24 @@ msgstr "Kısayol Ekle"
 msgid "Thumbnail image in cache failed to load, trying to recreate.\n"
 msgstr ""
 "Önbellekteki küçük resim yüklenemedi, yeniden oluşturulmaya çalışıldı.\n"
+
+#: src/toolbar.c:100
+#, fuzzy
+msgid "Open Archive"
+msgstr "Son kullanılanı aç"
+
+#: src/toolbar.c:132
+#, fuzzy
+msgid "Pixel Info"
+msgstr "Pi_ksel Bilgisi"
+
+#: src/toolbar.c:133
+msgid "Ignore Alpha"
+msgstr ""
+
+#: src/toolbar.c:134
+msgid "Exif rotate"
+msgstr "Exif döndür"
 
 #: src/toolbar.c:538
 msgid "Add Toolbar Item"
@@ -4803,10 +7474,6 @@ msgstr "Dizin oluşturulurken bir hata oluştu"
 msgid "All Files"
 msgstr "Tüm Dosyalar"
 
-#: src/ui_pathsel.c:1049 src/utilops.c:3189
-msgid "New folder"
-msgstr "Yeni dizin"
-
 #: src/ui_pathsel.c:1052
 msgid "Show hidden"
 msgstr "Gizlileri göster"
@@ -4814,10 +7481,6 @@ msgstr "Gizlileri göster"
 #: src/ui_pathsel.c:1137
 msgid "Filter:"
 msgstr "Süzme:"
-
-#: src/ui_pathsel.c:1179
-msgid "Files"
-msgstr "Dosyalar"
 
 #: src/ui_tabcomp.c:945
 msgid "Select path"
@@ -5055,10 +7718,6 @@ msgstr "Dosyalar kopyalansın mı?"
 msgid "This will copy the following files"
 msgstr "Bu, aşağıdaki dosyaları kopyalayacaktır"
 
-#: src/utilops.c:2396 src/utilops.c:2862
-msgid "Rename"
-msgstr "Yeniden adlandır"
-
 #: src/utilops.c:2397
 msgid "Rename files?"
 msgstr "Dosyalar yeniden adlandırılsın mı?"
@@ -5239,14 +7898,6 @@ msgstr "_Gizli dosyaları göster"
 msgid "Re_fresh"
 msgstr "_Yenile"
 
-#: src/view_file/view_file.c:725
-msgid "Enable file _grouping"
-msgstr "Dosya _gruplamasını etkinleştir"
-
-#: src/view_file/view_file.c:727
-msgid "Disable file groupi_ng"
-msgstr "Dosya grupla_mayı devre dışı bırak"
-
 #: src/view_file/view_file.c:749
 #, fuzzy
 msgid "Images as List"
@@ -5327,14 +7978,6 @@ msgstr "Ad"
 msgid "Stars"
 msgstr "Başlat #"
 
-#: src/window.c:287 src/window.c:308
-msgid "Help"
-msgstr "Yardım"
-
-#: src/window.c:371
-msgid "On-line help search"
-msgstr ""
-
 #: src/window.c:374
 msgid "Search the on-line help files.\n"
 msgstr ""
@@ -5349,1435 +7992,6 @@ msgstr "Ara:"
 msgid "Search terms:"
 msgstr "Ara:"
 
-#~ msgid "Histogram"
-#~ msgstr "Histogram"
-
-#~ msgid "Title"
-#~ msgstr "Başlık"
-
-#~ msgid "Rating"
-#~ msgstr "Derecelendirme"
-
-#, fuzzy
-#~ msgid "Headline"
-#~ msgstr "Zaman çizelgesi"
-
-#~ msgid "Exif"
-#~ msgstr "Exif"
-
-#~ msgid "File info"
-#~ msgstr "Dosya bilgisi"
-
-#~ msgid "Location and GPS"
-#~ msgstr "Konum ve GPS"
-
-#~ msgid "Copyright"
-#~ msgstr "Telif Hakkı"
-
-#~ msgid "Close window"
-#~ msgstr "Pencereyi kapat"
-
-#~ msgid "View in new window"
-#~ msgstr "Yeni pencerede göster"
-
-#, fuzzy
-#~ msgid "Select single file"
-#~ msgstr "Dizin seç"
-
-#, fuzzy
-#~ msgid "Toggle select image"
-#~ msgstr "Resmi sola çevir"
-
-#, fuzzy
-#~ msgid "Append from collection"
-#~ msgstr "Koleksiyondan ekle..."
-
-#, fuzzy
-#~ msgid "Save collection as"
-#~ msgstr "Koleksiyonu kaydet"
-
-#, fuzzy
-#~ msgid "Show filename text"
-#~ msgstr "Dosya ismi me_tnini göster"
-
-#~ msgid "Print"
-#~ msgstr "Yazdır"
-
-#, fuzzy
-#~ msgid "Toggle thumbs"
-#~ msgstr "Küçük resimler yükleniyor..."
-
-#, fuzzy
-#~ msgid "Collection from selection"
-#~ msgstr "Dosya seçiminden ekle"
-
-#, fuzzy
-#~ msgid "Append list"
-#~ msgstr "_Ekle"
-
-#, fuzzy
-#~ msgid "Select group 1 duplicates"
-#~ msgstr "Grup _1 kopyalarını seç"
-
-#, fuzzy
-#~ msgid "Select group 2 duplicates"
-#~ msgstr "Grup _2 kopyalarını seç"
-
-#~ msgid "top left"
-#~ msgstr "üst sol"
-
-#~ msgid "top right"
-#~ msgstr "üst sağ"
-
-#~ msgid "bottom right"
-#~ msgstr "alt sağ"
-
-#~ msgid "bottom left"
-#~ msgstr "alt sol"
-
-#~ msgid "left top"
-#~ msgstr "sol üst"
-
-#~ msgid "right top"
-#~ msgstr "sağ üst"
-
-#~ msgid "right bottom"
-#~ msgstr "sağ alt"
-
-#~ msgid "left bottom"
-#~ msgstr "sol alt"
-
-#~ msgid "inch"
-#~ msgstr "inç"
-
-#~ msgid "centimeter"
-#~ msgstr "santimetre"
-
-#~ msgid "average"
-#~ msgstr "ortalama"
-
-#~ msgid "center weighted"
-#~ msgstr "merkez ağırlıklı"
-
-# programda bakmalı
-#~ msgid "spot"
-#~ msgstr "nokta"
-
-#~ msgid "multi-spot"
-#~ msgstr "çoklu nokta"
-
-#~ msgid "multi-segment"
-#~ msgstr "çok kademeli"
-
-#~ msgid "partial"
-#~ msgstr "kısmi"
-
-#~ msgid "other"
-#~ msgstr "diğer"
-
-#~ msgid "not defined"
-#~ msgstr "tanımlanmamış"
-
-#~ msgid "manual"
-#~ msgstr "el ile"
-
-#~ msgid "normal"
-#~ msgstr "olağan"
-
-#~ msgid "aperture"
-#~ msgstr "açıklık"
-
-#~ msgid "shutter"
-#~ msgstr "deklanşör"
-
-#~ msgid "creative"
-#~ msgstr "oluşturucu"
-
-#~ msgid "action"
-#~ msgstr "eylem"
-
-#~ msgid "portrait"
-#~ msgstr "portre"
-
-#~ msgid "landscape"
-#~ msgstr "manzara"
-
-#~ msgid "daylight"
-#~ msgstr "gün ışığı"
-
-#~ msgid "fluorescent"
-#~ msgstr "floresan"
-
-#~ msgid "tungsten (incandescent)"
-#~ msgstr "tungsten (akkor)"
-
-#~ msgid "flash"
-#~ msgstr "flaş"
-
-#~ msgid "fine weather"
-#~ msgstr "güzel hava"
-
-#~ msgid "cloudy weather"
-#~ msgstr "bulutlu hava"
-
-#~ msgid "shade"
-#~ msgstr "gölge"
-
-#~ msgid "daylight fluorescent"
-#~ msgstr "gün ışığı floresan"
-
-#~ msgid "day white fluorescent"
-#~ msgstr "gün beyazı floresan"
-
-#~ msgid "cool white fluorescent"
-#~ msgstr "soğuk beyaz floresan"
-
-#~ msgid "white fluorescent"
-#~ msgstr "beyaz floresan"
-
-#~ msgid "standard light A"
-#~ msgstr "standart ışık A"
-
-#~ msgid "standard light B"
-#~ msgstr "standart ışık B"
-
-#~ msgid "standard light C"
-#~ msgstr "standart ışık C"
-
-#~ msgid "D55"
-#~ msgstr "D55"
-
-#~ msgid "D65"
-#~ msgstr "D65"
-
-#~ msgid "D75"
-#~ msgstr "D75"
-
-#~ msgid "D50"
-#~ msgstr "D50"
-
-#~ msgid "ISO studio tungsten"
-#~ msgstr "ISO stüdyosu tungsten"
-
-#~ msgid "yes, not detected by strobe"
-#~ msgstr "evet, çakar tarafından algılanmadı"
-
-#~ msgid "yes, detected by strobe"
-#~ msgstr "evet, çakar tarafından algılandı"
-
-#~ msgid "1 chip color area"
-#~ msgstr "1 çip renk alanı"
-
-#~ msgid "2 chip color area"
-#~ msgstr "2 çip renk alanı"
-
-#~ msgid "3 chip color area"
-#~ msgstr "3 çip renk alanı"
-
-#~ msgid "color sequential area"
-#~ msgstr "renk sıralı alanı"
-
-#~ msgid "trilinear"
-#~ msgstr "üç çizgili"
-
-#~ msgid "color sequential linear"
-#~ msgstr "renk sıralı doğrusal"
-
-#~ msgid "digital still camera"
-#~ msgstr "dijital sabit kamera"
-
-#~ msgid "direct photo"
-#~ msgstr "doğrudan fotoğraf"
-
-#~ msgid "custom"
-#~ msgstr "özel"
-
-#~ msgid "auto bracket"
-#~ msgstr "otomatik destek"
-
-#~ msgid "standard"
-#~ msgstr "standart"
-
-#~ msgid "night scene"
-#~ msgstr "gece çekimi"
-
-#~ msgid "none"
-#~ msgstr "yok"
-
-#~ msgid "low gain up"
-#~ msgstr "düşük kazanç"
-
-#~ msgid "high gain up"
-#~ msgstr "yüksek kazanç"
-
-#~ msgid "low gain down"
-#~ msgstr "düşük kayıp"
-
-#~ msgid "high gain down"
-#~ msgstr "yüksek kayıp"
-
-#~ msgid "soft"
-#~ msgstr "yumuşak"
-
-#~ msgid "hard"
-#~ msgstr "sert"
-
-#~ msgid "low"
-#~ msgstr "düşük"
-
-#~ msgid "high"
-#~ msgstr "yüksek"
-
-#~ msgid "macro"
-#~ msgstr "makro"
-
-#~ msgid "close"
-#~ msgstr "kapat"
-
-#~ msgid "distant"
-#~ msgstr "uzak"
-
-#~ msgid "Image Width"
-#~ msgstr "Resim Genişliği"
-
-#~ msgid "Image Height"
-#~ msgstr "Resim Yüksekliği"
-
-#~ msgid "Bits per Sample/Pixel"
-#~ msgstr "Örnek/Piksel başına bit"
-
-#~ msgid "Compression"
-#~ msgstr "Sıkıştırma"
-
-#~ msgid "Image description"
-#~ msgstr "Resim açıklaması"
-
-#~ msgid "Camera make"
-#~ msgstr "Kamera yapma"
-
-#~ msgid "Camera model"
-#~ msgstr "Kamera modeli"
-
-#~ msgid "Orientation"
-#~ msgstr "Yönlendirme"
-
-#~ msgid "X resolution"
-#~ msgstr "X çözünürlüğü"
-
-#~ msgid "Y Resolution"
-#~ msgstr "Y çözünürlüğü"
-
-#~ msgid "Resolution units"
-#~ msgstr "Çözünürlük birimleri"
-
-#~ msgid "Firmware"
-#~ msgstr "Yazılım"
-
-#~ msgid "White point"
-#~ msgstr "Beyaz nokta"
-
-#~ msgid "Primary chromaticities"
-#~ msgstr "Birincil kromatiklikler"
-
-#~ msgid "YCbCy coefficients"
-#~ msgstr "YCbCy katsayıları"
-
-#~ msgid "YCbCr positioning"
-#~ msgstr "YCbCr konumlandırma"
-
-#~ msgid "Black white reference"
-#~ msgstr "Siyah beyaz referans"
-
-#~ msgid "SubIFD Exif offset"
-#~ msgstr "SubIFD Exif baskı"
-
-#~ msgid "Exposure time (seconds)"
-#~ msgstr "Pozlama süresi (saniye)"
-
-#~ msgid "FNumber"
-#~ msgstr "Oransal açıklık"
-
-#~ msgid "Exposure program"
-#~ msgstr "Pozlama programı"
-
-#~ msgid "Spectral Sensitivity"
-#~ msgstr "Görüntüsel Duyarlılık"
-
-#~ msgid "ISO sensitivity"
-#~ msgstr "ISO Duyarlılığı"
-
-#~ msgid "Optoelectric conversion factor"
-#~ msgstr "Optoelektrik dönüşüm etkeni"
-
-#~ msgid "Exif version"
-#~ msgstr "Exif sürümü"
-
-#~ msgid "Date original"
-#~ msgstr "Özgün tarih"
-
-#~ msgid "Date digitized"
-#~ msgstr "Sayısallaştırılmış tarih"
-
-#~ msgid "Pixel format"
-#~ msgstr "Piksel biçimi"
-
-#~ msgid "Compression ratio"
-#~ msgstr "Sıkıştırma oranı"
-
-#~ msgid "Shutter speed"
-#~ msgstr "Deklanşör hızı"
-
-#~ msgid "Aperture"
-#~ msgstr "Açıklık"
-
-#~ msgid "Brightness"
-#~ msgstr "Parlaklık"
-
-#~ msgid "Exposure bias"
-#~ msgstr "Pozlama eğilimi"
-
-#~ msgid "Maximum aperture"
-#~ msgstr "En fazla açıklık"
-
-#~ msgid "Subject distance"
-#~ msgstr "Özne uzaklığı"
-
-#~ msgid "Metering mode"
-#~ msgstr "Ölçme kipi"
-
-#~ msgid "Light source"
-#~ msgstr "Işık kaynağı"
-
-#~ msgid "Flash"
-#~ msgstr "Flaş"
-
-#~ msgid "Focal length"
-#~ msgstr "Odak uzaklığı"
-
-#~ msgid "Subject area"
-#~ msgstr "Özne alanı"
-
-#~ msgid "MakerNote"
-#~ msgstr "YapanNotu"
-
-#~ msgid "UserComment"
-#~ msgstr "KullanıcıYorumu"
-
-#~ msgid "Subsecond time"
-#~ msgstr "Alt İkinci zaman"
-
-#~ msgid "Subsecond time original"
-#~ msgstr "Özgün Alt İkinci zaman"
-
-#~ msgid "Subsecond time digitized"
-#~ msgstr "Alt İkinci zaman sayısallaştırılmış"
-
-#~ msgid "FlashPix version"
-#~ msgstr "FlashPix sürümü"
-
-#~ msgid "Colorspace"
-#~ msgstr "Renkalanı"
-
-#~ msgid "Audio data"
-#~ msgstr "Ses verisi"
-
-#~ msgid "ExifR98 extension"
-#~ msgstr "ExifR98 uzantısı"
-
-#~ msgid "Flash strength"
-#~ msgstr "Flaş gücü"
-
-#~ msgid "Spatial frequency response"
-#~ msgstr "Mekansal frekans cevabı"
-
-#~ msgid "X Pixel density"
-#~ msgstr "X Piksel yoğunluğu"
-
-#~ msgid "Y Pixel density"
-#~ msgstr "Y Piksel yoğunluğu"
-
-#~ msgid "Pixel density units"
-#~ msgstr "Piksel yoğunluğu birimleri"
-
-#~ msgid "Subject location"
-#~ msgstr "Özne konumu"
-
-#~ msgid "Sensor type"
-#~ msgstr "Algılayıcı türü"
-
-#~ msgid "Source type"
-#~ msgstr "Kaynak türü"
-
-#~ msgid "Scene type"
-#~ msgstr "Sahne türü"
-
-#~ msgid "Color filter array pattern"
-#~ msgstr "Renk süzgeci sıra deseni"
-
-#~ msgid "Render process"
-#~ msgstr "Oluşturma işlemi"
-
-#~ msgid "Exposure mode"
-#~ msgstr "Pozlama kipi"
-
-#~ msgid "White balance"
-#~ msgstr "Beyaz dengesi"
-
-#~ msgid "Digital zoom ratio"
-#~ msgstr "Sayısal yakınlaştırma oranı"
-
-#~ msgid "Focal length (35mm)"
-#~ msgstr "Odak uzaklığı (35mm)"
-
-#~ msgid "Scene capture type"
-#~ msgstr "Sahne yakalama türü"
-
-#~ msgid "Gain control"
-#~ msgstr "Kazanç denetimi"
-
-#~ msgid "Contrast"
-#~ msgstr "Karşıtlık"
-
-#~ msgid "Sharpness"
-#~ msgstr "Netlik"
-
-#~ msgid "Device setting"
-#~ msgstr "Aygıt ayarları"
-
-#~ msgid "Subject range"
-#~ msgstr "Özne alanı"
-
-#~ msgid "Image serial number"
-#~ msgstr "Resmin seri numarası"
-
-#~ msgid "Camera"
-#~ msgstr "Kamera"
-
-#, fuzzy
-#~ msgid "DateDigitized"
-#~ msgstr "Sayısallaştırılmış tarih"
-
-#~ msgid "Focal length 35mm"
-#~ msgstr "Odak uzaklığı 35mm"
-
-#~ msgid "Resolution"
-#~ msgstr "Çözünürlük"
-
-#~ msgid "Color profile"
-#~ msgstr "Renk düzeni"
-
-#~ msgid "GPS position"
-#~ msgstr "GPS konumu"
-
-#~ msgid "GPS altitude"
-#~ msgstr "GPS yüksekliği"
-
-#, fuzzy
-#~ msgid "Local time"
-#~ msgstr "Konum:"
-
-#, fuzzy
-#~ msgid "Time zone"
-#~ msgstr "Zaman çizelgesi"
-
-#, fuzzy
-#~ msgid "Country name"
-#~ msgstr "Ada göre sırala"
-
-#, fuzzy
-#~ msgid "Star rating"
-#~ msgstr "Derecelendirmeye göre sırala"
-
-#~ msgid "File size"
-#~ msgstr "Dosya boyutu"
-
-#~ msgid "File date"
-#~ msgstr "Dosya tarihi"
-
-#~ msgid "File mode"
-#~ msgstr "Dosya kipi"
-
-#, fuzzy
-#~ msgid "File ctime"
-#~ msgstr "Dosya boyutu"
-
-#, fuzzy
-#~ msgid "File owner"
-#~ msgstr "Dosya kipi"
-
-#, fuzzy
-#~ msgid "File group"
-#~ msgstr "Dosya bilgisi"
-
-#, fuzzy
-#~ msgid "File link"
-#~ msgstr "Dosya bilgisi"
-
-#, fuzzy
-#~ msgid "File class"
-#~ msgstr "Dosyalar"
-
-#, fuzzy
-#~ msgid "Page no."
-#~ msgstr "%d sayfası"
-
-#, fuzzy
-#~ msgid "Rotate mirror"
-#~ msgstr "Resim"
-
-#, fuzzy
-#~ msgid "Rotate flip"
-#~ msgstr "Düzgün resim çevirme"
-
-#, fuzzy
-#~ msgid " Rotate counterclockwise 90°"
-#~ msgstr "Saat yönünün tersine çevir"
-
-#, fuzzy
-#~ msgid " Rotate clockwise 90°"
-#~ msgstr "Saat yönünde döndür"
-
-#, fuzzy
-#~ msgid "Previous"
-#~ msgstr "Önceki Bölme"
-
-#, fuzzy
-#~ msgid "Next"
-#~ msgstr "Sonraki Resim"
-
-#~ msgid "Zoom in"
-#~ msgstr "Büyüt"
-
-#~ msgid "Zoom out"
-#~ msgstr "Küçült"
-
-#~ msgid "Zoom 1:1"
-#~ msgstr "1:1 yakınlaştır"
-
-#~ msgid "Zoom 2:1"
-#~ msgstr "2:1 Yakınlaştır"
-
-#~ msgid "Zoom 3:1"
-#~ msgstr "3:1 Yakınlaştır"
-
-#~ msgid "Zoom 4:1"
-#~ msgstr "4:1 Yakınlaştır"
-
-#~ msgid "Zoom 1:4"
-#~ msgstr "1:4 Yakınlaştır"
-
-#~ msgid "Zoom 1:3"
-#~ msgstr "1:3 Yakınlaştır"
-
-#~ msgid "Zoom 1:2"
-#~ msgstr "1:2 Yakınlaştır"
-
-#, fuzzy
-#~ msgid "Zoom fit window width"
-#~ msgstr "Sığdırmak için yakınlaştır"
-
-#, fuzzy
-#~ msgid "Zoom fit window height"
-#~ msgstr "Sığdırmak için yakınlaştır"
-
-#~ msgid "Toggle slideshow"
-#~ msgstr "Resim gösterisini aç"
-
-#~ msgid "Pause slideshow"
-#~ msgstr "Resim gösterisini duraklat"
-
-#, fuzzy
-#~ msgid "Reload image"
-#~ msgstr "Gelişigüzel"
-
-#, fuzzy
-#~ msgid "Fullscreen"
-#~ msgstr "Tam ekran"
-
-#, fuzzy
-#~ msgid "Image overlay"
-#~ msgstr "Resim Yerleşimi"
-
-#, fuzzy
-#~ msgid "Exit fullscreen"
-#~ msgstr "Tam _ekrandan çık"
-
-#, fuzzy
-#~ msgid "Desaturate"
-#~ msgstr "Doğa"
-
-#~ msgid "Set as _wallpaper"
-#~ msgstr "_Duvar kağıdı olarak ayarla"
-
-#~ msgid "_File"
-#~ msgstr "_Dosya"
-
-#~ msgid "_Go"
-#~ msgstr "_Git"
-
-#~ msgid "_Edit"
-#~ msgstr "_Düzenle"
-
-#~ msgid "_Select"
-#~ msgstr "_Seç"
-
-#~ msgid "_Rating"
-#~ msgstr "De_recelendirme"
-
-#~ msgid "P_references"
-#~ msgstr "Te_rcihler"
-
-#~ msgid "_Files and Folders"
-#~ msgstr "_Dosya ve Dizinler"
-
-#~ msgid "_Zoom"
-#~ msgstr "_Yakınlaştırma"
-
-#~ msgid "_Color Management"
-#~ msgstr "_Renk Yönetimi"
-
-#~ msgid "_Connected Zoom"
-#~ msgstr "_Bağlı Yakınlaştırma"
-
-#~ msgid "Spli_t"
-#~ msgstr "_Bölümleme"
-
-#~ msgid "Stere_o"
-#~ msgstr "Stere_o"
-
-#~ msgid "Image _Overlay"
-#~ msgstr "Resim _Yerleşimi"
-
-#, fuzzy
-#~ msgid "_Windows"
-#~ msgstr "Pencereler"
-
-#~ msgid "_Help"
-#~ msgstr "_Yardım"
-
-#~ msgid "Copy..."
-#~ msgstr "Kopyala..."
-
-#~ msgid "Move..."
-#~ msgstr "Taşı..."
-
-#~ msgid "Rename..."
-#~ msgstr "Yeniden adlandır..."
-
-#~ msgid "Delete..."
-#~ msgstr "Sil..."
-
-#~ msgid "Select _all"
-#~ msgstr "_Tümünü seç"
-
-#~ msgid "Select _none"
-#~ msgstr "Hiçbir şey seçme"
-
-#~ msgid "_Invert Selection"
-#~ msgstr "Zıt Seç_im"
-
-#~ msgid "Invert Selection"
-#~ msgstr "Zıt Seçim"
-
-#~ msgid "_Quit"
-#~ msgstr "Çı_k"
-
-#~ msgid "Quit"
-#~ msgstr "Çık"
-
-#~ msgid "_First Image"
-#~ msgstr "İlk _Resim"
-
-#~ msgid "First Image"
-#~ msgstr "İlk Resim"
-
-#~ msgid "_Previous Image"
-#~ msgstr "Önceki Res_im"
-
-#~ msgid "Previous Image"
-#~ msgstr "Önceki Resim"
-
-#~ msgid "_Next Image"
-#~ msgstr "So_nraki Resim"
-
-#~ msgid "Next Image"
-#~ msgstr "Sonraki Resim"
-
-#, fuzzy
-#~ msgid "Image Forward"
-#~ msgstr "İleri"
-
-#, fuzzy
-#~ msgid "Image Back"
-#~ msgstr "Resim ara"
-
-#, fuzzy
-#~ msgid "_First Page"
-#~ msgstr "İlk _Resim"
-
-#, fuzzy
-#~ msgid "_Last Page"
-#~ msgstr "_Son Resim"
-
-#, fuzzy
-#~ msgid "_Next Page"
-#~ msgstr "So_nraki Bölme"
-
-#, fuzzy
-#~ msgid "_Previous Page"
-#~ msgstr "Önceki _Bölme"
-
-#~ msgid "_Last Image"
-#~ msgstr "_Son Resim"
-
-#~ msgid "Last Image"
-#~ msgstr "Son Resim"
-
-#~ msgid "_Back"
-#~ msgstr "_Geri"
-
-#~ msgid "_Forward"
-#~ msgstr "İle_ri"
-
-#~ msgid "_Home"
-#~ msgstr "_Ev"
-
-#~ msgid "_Up"
-#~ msgstr "Y_ukarı"
-
-#, fuzzy
-#~ msgid "Up one folder"
-#~ msgstr "Yeni dizin"
-
-#~ msgid "New window"
-#~ msgstr "Yeni pencere"
-
-#, fuzzy
-#~ msgid "default"
-#~ msgstr "Varsayılan"
-
-#, fuzzy
-#~ msgid "New window (default)"
-#~ msgstr "Yeni pencere"
-
-#, fuzzy
-#~ msgid "from current"
-#~ msgstr "Geçerliyi kullan"
-
-#~ msgid "_New collection"
-#~ msgstr "Ye_ni koleksiyon"
-
-#~ msgid "_Open collection..."
-#~ msgstr "K_oleksiyon aç..."
-
-#~ msgid "Open collection..."
-#~ msgstr "Koleksiyon aç..."
-
-#~ msgid "Open recen_t"
-#~ msgstr "_Son kullanılanı aç"
-
-#, fuzzy
-#~ msgid "Open recent collection"
-#~ msgstr "Koleksiyon aç"
-
-#~ msgid "_Search..."
-#~ msgstr "_Ara..."
-
-#~ msgid "Search..."
-#~ msgstr "Ara..."
-
-#~ msgid "Find duplicates..."
-#~ msgstr "Kopayarı bul..."
-
-#~ msgid "Pa_n view"
-#~ msgstr "Tava Görü_nümü"
-
-#~ msgid "Pan view"
-#~ msgstr "Tava görünümü"
-
-#~ msgid "_Print..."
-#~ msgstr "_Yazdır..."
-
-#~ msgid "N_ew folder..."
-#~ msgstr "Y_eni dizin..."
-
-#~ msgid "New folder..."
-#~ msgstr "Yeni dizin..."
-
-#~ msgid "Enable file grouping"
-#~ msgstr "Dosya gruplamasını etkinleştir"
-
-#~ msgid "Disable file grouping"
-#~ msgstr "Dosya gruplamayı devre dışı bırak"
-
-#~ msgid "Copy path to clipboard"
-#~ msgstr "Yolu panoya kopyala"
-
-#~ msgid "Copy path unquoted to clipboard"
-#~ msgstr "Alıntılanmamış yolu panoya kopyala"
-
-#~ msgid "_Rating 0"
-#~ msgstr "De_recelendirme 0"
-
-#~ msgid "Rating 0"
-#~ msgstr "Derecelendirme 0"
-
-#~ msgid "_Rating 1"
-#~ msgstr "De_recelendirme 1"
-
-#~ msgid "Rating 1"
-#~ msgstr "Derecelendirme 1"
-
-#~ msgid "_Rating 2"
-#~ msgstr "De_recelendirme 2"
-
-#~ msgid "Rating 2"
-#~ msgstr "Derecelendirme 2"
-
-#~ msgid "_Rating 3"
-#~ msgstr "De_recelendirme 3"
-
-#~ msgid "Rating 3"
-#~ msgstr "Derecelendirme 3"
-
-#~ msgid "_Rating 4"
-#~ msgstr "De_recelendirme 4"
-
-#~ msgid "Rating 4"
-#~ msgstr "Derecelendirme 4"
-
-#~ msgid "_Rating 5"
-#~ msgstr "De_recelendirme 5"
-
-#~ msgid "Rating 5"
-#~ msgstr "Derecelendirme 5"
-
-#~ msgid "_Rating -1"
-#~ msgstr "De_recelendirme -1"
-
-#~ msgid "Rating -1"
-#~ msgstr "Derecelendirme -1"
-
-#, fuzzy
-#~ msgid "_Rotate clockwise 90°"
-#~ msgstr "Saat yönünde döndü_r"
-
-#, fuzzy
-#~ msgid "Image Rotate clockwise 90°"
-#~ msgstr "Saat yönünde döndür"
-
-#, fuzzy
-#~ msgid "Rotate _counterclockwise 90°"
-#~ msgstr "_Saat yönünün tersine çevir"
-
-#, fuzzy
-#~ msgid "Rotate 1_80°"
-#~ msgstr "1_80 derece döndür"
-
-#, fuzzy
-#~ msgid "Image Rotate 180°"
-#~ msgstr "180 derece döndür"
-
-#~ msgid "_Mirror"
-#~ msgstr "_Ayna"
-
-#, fuzzy
-#~ msgid "Image Mirror"
-#~ msgstr "Resim"
-
-#~ msgid "_Flip"
-#~ msgstr "Çe_vir"
-
-#, fuzzy
-#~ msgid "Image Flip"
-#~ msgstr "Resim"
-
-#~ msgid "_Original state"
-#~ msgstr "Özgün hali"
-
-#, fuzzy
-#~ msgid "Image rotate Original state"
-#~ msgstr "Özgün hali"
-
-#~ msgid "P_references..."
-#~ msgstr "Seçenekle_r..."
-
-#~ msgid "Preferences..."
-#~ msgstr "Seçenekler..."
-
-#~ msgid "Configure _Plugins..."
-#~ msgstr "Eklentileri Ya_pılandır..."
-
-#~ msgid "Configure Plugins..."
-#~ msgstr "Eklentileri Yapılandır..."
-
-#~ msgid "_Configure this window..."
-#~ msgstr "Bu pen_cereyi yapılandır..."
-
-#~ msgid "Configure this window..."
-#~ msgstr "Bu pencereyi yapılandır..."
-
-#, fuzzy
-#~ msgid "_Cache maintenance..."
-#~ msgstr "Önbellek Bakımı"
-
-#, fuzzy
-#~ msgid "Cache maintenance..."
-#~ msgstr "Önbellek Bakımı"
-
-#~ msgid "Set as wallpaper"
-#~ msgstr "Duvar kağıdı olarak ayarla"
-
-#~ msgid "_Save metadata"
-#~ msgstr "Meta verileri _kaydet"
-
-#~ msgid "Save metadata"
-#~ msgstr "Meta verileri kaydet"
-
-#, fuzzy
-#~ msgid "Keyword autocomplete"
-#~ msgstr "Anahtar kelime türü:"
-
-#, fuzzy
-#~ msgid "Keyword Autocomplete"
-#~ msgstr "Anahtar kelime türü:"
-
-#~ msgid "_Zoom to fit"
-#~ msgstr "Sığdırmak için _yakınlaştır"
-
-#~ msgid "Fit _Horizontally"
-#~ msgstr "_Yatay Olarak Sığdır"
-
-#~ msgid "Fit Horizontally"
-#~ msgstr "Yatay Olarak Sığdır"
-
-#~ msgid "Fit _Vertically"
-#~ msgstr "_Dikey Olarak Sığdır"
-
-#~ msgid "Fit Vertically"
-#~ msgstr "Dikey Olarak Sığdır"
-
-#~ msgid "Zoom _2:1"
-#~ msgstr "_2:1 Yakınlaştır"
-
-#~ msgid "Zoom _3:1"
-#~ msgstr "_3:1 Yakınlaştır"
-
-#~ msgid "Zoom _4:1"
-#~ msgstr "_4:1 Yakınlaştır"
-
-#~ msgid "Connected Zoom in"
-#~ msgstr "Bağlı Yakınlaştır"
-
-#~ msgid "Connected Zoom out"
-#~ msgstr "Bağlı Uzaklaştır"
-
-#~ msgid "Connected Zoom 1:1"
-#~ msgstr "Bağlı Yakınlaştırma 1:1"
-
-#~ msgid "Connected Zoom to fit"
-#~ msgstr "Sığdırmak İçin Bağlı Yakınlaştır"
-
-#~ msgid "Connected Fit Horizontally"
-#~ msgstr "Bağlı Yatay Sığdırma"
-
-#~ msgid "Connected Fit Vertically"
-#~ msgstr "Bağlı Dikey Sığdırma"
-
-#~ msgid "Connected Zoom 2:1"
-#~ msgstr "Bağlı Yakınlaştırma 2:1"
-
-#~ msgid "Connected Zoom 3:1"
-#~ msgstr "Bağlı Yakınlaştırma 3:1"
-
-#~ msgid "Connected Zoom 4:1"
-#~ msgstr "Bağlı Yakınlaştırma 4:1"
-
-#~ msgid "Connected Zoom 1:2"
-#~ msgstr "Bağlı Yakınlaştırma 1:2"
-
-#~ msgid "Connected Zoom 1:3"
-#~ msgstr "Bağlı Yakınlaştırma 1:3"
-
-#~ msgid "Connected Zoom 1:4"
-#~ msgstr "Bağlı Yakınlaştırma 1:4"
-
-#~ msgid "_View in new window"
-#~ msgstr "_Yeni pencerede göster"
-
-#~ msgid "F_ull screen"
-#~ msgstr "T_am ekran"
-
-#~ msgid "_Leave full screen"
-#~ msgstr "Tam ekrandan çık"
-
-#~ msgid "Leave full screen"
-#~ msgstr "Tam ekrandan çık"
-
-#~ msgid "_Cycle through overlay modes"
-#~ msgstr "_Kaplama kipleriyle dolaş"
-
-#~ msgid "Cycle through Overlay modes"
-#~ msgstr "Kaplama kipleriyle dolaş"
-
-#~ msgid "Cycle through histogram ch_annels"
-#~ msgstr "Histogram k_anallarıyla dolaş"
-
-#~ msgid "Cycle through histogram channels"
-#~ msgstr "Histogram kanallarıyla dolaş"
-
-#~ msgid "Cycle through histogram mo_des"
-#~ msgstr "Histogram kipleriyle _dolaş"
-
-#~ msgid "Cycle through histogram modes"
-#~ msgstr "Histogram kipleriyle dolaş"
-
-#~ msgid "_Hide file list"
-#~ msgstr "Dosya listesini _gizle"
-
-#~ msgid "Hide file list"
-#~ msgstr "Dosya listesini gizle"
-
-#~ msgid "_Pause slideshow"
-#~ msgstr "_Resim gösterisini duraklat"
-
-#~ msgid "Faster"
-#~ msgstr "Daha hızlı"
-
-#~ msgid "Slideshow Faster"
-#~ msgstr "Resim Gösterisi Daha Hızlı"
-
-#~ msgid "Slower"
-#~ msgstr "Daha yavaş"
-
-#~ msgid "Slideshow Slower"
-#~ msgstr "Resim Gösterisi Daha Yavaş"
-
-#~ msgid "_Refresh"
-#~ msgstr "_Yenile"
-
-#~ msgid "Refresh"
-#~ msgstr "Yenile"
-
-#, fuzzy
-#~ msgid "_Help manual"
-#~ msgstr "el ile"
-
-#, fuzzy
-#~ msgid "Help manual"
-#~ msgstr "el ile"
-
-#~ msgid "_Keyboard shortcuts"
-#~ msgstr "_Klavye kısayolları"
-
-#~ msgid "Keyboard shortcuts"
-#~ msgstr "Klavye kısayolları"
-
-#~ msgid "_Keyboard map"
-#~ msgstr "_Klavye haritası"
-
-#~ msgid "Keyboard map"
-#~ msgstr "Klavye haritası"
-
-#~ msgid "_ChangeLog"
-#~ msgstr "_Değişiklikler"
-
-#~ msgid "ChangeLog notes"
-#~ msgstr "Değişiklik notları"
-
-#~ msgid "_About"
-#~ msgstr "H_akkında"
-
-#~ msgid "About"
-#~ msgstr "Hakkında"
-
-#~ msgid "_Log Window"
-#~ msgstr "Gün_lük Penceresi"
-
-#~ msgid "Log Window"
-#~ msgstr "Günlük Penceresi"
-
-#~ msgid "_Exif window"
-#~ msgstr "Exif Penceresi"
-
-#~ msgid "Exif window"
-#~ msgstr "Exif penceresi"
-
-#~ msgid "_Cycle through stereo modes"
-#~ msgstr "_Stereo kipleri arasında geçiş yap"
-
-#~ msgid "Cycle through stereo modes"
-#~ msgstr "Stereo kipleri arasında geçiş yap"
-
-#~ msgid "_Next Pane"
-#~ msgstr "So_nraki Bölme"
-
-#, fuzzy
-#~ msgid "Next Split Pane"
-#~ msgstr "Sonraki Bölme"
-
-#~ msgid "_Previous Pane"
-#~ msgstr "Önceki _Bölme"
-
-#, fuzzy
-#~ msgid "Previous Split Pane"
-#~ msgstr "Önceki Bölme"
-
-#~ msgid "_Up Pane"
-#~ msgstr "Y_ukarı Bölme"
-
-#, fuzzy
-#~ msgid "Up Split Pane"
-#~ msgstr "Yukarı Bölme"
-
-#~ msgid "_Down Pane"
-#~ msgstr "_Aşağı Bölme"
-
-#, fuzzy
-#~ msgid "Down Split Pane"
-#~ msgstr "Aşağı Bölme"
-
-#~ msgid "_Write orientation to file"
-#~ msgstr "Yönlendirmeyi dosyaya _yaz"
-
-#~ msgid "Write orientation to file"
-#~ msgstr "Yönlendirmeyi dosyaya yaz"
-
-#~ msgid "_Write orientation to file (preserve timestamp)"
-#~ msgstr "Yönlendirmeyi dosyaya _yaz (zaman damgasını koru)"
-
-#~ msgid "Write orientation to file (preserve timestamp)"
-#~ msgstr "Yönlendirmeyi dosyaya yaz (zaman damgasını koru)"
-
-#, fuzzy
-#~ msgid "Clear Marks..."
-#~ msgstr "Çöpü temizle"
-
-#~ msgid "Show _Thumbnails"
-#~ msgstr "Küçük Resimleri Gös_ter"
-
-#~ msgid "Show Thumbnails"
-#~ msgstr "Küçük Resimleri Göster"
-
-#~ msgid "Show _Marks"
-#~ msgstr "İşaretleri _Göster"
-
-#~ msgid "Show Marks"
-#~ msgstr "İşaretleri Göster"
-
-#~ msgid "Pi_xel Info"
-#~ msgstr "Pi_ksel Bilgisi"
-
-#~ msgid "Show Pixel Info"
-#~ msgstr "Piksel Bilgisini Göster"
-
-#, fuzzy
-#~ msgid "Hide _alpha"
-#~ msgstr "Araç çubuğunu gizle"
-
-#, fuzzy
-#~ msgid "Hide alpha channel"
-#~ msgstr "Alfa kanalı rengi 1"
-
-#~ msgid "_Float file list"
-#~ msgstr "_Kayan dosya listesi"
-
-#~ msgid "Float file list"
-#~ msgstr "Kayan dosya listesi"
-
-#~ msgid "Hide tool_bar"
-#~ msgstr "Araç çu_buğunu gizle"
-
-#~ msgid "Hide toolbar"
-#~ msgstr "Araç çubuğunu gizle"
-
-#~ msgid "_Info sidebar"
-#~ msgstr "Yan çubuk b_ilgisi"
-
-#~ msgid "Info sidebar"
-#~ msgstr "Yan çubuk bilgisi"
-
-#~ msgid "Sort _manager"
-#~ msgstr "Sırala_ma yöneticisi"
-
-#~ msgid "Sort manager"
-#~ msgstr "Sıralama yöneticisi"
-
-#~ msgid "Hide Bars"
-#~ msgstr "Çubukları Gizle"
-
-#~ msgid "Use _color profiles"
-#~ msgstr "_Renk düzenlerini kullan"
-
-#~ msgid "Use color profiles"
-#~ msgstr "Renk düzenlerini kullan"
-
-#~ msgid "Use profile from _image"
-#~ msgstr "Res_imdeki düzeni kullan"
-
-#~ msgid "Use profile from image"
-#~ msgstr "Resimdeki düzeni kullan"
-
-#~ msgid "Toggle _grayscale"
-#~ msgstr "_Gri tonlamalı geçiş yap"
-
-#~ msgid "Toggle grayscale"
-#~ msgstr "Gri tonlamalı geçiş yap"
-
-#~ msgid "Image Overlay"
-#~ msgstr "Resim Yerleşimi"
-
-#~ msgid "_Show Histogram"
-#~ msgstr "Histogramı Gö_ster"
-
-#~ msgid "Show Histogram"
-#~ msgstr "Histogramı Göster"
-
-#~ msgid "Rectangular Selection"
-#~ msgstr "Dikdörtgen Seçimi"
-
-#~ msgid "Toggle GIF animation"
-#~ msgstr "GIF canlandırmasını aç"
-
-#~ msgid "_Exif rotate"
-#~ msgstr "_Exif döndür"
-
-#, fuzzy
-#~ msgid "Toggle Exif rotate"
-#~ msgstr "Exif döndür"
-
-#, fuzzy
-#~ msgid "Images as _List"
-#~ msgstr "Resim _Listesi"
-
-#~ msgid "View Images as List"
-#~ msgstr "Resimeleri Liste olarak görüntüle"
-
-#, fuzzy
-#~ msgid "Images as I_cons"
-#~ msgstr "Resimleri Simge olarak görüntüle"
-
-#~ msgid "View Images as Icons"
-#~ msgstr "Resimleri Simge olarak görüntüle"
-
-#~ msgid "T_oggle Folder View"
-#~ msgstr "Dizin Görünümünü _Değiştir"
-
-#~ msgid "Toggle Folders View"
-#~ msgstr "Dizin Görünümünü Değiştir"
-
-#~ msgid "_Horizontal"
-#~ msgstr "_Yatay"
-
-#, fuzzy
-#~ msgid "Split panes horizontal."
-#~ msgstr "Yatay Böl"
-
-#~ msgid "_Vertical"
-#~ msgstr "_Dikey"
-
-#, fuzzy
-#~ msgid "Split panes vertical"
-#~ msgstr "Dikey Böl"
-
-#~ msgid "_Quad"
-#~ msgstr "_Dörtlü"
-
-#, fuzzy
-#~ msgid "Split panes quad"
-#~ msgstr "Dörde Böl"
-
-#~ msgid "_Single"
-#~ msgstr "_Tekli"
-
-#, fuzzy
-#~ msgid "Single pane"
-#~ msgstr "Tek resim"
-
-#~ msgid "Input _0: sRGB"
-#~ msgstr "Giriş _0: sRGB"
-
-#~ msgid "Input 0: sRGB"
-#~ msgstr "Giriş 0: sRGB"
-
-#~ msgid "Input _1: AdobeRGB compatible"
-#~ msgstr "Giriş _1: AdobeRGB uyumlu"
-
-#~ msgid "Input 1: AdobeRGB compatible"
-#~ msgstr "Giriş 1: AdobeRGB uyumlu"
-
-#~ msgid "Input _2"
-#~ msgstr "Giriş _2"
-
-#~ msgid "Input 2"
-#~ msgstr "Giriş 2"
-
-#~ msgid "Input _3"
-#~ msgstr "Giriş _3"
-
-#~ msgid "Input 3"
-#~ msgstr "Giriş 3"
-
-#~ msgid "Input _4"
-#~ msgstr "Giriş _4"
-
-#~ msgid "Input 4"
-#~ msgstr "Giriş 4"
-
-#~ msgid "Input _5"
-#~ msgstr "Giriş _5"
-
-#~ msgid "Input 5"
-#~ msgstr "Giriş 5"
-
-#~ msgid "Histogram on Red"
-#~ msgstr "Kırmızı Histogram"
-
-#~ msgid "Histogram on Green"
-#~ msgstr "Yeşil Histogram"
-
-#~ msgid "Histogram on Blue"
-#~ msgstr "Mavi Histogram"
-
-#~ msgid "Histogram on RGB"
-#~ msgstr "RGB Histogram"
-
-#~ msgid "Histogram on Value"
-#~ msgstr "Değer Üzerinde Histogram"
-
-#~ msgid "Linear Histogram"
-#~ msgstr "Doğrusal Histogram"
-
-#~ msgid "_Log Histogram"
-#~ msgstr "Gün_lük Histogramı"
-
-#~ msgid "Log Histogram"
-#~ msgstr "Günlük Histogramı"
-
-#~ msgid "_Auto"
-#~ msgstr "_Otomatik"
-
-#~ msgid "Stereo Auto"
-#~ msgstr "Stereo Otomatik"
-
-#~ msgid "_Side by Side"
-#~ msgstr "_Yan yana"
-
-#~ msgid "Stereo Side by Side"
-#~ msgstr "Stereo Yan Yana"
-
-#~ msgid "_Cross"
-#~ msgstr "Çapra_z"
-
-#~ msgid "Stereo Cross"
-#~ msgstr "Stereo Çapraz"
-
-#~ msgid "_Off"
-#~ msgstr "_Kapalı"
-
-#~ msgid "Stereo Off"
-#~ msgstr "Stereo Kapalı"
-
 #, c-format
 #~ msgid "disconnected from LIRC\n"
 #~ msgstr "LIRC bağlantısı kesildi\n"
@@ -6791,155 +8005,6 @@ msgstr "Ara:"
 #~ "LIRC yapılandırma dosyası okunamadı\n"
 #~ "uygun bir yapılandırma dosyası oluşturmayı\n"
 #~ "öğrenmek için lütfen LIRC belgelerini okuyun\n"
-
-#, fuzzy
-#~ msgid "Collection"
-#~ msgstr "Koleksiyonlar"
-
-#, fuzzy
-#~ msgid "Image index"
-#~ msgstr "Resim dosyası"
-
-#, fuzzy
-#~ msgid "Images total"
-#~ msgstr "Resim dosyası"
-
-#, fuzzy
-#~ msgid "File page no."
-#~ msgstr "Dosya tarihi"
-
-#, fuzzy
-#~ msgid "Image date"
-#~ msgstr "Resim Genişliği"
-
-#, fuzzy
-#~ msgid "ShutterSpeed"
-#~ msgstr "Deklanşör hızı"
-
-#, fuzzy
-#~ msgid "Focal len. 35mm"
-#~ msgstr "Odak uzaklığı 35mm"
-
-#, fuzzy
-#~ msgid "Altitude"
-#~ msgstr "GPS yüksekliği"
-
-#, fuzzy
-#~ msgid "Timezone"
-#~ msgstr "Zaman çizelgesi"
-
-#, fuzzy
-#~ msgid "© Creator"
-#~ msgstr "Yarat"
-
-#, fuzzy
-#~ msgid "© Rights"
-#~ msgstr "Işıklar"
-
-#, fuzzy
-#~ msgid "Start search"
-#~ msgstr "Resim ara"
-
-#, fuzzy
-#~ msgid "Scroll left"
-#~ msgstr "üst sol"
-
-#, fuzzy
-#~ msgid "Scroll right"
-#~ msgstr "üst sağ"
-
-#, fuzzy
-#~ msgid "Scroll left faster"
-#~ msgstr "Sol üst köşeye kaydır"
-
-#, fuzzy
-#~ msgid "Scroll right faster"
-#~ msgstr "Resim merkezine kaydır"
-
-#, fuzzy
-#~ msgid "Scroll up faster"
-#~ msgstr "Sol üst köşeye kaydır"
-
-#, fuzzy
-#~ msgid "Scroll down faster"
-#~ msgstr "Resim merkezine kaydır"
-
-#~ msgid "RAW Image"
-#~ msgstr "Ham Resim"
-
-#, fuzzy
-#~ msgid "Archive"
-#~ msgstr "Mimari"
-
-#~ msgid "Back"
-#~ msgstr "Geri"
-
-#~ msgid "Forward"
-#~ msgstr "İleri"
-
-#~ msgid "Up"
-#~ msgstr "Yukarı"
-
-#, fuzzy
-#~ msgid "First page"
-#~ msgstr "İlk Resim"
-
-#, fuzzy
-#~ msgid "Last Page"
-#~ msgstr "Son Resim"
-
-#, fuzzy
-#~ msgid "Next page"
-#~ msgstr "Sonraki Resim"
-
-#, fuzzy
-#~ msgid "Previous Page"
-#~ msgstr "Önceki Bölme"
-
-#~ msgid "New _window"
-#~ msgstr "Yeni _pencere"
-
-#, fuzzy
-#~ msgid "Close Window"
-#~ msgstr "Pencereyi kapat"
-
-#, fuzzy
-#~ msgid "Select invert"
-#~ msgstr "Simge seç"
-
-#, fuzzy
-#~ msgid "Show file filter"
-#~ msgstr "_Gizli dosyaları göster"
-
-#, fuzzy
-#~ msgid "Select rectangle"
-#~ msgstr "Tümünü seç"
-
-#~ msgid "Configure this window"
-#~ msgstr "Bu pencereyi yapılandır"
-
-#, fuzzy
-#~ msgid "Cache maintenance"
-#~ msgstr "Önbellek Bakımı"
-
-#~ msgid "Fit Horizontaly"
-#~ msgstr "Yatay Olarak Sığdır"
-
-#~ msgid "Fit vertically"
-#~ msgstr "Dikey olarak sığdır"
-
-#~ msgid "Zoom1:3"
-#~ msgstr "1:3 Yakınlaştır"
-
-#, fuzzy
-#~ msgid "Grayscale"
-#~ msgstr "Gri tonlamalı geçiş yap"
-
-#~ msgid "Show thumbnails"
-#~ msgstr "Küçük resimleri göster"
-
-#~ msgid "Show marks"
-#~ msgstr "İşaretleri göster"
 
 #, fuzzy
 #~ msgid "Use GPU acceleration via Clutter library (Requires restart)"
@@ -6971,257 +8036,6 @@ msgstr "Ara:"
 #~ msgid "Allow keywords to differ only in case"
 #~ msgstr ""
 #~ "Anahtar kelimelerin yalnızca durumda farklılık göstermesine izin ver"
-
-#~ msgid "lua error: no data"
-#~ msgstr "lua hatası: veri yok"
-
-#~ msgid "previous image"
-#~ msgstr "önceki resim"
-
-#, fuzzy
-#~ msgid "close window"
-#~ msgstr "Pencereyi kapat"
-
-#, fuzzy
-#~ msgid " load configuration from FILE"
-#~ msgstr "DOSYA'dan yapılandırma yükle"
-
-#, fuzzy
-#~ msgid "clean the metadata cache"
-#~ msgstr "    meta veri önbelleğini temizle"
-
-#~ msgid "<folder>  "
-#~ msgstr "<folder>  "
-
-#~ msgid " render thumbnails"
-#~ msgstr " küçük resimler oluştur"
-
-#~ msgid "<folder> "
-#~ msgstr "<folder> "
-
-#~ msgid "render thumbnails recursively"
-#~ msgstr "küçük resimleri özyinelemeli oluştur"
-
-#~ msgid " render thumbnails (see Help)"
-#~ msgstr " küçük resimler oluştur (Yardım'a bakın)"
-
-#~ msgid "<folder>"
-#~ msgstr "<folder>"
-
-#~ msgid " render thumbnails recursively (see Help)"
-#~ msgstr " küçük resimleri özyinelemeli oluştur (Yardım'a bakın)"
-
-#~ msgid "clear|clean"
-#~ msgstr "berrak|temiz"
-
-#~ msgid "clear or clean shared thumbnail cache"
-#~ msgstr "paylaşılan küçük resim önbelleğini temizle veya boşalt"
-
-#~ msgid "clear or clean thumbnail cache"
-#~ msgstr "küçük resim önbelleğini temizle veya boşalt"
-
-#~ msgid "<[H:][M:][N][.M]>"
-#~ msgstr "<[H:][M:][N][.M]>"
-
-#~ msgid "set slide show delay to Hrs Mins N.M seconds"
-#~ msgstr "resim gösterisi gecikmesini Saat Dk N.M saniye olarak ayarlayın"
-
-#~ msgid "first image"
-#~ msgstr "ilk resim"
-
-#~ msgid "toggle full screen"
-#~ msgstr "tam ekrana geç"
-
-#, fuzzy
-#~ msgid "<FILE>|<URL>"
-#~ msgstr "<FILE>"
-
-#, fuzzy
-#~ msgid "open FILE or URL, bring Geeqie window to the top"
-#~ msgstr "DOSYA'yı açın, Geeqie penceresini üstüne getirin"
-
-#, fuzzy
-#~ msgid "open FILE or URL, do not bring Geeqie window to the top"
-#~ msgstr "DOSYA açın, Geeqie penceresini yukarı getirmeyin"
-
-#~ msgid "start full screen"
-#~ msgstr "Tam ekranı başlat"
-
-#~ msgid "stop full screen"
-#~ msgstr "Tam ekranı durdur"
-
-#, fuzzy
-#~ msgid "set window geometry"
-#~ msgstr "Geçersiz geometri\n"
-
-#, fuzzy
-#~ msgid "get collection content"
-#~ msgstr "Yeni koleksiyon"
-
-#, fuzzy
-#~ msgid "get collection list"
-#~ msgstr "Yeni koleksiyon"
-
-#~ msgid "<FILE>"
-#~ msgstr "<FILE>"
-
-#, fuzzy
-#~ msgid "get destination path of FILE (See Plugins Configuration)"
-#~ msgstr "DOSYA hedef yolunu al"
-
-#, fuzzy
-#~ msgid "get file info"
-#~ msgstr "Dosya bilgisi"
-
-#, fuzzy
-#~ msgid "[<FOLDER>]"
-#~ msgstr "<FOLDER>"
-
-#, fuzzy
-#~ msgid "get list of files and class"
-#~ msgstr "DOSYA yan sepetlerinin listesini al"
-
-#, fuzzy
-#~ msgid "get render intent"
-#~ msgstr "Oluşturma Amacı:"
-
-#~ msgid "get list of sidecars of FILE"
-#~ msgstr "DOSYA yan sepetlerinin listesini al"
-
-#~ msgid "last image"
-#~ msgstr "son resim"
-
-#~ msgid "add FILE to command line collection list"
-#~ msgstr "komut satırı koleksiyon listesine DOSYA ekleyin"
-
-#~ msgid "clear command line collection list"
-#~ msgstr "komut satırı koleksiyon listesini temizle"
-
-#~ msgid "<FILE>,<lua script>"
-#~ msgstr "<FILE>,<lua script>"
-
-#~ msgid "run lua script on FILE"
-#~ msgstr "DOSYA üzerinde lua betiği çalıştır"
-
-#, fuzzy
-#~ msgid "new window"
-#~ msgstr "Yeni pencere"
-
-#~ msgid "next image"
-#~ msgstr "sonraki resim"
-
-#, fuzzy
-#~ msgid "print pixel info of mouse pointer on current image"
-#~ msgstr "geçerli resmin dosya adını yazdır"
-
-#~ msgid "quit"
-#~ msgstr "çık"
-
-#~ msgid "bring the Geeqie window to the top"
-#~ msgstr "Geeqie penceresini üste getir"
-
-#~ msgid "toggle slide show"
-#~ msgstr "resim gösterisine geç"
-
-#~ msgid "<FOLDER>"
-#~ msgstr "<FOLDER>"
-
-#~ msgid "start recursive slide show in FOLDER"
-#~ msgstr "DİZİN'de özyinelemeli resim gösterisi başlat"
-
-#~ msgid "start slide show"
-#~ msgstr "resim gösterisini başlat"
-
-#~ msgid "stop slide show"
-#~ msgstr "resim gösterisini durdur"
-
-#, fuzzy
-#~ msgid "print filename [and Collection] of current image"
-#~ msgstr "geçerli resmin dosya adını yazdır"
-
-#~ msgid "show tools"
-#~ msgstr "araçları göster"
-
-#~ msgid "hide tools"
-#~ msgstr "araçları gizle"
-
-#~ msgid "open FILE in new window"
-#~ msgstr "yeni pencerede DOSYA aç"
-
-#~ msgid "folder"
-#~ msgstr "dizin"
-
-#~ msgid "comments"
-#~ msgstr "yorumlar"
-
-#~ msgid "results"
-#~ msgstr "sonuçlar"
-
-#, fuzzy
-#~ msgid "collection"
-#~ msgstr "Koleksiyonlar"
-
-#, fuzzy
-#~ msgid "name contains"
-#~ msgstr "içeren"
-
-#, fuzzy
-#~ msgid "name is"
-#~ msgstr "Dosyalar yeniden adlandırılsın mı?"
-
-#, fuzzy
-#~ msgid "path contains"
-#~ msgstr "içeren"
-
-#~ msgid "equal to"
-#~ msgstr "eşittir"
-
-#~ msgid "less than"
-#~ msgstr "daha az"
-
-#~ msgid "greater than"
-#~ msgstr "daha büyük"
-
-#~ msgid "between"
-#~ msgstr "arasında"
-
-#~ msgid "before"
-#~ msgstr "önce"
-
-#~ msgid "after"
-#~ msgstr "sonra"
-
-#~ msgid "match all"
-#~ msgstr "tümüyle eşleş"
-
-#~ msgid "match any"
-#~ msgstr "herhangi biriyle eşleş"
-
-#~ msgid "exclude"
-#~ msgstr "dışla"
-
-#~ msgid "contains"
-#~ msgstr "içeren"
-
-#~ msgid "miss"
-#~ msgstr "bayan"
-
-#~ msgid "not geocoded"
-#~ msgstr "coğrafi kodlanmamış"
-
-#~ msgid "is"
-#~ msgstr "eşittir"
-
-#, fuzzy
-#~ msgid "Open Archive"
-#~ msgstr "Son kullanılanı aç"
-
-#, fuzzy
-#~ msgid "Pixel Info"
-#~ msgstr "Pi_ksel Bilgisi"
-
-#~ msgid "Exif rotate"
-#~ msgstr "Exif döndür"
 
 #~ msgid "Fit image to _window"
 #~ msgstr "Resmi _pencereye sığdır"

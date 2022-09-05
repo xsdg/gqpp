@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-08 13:00+0100\n"
+"POT-Creation-Date: 2022-09-05 19:35+0100\n"
 "PO-Revision-Date: 2010-01-05 17:36+0000\n"
 "Last-Translator: Милош Поповић <gpopac@gmail.com>\n"
 "Language-Team: Serbian <gnome@prevod.org>\n"
@@ -52,8 +52,9 @@ msgid "Import all images from camera"
 msgstr ""
 
 #: plugins/export-jpeg/export-jpeg.desktop.in:5
+#, fuzzy
 msgid "Export jpeg"
-msgstr ""
+msgstr "Спорт"
 
 #: plugins/export-jpeg/export-jpeg.desktop.in:6
 msgid "Extract embedded jpegs from a raw file"
@@ -93,8 +94,8 @@ msgstr ""
 msgid "Tethered photography"
 msgstr ""
 
-#: src/advanced_exif.c:437 src/cache_maint.c:1773 src/preferences.c:2851
-#: src/search.c:2281 src/search.c:3609
+#: src/advanced_exif.c:437 src/cache_maint.c:1773 src/preferences.c:133
+#: src/preferences.c:2851 src/search.c:2281 src/search.c:3610
 msgid "Metadata"
 msgstr "Метаподаци"
 
@@ -107,8 +108,8 @@ msgid "Value"
 msgstr "Вредност"
 
 #: src/advanced_exif.c:495 src/desktop_file.c:631 src/dupe.c:3978
-#: src/dupe.c:4703 src/dupe.c:5287 src/search.c:3693 src/utilops.c:507
-#: src/view_file/view_file_list.c:2228
+#: src/dupe.c:4703 src/dupe.c:5287 src/osd.c:38 src/search.c:3694
+#: src/utilops.c:507 src/view_file/view_file_list.c:2228
 msgid "Name"
 msgstr "Назив"
 
@@ -123,6 +124,52 @@ msgstr "Формат"
 #: src/advanced_exif.c:498
 msgid "Elements"
 msgstr "Елементи"
+
+#: src/bar.c:201
+msgid "Histogram"
+msgstr "Хистограм"
+
+#: src/bar.c:202
+msgid "Title"
+msgstr "Наслов"
+
+#: src/bar.c:203 src/osd.c:48 src/preferences.c:3269 src/search.c:3529
+msgid "Keywords"
+msgstr "Кључне речи"
+
+#: src/bar.c:204 src/osd.c:47 src/search.c:3541
+msgid "Comment"
+msgstr "Коментар"
+
+#: src/bar.c:205 src/preferences.c:2033
+#, fuzzy
+msgid "Star Rating"
+msgstr "Слике"
+
+#: src/bar.c:206
+#, fuzzy
+msgid "Headline"
+msgstr "Трака времена"
+
+#: src/bar.c:207
+msgid "Exif"
+msgstr "Exif"
+
+#: src/bar.c:209
+msgid "File info"
+msgstr "Подаци о датотеци"
+
+#: src/bar.c:210
+msgid "Location and GPS"
+msgstr "Место и GPS"
+
+#: src/bar.c:211 src/exif.c:340
+msgid "Copyright"
+msgstr "Autorsko pravo"
+
+#: src/bar.c:214 src/bar_gps.c:1023
+msgid "GPS Map"
+msgstr "GPS мапа"
 
 #: src/bar.c:403 src/toolbar.c:224
 msgid "Move to _top"
@@ -145,7 +192,8 @@ msgstr "Помери на д_но"
 msgid "Height..."
 msgstr "Висина"
 
-#: src/bar.c:415 src/toolbar.c:229
+#: src/bar.c:415 src/collect-table.c:87 src/dupe.c:156 src/search.c:359
+#: src/toolbar.c:229
 msgid "Remove"
 msgstr "Уклони"
 
@@ -303,7 +351,7 @@ msgstr ""
 msgid "Map centering"
 msgstr "Центрирање мапе"
 
-#: src/bar_gps.c:959 src/menu.c:334 src/preferences.c:2244
+#: src/bar_gps.c:959 src/menu.c:334 src/osd.c:42 src/preferences.c:2244
 msgid "Zoom"
 msgstr "Увећање"
 
@@ -312,31 +360,27 @@ msgstr "Увећање"
 msgid "Zoom level"
 msgstr "Ниво увећања %i"
 
-#: src/bar_gps.c:1023
-msgid "GPS Map"
-msgstr "GPS мапа"
-
-#: src/bar_histogram.c:234
+#: src/bar_histogram.c:234 src/layout_util.c:2672
 msgid "Histogram on _Red"
 msgstr "Хистограм _црвене"
 
-#: src/bar_histogram.c:235
+#: src/bar_histogram.c:235 src/layout_util.c:2673
 msgid "Histogram on _Green"
 msgstr "Хистограм _зелене"
 
-#: src/bar_histogram.c:236
+#: src/bar_histogram.c:236 src/layout_util.c:2674
 msgid "Histogram on _Blue"
 msgstr "Хистограм _плаве"
 
-#: src/bar_histogram.c:237
+#: src/bar_histogram.c:237 src/layout_util.c:2675
 msgid "_Histogram on RGB"
 msgstr "_Хистограм свих боја"
 
-#: src/bar_histogram.c:238
+#: src/bar_histogram.c:238 src/layout_util.c:2676
 msgid "Histogram on _Value"
 msgstr "Хистограм _вредности"
 
-#: src/bar_histogram.c:242
+#: src/bar_histogram.c:242 src/layout_util.c:2680
 msgid "Li_near Histogram"
 msgstr "_Линеарни хистограм"
 
@@ -540,11 +584,15 @@ msgstr "Фасцикле"
 msgid "Collections"
 msgstr "Збирке"
 
-#: src/bar_sort.c:677 src/preferences.c:693 src/utilops.c:2350
+#: src/bar_sort.c:677 src/collect-table.c:82 src/dupe.c:151 src/img-view.c:92
+#: src/pan-view/pan-view.c:99 src/preferences.c:693 src/preferences.c:804
+#: src/search.c:354 src/toolbar.c:94 src/utilops.c:2350
 msgid "Copy"
 msgstr "Умножи"
 
-#: src/bar_sort.c:681 src/preferences.c:695 src/utilops.c:2300
+#: src/bar_sort.c:681 src/collect-table.c:83 src/dupe.c:152 src/img-view.c:93
+#: src/pan-view/pan-view.c:100 src/preferences.c:695 src/preferences.c:805
+#: src/search.c:355 src/toolbar.c:95 src/utilops.c:2300
 msgid "Move"
 msgstr "Премести"
 
@@ -859,11 +907,11 @@ msgstr "Немате овлашћења за читање датотеке „%s
 msgid "Can not open collection file"
 msgstr "Не могу да отворим датотеку са збирком"
 
-#: src/collect-dlg.c:203
+#: src/collect-dlg.c:203 src/collect-table.c:97
 msgid "Save collection"
 msgstr "Сачувај збирку"
 
-#: src/collect-dlg.c:210
+#: src/collect-dlg.c:210 src/preferences.c:800 src/toolbar.c:90
 msgid "Open collection"
 msgstr "Отвори збирку"
 
@@ -875,7 +923,7 @@ msgstr "Додај у збирку"
 msgid "_Append"
 msgstr "_Dodaj"
 
-#: src/collect-dlg.c:236 src/search.c:3303
+#: src/collect-dlg.c:236 src/search.c:3304
 msgid "Collection Files"
 msgstr "Датотеке из збирке"
 
@@ -892,6 +940,110 @@ msgid ""
 msgstr ""
 "грешка при чувању датотеке са збирком: %s\n"
 "грешка: %s\n"
+
+#: src/collect-table.c:84 src/dupe.c:153 src/img-view.c:94
+#: src/pan-view/pan-view.c:101 src/preferences.c:806 src/search.c:356
+#: src/toolbar.c:96 src/utilops.c:2396 src/utilops.c:2862
+msgid "Rename"
+msgstr "Преименуј"
+
+#: src/collect-table.c:85 src/collect-table.c:1038 src/dupe.c:154
+#: src/dupe.c:3573 src/img-view.c:95 src/img-view.c:96 src/img-view.c:1430
+#: src/layout_image.c:815 src/pan-view/pan-view.c:102
+#: src/pan-view/pan-view.c:2417 src/search.c:357 src/search.c:1191
+#: src/view_file/view_file.c:717
+#, fuzzy
+msgid "Move to Trash"
+msgstr "Помери на _врх"
+
+#: src/collect-table.c:86 src/dupe.c:161 src/img-view.c:98 src/img-view.c:136
+#: src/layout_util.c:2493 src/pan-view/pan-view.c:103 src/search.c:364
+msgid "Close window"
+msgstr "Затвори прозор"
+
+#: src/collect-table.c:88 src/dupe.c:162 src/preferences.c:3540
+#: src/search.c:365
+msgid "View"
+msgstr "Преглед"
+
+#: src/collect-table.c:89 src/dupe.c:163 src/layout_util.c:2586
+#: src/search.c:366
+msgid "View in new window"
+msgstr "Прикажи у новом прозору"
+
+#: src/collect-table.c:90 src/collect-table.c:1006 src/dupe.c:158
+#: src/dupe.c:3532 src/dupe.c:3870 src/layout_util.c:2490 src/preferences.c:810
+#: src/search.c:360 src/search.c:1158 src/toolbar.c:101
+#: src/view_file/view_file.c:1087 src/view_file/view_file.c:1137
+msgid "Select all"
+msgstr "Изабери све"
+
+#: src/collect-table.c:91 src/collect-table.c:1008 src/dupe.c:159
+#: src/dupe.c:166 src/dupe.c:3534 src/dupe.c:3872 src/layout_util.c:2491
+#: src/preferences.c:811 src/search.c:361 src/search.c:1160 src/toolbar.c:102
+#: src/view_file/view_file.c:1142
+msgid "Select none"
+msgstr "Поништи избор"
+
+#: src/collect-table.c:92 src/collect-table.c:1012
+#, fuzzy
+msgid "Rectangular selection"
+msgstr "Правоугаони изворник при приказу иконица"
+
+#: src/collect-table.c:93
+#, fuzzy
+msgid "Select single file"
+msgstr "Изабери фасциклу"
+
+#: src/collect-table.c:94
+#, fuzzy
+msgid "Toggle select image"
+msgstr "наредна слика"
+
+#: src/collect-table.c:95 src/collect-table.c:998
+#, fuzzy
+msgid "Append from file selection"
+msgstr "Додај из списка датотека"
+
+#: src/collect-table.c:96
+#, fuzzy
+msgid "Append from collection"
+msgstr "Додај из збирке..."
+
+#: src/collect-table.c:98
+#, fuzzy
+msgid "Save collection as"
+msgstr "Сачувај збирку"
+
+#: src/collect-table.c:99
+#, fuzzy
+msgid "Show filename text"
+msgstr "_Текст са именом датотеке"
+
+#: src/collect-table.c:100 src/menu.c:179
+msgid "Sort by name"
+msgstr "Поређај по називу"
+
+#: src/collect-table.c:101 src/menu.c:169
+msgid "Sort by number"
+msgstr "Поређај по броју"
+
+#: src/collect-table.c:102 src/menu.c:151
+msgid "Sort by date"
+msgstr "Поређај по датуму"
+
+#: src/collect-table.c:103 src/menu.c:148
+msgid "Sort by size"
+msgstr "Поређај по величини"
+
+#: src/collect-table.c:104 src/menu.c:166
+msgid "Sort by path"
+msgstr "Поређај по путању"
+
+#: src/collect-table.c:105 src/img-view.c:138 src/preferences.c:815
+#: src/toolbar.c:106
+msgid "Print"
+msgstr "Штампај"
 
 #: src/collect-table.c:249
 #, c-format
@@ -912,7 +1064,8 @@ msgstr "Празно"
 msgid "Loading thumbs..."
 msgstr "Учитавам умањене приказе..."
 
-#: src/collect-table.c:988 src/dupe.c:3527 src/dupe.c:3865 src/search.c:1153
+#: src/collect-table.c:988 src/dupe.c:3527 src/dupe.c:3865
+#: src/layout_util.c:2471 src/search.c:1153
 msgid "_View"
 msgstr "П_реглед"
 
@@ -931,11 +1084,6 @@ msgstr "Увећај на изорну величину"
 msgid "Rem_ove"
 msgstr "_Уклони"
 
-#: src/collect-table.c:998
-#, fuzzy
-msgid "Append from file selection"
-msgstr "Додај из списка датотека"
-
 #: src/collect-table.c:1000
 msgid "Append from collection..."
 msgstr "Додај из збирке..."
@@ -944,40 +1092,25 @@ msgstr "Додај из збирке..."
 msgid "_Selection"
 msgstr "_Избор"
 
-#: src/collect-table.c:1006 src/dupe.c:3532 src/dupe.c:3870 src/search.c:1158
-#: src/view_file/view_file.c:1087 src/view_file/view_file.c:1137
-msgid "Select all"
-msgstr "Изабери све"
-
-#: src/collect-table.c:1008 src/dupe.c:3534 src/dupe.c:3872 src/search.c:1160
-#: src/view_file/view_file.c:1142
-msgid "Select none"
-msgstr "Поништи избор"
-
 #: src/collect-table.c:1010
 msgid "Invert selection"
 msgstr "Обрни избор"
 
-#: src/collect-table.c:1012
-#, fuzzy
-msgid "Rectangular selection"
-msgstr "Правоугаони изворник при приказу иконица"
-
 #: src/collect-table.c:1024 src/dupe.c:3559 src/img-view.c:1421
-#: src/layout_image.c:801 src/pan-view/pan-view.c:2403 src/search.c:1177
-#: src/view_file/view_file.c:704
+#: src/layout_image.c:801 src/layout_util.c:2483 src/pan-view/pan-view.c:2403
+#: src/search.c:1177 src/view_file/view_file.c:704
 msgid "_Copy..."
 msgstr "_Умножи..."
 
 #: src/collect-table.c:1026 src/dupe.c:3561 src/img-view.c:1422
-#: src/layout_image.c:803 src/pan-view/pan-view.c:2405 src/search.c:1179
-#: src/view_file/view_file.c:706
+#: src/layout_image.c:803 src/layout_util.c:2484 src/pan-view/pan-view.c:2405
+#: src/search.c:1179 src/view_file/view_file.c:706
 msgid "_Move..."
 msgstr "Премест_и..."
 
 #: src/collect-table.c:1028 src/dupe.c:3563 src/img-view.c:1423
-#: src/layout_image.c:805 src/pan-view/pan-view.c:2407 src/search.c:1181
-#: src/view_dir.c:735 src/view_file/view_file.c:708
+#: src/layout_image.c:805 src/layout_util.c:2485 src/pan-view/pan-view.c:2407
+#: src/search.c:1181 src/view_dir.c:735 src/view_file/view_file.c:708
 msgid "_Rename..."
 msgstr "П_реименуј..."
 
@@ -993,18 +1126,12 @@ msgid "_Copy path unquoted"
 msgstr "Умно_жи путању"
 
 #: src/collect-table.c:1037 src/dupe.c:3572 src/img-view.c:1429
-#: src/layout_image.c:814 src/pan-view/pan-view.c:2416 src/search.c:1190
+#: src/layout_image.c:814 src/layout_util.c:2486 src/layout_util.c:2487
+#: src/layout_util.c:2488 src/pan-view/pan-view.c:2416 src/search.c:1190
 #: src/view_file/view_file.c:716
 #, fuzzy
 msgid "Move to Trash..."
 msgstr "Премести..."
-
-#: src/collect-table.c:1038 src/dupe.c:3573 src/img-view.c:1430
-#: src/layout_image.c:815 src/pan-view/pan-view.c:2417 src/search.c:1191
-#: src/view_file/view_file.c:717
-#, fuzzy
-msgid "Move to Trash"
-msgstr "Помери на _врх"
 
 #: src/collect-table.c:1041 src/dupe.c:3576 src/img-view.c:1433
 #: src/layout_image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
@@ -1044,11 +1171,13 @@ msgstr "_Сачувај збирку"
 msgid "Save collection _as..."
 msgstr "Сачувај збирку _као..."
 
-#: src/collect-table.c:1063 src/view_file/view_file.c:731
+#: src/collect-table.c:1063 src/layout_util.c:2526
+#: src/view_file/view_file.c:731
 msgid "_Find duplicates..."
 msgstr "На_ђи дупликате..."
 
-#: src/collect-table.c:1065 src/dupe.c:3556 src/search.c:1174
+#: src/collect-table.c:1065 src/dupe.c:3556 src/layout_util.c:2528
+#: src/search.c:1174
 msgid "Print..."
 msgstr "_Штампај..."
 
@@ -1073,7 +1202,7 @@ msgstr "Прескочи _фасцикле"
 msgid "Cancel"
 msgstr "Одустани"
 
-#: src/color-man.c:438 src/exif-common.c:502
+#: src/color-man.c:438 src/exif.c:225 src/exif-common.c:502
 msgid "sRGB"
 msgstr "sRGB"
 
@@ -1155,10 +1284,47 @@ msgstr "Уписив"
 msgid "Hidden"
 msgstr "Скривено"
 
-#: src/desktop_file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/search.c:3697
-#: src/ui_pathsel.c:1112 src/utilops.c:503
+#: src/desktop_file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/osd.c:39
+#: src/search.c:3698 src/ui_pathsel.c:1112 src/utilops.c:503
 msgid "Path"
 msgstr "Путања"
+
+#: src/dupe.c:155 src/img-view.c:97 src/preferences.c:807
+#: src/preferences.c:3510 src/search.c:358 src/toolbar.c:97 src/utilops.c:2209
+msgid "Delete"
+msgstr "Брисање"
+
+#: src/dupe.c:157 src/preferences.c:2058 src/preferences.c:2090
+#: src/preferences.c:2218 src/search.c:362 src/view_file/view_file.c:1188
+#: src/window.c:400
+#, fuzzy
+msgid "Clear"
+msgstr "О_чисти"
+
+#: src/dupe.c:160 src/search.c:363
+#, fuzzy
+msgid "Toggle thumbs"
+msgstr "Учитавам умањене приказе..."
+
+#: src/dupe.c:164 src/search.c:367
+#, fuzzy
+msgid "Collection from selection"
+msgstr "Додај из списка датотека"
+
+#: src/dupe.c:165
+#, fuzzy
+msgid "Append list"
+msgstr "_Dodaj"
+
+#: src/dupe.c:167
+#, fuzzy
+msgid "Select group 1 duplicates"
+msgstr "Изабери дупликате из _1. групе"
+
+#: src/dupe.c:168
+#, fuzzy
+msgid "Select group 2 duplicates"
+msgstr "Изабери дупликате из _2. групе"
 
 #: src/dupe.c:255
 msgid "Drop files to compare them."
@@ -1233,17 +1399,18 @@ msgstr "%d датотека (постављено 2)"
 msgid "Name case-insensitive"
 msgstr "Занемари велика и мала слова у имену"
 
-#: src/dupe.c:3980 src/dupe.c:4704 src/dupe.c:5287 src/preferences.c:2425
-#: src/search.c:3694 src/view_file/view_file_list.c:2240
+#: src/dupe.c:3980 src/dupe.c:4704 src/dupe.c:5287 src/osd.c:41
+#: src/preferences.c:2425 src/search.c:3695 src/view_file/view_file_list.c:2240
 msgid "Size"
 msgstr "Величина"
 
-#: src/dupe.c:3981 src/dupe.c:4705 src/dupe.c:5287 src/search.c:3695
+#: src/dupe.c:3981 src/dupe.c:4705 src/dupe.c:5287 src/exif.c:334
+#: src/exif-common.c:916 src/osd.c:40 src/search.c:3696
 #: src/view_file/view_file_list.c:2244
 msgid "Date"
 msgstr "Датум"
 
-#: src/dupe.c:3982 src/dupe.c:4706 src/search.c:3696
+#: src/dupe.c:3982 src/dupe.c:4706 src/osd.c:43 src/search.c:3697
 msgid "Dimensions"
 msgstr "Димензије"
 
@@ -1279,15 +1446,16 @@ msgstr ""
 msgid "Name case-insensitive ≠ content"
 msgstr "Занемари велика и мала слова у имену"
 
-#: src/dupe.c:4639 src/dupe.c:5028
+#: src/dupe.c:4639 src/dupe.c:5028 src/preferences.c:802 src/search.c:369
+#: src/toolbar.c:92
 msgid "Find duplicates"
 msgstr "Нађи дупликате"
 
-#: src/dupe.c:4701 src/search.c:3691
+#: src/dupe.c:4701 src/search.c:3692
 msgid "Rank"
 msgstr ""
 
-#: src/dupe.c:4702 src/search.c:3692
+#: src/dupe.c:4702 src/search.c:3693
 #, fuzzy
 msgid "Thumb"
 msgstr "Умањени прикази"
@@ -1302,7 +1470,7 @@ msgstr "Море"
 msgid "Compare to:"
 msgstr "Упореди са:"
 
-#: src/dupe.c:4782 src/preferences.c:1973 src/search.c:3710
+#: src/dupe.c:4782 src/preferences.c:1973 src/search.c:3711
 msgid "Thumbnails"
 msgstr "Умањени прикази"
 
@@ -1357,11 +1525,11 @@ msgstr "Сличност"
 msgid "Thumbnail"
 msgstr "Умањени прикази"
 
-#: src/dupe.c:5287 src/preferences.c:3957
+#: src/dupe.c:5287 src/exif.c:373 src/preferences.c:3957
 msgid "Width"
 msgstr "Ширина"
 
-#: src/dupe.c:5287 src/preferences.c:3959
+#: src/dupe.c:5287 src/exif.c:374 src/preferences.c:3959
 msgid "Height"
 msgstr "Висина"
 
@@ -1394,11 +1562,11 @@ msgstr ""
 "Датотека за радну површ „%s“ не треба да садржи екстензију у кључу „Icon“: "
 "„%s“\n"
 
-#: src/editors.c:379 src/exif-common.c:428
+#: src/editors.c:379 src/exif.c:218 src/exif-common.c:428
 msgid "yes"
 msgstr "да"
 
-#: src/editors.c:379 src/exif-common.c:428
+#: src/editors.c:379 src/exif.c:217 src/exif-common.c:428
 msgid "no"
 msgstr "не"
 
@@ -1473,10 +1641,605 @@ msgstr "Датотека је прескочена."
 msgid "Unknown error."
 msgstr "Непозната грешка."
 
+#: src/exif.c:140 src/exif.c:153 src/exif.c:167 src/exif.c:192 src/exif.c:309
 #: src/exif.c:656 src/exif-common.c:404 src/exif-common.c:407
 #: src/exif-common.c:474
 msgid "unknown"
 msgstr "непознато"
+
+#: src/exif.c:141
+msgid "top left"
+msgstr "горе лево"
+
+#: src/exif.c:142
+msgid "top right"
+msgstr "горе десно"
+
+#: src/exif.c:143
+msgid "bottom right"
+msgstr "доле десно"
+
+#: src/exif.c:144
+msgid "bottom left"
+msgstr "доле лево"
+
+#: src/exif.c:145
+msgid "left top"
+msgstr "лево горе"
+
+#: src/exif.c:146
+msgid "right top"
+msgstr "десно горе"
+
+#: src/exif.c:147
+msgid "right bottom"
+msgstr "десно доле"
+
+#: src/exif.c:148
+msgid "left bottom"
+msgstr "лево доле"
+
+#: src/exif.c:155
+msgid "inch"
+msgstr "инч"
+
+#: src/exif.c:156
+msgid "centimeter"
+msgstr "сантиметар"
+
+#: src/exif.c:168
+msgid "average"
+msgstr "просек"
+
+#: src/exif.c:169
+msgid "center weighted"
+msgstr "средина"
+
+#: src/exif.c:170
+msgid "spot"
+msgstr "тачка"
+
+#: src/exif.c:171
+msgid "multi-spot"
+msgstr "више тачака"
+
+#: src/exif.c:172
+msgid "multi-segment"
+msgstr "више сегмената"
+
+#: src/exif.c:173
+msgid "partial"
+msgstr "делимично"
+
+#: src/exif.c:174 src/exif.c:212
+msgid "other"
+msgstr "остало"
+
+#: src/exif.c:179 src/exif.c:231
+msgid "not defined"
+msgstr "није одређено"
+
+#: src/exif.c:180 src/exif.c:259 src/exif.c:266
+msgid "manual"
+msgstr "ручно"
+
+#: src/exif.c:181 src/exif.c:252 src/exif.c:288 src/exif.c:295 src/exif.c:302
+msgid "normal"
+msgstr "нормално"
+
+#: src/exif.c:182
+msgid "aperture"
+msgstr "отвор бленде"
+
+#: src/exif.c:183
+msgid "shutter"
+msgstr "експозиција"
+
+#: src/exif.c:184
+msgid "creative"
+msgstr "креативно"
+
+#: src/exif.c:185
+msgid "action"
+msgstr "радња"
+
+#: src/exif.c:186 src/exif.c:273
+msgid "portrait"
+msgstr "усправно"
+
+#: src/exif.c:187 src/exif.c:272
+msgid "landscape"
+msgstr "положено"
+
+#: src/exif.c:193
+msgid "daylight"
+msgstr "дневна светлост"
+
+#: src/exif.c:194
+msgid "fluorescent"
+msgstr "неонка"
+
+#: src/exif.c:195
+msgid "tungsten (incandescent)"
+msgstr "обична сијалица"
+
+#: src/exif.c:196
+msgid "flash"
+msgstr "блиц"
+
+#: src/exif.c:197
+msgid "fine weather"
+msgstr "лепо време"
+
+#: src/exif.c:198
+msgid "cloudy weather"
+msgstr "облачно"
+
+#: src/exif.c:199
+msgid "shade"
+msgstr "сенка"
+
+#: src/exif.c:200
+msgid "daylight fluorescent"
+msgstr "неонка са дневним светлом"
+
+#: src/exif.c:201
+msgid "day white fluorescent"
+msgstr "дневна, бела неонка"
+
+#: src/exif.c:202
+msgid "cool white fluorescent"
+msgstr "хладна, бела неонка"
+
+#: src/exif.c:203
+msgid "white fluorescent"
+msgstr "бела неонка"
+
+#: src/exif.c:204
+msgid "standard light A"
+msgstr "стандардно светло А"
+
+#: src/exif.c:205
+msgid "standard light B"
+msgstr "стандардно светло Б"
+
+#: src/exif.c:206
+msgid "standard light C"
+msgstr "стандардно светло Ц"
+
+#: src/exif.c:207
+msgid "D55"
+msgstr "Д55"
+
+#: src/exif.c:208
+msgid "D65"
+msgstr "Д65"
+
+#: src/exif.c:209
+msgid "D75"
+msgstr "Д75"
+
+#: src/exif.c:210
+msgid "D50"
+msgstr "Д50"
+
+#: src/exif.c:211
+msgid "ISO studio tungsten"
+msgstr "студијска ISO расвета"
+
+#: src/exif.c:219
+msgid "yes, not detected by strobe"
+msgstr "да, није очитано са блица"
+
+#: src/exif.c:220
+msgid "yes, detected by strobe"
+msgstr "да, очитано са блица"
+
+#: src/exif.c:226
+#, fuzzy
+msgid "uncalibrated"
+msgstr "некалибрисано"
+
+#: src/exif.c:232
+msgid "1 chip color area"
+msgstr ""
+
+#: src/exif.c:233
+msgid "2 chip color area"
+msgstr ""
+
+#: src/exif.c:234
+msgid "3 chip color area"
+msgstr ""
+
+#: src/exif.c:235
+msgid "color sequential area"
+msgstr ""
+
+#: src/exif.c:236
+msgid "trilinear"
+msgstr "трилинеарно"
+
+#: src/exif.c:237
+msgid "color sequential linear"
+msgstr ""
+
+#: src/exif.c:242
+msgid "digital still camera"
+msgstr ""
+
+#: src/exif.c:247
+msgid "direct photo"
+msgstr "директна фотка"
+
+#: src/exif.c:253
+msgid "custom"
+msgstr "произвољно"
+
+#: src/exif.c:258 src/exif.c:265 src/exif-common.c:442
+msgid "auto"
+msgstr "аутоматски"
+
+#: src/exif.c:260
+#, fuzzy
+msgid "auto bracket"
+msgstr "Сам преименуј"
+
+#: src/exif.c:271
+msgid "standard"
+msgstr "стандардно"
+
+#: src/exif.c:274
+msgid "night scene"
+msgstr "ноћни режим"
+
+#: src/exif.c:279
+msgid "none"
+msgstr "ништа"
+
+#: src/exif.c:280
+#, fuzzy
+msgid "low gain up"
+msgstr "Почисти"
+
+#: src/exif.c:281
+msgid "high gain up"
+msgstr ""
+
+#: src/exif.c:282
+msgid "low gain down"
+msgstr ""
+
+#: src/exif.c:283
+msgid "high gain down"
+msgstr ""
+
+#: src/exif.c:289 src/exif.c:303
+msgid "soft"
+msgstr "меко"
+
+#: src/exif.c:290 src/exif.c:304
+msgid "hard"
+msgstr "оштро"
+
+#: src/exif.c:296
+#, fuzzy
+msgid "low"
+msgstr "Свеће"
+
+#: src/exif.c:297
+msgid "high"
+msgstr ""
+
+#: src/exif.c:310
+msgid "macro"
+msgstr "макро"
+
+#: src/exif.c:311
+msgid "close"
+msgstr "близу"
+
+#: src/exif.c:312
+msgid "distant"
+msgstr "удаљено"
+
+#: src/exif.c:322
+msgid "Image Width"
+msgstr "Ширина слике"
+
+#: src/exif.c:323
+msgid "Image Height"
+msgstr "Висина слике"
+
+#: src/exif.c:324
+msgid "Bits per Sample/Pixel"
+msgstr ""
+
+#: src/exif.c:325
+msgid "Compression"
+msgstr "Компресија"
+
+#: src/exif.c:326
+msgid "Image description"
+msgstr "Опис слике"
+
+#: src/exif.c:327
+msgid "Camera make"
+msgstr "Произвођач"
+
+#: src/exif.c:328
+msgid "Camera model"
+msgstr "Модел"
+
+#: src/exif.c:329
+msgid "Orientation"
+msgstr "Орјентација"
+
+#: src/exif.c:330
+msgid "X resolution"
+msgstr "Резолуција по X оси"
+
+#: src/exif.c:331
+msgid "Y Resolution"
+msgstr "Резолуција по Y osi"
+
+#: src/exif.c:332
+msgid "Resolution units"
+msgstr "Јединица резолуције"
+
+#: src/exif.c:333
+msgid "Firmware"
+msgstr "Фирмвер"
+
+#: src/exif.c:335
+msgid "White point"
+msgstr "Бела тачка"
+
+#: src/exif.c:336
+msgid "Primary chromaticities"
+msgstr ""
+
+#: src/exif.c:337
+msgid "YCbCy coefficients"
+msgstr "YCbCy коефицијент"
+
+#: src/exif.c:338
+#, fuzzy
+msgid "YCbCr positioning"
+msgstr "GPS локација"
+
+#: src/exif.c:339
+#, fuzzy
+msgid "Black white reference"
+msgstr "дневна, бела неонка"
+
+#: src/exif.c:341
+msgid "SubIFD Exif offset"
+msgstr ""
+
+#: src/exif.c:343
+msgid "Exposure time (seconds)"
+msgstr "Дужина експозиције"
+
+#: src/exif.c:344
+msgid "FNumber"
+msgstr "Ф-број"
+
+#: src/exif.c:345
+msgid "Exposure program"
+msgstr "Програм експозиције"
+
+#: src/exif.c:346
+#, fuzzy
+msgid "Spectral Sensitivity"
+msgstr "ISO осетљивост"
+
+#: src/exif.c:347 src/exif.c:383 src/exif-common.c:921
+msgid "ISO sensitivity"
+msgstr "ISO осетљивост"
+
+#: src/exif.c:348
+#, fuzzy
+msgid "Optoelectric conversion factor"
+msgstr "Отвори збирку"
+
+#: src/exif.c:349
+msgid "Exif version"
+msgstr "Exif издање"
+
+#: src/exif.c:350
+msgid "Date original"
+msgstr "Оргинални датум"
+
+#: src/exif.c:351 src/osd.c:57
+msgid "Date digitized"
+msgstr "Подешени датум"
+
+#: src/exif.c:352
+msgid "Pixel format"
+msgstr "Формат пиксела"
+
+#: src/exif.c:353
+#, fuzzy
+msgid "Compression ratio"
+msgstr "Компресија"
+
+#: src/exif.c:354 src/exif-common.c:918
+msgid "Shutter speed"
+msgstr "Брзина затварача"
+
+#: src/exif.c:355 src/exif-common.c:919 src/osd.c:59
+msgid "Aperture"
+msgstr "Отвор бленде"
+
+#: src/exif.c:356
+msgid "Brightness"
+msgstr "Осветљеност"
+
+#: src/exif.c:357 src/exif-common.c:920 src/osd.c:60
+#, fuzzy
+msgid "Exposure bias"
+msgstr "Режим експозиције"
+
+#: src/exif.c:358
+msgid "Maximum aperture"
+msgstr "Највећи отвор бленде"
+
+#: src/exif.c:359 src/exif-common.c:924 src/osd.c:67
+msgid "Subject distance"
+msgstr "Удаљеност објекта"
+
+#: src/exif.c:360
+msgid "Metering mode"
+msgstr "начин мерења светла"
+
+#: src/exif.c:361
+msgid "Light source"
+msgstr "Извор светлости"
+
+#: src/exif.c:362 src/exif-common.c:925 src/osd.c:68
+msgid "Flash"
+msgstr "Блиц"
+
+#: src/exif.c:363 src/exif-common.c:922 src/osd.c:65
+msgid "Focal length"
+msgstr "Жижна даљина"
+
+#: src/exif.c:364
+#, fuzzy
+msgid "Subject area"
+msgstr "Опсег мотива"
+
+#: src/exif.c:365
+msgid "MakerNote"
+msgstr ""
+
+#: src/exif.c:366
+msgid "UserComment"
+msgstr "Коментар корисника"
+
+#: src/exif.c:367
+msgid "Subsecond time"
+msgstr ""
+
+#: src/exif.c:368
+#, fuzzy
+msgid "Subsecond time original"
+msgstr "Увећај на изорну величину"
+
+#: src/exif.c:369
+#, fuzzy
+msgid "Subsecond time digitized"
+msgstr "Подешени датум"
+
+#: src/exif.c:370
+msgid "FlashPix version"
+msgstr "FlashPix издање"
+
+#: src/exif.c:371
+msgid "Colorspace"
+msgstr "Простор боја"
+
+#: src/exif.c:375
+msgid "Audio data"
+msgstr "Звучни подаци"
+
+#: src/exif.c:376
+msgid "ExifR98 extension"
+msgstr "ExifR98 проширење"
+
+#: src/exif.c:377
+msgid "Flash strength"
+msgstr "Јачина блица"
+
+#: src/exif.c:378
+msgid "Spatial frequency response"
+msgstr ""
+
+#: src/exif.c:379
+msgid "X Pixel density"
+msgstr "Густина пиксела по X оси"
+
+#: src/exif.c:380
+msgid "Y Pixel density"
+msgstr "Густина пиксела по Y оси"
+
+#: src/exif.c:381
+msgid "Pixel density units"
+msgstr "Јединица за густину пиксела"
+
+#: src/exif.c:382
+msgid "Subject location"
+msgstr "Локација мотива"
+
+#: src/exif.c:384
+msgid "Sensor type"
+msgstr "Врста сензора"
+
+#: src/exif.c:385
+msgid "Source type"
+msgstr "Врста извора"
+
+#: src/exif.c:386
+msgid "Scene type"
+msgstr "Врста сцене"
+
+#: src/exif.c:387
+msgid "Color filter array pattern"
+msgstr ""
+
+#: src/exif.c:389
+msgid "Render process"
+msgstr "Процес рендеровања"
+
+#: src/exif.c:390
+msgid "Exposure mode"
+msgstr "Режим експозиције"
+
+#: src/exif.c:391
+msgid "White balance"
+msgstr "Баланс беле"
+
+#: src/exif.c:392
+msgid "Digital zoom ratio"
+msgstr "Однос дигиталног зума"
+
+#: src/exif.c:393
+msgid "Focal length (35mm)"
+msgstr "Жижна даљина на 35mm"
+
+#: src/exif.c:394
+#, fuzzy
+msgid "Scene capture type"
+msgstr "Врста сцене"
+
+#: src/exif.c:395
+msgid "Gain control"
+msgstr "Контрола постизања"
+
+#: src/exif.c:396
+msgid "Contrast"
+msgstr "Контраст"
+
+#: src/exif.c:397 src/preferences.c:3366
+msgid "Saturation"
+msgstr "Засићеност"
+
+#: src/exif.c:398
+msgid "Sharpness"
+msgstr "Оштрина"
+
+#: src/exif.c:399
+msgid "Device setting"
+msgstr "Подешавање уређаја"
+
+#: src/exif.c:400
+msgid "Subject range"
+msgstr "Опсег мотива"
+
+#: src/exif.c:401
+msgid "Image serial number"
+msgstr "Серијски број слике"
 
 #: src/exif.c:1108
 msgid "Can't get image comment: not compiled with Exiv2.\n"
@@ -1501,10 +2264,6 @@ msgstr "укључено"
 #: src/exif-common.c:439
 msgid "off"
 msgstr "искључено"
-
-#: src/exif-common.c:442
-msgid "auto"
-msgstr "аутоматски"
 
 #: src/exif-common.c:448
 msgid "not detected by strobe"
@@ -1537,6 +2296,106 @@ msgstr "Изнад нивоа мора"
 #: src/exif-common.c:610
 msgid "Below Sea Level"
 msgstr "Испод нивоа мора"
+
+#: src/exif-common.c:915 src/osd.c:62
+msgid "Camera"
+msgstr "Фото апарат"
+
+#: src/exif-common.c:917
+#, fuzzy
+msgid "DateDigitized"
+msgstr "Подешени датум"
+
+#: src/exif-common.c:923
+msgid "Focal length 35mm"
+msgstr "Жижна даљина на 35mm"
+
+#: src/exif-common.c:926 src/osd.c:61
+msgid "Resolution"
+msgstr "Резолуција"
+
+#: src/exif-common.c:927 src/osd.c:69
+msgid "Color profile"
+msgstr "Профил боја"
+
+#: src/exif-common.c:928
+msgid "GPS position"
+msgstr "GPS локација"
+
+#: src/exif-common.c:929
+msgid "GPS altitude"
+msgstr "GPS висина"
+
+#: src/exif-common.c:930 src/osd.c:72
+#, fuzzy
+msgid "Local time"
+msgstr "Место:"
+
+#: src/exif-common.c:931
+#, fuzzy
+msgid "Time zone"
+msgstr "Трака времена"
+
+#: src/exif-common.c:932 src/osd.c:74
+#, fuzzy
+msgid "Country name"
+msgstr "Поређај по називу"
+
+#: src/exif-common.c:933 src/osd.c:75
+#, fuzzy
+msgid "Country code"
+msgstr "Поређај по називу"
+
+#: src/exif-common.c:934 src/osd.c:77
+#, fuzzy
+msgid "Star rating"
+msgstr "Поређај по датуму"
+
+#: src/exif-common.c:935
+msgid "File size"
+msgstr "величина датотеке"
+
+#: src/exif-common.c:936
+msgid "File date"
+msgstr "Датум датотеке"
+
+#: src/exif-common.c:937 src/osd.c:50
+msgid "File mode"
+msgstr "Режим датотеке"
+
+#: src/exif-common.c:938 src/osd.c:49
+#, fuzzy
+msgid "File ctime"
+msgstr "величина датотеке"
+
+#: src/exif-common.c:939 src/osd.c:51
+#, fuzzy
+msgid "File owner"
+msgstr "Режим датотеке"
+
+#: src/exif-common.c:940 src/osd.c:52
+#, fuzzy
+msgid "File group"
+msgstr "Подаци о датотеци"
+
+#: src/exif-common.c:941 src/osd.c:53
+#, fuzzy
+msgid "File link"
+msgstr "Подаци о датотеци"
+
+#: src/exif-common.c:942 src/osd.c:54
+#, fuzzy
+msgid "File class"
+msgstr "Датотеке"
+
+#: src/exif-common.c:943
+#, fuzzy
+msgid "Page no."
+msgstr "%d. страница"
+
+#: src/exif-common.c:944 src/osd.c:63
+msgid "Lens"
+msgstr ""
 
 #: src/filedata.c:112
 #, c-format
@@ -1616,7 +2475,10 @@ msgstr "извор и одредиште су исти"
 msgid "Error: Unable to write marks lists to: %s\n"
 msgstr "Не могу да упишем историјат у %s\n"
 
-#: src/fullscreen.c:242 src/preferences.c:2438
+#: src/fullscreen.c:242 src/img-view.c:131 src/layout_util.c:2588
+#: src/layout_util.c:2589 src/layout_util.c:2590 src/pan-view/pan-view.c:120
+#: src/pan-view/pan-view.c:121 src/pan-view/pan-view.c:122
+#: src/preferences.c:2438
 msgid "Full screen"
 msgstr "Цео екран"
 
@@ -1727,41 +2589,176 @@ msgstr ""
 msgid "JP2 image not rgb"
 msgstr ""
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1885
+#: src/img-view.c:99 src/menu.c:359 src/preferences.c:821 src/toolbar.c:112
+#, fuzzy
+msgid "Rotate 180°"
+msgstr "Ротира слику за 180 степени"
+
+#: src/img-view.c:100
+#, fuzzy
+msgid "Rotate mirror"
+msgstr "Списак с_лика"
+
+#: src/img-view.c:101
+#, fuzzy
+msgid "Rotate flip"
+msgstr "Постепен прелаз између слика"
+
+#: src/img-view.c:102
+#, fuzzy
+msgid " Rotate counterclockwise 90°"
+msgstr "Ротира слику улево"
+
+#: src/img-view.c:103
+#, fuzzy
+msgid " Rotate clockwise 90°"
+msgstr "Ротира слику удесно"
+
+#: src/img-view.c:104 src/img-view.c:105 src/img-view.c:106 src/img-view.c:107
+#, fuzzy
+msgid "Previous"
+msgstr "Претходна слика"
+
+#: src/img-view.c:108 src/img-view.c:109 src/img-view.c:110 src/img-view.c:111
+#, fuzzy
+msgid "Next"
+msgstr "Наредна слика"
+
+#: src/img-view.c:112 src/img-view.c:113 src/layout_util.c:2554
+#: src/layout_util.c:2555 src/pan-view/pan-view.c:108
+#: src/pan-view/pan-view.c:109 src/preferences.c:825 src/toolbar.c:116
+msgid "Zoom in"
+msgstr "Увећај"
+
+#: src/img-view.c:114 src/layout_util.c:2556 src/layout_util.c:2557
+#: src/pan-view/pan-view.c:110 src/preferences.c:826 src/toolbar.c:117
+msgid "Zoom out"
+msgstr "Умањи"
+
+#: src/img-view.c:115 src/img-view.c:116 src/img-view.c:1406
+#: src/layout_image.c:776 src/layout_util.c:2560 src/layout_util.c:2561
+#: src/preferences.c:828 src/toolbar.c:119
+msgid "Zoom to fit"
+msgstr "Уклопи у прозор"
+
+#: src/img-view.c:117 src/img-view.c:118 src/img-view.c:119
+#: src/layout_util.c:2558 src/layout_util.c:2559 src/pan-view/pan-view.c:111
+#: src/pan-view/pan-view.c:112 src/pan-view/pan-view.c:113
+#: src/preferences.c:827 src/toolbar.c:118
+msgid "Zoom 1:1"
+msgstr "Изворна величина"
+
+#: src/img-view.c:120 src/layout_util.c:2564 src/pan-view/pan-view.c:114
+#: src/preferences.c:831 src/toolbar.c:122
+msgid "Zoom 2:1"
+msgstr "Повећава слику на размеру 2:1"
+
+#: src/img-view.c:121 src/layout_util.c:2565 src/pan-view/pan-view.c:115
+#: src/preferences.c:832 src/toolbar.c:123
+msgid "Zoom 3:1"
+msgstr "Повећава слику на размеру 3:1"
+
+#: src/img-view.c:122 src/layout_util.c:2566 src/pan-view/pan-view.c:116
+#: src/preferences.c:833 src/toolbar.c:124
+msgid "Zoom 4:1"
+msgstr "Повећава слику на размеру 4:1"
+
+#: src/img-view.c:123 src/layout_util.c:2569 src/layout_util.c:2585
+#: src/pan-view/pan-view.c:117 src/preferences.c:836 src/toolbar.c:127
+msgid "Zoom 1:4"
+msgstr "Размера 1:4"
+
+#: src/img-view.c:124 src/layout_util.c:2568 src/layout_util.c:2584
+#: src/pan-view/pan-view.c:118
+msgid "Zoom 1:3"
+msgstr "Размера 1:3"
+
+#: src/img-view.c:125 src/layout_util.c:2567 src/layout_util.c:2583
+#: src/pan-view/pan-view.c:119 src/preferences.c:834 src/toolbar.c:125
+msgid "Zoom 1:2"
+msgstr "Размера 1:2"
+
+#: src/img-view.c:126
+#, fuzzy
+msgid "Zoom fit window width"
+msgstr "Уклопи у прозор"
+
+#: src/img-view.c:127
+#, fuzzy
+msgid "Zoom fit window height"
+msgstr "Уклопи у прозор"
+
+#: src/img-view.c:128 src/layout_util.c:2632
+msgid "Toggle slideshow"
+msgstr "Пушта или зауставља покретни приказ слика"
+
+#: src/img-view.c:129 src/layout_util.c:2597 src/preferences.c:842
+#: src/toolbar.c:138
+msgid "Pause slideshow"
+msgstr "Паузирај покретни приказ"
+
+#: src/img-view.c:130
+#, fuzzy
+msgid "Reload image"
+msgstr "Начини насумичним"
+
+#: src/img-view.c:132 src/img-view.c:133
+#, fuzzy
+msgid "Fullscreen"
+msgstr "Цео екран"
+
+#: src/img-view.c:134
+#, fuzzy
+msgid "Image overlay"
+msgstr "Распоред слике"
+
+#: src/img-view.c:135 src/pan-view/pan-view.c:106
+#, fuzzy
+msgid "Exit fullscreen"
+msgstr "Напусти ц_ео екран"
+
+#: src/img-view.c:137
+#, fuzzy
+msgid "Desaturate"
+msgstr "Природа"
+
+#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1891
 #: src/layout_util.c:914 src/view_file/view_file.c:396
 #, fuzzy
 msgid "Cannot open archive file"
 msgstr "Не могу да отворим датотеку са збирком"
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1885
+#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1891
 #: src/layout_util.c:914 src/preferences.c:4219 src/preferences.c:4227
 #: src/view_file/view_file.c:396
 #, fuzzy
 msgid "See the Log Window"
 msgstr "Дневник"
 
-#: src/img-view.c:1403 src/layout_image.c:773 src/pan-view/pan-view.c:2382
+#: src/img-view.c:1403 src/layout_image.c:773 src/layout_util.c:2554
+#: src/layout_util.c:2555 src/layout_util.c:2570 src/layout_util.c:2571
+#: src/pan-view/pan-view.c:2382
 msgid "Zoom _in"
 msgstr "По_већај"
 
-#: src/img-view.c:1404 src/layout_image.c:774 src/pan-view/pan-view.c:2384
+#: src/img-view.c:1404 src/layout_image.c:774 src/layout_util.c:2556
+#: src/layout_util.c:2557 src/layout_util.c:2572 src/layout_util.c:2573
+#: src/pan-view/pan-view.c:2384
 msgid "Zoom _out"
 msgstr "У_мањи"
 
-#: src/img-view.c:1405 src/layout_image.c:775 src/pan-view/pan-view.c:2386
+#: src/img-view.c:1405 src/layout_image.c:775 src/layout_util.c:2558
+#: src/layout_util.c:2559 src/layout_util.c:2574 src/layout_util.c:2575
+#: src/pan-view/pan-view.c:2386
 msgid "Zoom _1:1"
 msgstr "_Изворна величина"
-
-#: src/img-view.c:1406 src/layout_image.c:776
-msgid "Zoom to fit"
-msgstr "Уклопи у прозор"
 
 #: src/img-view.c:1418 src/layout_image.c:790
 msgid "_Go to directory view"
 msgstr "_Иди на приказ директоријума"
 
 #: src/img-view.c:1446 src/img-view.c:1460 src/layout_image.c:832
-#: src/layout_image.c:846
+#: src/layout_image.c:846 src/layout_util.c:2632
 msgid "Toggle _slideshow"
 msgstr "_Покретни приказ"
 
@@ -1782,7 +2779,7 @@ msgstr "Напусти ц_ео екран"
 msgid "_Full screen"
 msgstr "_Цео екран"
 
-#: src/img-view.c:1476 src/pan-view/pan-view.c:2482
+#: src/img-view.c:1476 src/layout_util.c:2493 src/pan-view/pan-view.c:2482
 msgid "C_lose window"
 msgstr "_Затвори прозор"
 
@@ -1871,7 +2868,7 @@ msgstr "Изабери фасциклу"
 msgid "[Pixel x,y coord]: (Pixel R,G,B value)"
 msgstr ""
 
-#: src/layout.c:1625
+#: src/layout.c:1625 src/layout_config.c:67
 msgid "Tools"
 msgstr "Алати"
 
@@ -1919,21 +2916,31 @@ msgstr "Распоред"
 msgid "Invalid geometry\n"
 msgstr "Није исправна геометрија\n"
 
+#: src/layout_config.c:67 src/ui_pathsel.c:1179
+msgid "Files"
+msgstr "Датотеке"
+
+#: src/layout_config.c:67 src/preferences.c:131 src/preferences.c:2242
+#: src/search.c:2261 src/search.c:3606
+msgid "Image"
+msgstr "Слика"
+
 #: src/layout_config.c:358
 msgid "(drag to change order)"
 msgstr "(превуците за промену редоследа)"
 
-#: src/layout_image.c:793 src/layout_util.c:2285 src/view_file/view_file.c:701
+#: src/layout_image.c:793 src/layout_util.c:2285 src/layout_util.c:2587
+#: src/view_file/view_file.c:701
 #, fuzzy
 msgid "Open archive"
 msgstr "Отвори скорашње"
 
-#: src/layout_image.c:807 src/pan-view/pan-view.c:2409
+#: src/layout_image.c:807 src/layout_util.c:2532 src/pan-view/pan-view.c:2409
 #: src/view_file/view_file.c:710
 msgid "_Copy path to clipboard"
 msgstr "У_множи путању међу исечке"
 
-#: src/layout_image.c:808 src/pan-view/pan-view.c:2411
+#: src/layout_image.c:808 src/layout_util.c:2533 src/pan-view/pan-view.c:2411
 #: src/view_file/view_file.c:712
 #, fuzzy
 msgid "_Copy path unquoted to clipboard"
@@ -1944,7 +2951,7 @@ msgstr "У_множи путању међу исечке"
 msgid "Copy _image to clipboard"
 msgstr "Умножи путању међу исечке"
 
-#: src/layout_image.c:860
+#: src/layout_image.c:860 src/layout_util.c:2639
 msgid "GIF _animation"
 msgstr ""
 
@@ -1952,17 +2959,17 @@ msgstr ""
 msgid "Hide file _list"
 msgstr "Сакриј _списак даотека"
 
-#: src/layout_image.c:2110
+#: src/layout_image.c:2116
 #, c-format
 msgid "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 msgstr "[%*d,%*d]: РГБ(%3d,%3d,%3d)"
 
-#: src/layout_image.c:2118
+#: src/layout_image.c:2124
 #, c-format
 msgid "[%*s,%*s]: RGB(---,---,---)"
 msgstr "[%*s,%*s]: РГБ(---,---,---)"
 
-#: src/layout_util.c:244
+#: src/layout_util.c:244 src/layout_util.c:2618
 #, fuzzy
 msgid "Clear Marks"
 msgstr "Очисти смеће"
@@ -2016,12 +3023,12 @@ msgstr ""
 msgid "Window layout name \"%s\" already exists."
 msgstr "Већ постоји датотека %s."
 
-#: src/layout_util.c:2155 src/layout_util.c:2404
+#: src/layout_util.c:2155 src/layout_util.c:2404 src/layout_util.c:2520
 #, fuzzy
 msgid "Rename window"
 msgstr "Нови прозор"
 
-#: src/layout_util.c:2255 src/layout_util.c:2435
+#: src/layout_util.c:2255 src/layout_util.c:2435 src/layout_util.c:2521
 #, fuzzy
 msgid "Delete window"
 msgstr "Затвори прозор"
@@ -2037,6 +3044,1182 @@ msgstr "Нови прозор"
 
 #: src/layout_util.c:2438
 msgid "Delete window layout"
+msgstr ""
+
+#: src/layout_util.c:2464
+msgid "_File"
+msgstr "_Датотека"
+
+#: src/layout_util.c:2465
+msgid "_Go"
+msgstr "_Иди"
+
+#: src/layout_util.c:2466
+msgid "_Edit"
+msgstr "_Уређивање"
+
+#: src/layout_util.c:2467
+msgid "_Select"
+msgstr "_Изабери"
+
+#: src/layout_util.c:2468 src/menu.c:411
+msgid "_Orientation"
+msgstr "_Орјентација"
+
+#: src/layout_util.c:2469
+#, fuzzy
+msgid "_Rating"
+msgstr "Слике"
+
+#: src/layout_util.c:2470
+msgid "P_references"
+msgstr "_Поставке"
+
+#: src/layout_util.c:2472
+msgid "_Files and Folders"
+msgstr "_Датотеке и фасцикле"
+
+#: src/layout_util.c:2473
+msgid "_Zoom"
+msgstr "_Увећање"
+
+#: src/layout_util.c:2474
+msgid "_Color Management"
+msgstr "Управљање _бојама"
+
+#: src/layout_util.c:2475
+msgid "_Connected Zoom"
+msgstr "_Прикачено увећање"
+
+#: src/layout_util.c:2476
+msgid "Spli_t"
+msgstr "Поде_ли"
+
+#: src/layout_util.c:2477
+msgid "Stere_o"
+msgstr ""
+
+#: src/layout_util.c:2478 src/layout_util.c:2636
+msgid "Image _Overlay"
+msgstr "_Распоред слике"
+
+#: src/layout_util.c:2479 src/menu.c:121
+msgid "_Plugins"
+msgstr ""
+
+#: src/layout_util.c:2480
+#, fuzzy
+msgid "_Windows"
+msgstr "Прозори"
+
+#: src/layout_util.c:2481
+msgid "_Help"
+msgstr "_Помоћ"
+
+#: src/layout_util.c:2483
+msgid "Copy..."
+msgstr "Умножи..."
+
+#: src/layout_util.c:2484
+msgid "Move..."
+msgstr "Премести..."
+
+#: src/layout_util.c:2485
+msgid "Rename..."
+msgstr "Преименуј..."
+
+#: src/layout_util.c:2489
+msgid "Delete..."
+msgstr "Обриши..."
+
+#: src/layout_util.c:2490
+msgid "Select _all"
+msgstr "Изабери _све"
+
+#: src/layout_util.c:2491
+msgid "Select _none"
+msgstr "П_оништи избор"
+
+#: src/layout_util.c:2492
+msgid "_Invert Selection"
+msgstr "О_брни избор"
+
+#: src/layout_util.c:2492
+msgid "Invert Selection"
+msgstr "Обрни избор"
+
+#: src/layout_util.c:2494
+msgid "_Quit"
+msgstr "_Изађи"
+
+#: src/layout_util.c:2494 src/preferences.c:854 src/toolbar.c:150
+msgid "Quit"
+msgstr "Изађи"
+
+#: src/layout_util.c:2495
+msgid "_First Image"
+msgstr "_Прва слика"
+
+#: src/layout_util.c:2495 src/preferences.c:786 src/toolbar.c:74
+msgid "First Image"
+msgstr "Прва слика"
+
+#: src/layout_util.c:2496 src/layout_util.c:2497 src/layout_util.c:2498
+msgid "_Previous Image"
+msgstr "П_ретходна слика"
+
+#: src/layout_util.c:2496 src/layout_util.c:2497 src/layout_util.c:2498
+#: src/preferences.c:787 src/toolbar.c:75
+msgid "Previous Image"
+msgstr "Претходна слика"
+
+#: src/layout_util.c:2499 src/layout_util.c:2500 src/layout_util.c:2511
+msgid "_Next Image"
+msgstr "Н_аредна слика"
+
+#: src/layout_util.c:2499 src/layout_util.c:2500 src/layout_util.c:2511
+#: src/preferences.c:788 src/toolbar.c:76
+msgid "Next Image"
+msgstr "Наредна слика"
+
+#: src/layout_util.c:2502 src/toolbar.c:86
+#, fuzzy
+msgid "Image Forward"
+msgstr "Разгледач слика"
+
+#: src/layout_util.c:2502
+msgid "Forward in image history"
+msgstr ""
+
+#: src/layout_util.c:2503 src/toolbar.c:87
+#, fuzzy
+msgid "Image Back"
+msgstr "Претрага слика"
+
+#: src/layout_util.c:2503
+msgid "Back in image history"
+msgstr ""
+
+#: src/layout_util.c:2505
+#, fuzzy
+msgid "_First Page"
+msgstr "_Прва слика"
+
+#: src/layout_util.c:2505
+msgid "First Page of multi-page image"
+msgstr ""
+
+#: src/layout_util.c:2506
+#, fuzzy
+msgid "_Last Page"
+msgstr "П_оследња слика"
+
+#: src/layout_util.c:2506
+msgid "Last Page of multi-page image"
+msgstr ""
+
+#: src/layout_util.c:2507
+#, fuzzy
+msgid "_Next Page"
+msgstr "Н_аредна слика"
+
+#: src/layout_util.c:2507
+msgid "Next Page of multi-page image"
+msgstr ""
+
+#: src/layout_util.c:2508
+#, fuzzy
+msgid "_Previous Page"
+msgstr "П_ретходна слика"
+
+#: src/layout_util.c:2508
+msgid "Previous Page of multi-page image"
+msgstr ""
+
+#: src/layout_util.c:2512
+msgid "_Last Image"
+msgstr "П_оследња слика"
+
+#: src/layout_util.c:2512 src/preferences.c:789 src/toolbar.c:77
+msgid "Last Image"
+msgstr "Последња слика"
+
+#: src/layout_util.c:2513
+msgid "_Back"
+msgstr "_Назад"
+
+#: src/layout_util.c:2513
+msgid "Back in folder history"
+msgstr ""
+
+#: src/layout_util.c:2514
+#, fuzzy
+msgid "_Forward"
+msgstr "Разгледач слика"
+
+#: src/layout_util.c:2514
+msgid "Forward in folder history"
+msgstr ""
+
+#: src/layout_util.c:2515
+msgid "_Home"
+msgstr "_Лична путања"
+
+#: src/layout_util.c:2515 src/options.c:244 src/preferences.c:792
+#: src/toolbar.c:80 src/ui_bookmark.c:560 src/ui_pathsel.c:1047
+msgid "Home"
+msgstr "Лична путања"
+
+#: src/layout_util.c:2516
+msgid "_Up"
+msgstr ""
+
+#: src/layout_util.c:2516
+#, fuzzy
+msgid "Up one folder"
+msgstr "Нова фасцикла"
+
+#: src/layout_util.c:2517 src/toolbar.c:88
+msgid "New window"
+msgstr "Нови прозор"
+
+#: src/layout_util.c:2518
+#, fuzzy
+msgid "default"
+msgstr "Подразумевано"
+
+#: src/layout_util.c:2518
+#, fuzzy
+msgid "New window (default)"
+msgstr "Нови прозор"
+
+#: src/layout_util.c:2519
+#, fuzzy
+msgid "from current"
+msgstr "Употреби тренутну"
+
+#: src/layout_util.c:2522
+msgid "_New collection"
+msgstr "Нова _збирка"
+
+#: src/layout_util.c:2522 src/menu.c:472 src/preferences.c:799 src/toolbar.c:89
+msgid "New collection"
+msgstr "Нова збирка"
+
+#: src/layout_util.c:2523
+msgid "_Open collection..."
+msgstr "_Отвори збирку..."
+
+#: src/layout_util.c:2523
+msgid "Open collection..."
+msgstr "Отвори збирку..."
+
+#: src/layout_util.c:2524
+msgid "Open recen_t"
+msgstr "Отвори _скорашње"
+
+#: src/layout_util.c:2524
+#, fuzzy
+msgid "Open recent collection"
+msgstr "Отвори збирку"
+
+#: src/layout_util.c:2525
+msgid "_Search..."
+msgstr "_Тражи..."
+
+#: src/layout_util.c:2525
+msgid "Search..."
+msgstr "Тражи..."
+
+#: src/layout_util.c:2526
+msgid "Find duplicates..."
+msgstr "Нађи _дупликате..."
+
+#: src/layout_util.c:2527
+msgid "Pa_n view"
+msgstr "Прикажи на _табли"
+
+#: src/layout_util.c:2527 src/preferences.c:809 src/toolbar.c:99
+msgid "Pan view"
+msgstr "Прикажи на табли"
+
+#: src/layout_util.c:2528
+msgid "_Print..."
+msgstr "_Штампај..."
+
+#: src/layout_util.c:2529
+msgid "N_ew folder..."
+msgstr "Нова _фасцикла..."
+
+#: src/layout_util.c:2529
+msgid "New folder..."
+msgstr "Нова фасцикла..."
+
+#: src/layout_util.c:2530 src/view_file/view_file.c:725
+msgid "Enable file _grouping"
+msgstr "_Групиши датотеке"
+
+#: src/layout_util.c:2530
+msgid "Enable file grouping"
+msgstr "Групиши датотеке"
+
+#: src/layout_util.c:2531 src/view_file/view_file.c:727
+msgid "Disable file groupi_ng"
+msgstr "Не г_рупиши датотеке"
+
+#: src/layout_util.c:2531
+msgid "Disable file grouping"
+msgstr "Не групиши датотеке"
+
+#: src/layout_util.c:2532
+msgid "Copy path to clipboard"
+msgstr "Умножи путању међу исечке"
+
+#: src/layout_util.c:2533
+#, fuzzy
+msgid "Copy path unquoted to clipboard"
+msgstr "Умножи путању међу исечке"
+
+#: src/layout_util.c:2534
+#, fuzzy
+msgid "_Rating 0"
+msgstr "Слике"
+
+#: src/layout_util.c:2534
+#, fuzzy
+msgid "Rating 0"
+msgstr "Слике"
+
+#: src/layout_util.c:2535
+#, fuzzy
+msgid "_Rating 1"
+msgstr "Слике"
+
+#: src/layout_util.c:2535
+#, fuzzy
+msgid "Rating 1"
+msgstr "Слике"
+
+#: src/layout_util.c:2536
+#, fuzzy
+msgid "_Rating 2"
+msgstr "Слике"
+
+#: src/layout_util.c:2536
+#, fuzzy
+msgid "Rating 2"
+msgstr "Слике"
+
+#: src/layout_util.c:2537
+#, fuzzy
+msgid "_Rating 3"
+msgstr "Слике"
+
+#: src/layout_util.c:2537
+#, fuzzy
+msgid "Rating 3"
+msgstr "Слике"
+
+#: src/layout_util.c:2538
+#, fuzzy
+msgid "_Rating 4"
+msgstr "Слике"
+
+#: src/layout_util.c:2538
+#, fuzzy
+msgid "Rating 4"
+msgstr "Слике"
+
+#: src/layout_util.c:2539
+#, fuzzy
+msgid "_Rating 5"
+msgstr "Слике"
+
+#: src/layout_util.c:2539
+#, fuzzy
+msgid "Rating 5"
+msgstr "Слике"
+
+#: src/layout_util.c:2540
+#, fuzzy
+msgid "_Rating -1"
+msgstr "Слике"
+
+#: src/layout_util.c:2540
+#, fuzzy
+msgid "Rating -1"
+msgstr "Слике"
+
+#: src/layout_util.c:2541
+#, fuzzy
+msgid "_Rotate clockwise 90°"
+msgstr "Ротирај у_десно"
+
+#: src/layout_util.c:2541
+#, fuzzy
+msgid "Image Rotate clockwise 90°"
+msgstr "Ротира слику удесно"
+
+#: src/layout_util.c:2542
+#, fuzzy
+msgid "Rotate _counterclockwise 90°"
+msgstr "Ротирај у_лево"
+
+#: src/layout_util.c:2542 src/menu.c:356 src/preferences.c:820
+#: src/toolbar.c:111
+#, fuzzy
+msgid "Rotate counterclockwise 90°"
+msgstr "Ротира слику улево"
+
+#: src/layout_util.c:2543
+#, fuzzy
+msgid "Rotate 1_80°"
+msgstr "Ротирај за 1_80 "
+
+#: src/layout_util.c:2543
+#, fuzzy
+msgid "Image Rotate 180°"
+msgstr "Ротира слику за 180 степени"
+
+#: src/layout_util.c:2544
+msgid "_Mirror"
+msgstr "_Пресликај"
+
+#: src/layout_util.c:2544
+#, fuzzy
+msgid "Image Mirror"
+msgstr "Списак с_лика"
+
+#: src/layout_util.c:2545
+msgid "_Flip"
+msgstr "_Изврни"
+
+#: src/layout_util.c:2545
+#, fuzzy
+msgid "Image Flip"
+msgstr "Списак с_лика"
+
+#: src/layout_util.c:2546
+msgid "_Original state"
+msgstr "_Врати изворно"
+
+#: src/layout_util.c:2546
+#, fuzzy
+msgid "Image rotate Original state"
+msgstr "Враћа слику на изворно стање"
+
+#: src/layout_util.c:2547
+msgid "P_references..."
+msgstr "_Поставке..."
+
+#: src/layout_util.c:2547
+msgid "Preferences..."
+msgstr "Поставке..."
+
+#: src/layout_util.c:2548
+#, fuzzy
+msgid "Configure _Plugins..."
+msgstr "Подеси _спољне програме..."
+
+#: src/layout_util.c:2548
+#, fuzzy
+msgid "Configure Plugins..."
+msgstr "Подеси спољне програме..."
+
+#: src/layout_util.c:2549
+msgid "_Configure this window..."
+msgstr "По_деси овај прозор..."
+
+#: src/layout_util.c:2549
+msgid "Configure this window..."
+msgstr "Подеси овај прозор..."
+
+#: src/layout_util.c:2550
+#, fuzzy
+msgid "_Cache maintenance..."
+msgstr "Одржавање оставе"
+
+#: src/layout_util.c:2550
+#, fuzzy
+msgid "Cache maintenance..."
+msgstr "Одржавање оставе"
+
+#: src/layout_util.c:2551
+msgid "Set as _wallpaper"
+msgstr "По_стави за позадину"
+
+#: src/layout_util.c:2551
+msgid "Set as wallpaper"
+msgstr "Постави за позадину"
+
+#: src/layout_util.c:2552
+msgid "_Save metadata"
+msgstr "Сачувај _метаподатке"
+
+#: src/layout_util.c:2552 src/toolbar.c:136
+msgid "Save metadata"
+msgstr "Сачувај метаподатке"
+
+#: src/layout_util.c:2553
+#, fuzzy
+msgid "Keyword autocomplete"
+msgstr "Врста кључне речи:"
+
+#: src/layout_util.c:2553
+#, fuzzy
+msgid "Keyword Autocomplete"
+msgstr "Врста кључне речи:"
+
+#: src/layout_util.c:2560 src/layout_util.c:2561 src/layout_util.c:2576
+#: src/layout_util.c:2577
+msgid "_Zoom to fit"
+msgstr "У_клопи у прозор"
+
+#: src/layout_util.c:2562 src/layout_util.c:2578
+msgid "Fit _Horizontally"
+msgstr "Уклопи према _ширини"
+
+#: src/layout_util.c:2562
+msgid "Fit Horizontally"
+msgstr "Уклопи према ширини"
+
+#: src/layout_util.c:2563 src/layout_util.c:2579
+msgid "Fit _Vertically"
+msgstr "Уклопи према _висини"
+
+#: src/layout_util.c:2563
+msgid "Fit Vertically"
+msgstr "Уклопи према висини"
+
+#: src/layout_util.c:2564 src/layout_util.c:2580
+msgid "Zoom _2:1"
+msgstr "Размера _2:1"
+
+#: src/layout_util.c:2565 src/layout_util.c:2581
+msgid "Zoom _3:1"
+msgstr "Размера _3:1"
+
+#: src/layout_util.c:2566 src/layout_util.c:2582
+msgid "Zoom _4:1"
+msgstr "Размера _4:1"
+
+#: src/layout_util.c:2570 src/layout_util.c:2571 src/preferences.c:837
+#: src/toolbar.c:128
+#, fuzzy
+msgid "Connected Zoom in"
+msgstr "_Прикачено увећање"
+
+#: src/layout_util.c:2572 src/layout_util.c:2573
+#, fuzzy
+msgid "Connected Zoom out"
+msgstr "_Прикачено увећање"
+
+#: src/layout_util.c:2574 src/layout_util.c:2575
+#, fuzzy
+msgid "Connected Zoom 1:1"
+msgstr "_Прикачено увећање"
+
+#: src/layout_util.c:2576 src/layout_util.c:2577
+#, fuzzy
+msgid "Connected Zoom to fit"
+msgstr "_Прикачено увећање"
+
+#: src/layout_util.c:2578
+#, fuzzy
+msgid "Connected Fit Horizontally"
+msgstr "Уклопи према ширини"
+
+#: src/layout_util.c:2579
+#, fuzzy
+msgid "Connected Fit Vertically"
+msgstr "Уклопи према висини"
+
+#: src/layout_util.c:2580
+#, fuzzy
+msgid "Connected Zoom 2:1"
+msgstr "_Прикачено увећање"
+
+#: src/layout_util.c:2581
+#, fuzzy
+msgid "Connected Zoom 3:1"
+msgstr "_Прикачено увећање"
+
+#: src/layout_util.c:2582
+#, fuzzy
+msgid "Connected Zoom 4:1"
+msgstr "_Прикачено увећање"
+
+#: src/layout_util.c:2583
+#, fuzzy
+msgid "Connected Zoom 1:2"
+msgstr "_Прикачено увећање"
+
+#: src/layout_util.c:2584
+#, fuzzy
+msgid "Connected Zoom 1:3"
+msgstr "_Прикачено увећање"
+
+#: src/layout_util.c:2585
+#, fuzzy
+msgid "Connected Zoom 1:4"
+msgstr "_Прикачено увећање"
+
+#: src/layout_util.c:2586
+msgid "_View in new window"
+msgstr "Прикажи у _новом прозору"
+
+#: src/layout_util.c:2588 src/layout_util.c:2589 src/layout_util.c:2590
+msgid "F_ull screen"
+msgstr "_Цео екран"
+
+#: src/layout_util.c:2591 src/layout_util.c:2592
+msgid "_Leave full screen"
+msgstr "_Напусти цео екран"
+
+#: src/layout_util.c:2591 src/layout_util.c:2592
+msgid "Leave full screen"
+msgstr "Напусти цео екран"
+
+#: src/layout_util.c:2593
+msgid "_Cycle through overlay modes"
+msgstr ""
+
+#: src/layout_util.c:2593
+msgid "Cycle through Overlay modes"
+msgstr ""
+
+#: src/layout_util.c:2594
+msgid "Cycle through histogram ch_annels"
+msgstr ""
+
+#: src/layout_util.c:2594
+msgid "Cycle through histogram channels"
+msgstr ""
+
+#: src/layout_util.c:2595
+msgid "Cycle through histogram mo_des"
+msgstr ""
+
+#: src/layout_util.c:2595
+msgid "Cycle through histogram modes"
+msgstr ""
+
+#: src/layout_util.c:2596
+msgid "_Hide file list"
+msgstr "Са_криј списак датотека"
+
+#: src/layout_util.c:2596 src/preferences.c:841 src/toolbar.c:137
+msgid "Hide file list"
+msgstr "Сакриј списак датотека"
+
+#: src/layout_util.c:2597
+msgid "_Pause slideshow"
+msgstr "_Паузирај покретни приказ"
+
+#: src/layout_util.c:2598
+msgid "Faster"
+msgstr ""
+
+#: src/layout_util.c:2598 src/preferences.c:843 src/toolbar.c:139
+#, fuzzy
+msgid "Slideshow Faster"
+msgstr " Покретни приказ"
+
+#: src/layout_util.c:2599
+#, fuzzy
+msgid "Slower"
+msgstr "Свеће"
+
+#: src/layout_util.c:2599 src/preferences.c:844 src/toolbar.c:140
+#, fuzzy
+msgid "Slideshow Slower"
+msgstr " Покретни приказ"
+
+#: src/layout_util.c:2600
+msgid "_Refresh"
+msgstr "_Освежи"
+
+#: src/layout_util.c:2600 src/preferences.c:845 src/toolbar.c:141
+msgid "Refresh"
+msgstr "Освежи"
+
+#: src/layout_util.c:2601
+#, fuzzy
+msgid "_Help manual"
+msgstr "ручно"
+
+#: src/layout_util.c:2601
+#, fuzzy
+msgid "Help manual"
+msgstr "ручно"
+
+#: src/layout_util.c:2602 src/window.c:371
+msgid "On-line help search"
+msgstr ""
+
+#: src/layout_util.c:2603
+msgid "_Keyboard shortcuts"
+msgstr "Пречице са _тастатуре"
+
+#: src/layout_util.c:2603
+msgid "Keyboard shortcuts"
+msgstr "Пречице са тастатуре"
+
+#: src/layout_util.c:2604
+#, fuzzy
+msgid "_Keyboard map"
+msgstr "Тастатура"
+
+#: src/layout_util.c:2604
+#, fuzzy
+msgid "Keyboard map"
+msgstr "Тастатура"
+
+#: src/layout_util.c:2605
+msgid "_Readme"
+msgstr ""
+
+#: src/layout_util.c:2605
+msgid "Readme"
+msgstr ""
+
+#: src/layout_util.c:2606
+#, fuzzy
+msgid "_ChangeLog"
+msgstr "Без измена"
+
+#: src/layout_util.c:2606
+msgid "ChangeLog notes"
+msgstr ""
+
+#: src/layout_util.c:2607 src/search_and_run.c:291
+msgid "Search and Run command"
+msgstr ""
+
+#: src/layout_util.c:2607
+msgid "Search commands by keyword and run them"
+msgstr ""
+
+#: src/layout_util.c:2608
+msgid "_About"
+msgstr "_О програму"
+
+#: src/layout_util.c:2608
+msgid "About"
+msgstr "О програму"
+
+#: src/layout_util.c:2609
+msgid "_Log Window"
+msgstr "_Дневник"
+
+#: src/layout_util.c:2609
+msgid "Log Window"
+msgstr "Дневник"
+
+#: src/layout_util.c:2610
+msgid "_Exif window"
+msgstr "Exif прозор_че"
+
+#: src/layout_util.c:2610 src/preferences.c:847 src/toolbar.c:143
+msgid "Exif window"
+msgstr "Exif прозорче"
+
+#: src/layout_util.c:2611
+msgid "_Cycle through stereo modes"
+msgstr ""
+
+#: src/layout_util.c:2611
+msgid "Cycle through stereo modes"
+msgstr ""
+
+#: src/layout_util.c:2612
+#, fuzzy
+msgid "_Next Pane"
+msgstr "Н_аредна слика"
+
+#: src/layout_util.c:2612
+#, fuzzy
+msgid "Next Split Pane"
+msgstr "Наредна слика"
+
+#: src/layout_util.c:2613
+#, fuzzy
+msgid "_Previous Pane"
+msgstr "П_ретходна слика"
+
+#: src/layout_util.c:2613
+#, fuzzy
+msgid "Previous Split Pane"
+msgstr "Претходна слика"
+
+#: src/layout_util.c:2614
+#, fuzzy
+msgid "_Up Pane"
+msgstr "Н_аредна слика"
+
+#: src/layout_util.c:2614
+#, fuzzy
+msgid "Up Split Pane"
+msgstr "Дели појединачно"
+
+#: src/layout_util.c:2615
+#, fuzzy
+msgid "_Down Pane"
+msgstr "Н_аредна слика"
+
+#: src/layout_util.c:2615
+#, fuzzy
+msgid "Down Split Pane"
+msgstr "Дели појединачно"
+
+#: src/layout_util.c:2616
+#, fuzzy
+msgid "_Write orientation to file"
+msgstr "Упиши у датотеку"
+
+#: src/layout_util.c:2616
+#, fuzzy
+msgid "Write orientation to file"
+msgstr "Упиши у датотеку"
+
+#: src/layout_util.c:2617
+#, fuzzy
+msgid "_Write orientation to file (preserve timestamp)"
+msgstr "Упиши у датотеку"
+
+#: src/layout_util.c:2617
+#, fuzzy
+msgid "Write orientation to file (preserve timestamp)"
+msgstr "Упиши у датотеку"
+
+#: src/layout_util.c:2618
+#, fuzzy
+msgid "Clear Marks..."
+msgstr "Очисти смеће"
+
+#: src/layout_util.c:2622
+msgid "Show _Thumbnails"
+msgstr "Прикажи _умањене приказе"
+
+#: src/layout_util.c:2622
+msgid "Show Thumbnails"
+msgstr "Приказује умањене прегледе слика"
+
+#: src/layout_util.c:2623
+msgid "Show _Marks"
+msgstr "Прикажи _маркере"
+
+#: src/layout_util.c:2623
+msgid "Show Marks"
+msgstr "Приказује маркере"
+
+#: src/layout_util.c:2624
+#, fuzzy
+msgid "Show File Filter"
+msgstr "Прикажи _скривене датотеке"
+
+#: src/layout_util.c:2625
+msgid "Pi_xel Info"
+msgstr "Подаци о _пикселима"
+
+#: src/layout_util.c:2625
+msgid "Show Pixel Info"
+msgstr "Приказује податке о пикселима"
+
+#: src/layout_util.c:2626
+#, fuzzy
+msgid "Hide _alpha"
+msgstr "Сакрива палету са алаткама"
+
+#: src/layout_util.c:2626
+#, fuzzy
+msgid "Hide alpha channel"
+msgstr "Сакрива палету са алаткама"
+
+#: src/layout_util.c:2627
+msgid "_Float file list"
+msgstr "_Откачи списак датотека"
+
+#: src/layout_util.c:2627 src/preferences.c:851 src/toolbar.c:147
+msgid "Float file list"
+msgstr "Премешта списак датотека у нови прозор"
+
+#: src/layout_util.c:2628
+msgid "Hide tool_bar"
+msgstr "Сакриј _алатницу"
+
+#: src/layout_util.c:2628
+msgid "Hide toolbar"
+msgstr "Сакрива палету са алаткама"
+
+#: src/layout_util.c:2629
+msgid "_Info sidebar"
+msgstr "Површ _са подацима"
+
+#: src/layout_util.c:2629 src/preferences.c:852 src/toolbar.c:148
+msgid "Info sidebar"
+msgstr "Приказује површ са подацима о слици"
+
+#: src/layout_util.c:2630
+msgid "Sort _manager"
+msgstr "Управник редоследом"
+
+#: src/layout_util.c:2630 src/preferences.c:853 src/toolbar.c:149
+msgid "Sort manager"
+msgstr "Приказује управника редоследом слика"
+
+#: src/layout_util.c:2631
+#, fuzzy
+msgid "Hide Bars"
+msgstr "Сакриј „%s“"
+
+#: src/layout_util.c:2633
+msgid "Use _color profiles"
+msgstr "_Користи профиле боја"
+
+#: src/layout_util.c:2633 src/toolbar.c:135
+msgid "Use color profiles"
+msgstr "Омогућава употребу профила боја"
+
+#: src/layout_util.c:2634
+msgid "Use profile from _image"
+msgstr "Користи профил боја _из слике"
+
+#: src/layout_util.c:2634
+msgid "Use profile from image"
+msgstr "Користи профил боја који је уметнут у слику"
+
+#: src/layout_util.c:2635
+msgid "Toggle _grayscale"
+msgstr "Црно-бело"
+
+#: src/layout_util.c:2635
+msgid "Toggle grayscale"
+msgstr "Укључује или искључује приказ слике у сивим тновима"
+
+#: src/layout_util.c:2636
+msgid "Image Overlay"
+msgstr "Распоред слике"
+
+#: src/layout_util.c:2637
+msgid "_Show Histogram"
+msgstr "Прикажи _хистограм"
+
+#: src/layout_util.c:2637
+msgid "Show Histogram"
+msgstr "Приказује хистограм"
+
+#: src/layout_util.c:2638
+#, fuzzy
+msgid "Rectangular Selection"
+msgstr "Правоугаони изворник при приказу иконица"
+
+#: src/layout_util.c:2639
+msgid "Toggle GIF animation"
+msgstr ""
+
+#: src/layout_util.c:2640
+#, fuzzy
+msgid "_Exif rotate"
+msgstr "Користи датум из Exif-а"
+
+#: src/layout_util.c:2640
+#, fuzzy
+msgid "Toggle Exif rotate"
+msgstr "Користи датум из Exif-а"
+
+#: src/layout_util.c:2641 src/preferences.c:850 src/toolbar.c:146
+#, fuzzy
+msgid "Draw Rectangle"
+msgstr "Изабери све"
+
+#: src/layout_util.c:2642
+msgid "Over/Under Exposed"
+msgstr ""
+
+#: src/layout_util.c:2642
+msgid "Highlight over/under exposed"
+msgstr ""
+
+#: src/layout_util.c:2643 src/preferences.c:838 src/toolbar.c:129
+#, fuzzy
+msgid "Split Pane Sync"
+msgstr "Дели појединачно"
+
+#: src/layout_util.c:2647
+#, fuzzy
+msgid "Images as _List"
+msgstr "Списак с_лика"
+
+#: src/layout_util.c:2647
+msgid "View Images as List"
+msgstr "Приказује слике као списак"
+
+#: src/layout_util.c:2648
+#, fuzzy
+msgid "Images as I_cons"
+msgstr "Приказује слике као иконице"
+
+#: src/layout_util.c:2648
+msgid "View Images as Icons"
+msgstr "Приказује слике као иконице"
+
+#: src/layout_util.c:2652
+#, fuzzy
+msgid "T_oggle Folder View"
+msgstr "Пушта или зауставља покретни приказ слика"
+
+#: src/layout_util.c:2652
+#, fuzzy
+msgid "Toggle Folders View"
+msgstr "Пушта или зауставља покретни приказ слика"
+
+#: src/layout_util.c:2656
+msgid "_Horizontal"
+msgstr "_Хоризонтално"
+
+#: src/layout_util.c:2656
+#, fuzzy
+msgid "Split panes horizontal."
+msgstr "Дели прозор по хоризонтали"
+
+#: src/layout_util.c:2657
+msgid "_Vertical"
+msgstr "_Вертикално"
+
+#: src/layout_util.c:2657
+#, fuzzy
+msgid "Split panes vertical"
+msgstr "Дели прозор по вертикали"
+
+#: src/layout_util.c:2658
+msgid "_Quad"
+msgstr "По _четри"
+
+#: src/layout_util.c:2658
+#, fuzzy
+msgid "Split panes quad"
+msgstr "По четри"
+
+#: src/layout_util.c:2659
+msgid "_Single"
+msgstr "По _једна"
+
+#: src/layout_util.c:2659
+#, fuzzy
+msgid "Single pane"
+msgstr "наредна слика"
+
+#: src/layout_util.c:2663
+msgid "Input _0: sRGB"
+msgstr "Улаз _0: sRGB"
+
+#: src/layout_util.c:2663
+msgid "Input 0: sRGB"
+msgstr "Улаз 0: sRGB"
+
+#: src/layout_util.c:2664
+msgid "Input _1: AdobeRGB compatible"
+msgstr "Улаз _1: сагласано са AdobeRGB"
+
+#: src/layout_util.c:2664
+msgid "Input 1: AdobeRGB compatible"
+msgstr "Улаз 1: сагласно са AdobeRGB"
+
+#: src/layout_util.c:2665
+msgid "Input _2"
+msgstr "Улаз _2"
+
+#: src/layout_util.c:2665
+msgid "Input 2"
+msgstr "Улаз 2"
+
+#: src/layout_util.c:2666
+msgid "Input _3"
+msgstr "Улаз _3"
+
+#: src/layout_util.c:2666
+msgid "Input 3"
+msgstr "Улаз 3"
+
+#: src/layout_util.c:2667
+msgid "Input _4"
+msgstr "Улаз _4"
+
+#: src/layout_util.c:2667
+msgid "Input 4"
+msgstr "Улаз 4"
+
+#: src/layout_util.c:2668
+msgid "Input _5"
+msgstr "Улаз _5"
+
+#: src/layout_util.c:2668
+msgid "Input 5"
+msgstr "Улаз 5"
+
+#: src/layout_util.c:2672
+msgid "Histogram on Red"
+msgstr "Хистограм црвене"
+
+#: src/layout_util.c:2673
+msgid "Histogram on Green"
+msgstr "Хистограм зелене"
+
+#: src/layout_util.c:2674
+msgid "Histogram on Blue"
+msgstr "Хистограм плаве"
+
+#: src/layout_util.c:2675
+msgid "Histogram on RGB"
+msgstr "Хистограм свих боја"
+
+#: src/layout_util.c:2676
+msgid "Histogram on Value"
+msgstr "Хистограм вредности"
+
+#: src/layout_util.c:2680
+msgid "Linear Histogram"
+msgstr "Линеарни хистограм"
+
+#: src/layout_util.c:2681
+msgid "_Log Histogram"
+msgstr "Л_огаритамски хистограм"
+
+#: src/layout_util.c:2681
+msgid "Log Histogram"
+msgstr "Логаритамски хистограм"
+
+#: src/layout_util.c:2685
+msgid "_Auto"
+msgstr ""
+
+#: src/layout_util.c:2685
+msgid "Stereo Auto"
+msgstr ""
+
+#: src/layout_util.c:2686
+msgid "_Side by Side"
+msgstr ""
+
+#: src/layout_util.c:2686
+msgid "Stereo Side by Side"
+msgstr ""
+
+#: src/layout_util.c:2687
+msgid "_Cross"
+msgstr ""
+
+#: src/layout_util.c:2687
+msgid "Stereo Cross"
+msgstr ""
+
+#: src/layout_util.c:2688
+msgid "_Off"
+msgstr ""
+
+#: src/layout_util.c:2688
+msgid "Stereo Off"
 msgstr ""
 
 #: src/layout_util.c:3021
@@ -2366,18 +4549,6 @@ msgstr "Изађи из %s"
 msgid "Collections have been modified. Quit anyway?"
 msgstr "Збирка је измењена. Да ипак изађем?"
 
-#: src/menu.c:121
-msgid "_Plugins"
-msgstr ""
-
-#: src/menu.c:148
-msgid "Sort by size"
-msgstr "Поређај по величини"
-
-#: src/menu.c:151
-msgid "Sort by date"
-msgstr "Поређај по датуму"
-
 #: src/menu.c:154
 #, fuzzy
 msgid "Sort by file creation date"
@@ -2397,14 +4568,6 @@ msgstr "Поређај по _датуму из Exif-а"
 msgid "Unsorted"
 msgstr "Непоређано"
 
-#: src/menu.c:166
-msgid "Sort by path"
-msgstr "Поређај по путању"
-
-#: src/menu.c:169
-msgid "Sort by number"
-msgstr "Поређај по броју"
-
 #: src/menu.c:172
 #, fuzzy
 msgid "Sort by rating"
@@ -2414,10 +4577,6 @@ msgstr "Поређај по датуму"
 #, fuzzy
 msgid "Sort by class"
 msgstr "Поређај по величини"
-
-#: src/menu.c:179
-msgid "Sort by name"
-msgstr "Поређај по називу"
 
 #: src/menu.c:273 src/menu.c:282
 msgid "Zoom to original size"
@@ -2431,45 +4590,27 @@ msgstr "Прилагоди величини прозора"
 msgid "Leave Zoom at previous setting"
 msgstr "Задржи увећање из претходне"
 
-#: src/menu.c:353
+#: src/menu.c:353 src/preferences.c:819 src/toolbar.c:110
 #, fuzzy
 msgid "Rotate clockwise 90°"
 msgstr "Ротира слику удесно"
 
-#: src/menu.c:356
-#, fuzzy
-msgid "Rotate counterclockwise 90°"
-msgstr "Ротира слику улево"
-
-#: src/menu.c:359
-#, fuzzy
-msgid "Rotate 180°"
-msgstr "Ротира слику за 180 степени"
-
-#: src/menu.c:362
+#: src/menu.c:362 src/preferences.c:822 src/toolbar.c:113
 msgid "Mirror"
 msgstr "Пресликава слику као у огледалу"
 
-#: src/menu.c:365
+#: src/menu.c:365 src/preferences.c:823 src/toolbar.c:114
 msgid "Flip"
 msgstr "Изврће слику"
 
-#: src/menu.c:368
+#: src/menu.c:368 src/preferences.c:824 src/toolbar.c:115
 msgid "Original state"
 msgstr "Враћа слику на изворно стање"
-
-#: src/menu.c:411
-msgid "_Orientation"
-msgstr "_Орјентација"
 
 #: src/menu.c:467
 #, fuzzy
 msgid "_Add to Collection"
 msgstr "Додај збирку"
-
-#: src/menu.c:472
-msgid "New collection"
-msgstr "Нова збирка"
 
 #: src/metadata.c:1739
 msgid "People"
@@ -2722,23 +4863,160 @@ msgid ""
 "  Error code: "
 msgstr ""
 
-#: src/options.c:244 src/ui_bookmark.c:560 src/ui_pathsel.c:1047
-msgid "Home"
-msgstr "Лична путања"
-
 #: src/options.c:246 src/ui_bookmark.c:571
 msgid "Desktop"
 msgstr "Десктоп"
 
-#: src/options.c:267 src/search.c:2338 src/search.c:2342 src/search.c:3626
-#: src/search.c:3630 src/view_file/view_file.c:915
+#: src/options.c:267 src/search.c:2338 src/search.c:2342 src/search.c:3627
+#: src/search.c:3631 src/view_file/view_file.c:915
 #, fuzzy
 msgid "Mark "
 msgstr "Marker %d"
 
+#: src/osd.c:44 src/preferences.c:135
+#, fuzzy
+msgid "Collection"
+msgstr "Збирке"
+
+#: src/osd.c:45
+#, fuzzy
+msgid "Image index"
+msgstr "Датотека са сликом"
+
+#: src/osd.c:46
+#, fuzzy
+msgid "Images total"
+msgstr "Датотека са сликом"
+
+#: src/osd.c:55
+#, fuzzy
+msgid "File page no."
+msgstr "Подаци о датотеци"
+
+#: src/osd.c:56
+#, fuzzy
+msgid "Image date"
+msgstr "Ширина слике"
+
+#: src/osd.c:58
+#, fuzzy
+msgid "ShutterSpeed"
+msgstr "Брзина затварача"
+
+#: src/osd.c:64
+msgid "ISO"
+msgstr ""
+
+#: src/osd.c:66
+#, fuzzy
+msgid "Focal len. 35mm"
+msgstr "Жижна даљина на 35mm"
+
+#: src/osd.c:70
+msgid "Lat, Long"
+msgstr ""
+
+#: src/osd.c:71
+#, fuzzy
+msgid "Altitude"
+msgstr "GPS висина"
+
+#: src/osd.c:73
+#, fuzzy
+msgid "Timezone"
+msgstr "Трака времена"
+
+#: src/osd.c:76
+#, fuzzy
+msgid "Rating"
+msgstr "Слике"
+
+#: src/osd.c:78
+#, fuzzy
+msgid "© Creator"
+msgstr "Направи фасциклу"
+
+#: src/osd.c:79
+msgid "© Contributor"
+msgstr ""
+
+#: src/osd.c:80
+#, fuzzy
+msgid "© Rights"
+msgstr "Светлост"
+
 #: src/osd.c:169
 msgid ""
 "To include predefined tags in the template, click a button or drag-and-drop"
+msgstr ""
+
+#: src/pan-view/pan-view.c:104 src/pan-view/pan-view.c:123
+msgid "Display Find search bar"
+msgstr ""
+
+#: src/pan-view/pan-view.c:105
+#, fuzzy
+msgid "Start search"
+msgstr "Претрага слика"
+
+#: src/pan-view/pan-view.c:107
+msgid "Hide Find search bar"
+msgstr ""
+
+#: src/pan-view/pan-view.c:124
+#, fuzzy
+msgid "Scroll left"
+msgstr "горе лево"
+
+#: src/pan-view/pan-view.c:125
+#, fuzzy
+msgid "Scroll right"
+msgstr "горе десно"
+
+#: src/pan-view/pan-view.c:126
+#, fuzzy
+msgid "Scroll up"
+msgstr "Иди у горњи леви угао"
+
+#: src/pan-view/pan-view.c:127
+#, fuzzy
+msgid "Scroll down"
+msgstr "Иди на средину слике"
+
+#: src/pan-view/pan-view.c:128
+#, fuzzy
+msgid "Scroll left faster"
+msgstr "Иди у горњи леви угао"
+
+#: src/pan-view/pan-view.c:129
+#, fuzzy
+msgid "Scroll right faster"
+msgstr "Иди на средину слике"
+
+#: src/pan-view/pan-view.c:130
+#, fuzzy
+msgid "Scroll up faster"
+msgstr "Иди у горњи леви угао"
+
+#: src/pan-view/pan-view.c:131
+#, fuzzy
+msgid "Scroll down faster"
+msgstr "Иди на средину слике"
+
+#: src/pan-view/pan-view.c:132
+msgid "Scroll display half screen up"
+msgstr ""
+
+#: src/pan-view/pan-view.c:133
+msgid "Scroll display half screen down"
+msgstr ""
+
+#: src/pan-view/pan-view.c:134
+msgid "Scroll display half screen left"
+msgstr ""
+
+#: src/pan-view/pan-view.c:135
+msgid "Scroll display half screen right"
 msgstr ""
 
 #: src/pan-view/pan-view.c:510
@@ -2780,7 +5058,7 @@ msgstr "Датум:"
 msgid "Size:"
 msgstr "Величина:"
 
-#: src/pan-view/pan-view.c:1796 src/search.c:2788
+#: src/pan-view/pan-view.c:1796 src/search.c:2789
 msgid "Folder not found"
 msgstr "Фасцикла није нађена"
 
@@ -2969,6 +5247,28 @@ msgstr "делимично поклапање"
 msgid "no match"
 msgstr "није нађено"
 
+#: src/preferences.c:130 src/search.c:2286 src/search.c:3611
+msgid "Unknown"
+msgstr "Непознато"
+
+#: src/preferences.c:132
+msgid "RAW Image"
+msgstr "RAW слика"
+
+#: src/preferences.c:134 src/search.c:2271 src/search.c:3608
+msgid "Video"
+msgstr ""
+
+#: src/preferences.c:136 src/search.c:2276 src/search.c:3609
+#, fuzzy
+msgid "Document"
+msgstr "Коментар"
+
+#: src/preferences.c:137
+#, fuzzy
+msgid "Archive"
+msgstr "Архитектура"
+
 #: src/preferences.c:664
 msgid "Nearest (worst, but fastest)"
 msgstr "По најближем (најгоре, али најбрже)"
@@ -3005,6 +5305,125 @@ msgstr ""
 #: src/preferences.c:765
 msgid "Arithmetic"
 msgstr ""
+
+#: src/preferences.c:790 src/toolbar.c:78
+msgid "Back"
+msgstr "Назад"
+
+#: src/preferences.c:791 src/toolbar.c:79
+#, fuzzy
+msgid "Forward"
+msgstr "Разгледач слика"
+
+#: src/preferences.c:793 src/toolbar.c:81
+msgid "Up"
+msgstr ""
+
+#: src/preferences.c:794 src/toolbar.c:82
+#, fuzzy
+msgid "First page"
+msgstr "Прва слика"
+
+#: src/preferences.c:795 src/toolbar.c:83
+#, fuzzy
+msgid "Last Page"
+msgstr "Последња слика"
+
+#: src/preferences.c:796 src/toolbar.c:84
+#, fuzzy
+msgid "Next page"
+msgstr "Наредна слика"
+
+#: src/preferences.c:797 src/toolbar.c:85
+#, fuzzy
+msgid "Previous Page"
+msgstr "Претходна слика"
+
+#: src/preferences.c:798
+msgid "New _window"
+msgstr "Нови _прозор"
+
+#: src/preferences.c:801 src/preferences.c:3275 src/toolbar.c:91
+#, fuzzy
+msgid "Search"
+msgstr "Тражи:"
+
+#: src/preferences.c:803 src/toolbar.c:93 src/ui_pathsel.c:1049
+#: src/utilops.c:3189
+msgid "New folder"
+msgstr "Нова фасцикла"
+
+#: src/preferences.c:808 src/toolbar.c:98
+#, fuzzy
+msgid "Close Window"
+msgstr "Затвори прозор"
+
+#: src/preferences.c:812 src/toolbar.c:103
+#, fuzzy
+msgid "Select invert"
+msgstr "Изаберите иконицу"
+
+#: src/preferences.c:813 src/toolbar.c:104
+#, fuzzy
+msgid "Show file filter"
+msgstr "Прикажи _скривене датотеке"
+
+#: src/preferences.c:814 src/toolbar.c:105
+#, fuzzy
+msgid "Select rectangle"
+msgstr "Изабери све"
+
+#: src/preferences.c:816 src/preferences.c:3983 src/toolbar.c:107
+msgid "Preferences"
+msgstr "Поставке"
+
+#: src/preferences.c:817 src/toolbar.c:108
+#, fuzzy
+msgid "Configure this window"
+msgstr "Подеси овај прозор..."
+
+#: src/preferences.c:818 src/toolbar.c:109
+#, fuzzy
+msgid "Cache maintenance"
+msgstr "Одржавање оставе"
+
+#: src/preferences.c:829 src/toolbar.c:120
+#, fuzzy
+msgid "Fit Horizontaly"
+msgstr "Уклопи према ширини"
+
+#: src/preferences.c:830 src/toolbar.c:121
+#, fuzzy
+msgid "Fit vertically"
+msgstr "Уклопи према висини"
+
+#: src/preferences.c:835 src/toolbar.c:126
+#, fuzzy
+msgid "Zoom1:3"
+msgstr "Размера 1:3"
+
+#: src/preferences.c:839 src/toolbar.c:130
+#, fuzzy
+msgid "Grayscale"
+msgstr "Укључује или искључује приказ слике у сивим тновима"
+
+#: src/preferences.c:840 src/toolbar.c:131
+msgid "Over Under Exposed"
+msgstr ""
+
+#: src/preferences.c:846 src/toolbar.c:142 src/window.c:287 src/window.c:308
+msgid "Help"
+msgstr "Помоћ"
+
+#: src/preferences.c:848 src/toolbar.c:144
+#, fuzzy
+msgid "Show thumbnails"
+msgstr "Прикажи _умањене приказе"
+
+#: src/preferences.c:849 src/toolbar.c:145
+#, fuzzy
+msgid "Show marks"
+msgstr "Приказује маркере"
 
 #: src/preferences.c:968
 msgid "Custom"
@@ -3169,11 +5588,6 @@ msgstr ""
 msgid "Use embedded metadata in video files as thumbnails when available"
 msgstr ""
 
-#: src/preferences.c:2033
-#, fuzzy
-msgid "Star Rating"
-msgstr "Слике"
-
 #: src/preferences.c:2040
 msgid "Star character: "
 msgstr ""
@@ -3187,12 +5601,6 @@ msgid ""
 "Hexadecimal representation of a Unicode character. A list of all Unicode "
 "characters may be found on the Internet."
 msgstr ""
-
-#: src/preferences.c:2058 src/preferences.c:2090 src/preferences.c:2218
-#: src/view_file/view_file.c:1188 src/window.c:400
-#, fuzzy
-msgid "Clear"
-msgstr "О_чисти"
 
 #: src/preferences.c:2062 src/preferences.c:2094 src/preferences.c:2222
 #, fuzzy
@@ -3291,10 +5699,6 @@ msgid ""
 "https://www.search_engine.com/search?q=site:geeqie.org/help\n"
 "https://www.search_engine.com/?q=site:geeqie.org/help"
 msgstr ""
-
-#: src/preferences.c:2242 src/search.c:2261 src/search.c:3605
-msgid "Image"
-msgstr "Слика"
 
 #: src/preferences.c:2262
 msgid "Two pass rendering (apply HQ zoom and color correction in second pass)"
@@ -3787,19 +6191,10 @@ msgstr ""
 msgid "Search for keywords"
 msgstr "Кључне речи"
 
-#: src/preferences.c:3269 src/search.c:3528
-msgid "Keywords"
-msgstr "Кључне речи"
-
 #: src/preferences.c:3271
 #, fuzzy
 msgid "Edit keywords autocompletion list"
 msgstr "Додај кључне речи на изабране датотеке"
-
-#: src/preferences.c:3275
-#, fuzzy
-msgid "Search"
-msgstr "Тражи:"
 
 #: src/preferences.c:3362
 msgid "Perceptual"
@@ -3808,10 +6203,6 @@ msgstr ""
 #: src/preferences.c:3364
 msgid "Relative Colorimetric"
 msgstr ""
-
-#: src/preferences.c:3366
-msgid "Saturation"
-msgstr "Засићеност"
 
 #: src/preferences.c:3368
 msgid "Absolute Colorimetric"
@@ -3833,7 +6224,7 @@ msgstr "Врста"
 msgid "Menu name"
 msgstr "Назив менија"
 
-#: src/preferences.c:3408 src/search.c:3434
+#: src/preferences.c:3408 src/search.c:3435
 msgid "File"
 msgstr "Датотека"
 
@@ -3867,10 +6258,6 @@ msgstr "Исцртај"
 msgid "Behavior"
 msgstr "Понашање"
 
-#: src/preferences.c:3510 src/utilops.c:2209
-msgid "Delete"
-msgstr "Брисање"
-
 #: src/preferences.c:3512
 #, fuzzy
 msgid "Confirm permanent file delete"
@@ -3901,10 +6288,6 @@ msgstr "MB"
 #: src/preferences.c:3539
 msgid "Set to 0 for unlimited size"
 msgstr "Поставите на 0 за неограничену величину"
-
-#: src/preferences.c:3540
-msgid "View"
-msgstr "Преглед"
 
 #: src/preferences.c:3552
 msgid "Use system Trash bin"
@@ -4195,10 +6578,6 @@ msgstr "Десно:"
 msgid "Right Y"
 msgstr "Десно:"
 
-#: src/preferences.c:3983
-msgid "Preferences"
-msgstr "Поставке"
-
 #: src/preferences.c:4143
 #, fuzzy
 msgid "About Geeqie"
@@ -4307,6 +6686,286 @@ msgstr ""
 msgid "Timezone: %s\n"
 msgstr ""
 
+#: src/remote.c:1371 src/remote.c:1376
+msgid "lua error: no data"
+msgstr ""
+
+#: src/remote.c:1399
+msgid "previous image"
+msgstr "претходна слика"
+
+#: src/remote.c:1400
+#, fuzzy
+msgid "close window"
+msgstr "Затвори прозор"
+
+#: src/remote.c:1401
+msgid "<FILE>|layout ID"
+msgstr ""
+
+#: src/remote.c:1401
+msgid "load configuration from FILE"
+msgstr ""
+
+#: src/remote.c:1402
+#, fuzzy
+msgid "clean the metadata cache"
+msgstr "Не могу да упишем метаподатке"
+
+#: src/remote.c:1403
+#, fuzzy
+msgid "<folder>  "
+msgstr "фасцикле"
+
+#: src/remote.c:1403
+#, fuzzy
+msgid " render thumbnails"
+msgstr "Направи умањене приказе"
+
+#: src/remote.c:1404 src/remote.c:1405
+#, fuzzy
+msgid "<folder> "
+msgstr "фасцикле"
+
+#: src/remote.c:1404
+#, fuzzy
+msgid "render thumbnails recursively"
+msgstr "Исцртај умањене приказе из одабране фасцикле."
+
+#: src/remote.c:1405
+#, fuzzy
+msgid " render thumbnails (see Help)"
+msgstr "Исцртај умањене приказе из одабране фасцикле."
+
+#: src/remote.c:1406
+#, fuzzy
+msgid "<folder>"
+msgstr "фасцикле"
+
+#: src/remote.c:1406
+#, fuzzy
+msgid " render thumbnails recursively (see Help)"
+msgstr "Исцртај умањене приказе из одабране фасцикле."
+
+#: src/remote.c:1407 src/remote.c:1408
+msgid "clear|clean"
+msgstr ""
+
+#: src/remote.c:1407
+#, fuzzy
+msgid "clear or clean shared thumbnail cache"
+msgstr "Користи дељену оставу за умањене приказе"
+
+#: src/remote.c:1408
+#, fuzzy
+msgid "clear or clean thumbnail cache"
+msgstr "Дели оставу умањених приказа"
+
+#: src/remote.c:1409
+msgid "<[H:][M:][N][.M]>"
+msgstr ""
+
+#: src/remote.c:1409
+#, fuzzy
+msgid "set slide show delay to Hrs Mins N.M seconds"
+msgstr "подеси трајање покретног приказа у секундама"
+
+#: src/remote.c:1410
+msgid "first image"
+msgstr "прва слика"
+
+#: src/remote.c:1411
+msgid "toggle full screen"
+msgstr "цео екран"
+
+#: src/remote.c:1412 src/remote.c:1413 src/remote.c:1414 src/remote.c:1415
+msgid "<FILE>|<URL>"
+msgstr ""
+
+#: src/remote.c:1412 src/remote.c:1413
+#, fuzzy
+msgid "open FILE or URL, bring Geeqie window to the top"
+msgstr "отвори датотеку у новом прозору"
+
+#: src/remote.c:1414 src/remote.c:1415
+#, fuzzy
+msgid "open FILE or URL, do not bring Geeqie window to the top"
+msgstr "отвори датотеку у новом прозору"
+
+#: src/remote.c:1416
+msgid "start full screen"
+msgstr "прикажи преко целог екрана"
+
+#: src/remote.c:1417
+msgid "stop full screen"
+msgstr "напусти цео екран"
+
+#: src/remote.c:1418
+msgid "<GEOMETRY>"
+msgstr ""
+
+#: src/remote.c:1418
+#, fuzzy
+msgid "set window geometry"
+msgstr "Није исправна геометрија\n"
+
+#: src/remote.c:1419
+msgid "<COLLECTION>"
+msgstr ""
+
+#: src/remote.c:1419
+#, fuzzy
+msgid "get collection content"
+msgstr "Нова збирка"
+
+#: src/remote.c:1420
+#, fuzzy
+msgid "get collection list"
+msgstr "Нова збирка"
+
+#: src/remote.c:1421 src/remote.c:1427 src/remote.c:1430 src/remote.c:1450
+#: src/remote.c:1451
+msgid "<FILE>"
+msgstr ""
+
+#: src/remote.c:1421
+msgid "get destination path of FILE (See Plugins Configuration)"
+msgstr ""
+
+#: src/remote.c:1422
+#, fuzzy
+msgid "get file info"
+msgstr "Подаци о датотеци"
+
+#: src/remote.c:1423 src/remote.c:1424
+msgid "[<FOLDER>]"
+msgstr ""
+
+#: src/remote.c:1423
+msgid "get list of files and class"
+msgstr ""
+
+#: src/remote.c:1424
+#, fuzzy
+msgid "get list of files and class recursive"
+msgstr "Исцртај умањене приказе из одабране фасцикле."
+
+#: src/remote.c:1425
+#, fuzzy
+msgid "get rectangle co-ordinates"
+msgstr "Исцртај"
+
+#: src/remote.c:1426
+#, fuzzy
+msgid "get render intent"
+msgstr "Исцртај"
+
+#: src/remote.c:1427
+msgid "get list of sidecars of FILE"
+msgstr ""
+
+#: src/remote.c:1428
+msgid "<ID>"
+msgstr ""
+
+#: src/remote.c:1428
+msgid "window id for following commands"
+msgstr ""
+
+#: src/remote.c:1429
+msgid "last image"
+msgstr "последња слика"
+
+#: src/remote.c:1430
+#, fuzzy
+msgid "add FILE to command line collection list"
+msgstr "Додај у нову збирку"
+
+#: src/remote.c:1431
+#, fuzzy
+msgid "clear command line collection list"
+msgstr "Додај у нову збирку"
+
+#: src/remote.c:1433
+msgid "<FILE>,<lua script>"
+msgstr ""
+
+#: src/remote.c:1433
+msgid "run lua script on FILE"
+msgstr ""
+
+#: src/remote.c:1435
+#, fuzzy
+msgid "new window"
+msgstr "Нови прозор"
+
+#: src/remote.c:1436
+msgid "next image"
+msgstr "наредна слика"
+
+#: src/remote.c:1437
+msgid "print pixel info of mouse pointer on current image"
+msgstr ""
+
+#: src/remote.c:1438
+msgid "terminate returned data with null character instead of newline"
+msgstr ""
+
+#: src/remote.c:1439
+msgid "<PWD>"
+msgstr ""
+
+#: src/remote.c:1439
+msgid "use PWD as working directory for following commands"
+msgstr ""
+
+#: src/remote.c:1440
+msgid "quit"
+msgstr "изађи"
+
+#: src/remote.c:1441 src/remote.c:1442
+#, fuzzy
+msgid "bring the Geeqie window to the top"
+msgstr "отвори датотеку у новом прозору"
+
+#: src/remote.c:1443
+msgid "toggle slide show"
+msgstr "покретни приказ"
+
+#: src/remote.c:1444
+msgid "<FOLDER>"
+msgstr ""
+
+#: src/remote.c:1444
+#, fuzzy
+msgid "start recursive slide show in FOLDER"
+msgstr "започни покретни приказ од назад"
+
+#: src/remote.c:1445
+msgid "start slide show"
+msgstr "започни покретни приказ"
+
+#: src/remote.c:1446
+msgid "stop slide show"
+msgstr "заустави покретни приказ"
+
+#: src/remote.c:1447
+msgid "print filename [and Collection] of current image"
+msgstr ""
+
+#: src/remote.c:1448
+msgid "show tools"
+msgstr "прикажи алатке"
+
+#: src/remote.c:1449
+msgid "hide tools"
+msgstr "сакриј алатке"
+
+#: src/remote.c:1450 src/remote.c:1451
+#, fuzzy
+msgid "open FILE in new window"
+msgstr "отвори датотеку у новом прозору"
+
 #: src/remote.c:1516
 msgid "Remote command list:\n"
 msgstr "Списак удаљених наредби:\n"
@@ -4330,9 +6989,99 @@ msgstr "Удаљени програм %s није покренут, покрећ
 msgid "Remote not available\n"
 msgstr "Удаљени програм није доступан\n"
 
-#: src/search_and_run.c:291
-msgid "Search and Run command"
+#: src/search.c:270
+msgid "folder"
+msgstr "фасцикле"
+
+#: src/search.c:271
+msgid "comments"
+msgstr "коментари"
+
+#: src/search.c:272
+msgid "results"
+msgstr "резултат"
+
+#: src/search.c:273
+#, fuzzy
+msgid "collection"
+msgstr "Збирке"
+
+#: src/search.c:277
+#, fuzzy
+msgid "name contains"
+msgstr "садржај"
+
+#: src/search.c:278
+#, fuzzy
+msgid "name is"
+msgstr "Списак с_лика"
+
+#: src/search.c:279
+#, fuzzy
+msgid "path contains"
+msgstr "садржај"
+
+#: src/search.c:283 src/search.c:290 src/search.c:309
+msgid "equal to"
+msgstr "је једнако са"
+
+#: src/search.c:284 src/search.c:310 src/search.c:317
+msgid "less than"
+msgstr "мањи од"
+
+#: src/search.c:285 src/search.c:311 src/search.c:318
+msgid "greater than"
+msgstr "већи од"
+
+#: src/search.c:286 src/search.c:293 src/search.c:312
+msgid "between"
+msgstr "између"
+
+#: src/search.c:291
+msgid "before"
+msgstr "пре"
+
+#: src/search.c:292
+msgid "after"
+msgstr "након"
+
+#: src/search.c:297
+msgid "match all"
+msgstr "поклопи све"
+
+#: src/search.c:298
+msgid "match any"
+msgstr "поклопи било који"
+
+#: src/search.c:299
+msgid "exclude"
+msgstr "искључи"
+
+#: src/search.c:303
+msgid "contains"
+msgstr "садржај"
+
+#: src/search.c:304
+msgid "miss"
 msgstr ""
+
+#: src/search.c:316
+#, fuzzy
+msgid "not geocoded"
+msgstr "није одређено"
+
+#: src/search.c:322 src/search.c:327
+msgid "is"
+msgstr "је"
+
+#: src/search.c:323 src/search.c:328
+msgid "is not"
+msgstr ""
+
+#: src/search.c:368
+#, fuzzy
+msgid "Start/stop search"
+msgstr "Претрага слика"
 
 #: src/search.c:410
 #, c-format
@@ -4353,159 +7102,142 @@ msgstr "Тражим..."
 msgid "Changed"
 msgstr "Без измена"
 
-#: src/search.c:2063 src/search.c:3479
+#: src/search.c:2063 src/search.c:3480
 #, fuzzy
 msgid "Original"
 msgstr "Враћа слику на изворно стање"
 
-#: src/search.c:2069 src/search.c:3480
+#: src/search.c:2069 src/search.c:3481
 #, fuzzy
 msgid "Digitized"
 msgstr "Подешени датум"
 
-#: src/search.c:2266 src/search.c:3606
+#: src/search.c:2266 src/search.c:3607
 #, fuzzy
 msgid "Raw Image"
 msgstr "RAW слика"
 
-#: src/search.c:2271 src/search.c:3607
-msgid "Video"
-msgstr ""
-
-#: src/search.c:2276 src/search.c:3608
-#, fuzzy
-msgid "Document"
-msgstr "Коментар"
-
-#: src/search.c:2286 src/search.c:3610
-msgid "Unknown"
-msgstr "Непознато"
-
-#: src/search.c:2330 src/search.c:3623
+#: src/search.c:2330 src/search.c:3624
 #, fuzzy
 msgid "Any mark"
 msgstr "Додаје маркер %d"
 
-#: src/search.c:2386 src/search.c:3579
+#: src/search.c:2387 src/search.c:3580
 msgid "km"
 msgstr ""
 
-#: src/search.c:2391 src/search.c:3580
+#: src/search.c:2392 src/search.c:3581
 #, fuzzy
 msgid "miles"
 msgstr "Датотеке"
 
-#: src/search.c:2713
+#: src/search.c:2714
 msgid "File not found"
 msgstr "Датотека није нађена"
 
-#: src/search.c:2714
+#: src/search.c:2715
 msgid "Please enter an existing file for image content."
 msgstr "Унесите постојећу датотеку или садржај слике."
 
-#: src/search.c:2739
+#: src/search.c:2740
 msgid "Entry does not contain a valid lat/long value"
 msgstr ""
 
-#: src/search.c:2789
+#: src/search.c:2790
 msgid "Please enter an existing folder to search."
 msgstr "Унесите постојећу фасциклу за претрагу."
 
-#: src/search.c:2835
+#: src/search.c:2836
 #, fuzzy
 msgid "Collection not found"
 msgstr "Фасцикла није нађена"
 
-#: src/search.c:2835
+#: src/search.c:2836
 #, fuzzy
 msgid "Please enter an existing collection name."
 msgstr "Унесите постојећу фасциклу за претрагу."
 
-#: src/search.c:3293
+#: src/search.c:3294
 #, fuzzy
 msgid "Select collection"
 msgstr "Сачувај збирку"
 
-#: src/search.c:3363
+#: src/search.c:3364
 msgid "Image search"
 msgstr "Претрага слика"
 
-#: src/search.c:3402
+#: src/search.c:3403
 msgid "Search:"
 msgstr "Тражи:"
 
-#: src/search.c:3416
+#: src/search.c:3417
 msgid "Recurse"
 msgstr ""
 
-#: src/search.c:3440 src/search.c:3549
+#: src/search.c:3441 src/search.c:3550
 msgid "Match case"
 msgstr ""
 
-#: src/search.c:3446
+#: src/search.c:3447
 msgid "File size is"
 msgstr ""
 
-#: src/search.c:3453 src/search.c:3470 src/search.c:3499 src/search.c:3562
+#: src/search.c:3454 src/search.c:3471 src/search.c:3500 src/search.c:3563
 msgid "and"
 msgstr ""
 
-#: src/search.c:3459
+#: src/search.c:3460
 msgid "File date is"
 msgstr ""
 
-#: src/search.c:3477
+#: src/search.c:3478
 msgid "Modified"
 msgstr ""
 
-#: src/search.c:3478
+#: src/search.c:3479
 #, fuzzy
 msgid "Status Changed"
 msgstr ""
 "\n"
 "Стање: "
 
-#: src/search.c:3488
+#: src/search.c:3489
 msgid "Image dimensions are"
 msgstr ""
 
-#: src/search.c:3509
+#: src/search.c:3510
 msgid "Image content is"
 msgstr ""
 
-#: src/search.c:3515
+#: src/search.c:3516
 #, no-c-format
 msgid "% similar to"
 msgstr ""
 
-#: src/search.c:3523
+#: src/search.c:3524
 #, fuzzy
 msgid "Ignore rotation"
 msgstr "Орјентација"
 
-#: src/search.c:3540
-msgid "Comment"
-msgstr "Коментар"
-
-#: src/search.c:3555
+#: src/search.c:3556
 #, fuzzy
 msgid "Image rating is"
 msgstr "Опис слике"
 
-#: src/search.c:3569
+#: src/search.c:3570
 #, fuzzy
 msgid "Image is"
 msgstr "Списак с_лика"
 
-#: src/search.c:3581
+#: src/search.c:3582
 msgid "n.m."
 msgstr ""
 
-#: src/search.c:3587
+#: src/search.c:3588
 msgid "from"
 msgstr ""
 
-#: src/search.c:3592
+#: src/search.c:3593
 msgid ""
 "Enter a coordinate in the form:\n"
 "89.123 179.456\n"
@@ -4516,16 +7248,16 @@ msgid ""
 "See the Help file"
 msgstr ""
 
-#: src/search.c:3600
+#: src/search.c:3601
 #, fuzzy
 msgid "Image class"
 msgstr "Списак с_лика"
 
-#: src/search.c:3611
+#: src/search.c:3612
 msgid "Broken"
 msgstr ""
 
-#: src/search.c:3618
+#: src/search.c:3619
 #, fuzzy
 msgid "Marks"
 msgstr "Приказује маркере"
@@ -4574,6 +7306,25 @@ msgstr "Пречице са тастатуре"
 #: src/thumb.c:417
 msgid "Thumbnail image in cache failed to load, trying to recreate.\n"
 msgstr ""
+
+#: src/toolbar.c:100
+#, fuzzy
+msgid "Open Archive"
+msgstr "Отвори скорашње"
+
+#: src/toolbar.c:132
+#, fuzzy
+msgid "Pixel Info"
+msgstr "Подаци о _пикселима"
+
+#: src/toolbar.c:133
+msgid "Ignore Alpha"
+msgstr ""
+
+#: src/toolbar.c:134
+#, fuzzy
+msgid "Exif rotate"
+msgstr "Користи датум из Exif-а"
 
 #: src/toolbar.c:538
 msgid "Add Toolbar Item"
@@ -4783,10 +7534,6 @@ msgstr "Грешка при образовању фасцикле"
 msgid "All Files"
 msgstr "Аве датотека"
 
-#: src/ui_pathsel.c:1049 src/utilops.c:3189
-msgid "New folder"
-msgstr "Нова фасцикла"
-
 #: src/ui_pathsel.c:1052
 msgid "Show hidden"
 msgstr "Прикажи скривено"
@@ -4794,10 +7541,6 @@ msgstr "Прикажи скривено"
 #: src/ui_pathsel.c:1137
 msgid "Filter:"
 msgstr "Филтер:"
-
-#: src/ui_pathsel.c:1179
-msgid "Files"
-msgstr "Датотеке"
 
 #: src/ui_tabcomp.c:945
 msgid "Select path"
@@ -5028,10 +7771,6 @@ msgstr "Да умножим датотеке?"
 msgid "This will copy the following files"
 msgstr "Ово ће умножити следеће датотеке"
 
-#: src/utilops.c:2396 src/utilops.c:2862
-msgid "Rename"
-msgstr "Преименуј"
-
 #: src/utilops.c:2397
 msgid "Rename files?"
 msgstr ""
@@ -5201,14 +7940,6 @@ msgstr "Прикажи _скривене датотеке"
 msgid "Re_fresh"
 msgstr "_Освежи"
 
-#: src/view_file/view_file.c:725
-msgid "Enable file _grouping"
-msgstr "_Групиши датотеке"
-
-#: src/view_file/view_file.c:727
-msgid "Disable file groupi_ng"
-msgstr "Не г_рупиши датотеке"
-
 #: src/view_file/view_file.c:749
 #, fuzzy
 msgid "Images as List"
@@ -5288,14 +8019,6 @@ msgstr "Назив"
 msgid "Stars"
 msgstr "Започни #"
 
-#: src/window.c:287 src/window.c:308
-msgid "Help"
-msgstr "Помоћ"
-
-#: src/window.c:371
-msgid "On-line help search"
-msgstr ""
-
 #: src/window.c:374
 msgid "Search the on-line help files.\n"
 msgstr ""
@@ -5310,1220 +8033,6 @@ msgstr "Тражи:"
 msgid "Search terms:"
 msgstr "Тражи:"
 
-#~ msgid "Histogram"
-#~ msgstr "Хистограм"
-
-#~ msgid "Title"
-#~ msgstr "Наслов"
-
-#, fuzzy
-#~ msgid "Rating"
-#~ msgstr "Слике"
-
-#, fuzzy
-#~ msgid "Headline"
-#~ msgstr "Трака времена"
-
-#~ msgid "Exif"
-#~ msgstr "Exif"
-
-#~ msgid "File info"
-#~ msgstr "Подаци о датотеци"
-
-#~ msgid "Location and GPS"
-#~ msgstr "Место и GPS"
-
-#~ msgid "Copyright"
-#~ msgstr "Autorsko pravo"
-
-#~ msgid "Close window"
-#~ msgstr "Затвори прозор"
-
-#~ msgid "View in new window"
-#~ msgstr "Прикажи у новом прозору"
-
-#, fuzzy
-#~ msgid "Select single file"
-#~ msgstr "Изабери фасциклу"
-
-#, fuzzy
-#~ msgid "Toggle select image"
-#~ msgstr "наредна слика"
-
-#, fuzzy
-#~ msgid "Append from collection"
-#~ msgstr "Додај из збирке..."
-
-#, fuzzy
-#~ msgid "Save collection as"
-#~ msgstr "Сачувај збирку"
-
-#, fuzzy
-#~ msgid "Show filename text"
-#~ msgstr "_Текст са именом датотеке"
-
-#~ msgid "Print"
-#~ msgstr "Штампај"
-
-#, fuzzy
-#~ msgid "Toggle thumbs"
-#~ msgstr "Учитавам умањене приказе..."
-
-#, fuzzy
-#~ msgid "Collection from selection"
-#~ msgstr "Додај из списка датотека"
-
-#, fuzzy
-#~ msgid "Append list"
-#~ msgstr "_Dodaj"
-
-#, fuzzy
-#~ msgid "Select group 1 duplicates"
-#~ msgstr "Изабери дупликате из _1. групе"
-
-#, fuzzy
-#~ msgid "Select group 2 duplicates"
-#~ msgstr "Изабери дупликате из _2. групе"
-
-#~ msgid "top left"
-#~ msgstr "горе лево"
-
-#~ msgid "top right"
-#~ msgstr "горе десно"
-
-#~ msgid "bottom right"
-#~ msgstr "доле десно"
-
-#~ msgid "bottom left"
-#~ msgstr "доле лево"
-
-#~ msgid "left top"
-#~ msgstr "лево горе"
-
-#~ msgid "right top"
-#~ msgstr "десно горе"
-
-#~ msgid "right bottom"
-#~ msgstr "десно доле"
-
-#~ msgid "left bottom"
-#~ msgstr "лево доле"
-
-#~ msgid "inch"
-#~ msgstr "инч"
-
-#~ msgid "centimeter"
-#~ msgstr "сантиметар"
-
-#~ msgid "average"
-#~ msgstr "просек"
-
-#~ msgid "center weighted"
-#~ msgstr "средина"
-
-#~ msgid "spot"
-#~ msgstr "тачка"
-
-#~ msgid "multi-spot"
-#~ msgstr "више тачака"
-
-#~ msgid "multi-segment"
-#~ msgstr "више сегмената"
-
-#~ msgid "partial"
-#~ msgstr "делимично"
-
-#~ msgid "other"
-#~ msgstr "остало"
-
-#~ msgid "not defined"
-#~ msgstr "није одређено"
-
-#~ msgid "manual"
-#~ msgstr "ручно"
-
-#~ msgid "normal"
-#~ msgstr "нормално"
-
-#~ msgid "aperture"
-#~ msgstr "отвор бленде"
-
-#~ msgid "shutter"
-#~ msgstr "експозиција"
-
-#~ msgid "creative"
-#~ msgstr "креативно"
-
-#~ msgid "action"
-#~ msgstr "радња"
-
-#~ msgid "portrait"
-#~ msgstr "усправно"
-
-#~ msgid "landscape"
-#~ msgstr "положено"
-
-#~ msgid "daylight"
-#~ msgstr "дневна светлост"
-
-#~ msgid "fluorescent"
-#~ msgstr "неонка"
-
-#~ msgid "tungsten (incandescent)"
-#~ msgstr "обична сијалица"
-
-#~ msgid "flash"
-#~ msgstr "блиц"
-
-#~ msgid "fine weather"
-#~ msgstr "лепо време"
-
-#~ msgid "cloudy weather"
-#~ msgstr "облачно"
-
-#~ msgid "shade"
-#~ msgstr "сенка"
-
-#~ msgid "daylight fluorescent"
-#~ msgstr "неонка са дневним светлом"
-
-#~ msgid "day white fluorescent"
-#~ msgstr "дневна, бела неонка"
-
-#~ msgid "cool white fluorescent"
-#~ msgstr "хладна, бела неонка"
-
-#~ msgid "white fluorescent"
-#~ msgstr "бела неонка"
-
-#~ msgid "standard light A"
-#~ msgstr "стандардно светло А"
-
-#~ msgid "standard light B"
-#~ msgstr "стандардно светло Б"
-
-#~ msgid "standard light C"
-#~ msgstr "стандардно светло Ц"
-
-#~ msgid "D55"
-#~ msgstr "Д55"
-
-#~ msgid "D65"
-#~ msgstr "Д65"
-
-#~ msgid "D75"
-#~ msgstr "Д75"
-
-#~ msgid "D50"
-#~ msgstr "Д50"
-
-#~ msgid "ISO studio tungsten"
-#~ msgstr "студијска ISO расвета"
-
-#~ msgid "yes, not detected by strobe"
-#~ msgstr "да, није очитано са блица"
-
-#~ msgid "yes, detected by strobe"
-#~ msgstr "да, очитано са блица"
-
-#~ msgid "trilinear"
-#~ msgstr "трилинеарно"
-
-#~ msgid "direct photo"
-#~ msgstr "директна фотка"
-
-#~ msgid "custom"
-#~ msgstr "произвољно"
-
-#~ msgid "standard"
-#~ msgstr "стандардно"
-
-#~ msgid "night scene"
-#~ msgstr "ноћни режим"
-
-#~ msgid "none"
-#~ msgstr "ништа"
-
-#~ msgid "soft"
-#~ msgstr "меко"
-
-#~ msgid "hard"
-#~ msgstr "оштро"
-
-#~ msgid "macro"
-#~ msgstr "макро"
-
-#~ msgid "close"
-#~ msgstr "близу"
-
-#~ msgid "distant"
-#~ msgstr "удаљено"
-
-#~ msgid "Image Width"
-#~ msgstr "Ширина слике"
-
-#~ msgid "Image Height"
-#~ msgstr "Висина слике"
-
-#~ msgid "Compression"
-#~ msgstr "Компресија"
-
-#~ msgid "Image description"
-#~ msgstr "Опис слике"
-
-#~ msgid "Camera make"
-#~ msgstr "Произвођач"
-
-#~ msgid "Camera model"
-#~ msgstr "Модел"
-
-#~ msgid "Orientation"
-#~ msgstr "Орјентација"
-
-#~ msgid "X resolution"
-#~ msgstr "Резолуција по X оси"
-
-#~ msgid "Y Resolution"
-#~ msgstr "Резолуција по Y osi"
-
-#~ msgid "Resolution units"
-#~ msgstr "Јединица резолуције"
-
-#~ msgid "Firmware"
-#~ msgstr "Фирмвер"
-
-#~ msgid "White point"
-#~ msgstr "Бела тачка"
-
-#~ msgid "YCbCy coefficients"
-#~ msgstr "YCbCy коефицијент"
-
-#~ msgid "Exposure time (seconds)"
-#~ msgstr "Дужина експозиције"
-
-#~ msgid "FNumber"
-#~ msgstr "Ф-број"
-
-#~ msgid "Exposure program"
-#~ msgstr "Програм експозиције"
-
-#~ msgid "ISO sensitivity"
-#~ msgstr "ISO осетљивост"
-
-#~ msgid "Exif version"
-#~ msgstr "Exif издање"
-
-#~ msgid "Date original"
-#~ msgstr "Оргинални датум"
-
-#~ msgid "Date digitized"
-#~ msgstr "Подешени датум"
-
-#~ msgid "Pixel format"
-#~ msgstr "Формат пиксела"
-
-#~ msgid "Shutter speed"
-#~ msgstr "Брзина затварача"
-
-#~ msgid "Aperture"
-#~ msgstr "Отвор бленде"
-
-#~ msgid "Brightness"
-#~ msgstr "Осветљеност"
-
-#~ msgid "Maximum aperture"
-#~ msgstr "Највећи отвор бленде"
-
-#~ msgid "Subject distance"
-#~ msgstr "Удаљеност објекта"
-
-#~ msgid "Metering mode"
-#~ msgstr "начин мерења светла"
-
-#~ msgid "Light source"
-#~ msgstr "Извор светлости"
-
-#~ msgid "Flash"
-#~ msgstr "Блиц"
-
-#~ msgid "Focal length"
-#~ msgstr "Жижна даљина"
-
-#~ msgid "UserComment"
-#~ msgstr "Коментар корисника"
-
-#~ msgid "FlashPix version"
-#~ msgstr "FlashPix издање"
-
-#~ msgid "Colorspace"
-#~ msgstr "Простор боја"
-
-#~ msgid "Audio data"
-#~ msgstr "Звучни подаци"
-
-#~ msgid "ExifR98 extension"
-#~ msgstr "ExifR98 проширење"
-
-#~ msgid "Flash strength"
-#~ msgstr "Јачина блица"
-
-#~ msgid "X Pixel density"
-#~ msgstr "Густина пиксела по X оси"
-
-#~ msgid "Y Pixel density"
-#~ msgstr "Густина пиксела по Y оси"
-
-#~ msgid "Pixel density units"
-#~ msgstr "Јединица за густину пиксела"
-
-#~ msgid "Subject location"
-#~ msgstr "Локација мотива"
-
-#~ msgid "Sensor type"
-#~ msgstr "Врста сензора"
-
-#~ msgid "Source type"
-#~ msgstr "Врста извора"
-
-#~ msgid "Scene type"
-#~ msgstr "Врста сцене"
-
-#~ msgid "Render process"
-#~ msgstr "Процес рендеровања"
-
-#~ msgid "Exposure mode"
-#~ msgstr "Режим експозиције"
-
-#~ msgid "White balance"
-#~ msgstr "Баланс беле"
-
-#~ msgid "Digital zoom ratio"
-#~ msgstr "Однос дигиталног зума"
-
-#~ msgid "Focal length (35mm)"
-#~ msgstr "Жижна даљина на 35mm"
-
-#~ msgid "Gain control"
-#~ msgstr "Контрола постизања"
-
-#~ msgid "Contrast"
-#~ msgstr "Контраст"
-
-#~ msgid "Sharpness"
-#~ msgstr "Оштрина"
-
-#~ msgid "Device setting"
-#~ msgstr "Подешавање уређаја"
-
-#~ msgid "Subject range"
-#~ msgstr "Опсег мотива"
-
-#~ msgid "Image serial number"
-#~ msgstr "Серијски број слике"
-
-#~ msgid "Camera"
-#~ msgstr "Фото апарат"
-
-#, fuzzy
-#~ msgid "DateDigitized"
-#~ msgstr "Подешени датум"
-
-#~ msgid "Focal length 35mm"
-#~ msgstr "Жижна даљина на 35mm"
-
-#~ msgid "Resolution"
-#~ msgstr "Резолуција"
-
-#~ msgid "Color profile"
-#~ msgstr "Профил боја"
-
-#~ msgid "GPS position"
-#~ msgstr "GPS локација"
-
-#~ msgid "GPS altitude"
-#~ msgstr "GPS висина"
-
-#, fuzzy
-#~ msgid "Local time"
-#~ msgstr "Место:"
-
-#, fuzzy
-#~ msgid "Time zone"
-#~ msgstr "Трака времена"
-
-#, fuzzy
-#~ msgid "Country name"
-#~ msgstr "Поређај по називу"
-
-#, fuzzy
-#~ msgid "Star rating"
-#~ msgstr "Поређај по датуму"
-
-#~ msgid "File size"
-#~ msgstr "величина датотеке"
-
-#~ msgid "File date"
-#~ msgstr "Датум датотеке"
-
-#~ msgid "File mode"
-#~ msgstr "Режим датотеке"
-
-#, fuzzy
-#~ msgid "File ctime"
-#~ msgstr "величина датотеке"
-
-#, fuzzy
-#~ msgid "File owner"
-#~ msgstr "Режим датотеке"
-
-#, fuzzy
-#~ msgid "File group"
-#~ msgstr "Подаци о датотеци"
-
-#, fuzzy
-#~ msgid "File link"
-#~ msgstr "Подаци о датотеци"
-
-#, fuzzy
-#~ msgid "File class"
-#~ msgstr "Датотеке"
-
-#, fuzzy
-#~ msgid "Page no."
-#~ msgstr "%d. страница"
-
-#, fuzzy
-#~ msgid "Rotate mirror"
-#~ msgstr "Списак с_лика"
-
-#, fuzzy
-#~ msgid "Rotate flip"
-#~ msgstr "Постепен прелаз између слика"
-
-#, fuzzy
-#~ msgid " Rotate counterclockwise 90°"
-#~ msgstr "Ротира слику улево"
-
-#, fuzzy
-#~ msgid " Rotate clockwise 90°"
-#~ msgstr "Ротира слику удесно"
-
-#, fuzzy
-#~ msgid "Previous"
-#~ msgstr "Претходна слика"
-
-#, fuzzy
-#~ msgid "Next"
-#~ msgstr "Наредна слика"
-
-#~ msgid "Zoom in"
-#~ msgstr "Увећај"
-
-#~ msgid "Zoom out"
-#~ msgstr "Умањи"
-
-#~ msgid "Zoom 1:1"
-#~ msgstr "Изворна величина"
-
-#~ msgid "Zoom 2:1"
-#~ msgstr "Повећава слику на размеру 2:1"
-
-#~ msgid "Zoom 3:1"
-#~ msgstr "Повећава слику на размеру 3:1"
-
-#~ msgid "Zoom 4:1"
-#~ msgstr "Повећава слику на размеру 4:1"
-
-#~ msgid "Zoom 1:4"
-#~ msgstr "Размера 1:4"
-
-#~ msgid "Zoom 1:3"
-#~ msgstr "Размера 1:3"
-
-#~ msgid "Zoom 1:2"
-#~ msgstr "Размера 1:2"
-
-#, fuzzy
-#~ msgid "Zoom fit window width"
-#~ msgstr "Уклопи у прозор"
-
-#, fuzzy
-#~ msgid "Zoom fit window height"
-#~ msgstr "Уклопи у прозор"
-
-#~ msgid "Toggle slideshow"
-#~ msgstr "Пушта или зауставља покретни приказ слика"
-
-#~ msgid "Pause slideshow"
-#~ msgstr "Паузирај покретни приказ"
-
-#, fuzzy
-#~ msgid "Reload image"
-#~ msgstr "Начини насумичним"
-
-#, fuzzy
-#~ msgid "Fullscreen"
-#~ msgstr "Цео екран"
-
-#, fuzzy
-#~ msgid "Image overlay"
-#~ msgstr "Распоред слике"
-
-#, fuzzy
-#~ msgid "Exit fullscreen"
-#~ msgstr "Напусти ц_ео екран"
-
-#, fuzzy
-#~ msgid "Desaturate"
-#~ msgstr "Природа"
-
-#~ msgid "Set as _wallpaper"
-#~ msgstr "По_стави за позадину"
-
-#~ msgid "_File"
-#~ msgstr "_Датотека"
-
-#~ msgid "_Go"
-#~ msgstr "_Иди"
-
-#~ msgid "_Edit"
-#~ msgstr "_Уређивање"
-
-#~ msgid "_Select"
-#~ msgstr "_Изабери"
-
-#, fuzzy
-#~ msgid "_Rating"
-#~ msgstr "Слике"
-
-#~ msgid "P_references"
-#~ msgstr "_Поставке"
-
-#~ msgid "_Files and Folders"
-#~ msgstr "_Датотеке и фасцикле"
-
-#~ msgid "_Zoom"
-#~ msgstr "_Увећање"
-
-#~ msgid "_Color Management"
-#~ msgstr "Управљање _бојама"
-
-#~ msgid "_Connected Zoom"
-#~ msgstr "_Прикачено увећање"
-
-#~ msgid "Spli_t"
-#~ msgstr "Поде_ли"
-
-#~ msgid "Image _Overlay"
-#~ msgstr "_Распоред слике"
-
-#, fuzzy
-#~ msgid "_Windows"
-#~ msgstr "Прозори"
-
-#~ msgid "_Help"
-#~ msgstr "_Помоћ"
-
-#~ msgid "Copy..."
-#~ msgstr "Умножи..."
-
-#~ msgid "Move..."
-#~ msgstr "Премести..."
-
-#~ msgid "Rename..."
-#~ msgstr "Преименуј..."
-
-#~ msgid "Delete..."
-#~ msgstr "Обриши..."
-
-#~ msgid "Select _all"
-#~ msgstr "Изабери _све"
-
-#~ msgid "Select _none"
-#~ msgstr "П_оништи избор"
-
-#~ msgid "_Invert Selection"
-#~ msgstr "О_брни избор"
-
-#~ msgid "Invert Selection"
-#~ msgstr "Обрни избор"
-
-#~ msgid "_Quit"
-#~ msgstr "_Изађи"
-
-#~ msgid "Quit"
-#~ msgstr "Изађи"
-
-#~ msgid "_First Image"
-#~ msgstr "_Прва слика"
-
-#~ msgid "First Image"
-#~ msgstr "Прва слика"
-
-#~ msgid "_Previous Image"
-#~ msgstr "П_ретходна слика"
-
-#~ msgid "Previous Image"
-#~ msgstr "Претходна слика"
-
-#~ msgid "_Next Image"
-#~ msgstr "Н_аредна слика"
-
-#~ msgid "Next Image"
-#~ msgstr "Наредна слика"
-
-#, fuzzy
-#~ msgid "Image Forward"
-#~ msgstr "Разгледач слика"
-
-#, fuzzy
-#~ msgid "Image Back"
-#~ msgstr "Претрага слика"
-
-#, fuzzy
-#~ msgid "_First Page"
-#~ msgstr "_Прва слика"
-
-#, fuzzy
-#~ msgid "_Last Page"
-#~ msgstr "П_оследња слика"
-
-#, fuzzy
-#~ msgid "_Next Page"
-#~ msgstr "Н_аредна слика"
-
-#, fuzzy
-#~ msgid "_Previous Page"
-#~ msgstr "П_ретходна слика"
-
-#~ msgid "_Last Image"
-#~ msgstr "П_оследња слика"
-
-#~ msgid "Last Image"
-#~ msgstr "Последња слика"
-
-#~ msgid "_Back"
-#~ msgstr "_Назад"
-
-#~ msgid "_Home"
-#~ msgstr "_Лична путања"
-
-#, fuzzy
-#~ msgid "Up one folder"
-#~ msgstr "Нова фасцикла"
-
-#~ msgid "New window"
-#~ msgstr "Нови прозор"
-
-#, fuzzy
-#~ msgid "default"
-#~ msgstr "Подразумевано"
-
-#, fuzzy
-#~ msgid "New window (default)"
-#~ msgstr "Нови прозор"
-
-#, fuzzy
-#~ msgid "from current"
-#~ msgstr "Употреби тренутну"
-
-#~ msgid "_New collection"
-#~ msgstr "Нова _збирка"
-
-#~ msgid "_Open collection..."
-#~ msgstr "_Отвори збирку..."
-
-#~ msgid "Open collection..."
-#~ msgstr "Отвори збирку..."
-
-#~ msgid "Open recen_t"
-#~ msgstr "Отвори _скорашње"
-
-#, fuzzy
-#~ msgid "Open recent collection"
-#~ msgstr "Отвори збирку"
-
-#~ msgid "_Search..."
-#~ msgstr "_Тражи..."
-
-#~ msgid "Search..."
-#~ msgstr "Тражи..."
-
-#~ msgid "Find duplicates..."
-#~ msgstr "Нађи _дупликате..."
-
-#~ msgid "Pa_n view"
-#~ msgstr "Прикажи на _табли"
-
-#~ msgid "Pan view"
-#~ msgstr "Прикажи на табли"
-
-#~ msgid "_Print..."
-#~ msgstr "_Штампај..."
-
-#~ msgid "N_ew folder..."
-#~ msgstr "Нова _фасцикла..."
-
-#~ msgid "New folder..."
-#~ msgstr "Нова фасцикла..."
-
-#~ msgid "Enable file grouping"
-#~ msgstr "Групиши датотеке"
-
-#~ msgid "Disable file grouping"
-#~ msgstr "Не групиши датотеке"
-
-#~ msgid "Copy path to clipboard"
-#~ msgstr "Умножи путању међу исечке"
-
-#, fuzzy
-#~ msgid "Copy path unquoted to clipboard"
-#~ msgstr "Умножи путању међу исечке"
-
-#, fuzzy
-#~ msgid "Rating 0"
-#~ msgstr "Слике"
-
-#, fuzzy
-#~ msgid "Rating 1"
-#~ msgstr "Слике"
-
-#, fuzzy
-#~ msgid "Rating 2"
-#~ msgstr "Слике"
-
-#, fuzzy
-#~ msgid "Rating 3"
-#~ msgstr "Слике"
-
-#, fuzzy
-#~ msgid "Rating 4"
-#~ msgstr "Слике"
-
-#, fuzzy
-#~ msgid "Rating 5"
-#~ msgstr "Слике"
-
-#, fuzzy
-#~ msgid "_Rotate clockwise 90°"
-#~ msgstr "Ротирај у_десно"
-
-#, fuzzy
-#~ msgid "Image Rotate clockwise 90°"
-#~ msgstr "Ротира слику удесно"
-
-#, fuzzy
-#~ msgid "Rotate _counterclockwise 90°"
-#~ msgstr "Ротирај у_лево"
-
-#, fuzzy
-#~ msgid "Rotate 1_80°"
-#~ msgstr "Ротирај за 1_80 "
-
-#, fuzzy
-#~ msgid "Image Rotate 180°"
-#~ msgstr "Ротира слику за 180 степени"
-
-#~ msgid "_Mirror"
-#~ msgstr "_Пресликај"
-
-#, fuzzy
-#~ msgid "Image Mirror"
-#~ msgstr "Списак с_лика"
-
-#~ msgid "_Flip"
-#~ msgstr "_Изврни"
-
-#, fuzzy
-#~ msgid "Image Flip"
-#~ msgstr "Списак с_лика"
-
-#~ msgid "_Original state"
-#~ msgstr "_Врати изворно"
-
-#, fuzzy
-#~ msgid "Image rotate Original state"
-#~ msgstr "Враћа слику на изворно стање"
-
-#~ msgid "P_references..."
-#~ msgstr "_Поставке..."
-
-#~ msgid "Preferences..."
-#~ msgstr "Поставке..."
-
-#, fuzzy
-#~ msgid "Configure _Plugins..."
-#~ msgstr "Подеси _спољне програме..."
-
-#, fuzzy
-#~ msgid "Configure Plugins..."
-#~ msgstr "Подеси спољне програме..."
-
-#~ msgid "_Configure this window..."
-#~ msgstr "По_деси овај прозор..."
-
-#~ msgid "Configure this window..."
-#~ msgstr "Подеси овај прозор..."
-
-#, fuzzy
-#~ msgid "_Cache maintenance..."
-#~ msgstr "Одржавање оставе"
-
-#, fuzzy
-#~ msgid "Cache maintenance..."
-#~ msgstr "Одржавање оставе"
-
-#~ msgid "Set as wallpaper"
-#~ msgstr "Постави за позадину"
-
-#~ msgid "_Save metadata"
-#~ msgstr "Сачувај _метаподатке"
-
-#~ msgid "Save metadata"
-#~ msgstr "Сачувај метаподатке"
-
-#, fuzzy
-#~ msgid "Keyword autocomplete"
-#~ msgstr "Врста кључне речи:"
-
-#, fuzzy
-#~ msgid "Keyword Autocomplete"
-#~ msgstr "Врста кључне речи:"
-
-#~ msgid "_Zoom to fit"
-#~ msgstr "У_клопи у прозор"
-
-#~ msgid "Fit _Horizontally"
-#~ msgstr "Уклопи према _ширини"
-
-#~ msgid "Fit Horizontally"
-#~ msgstr "Уклопи према ширини"
-
-#~ msgid "Fit _Vertically"
-#~ msgstr "Уклопи према _висини"
-
-#~ msgid "Fit Vertically"
-#~ msgstr "Уклопи према висини"
-
-#~ msgid "Zoom _2:1"
-#~ msgstr "Размера _2:1"
-
-#~ msgid "Zoom _3:1"
-#~ msgstr "Размера _3:1"
-
-#~ msgid "Zoom _4:1"
-#~ msgstr "Размера _4:1"
-
-#~ msgid "_View in new window"
-#~ msgstr "Прикажи у _новом прозору"
-
-#~ msgid "F_ull screen"
-#~ msgstr "_Цео екран"
-
-#~ msgid "_Leave full screen"
-#~ msgstr "_Напусти цео екран"
-
-#~ msgid "Leave full screen"
-#~ msgstr "Напусти цео екран"
-
-#~ msgid "_Hide file list"
-#~ msgstr "Са_криј списак датотека"
-
-#~ msgid "Hide file list"
-#~ msgstr "Сакриј списак датотека"
-
-#~ msgid "_Pause slideshow"
-#~ msgstr "_Паузирај покретни приказ"
-
-#, fuzzy
-#~ msgid "Slideshow Faster"
-#~ msgstr " Покретни приказ"
-
-#, fuzzy
-#~ msgid "Slower"
-#~ msgstr "Свеће"
-
-#, fuzzy
-#~ msgid "Slideshow Slower"
-#~ msgstr " Покретни приказ"
-
-#~ msgid "_Refresh"
-#~ msgstr "_Освежи"
-
-#~ msgid "Refresh"
-#~ msgstr "Освежи"
-
-#, fuzzy
-#~ msgid "_Help manual"
-#~ msgstr "ручно"
-
-#, fuzzy
-#~ msgid "Help manual"
-#~ msgstr "ручно"
-
-#~ msgid "_Keyboard shortcuts"
-#~ msgstr "Пречице са _тастатуре"
-
-#~ msgid "Keyboard shortcuts"
-#~ msgstr "Пречице са тастатуре"
-
-#, fuzzy
-#~ msgid "_Keyboard map"
-#~ msgstr "Тастатура"
-
-#, fuzzy
-#~ msgid "Keyboard map"
-#~ msgstr "Тастатура"
-
-#~ msgid "_About"
-#~ msgstr "_О програму"
-
-#~ msgid "About"
-#~ msgstr "О програму"
-
-#~ msgid "_Log Window"
-#~ msgstr "_Дневник"
-
-#~ msgid "Log Window"
-#~ msgstr "Дневник"
-
-#~ msgid "_Exif window"
-#~ msgstr "Exif прозор_че"
-
-#~ msgid "Exif window"
-#~ msgstr "Exif прозорче"
-
-#, fuzzy
-#~ msgid "_Next Pane"
-#~ msgstr "Н_аредна слика"
-
-#, fuzzy
-#~ msgid "Next Split Pane"
-#~ msgstr "Наредна слика"
-
-#, fuzzy
-#~ msgid "_Previous Pane"
-#~ msgstr "П_ретходна слика"
-
-#, fuzzy
-#~ msgid "Previous Split Pane"
-#~ msgstr "Претходна слика"
-
-#, fuzzy
-#~ msgid "Up Split Pane"
-#~ msgstr "Дели појединачно"
-
-#, fuzzy
-#~ msgid "_Write orientation to file"
-#~ msgstr "Упиши у датотеку"
-
-#, fuzzy
-#~ msgid "Write orientation to file"
-#~ msgstr "Упиши у датотеку"
-
-#, fuzzy
-#~ msgid "Clear Marks..."
-#~ msgstr "Очисти смеће"
-
-#~ msgid "Show _Thumbnails"
-#~ msgstr "Прикажи _умањене приказе"
-
-#~ msgid "Show Thumbnails"
-#~ msgstr "Приказује умањене прегледе слика"
-
-#~ msgid "Show _Marks"
-#~ msgstr "Прикажи _маркере"
-
-#~ msgid "Show Marks"
-#~ msgstr "Приказује маркере"
-
-#~ msgid "Pi_xel Info"
-#~ msgstr "Подаци о _пикселима"
-
-#~ msgid "Show Pixel Info"
-#~ msgstr "Приказује податке о пикселима"
-
-#, fuzzy
-#~ msgid "Hide _alpha"
-#~ msgstr "Сакрива палету са алаткама"
-
-#~ msgid "_Float file list"
-#~ msgstr "_Откачи списак датотека"
-
-#~ msgid "Float file list"
-#~ msgstr "Премешта списак датотека у нови прозор"
-
-#~ msgid "Hide tool_bar"
-#~ msgstr "Сакриј _алатницу"
-
-#~ msgid "Hide toolbar"
-#~ msgstr "Сакрива палету са алаткама"
-
-#~ msgid "_Info sidebar"
-#~ msgstr "Површ _са подацима"
-
-#~ msgid "Info sidebar"
-#~ msgstr "Приказује површ са подацима о слици"
-
-#~ msgid "Sort _manager"
-#~ msgstr "Управник редоследом"
-
-#~ msgid "Sort manager"
-#~ msgstr "Приказује управника редоследом слика"
-
-#, fuzzy
-#~ msgid "Hide Bars"
-#~ msgstr "Сакриј „%s“"
-
-#~ msgid "Use _color profiles"
-#~ msgstr "_Користи профиле боја"
-
-#~ msgid "Use color profiles"
-#~ msgstr "Омогућава употребу профила боја"
-
-#~ msgid "Use profile from _image"
-#~ msgstr "Користи профил боја _из слике"
-
-#~ msgid "Use profile from image"
-#~ msgstr "Користи профил боја који је уметнут у слику"
-
-#~ msgid "Toggle _grayscale"
-#~ msgstr "Црно-бело"
-
-#~ msgid "Toggle grayscale"
-#~ msgstr "Укључује или искључује приказ слике у сивим тновима"
-
-#~ msgid "Image Overlay"
-#~ msgstr "Распоред слике"
-
-#~ msgid "_Show Histogram"
-#~ msgstr "Прикажи _хистограм"
-
-#~ msgid "Show Histogram"
-#~ msgstr "Приказује хистограм"
-
-#, fuzzy
-#~ msgid "Rectangular Selection"
-#~ msgstr "Правоугаони изворник при приказу иконица"
-
-#, fuzzy
-#~ msgid "_Exif rotate"
-#~ msgstr "Користи датум из Exif-а"
-
-#, fuzzy
-#~ msgid "Toggle Exif rotate"
-#~ msgstr "Користи датум из Exif-а"
-
-#, fuzzy
-#~ msgid "Images as _List"
-#~ msgstr "Списак с_лика"
-
-#~ msgid "View Images as List"
-#~ msgstr "Приказује слике као списак"
-
-#, fuzzy
-#~ msgid "Images as I_cons"
-#~ msgstr "Приказује слике као иконице"
-
-#~ msgid "View Images as Icons"
-#~ msgstr "Приказује слике као иконице"
-
-#, fuzzy
-#~ msgid "T_oggle Folder View"
-#~ msgstr "Пушта или зауставља покретни приказ слика"
-
-#, fuzzy
-#~ msgid "Toggle Folders View"
-#~ msgstr "Пушта или зауставља покретни приказ слика"
-
-#~ msgid "_Horizontal"
-#~ msgstr "_Хоризонтално"
-
-#, fuzzy
-#~ msgid "Split panes horizontal."
-#~ msgstr "Дели прозор по хоризонтали"
-
-#~ msgid "_Vertical"
-#~ msgstr "_Вертикално"
-
-#, fuzzy
-#~ msgid "Split panes vertical"
-#~ msgstr "Дели прозор по вертикали"
-
-#~ msgid "_Quad"
-#~ msgstr "По _четри"
-
-#, fuzzy
-#~ msgid "Split panes quad"
-#~ msgstr "По четри"
-
-#~ msgid "_Single"
-#~ msgstr "По _једна"
-
-#, fuzzy
-#~ msgid "Single pane"
-#~ msgstr "наредна слика"
-
-#~ msgid "Input _0: sRGB"
-#~ msgstr "Улаз _0: sRGB"
-
-#~ msgid "Input 0: sRGB"
-#~ msgstr "Улаз 0: sRGB"
-
-#~ msgid "Input _1: AdobeRGB compatible"
-#~ msgstr "Улаз _1: сагласано са AdobeRGB"
-
-#~ msgid "Input 1: AdobeRGB compatible"
-#~ msgstr "Улаз 1: сагласно са AdobeRGB"
-
-#~ msgid "Input _2"
-#~ msgstr "Улаз _2"
-
-#~ msgid "Input 2"
-#~ msgstr "Улаз 2"
-
-#~ msgid "Input _3"
-#~ msgstr "Улаз _3"
-
-#~ msgid "Input 3"
-#~ msgstr "Улаз 3"
-
-#~ msgid "Input _4"
-#~ msgstr "Улаз _4"
-
-#~ msgid "Input 4"
-#~ msgstr "Улаз 4"
-
-#~ msgid "Input _5"
-#~ msgstr "Улаз _5"
-
-#~ msgid "Input 5"
-#~ msgstr "Улаз 5"
-
-#~ msgid "Histogram on Red"
-#~ msgstr "Хистограм црвене"
-
-#~ msgid "Histogram on Green"
-#~ msgstr "Хистограм зелене"
-
-#~ msgid "Histogram on Blue"
-#~ msgstr "Хистограм плаве"
-
-#~ msgid "Histogram on RGB"
-#~ msgstr "Хистограм свих боја"
-
-#~ msgid "Histogram on Value"
-#~ msgstr "Хистограм вредности"
-
-#~ msgid "Linear Histogram"
-#~ msgstr "Линеарни хистограм"
-
-#~ msgid "_Log Histogram"
-#~ msgstr "Л_огаритамски хистограм"
-
-#~ msgid "Log Histogram"
-#~ msgstr "Логаритамски хистограм"
-
 #, c-format
 #~ msgid "disconnected from LIRC\n"
 #~ msgstr "прекинута је веза са LIRC-ом\n"
@@ -6537,155 +8046,6 @@ msgstr "Тражи:"
 #~ "не могу да прочитам LIRC датотеку са подешавањима\n"
 #~ "прочитајте документацију везану за LIRC како би \n"
 #~ "направили исправну датотеку са подешавањима\n"
-
-#, fuzzy
-#~ msgid "Collection"
-#~ msgstr "Збирке"
-
-#, fuzzy
-#~ msgid "Image index"
-#~ msgstr "Датотека са сликом"
-
-#, fuzzy
-#~ msgid "Images total"
-#~ msgstr "Датотека са сликом"
-
-#, fuzzy
-#~ msgid "File page no."
-#~ msgstr "Подаци о датотеци"
-
-#, fuzzy
-#~ msgid "Image date"
-#~ msgstr "Ширина слике"
-
-#, fuzzy
-#~ msgid "ShutterSpeed"
-#~ msgstr "Брзина затварача"
-
-#, fuzzy
-#~ msgid "Focal len. 35mm"
-#~ msgstr "Жижна даљина на 35mm"
-
-#, fuzzy
-#~ msgid "Altitude"
-#~ msgstr "GPS висина"
-
-#, fuzzy
-#~ msgid "Timezone"
-#~ msgstr "Трака времена"
-
-#, fuzzy
-#~ msgid "© Creator"
-#~ msgstr "Направи фасциклу"
-
-#, fuzzy
-#~ msgid "© Rights"
-#~ msgstr "Светлост"
-
-#, fuzzy
-#~ msgid "Start search"
-#~ msgstr "Претрага слика"
-
-#, fuzzy
-#~ msgid "Scroll left"
-#~ msgstr "горе лево"
-
-#, fuzzy
-#~ msgid "Scroll right"
-#~ msgstr "горе десно"
-
-#, fuzzy
-#~ msgid "Scroll left faster"
-#~ msgstr "Иди у горњи леви угао"
-
-#, fuzzy
-#~ msgid "Scroll right faster"
-#~ msgstr "Иди на средину слике"
-
-#, fuzzy
-#~ msgid "Scroll up faster"
-#~ msgstr "Иди у горњи леви угао"
-
-#, fuzzy
-#~ msgid "Scroll down faster"
-#~ msgstr "Иди на средину слике"
-
-#~ msgid "RAW Image"
-#~ msgstr "RAW слика"
-
-#, fuzzy
-#~ msgid "Archive"
-#~ msgstr "Архитектура"
-
-#~ msgid "Back"
-#~ msgstr "Назад"
-
-#, fuzzy
-#~ msgid "First page"
-#~ msgstr "Прва слика"
-
-#, fuzzy
-#~ msgid "Last Page"
-#~ msgstr "Последња слика"
-
-#, fuzzy
-#~ msgid "Next page"
-#~ msgstr "Наредна слика"
-
-#, fuzzy
-#~ msgid "Previous Page"
-#~ msgstr "Претходна слика"
-
-#~ msgid "New _window"
-#~ msgstr "Нови _прозор"
-
-#, fuzzy
-#~ msgid "Close Window"
-#~ msgstr "Затвори прозор"
-
-#, fuzzy
-#~ msgid "Select invert"
-#~ msgstr "Изаберите иконицу"
-
-#, fuzzy
-#~ msgid "Show file filter"
-#~ msgstr "Прикажи _скривене датотеке"
-
-#, fuzzy
-#~ msgid "Select rectangle"
-#~ msgstr "Изабери све"
-
-#, fuzzy
-#~ msgid "Configure this window"
-#~ msgstr "Подеси овај прозор..."
-
-#, fuzzy
-#~ msgid "Cache maintenance"
-#~ msgstr "Одржавање оставе"
-
-#, fuzzy
-#~ msgid "Fit Horizontaly"
-#~ msgstr "Уклопи према ширини"
-
-#, fuzzy
-#~ msgid "Fit vertically"
-#~ msgstr "Уклопи према висини"
-
-#, fuzzy
-#~ msgid "Zoom1:3"
-#~ msgstr "Размера 1:3"
-
-#, fuzzy
-#~ msgid "Grayscale"
-#~ msgstr "Укључује или искључује приказ слике у сивим тновима"
-
-#, fuzzy
-#~ msgid "Show thumbnails"
-#~ msgstr "Прикажи _умањене приказе"
-
-#, fuzzy
-#~ msgid "Show marks"
-#~ msgstr "Приказује маркере"
 
 #~ msgid ""
 #~ "Metadata are written in the following order. The process ends after first "
@@ -6706,207 +8066,6 @@ msgstr "Тражи:"
 
 #~ msgid "Allow keywords to differ only in case"
 #~ msgstr "Дозволи да се кључне речи разликују у величини слова"
-
-#~ msgid "previous image"
-#~ msgstr "претходна слика"
-
-#, fuzzy
-#~ msgid "close window"
-#~ msgstr "Затвори прозор"
-
-#, fuzzy
-#~ msgid "clean the metadata cache"
-#~ msgstr "Не могу да упишем метаподатке"
-
-#, fuzzy
-#~ msgid "<folder>  "
-#~ msgstr "фасцикле"
-
-#, fuzzy
-#~ msgid " render thumbnails"
-#~ msgstr "Направи умањене приказе"
-
-#, fuzzy
-#~ msgid "<folder> "
-#~ msgstr "фасцикле"
-
-#, fuzzy
-#~ msgid "render thumbnails recursively"
-#~ msgstr "Исцртај умањене приказе из одабране фасцикле."
-
-#, fuzzy
-#~ msgid " render thumbnails (see Help)"
-#~ msgstr "Исцртај умањене приказе из одабране фасцикле."
-
-#, fuzzy
-#~ msgid "<folder>"
-#~ msgstr "фасцикле"
-
-#, fuzzy
-#~ msgid "clear or clean shared thumbnail cache"
-#~ msgstr "Користи дељену оставу за умањене приказе"
-
-#, fuzzy
-#~ msgid "clear or clean thumbnail cache"
-#~ msgstr "Дели оставу умањених приказа"
-
-#, fuzzy
-#~ msgid "set slide show delay to Hrs Mins N.M seconds"
-#~ msgstr "подеси трајање покретног приказа у секундама"
-
-#~ msgid "first image"
-#~ msgstr "прва слика"
-
-#~ msgid "toggle full screen"
-#~ msgstr "цео екран"
-
-#, fuzzy
-#~ msgid "open FILE or URL, bring Geeqie window to the top"
-#~ msgstr "отвори датотеку у новом прозору"
-
-#, fuzzy
-#~ msgid "open FILE or URL, do not bring Geeqie window to the top"
-#~ msgstr "отвори датотеку у новом прозору"
-
-#~ msgid "start full screen"
-#~ msgstr "прикажи преко целог екрана"
-
-#~ msgid "stop full screen"
-#~ msgstr "напусти цео екран"
-
-#, fuzzy
-#~ msgid "set window geometry"
-#~ msgstr "Није исправна геометрија\n"
-
-#, fuzzy
-#~ msgid "get collection content"
-#~ msgstr "Нова збирка"
-
-#, fuzzy
-#~ msgid "get collection list"
-#~ msgstr "Нова збирка"
-
-#, fuzzy
-#~ msgid "get file info"
-#~ msgstr "Подаци о датотеци"
-
-#, fuzzy
-#~ msgid "get render intent"
-#~ msgstr "Исцртај"
-
-#~ msgid "last image"
-#~ msgstr "последња слика"
-
-#, fuzzy
-#~ msgid "add FILE to command line collection list"
-#~ msgstr "Додај у нову збирку"
-
-#, fuzzy
-#~ msgid "new window"
-#~ msgstr "Нови прозор"
-
-#~ msgid "next image"
-#~ msgstr "наредна слика"
-
-#~ msgid "quit"
-#~ msgstr "изађи"
-
-#~ msgid "toggle slide show"
-#~ msgstr "покретни приказ"
-
-#, fuzzy
-#~ msgid "start recursive slide show in FOLDER"
-#~ msgstr "започни покретни приказ од назад"
-
-#~ msgid "start slide show"
-#~ msgstr "започни покретни приказ"
-
-#~ msgid "stop slide show"
-#~ msgstr "заустави покретни приказ"
-
-#~ msgid "show tools"
-#~ msgstr "прикажи алатке"
-
-#~ msgid "hide tools"
-#~ msgstr "сакриј алатке"
-
-#, fuzzy
-#~ msgid "open FILE in new window"
-#~ msgstr "отвори датотеку у новом прозору"
-
-#~ msgid "folder"
-#~ msgstr "фасцикле"
-
-#~ msgid "comments"
-#~ msgstr "коментари"
-
-#~ msgid "results"
-#~ msgstr "резултат"
-
-#, fuzzy
-#~ msgid "collection"
-#~ msgstr "Збирке"
-
-#, fuzzy
-#~ msgid "name contains"
-#~ msgstr "садржај"
-
-#, fuzzy
-#~ msgid "name is"
-#~ msgstr "Списак с_лика"
-
-#, fuzzy
-#~ msgid "path contains"
-#~ msgstr "садржај"
-
-#~ msgid "equal to"
-#~ msgstr "је једнако са"
-
-#~ msgid "less than"
-#~ msgstr "мањи од"
-
-#~ msgid "greater than"
-#~ msgstr "већи од"
-
-#~ msgid "between"
-#~ msgstr "између"
-
-#~ msgid "before"
-#~ msgstr "пре"
-
-#~ msgid "after"
-#~ msgstr "након"
-
-#~ msgid "match all"
-#~ msgstr "поклопи све"
-
-#~ msgid "match any"
-#~ msgstr "поклопи било који"
-
-#~ msgid "exclude"
-#~ msgstr "искључи"
-
-#~ msgid "contains"
-#~ msgstr "садржај"
-
-#, fuzzy
-#~ msgid "not geocoded"
-#~ msgstr "није одређено"
-
-#~ msgid "is"
-#~ msgstr "је"
-
-#, fuzzy
-#~ msgid "Open Archive"
-#~ msgstr "Отвори скорашње"
-
-#, fuzzy
-#~ msgid "Pixel Info"
-#~ msgstr "Подаци о _пикселима"
-
-#, fuzzy
-#~ msgid "Exif rotate"
-#~ msgstr "Користи датум из Exif-а"
 
 #~ msgid "Fit image to _window"
 #~ msgstr "Уклопи _у величину прозора"

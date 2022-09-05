@@ -13,4 +13,4 @@
 
 add_project_arguments('-DGETTEXT_PACKAGE="geeqie"', language:'c')
 
-i18n.gettext(meson.project_name(), args : '--from-code=UTF-8')
+i18n.gettext(meson.project_name(), args : ['--keyword=N_', '--from-code=UTF-8'])

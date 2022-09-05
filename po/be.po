@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-08 13:00+0100\n"
+"POT-Creation-Date: 2022-09-05 19:35+0100\n"
 "PO-Revision-Date: 2008-05-05 21:33+0300\n"
 "Last-Translator: Pavel Piatruk <piatruk.p@gmail.com>\n"
 "Language-Team: Belarusian (Official spelling) <i18n@mova.org>\n"
@@ -53,8 +53,9 @@ msgid "Import all images from camera"
 msgstr ""
 
 #: plugins/export-jpeg/export-jpeg.desktop.in:5
+#, fuzzy
 msgid "Export jpeg"
-msgstr ""
+msgstr "Зрушэнне экспазіцыі"
 
 #: plugins/export-jpeg/export-jpeg.desktop.in:6
 msgid "Extract embedded jpegs from a raw file"
@@ -95,8 +96,8 @@ msgstr ""
 msgid "Tethered photography"
 msgstr ""
 
-#: src/advanced_exif.c:437 src/cache_maint.c:1773 src/preferences.c:2851
-#: src/search.c:2281 src/search.c:3609
+#: src/advanced_exif.c:437 src/cache_maint.c:1773 src/preferences.c:133
+#: src/preferences.c:2851 src/search.c:2281 src/search.c:3610
 msgid "Metadata"
 msgstr "Метададзеныя"
 
@@ -109,8 +110,8 @@ msgid "Value"
 msgstr "Значэнне"
 
 #: src/advanced_exif.c:495 src/desktop_file.c:631 src/dupe.c:3978
-#: src/dupe.c:4703 src/dupe.c:5287 src/search.c:3693 src/utilops.c:507
-#: src/view_file/view_file_list.c:2228
+#: src/dupe.c:4703 src/dupe.c:5287 src/osd.c:38 src/search.c:3694
+#: src/utilops.c:507 src/view_file/view_file_list.c:2228
 msgid "Name"
 msgstr "Імя"
 
@@ -125,6 +126,57 @@ msgstr "Фармат"
 #: src/advanced_exif.c:498
 msgid "Elements"
 msgstr "Элементы"
+
+#: src/bar.c:201
+#, fuzzy
+msgid "Histogram"
+msgstr "лінейная гістаграма па чырвоным"
+
+#: src/bar.c:202
+#, fuzzy
+msgid "Title"
+msgstr "Безназоўны"
+
+#: src/bar.c:203 src/osd.c:48 src/preferences.c:3269 src/search.c:3529
+msgid "Keywords"
+msgstr "Ключавыя словы"
+
+#: src/bar.c:204 src/osd.c:47 src/search.c:3541
+#, fuzzy
+msgid "Comment"
+msgstr "Каментар:"
+
+#: src/bar.c:205 src/preferences.c:2033
+#, fuzzy
+msgid "Star Rating"
+msgstr "Памылка друку"
+
+#: src/bar.c:206
+#, fuzzy
+msgid "Headline"
+msgstr "Білінейны"
+
+#: src/bar.c:207
+msgid "Exif"
+msgstr "Exif"
+
+#: src/bar.c:209
+#, fuzzy
+msgid "File info"
+msgstr "Файл не знойдзены"
+
+#: src/bar.c:210
+#, fuzzy
+msgid "Location and GPS"
+msgstr "Змяшчэнне:"
+
+#: src/bar.c:211 src/exif.c:340
+msgid "Copyright"
+msgstr "Аўтарскае права"
+
+#: src/bar.c:214 src/bar_gps.c:1023
+msgid "GPS Map"
+msgstr ""
 
 #: src/bar.c:403 src/toolbar.c:224
 #, fuzzy
@@ -149,7 +201,8 @@ msgstr "злева знізу"
 msgid "Height..."
 msgstr "Вышыня"
 
-#: src/bar.c:415 src/toolbar.c:229
+#: src/bar.c:415 src/collect-table.c:87 src/dupe.c:156 src/search.c:359
+#: src/toolbar.c:229
 #, fuzzy
 msgid "Remove"
 msgstr "Вы_даліць"
@@ -310,7 +363,7 @@ msgstr ""
 msgid "Map centering"
 msgstr "Метад вымярэння"
 
-#: src/bar_gps.c:959 src/menu.c:334 src/preferences.c:2244
+#: src/bar_gps.c:959 src/menu.c:334 src/osd.c:42 src/preferences.c:2244
 msgid "Zoom"
 msgstr "Маштаб"
 
@@ -319,36 +372,32 @@ msgstr "Маштаб"
 msgid "Zoom level"
 msgstr "Павялічыць"
 
-#: src/bar_gps.c:1023
-msgid "GPS Map"
-msgstr ""
-
-#: src/bar_histogram.c:234
+#: src/bar_histogram.c:234 src/layout_util.c:2672
 #, fuzzy
 msgid "Histogram on _Red"
 msgstr "лінейная гістаграма па чырвоным"
 
-#: src/bar_histogram.c:235
+#: src/bar_histogram.c:235 src/layout_util.c:2673
 #, fuzzy
 msgid "Histogram on _Green"
 msgstr "лінейная гістаграма па зялёным"
 
-#: src/bar_histogram.c:236
+#: src/bar_histogram.c:236 src/layout_util.c:2674
 #, fuzzy
 msgid "Histogram on _Blue"
 msgstr "лінейная гістаграма па блакітным"
 
-#: src/bar_histogram.c:237
+#: src/bar_histogram.c:237 src/layout_util.c:2675
 #, fuzzy
 msgid "_Histogram on RGB"
 msgstr "лінейная гістаграма па RGB"
 
-#: src/bar_histogram.c:238
+#: src/bar_histogram.c:238 src/layout_util.c:2676
 #, fuzzy
 msgid "Histogram on _Value"
 msgstr "лінейная гістаграма па значэнні"
 
-#: src/bar_histogram.c:242
+#: src/bar_histogram.c:242 src/layout_util.c:2680
 #, fuzzy
 msgid "Li_near Histogram"
 msgstr "лінейная гістаграма па чырвоным"
@@ -561,11 +610,15 @@ msgstr "Тэчкі"
 msgid "Collections"
 msgstr "Калекцыі"
 
-#: src/bar_sort.c:677 src/preferences.c:693 src/utilops.c:2350
+#: src/bar_sort.c:677 src/collect-table.c:82 src/dupe.c:151 src/img-view.c:92
+#: src/pan-view/pan-view.c:99 src/preferences.c:693 src/preferences.c:804
+#: src/search.c:354 src/toolbar.c:94 src/utilops.c:2350
 msgid "Copy"
 msgstr "Капіяваць"
 
-#: src/bar_sort.c:681 src/preferences.c:695 src/utilops.c:2300
+#: src/bar_sort.c:681 src/collect-table.c:83 src/dupe.c:152 src/img-view.c:93
+#: src/pan-view/pan-view.c:100 src/preferences.c:695 src/preferences.c:805
+#: src/search.c:355 src/toolbar.c:95 src/utilops.c:2300
 msgid "Move"
 msgstr "Перамесціць"
 
@@ -883,11 +936,11 @@ msgstr ""
 "Не атрымалася захаваць калекцыю:\n"
 "%s"
 
-#: src/collect-dlg.c:203
+#: src/collect-dlg.c:203 src/collect-table.c:97
 msgid "Save collection"
 msgstr "Захаваць калекцыю"
 
-#: src/collect-dlg.c:210
+#: src/collect-dlg.c:210 src/preferences.c:800 src/toolbar.c:90
 msgid "Open collection"
 msgstr "Адкрыць калекцыю"
 
@@ -899,7 +952,7 @@ msgstr "Набавіць калекцыю"
 msgid "_Append"
 msgstr "_Набавіць"
 
-#: src/collect-dlg.c:236 src/search.c:3303
+#: src/collect-dlg.c:236 src/search.c:3304
 msgid "Collection Files"
 msgstr "Файлы калекцыі"
 
@@ -916,6 +969,112 @@ msgid ""
 "error saving collection file: %s\n"
 "error: %s\n"
 msgstr "памылка захоўвання файла канфігурацыі: %s\n"
+
+#: src/collect-table.c:84 src/dupe.c:153 src/img-view.c:94
+#: src/pan-view/pan-view.c:101 src/preferences.c:806 src/search.c:356
+#: src/toolbar.c:96 src/utilops.c:2396 src/utilops.c:2862
+msgid "Rename"
+msgstr "Перайменаванне"
+
+#: src/collect-table.c:85 src/collect-table.c:1038 src/dupe.c:154
+#: src/dupe.c:3573 src/img-view.c:95 src/img-view.c:96 src/img-view.c:1430
+#: src/layout_image.c:815 src/pan-view/pan-view.c:102
+#: src/pan-view/pan-view.c:2417 src/search.c:357 src/search.c:1191
+#: src/view_file/view_file.c:717
+#, fuzzy
+msgid "Move to Trash"
+msgstr "_Вышэй"
+
+#: src/collect-table.c:86 src/dupe.c:161 src/img-view.c:98 src/img-view.c:136
+#: src/layout_util.c:2493 src/pan-view/pan-view.c:103 src/search.c:364
+#, fuzzy
+msgid "Close window"
+msgstr "_Закрыць акно"
+
+#: src/collect-table.c:88 src/dupe.c:162 src/preferences.c:3540
+#: src/search.c:365
+msgid "View"
+msgstr "Прагляд"
+
+#: src/collect-table.c:89 src/dupe.c:163 src/layout_util.c:2586
+#: src/search.c:366
+#, fuzzy
+msgid "View in new window"
+msgstr "Глядзець у _новым акне"
+
+#: src/collect-table.c:90 src/collect-table.c:1006 src/dupe.c:158
+#: src/dupe.c:3532 src/dupe.c:3870 src/layout_util.c:2490 src/preferences.c:810
+#: src/search.c:360 src/search.c:1158 src/toolbar.c:101
+#: src/view_file/view_file.c:1087 src/view_file/view_file.c:1137
+msgid "Select all"
+msgstr "Вылучыць усё"
+
+#: src/collect-table.c:91 src/collect-table.c:1008 src/dupe.c:159
+#: src/dupe.c:166 src/dupe.c:3534 src/dupe.c:3872 src/layout_util.c:2491
+#: src/preferences.c:811 src/search.c:361 src/search.c:1160 src/toolbar.c:102
+#: src/view_file/view_file.c:1142
+msgid "Select none"
+msgstr "Скасаваць вылучэнне"
+
+#: src/collect-table.c:92 src/collect-table.c:1012
+#, fuzzy
+msgid "Rectangular selection"
+msgstr "Прамавугольнае вылучэнне у выглядзе іконкі"
+
+#: src/collect-table.c:93
+#, fuzzy
+msgid "Select single file"
+msgstr "Вылучыце тэчку"
+
+#: src/collect-table.c:94
+#, fuzzy
+msgid "Toggle select image"
+msgstr "наступная выява"
+
+#: src/collect-table.c:95 src/collect-table.c:998
+#, fuzzy
+msgid "Append from file selection"
+msgstr "Набавіць са спісу файлаў "
+
+#: src/collect-table.c:96
+#, fuzzy
+msgid "Append from collection"
+msgstr "Набавіць з калекцыі..."
+
+#: src/collect-table.c:98
+#, fuzzy
+msgid "Save collection as"
+msgstr "Захаваць калекцыю"
+
+#: src/collect-table.c:99
+#, fuzzy
+msgid "Show filename text"
+msgstr "Паказаць _імёны файлаў"
+
+#: src/collect-table.c:100 src/menu.c:179
+msgid "Sort by name"
+msgstr "Сартаваць па імені"
+
+#: src/collect-table.c:101 src/menu.c:169
+msgid "Sort by number"
+msgstr "Сартаваць па лічбах"
+
+#: src/collect-table.c:102 src/menu.c:151
+msgid "Sort by date"
+msgstr "Сартаваць па даце"
+
+#: src/collect-table.c:103 src/menu.c:148
+msgid "Sort by size"
+msgstr "Сартаваць па памеры"
+
+#: src/collect-table.c:104 src/menu.c:166
+msgid "Sort by path"
+msgstr "Сартаваць па шляху"
+
+#: src/collect-table.c:105 src/img-view.c:138 src/preferences.c:815
+#: src/toolbar.c:106
+msgid "Print"
+msgstr "Друкаваць"
 
 #: src/collect-table.c:249
 #, fuzzy, c-format
@@ -936,7 +1095,8 @@ msgstr "Пуста"
 msgid "Loading thumbs..."
 msgstr "Загружаем мініяцюры..."
 
-#: src/collect-table.c:988 src/dupe.c:3527 src/dupe.c:3865 src/search.c:1153
+#: src/collect-table.c:988 src/dupe.c:3527 src/dupe.c:3865
+#: src/layout_util.c:2471 src/search.c:1153
 msgid "_View"
 msgstr "Пра_гляд"
 
@@ -955,11 +1115,6 @@ msgstr "Маштабаваць да арыгінальнага памеру"
 msgid "Rem_ove"
 msgstr "Вы_даліць"
 
-#: src/collect-table.c:998
-#, fuzzy
-msgid "Append from file selection"
-msgstr "Набавіць са спісу файлаў "
-
 #: src/collect-table.c:1000
 msgid "Append from collection..."
 msgstr "Набавіць з калекцыі..."
@@ -969,41 +1124,26 @@ msgstr "Набавіць з калекцыі..."
 msgid "_Selection"
 msgstr "Вылучэнне"
 
-#: src/collect-table.c:1006 src/dupe.c:3532 src/dupe.c:3870 src/search.c:1158
-#: src/view_file/view_file.c:1087 src/view_file/view_file.c:1137
-msgid "Select all"
-msgstr "Вылучыць усё"
-
-#: src/collect-table.c:1008 src/dupe.c:3534 src/dupe.c:3872 src/search.c:1160
-#: src/view_file/view_file.c:1142
-msgid "Select none"
-msgstr "Скасаваць вылучэнне"
-
 #: src/collect-table.c:1010
 #, fuzzy
 msgid "Invert selection"
 msgstr "Вылучэнне"
 
-#: src/collect-table.c:1012
-#, fuzzy
-msgid "Rectangular selection"
-msgstr "Прамавугольнае вылучэнне у выглядзе іконкі"
-
 #: src/collect-table.c:1024 src/dupe.c:3559 src/img-view.c:1421
-#: src/layout_image.c:801 src/pan-view/pan-view.c:2403 src/search.c:1177
-#: src/view_file/view_file.c:704
+#: src/layout_image.c:801 src/layout_util.c:2483 src/pan-view/pan-view.c:2403
+#: src/search.c:1177 src/view_file/view_file.c:704
 msgid "_Copy..."
 msgstr "_Капіяваць..."
 
 #: src/collect-table.c:1026 src/dupe.c:3561 src/img-view.c:1422
-#: src/layout_image.c:803 src/pan-view/pan-view.c:2405 src/search.c:1179
-#: src/view_file/view_file.c:706
+#: src/layout_image.c:803 src/layout_util.c:2484 src/pan-view/pan-view.c:2405
+#: src/search.c:1179 src/view_file/view_file.c:706
 msgid "_Move..."
 msgstr "_Перамесціць"
 
 #: src/collect-table.c:1028 src/dupe.c:3563 src/img-view.c:1423
-#: src/layout_image.c:805 src/pan-view/pan-view.c:2407 src/search.c:1181
-#: src/view_dir.c:735 src/view_file/view_file.c:708
+#: src/layout_image.c:805 src/layout_util.c:2485 src/pan-view/pan-view.c:2407
+#: src/search.c:1181 src/view_dir.c:735 src/view_file/view_file.c:708
 msgid "_Rename..."
 msgstr "_Перайменаваць"
 
@@ -1020,18 +1160,12 @@ msgid "_Copy path unquoted"
 msgstr "_Капіяваць"
 
 #: src/collect-table.c:1037 src/dupe.c:3572 src/img-view.c:1429
-#: src/layout_image.c:814 src/pan-view/pan-view.c:2416 src/search.c:1190
+#: src/layout_image.c:814 src/layout_util.c:2486 src/layout_util.c:2487
+#: src/layout_util.c:2488 src/pan-view/pan-view.c:2416 src/search.c:1190
 #: src/view_file/view_file.c:716
 #, fuzzy
 msgid "Move to Trash..."
 msgstr "_Перамесціць"
-
-#: src/collect-table.c:1038 src/dupe.c:3573 src/img-view.c:1430
-#: src/layout_image.c:815 src/pan-view/pan-view.c:2417 src/search.c:1191
-#: src/view_file/view_file.c:717
-#, fuzzy
-msgid "Move to Trash"
-msgstr "_Вышэй"
 
 #: src/collect-table.c:1041 src/dupe.c:3576 src/img-view.c:1433
 #: src/layout_image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
@@ -1072,11 +1206,13 @@ msgstr "_Захаваць калекцыю"
 msgid "Save collection _as..."
 msgstr "Захаваць калекцыю _як..."
 
-#: src/collect-table.c:1063 src/view_file/view_file.c:731
+#: src/collect-table.c:1063 src/layout_util.c:2526
+#: src/view_file/view_file.c:731
 msgid "_Find duplicates..."
 msgstr "_Знайсці аднолькавыя..."
 
-#: src/collect-table.c:1065 src/dupe.c:3556 src/search.c:1174
+#: src/collect-table.c:1065 src/dupe.c:3556 src/layout_util.c:2528
+#: src/search.c:1174
 msgid "Print..."
 msgstr "Друк..."
 
@@ -1101,7 +1237,7 @@ msgstr "Прапусціць тэчкі"
 msgid "Cancel"
 msgstr "Адмена"
 
-#: src/color-man.c:438 src/exif-common.c:502
+#: src/color-man.c:438 src/exif.c:225 src/exif-common.c:502
 msgid "sRGB"
 msgstr "sRGB"
 
@@ -1187,10 +1323,47 @@ msgstr ""
 msgid "Hidden"
 msgstr ""
 
-#: src/desktop_file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/search.c:3697
-#: src/ui_pathsel.c:1112 src/utilops.c:503
+#: src/desktop_file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/osd.c:39
+#: src/search.c:3698 src/ui_pathsel.c:1112 src/utilops.c:503
 msgid "Path"
 msgstr "Шлях"
+
+#: src/dupe.c:155 src/img-view.c:97 src/preferences.c:807
+#: src/preferences.c:3510 src/search.c:358 src/toolbar.c:97 src/utilops.c:2209
+msgid "Delete"
+msgstr "Выдаленне"
+
+#: src/dupe.c:157 src/preferences.c:2058 src/preferences.c:2090
+#: src/preferences.c:2218 src/search.c:362 src/view_file/view_file.c:1188
+#: src/window.c:400
+#, fuzzy
+msgid "Clear"
+msgstr "А_чысціць"
+
+#: src/dupe.c:160 src/search.c:363
+#, fuzzy
+msgid "Toggle thumbs"
+msgstr "Загружаем мініяцюры..."
+
+#: src/dupe.c:164 src/search.c:367
+#, fuzzy
+msgid "Collection from selection"
+msgstr "Набавіць са спісу файлаў "
+
+#: src/dupe.c:165
+#, fuzzy
+msgid "Append list"
+msgstr "_Набавіць"
+
+#: src/dupe.c:167
+#, fuzzy
+msgid "Select group 1 duplicates"
+msgstr "Выберыце групу _1 дублікатаў"
+
+#: src/dupe.c:168
+#, fuzzy
+msgid "Select group 2 duplicates"
+msgstr "Выберыце групу _1 дублікатаў"
 
 #: src/dupe.c:255
 msgid "Drop files to compare them."
@@ -1265,17 +1438,18 @@ msgstr "%d файлаў (набор 2)"
 msgid "Name case-insensitive"
 msgstr "Імя без уліку рэгістру"
 
-#: src/dupe.c:3980 src/dupe.c:4704 src/dupe.c:5287 src/preferences.c:2425
-#: src/search.c:3694 src/view_file/view_file_list.c:2240
+#: src/dupe.c:3980 src/dupe.c:4704 src/dupe.c:5287 src/osd.c:41
+#: src/preferences.c:2425 src/search.c:3695 src/view_file/view_file_list.c:2240
 msgid "Size"
 msgstr "Памер"
 
-#: src/dupe.c:3981 src/dupe.c:4705 src/dupe.c:5287 src/search.c:3695
+#: src/dupe.c:3981 src/dupe.c:4705 src/dupe.c:5287 src/exif.c:334
+#: src/exif-common.c:916 src/osd.c:40 src/search.c:3696
 #: src/view_file/view_file_list.c:2244
 msgid "Date"
 msgstr "Дата"
 
-#: src/dupe.c:3982 src/dupe.c:4706 src/search.c:3696
+#: src/dupe.c:3982 src/dupe.c:4706 src/osd.c:43 src/search.c:3697
 msgid "Dimensions"
 msgstr "Вымярэнні"
 
@@ -1312,15 +1486,16 @@ msgstr "Змест выявы"
 msgid "Name case-insensitive ≠ content"
 msgstr "Імя без уліку рэгістру"
 
-#: src/dupe.c:4639 src/dupe.c:5028
+#: src/dupe.c:4639 src/dupe.c:5028 src/preferences.c:802 src/search.c:369
+#: src/toolbar.c:92
 msgid "Find duplicates"
 msgstr "Знайсці аднолькавыя"
 
-#: src/dupe.c:4701 src/search.c:3691
+#: src/dupe.c:4701 src/search.c:3692
 msgid "Rank"
 msgstr "Ранг"
 
-#: src/dupe.c:4702 src/search.c:3692
+#: src/dupe.c:4702 src/search.c:3693
 #, fuzzy
 msgid "Thumb"
 msgstr "Мініяцюры"
@@ -1335,7 +1510,7 @@ msgstr "Пошук:"
 msgid "Compare to:"
 msgstr "Параўнаць з:"
 
-#: src/dupe.c:4782 src/preferences.c:1973 src/search.c:3710
+#: src/dupe.c:4782 src/preferences.c:1973 src/search.c:3711
 msgid "Thumbnails"
 msgstr "Мініяцюры"
 
@@ -1391,11 +1566,11 @@ msgstr "Падабенства"
 msgid "Thumbnail"
 msgstr "Мініяцюры"
 
-#: src/dupe.c:5287 src/preferences.c:3957
+#: src/dupe.c:5287 src/exif.c:373 src/preferences.c:3957
 msgid "Width"
 msgstr "Шырыня"
 
-#: src/dupe.c:5287 src/preferences.c:3959
+#: src/dupe.c:5287 src/exif.c:374 src/preferences.c:3959
 msgid "Height"
 msgstr "Вышыня"
 
@@ -1427,11 +1602,11 @@ msgstr ""
 msgid "Desktop file '%s' should not include extension in Icon key: '%s'\n"
 msgstr ""
 
-#: src/editors.c:379 src/exif-common.c:428
+#: src/editors.c:379 src/exif.c:218 src/exif-common.c:428
 msgid "yes"
 msgstr "так"
 
-#: src/editors.c:379 src/exif-common.c:428
+#: src/editors.c:379 src/exif.c:217 src/exif-common.c:428
 msgid "no"
 msgstr "не"
 
@@ -1505,10 +1680,606 @@ msgstr "Файл быў прапушчаны."
 msgid "Unknown error."
 msgstr "Невядомая памылка."
 
+#: src/exif.c:140 src/exif.c:153 src/exif.c:167 src/exif.c:192 src/exif.c:309
 #: src/exif.c:656 src/exif-common.c:404 src/exif-common.c:407
 #: src/exif-common.c:474
 msgid "unknown"
 msgstr "невядома"
+
+#: src/exif.c:141
+msgid "top left"
+msgstr "зверху злева"
+
+#: src/exif.c:142
+msgid "top right"
+msgstr "зверху справа"
+
+#: src/exif.c:143
+msgid "bottom right"
+msgstr "знізу справа"
+
+#: src/exif.c:144
+msgid "bottom left"
+msgstr "знізу злева"
+
+#: src/exif.c:145
+msgid "left top"
+msgstr "злева зверху"
+
+#: src/exif.c:146
+msgid "right top"
+msgstr "справа зверху"
+
+#: src/exif.c:147
+msgid "right bottom"
+msgstr "справа знізу"
+
+#: src/exif.c:148
+msgid "left bottom"
+msgstr "злева знізу"
+
+#: src/exif.c:155
+msgid "inch"
+msgstr "цаль"
+
+#: src/exif.c:156
+msgid "centimeter"
+msgstr "сантыметр"
+
+#: src/exif.c:168
+msgid "average"
+msgstr "сярэдні"
+
+#: src/exif.c:169
+msgid "center weighted"
+msgstr "цэнтральна-ўзважаны"
+
+#: src/exif.c:170
+msgid "spot"
+msgstr "кропкавы"
+
+#: src/exif.c:171
+msgid "multi-spot"
+msgstr "шматкропкавы"
+
+#: src/exif.c:172
+msgid "multi-segment"
+msgstr "шматсегментны"
+
+#: src/exif.c:173
+msgid "partial"
+msgstr "частковы"
+
+#: src/exif.c:174 src/exif.c:212
+msgid "other"
+msgstr "іншы"
+
+#: src/exif.c:179 src/exif.c:231
+msgid "not defined"
+msgstr "не вызначана"
+
+#: src/exif.c:180 src/exif.c:259 src/exif.c:266
+msgid "manual"
+msgstr "уручную"
+
+#: src/exif.c:181 src/exif.c:252 src/exif.c:288 src/exif.c:295 src/exif.c:302
+msgid "normal"
+msgstr "нармальна"
+
+#: src/exif.c:182
+msgid "aperture"
+msgstr "апертура"
+
+#: src/exif.c:183
+msgid "shutter"
+msgstr "затвор"
+
+#: src/exif.c:184
+msgid "creative"
+msgstr "творчасць"
+
+#: src/exif.c:185
+msgid "action"
+msgstr "дзея"
+
+#: src/exif.c:186 src/exif.c:273
+msgid "portrait"
+msgstr "партрэт"
+
+#: src/exif.c:187 src/exif.c:272
+msgid "landscape"
+msgstr "краявід"
+
+#: src/exif.c:193
+msgid "daylight"
+msgstr "дзённае святло"
+
+#: src/exif.c:194
+msgid "fluorescent"
+msgstr "флуарэсцэнт"
+
+#: src/exif.c:195
+msgid "tungsten (incandescent)"
+msgstr "вальфрам (раскалены)"
+
+#: src/exif.c:196
+msgid "flash"
+msgstr "мігценне"
+
+#: src/exif.c:197
+msgid "fine weather"
+msgstr "выдатнае надвор'е"
+
+#: src/exif.c:198
+msgid "cloudy weather"
+msgstr "аблочнае надвор'е"
+
+#: src/exif.c:199
+msgid "shade"
+msgstr "цень"
+
+#: src/exif.c:200
+msgid "daylight fluorescent"
+msgstr "люмінісцэнтная лампа дзённага святла"
+
+#: src/exif.c:201
+msgid "day white fluorescent"
+msgstr "дзённы белы люмінісцэнт"
+
+#: src/exif.c:202
+msgid "cool white fluorescent"
+msgstr "халодны белы люмінісцэнт"
+
+#: src/exif.c:203
+msgid "white fluorescent"
+msgstr "белы люмінісцэнт"
+
+#: src/exif.c:204
+msgid "standard light A"
+msgstr "стандартнае святло A"
+
+#: src/exif.c:205
+msgid "standard light B"
+msgstr "стандартнае святло B"
+
+#: src/exif.c:206
+msgid "standard light C"
+msgstr "стандартнае святло C"
+
+#: src/exif.c:207
+msgid "D55"
+msgstr "D55"
+
+#: src/exif.c:208
+msgid "D65"
+msgstr "D65"
+
+#: src/exif.c:209
+msgid "D75"
+msgstr "D75"
+
+#: src/exif.c:210
+msgid "D50"
+msgstr "D50"
+
+#: src/exif.c:211
+msgid "ISO studio tungsten"
+msgstr ""
+
+#: src/exif.c:219
+msgid "yes, not detected by strobe"
+msgstr "так, не выяўлены стробам"
+
+#: src/exif.c:220
+msgid "yes, detected by strobe"
+msgstr "так, выяўлены стробам"
+
+#: src/exif.c:226
+#, fuzzy
+msgid "uncalibrated"
+msgstr "некалібраваны"
+
+#: src/exif.c:232
+msgid "1 chip color area"
+msgstr ""
+
+#: src/exif.c:233
+msgid "2 chip color area"
+msgstr ""
+
+#: src/exif.c:234
+msgid "3 chip color area"
+msgstr ""
+
+#: src/exif.c:235
+msgid "color sequential area"
+msgstr ""
+
+#: src/exif.c:236
+msgid "trilinear"
+msgstr "трохлінейнае"
+
+#: src/exif.c:237
+msgid "color sequential linear"
+msgstr ""
+
+#: src/exif.c:242
+msgid "digital still camera"
+msgstr ""
+
+#: src/exif.c:247
+msgid "direct photo"
+msgstr ""
+
+#: src/exif.c:253
+msgid "custom"
+msgstr "іншае"
+
+#: src/exif.c:258 src/exif.c:265 src/exif-common.c:442
+msgid "auto"
+msgstr "аўта"
+
+#: src/exif.c:260
+#, fuzzy
+msgid "auto bracket"
+msgstr "Аўтаматычнае перайменаванне"
+
+#: src/exif.c:271
+#, fuzzy
+msgid "standard"
+msgstr "Календар"
+
+#: src/exif.c:274
+msgid "night scene"
+msgstr "начная сцэна"
+
+#: src/exif.c:279
+msgid "none"
+msgstr "няма"
+
+#: src/exif.c:280
+#, fuzzy
+msgid "low gain up"
+msgstr "Ачысціць"
+
+#: src/exif.c:281
+msgid "high gain up"
+msgstr ""
+
+#: src/exif.c:282
+msgid "low gain down"
+msgstr ""
+
+#: src/exif.c:283
+msgid "high gain down"
+msgstr ""
+
+#: src/exif.c:289 src/exif.c:303
+msgid "soft"
+msgstr ""
+
+#: src/exif.c:290 src/exif.c:304
+msgid "hard"
+msgstr ""
+
+#: src/exif.c:296
+msgid "low"
+msgstr "нізкі"
+
+#: src/exif.c:297
+msgid "high"
+msgstr "высокі"
+
+#: src/exif.c:310
+msgid "macro"
+msgstr ""
+
+#: src/exif.c:311
+msgid "close"
+msgstr ""
+
+#: src/exif.c:312
+msgid "distant"
+msgstr "далёкі"
+
+#: src/exif.c:322
+msgid "Image Width"
+msgstr "Шырыня выявы"
+
+#: src/exif.c:323
+msgid "Image Height"
+msgstr "Вышыня выявы"
+
+#: src/exif.c:324
+msgid "Bits per Sample/Pixel"
+msgstr ""
+
+#: src/exif.c:325
+msgid "Compression"
+msgstr "Сціск"
+
+#: src/exif.c:326
+msgid "Image description"
+msgstr "Апісанне выявы"
+
+#: src/exif.c:327
+#, fuzzy
+msgid "Camera make"
+msgstr "Мадэль фотаздымача"
+
+#: src/exif.c:328
+msgid "Camera model"
+msgstr "Мадэль фотаздымача"
+
+#: src/exif.c:329
+msgid "Orientation"
+msgstr "Арыентацыя"
+
+#: src/exif.c:330
+msgid "X resolution"
+msgstr "X раздзяляльнасць"
+
+#: src/exif.c:331
+msgid "Y Resolution"
+msgstr "Y раздзяляльнасць"
+
+#: src/exif.c:332
+msgid "Resolution units"
+msgstr "Адзінкі раздзяляльнасці"
+
+#: src/exif.c:333
+msgid "Firmware"
+msgstr "Прашыўка"
+
+#: src/exif.c:335
+msgid "White point"
+msgstr ""
+
+#: src/exif.c:336
+msgid "Primary chromaticities"
+msgstr ""
+
+#: src/exif.c:337
+msgid "YCbCy coefficients"
+msgstr ""
+
+#: src/exif.c:338
+msgid "YCbCr positioning"
+msgstr ""
+
+#: src/exif.c:339
+msgid "Black white reference"
+msgstr "Аднашэнне чорнага/белага"
+
+#: src/exif.c:341
+msgid "SubIFD Exif offset"
+msgstr ""
+
+#: src/exif.c:343
+msgid "Exposure time (seconds)"
+msgstr "Час экспазіцыі (секунд)"
+
+#: src/exif.c:344
+msgid "FNumber"
+msgstr ""
+
+#: src/exif.c:345
+msgid "Exposure program"
+msgstr "Праграма экспазіцыі"
+
+#: src/exif.c:346
+msgid "Spectral Sensitivity"
+msgstr "Спектральная адчувальнасць"
+
+#: src/exif.c:347 src/exif.c:383 src/exif-common.c:921
+msgid "ISO sensitivity"
+msgstr "Адчувальнасць ISO"
+
+#: src/exif.c:348
+#, fuzzy
+msgid "Optoelectric conversion factor"
+msgstr "Адкрыць калекцыю"
+
+#: src/exif.c:349
+msgid "Exif version"
+msgstr "Версія Exif"
+
+#: src/exif.c:350
+msgid "Date original"
+msgstr "Дата здымкі"
+
+#: src/exif.c:351 src/osd.c:57
+msgid "Date digitized"
+msgstr "Пераўтворана ў лічбы"
+
+#: src/exif.c:352
+#, fuzzy
+msgid "Pixel format"
+msgstr "Фармат файла:"
+
+#: src/exif.c:353
+msgid "Compression ratio"
+msgstr "Узровень сціску"
+
+#: src/exif.c:354 src/exif-common.c:918
+msgid "Shutter speed"
+msgstr "Хуткасць затвора"
+
+#: src/exif.c:355 src/exif-common.c:919 src/osd.c:59
+msgid "Aperture"
+msgstr "Апертура"
+
+#: src/exif.c:356
+#, fuzzy
+msgid "Brightness"
+msgstr "Крыніца святла"
+
+#: src/exif.c:357 src/exif-common.c:920 src/osd.c:60
+msgid "Exposure bias"
+msgstr "Зрушэнне экспазіцыі"
+
+#: src/exif.c:358
+msgid "Maximum aperture"
+msgstr "Максімальная апертура"
+
+#: src/exif.c:359 src/exif-common.c:924 src/osd.c:67
+msgid "Subject distance"
+msgstr "Адлегласць да аб'екта"
+
+#: src/exif.c:360
+msgid "Metering mode"
+msgstr "Метад вымярэння"
+
+#: src/exif.c:361
+msgid "Light source"
+msgstr "Крыніца святла"
+
+#: src/exif.c:362 src/exif-common.c:925 src/osd.c:68
+msgid "Flash"
+msgstr "Успышка"
+
+#: src/exif.c:363 src/exif-common.c:922 src/osd.c:65
+msgid "Focal length"
+msgstr "Фокусная адлегласць"
+
+#: src/exif.c:364
+msgid "Subject area"
+msgstr "Прастора аб'екта"
+
+#: src/exif.c:365
+msgid "MakerNote"
+msgstr ""
+
+#: src/exif.c:366
+msgid "UserComment"
+msgstr "Карыстальніцкі каментар"
+
+#: src/exif.c:367
+#, fuzzy
+msgid "Subsecond time"
+msgstr "Дата здымкі"
+
+#: src/exif.c:368
+#, fuzzy
+msgid "Subsecond time original"
+msgstr "Дата здымкі"
+
+#: src/exif.c:369
+#, fuzzy
+msgid "Subsecond time digitized"
+msgstr "Пераўтворана ў лічбы"
+
+#: src/exif.c:370
+msgid "FlashPix version"
+msgstr "Версія FlashPix"
+
+#: src/exif.c:371
+msgid "Colorspace"
+msgstr "Прастора колераў"
+
+#: src/exif.c:375
+msgid "Audio data"
+msgstr "Аудыа-дадзеныя"
+
+#: src/exif.c:376
+msgid "ExifR98 extension"
+msgstr "Пашырэнне ExifR98"
+
+#: src/exif.c:377
+msgid "Flash strength"
+msgstr "Моцнасць успышкі"
+
+#: src/exif.c:378
+msgid "Spatial frequency response"
+msgstr ""
+
+#: src/exif.c:379
+msgid "X Pixel density"
+msgstr ""
+
+#: src/exif.c:380
+msgid "Y Pixel density"
+msgstr ""
+
+#: src/exif.c:381
+msgid "Pixel density units"
+msgstr ""
+
+#: src/exif.c:382
+msgid "Subject location"
+msgstr "Знаходжанне аб'екта"
+
+#: src/exif.c:384
+msgid "Sensor type"
+msgstr "Тып сэнсара"
+
+#: src/exif.c:385
+msgid "Source type"
+msgstr "Тып крыніцы"
+
+#: src/exif.c:386
+msgid "Scene type"
+msgstr "Тып сцэны"
+
+#: src/exif.c:387
+msgid "Color filter array pattern"
+msgstr ""
+
+#: src/exif.c:389
+#, fuzzy
+msgid "Render process"
+msgstr "Стварыць"
+
+#: src/exif.c:390
+msgid "Exposure mode"
+msgstr "Рэжым экспазіцыі"
+
+#: src/exif.c:391
+msgid "White balance"
+msgstr "Баланс белага"
+
+#: src/exif.c:392
+msgid "Digital zoom ratio"
+msgstr "Узровень лічбавага зуму"
+
+#: src/exif.c:393
+msgid "Focal length (35mm)"
+msgstr "Фокусная адлегласць (35мм)"
+
+#: src/exif.c:394
+#, fuzzy
+msgid "Scene capture type"
+msgstr "Тып сцэны"
+
+#: src/exif.c:395
+#, fuzzy
+msgid "Gain control"
+msgstr "Адлучыць панэль кіравання"
+
+#: src/exif.c:396
+msgid "Contrast"
+msgstr "Кантраст"
+
+#: src/exif.c:397 src/preferences.c:3366
+msgid "Saturation"
+msgstr "Насычанасць"
+
+#: src/exif.c:398
+msgid "Sharpness"
+msgstr ""
+
+#: src/exif.c:399
+msgid "Device setting"
+msgstr "Налада прылады"
+
+#: src/exif.c:400
+#, fuzzy
+msgid "Subject range"
+msgstr "Прастора аб'екта"
+
+#: src/exif.c:401
+msgid "Image serial number"
+msgstr "Серыйны нумар выявы"
 
 #: src/exif.c:1108
 msgid "Can't get image comment: not compiled with Exiv2.\n"
@@ -1533,10 +2304,6 @@ msgstr "уключана"
 #: src/exif-common.c:439
 msgid "off"
 msgstr "выключана"
-
-#: src/exif-common.c:442
-msgid "auto"
-msgstr "аўта"
 
 #: src/exif-common.c:448
 msgid "not detected by strobe"
@@ -1568,6 +2335,109 @@ msgstr ""
 
 #: src/exif-common.c:610
 msgid "Below Sea Level"
+msgstr ""
+
+#: src/exif-common.c:915 src/osd.c:62
+msgid "Camera"
+msgstr "Фотаздымач"
+
+#: src/exif-common.c:917
+#, fuzzy
+msgid "DateDigitized"
+msgstr "Пераўтворана ў лічбы"
+
+#: src/exif-common.c:923
+msgid "Focal length 35mm"
+msgstr "Фокусная адлегласць 35мм"
+
+#: src/exif-common.c:926 src/osd.c:61
+msgid "Resolution"
+msgstr "Раздзяляльнасць"
+
+#: src/exif-common.c:927 src/osd.c:69
+msgid "Color profile"
+msgstr "Профіль колеру"
+
+#: src/exif-common.c:928
+msgid "GPS position"
+msgstr ""
+
+#: src/exif-common.c:929
+msgid "GPS altitude"
+msgstr ""
+
+#: src/exif-common.c:930 src/osd.c:72
+#, fuzzy
+msgid "Local time"
+msgstr "Змяшчэнне:"
+
+#: src/exif-common.c:931
+#, fuzzy
+msgid "Time zone"
+msgstr "Білінейны"
+
+#: src/exif-common.c:932 src/osd.c:74
+#, fuzzy
+msgid "Country name"
+msgstr "Сартаваць па імені"
+
+#: src/exif-common.c:933 src/osd.c:75
+#, fuzzy
+msgid "Country code"
+msgstr "Сартаваць па імені"
+
+#: src/exif-common.c:934 src/osd.c:77
+#, fuzzy
+msgid "Star rating"
+msgstr "Сартаваць па даце"
+
+#: src/exif-common.c:935
+#, fuzzy
+msgid "File size"
+msgstr "Памер файла:"
+
+#: src/exif-common.c:936
+#, fuzzy
+msgid "File date"
+msgstr "Дата файла:"
+
+#: src/exif-common.c:937 src/osd.c:50
+#, fuzzy
+msgid "File mode"
+msgstr "Імя файла"
+
+#: src/exif-common.c:938 src/osd.c:49
+#, fuzzy
+msgid "File ctime"
+msgstr "Памер файла:"
+
+#: src/exif-common.c:939 src/osd.c:51
+#, fuzzy
+msgid "File owner"
+msgstr "Імя файла"
+
+#: src/exif-common.c:940 src/osd.c:52
+#, fuzzy
+msgid "File group"
+msgstr "Файл не знойдзены"
+
+#: src/exif-common.c:941 src/osd.c:53
+#, fuzzy
+msgid "File link"
+msgstr "Файл не знойдзены"
+
+#: src/exif-common.c:942 src/osd.c:54
+#, fuzzy
+msgid "File class"
+msgstr "Файлы"
+
+#: src/exif-common.c:943
+#, fuzzy
+msgid "Page no."
+msgstr "Старонка %d"
+
+#: src/exif-common.c:944 src/osd.c:63
+msgid "Lens"
 msgstr ""
 
 #: src/filedata.c:112
@@ -1654,7 +2524,10 @@ msgstr ""
 msgid "Error: Unable to write marks lists to: %s\n"
 msgstr "Немагчыма запісаць спісы гісторыі ў: %s\n"
 
-#: src/fullscreen.c:242 src/preferences.c:2438
+#: src/fullscreen.c:242 src/img-view.c:131 src/layout_util.c:2588
+#: src/layout_util.c:2589 src/layout_util.c:2590 src/pan-view/pan-view.c:120
+#: src/pan-view/pan-view.c:121 src/pan-view/pan-view.c:122
+#: src/preferences.c:2438
 msgid "Full screen"
 msgstr "Поўны экран"
 
@@ -1775,42 +2648,183 @@ msgstr ""
 msgid "JP2 image not rgb"
 msgstr ""
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1885
+#: src/img-view.c:99 src/menu.c:359 src/preferences.c:821 src/toolbar.c:112
+#, fuzzy
+msgid "Rotate 180°"
+msgstr "Павярнуць на 1_80 градусаў"
+
+#: src/img-view.c:100
+#, fuzzy
+msgid "Rotate mirror"
+msgstr "Шырыня выявы"
+
+#: src/img-view.c:101
+#, fuzzy
+msgid "Rotate flip"
+msgstr "Згладжанае перавяртанне выявы"
+
+#: src/img-view.c:102
+#, fuzzy
+msgid " Rotate counterclockwise 90°"
+msgstr "Павярнуць _супраць гадзіннікавай стрэлкі"
+
+#: src/img-view.c:103
+#, fuzzy
+msgid " Rotate clockwise 90°"
+msgstr "Павярнуць па _гадзіннікавай стрэлцы"
+
+#: src/img-view.c:104 src/img-view.c:105 src/img-view.c:106 src/img-view.c:107
+#, fuzzy
+msgid "Previous"
+msgstr "Папярэ_дняя выява"
+
+#: src/img-view.c:108 src/img-view.c:109 src/img-view.c:110 src/img-view.c:111
+#, fuzzy
+msgid "Next"
+msgstr "_Наступная выява"
+
+#: src/img-view.c:112 src/img-view.c:113 src/layout_util.c:2554
+#: src/layout_util.c:2555 src/pan-view/pan-view.c:108
+#: src/pan-view/pan-view.c:109 src/preferences.c:825 src/toolbar.c:116
+msgid "Zoom in"
+msgstr "Павялічыць"
+
+#: src/img-view.c:114 src/layout_util.c:2556 src/layout_util.c:2557
+#: src/pan-view/pan-view.c:110 src/preferences.c:826 src/toolbar.c:117
+msgid "Zoom out"
+msgstr "Паменьшыць"
+
+#: src/img-view.c:115 src/img-view.c:116 src/img-view.c:1406
+#: src/layout_image.c:776 src/layout_util.c:2560 src/layout_util.c:2561
+#: src/preferences.c:828 src/toolbar.c:119
+#, fuzzy
+msgid "Zoom to fit"
+msgstr "_Дапасаваць памер"
+
+#: src/img-view.c:117 src/img-view.c:118 src/img-view.c:119
+#: src/layout_util.c:2558 src/layout_util.c:2559 src/pan-view/pan-view.c:111
+#: src/pan-view/pan-view.c:112 src/pan-view/pan-view.c:113
+#: src/preferences.c:827 src/toolbar.c:118
+#, fuzzy
+msgid "Zoom 1:1"
+msgstr "Памер _1:1"
+
+#: src/img-view.c:120 src/layout_util.c:2564 src/pan-view/pan-view.c:114
+#: src/preferences.c:831 src/toolbar.c:122
+#, fuzzy
+msgid "Zoom 2:1"
+msgstr "Памер _2:1"
+
+#: src/img-view.c:121 src/layout_util.c:2565 src/pan-view/pan-view.c:115
+#: src/preferences.c:832 src/toolbar.c:123
+#, fuzzy
+msgid "Zoom 3:1"
+msgstr "Памер _3:1"
+
+#: src/img-view.c:122 src/layout_util.c:2566 src/pan-view/pan-view.c:116
+#: src/preferences.c:833 src/toolbar.c:124
+#, fuzzy
+msgid "Zoom 4:1"
+msgstr "Памер _4:1"
+
+#: src/img-view.c:123 src/layout_util.c:2569 src/layout_util.c:2585
+#: src/pan-view/pan-view.c:117 src/preferences.c:836 src/toolbar.c:127
+msgid "Zoom 1:4"
+msgstr "Памер 1:4"
+
+#: src/img-view.c:124 src/layout_util.c:2568 src/layout_util.c:2584
+#: src/pan-view/pan-view.c:118
+msgid "Zoom 1:3"
+msgstr "Памер 1:3"
+
+#: src/img-view.c:125 src/layout_util.c:2567 src/layout_util.c:2583
+#: src/pan-view/pan-view.c:119 src/preferences.c:834 src/toolbar.c:125
+msgid "Zoom 1:2"
+msgstr "Памер 1:2"
+
+#: src/img-view.c:126
+#, fuzzy
+msgid "Zoom fit window width"
+msgstr "_Дапасаваць памер"
+
+#: src/img-view.c:127
+#, fuzzy
+msgid "Zoom fit window height"
+msgstr "_Дапасаваць памер"
+
+#: src/img-view.c:128 src/layout_util.c:2632
+#, fuzzy
+msgid "Toggle slideshow"
+msgstr "Пераключыць _паказ слайдаў"
+
+#: src/img-view.c:129 src/layout_util.c:2597 src/preferences.c:842
+#: src/toolbar.c:138
+#, fuzzy
+msgid "Pause slideshow"
+msgstr "_Прыпыніць паказ слайдаў"
+
+#: src/img-view.c:130
+#, fuzzy
+msgid "Reload image"
+msgstr "Выпадкова"
+
+#: src/img-view.c:132 src/img-view.c:133
+#, fuzzy
+msgid "Fullscreen"
+msgstr "Поўны экран"
+
+#: src/img-view.c:134
+#, fuzzy
+msgid "Image overlay"
+msgstr "Пошук выяваў"
+
+#: src/img-view.c:135 src/pan-view/pan-view.c:106
+#, fuzzy
+msgid "Exit fullscreen"
+msgstr "Выйсці з _поўнага экрану"
+
+#: src/img-view.c:137
+#, fuzzy
+msgid "Desaturate"
+msgstr "Прырода"
+
+#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1891
 #: src/layout_util.c:914 src/view_file/view_file.c:396
 #, fuzzy
 msgid "Cannot open archive file"
 msgstr "Немагчыма перайменаваць файл"
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1885
+#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1891
 #: src/layout_util.c:914 src/preferences.c:4219 src/preferences.c:4227
 #: src/view_file/view_file.c:396
 #, fuzzy
 msgid "See the Log Window"
 msgstr "Вокны"
 
-#: src/img-view.c:1403 src/layout_image.c:773 src/pan-view/pan-view.c:2382
+#: src/img-view.c:1403 src/layout_image.c:773 src/layout_util.c:2554
+#: src/layout_util.c:2555 src/layout_util.c:2570 src/layout_util.c:2571
+#: src/pan-view/pan-view.c:2382
 msgid "Zoom _in"
 msgstr "Па_вялічыць"
 
-#: src/img-view.c:1404 src/layout_image.c:774 src/pan-view/pan-view.c:2384
+#: src/img-view.c:1404 src/layout_image.c:774 src/layout_util.c:2556
+#: src/layout_util.c:2557 src/layout_util.c:2572 src/layout_util.c:2573
+#: src/pan-view/pan-view.c:2384
 msgid "Zoom _out"
 msgstr "Па_меншыць"
 
-#: src/img-view.c:1405 src/layout_image.c:775 src/pan-view/pan-view.c:2386
+#: src/img-view.c:1405 src/layout_image.c:775 src/layout_util.c:2558
+#: src/layout_util.c:2559 src/layout_util.c:2574 src/layout_util.c:2575
+#: src/pan-view/pan-view.c:2386
 msgid "Zoom _1:1"
 msgstr "Памер _1:1"
-
-#: src/img-view.c:1406 src/layout_image.c:776
-#, fuzzy
-msgid "Zoom to fit"
-msgstr "_Дапасаваць памер"
 
 #: src/img-view.c:1418 src/layout_image.c:790
 msgid "_Go to directory view"
 msgstr "_Ісці ў прагляд каталога"
 
 #: src/img-view.c:1446 src/img-view.c:1460 src/layout_image.c:832
-#: src/layout_image.c:846
+#: src/layout_image.c:846 src/layout_util.c:2632
 msgid "Toggle _slideshow"
 msgstr "Пераключыць _паказ слайдаў"
 
@@ -1831,7 +2845,7 @@ msgstr "Выйсці з _поўнага экрану"
 msgid "_Full screen"
 msgstr "_Поўны экран"
 
-#: src/img-view.c:1476 src/pan-view/pan-view.c:2482
+#: src/img-view.c:1476 src/layout_util.c:2493 src/pan-view/pan-view.c:2482
 msgid "C_lose window"
 msgstr "_Закрыць акно"
 
@@ -1922,7 +2936,7 @@ msgstr "Вылучыце тэчку"
 msgid "[Pixel x,y coord]: (Pixel R,G,B value)"
 msgstr ""
 
-#: src/layout.c:1625
+#: src/layout.c:1625 src/layout_config.c:67
 msgid "Tools"
 msgstr "Прылады"
 
@@ -1975,22 +2989,32 @@ msgstr "Спалучэнне"
 msgid "Invalid geometry\n"
 msgstr "Нерэчаісныя памеры\n"
 
+#: src/layout_config.c:67 src/ui_pathsel.c:1179
+msgid "Files"
+msgstr "Файлы"
+
+#: src/layout_config.c:67 src/preferences.c:131 src/preferences.c:2242
+#: src/search.c:2261 src/search.c:3606
+msgid "Image"
+msgstr "Выява"
+
 #: src/layout_config.c:358
 msgid "(drag to change order)"
 msgstr "(цягніце, каб змяніць парадак)"
 
-#: src/layout_image.c:793 src/layout_util.c:2285 src/view_file/view_file.c:701
+#: src/layout_image.c:793 src/layout_util.c:2285 src/layout_util.c:2587
+#: src/view_file/view_file.c:701
 #, fuzzy
 msgid "Open archive"
 msgstr "Адкрыць _нядаўняе"
 
-#: src/layout_image.c:807 src/pan-view/pan-view.c:2409
+#: src/layout_image.c:807 src/layout_util.c:2532 src/pan-view/pan-view.c:2409
 #: src/view_file/view_file.c:710
 #, fuzzy
 msgid "_Copy path to clipboard"
 msgstr "_Капіяваць"
 
-#: src/layout_image.c:808 src/pan-view/pan-view.c:2411
+#: src/layout_image.c:808 src/layout_util.c:2533 src/pan-view/pan-view.c:2411
 #: src/view_file/view_file.c:712
 #, fuzzy
 msgid "_Copy path unquoted to clipboard"
@@ -2001,7 +3025,7 @@ msgstr "_Капіяваць"
 msgid "Copy _image to clipboard"
 msgstr "_Капіяваць"
 
-#: src/layout_image.c:860
+#: src/layout_image.c:860 src/layout_util.c:2639
 msgid "GIF _animation"
 msgstr ""
 
@@ -2009,17 +3033,17 @@ msgstr ""
 msgid "Hide file _list"
 msgstr "Схаваць _спіс файлаў"
 
-#: src/layout_image.c:2110
+#: src/layout_image.c:2116
 #, c-format
 msgid "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 msgstr ""
 
-#: src/layout_image.c:2118
+#: src/layout_image.c:2124
 #, c-format
 msgid "[%*s,%*s]: RGB(---,---,---)"
 msgstr ""
 
-#: src/layout_util.c:244
+#: src/layout_util.c:244 src/layout_util.c:2618
 #, fuzzy
 msgid "Clear Marks"
 msgstr "Ачысціць сметніцу"
@@ -2072,12 +3096,12 @@ msgstr ""
 msgid "Window layout name \"%s\" already exists."
 msgstr "Файл з імем %s ужо існуе."
 
-#: src/layout_util.c:2155 src/layout_util.c:2404
+#: src/layout_util.c:2155 src/layout_util.c:2404 src/layout_util.c:2520
 #, fuzzy
 msgid "Rename window"
 msgstr "Новае _акно"
 
-#: src/layout_util.c:2255 src/layout_util.c:2435
+#: src/layout_util.c:2255 src/layout_util.c:2435 src/layout_util.c:2521
 #, fuzzy
 msgid "Delete window"
 msgstr "_Закрыць акно"
@@ -2093,6 +3117,1282 @@ msgstr "Новае _акно"
 
 #: src/layout_util.c:2438
 msgid "Delete window layout"
+msgstr ""
+
+#: src/layout_util.c:2464
+msgid "_File"
+msgstr "_Файл"
+
+#: src/layout_util.c:2465
+msgid "_Go"
+msgstr "_Ісці"
+
+#: src/layout_util.c:2466
+msgid "_Edit"
+msgstr "_Праўка"
+
+#: src/layout_util.c:2467
+msgid "_Select"
+msgstr "Вы_лучыць"
+
+#: src/layout_util.c:2468 src/menu.c:411
+#, fuzzy
+msgid "_Orientation"
+msgstr "Арыентацыя"
+
+#: src/layout_util.c:2469
+#, fuzzy
+msgid "_Rating"
+msgstr "Памылка друку"
+
+#: src/layout_util.c:2470
+#, fuzzy
+msgid "P_references"
+msgstr "Наладкі"
+
+#: src/layout_util.c:2472
+#, fuzzy
+msgid "_Files and Folders"
+msgstr "Паказаць с_хаваныя"
+
+#: src/layout_util.c:2473
+msgid "_Zoom"
+msgstr "_Маштаб"
+
+#: src/layout_util.c:2474
+#, fuzzy
+msgid "_Color Management"
+msgstr "Кіраўнік упарадкавання"
+
+#: src/layout_util.c:2475
+#, fuzzy
+msgid "_Connected Zoom"
+msgstr "Паменьшыць"
+
+#: src/layout_util.c:2476
+#, fuzzy
+msgid "Spli_t"
+msgstr "_Раздзяліць"
+
+#: src/layout_util.c:2477
+msgid "Stere_o"
+msgstr ""
+
+#: src/layout_util.c:2478 src/layout_util.c:2636
+#, fuzzy
+msgid "Image _Overlay"
+msgstr "Пошук выяваў"
+
+#: src/layout_util.c:2479 src/menu.c:121
+msgid "_Plugins"
+msgstr ""
+
+#: src/layout_util.c:2480
+#, fuzzy
+msgid "_Windows"
+msgstr "Вокны"
+
+#: src/layout_util.c:2481
+msgid "_Help"
+msgstr "_Дапамога"
+
+#: src/layout_util.c:2483
+#, fuzzy
+msgid "Copy..."
+msgstr "_Капіяваць..."
+
+#: src/layout_util.c:2484
+#, fuzzy
+msgid "Move..."
+msgstr "_Перамесціць"
+
+#: src/layout_util.c:2485
+#, fuzzy
+msgid "Rename..."
+msgstr "_Перайменаваць"
+
+#: src/layout_util.c:2489
+#, fuzzy
+msgid "Delete..."
+msgstr "_Выдаліць"
+
+#: src/layout_util.c:2490
+msgid "Select _all"
+msgstr "Вылучыць _усё"
+
+#: src/layout_util.c:2491
+msgid "Select _none"
+msgstr "_Скасаваць вылучэнне"
+
+#: src/layout_util.c:2492
+#, fuzzy
+msgid "_Invert Selection"
+msgstr "Вылучэнне"
+
+#: src/layout_util.c:2492
+#, fuzzy
+msgid "Invert Selection"
+msgstr "Вылучэнне"
+
+#: src/layout_util.c:2494
+msgid "_Quit"
+msgstr "_Выйсце"
+
+#: src/layout_util.c:2494 src/preferences.c:854 src/toolbar.c:150
+#, fuzzy
+msgid "Quit"
+msgstr "_Выйсце"
+
+#: src/layout_util.c:2495
+msgid "_First Image"
+msgstr "Пе_ршая выява"
+
+#: src/layout_util.c:2495 src/preferences.c:786 src/toolbar.c:74
+#, fuzzy
+msgid "First Image"
+msgstr "Пе_ршая выява"
+
+#: src/layout_util.c:2496 src/layout_util.c:2497 src/layout_util.c:2498
+msgid "_Previous Image"
+msgstr "Папярэ_дняя выява"
+
+#: src/layout_util.c:2496 src/layout_util.c:2497 src/layout_util.c:2498
+#: src/preferences.c:787 src/toolbar.c:75
+#, fuzzy
+msgid "Previous Image"
+msgstr "Папярэ_дняя выява"
+
+#: src/layout_util.c:2499 src/layout_util.c:2500 src/layout_util.c:2511
+msgid "_Next Image"
+msgstr "_Наступная выява"
+
+#: src/layout_util.c:2499 src/layout_util.c:2500 src/layout_util.c:2511
+#: src/preferences.c:788 src/toolbar.c:76
+#, fuzzy
+msgid "Next Image"
+msgstr "_Наступная выява"
+
+#: src/layout_util.c:2502 src/toolbar.c:86
+#, fuzzy
+msgid "Image Forward"
+msgstr "Файл выявы"
+
+#: src/layout_util.c:2502
+msgid "Forward in image history"
+msgstr ""
+
+#: src/layout_util.c:2503 src/toolbar.c:87
+#, fuzzy
+msgid "Image Back"
+msgstr "Пошук выяваў"
+
+#: src/layout_util.c:2503
+msgid "Back in image history"
+msgstr ""
+
+#: src/layout_util.c:2505
+#, fuzzy
+msgid "_First Page"
+msgstr "Пе_ршая выява"
+
+#: src/layout_util.c:2505
+msgid "First Page of multi-page image"
+msgstr ""
+
+#: src/layout_util.c:2506
+#, fuzzy
+msgid "_Last Page"
+msgstr "Ап_ошняя выява"
+
+#: src/layout_util.c:2506
+msgid "Last Page of multi-page image"
+msgstr ""
+
+#: src/layout_util.c:2507
+#, fuzzy
+msgid "_Next Page"
+msgstr "_Наступная выява"
+
+#: src/layout_util.c:2507
+msgid "Next Page of multi-page image"
+msgstr ""
+
+#: src/layout_util.c:2508
+#, fuzzy
+msgid "_Previous Page"
+msgstr "Папярэ_дняя выява"
+
+#: src/layout_util.c:2508
+msgid "Previous Page of multi-page image"
+msgstr ""
+
+#: src/layout_util.c:2512
+msgid "_Last Image"
+msgstr "Ап_ошняя выява"
+
+#: src/layout_util.c:2512 src/preferences.c:789 src/toolbar.c:77
+#, fuzzy
+msgid "Last Image"
+msgstr "Ап_ошняя выява"
+
+#: src/layout_util.c:2513
+msgid "_Back"
+msgstr ""
+
+#: src/layout_util.c:2513
+msgid "Back in folder history"
+msgstr ""
+
+#: src/layout_util.c:2514
+#, fuzzy
+msgid "_Forward"
+msgstr "Файл выявы"
+
+#: src/layout_util.c:2514
+msgid "Forward in folder history"
+msgstr ""
+
+#: src/layout_util.c:2515
+#, fuzzy
+msgid "_Home"
+msgstr "Хатняя дырэкторыя"
+
+#: src/layout_util.c:2515 src/options.c:244 src/preferences.c:792
+#: src/toolbar.c:80 src/ui_bookmark.c:560 src/ui_pathsel.c:1047
+msgid "Home"
+msgstr "Хатняя дырэкторыя"
+
+#: src/layout_util.c:2516
+msgid "_Up"
+msgstr ""
+
+#: src/layout_util.c:2516
+#, fuzzy
+msgid "Up one folder"
+msgstr "Новая тэчка"
+
+#: src/layout_util.c:2517 src/toolbar.c:88
+#, fuzzy
+msgid "New window"
+msgstr "Новае _акно"
+
+#: src/layout_util.c:2518
+#, fuzzy
+msgid "default"
+msgstr "Прадвызначанае"
+
+#: src/layout_util.c:2518
+#, fuzzy
+msgid "New window (default)"
+msgstr "Новае _акно"
+
+#: src/layout_util.c:2519
+#, fuzzy
+msgid "from current"
+msgstr "Ужываць цяперашнюю"
+
+#: src/layout_util.c:2522
+msgid "_New collection"
+msgstr "_Новая калекцыя"
+
+#: src/layout_util.c:2522 src/menu.c:472 src/preferences.c:799 src/toolbar.c:89
+#, fuzzy
+msgid "New collection"
+msgstr "_Новая калекцыя"
+
+#: src/layout_util.c:2523
+msgid "_Open collection..."
+msgstr "_Адкрыць калекцыю"
+
+#: src/layout_util.c:2523
+#, fuzzy
+msgid "Open collection..."
+msgstr "_Адкрыць калекцыю"
+
+#: src/layout_util.c:2524
+#, fuzzy
+msgid "Open recen_t"
+msgstr "Адкрыць _нядаўняе"
+
+#: src/layout_util.c:2524
+#, fuzzy
+msgid "Open recent collection"
+msgstr "Адкрыць калекцыю"
+
+#: src/layout_util.c:2525
+msgid "_Search..."
+msgstr "_Пошук..."
+
+#: src/layout_util.c:2525
+#, fuzzy
+msgid "Search..."
+msgstr "_Пошук..."
+
+#: src/layout_util.c:2526
+#, fuzzy
+msgid "Find duplicates..."
+msgstr "_Знайсці аднолькавыя..."
+
+#: src/layout_util.c:2527
+#, fuzzy
+msgid "Pa_n view"
+msgstr "Пашыраны агляд"
+
+#: src/layout_util.c:2527 src/preferences.c:809 src/toolbar.c:99
+#, fuzzy
+msgid "Pan view"
+msgstr "Пашыраны агляд"
+
+#: src/layout_util.c:2528
+msgid "_Print..."
+msgstr "_Друк..."
+
+#: src/layout_util.c:2529
+msgid "N_ew folder..."
+msgstr "Новая _тэчка..."
+
+#: src/layout_util.c:2529
+#, fuzzy
+msgid "New folder..."
+msgstr "_Новая тэчка..."
+
+#: src/layout_util.c:2530 src/view_file/view_file.c:725
+#, fuzzy
+msgid "Enable file _grouping"
+msgstr "Адключыць фільтрацыю файлаў"
+
+#: src/layout_util.c:2530
+#, fuzzy
+msgid "Enable file grouping"
+msgstr "Адключыць фільтрацыю файлаў"
+
+#: src/layout_util.c:2531 src/view_file/view_file.c:727
+#, fuzzy
+msgid "Disable file groupi_ng"
+msgstr "Адключыць фільтрацыю файлаў"
+
+#: src/layout_util.c:2531
+#, fuzzy
+msgid "Disable file grouping"
+msgstr "Адключыць фільтрацыю файлаў"
+
+#: src/layout_util.c:2532
+#, fuzzy
+msgid "Copy path to clipboard"
+msgstr "_Капіяваць"
+
+#: src/layout_util.c:2533
+#, fuzzy
+msgid "Copy path unquoted to clipboard"
+msgstr "_Капіяваць"
+
+#: src/layout_util.c:2534
+#, fuzzy
+msgid "_Rating 0"
+msgstr "Памылка друку"
+
+#: src/layout_util.c:2534
+#, fuzzy
+msgid "Rating 0"
+msgstr "Памылка друку"
+
+#: src/layout_util.c:2535
+#, fuzzy
+msgid "_Rating 1"
+msgstr "Памылка друку"
+
+#: src/layout_util.c:2535
+#, fuzzy
+msgid "Rating 1"
+msgstr "Памылка друку"
+
+#: src/layout_util.c:2536
+#, fuzzy
+msgid "_Rating 2"
+msgstr "Памылка друку"
+
+#: src/layout_util.c:2536
+#, fuzzy
+msgid "Rating 2"
+msgstr "Памылка друку"
+
+#: src/layout_util.c:2537
+#, fuzzy
+msgid "_Rating 3"
+msgstr "Памылка друку"
+
+#: src/layout_util.c:2537
+#, fuzzy
+msgid "Rating 3"
+msgstr "Памылка друку"
+
+#: src/layout_util.c:2538
+#, fuzzy
+msgid "_Rating 4"
+msgstr "Памылка друку"
+
+#: src/layout_util.c:2538
+#, fuzzy
+msgid "Rating 4"
+msgstr "Памылка друку"
+
+#: src/layout_util.c:2539
+#, fuzzy
+msgid "_Rating 5"
+msgstr "Памылка друку"
+
+#: src/layout_util.c:2539
+#, fuzzy
+msgid "Rating 5"
+msgstr "Памылка друку"
+
+#: src/layout_util.c:2540
+#, fuzzy
+msgid "_Rating -1"
+msgstr "Памылка друку"
+
+#: src/layout_util.c:2540
+#, fuzzy
+msgid "Rating -1"
+msgstr "Памылка друку"
+
+#: src/layout_util.c:2541
+#, fuzzy
+msgid "_Rotate clockwise 90°"
+msgstr "Павярнуць па _гадзіннікавай стрэлцы"
+
+#: src/layout_util.c:2541
+#, fuzzy
+msgid "Image Rotate clockwise 90°"
+msgstr "Павярнуць па _гадзіннікавай стрэлцы"
+
+#: src/layout_util.c:2542
+#, fuzzy
+msgid "Rotate _counterclockwise 90°"
+msgstr "Павярнуць _супраць гадзіннікавай стрэлкі"
+
+#: src/layout_util.c:2542 src/menu.c:356 src/preferences.c:820
+#: src/toolbar.c:111
+#, fuzzy
+msgid "Rotate counterclockwise 90°"
+msgstr "Павярнуць _супраць гадзіннікавай стрэлкі"
+
+#: src/layout_util.c:2543
+#, fuzzy
+msgid "Rotate 1_80°"
+msgstr "Павярнуць на 1_80 градусаў"
+
+#: src/layout_util.c:2543
+#, fuzzy
+msgid "Image Rotate 180°"
+msgstr "Павярнуць на 1_80 градусаў"
+
+#: src/layout_util.c:2544
+msgid "_Mirror"
+msgstr "_Адлюстраваць"
+
+#: src/layout_util.c:2544
+#, fuzzy
+msgid "Image Mirror"
+msgstr "Шырыня выявы"
+
+#: src/layout_util.c:2545
+msgid "_Flip"
+msgstr "_Дагары нагамі"
+
+#: src/layout_util.c:2545
+#, fuzzy
+msgid "Image Flip"
+msgstr "Шырыня выявы"
+
+#: src/layout_util.c:2546
+msgid "_Original state"
+msgstr "Па_чатковы стан"
+
+#: src/layout_util.c:2546
+#, fuzzy
+msgid "Image rotate Original state"
+msgstr "Па_чатковы стан"
+
+#: src/layout_util.c:2547
+msgid "P_references..."
+msgstr "_Наладкі"
+
+#: src/layout_util.c:2547
+#, fuzzy
+msgid "Preferences..."
+msgstr "_Наладкі"
+
+#: src/layout_util.c:2548
+#, fuzzy
+msgid "Configure _Plugins..."
+msgstr "Канфігурацыя"
+
+#: src/layout_util.c:2548
+#, fuzzy
+msgid "Configure Plugins..."
+msgstr "Канфігурацыя"
+
+#: src/layout_util.c:2549
+#, fuzzy
+msgid "_Configure this window..."
+msgstr "Канфігурацыя"
+
+#: src/layout_util.c:2549
+#, fuzzy
+msgid "Configure this window..."
+msgstr "Канфігурацыя"
+
+#: src/layout_util.c:2550
+#, fuzzy
+msgid "_Cache maintenance..."
+msgstr "Кіраванне кэшам"
+
+#: src/layout_util.c:2550
+#, fuzzy
+msgid "Cache maintenance..."
+msgstr "Кіраванне кэшам"
+
+#: src/layout_util.c:2551
+msgid "Set as _wallpaper"
+msgstr "Усталяваць як _шпалеры"
+
+#: src/layout_util.c:2551
+#, fuzzy
+msgid "Set as wallpaper"
+msgstr "Усталяваць як _шпалеры"
+
+#: src/layout_util.c:2552
+#, fuzzy
+msgid "_Save metadata"
+msgstr "Метададзеныя"
+
+#: src/layout_util.c:2552 src/toolbar.c:136
+#, fuzzy
+msgid "Save metadata"
+msgstr "Метададзеныя"
+
+#: src/layout_util.c:2553
+#, fuzzy
+msgid "Keyword autocomplete"
+msgstr "Ключавыя словы:"
+
+#: src/layout_util.c:2553
+#, fuzzy
+msgid "Keyword Autocomplete"
+msgstr "Ключавыя словы:"
+
+#: src/layout_util.c:2560 src/layout_util.c:2561 src/layout_util.c:2576
+#: src/layout_util.c:2577
+msgid "_Zoom to fit"
+msgstr "_Дапасаваць памер"
+
+#: src/layout_util.c:2562 src/layout_util.c:2578
+msgid "Fit _Horizontally"
+msgstr "Дапасаваць _гарызантальна"
+
+#: src/layout_util.c:2562
+#, fuzzy
+msgid "Fit Horizontally"
+msgstr "Дапасаваць _гарызантальна"
+
+#: src/layout_util.c:2563 src/layout_util.c:2579
+#, fuzzy
+msgid "Fit _Vertically"
+msgstr "Дапасаваць _вертыкальна"
+
+#: src/layout_util.c:2563
+#, fuzzy
+msgid "Fit Vertically"
+msgstr "Вертыкальны"
+
+#: src/layout_util.c:2564 src/layout_util.c:2580
+msgid "Zoom _2:1"
+msgstr "Памер _2:1"
+
+#: src/layout_util.c:2565 src/layout_util.c:2581
+msgid "Zoom _3:1"
+msgstr "Памер _3:1"
+
+#: src/layout_util.c:2566 src/layout_util.c:2582
+msgid "Zoom _4:1"
+msgstr "Памер _4:1"
+
+#: src/layout_util.c:2570 src/layout_util.c:2571 src/preferences.c:837
+#: src/toolbar.c:128
+#, fuzzy
+msgid "Connected Zoom in"
+msgstr "Паменьшыць"
+
+#: src/layout_util.c:2572 src/layout_util.c:2573
+#, fuzzy
+msgid "Connected Zoom out"
+msgstr "Паменьшыць"
+
+#: src/layout_util.c:2574 src/layout_util.c:2575
+#, fuzzy
+msgid "Connected Zoom 1:1"
+msgstr "Усталяваць маштаб 1:1"
+
+#: src/layout_util.c:2576 src/layout_util.c:2577
+#, fuzzy
+msgid "Connected Zoom to fit"
+msgstr "_Дапасаваць памер"
+
+#: src/layout_util.c:2578
+#, fuzzy
+msgid "Connected Fit Horizontally"
+msgstr "Дапасаваць _гарызантальна"
+
+#: src/layout_util.c:2579
+#, fuzzy
+msgid "Connected Fit Vertically"
+msgstr "Дапасаваць _гарызантальна"
+
+#: src/layout_util.c:2580
+#, fuzzy
+msgid "Connected Zoom 2:1"
+msgstr "Усталяваць маштаб 1:1"
+
+#: src/layout_util.c:2581
+#, fuzzy
+msgid "Connected Zoom 3:1"
+msgstr "Усталяваць маштаб 1:1"
+
+#: src/layout_util.c:2582
+#, fuzzy
+msgid "Connected Zoom 4:1"
+msgstr "Усталяваць маштаб 1:1"
+
+#: src/layout_util.c:2583
+#, fuzzy
+msgid "Connected Zoom 1:2"
+msgstr "Памер 1:2"
+
+#: src/layout_util.c:2584
+#, fuzzy
+msgid "Connected Zoom 1:3"
+msgstr "Памер 1:3"
+
+#: src/layout_util.c:2585
+#, fuzzy
+msgid "Connected Zoom 1:4"
+msgstr "Памер 1:4"
+
+#: src/layout_util.c:2586
+msgid "_View in new window"
+msgstr "Глядзець у _новым акне"
+
+#: src/layout_util.c:2588 src/layout_util.c:2589 src/layout_util.c:2590
+msgid "F_ull screen"
+msgstr "Поўны _экран"
+
+#: src/layout_util.c:2591 src/layout_util.c:2592
+#, fuzzy
+msgid "_Leave full screen"
+msgstr "пачаць рэжым поўнага экрану"
+
+#: src/layout_util.c:2591 src/layout_util.c:2592
+#, fuzzy
+msgid "Leave full screen"
+msgstr "пачаць рэжым поўнага экрану"
+
+#: src/layout_util.c:2593
+#, fuzzy
+msgid "_Cycle through overlay modes"
+msgstr "лінейная гістаграма па чырвоным"
+
+#: src/layout_util.c:2593
+#, fuzzy
+msgid "Cycle through Overlay modes"
+msgstr "лінейная гістаграма па чырвоным"
+
+#: src/layout_util.c:2594
+#, fuzzy
+msgid "Cycle through histogram ch_annels"
+msgstr "лінейная гістаграма па чырвоным"
+
+#: src/layout_util.c:2594
+#, fuzzy
+msgid "Cycle through histogram channels"
+msgstr "лінейная гістаграма па чырвоным"
+
+#: src/layout_util.c:2595
+#, fuzzy
+msgid "Cycle through histogram mo_des"
+msgstr "лінейная гістаграма па чырвоным"
+
+#: src/layout_util.c:2595
+#, fuzzy
+msgid "Cycle through histogram modes"
+msgstr "лінейная гістаграма па чырвоным"
+
+#: src/layout_util.c:2596
+msgid "_Hide file list"
+msgstr "_Схаваць спіс файлаў"
+
+#: src/layout_util.c:2596 src/preferences.c:841 src/toolbar.c:137
+#, fuzzy
+msgid "Hide file list"
+msgstr "_Схаваць спіс файлаў"
+
+#: src/layout_util.c:2597
+msgid "_Pause slideshow"
+msgstr "_Прыпыніць паказ слайдаў"
+
+#: src/layout_util.c:2598
+msgid "Faster"
+msgstr ""
+
+#: src/layout_util.c:2598 src/preferences.c:843 src/toolbar.c:139
+#, fuzzy
+msgid "Slideshow Faster"
+msgstr " Паказ слайдаў"
+
+#: src/layout_util.c:2599
+msgid "Slower"
+msgstr ""
+
+#: src/layout_util.c:2599 src/preferences.c:844 src/toolbar.c:140
+#, fuzzy
+msgid "Slideshow Slower"
+msgstr " Паказ слайдаў"
+
+#: src/layout_util.c:2600
+msgid "_Refresh"
+msgstr "_Абнавіць"
+
+#: src/layout_util.c:2600 src/preferences.c:845 src/toolbar.c:141
+#, fuzzy
+msgid "Refresh"
+msgstr "_Абнавіць"
+
+#: src/layout_util.c:2601
+#, fuzzy
+msgid "_Help manual"
+msgstr "уручную"
+
+#: src/layout_util.c:2601
+#, fuzzy
+msgid "Help manual"
+msgstr "уручную"
+
+#: src/layout_util.c:2602 src/window.c:371
+msgid "On-line help search"
+msgstr ""
+
+#: src/layout_util.c:2603
+msgid "_Keyboard shortcuts"
+msgstr "_Хуткія клавішы"
+
+#: src/layout_util.c:2603
+#, fuzzy
+msgid "Keyboard shortcuts"
+msgstr "_Хуткія клавішы"
+
+#: src/layout_util.c:2604
+#, fuzzy
+msgid "_Keyboard map"
+msgstr "_Ключавыя словы"
+
+#: src/layout_util.c:2604
+#, fuzzy
+msgid "Keyboard map"
+msgstr "Загружаем мініяцюры..."
+
+#: src/layout_util.c:2605
+msgid "_Readme"
+msgstr ""
+
+#: src/layout_util.c:2605
+msgid "Readme"
+msgstr ""
+
+#: src/layout_util.c:2606
+#, fuzzy
+msgid "_ChangeLog"
+msgstr "Пачатковая тэчка:"
+
+#: src/layout_util.c:2606
+#, fuzzy
+msgid "ChangeLog notes"
+msgstr "Пачатковая тэчка:"
+
+#: src/layout_util.c:2607 src/search_and_run.c:291
+#, fuzzy
+msgid "Search and Run command"
+msgstr "Знешня каманда Перамяшчэння"
+
+#: src/layout_util.c:2607
+msgid "Search commands by keyword and run them"
+msgstr ""
+
+#: src/layout_util.c:2608
+msgid "_About"
+msgstr "_Аб праграме"
+
+#: src/layout_util.c:2608
+msgid "About"
+msgstr "Аб праграме"
+
+#: src/layout_util.c:2609
+#, fuzzy
+msgid "_Log Window"
+msgstr "Вокны"
+
+#: src/layout_util.c:2609
+#, fuzzy
+msgid "Log Window"
+msgstr "Вокны"
+
+#: src/layout_util.c:2610
+#, fuzzy
+msgid "_Exif window"
+msgstr "_Закрыць акно"
+
+#: src/layout_util.c:2610 src/preferences.c:847 src/toolbar.c:143
+#, fuzzy
+msgid "Exif window"
+msgstr "Новае _акно"
+
+#: src/layout_util.c:2611
+#, fuzzy
+msgid "_Cycle through stereo modes"
+msgstr "лінейная гістаграма па чырвоным"
+
+#: src/layout_util.c:2611
+#, fuzzy
+msgid "Cycle through stereo modes"
+msgstr "лінейная гістаграма па чырвоным"
+
+#: src/layout_util.c:2612
+#, fuzzy
+msgid "_Next Pane"
+msgstr "_Наступная выява"
+
+#: src/layout_util.c:2612
+#, fuzzy
+msgid "Next Split Pane"
+msgstr "_Наступная выява"
+
+#: src/layout_util.c:2613
+#, fuzzy
+msgid "_Previous Pane"
+msgstr "Папярэ_дняя выява"
+
+#: src/layout_util.c:2613
+#, fuzzy
+msgid "Previous Split Pane"
+msgstr "Папярэ_дняя выява"
+
+#: src/layout_util.c:2614
+#, fuzzy
+msgid "_Up Pane"
+msgstr "_Наступная выява"
+
+#: src/layout_util.c:2614
+#, fuzzy
+msgid "Up Split Pane"
+msgstr "Адзіны"
+
+#: src/layout_util.c:2615
+#, fuzzy
+msgid "_Down Pane"
+msgstr "_Наступная выява"
+
+#: src/layout_util.c:2615
+#, fuzzy
+msgid "Down Split Pane"
+msgstr "Адзіны"
+
+#: src/layout_util.c:2616
+#, fuzzy
+msgid "_Write orientation to file"
+msgstr "Перазапісаць файл"
+
+#: src/layout_util.c:2616
+#, fuzzy
+msgid "Write orientation to file"
+msgstr "Перазапісаць файл"
+
+#: src/layout_util.c:2617
+#, fuzzy
+msgid "_Write orientation to file (preserve timestamp)"
+msgstr "Перазапісаць файл"
+
+#: src/layout_util.c:2617
+#, fuzzy
+msgid "Write orientation to file (preserve timestamp)"
+msgstr "Перазапісаць файл"
+
+#: src/layout_util.c:2618
+#, fuzzy
+msgid "Clear Marks..."
+msgstr "Ачысціць сметніцу"
+
+#: src/layout_util.c:2622
+#, fuzzy
+msgid "Show _Thumbnails"
+msgstr "Паказаць _мініяцюры"
+
+#: src/layout_util.c:2622
+#, fuzzy
+msgid "Show Thumbnails"
+msgstr "Паказаць мініяцюры"
+
+#: src/layout_util.c:2623
+msgid "Show _Marks"
+msgstr "Паказаць па_знакі"
+
+#: src/layout_util.c:2623
+#, fuzzy
+msgid "Show Marks"
+msgstr "Паказаць па_знакі"
+
+#: src/layout_util.c:2624
+#, fuzzy
+msgid "Show File Filter"
+msgstr "Паказаць с_хаваныя"
+
+#: src/layout_util.c:2625
+#, fuzzy
+msgid "Pi_xel Info"
+msgstr "Фармат файла:"
+
+#: src/layout_util.c:2625
+#, fuzzy
+msgid "Show Pixel Info"
+msgstr "Паказаць скрытыя"
+
+#: src/layout_util.c:2626
+#, fuzzy
+msgid "Hide _alpha"
+msgstr "Схаваць панэль прыладаў"
+
+#: src/layout_util.c:2626
+#, fuzzy
+msgid "Hide alpha channel"
+msgstr "Схаваць панэль прыладаў"
+
+#: src/layout_util.c:2627
+msgid "_Float file list"
+msgstr "_Адлучыць спіс файлаў"
+
+#: src/layout_util.c:2627 src/preferences.c:851 src/toolbar.c:147
+#, fuzzy
+msgid "Float file list"
+msgstr "_Адлучыць спіс файлаў"
+
+#: src/layout_util.c:2628
+msgid "Hide tool_bar"
+msgstr "Схаваць панэль прыладаў"
+
+#: src/layout_util.c:2628
+#, fuzzy
+msgid "Hide toolbar"
+msgstr "Схаваць панэль прыладаў"
+
+#: src/layout_util.c:2629
+msgid "_Info sidebar"
+msgstr ""
+
+#: src/layout_util.c:2629 src/preferences.c:852 src/toolbar.c:148
+msgid "Info sidebar"
+msgstr ""
+
+#: src/layout_util.c:2630
+msgid "Sort _manager"
+msgstr "_Кіраўнік упарадкавання"
+
+#: src/layout_util.c:2630 src/preferences.c:853 src/toolbar.c:149
+#, fuzzy
+msgid "Sort manager"
+msgstr "_Кіраўнік упарадкавання"
+
+#: src/layout_util.c:2631
+#, fuzzy
+msgid "Hide Bars"
+msgstr "Схаваць панэль прыладаў"
+
+#: src/layout_util.c:2633
+msgid "Use _color profiles"
+msgstr "Ужываць профілі _колераў"
+
+#: src/layout_util.c:2633 src/toolbar.c:135
+#, fuzzy
+msgid "Use color profiles"
+msgstr "Ужываць профілі _колераў"
+
+#: src/layout_util.c:2634
+msgid "Use profile from _image"
+msgstr "Ужываць профілі колераў з вы_явы"
+
+#: src/layout_util.c:2634
+#, fuzzy
+msgid "Use profile from image"
+msgstr "Ужываць профілі колераў з вы_явы"
+
+#: src/layout_util.c:2635
+msgid "Toggle _grayscale"
+msgstr "Пераключыць _шкалу шэрага"
+
+#: src/layout_util.c:2635
+#, fuzzy
+msgid "Toggle grayscale"
+msgstr "Пераключыць _шкалу шэрага"
+
+#: src/layout_util.c:2636
+#, fuzzy
+msgid "Image Overlay"
+msgstr "Пошук выяваў"
+
+#: src/layout_util.c:2637
+#, fuzzy
+msgid "_Show Histogram"
+msgstr "лінейная гістаграма па чырвоным"
+
+#: src/layout_util.c:2637
+#, fuzzy
+msgid "Show Histogram"
+msgstr "лінейная гістаграма па чырвоным"
+
+#: src/layout_util.c:2638
+#, fuzzy
+msgid "Rectangular Selection"
+msgstr "Прамавугольнае вылучэнне у выглядзе іконкі"
+
+#: src/layout_util.c:2639
+msgid "Toggle GIF animation"
+msgstr ""
+
+#: src/layout_util.c:2640
+#, fuzzy
+msgid "_Exif rotate"
+msgstr "Ужываць дату Exif"
+
+#: src/layout_util.c:2640
+#, fuzzy
+msgid "Toggle Exif rotate"
+msgstr "Ужываць дату Exif"
+
+#: src/layout_util.c:2641 src/preferences.c:850 src/toolbar.c:146
+#, fuzzy
+msgid "Draw Rectangle"
+msgstr "Вылучыць усё"
+
+#: src/layout_util.c:2642
+msgid "Over/Under Exposed"
+msgstr ""
+
+#: src/layout_util.c:2642
+msgid "Highlight over/under exposed"
+msgstr ""
+
+#: src/layout_util.c:2643 src/preferences.c:838 src/toolbar.c:129
+#, fuzzy
+msgid "Split Pane Sync"
+msgstr "Адзіны"
+
+#: src/layout_util.c:2647
+#, fuzzy
+msgid "Images as _List"
+msgstr "Шырыня выявы"
+
+#: src/layout_util.c:2647
+#, fuzzy
+msgid "View Images as List"
+msgstr "Праглядаць як _іконкі"
+
+#: src/layout_util.c:2648
+#, fuzzy
+msgid "Images as I_cons"
+msgstr "Праглядаць як _іконкі"
+
+#: src/layout_util.c:2648
+#, fuzzy
+msgid "View Images as Icons"
+msgstr "Праглядаць як _іконкі"
+
+#: src/layout_util.c:2652
+#, fuzzy
+msgid "T_oggle Folder View"
+msgstr "Пераключыць _паказ слайдаў"
+
+#: src/layout_util.c:2652
+#, fuzzy
+msgid "Toggle Folders View"
+msgstr "Пераключыць _паказ слайдаў"
+
+#: src/layout_util.c:2656
+#, fuzzy
+msgid "_Horizontal"
+msgstr "Гарызантальны"
+
+#: src/layout_util.c:2656
+#, fuzzy
+msgid "Split panes horizontal."
+msgstr "Дапасаваць _гарызантальна"
+
+#: src/layout_util.c:2657
+#, fuzzy
+msgid "_Vertical"
+msgstr "Вертыкальны"
+
+#: src/layout_util.c:2657
+#, fuzzy
+msgid "Split panes vertical"
+msgstr "Вертыкальны"
+
+#: src/layout_util.c:2658
+#, fuzzy
+msgid "_Quad"
+msgstr "Чатырны"
+
+#: src/layout_util.c:2658
+#, fuzzy
+msgid "Split panes quad"
+msgstr "_Раздзяліць"
+
+#: src/layout_util.c:2659
+#, fuzzy
+msgid "_Single"
+msgstr "Адзіны"
+
+#: src/layout_util.c:2659
+#, fuzzy
+msgid "Single pane"
+msgstr "наступная выява"
+
+#: src/layout_util.c:2663
+#, fuzzy
+msgid "Input _0: sRGB"
+msgstr "Увод _%d:"
+
+#: src/layout_util.c:2663
+#, fuzzy
+msgid "Input 0: sRGB"
+msgstr "Увод _%d:"
+
+#: src/layout_util.c:2664
+#, fuzzy
+msgid "Input _1: AdobeRGB compatible"
+msgstr "Сумяшчальны AdobeRGB"
+
+#: src/layout_util.c:2664
+#, fuzzy
+msgid "Input 1: AdobeRGB compatible"
+msgstr "Сумяшчальны AdobeRGB"
+
+#: src/layout_util.c:2665
+#, fuzzy
+msgid "Input _2"
+msgstr "Увод _%d:"
+
+#: src/layout_util.c:2665
+#, fuzzy
+msgid "Input 2"
+msgstr "Увод _%d:"
+
+#: src/layout_util.c:2666
+#, fuzzy
+msgid "Input _3"
+msgstr "Увод _%d:"
+
+#: src/layout_util.c:2666
+#, fuzzy
+msgid "Input 3"
+msgstr "Увод _%d:"
+
+#: src/layout_util.c:2667
+#, fuzzy
+msgid "Input _4"
+msgstr "Увод _%d:"
+
+#: src/layout_util.c:2667
+#, fuzzy
+msgid "Input 4"
+msgstr "Увод _%d:"
+
+#: src/layout_util.c:2668
+#, fuzzy
+msgid "Input _5"
+msgstr "Увод _%d:"
+
+#: src/layout_util.c:2668
+#, fuzzy
+msgid "Input 5"
+msgstr "Увод _%d:"
+
+#: src/layout_util.c:2672
+#, fuzzy
+msgid "Histogram on Red"
+msgstr "лінейная гістаграма па чырвоным"
+
+#: src/layout_util.c:2673
+#, fuzzy
+msgid "Histogram on Green"
+msgstr "лінейная гістаграма па зялёным"
+
+#: src/layout_util.c:2674
+#, fuzzy
+msgid "Histogram on Blue"
+msgstr "лінейная гістаграма па блакітным"
+
+#: src/layout_util.c:2675
+#, fuzzy
+msgid "Histogram on RGB"
+msgstr "лінейная гістаграма па RGB"
+
+#: src/layout_util.c:2676
+#, fuzzy
+msgid "Histogram on Value"
+msgstr "лінейная гістаграма па значэнні"
+
+#: src/layout_util.c:2680
+#, fuzzy
+msgid "Linear Histogram"
+msgstr "лінейная гістаграма па чырвоным"
+
+#: src/layout_util.c:2681
+#, fuzzy
+msgid "_Log Histogram"
+msgstr "лінейная гістаграма па чырвоным"
+
+#: src/layout_util.c:2681
+#, fuzzy
+msgid "Log Histogram"
+msgstr "лінейная гістаграма па чырвоным"
+
+#: src/layout_util.c:2685
+msgid "_Auto"
+msgstr ""
+
+#: src/layout_util.c:2685
+msgid "Stereo Auto"
+msgstr ""
+
+#: src/layout_util.c:2686
+msgid "_Side by Side"
+msgstr ""
+
+#: src/layout_util.c:2686
+msgid "Stereo Side by Side"
+msgstr ""
+
+#: src/layout_util.c:2687
+msgid "_Cross"
+msgstr ""
+
+#: src/layout_util.c:2687
+msgid "Stereo Cross"
+msgstr ""
+
+#: src/layout_util.c:2688
+msgid "_Off"
+msgstr ""
+
+#: src/layout_util.c:2688
+msgid "Stereo Off"
 msgstr ""
 
 #: src/layout_util.c:3021
@@ -2427,18 +4727,6 @@ msgstr "Выйсці з %s"
 msgid "Collections have been modified. Quit anyway?"
 msgstr "Калекцыі змадыфікаваныя. Выйсці ўсё роўна?"
 
-#: src/menu.c:121
-msgid "_Plugins"
-msgstr ""
-
-#: src/menu.c:148
-msgid "Sort by size"
-msgstr "Сартаваць па памеры"
-
-#: src/menu.c:151
-msgid "Sort by date"
-msgstr "Сартаваць па даце"
-
 #: src/menu.c:154
 #, fuzzy
 msgid "Sort by file creation date"
@@ -2458,14 +4746,6 @@ msgstr "Сартаваць па дадзеных E_xif"
 msgid "Unsorted"
 msgstr "Несартавана"
 
-#: src/menu.c:166
-msgid "Sort by path"
-msgstr "Сартаваць па шляху"
-
-#: src/menu.c:169
-msgid "Sort by number"
-msgstr "Сартаваць па лічбах"
-
 #: src/menu.c:172
 #, fuzzy
 msgid "Sort by rating"
@@ -2475,10 +4755,6 @@ msgstr "Сартаваць па даце"
 #, fuzzy
 msgid "Sort by class"
 msgstr "Сартаваць па памеры"
-
-#: src/menu.c:179
-msgid "Sort by name"
-msgstr "Сартаваць па імені"
 
 #: src/menu.c:273 src/menu.c:282
 msgid "Zoom to original size"
@@ -2492,50 +4768,30 @@ msgstr "Дапасаваць выяву да акна"
 msgid "Leave Zoom at previous setting"
 msgstr "Пакінуць Маштаб папярэднім"
 
-#: src/menu.c:353
+#: src/menu.c:353 src/preferences.c:819 src/toolbar.c:110
 #, fuzzy
 msgid "Rotate clockwise 90°"
 msgstr "Павярнуць па _гадзіннікавай стрэлцы"
 
-#: src/menu.c:356
-#, fuzzy
-msgid "Rotate counterclockwise 90°"
-msgstr "Павярнуць _супраць гадзіннікавай стрэлкі"
-
-#: src/menu.c:359
-#, fuzzy
-msgid "Rotate 180°"
-msgstr "Павярнуць на 1_80 градусаў"
-
-#: src/menu.c:362
+#: src/menu.c:362 src/preferences.c:822 src/toolbar.c:113
 #, fuzzy
 msgid "Mirror"
 msgstr "_Адлюстраваць"
 
-#: src/menu.c:365
+#: src/menu.c:365 src/preferences.c:823 src/toolbar.c:114
 #, fuzzy
 msgid "Flip"
 msgstr "_Дагары нагамі"
 
-#: src/menu.c:368
+#: src/menu.c:368 src/preferences.c:824 src/toolbar.c:115
 #, fuzzy
 msgid "Original state"
 msgstr "Па_чатковы стан"
-
-#: src/menu.c:411
-#, fuzzy
-msgid "_Orientation"
-msgstr "Арыентацыя"
 
 #: src/menu.c:467
 #, fuzzy
 msgid "_Add to Collection"
 msgstr "Дадаць калекцыю"
-
-#: src/menu.c:472
-#, fuzzy
-msgid "New collection"
-msgstr "_Новая калекцыя"
 
 #: src/metadata.c:1739
 msgid "People"
@@ -2807,23 +5063,159 @@ msgid ""
 "  Error code: "
 msgstr ""
 
-#: src/options.c:244 src/ui_bookmark.c:560 src/ui_pathsel.c:1047
-msgid "Home"
-msgstr "Хатняя дырэкторыя"
-
 #: src/options.c:246 src/ui_bookmark.c:571
 msgid "Desktop"
 msgstr "Варштат"
 
-#: src/options.c:267 src/search.c:2338 src/search.c:2342 src/search.c:3626
-#: src/search.c:3630 src/view_file/view_file.c:915
+#: src/options.c:267 src/search.c:2338 src/search.c:2342 src/search.c:3627
+#: src/search.c:3631 src/view_file/view_file.c:915
 #, fuzzy
 msgid "Mark "
 msgstr "Закладка _%d"
 
+#: src/osd.c:44 src/preferences.c:135
+#, fuzzy
+msgid "Collection"
+msgstr "Калекцыі"
+
+#: src/osd.c:45
+#, fuzzy
+msgid "Image index"
+msgstr "Файл выявы"
+
+#: src/osd.c:46
+#, fuzzy
+msgid "Images total"
+msgstr "Файл выявы"
+
+#: src/osd.c:55
+#, fuzzy
+msgid "File page no."
+msgstr "Дата файла"
+
+#: src/osd.c:56
+#, fuzzy
+msgid "Image date"
+msgstr "Шырыня выявы"
+
+#: src/osd.c:58
+#, fuzzy
+msgid "ShutterSpeed"
+msgstr "Хуткасць затвора"
+
+#: src/osd.c:64
+msgid "ISO"
+msgstr ""
+
+#: src/osd.c:66
+#, fuzzy
+msgid "Focal len. 35mm"
+msgstr "Фокусная адлегласць 35мм"
+
+#: src/osd.c:70
+msgid "Lat, Long"
+msgstr ""
+
+#: src/osd.c:71
+msgid "Altitude"
+msgstr ""
+
+#: src/osd.c:73
+#, fuzzy
+msgid "Timezone"
+msgstr "Білінейны"
+
+#: src/osd.c:76
+#, fuzzy
+msgid "Rating"
+msgstr "Памылка друку"
+
+#: src/osd.c:78
+#, fuzzy
+msgid "© Creator"
+msgstr "Выдаліць тэчку"
+
+#: src/osd.c:79
+msgid "© Contributor"
+msgstr ""
+
+#: src/osd.c:80
+#, fuzzy
+msgid "© Rights"
+msgstr "Крыніца святла"
+
 #: src/osd.c:169
 msgid ""
 "To include predefined tags in the template, click a button or drag-and-drop"
+msgstr ""
+
+#: src/pan-view/pan-view.c:104 src/pan-view/pan-view.c:123
+msgid "Display Find search bar"
+msgstr ""
+
+#: src/pan-view/pan-view.c:105
+#, fuzzy
+msgid "Start search"
+msgstr "Пошук выяваў"
+
+#: src/pan-view/pan-view.c:107
+msgid "Hide Find search bar"
+msgstr ""
+
+#: src/pan-view/pan-view.c:124
+#, fuzzy
+msgid "Scroll left"
+msgstr "зверху злева"
+
+#: src/pan-view/pan-view.c:125
+#, fuzzy
+msgid "Scroll right"
+msgstr "зверху справа"
+
+#: src/pan-view/pan-view.c:126
+#, fuzzy
+msgid "Scroll up"
+msgstr "зверху злева"
+
+#: src/pan-view/pan-view.c:127
+#, fuzzy
+msgid "Scroll down"
+msgstr " Паказ слайдаў"
+
+#: src/pan-view/pan-view.c:128
+#, fuzzy
+msgid "Scroll left faster"
+msgstr " Паказ слайдаў"
+
+#: src/pan-view/pan-view.c:129
+#, fuzzy
+msgid "Scroll right faster"
+msgstr "зверху справа"
+
+#: src/pan-view/pan-view.c:130
+#, fuzzy
+msgid "Scroll up faster"
+msgstr " Паказ слайдаў"
+
+#: src/pan-view/pan-view.c:131
+#, fuzzy
+msgid "Scroll down faster"
+msgstr " Паказ слайдаў"
+
+#: src/pan-view/pan-view.c:132
+msgid "Scroll display half screen up"
+msgstr ""
+
+#: src/pan-view/pan-view.c:133
+msgid "Scroll display half screen down"
+msgstr ""
+
+#: src/pan-view/pan-view.c:134
+msgid "Scroll display half screen left"
+msgstr ""
+
+#: src/pan-view/pan-view.c:135
+msgid "Scroll display half screen right"
 msgstr ""
 
 #: src/pan-view/pan-view.c:510
@@ -2865,7 +5257,7 @@ msgstr "Дата:"
 msgid "Size:"
 msgstr "Памер:"
 
-#: src/pan-view/pan-view.c:1796 src/search.c:2788
+#: src/pan-view/pan-view.c:1796 src/search.c:2789
 msgid "Folder not found"
 msgstr "Тэчка не знойдзена"
 
@@ -3058,6 +5450,30 @@ msgstr "частковае супадзенне"
 msgid "no match"
 msgstr "без супадзенняў"
 
+#: src/preferences.c:130 src/search.c:2286 src/search.c:3611
+#, fuzzy
+msgid "Unknown"
+msgstr "невядома"
+
+#: src/preferences.c:132
+#, fuzzy
+msgid "RAW Image"
+msgstr "Выява"
+
+#: src/preferences.c:134 src/search.c:2271 src/search.c:3608
+msgid "Video"
+msgstr ""
+
+#: src/preferences.c:136 src/search.c:2276 src/search.c:3609
+#, fuzzy
+msgid "Document"
+msgstr "Каментар:"
+
+#: src/preferences.c:137
+#, fuzzy
+msgid "Archive"
+msgstr "Апертура"
+
 #: src/preferences.c:664
 msgid "Nearest (worst, but fastest)"
 msgstr "Найбліжэйшае (горш, але хутчэй)"
@@ -3094,6 +5510,125 @@ msgstr ""
 #: src/preferences.c:765
 msgid "Arithmetic"
 msgstr ""
+
+#: src/preferences.c:790 src/toolbar.c:78
+msgid "Back"
+msgstr ""
+
+#: src/preferences.c:791 src/toolbar.c:79
+#, fuzzy
+msgid "Forward"
+msgstr "Файл выявы"
+
+#: src/preferences.c:793 src/toolbar.c:81
+msgid "Up"
+msgstr ""
+
+#: src/preferences.c:794 src/toolbar.c:82
+#, fuzzy
+msgid "First page"
+msgstr "Пе_ршая выява"
+
+#: src/preferences.c:795 src/toolbar.c:83
+#, fuzzy
+msgid "Last Page"
+msgstr "Ап_ошняя выява"
+
+#: src/preferences.c:796 src/toolbar.c:84
+#, fuzzy
+msgid "Next page"
+msgstr "_Наступная выява"
+
+#: src/preferences.c:797 src/toolbar.c:85
+#, fuzzy
+msgid "Previous Page"
+msgstr "Папярэ_дняя выява"
+
+#: src/preferences.c:798
+msgid "New _window"
+msgstr "Новае _акно"
+
+#: src/preferences.c:801 src/preferences.c:3275 src/toolbar.c:91
+#, fuzzy
+msgid "Search"
+msgstr "Пошук:"
+
+#: src/preferences.c:803 src/toolbar.c:93 src/ui_pathsel.c:1049
+#: src/utilops.c:3189
+msgid "New folder"
+msgstr "Новая тэчка"
+
+#: src/preferences.c:808 src/toolbar.c:98
+#, fuzzy
+msgid "Close Window"
+msgstr "_Закрыць акно"
+
+#: src/preferences.c:812 src/toolbar.c:103
+#, fuzzy
+msgid "Select invert"
+msgstr "Вылучыце іконку"
+
+#: src/preferences.c:813 src/toolbar.c:104
+#, fuzzy
+msgid "Show file filter"
+msgstr "Паказаць с_хаваныя"
+
+#: src/preferences.c:814 src/toolbar.c:105
+#, fuzzy
+msgid "Select rectangle"
+msgstr "Вылучыць усё"
+
+#: src/preferences.c:816 src/preferences.c:3983 src/toolbar.c:107
+msgid "Preferences"
+msgstr "Наладкі"
+
+#: src/preferences.c:817 src/toolbar.c:108
+#, fuzzy
+msgid "Configure this window"
+msgstr "Канфігурацыя"
+
+#: src/preferences.c:818 src/toolbar.c:109
+#, fuzzy
+msgid "Cache maintenance"
+msgstr "Кіраванне кэшам"
+
+#: src/preferences.c:829 src/toolbar.c:120
+#, fuzzy
+msgid "Fit Horizontaly"
+msgstr "Дапасаваць _гарызантальна"
+
+#: src/preferences.c:830 src/toolbar.c:121
+#, fuzzy
+msgid "Fit vertically"
+msgstr "Вертыкальны"
+
+#: src/preferences.c:835 src/toolbar.c:126
+#, fuzzy
+msgid "Zoom1:3"
+msgstr "Памер 1:3"
+
+#: src/preferences.c:839 src/toolbar.c:130
+#, fuzzy
+msgid "Grayscale"
+msgstr "Пераключыць _шкалу шэрага"
+
+#: src/preferences.c:840 src/toolbar.c:131
+msgid "Over Under Exposed"
+msgstr ""
+
+#: src/preferences.c:846 src/toolbar.c:142 src/window.c:287 src/window.c:308
+msgid "Help"
+msgstr "Дапамога"
+
+#: src/preferences.c:848 src/toolbar.c:144
+#, fuzzy
+msgid "Show thumbnails"
+msgstr "Паказаць _мініяцюры"
+
+#: src/preferences.c:849 src/toolbar.c:145
+#, fuzzy
+msgid "Show marks"
+msgstr "Паказаць па_знакі"
 
 #: src/preferences.c:968
 msgid "Custom"
@@ -3258,11 +5793,6 @@ msgstr ""
 msgid "Use embedded metadata in video files as thumbnails when available"
 msgstr ""
 
-#: src/preferences.c:2033
-#, fuzzy
-msgid "Star Rating"
-msgstr "Памылка друку"
-
 #: src/preferences.c:2040
 msgid "Star character: "
 msgstr ""
@@ -3276,12 +5806,6 @@ msgid ""
 "Hexadecimal representation of a Unicode character. A list of all Unicode "
 "characters may be found on the Internet."
 msgstr ""
-
-#: src/preferences.c:2058 src/preferences.c:2090 src/preferences.c:2218
-#: src/view_file/view_file.c:1188 src/window.c:400
-#, fuzzy
-msgid "Clear"
-msgstr "А_чысціць"
 
 #: src/preferences.c:2062 src/preferences.c:2094 src/preferences.c:2222
 #, fuzzy
@@ -3380,10 +5904,6 @@ msgid ""
 "https://www.search_engine.com/search?q=site:geeqie.org/help\n"
 "https://www.search_engine.com/?q=site:geeqie.org/help"
 msgstr ""
-
-#: src/preferences.c:2242 src/search.c:2261 src/search.c:3605
-msgid "Image"
-msgstr "Выява"
 
 #: src/preferences.c:2262
 msgid "Two pass rendering (apply HQ zoom and color correction in second pass)"
@@ -3867,19 +6387,10 @@ msgstr ""
 msgid "Search for keywords"
 msgstr "Ключавыя словы"
 
-#: src/preferences.c:3269 src/search.c:3528
-msgid "Keywords"
-msgstr "Ключавыя словы"
-
 #: src/preferences.c:3271
 #, fuzzy
 msgid "Edit keywords autocompletion list"
 msgstr "Дадаць ключавыя словы да вылучаных файлаў"
-
-#: src/preferences.c:3275
-#, fuzzy
-msgid "Search"
-msgstr "Пошук:"
 
 #: src/preferences.c:3362
 msgid "Perceptual"
@@ -3888,10 +6399,6 @@ msgstr ""
 #: src/preferences.c:3364
 msgid "Relative Colorimetric"
 msgstr ""
-
-#: src/preferences.c:3366
-msgid "Saturation"
-msgstr "Насычанасць"
 
 #: src/preferences.c:3368
 msgid "Absolute Colorimetric"
@@ -3915,7 +6422,7 @@ msgstr "Тып"
 msgid "Menu name"
 msgstr "Назва меню"
 
-#: src/preferences.c:3408 src/search.c:3434
+#: src/preferences.c:3408 src/search.c:3435
 msgid "File"
 msgstr "Файл"
 
@@ -3950,10 +6457,6 @@ msgstr "Стварыць"
 msgid "Behavior"
 msgstr "Паводзіны"
 
-#: src/preferences.c:3510 src/utilops.c:2209
-msgid "Delete"
-msgstr "Выдаленне"
-
 #: src/preferences.c:3512
 #, fuzzy
 msgid "Confirm permanent file delete"
@@ -3984,10 +6487,6 @@ msgstr "Мб"
 #: src/preferences.c:3539
 msgid "Set to 0 for unlimited size"
 msgstr "Устанавіце 0 для неабмежаванага памеру"
-
-#: src/preferences.c:3540
-msgid "View"
-msgstr "Прагляд"
 
 #: src/preferences.c:3552
 msgid "Use system Trash bin"
@@ -4282,10 +6781,6 @@ msgstr "Справа:"
 msgid "Right Y"
 msgstr "Справа:"
 
-#: src/preferences.c:3983
-msgid "Preferences"
-msgstr "Наладкі"
-
 #: src/preferences.c:4143
 msgid "About Geeqie"
 msgstr ""
@@ -4393,6 +6888,285 @@ msgstr ""
 msgid "Timezone: %s\n"
 msgstr ""
 
+#: src/remote.c:1371 src/remote.c:1376
+msgid "lua error: no data"
+msgstr ""
+
+#: src/remote.c:1399
+msgid "previous image"
+msgstr "папярэдняя выява"
+
+#: src/remote.c:1400
+#, fuzzy
+msgid "close window"
+msgstr "_Закрыць акно"
+
+#: src/remote.c:1401
+msgid "<FILE>|layout ID"
+msgstr ""
+
+#: src/remote.c:1401
+msgid "load configuration from FILE"
+msgstr ""
+
+#: src/remote.c:1402
+msgid "clean the metadata cache"
+msgstr ""
+
+#: src/remote.c:1403
+#, fuzzy
+msgid "<folder>  "
+msgstr "тэчка"
+
+#: src/remote.c:1403
+#, fuzzy
+msgid " render thumbnails"
+msgstr "Стварыць мініяцюры"
+
+#: src/remote.c:1404 src/remote.c:1405
+#, fuzzy
+msgid "<folder> "
+msgstr "тэчка"
+
+#: src/remote.c:1404
+#, fuzzy
+msgid "render thumbnails recursively"
+msgstr "Стварыць мініяцюры для абранай тэчцы"
+
+#: src/remote.c:1405
+#, fuzzy
+msgid " render thumbnails (see Help)"
+msgstr "Стварыць мініяцюры для абранай тэчцы"
+
+#: src/remote.c:1406
+#, fuzzy
+msgid "<folder>"
+msgstr "тэчка"
+
+#: src/remote.c:1406
+#, fuzzy
+msgid " render thumbnails recursively (see Help)"
+msgstr "Стварыць мініяцюры для абранай тэчцы"
+
+#: src/remote.c:1407 src/remote.c:1408
+msgid "clear|clean"
+msgstr ""
+
+#: src/remote.c:1407
+#, fuzzy
+msgid "clear or clean shared thumbnail cache"
+msgstr "Выкарыстоўваць агульны кэш мініяцюраў"
+
+#: src/remote.c:1408
+#, fuzzy
+msgid "clear or clean thumbnail cache"
+msgstr "Агульны кэш мініяцюраў"
+
+#: src/remote.c:1409
+msgid "<[H:][M:][N][.M]>"
+msgstr ""
+
+#: src/remote.c:1409
+#, fuzzy
+msgid "set slide show delay to Hrs Mins N.M seconds"
+msgstr "усталяваць затрымку паміж слайдамі (сек)"
+
+#: src/remote.c:1410
+msgid "first image"
+msgstr "першая выява"
+
+#: src/remote.c:1411
+msgid "toggle full screen"
+msgstr "пераключыць рэжым поўнага экрану"
+
+#: src/remote.c:1412 src/remote.c:1413 src/remote.c:1414 src/remote.c:1415
+msgid "<FILE>|<URL>"
+msgstr ""
+
+#: src/remote.c:1412 src/remote.c:1413
+#, fuzzy
+msgid "open FILE or URL, bring Geeqie window to the top"
+msgstr "адкрыць файл у новым вакне"
+
+#: src/remote.c:1414 src/remote.c:1415
+#, fuzzy
+msgid "open FILE or URL, do not bring Geeqie window to the top"
+msgstr "адкрыць файл у новым вакне"
+
+#: src/remote.c:1416
+msgid "start full screen"
+msgstr "пачаць рэжым поўнага экрану"
+
+#: src/remote.c:1417
+msgid "stop full screen"
+msgstr "прыпыніць поўнага экрану"
+
+#: src/remote.c:1418
+msgid "<GEOMETRY>"
+msgstr ""
+
+#: src/remote.c:1418
+#, fuzzy
+msgid "set window geometry"
+msgstr "Нерэчаісныя памеры\n"
+
+#: src/remote.c:1419
+msgid "<COLLECTION>"
+msgstr ""
+
+#: src/remote.c:1419
+#, fuzzy
+msgid "get collection content"
+msgstr "_Новая калекцыя"
+
+#: src/remote.c:1420
+#, fuzzy
+msgid "get collection list"
+msgstr "_Новая калекцыя"
+
+#: src/remote.c:1421 src/remote.c:1427 src/remote.c:1430 src/remote.c:1450
+#: src/remote.c:1451
+msgid "<FILE>"
+msgstr ""
+
+#: src/remote.c:1421
+msgid "get destination path of FILE (See Plugins Configuration)"
+msgstr ""
+
+#: src/remote.c:1422
+#, fuzzy
+msgid "get file info"
+msgstr "Файл не знойдзены"
+
+#: src/remote.c:1423 src/remote.c:1424
+msgid "[<FOLDER>]"
+msgstr ""
+
+#: src/remote.c:1423
+msgid "get list of files and class"
+msgstr ""
+
+#: src/remote.c:1424
+#, fuzzy
+msgid "get list of files and class recursive"
+msgstr "Стварыць мініяцюры для абранай тэчцы"
+
+#: src/remote.c:1425
+#, fuzzy
+msgid "get rectangle co-ordinates"
+msgstr "Стварыць"
+
+#: src/remote.c:1426
+#, fuzzy
+msgid "get render intent"
+msgstr "Стварыць"
+
+#: src/remote.c:1427
+msgid "get list of sidecars of FILE"
+msgstr ""
+
+#: src/remote.c:1428
+msgid "<ID>"
+msgstr ""
+
+#: src/remote.c:1428
+msgid "window id for following commands"
+msgstr ""
+
+#: src/remote.c:1429
+msgid "last image"
+msgstr "апошняя выява"
+
+#: src/remote.c:1430
+#, fuzzy
+msgid "add FILE to command line collection list"
+msgstr "Дадаць у новую калекцыю"
+
+#: src/remote.c:1431
+#, fuzzy
+msgid "clear command line collection list"
+msgstr "Дадаць у новую калекцыю"
+
+#: src/remote.c:1433
+msgid "<FILE>,<lua script>"
+msgstr ""
+
+#: src/remote.c:1433
+msgid "run lua script on FILE"
+msgstr ""
+
+#: src/remote.c:1435
+#, fuzzy
+msgid "new window"
+msgstr "Новае _акно"
+
+#: src/remote.c:1436
+msgid "next image"
+msgstr "наступная выява"
+
+#: src/remote.c:1437
+msgid "print pixel info of mouse pointer on current image"
+msgstr ""
+
+#: src/remote.c:1438
+msgid "terminate returned data with null character instead of newline"
+msgstr ""
+
+#: src/remote.c:1439
+msgid "<PWD>"
+msgstr ""
+
+#: src/remote.c:1439
+msgid "use PWD as working directory for following commands"
+msgstr ""
+
+#: src/remote.c:1440
+msgid "quit"
+msgstr "выхад"
+
+#: src/remote.c:1441 src/remote.c:1442
+#, fuzzy
+msgid "bring the Geeqie window to the top"
+msgstr "адкрыць файл у новым вакне"
+
+#: src/remote.c:1443
+msgid "toggle slide show"
+msgstr "пераключыць паказ слайдаў"
+
+#: src/remote.c:1444
+msgid "<FOLDER>"
+msgstr ""
+
+#: src/remote.c:1444
+#, fuzzy
+msgid "start recursive slide show in FOLDER"
+msgstr "пачаць рэкурсіўны паказ слайдаў"
+
+#: src/remote.c:1445
+msgid "start slide show"
+msgstr "пачаць паказ слайдаў"
+
+#: src/remote.c:1446
+msgid "stop slide show"
+msgstr "прыпыніць паказ слайдаў"
+
+#: src/remote.c:1447
+msgid "print filename [and Collection] of current image"
+msgstr ""
+
+#: src/remote.c:1448
+msgid "show tools"
+msgstr "паказаць прылады"
+
+#: src/remote.c:1449
+msgid "hide tools"
+msgstr "схаваць прылады"
+
+#: src/remote.c:1450 src/remote.c:1451
+#, fuzzy
+msgid "open FILE in new window"
+msgstr "адкрыць файл у новым вакне"
+
 #: src/remote.c:1516
 msgid "Remote command list:\n"
 msgstr "Спіс камандаў аддаленасці:\n"
@@ -4416,10 +7190,99 @@ msgstr "Аддалены %s не запушчаны, запускаецца..."
 msgid "Remote not available\n"
 msgstr "Аддаленасць недаступная\n"
 
-#: src/search_and_run.c:291
+#: src/search.c:270
+msgid "folder"
+msgstr "тэчка"
+
+#: src/search.c:271
+msgid "comments"
+msgstr "каментары"
+
+#: src/search.c:272
+msgid "results"
+msgstr "вынікі"
+
+#: src/search.c:273
 #, fuzzy
-msgid "Search and Run command"
-msgstr "Знешня каманда Перамяшчэння"
+msgid "collection"
+msgstr "Калекцыі"
+
+#: src/search.c:277
+#, fuzzy
+msgid "name contains"
+msgstr "складае"
+
+#: src/search.c:278
+#, fuzzy
+msgid "name is"
+msgstr "Перайменаваць файл"
+
+#: src/search.c:279
+#, fuzzy
+msgid "path contains"
+msgstr "складае"
+
+#: src/search.c:283 src/search.c:290 src/search.c:309
+msgid "equal to"
+msgstr "роўна"
+
+#: src/search.c:284 src/search.c:310 src/search.c:317
+msgid "less than"
+msgstr "меньш за"
+
+#: src/search.c:285 src/search.c:311 src/search.c:318
+msgid "greater than"
+msgstr "больш за"
+
+#: src/search.c:286 src/search.c:293 src/search.c:312
+msgid "between"
+msgstr "паміж"
+
+#: src/search.c:291
+msgid "before"
+msgstr "да"
+
+#: src/search.c:292
+msgid "after"
+msgstr "пасля"
+
+#: src/search.c:297
+msgid "match all"
+msgstr "адпавядае ўсяму"
+
+#: src/search.c:298
+msgid "match any"
+msgstr "адпавядае любому"
+
+#: src/search.c:299
+msgid "exclude"
+msgstr "выключана"
+
+#: src/search.c:303
+msgid "contains"
+msgstr "складае"
+
+#: src/search.c:304
+msgid "miss"
+msgstr ""
+
+#: src/search.c:316
+#, fuzzy
+msgid "not geocoded"
+msgstr "не вызначана"
+
+#: src/search.c:322 src/search.c:327
+msgid "is"
+msgstr "ёсць"
+
+#: src/search.c:323 src/search.c:328
+msgid "is not"
+msgstr ""
+
+#: src/search.c:368
+#, fuzzy
+msgid "Start/stop search"
+msgstr "Пошук выяваў"
 
 #: src/search.c:410
 #, c-format
@@ -4439,159 +7302,140 @@ msgstr "Ідзе пошук..."
 msgid "Changed"
 msgstr ""
 
-#: src/search.c:2063 src/search.c:3479
+#: src/search.c:2063 src/search.c:3480
 #, fuzzy
 msgid "Original"
 msgstr "Пачатковае імя"
 
-#: src/search.c:2069 src/search.c:3480
+#: src/search.c:2069 src/search.c:3481
 #, fuzzy
 msgid "Digitized"
 msgstr "Пераўтворана ў лічбы"
 
-#: src/search.c:2266 src/search.c:3606
+#: src/search.c:2266 src/search.c:3607
 #, fuzzy
 msgid "Raw Image"
 msgstr "Выява"
 
-#: src/search.c:2271 src/search.c:3607
-msgid "Video"
-msgstr ""
-
-#: src/search.c:2276 src/search.c:3608
-#, fuzzy
-msgid "Document"
-msgstr "Каментар:"
-
-#: src/search.c:2286 src/search.c:3610
-#, fuzzy
-msgid "Unknown"
-msgstr "невядома"
-
-#: src/search.c:2330 src/search.c:3623
+#: src/search.c:2330 src/search.c:3624
 #, fuzzy
 msgid "Any mark"
 msgstr "_Дадаць закладку %d"
 
-#: src/search.c:2386 src/search.c:3579
+#: src/search.c:2387 src/search.c:3580
 msgid "km"
 msgstr ""
 
-#: src/search.c:2391 src/search.c:3580
+#: src/search.c:2392 src/search.c:3581
 #, fuzzy
 msgid "miles"
 msgstr "Файлы"
 
-#: src/search.c:2713
+#: src/search.c:2714
 msgid "File not found"
 msgstr "Файл не знойдзены"
 
-#: src/search.c:2714
+#: src/search.c:2715
 msgid "Please enter an existing file for image content."
 msgstr "Калі ласка, увядзіце існуючы файл для зместу выявы."
 
-#: src/search.c:2739
+#: src/search.c:2740
 msgid "Entry does not contain a valid lat/long value"
 msgstr ""
 
-#: src/search.c:2789
+#: src/search.c:2790
 msgid "Please enter an existing folder to search."
 msgstr "Калі ласка, увядзіце існуючую тэчку для пошуку."
 
-#: src/search.c:2835
+#: src/search.c:2836
 #, fuzzy
 msgid "Collection not found"
 msgstr "Тэчка не знойдзена"
 
-#: src/search.c:2835
+#: src/search.c:2836
 #, fuzzy
 msgid "Please enter an existing collection name."
 msgstr "Калі ласка, увядзіце існуючую тэчку для пошуку."
 
-#: src/search.c:3293
+#: src/search.c:3294
 #, fuzzy
 msgid "Select collection"
 msgstr "Захаваць калекцыю"
 
-#: src/search.c:3363
+#: src/search.c:3364
 msgid "Image search"
 msgstr "Пошук выяваў"
 
-#: src/search.c:3402
+#: src/search.c:3403
 msgid "Search:"
 msgstr "Пошук:"
 
-#: src/search.c:3416
+#: src/search.c:3417
 msgid "Recurse"
 msgstr "Рэкурсіўна"
 
-#: src/search.c:3440 src/search.c:3549
+#: src/search.c:3441 src/search.c:3550
 msgid "Match case"
 msgstr "Улічваць рэгістр"
 
-#: src/search.c:3446
+#: src/search.c:3447
 msgid "File size is"
 msgstr "Памер файла"
 
-#: src/search.c:3453 src/search.c:3470 src/search.c:3499 src/search.c:3562
+#: src/search.c:3454 src/search.c:3471 src/search.c:3500 src/search.c:3563
 msgid "and"
 msgstr "і"
 
-#: src/search.c:3459
+#: src/search.c:3460
 msgid "File date is"
 msgstr "Дата файла"
 
-#: src/search.c:3477
+#: src/search.c:3478
 msgid "Modified"
 msgstr ""
 
-#: src/search.c:3478
+#: src/search.c:3479
 #, fuzzy
 msgid "Status Changed"
 msgstr "Статус"
 
-#: src/search.c:3488
+#: src/search.c:3489
 msgid "Image dimensions are"
 msgstr "Вымярэнні выявы"
 
-#: src/search.c:3509
+#: src/search.c:3510
 msgid "Image content is"
 msgstr "Змест выявы"
 
-#: src/search.c:3515
+#: src/search.c:3516
 #, no-c-format
 msgid "% similar to"
 msgstr "% падобна да"
 
-#: src/search.c:3523
+#: src/search.c:3524
 #, fuzzy
 msgid "Ignore rotation"
 msgstr "Арыентацыя"
 
-#: src/search.c:3540
-#, fuzzy
-msgid "Comment"
-msgstr "Каментар:"
-
-#: src/search.c:3555
+#: src/search.c:3556
 #, fuzzy
 msgid "Image rating is"
 msgstr "Змест выявы"
 
-#: src/search.c:3569
+#: src/search.c:3570
 #, fuzzy
 msgid "Image is"
 msgstr "Шырыня выявы"
 
-#: src/search.c:3581
+#: src/search.c:3582
 msgid "n.m."
 msgstr ""
 
-#: src/search.c:3587
+#: src/search.c:3588
 msgid "from"
 msgstr ""
 
-#: src/search.c:3592
+#: src/search.c:3593
 msgid ""
 "Enter a coordinate in the form:\n"
 "89.123 179.456\n"
@@ -4602,16 +7446,16 @@ msgid ""
 "See the Help file"
 msgstr ""
 
-#: src/search.c:3600
+#: src/search.c:3601
 #, fuzzy
 msgid "Image class"
 msgstr "Шырыня выявы"
 
-#: src/search.c:3611
+#: src/search.c:3612
 msgid "Broken"
 msgstr ""
 
-#: src/search.c:3618
+#: src/search.c:3619
 #, fuzzy
 msgid "Marks"
 msgstr "Паказаць па_знакі"
@@ -4660,6 +7504,25 @@ msgstr "_Хуткія клавішы"
 #: src/thumb.c:417
 msgid "Thumbnail image in cache failed to load, trying to recreate.\n"
 msgstr "Памылка загрузкі мініяцюры выявы з кэшу, спроба перастварыць.\n"
+
+#: src/toolbar.c:100
+#, fuzzy
+msgid "Open Archive"
+msgstr "Адкрыць _нядаўняе"
+
+#: src/toolbar.c:132
+#, fuzzy
+msgid "Pixel Info"
+msgstr "Фармат файла:"
+
+#: src/toolbar.c:133
+msgid "Ignore Alpha"
+msgstr ""
+
+#: src/toolbar.c:134
+#, fuzzy
+msgid "Exif rotate"
+msgstr "Ужываць дату Exif"
 
 #: src/toolbar.c:538
 msgid "Add Toolbar Item"
@@ -4873,10 +7736,6 @@ msgstr "Памылка стварэння тэчцы"
 msgid "All Files"
 msgstr "Усе файлы"
 
-#: src/ui_pathsel.c:1049 src/utilops.c:3189
-msgid "New folder"
-msgstr "Новая тэчка"
-
 #: src/ui_pathsel.c:1052
 msgid "Show hidden"
 msgstr "Паказаць скрытыя"
@@ -4884,10 +7743,6 @@ msgstr "Паказаць скрытыя"
 #: src/ui_pathsel.c:1137
 msgid "Filter:"
 msgstr "Фільтр:"
-
-#: src/ui_pathsel.c:1179
-msgid "Files"
-msgstr "Файлы"
 
 #: src/ui_tabcomp.c:945
 msgid "Select path"
@@ -5140,10 +7995,6 @@ msgstr "Капіяваць файл"
 msgid "This will copy the following files"
 msgstr ""
 
-#: src/utilops.c:2396 src/utilops.c:2862
-msgid "Rename"
-msgstr "Перайменаванне"
-
 #: src/utilops.c:2397
 #, fuzzy
 msgid "Rename files?"
@@ -5346,16 +8197,6 @@ msgstr "Паказаць с_хаваныя"
 msgid "Re_fresh"
 msgstr "_Абнавіць"
 
-#: src/view_file/view_file.c:725
-#, fuzzy
-msgid "Enable file _grouping"
-msgstr "Адключыць фільтрацыю файлаў"
-
-#: src/view_file/view_file.c:727
-#, fuzzy
-msgid "Disable file groupi_ng"
-msgstr "Адключыць фільтрацыю файлаў"
-
 #: src/view_file/view_file.c:749
 #, fuzzy
 msgid "Images as List"
@@ -5435,14 +8276,6 @@ msgstr "Імя"
 msgid "Stars"
 msgstr "Пачатковы #"
 
-#: src/window.c:287 src/window.c:308
-msgid "Help"
-msgstr "Дапамога"
-
-#: src/window.c:371
-msgid "On-line help search"
-msgstr ""
-
 #: src/window.c:374
 msgid "Search the on-line help files.\n"
 msgstr ""
@@ -5456,1632 +8289,6 @@ msgstr "Пошук:"
 #, fuzzy
 msgid "Search terms:"
 msgstr "Пошук:"
-
-#, fuzzy
-#~ msgid "Title"
-#~ msgstr "Безназоўны"
-
-#, fuzzy
-#~ msgid "Rating"
-#~ msgstr "Памылка друку"
-
-#, fuzzy
-#~ msgid "Headline"
-#~ msgstr "Білінейны"
-
-#~ msgid "Exif"
-#~ msgstr "Exif"
-
-#, fuzzy
-#~ msgid "File info"
-#~ msgstr "Файл не знойдзены"
-
-#, fuzzy
-#~ msgid "Location and GPS"
-#~ msgstr "Змяшчэнне:"
-
-#~ msgid "Copyright"
-#~ msgstr "Аўтарскае права"
-
-#, fuzzy
-#~ msgid "Close window"
-#~ msgstr "_Закрыць акно"
-
-#, fuzzy
-#~ msgid "View in new window"
-#~ msgstr "Глядзець у _новым акне"
-
-#, fuzzy
-#~ msgid "Select single file"
-#~ msgstr "Вылучыце тэчку"
-
-#, fuzzy
-#~ msgid "Toggle select image"
-#~ msgstr "наступная выява"
-
-#, fuzzy
-#~ msgid "Append from collection"
-#~ msgstr "Набавіць з калекцыі..."
-
-#, fuzzy
-#~ msgid "Save collection as"
-#~ msgstr "Захаваць калекцыю"
-
-#, fuzzy
-#~ msgid "Show filename text"
-#~ msgstr "Паказаць _імёны файлаў"
-
-#~ msgid "Print"
-#~ msgstr "Друкаваць"
-
-#, fuzzy
-#~ msgid "Toggle thumbs"
-#~ msgstr "Загружаем мініяцюры..."
-
-#, fuzzy
-#~ msgid "Collection from selection"
-#~ msgstr "Набавіць са спісу файлаў "
-
-#, fuzzy
-#~ msgid "Append list"
-#~ msgstr "_Набавіць"
-
-#, fuzzy
-#~ msgid "Select group 1 duplicates"
-#~ msgstr "Выберыце групу _1 дублікатаў"
-
-#, fuzzy
-#~ msgid "Select group 2 duplicates"
-#~ msgstr "Выберыце групу _1 дублікатаў"
-
-#~ msgid "top left"
-#~ msgstr "зверху злева"
-
-#~ msgid "top right"
-#~ msgstr "зверху справа"
-
-#~ msgid "bottom right"
-#~ msgstr "знізу справа"
-
-#~ msgid "bottom left"
-#~ msgstr "знізу злева"
-
-#~ msgid "left top"
-#~ msgstr "злева зверху"
-
-#~ msgid "right top"
-#~ msgstr "справа зверху"
-
-#~ msgid "right bottom"
-#~ msgstr "справа знізу"
-
-#~ msgid "left bottom"
-#~ msgstr "злева знізу"
-
-#~ msgid "inch"
-#~ msgstr "цаль"
-
-#~ msgid "centimeter"
-#~ msgstr "сантыметр"
-
-#~ msgid "average"
-#~ msgstr "сярэдні"
-
-#~ msgid "center weighted"
-#~ msgstr "цэнтральна-ўзважаны"
-
-#~ msgid "spot"
-#~ msgstr "кропкавы"
-
-#~ msgid "multi-spot"
-#~ msgstr "шматкропкавы"
-
-#~ msgid "multi-segment"
-#~ msgstr "шматсегментны"
-
-#~ msgid "partial"
-#~ msgstr "частковы"
-
-#~ msgid "other"
-#~ msgstr "іншы"
-
-#~ msgid "not defined"
-#~ msgstr "не вызначана"
-
-#~ msgid "manual"
-#~ msgstr "уручную"
-
-#~ msgid "normal"
-#~ msgstr "нармальна"
-
-#~ msgid "aperture"
-#~ msgstr "апертура"
-
-#~ msgid "shutter"
-#~ msgstr "затвор"
-
-#~ msgid "creative"
-#~ msgstr "творчасць"
-
-#~ msgid "action"
-#~ msgstr "дзея"
-
-#~ msgid "portrait"
-#~ msgstr "партрэт"
-
-#~ msgid "landscape"
-#~ msgstr "краявід"
-
-#~ msgid "daylight"
-#~ msgstr "дзённае святло"
-
-#~ msgid "fluorescent"
-#~ msgstr "флуарэсцэнт"
-
-#~ msgid "tungsten (incandescent)"
-#~ msgstr "вальфрам (раскалены)"
-
-#~ msgid "flash"
-#~ msgstr "мігценне"
-
-#~ msgid "fine weather"
-#~ msgstr "выдатнае надвор'е"
-
-#~ msgid "cloudy weather"
-#~ msgstr "аблочнае надвор'е"
-
-#~ msgid "shade"
-#~ msgstr "цень"
-
-#~ msgid "daylight fluorescent"
-#~ msgstr "люмінісцэнтная лампа дзённага святла"
-
-#~ msgid "day white fluorescent"
-#~ msgstr "дзённы белы люмінісцэнт"
-
-#~ msgid "cool white fluorescent"
-#~ msgstr "халодны белы люмінісцэнт"
-
-#~ msgid "white fluorescent"
-#~ msgstr "белы люмінісцэнт"
-
-#~ msgid "standard light A"
-#~ msgstr "стандартнае святло A"
-
-#~ msgid "standard light B"
-#~ msgstr "стандартнае святло B"
-
-#~ msgid "standard light C"
-#~ msgstr "стандартнае святло C"
-
-#~ msgid "D55"
-#~ msgstr "D55"
-
-#~ msgid "D65"
-#~ msgstr "D65"
-
-#~ msgid "D75"
-#~ msgstr "D75"
-
-#~ msgid "D50"
-#~ msgstr "D50"
-
-#~ msgid "yes, not detected by strobe"
-#~ msgstr "так, не выяўлены стробам"
-
-#~ msgid "yes, detected by strobe"
-#~ msgstr "так, выяўлены стробам"
-
-#~ msgid "trilinear"
-#~ msgstr "трохлінейнае"
-
-#~ msgid "custom"
-#~ msgstr "іншае"
-
-#, fuzzy
-#~ msgid "auto bracket"
-#~ msgstr "Аўтаматычнае перайменаванне"
-
-#, fuzzy
-#~ msgid "standard"
-#~ msgstr "Календар"
-
-#~ msgid "night scene"
-#~ msgstr "начная сцэна"
-
-#~ msgid "none"
-#~ msgstr "няма"
-
-#~ msgid "low"
-#~ msgstr "нізкі"
-
-#~ msgid "high"
-#~ msgstr "высокі"
-
-#~ msgid "distant"
-#~ msgstr "далёкі"
-
-#~ msgid "Image Width"
-#~ msgstr "Шырыня выявы"
-
-#~ msgid "Image Height"
-#~ msgstr "Вышыня выявы"
-
-#~ msgid "Compression"
-#~ msgstr "Сціск"
-
-#~ msgid "Image description"
-#~ msgstr "Апісанне выявы"
-
-#~ msgid "Camera model"
-#~ msgstr "Мадэль фотаздымача"
-
-#~ msgid "Orientation"
-#~ msgstr "Арыентацыя"
-
-#~ msgid "X resolution"
-#~ msgstr "X раздзяляльнасць"
-
-#~ msgid "Y Resolution"
-#~ msgstr "Y раздзяляльнасць"
-
-#~ msgid "Resolution units"
-#~ msgstr "Адзінкі раздзяляльнасці"
-
-#~ msgid "Firmware"
-#~ msgstr "Прашыўка"
-
-#~ msgid "Black white reference"
-#~ msgstr "Аднашэнне чорнага/белага"
-
-#~ msgid "Exposure time (seconds)"
-#~ msgstr "Час экспазіцыі (секунд)"
-
-#~ msgid "Exposure program"
-#~ msgstr "Праграма экспазіцыі"
-
-#~ msgid "Spectral Sensitivity"
-#~ msgstr "Спектральная адчувальнасць"
-
-#~ msgid "ISO sensitivity"
-#~ msgstr "Адчувальнасць ISO"
-
-#~ msgid "Exif version"
-#~ msgstr "Версія Exif"
-
-#~ msgid "Date original"
-#~ msgstr "Дата здымкі"
-
-#~ msgid "Date digitized"
-#~ msgstr "Пераўтворана ў лічбы"
-
-#, fuzzy
-#~ msgid "Pixel format"
-#~ msgstr "Фармат файла:"
-
-#~ msgid "Compression ratio"
-#~ msgstr "Узровень сціску"
-
-#~ msgid "Shutter speed"
-#~ msgstr "Хуткасць затвора"
-
-#~ msgid "Aperture"
-#~ msgstr "Апертура"
-
-#~ msgid "Exposure bias"
-#~ msgstr "Зрушэнне экспазіцыі"
-
-#~ msgid "Maximum aperture"
-#~ msgstr "Максімальная апертура"
-
-#~ msgid "Subject distance"
-#~ msgstr "Адлегласць да аб'екта"
-
-#~ msgid "Metering mode"
-#~ msgstr "Метад вымярэння"
-
-#~ msgid "Light source"
-#~ msgstr "Крыніца святла"
-
-#~ msgid "Flash"
-#~ msgstr "Успышка"
-
-#~ msgid "Focal length"
-#~ msgstr "Фокусная адлегласць"
-
-#~ msgid "Subject area"
-#~ msgstr "Прастора аб'екта"
-
-#~ msgid "UserComment"
-#~ msgstr "Карыстальніцкі каментар"
-
-#, fuzzy
-#~ msgid "Subsecond time original"
-#~ msgstr "Дата здымкі"
-
-#, fuzzy
-#~ msgid "Subsecond time digitized"
-#~ msgstr "Пераўтворана ў лічбы"
-
-#~ msgid "FlashPix version"
-#~ msgstr "Версія FlashPix"
-
-#~ msgid "Colorspace"
-#~ msgstr "Прастора колераў"
-
-#~ msgid "Audio data"
-#~ msgstr "Аудыа-дадзеныя"
-
-#~ msgid "ExifR98 extension"
-#~ msgstr "Пашырэнне ExifR98"
-
-#~ msgid "Flash strength"
-#~ msgstr "Моцнасць успышкі"
-
-#~ msgid "Subject location"
-#~ msgstr "Знаходжанне аб'екта"
-
-#~ msgid "Sensor type"
-#~ msgstr "Тып сэнсара"
-
-#~ msgid "Source type"
-#~ msgstr "Тып крыніцы"
-
-#~ msgid "Scene type"
-#~ msgstr "Тып сцэны"
-
-#, fuzzy
-#~ msgid "Render process"
-#~ msgstr "Стварыць"
-
-#~ msgid "Exposure mode"
-#~ msgstr "Рэжым экспазіцыі"
-
-#~ msgid "White balance"
-#~ msgstr "Баланс белага"
-
-#~ msgid "Digital zoom ratio"
-#~ msgstr "Узровень лічбавага зуму"
-
-#~ msgid "Focal length (35mm)"
-#~ msgstr "Фокусная адлегласць (35мм)"
-
-#~ msgid "Contrast"
-#~ msgstr "Кантраст"
-
-#~ msgid "Device setting"
-#~ msgstr "Налада прылады"
-
-#~ msgid "Image serial number"
-#~ msgstr "Серыйны нумар выявы"
-
-#~ msgid "Camera"
-#~ msgstr "Фотаздымач"
-
-#, fuzzy
-#~ msgid "DateDigitized"
-#~ msgstr "Пераўтворана ў лічбы"
-
-#~ msgid "Focal length 35mm"
-#~ msgstr "Фокусная адлегласць 35мм"
-
-#~ msgid "Resolution"
-#~ msgstr "Раздзяляльнасць"
-
-#~ msgid "Color profile"
-#~ msgstr "Профіль колеру"
-
-#, fuzzy
-#~ msgid "Local time"
-#~ msgstr "Змяшчэнне:"
-
-#, fuzzy
-#~ msgid "Time zone"
-#~ msgstr "Білінейны"
-
-#, fuzzy
-#~ msgid "Country name"
-#~ msgstr "Сартаваць па імені"
-
-#, fuzzy
-#~ msgid "Star rating"
-#~ msgstr "Сартаваць па даце"
-
-#, fuzzy
-#~ msgid "File size"
-#~ msgstr "Памер файла:"
-
-#, fuzzy
-#~ msgid "File date"
-#~ msgstr "Дата файла:"
-
-#, fuzzy
-#~ msgid "File mode"
-#~ msgstr "Імя файла"
-
-#, fuzzy
-#~ msgid "File ctime"
-#~ msgstr "Памер файла:"
-
-#, fuzzy
-#~ msgid "File owner"
-#~ msgstr "Імя файла"
-
-#, fuzzy
-#~ msgid "File group"
-#~ msgstr "Файл не знойдзены"
-
-#, fuzzy
-#~ msgid "File link"
-#~ msgstr "Файл не знойдзены"
-
-#, fuzzy
-#~ msgid "File class"
-#~ msgstr "Файлы"
-
-#, fuzzy
-#~ msgid "Page no."
-#~ msgstr "Старонка %d"
-
-#, fuzzy
-#~ msgid "Rotate mirror"
-#~ msgstr "Шырыня выявы"
-
-#, fuzzy
-#~ msgid "Rotate flip"
-#~ msgstr "Згладжанае перавяртанне выявы"
-
-#, fuzzy
-#~ msgid " Rotate counterclockwise 90°"
-#~ msgstr "Павярнуць _супраць гадзіннікавай стрэлкі"
-
-#, fuzzy
-#~ msgid " Rotate clockwise 90°"
-#~ msgstr "Павярнуць па _гадзіннікавай стрэлцы"
-
-#, fuzzy
-#~ msgid "Previous"
-#~ msgstr "Папярэ_дняя выява"
-
-#, fuzzy
-#~ msgid "Next"
-#~ msgstr "_Наступная выява"
-
-#~ msgid "Zoom in"
-#~ msgstr "Павялічыць"
-
-#~ msgid "Zoom out"
-#~ msgstr "Паменьшыць"
-
-#, fuzzy
-#~ msgid "Zoom 1:1"
-#~ msgstr "Памер _1:1"
-
-#, fuzzy
-#~ msgid "Zoom 2:1"
-#~ msgstr "Памер _2:1"
-
-#, fuzzy
-#~ msgid "Zoom 3:1"
-#~ msgstr "Памер _3:1"
-
-#, fuzzy
-#~ msgid "Zoom 4:1"
-#~ msgstr "Памер _4:1"
-
-#~ msgid "Zoom 1:4"
-#~ msgstr "Памер 1:4"
-
-#~ msgid "Zoom 1:3"
-#~ msgstr "Памер 1:3"
-
-#~ msgid "Zoom 1:2"
-#~ msgstr "Памер 1:2"
-
-#, fuzzy
-#~ msgid "Zoom fit window width"
-#~ msgstr "_Дапасаваць памер"
-
-#, fuzzy
-#~ msgid "Zoom fit window height"
-#~ msgstr "_Дапасаваць памер"
-
-#, fuzzy
-#~ msgid "Toggle slideshow"
-#~ msgstr "Пераключыць _паказ слайдаў"
-
-#, fuzzy
-#~ msgid "Pause slideshow"
-#~ msgstr "_Прыпыніць паказ слайдаў"
-
-#, fuzzy
-#~ msgid "Reload image"
-#~ msgstr "Выпадкова"
-
-#, fuzzy
-#~ msgid "Fullscreen"
-#~ msgstr "Поўны экран"
-
-#, fuzzy
-#~ msgid "Image overlay"
-#~ msgstr "Пошук выяваў"
-
-#, fuzzy
-#~ msgid "Exit fullscreen"
-#~ msgstr "Выйсці з _поўнага экрану"
-
-#, fuzzy
-#~ msgid "Desaturate"
-#~ msgstr "Прырода"
-
-#~ msgid "Set as _wallpaper"
-#~ msgstr "Усталяваць як _шпалеры"
-
-#~ msgid "_File"
-#~ msgstr "_Файл"
-
-#~ msgid "_Go"
-#~ msgstr "_Ісці"
-
-#~ msgid "_Edit"
-#~ msgstr "_Праўка"
-
-#~ msgid "_Select"
-#~ msgstr "Вы_лучыць"
-
-#, fuzzy
-#~ msgid "_Rating"
-#~ msgstr "Памылка друку"
-
-#, fuzzy
-#~ msgid "P_references"
-#~ msgstr "Наладкі"
-
-#~ msgid "_Zoom"
-#~ msgstr "_Маштаб"
-
-#, fuzzy
-#~ msgid "_Color Management"
-#~ msgstr "Кіраўнік упарадкавання"
-
-#, fuzzy
-#~ msgid "Spli_t"
-#~ msgstr "_Раздзяліць"
-
-#, fuzzy
-#~ msgid "Image _Overlay"
-#~ msgstr "Пошук выяваў"
-
-#, fuzzy
-#~ msgid "_Windows"
-#~ msgstr "Вокны"
-
-#~ msgid "_Help"
-#~ msgstr "_Дапамога"
-
-#, fuzzy
-#~ msgid "Copy..."
-#~ msgstr "_Капіяваць..."
-
-#, fuzzy
-#~ msgid "Move..."
-#~ msgstr "_Перамесціць"
-
-#, fuzzy
-#~ msgid "Rename..."
-#~ msgstr "_Перайменаваць"
-
-#, fuzzy
-#~ msgid "Delete..."
-#~ msgstr "_Выдаліць"
-
-#~ msgid "Select _all"
-#~ msgstr "Вылучыць _усё"
-
-#~ msgid "Select _none"
-#~ msgstr "_Скасаваць вылучэнне"
-
-#, fuzzy
-#~ msgid "_Invert Selection"
-#~ msgstr "Вылучэнне"
-
-#, fuzzy
-#~ msgid "Invert Selection"
-#~ msgstr "Вылучэнне"
-
-#~ msgid "_Quit"
-#~ msgstr "_Выйсце"
-
-#, fuzzy
-#~ msgid "Quit"
-#~ msgstr "_Выйсце"
-
-#~ msgid "_First Image"
-#~ msgstr "Пе_ршая выява"
-
-#, fuzzy
-#~ msgid "First Image"
-#~ msgstr "Пе_ршая выява"
-
-#~ msgid "_Previous Image"
-#~ msgstr "Папярэ_дняя выява"
-
-#, fuzzy
-#~ msgid "Previous Image"
-#~ msgstr "Папярэ_дняя выява"
-
-#~ msgid "_Next Image"
-#~ msgstr "_Наступная выява"
-
-#, fuzzy
-#~ msgid "Next Image"
-#~ msgstr "_Наступная выява"
-
-#, fuzzy
-#~ msgid "Image Forward"
-#~ msgstr "Файл выявы"
-
-#, fuzzy
-#~ msgid "Image Back"
-#~ msgstr "Пошук выяваў"
-
-#, fuzzy
-#~ msgid "_First Page"
-#~ msgstr "Пе_ршая выява"
-
-#, fuzzy
-#~ msgid "_Last Page"
-#~ msgstr "Ап_ошняя выява"
-
-#, fuzzy
-#~ msgid "_Next Page"
-#~ msgstr "_Наступная выява"
-
-#, fuzzy
-#~ msgid "_Previous Page"
-#~ msgstr "Папярэ_дняя выява"
-
-#~ msgid "_Last Image"
-#~ msgstr "Ап_ошняя выява"
-
-#, fuzzy
-#~ msgid "Last Image"
-#~ msgstr "Ап_ошняя выява"
-
-#, fuzzy
-#~ msgid "_Home"
-#~ msgstr "Хатняя дырэкторыя"
-
-#, fuzzy
-#~ msgid "Up one folder"
-#~ msgstr "Новая тэчка"
-
-#, fuzzy
-#~ msgid "New window"
-#~ msgstr "Новае _акно"
-
-#, fuzzy
-#~ msgid "default"
-#~ msgstr "Прадвызначанае"
-
-#, fuzzy
-#~ msgid "New window (default)"
-#~ msgstr "Новае _акно"
-
-#, fuzzy
-#~ msgid "from current"
-#~ msgstr "Ужываць цяперашнюю"
-
-#~ msgid "_New collection"
-#~ msgstr "_Новая калекцыя"
-
-#~ msgid "_Open collection..."
-#~ msgstr "_Адкрыць калекцыю"
-
-#, fuzzy
-#~ msgid "Open collection..."
-#~ msgstr "_Адкрыць калекцыю"
-
-#, fuzzy
-#~ msgid "Open recen_t"
-#~ msgstr "Адкрыць _нядаўняе"
-
-#, fuzzy
-#~ msgid "Open recent collection"
-#~ msgstr "Адкрыць калекцыю"
-
-#~ msgid "_Search..."
-#~ msgstr "_Пошук..."
-
-#, fuzzy
-#~ msgid "Search..."
-#~ msgstr "_Пошук..."
-
-#, fuzzy
-#~ msgid "Find duplicates..."
-#~ msgstr "_Знайсці аднолькавыя..."
-
-#, fuzzy
-#~ msgid "Pa_n view"
-#~ msgstr "Пашыраны агляд"
-
-#, fuzzy
-#~ msgid "Pan view"
-#~ msgstr "Пашыраны агляд"
-
-#~ msgid "_Print..."
-#~ msgstr "_Друк..."
-
-#~ msgid "N_ew folder..."
-#~ msgstr "Новая _тэчка..."
-
-#, fuzzy
-#~ msgid "New folder..."
-#~ msgstr "_Новая тэчка..."
-
-#, fuzzy
-#~ msgid "Enable file grouping"
-#~ msgstr "Адключыць фільтрацыю файлаў"
-
-#, fuzzy
-#~ msgid "Disable file grouping"
-#~ msgstr "Адключыць фільтрацыю файлаў"
-
-#, fuzzy
-#~ msgid "Copy path unquoted to clipboard"
-#~ msgstr "_Капіяваць"
-
-#, fuzzy
-#~ msgid "Rating 0"
-#~ msgstr "Памылка друку"
-
-#, fuzzy
-#~ msgid "Rating 1"
-#~ msgstr "Памылка друку"
-
-#, fuzzy
-#~ msgid "Rating 2"
-#~ msgstr "Памылка друку"
-
-#, fuzzy
-#~ msgid "Rating 3"
-#~ msgstr "Памылка друку"
-
-#, fuzzy
-#~ msgid "Rating 4"
-#~ msgstr "Памылка друку"
-
-#, fuzzy
-#~ msgid "Rating 5"
-#~ msgstr "Памылка друку"
-
-#, fuzzy
-#~ msgid "_Rotate clockwise 90°"
-#~ msgstr "Павярнуць па _гадзіннікавай стрэлцы"
-
-#, fuzzy
-#~ msgid "Image Rotate clockwise 90°"
-#~ msgstr "Павярнуць па _гадзіннікавай стрэлцы"
-
-#, fuzzy
-#~ msgid "Rotate _counterclockwise 90°"
-#~ msgstr "Павярнуць _супраць гадзіннікавай стрэлкі"
-
-#, fuzzy
-#~ msgid "Rotate 1_80°"
-#~ msgstr "Павярнуць на 1_80 градусаў"
-
-#, fuzzy
-#~ msgid "Image Rotate 180°"
-#~ msgstr "Павярнуць на 1_80 градусаў"
-
-#~ msgid "_Mirror"
-#~ msgstr "_Адлюстраваць"
-
-#, fuzzy
-#~ msgid "Image Mirror"
-#~ msgstr "Шырыня выявы"
-
-#~ msgid "_Flip"
-#~ msgstr "_Дагары нагамі"
-
-#, fuzzy
-#~ msgid "Image Flip"
-#~ msgstr "Шырыня выявы"
-
-#~ msgid "_Original state"
-#~ msgstr "Па_чатковы стан"
-
-#, fuzzy
-#~ msgid "Image rotate Original state"
-#~ msgstr "Па_чатковы стан"
-
-#~ msgid "P_references..."
-#~ msgstr "_Наладкі"
-
-#, fuzzy
-#~ msgid "Preferences..."
-#~ msgstr "_Наладкі"
-
-#, fuzzy
-#~ msgid "Configure _Plugins..."
-#~ msgstr "Канфігурацыя"
-
-#, fuzzy
-#~ msgid "Configure Plugins..."
-#~ msgstr "Канфігурацыя"
-
-#, fuzzy
-#~ msgid "_Configure this window..."
-#~ msgstr "Канфігурацыя"
-
-#, fuzzy
-#~ msgid "Configure this window..."
-#~ msgstr "Канфігурацыя"
-
-#, fuzzy
-#~ msgid "_Cache maintenance..."
-#~ msgstr "Кіраванне кэшам"
-
-#, fuzzy
-#~ msgid "Cache maintenance..."
-#~ msgstr "Кіраванне кэшам"
-
-#, fuzzy
-#~ msgid "Set as wallpaper"
-#~ msgstr "Усталяваць як _шпалеры"
-
-#, fuzzy
-#~ msgid "_Save metadata"
-#~ msgstr "Метададзеныя"
-
-#, fuzzy
-#~ msgid "Keyword autocomplete"
-#~ msgstr "Ключавыя словы:"
-
-#, fuzzy
-#~ msgid "Keyword Autocomplete"
-#~ msgstr "Ключавыя словы:"
-
-#~ msgid "_Zoom to fit"
-#~ msgstr "_Дапасаваць памер"
-
-#~ msgid "Fit _Horizontally"
-#~ msgstr "Дапасаваць _гарызантальна"
-
-#, fuzzy
-#~ msgid "Fit Horizontally"
-#~ msgstr "Дапасаваць _гарызантальна"
-
-#, fuzzy
-#~ msgid "Fit _Vertically"
-#~ msgstr "Дапасаваць _вертыкальна"
-
-#, fuzzy
-#~ msgid "Fit Vertically"
-#~ msgstr "Вертыкальны"
-
-#~ msgid "Zoom _2:1"
-#~ msgstr "Памер _2:1"
-
-#~ msgid "Zoom _3:1"
-#~ msgstr "Памер _3:1"
-
-#~ msgid "Zoom _4:1"
-#~ msgstr "Памер _4:1"
-
-#, fuzzy
-#~ msgid "Connected Zoom out"
-#~ msgstr "Паменьшыць"
-
-#, fuzzy
-#~ msgid "Connected Zoom 1:1"
-#~ msgstr "Усталяваць маштаб 1:1"
-
-#, fuzzy
-#~ msgid "Connected Zoom to fit"
-#~ msgstr "_Дапасаваць памер"
-
-#, fuzzy
-#~ msgid "Connected Fit Horizontally"
-#~ msgstr "Дапасаваць _гарызантальна"
-
-#, fuzzy
-#~ msgid "Connected Zoom 2:1"
-#~ msgstr "Усталяваць маштаб 1:1"
-
-#, fuzzy
-#~ msgid "Connected Zoom 3:1"
-#~ msgstr "Усталяваць маштаб 1:1"
-
-#, fuzzy
-#~ msgid "Connected Zoom 4:1"
-#~ msgstr "Усталяваць маштаб 1:1"
-
-#, fuzzy
-#~ msgid "Connected Zoom 1:2"
-#~ msgstr "Памер 1:2"
-
-#, fuzzy
-#~ msgid "Connected Zoom 1:3"
-#~ msgstr "Памер 1:3"
-
-#, fuzzy
-#~ msgid "Connected Zoom 1:4"
-#~ msgstr "Памер 1:4"
-
-#~ msgid "_View in new window"
-#~ msgstr "Глядзець у _новым акне"
-
-#~ msgid "F_ull screen"
-#~ msgstr "Поўны _экран"
-
-#, fuzzy
-#~ msgid "_Leave full screen"
-#~ msgstr "пачаць рэжым поўнага экрану"
-
-#, fuzzy
-#~ msgid "Leave full screen"
-#~ msgstr "пачаць рэжым поўнага экрану"
-
-#, fuzzy
-#~ msgid "Cycle through histogram mo_des"
-#~ msgstr "лінейная гістаграма па чырвоным"
-
-#, fuzzy
-#~ msgid "Cycle through histogram modes"
-#~ msgstr "лінейная гістаграма па чырвоным"
-
-#~ msgid "_Hide file list"
-#~ msgstr "_Схаваць спіс файлаў"
-
-#, fuzzy
-#~ msgid "Hide file list"
-#~ msgstr "_Схаваць спіс файлаў"
-
-#~ msgid "_Pause slideshow"
-#~ msgstr "_Прыпыніць паказ слайдаў"
-
-#, fuzzy
-#~ msgid "Slideshow Faster"
-#~ msgstr " Паказ слайдаў"
-
-#, fuzzy
-#~ msgid "Slideshow Slower"
-#~ msgstr " Паказ слайдаў"
-
-#~ msgid "_Refresh"
-#~ msgstr "_Абнавіць"
-
-#, fuzzy
-#~ msgid "Refresh"
-#~ msgstr "_Абнавіць"
-
-#, fuzzy
-#~ msgid "_Help manual"
-#~ msgstr "уручную"
-
-#, fuzzy
-#~ msgid "Help manual"
-#~ msgstr "уручную"
-
-#~ msgid "_Keyboard shortcuts"
-#~ msgstr "_Хуткія клавішы"
-
-#, fuzzy
-#~ msgid "Keyboard shortcuts"
-#~ msgstr "_Хуткія клавішы"
-
-#, fuzzy
-#~ msgid "_Keyboard map"
-#~ msgstr "_Ключавыя словы"
-
-#, fuzzy
-#~ msgid "Keyboard map"
-#~ msgstr "Загружаем мініяцюры..."
-
-#, fuzzy
-#~ msgid "ChangeLog notes"
-#~ msgstr "Пачатковая тэчка:"
-
-#~ msgid "_About"
-#~ msgstr "_Аб праграме"
-
-#~ msgid "About"
-#~ msgstr "Аб праграме"
-
-#, fuzzy
-#~ msgid "_Log Window"
-#~ msgstr "Вокны"
-
-#, fuzzy
-#~ msgid "Log Window"
-#~ msgstr "Вокны"
-
-#, fuzzy
-#~ msgid "_Exif window"
-#~ msgstr "_Закрыць акно"
-
-#, fuzzy
-#~ msgid "Exif window"
-#~ msgstr "Новае _акно"
-
-#, fuzzy
-#~ msgid "_Next Pane"
-#~ msgstr "_Наступная выява"
-
-#, fuzzy
-#~ msgid "Next Split Pane"
-#~ msgstr "_Наступная выява"
-
-#, fuzzy
-#~ msgid "_Previous Pane"
-#~ msgstr "Папярэ_дняя выява"
-
-#, fuzzy
-#~ msgid "Previous Split Pane"
-#~ msgstr "Папярэ_дняя выява"
-
-#, fuzzy
-#~ msgid "Up Split Pane"
-#~ msgstr "Адзіны"
-
-#, fuzzy
-#~ msgid "_Write orientation to file"
-#~ msgstr "Перазапісаць файл"
-
-#, fuzzy
-#~ msgid "Write orientation to file"
-#~ msgstr "Перазапісаць файл"
-
-#, fuzzy
-#~ msgid "Clear Marks..."
-#~ msgstr "Ачысціць сметніцу"
-
-#, fuzzy
-#~ msgid "Show _Thumbnails"
-#~ msgstr "Паказаць _мініяцюры"
-
-#, fuzzy
-#~ msgid "Show Thumbnails"
-#~ msgstr "Паказаць мініяцюры"
-
-#~ msgid "Show _Marks"
-#~ msgstr "Паказаць па_знакі"
-
-#, fuzzy
-#~ msgid "Show Marks"
-#~ msgstr "Паказаць па_знакі"
-
-#, fuzzy
-#~ msgid "Pi_xel Info"
-#~ msgstr "Фармат файла:"
-
-#, fuzzy
-#~ msgid "Show Pixel Info"
-#~ msgstr "Паказаць скрытыя"
-
-#, fuzzy
-#~ msgid "Hide _alpha"
-#~ msgstr "Схаваць панэль прыладаў"
-
-#~ msgid "_Float file list"
-#~ msgstr "_Адлучыць спіс файлаў"
-
-#, fuzzy
-#~ msgid "Float file list"
-#~ msgstr "_Адлучыць спіс файлаў"
-
-#~ msgid "Hide tool_bar"
-#~ msgstr "Схаваць панэль прыладаў"
-
-#, fuzzy
-#~ msgid "Hide toolbar"
-#~ msgstr "Схаваць панэль прыладаў"
-
-#~ msgid "Sort _manager"
-#~ msgstr "_Кіраўнік упарадкавання"
-
-#, fuzzy
-#~ msgid "Sort manager"
-#~ msgstr "_Кіраўнік упарадкавання"
-
-#, fuzzy
-#~ msgid "Hide Bars"
-#~ msgstr "Схаваць панэль прыладаў"
-
-#~ msgid "Use _color profiles"
-#~ msgstr "Ужываць профілі _колераў"
-
-#, fuzzy
-#~ msgid "Use color profiles"
-#~ msgstr "Ужываць профілі _колераў"
-
-#~ msgid "Use profile from _image"
-#~ msgstr "Ужываць профілі колераў з вы_явы"
-
-#, fuzzy
-#~ msgid "Use profile from image"
-#~ msgstr "Ужываць профілі колераў з вы_явы"
-
-#~ msgid "Toggle _grayscale"
-#~ msgstr "Пераключыць _шкалу шэрага"
-
-#, fuzzy
-#~ msgid "Toggle grayscale"
-#~ msgstr "Пераключыць _шкалу шэрага"
-
-#, fuzzy
-#~ msgid "Image Overlay"
-#~ msgstr "Пошук выяваў"
-
-#, fuzzy
-#~ msgid "Rectangular Selection"
-#~ msgstr "Прамавугольнае вылучэнне у выглядзе іконкі"
-
-#, fuzzy
-#~ msgid "_Exif rotate"
-#~ msgstr "Ужываць дату Exif"
-
-#, fuzzy
-#~ msgid "Toggle Exif rotate"
-#~ msgstr "Ужываць дату Exif"
-
-#, fuzzy
-#~ msgid "Images as _List"
-#~ msgstr "Шырыня выявы"
-
-#, fuzzy
-#~ msgid "View Images as List"
-#~ msgstr "Праглядаць як _іконкі"
-
-#, fuzzy
-#~ msgid "Images as I_cons"
-#~ msgstr "Праглядаць як _іконкі"
-
-#, fuzzy
-#~ msgid "View Images as Icons"
-#~ msgstr "Праглядаць як _іконкі"
-
-#, fuzzy
-#~ msgid "T_oggle Folder View"
-#~ msgstr "Пераключыць _паказ слайдаў"
-
-#, fuzzy
-#~ msgid "Toggle Folders View"
-#~ msgstr "Пераключыць _паказ слайдаў"
-
-#, fuzzy
-#~ msgid "_Horizontal"
-#~ msgstr "Гарызантальны"
-
-#, fuzzy
-#~ msgid "Split panes horizontal."
-#~ msgstr "Дапасаваць _гарызантальна"
-
-#, fuzzy
-#~ msgid "_Vertical"
-#~ msgstr "Вертыкальны"
-
-#, fuzzy
-#~ msgid "Split panes vertical"
-#~ msgstr "Вертыкальны"
-
-#, fuzzy
-#~ msgid "_Quad"
-#~ msgstr "Чатырны"
-
-#, fuzzy
-#~ msgid "Split panes quad"
-#~ msgstr "_Раздзяліць"
-
-#, fuzzy
-#~ msgid "_Single"
-#~ msgstr "Адзіны"
-
-#, fuzzy
-#~ msgid "Single pane"
-#~ msgstr "наступная выява"
-
-#, fuzzy
-#~ msgid "Input _0: sRGB"
-#~ msgstr "Увод _%d:"
-
-#, fuzzy
-#~ msgid "Input 0: sRGB"
-#~ msgstr "Увод _%d:"
-
-#, fuzzy
-#~ msgid "Input _1: AdobeRGB compatible"
-#~ msgstr "Сумяшчальны AdobeRGB"
-
-#, fuzzy
-#~ msgid "Input 1: AdobeRGB compatible"
-#~ msgstr "Сумяшчальны AdobeRGB"
-
-#, fuzzy
-#~ msgid "Input _2"
-#~ msgstr "Увод _%d:"
-
-#, fuzzy
-#~ msgid "Input 2"
-#~ msgstr "Увод _%d:"
-
-#, fuzzy
-#~ msgid "Input _3"
-#~ msgstr "Увод _%d:"
-
-#, fuzzy
-#~ msgid "Input 3"
-#~ msgstr "Увод _%d:"
-
-#, fuzzy
-#~ msgid "Input _4"
-#~ msgstr "Увод _%d:"
-
-#, fuzzy
-#~ msgid "Input 4"
-#~ msgstr "Увод _%d:"
-
-#, fuzzy
-#~ msgid "Input _5"
-#~ msgstr "Увод _%d:"
-
-#, fuzzy
-#~ msgid "Input 5"
-#~ msgstr "Увод _%d:"
-
-#, fuzzy
-#~ msgid "Histogram on Red"
-#~ msgstr "лінейная гістаграма па чырвоным"
-
-#, fuzzy
-#~ msgid "Histogram on Green"
-#~ msgstr "лінейная гістаграма па зялёным"
-
-#, fuzzy
-#~ msgid "Histogram on Blue"
-#~ msgstr "лінейная гістаграма па блакітным"
-
-#, fuzzy
-#~ msgid "Histogram on RGB"
-#~ msgstr "лінейная гістаграма па RGB"
-
-#, fuzzy
-#~ msgid "Histogram on Value"
-#~ msgstr "лінейная гістаграма па значэнні"
-
-#, fuzzy
-#~ msgid "Linear Histogram"
-#~ msgstr "лінейная гістаграма па чырвоным"
-
-#, fuzzy
-#~ msgid "Collection"
-#~ msgstr "Калекцыі"
-
-#, fuzzy
-#~ msgid "Image index"
-#~ msgstr "Файл выявы"
-
-#, fuzzy
-#~ msgid "Images total"
-#~ msgstr "Файл выявы"
-
-#, fuzzy
-#~ msgid "File page no."
-#~ msgstr "Дата файла"
-
-#, fuzzy
-#~ msgid "Image date"
-#~ msgstr "Шырыня выявы"
-
-#, fuzzy
-#~ msgid "ShutterSpeed"
-#~ msgstr "Хуткасць затвора"
-
-#, fuzzy
-#~ msgid "Focal len. 35mm"
-#~ msgstr "Фокусная адлегласць 35мм"
-
-#, fuzzy
-#~ msgid "Timezone"
-#~ msgstr "Білінейны"
-
-#, fuzzy
-#~ msgid "© Creator"
-#~ msgstr "Выдаліць тэчку"
-
-#, fuzzy
-#~ msgid "© Rights"
-#~ msgstr "Крыніца святла"
-
-#, fuzzy
-#~ msgid "Start search"
-#~ msgstr "Пошук выяваў"
-
-#, fuzzy
-#~ msgid "Scroll left"
-#~ msgstr "зверху злева"
-
-#, fuzzy
-#~ msgid "Scroll right"
-#~ msgstr "зверху справа"
-
-#, fuzzy
-#~ msgid "Scroll down faster"
-#~ msgstr " Паказ слайдаў"
-
-#, fuzzy
-#~ msgid "RAW Image"
-#~ msgstr "Выява"
-
-#, fuzzy
-#~ msgid "Archive"
-#~ msgstr "Апертура"
-
-#, fuzzy
-#~ msgid "First page"
-#~ msgstr "Пе_ршая выява"
-
-#, fuzzy
-#~ msgid "Last Page"
-#~ msgstr "Ап_ошняя выява"
-
-#, fuzzy
-#~ msgid "Next page"
-#~ msgstr "_Наступная выява"
-
-#, fuzzy
-#~ msgid "Previous Page"
-#~ msgstr "Папярэ_дняя выява"
-
-#~ msgid "New _window"
-#~ msgstr "Новае _акно"
-
-#, fuzzy
-#~ msgid "Close Window"
-#~ msgstr "_Закрыць акно"
-
-#, fuzzy
-#~ msgid "Select invert"
-#~ msgstr "Вылучыце іконку"
-
-#, fuzzy
-#~ msgid "Show file filter"
-#~ msgstr "Паказаць с_хаваныя"
-
-#, fuzzy
-#~ msgid "Select rectangle"
-#~ msgstr "Вылучыць усё"
-
-#, fuzzy
-#~ msgid "Configure this window"
-#~ msgstr "Канфігурацыя"
-
-#, fuzzy
-#~ msgid "Cache maintenance"
-#~ msgstr "Кіраванне кэшам"
-
-#, fuzzy
-#~ msgid "Fit Horizontaly"
-#~ msgstr "Дапасаваць _гарызантальна"
-
-#, fuzzy
-#~ msgid "Fit vertically"
-#~ msgstr "Вертыкальны"
-
-#, fuzzy
-#~ msgid "Zoom1:3"
-#~ msgstr "Памер 1:3"
-
-#, fuzzy
-#~ msgid "Grayscale"
-#~ msgstr "Пераключыць _шкалу шэрага"
-
-#, fuzzy
-#~ msgid "Show thumbnails"
-#~ msgstr "Паказаць _мініяцюры"
-
-#, fuzzy
-#~ msgid "Show marks"
-#~ msgstr "Паказаць па_знакі"
-
-#~ msgid "previous image"
-#~ msgstr "папярэдняя выява"
-
-#, fuzzy
-#~ msgid "close window"
-#~ msgstr "_Закрыць акно"
-
-#, fuzzy
-#~ msgid "<folder>  "
-#~ msgstr "тэчка"
-
-#, fuzzy
-#~ msgid " render thumbnails"
-#~ msgstr "Стварыць мініяцюры"
-
-#, fuzzy
-#~ msgid "<folder> "
-#~ msgstr "тэчка"
-
-#, fuzzy
-#~ msgid "render thumbnails recursively"
-#~ msgstr "Стварыць мініяцюры для абранай тэчцы"
-
-#, fuzzy
-#~ msgid " render thumbnails (see Help)"
-#~ msgstr "Стварыць мініяцюры для абранай тэчцы"
-
-#, fuzzy
-#~ msgid "<folder>"
-#~ msgstr "тэчка"
-
-#, fuzzy
-#~ msgid "clear or clean shared thumbnail cache"
-#~ msgstr "Выкарыстоўваць агульны кэш мініяцюраў"
-
-#, fuzzy
-#~ msgid "clear or clean thumbnail cache"
-#~ msgstr "Агульны кэш мініяцюраў"
-
-#, fuzzy
-#~ msgid "set slide show delay to Hrs Mins N.M seconds"
-#~ msgstr "усталяваць затрымку паміж слайдамі (сек)"
-
-#~ msgid "first image"
-#~ msgstr "першая выява"
-
-#~ msgid "toggle full screen"
-#~ msgstr "пераключыць рэжым поўнага экрану"
-
-#, fuzzy
-#~ msgid "open FILE or URL, bring Geeqie window to the top"
-#~ msgstr "адкрыць файл у новым вакне"
-
-#, fuzzy
-#~ msgid "open FILE or URL, do not bring Geeqie window to the top"
-#~ msgstr "адкрыць файл у новым вакне"
-
-#~ msgid "start full screen"
-#~ msgstr "пачаць рэжым поўнага экрану"
-
-#~ msgid "stop full screen"
-#~ msgstr "прыпыніць поўнага экрану"
-
-#, fuzzy
-#~ msgid "set window geometry"
-#~ msgstr "Нерэчаісныя памеры\n"
-
-#, fuzzy
-#~ msgid "get collection content"
-#~ msgstr "_Новая калекцыя"
-
-#, fuzzy
-#~ msgid "get collection list"
-#~ msgstr "_Новая калекцыя"
-
-#, fuzzy
-#~ msgid "get file info"
-#~ msgstr "Файл не знойдзены"
-
-#, fuzzy
-#~ msgid "get render intent"
-#~ msgstr "Стварыць"
-
-#~ msgid "last image"
-#~ msgstr "апошняя выява"
-
-#, fuzzy
-#~ msgid "add FILE to command line collection list"
-#~ msgstr "Дадаць у новую калекцыю"
-
-#, fuzzy
-#~ msgid "new window"
-#~ msgstr "Новае _акно"
-
-#~ msgid "next image"
-#~ msgstr "наступная выява"
-
-#~ msgid "quit"
-#~ msgstr "выхад"
-
-#~ msgid "toggle slide show"
-#~ msgstr "пераключыць паказ слайдаў"
-
-#, fuzzy
-#~ msgid "start recursive slide show in FOLDER"
-#~ msgstr "пачаць рэкурсіўны паказ слайдаў"
-
-#~ msgid "start slide show"
-#~ msgstr "пачаць паказ слайдаў"
-
-#~ msgid "stop slide show"
-#~ msgstr "прыпыніць паказ слайдаў"
-
-#~ msgid "show tools"
-#~ msgstr "паказаць прылады"
-
-#~ msgid "hide tools"
-#~ msgstr "схаваць прылады"
-
-#, fuzzy
-#~ msgid "open FILE in new window"
-#~ msgstr "адкрыць файл у новым вакне"
-
-#~ msgid "folder"
-#~ msgstr "тэчка"
-
-#~ msgid "comments"
-#~ msgstr "каментары"
-
-#~ msgid "results"
-#~ msgstr "вынікі"
-
-#, fuzzy
-#~ msgid "collection"
-#~ msgstr "Калекцыі"
-
-#, fuzzy
-#~ msgid "name contains"
-#~ msgstr "складае"
-
-#, fuzzy
-#~ msgid "name is"
-#~ msgstr "Перайменаваць файл"
-
-#, fuzzy
-#~ msgid "path contains"
-#~ msgstr "складае"
-
-#~ msgid "equal to"
-#~ msgstr "роўна"
-
-#~ msgid "less than"
-#~ msgstr "меньш за"
-
-#~ msgid "greater than"
-#~ msgstr "больш за"
-
-#~ msgid "between"
-#~ msgstr "паміж"
-
-#~ msgid "before"
-#~ msgstr "да"
-
-#~ msgid "after"
-#~ msgstr "пасля"
-
-#~ msgid "match all"
-#~ msgstr "адпавядае ўсяму"
-
-#~ msgid "match any"
-#~ msgstr "адпавядае любому"
-
-#~ msgid "exclude"
-#~ msgstr "выключана"
-
-#~ msgid "contains"
-#~ msgstr "складае"
-
-#, fuzzy
-#~ msgid "not geocoded"
-#~ msgstr "не вызначана"
-
-#~ msgid "is"
-#~ msgstr "ёсць"
-
-#, fuzzy
-#~ msgid "Open Archive"
-#~ msgstr "Адкрыць _нядаўняе"
-
-#, fuzzy
-#~ msgid "Pixel Info"
-#~ msgstr "Фармат файла:"
-
-#, fuzzy
-#~ msgid "Exif rotate"
-#~ msgstr "Ужываць дату Exif"
 
 #~ msgid "Fit image to _window"
 #~ msgstr "Дапасаваць выяву да _акна"
@@ -7650,9 +8857,6 @@ msgstr "Пошук:"
 
 #~ msgid "_Float"
 #~ msgstr "_Адлучыць"
-
-#~ msgid "Float Controls"
-#~ msgstr "Адлучыць панэль кіравання"
 
 #, fuzzy
 #~ msgid "Could not init LIRC support\n"
