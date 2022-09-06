@@ -32,7 +32,7 @@
 #include "intl.h"
 
 #include "main.h"
-#include "format_nikon.h"
+#include "format-nikon.h"
 
 #include "exif.h"
 

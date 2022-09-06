@@ -30,9 +30,9 @@
 #include <gdk/gdkkeysyms.h>
 
 #include "main.h"
-#include "ui_misc.h"
+#include "ui-misc.h"
 
-#include "history_list.h"
+#include "history-list.h"
 
 #include <langinfo.h>
 

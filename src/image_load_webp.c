@@ -21,7 +21,7 @@
 #include "main.h"
 
 #include "image-load.h"
-#include "image_load_webp.h"
+#include "image-load-webp.h"
 
 #ifdef HAVE_WEBP
 #include <webp/decode.h>

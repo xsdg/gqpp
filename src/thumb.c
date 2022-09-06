@@ -25,9 +25,9 @@
 #include "cache.h"
 #include "image-load.h"
 #include "filedata.h"
-#include "pixbuf_util.h"
-#include "thumb_standard.h"
-#include "ui_fileops.h"
+#include "pixbuf-util.h"
+#include "thumb-standard.h"
+#include "ui-fileops.h"
 #include "exif.h"
 #include "metadata.h"
 

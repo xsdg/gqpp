@@ -19,24 +19,24 @@
  */
 
 #include "main.h"
-#include "view_dir.h"
+#include "view-dir.h"
 
 #include "dnd.h"
 #include "dupe.h"
 #include "editors.h"
 #include "filedata.h"
-#include "layout_image.h"
-#include "layout_util.h"
+#include "layout-image.h"
+#include "layout-util.h"
 #include "menu.h"
-#include "pixbuf_util.h"
-#include "ui_fileops.h"
-#include "ui_tree_edit.h"
-#include "ui_menu.h"
-#include "ui_misc.h"
+#include "pixbuf-util.h"
+#include "ui-fileops.h"
+#include "ui-tree-edit.h"
+#include "ui-menu.h"
+#include "ui-misc.h"
 #include "utilops.h"
-#include "uri_utils.h"
-#include "view_dir_list.h"
-#include "view_dir_tree.h"
+#include "uri-utils.h"
+#include "view-dir-list.h"
+#include "view-dir-tree.h"
 
 /* Folders icons to be used in tree or list directory view */
 static PixmapFolders *folder_icons_new(GtkWidget *widget)

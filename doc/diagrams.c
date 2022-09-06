@@ -308,7 +308,7 @@
  * #layout_new_from_default  
  * @startuml
  * 
- * group layout_util.c
+ * group layout-util.c
  * start
  * 
  * split
@@ -382,7 +382,7 @@
  * exif_get_preview_ : exif.c
  * exif_get_preview_ : -
  * exif_get_preview_ : If exiv2 not installed
- * libraw_get_preview : image_load_libraw.c
+ * libraw_get_preview : image-load-libraw.c
  * 
  * image_change --> image_change_complete
  * image_change_complete --> image_load_begin

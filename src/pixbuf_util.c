@@ -20,9 +20,9 @@
  */
 
 #include "main.h"
-#include "pixbuf_util.h"
+#include "pixbuf-util.h"
 #include "exif.h"
-#include "ui_fileops.h"
+#include "ui-fileops.h"
 
 #include "icons/icons_inline.h"
 

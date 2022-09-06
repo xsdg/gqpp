@@ -32,7 +32,7 @@
 #include "compat.h"
 
 #include "main.h"
-#include "ui_tree_edit.h"
+#include "ui-tree-edit.h"
 
 /*
  *-------------------------------------------------------------------

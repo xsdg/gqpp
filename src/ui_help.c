@@ -29,10 +29,10 @@
 #include <gtk/gtk.h>
 
 #include "main.h"
-#include "ui_help.h"
+#include "ui-help.h"
 
-#include "ui_fileops.h"
-#include "ui_misc.h"
+#include "ui-fileops.h"
+#include "ui-misc.h"
 #include "window.h"
 
 

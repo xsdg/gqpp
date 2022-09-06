@@ -94,34 +94,34 @@ msgstr ""
 msgid "Tethered photography"
 msgstr ""
 
-#: src/advanced_exif.c:437 src/cache_maint.c:1773 src/preferences.c:133
+#: src/advanced-exif.c:437 src/cache-maint.c:1773 src/preferences.c:133
 #: src/preferences.c:2851 src/search.c:2281 src/search.c:3610
 msgid "Metadata"
 msgstr "元数据"
 
-#: src/advanced_exif.c:493 src/preferences.c:2756
+#: src/advanced-exif.c:493 src/preferences.c:2756
 msgid "Description"
 msgstr "描述"
 
-#: src/advanced_exif.c:494
+#: src/advanced-exif.c:494
 msgid "Value"
 msgstr "值"
 
-#: src/advanced_exif.c:495 src/desktop_file.c:631 src/dupe.c:3978
+#: src/advanced-exif.c:495 src/desktop-file.c:631 src/dupe.c:3978
 #: src/dupe.c:4703 src/dupe.c:5287 src/osd.c:38 src/search.c:3694
-#: src/utilops.c:507 src/view_file/view_file_list.c:2228
+#: src/utilops.c:507 src/view-file/view-file-list.c:2228
 msgid "Name"
 msgstr "名称"
 
-#: src/advanced_exif.c:496
+#: src/advanced-exif.c:496
 msgid "Tag"
 msgstr "标签"
 
-#: src/advanced_exif.c:497
+#: src/advanced-exif.c:497
 msgid "Format"
 msgstr "格式"
 
-#: src/advanced_exif.c:498
+#: src/advanced-exif.c:498
 msgid "Elements"
 msgstr "信息数"
 
@@ -167,7 +167,7 @@ msgstr "位置和GPS"
 msgid "Copyright"
 msgstr "版权"
 
-#: src/bar.c:214 src/bar_gps.c:1023
+#: src/bar.c:214 src/bar-gps.c:1023
 msgid "GPS Map"
 msgstr "GPS 地图"
 
@@ -175,11 +175,11 @@ msgstr "GPS 地图"
 msgid "Move to _top"
 msgstr "移到顶部 (_t)"
 
-#: src/bar.c:404 src/toolbar.c:225 src/ui_bookmark.c:414
+#: src/bar.c:404 src/toolbar.c:225 src/ui-bookmark.c:414
 msgid "Move _up"
 msgstr "上移(_u)"
 
-#: src/bar.c:405 src/toolbar.c:226 src/ui_bookmark.c:416
+#: src/bar.c:405 src/toolbar.c:226 src/ui-bookmark.c:416
 msgid "Move _down"
 msgstr "下移(_d)"
 
@@ -202,95 +202,95 @@ msgstr "移去"
 msgid "Add Pane"
 msgstr "添加图像"
 
-#: src/bar_comment.c:236
+#: src/bar-comment.c:236
 msgid "Add text to selected files"
 msgstr "添加文本到所选图片"
 
-#: src/bar_comment.c:237
+#: src/bar-comment.c:237
 msgid "Replace existing text in selected files"
 msgstr "替换文本到所选图片"
 
-#: src/bar_exif.c:225
+#: src/bar-exif.c:225
 msgid "<empty label, fixme>"
 msgstr "<空标签，修复我>"
 
-#: src/bar_exif.c:562 src/bar_exif.c:572
+#: src/bar-exif.c:562 src/bar-exif.c:572
 msgid "Configure entry"
 msgstr "设置条目"
 
-#: src/bar_exif.c:562 src/bar_exif.c:572 src/bar_exif.c:660
+#: src/bar-exif.c:562 src/bar-exif.c:572 src/bar-exif.c:660
 msgid "Add entry"
 msgstr "添加条目"
 
-#: src/bar_exif.c:578
+#: src/bar-exif.c:578
 msgid "Key:"
 msgstr "键值:"
 
-#: src/bar_exif.c:587
+#: src/bar-exif.c:587
 msgid "Title:"
 msgstr "标题:"
 
-#: src/bar_exif.c:596
+#: src/bar-exif.c:596
 msgid "Show only if set"
 msgstr "仅当文件设置了相关内容后才显示"
 
-#: src/bar_exif.c:597
+#: src/bar-exif.c:597
 msgid "Editable (supported only for XMP)"
 msgstr "可编辑 (仅被 XMP 支持)"
 
-#: src/bar_exif.c:646
+#: src/bar-exif.c:646
 #, c-format
 msgid "Configure \"%s\""
 msgstr "设置 \"%s\""
 
-#: src/bar_exif.c:647 src/bar_keywords.c:1369
+#: src/bar-exif.c:647 src/bar-keywords.c:1369
 #, c-format
 msgid "Remove \"%s\""
 msgstr "移去 \"%s\""
 
-#: src/bar_exif.c:648
+#: src/bar-exif.c:648
 #, fuzzy, c-format
 msgid "Copy \"%s\""
 msgstr "复制"
 
-#: src/bar_exif.c:661
+#: src/bar-exif.c:661
 msgid "Show hidden entries"
 msgstr "显示隐藏条目"
 
-#: src/bar_gps.c:187
+#: src/bar-gps.c:187
 #, c-format
 msgid ""
 "\n"
 "Do you want to geocode image %s?"
 msgstr ""
 
-#: src/bar_gps.c:192
+#: src/bar-gps.c:192
 #, c-format
 msgid ""
 "\n"
 "Do you want to geocode %i images?"
 msgstr ""
 
-#: src/bar_gps.c:197
+#: src/bar-gps.c:197
 msgid ""
 "\n"
 "This image is already geocoded!"
 msgstr ""
 
-#: src/bar_gps.c:202
+#: src/bar-gps.c:202
 msgid ""
 "\n"
 "One image is already geocoded!"
 msgstr ""
 
-#: src/bar_gps.c:207
+#: src/bar-gps.c:207
 #, c-format
 msgid ""
 "\n"
 "%i Images are already geocoded!"
 msgstr ""
 
-#: src/bar_gps.c:212
+#: src/bar-gps.c:212
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -298,228 +298,228 @@ msgid ""
 "Position: %s \n"
 msgstr "位置: %s"
 
-#: src/bar_gps.c:214
+#: src/bar-gps.c:214
 #, fuzzy
 msgid "Geocode images"
 msgstr "预载入下一张图片"
 
-#: src/bar_gps.c:218
+#: src/bar-gps.c:218
 #, fuzzy
 msgid "Write lat/long to meta-data?"
 msgstr "写入元数据吗?"
 
-#: src/bar_gps.c:732
+#: src/bar-gps.c:732
 #, fuzzy, c-format
 msgid "Zoom %i"
 msgstr "放大"
 
-#: src/bar_gps.c:750
+#: src/bar-gps.c:750
 #, fuzzy, c-format
 msgid "Zoom level %i"
 msgstr "放大"
 
-#: src/bar_gps.c:755
+#: src/bar-gps.c:755
 #, fuzzy
 msgid "Loading map"
 msgstr "载入缩略图..."
 
-#: src/bar_gps.c:821
+#: src/bar-gps.c:821
 msgid "Enable markers"
 msgstr ""
 
-#: src/bar_gps.c:823
+#: src/bar-gps.c:823
 msgid "Centre map on marker"
 msgstr ""
 
-#: src/bar_gps.c:845
+#: src/bar-gps.c:845
 msgid ""
 "Move map centre to marker\n"
 " is disabled"
 msgstr ""
 
-#: src/bar_gps.c:850
+#: src/bar-gps.c:850
 msgid ""
 "Move map centre to marker\n"
 " is enabled"
 msgstr ""
 
-#: src/bar_gps.c:854
+#: src/bar-gps.c:854
 #, fuzzy
 msgid "Map centering"
 msgstr "色彩抖动方式:"
 
-#: src/bar_gps.c:959 src/menu.c:334 src/osd.c:42 src/preferences.c:2244
+#: src/bar-gps.c:959 src/menu.c:334 src/osd.c:42 src/preferences.c:2244
 msgid "Zoom"
 msgstr "缩放"
 
-#: src/bar_gps.c:969
+#: src/bar-gps.c:969
 #, fuzzy
 msgid "Zoom level"
 msgstr "放大"
 
-#: src/bar_histogram.c:234 src/layout_util.c:2672
+#: src/bar-histogram.c:234 src/layout-util.c:2672
 msgid "Histogram on _Red"
 msgstr "直方图 红 (_R)"
 
-#: src/bar_histogram.c:235 src/layout_util.c:2673
+#: src/bar-histogram.c:235 src/layout-util.c:2673
 msgid "Histogram on _Green"
 msgstr "直方图 绿 (_G)"
 
-#: src/bar_histogram.c:236 src/layout_util.c:2674
+#: src/bar-histogram.c:236 src/layout-util.c:2674
 msgid "Histogram on _Blue"
 msgstr "直方图 蓝 (_B)"
 
-#: src/bar_histogram.c:237 src/layout_util.c:2675
+#: src/bar-histogram.c:237 src/layout-util.c:2675
 msgid "_Histogram on RGB"
 msgstr "直方图 RGB (_H)"
 
-#: src/bar_histogram.c:238 src/layout_util.c:2676
+#: src/bar-histogram.c:238 src/layout-util.c:2676
 msgid "Histogram on _Value"
 msgstr "直方图 值 (_V)"
 
-#: src/bar_histogram.c:242 src/layout_util.c:2680
+#: src/bar-histogram.c:242 src/layout-util.c:2680
 msgid "Li_near Histogram"
 msgstr "线性直方图 (_n)"
 
-#: src/bar_histogram.c:243
+#: src/bar-histogram.c:243
 msgid "L_og Histogram"
 msgstr "对数直方图(_o)"
 
-#: src/bar_keywords.c:490
+#: src/bar-keywords.c:490
 #, fuzzy
 msgid "Add selected keywords to selected files"
 msgstr "添加关键词到所选图片"
 
-#: src/bar_keywords.c:491
+#: src/bar-keywords.c:491
 #, fuzzy
 msgid "Replace existing keywords in selected files with selected keywords"
 msgstr "替换关键词到所选图片"
 
-#: src/bar_keywords.c:962
+#: src/bar-keywords.c:962
 msgid "Edit keyword"
 msgstr "编辑关键词"
 
-#: src/bar_keywords.c:962 src/bar_keywords.c:969 src/bar_keywords.c:1314
+#: src/bar-keywords.c:962 src/bar-keywords.c:969 src/bar-keywords.c:1314
 #, fuzzy
 msgid "New keyword"
 msgstr "添加关键词"
 
-#: src/bar_keywords.c:969
+#: src/bar-keywords.c:969
 msgid "Configure keyword"
 msgstr "设置关键词"
 
-#: src/bar_keywords.c:975
+#: src/bar-keywords.c:975
 msgid "Keyword:"
 msgstr "关键词:"
 
-#: src/bar_keywords.c:984
+#: src/bar-keywords.c:984
 msgid "Keyword type:"
 msgstr "关键词类型:"
 
-#: src/bar_keywords.c:986
+#: src/bar-keywords.c:986
 msgid "Active keyword"
 msgstr "可选择"
 
-#: src/bar_keywords.c:989
+#: src/bar-keywords.c:989
 msgid "Helper"
 msgstr "仅分类"
 
-#: src/bar_keywords.c:1063
+#: src/bar-keywords.c:1063
 msgid "This will disconnect all Marks Keywords connections"
 msgstr ""
 
-#: src/bar_keywords.c:1065
+#: src/bar-keywords.c:1065
 #, fuzzy
 msgid "Marks Keywords"
 msgstr "关键词"
 
-#: src/bar_keywords.c:1338
+#: src/bar-keywords.c:1338
 #, fuzzy, c-format
 msgid "Add \"%s\" to all selected images"
 msgstr "添加关键词到所有选择的图片"
 
-#: src/bar_keywords.c:1344
+#: src/bar-keywords.c:1344
 #, c-format
 msgid "Hide \"%s\""
 msgstr "隐藏 \"%s\""
 
-#: src/bar_keywords.c:1351
+#: src/bar-keywords.c:1351
 #, c-format
 msgid "Mark %d"
 msgstr "标记 %d"
 
-#: src/bar_keywords.c:1359
+#: src/bar-keywords.c:1359
 #, c-format
 msgid "Connect \"%s\" to mark"
 msgstr "关联 \"%s\" 到标记"
 
-#: src/bar_keywords.c:1366
+#: src/bar-keywords.c:1366
 #, c-format
 msgid "Edit \"%s\""
 msgstr "编辑 \"%s\""
 
-#: src/bar_keywords.c:1376
+#: src/bar-keywords.c:1376
 #, c-format
 msgid "Disconnect \"%s\" from mark %s"
 msgstr "取消关联 \"%s\" 到标记 %s"
 
-#: src/bar_keywords.c:1383
+#: src/bar-keywords.c:1383
 msgid "Disconnect all Mark Keyword connections"
 msgstr ""
 
-#: src/bar_keywords.c:1394 src/bar_keywords.c:1408
+#: src/bar-keywords.c:1394 src/bar-keywords.c:1408
 msgid "Expand checked"
 msgstr "展开勾选"
 
-#: src/bar_keywords.c:1395 src/bar_keywords.c:1409
+#: src/bar-keywords.c:1395 src/bar-keywords.c:1409
 msgid "Collapse unchecked"
 msgstr "收拢未勾选"
 
-#: src/bar_keywords.c:1396 src/bar_keywords.c:1410
+#: src/bar-keywords.c:1396 src/bar-keywords.c:1410
 msgid "Hide unchecked"
 msgstr "隐藏未勾选"
 
-#: src/bar_keywords.c:1397
+#: src/bar-keywords.c:1397
 msgid "Revert all hidden"
 msgstr ""
 
-#: src/bar_keywords.c:1399 src/dupe.c:3991
+#: src/bar-keywords.c:1399 src/dupe.c:3991
 msgid "Show all"
 msgstr "显示全部"
 
-#: src/bar_keywords.c:1400
+#: src/bar-keywords.c:1400
 #, fuzzy
 msgid "Collapse all"
 msgstr "收拢未勾选"
 
-#: src/bar_keywords.c:1401
+#: src/bar-keywords.c:1401
 msgid "Revert"
 msgstr ""
 
-#: src/bar_keywords.c:1405
+#: src/bar-keywords.c:1405
 msgid "On any change"
 msgstr "当任何改变时"
 
-#: src/bar_keywords.c:1901
+#: src/bar-keywords.c:1901
 #, fuzzy, c-format
 msgid "Error: Unable to write keywords list to: %s\n"
 msgstr "无法保存历史记录至: %s\n"
 
-#: src/bar_rating.c:167
+#: src/bar-rating.c:167
 #, fuzzy
 msgid "Rejected"
 msgstr "重置所选项"
 
-#: src/bar_rating.c:171
+#: src/bar-rating.c:171
 msgid "Unrated"
 msgstr ""
 
-#: src/bar_sort.c:435
+#: src/bar-sort.c:435
 #, fuzzy
 msgid "Sort Manager Operations"
 msgstr "快捷整理"
 
-#: src/bar_sort.c:438
+#: src/bar-sort.c:438
 msgid ""
 "Additional operations utilising plugins\n"
 "may be included by setting:\n"
@@ -529,7 +529,7 @@ msgid ""
 "in the plugin file."
 msgstr ""
 
-#: src/bar_sort.c:506
+#: src/bar-sort.c:506
 #, c-format
 msgid ""
 "The collection:\n"
@@ -540,11 +540,11 @@ msgstr ""
 "%s\n"
 "已存在."
 
-#: src/bar_sort.c:507
+#: src/bar-sort.c:507
 msgid "Collection exists"
 msgstr "图片集已存在"
 
-#: src/bar_sort.c:521 src/collect.c:1216 src/collect-dlg.c:93
+#: src/bar-sort.c:521 src/collect.c:1216 src/collect-dlg.c:93
 #, c-format
 msgid ""
 "Failed to save the collection:\n"
@@ -553,55 +553,55 @@ msgstr ""
 "保存图片集失败:\n"
 "%s"
 
-#: src/bar_sort.c:522 src/collect.c:1217 src/collect-dlg.c:94
+#: src/bar-sort.c:522 src/collect.c:1217 src/collect-dlg.c:94
 msgid "Save Failed"
 msgstr "保存失败"
 
-#: src/bar_sort.c:557 src/bar_sort.c:737
+#: src/bar-sort.c:557 src/bar-sort.c:737
 msgid "Add Bookmark"
 msgstr "添加书签"
 
-#: src/bar_sort.c:561
+#: src/bar-sort.c:561
 msgid "Add Collection"
 msgstr "添加图片集"
 
-#: src/bar_sort.c:578 src/shortcuts.c:118 src/ui_bookmark.c:295
+#: src/bar-sort.c:578 src/shortcuts.c:118 src/ui-bookmark.c:295
 msgid "Name:"
 msgstr "名称:"
 
-#: src/bar_sort.c:658
+#: src/bar-sort.c:658
 msgid "Sort Manager"
 msgstr "快捷整理"
 
-#: src/bar_sort.c:667 src/pan-view/pan-view.c:1909 src/ui_pathsel.c:1100
+#: src/bar-sort.c:667 src/pan-view/pan-view.c:1909 src/ui-pathsel.c:1100
 msgid "Folders"
 msgstr "文件夹"
 
-#: src/bar_sort.c:668 src/options.c:248
+#: src/bar-sort.c:668 src/options.c:248
 msgid "Collections"
 msgstr "图片集"
 
-#: src/bar_sort.c:677 src/collect-table.c:82 src/dupe.c:151 src/img-view.c:92
+#: src/bar-sort.c:677 src/collect-table.c:82 src/dupe.c:151 src/img-view.c:92
 #: src/pan-view/pan-view.c:99 src/preferences.c:693 src/preferences.c:804
 #: src/search.c:354 src/toolbar.c:94 src/utilops.c:2350
 msgid "Copy"
 msgstr "复制"
 
-#: src/bar_sort.c:681 src/collect-table.c:83 src/dupe.c:152 src/img-view.c:93
+#: src/bar-sort.c:681 src/collect-table.c:83 src/dupe.c:152 src/img-view.c:93
 #: src/pan-view/pan-view.c:100 src/preferences.c:695 src/preferences.c:805
 #: src/search.c:355 src/toolbar.c:95 src/utilops.c:2300
 msgid "Move"
 msgstr "移动"
 
-#: src/bar_sort.c:722
+#: src/bar-sort.c:722
 msgid "Add image"
 msgstr "添加图像"
 
-#: src/bar_sort.c:725
+#: src/bar-sort.c:725
 msgid "Add selection"
 msgstr "添加所选项"
 
-#: src/bar_sort.c:740
+#: src/bar-sort.c:740
 msgid "Undo last image"
 msgstr "撤销上一图片"
 
@@ -614,109 +614,109 @@ msgstr ""
 "保存模拟缓存数据出错: %s\n"
 "error: %s\n"
 
-#: src/cache_maint.c:72
+#: src/cache-maint.c:72
 #, fuzzy
 msgid "Geeqie: Creating sim data..."
 msgstr "读取图像数据..."
 
-#: src/cache_maint.c:78
+#: src/cache-maint.c:78
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "清理缩略图..."
 
-#: src/cache_maint.c:94
+#: src/cache-maint.c:94
 #, fuzzy
 msgid "Exit Geeqie Cache Maintenance"
 msgstr "缓存维护"
 
-#: src/cache_maint.c:111
+#: src/cache-maint.c:111
 #, fuzzy
 msgid "Geeqie: Cleaning thumbs..."
 msgstr "清理缩略图..."
 
-#: src/cache_maint.c:184 src/cache_maint.c:684 src/cache_maint.c:787
-#: src/cache_maint.c:984 src/cache_maint.c:1455 src/editors.c:1245
+#: src/cache-maint.c:184 src/cache-maint.c:684 src/cache-maint.c:787
+#: src/cache-maint.c:984 src/cache-maint.c:1455 src/editors.c:1245
 #: src/preferences.c:3043
 msgid "done"
 msgstr "完成"
 
-#: src/cache_maint.c:374
+#: src/cache-maint.c:374
 msgid "Removing old metadata..."
 msgstr "移除旧的元数据..."
 
-#: src/cache_maint.c:378
+#: src/cache-maint.c:378
 msgid "Clearing cached thumbnails..."
 msgstr "清理缓存的缩略图..."
 
-#: src/cache_maint.c:382 src/cache_maint.c:1157
+#: src/cache-maint.c:382 src/cache-maint.c:1157
 msgid "Removing old thumbnails..."
 msgstr "移除旧的缩略图..."
 
-#: src/cache_maint.c:385 src/cache_maint.c:1160
+#: src/cache-maint.c:385 src/cache-maint.c:1160
 msgid "Maintenance"
 msgstr "维护"
 
-#: src/cache_maint.c:698 src/cache_maint.c:1334
+#: src/cache-maint.c:698 src/cache-maint.c:1334
 #, fuzzy
 msgid "stopped"
 msgstr "真得要继续吗？"
 
-#: src/cache_maint.c:817 src/cache_maint.c:1486 src/cache_maint.c:1616
+#: src/cache-maint.c:817 src/cache-maint.c:1486 src/cache-maint.c:1616
 #: src/preferences.c:3125
 msgid "Invalid folder"
 msgstr "无效的文件夹"
 
-#: src/cache_maint.c:818 src/cache_maint.c:1487 src/cache_maint.c:1617
+#: src/cache-maint.c:818 src/cache-maint.c:1487 src/cache-maint.c:1617
 #: src/preferences.c:3126
 msgid "The specified folder can not be found."
 msgstr "找不到指定文件夹."
 
-#: src/cache_maint.c:886 src/cache_maint.c:900 src/cache_maint.c:1753
+#: src/cache-maint.c:886 src/cache-maint.c:900 src/cache-maint.c:1753
 msgid "Create thumbnails"
 msgstr "创建缩略图"
 
-#: src/cache_maint.c:894 src/cache_maint.c:1167 src/cache_maint.c:1536
-#: src/cache_maint.c:1655 src/preferences.c:3164
+#: src/cache-maint.c:894 src/cache-maint.c:1167 src/cache-maint.c:1536
+#: src/cache-maint.c:1655 src/preferences.c:3164
 msgid "S_tart"
 msgstr "开始 (_t)"
 
-#: src/cache_maint.c:907 src/cache_maint.c:1549 src/cache_maint.c:1665
+#: src/cache-maint.c:907 src/cache-maint.c:1549 src/cache-maint.c:1665
 #: src/preferences.c:3177 src/preferences.c:3526
 msgid "Folder:"
 msgstr "文件夹:"
 
-#: src/cache_maint.c:910 src/cache_maint.c:1552 src/cache_maint.c:1668
+#: src/cache-maint.c:910 src/cache-maint.c:1552 src/cache-maint.c:1668
 #: src/preferences.c:3180
 msgid "Select folder"
 msgstr "选择文件夹"
 
-#: src/cache_maint.c:914 src/preferences.c:3184
+#: src/cache-maint.c:914 src/preferences.c:3184
 msgid "Include subfolders"
 msgstr "包括子目录"
 
-#: src/cache_maint.c:915
+#: src/cache-maint.c:915
 msgid "Store thumbnails local to source images"
 msgstr "存储缩略图到源图像位置"
 
-#: src/cache_maint.c:924 src/cache_maint.c:1176 src/cache_maint.c:1562
+#: src/cache-maint.c:924 src/cache-maint.c:1176 src/cache-maint.c:1562
 #: src/preferences.c:3192
 msgid "click start to begin"
 msgstr "点击开始按钮执行"
 
-#: src/cache_maint.c:1096 src/editors.c:1171
+#: src/cache-maint.c:1096 src/editors.c:1171
 msgid "running..."
 msgstr "运行中..."
 
-#: src/cache_maint.c:1152
+#: src/cache-maint.c:1152
 msgid "Clearing thumbnails..."
 msgstr "清理缩略图..."
 
-#: src/cache_maint.c:1233 src/cache_maint.c:1236 src/cache_maint.c:1729
-#: src/cache_maint.c:1748
+#: src/cache-maint.c:1233 src/cache-maint.c:1236 src/cache-maint.c:1729
+#: src/cache-maint.c:1748
 msgid "Clear cache"
 msgstr "清除缓存"
 
-#: src/cache_maint.c:1237
+#: src/cache-maint.c:1237
 #, fuzzy
 msgid ""
 "This will remove all thumbnails and sim. files\n"
@@ -725,105 +725,105 @@ msgstr ""
 "这将会移除所有已被保存\n"
 "到硬盘的缩略图, 继续吗？"
 
-#: src/cache_maint.c:1282
+#: src/cache-maint.c:1282
 #, c-format
 msgid "Location: %s"
 msgstr "位置: %s"
 
-#: src/cache_maint.c:1531
+#: src/cache-maint.c:1531
 #, fuzzy
 msgid "Create sim. files"
 msgstr "不能创建临时文件"
 
-#: src/cache_maint.c:1542
+#: src/cache-maint.c:1542
 #, fuzzy
 msgid "Create sim. files recursively"
 msgstr "对指定文件夹生成缩略图"
 
-#: src/cache_maint.c:1650 src/cache_maint.c:1784
+#: src/cache-maint.c:1650 src/cache-maint.c:1784
 #, fuzzy
 msgid "Background cache maintenance"
 msgstr "缓存维护"
 
-#: src/cache_maint.c:1658
+#: src/cache-maint.c:1658
 msgid ""
 "Recursively delete orphaned thumbnails\n"
 "and .sim files, and create new\n"
 "thumbnails and .sim files"
 msgstr ""
 
-#: src/cache_maint.c:1702
+#: src/cache-maint.c:1702
 msgid "Cache Maintenance"
 msgstr "缓存维护"
 
-#: src/cache_maint.c:1714
+#: src/cache-maint.c:1714
 msgid "Cache and Data Maintenance"
 msgstr "缓存与数据维护"
 
-#: src/cache_maint.c:1718
+#: src/cache-maint.c:1718
 #, fuzzy
 msgid "Geeqie thumbnail and sim. cache"
 msgstr "共享的缩略图缓存"
 
-#: src/cache_maint.c:1724 src/cache_maint.c:1743 src/cache_maint.c:1779
+#: src/cache-maint.c:1724 src/cache-maint.c:1743 src/cache-maint.c:1779
 msgid "Clean up"
 msgstr "清理"
 
-#: src/cache_maint.c:1727
+#: src/cache-maint.c:1727
 #, fuzzy
 msgid "Remove orphaned or outdated thumbnails and sim. files."
 msgstr "移除无用或过期的缩略图."
 
-#: src/cache_maint.c:1732
+#: src/cache-maint.c:1732
 #, fuzzy
 msgid "Delete all cached data."
 msgstr "删除所有缓存的缩略图."
 
-#: src/cache_maint.c:1735
+#: src/cache-maint.c:1735
 msgid "Shared thumbnail cache"
 msgstr "共享的缩略图缓存"
 
-#: src/cache_maint.c:1746
+#: src/cache-maint.c:1746
 msgid "Remove orphaned or outdated thumbnails."
 msgstr "移除无用或过期的缩略图."
 
-#: src/cache_maint.c:1751
+#: src/cache-maint.c:1751
 msgid "Delete all cached thumbnails."
 msgstr "删除所有缓存的缩略图."
 
-#: src/cache_maint.c:1757
+#: src/cache-maint.c:1757
 msgid "Render"
 msgstr "生成"
 
-#: src/cache_maint.c:1760
+#: src/cache-maint.c:1760
 msgid "Render thumbnails for a specific folder."
 msgstr "对指定文件夹生成缩略图"
 
-#: src/cache_maint.c:1763
+#: src/cache-maint.c:1763
 #, fuzzy
 msgid "File similarity cache"
 msgstr "清除缓存"
 
-#: src/cache_maint.c:1767
+#: src/cache-maint.c:1767
 #, fuzzy
 msgid "Create"
 msgstr "创建文件夹"
 
-#: src/cache_maint.c:1770
+#: src/cache-maint.c:1770
 #, fuzzy
 msgid "Create sim. files recursively."
 msgstr "对指定文件夹生成缩略图"
 
-#: src/cache_maint.c:1782
+#: src/cache-maint.c:1782
 msgid "Remove orphaned keywords and comments."
 msgstr "移除无用的关键词和注释"
 
-#: src/cache_maint.c:1788
+#: src/cache-maint.c:1788
 #, fuzzy
 msgid "Select"
 msgstr "选择 (_S)"
 
-#: src/cache_maint.c:1791
+#: src/cache-maint.c:1791
 msgid "Run cache maintenance as a background job."
 msgstr ""
 
@@ -946,15 +946,15 @@ msgstr "重命名"
 
 #: src/collect-table.c:85 src/collect-table.c:1038 src/dupe.c:154
 #: src/dupe.c:3573 src/img-view.c:95 src/img-view.c:96 src/img-view.c:1430
-#: src/layout_image.c:815 src/pan-view/pan-view.c:102
+#: src/layout-image.c:815 src/pan-view/pan-view.c:102
 #: src/pan-view/pan-view.c:2417 src/search.c:357 src/search.c:1191
-#: src/view_file/view_file.c:717
+#: src/view-file/view-file.c:717
 #, fuzzy
 msgid "Move to Trash"
 msgstr "移到顶部 (_t)"
 
 #: src/collect-table.c:86 src/dupe.c:161 src/img-view.c:98 src/img-view.c:136
-#: src/layout_util.c:2493 src/pan-view/pan-view.c:103 src/search.c:364
+#: src/layout-util.c:2493 src/pan-view/pan-view.c:103 src/search.c:364
 msgid "Close window"
 msgstr "关闭窗口"
 
@@ -963,22 +963,22 @@ msgstr "关闭窗口"
 msgid "View"
 msgstr "查看"
 
-#: src/collect-table.c:89 src/dupe.c:163 src/layout_util.c:2586
+#: src/collect-table.c:89 src/dupe.c:163 src/layout-util.c:2586
 #: src/search.c:366
 msgid "View in new window"
 msgstr "在新窗口中查看"
 
 #: src/collect-table.c:90 src/collect-table.c:1006 src/dupe.c:158
-#: src/dupe.c:3532 src/dupe.c:3870 src/layout_util.c:2490 src/preferences.c:810
+#: src/dupe.c:3532 src/dupe.c:3870 src/layout-util.c:2490 src/preferences.c:810
 #: src/search.c:360 src/search.c:1158 src/toolbar.c:101
-#: src/view_file/view_file.c:1087 src/view_file/view_file.c:1137
+#: src/view-file/view-file.c:1087 src/view-file/view-file.c:1137
 msgid "Select all"
 msgstr "全选"
 
 #: src/collect-table.c:91 src/collect-table.c:1008 src/dupe.c:159
-#: src/dupe.c:166 src/dupe.c:3534 src/dupe.c:3872 src/layout_util.c:2491
+#: src/dupe.c:166 src/dupe.c:3534 src/dupe.c:3872 src/layout-util.c:2491
 #: src/preferences.c:811 src/search.c:361 src/search.c:1160 src/toolbar.c:102
-#: src/view_file/view_file.c:1142
+#: src/view-file/view-file.c:1142
 msgid "Select none"
 msgstr "不选"
 
@@ -1052,23 +1052,23 @@ msgstr "%s, %d 图片 (%s, %d)"
 msgid "%s, %d images"
 msgstr "%s, %d 图片"
 
-#: src/collect-table.c:261 src/layout_util.c:1935 src/layout_util.c:3672
+#: src/collect-table.c:261 src/layout-util.c:1935 src/layout-util.c:3672
 msgid "Empty"
 msgstr "空"
 
 #: src/collect-table.c:275 src/dupe.c:2172 src/search.c:435
-#: src/view_file/view_file.c:1376 src/view_file/view_file.c:1485
+#: src/view-file/view-file.c:1376 src/view-file/view-file.c:1485
 msgid "Loading thumbs..."
 msgstr "载入缩略图..."
 
 #: src/collect-table.c:988 src/dupe.c:3527 src/dupe.c:3865
-#: src/layout_util.c:2471 src/search.c:1153
+#: src/layout-util.c:2471 src/search.c:1153
 msgid "_View"
 msgstr "查看 (_V)"
 
 #: src/collect-table.c:990 src/dupe.c:3529 src/dupe.c:3867 src/img-view.c:1417
-#: src/layout_image.c:787 src/pan-view/pan-view.c:2397 src/search.c:1155
-#: src/view_file/view_file.c:698
+#: src/layout-image.c:787 src/pan-view/pan-view.c:2397 src/search.c:1155
+#: src/view-file/view-file.c:698
 msgid "View in _new window"
 msgstr "在新窗口中查看(_n)"
 
@@ -1094,51 +1094,51 @@ msgid "Invert selection"
 msgstr "反转选择"
 
 #: src/collect-table.c:1024 src/dupe.c:3559 src/img-view.c:1421
-#: src/layout_image.c:801 src/layout_util.c:2483 src/pan-view/pan-view.c:2403
-#: src/search.c:1177 src/view_file/view_file.c:704
+#: src/layout-image.c:801 src/layout-util.c:2483 src/pan-view/pan-view.c:2403
+#: src/search.c:1177 src/view-file/view-file.c:704
 msgid "_Copy..."
 msgstr "复制... (_C)"
 
 #: src/collect-table.c:1026 src/dupe.c:3561 src/img-view.c:1422
-#: src/layout_image.c:803 src/layout_util.c:2484 src/pan-view/pan-view.c:2405
-#: src/search.c:1179 src/view_file/view_file.c:706
+#: src/layout-image.c:803 src/layout-util.c:2484 src/pan-view/pan-view.c:2405
+#: src/search.c:1179 src/view-file/view-file.c:706
 msgid "_Move..."
 msgstr "移动... (_M)"
 
 #: src/collect-table.c:1028 src/dupe.c:3563 src/img-view.c:1423
-#: src/layout_image.c:805 src/layout_util.c:2485 src/pan-view/pan-view.c:2407
-#: src/search.c:1181 src/view_dir.c:735 src/view_file/view_file.c:708
+#: src/layout-image.c:805 src/layout-util.c:2485 src/pan-view/pan-view.c:2407
+#: src/search.c:1181 src/view-dir.c:735 src/view-file/view-file.c:708
 msgid "_Rename..."
 msgstr "重命名... (_R)"
 
 #: src/collect-table.c:1030 src/dupe.c:3565 src/img-view.c:1424
-#: src/search.c:1183 src/view_dir.c:738
+#: src/search.c:1183 src/view-dir.c:738
 msgid "_Copy path"
 msgstr "复制路径(_C)"
 
 #: src/collect-table.c:1032 src/dupe.c:3567 src/img-view.c:1425
-#: src/search.c:1185 src/view_dir.c:741
+#: src/search.c:1185 src/view-dir.c:741
 #, fuzzy
 msgid "_Copy path unquoted"
 msgstr "复制路径(_C)"
 
 #: src/collect-table.c:1037 src/dupe.c:3572 src/img-view.c:1429
-#: src/layout_image.c:814 src/layout_util.c:2486 src/layout_util.c:2487
-#: src/layout_util.c:2488 src/pan-view/pan-view.c:2416 src/search.c:1190
-#: src/view_file/view_file.c:716
+#: src/layout-image.c:814 src/layout-util.c:2486 src/layout-util.c:2487
+#: src/layout-util.c:2488 src/pan-view/pan-view.c:2416 src/search.c:1190
+#: src/view-file/view-file.c:716
 #, fuzzy
 msgid "Move to Trash..."
 msgstr "移动..."
 
 #: src/collect-table.c:1041 src/dupe.c:3576 src/img-view.c:1433
-#: src/layout_image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
-#: src/view_dir.c:744 src/view_file/view_file.c:720
+#: src/layout-image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
+#: src/view-dir.c:744 src/view-file/view-file.c:720
 msgid "_Delete..."
 msgstr "删除... (_D)"
 
 #: src/collect-table.c:1042 src/dupe.c:3577 src/img-view.c:1434
-#: src/layout_image.c:820 src/pan-view/pan-view.c:2421 src/search.c:1195
-#: src/ui_pathsel.c:644 src/view_file/view_file.c:721
+#: src/layout-image.c:820 src/pan-view/pan-view.c:2421 src/search.c:1195
+#: src/ui-pathsel.c:644 src/view-file/view-file.c:721
 msgid "_Delete"
 msgstr "删除 (_D)"
 
@@ -1146,16 +1146,16 @@ msgstr "删除 (_D)"
 msgid "Randomize"
 msgstr "随机化"
 
-#: src/collect-table.c:1050 src/view_dir.c:759 src/view_file/view_file.c:746
+#: src/collect-table.c:1050 src/view-dir.c:759 src/view-file/view-file.c:746
 msgid "_Sort"
 msgstr "排序(_S)"
 
-#: src/collect-table.c:1053 src/view_file/view_file.c:762
+#: src/collect-table.c:1053 src/view-file/view-file.c:762
 msgid "Show filename _text"
 msgstr "显示文件名(_t)"
 
-#: src/collect-table.c:1055 src/view_file/view_file.c:770
-#: src/view_file/view_file.c:774
+#: src/collect-table.c:1055 src/view-file/view-file.c:770
+#: src/view-file/view-file.c:774
 #, fuzzy
 msgid "Show star rating"
 msgstr "按日期排序"
@@ -1168,12 +1168,12 @@ msgstr "保存图片集(_S)"
 msgid "Save collection _as..."
 msgstr "保存图片集为...(_a)"
 
-#: src/collect-table.c:1063 src/layout_util.c:2526
-#: src/view_file/view_file.c:731
+#: src/collect-table.c:1063 src/layout-util.c:2526
+#: src/view-file/view-file.c:731
 msgid "_Find duplicates..."
 msgstr "查找重复项... (_F)"
 
-#: src/collect-table.c:1065 src/dupe.c:3556 src/layout_util.c:2528
+#: src/collect-table.c:1065 src/dupe.c:3556 src/layout-util.c:2528
 #: src/search.c:1174
 msgid "Print..."
 msgstr "打印..."
@@ -1195,7 +1195,7 @@ msgid "_Skip folders"
 msgstr "跳过文件夹 (_S)"
 
 #: src/collect-table.c:2248 src/dupe.c:4972 src/img-view.c:1600
-#: src/view_dir.c:431
+#: src/view-dir.c:431
 msgid "Cancel"
 msgstr "取消"
 
@@ -1220,23 +1220,23 @@ msgstr "左右翻转"
 msgid "warning"
 msgstr ""
 
-#: src/desktop_file.c:83 src/desktop_file.c:95 src/desktop_file.c:101
+#: src/desktop-file.c:83 src/desktop-file.c:95 src/desktop-file.c:101
 msgid "Can't save"
 msgstr "不能保存"
 
-#: src/desktop_file.c:83
+#: src/desktop-file.c:83
 msgid "Please specify file name."
 msgstr "请指定文件名"
 
-#: src/desktop_file.c:95
+#: src/desktop-file.c:95
 msgid "Could not create directory"
 msgstr "不能创建目录"
 
-#: src/desktop_file.c:191 src/desktop_file.c:650
+#: src/desktop-file.c:191 src/desktop-file.c:650
 msgid "Desktop file"
 msgstr "桌面文件"
 
-#: src/desktop_file.c:301 src/ui_pathsel.c:494
+#: src/desktop-file.c:301 src/ui-pathsel.c:494
 #, c-format
 msgid ""
 "Unable to delete file:\n"
@@ -1245,17 +1245,17 @@ msgstr ""
 "不能删除文件:\n"
 "%s"
 
-#: src/desktop_file.c:302 src/ui_pathsel.c:495 src/utilops.c:2177
+#: src/desktop-file.c:302 src/ui-pathsel.c:495 src/utilops.c:2177
 #: src/utilops.c:2213 src/utilops.c:2735
 msgid "File deletion failed"
 msgstr "文件删除失败"
 
-#: src/desktop_file.c:346 src/desktop_file.c:354 src/ui_pathsel.c:537
-#: src/ui_pathsel.c:545
+#: src/desktop-file.c:346 src/desktop-file.c:354 src/ui-pathsel.c:537
+#: src/ui-pathsel.c:545
 msgid "Delete file"
 msgstr "删除文件"
 
-#: src/desktop_file.c:352 src/ui_pathsel.c:543
+#: src/desktop-file.c:352 src/ui-pathsel.c:543
 #, c-format
 msgid ""
 "About to delete the file:\n"
@@ -1264,25 +1264,25 @@ msgstr ""
 "将要删除这些文件:\n"
 " %s"
 
-#: src/desktop_file.c:384
+#: src/desktop-file.c:384
 msgid "new.desktop"
 msgstr ""
 
-#: src/desktop_file.c:549
+#: src/desktop-file.c:549
 msgid "Plugins"
 msgstr ""
 
-#: src/desktop_file.c:618
+#: src/desktop-file.c:618
 #, fuzzy
 msgid "Disabled"
 msgstr "可写的"
 
-#: src/desktop_file.c:640
+#: src/desktop-file.c:640
 msgid "Hidden"
 msgstr "隐藏"
 
-#: src/desktop_file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/osd.c:39
-#: src/search.c:3698 src/ui_pathsel.c:1112 src/utilops.c:503
+#: src/desktop-file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/osd.c:39
+#: src/search.c:3698 src/ui-pathsel.c:1112 src/utilops.c:503
 msgid "Path"
 msgstr "路径"
 
@@ -1292,7 +1292,7 @@ msgid "Delete"
 msgstr "删除"
 
 #: src/dupe.c:157 src/preferences.c:2058 src/preferences.c:2090
-#: src/preferences.c:2218 src/search.c:362 src/view_file/view_file.c:1188
+#: src/preferences.c:2218 src/search.c:362 src/view-file/view-file.c:1188
 #: src/window.c:400
 #, fuzzy
 msgid "Clear"
@@ -1397,13 +1397,13 @@ msgid "Name case-insensitive"
 msgstr "名称(忽略大小写)"
 
 #: src/dupe.c:3980 src/dupe.c:4704 src/dupe.c:5287 src/osd.c:41
-#: src/preferences.c:2425 src/search.c:3695 src/view_file/view_file_list.c:2240
+#: src/preferences.c:2425 src/search.c:3695 src/view-file/view-file-list.c:2240
 msgid "Size"
 msgstr "大小"
 
 #: src/dupe.c:3981 src/dupe.c:4705 src/dupe.c:5287 src/exif.c:334
 #: src/exif-common.c:916 src/osd.c:40 src/search.c:3696
-#: src/view_file/view_file_list.c:2244
+#: src/view-file/view-file-list.c:2244
 msgid "Date"
 msgstr "日期"
 
@@ -2529,8 +2529,8 @@ msgstr "源和目标相同"
 msgid "Error: Unable to write marks lists to: %s\n"
 msgstr "无法保存历史记录至: %s\n"
 
-#: src/fullscreen.c:242 src/img-view.c:131 src/layout_util.c:2588
-#: src/layout_util.c:2589 src/layout_util.c:2590 src/pan-view/pan-view.c:120
+#: src/fullscreen.c:242 src/img-view.c:131 src/layout-util.c:2588
+#: src/layout-util.c:2589 src/layout-util.c:2590 src/pan-view/pan-view.c:120
 #: src/pan-view/pan-view.c:121 src/pan-view/pan-view.c:122
 #: src/preferences.c:2438
 msgid "Full screen"
@@ -2600,7 +2600,7 @@ msgstr "线性直方图 RGB"
 msgid "Linear Histogram on value"
 msgstr "线性直方图 值"
 
-#: src/history_list.c:291
+#: src/history-list.c:291
 #, c-format
 msgid "Unable to write history lists to: %s\n"
 msgstr "无法保存历史记录至: %s\n"
@@ -2610,36 +2610,36 @@ msgstr "无法保存历史记录至: %s\n"
 msgid " (Collection %s)"
 msgstr " (图片集 %s)"
 
-#: src/image_load_cr3.c:161 src/image_load_jpeg.c:164
+#: src/image-load-cr3.c:161 src/image-load-jpeg.c:164
 #, c-format
 msgid "Error interpreting JPEG image file (%s)"
 msgstr "解码 JPEG 图像文件出错 (%s)"
 
-#: src/image_load_j2k.c:202
+#: src/image-load-j2k.c:202
 msgid "Could not open file for reading"
 msgstr ""
 
-#: src/image_load_j2k.c:212
+#: src/image-load-j2k.c:212
 msgid "Unknown jpeg2000 decoder type"
 msgstr ""
 
-#: src/image_load_j2k.c:219
+#: src/image-load-j2k.c:219
 msgid "Couldn't set parameters on decoder for file."
 msgstr ""
 
-#: src/image_load_j2k.c:227
+#: src/image-load-j2k.c:227
 msgid "Couldn't read JP2 header from file"
 msgstr ""
 
-#: src/image_load_j2k.c:233
+#: src/image-load-j2k.c:233
 msgid "Couldn't decode JP2 image in file"
 msgstr ""
 
-#: src/image_load_j2k.c:239
+#: src/image-load-j2k.c:239
 msgid "Couldn't decompress JP2 image in file"
 msgstr ""
 
-#: src/image_load_j2k.c:246
+#: src/image-load-j2k.c:246
 msgid "JP2 image not rgb"
 msgstr ""
 
@@ -2678,56 +2678,56 @@ msgstr "上一图片"
 msgid "Next"
 msgstr "下一图片"
 
-#: src/img-view.c:112 src/img-view.c:113 src/layout_util.c:2554
-#: src/layout_util.c:2555 src/pan-view/pan-view.c:108
+#: src/img-view.c:112 src/img-view.c:113 src/layout-util.c:2554
+#: src/layout-util.c:2555 src/pan-view/pan-view.c:108
 #: src/pan-view/pan-view.c:109 src/preferences.c:825 src/toolbar.c:116
 msgid "Zoom in"
 msgstr "放大"
 
-#: src/img-view.c:114 src/layout_util.c:2556 src/layout_util.c:2557
+#: src/img-view.c:114 src/layout-util.c:2556 src/layout-util.c:2557
 #: src/pan-view/pan-view.c:110 src/preferences.c:826 src/toolbar.c:117
 msgid "Zoom out"
 msgstr "缩小"
 
 #: src/img-view.c:115 src/img-view.c:116 src/img-view.c:1406
-#: src/layout_image.c:776 src/layout_util.c:2560 src/layout_util.c:2561
+#: src/layout-image.c:776 src/layout-util.c:2560 src/layout-util.c:2561
 #: src/preferences.c:828 src/toolbar.c:119
 msgid "Zoom to fit"
 msgstr "缩放以适应"
 
 #: src/img-view.c:117 src/img-view.c:118 src/img-view.c:119
-#: src/layout_util.c:2558 src/layout_util.c:2559 src/pan-view/pan-view.c:111
+#: src/layout-util.c:2558 src/layout-util.c:2559 src/pan-view/pan-view.c:111
 #: src/pan-view/pan-view.c:112 src/pan-view/pan-view.c:113
 #: src/preferences.c:827 src/toolbar.c:118
 msgid "Zoom 1:1"
 msgstr "缩放 1:1"
 
-#: src/img-view.c:120 src/layout_util.c:2564 src/pan-view/pan-view.c:114
+#: src/img-view.c:120 src/layout-util.c:2564 src/pan-view/pan-view.c:114
 #: src/preferences.c:831 src/toolbar.c:122
 msgid "Zoom 2:1"
 msgstr "缩放 2:1"
 
-#: src/img-view.c:121 src/layout_util.c:2565 src/pan-view/pan-view.c:115
+#: src/img-view.c:121 src/layout-util.c:2565 src/pan-view/pan-view.c:115
 #: src/preferences.c:832 src/toolbar.c:123
 msgid "Zoom 3:1"
 msgstr "缩放 3:1"
 
-#: src/img-view.c:122 src/layout_util.c:2566 src/pan-view/pan-view.c:116
+#: src/img-view.c:122 src/layout-util.c:2566 src/pan-view/pan-view.c:116
 #: src/preferences.c:833 src/toolbar.c:124
 msgid "Zoom 4:1"
 msgstr "缩放 4:1"
 
-#: src/img-view.c:123 src/layout_util.c:2569 src/layout_util.c:2585
+#: src/img-view.c:123 src/layout-util.c:2569 src/layout-util.c:2585
 #: src/pan-view/pan-view.c:117 src/preferences.c:836 src/toolbar.c:127
 msgid "Zoom 1:4"
 msgstr "缩放 1:4"
 
-#: src/img-view.c:124 src/layout_util.c:2568 src/layout_util.c:2584
+#: src/img-view.c:124 src/layout-util.c:2568 src/layout-util.c:2584
 #: src/pan-view/pan-view.c:118
 msgid "Zoom 1:3"
 msgstr "缩放 1:3"
 
-#: src/img-view.c:125 src/layout_util.c:2567 src/layout_util.c:2583
+#: src/img-view.c:125 src/layout-util.c:2567 src/layout-util.c:2583
 #: src/pan-view/pan-view.c:119 src/preferences.c:834 src/toolbar.c:125
 msgid "Zoom 1:2"
 msgstr "缩放 1:2"
@@ -2742,11 +2742,11 @@ msgstr "缩放以适应"
 msgid "Zoom fit window height"
 msgstr "缩放以适应"
 
-#: src/img-view.c:128 src/layout_util.c:2632
+#: src/img-view.c:128 src/layout-util.c:2632
 msgid "Toggle slideshow"
 msgstr "切换播片开启/关闭"
 
-#: src/img-view.c:129 src/layout_util.c:2597 src/preferences.c:842
+#: src/img-view.c:129 src/layout-util.c:2597 src/preferences.c:842
 #: src/toolbar.c:138
 msgid "Pause slideshow"
 msgstr "暂停播片"
@@ -2776,68 +2776,68 @@ msgstr "退出全屏 (_f)"
 msgid "Desaturate"
 msgstr "导航"
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1891
-#: src/layout_util.c:914 src/view_file/view_file.c:396
+#: src/img-view.c:672 src/layout-image.c:692 src/layout-image.c:1891
+#: src/layout-util.c:914 src/view-file/view-file.c:396
 #, fuzzy
 msgid "Cannot open archive file"
 msgstr "不能重命名文件"
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1891
-#: src/layout_util.c:914 src/preferences.c:4219 src/preferences.c:4227
-#: src/view_file/view_file.c:396
+#: src/img-view.c:672 src/layout-image.c:692 src/layout-image.c:1891
+#: src/layout-util.c:914 src/preferences.c:4219 src/preferences.c:4227
+#: src/view-file/view-file.c:396
 #, fuzzy
 msgid "See the Log Window"
 msgstr "日志窗口"
 
-#: src/img-view.c:1403 src/layout_image.c:773 src/layout_util.c:2554
-#: src/layout_util.c:2555 src/layout_util.c:2570 src/layout_util.c:2571
+#: src/img-view.c:1403 src/layout-image.c:773 src/layout-util.c:2554
+#: src/layout-util.c:2555 src/layout-util.c:2570 src/layout-util.c:2571
 #: src/pan-view/pan-view.c:2382
 msgid "Zoom _in"
 msgstr "放大 (_i)"
 
-#: src/img-view.c:1404 src/layout_image.c:774 src/layout_util.c:2556
-#: src/layout_util.c:2557 src/layout_util.c:2572 src/layout_util.c:2573
+#: src/img-view.c:1404 src/layout-image.c:774 src/layout-util.c:2556
+#: src/layout-util.c:2557 src/layout-util.c:2572 src/layout-util.c:2573
 #: src/pan-view/pan-view.c:2384
 msgid "Zoom _out"
 msgstr "缩小 (_o)"
 
-#: src/img-view.c:1405 src/layout_image.c:775 src/layout_util.c:2558
-#: src/layout_util.c:2559 src/layout_util.c:2574 src/layout_util.c:2575
+#: src/img-view.c:1405 src/layout-image.c:775 src/layout-util.c:2558
+#: src/layout-util.c:2559 src/layout-util.c:2574 src/layout-util.c:2575
 #: src/pan-view/pan-view.c:2386
 msgid "Zoom _1:1"
 msgstr "缩放 _1:1"
 
-#: src/img-view.c:1418 src/layout_image.c:790
+#: src/img-view.c:1418 src/layout-image.c:790
 msgid "_Go to directory view"
 msgstr "转至目录查看"
 
-#: src/img-view.c:1446 src/img-view.c:1460 src/layout_image.c:832
-#: src/layout_image.c:846 src/layout_util.c:2632
+#: src/img-view.c:1446 src/img-view.c:1460 src/layout-image.c:832
+#: src/layout-image.c:846 src/layout-util.c:2632
 msgid "Toggle _slideshow"
 msgstr "切换播片开启/关闭 (_s)"
 
-#: src/img-view.c:1449 src/layout_image.c:835
+#: src/img-view.c:1449 src/layout-image.c:835
 msgid "Continue slides_how"
 msgstr "继续播片 (_h)"
 
-#: src/img-view.c:1454 src/img-view.c:1462 src/layout_image.c:840
-#: src/layout_image.c:847
+#: src/img-view.c:1454 src/img-view.c:1462 src/layout-image.c:840
+#: src/layout-image.c:847
 msgid "Pause slides_how"
 msgstr "暂停播片 (_h)"
 
-#: src/img-view.c:1468 src/layout_image.c:857 src/pan-view/pan-view.c:2474
+#: src/img-view.c:1468 src/layout-image.c:857 src/pan-view/pan-view.c:2474
 msgid "Exit _full screen"
 msgstr "退出全屏 (_f)"
 
-#: src/img-view.c:1472 src/layout_image.c:853 src/pan-view/pan-view.c:2478
+#: src/img-view.c:1472 src/layout-image.c:853 src/pan-view/pan-view.c:2478
 msgid "_Full screen"
 msgstr "全屏 (_F)"
 
-#: src/img-view.c:1476 src/layout_util.c:2493 src/pan-view/pan-view.c:2482
+#: src/img-view.c:1476 src/layout-util.c:2493 src/pan-view/pan-view.c:2482
 msgid "C_lose window"
 msgstr "关闭窗口 (_l)"
 
-#: src/layout.c:460 src/view_dir.c:758 src/view_file/view_file.c:743
+#: src/layout.c:460 src/view-dir.c:758 src/view-file/view-file.c:743
 msgid "Ascending"
 msgstr "升序"
 
@@ -2924,7 +2924,7 @@ msgstr "选择文件夹"
 msgid "[Pixel x,y coord]: (Pixel R,G,B value)"
 msgstr ""
 
-#: src/layout.c:1625 src/layout_config.c:67
+#: src/layout.c:1625 src/layout-config.c:67
 msgid "Tools"
 msgstr "工具栏"
 
@@ -2972,1401 +2972,1401 @@ msgstr "布局"
 msgid "Invalid geometry\n"
 msgstr "无效的形状\n"
 
-#: src/layout_config.c:67 src/ui_pathsel.c:1179
+#: src/layout-config.c:67 src/ui-pathsel.c:1179
 msgid "Files"
 msgstr "文件"
 
-#: src/layout_config.c:67 src/preferences.c:131 src/preferences.c:2242
+#: src/layout-config.c:67 src/preferences.c:131 src/preferences.c:2242
 #: src/search.c:2261 src/search.c:3606
 msgid "Image"
 msgstr "图像"
 
-#: src/layout_config.c:358
+#: src/layout-config.c:358
 msgid "(drag to change order)"
 msgstr "(拖放来改变顺序)"
 
-#: src/layout_image.c:793 src/layout_util.c:2285 src/layout_util.c:2587
-#: src/view_file/view_file.c:701
+#: src/layout-image.c:793 src/layout-util.c:2285 src/layout-util.c:2587
+#: src/view-file/view-file.c:701
 #, fuzzy
 msgid "Open archive"
 msgstr "打开最近打开的文件"
 
-#: src/layout_image.c:807 src/layout_util.c:2532 src/pan-view/pan-view.c:2409
-#: src/view_file/view_file.c:710
+#: src/layout-image.c:807 src/layout-util.c:2532 src/pan-view/pan-view.c:2409
+#: src/view-file/view-file.c:710
 msgid "_Copy path to clipboard"
 msgstr "复制路径到剪贴板 (_C)"
 
-#: src/layout_image.c:808 src/layout_util.c:2533 src/pan-view/pan-view.c:2411
-#: src/view_file/view_file.c:712
+#: src/layout-image.c:808 src/layout-util.c:2533 src/pan-view/pan-view.c:2411
+#: src/view-file/view-file.c:712
 #, fuzzy
 msgid "_Copy path unquoted to clipboard"
 msgstr "复制路径到剪贴板 (_C)"
 
-#: src/layout_image.c:809
+#: src/layout-image.c:809
 #, fuzzy
 msgid "Copy _image to clipboard"
 msgstr "复制路径到剪贴板"
 
-#: src/layout_image.c:860 src/layout_util.c:2639
+#: src/layout-image.c:860 src/layout-util.c:2639
 msgid "GIF _animation"
 msgstr ""
 
-#: src/layout_image.c:864
+#: src/layout-image.c:864
 msgid "Hide file _list"
 msgstr "隐藏文件列表(_l)"
 
-#: src/layout_image.c:2116
+#: src/layout-image.c:2116
 #, c-format
 msgid "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 msgstr ""
 
-#: src/layout_image.c:2124
+#: src/layout-image.c:2124
 #, c-format
 msgid "[%*s,%*s]: RGB(---,---,---)"
 msgstr ""
 
-#: src/layout_util.c:244 src/layout_util.c:2618
+#: src/layout-util.c:244 src/layout-util.c:2618
 #, fuzzy
 msgid "Clear Marks"
 msgstr "清理回收站"
 
-#: src/layout_util.c:591
+#: src/layout-util.c:591
 #, fuzzy
 msgid "Operation failed:\n"
 msgstr "文件删除失败"
 
-#: src/layout_util.c:594
+#: src/layout-util.c:594
 #, fuzzy
 msgid "No file extension\n"
 msgstr "取消文件过滤"
 
-#: src/layout_util.c:596
+#: src/layout-util.c:596
 #, fuzzy
 msgid "Cannot create tmp file\n"
 msgstr "不能创建临时文件"
 
-#: src/layout_util.c:598
+#: src/layout-util.c:598
 msgid "Operation not supported for filetype\n"
 msgstr ""
 
-#: src/layout_util.c:600
+#: src/layout-util.c:600
 #, fuzzy
 msgid "File is not writable\n"
 msgstr "源目录不可写"
 
-#: src/layout_util.c:602
+#: src/layout-util.c:602
 #, fuzzy
 msgid "Exiftran error\n"
 msgstr "打印出错"
 
-#: src/layout_util.c:604
+#: src/layout-util.c:604
 #, fuzzy
 msgid "Mogrify error\n"
 msgstr "左右翻转"
 
-#: src/layout_util.c:608
+#: src/layout-util.c:608
 #, fuzzy
 msgid "Image orientation"
 msgstr "方向 (_O)"
 
-#: src/layout_util.c:2080
+#: src/layout-util.c:2080
 #, c-format
 msgid "Error: window layout name: %s does not exist\n"
 msgstr ""
 
-#: src/layout_util.c:2154
+#: src/layout-util.c:2154
 #, fuzzy, c-format
 msgid "Window layout name \"%s\" already exists."
 msgstr "文件 %s 已存在."
 
-#: src/layout_util.c:2155 src/layout_util.c:2404 src/layout_util.c:2520
+#: src/layout-util.c:2155 src/layout-util.c:2404 src/layout-util.c:2520
 #, fuzzy
 msgid "Rename window"
 msgstr "新建窗口"
 
-#: src/layout_util.c:2255 src/layout_util.c:2435 src/layout_util.c:2521
+#: src/layout-util.c:2255 src/layout-util.c:2435 src/layout-util.c:2521
 #, fuzzy
 msgid "Delete window"
 msgstr "关闭窗口"
 
-#: src/layout_util.c:2405 src/layout_util.c:2436
+#: src/layout-util.c:2405 src/layout-util.c:2436
 msgid "OK"
 msgstr ""
 
-#: src/layout_util.c:2407
+#: src/layout-util.c:2407
 #, fuzzy
 msgid "rename window"
 msgstr "新建窗口"
 
-#: src/layout_util.c:2438
+#: src/layout-util.c:2438
 msgid "Delete window layout"
 msgstr ""
 
-#: src/layout_util.c:2464
+#: src/layout-util.c:2464
 msgid "_File"
 msgstr "文件 (_F)"
 
-#: src/layout_util.c:2465
+#: src/layout-util.c:2465
 msgid "_Go"
 msgstr "转至 (_G)"
 
-#: src/layout_util.c:2466
+#: src/layout-util.c:2466
 msgid "_Edit"
 msgstr "编辑 (_E)"
 
-#: src/layout_util.c:2467
+#: src/layout-util.c:2467
 msgid "_Select"
 msgstr "选择 (_S)"
 
-#: src/layout_util.c:2468 src/menu.c:411
+#: src/layout-util.c:2468 src/menu.c:411
 msgid "_Orientation"
 msgstr "方向 (_O)"
 
-#: src/layout_util.c:2469
+#: src/layout-util.c:2469
 #, fuzzy
 msgid "_Rating"
 msgstr "打印出错"
 
-#: src/layout_util.c:2470
+#: src/layout-util.c:2470
 msgid "P_references"
 msgstr "偏好设置 (_r)"
 
-#: src/layout_util.c:2472
+#: src/layout-util.c:2472
 msgid "_Files and Folders"
 msgstr "文件和文件夹 (_F)"
 
-#: src/layout_util.c:2473
+#: src/layout-util.c:2473
 msgid "_Zoom"
 msgstr "缩放 (_Z)"
 
-#: src/layout_util.c:2474
+#: src/layout-util.c:2474
 msgid "_Color Management"
 msgstr "色彩管理 (_C)"
 
-#: src/layout_util.c:2475
+#: src/layout-util.c:2475
 msgid "_Connected Zoom"
 msgstr "关联缩放 (_C)"
 
-#: src/layout_util.c:2476
+#: src/layout-util.c:2476
 msgid "Spli_t"
 msgstr "分割 (_t)"
 
-#: src/layout_util.c:2477
+#: src/layout-util.c:2477
 msgid "Stere_o"
 msgstr "立体图片 (_o)"
 
-#: src/layout_util.c:2478 src/layout_util.c:2636
+#: src/layout-util.c:2478 src/layout-util.c:2636
 msgid "Image _Overlay"
 msgstr "显示叠加 (_O)"
 
-#: src/layout_util.c:2479 src/menu.c:121
+#: src/layout-util.c:2479 src/menu.c:121
 msgid "_Plugins"
 msgstr ""
 
-#: src/layout_util.c:2480
+#: src/layout-util.c:2480
 #, fuzzy
 msgid "_Windows"
 msgstr "窗口"
 
-#: src/layout_util.c:2481
+#: src/layout-util.c:2481
 msgid "_Help"
 msgstr "帮助 (_H)"
 
-#: src/layout_util.c:2483
+#: src/layout-util.c:2483
 msgid "Copy..."
 msgstr "复制..."
 
-#: src/layout_util.c:2484
+#: src/layout-util.c:2484
 msgid "Move..."
 msgstr "移动..."
 
-#: src/layout_util.c:2485
+#: src/layout-util.c:2485
 msgid "Rename..."
 msgstr "重命名..."
 
-#: src/layout_util.c:2489
+#: src/layout-util.c:2489
 msgid "Delete..."
 msgstr "删除..."
 
-#: src/layout_util.c:2490
+#: src/layout-util.c:2490
 msgid "Select _all"
 msgstr "全选 (_a)"
 
-#: src/layout_util.c:2491
+#: src/layout-util.c:2491
 msgid "Select _none"
 msgstr "不选 (_n)"
 
-#: src/layout_util.c:2492
+#: src/layout-util.c:2492
 msgid "_Invert Selection"
 msgstr "反选 (_I)"
 
-#: src/layout_util.c:2492
+#: src/layout-util.c:2492
 msgid "Invert Selection"
 msgstr "反选"
 
-#: src/layout_util.c:2494
+#: src/layout-util.c:2494
 msgid "_Quit"
 msgstr "退出(_Q)"
 
-#: src/layout_util.c:2494 src/preferences.c:854 src/toolbar.c:150
+#: src/layout-util.c:2494 src/preferences.c:854 src/toolbar.c:150
 msgid "Quit"
 msgstr "退出"
 
-#: src/layout_util.c:2495
+#: src/layout-util.c:2495
 msgid "_First Image"
 msgstr "首个图片 (_F)"
 
-#: src/layout_util.c:2495 src/preferences.c:786 src/toolbar.c:74
+#: src/layout-util.c:2495 src/preferences.c:786 src/toolbar.c:74
 msgid "First Image"
 msgstr "首个图片"
 
-#: src/layout_util.c:2496 src/layout_util.c:2497 src/layout_util.c:2498
+#: src/layout-util.c:2496 src/layout-util.c:2497 src/layout-util.c:2498
 msgid "_Previous Image"
 msgstr "上一图片 (_P)"
 
-#: src/layout_util.c:2496 src/layout_util.c:2497 src/layout_util.c:2498
+#: src/layout-util.c:2496 src/layout-util.c:2497 src/layout-util.c:2498
 #: src/preferences.c:787 src/toolbar.c:75
 msgid "Previous Image"
 msgstr "上一图片"
 
-#: src/layout_util.c:2499 src/layout_util.c:2500 src/layout_util.c:2511
+#: src/layout-util.c:2499 src/layout-util.c:2500 src/layout-util.c:2511
 msgid "_Next Image"
 msgstr "下一图片 (_N)"
 
-#: src/layout_util.c:2499 src/layout_util.c:2500 src/layout_util.c:2511
+#: src/layout-util.c:2499 src/layout-util.c:2500 src/layout-util.c:2511
 #: src/preferences.c:788 src/toolbar.c:76
 msgid "Next Image"
 msgstr "下一图片"
 
-#: src/layout_util.c:2502 src/toolbar.c:86
+#: src/layout-util.c:2502 src/toolbar.c:86
 #, fuzzy
 msgid "Image Forward"
 msgstr "图像文件"
 
-#: src/layout_util.c:2502
+#: src/layout-util.c:2502
 msgid "Forward in image history"
 msgstr ""
 
-#: src/layout_util.c:2503 src/toolbar.c:87
+#: src/layout-util.c:2503 src/toolbar.c:87
 #, fuzzy
 msgid "Image Back"
 msgstr "图像搜索"
 
-#: src/layout_util.c:2503
+#: src/layout-util.c:2503
 msgid "Back in image history"
 msgstr ""
 
-#: src/layout_util.c:2505
+#: src/layout-util.c:2505
 #, fuzzy
 msgid "_First Page"
 msgstr "首个图片 (_F)"
 
-#: src/layout_util.c:2505
+#: src/layout-util.c:2505
 msgid "First Page of multi-page image"
 msgstr ""
 
-#: src/layout_util.c:2506
+#: src/layout-util.c:2506
 #, fuzzy
 msgid "_Last Page"
 msgstr "最后图片 (_L)"
 
-#: src/layout_util.c:2506
+#: src/layout-util.c:2506
 msgid "Last Page of multi-page image"
 msgstr ""
 
-#: src/layout_util.c:2507
+#: src/layout-util.c:2507
 #, fuzzy
 msgid "_Next Page"
 msgstr "下一图片 (_N)"
 
-#: src/layout_util.c:2507
+#: src/layout-util.c:2507
 msgid "Next Page of multi-page image"
 msgstr ""
 
-#: src/layout_util.c:2508
+#: src/layout-util.c:2508
 #, fuzzy
 msgid "_Previous Page"
 msgstr "上一图片 (_P)"
 
-#: src/layout_util.c:2508
+#: src/layout-util.c:2508
 msgid "Previous Page of multi-page image"
 msgstr ""
 
-#: src/layout_util.c:2512
+#: src/layout-util.c:2512
 msgid "_Last Image"
 msgstr "最后图片 (_L)"
 
-#: src/layout_util.c:2512 src/preferences.c:789 src/toolbar.c:77
+#: src/layout-util.c:2512 src/preferences.c:789 src/toolbar.c:77
 msgid "Last Image"
 msgstr "最后图片"
 
-#: src/layout_util.c:2513
+#: src/layout-util.c:2513
 msgid "_Back"
 msgstr "返回 (_B)"
 
-#: src/layout_util.c:2513
+#: src/layout-util.c:2513
 msgid "Back in folder history"
 msgstr ""
 
-#: src/layout_util.c:2514
+#: src/layout-util.c:2514
 #, fuzzy
 msgid "_Forward"
 msgstr "图像文件"
 
-#: src/layout_util.c:2514
+#: src/layout-util.c:2514
 msgid "Forward in folder history"
 msgstr ""
 
-#: src/layout_util.c:2515
+#: src/layout-util.c:2515
 msgid "_Home"
 msgstr "主目录 (_H)"
 
-#: src/layout_util.c:2515 src/options.c:244 src/preferences.c:792
-#: src/toolbar.c:80 src/ui_bookmark.c:560 src/ui_pathsel.c:1047
+#: src/layout-util.c:2515 src/options.c:244 src/preferences.c:792
+#: src/toolbar.c:80 src/ui-bookmark.c:560 src/ui-pathsel.c:1047
 msgid "Home"
 msgstr "主目录"
 
-#: src/layout_util.c:2516
+#: src/layout-util.c:2516
 msgid "_Up"
 msgstr ""
 
-#: src/layout_util.c:2516
+#: src/layout-util.c:2516
 #, fuzzy
 msgid "Up one folder"
 msgstr "新建文件夹"
 
-#: src/layout_util.c:2517 src/toolbar.c:88
+#: src/layout-util.c:2517 src/toolbar.c:88
 msgid "New window"
 msgstr "新建窗口"
 
-#: src/layout_util.c:2518
+#: src/layout-util.c:2518
 #, fuzzy
 msgid "default"
 msgstr "默认设置"
 
-#: src/layout_util.c:2518
+#: src/layout-util.c:2518
 #, fuzzy
 msgid "New window (default)"
 msgstr "新建窗口"
 
-#: src/layout_util.c:2519
+#: src/layout-util.c:2519
 #, fuzzy
 msgid "from current"
 msgstr "使用当前目录"
 
-#: src/layout_util.c:2522
+#: src/layout-util.c:2522
 msgid "_New collection"
 msgstr "新建图片集 (_N)"
 
-#: src/layout_util.c:2522 src/menu.c:472 src/preferences.c:799 src/toolbar.c:89
+#: src/layout-util.c:2522 src/menu.c:472 src/preferences.c:799 src/toolbar.c:89
 msgid "New collection"
 msgstr "新建图片集"
 
-#: src/layout_util.c:2523
+#: src/layout-util.c:2523
 msgid "_Open collection..."
 msgstr "打开图片集... (_O)"
 
-#: src/layout_util.c:2523
+#: src/layout-util.c:2523
 msgid "Open collection..."
 msgstr "打开图片集..."
 
-#: src/layout_util.c:2524
+#: src/layout-util.c:2524
 msgid "Open recen_t"
 msgstr "最近打开的文件 (_t)"
 
-#: src/layout_util.c:2524
+#: src/layout-util.c:2524
 #, fuzzy
 msgid "Open recent collection"
 msgstr "打开图片集"
 
-#: src/layout_util.c:2525
+#: src/layout-util.c:2525
 msgid "_Search..."
 msgstr "搜索... (_S)"
 
-#: src/layout_util.c:2525
+#: src/layout-util.c:2525
 msgid "Search..."
 msgstr "搜索..."
 
-#: src/layout_util.c:2526
+#: src/layout-util.c:2526
 msgid "Find duplicates..."
 msgstr "查找重复项"
 
-#: src/layout_util.c:2527
+#: src/layout-util.c:2527
 msgid "Pa_n view"
 msgstr "图片概览 (_n)"
 
-#: src/layout_util.c:2527 src/preferences.c:809 src/toolbar.c:99
+#: src/layout-util.c:2527 src/preferences.c:809 src/toolbar.c:99
 msgid "Pan view"
 msgstr "图片概览"
 
-#: src/layout_util.c:2528
+#: src/layout-util.c:2528
 msgid "_Print..."
 msgstr "打印... (_P)"
 
-#: src/layout_util.c:2529
+#: src/layout-util.c:2529
 msgid "N_ew folder..."
 msgstr "新建文件夹... (_e)"
 
-#: src/layout_util.c:2529
+#: src/layout-util.c:2529
 msgid "New folder..."
 msgstr "新建文件夹..."
 
-#: src/layout_util.c:2530 src/view_file/view_file.c:725
+#: src/layout-util.c:2530 src/view-file/view-file.c:725
 msgid "Enable file _grouping"
 msgstr "允许文件编组 (_g)"
 
-#: src/layout_util.c:2530
+#: src/layout-util.c:2530
 #, fuzzy
 msgid "Enable file grouping"
 msgstr "允许文件编组 (_g)"
 
-#: src/layout_util.c:2531 src/view_file/view_file.c:727
+#: src/layout-util.c:2531 src/view-file/view-file.c:727
 msgid "Disable file groupi_ng"
 msgstr "禁止文件编组 (_n)"
 
-#: src/layout_util.c:2531
+#: src/layout-util.c:2531
 #, fuzzy
 msgid "Disable file grouping"
 msgstr "禁止文件编组 (_n)"
 
-#: src/layout_util.c:2532
+#: src/layout-util.c:2532
 msgid "Copy path to clipboard"
 msgstr "复制路径到剪贴板"
 
-#: src/layout_util.c:2533
+#: src/layout-util.c:2533
 #, fuzzy
 msgid "Copy path unquoted to clipboard"
 msgstr "复制路径到剪贴板"
 
-#: src/layout_util.c:2534
+#: src/layout-util.c:2534
 #, fuzzy
 msgid "_Rating 0"
 msgstr "打印出错"
 
-#: src/layout_util.c:2534
+#: src/layout-util.c:2534
 #, fuzzy
 msgid "Rating 0"
 msgstr "打印出错"
 
-#: src/layout_util.c:2535
+#: src/layout-util.c:2535
 #, fuzzy
 msgid "_Rating 1"
 msgstr "打印出错"
 
-#: src/layout_util.c:2535
+#: src/layout-util.c:2535
 #, fuzzy
 msgid "Rating 1"
 msgstr "打印出错"
 
-#: src/layout_util.c:2536
+#: src/layout-util.c:2536
 #, fuzzy
 msgid "_Rating 2"
 msgstr "打印出错"
 
-#: src/layout_util.c:2536
+#: src/layout-util.c:2536
 #, fuzzy
 msgid "Rating 2"
 msgstr "打印出错"
 
-#: src/layout_util.c:2537
+#: src/layout-util.c:2537
 #, fuzzy
 msgid "_Rating 3"
 msgstr "打印出错"
 
-#: src/layout_util.c:2537
+#: src/layout-util.c:2537
 #, fuzzy
 msgid "Rating 3"
 msgstr "打印出错"
 
-#: src/layout_util.c:2538
+#: src/layout-util.c:2538
 #, fuzzy
 msgid "_Rating 4"
 msgstr "打印出错"
 
-#: src/layout_util.c:2538
+#: src/layout-util.c:2538
 #, fuzzy
 msgid "Rating 4"
 msgstr "打印出错"
 
-#: src/layout_util.c:2539
+#: src/layout-util.c:2539
 #, fuzzy
 msgid "_Rating 5"
 msgstr "打印出错"
 
-#: src/layout_util.c:2539
+#: src/layout-util.c:2539
 #, fuzzy
 msgid "Rating 5"
 msgstr "打印出错"
 
-#: src/layout_util.c:2540
+#: src/layout-util.c:2540
 #, fuzzy
 msgid "_Rating -1"
 msgstr "打印出错"
 
-#: src/layout_util.c:2540
+#: src/layout-util.c:2540
 #, fuzzy
 msgid "Rating -1"
 msgstr "打印出错"
 
-#: src/layout_util.c:2541
+#: src/layout-util.c:2541
 #, fuzzy
 msgid "_Rotate clockwise 90°"
 msgstr "顺时针旋转 (_R)"
 
-#: src/layout_util.c:2541
+#: src/layout-util.c:2541
 #, fuzzy
 msgid "Image Rotate clockwise 90°"
 msgstr "顺时针旋转"
 
-#: src/layout_util.c:2542
+#: src/layout-util.c:2542
 #, fuzzy
 msgid "Rotate _counterclockwise 90°"
 msgstr "逆时针旋转 (_c)"
 
-#: src/layout_util.c:2542 src/menu.c:356 src/preferences.c:820
+#: src/layout-util.c:2542 src/menu.c:356 src/preferences.c:820
 #: src/toolbar.c:111
 #, fuzzy
 msgid "Rotate counterclockwise 90°"
 msgstr "逆时针旋转"
 
-#: src/layout_util.c:2543
+#: src/layout-util.c:2543
 #, fuzzy
 msgid "Rotate 1_80°"
 msgstr "旋转 1_80"
 
-#: src/layout_util.c:2543
+#: src/layout-util.c:2543
 #, fuzzy
 msgid "Image Rotate 180°"
 msgstr "旋转 180"
 
-#: src/layout_util.c:2544
+#: src/layout-util.c:2544
 msgid "_Mirror"
 msgstr "左右翻转 (_M)"
 
-#: src/layout_util.c:2544
+#: src/layout-util.c:2544
 #, fuzzy
 msgid "Image Mirror"
 msgstr "图片列表(_L)"
 
-#: src/layout_util.c:2545
+#: src/layout-util.c:2545
 msgid "_Flip"
 msgstr "上下翻转 (_F)"
 
-#: src/layout_util.c:2545
+#: src/layout-util.c:2545
 #, fuzzy
 msgid "Image Flip"
 msgstr "图片列表(_L)"
 
-#: src/layout_util.c:2546
+#: src/layout-util.c:2546
 msgid "_Original state"
 msgstr "初始状态 (_O)"
 
-#: src/layout_util.c:2546
+#: src/layout-util.c:2546
 #, fuzzy
 msgid "Image rotate Original state"
 msgstr "初始状态"
 
-#: src/layout_util.c:2547
+#: src/layout-util.c:2547
 msgid "P_references..."
 msgstr "偏好设置... (_r)"
 
-#: src/layout_util.c:2547
+#: src/layout-util.c:2547
 msgid "Preferences..."
 msgstr "偏好设置..."
 
-#: src/layout_util.c:2548
+#: src/layout-util.c:2548
 #, fuzzy
 msgid "Configure _Plugins..."
 msgstr "设置外部编辑器... (_E)"
 
-#: src/layout_util.c:2548
+#: src/layout-util.c:2548
 #, fuzzy
 msgid "Configure Plugins..."
 msgstr "设置外部编辑器"
 
-#: src/layout_util.c:2549
+#: src/layout-util.c:2549
 msgid "_Configure this window..."
 msgstr "设置此窗口... (_C)"
 
-#: src/layout_util.c:2549
+#: src/layout-util.c:2549
 msgid "Configure this window..."
 msgstr "设置此窗口"
 
-#: src/layout_util.c:2550
+#: src/layout-util.c:2550
 #, fuzzy
 msgid "_Cache maintenance..."
 msgstr "缓存维护"
 
-#: src/layout_util.c:2550
+#: src/layout-util.c:2550
 #, fuzzy
 msgid "Cache maintenance..."
 msgstr "缓存维护"
 
-#: src/layout_util.c:2551
+#: src/layout-util.c:2551
 msgid "Set as _wallpaper"
 msgstr "设置为墙纸 (_w)"
 
-#: src/layout_util.c:2551
+#: src/layout-util.c:2551
 msgid "Set as wallpaper"
 msgstr "设置为墙纸"
 
-#: src/layout_util.c:2552
+#: src/layout-util.c:2552
 msgid "_Save metadata"
 msgstr "保存元数据 (_S)"
 
-#: src/layout_util.c:2552 src/toolbar.c:136
+#: src/layout-util.c:2552 src/toolbar.c:136
 #, fuzzy
 msgid "Save metadata"
 msgstr "保存元数据 (_S)"
 
-#: src/layout_util.c:2553
+#: src/layout-util.c:2553
 #, fuzzy
 msgid "Keyword autocomplete"
 msgstr "关键词类型:"
 
-#: src/layout_util.c:2553
+#: src/layout-util.c:2553
 #, fuzzy
 msgid "Keyword Autocomplete"
 msgstr "关键词类型:"
 
-#: src/layout_util.c:2560 src/layout_util.c:2561 src/layout_util.c:2576
-#: src/layout_util.c:2577
+#: src/layout-util.c:2560 src/layout-util.c:2561 src/layout-util.c:2576
+#: src/layout-util.c:2577
 msgid "_Zoom to fit"
 msgstr "缩放以适应 (_Z)"
 
-#: src/layout_util.c:2562 src/layout_util.c:2578
+#: src/layout-util.c:2562 src/layout-util.c:2578
 msgid "Fit _Horizontally"
 msgstr "适应宽度 (_H)"
 
-#: src/layout_util.c:2562
+#: src/layout-util.c:2562
 msgid "Fit Horizontally"
 msgstr "适应宽度"
 
-#: src/layout_util.c:2563 src/layout_util.c:2579
+#: src/layout-util.c:2563 src/layout-util.c:2579
 msgid "Fit _Vertically"
 msgstr "适应高度 (_V)"
 
-#: src/layout_util.c:2563
+#: src/layout-util.c:2563
 msgid "Fit Vertically"
 msgstr "适应高度"
 
-#: src/layout_util.c:2564 src/layout_util.c:2580
+#: src/layout-util.c:2564 src/layout-util.c:2580
 msgid "Zoom _2:1"
 msgstr "缩放 _2:1"
 
-#: src/layout_util.c:2565 src/layout_util.c:2581
+#: src/layout-util.c:2565 src/layout-util.c:2581
 msgid "Zoom _3:1"
 msgstr "缩放 _3:1"
 
-#: src/layout_util.c:2566 src/layout_util.c:2582
+#: src/layout-util.c:2566 src/layout-util.c:2582
 msgid "Zoom _4:1"
 msgstr "缩放 _4:1"
 
-#: src/layout_util.c:2570 src/layout_util.c:2571 src/preferences.c:837
+#: src/layout-util.c:2570 src/layout-util.c:2571 src/preferences.c:837
 #: src/toolbar.c:128
 msgid "Connected Zoom in"
 msgstr "关联放大"
 
-#: src/layout_util.c:2572 src/layout_util.c:2573
+#: src/layout-util.c:2572 src/layout-util.c:2573
 msgid "Connected Zoom out"
 msgstr "关联缩小"
 
-#: src/layout_util.c:2574 src/layout_util.c:2575
+#: src/layout-util.c:2574 src/layout-util.c:2575
 msgid "Connected Zoom 1:1"
 msgstr "关联缩放 1:1"
 
-#: src/layout_util.c:2576 src/layout_util.c:2577
+#: src/layout-util.c:2576 src/layout-util.c:2577
 msgid "Connected Zoom to fit"
 msgstr "关联缩放以适应窗口"
 
-#: src/layout_util.c:2578
+#: src/layout-util.c:2578
 msgid "Connected Fit Horizontally"
 msgstr "关联缩放适应宽度"
 
-#: src/layout_util.c:2579
+#: src/layout-util.c:2579
 msgid "Connected Fit Vertically"
 msgstr "关联缩放适应高度"
 
-#: src/layout_util.c:2580
+#: src/layout-util.c:2580
 msgid "Connected Zoom 2:1"
 msgstr "关联缩放 2:1"
 
-#: src/layout_util.c:2581
+#: src/layout-util.c:2581
 msgid "Connected Zoom 3:1"
 msgstr "关联缩放 3:1"
 
-#: src/layout_util.c:2582
+#: src/layout-util.c:2582
 msgid "Connected Zoom 4:1"
 msgstr "关联缩放 4:1"
 
-#: src/layout_util.c:2583
+#: src/layout-util.c:2583
 msgid "Connected Zoom 1:2"
 msgstr "关联缩放 1:2"
 
-#: src/layout_util.c:2584
+#: src/layout-util.c:2584
 msgid "Connected Zoom 1:3"
 msgstr "关联缩放 1:3"
 
-#: src/layout_util.c:2585
+#: src/layout-util.c:2585
 msgid "Connected Zoom 1:4"
 msgstr "关联缩放 1:4"
 
-#: src/layout_util.c:2586
+#: src/layout-util.c:2586
 msgid "_View in new window"
 msgstr "在新窗口中查看(_V)"
 
-#: src/layout_util.c:2588 src/layout_util.c:2589 src/layout_util.c:2590
+#: src/layout-util.c:2588 src/layout-util.c:2589 src/layout-util.c:2590
 msgid "F_ull screen"
 msgstr "全屏 (_u)"
 
-#: src/layout_util.c:2591 src/layout_util.c:2592
+#: src/layout-util.c:2591 src/layout-util.c:2592
 msgid "_Leave full screen"
 msgstr "退出全屏 (_L)"
 
-#: src/layout_util.c:2591 src/layout_util.c:2592
+#: src/layout-util.c:2591 src/layout-util.c:2592
 msgid "Leave full screen"
 msgstr "退出全屏"
 
-#: src/layout_util.c:2593
+#: src/layout-util.c:2593
 msgid "_Cycle through overlay modes"
 msgstr "切换显示覆盖模式 (_C)"
 
-#: src/layout_util.c:2593
+#: src/layout-util.c:2593
 msgid "Cycle through Overlay modes"
 msgstr "切换显示叠加模式"
 
-#: src/layout_util.c:2594
+#: src/layout-util.c:2594
 msgid "Cycle through histogram ch_annels"
 msgstr "切换直方图通道 (_a)"
 
-#: src/layout_util.c:2594
+#: src/layout-util.c:2594
 msgid "Cycle through histogram channels"
 msgstr "切换直方图通道"
 
-#: src/layout_util.c:2595
+#: src/layout-util.c:2595
 msgid "Cycle through histogram mo_des"
 msgstr "切换直方图模式 (_d)"
 
-#: src/layout_util.c:2595
+#: src/layout-util.c:2595
 msgid "Cycle through histogram modes"
 msgstr "切换直方图模式"
 
-#: src/layout_util.c:2596
+#: src/layout-util.c:2596
 msgid "_Hide file list"
 msgstr "隐藏文件列表 (_H)"
 
-#: src/layout_util.c:2596 src/preferences.c:841 src/toolbar.c:137
+#: src/layout-util.c:2596 src/preferences.c:841 src/toolbar.c:137
 msgid "Hide file list"
 msgstr "隐藏文件列表"
 
-#: src/layout_util.c:2597
+#: src/layout-util.c:2597
 msgid "_Pause slideshow"
 msgstr "暂停播片 (_P)"
 
-#: src/layout_util.c:2598
+#: src/layout-util.c:2598
 msgid "Faster"
 msgstr ""
 
-#: src/layout_util.c:2598 src/preferences.c:843 src/toolbar.c:139
+#: src/layout-util.c:2598 src/preferences.c:843 src/toolbar.c:139
 #, fuzzy
 msgid "Slideshow Faster"
 msgstr "播片"
 
-#: src/layout_util.c:2599
+#: src/layout-util.c:2599
 msgid "Slower"
 msgstr ""
 
-#: src/layout_util.c:2599 src/preferences.c:844 src/toolbar.c:140
+#: src/layout-util.c:2599 src/preferences.c:844 src/toolbar.c:140
 #, fuzzy
 msgid "Slideshow Slower"
 msgstr "播片"
 
-#: src/layout_util.c:2600
+#: src/layout-util.c:2600
 msgid "_Refresh"
 msgstr "刷新 (_R)"
 
-#: src/layout_util.c:2600 src/preferences.c:845 src/toolbar.c:141
+#: src/layout-util.c:2600 src/preferences.c:845 src/toolbar.c:141
 msgid "Refresh"
 msgstr "刷新"
 
-#: src/layout_util.c:2601
+#: src/layout-util.c:2601
 msgid "_Help manual"
 msgstr ""
 
-#: src/layout_util.c:2601
+#: src/layout-util.c:2601
 msgid "Help manual"
 msgstr ""
 
-#: src/layout_util.c:2602 src/window.c:371
+#: src/layout-util.c:2602 src/window.c:371
 msgid "On-line help search"
 msgstr ""
 
-#: src/layout_util.c:2603
+#: src/layout-util.c:2603
 msgid "_Keyboard shortcuts"
 msgstr "快捷键(_K)"
 
-#: src/layout_util.c:2603
+#: src/layout-util.c:2603
 msgid "Keyboard shortcuts"
 msgstr "快捷键"
 
-#: src/layout_util.c:2604
+#: src/layout-util.c:2604
 #, fuzzy
 msgid "_Keyboard map"
 msgstr "键盘"
 
-#: src/layout_util.c:2604
+#: src/layout-util.c:2604
 #, fuzzy
 msgid "Keyboard map"
 msgstr "键盘"
 
-#: src/layout_util.c:2605
+#: src/layout-util.c:2605
 msgid "_Readme"
 msgstr ""
 
-#: src/layout_util.c:2605
+#: src/layout-util.c:2605
 msgid "Readme"
 msgstr ""
 
-#: src/layout_util.c:2606
+#: src/layout-util.c:2606
 #, fuzzy
 msgid "_ChangeLog"
 msgstr "不作更改"
 
-#: src/layout_util.c:2606
+#: src/layout-util.c:2606
 msgid "ChangeLog notes"
 msgstr ""
 
-#: src/layout_util.c:2607 src/search_and_run.c:291
+#: src/layout-util.c:2607 src/search-and-run.c:291
 msgid "Search and Run command"
 msgstr ""
 
-#: src/layout_util.c:2607
+#: src/layout-util.c:2607
 msgid "Search commands by keyword and run them"
 msgstr ""
 
-#: src/layout_util.c:2608
+#: src/layout-util.c:2608
 msgid "_About"
 msgstr "关于(_A)"
 
-#: src/layout_util.c:2608
+#: src/layout-util.c:2608
 msgid "About"
 msgstr "关于"
 
-#: src/layout_util.c:2609
+#: src/layout-util.c:2609
 msgid "_Log Window"
 msgstr "日志窗口(_L)"
 
-#: src/layout_util.c:2609
+#: src/layout-util.c:2609
 msgid "Log Window"
 msgstr "日志窗口"
 
-#: src/layout_util.c:2610
+#: src/layout-util.c:2610
 msgid "_Exif window"
 msgstr "Exif 窗口 (_E)"
 
-#: src/layout_util.c:2610 src/preferences.c:847 src/toolbar.c:143
+#: src/layout-util.c:2610 src/preferences.c:847 src/toolbar.c:143
 msgid "Exif window"
 msgstr "Exif 窗口"
 
-#: src/layout_util.c:2611
+#: src/layout-util.c:2611
 msgid "_Cycle through stereo modes"
 msgstr "切换立体图片模式 (_C)"
 
-#: src/layout_util.c:2611
+#: src/layout-util.c:2611
 msgid "Cycle through stereo modes"
 msgstr "切换立体图片模式"
 
-#: src/layout_util.c:2612
+#: src/layout-util.c:2612
 #, fuzzy
 msgid "_Next Pane"
 msgstr "下一图片 (_N)"
 
-#: src/layout_util.c:2612
+#: src/layout-util.c:2612
 #, fuzzy
 msgid "Next Split Pane"
 msgstr "下一图片"
 
-#: src/layout_util.c:2613
+#: src/layout-util.c:2613
 #, fuzzy
 msgid "_Previous Pane"
 msgstr "上一图片 (_P)"
 
-#: src/layout_util.c:2613
+#: src/layout-util.c:2613
 #, fuzzy
 msgid "Previous Split Pane"
 msgstr "上一图片"
 
-#: src/layout_util.c:2614
+#: src/layout-util.c:2614
 #, fuzzy
 msgid "_Up Pane"
 msgstr "下一图片 (_N)"
 
-#: src/layout_util.c:2614
+#: src/layout-util.c:2614
 #, fuzzy
 msgid "Up Split Pane"
 msgstr "分割-单张"
 
-#: src/layout_util.c:2615
+#: src/layout-util.c:2615
 #, fuzzy
 msgid "_Down Pane"
 msgstr "下一图片 (_N)"
 
-#: src/layout_util.c:2615
+#: src/layout-util.c:2615
 #, fuzzy
 msgid "Down Split Pane"
 msgstr "分割-单张"
 
-#: src/layout_util.c:2616
+#: src/layout-util.c:2616
 #, fuzzy
 msgid "_Write orientation to file"
 msgstr "写入文件"
 
-#: src/layout_util.c:2616
+#: src/layout-util.c:2616
 #, fuzzy
 msgid "Write orientation to file"
 msgstr "写入文件"
 
-#: src/layout_util.c:2617
+#: src/layout-util.c:2617
 #, fuzzy
 msgid "_Write orientation to file (preserve timestamp)"
 msgstr "写入文件"
 
-#: src/layout_util.c:2617
+#: src/layout-util.c:2617
 #, fuzzy
 msgid "Write orientation to file (preserve timestamp)"
 msgstr "写入文件"
 
-#: src/layout_util.c:2618
+#: src/layout-util.c:2618
 #, fuzzy
 msgid "Clear Marks..."
 msgstr "清理回收站"
 
-#: src/layout_util.c:2622
+#: src/layout-util.c:2622
 msgid "Show _Thumbnails"
 msgstr "显示缩略图(_T)"
 
-#: src/layout_util.c:2622
+#: src/layout-util.c:2622
 msgid "Show Thumbnails"
 msgstr "显示缩略图"
 
-#: src/layout_util.c:2623
+#: src/layout-util.c:2623
 msgid "Show _Marks"
 msgstr "显示标记 (_M)"
 
-#: src/layout_util.c:2623
+#: src/layout-util.c:2623
 msgid "Show Marks"
 msgstr "显示标记"
 
-#: src/layout_util.c:2624
+#: src/layout-util.c:2624
 #, fuzzy
 msgid "Show File Filter"
 msgstr "显示隐藏文件 (_h)"
 
-#: src/layout_util.c:2625
+#: src/layout-util.c:2625
 msgid "Pi_xel Info"
 msgstr "像素信息 (_x)"
 
-#: src/layout_util.c:2625
+#: src/layout-util.c:2625
 msgid "Show Pixel Info"
 msgstr "显示像素信息"
 
-#: src/layout_util.c:2626
+#: src/layout-util.c:2626
 #, fuzzy
 msgid "Hide _alpha"
 msgstr "隐藏工具栏"
 
-#: src/layout_util.c:2626
+#: src/layout-util.c:2626
 #, fuzzy
 msgid "Hide alpha channel"
 msgstr "隐藏工具栏"
 
-#: src/layout_util.c:2627
+#: src/layout-util.c:2627
 msgid "_Float file list"
 msgstr "浮动文件列表(_F)"
 
-#: src/layout_util.c:2627 src/preferences.c:851 src/toolbar.c:147
+#: src/layout-util.c:2627 src/preferences.c:851 src/toolbar.c:147
 msgid "Float file list"
 msgstr "浮动文件列表"
 
-#: src/layout_util.c:2628
+#: src/layout-util.c:2628
 msgid "Hide tool_bar"
 msgstr "隐藏工具栏(_b)"
 
-#: src/layout_util.c:2628
+#: src/layout-util.c:2628
 msgid "Hide toolbar"
 msgstr "隐藏工具栏"
 
-#: src/layout_util.c:2629
+#: src/layout-util.c:2629
 msgid "_Info sidebar"
 msgstr "信息边栏 (_I)"
 
-#: src/layout_util.c:2629 src/preferences.c:852 src/toolbar.c:148
+#: src/layout-util.c:2629 src/preferences.c:852 src/toolbar.c:148
 msgid "Info sidebar"
 msgstr "信息边栏"
 
-#: src/layout_util.c:2630
+#: src/layout-util.c:2630
 msgid "Sort _manager"
 msgstr "快捷整理 (_m)"
 
-#: src/layout_util.c:2630 src/preferences.c:853 src/toolbar.c:149
+#: src/layout-util.c:2630 src/preferences.c:853 src/toolbar.c:149
 msgid "Sort manager"
 msgstr "快捷整理"
 
-#: src/layout_util.c:2631
+#: src/layout-util.c:2631
 #, fuzzy
 msgid "Hide Bars"
 msgstr "隐藏 \"%s\""
 
-#: src/layout_util.c:2633
+#: src/layout-util.c:2633
 msgid "Use _color profiles"
 msgstr "使用色彩配置 (_c)"
 
-#: src/layout_util.c:2633 src/toolbar.c:135
+#: src/layout-util.c:2633 src/toolbar.c:135
 #, fuzzy
 msgid "Use color profiles"
 msgstr "使用色彩配置 (_c)"
 
-#: src/layout_util.c:2634
+#: src/layout-util.c:2634
 msgid "Use profile from _image"
 msgstr "使用图像文件的色彩配置 (_i)"
 
-#: src/layout_util.c:2634
+#: src/layout-util.c:2634
 msgid "Use profile from image"
 msgstr "使用图像文件的色彩配置"
 
-#: src/layout_util.c:2635
+#: src/layout-util.c:2635
 msgid "Toggle _grayscale"
 msgstr "切换灰度模式 (_g)"
 
-#: src/layout_util.c:2635
+#: src/layout-util.c:2635
 msgid "Toggle grayscale"
 msgstr "切换灰度模式"
 
-#: src/layout_util.c:2636
+#: src/layout-util.c:2636
 msgid "Image Overlay"
 msgstr "显示叠加"
 
-#: src/layout_util.c:2637
+#: src/layout-util.c:2637
 msgid "_Show Histogram"
 msgstr "显示直方图 (_S)"
 
-#: src/layout_util.c:2637
+#: src/layout-util.c:2637
 msgid "Show Histogram"
 msgstr "显示直方图"
 
-#: src/layout_util.c:2638
+#: src/layout-util.c:2638
 #, fuzzy
 msgid "Rectangular Selection"
 msgstr "图标形式查看时块状选取"
 
-#: src/layout_util.c:2639
+#: src/layout-util.c:2639
 msgid "Toggle GIF animation"
 msgstr ""
 
-#: src/layout_util.c:2640
+#: src/layout-util.c:2640
 #, fuzzy
 msgid "_Exif rotate"
 msgstr "使用 Exif 日期"
 
-#: src/layout_util.c:2640
+#: src/layout-util.c:2640
 #, fuzzy
 msgid "Toggle Exif rotate"
 msgstr "使用 Exif 日期"
 
-#: src/layout_util.c:2641 src/preferences.c:850 src/toolbar.c:146
+#: src/layout-util.c:2641 src/preferences.c:850 src/toolbar.c:146
 #, fuzzy
 msgid "Draw Rectangle"
 msgstr "全选"
 
-#: src/layout_util.c:2642
+#: src/layout-util.c:2642
 msgid "Over/Under Exposed"
 msgstr ""
 
-#: src/layout_util.c:2642
+#: src/layout-util.c:2642
 msgid "Highlight over/under exposed"
 msgstr ""
 
-#: src/layout_util.c:2643 src/preferences.c:838 src/toolbar.c:129
+#: src/layout-util.c:2643 src/preferences.c:838 src/toolbar.c:129
 #, fuzzy
 msgid "Split Pane Sync"
 msgstr "分割-单张"
 
-#: src/layout_util.c:2647
+#: src/layout-util.c:2647
 #, fuzzy
 msgid "Images as _List"
 msgstr "图片列表(_L)"
 
-#: src/layout_util.c:2647
+#: src/layout-util.c:2647
 msgid "View Images as List"
 msgstr "以列表查看图像"
 
-#: src/layout_util.c:2648
+#: src/layout-util.c:2648
 #, fuzzy
 msgid "Images as I_cons"
 msgstr "以图标查看图像"
 
-#: src/layout_util.c:2648
+#: src/layout-util.c:2648
 msgid "View Images as Icons"
 msgstr "以图标查看图像"
 
-#: src/layout_util.c:2652
+#: src/layout-util.c:2652
 #, fuzzy
 msgid "T_oggle Folder View"
 msgstr "切换播片开启/关闭"
 
-#: src/layout_util.c:2652
+#: src/layout-util.c:2652
 #, fuzzy
 msgid "Toggle Folders View"
 msgstr "切换播片开启/关闭"
 
-#: src/layout_util.c:2656
+#: src/layout-util.c:2656
 msgid "_Horizontal"
 msgstr "水平 (_H)"
 
-#: src/layout_util.c:2656
+#: src/layout-util.c:2656
 #, fuzzy
 msgid "Split panes horizontal."
 msgstr "水平分割"
 
-#: src/layout_util.c:2657
+#: src/layout-util.c:2657
 msgid "_Vertical"
 msgstr "垂直 (_V)"
 
-#: src/layout_util.c:2657
+#: src/layout-util.c:2657
 #, fuzzy
 msgid "Split panes vertical"
 msgstr "垂直分割"
 
-#: src/layout_util.c:2658
+#: src/layout-util.c:2658
 msgid "_Quad"
 msgstr "四分 (_Q)"
 
-#: src/layout_util.c:2658
+#: src/layout-util.c:2658
 #, fuzzy
 msgid "Split panes quad"
 msgstr "分割-四分"
 
-#: src/layout_util.c:2659
+#: src/layout-util.c:2659
 msgid "_Single"
 msgstr "单张 (_S)"
 
-#: src/layout_util.c:2659
+#: src/layout-util.c:2659
 #, fuzzy
 msgid "Single pane"
 msgstr "单张图片"
 
-#: src/layout_util.c:2663
+#: src/layout-util.c:2663
 msgid "Input _0: sRGB"
 msgstr "输入 _0: sRGB"
 
-#: src/layout_util.c:2663
+#: src/layout-util.c:2663
 msgid "Input 0: sRGB"
 msgstr "输入 0: sRGB"
 
-#: src/layout_util.c:2664
+#: src/layout-util.c:2664
 msgid "Input _1: AdobeRGB compatible"
 msgstr "输入 _1: AdobeRGB 兼容"
 
-#: src/layout_util.c:2664
+#: src/layout-util.c:2664
 msgid "Input 1: AdobeRGB compatible"
 msgstr "输入 1: AdobeRGB兼容"
 
-#: src/layout_util.c:2665
+#: src/layout-util.c:2665
 msgid "Input _2"
 msgstr "输入 _2"
 
-#: src/layout_util.c:2665
+#: src/layout-util.c:2665
 msgid "Input 2"
 msgstr "输入 2"
 
-#: src/layout_util.c:2666
+#: src/layout-util.c:2666
 msgid "Input _3"
 msgstr "输入 _3"
 
-#: src/layout_util.c:2666
+#: src/layout-util.c:2666
 msgid "Input 3"
 msgstr "输入 3"
 
-#: src/layout_util.c:2667
+#: src/layout-util.c:2667
 msgid "Input _4"
 msgstr "输入 _4"
 
-#: src/layout_util.c:2667
+#: src/layout-util.c:2667
 msgid "Input 4"
 msgstr "输入 4"
 
-#: src/layout_util.c:2668
+#: src/layout-util.c:2668
 msgid "Input _5"
 msgstr "输入 _5"
 
-#: src/layout_util.c:2668
+#: src/layout-util.c:2668
 msgid "Input 5"
 msgstr "输入 5"
 
-#: src/layout_util.c:2672
+#: src/layout-util.c:2672
 msgid "Histogram on Red"
 msgstr "直方图 红"
 
-#: src/layout_util.c:2673
+#: src/layout-util.c:2673
 msgid "Histogram on Green"
 msgstr "直方图 绿"
 
-#: src/layout_util.c:2674
+#: src/layout-util.c:2674
 msgid "Histogram on Blue"
 msgstr "直方图 蓝"
 
-#: src/layout_util.c:2675
+#: src/layout-util.c:2675
 msgid "Histogram on RGB"
 msgstr "直方图 RGB"
 
-#: src/layout_util.c:2676
+#: src/layout-util.c:2676
 msgid "Histogram on Value"
 msgstr "直方图 值"
 
-#: src/layout_util.c:2680
+#: src/layout-util.c:2680
 msgid "Linear Histogram"
 msgstr "线性直方图"
 
-#: src/layout_util.c:2681
+#: src/layout-util.c:2681
 msgid "_Log Histogram"
 msgstr "对数直方图 (_L)"
 
-#: src/layout_util.c:2681
+#: src/layout-util.c:2681
 msgid "Log Histogram"
 msgstr "对数直方图"
 
-#: src/layout_util.c:2685
+#: src/layout-util.c:2685
 msgid "_Auto"
 msgstr "自动 (_A)"
 
-#: src/layout_util.c:2685
+#: src/layout-util.c:2685
 msgid "Stereo Auto"
 msgstr "立体图片-自动"
 
-#: src/layout_util.c:2686
+#: src/layout-util.c:2686
 msgid "_Side by Side"
 msgstr "并排 (_S)"
 
-#: src/layout_util.c:2686
+#: src/layout-util.c:2686
 msgid "Stereo Side by Side"
 msgstr "立体图片-并排"
 
-#: src/layout_util.c:2687
+#: src/layout-util.c:2687
 msgid "_Cross"
 msgstr "交叉 (_C)"
 
-#: src/layout_util.c:2687
+#: src/layout-util.c:2687
 msgid "Stereo Cross"
 msgstr "立体图片-交叉"
 
-#: src/layout_util.c:2688
+#: src/layout-util.c:2688
 msgid "_Off"
 msgstr "关闭 (_O)"
 
-#: src/layout_util.c:2688
+#: src/layout-util.c:2688
 msgid "Stereo Off"
 msgstr "立体图片-关"
 
-#: src/layout_util.c:3021
+#: src/layout-util.c:3021
 #, c-format
 msgid "Mark _%d"
 msgstr "标记 _%d"
 
-#: src/layout_util.c:3022 src/view_file/view_file.c:650
+#: src/layout-util.c:3022 src/view-file/view-file.c:650
 #, c-format
 msgid "_Set mark %d"
 msgstr "设置标记 %d (_S)"
 
-#: src/layout_util.c:3022
+#: src/layout-util.c:3022
 #, c-format
 msgid "Set mark %d"
 msgstr "设置标记 %d"
 
-#: src/layout_util.c:3023 src/view_file/view_file.c:651
+#: src/layout-util.c:3023 src/view-file/view-file.c:651
 #, c-format
 msgid "_Reset mark %d"
 msgstr "重置标记 %d (_R)"
 
-#: src/layout_util.c:3023
+#: src/layout-util.c:3023
 #, c-format
 msgid "Reset mark %d"
 msgstr "重置标记 %d"
 
-#: src/layout_util.c:3024 src/layout_util.c:3025 src/view_file/view_file.c:652
+#: src/layout-util.c:3024 src/layout-util.c:3025 src/view-file/view-file.c:652
 #, c-format
 msgid "_Toggle mark %d"
 msgstr "切换标记 %d (_T)"
 
-#: src/layout_util.c:3024 src/layout_util.c:3025
+#: src/layout-util.c:3024 src/layout-util.c:3025
 #, c-format
 msgid "Toggle mark %d"
 msgstr "切换标记 %d"
 
-#: src/layout_util.c:3026
+#: src/layout-util.c:3026
 #, c-format
 msgid "Se_lect mark %d"
 msgstr "选择标记 %d (_l)"
 
-#: src/layout_util.c:3026 src/layout_util.c:3027
+#: src/layout-util.c:3026 src/layout-util.c:3027
 #, c-format
 msgid "Select mark %d"
 msgstr "选择标记 %d"
 
-#: src/layout_util.c:3027 src/view_file/view_file.c:653
+#: src/layout-util.c:3027 src/view-file/view-file.c:653
 #, c-format
 msgid "_Select mark %d"
 msgstr "选择标记 %d (_S)"
 
-#: src/layout_util.c:3028 src/view_file/view_file.c:654
+#: src/layout-util.c:3028 src/view-file/view-file.c:654
 #, c-format
 msgid "_Add mark %d"
 msgstr "添加标记 %d (_A)"
 
-#: src/layout_util.c:3028
+#: src/layout-util.c:3028
 #, c-format
 msgid "Add mark %d"
 msgstr "添加标记 %d"
 
-#: src/layout_util.c:3029 src/view_file/view_file.c:655
+#: src/layout-util.c:3029 src/view-file/view-file.c:655
 #, c-format
 msgid "_Intersection with mark %d"
 msgstr "与标记 %d 共有的 (_I)"
 
-#: src/layout_util.c:3029
+#: src/layout-util.c:3029
 #, c-format
 msgid "Intersection with mark %d"
 msgstr "与标记 %d 共有的"
 
-#: src/layout_util.c:3030 src/view_file/view_file.c:656
+#: src/layout-util.c:3030 src/view-file/view-file.c:656
 #, c-format
 msgid "_Unselect mark %d"
 msgstr "取消选择标记 %d (_U)"
 
-#: src/layout_util.c:3030
+#: src/layout-util.c:3030
 #, c-format
 msgid "Unselect mark %d"
 msgstr "取消选择标记 %d"
 
-#: src/layout_util.c:3031
+#: src/layout-util.c:3031
 #, c-format
 msgid "_Filter mark %d"
 msgstr "过滤为标记 %d (_F)"
 
-#: src/layout_util.c:3031
+#: src/layout-util.c:3031
 #, c-format
 msgid "Filter mark %d"
 msgstr "过滤为标记 %d"
 
-#: src/layout_util.c:3646
+#: src/layout-util.c:3646
 #, c-format
 msgid "Number of files with unsaved metadata: %d"
 msgstr "未保存元数据的文件数: %d"
 
-#: src/layout_util.c:3652
+#: src/layout-util.c:3652
 msgid "No unsaved metadata"
 msgstr "没有未保存的元数据"
 
-#: src/layout_util.c:3700
+#: src/layout-util.c:3700
 #, c-format
 msgid ""
 "Image profile: %s\n"
@@ -4375,15 +4375,15 @@ msgstr ""
 "图像色彩配置: %s\n"
 "屏幕色彩配置: %s"
 
-#: src/layout_util.c:3708
+#: src/layout-util.c:3708
 msgid "Click to enable color management"
 msgstr "点击启用色彩管理"
 
-#: src/layout_util.c:3713
+#: src/layout-util.c:3713
 msgid "Color profiles not supported"
 msgstr "色彩配置文件不支持"
 
-#: src/layout_util.c:3735
+#: src/layout-util.c:3735
 #, c-format
 msgid "Input _%d: %s"
 msgstr "输入 _%d: %s"
@@ -4912,13 +4912,13 @@ msgid ""
 "  Error code: "
 msgstr ""
 
-#: src/options.c:246 src/ui_bookmark.c:571
+#: src/options.c:246 src/ui-bookmark.c:571
 #, fuzzy
 msgid "Desktop"
 msgstr "桌面文件"
 
 #: src/options.c:267 src/search.c:2338 src/search.c:2342 src/search.c:3627
-#: src/search.c:3631 src/view_file/view_file.c:915
+#: src/search.c:3631 src/view-file/view-file.c:915
 #, fuzzy
 msgid "Mark "
 msgstr "标记 %d"
@@ -5401,7 +5401,7 @@ msgstr "新建窗口 (_w)"
 msgid "Search"
 msgstr "搜索:"
 
-#: src/preferences.c:803 src/toolbar.c:93 src/ui_pathsel.c:1049
+#: src/preferences.c:803 src/toolbar.c:93 src/ui-pathsel.c:1049
 #: src/utilops.c:3189
 msgid "New folder"
 msgstr "新建文件夹"
@@ -6030,7 +6030,7 @@ msgstr "文件类型"
 msgid "Enabled"
 msgstr "可写的"
 
-#: src/preferences.c:2773 src/view_file/view_file.c:1227
+#: src/preferences.c:2773 src/view-file/view-file.c:1227
 msgid "Class"
 msgstr "类型"
 
@@ -7312,39 +7312,39 @@ msgstr ""
 msgid "Marks"
 msgstr "显示标记"
 
-#: src/secure_save.c:407
+#: src/secure-save.c:407
 msgid "Cannot read the file"
 msgstr "不能读取文件"
 
-#: src/secure_save.c:409
+#: src/secure-save.c:409
 msgid "Cannot get file status"
 msgstr "不能获取文件状态"
 
-#: src/secure_save.c:411
+#: src/secure-save.c:411
 msgid "Cannot access the file"
 msgstr "不能打开文件"
 
-#: src/secure_save.c:413
+#: src/secure-save.c:413
 msgid "Cannot create temp file"
 msgstr "不能创建临时文件"
 
-#: src/secure_save.c:415
+#: src/secure-save.c:415
 msgid "Cannot rename the file"
 msgstr "不能重命名文件"
 
-#: src/secure_save.c:417
+#: src/secure-save.c:417
 msgid "File saving disabled by option"
 msgstr "文件保存被选项禁止"
 
-#: src/secure_save.c:419
+#: src/secure-save.c:419
 msgid "Out of memory"
 msgstr "内存不够"
 
-#: src/secure_save.c:421
+#: src/secure-save.c:421
 msgid "Cannot write the file"
 msgstr "不能写入文件"
 
-#: src/secure_save.c:425
+#: src/secure-save.c:425
 msgid "Secure file saving error"
 msgstr "安全文件保存出错"
 
@@ -7437,61 +7437,61 @@ msgstr ""
 msgid "Using system Trash bin"
 msgstr ""
 
-#: src/ui_bookmark.c:137 src/ui_bookmark.c:200
+#: src/ui-bookmark.c:137 src/ui-bookmark.c:200
 msgid "New Bookmark"
 msgstr "新书签"
 
-#: src/ui_bookmark.c:283 src/ui_bookmark.c:289
+#: src/ui-bookmark.c:283 src/ui-bookmark.c:289
 msgid "Edit Bookmark"
 msgstr "编辑书签"
 
-#: src/ui_bookmark.c:304
+#: src/ui-bookmark.c:304
 msgid "Path:"
 msgstr "路径:"
 
-#: src/ui_bookmark.c:313
+#: src/ui-bookmark.c:313
 msgid "Icon:"
 msgstr "图标:"
 
-#: src/ui_bookmark.c:319
+#: src/ui-bookmark.c:319
 msgid "Select icon"
 msgstr "选择图标"
 
-#: src/ui_bookmark.c:412
+#: src/ui-bookmark.c:412
 msgid "_Properties..."
 msgstr "属性(_P)"
 
-#: src/ui_bookmark.c:418
+#: src/ui-bookmark.c:418
 msgid "_Remove"
 msgstr "移去(_R)"
 
-#: src/ui_fileops.c:88
+#: src/ui-fileops.c:88
 msgid ""
 "One or more filenames are not encoded with the preferred locale character "
 "set.\n"
 msgstr "一个或多个文件名未以推荐的 locale 字符集进行编码.\n"
 
-#: src/ui_fileops.c:89
+#: src/ui-fileops.c:89
 #, c-format
 msgid "Operations on, and display of these files with %s may not succeed.\n"
 msgstr "操作开启, 但是这些文件和 %s 显示或许不成功.\n"
 
-#: src/ui_fileops.c:91
+#: src/ui-fileops.c:91
 msgid ""
 "If your filenames are not encoded in utf-8, try setting the environment "
 "variable G_BROKEN_FILENAMES=1\n"
 msgstr ""
 
-#: src/ui_fileops.c:93
+#: src/ui-fileops.c:93
 #, c-format
 msgid "It appears G_BROKEN_FILENAMES is set to %s\n"
 msgstr ""
 
-#: src/ui_fileops.c:95
+#: src/ui-fileops.c:95
 msgid "It appears G_BROKEN_FILENAMES is not set\n"
 msgstr ""
 
-#: src/ui_fileops.c:97
+#: src/ui-fileops.c:97
 #, c-format
 msgid ""
 "The locale appears to be set to \"%s\"\n"
@@ -7500,7 +7500,7 @@ msgstr ""
 "The locale appears to be set to \"%s\"\n"
 "(set by the LANG environment variable)\n"
 
-#: src/ui_fileops.c:102
+#: src/ui-fileops.c:102
 msgid ""
 "\n"
 "Preferred encoding appears to be UTF-8, however the file:\n"
@@ -7508,39 +7508,39 @@ msgstr ""
 "\n"
 "最佳编码应该是 UTF-8, 但这个文件:\n"
 
-#: src/ui_fileops.c:103 src/ui_fileops.c:106 src/ui_fileops.c:108
+#: src/ui-fileops.c:103 src/ui-fileops.c:106 src/ui-fileops.c:108
 msgid "[name not displayable]"
 msgstr "[名称不能显示]"
 
-#: src/ui_fileops.c:106
+#: src/ui-fileops.c:106
 #, c-format
 msgid "\"%s\" is encoded in valid UTF-8."
 msgstr "\"%s\" 被正确编码为 UTF-8 ."
 
-#: src/ui_fileops.c:108
+#: src/ui-fileops.c:108
 #, c-format
 msgid "\"%s\" is not encoded in valid UTF-8."
 msgstr "\"%s\" 不是有效的 UTF-8 编码."
 
-#: src/ui_fileops.c:113 src/ui_fileops.c:118
+#: src/ui-fileops.c:113 src/ui-fileops.c:118
 msgid "Filename encoding locale mismatch"
 msgstr "文件名 locale 编码不匹配"
 
-#: src/ui_fileops.c:1047
+#: src/ui-fileops.c:1047
 #, fuzzy
 msgid "Web file download failed"
 msgstr "文件删除失败"
 
-#: src/ui_fileops.c:1110
+#: src/ui-fileops.c:1110
 msgid "Download web file"
 msgstr ""
 
-#: src/ui_fileops.c:1112
+#: src/ui-fileops.c:1112
 #, fuzzy
 msgid "Downloading "
 msgstr "载入缩略图..."
 
-#: src/ui_help.c:117
+#: src/ui-help.c:117
 #, c-format
 msgid ""
 "Unable to load:\n"
@@ -7549,30 +7549,30 @@ msgstr ""
 "不能载入:\n"
 "%s"
 
-#: src/ui_pathsel.c:432
+#: src/ui-pathsel.c:432
 #, c-format
 msgid "A file with name %s already exists."
 msgstr "文件 %s 已存在."
 
-#: src/ui_pathsel.c:433 src/ui_pathsel.c:439 src/utilops.c:2373
+#: src/ui-pathsel.c:433 src/ui-pathsel.c:439 src/utilops.c:2373
 #: src/utilops.c:2400 src/utilops.c:2866
 msgid "Rename failed"
 msgstr "重命名失败"
 
-#: src/ui_pathsel.c:438
+#: src/ui-pathsel.c:438
 #, c-format
 msgid "Failed to rename %s to %s."
 msgstr "重命名 %s 为 %s 失败."
 
-#: src/ui_pathsel.c:634 src/ui_pathsel.c:642
+#: src/ui-pathsel.c:634 src/ui-pathsel.c:642
 msgid "_Rename"
 msgstr "重命名 (_R)"
 
-#: src/ui_pathsel.c:636 src/ui_pathsel.c:646
+#: src/ui-pathsel.c:636 src/ui-pathsel.c:646
 msgid "Add _Bookmark"
 msgstr "添加书签 (_B)"
 
-#: src/ui_pathsel.c:759
+#: src/ui-pathsel.c:759
 #, c-format
 msgid ""
 "Unable to create folder:\n"
@@ -7581,31 +7581,31 @@ msgstr ""
 "不能创建文件夹:\n"
 "%s"
 
-#: src/ui_pathsel.c:760
+#: src/ui-pathsel.c:760
 msgid "Error creating folder"
 msgstr "创建文件夹出错"
 
-#: src/ui_pathsel.c:980
+#: src/ui-pathsel.c:980
 msgid "All Files"
 msgstr "所有文件"
 
-#: src/ui_pathsel.c:1052
+#: src/ui-pathsel.c:1052
 msgid "Show hidden"
 msgstr "显示隐藏文件"
 
-#: src/ui_pathsel.c:1137
+#: src/ui-pathsel.c:1137
 msgid "Filter:"
 msgstr "过滤器:"
 
-#: src/ui_tabcomp.c:945
+#: src/ui-tabcomp.c:945
 msgid "Select path"
 msgstr "选择路径"
 
-#: src/ui_tabcomp.c:967
+#: src/ui-tabcomp.c:967
 msgid "All files"
 msgstr "所有文件"
 
-#: src/uri_utils.c:43
+#: src/uri-utils.c:43
 #, fuzzy
 msgid "Drag and Drop failed"
 msgstr "外部命令失败"
@@ -7967,111 +7967,111 @@ msgstr "创建文件夹吗?"
 msgid "Cannot create folder:"
 msgstr "不能创建文件夹"
 
-#: src/view_dir.c:411
+#: src/view-dir.c:411
 msgid "_Copy"
 msgstr "复制 (_C)"
 
-#: src/view_dir.c:413
+#: src/view-dir.c:413
 msgid "_Move"
 msgstr "移动 (_M)"
 
-#: src/view_dir.c:714
+#: src/view-dir.c:714
 msgid "_Up to parent"
 msgstr "上一级目录"
 
-#: src/view_dir.c:719
+#: src/view-dir.c:719
 msgid "_Slideshow"
 msgstr "播片 (_S)"
 
-#: src/view_dir.c:721
+#: src/view-dir.c:721
 msgid "Slideshow recursive"
 msgstr "播片 包括子目录"
 
-#: src/view_dir.c:725
+#: src/view-dir.c:725
 msgid "Find _duplicates..."
 msgstr "查找重复项"
 
-#: src/view_dir.c:727
+#: src/view-dir.c:727
 msgid "Find duplicates recursive..."
 msgstr "查找重复项 包括子目录..."
 
-#: src/view_dir.c:732
+#: src/view-dir.c:732
 msgid "_New folder..."
 msgstr "新建文件夹...(_N)"
 
-#: src/view_dir.c:749
+#: src/view-dir.c:749
 msgid "View as _List"
 msgstr "以列表形式查看"
 
-#: src/view_dir.c:752
+#: src/view-dir.c:752
 msgid "View as _Tree"
 msgstr "以树状形式查看"
 
-#: src/view_dir.c:765
+#: src/view-dir.c:765
 msgid "Show _hidden files"
 msgstr "显示隐藏文件 (_h)"
 
-#: src/view_dir.c:768 src/view_file/view_file.c:779
+#: src/view-dir.c:768 src/view-file/view-file.c:779
 msgid "Re_fresh"
 msgstr "刷新 (_f)"
 
-#: src/view_file/view_file.c:749
+#: src/view-file/view-file.c:749
 #, fuzzy
 msgid "Images as List"
 msgstr "以列表查看图像"
 
-#: src/view_file/view_file.c:752
+#: src/view-file/view-file.c:752
 #, fuzzy
 msgid "Images as Icons"
 msgstr "以图标查看图像"
 
-#: src/view_file/view_file.c:758
+#: src/view-file/view-file.c:758
 msgid "Show _thumbnails"
 msgstr "显示缩略图 (_t)"
 
-#: src/view_file/view_file.c:904
+#: src/view-file/view-file.c:904
 #, fuzzy
 msgid "Mark text"
 msgstr "标记 %d"
 
-#: src/view_file/view_file.c:907
+#: src/view-file/view-file.c:907
 #, fuzzy
 msgid "Set mark text"
 msgstr "设置标记 %d"
 
-#: src/view_file/view_file.c:908
+#: src/view-file/view-file.c:908
 #, fuzzy
 msgid "This will set or clear the mark text."
 msgstr "将会移除回收站内容."
 
-#: src/view_file/view_file.c:1185
+#: src/view-file/view-file.c:1185
 msgid "Use regular expressions"
 msgstr ""
 
-#: src/view_file/view_file.c:1215
+#: src/view-file/view-file.c:1215
 msgid "Case"
 msgstr ""
 
-#: src/view_file/view_file.c:1217
+#: src/view-file/view-file.c:1217
 #, fuzzy
 msgid "Case sensitive"
 msgstr "大小写区别排序"
 
-#: src/view_file/view_file.c:1234
+#: src/view-file/view-file.c:1234
 #, fuzzy
 msgid "Select Class filter"
 msgstr "选择文件夹"
 
-#: src/view_file/view_file.c:1789
+#: src/view-file/view-file.c:1789
 #, fuzzy
 msgid "Loading meta..."
 msgstr "载入缩略图..."
 
-#: src/view_file/view_file_icon.c:2153 src/view_file/view_file_list.c:930
+#: src/view-file/view-file-icon.c:2153 src/view-file/view-file-list.c:930
 msgid " [NO GROUPING]"
 msgstr " [不编组]"
 
-#: src/view_file/view_file_list.c:515
+#: src/view-file/view-file-list.c:515
 #, c-format
 msgid ""
 "Invalid file name:\n"
@@ -8080,16 +8080,16 @@ msgstr ""
 "无效文件名:\n"
 "%s"
 
-#: src/view_file/view_file_list.c:516
+#: src/view-file/view-file-list.c:516
 msgid "Error renaming file"
 msgstr "重命名文件出错"
 
-#: src/view_file/view_file_list.c:2232
+#: src/view-file/view-file-list.c:2232
 #, fuzzy
 msgid "NameStars"
 msgstr "名称"
 
-#: src/view_file/view_file_list.c:2236
+#: src/view-file/view-file-list.c:2236
 #, fuzzy
 msgid "Stars"
 msgstr "开始数字"

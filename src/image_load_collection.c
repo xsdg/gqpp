@@ -20,11 +20,11 @@
 
 #include "main.h"
 #include "image-load.h"
-#include "image_load_collection.h"
+#include "image-load-collection.h"
 
 #include "cache.h"
 #include "misc.h"
-#include "ui_fileops.h"
+#include "ui-fileops.h"
 
 typedef struct _ImageLoaderCOLLECTION ImageLoaderCOLLECTION;
 struct _ImageLoaderCOLLECTION {

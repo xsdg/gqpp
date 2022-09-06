@@ -53,7 +53,7 @@
 #include "main.h"
 
 #include "image-load.h"
-#include "image_load_jpegxl.h"
+#include "image-load-jpegxl.h"
 
 #ifdef HAVE_JPEGXL
 

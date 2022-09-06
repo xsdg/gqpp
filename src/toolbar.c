@@ -23,11 +23,11 @@
 #include "toolbar.h"
 
 #include "collect.h"
-#include "layout_util.h"
-#include "ui_fileops.h"
-#include "ui_misc.h"
-#include "pixbuf_util.h"
-#include "ui_menu.h"
+#include "layout-util.h"
+#include "ui-fileops.h"
+#include "ui-misc.h"
+#include "pixbuf-util.h"
+#include "ui-menu.h"
 #include "editors.h"
 
 /** Implements the user-definable toolbar function
@@ -66,7 +66,7 @@ struct _UseableToolbarItems
 };
 
 /** @FIXME Should be created by program from menu_entries[]
- * in layout_util.c */
+ * in layout-util.c */
  /** The user is limited to selecting from this list of menu items
   * plus any desktop files
   **/

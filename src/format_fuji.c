@@ -33,8 +33,8 @@
 #include "intl.h"
 
 #include "main.h"
-#include "format_fuji.h"
-#include "format_raw.h"
+#include "format-fuji.h"
+#include "format-raw.h"
 
 #include "exif.h"
 

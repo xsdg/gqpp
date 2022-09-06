@@ -22,11 +22,11 @@
 #include "window.h"
 
 #include "misc.h"
-#include "pixbuf_util.h"
-#include "ui_fileops.h"
-#include "ui_help.h"
-#include "ui_misc.h"
-#include "ui_utildlg.h"
+#include "pixbuf-util.h"
+#include "ui-fileops.h"
+#include "ui-help.h"
+#include "ui-misc.h"
+#include "ui-utildlg.h"
 
 GtkWidget *window_new(GtkWindowType type, const gchar *role, const gchar *icon,
 		      const gchar *icon_file, const gchar *subtitle)

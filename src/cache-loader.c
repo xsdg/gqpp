@@ -27,7 +27,7 @@
 #include "exif.h"
 #include "metadata.h"
 #include "md5-util.h"
-#include "ui_fileops.h"
+#include "ui-fileops.h"
 
 
 static gboolean cache_loader_phase2_idle_cb(gpointer data);

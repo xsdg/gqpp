@@ -20,7 +20,7 @@
 
 #include "main.h"
 #include "misc.h"
-#include "ui_fileops.h"
+#include "ui-fileops.h"
 
 #include <errno.h>
 #include <langinfo.h>

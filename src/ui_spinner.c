@@ -29,10 +29,10 @@
 #include <gtk/gtk.h>
 
 #include "main.h"
-#include "ui_spinner.h"
+#include "ui-spinner.h"
 
 #include "ui_icons.h"
-#include "ui_fileops.h"
+#include "ui-fileops.h"
 
 
 #define SPINNER_FRAMES 19

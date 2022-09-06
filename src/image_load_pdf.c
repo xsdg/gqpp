@@ -21,7 +21,7 @@
 #include "main.h"
 
 #include "image-load.h"
-#include "image_load_pdf.h"
+#include "image-load-pdf.h"
 
 #ifdef HAVE_PDF
 #include <poppler/glib/poppler.h>

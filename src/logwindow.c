@@ -22,8 +22,8 @@
 #include "logwindow.h"
 
 #include "misc.h"
-#include "secure_save.h"
-#include "ui_misc.h"
+#include "secure-save.h"
+#include "ui-misc.h"
 #include "window.h"
 
 #include <gdk/gdkkeysyms.h>

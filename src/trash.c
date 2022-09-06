@@ -25,8 +25,8 @@
 
 #include "editors.h"
 #include "filedata.h"
-#include "ui_fileops.h"
-#include "ui_misc.h"
+#include "ui-fileops.h"
+#include "ui-misc.h"
 
 
 /*

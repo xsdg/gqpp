@@ -21,7 +21,7 @@
 #include "main.h"
 
 #include "image-load.h"
-#include "image_load_j2k.h"
+#include "image-load-j2k.h"
 
 #include "misc.h"
 

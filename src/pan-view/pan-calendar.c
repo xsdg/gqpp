@@ -28,7 +28,7 @@
 #include "pan-util.h"
 #include "pan-view.h"
 #include "pan-view-filter.h"
-#include "pixbuf_util.h"
+#include "pixbuf-util.h"
 
 #define PAN_CAL_POPUP_COLOR 220, 220, 220
 #define PAN_CAL_POPUP_ALPHA 255

@@ -20,7 +20,7 @@
  */
 
 #include "main.h"
-#include "jpeg_parser.h"
+#include "jpeg-parser.h"
 
 gboolean jpeg_segment_find(const guchar *data, guint size,
 			    guchar app_marker, const gchar *magic, guint magic_len,

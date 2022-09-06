@@ -21,7 +21,7 @@
 #include "main.h"
 
 #include "image-load.h"
-#include "image_load_djvu.h"
+#include "image-load-djvu.h"
 
 #ifdef HAVE_DJVU
 

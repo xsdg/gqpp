@@ -20,20 +20,20 @@
  */
 
 #include "main.h"
-#include "advanced_exif.h"
+#include "advanced-exif.h"
 
 #include "exif.h"
 #include "metadata.h"
 #include "filedata.h"
-#include "history_list.h"
-#include "layout_util.h"
+#include "history-list.h"
+#include "layout-util.h"
 #include "misc.h"
-#include "ui_misc.h"
+#include "ui-misc.h"
 #include "window.h"
 #include "dnd.h"
 
-/** @FIXME not needed when bar_exif.c is improved */
-#include "bar_exif.h"
+/** @FIXME not needed when bar-exif.c is improved */
+#include "bar-exif.h"
 
 #include <math.h>
 

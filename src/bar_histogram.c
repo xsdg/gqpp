@@ -20,14 +20,14 @@
  */
 
 #include "main.h"
-#include "bar_histogram.h"
+#include "bar-histogram.h"
 
 #include "bar.h"
 #include "metadata.h"
 #include "filedata.h"
 #include "menu.h"
-#include "ui_menu.h"
-#include "ui_misc.h"
+#include "ui-menu.h"
+#include "ui-misc.h"
 #include "histogram.h"
 #include "rcfile.h"
 
@@ -230,7 +230,7 @@ static GtkWidget *bar_pane_histogram_menu(PaneHistogramData *phd)
 
 	menu = popup_menu_short_lived();
 
-	/* use the same strings as in layout_util.c */
+	/* use the same strings as in layout-util.c */
 	menu_item_add_radio(menu, _("Histogram on _Red"),   GINT_TO_POINTER(HCHAN_R), (channel == HCHAN_R), G_CALLBACK(bar_pane_histogram_popup_channels_cb), phd);
 	menu_item_add_radio(menu, _("Histogram on _Green"), GINT_TO_POINTER(HCHAN_G), (channel == HCHAN_G), G_CALLBACK(bar_pane_histogram_popup_channels_cb), phd);
 	menu_item_add_radio(menu, _("Histogram on _Blue"),  GINT_TO_POINTER(HCHAN_B), (channel == HCHAN_B), G_CALLBACK(bar_pane_histogram_popup_channels_cb), phd);

@@ -51,7 +51,7 @@
 #include "main.h"
 
 #include "image-load.h"
-#include "image_load_psd.h"
+#include "image-load-psd.h"
 
 typedef struct _ImageLoaderPSD ImageLoaderPSD;
 struct _ImageLoaderPSD {

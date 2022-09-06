@@ -20,7 +20,7 @@
  */
 
 #include "main.h"
-#include "view_file_icon.h"
+#include "view-file-icon.h"
 
 #include "bar.h"
 #include "cellrenderericon.h"
@@ -32,18 +32,18 @@
 #include "img-view.h"
 #include "filedata.h"
 #include "layout.h"
-#include "layout_image.h"
+#include "layout-image.h"
 #include "menu.h"
 #include "metadata.h"
 #include "misc.h"
 #include "thumb.h"
 #include "utilops.h"
-#include "ui_fileops.h"
-#include "ui_menu.h"
-#include "ui_misc.h"
-#include "ui_tree_edit.h"
-#include "uri_utils.h"
-#include "view_file.h"
+#include "ui-fileops.h"
+#include "ui-menu.h"
+#include "ui-misc.h"
+#include "ui-tree-edit.h"
+#include "uri-utils.h"
+#include "view-file.h"
 
 #include <gdk/gdkkeysyms.h> /* for keyboard values */
 
@@ -1801,7 +1801,7 @@ FileData *vficon_thumb_next_fd(ViewFile *vf)
 		{
 		FileData *fd = work->data;
 
-		// Note: This implementation differs from view_file_list.c because sidecar files are not
+		// Note: This implementation differs from view-file-list.c because sidecar files are not
 		// distinct list elements here, as they are in the list view.
 		if (!fd->thumb_pixbuf) return fd;
 		}
