@@ -21,7 +21,7 @@
 #include "main.h"
 
 #include "image-load.h"
-#include "image_load_zxscr.h"
+#include "image-load-zxscr.h"
 
 typedef struct _ImageLoaderZXSCR ImageLoaderZXSCR;
 struct _ImageLoaderZXSCR {

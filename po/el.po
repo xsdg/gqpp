@@ -88,34 +88,34 @@ msgstr ""
 msgid "Tethered photography"
 msgstr ""
 
-#: src/advanced_exif.c:437 src/cache_maint.c:1773 src/preferences.c:133
+#: src/advanced-exif.c:437 src/cache-maint.c:1773 src/preferences.c:133
 #: src/preferences.c:2851 src/search.c:2281 src/search.c:3610
 msgid "Metadata"
 msgstr "Μεταδεδομένα"
 
-#: src/advanced_exif.c:493 src/preferences.c:2756
+#: src/advanced-exif.c:493 src/preferences.c:2756
 msgid "Description"
 msgstr "Περιγραφή"
 
-#: src/advanced_exif.c:494
+#: src/advanced-exif.c:494
 msgid "Value"
 msgstr "Τιμή"
 
-#: src/advanced_exif.c:495 src/desktop_file.c:631 src/dupe.c:3978
+#: src/advanced-exif.c:495 src/desktop-file.c:631 src/dupe.c:3978
 #: src/dupe.c:4703 src/dupe.c:5287 src/osd.c:38 src/search.c:3694
-#: src/utilops.c:507 src/view_file/view_file_list.c:2228
+#: src/utilops.c:507 src/view-file/view-file-list.c:2228
 msgid "Name"
 msgstr "Όνομα"
 
-#: src/advanced_exif.c:496
+#: src/advanced-exif.c:496
 msgid "Tag"
 msgstr "Ετικέτα"
 
-#: src/advanced_exif.c:497
+#: src/advanced-exif.c:497
 msgid "Format"
 msgstr "Μορφή"
 
-#: src/advanced_exif.c:498
+#: src/advanced-exif.c:498
 msgid "Elements"
 msgstr "Στοιχεία"
 
@@ -161,7 +161,7 @@ msgstr "Τοποθεσία και GPS"
 msgid "Copyright"
 msgstr "Πνευματικά Δικαιώματα"
 
-#: src/bar.c:214 src/bar_gps.c:1023
+#: src/bar.c:214 src/bar-gps.c:1023
 msgid "GPS Map"
 msgstr "Χάρτης GPS"
 
@@ -169,11 +169,11 @@ msgstr "Χάρτης GPS"
 msgid "Move to _top"
 msgstr "Μετακίνηση _πάνω"
 
-#: src/bar.c:404 src/toolbar.c:225 src/ui_bookmark.c:414
+#: src/bar.c:404 src/toolbar.c:225 src/ui-bookmark.c:414
 msgid "Move _up"
 msgstr "Μετακίνηση _πάνω"
 
-#: src/bar.c:405 src/toolbar.c:226 src/ui_bookmark.c:416
+#: src/bar.c:405 src/toolbar.c:226 src/ui-bookmark.c:416
 msgid "Move _down"
 msgstr "Μετακίνηση _κάτω"
 
@@ -196,95 +196,95 @@ msgstr "Απομάκρυνση"
 msgid "Add Pane"
 msgstr "Προσθήκη εικόνας"
 
-#: src/bar_comment.c:236
+#: src/bar-comment.c:236
 msgid "Add text to selected files"
 msgstr "Προσθήκη κειμένου στα επιλεγμένα αρχεία"
 
-#: src/bar_comment.c:237
+#: src/bar-comment.c:237
 msgid "Replace existing text in selected files"
 msgstr "Αντικατάσταση του υπάρχοντος κειμένου, στα επιλεγμένα αρχεία"
 
-#: src/bar_exif.c:225
+#: src/bar-exif.c:225
 msgid "<empty label, fixme>"
 msgstr ""
 
-#: src/bar_exif.c:562 src/bar_exif.c:572
+#: src/bar-exif.c:562 src/bar-exif.c:572
 msgid "Configure entry"
 msgstr "Ρύθμιση των στοιχείων"
 
-#: src/bar_exif.c:562 src/bar_exif.c:572 src/bar_exif.c:660
+#: src/bar-exif.c:562 src/bar-exif.c:572 src/bar-exif.c:660
 msgid "Add entry"
 msgstr "Προσθήκη στοιχείων"
 
-#: src/bar_exif.c:578
+#: src/bar-exif.c:578
 msgid "Key:"
 msgstr "Πλήκτρο:"
 
-#: src/bar_exif.c:587
+#: src/bar-exif.c:587
 msgid "Title:"
 msgstr "Τίτλος:"
 
-#: src/bar_exif.c:596
+#: src/bar-exif.c:596
 msgid "Show only if set"
 msgstr "Εμφάνιση μόνο όταν ορίζεται"
 
-#: src/bar_exif.c:597
+#: src/bar-exif.c:597
 msgid "Editable (supported only for XMP)"
 msgstr "Επεξεργάσιμο (υποστηρίζεται μόνο για XMP)"
 
-#: src/bar_exif.c:646
+#: src/bar-exif.c:646
 #, c-format
 msgid "Configure \"%s\""
 msgstr "Ρύθμιση του \"%s\""
 
-#: src/bar_exif.c:647 src/bar_keywords.c:1369
+#: src/bar-exif.c:647 src/bar-keywords.c:1369
 #, c-format
 msgid "Remove \"%s\""
 msgstr "Απομάκρυνση του \"%s\""
 
-#: src/bar_exif.c:648
+#: src/bar-exif.c:648
 #, fuzzy, c-format
 msgid "Copy \"%s\""
 msgstr "Αντιγραφή"
 
-#: src/bar_exif.c:661
+#: src/bar-exif.c:661
 msgid "Show hidden entries"
 msgstr "Προβολή κρυφών στοιχείων"
 
-#: src/bar_gps.c:187
+#: src/bar-gps.c:187
 #, c-format
 msgid ""
 "\n"
 "Do you want to geocode image %s?"
 msgstr ""
 
-#: src/bar_gps.c:192
+#: src/bar-gps.c:192
 #, c-format
 msgid ""
 "\n"
 "Do you want to geocode %i images?"
 msgstr ""
 
-#: src/bar_gps.c:197
+#: src/bar-gps.c:197
 msgid ""
 "\n"
 "This image is already geocoded!"
 msgstr ""
 
-#: src/bar_gps.c:202
+#: src/bar-gps.c:202
 msgid ""
 "\n"
 "One image is already geocoded!"
 msgstr ""
 
-#: src/bar_gps.c:207
+#: src/bar-gps.c:207
 #, c-format
 msgid ""
 "\n"
 "%i Images are already geocoded!"
 msgstr ""
 
-#: src/bar_gps.c:212
+#: src/bar-gps.c:212
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -292,39 +292,39 @@ msgid ""
 "Position: %s \n"
 msgstr "Τοποθεσία: %s"
 
-#: src/bar_gps.c:214
+#: src/bar-gps.c:214
 #, fuzzy
 msgid "Geocode images"
 msgstr "Προφόρτωση της επόμενης εικόνας"
 
-#: src/bar_gps.c:218
+#: src/bar-gps.c:218
 #, fuzzy
 msgid "Write lat/long to meta-data?"
 msgstr "Εγγραφή μεταδεδομένων;"
 
-#: src/bar_gps.c:732
+#: src/bar-gps.c:732
 #, c-format
 msgid "Zoom %i"
 msgstr "Εστίαση %i"
 
-#: src/bar_gps.c:750
+#: src/bar-gps.c:750
 #, c-format
 msgid "Zoom level %i"
 msgstr "Μέγεθος εστίασης %i"
 
-#: src/bar_gps.c:755
+#: src/bar-gps.c:755
 msgid "Loading map"
 msgstr "Φόρτωση του χάρτη"
 
-#: src/bar_gps.c:821
+#: src/bar-gps.c:821
 msgid "Enable markers"
 msgstr "Ενεργοποίηση σημαδιών"
 
-#: src/bar_gps.c:823
+#: src/bar-gps.c:823
 msgid "Centre map on marker"
 msgstr "Κεντράρισμα του χάρτη στο σημάδι"
 
-#: src/bar_gps.c:845
+#: src/bar-gps.c:845
 msgid ""
 "Move map centre to marker\n"
 " is disabled"
@@ -332,7 +332,7 @@ msgstr ""
 "Το κεντράρισμα του χάρτη στο σημάδι\n"
 "είναι απενεργοποιημένο"
 
-#: src/bar_gps.c:850
+#: src/bar-gps.c:850
 msgid ""
 "Move map centre to marker\n"
 " is enabled"
@@ -340,184 +340,184 @@ msgstr ""
 "Το κεντράρισμα του χάρτη στο σημάδι\n"
 "είναι ενεργοποιημένο"
 
-#: src/bar_gps.c:854
+#: src/bar-gps.c:854
 #, fuzzy
 msgid "Map centering"
 msgstr "Κεντράρισμα του Χάρτη"
 
-#: src/bar_gps.c:959 src/menu.c:334 src/osd.c:42 src/preferences.c:2244
+#: src/bar-gps.c:959 src/menu.c:334 src/osd.c:42 src/preferences.c:2244
 msgid "Zoom"
 msgstr "Εστίαση"
 
-#: src/bar_gps.c:969
+#: src/bar-gps.c:969
 #, fuzzy
 msgid "Zoom level"
 msgstr "Μέγεθος εστίασης %i"
 
-#: src/bar_histogram.c:234 src/layout_util.c:2672
+#: src/bar-histogram.c:234 src/layout-util.c:2672
 msgid "Histogram on _Red"
 msgstr "Ιστόγ_ραμμα στο Κόκκινο"
 
-#: src/bar_histogram.c:235 src/layout_util.c:2673
+#: src/bar-histogram.c:235 src/layout-util.c:2673
 msgid "Histogram on _Green"
 msgstr "Ιστό_γραμμα στο Πράσινο"
 
-#: src/bar_histogram.c:236 src/layout_util.c:2674
+#: src/bar-histogram.c:236 src/layout-util.c:2674
 msgid "Histogram on _Blue"
 msgstr "Ιστόγραμμα στο Μπ_λε"
 
-#: src/bar_histogram.c:237 src/layout_util.c:2675
+#: src/bar-histogram.c:237 src/layout-util.c:2675
 msgid "_Histogram on RGB"
 msgstr "_Ιστόγραμμα στο RGB"
 
-#: src/bar_histogram.c:238 src/layout_util.c:2676
+#: src/bar-histogram.c:238 src/layout-util.c:2676
 msgid "Histogram on _Value"
 msgstr "Ιστόγραμμα στην _Τιμή"
 
-#: src/bar_histogram.c:242 src/layout_util.c:2680
+#: src/bar-histogram.c:242 src/layout-util.c:2680
 msgid "Li_near Histogram"
 msgstr "Γραμ_μικό Ιστόγραμμα"
 
-#: src/bar_histogram.c:243
+#: src/bar-histogram.c:243
 msgid "L_og Histogram"
 msgstr "Λ_ογαριθμικό Ιστόγραμμα"
 
-#: src/bar_keywords.c:490
+#: src/bar-keywords.c:490
 #, fuzzy
 msgid "Add selected keywords to selected files"
 msgstr "Προσθήκη λέξεων-κλειδιών στα επιλεγμένα αρχεία"
 
-#: src/bar_keywords.c:491
+#: src/bar-keywords.c:491
 #, fuzzy
 msgid "Replace existing keywords in selected files with selected keywords"
 msgstr "Αντικατάσταση των υπαρχόντων λέξεων-κλειδιών στα επιλεγμένα αρχεία"
 
-#: src/bar_keywords.c:962
+#: src/bar-keywords.c:962
 msgid "Edit keyword"
 msgstr "Επεξεργασία της λέξης-κλειδί"
 
-#: src/bar_keywords.c:962 src/bar_keywords.c:969 src/bar_keywords.c:1314
+#: src/bar-keywords.c:962 src/bar-keywords.c:969 src/bar-keywords.c:1314
 #, fuzzy
 msgid "New keyword"
 msgstr "Προσθήκη λέξης-κλειδί"
 
-#: src/bar_keywords.c:969
+#: src/bar-keywords.c:969
 msgid "Configure keyword"
 msgstr "Ρύθμιση της λέξης-κλειδί"
 
-#: src/bar_keywords.c:975
+#: src/bar-keywords.c:975
 msgid "Keyword:"
 msgstr "Λέξη-κλειδί:"
 
-#: src/bar_keywords.c:984
+#: src/bar-keywords.c:984
 msgid "Keyword type:"
 msgstr "Τύπος λέξης-κλειδί:"
 
-#: src/bar_keywords.c:986
+#: src/bar-keywords.c:986
 msgid "Active keyword"
 msgstr "Ενεργή λέξη-κλειδί"
 
-#: src/bar_keywords.c:989
+#: src/bar-keywords.c:989
 msgid "Helper"
 msgstr "Βοηθός"
 
-#: src/bar_keywords.c:1063
+#: src/bar-keywords.c:1063
 msgid "This will disconnect all Marks Keywords connections"
 msgstr ""
 
-#: src/bar_keywords.c:1065
+#: src/bar-keywords.c:1065
 #, fuzzy
 msgid "Marks Keywords"
 msgstr "Λέξεις-κλειδιά"
 
-#: src/bar_keywords.c:1338
+#: src/bar-keywords.c:1338
 #, fuzzy, c-format
 msgid "Add \"%s\" to all selected images"
 msgstr "Προσθήκη λέξης-κλειδί σε όλες τις επιλεγμένες εικόνες"
 
-#: src/bar_keywords.c:1344
+#: src/bar-keywords.c:1344
 #, c-format
 msgid "Hide \"%s\""
 msgstr "Απόκρυψη του \"%s\""
 
-#: src/bar_keywords.c:1351
+#: src/bar-keywords.c:1351
 #, c-format
 msgid "Mark %d"
 msgstr "Σημάδι %d"
 
-#: src/bar_keywords.c:1359
+#: src/bar-keywords.c:1359
 #, c-format
 msgid "Connect \"%s\" to mark"
 msgstr "Σύνδεση του \"%s\" στο σημάδι"
 
-#: src/bar_keywords.c:1366
+#: src/bar-keywords.c:1366
 #, c-format
 msgid "Edit \"%s\""
 msgstr "Επεξεργασία του \"%s\""
 
-#: src/bar_keywords.c:1376
+#: src/bar-keywords.c:1376
 #, c-format
 msgid "Disconnect \"%s\" from mark %s"
 msgstr "Αποσύνδεση του \"%s\" από το σημάδι %s"
 
-#: src/bar_keywords.c:1383
+#: src/bar-keywords.c:1383
 msgid "Disconnect all Mark Keyword connections"
 msgstr ""
 
-#: src/bar_keywords.c:1394 src/bar_keywords.c:1408
+#: src/bar-keywords.c:1394 src/bar-keywords.c:1408
 msgid "Expand checked"
 msgstr "Επέκταση των τσεκαρισμένων"
 
-#: src/bar_keywords.c:1395 src/bar_keywords.c:1409
+#: src/bar-keywords.c:1395 src/bar-keywords.c:1409
 msgid "Collapse unchecked"
 msgstr "Σύμπτυξη των αποτσεκαρισμένων"
 
-#: src/bar_keywords.c:1396 src/bar_keywords.c:1410
+#: src/bar-keywords.c:1396 src/bar-keywords.c:1410
 msgid "Hide unchecked"
 msgstr "Απόκρυψη των αποτσεκαρισμένων"
 
-#: src/bar_keywords.c:1397
+#: src/bar-keywords.c:1397
 msgid "Revert all hidden"
 msgstr ""
 
-#: src/bar_keywords.c:1399 src/dupe.c:3991
+#: src/bar-keywords.c:1399 src/dupe.c:3991
 msgid "Show all"
 msgstr "Εμφάνιση όλων"
 
-#: src/bar_keywords.c:1400
+#: src/bar-keywords.c:1400
 #, fuzzy
 msgid "Collapse all"
 msgstr "Σύμπτυξη των αποτσεκαρισμένων"
 
-#: src/bar_keywords.c:1401
+#: src/bar-keywords.c:1401
 msgid "Revert"
 msgstr ""
 
-#: src/bar_keywords.c:1405
+#: src/bar-keywords.c:1405
 msgid "On any change"
 msgstr "Με κάθε αλλαγή"
 
-#: src/bar_keywords.c:1901
+#: src/bar-keywords.c:1901
 #, fuzzy, c-format
 msgid "Error: Unable to write keywords list to: %s\n"
 msgstr "Αδυναμία εγγραφής κατάστιχων ιστορικού στο: %s\n"
 
-#: src/bar_rating.c:167
+#: src/bar-rating.c:167
 #, fuzzy
 msgid "Rejected"
 msgstr "Επαναφορά της επιλογής"
 
-#: src/bar_rating.c:171
+#: src/bar-rating.c:171
 #, fuzzy
 msgid "Unrated"
 msgstr "μη βαθμονομημένο"
 
-#: src/bar_sort.c:435
+#: src/bar-sort.c:435
 #, fuzzy
 msgid "Sort Manager Operations"
 msgstr "Διαχειριστής Ταξινόμησης"
 
-#: src/bar_sort.c:438
+#: src/bar-sort.c:438
 msgid ""
 "Additional operations utilising plugins\n"
 "may be included by setting:\n"
@@ -527,7 +527,7 @@ msgid ""
 "in the plugin file."
 msgstr ""
 
-#: src/bar_sort.c:506
+#: src/bar-sort.c:506
 #, c-format
 msgid ""
 "The collection:\n"
@@ -538,11 +538,11 @@ msgstr ""
 "%s\n"
 "υπάρχει ήδη."
 
-#: src/bar_sort.c:507
+#: src/bar-sort.c:507
 msgid "Collection exists"
 msgstr "Η συλλογή υπάρχει"
 
-#: src/bar_sort.c:521 src/collect.c:1216 src/collect-dlg.c:93
+#: src/bar-sort.c:521 src/collect.c:1216 src/collect-dlg.c:93
 #, c-format
 msgid ""
 "Failed to save the collection:\n"
@@ -551,55 +551,55 @@ msgstr ""
 "Αποτυχία αποθήκευσης της συλλογής:\n"
 "%s"
 
-#: src/bar_sort.c:522 src/collect.c:1217 src/collect-dlg.c:94
+#: src/bar-sort.c:522 src/collect.c:1217 src/collect-dlg.c:94
 msgid "Save Failed"
 msgstr "Η Αποθήκευση Απέτυχε"
 
-#: src/bar_sort.c:557 src/bar_sort.c:737
+#: src/bar-sort.c:557 src/bar-sort.c:737
 msgid "Add Bookmark"
 msgstr "Προσθήκη Σελιδοδείκτη"
 
-#: src/bar_sort.c:561
+#: src/bar-sort.c:561
 msgid "Add Collection"
 msgstr "Προσθήκη Συλλογής"
 
-#: src/bar_sort.c:578 src/shortcuts.c:118 src/ui_bookmark.c:295
+#: src/bar-sort.c:578 src/shortcuts.c:118 src/ui-bookmark.c:295
 msgid "Name:"
 msgstr "Όνομα:"
 
-#: src/bar_sort.c:658
+#: src/bar-sort.c:658
 msgid "Sort Manager"
 msgstr "Διαχειριστής Ταξινόμησης"
 
-#: src/bar_sort.c:667 src/pan-view/pan-view.c:1909 src/ui_pathsel.c:1100
+#: src/bar-sort.c:667 src/pan-view/pan-view.c:1909 src/ui-pathsel.c:1100
 msgid "Folders"
 msgstr "Φάκελοι"
 
-#: src/bar_sort.c:668 src/options.c:248
+#: src/bar-sort.c:668 src/options.c:248
 msgid "Collections"
 msgstr "Συλλογές"
 
-#: src/bar_sort.c:677 src/collect-table.c:82 src/dupe.c:151 src/img-view.c:92
+#: src/bar-sort.c:677 src/collect-table.c:82 src/dupe.c:151 src/img-view.c:92
 #: src/pan-view/pan-view.c:99 src/preferences.c:693 src/preferences.c:804
 #: src/search.c:354 src/toolbar.c:94 src/utilops.c:2350
 msgid "Copy"
 msgstr "Αντιγραφή"
 
-#: src/bar_sort.c:681 src/collect-table.c:83 src/dupe.c:152 src/img-view.c:93
+#: src/bar-sort.c:681 src/collect-table.c:83 src/dupe.c:152 src/img-view.c:93
 #: src/pan-view/pan-view.c:100 src/preferences.c:695 src/preferences.c:805
 #: src/search.c:355 src/toolbar.c:95 src/utilops.c:2300
 msgid "Move"
 msgstr "Μετακίνηση"
 
-#: src/bar_sort.c:722
+#: src/bar-sort.c:722
 msgid "Add image"
 msgstr "Προσθήκη εικόνας"
 
-#: src/bar_sort.c:725
+#: src/bar-sort.c:725
 msgid "Add selection"
 msgstr "Προσθήκη συλλογής"
 
-#: src/bar_sort.c:740
+#: src/bar-sort.c:740
 msgid "Undo last image"
 msgstr "Αναίρεση της τελευταίας εικόνας"
 
@@ -612,109 +612,109 @@ msgstr ""
 "σφάλμα κατά την αποθήκευση των δεδομένων μικροαποθήκευσης sim: %s\n"
 "σφάλμα: %s\n"
 
-#: src/cache_maint.c:72
+#: src/cache-maint.c:72
 #, fuzzy
 msgid "Geeqie: Creating sim data..."
 msgstr "Ανάγνωση των δεδομένων της εικόνας..."
 
-#: src/cache_maint.c:78
+#: src/cache-maint.c:78
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "Εκκαθάριση των μικρογραφιών..."
 
-#: src/cache_maint.c:94
+#: src/cache-maint.c:94
 #, fuzzy
 msgid "Exit Geeqie Cache Maintenance"
 msgstr "Διατήρηση Μικροαποθήκευσης"
 
-#: src/cache_maint.c:111
+#: src/cache-maint.c:111
 #, fuzzy
 msgid "Geeqie: Cleaning thumbs..."
 msgstr "Εκκαθάριση των μικρογραφιών..."
 
-#: src/cache_maint.c:184 src/cache_maint.c:684 src/cache_maint.c:787
-#: src/cache_maint.c:984 src/cache_maint.c:1455 src/editors.c:1245
+#: src/cache-maint.c:184 src/cache-maint.c:684 src/cache-maint.c:787
+#: src/cache-maint.c:984 src/cache-maint.c:1455 src/editors.c:1245
 #: src/preferences.c:3043
 msgid "done"
 msgstr "έγινε"
 
-#: src/cache_maint.c:374
+#: src/cache-maint.c:374
 msgid "Removing old metadata..."
 msgstr "Αφαίρεση των πεπαλαιωμένων μεταδεδομένων..."
 
-#: src/cache_maint.c:378
+#: src/cache-maint.c:378
 msgid "Clearing cached thumbnails..."
 msgstr "Εκκαθάριση όλων των μικρογραφιών..."
 
-#: src/cache_maint.c:382 src/cache_maint.c:1157
+#: src/cache-maint.c:382 src/cache-maint.c:1157
 msgid "Removing old thumbnails..."
 msgstr "Αφαίρεση των πεπαλαιωμένων μικρογραφιών..."
 
-#: src/cache_maint.c:385 src/cache_maint.c:1160
+#: src/cache-maint.c:385 src/cache-maint.c:1160
 msgid "Maintenance"
 msgstr "Διατήρηση"
 
-#: src/cache_maint.c:698 src/cache_maint.c:1334
+#: src/cache-maint.c:698 src/cache-maint.c:1334
 #, fuzzy
 msgid "stopped"
 msgstr "διακόπηκε από το χρήστη"
 
-#: src/cache_maint.c:817 src/cache_maint.c:1486 src/cache_maint.c:1616
+#: src/cache-maint.c:817 src/cache-maint.c:1486 src/cache-maint.c:1616
 #: src/preferences.c:3125
 msgid "Invalid folder"
 msgstr "Μη έγκυρος φάκελος"
 
-#: src/cache_maint.c:818 src/cache_maint.c:1487 src/cache_maint.c:1617
+#: src/cache-maint.c:818 src/cache-maint.c:1487 src/cache-maint.c:1617
 #: src/preferences.c:3126
 msgid "The specified folder can not be found."
 msgstr "Ο καθορισμένος φάκελος δε μπορεί να βρεθεί."
 
-#: src/cache_maint.c:886 src/cache_maint.c:900 src/cache_maint.c:1753
+#: src/cache-maint.c:886 src/cache-maint.c:900 src/cache-maint.c:1753
 msgid "Create thumbnails"
 msgstr "Δημιουργία μικρογραφιών"
 
-#: src/cache_maint.c:894 src/cache_maint.c:1167 src/cache_maint.c:1536
-#: src/cache_maint.c:1655 src/preferences.c:3164
+#: src/cache-maint.c:894 src/cache-maint.c:1167 src/cache-maint.c:1536
+#: src/cache-maint.c:1655 src/preferences.c:3164
 msgid "S_tart"
 msgstr "Έναρ_ξη"
 
-#: src/cache_maint.c:907 src/cache_maint.c:1549 src/cache_maint.c:1665
+#: src/cache-maint.c:907 src/cache-maint.c:1549 src/cache-maint.c:1665
 #: src/preferences.c:3177 src/preferences.c:3526
 msgid "Folder:"
 msgstr "Φάκελος:"
 
-#: src/cache_maint.c:910 src/cache_maint.c:1552 src/cache_maint.c:1668
+#: src/cache-maint.c:910 src/cache-maint.c:1552 src/cache-maint.c:1668
 #: src/preferences.c:3180
 msgid "Select folder"
 msgstr "Επιλογή φακέλου"
 
-#: src/cache_maint.c:914 src/preferences.c:3184
+#: src/cache-maint.c:914 src/preferences.c:3184
 msgid "Include subfolders"
 msgstr "Να συμπεριληφθούν και οι υποφάκελοι"
 
-#: src/cache_maint.c:915
+#: src/cache-maint.c:915
 msgid "Store thumbnails local to source images"
 msgstr "Αποθήκευση των μικρογραφιών, τοπικά, στις πηγαίες εικόνες"
 
-#: src/cache_maint.c:924 src/cache_maint.c:1176 src/cache_maint.c:1562
+#: src/cache-maint.c:924 src/cache-maint.c:1176 src/cache-maint.c:1562
 #: src/preferences.c:3192
 msgid "click start to begin"
 msgstr "πάτησε το «Έναρξη» για να ξεκινήσεις"
 
-#: src/cache_maint.c:1096 src/editors.c:1171
+#: src/cache-maint.c:1096 src/editors.c:1171
 msgid "running..."
 msgstr "εκτελείται..."
 
-#: src/cache_maint.c:1152
+#: src/cache-maint.c:1152
 msgid "Clearing thumbnails..."
 msgstr "Εκκαθάριση των μικρογραφιών..."
 
-#: src/cache_maint.c:1233 src/cache_maint.c:1236 src/cache_maint.c:1729
-#: src/cache_maint.c:1748
+#: src/cache-maint.c:1233 src/cache-maint.c:1236 src/cache-maint.c:1729
+#: src/cache-maint.c:1748
 msgid "Clear cache"
 msgstr "Εκκαθάριση της μικροαποθήκευσης"
 
-#: src/cache_maint.c:1237
+#: src/cache-maint.c:1237
 #, fuzzy
 msgid ""
 "This will remove all thumbnails and sim. files\n"
@@ -723,105 +723,105 @@ msgstr ""
 "Αυτό θα απομακρύνει όλες τις μικρογραφίες που έχουν αποθηκευθεί στο δίσκο.\n"
 "Να συνεχίσω;"
 
-#: src/cache_maint.c:1282
+#: src/cache-maint.c:1282
 #, c-format
 msgid "Location: %s"
 msgstr "Τοποθεσία: %s"
 
-#: src/cache_maint.c:1531
+#: src/cache-maint.c:1531
 #, fuzzy
 msgid "Create sim. files"
 msgstr "Αδυναμία δημιουργίας προσωρινού αρχείου"
 
-#: src/cache_maint.c:1542
+#: src/cache-maint.c:1542
 #, fuzzy
 msgid "Create sim. files recursively"
 msgstr "Αποτύπωση των μικρογραφιών ενός συγκεκριμένου φακέλου."
 
-#: src/cache_maint.c:1650 src/cache_maint.c:1784
+#: src/cache-maint.c:1650 src/cache-maint.c:1784
 #, fuzzy
 msgid "Background cache maintenance"
 msgstr "Διατήρηση Μικροαποθήκευσης"
 
-#: src/cache_maint.c:1658
+#: src/cache-maint.c:1658
 msgid ""
 "Recursively delete orphaned thumbnails\n"
 "and .sim files, and create new\n"
 "thumbnails and .sim files"
 msgstr ""
 
-#: src/cache_maint.c:1702
+#: src/cache-maint.c:1702
 msgid "Cache Maintenance"
 msgstr "Διατήρηση Μικροαποθήκευσης"
 
-#: src/cache_maint.c:1714
+#: src/cache-maint.c:1714
 msgid "Cache and Data Maintenance"
 msgstr "Διατήρηση Μικροαποθήκευσης και Δεδομένων"
 
-#: src/cache_maint.c:1718
+#: src/cache-maint.c:1718
 #, fuzzy
 msgid "Geeqie thumbnail and sim. cache"
 msgstr "Κοινή αποθήκευση των μικρογραφιών"
 
-#: src/cache_maint.c:1724 src/cache_maint.c:1743 src/cache_maint.c:1779
+#: src/cache-maint.c:1724 src/cache-maint.c:1743 src/cache-maint.c:1779
 msgid "Clean up"
 msgstr "Ξεκαθάρισμα"
 
-#: src/cache_maint.c:1727
+#: src/cache-maint.c:1727
 #, fuzzy
 msgid "Remove orphaned or outdated thumbnails and sim. files."
 msgstr "Αφαίρεση των ορφανών και των παλιών μικρογραφιών."
 
-#: src/cache_maint.c:1732
+#: src/cache-maint.c:1732
 #, fuzzy
 msgid "Delete all cached data."
 msgstr "Διαγραφή όλων των αποθηκευμένων μικρογραφιών."
 
-#: src/cache_maint.c:1735
+#: src/cache-maint.c:1735
 msgid "Shared thumbnail cache"
 msgstr "Κοινή αποθήκευση των μικρογραφιών"
 
-#: src/cache_maint.c:1746
+#: src/cache-maint.c:1746
 msgid "Remove orphaned or outdated thumbnails."
 msgstr "Αφαίρεση των ορφανών και των παλιών μικρογραφιών."
 
-#: src/cache_maint.c:1751
+#: src/cache-maint.c:1751
 msgid "Delete all cached thumbnails."
 msgstr "Διαγραφή όλων των αποθηκευμένων μικρογραφιών."
 
-#: src/cache_maint.c:1757
+#: src/cache-maint.c:1757
 msgid "Render"
 msgstr "Αποτύπωση"
 
-#: src/cache_maint.c:1760
+#: src/cache-maint.c:1760
 msgid "Render thumbnails for a specific folder."
 msgstr "Αποτύπωση των μικρογραφιών ενός συγκεκριμένου φακέλου."
 
-#: src/cache_maint.c:1763
+#: src/cache-maint.c:1763
 #, fuzzy
 msgid "File similarity cache"
 msgstr "Εκκαθάριση της μικροαποθήκευσης"
 
-#: src/cache_maint.c:1767
+#: src/cache-maint.c:1767
 #, fuzzy
 msgid "Create"
 msgstr "δημιουργικό"
 
-#: src/cache_maint.c:1770
+#: src/cache-maint.c:1770
 #, fuzzy
 msgid "Create sim. files recursively."
 msgstr "Αποτύπωση των μικρογραφιών ενός συγκεκριμένου φακέλου."
 
-#: src/cache_maint.c:1782
+#: src/cache-maint.c:1782
 msgid "Remove orphaned keywords and comments."
 msgstr "Αφαίρεση των ορφανών λέξεων-κλειδιών, και των σχολίων."
 
-#: src/cache_maint.c:1788
+#: src/cache-maint.c:1788
 #, fuzzy
 msgid "Select"
 msgstr "_Επιλογή"
 
-#: src/cache_maint.c:1791
+#: src/cache-maint.c:1791
 msgid "Run cache maintenance as a background job."
 msgstr ""
 
@@ -944,15 +944,15 @@ msgstr "Μετονομασία"
 
 #: src/collect-table.c:85 src/collect-table.c:1038 src/dupe.c:154
 #: src/dupe.c:3573 src/img-view.c:95 src/img-view.c:96 src/img-view.c:1430
-#: src/layout_image.c:815 src/pan-view/pan-view.c:102
+#: src/layout-image.c:815 src/pan-view/pan-view.c:102
 #: src/pan-view/pan-view.c:2417 src/search.c:357 src/search.c:1191
-#: src/view_file/view_file.c:717
+#: src/view-file/view-file.c:717
 #, fuzzy
 msgid "Move to Trash"
 msgstr "Μετακίνηση _πάνω"
 
 #: src/collect-table.c:86 src/dupe.c:161 src/img-view.c:98 src/img-view.c:136
-#: src/layout_util.c:2493 src/pan-view/pan-view.c:103 src/search.c:364
+#: src/layout-util.c:2493 src/pan-view/pan-view.c:103 src/search.c:364
 msgid "Close window"
 msgstr "Κλείσιμο του παράθυρου"
 
@@ -961,22 +961,22 @@ msgstr "Κλείσιμο του παράθυρου"
 msgid "View"
 msgstr "Προβολή"
 
-#: src/collect-table.c:89 src/dupe.c:163 src/layout_util.c:2586
+#: src/collect-table.c:89 src/dupe.c:163 src/layout-util.c:2586
 #: src/search.c:366
 msgid "View in new window"
 msgstr "Προβολή σε νέο παράθυρο"
 
 #: src/collect-table.c:90 src/collect-table.c:1006 src/dupe.c:158
-#: src/dupe.c:3532 src/dupe.c:3870 src/layout_util.c:2490 src/preferences.c:810
+#: src/dupe.c:3532 src/dupe.c:3870 src/layout-util.c:2490 src/preferences.c:810
 #: src/search.c:360 src/search.c:1158 src/toolbar.c:101
-#: src/view_file/view_file.c:1087 src/view_file/view_file.c:1137
+#: src/view-file/view-file.c:1087 src/view-file/view-file.c:1137
 msgid "Select all"
 msgstr "Επιλογή όλων"
 
 #: src/collect-table.c:91 src/collect-table.c:1008 src/dupe.c:159
-#: src/dupe.c:166 src/dupe.c:3534 src/dupe.c:3872 src/layout_util.c:2491
+#: src/dupe.c:166 src/dupe.c:3534 src/dupe.c:3872 src/layout-util.c:2491
 #: src/preferences.c:811 src/search.c:361 src/search.c:1160 src/toolbar.c:102
-#: src/view_file/view_file.c:1142
+#: src/view-file/view-file.c:1142
 msgid "Select none"
 msgstr "Επιλογή κανενός"
 
@@ -1050,23 +1050,23 @@ msgstr "%s, %d εικόνες (%s, %d)"
 msgid "%s, %d images"
 msgstr "%s, %d εικόνες"
 
-#: src/collect-table.c:261 src/layout_util.c:1935 src/layout_util.c:3672
+#: src/collect-table.c:261 src/layout-util.c:1935 src/layout-util.c:3672
 msgid "Empty"
 msgstr "Κενό"
 
 #: src/collect-table.c:275 src/dupe.c:2172 src/search.c:435
-#: src/view_file/view_file.c:1376 src/view_file/view_file.c:1485
+#: src/view-file/view-file.c:1376 src/view-file/view-file.c:1485
 msgid "Loading thumbs..."
 msgstr "Φόρτωση των μικρογραφιών..."
 
 #: src/collect-table.c:988 src/dupe.c:3527 src/dupe.c:3865
-#: src/layout_util.c:2471 src/search.c:1153
+#: src/layout-util.c:2471 src/search.c:1153
 msgid "_View"
 msgstr "_Προβολή"
 
 #: src/collect-table.c:990 src/dupe.c:3529 src/dupe.c:3867 src/img-view.c:1417
-#: src/layout_image.c:787 src/pan-view/pan-view.c:2397 src/search.c:1155
-#: src/view_file/view_file.c:698
+#: src/layout-image.c:787 src/pan-view/pan-view.c:2397 src/search.c:1155
+#: src/view-file/view-file.c:698
 msgid "View in _new window"
 msgstr "Προβολή σε _νέο παράθυρο"
 
@@ -1092,51 +1092,51 @@ msgid "Invert selection"
 msgstr "Αντιστροφή της επιλογής"
 
 #: src/collect-table.c:1024 src/dupe.c:3559 src/img-view.c:1421
-#: src/layout_image.c:801 src/layout_util.c:2483 src/pan-view/pan-view.c:2403
-#: src/search.c:1177 src/view_file/view_file.c:704
+#: src/layout-image.c:801 src/layout-util.c:2483 src/pan-view/pan-view.c:2403
+#: src/search.c:1177 src/view-file/view-file.c:704
 msgid "_Copy..."
 msgstr "Αντιγρα_φή..."
 
 #: src/collect-table.c:1026 src/dupe.c:3561 src/img-view.c:1422
-#: src/layout_image.c:803 src/layout_util.c:2484 src/pan-view/pan-view.c:2405
-#: src/search.c:1179 src/view_file/view_file.c:706
+#: src/layout-image.c:803 src/layout-util.c:2484 src/pan-view/pan-view.c:2405
+#: src/search.c:1179 src/view-file/view-file.c:706
 msgid "_Move..."
 msgstr "Μετα_κίνηση..."
 
 #: src/collect-table.c:1028 src/dupe.c:3563 src/img-view.c:1423
-#: src/layout_image.c:805 src/layout_util.c:2485 src/pan-view/pan-view.c:2407
-#: src/search.c:1181 src/view_dir.c:735 src/view_file/view_file.c:708
+#: src/layout-image.c:805 src/layout-util.c:2485 src/pan-view/pan-view.c:2407
+#: src/search.c:1181 src/view-dir.c:735 src/view-file/view-file.c:708
 msgid "_Rename..."
 msgstr "_Μετονομασία..."
 
 #: src/collect-table.c:1030 src/dupe.c:3565 src/img-view.c:1424
-#: src/search.c:1183 src/view_dir.c:738
+#: src/search.c:1183 src/view-dir.c:738
 msgid "_Copy path"
 msgstr "_Αντιγραφή διαδρομής"
 
 #: src/collect-table.c:1032 src/dupe.c:3567 src/img-view.c:1425
-#: src/search.c:1185 src/view_dir.c:741
+#: src/search.c:1185 src/view-dir.c:741
 #, fuzzy
 msgid "_Copy path unquoted"
 msgstr "_Αντιγραφή διαδρομής"
 
 #: src/collect-table.c:1037 src/dupe.c:3572 src/img-view.c:1429
-#: src/layout_image.c:814 src/layout_util.c:2486 src/layout_util.c:2487
-#: src/layout_util.c:2488 src/pan-view/pan-view.c:2416 src/search.c:1190
-#: src/view_file/view_file.c:716
+#: src/layout-image.c:814 src/layout-util.c:2486 src/layout-util.c:2487
+#: src/layout-util.c:2488 src/pan-view/pan-view.c:2416 src/search.c:1190
+#: src/view-file/view-file.c:716
 #, fuzzy
 msgid "Move to Trash..."
 msgstr "Μετακίνηση..."
 
 #: src/collect-table.c:1041 src/dupe.c:3576 src/img-view.c:1433
-#: src/layout_image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
-#: src/view_dir.c:744 src/view_file/view_file.c:720
+#: src/layout-image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
+#: src/view-dir.c:744 src/view-file/view-file.c:720
 msgid "_Delete..."
 msgstr "_Διαγραφή..."
 
 #: src/collect-table.c:1042 src/dupe.c:3577 src/img-view.c:1434
-#: src/layout_image.c:820 src/pan-view/pan-view.c:2421 src/search.c:1195
-#: src/ui_pathsel.c:644 src/view_file/view_file.c:721
+#: src/layout-image.c:820 src/pan-view/pan-view.c:2421 src/search.c:1195
+#: src/ui-pathsel.c:644 src/view-file/view-file.c:721
 msgid "_Delete"
 msgstr "_Διαγραφή"
 
@@ -1144,16 +1144,16 @@ msgstr "_Διαγραφή"
 msgid "Randomize"
 msgstr "Τυχαιοποίηση"
 
-#: src/collect-table.c:1050 src/view_dir.c:759 src/view_file/view_file.c:746
+#: src/collect-table.c:1050 src/view-dir.c:759 src/view-file/view-file.c:746
 msgid "_Sort"
 msgstr "_Ταξινόμηση"
 
-#: src/collect-table.c:1053 src/view_file/view_file.c:762
+#: src/collect-table.c:1053 src/view-file/view-file.c:762
 msgid "Show filename _text"
 msgstr "Εμφάνιση _κειμένου με το όνομα"
 
-#: src/collect-table.c:1055 src/view_file/view_file.c:770
-#: src/view_file/view_file.c:774
+#: src/collect-table.c:1055 src/view-file/view-file.c:770
+#: src/view-file/view-file.c:774
 #, fuzzy
 msgid "Show star rating"
 msgstr "Ταξινόμηση κατά ημερομηνία"
@@ -1166,12 +1166,12 @@ msgstr "Απο_θήκευση της συλλογής"
 msgid "Save collection _as..."
 msgstr "Αποθήκευση της συλλογής _ως..."
 
-#: src/collect-table.c:1063 src/layout_util.c:2526
-#: src/view_file/view_file.c:731
+#: src/collect-table.c:1063 src/layout-util.c:2526
+#: src/view-file/view-file.c:731
 msgid "_Find duplicates..."
 msgstr "Ανα_ζήτηση πανομοιότυπων..."
 
-#: src/collect-table.c:1065 src/dupe.c:3556 src/layout_util.c:2528
+#: src/collect-table.c:1065 src/dupe.c:3556 src/layout-util.c:2528
 #: src/search.c:1174
 msgid "Print..."
 msgstr "Εκτύπωση..."
@@ -1193,7 +1193,7 @@ msgid "_Skip folders"
 msgstr "_Παράλειψη φακέλων"
 
 #: src/collect-table.c:2248 src/dupe.c:4972 src/img-view.c:1600
-#: src/view_dir.c:431
+#: src/view-dir.c:431
 msgid "Cancel"
 msgstr "Ακύρωση"
 
@@ -1218,23 +1218,23 @@ msgstr "Καθρεπτισμός"
 msgid "warning"
 msgstr ""
 
-#: src/desktop_file.c:83 src/desktop_file.c:95 src/desktop_file.c:101
+#: src/desktop-file.c:83 src/desktop-file.c:95 src/desktop-file.c:101
 msgid "Can't save"
 msgstr "Αδυναμία αποθήκευσης"
 
-#: src/desktop_file.c:83
+#: src/desktop-file.c:83
 msgid "Please specify file name."
 msgstr "Παρακαλώ προσδιόρισε το όνομα του αρχείου."
 
-#: src/desktop_file.c:95
+#: src/desktop-file.c:95
 msgid "Could not create directory"
 msgstr "Αδυναμία δημιουργίας του καταλόγου"
 
-#: src/desktop_file.c:191 src/desktop_file.c:650
+#: src/desktop-file.c:191 src/desktop-file.c:650
 msgid "Desktop file"
 msgstr "Αρχείο desktop"
 
-#: src/desktop_file.c:301 src/ui_pathsel.c:494
+#: src/desktop-file.c:301 src/ui-pathsel.c:494
 #, c-format
 msgid ""
 "Unable to delete file:\n"
@@ -1243,17 +1243,17 @@ msgstr ""
 "Αποτυχία διαγραφής του αρχείου:\n"
 "%s"
 
-#: src/desktop_file.c:302 src/ui_pathsel.c:495 src/utilops.c:2177
+#: src/desktop-file.c:302 src/ui-pathsel.c:495 src/utilops.c:2177
 #: src/utilops.c:2213 src/utilops.c:2735
 msgid "File deletion failed"
 msgstr "Η διαγραφή απέτυχε"
 
-#: src/desktop_file.c:346 src/desktop_file.c:354 src/ui_pathsel.c:537
-#: src/ui_pathsel.c:545
+#: src/desktop-file.c:346 src/desktop-file.c:354 src/ui-pathsel.c:537
+#: src/ui-pathsel.c:545
 msgid "Delete file"
 msgstr "Διαγραφή αρχείου"
 
-#: src/desktop_file.c:352 src/ui_pathsel.c:543
+#: src/desktop-file.c:352 src/ui-pathsel.c:543
 #, c-format
 msgid ""
 "About to delete the file:\n"
@@ -1262,25 +1262,25 @@ msgstr ""
 "Πρόκειται να διαγράψεις το αρχείο:\n"
 " %s"
 
-#: src/desktop_file.c:384
+#: src/desktop-file.c:384
 msgid "new.desktop"
 msgstr "νέο.desktop"
 
-#: src/desktop_file.c:549
+#: src/desktop-file.c:549
 msgid "Plugins"
 msgstr ""
 
-#: src/desktop_file.c:618
+#: src/desktop-file.c:618
 #, fuzzy
 msgid "Disabled"
 msgstr "Εγγράψιμο"
 
-#: src/desktop_file.c:640
+#: src/desktop-file.c:640
 msgid "Hidden"
 msgstr "Κρυφό"
 
-#: src/desktop_file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/osd.c:39
-#: src/search.c:3698 src/ui_pathsel.c:1112 src/utilops.c:503
+#: src/desktop-file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/osd.c:39
+#: src/search.c:3698 src/ui-pathsel.c:1112 src/utilops.c:503
 msgid "Path"
 msgstr "Διαδρομή"
 
@@ -1290,7 +1290,7 @@ msgid "Delete"
 msgstr "Διαγραφή"
 
 #: src/dupe.c:157 src/preferences.c:2058 src/preferences.c:2090
-#: src/preferences.c:2218 src/search.c:362 src/view_file/view_file.c:1188
+#: src/preferences.c:2218 src/search.c:362 src/view-file/view-file.c:1188
 #: src/window.c:400
 #, fuzzy
 msgid "Clear"
@@ -1395,13 +1395,13 @@ msgid "Name case-insensitive"
 msgstr "Με διάκριση πεζών/κεφαλαίων"
 
 #: src/dupe.c:3980 src/dupe.c:4704 src/dupe.c:5287 src/osd.c:41
-#: src/preferences.c:2425 src/search.c:3695 src/view_file/view_file_list.c:2240
+#: src/preferences.c:2425 src/search.c:3695 src/view-file/view-file-list.c:2240
 msgid "Size"
 msgstr "Μέγεθος"
 
 #: src/dupe.c:3981 src/dupe.c:4705 src/dupe.c:5287 src/exif.c:334
 #: src/exif-common.c:916 src/osd.c:40 src/search.c:3696
-#: src/view_file/view_file_list.c:2244
+#: src/view-file/view-file-list.c:2244
 msgid "Date"
 msgstr "Ημερομηνία"
 
@@ -2458,8 +2458,8 @@ msgstr "ένα άλλο αρχείου προορισμού έχει το ίδι
 msgid "Error: Unable to write marks lists to: %s\n"
 msgstr "Αδυναμία εγγραφής κατάστιχων ιστορικού στο: %s\n"
 
-#: src/fullscreen.c:242 src/img-view.c:131 src/layout_util.c:2588
-#: src/layout_util.c:2589 src/layout_util.c:2590 src/pan-view/pan-view.c:120
+#: src/fullscreen.c:242 src/img-view.c:131 src/layout-util.c:2588
+#: src/layout-util.c:2589 src/layout-util.c:2590 src/pan-view/pan-view.c:120
 #: src/pan-view/pan-view.c:121 src/pan-view/pan-view.c:122
 #: src/preferences.c:2438
 msgid "Full screen"
@@ -2529,7 +2529,7 @@ msgstr "Γραμμικό Ιστόγραμμα στο RGB"
 msgid "Linear Histogram on value"
 msgstr "Γραμμικό Ιστόγραμμα στην τιμή"
 
-#: src/history_list.c:291
+#: src/history-list.c:291
 #, c-format
 msgid "Unable to write history lists to: %s\n"
 msgstr "Αδυναμία εγγραφής κατάστιχων ιστορικού στο: %s\n"
@@ -2539,36 +2539,36 @@ msgstr "Αδυναμία εγγραφής κατάστιχων ιστορικο�
 msgid " (Collection %s)"
 msgstr " (Συλλογή %s)"
 
-#: src/image_load_cr3.c:161 src/image_load_jpeg.c:164
+#: src/image-load-cr3.c:161 src/image-load-jpeg.c:164
 #, c-format
 msgid "Error interpreting JPEG image file (%s)"
 msgstr "Σφάλμα κατά την ερμηνεία του αρχείου εικόνας ΤζέιΠιΤζι (JPEG) (%s)"
 
-#: src/image_load_j2k.c:202
+#: src/image-load-j2k.c:202
 msgid "Could not open file for reading"
 msgstr ""
 
-#: src/image_load_j2k.c:212
+#: src/image-load-j2k.c:212
 msgid "Unknown jpeg2000 decoder type"
 msgstr ""
 
-#: src/image_load_j2k.c:219
+#: src/image-load-j2k.c:219
 msgid "Couldn't set parameters on decoder for file."
 msgstr ""
 
-#: src/image_load_j2k.c:227
+#: src/image-load-j2k.c:227
 msgid "Couldn't read JP2 header from file"
 msgstr ""
 
-#: src/image_load_j2k.c:233
+#: src/image-load-j2k.c:233
 msgid "Couldn't decode JP2 image in file"
 msgstr ""
 
-#: src/image_load_j2k.c:239
+#: src/image-load-j2k.c:239
 msgid "Couldn't decompress JP2 image in file"
 msgstr ""
 
-#: src/image_load_j2k.c:246
+#: src/image-load-j2k.c:246
 msgid "JP2 image not rgb"
 msgstr ""
 
@@ -2607,56 +2607,56 @@ msgstr "Προηγούμενη Εικόνα"
 msgid "Next"
 msgstr "Επόμενη Εικόνα"
 
-#: src/img-view.c:112 src/img-view.c:113 src/layout_util.c:2554
-#: src/layout_util.c:2555 src/pan-view/pan-view.c:108
+#: src/img-view.c:112 src/img-view.c:113 src/layout-util.c:2554
+#: src/layout-util.c:2555 src/pan-view/pan-view.c:108
 #: src/pan-view/pan-view.c:109 src/preferences.c:825 src/toolbar.c:116
 msgid "Zoom in"
 msgstr "Μεγέθυνση"
 
-#: src/img-view.c:114 src/layout_util.c:2556 src/layout_util.c:2557
+#: src/img-view.c:114 src/layout-util.c:2556 src/layout-util.c:2557
 #: src/pan-view/pan-view.c:110 src/preferences.c:826 src/toolbar.c:117
 msgid "Zoom out"
 msgstr "Σμίκρυνση"
 
 #: src/img-view.c:115 src/img-view.c:116 src/img-view.c:1406
-#: src/layout_image.c:776 src/layout_util.c:2560 src/layout_util.c:2561
+#: src/layout-image.c:776 src/layout-util.c:2560 src/layout-util.c:2561
 #: src/preferences.c:828 src/toolbar.c:119
 msgid "Zoom to fit"
 msgstr "Εστίαση ώστε να χωράει"
 
 #: src/img-view.c:117 src/img-view.c:118 src/img-view.c:119
-#: src/layout_util.c:2558 src/layout_util.c:2559 src/pan-view/pan-view.c:111
+#: src/layout-util.c:2558 src/layout-util.c:2559 src/pan-view/pan-view.c:111
 #: src/pan-view/pan-view.c:112 src/pan-view/pan-view.c:113
 #: src/preferences.c:827 src/toolbar.c:118
 msgid "Zoom 1:1"
 msgstr "Εστίαση 1:1"
 
-#: src/img-view.c:120 src/layout_util.c:2564 src/pan-view/pan-view.c:114
+#: src/img-view.c:120 src/layout-util.c:2564 src/pan-view/pan-view.c:114
 #: src/preferences.c:831 src/toolbar.c:122
 msgid "Zoom 2:1"
 msgstr "Εστίαση 2:1"
 
-#: src/img-view.c:121 src/layout_util.c:2565 src/pan-view/pan-view.c:115
+#: src/img-view.c:121 src/layout-util.c:2565 src/pan-view/pan-view.c:115
 #: src/preferences.c:832 src/toolbar.c:123
 msgid "Zoom 3:1"
 msgstr "Εστίαση 3:1"
 
-#: src/img-view.c:122 src/layout_util.c:2566 src/pan-view/pan-view.c:116
+#: src/img-view.c:122 src/layout-util.c:2566 src/pan-view/pan-view.c:116
 #: src/preferences.c:833 src/toolbar.c:124
 msgid "Zoom 4:1"
 msgstr "Εστίαση 4:1"
 
-#: src/img-view.c:123 src/layout_util.c:2569 src/layout_util.c:2585
+#: src/img-view.c:123 src/layout-util.c:2569 src/layout-util.c:2585
 #: src/pan-view/pan-view.c:117 src/preferences.c:836 src/toolbar.c:127
 msgid "Zoom 1:4"
 msgstr "Εστίαση 1:4"
 
-#: src/img-view.c:124 src/layout_util.c:2568 src/layout_util.c:2584
+#: src/img-view.c:124 src/layout-util.c:2568 src/layout-util.c:2584
 #: src/pan-view/pan-view.c:118
 msgid "Zoom 1:3"
 msgstr "Εστίαση 1:3"
 
-#: src/img-view.c:125 src/layout_util.c:2567 src/layout_util.c:2583
+#: src/img-view.c:125 src/layout-util.c:2567 src/layout-util.c:2583
 #: src/pan-view/pan-view.c:119 src/preferences.c:834 src/toolbar.c:125
 msgid "Zoom 1:2"
 msgstr "Εστίαση 1:2"
@@ -2671,11 +2671,11 @@ msgstr "Εστίαση ώστε να χωράει"
 msgid "Zoom fit window height"
 msgstr "Εστίαση ώστε να χωράει"
 
-#: src/img-view.c:128 src/layout_util.c:2632
+#: src/img-view.c:128 src/layout-util.c:2632
 msgid "Toggle slideshow"
 msgstr "Εναλλαγή της συνεχόμενης προβολής των εικόνων"
 
-#: src/img-view.c:129 src/layout_util.c:2597 src/preferences.c:842
+#: src/img-view.c:129 src/layout-util.c:2597 src/preferences.c:842
 #: src/toolbar.c:138
 msgid "Pause slideshow"
 msgstr "Παύση της συνεχόμενης προβολής των εικόνων"
@@ -2705,68 +2705,68 @@ msgstr "Έξοδος από λειτουργία _πλήρους οθόνης"
 msgid "Desaturate"
 msgstr "Φύση"
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1891
-#: src/layout_util.c:914 src/view_file/view_file.c:396
+#: src/img-view.c:672 src/layout-image.c:692 src/layout-image.c:1891
+#: src/layout-util.c:914 src/view-file/view-file.c:396
 #, fuzzy
 msgid "Cannot open archive file"
 msgstr "Αδυναμία μετονομασίας του αρχείου"
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1891
-#: src/layout_util.c:914 src/preferences.c:4219 src/preferences.c:4227
-#: src/view_file/view_file.c:396
+#: src/img-view.c:672 src/layout-image.c:692 src/layout-image.c:1891
+#: src/layout-util.c:914 src/preferences.c:4219 src/preferences.c:4227
+#: src/view-file/view-file.c:396
 #, fuzzy
 msgid "See the Log Window"
 msgstr "Παράθυρο Καταγραφών"
 
-#: src/img-view.c:1403 src/layout_image.c:773 src/layout_util.c:2554
-#: src/layout_util.c:2555 src/layout_util.c:2570 src/layout_util.c:2571
+#: src/img-view.c:1403 src/layout-image.c:773 src/layout-util.c:2554
+#: src/layout-util.c:2555 src/layout-util.c:2570 src/layout-util.c:2571
 #: src/pan-view/pan-view.c:2382
 msgid "Zoom _in"
 msgstr "Με_γέθυνση"
 
-#: src/img-view.c:1404 src/layout_image.c:774 src/layout_util.c:2556
-#: src/layout_util.c:2557 src/layout_util.c:2572 src/layout_util.c:2573
+#: src/img-view.c:1404 src/layout-image.c:774 src/layout-util.c:2556
+#: src/layout-util.c:2557 src/layout-util.c:2572 src/layout-util.c:2573
 #: src/pan-view/pan-view.c:2384
 msgid "Zoom _out"
 msgstr "Σ_μίκρυνση"
 
-#: src/img-view.c:1405 src/layout_image.c:775 src/layout_util.c:2558
-#: src/layout_util.c:2559 src/layout_util.c:2574 src/layout_util.c:2575
+#: src/img-view.c:1405 src/layout-image.c:775 src/layout-util.c:2558
+#: src/layout-util.c:2559 src/layout-util.c:2574 src/layout-util.c:2575
 #: src/pan-view/pan-view.c:2386
 msgid "Zoom _1:1"
 msgstr "Εστίαση _1:1"
 
-#: src/img-view.c:1418 src/layout_image.c:790
+#: src/img-view.c:1418 src/layout-image.c:790
 msgid "_Go to directory view"
 msgstr "_Μετάβαση στην προβολή καταλόγου"
 
-#: src/img-view.c:1446 src/img-view.c:1460 src/layout_image.c:832
-#: src/layout_image.c:846 src/layout_util.c:2632
+#: src/img-view.c:1446 src/img-view.c:1460 src/layout-image.c:832
+#: src/layout-image.c:846 src/layout-util.c:2632
 msgid "Toggle _slideshow"
 msgstr "Ενα_λλαγή της συνεχόμενης προβολής των εικόνων"
 
-#: src/img-view.c:1449 src/layout_image.c:835
+#: src/img-view.c:1449 src/layout-image.c:835
 msgid "Continue slides_how"
 msgstr "Συνέχιση της συνεχόμενης προβολής των εικόνων"
 
-#: src/img-view.c:1454 src/img-view.c:1462 src/layout_image.c:840
-#: src/layout_image.c:847
+#: src/img-view.c:1454 src/img-view.c:1462 src/layout-image.c:840
+#: src/layout-image.c:847
 msgid "Pause slides_how"
 msgstr "Παύση της συνεχόμενης προβολής των εικόνων"
 
-#: src/img-view.c:1468 src/layout_image.c:857 src/pan-view/pan-view.c:2474
+#: src/img-view.c:1468 src/layout-image.c:857 src/pan-view/pan-view.c:2474
 msgid "Exit _full screen"
 msgstr "Έξοδος από λειτουργία _πλήρους οθόνης"
 
-#: src/img-view.c:1472 src/layout_image.c:853 src/pan-view/pan-view.c:2478
+#: src/img-view.c:1472 src/layout-image.c:853 src/pan-view/pan-view.c:2478
 msgid "_Full screen"
 msgstr "_Πλήρης οθόνη"
 
-#: src/img-view.c:1476 src/layout_util.c:2493 src/pan-view/pan-view.c:2482
+#: src/img-view.c:1476 src/layout-util.c:2493 src/pan-view/pan-view.c:2482
 msgid "C_lose window"
 msgstr "Κ_λείσιμο του παραθύρου"
 
-#: src/layout.c:460 src/view_dir.c:758 src/view_file/view_file.c:743
+#: src/layout.c:460 src/view-dir.c:758 src/view-file/view-file.c:743
 msgid "Ascending"
 msgstr "Αύξουσα"
 
@@ -2853,7 +2853,7 @@ msgstr "Επιλογή φακέλου"
 msgid "[Pixel x,y coord]: (Pixel R,G,B value)"
 msgstr ""
 
-#: src/layout.c:1625 src/layout_config.c:67
+#: src/layout.c:1625 src/layout-config.c:67
 msgid "Tools"
 msgstr "Εργαλεία"
 
@@ -2902,1400 +2902,1400 @@ msgstr "Διάταξη"
 msgid "Invalid geometry\n"
 msgstr "Μη έγκυρη γεωμετρία\n"
 
-#: src/layout_config.c:67 src/ui_pathsel.c:1179
+#: src/layout-config.c:67 src/ui-pathsel.c:1179
 msgid "Files"
 msgstr "Αρχεία"
 
-#: src/layout_config.c:67 src/preferences.c:131 src/preferences.c:2242
+#: src/layout-config.c:67 src/preferences.c:131 src/preferences.c:2242
 #: src/search.c:2261 src/search.c:3606
 msgid "Image"
 msgstr "Εικόνα"
 
-#: src/layout_config.c:358
+#: src/layout-config.c:358
 msgid "(drag to change order)"
 msgstr "(σύρε για να αλλάξεις την σειρά)"
 
-#: src/layout_image.c:793 src/layout_util.c:2285 src/layout_util.c:2587
-#: src/view_file/view_file.c:701
+#: src/layout-image.c:793 src/layout-util.c:2285 src/layout-util.c:2587
+#: src/view-file/view-file.c:701
 #, fuzzy
 msgid "Open archive"
 msgstr "Άνοιγμα πρόσφατου"
 
-#: src/layout_image.c:807 src/layout_util.c:2532 src/pan-view/pan-view.c:2409
-#: src/view_file/view_file.c:710
+#: src/layout-image.c:807 src/layout-util.c:2532 src/pan-view/pan-view.c:2409
+#: src/view-file/view-file.c:710
 msgid "_Copy path to clipboard"
 msgstr "Αντι_γραφή της διαδρομής στο πρόχειρο"
 
-#: src/layout_image.c:808 src/layout_util.c:2533 src/pan-view/pan-view.c:2411
-#: src/view_file/view_file.c:712
+#: src/layout-image.c:808 src/layout-util.c:2533 src/pan-view/pan-view.c:2411
+#: src/view-file/view-file.c:712
 #, fuzzy
 msgid "_Copy path unquoted to clipboard"
 msgstr "Αντι_γραφή της διαδρομής στο πρόχειρο"
 
-#: src/layout_image.c:809
+#: src/layout-image.c:809
 #, fuzzy
 msgid "Copy _image to clipboard"
 msgstr "Αντιγραφή της διαδρομής στο πρόχειρο"
 
-#: src/layout_image.c:860 src/layout_util.c:2639
+#: src/layout-image.c:860 src/layout-util.c:2639
 msgid "GIF _animation"
 msgstr ""
 
-#: src/layout_image.c:864
+#: src/layout-image.c:864
 msgid "Hide file _list"
 msgstr "Κρύψιμο του _κατάστιχου των αρχείων"
 
-#: src/layout_image.c:2116
+#: src/layout-image.c:2116
 #, c-format
 msgid "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 msgstr "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 
-#: src/layout_image.c:2124
+#: src/layout-image.c:2124
 #, c-format
 msgid "[%*s,%*s]: RGB(---,---,---)"
 msgstr "[%*s,%*s]: RGB(---,---,---)"
 
-#: src/layout_util.c:244 src/layout_util.c:2618
+#: src/layout-util.c:244 src/layout-util.c:2618
 #, fuzzy
 msgid "Clear Marks"
 msgstr "Εκκαθάριση των απορριμμάτων"
 
-#: src/layout_util.c:591
+#: src/layout-util.c:591
 #, fuzzy
 msgid "Operation failed:\n"
 msgstr "Η διαγραφή απέτυχε"
 
-#: src/layout_util.c:594
+#: src/layout-util.c:594
 #, fuzzy
 msgid "No file extension\n"
 msgstr "Απενεργοποίηση των ελέγχων της επέκτασης των αρχείων"
 
-#: src/layout_util.c:596
+#: src/layout-util.c:596
 #, fuzzy
 msgid "Cannot create tmp file\n"
 msgstr "Αδυναμία δημιουργίας προσωρινού αρχείου"
 
-#: src/layout_util.c:598
+#: src/layout-util.c:598
 msgid "Operation not supported for filetype\n"
 msgstr ""
 
-#: src/layout_util.c:600
+#: src/layout-util.c:600
 #, fuzzy
 msgid "File is not writable\n"
 msgstr "ο πηγαίος κατάλογος δεν είναι εγγράψιμος"
 
-#: src/layout_util.c:602
+#: src/layout-util.c:602
 #, fuzzy
 msgid "Exiftran error\n"
 msgstr "Σφάλμα εκτύπωσης"
 
-#: src/layout_util.c:604
+#: src/layout-util.c:604
 #, fuzzy
 msgid "Mogrify error\n"
 msgstr "Καθρεπτισμός"
 
-#: src/layout_util.c:608
+#: src/layout-util.c:608
 #, fuzzy
 msgid "Image orientation"
 msgstr "Προσανατολισμός"
 
-#: src/layout_util.c:2080
+#: src/layout-util.c:2080
 #, c-format
 msgid "Error: window layout name: %s does not exist\n"
 msgstr ""
 
-#: src/layout_util.c:2154
+#: src/layout-util.c:2154
 #, fuzzy, c-format
 msgid "Window layout name \"%s\" already exists."
 msgstr "Ένα αρχείο με το όνομα %s υπάρχει ήδη."
 
-#: src/layout_util.c:2155 src/layout_util.c:2404 src/layout_util.c:2520
+#: src/layout-util.c:2155 src/layout-util.c:2404 src/layout-util.c:2520
 #, fuzzy
 msgid "Rename window"
 msgstr "Νέο παράθυρο"
 
-#: src/layout_util.c:2255 src/layout_util.c:2435 src/layout_util.c:2521
+#: src/layout-util.c:2255 src/layout-util.c:2435 src/layout-util.c:2521
 #, fuzzy
 msgid "Delete window"
 msgstr "Κλείσιμο του παράθυρου"
 
-#: src/layout_util.c:2405 src/layout_util.c:2436
+#: src/layout-util.c:2405 src/layout-util.c:2436
 msgid "OK"
 msgstr ""
 
-#: src/layout_util.c:2407
+#: src/layout-util.c:2407
 #, fuzzy
 msgid "rename window"
 msgstr "Νέο παράθυρο"
 
-#: src/layout_util.c:2438
+#: src/layout-util.c:2438
 msgid "Delete window layout"
 msgstr ""
 
-#: src/layout_util.c:2464
+#: src/layout-util.c:2464
 msgid "_File"
 msgstr "_Αρχείο"
 
-#: src/layout_util.c:2465
+#: src/layout-util.c:2465
 msgid "_Go"
 msgstr "_Μετάβαση"
 
-#: src/layout_util.c:2466
+#: src/layout-util.c:2466
 msgid "_Edit"
 msgstr "_Επεξεργασία"
 
-#: src/layout_util.c:2467
+#: src/layout-util.c:2467
 msgid "_Select"
 msgstr "_Επιλογή"
 
-#: src/layout_util.c:2468 src/menu.c:411
+#: src/layout-util.c:2468 src/menu.c:411
 msgid "_Orientation"
 msgstr "_Προσανατολισμός"
 
-#: src/layout_util.c:2469
+#: src/layout-util.c:2469
 #, fuzzy
 msgid "_Rating"
 msgstr "Ζωγραφική"
 
-#: src/layout_util.c:2470
+#: src/layout-util.c:2470
 msgid "P_references"
 msgstr "_Προτιμήσεις"
 
-#: src/layout_util.c:2472
+#: src/layout-util.c:2472
 msgid "_Files and Folders"
 msgstr "Αρχεία και _Φάκελοι"
 
-#: src/layout_util.c:2473
+#: src/layout-util.c:2473
 msgid "_Zoom"
 msgstr "_Εστίαση"
 
-#: src/layout_util.c:2474
+#: src/layout-util.c:2474
 msgid "_Color Management"
 msgstr "_Διαχείριση Χρωμάτων"
 
-#: src/layout_util.c:2475
+#: src/layout-util.c:2475
 msgid "_Connected Zoom"
 msgstr "_Συνδεμένη Εστίαση"
 
-#: src/layout_util.c:2476
+#: src/layout-util.c:2476
 msgid "Spli_t"
 msgstr "Δια_χωρισμός"
 
-#: src/layout_util.c:2477
+#: src/layout-util.c:2477
 msgid "Stere_o"
 msgstr "Στερεοσκ_οπικό"
 
-#: src/layout_util.c:2478 src/layout_util.c:2636
+#: src/layout-util.c:2478 src/layout-util.c:2636
 msgid "Image _Overlay"
 msgstr "Επι_κάλυψη Εικόνας"
 
-#: src/layout_util.c:2479 src/menu.c:121
+#: src/layout-util.c:2479 src/menu.c:121
 msgid "_Plugins"
 msgstr ""
 
-#: src/layout_util.c:2480
+#: src/layout-util.c:2480
 #, fuzzy
 msgid "_Windows"
 msgstr "Παράθυρα"
 
-#: src/layout_util.c:2481
+#: src/layout-util.c:2481
 msgid "_Help"
 msgstr "_Βοήθεια"
 
-#: src/layout_util.c:2483
+#: src/layout-util.c:2483
 msgid "Copy..."
 msgstr "Αντιγραφή..."
 
-#: src/layout_util.c:2484
+#: src/layout-util.c:2484
 msgid "Move..."
 msgstr "Μετακίνηση..."
 
-#: src/layout_util.c:2485
+#: src/layout-util.c:2485
 msgid "Rename..."
 msgstr "Μετονομασία..."
 
-#: src/layout_util.c:2489
+#: src/layout-util.c:2489
 msgid "Delete..."
 msgstr "Διαγραφή..."
 
-#: src/layout_util.c:2490
+#: src/layout-util.c:2490
 msgid "Select _all"
 msgstr "Επιλ_ογή όλων"
 
-#: src/layout_util.c:2491
+#: src/layout-util.c:2491
 msgid "Select _none"
 msgstr "Επιλογή _κανενός"
 
-#: src/layout_util.c:2492
+#: src/layout-util.c:2492
 msgid "_Invert Selection"
 msgstr "_Αντιστροφή της Επιλογής"
 
-#: src/layout_util.c:2492
+#: src/layout-util.c:2492
 msgid "Invert Selection"
 msgstr "Αντιστροφή της Επιλογής"
 
-#: src/layout_util.c:2494
+#: src/layout-util.c:2494
 msgid "_Quit"
 msgstr "_Τερματισμός"
 
-#: src/layout_util.c:2494 src/preferences.c:854 src/toolbar.c:150
+#: src/layout-util.c:2494 src/preferences.c:854 src/toolbar.c:150
 msgid "Quit"
 msgstr "Τερματισμός"
 
-#: src/layout_util.c:2495
+#: src/layout-util.c:2495
 msgid "_First Image"
 msgstr "_Πρώτη Εικόνα"
 
-#: src/layout_util.c:2495 src/preferences.c:786 src/toolbar.c:74
+#: src/layout-util.c:2495 src/preferences.c:786 src/toolbar.c:74
 msgid "First Image"
 msgstr "Πρώτη Εικόνα"
 
-#: src/layout_util.c:2496 src/layout_util.c:2497 src/layout_util.c:2498
+#: src/layout-util.c:2496 src/layout-util.c:2497 src/layout-util.c:2498
 msgid "_Previous Image"
 msgstr "_Προηγούμενη Εικόνα"
 
-#: src/layout_util.c:2496 src/layout_util.c:2497 src/layout_util.c:2498
+#: src/layout-util.c:2496 src/layout-util.c:2497 src/layout-util.c:2498
 #: src/preferences.c:787 src/toolbar.c:75
 msgid "Previous Image"
 msgstr "Προηγούμενη Εικόνα"
 
-#: src/layout_util.c:2499 src/layout_util.c:2500 src/layout_util.c:2511
+#: src/layout-util.c:2499 src/layout-util.c:2500 src/layout-util.c:2511
 msgid "_Next Image"
 msgstr "_Επόμενη Εικόνα"
 
-#: src/layout_util.c:2499 src/layout_util.c:2500 src/layout_util.c:2511
+#: src/layout-util.c:2499 src/layout-util.c:2500 src/layout-util.c:2511
 #: src/preferences.c:788 src/toolbar.c:76
 msgid "Next Image"
 msgstr "Επόμενη Εικόνα"
 
-#: src/layout_util.c:2502 src/toolbar.c:86
+#: src/layout-util.c:2502 src/toolbar.c:86
 #, fuzzy
 msgid "Image Forward"
 msgstr "Προβολέας Εικόνων"
 
-#: src/layout_util.c:2502
+#: src/layout-util.c:2502
 msgid "Forward in image history"
 msgstr ""
 
-#: src/layout_util.c:2503 src/toolbar.c:87
+#: src/layout-util.c:2503 src/toolbar.c:87
 #, fuzzy
 msgid "Image Back"
 msgstr "Αναζήτηση εικόνας"
 
-#: src/layout_util.c:2503
+#: src/layout-util.c:2503
 msgid "Back in image history"
 msgstr ""
 
-#: src/layout_util.c:2505
+#: src/layout-util.c:2505
 #, fuzzy
 msgid "_First Page"
 msgstr "_Πρώτη Εικόνα"
 
-#: src/layout_util.c:2505
+#: src/layout-util.c:2505
 msgid "First Page of multi-page image"
 msgstr ""
 
-#: src/layout_util.c:2506
+#: src/layout-util.c:2506
 #, fuzzy
 msgid "_Last Page"
 msgstr "_Τελευταία Εικόνα"
 
-#: src/layout_util.c:2506
+#: src/layout-util.c:2506
 msgid "Last Page of multi-page image"
 msgstr ""
 
-#: src/layout_util.c:2507
+#: src/layout-util.c:2507
 #, fuzzy
 msgid "_Next Page"
 msgstr "_Επόμενη Εικόνα"
 
-#: src/layout_util.c:2507
+#: src/layout-util.c:2507
 msgid "Next Page of multi-page image"
 msgstr ""
 
-#: src/layout_util.c:2508
+#: src/layout-util.c:2508
 #, fuzzy
 msgid "_Previous Page"
 msgstr "_Προηγούμενη Εικόνα"
 
-#: src/layout_util.c:2508
+#: src/layout-util.c:2508
 msgid "Previous Page of multi-page image"
 msgstr ""
 
-#: src/layout_util.c:2512
+#: src/layout-util.c:2512
 msgid "_Last Image"
 msgstr "_Τελευταία Εικόνα"
 
-#: src/layout_util.c:2512 src/preferences.c:789 src/toolbar.c:77
+#: src/layout-util.c:2512 src/preferences.c:789 src/toolbar.c:77
 msgid "Last Image"
 msgstr "Τελευταία Εικόνα"
 
-#: src/layout_util.c:2513
+#: src/layout-util.c:2513
 msgid "_Back"
 msgstr "Πί_σω"
 
-#: src/layout_util.c:2513
+#: src/layout-util.c:2513
 msgid "Back in folder history"
 msgstr ""
 
-#: src/layout_util.c:2514
+#: src/layout-util.c:2514
 #, fuzzy
 msgid "_Forward"
 msgstr "Προβολέας Εικόνων"
 
-#: src/layout_util.c:2514
+#: src/layout-util.c:2514
 msgid "Forward in folder history"
 msgstr ""
 
-#: src/layout_util.c:2515
+#: src/layout-util.c:2515
 msgid "_Home"
 msgstr "_Σπίτι"
 
-#: src/layout_util.c:2515 src/options.c:244 src/preferences.c:792
-#: src/toolbar.c:80 src/ui_bookmark.c:560 src/ui_pathsel.c:1047
+#: src/layout-util.c:2515 src/options.c:244 src/preferences.c:792
+#: src/toolbar.c:80 src/ui-bookmark.c:560 src/ui-pathsel.c:1047
 msgid "Home"
 msgstr "Αρχική"
 
-#: src/layout_util.c:2516
+#: src/layout-util.c:2516
 msgid "_Up"
 msgstr "_Πάνω"
 
-#: src/layout_util.c:2516
+#: src/layout-util.c:2516
 #, fuzzy
 msgid "Up one folder"
 msgstr "Νέος φάκελος"
 
-#: src/layout_util.c:2517 src/toolbar.c:88
+#: src/layout-util.c:2517 src/toolbar.c:88
 msgid "New window"
 msgstr "Νέο παράθυρο"
 
-#: src/layout_util.c:2518
+#: src/layout-util.c:2518
 #, fuzzy
 msgid "default"
 msgstr "Προκαθορισμένα"
 
-#: src/layout_util.c:2518
+#: src/layout-util.c:2518
 #, fuzzy
 msgid "New window (default)"
 msgstr "Νέο παράθυρο"
 
-#: src/layout_util.c:2519
+#: src/layout-util.c:2519
 #, fuzzy
 msgid "from current"
 msgstr "Χρήση παρόντος"
 
-#: src/layout_util.c:2522
+#: src/layout-util.c:2522
 msgid "_New collection"
 msgstr "_Νέα συλλογή"
 
-#: src/layout_util.c:2522 src/menu.c:472 src/preferences.c:799 src/toolbar.c:89
+#: src/layout-util.c:2522 src/menu.c:472 src/preferences.c:799 src/toolbar.c:89
 msgid "New collection"
 msgstr "Νέα συλλογή"
 
-#: src/layout_util.c:2523
+#: src/layout-util.c:2523
 msgid "_Open collection..."
 msgstr "_Άνοιγμα συλλογής..."
 
-#: src/layout_util.c:2523
+#: src/layout-util.c:2523
 msgid "Open collection..."
 msgstr "Άνοιγμα συλλογής..."
 
-#: src/layout_util.c:2524
+#: src/layout-util.c:2524
 msgid "Open recen_t"
 msgstr "Άνοιγμα πρόσ_φατου"
 
-#: src/layout_util.c:2524
+#: src/layout-util.c:2524
 #, fuzzy
 msgid "Open recent collection"
 msgstr "Άνοιγμα συλλογής"
 
-#: src/layout_util.c:2525
+#: src/layout-util.c:2525
 msgid "_Search..."
 msgstr "_Αναζήτηση..."
 
-#: src/layout_util.c:2525
+#: src/layout-util.c:2525
 msgid "Search..."
 msgstr "Αναζήτηση..."
 
-#: src/layout_util.c:2526
+#: src/layout-util.c:2526
 msgid "Find duplicates..."
 msgstr "Αναζήτηση πανομοιότυπων..."
 
-#: src/layout_util.c:2527
+#: src/layout-util.c:2527
 msgid "Pa_n view"
 msgstr "Πα_νόψη"
 
-#: src/layout_util.c:2527 src/preferences.c:809 src/toolbar.c:99
+#: src/layout-util.c:2527 src/preferences.c:809 src/toolbar.c:99
 msgid "Pan view"
 msgstr "Πανόψη"
 
-#: src/layout_util.c:2528
+#: src/layout-util.c:2528
 msgid "_Print..."
 msgstr "_Εκτύπωση..."
 
-#: src/layout_util.c:2529
+#: src/layout-util.c:2529
 msgid "N_ew folder..."
 msgstr "_Νέος φάκελος..."
 
-#: src/layout_util.c:2529
+#: src/layout-util.c:2529
 msgid "New folder..."
 msgstr "Νέος φάκελος..."
 
-#: src/layout_util.c:2530 src/view_file/view_file.c:725
+#: src/layout-util.c:2530 src/view-file/view-file.c:725
 msgid "Enable file _grouping"
 msgstr "Απενερ_γοποίηση της ομαδοποίησης των αρχείων"
 
-#: src/layout_util.c:2530
+#: src/layout-util.c:2530
 msgid "Enable file grouping"
 msgstr "Απενεργοποίηση της ομαδοποίησης των αρχείων"
 
-#: src/layout_util.c:2531 src/view_file/view_file.c:727
+#: src/layout-util.c:2531 src/view-file/view-file.c:727
 msgid "Disable file groupi_ng"
 msgstr "Απενεργοποίηση της ομαδοποίησης τω_ν αρχείων"
 
-#: src/layout_util.c:2531
+#: src/layout-util.c:2531
 msgid "Disable file grouping"
 msgstr "Απενεργοποίηση της ομαδοποίησης των αρχείων"
 
-#: src/layout_util.c:2532
+#: src/layout-util.c:2532
 msgid "Copy path to clipboard"
 msgstr "Αντιγραφή της διαδρομής στο πρόχειρο"
 
-#: src/layout_util.c:2533
+#: src/layout-util.c:2533
 #, fuzzy
 msgid "Copy path unquoted to clipboard"
 msgstr "Αντιγραφή της διαδρομής στο πρόχειρο"
 
-#: src/layout_util.c:2534
+#: src/layout-util.c:2534
 #, fuzzy
 msgid "_Rating 0"
 msgstr "Ζωγραφική"
 
-#: src/layout_util.c:2534
+#: src/layout-util.c:2534
 #, fuzzy
 msgid "Rating 0"
 msgstr "Ζωγραφική"
 
-#: src/layout_util.c:2535
+#: src/layout-util.c:2535
 #, fuzzy
 msgid "_Rating 1"
 msgstr "Ζωγραφική"
 
-#: src/layout_util.c:2535
+#: src/layout-util.c:2535
 #, fuzzy
 msgid "Rating 1"
 msgstr "Ζωγραφική"
 
-#: src/layout_util.c:2536
+#: src/layout-util.c:2536
 #, fuzzy
 msgid "_Rating 2"
 msgstr "Ζωγραφική"
 
-#: src/layout_util.c:2536
+#: src/layout-util.c:2536
 #, fuzzy
 msgid "Rating 2"
 msgstr "Ζωγραφική"
 
-#: src/layout_util.c:2537
+#: src/layout-util.c:2537
 #, fuzzy
 msgid "_Rating 3"
 msgstr "Ζωγραφική"
 
-#: src/layout_util.c:2537
+#: src/layout-util.c:2537
 #, fuzzy
 msgid "Rating 3"
 msgstr "Ζωγραφική"
 
-#: src/layout_util.c:2538
+#: src/layout-util.c:2538
 #, fuzzy
 msgid "_Rating 4"
 msgstr "Ζωγραφική"
 
-#: src/layout_util.c:2538
+#: src/layout-util.c:2538
 #, fuzzy
 msgid "Rating 4"
 msgstr "Ζωγραφική"
 
-#: src/layout_util.c:2539
+#: src/layout-util.c:2539
 #, fuzzy
 msgid "_Rating 5"
 msgstr "Ζωγραφική"
 
-#: src/layout_util.c:2539
+#: src/layout-util.c:2539
 #, fuzzy
 msgid "Rating 5"
 msgstr "Ζωγραφική"
 
-#: src/layout_util.c:2540
+#: src/layout-util.c:2540
 #, fuzzy
 msgid "_Rating -1"
 msgstr "Ζωγραφική"
 
-#: src/layout_util.c:2540
+#: src/layout-util.c:2540
 #, fuzzy
 msgid "Rating -1"
 msgstr "Ζωγραφική"
 
-#: src/layout_util.c:2541
+#: src/layout-util.c:2541
 #, fuzzy
 msgid "_Rotate clockwise 90°"
 msgstr "Περιστροφή _κατά τη φορά του ρολογιού"
 
-#: src/layout_util.c:2541
+#: src/layout-util.c:2541
 #, fuzzy
 msgid "Image Rotate clockwise 90°"
 msgstr "Περιστροφή κατά τη φορά του ρολογιού"
 
-#: src/layout_util.c:2542
+#: src/layout-util.c:2542
 #, fuzzy
 msgid "Rotate _counterclockwise 90°"
 msgstr "Περιστροφή _αντίστροφα από τη φορά του ρολογιού"
 
-#: src/layout_util.c:2542 src/menu.c:356 src/preferences.c:820
+#: src/layout-util.c:2542 src/menu.c:356 src/preferences.c:820
 #: src/toolbar.c:111
 #, fuzzy
 msgid "Rotate counterclockwise 90°"
 msgstr "Περιστροφή αντίστροφα από τη φορά του ρολογιού"
 
-#: src/layout_util.c:2543
+#: src/layout-util.c:2543
 #, fuzzy
 msgid "Rotate 1_80°"
 msgstr "Περιστροφή 1_80"
 
-#: src/layout_util.c:2543
+#: src/layout-util.c:2543
 #, fuzzy
 msgid "Image Rotate 180°"
 msgstr "Περιστροφή 180°"
 
-#: src/layout_util.c:2544
+#: src/layout-util.c:2544
 msgid "_Mirror"
 msgstr "_Καθρεπτισμός"
 
-#: src/layout_util.c:2544
+#: src/layout-util.c:2544
 #, fuzzy
 msgid "Image Mirror"
 msgstr "Κατάστιχο _Εικόνων"
 
-#: src/layout_util.c:2545
+#: src/layout-util.c:2545
 msgid "_Flip"
 msgstr "_Αναποδογύρισμα"
 
-#: src/layout_util.c:2545
+#: src/layout-util.c:2545
 #, fuzzy
 msgid "Image Flip"
 msgstr "Κατάστιχο _Εικόνων"
 
-#: src/layout_util.c:2546
+#: src/layout-util.c:2546
 msgid "_Original state"
 msgstr "_Αρχική κατάσταση"
 
-#: src/layout_util.c:2546
+#: src/layout-util.c:2546
 #, fuzzy
 msgid "Image rotate Original state"
 msgstr "Αρχική κατάσταση"
 
-#: src/layout_util.c:2547
+#: src/layout-util.c:2547
 msgid "P_references..."
 msgstr "_Προτιμήσεις"
 
-#: src/layout_util.c:2547
+#: src/layout-util.c:2547
 msgid "Preferences..."
 msgstr "Προτιμήσεις..."
 
-#: src/layout_util.c:2548
+#: src/layout-util.c:2548
 #, fuzzy
 msgid "Configure _Plugins..."
 msgstr "Ρύθμιση των _Επεξεργαστών..."
 
-#: src/layout_util.c:2548
+#: src/layout-util.c:2548
 #, fuzzy
 msgid "Configure Plugins..."
 msgstr "Ρύθμιση των Επεξεργαστών..."
 
-#: src/layout_util.c:2549
+#: src/layout-util.c:2549
 msgid "_Configure this window..."
 msgstr "_Ρύθμιση του παρόντος παράθυρου..."
 
-#: src/layout_util.c:2549
+#: src/layout-util.c:2549
 msgid "Configure this window..."
 msgstr "Ρύθμιση αυτού του παράθυρου..."
 
-#: src/layout_util.c:2550
+#: src/layout-util.c:2550
 #, fuzzy
 msgid "_Cache maintenance..."
 msgstr "Διατήρηση Μικροαποθήκευσης"
 
-#: src/layout_util.c:2550
+#: src/layout-util.c:2550
 #, fuzzy
 msgid "Cache maintenance..."
 msgstr "Διατήρηση Μικροαποθήκευσης"
 
-#: src/layout_util.c:2551
+#: src/layout-util.c:2551
 msgid "Set as _wallpaper"
 msgstr "Ορισμός ως ταπετ_σαρία"
 
-#: src/layout_util.c:2551
+#: src/layout-util.c:2551
 msgid "Set as wallpaper"
 msgstr "Ορισμός ως ταπετσαρία"
 
-#: src/layout_util.c:2552
+#: src/layout-util.c:2552
 msgid "_Save metadata"
 msgstr "_Αποθήκευση των μεταδεδομένων"
 
-#: src/layout_util.c:2552 src/toolbar.c:136
+#: src/layout-util.c:2552 src/toolbar.c:136
 msgid "Save metadata"
 msgstr "Αποθήκευση των μεταδεδομένων"
 
-#: src/layout_util.c:2553
+#: src/layout-util.c:2553
 #, fuzzy
 msgid "Keyword autocomplete"
 msgstr "Τύπος λέξης-κλειδί:"
 
-#: src/layout_util.c:2553
+#: src/layout-util.c:2553
 #, fuzzy
 msgid "Keyword Autocomplete"
 msgstr "Τύπος λέξης-κλειδί:"
 
-#: src/layout_util.c:2560 src/layout_util.c:2561 src/layout_util.c:2576
-#: src/layout_util.c:2577
+#: src/layout-util.c:2560 src/layout-util.c:2561 src/layout-util.c:2576
+#: src/layout-util.c:2577
 msgid "_Zoom to fit"
 msgstr "Εστίαση ώστε να _χωράει"
 
-#: src/layout_util.c:2562 src/layout_util.c:2578
+#: src/layout-util.c:2562 src/layout-util.c:2578
 msgid "Fit _Horizontally"
 msgstr "Οριζόντια Προσαρμο_γή"
 
-#: src/layout_util.c:2562
+#: src/layout-util.c:2562
 msgid "Fit Horizontally"
 msgstr "Οριζόντια Προσαρμογή"
 
-#: src/layout_util.c:2563 src/layout_util.c:2579
+#: src/layout-util.c:2563 src/layout-util.c:2579
 msgid "Fit _Vertically"
 msgstr "Κάθε_τη Προσαρμογή"
 
-#: src/layout_util.c:2563
+#: src/layout-util.c:2563
 msgid "Fit Vertically"
 msgstr "Κάθετη Προσαρμογή"
 
-#: src/layout_util.c:2564 src/layout_util.c:2580
+#: src/layout-util.c:2564 src/layout-util.c:2580
 msgid "Zoom _2:1"
 msgstr "Εστίαση _2:1"
 
-#: src/layout_util.c:2565 src/layout_util.c:2581
+#: src/layout-util.c:2565 src/layout-util.c:2581
 msgid "Zoom _3:1"
 msgstr "Εστίαση _3:1"
 
-#: src/layout_util.c:2566 src/layout_util.c:2582
+#: src/layout-util.c:2566 src/layout-util.c:2582
 msgid "Zoom _4:1"
 msgstr "Εστίαση _4:1"
 
-#: src/layout_util.c:2570 src/layout_util.c:2571 src/preferences.c:837
+#: src/layout-util.c:2570 src/layout-util.c:2571 src/preferences.c:837
 #: src/toolbar.c:128
 msgid "Connected Zoom in"
 msgstr "Συνδεμένη Εστιακό Πλησίασμα"
 
-#: src/layout_util.c:2572 src/layout_util.c:2573
+#: src/layout-util.c:2572 src/layout-util.c:2573
 msgid "Connected Zoom out"
 msgstr "Συνδεμένη Εστιακή Απομάκρυνση"
 
-#: src/layout_util.c:2574 src/layout_util.c:2575
+#: src/layout-util.c:2574 src/layout-util.c:2575
 msgid "Connected Zoom 1:1"
 msgstr "Συνδεμένη Εστίαση 1:1"
 
-#: src/layout_util.c:2576 src/layout_util.c:2577
+#: src/layout-util.c:2576 src/layout-util.c:2577
 msgid "Connected Zoom to fit"
 msgstr "Συνδεμένη Εστίαση ώστε να χωράει"
 
-#: src/layout_util.c:2578
+#: src/layout-util.c:2578
 msgid "Connected Fit Horizontally"
 msgstr "Συνδεμένη Προσαρμογή στο Οριζόντιο"
 
-#: src/layout_util.c:2579
+#: src/layout-util.c:2579
 msgid "Connected Fit Vertically"
 msgstr "Συνδεμένη Προσαρμογή στο Κάθετο"
 
-#: src/layout_util.c:2580
+#: src/layout-util.c:2580
 msgid "Connected Zoom 2:1"
 msgstr "Συνδεμένη Εστίαση 2:1"
 
-#: src/layout_util.c:2581
+#: src/layout-util.c:2581
 msgid "Connected Zoom 3:1"
 msgstr "Συνδεμένη Εστίαση 3:1"
 
-#: src/layout_util.c:2582
+#: src/layout-util.c:2582
 msgid "Connected Zoom 4:1"
 msgstr "Συνδεμένη Εστίαση 4:1"
 
-#: src/layout_util.c:2583
+#: src/layout-util.c:2583
 msgid "Connected Zoom 1:2"
 msgstr "Συνδεμένη Εστίαση :1:2"
 
-#: src/layout_util.c:2584
+#: src/layout-util.c:2584
 msgid "Connected Zoom 1:3"
 msgstr "Συνδεμένη Εστίαση 1:3"
 
-#: src/layout_util.c:2585
+#: src/layout-util.c:2585
 msgid "Connected Zoom 1:4"
 msgstr "Συνδεμένη Εστίαση 1:4"
 
-#: src/layout_util.c:2586
+#: src/layout-util.c:2586
 msgid "_View in new window"
 msgstr "_Προβολή σε νέο παράθυρο"
 
-#: src/layout_util.c:2588 src/layout_util.c:2589 src/layout_util.c:2590
+#: src/layout-util.c:2588 src/layout-util.c:2589 src/layout-util.c:2590
 msgid "F_ull screen"
 msgstr "Π_λήρης οθόνη"
 
-#: src/layout_util.c:2591 src/layout_util.c:2592
+#: src/layout-util.c:2591 src/layout-util.c:2592
 msgid "_Leave full screen"
 msgstr "Έξοδος από την π_λήρη οθόνη"
 
-#: src/layout_util.c:2591 src/layout_util.c:2592
+#: src/layout-util.c:2591 src/layout-util.c:2592
 msgid "Leave full screen"
 msgstr "Έξοδος από την πλήρη οθόνη"
 
-#: src/layout_util.c:2593
+#: src/layout-util.c:2593
 msgid "_Cycle through overlay modes"
 msgstr "Περιφορά ανάμεσα στις λειτουργίες υπερκάλυ_ψης"
 
-#: src/layout_util.c:2593
+#: src/layout-util.c:2593
 msgid "Cycle through Overlay modes"
 msgstr "Περιφορά ανάμεσα στις λειτουργίες Υπερκάλυψης"
 
-#: src/layout_util.c:2594
+#: src/layout-util.c:2594
 msgid "Cycle through histogram ch_annels"
 msgstr "Περιφορά ανάμεσα στα κ_ανάλια ιστογράμματος"
 
-#: src/layout_util.c:2594
+#: src/layout-util.c:2594
 msgid "Cycle through histogram channels"
 msgstr "Περιφορά ανάμεσα στα κανάλια ιστογράμματος"
 
-#: src/layout_util.c:2595
+#: src/layout-util.c:2595
 msgid "Cycle through histogram mo_des"
 msgstr "Περιφορά ανάμεσα στις _λειτουργίες ιστογράμματος"
 
-#: src/layout_util.c:2595
+#: src/layout-util.c:2595
 msgid "Cycle through histogram modes"
 msgstr "Περιφορά ανάμεσα στις λειτουργίες ιστογράμματος"
 
-#: src/layout_util.c:2596
+#: src/layout-util.c:2596
 msgid "_Hide file list"
 msgstr "_Απόκρυψη του κατάστιχου των αρχείων"
 
-#: src/layout_util.c:2596 src/preferences.c:841 src/toolbar.c:137
+#: src/layout-util.c:2596 src/preferences.c:841 src/toolbar.c:137
 msgid "Hide file list"
 msgstr "Κρύψιμο του κατάστιχου των αρχείων"
 
-#: src/layout_util.c:2597
+#: src/layout-util.c:2597
 msgid "_Pause slideshow"
 msgstr "_Παύση της συνεχόμενης προβολής των εικόνων"
 
-#: src/layout_util.c:2598
+#: src/layout-util.c:2598
 msgid "Faster"
 msgstr ""
 
-#: src/layout_util.c:2598 src/preferences.c:843 src/toolbar.c:139
+#: src/layout-util.c:2598 src/preferences.c:843 src/toolbar.c:139
 #, fuzzy
 msgid "Slideshow Faster"
 msgstr "Συνεχόμενη προβολή εικόνων"
 
-#: src/layout_util.c:2599
+#: src/layout-util.c:2599
 #, fuzzy
 msgid "Slower"
 msgstr "Λουλούδι"
 
-#: src/layout_util.c:2599 src/preferences.c:844 src/toolbar.c:140
+#: src/layout-util.c:2599 src/preferences.c:844 src/toolbar.c:140
 #, fuzzy
 msgid "Slideshow Slower"
 msgstr "Συνεχόμενη προβολή εικόνων"
 
-#: src/layout_util.c:2600
+#: src/layout-util.c:2600
 msgid "_Refresh"
 msgstr "_Ανανέωση"
 
-#: src/layout_util.c:2600 src/preferences.c:845 src/toolbar.c:141
+#: src/layout-util.c:2600 src/preferences.c:845 src/toolbar.c:141
 msgid "Refresh"
 msgstr "Ανανέωση"
 
-#: src/layout_util.c:2601
+#: src/layout-util.c:2601
 #, fuzzy
 msgid "_Help manual"
 msgstr "χειροκίνητο"
 
-#: src/layout_util.c:2601
+#: src/layout-util.c:2601
 #, fuzzy
 msgid "Help manual"
 msgstr "χειροκίνητο"
 
-#: src/layout_util.c:2602 src/window.c:371
+#: src/layout-util.c:2602 src/window.c:371
 msgid "On-line help search"
 msgstr ""
 
-#: src/layout_util.c:2603
+#: src/layout-util.c:2603
 msgid "_Keyboard shortcuts"
 msgstr "Συντομεύσεις _πληκτρολογίου"
 
-#: src/layout_util.c:2603
+#: src/layout-util.c:2603
 msgid "Keyboard shortcuts"
 msgstr "Συντομεύσεις πληκτρολογίου"
 
-#: src/layout_util.c:2604
+#: src/layout-util.c:2604
 #, fuzzy
 msgid "_Keyboard map"
 msgstr "Πληκτρολόγιο"
 
-#: src/layout_util.c:2604
+#: src/layout-util.c:2604
 #, fuzzy
 msgid "Keyboard map"
 msgstr "Πληκτρολόγιο"
 
-#: src/layout_util.c:2605
+#: src/layout-util.c:2605
 msgid "_Readme"
 msgstr ""
 
-#: src/layout_util.c:2605
+#: src/layout-util.c:2605
 msgid "Readme"
 msgstr ""
 
-#: src/layout_util.c:2606
+#: src/layout-util.c:2606
 #, fuzzy
 msgid "_ChangeLog"
 msgstr "Καμία αλλαγή"
 
-#: src/layout_util.c:2606
+#: src/layout-util.c:2606
 msgid "ChangeLog notes"
 msgstr ""
 
-#: src/layout_util.c:2607 src/search_and_run.c:291
+#: src/layout-util.c:2607 src/search-and-run.c:291
 msgid "Search and Run command"
 msgstr ""
 
-#: src/layout_util.c:2607
+#: src/layout-util.c:2607
 msgid "Search commands by keyword and run them"
 msgstr ""
 
-#: src/layout_util.c:2608
+#: src/layout-util.c:2608
 msgid "_About"
 msgstr "Σ_χετικά με"
 
-#: src/layout_util.c:2608
+#: src/layout-util.c:2608
 msgid "About"
 msgstr "Σχετικά με"
 
-#: src/layout_util.c:2609
+#: src/layout-util.c:2609
 msgid "_Log Window"
 msgstr "_Παράθυρο Καταγραφών"
 
-#: src/layout_util.c:2609
+#: src/layout-util.c:2609
 msgid "Log Window"
 msgstr "Παράθυρο Καταγραφών"
 
-#: src/layout_util.c:2610
+#: src/layout-util.c:2610
 msgid "_Exif window"
 msgstr "_Παράθυρο πληροφοριών Exif"
 
-#: src/layout_util.c:2610 src/preferences.c:847 src/toolbar.c:143
+#: src/layout-util.c:2610 src/preferences.c:847 src/toolbar.c:143
 msgid "Exif window"
 msgstr "Παράθυρο των πληροφοριών Exif"
 
-#: src/layout_util.c:2611
+#: src/layout-util.c:2611
 msgid "_Cycle through stereo modes"
 msgstr "Περι_φορά ανάμεσα στις λειτουργίες στερεοσκόπησης"
 
-#: src/layout_util.c:2611
+#: src/layout-util.c:2611
 msgid "Cycle through stereo modes"
 msgstr "Περιφορά ανάμεσα στις λειτουργίες στερεοσκόπησης"
 
-#: src/layout_util.c:2612
+#: src/layout-util.c:2612
 #, fuzzy
 msgid "_Next Pane"
 msgstr "_Επόμενη Εικόνα"
 
-#: src/layout_util.c:2612
+#: src/layout-util.c:2612
 #, fuzzy
 msgid "Next Split Pane"
 msgstr "Επόμενη Εικόνα"
 
-#: src/layout_util.c:2613
+#: src/layout-util.c:2613
 #, fuzzy
 msgid "_Previous Pane"
 msgstr "_Προηγούμενη Εικόνα"
 
-#: src/layout_util.c:2613
+#: src/layout-util.c:2613
 #, fuzzy
 msgid "Previous Split Pane"
 msgstr "Προηγούμενη Εικόνα"
 
-#: src/layout_util.c:2614
+#: src/layout-util.c:2614
 #, fuzzy
 msgid "_Up Pane"
 msgstr "_Επόμενη Εικόνα"
 
-#: src/layout_util.c:2614
+#: src/layout-util.c:2614
 #, fuzzy
 msgid "Up Split Pane"
 msgstr "Χωρίς Διαίρεση (Μονό)"
 
-#: src/layout_util.c:2615
+#: src/layout-util.c:2615
 #, fuzzy
 msgid "_Down Pane"
 msgstr "_Επόμενη Εικόνα"
 
-#: src/layout_util.c:2615
+#: src/layout-util.c:2615
 #, fuzzy
 msgid "Down Split Pane"
 msgstr "Χωρίς Διαίρεση (Μονό)"
 
-#: src/layout_util.c:2616
+#: src/layout-util.c:2616
 #, fuzzy
 msgid "_Write orientation to file"
 msgstr "Εγγραφή στο αρχείο"
 
-#: src/layout_util.c:2616
+#: src/layout-util.c:2616
 #, fuzzy
 msgid "Write orientation to file"
 msgstr "Εγγραφή στο αρχείο"
 
-#: src/layout_util.c:2617
+#: src/layout-util.c:2617
 #, fuzzy
 msgid "_Write orientation to file (preserve timestamp)"
 msgstr "Εγγραφή στο αρχείο"
 
-#: src/layout_util.c:2617
+#: src/layout-util.c:2617
 #, fuzzy
 msgid "Write orientation to file (preserve timestamp)"
 msgstr "Εγγραφή στο αρχείο"
 
-#: src/layout_util.c:2618
+#: src/layout-util.c:2618
 #, fuzzy
 msgid "Clear Marks..."
 msgstr "Εκκαθάριση των απορριμμάτων"
 
-#: src/layout_util.c:2622
+#: src/layout-util.c:2622
 msgid "Show _Thumbnails"
 msgstr "Προβολή των _Μικρογραφιών"
 
-#: src/layout_util.c:2622
+#: src/layout-util.c:2622
 msgid "Show Thumbnails"
 msgstr "Προβολή  των μικρογραφιών"
 
-#: src/layout_util.c:2623
+#: src/layout-util.c:2623
 msgid "Show _Marks"
 msgstr "Προβολή Ση_μαδιών"
 
-#: src/layout_util.c:2623
+#: src/layout-util.c:2623
 msgid "Show Marks"
 msgstr "Προβολή Σημαδιών"
 
-#: src/layout_util.c:2624
+#: src/layout-util.c:2624
 #, fuzzy
 msgid "Show File Filter"
 msgstr "Προβολή των _κρυφών αρχείων"
 
-#: src/layout_util.c:2625
+#: src/layout-util.c:2625
 msgid "Pi_xel Info"
 msgstr "Πληροφορίες Πί_ξελων"
 
-#: src/layout_util.c:2625
+#: src/layout-util.c:2625
 msgid "Show Pixel Info"
 msgstr "Προβολή των Πιξελικών Πληροφοριών "
 
-#: src/layout_util.c:2626
+#: src/layout-util.c:2626
 #, fuzzy
 msgid "Hide _alpha"
 msgstr "Απόκρυψη της γραμμής εργαλείων"
 
-#: src/layout_util.c:2626
+#: src/layout-util.c:2626
 #, fuzzy
 msgid "Hide alpha channel"
 msgstr "Απόκρυψη της γραμμής εργαλείων"
 
-#: src/layout_util.c:2627
+#: src/layout-util.c:2627
 msgid "_Float file list"
 msgstr "Επι_πλέουσα λίστα αρχείων"
 
-#: src/layout_util.c:2627 src/preferences.c:851 src/toolbar.c:147
+#: src/layout-util.c:2627 src/preferences.c:851 src/toolbar.c:147
 msgid "Float file list"
 msgstr "Επιπλέον κατάστιχο αρχείων"
 
-#: src/layout_util.c:2628
+#: src/layout-util.c:2628
 msgid "Hide tool_bar"
 msgstr "Απόκρυψη της γραμμής ε_ργαλείων"
 
-#: src/layout_util.c:2628
+#: src/layout-util.c:2628
 msgid "Hide toolbar"
 msgstr "Απόκρυψη της γραμμής εργαλείων"
 
-#: src/layout_util.c:2629
+#: src/layout-util.c:2629
 msgid "_Info sidebar"
 msgstr "Πλευρ_ική στήλη πληροφοριών"
 
-#: src/layout_util.c:2629 src/preferences.c:852 src/toolbar.c:148
+#: src/layout-util.c:2629 src/preferences.c:852 src/toolbar.c:148
 msgid "Info sidebar"
 msgstr "Πλευρική στήλη πληροφοριών"
 
-#: src/layout_util.c:2630
+#: src/layout-util.c:2630
 msgid "Sort _manager"
 msgstr "Διαχειριστής _ταξινόμησης"
 
-#: src/layout_util.c:2630 src/preferences.c:853 src/toolbar.c:149
+#: src/layout-util.c:2630 src/preferences.c:853 src/toolbar.c:149
 msgid "Sort manager"
 msgstr "Διαχειριστής ταξινόμησης"
 
-#: src/layout_util.c:2631
+#: src/layout-util.c:2631
 #, fuzzy
 msgid "Hide Bars"
 msgstr "Απόκρυψη του \"%s\""
 
-#: src/layout_util.c:2633
+#: src/layout-util.c:2633
 msgid "Use _color profiles"
 msgstr "Χρήση προφίλ χρωμάτων"
 
-#: src/layout_util.c:2633 src/toolbar.c:135
+#: src/layout-util.c:2633 src/toolbar.c:135
 msgid "Use color profiles"
 msgstr "Χρήση προφίλ χρωμάτων"
 
-#: src/layout_util.c:2634
+#: src/layout-util.c:2634
 msgid "Use profile from _image"
 msgstr "Χρήση προφίλ από την _εικόνα"
 
-#: src/layout_util.c:2634
+#: src/layout-util.c:2634
 msgid "Use profile from image"
 msgstr "Χρήση προφίλ από την εικόνα"
 
-#: src/layout_util.c:2635
+#: src/layout-util.c:2635
 msgid "Toggle _grayscale"
 msgstr "Εναλλαγή της απόχρωσης του _γκρίζου"
 
-#: src/layout_util.c:2635
+#: src/layout-util.c:2635
 msgid "Toggle grayscale"
 msgstr "Εναλλαγή της απόχρωσης του _γκρίζου"
 
-#: src/layout_util.c:2636
+#: src/layout-util.c:2636
 msgid "Image Overlay"
 msgstr "Υπερκάλυψη Εικόνας"
 
-#: src/layout_util.c:2637
+#: src/layout-util.c:2637
 msgid "_Show Histogram"
 msgstr "Εμφάνι_ση Ιστογράμματος"
 
-#: src/layout_util.c:2637
+#: src/layout-util.c:2637
 msgid "Show Histogram"
 msgstr "Εμφάνιση Ιστογράμματος"
 
-#: src/layout_util.c:2638
+#: src/layout-util.c:2638
 #, fuzzy
 msgid "Rectangular Selection"
 msgstr "Παραλληλόγραμμη επιλογή στην προβολή ως εικονίδια"
 
-#: src/layout_util.c:2639
+#: src/layout-util.c:2639
 msgid "Toggle GIF animation"
 msgstr ""
 
-#: src/layout_util.c:2640
+#: src/layout-util.c:2640
 #, fuzzy
 msgid "_Exif rotate"
 msgstr "Exif έκδοση"
 
-#: src/layout_util.c:2640
+#: src/layout-util.c:2640
 #, fuzzy
 msgid "Toggle Exif rotate"
 msgstr "Exif έκδοση"
 
-#: src/layout_util.c:2641 src/preferences.c:850 src/toolbar.c:146
+#: src/layout-util.c:2641 src/preferences.c:850 src/toolbar.c:146
 #, fuzzy
 msgid "Draw Rectangle"
 msgstr "Επιλογή όλων"
 
-#: src/layout_util.c:2642
+#: src/layout-util.c:2642
 msgid "Over/Under Exposed"
 msgstr ""
 
-#: src/layout_util.c:2642
+#: src/layout-util.c:2642
 msgid "Highlight over/under exposed"
 msgstr ""
 
-#: src/layout_util.c:2643 src/preferences.c:838 src/toolbar.c:129
+#: src/layout-util.c:2643 src/preferences.c:838 src/toolbar.c:129
 #, fuzzy
 msgid "Split Pane Sync"
 msgstr "Χωρίς Διαίρεση (Μονό)"
 
-#: src/layout_util.c:2647
+#: src/layout-util.c:2647
 #, fuzzy
 msgid "Images as _List"
 msgstr "Κατάστιχο _Εικόνων"
 
-#: src/layout_util.c:2647
+#: src/layout-util.c:2647
 msgid "View Images as List"
 msgstr "Προβολή των Εικόνων ως Κατάστιχο"
 
-#: src/layout_util.c:2648
+#: src/layout-util.c:2648
 #, fuzzy
 msgid "Images as I_cons"
 msgstr "Προβολή των Εικόνων ως Εικονίδια"
 
-#: src/layout_util.c:2648
+#: src/layout-util.c:2648
 msgid "View Images as Icons"
 msgstr "Προβολή των Εικόνων ως Εικονίδια"
 
-#: src/layout_util.c:2652
+#: src/layout-util.c:2652
 #, fuzzy
 msgid "T_oggle Folder View"
 msgstr "Εναλλαγή της συνεχόμενης προβολής των εικόνων"
 
-#: src/layout_util.c:2652
+#: src/layout-util.c:2652
 #, fuzzy
 msgid "Toggle Folders View"
 msgstr "Εναλλαγή της συνεχόμενης προβολής των εικόνων"
 
-#: src/layout_util.c:2656
+#: src/layout-util.c:2656
 msgid "_Horizontal"
 msgstr "Ορι_ζόντια"
 
-#: src/layout_util.c:2656
+#: src/layout-util.c:2656
 #, fuzzy
 msgid "Split panes horizontal."
 msgstr "Οριζόντιος Διαχωρισμός"
 
-#: src/layout_util.c:2657
+#: src/layout-util.c:2657
 msgid "_Vertical"
 msgstr "_Κάθετα"
 
-#: src/layout_util.c:2657
+#: src/layout-util.c:2657
 #, fuzzy
 msgid "Split panes vertical"
 msgstr "Κάθετος Διαχωρισμός"
 
-#: src/layout_util.c:2658
+#: src/layout-util.c:2658
 msgid "_Quad"
 msgstr "_Τετραπλά"
 
-#: src/layout_util.c:2658
+#: src/layout-util.c:2658
 #, fuzzy
 msgid "Split panes quad"
 msgstr "Τετραπλή Διαίρεση"
 
-#: src/layout_util.c:2659
+#: src/layout-util.c:2659
 msgid "_Single"
 msgstr "_Μονό"
 
-#: src/layout_util.c:2659
+#: src/layout-util.c:2659
 #, fuzzy
 msgid "Single pane"
 msgstr "Μονή εικόνα"
 
-#: src/layout_util.c:2663
+#: src/layout-util.c:2663
 msgid "Input _0: sRGB"
 msgstr "Εισαγωγή _0: sRGB"
 
-#: src/layout_util.c:2663
+#: src/layout-util.c:2663
 msgid "Input 0: sRGB"
 msgstr "Εισαγωγή 0: sRGB"
 
-#: src/layout_util.c:2664
+#: src/layout-util.c:2664
 msgid "Input _1: AdobeRGB compatible"
 msgstr "Εισαγωγή _1: συμβατό με AdobeRGB"
 
-#: src/layout_util.c:2664
+#: src/layout-util.c:2664
 msgid "Input 1: AdobeRGB compatible"
 msgstr "Εισαγωγή 1: συμβατό με AdobeRGB"
 
-#: src/layout_util.c:2665
+#: src/layout-util.c:2665
 msgid "Input _2"
 msgstr "Εισαγωγή _2"
 
-#: src/layout_util.c:2665
+#: src/layout-util.c:2665
 msgid "Input 2"
 msgstr "Εισαγωγή 2"
 
-#: src/layout_util.c:2666
+#: src/layout-util.c:2666
 msgid "Input _3"
 msgstr "Εισαγωγή _3"
 
-#: src/layout_util.c:2666
+#: src/layout-util.c:2666
 msgid "Input 3"
 msgstr "Εισαγωγή 3"
 
-#: src/layout_util.c:2667
+#: src/layout-util.c:2667
 msgid "Input _4"
 msgstr "Εισαγωγή _4"
 
-#: src/layout_util.c:2667
+#: src/layout-util.c:2667
 msgid "Input 4"
 msgstr "Εισαγωγή 4"
 
-#: src/layout_util.c:2668
+#: src/layout-util.c:2668
 msgid "Input _5"
 msgstr "Εισαγωγή _5"
 
-#: src/layout_util.c:2668
+#: src/layout-util.c:2668
 msgid "Input 5"
 msgstr "Εισαγωγή 5"
 
-#: src/layout_util.c:2672
+#: src/layout-util.c:2672
 msgid "Histogram on Red"
 msgstr "Ιστόγραμμα στο Κόκκινο"
 
-#: src/layout_util.c:2673
+#: src/layout-util.c:2673
 msgid "Histogram on Green"
 msgstr "Ιστόγραμμα στο Πράσινο"
 
-#: src/layout_util.c:2674
+#: src/layout-util.c:2674
 msgid "Histogram on Blue"
 msgstr "Ιστόγραμμα στο Μπλε"
 
-#: src/layout_util.c:2675
+#: src/layout-util.c:2675
 msgid "Histogram on RGB"
 msgstr "Ιστόγραμμα στο RGB"
 
-#: src/layout_util.c:2676
+#: src/layout-util.c:2676
 msgid "Histogram on Value"
 msgstr "Ιστόγραμμα στην Τιμή"
 
-#: src/layout_util.c:2680
+#: src/layout-util.c:2680
 msgid "Linear Histogram"
 msgstr "Γραμμικό Ιστόγραμμα"
 
-#: src/layout_util.c:2681
+#: src/layout-util.c:2681
 msgid "_Log Histogram"
 msgstr "_Λογαριθμικό Ιστόγραμμα"
 
-#: src/layout_util.c:2681
+#: src/layout-util.c:2681
 msgid "Log Histogram"
 msgstr "Λογαριθμικό Ιστόγραμμα"
 
-#: src/layout_util.c:2685
+#: src/layout-util.c:2685
 msgid "_Auto"
 msgstr "_Αυτόματο"
 
-#: src/layout_util.c:2685
+#: src/layout-util.c:2685
 msgid "Stereo Auto"
 msgstr "Στερεοσκοπικό Αυτόματο"
 
-#: src/layout_util.c:2686
+#: src/layout-util.c:2686
 msgid "_Side by Side"
 msgstr "_Δίπλα-Δίπλα"
 
-#: src/layout_util.c:2686
+#: src/layout-util.c:2686
 msgid "Stereo Side by Side"
 msgstr "Στερεοσκοπικό Δίπλα-Δίπλα"
 
-#: src/layout_util.c:2687
+#: src/layout-util.c:2687
 msgid "_Cross"
 msgstr "_Σαυρός"
 
-#: src/layout_util.c:2687
+#: src/layout-util.c:2687
 msgid "Stereo Cross"
 msgstr "Στεροσκοπικό Σταυρός"
 
-#: src/layout_util.c:2688
+#: src/layout-util.c:2688
 msgid "_Off"
 msgstr "_Απενεργοποιημένο"
 
-#: src/layout_util.c:2688
+#: src/layout-util.c:2688
 msgid "Stereo Off"
 msgstr "Στερεοσκοπικό Απενεργοποιημένο"
 
-#: src/layout_util.c:3021
+#: src/layout-util.c:3021
 #, c-format
 msgid "Mark _%d"
 msgstr "Σημάδι _%d"
 
-#: src/layout_util.c:3022 src/view_file/view_file.c:650
+#: src/layout-util.c:3022 src/view-file/view-file.c:650
 #, c-format
 msgid "_Set mark %d"
 msgstr "Όρι_σε το σημάδι %d"
 
-#: src/layout_util.c:3022
+#: src/layout-util.c:3022
 #, c-format
 msgid "Set mark %d"
 msgstr "Όρισε το σημάδι %d"
 
-#: src/layout_util.c:3023 src/view_file/view_file.c:651
+#: src/layout-util.c:3023 src/view-file/view-file.c:651
 #, c-format
 msgid "_Reset mark %d"
 msgstr "Επαναπρο_σδιορισμός του σημαδιού %d"
 
-#: src/layout_util.c:3023
+#: src/layout-util.c:3023
 #, c-format
 msgid "Reset mark %d"
 msgstr "Επαναπροσδιορισμός του σημαδιού %d"
 
-#: src/layout_util.c:3024 src/layout_util.c:3025 src/view_file/view_file.c:652
+#: src/layout-util.c:3024 src/layout-util.c:3025 src/view-file/view-file.c:652
 #, c-format
 msgid "_Toggle mark %d"
 msgstr "Εναλλαγή _του σημαδιού %d"
 
-#: src/layout_util.c:3024 src/layout_util.c:3025
+#: src/layout-util.c:3024 src/layout-util.c:3025
 #, c-format
 msgid "Toggle mark %d"
 msgstr "Εναλλαγή του σημαδιού %d"
 
-#: src/layout_util.c:3026
+#: src/layout-util.c:3026
 #, c-format
 msgid "Se_lect mark %d"
 msgstr "Επι_λογή του σημαδιού %d"
 
-#: src/layout_util.c:3026 src/layout_util.c:3027
+#: src/layout-util.c:3026 src/layout-util.c:3027
 #, c-format
 msgid "Select mark %d"
 msgstr "Επιλογή του σημαδιού %d"
 
-#: src/layout_util.c:3027 src/view_file/view_file.c:653
+#: src/layout-util.c:3027 src/view-file/view-file.c:653
 #, c-format
 msgid "_Select mark %d"
 msgstr "Επιλογή του _σημαδιού %d"
 
-#: src/layout_util.c:3028 src/view_file/view_file.c:654
+#: src/layout-util.c:3028 src/view-file/view-file.c:654
 #, c-format
 msgid "_Add mark %d"
 msgstr "Προσθήκη του σημ_αδιού %d"
 
-#: src/layout_util.c:3028
+#: src/layout-util.c:3028
 #, c-format
 msgid "Add mark %d"
 msgstr "Προσθήκη του σημαδιού %d"
 
-#: src/layout_util.c:3029 src/view_file/view_file.c:655
+#: src/layout-util.c:3029 src/view-file/view-file.c:655
 #, c-format
 msgid "_Intersection with mark %d"
 msgstr "Δ_ιασταύρωση με το σημάδι %d"
 
-#: src/layout_util.c:3029
+#: src/layout-util.c:3029
 #, c-format
 msgid "Intersection with mark %d"
 msgstr "Διασταύρωση με το σημάδι %d"
 
-#: src/layout_util.c:3030 src/view_file/view_file.c:656
+#: src/layout-util.c:3030 src/view-file/view-file.c:656
 #, c-format
 msgid "_Unselect mark %d"
 msgstr "Αποεπιλογή του σημα_διού %d"
 
-#: src/layout_util.c:3030
+#: src/layout-util.c:3030
 #, c-format
 msgid "Unselect mark %d"
 msgstr "Αποεπιλογή του σημαδιού %d"
 
-#: src/layout_util.c:3031
+#: src/layout-util.c:3031
 #, c-format
 msgid "_Filter mark %d"
 msgstr "_Διαλογή του σημαδιού %d"
 
-#: src/layout_util.c:3031
+#: src/layout-util.c:3031
 #, c-format
 msgid "Filter mark %d"
 msgstr "Διαλογή του σημαδιού %d"
 
-#: src/layout_util.c:3646
+#: src/layout-util.c:3646
 #, c-format
 msgid "Number of files with unsaved metadata: %d"
 msgstr "Σύνολο αρχείων με μη αποθηκευμένα μεταδεδομένα: %d"
 
-#: src/layout_util.c:3652
+#: src/layout-util.c:3652
 msgid "No unsaved metadata"
 msgstr "Καθόλου μη αποθηκευμένα μεταδεδομένα"
 
-#: src/layout_util.c:3700
+#: src/layout-util.c:3700
 #, c-format
 msgid ""
 "Image profile: %s\n"
@@ -4304,15 +4304,15 @@ msgstr ""
 "Προφίλ εικόνας: %s\n"
 "Προφίλ οθόνης: %s"
 
-#: src/layout_util.c:3708
+#: src/layout-util.c:3708
 msgid "Click to enable color management"
 msgstr "Κλίκαρε για να ενεργοποιήσεις τη διαχείριση των χρωμάτων"
 
-#: src/layout_util.c:3713
+#: src/layout-util.c:3713
 msgid "Color profiles not supported"
 msgstr "Δεν υποστηρίζονται τα προφίλ χρωμάτων"
 
-#: src/layout_util.c:3735
+#: src/layout-util.c:3735
 #, c-format
 msgid "Input _%d: %s"
 msgstr "Εισαγωγή _%d: %s"
@@ -4850,12 +4850,12 @@ msgid ""
 "  Error code: "
 msgstr ""
 
-#: src/options.c:246 src/ui_bookmark.c:571
+#: src/options.c:246 src/ui-bookmark.c:571
 msgid "Desktop"
 msgstr "Επιφάνεια Eργασίας"
 
 #: src/options.c:267 src/search.c:2338 src/search.c:2342 src/search.c:3627
-#: src/search.c:3631 src/view_file/view_file.c:915
+#: src/search.c:3631 src/view-file/view-file.c:915
 #, fuzzy
 msgid "Mark "
 msgstr "Σημάδι %d"
@@ -5339,7 +5339,7 @@ msgstr "Νέο _παράθυρο"
 msgid "Search"
 msgstr "Αναζήτηση:"
 
-#: src/preferences.c:803 src/toolbar.c:93 src/ui_pathsel.c:1049
+#: src/preferences.c:803 src/toolbar.c:93 src/ui-pathsel.c:1049
 #: src/utilops.c:3189
 msgid "New folder"
 msgstr "Νέος φάκελος"
@@ -5976,7 +5976,7 @@ msgstr "Τύποι αρχείων"
 msgid "Enabled"
 msgstr "Εγγράψιμο"
 
-#: src/preferences.c:2773 src/view_file/view_file.c:1227
+#: src/preferences.c:2773 src/view-file/view-file.c:1227
 msgid "Class"
 msgstr "Κατάταξη"
 
@@ -7265,39 +7265,39 @@ msgstr ""
 msgid "Marks"
 msgstr "Προβολή Σημαδιών"
 
-#: src/secure_save.c:407
+#: src/secure-save.c:407
 msgid "Cannot read the file"
 msgstr "Αδυναμία ανάγνωσης του αρχείου"
 
-#: src/secure_save.c:409
+#: src/secure-save.c:409
 msgid "Cannot get file status"
 msgstr "Αδυναμία λήψης της κατάστασης του αρχείου"
 
-#: src/secure_save.c:411
+#: src/secure-save.c:411
 msgid "Cannot access the file"
 msgstr "Αδυναμία πρόσβασης στο αρχείο"
 
-#: src/secure_save.c:413
+#: src/secure-save.c:413
 msgid "Cannot create temp file"
 msgstr "Αδυναμία δημιουργίας προσωρινού αρχείου"
 
-#: src/secure_save.c:415
+#: src/secure-save.c:415
 msgid "Cannot rename the file"
 msgstr "Αδυναμία μετονομασίας του αρχείου"
 
-#: src/secure_save.c:417
+#: src/secure-save.c:417
 msgid "File saving disabled by option"
 msgstr "Η αποθήκευση του αρχείου έχει απενεργοποιηθεί από επιλογή"
 
-#: src/secure_save.c:419
+#: src/secure-save.c:419
 msgid "Out of memory"
 msgstr "Ξεμείναμε από μνήμη"
 
-#: src/secure_save.c:421
+#: src/secure-save.c:421
 msgid "Cannot write the file"
 msgstr "Αδυναμία εγγραφής στο αρχείο"
 
-#: src/secure_save.c:425
+#: src/secure-save.c:425
 msgid "Secure file saving error"
 msgstr "Σφάλμα ασφαλείας εγγραφής στο αρχείο"
 
@@ -7393,35 +7393,35 @@ msgstr ""
 msgid "Using system Trash bin"
 msgstr ""
 
-#: src/ui_bookmark.c:137 src/ui_bookmark.c:200
+#: src/ui-bookmark.c:137 src/ui-bookmark.c:200
 msgid "New Bookmark"
 msgstr "Νέος Σελιδοδείκτης"
 
-#: src/ui_bookmark.c:283 src/ui_bookmark.c:289
+#: src/ui-bookmark.c:283 src/ui-bookmark.c:289
 msgid "Edit Bookmark"
 msgstr "Επεξεργασία Σελιδοδείκτη"
 
-#: src/ui_bookmark.c:304
+#: src/ui-bookmark.c:304
 msgid "Path:"
 msgstr "Διαδρομή:"
 
-#: src/ui_bookmark.c:313
+#: src/ui-bookmark.c:313
 msgid "Icon:"
 msgstr "Εικονίδιο:"
 
-#: src/ui_bookmark.c:319
+#: src/ui-bookmark.c:319
 msgid "Select icon"
 msgstr "Επιλογή εικονίδιου"
 
-#: src/ui_bookmark.c:412
+#: src/ui-bookmark.c:412
 msgid "_Properties..."
 msgstr "_Ιδιότητες..."
 
-#: src/ui_bookmark.c:418
+#: src/ui-bookmark.c:418
 msgid "_Remove"
 msgstr "_Απομάκρυνση"
 
-#: src/ui_fileops.c:88
+#: src/ui-fileops.c:88
 msgid ""
 "One or more filenames are not encoded with the preferred locale character "
 "set.\n"
@@ -7429,13 +7429,13 @@ msgstr ""
 "Ένα η περισσότερα ονόματα αρχείων δεν είναι κωδικοποιημένα με την "
 "προεπιλεγμένη ομάδα χαρακτήρων της τοπικοποίησης.\n"
 
-#: src/ui_fileops.c:89
+#: src/ui-fileops.c:89
 #, c-format
 msgid "Operations on, and display of these files with %s may not succeed.\n"
 msgstr ""
 "Ίσως να μην επιτύχει η επέμβαση στα αρχεία, και η προβολή τους με το %s .\n"
 
-#: src/ui_fileops.c:91
+#: src/ui-fileops.c:91
 msgid ""
 "If your filenames are not encoded in utf-8, try setting the environment "
 "variable G_BROKEN_FILENAMES=1\n"
@@ -7443,16 +7443,16 @@ msgstr ""
 "Αν τα ονόματα των αρχείων σου δεν είναι κωδικοποιημένα με utf-8, προσπάθησε "
 "να ορίσεις την μεταβλητή περιβάλλοντος G_BROKEN_FILENAMES=1\n"
 
-#: src/ui_fileops.c:93
+#: src/ui-fileops.c:93
 #, c-format
 msgid "It appears G_BROKEN_FILENAMES is set to %s\n"
 msgstr "Φαίνεται πως η G_BROKEN_FILENAMES είναι ορισμένη σε %s\n"
 
-#: src/ui_fileops.c:95
+#: src/ui-fileops.c:95
 msgid "It appears G_BROKEN_FILENAMES is not set\n"
 msgstr "Φαίνεται πως δεν είναι ορισμένη η G_BROKEN_FILENAMES\n"
 
-#: src/ui_fileops.c:97
+#: src/ui-fileops.c:97
 #, c-format
 msgid ""
 "The locale appears to be set to \"%s\"\n"
@@ -7461,7 +7461,7 @@ msgstr ""
 "Η τοπικοποίηση φαίνεται πως είναι ορισμένη σε « %s »\n"
 "(ορισμένη από την μεταβλητή περιβάλλοντος LANG )\n"
 
-#: src/ui_fileops.c:102
+#: src/ui-fileops.c:102
 msgid ""
 "\n"
 "Preferred encoding appears to be UTF-8, however the file:\n"
@@ -7470,39 +7470,39 @@ msgstr ""
 "Η προεπιλεγμένη κωδικοποίηση φαίνεται πως είναι η  UTF-8· παρ' όλα αυτά το "
 "αρχείο:\n"
 
-#: src/ui_fileops.c:103 src/ui_fileops.c:106 src/ui_fileops.c:108
+#: src/ui-fileops.c:103 src/ui-fileops.c:106 src/ui-fileops.c:108
 msgid "[name not displayable]"
 msgstr "[το όνομα δεν είναι εμφανίσιμο]"
 
-#: src/ui_fileops.c:106
+#: src/ui-fileops.c:106
 #, c-format
 msgid "\"%s\" is encoded in valid UTF-8."
 msgstr "Το «%s » είναι κωδικοποιημένο σε έγκυρη UTF-8."
 
-#: src/ui_fileops.c:108
+#: src/ui-fileops.c:108
 #, c-format
 msgid "\"%s\" is not encoded in valid UTF-8."
 msgstr "Το «%s » δεν είναι κωδικοποιημένο σε έγκυρη UTF-8."
 
-#: src/ui_fileops.c:113 src/ui_fileops.c:118
+#: src/ui-fileops.c:113 src/ui-fileops.c:118
 msgid "Filename encoding locale mismatch"
 msgstr "Αταίριαστη κωδικοποίηση τοπικοποίησης του ονόματος του αρχείου"
 
-#: src/ui_fileops.c:1047
+#: src/ui-fileops.c:1047
 #, fuzzy
 msgid "Web file download failed"
 msgstr "Η διαγραφή απέτυχε"
 
-#: src/ui_fileops.c:1110
+#: src/ui-fileops.c:1110
 msgid "Download web file"
 msgstr ""
 
-#: src/ui_fileops.c:1112
+#: src/ui-fileops.c:1112
 #, fuzzy
 msgid "Downloading "
 msgstr "Φόρτωση του χάρτη"
 
-#: src/ui_help.c:117
+#: src/ui-help.c:117
 #, c-format
 msgid ""
 "Unable to load:\n"
@@ -7511,30 +7511,30 @@ msgstr ""
 "Αδυναμία φόρτωσης:\n"
 "%s"
 
-#: src/ui_pathsel.c:432
+#: src/ui-pathsel.c:432
 #, c-format
 msgid "A file with name %s already exists."
 msgstr "Ένα αρχείο με το όνομα %s υπάρχει ήδη."
 
-#: src/ui_pathsel.c:433 src/ui_pathsel.c:439 src/utilops.c:2373
+#: src/ui-pathsel.c:433 src/ui-pathsel.c:439 src/utilops.c:2373
 #: src/utilops.c:2400 src/utilops.c:2866
 msgid "Rename failed"
 msgstr "Αποτυχία μετονομασίας"
 
-#: src/ui_pathsel.c:438
+#: src/ui-pathsel.c:438
 #, c-format
 msgid "Failed to rename %s to %s."
 msgstr "Αποτυχία μετανομασίας του %s σε %s."
 
-#: src/ui_pathsel.c:634 src/ui_pathsel.c:642
+#: src/ui-pathsel.c:634 src/ui-pathsel.c:642
 msgid "_Rename"
 msgstr "_Μετονομασία"
 
-#: src/ui_pathsel.c:636 src/ui_pathsel.c:646
+#: src/ui-pathsel.c:636 src/ui-pathsel.c:646
 msgid "Add _Bookmark"
 msgstr "Προσθήκη _Σελιδοδείκτη"
 
-#: src/ui_pathsel.c:759
+#: src/ui-pathsel.c:759
 #, c-format
 msgid ""
 "Unable to create folder:\n"
@@ -7543,31 +7543,31 @@ msgstr ""
 "Αδυναμία δημιουργίας του φακέλου:\n"
 "%s"
 
-#: src/ui_pathsel.c:760
+#: src/ui-pathsel.c:760
 msgid "Error creating folder"
 msgstr "Σφάλμα κατά τη δημιουργία του φακέλου"
 
-#: src/ui_pathsel.c:980
+#: src/ui-pathsel.c:980
 msgid "All Files"
 msgstr "Όλα τα Αρχεία"
 
-#: src/ui_pathsel.c:1052
+#: src/ui-pathsel.c:1052
 msgid "Show hidden"
 msgstr "Προβολή κρυφών"
 
-#: src/ui_pathsel.c:1137
+#: src/ui-pathsel.c:1137
 msgid "Filter:"
 msgstr "Φίλτρο:"
 
-#: src/ui_tabcomp.c:945
+#: src/ui-tabcomp.c:945
 msgid "Select path"
 msgstr "Επιλογή διαδρομής"
 
-#: src/ui_tabcomp.c:967
+#: src/ui-tabcomp.c:967
 msgid "All files"
 msgstr "Όλα τα αρχεία"
 
-#: src/uri_utils.c:43
+#: src/uri-utils.c:43
 msgid "Drag and Drop failed"
 msgstr "Αποτυχία της Αρπαγής και του Συρσίματος"
 
@@ -7929,111 +7929,111 @@ msgstr "Δημιουργία φακέλου;"
 msgid "Cannot create folder:"
 msgstr "Αδυναμία δημιουργίας του φακέλου"
 
-#: src/view_dir.c:411
+#: src/view-dir.c:411
 msgid "_Copy"
 msgstr "Αντιγρα_φή"
 
-#: src/view_dir.c:413
+#: src/view-dir.c:413
 msgid "_Move"
 msgstr "_Μετακίνηση"
 
-#: src/view_dir.c:714
+#: src/view-dir.c:714
 msgid "_Up to parent"
 msgstr "Επάν_ω, στο γονικό"
 
-#: src/view_dir.c:719
+#: src/view-dir.c:719
 msgid "_Slideshow"
 msgstr "_Συνεχόμενη προβολή εικόνων"
 
-#: src/view_dir.c:721
+#: src/view-dir.c:721
 msgid "Slideshow recursive"
 msgstr "Εις βάθος συνεχόμενη προβολή εικόνων"
 
-#: src/view_dir.c:725
+#: src/view-dir.c:725
 msgid "Find _duplicates..."
 msgstr "Αναζήτηση _πανομοιότυπων..."
 
-#: src/view_dir.c:727
+#: src/view-dir.c:727
 msgid "Find duplicates recursive..."
 msgstr "Αναζήτηση πανομοιότυπων, εις βάθος..."
 
-#: src/view_dir.c:732
+#: src/view-dir.c:732
 msgid "_New folder..."
 msgstr "_Νέος φάκελος..."
 
-#: src/view_dir.c:749
+#: src/view-dir.c:749
 msgid "View as _List"
 msgstr "Προβολή ως _Κατάστιχο"
 
-#: src/view_dir.c:752
+#: src/view-dir.c:752
 msgid "View as _Tree"
 msgstr "Προβολή ως Δέν_τρο"
 
-#: src/view_dir.c:765
+#: src/view-dir.c:765
 msgid "Show _hidden files"
 msgstr "Προβολή των _κρυφών αρχείων"
 
-#: src/view_dir.c:768 src/view_file/view_file.c:779
+#: src/view-dir.c:768 src/view-file/view-file.c:779
 msgid "Re_fresh"
 msgstr "Α_νανέωση"
 
-#: src/view_file/view_file.c:749
+#: src/view-file/view-file.c:749
 #, fuzzy
 msgid "Images as List"
 msgstr "Προβολή των Εικόνων ως Κατάστιχο"
 
-#: src/view_file/view_file.c:752
+#: src/view-file/view-file.c:752
 #, fuzzy
 msgid "Images as Icons"
 msgstr "Προβολή των Εικόνων ως Εικονίδια"
 
-#: src/view_file/view_file.c:758
+#: src/view-file/view-file.c:758
 msgid "Show _thumbnails"
 msgstr "Προβολή _μικρογραφιών"
 
-#: src/view_file/view_file.c:904
+#: src/view-file/view-file.c:904
 #, fuzzy
 msgid "Mark text"
 msgstr "Σημάδι %d"
 
-#: src/view_file/view_file.c:907
+#: src/view-file/view-file.c:907
 #, fuzzy
 msgid "Set mark text"
 msgstr "Όρισε το σημάδι %d"
 
-#: src/view_file/view_file.c:908
+#: src/view-file/view-file.c:908
 #, fuzzy
 msgid "This will set or clear the mark text."
 msgstr "Αυτό θα απομακρύνει τα περιεχόμενα του κάδου απορριμμάτων."
 
-#: src/view_file/view_file.c:1185
+#: src/view-file/view-file.c:1185
 msgid "Use regular expressions"
 msgstr ""
 
-#: src/view_file/view_file.c:1215
+#: src/view-file/view-file.c:1215
 msgid "Case"
 msgstr ""
 
-#: src/view_file/view_file.c:1217
+#: src/view-file/view-file.c:1217
 #, fuzzy
 msgid "Case sensitive"
 msgstr "Ταξινόμηση με διάκριση πεζών/κεφαλαίων"
 
-#: src/view_file/view_file.c:1234
+#: src/view-file/view-file.c:1234
 #, fuzzy
 msgid "Select Class filter"
 msgstr "Επιλογή φακέλου"
 
-#: src/view_file/view_file.c:1789
+#: src/view-file/view-file.c:1789
 #, fuzzy
 msgid "Loading meta..."
 msgstr "Φόρτωση του χάρτη"
 
-#: src/view_file/view_file_icon.c:2153 src/view_file/view_file_list.c:930
+#: src/view-file/view-file-icon.c:2153 src/view-file/view-file-list.c:930
 msgid " [NO GROUPING]"
 msgstr "[ΧΩΡΙΣ ΟΜΑΔΟΠΟΙΗΣΗ]"
 
-#: src/view_file/view_file_list.c:515
+#: src/view-file/view-file-list.c:515
 #, c-format
 msgid ""
 "Invalid file name:\n"
@@ -8042,16 +8042,16 @@ msgstr ""
 "Μη έγκυρο όνομα αρχείου:\n"
 "%s"
 
-#: src/view_file/view_file_list.c:516
+#: src/view-file/view-file-list.c:516
 msgid "Error renaming file"
 msgstr "Σφάλμα κατά τη μετονομασία του αρχείου"
 
-#: src/view_file/view_file_list.c:2232
+#: src/view-file/view-file-list.c:2232
 #, fuzzy
 msgid "NameStars"
 msgstr "Όνομα"
 
-#: src/view_file/view_file_list.c:2236
+#: src/view-file/view-file-list.c:2236
 #, fuzzy
 msgid "Stars"
 msgstr "Έναρξη #"

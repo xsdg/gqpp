@@ -20,16 +20,16 @@
 #include "main.h"
 #include "options.h"
 
-#include "bar_exif.h"
+#include "bar-exif.h"
 #include "editors.h"
 #include "filefilter.h"
 #include "histogram.h" /* HCHAN_RGB */
 #include "image-overlay.h" /* OSD_SHOW_NOTHING */
 #include "layout.h"
-#include "layout_image.h"
+#include "layout-image.h"
 #include "rcfile.h"
-#include "ui_bookmark.h"
-#include "ui_fileops.h"
+#include "ui-bookmark.h"
+#include "ui-fileops.h"
 #include "window.h"
 
 ConfOptions *options;

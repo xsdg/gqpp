@@ -22,7 +22,7 @@
 #include "main.h"
 #include "remote.h"
 
-#include "cache_maint.h"
+#include "cache-maint.h"
 #include "collect.h"
 #include "collect-io.h"
 #include "exif.h"
@@ -31,14 +31,14 @@
 #include "image.h"
 #include "img-view.h"
 #include "layout.h"
-#include "layout_image.h"
-#include "layout_util.h"
+#include "layout-image.h"
+#include "layout-util.h"
 #include "misc.h"
 #include "pixbuf-renderer.h"
 #include "slideshow.h"
-#include "ui_fileops.h"
+#include "ui-fileops.h"
 #include "rcfile.h"
-#include "view_file.h"
+#include "view-file.h"
 
 #include <sys/socket.h>
 #include <sys/un.h>

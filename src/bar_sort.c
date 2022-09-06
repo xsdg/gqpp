@@ -20,20 +20,20 @@
  */
 
 #include "main.h"
-#include "bar_sort.h"
+#include "bar-sort.h"
 
 #include "collect.h"
 #include "collect-io.h"
 #include "filedata.h"
-#include "history_list.h"
+#include "history-list.h"
 #include "layout.h"
-#include "layout_image.h"
+#include "layout-image.h"
 #include "utilops.h"
 #include "editors.h"
-#include "ui_bookmark.h"
-#include "ui_fileops.h"
-#include "ui_menu.h"
-#include "ui_misc.h"
+#include "ui-bookmark.h"
+#include "ui-fileops.h"
+#include "ui-menu.h"
+#include "ui-misc.h"
 #include "rcfile.h"
 #include "window.h"
 

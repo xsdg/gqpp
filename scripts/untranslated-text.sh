@@ -9,7 +9,7 @@
 ## and there are some false hits.
 ##
 
-for file in src/*.c src/view_file/*.c
+for file in src/*.c src/view-file/*.c
 do
 	for search_text in "label" "menu_item_add" "tooltip" "_button" "_text"
 	do

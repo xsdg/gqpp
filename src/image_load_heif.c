@@ -21,7 +21,7 @@
 #include "main.h"
 
 #include "image-load.h"
-#include "image_load_heif.h"
+#include "image-load-heif.h"
 
 #ifdef HAVE_HEIF
 #include <libheif/heif.h>

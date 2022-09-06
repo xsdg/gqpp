@@ -20,19 +20,19 @@
  */
 
 #include "main.h"
-#include "view_dir_list.h"
+#include "view-dir-list.h"
 
 #include "dnd.h"
 #include "dupe.h"
 #include "filedata.h"
 #include "layout.h"
-#include "layout_image.h"
-#include "layout_util.h"
+#include "layout-image.h"
+#include "layout-util.h"
 #include "utilops.h"
-#include "ui_fileops.h"
-#include "ui_menu.h"
-#include "ui_tree_edit.h"
-#include "view_dir.h"
+#include "ui-fileops.h"
+#include "ui-menu.h"
+#include "ui-tree-edit.h"
+#include "view-dir.h"
 
 #include <gdk/gdkkeysyms.h> /* for keyboard values */
 

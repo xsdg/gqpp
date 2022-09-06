@@ -21,10 +21,10 @@
 #include <gdk/gdkkeysyms.h>
 
 #include "main.h"
-#include "search_and_run.h"
+#include "search-and-run.h"
 
-#include "layout_util.h"
-#include "ui_misc.h"
+#include "layout-util.h"
+#include "ui-misc.h"
 #include "window.h"
 
 enum {

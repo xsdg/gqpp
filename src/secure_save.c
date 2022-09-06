@@ -24,10 +24,10 @@
 #include <errno.h>
 #include <utime.h>
 
-#include "secure_save.h"
+#include "secure-save.h"
 
 /**
- * @file secure_save.c
+ * @file secure-save.c
  * 
  * ABOUT SECURE SAVE \n
  * This code was borrowed from the ELinks project (http://elinks.cz)

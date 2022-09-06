@@ -20,12 +20,12 @@
  */
 
 #include "main.h"
-#include "layout_config.h"
+#include "layout-config.h"
 
 
 #include "layout.h"
 
-#include "ui_misc.h"
+#include "ui-misc.h"
 
 
 enum {

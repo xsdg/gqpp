@@ -22,22 +22,22 @@
 #include <glib/gprintf.h>
 
 #include "main.h"
-#include "bar_keywords.h"
+#include "bar-keywords.h"
 
 #include "filedata.h"
-#include "history_list.h"
+#include "history-list.h"
 #include "metadata.h"
 #include "misc.h"
-#include "ui_fileops.h"
-#include "ui_misc.h"
-#include "ui_utildlg.h"
+#include "ui-fileops.h"
+#include "ui-misc.h"
+#include "ui-utildlg.h"
 #include "utilops.h"
 #include "bar.h"
-#include "ui_menu.h"
+#include "ui-menu.h"
 #include "rcfile.h"
 #include "layout.h"
 #include "dnd.h"
-#include "secure_save.h"
+#include "secure-save.h"
 
 
 //static void bar_pane_keywords_keyword_update_all(void);

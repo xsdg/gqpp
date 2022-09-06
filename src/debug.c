@@ -22,7 +22,7 @@
 #include "debug.h"
 
 #include "logwindow.h"
-#include "ui_fileops.h"
+#include "ui-fileops.h"
 
 #include <glib/gprintf.h>
 #include <regex.h>

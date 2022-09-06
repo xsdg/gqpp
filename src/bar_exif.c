@@ -20,19 +20,19 @@
  */
 
 #include "main.h"
-#include "bar_exif.h"
+#include "bar-exif.h"
 
 #include "exif.h"
 #include "metadata.h"
 #include "filedata.h"
-#include "history_list.h"
+#include "history-list.h"
 #include "misc.h"
-#include "ui_misc.h"
-#include "ui_menu.h"
+#include "ui-misc.h"
+#include "ui-menu.h"
 #include "bar.h"
 #include "rcfile.h"
 #include "dnd.h"
-#include "ui_utildlg.h"
+#include "ui-utildlg.h"
 #include "layout.h"
 
 

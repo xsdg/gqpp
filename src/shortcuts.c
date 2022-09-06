@@ -25,9 +25,9 @@
 #include "collect.h"
 #include "layout.h"
 #include "utilops.h"
-#include "ui_bookmark.h"
-#include "ui_fileops.h"
-#include "ui_misc.h"
+#include "ui-bookmark.h"
+#include "ui-fileops.h"
+#include "ui-misc.h"
 
 typedef struct _ShortcutsData ShortcutsData;
 struct _ShortcutsData

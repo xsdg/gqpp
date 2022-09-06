@@ -25,9 +25,9 @@
 
 #include "collect-io.h"
 #include "utilops.h"
-#include "ui_fileops.h"
-#include "ui_tabcomp.h"
-#include "ui_utildlg.h"
+#include "ui-fileops.h"
+#include "ui-tabcomp.h"
+#include "ui-utildlg.h"
 
 
 enum {

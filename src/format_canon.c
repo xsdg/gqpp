@@ -32,8 +32,8 @@
 #include "intl.h"
 
 #include "main.h"
-#include "format_canon.h"
-#include "format_raw.h"
+#include "format-canon.h"
+#include "format-raw.h"
 
 #include "exif.h"
 

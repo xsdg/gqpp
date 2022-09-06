@@ -33,15 +33,15 @@
 #include "main.h"
 
 #include "filedata.h"
-#include "history_list.h"
+#include "history-list.h"
 
-#include "ui_bookmark.h"
-#include "ui_fileops.h"
-#include "ui_menu.h"
-#include "ui_misc.h"
-#include "ui_utildlg.h"
-#include "ui_tabcomp.h"
-#include "uri_utils.h"
+#include "ui-bookmark.h"
+#include "ui-fileops.h"
+#include "ui-menu.h"
+#include "ui-misc.h"
+#include "ui-utildlg.h"
+#include "ui-tabcomp.h"
+#include "uri-utils.h"
 
 
 

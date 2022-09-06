@@ -20,18 +20,18 @@
  */
 
 #include "main.h"
-#include "desktop_file.h"
+#include "desktop-file.h"
 
 #include "editors.h"
 #include "filedata.h"
 #include "misc.h"
-#include "ui_misc.h"
-#include "ui_fileops.h"
-#include "ui_utildlg.h"
-#include "pixbuf_util.h"
+#include "ui-misc.h"
+#include "ui-fileops.h"
+#include "ui-utildlg.h"
+#include "pixbuf-util.h"
 #include "window.h"
 #include "utilops.h"
-#include "layout_util.h"
+#include "layout-util.h"
 
 #define CONFIG_WINDOW_DEF_WIDTH		700
 #define CONFIG_WINDOW_DEF_HEIGHT	400

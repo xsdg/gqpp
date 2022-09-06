@@ -22,7 +22,7 @@
 #include "main.h"
 #include "menu.h"
 
-#include "cache_maint.h"
+#include "cache-maint.h"
 #include "collect.h"
 #include "collect-dlg.h"
 #include "collect-io.h"
@@ -31,13 +31,13 @@
 #include "editors.h"
 #include "filedata.h"
 #include "img-view.h"
-#include "pixbuf_util.h"
+#include "pixbuf-util.h"
 #include "preferences.h"
 #include "slideshow.h"
 #include "utilops.h"
-#include "ui_fileops.h"
-#include "ui_tabcomp.h"
-#include "ui_menu.h"
+#include "ui-fileops.h"
+#include "ui-tabcomp.h"
+#include "ui-menu.h"
 
 static GtkWidget *real_submenu_add_alter(GtkWidget *menu, GCallback func, gpointer data,
 					 GtkAccelGroup *accel_group);

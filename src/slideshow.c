@@ -26,8 +26,8 @@
 #include "filedata.h"
 
 #include "layout.h"
-#include "layout_image.h"
-#include "ui_fileops.h"
+#include "layout-image.h"
+#include "ui-fileops.h"
 
 
 static void slideshow_timer_stop(SlideShowData *ss);

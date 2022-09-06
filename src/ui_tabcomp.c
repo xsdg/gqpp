@@ -34,13 +34,13 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 #include "main.h"
-#include "ui_tabcomp.h"
+#include "ui-tabcomp.h"
 
-#include "history_list.h"
+#include "history-list.h"
 #include "misc.h"	/* expand_tilde() */
-#include "ui_fileops.h"
-#include "ui_spinner.h"
-#include "ui_utildlg.h"
+#include "ui-fileops.h"
+#include "ui-spinner.h"
+#include "ui-utildlg.h"
 
 #include <gdk/gdkkeysyms.h> /* for key values */
 
@@ -52,7 +52,7 @@
 #define TAB_COMP_POPUP_MAX 1000
 
 #ifdef TAB_COMPLETION_ENABLE_POPUP_MENU
-#include "ui_menu.h"
+#include "ui-menu.h"
 #endif
 
 

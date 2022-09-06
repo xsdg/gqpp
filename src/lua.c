@@ -35,7 +35,7 @@
 
 #include "main.h"
 #include "glua.h"
-#include "ui_fileops.h"
+#include "ui-fileops.h"
 #include "exif.h"
 
 /**

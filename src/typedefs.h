@@ -939,7 +939,7 @@ struct _ViewDirInfoTree
 
 struct _ViewFile
 {
-	FileViewType type; 	/**< @todo (xsdg): Turn this into a union (see VFLIST and VFICON from view_file.h). */
+	FileViewType type; 	/**< @todo (xsdg): Turn this into a union (see VFLIST and VFICON from view-file.h). */
 
 	gpointer info;
 

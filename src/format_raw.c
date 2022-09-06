@@ -35,12 +35,12 @@
 #include "intl.h"
 
 #include "main.h"
-#include "format_raw.h"
+#include "format-raw.h"
 
-#include "format_canon.h"
-#include "format_fuji.h"
-#include "format_nikon.h"
-#include "format_olympus.h"
+#include "format-canon.h"
+#include "format-fuji.h"
+#include "format-nikon.h"
+#include "format-olympus.h"
 
 
 typedef struct _FormatRawEntry FormatRawEntry;

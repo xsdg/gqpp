@@ -34,15 +34,15 @@
 #include <gtk/gtk.h>	/* for locale warning dialog */
 
 #include "main.h"
-#include "ui_fileops.h"
+#include "ui-fileops.h"
 
-#include "ui_utildlg.h"	/* for locale warning dialog */
+#include "ui-utildlg.h"	/* for locale warning dialog */
 #include "md5-util.h"
 
 #include "filefilter.h"
 #include "layout.h"
 #include "utilops.h"
-#include "secure_save.h"
+#include "secure-save.h"
 
 /*
  *-----------------------------------------------------------------------------

@@ -20,13 +20,13 @@
  */
 
 #include "main.h"
-#include "bar_comment.h"
+#include "bar-comment.h"
 
 #include "bar.h"
 #include "metadata.h"
 #include "filedata.h"
-#include "ui_menu.h"
-#include "ui_misc.h"
+#include "ui-menu.h"
+#include "ui-misc.h"
 #include "rcfile.h"
 #include "layout.h"
 

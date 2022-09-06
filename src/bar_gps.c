@@ -23,7 +23,7 @@
 #ifdef HAVE_LIBCHAMPLAIN
 #ifdef HAVE_LIBCHAMPLAIN_GTK
 
-#include "bar_gps.h"
+#include "bar-gps.h"
 
 #include "bar.h"
 #include "filedata.h"
@@ -33,9 +33,9 @@
 #include "misc.h"
 #include "rcfile.h"
 #include "thumb.h"
-#include "ui_menu.h"
-#include "uri_utils.h"
-#include "ui_utildlg.h"
+#include "ui-menu.h"
+#include "uri-utils.h"
+#include "ui-utildlg.h"
 
 #include <clutter-gtk/clutter-gtk.h>
 #include <champlain/champlain.h>

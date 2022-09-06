@@ -29,7 +29,7 @@
 
 #include "filefilter.h"
 #include "image-load.h"
-#include "image_load_libraw.h"
+#include "image-load-libraw.h"
 
 #ifdef HAVE_RAW
 

@@ -27,8 +27,8 @@
 #include "main.h"
 
 #include "image-load.h"
-#include "image_load_jpeg.h"
-#include "jpeg_parser.h"
+#include "image-load-jpeg.h"
+#include "jpeg-parser.h"
 
 #ifdef HAVE_JPEG
 

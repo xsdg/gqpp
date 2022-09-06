@@ -23,9 +23,9 @@
 #include "cache.h"
 
 #include "md5-util.h"
-#include "secure_save.h"
-#include "thumb_standard.h"
-#include "ui_fileops.h"
+#include "secure-save.h"
+#include "thumb-standard.h"
+#include "ui-fileops.h"
 
 #include <utime.h>
 #include <errno.h>

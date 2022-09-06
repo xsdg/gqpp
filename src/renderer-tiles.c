@@ -42,7 +42,7 @@
 
 #ifdef GQ_BUILD
 #include "main.h"
-#include "pixbuf_util.h"
+#include "pixbuf-util.h"
 #include "exif.h"
 #else
 typedef enum {

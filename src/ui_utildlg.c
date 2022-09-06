@@ -31,14 +31,14 @@
 #include <gdk/gdkkeysyms.h> /* for keyboard values */
 
 #include "main.h"
-#include "ui_utildlg.h"
+#include "ui-utildlg.h"
 
 #include "filedata.h"
 #include "rcfile.h"
-#include "ui_fileops.h"
-#include "ui_misc.h"
-#include "ui_pathsel.h"
-#include "ui_tabcomp.h"
+#include "ui-fileops.h"
+#include "ui-misc.h"
+#include "ui-pathsel.h"
+#include "ui-tabcomp.h"
 #include "window.h"
 
 /*
