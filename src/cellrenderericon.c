@@ -646,7 +646,7 @@ static void gqv_cell_renderer_icon_render(GtkCellRenderer *cell,
 
 	pixbuf = cellicon->pixbuf;
 	text = cellicon->text;
-	if (!text)
+	if (!pixbuf && !text)
 		{
 		return;
 		}
