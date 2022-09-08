@@ -145,7 +145,7 @@ static gboolean image_loader_tiff_load (gpointer loader, const guchar *buf, gsiz
 	guchar *pixels = NULL;
 	gint width, height, rowstride;
 	size_t bytes;
-	uint32 rowsperstrip;
+	guint32 rowsperstrip;
 	gint dircount = 0;
 
 	lt->buffer = buf;
@@ -247,7 +247,7 @@ static gboolean image_loader_tiff_load (gpointer loader, const guchar *buf, gsiz
 		{
 		/* read by strip */
 		ptrdiff_t row;
-		const size_t line_bytes = width * sizeof(uint32);
+		const size_t line_bytes = width * sizeof(guint32);
 		guchar *wrk_line = (guchar *)g_malloc(line_bytes);
 
 		for (row = 0; row < height; row += rowsperstrip)
@@ -259,7 +259,7 @@ static gboolean image_loader_tiff_load (gpointer loader, const guchar *buf, gsiz
 			}
 
 			/* Read the strip into an RGBA array */
-			if (!TIFFReadRGBAStrip(tiff, row, (uint32 *)(pixels + row * rowstride))) {
+			if (!TIFFReadRGBAStrip(tiff, row, (guint32 *)(pixels + row * rowstride))) {
 				break;
 			}
 
@@ -293,7 +293,7 @@ static gboolean image_loader_tiff_load (gpointer loader, const guchar *buf, gsiz
 	else
 		{
 		/* fallback, tiled tiff */
-		if (!TIFFReadRGBAImageOriented (tiff, width, height, (uint32 *)pixels, ORIENTATION_TOPLEFT, 1))
+		if (!TIFFReadRGBAImageOriented (tiff, width, height, (guint32 *)pixels, ORIENTATION_TOPLEFT, 1))
 			{
 			TIFFClose(tiff);
 			return FALSE;
@@ -307,7 +307,7 @@ static gboolean image_loader_tiff_load (gpointer loader, const guchar *buf, gsiz
 		guchar *ptr = pixels;
 		while (ptr < pixels + bytes)
 			{
-			uint32 pixel = *(uint32 *)ptr;
+			guint32 pixel = *(guint32 *)ptr;
 			int r = TIFFGetR(pixel);
 			int g = TIFFGetG(pixel);
 			int b = TIFFGetB(pixel);
