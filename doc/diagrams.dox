@@ -24,7 +24,6 @@
  * @brief Diagrams to be included in the Doxygen output
  * 
  * The contents are diagrams to be included in the Doxygen output.
- * The .c file extension is so that Doxygen will process it.
  */
 
 /**
