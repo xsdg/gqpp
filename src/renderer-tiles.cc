@@ -870,7 +870,7 @@ gboolean renderer_tiles_overlay_get(void *renderer, gint id, GdkPixbuf **pixbuf,
 
 static void rt_hierarchy_changed_cb(GtkWidget *UNUSED(widget), GtkWidget *UNUSED(previous_toplevel), gpointer data)
 {
-	RendererTiles *rt = data;
+	RendererTiles *rt = (RendererTiles*)data;
 	rt_overlay_list_reset_window(rt);
 }
 
@@ -1644,7 +1644,7 @@ static gboolean rt_queue_schedule_next_draw(RendererTiles *rt, gboolean force_se
 
 static gboolean rt_queue_draw_idle_cb(gpointer data)
 {
-	RendererTiles *rt = data;
+	RendererTiles *rt = (RendererTiles*)data;
 	PixbufRenderer *pr = rt->pr;
 	QueueData *qd;
 	gboolean fast;
@@ -2176,7 +2176,7 @@ static gboolean rt_realize_cb(GtkWidget *widget, gpointer data)
 
 static gboolean rt_size_allocate_cb(GtkWidget *widget,  GdkRectangle *allocation, gpointer data)
 {
-	RendererTiles *rt = data;
+	RendererTiles *rt = (RendererTiles*)data;
 	cairo_t *cr;
 	cairo_surface_t *old_surface;
 

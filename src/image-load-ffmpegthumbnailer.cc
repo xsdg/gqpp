@@ -102,7 +102,7 @@ static gboolean image_loader_ft_load (gpointer loader, const guchar *UNUSED(buf)
 	ImageLoaderFT *lft = (ImageLoaderFT *) loader;
 	ImageLoader *il = lft->data;
 
-	image_data *image = video_thumbnailer_create_image_data();
+	image_data *image = (image_data*)video_thumbnailer_create_image_data();
 
 #ifdef HAVE_FFMPEGTHUMBNAILER_WH
 //	DEBUG_1("TG: FT requested size w=%d:h=%d for %s", lft->requested_width > 0, lft->requested_height, il->fd->path);

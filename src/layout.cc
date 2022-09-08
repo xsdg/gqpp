@@ -191,7 +191,7 @@ static void layout_set_unique_id(LayoutWindow *lw)
 
 static gboolean layout_set_current_cb(GtkWidget *UNUSED(widget), GdkEventFocus *UNUSED(event), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	current_lw = lw;
 	return FALSE;
 }
@@ -219,7 +219,7 @@ static void layout_box_folders_changed_cb(GtkWidget *widget, gpointer UNUSED(dat
 
 static void layout_path_entry_changed_cb(GtkWidget *widget, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gchar *buf;
 
 	if (gtk_combo_box_get_active(GTK_COMBO_BOX(widget)) < 0) return;
@@ -235,7 +235,7 @@ static void layout_path_entry_changed_cb(GtkWidget *widget, gpointer data)
 
 static void layout_path_entry_tab_cb(const gchar *path, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gchar *buf;
 
 	buf = g_strdup(path);
@@ -269,7 +269,7 @@ static void layout_path_entry_tab_cb(const gchar *path, gpointer data)
 
 static void layout_path_entry_cb(const gchar *path, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gchar *buf;
 
 	buf = g_strdup(path);
@@ -286,14 +286,14 @@ static void layout_path_entry_cb(const gchar *path, gpointer data)
 
 static void layout_vd_select_cb(ViewDir *UNUSED(vd), FileData *fd, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_set_fd(lw, fd);
 }
 
 static void layout_path_entry_tab_append_cb(const gchar *UNUSED(path), gpointer data, gint n)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	if (!lw || !lw->back_button) return;
 	if (!layout_valid(&lw)) return;
@@ -425,7 +425,7 @@ static void layout_sort_menu_cb(GtkWidget *widget, gpointer data)
 
 static void layout_sort_menu_ascend_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_sort_set(lw, lw->sort_method, !lw->sort_ascend);
 }
@@ -438,7 +438,7 @@ static void layout_sort_menu_hide_cb(GtkWidget *widget, gpointer UNUSED(data))
 
 static void layout_sort_button_press_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	GtkWidget *menu;
 	GdkEvent *event;
 	guint32 etime;
@@ -531,7 +531,7 @@ static void layout_zoom_menu_hide_cb(GtkWidget *widget, gpointer UNUSED(data))
 
 static void layout_zoom_button_press_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	GtkWidget *menu;
 	GdkEvent *event;
 	guint32 etime;
@@ -945,14 +945,14 @@ static GtkWidget *layout_tools_new(LayoutWindow *lw)
 
 static void layout_list_status_cb(ViewFile *UNUSED(vf), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_status_update_info(lw, NULL);
 }
 
 static void layout_list_thumb_cb(ViewFile *UNUSED(vf), gdouble val, const gchar *text, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_status_update_progress(lw, val, text);
 }
@@ -1597,7 +1597,7 @@ static void layout_tools_hide(LayoutWindow *lw, gboolean hide)
 
 static gboolean layout_tools_delete_cb(GtkWidget *UNUSED(widget), GdkEventAny *UNUSED(event), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_tools_float_toggle(lw);
 
@@ -2192,7 +2192,7 @@ static gint layout_config_delete_cb(GtkWidget *w, GdkEventAny *event, gpointer d
 
 static void layout_config_close_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LayoutConfig *lc = data;
+	LayoutConfig *lc = (LayoutConfig*)data;
 
 	gtk_widget_destroy(lc->configwindow);
 	free_layout_options_content(&lc->options);
@@ -2207,7 +2207,7 @@ static gint layout_config_delete_cb(GtkWidget *w, GdkEventAny *UNUSED(event), gp
 
 static void layout_config_apply_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LayoutConfig *lc = data;
+	LayoutConfig *lc = (LayoutConfig*)data;
 
 	g_free(lc->options.order);
 	lc->options.order = layout_config_get(lc->layout_widget, &lc->options.style);
@@ -2224,20 +2224,20 @@ static void layout_config_help_cb(GtkWidget *UNUSED(widget), gpointer UNUSED(dat
 
 static void layout_config_ok_cb(GtkWidget *widget, gpointer data)
 {
-	LayoutConfig *lc = data;
+	LayoutConfig *lc = (LayoutConfig*)data;
 	layout_config_apply_cb(widget, lc);
 	layout_config_close_cb(widget, lc);
 }
 
 static void home_path_set_current_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LayoutConfig *lc = data;
+	LayoutConfig *lc = (LayoutConfig*)data;
 	gtk_entry_set_text(GTK_ENTRY(lc->home_path_entry), layout_get_path(lc->lw));
 }
 
 static void startup_path_set_current_cb(GtkWidget *widget, gpointer data)
 {
-	LayoutConfig *lc = data;
+	LayoutConfig *lc = (LayoutConfig*)data;
 	if (!gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)))
 		{
 		return;
@@ -2247,7 +2247,7 @@ static void startup_path_set_current_cb(GtkWidget *widget, gpointer data)
 
 static void startup_path_set_last_cb(GtkWidget *widget, gpointer data)
 {
-	LayoutConfig *lc = data;
+	LayoutConfig *lc = (LayoutConfig*)data;
 	if (!gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)))
 		{
 		return;
@@ -2257,7 +2257,7 @@ static void startup_path_set_last_cb(GtkWidget *widget, gpointer data)
 
 static void startup_path_set_home_cb(GtkWidget *widget, gpointer data)
 {
-	LayoutConfig *lc = data;
+	LayoutConfig *lc = (LayoutConfig*)data;
 	if (!gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)))
 		{
 		return;
@@ -2541,7 +2541,7 @@ void layout_free(LayoutWindow *lw)
 
 static gboolean layout_delete_cb(GtkWidget *UNUSED(widget), GdkEventAny *UNUSED(event), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_close(lw);
 	return TRUE;
@@ -2560,7 +2560,7 @@ gboolean release_cb(GtkWidget *widget, GdkEventButton *event, gpointer data)
 static gboolean move_window_to_workspace_cb(gpointer data)
 {
 #ifdef GDK_WINDOWING_X11
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	GdkWindow *window;
 	GdkDisplay *display;
 

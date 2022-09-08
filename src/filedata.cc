@@ -1054,7 +1054,7 @@ void file_data_disable_grouping(FileData *fd, gboolean disable)
 		{
 		if (fd->parent)
 			{
-			FileData *parent = file_data_ref(fd->parent);
+			FileData *parent = (FileData*)file_data_ref(fd->parent);
 			file_data_disconnect_sidecar_file(parent, fd);
 			file_data_send_notification(parent, NOTIFY_GROUPING);
 			file_data_unref(parent);
@@ -1959,9 +1959,9 @@ gboolean file_data_register_mark_func(gint n, FileDataGetMarkFunc get_mark_func,
 
 void file_data_get_registered_mark_func(gint n, FileDataGetMarkFunc *get_mark_func, FileDataSetMarkFunc *set_mark_func, gpointer *data)
 {
-	if (get_mark_func) *get_mark_func = file_data_get_mark_func[n];
-	if (set_mark_func) *set_mark_func = file_data_set_mark_func[n];
-	if (data) *data = file_data_mark_func_data[n];
+	if (get_mark_func) *get_mark_func = ((get_mark_func)*)file_data_get_mark_func[n];
+	if (set_mark_func) *set_mark_func = ((set_mark_func)*)file_data_set_mark_func[n];
+	if (data) *data = ((data)*)file_data_mark_func_data[n];
 }
 
 gint file_data_get_user_orientation(FileData *fd)
@@ -2880,7 +2880,7 @@ gint file_data_verify_ci_list(GList *list, gchar **desc, gboolean with_sidecars)
 
 		if (common_errors)
 			{
-			gchar *str = file_data_get_error_string(common_errors);
+			gchar *str = (gchar*)file_data_get_error_string(common_errors);
 			g_string_append(result, str);
 			g_string_append(result, "\n");
 			g_free(str);
@@ -2900,7 +2900,7 @@ gint file_data_verify_ci_list(GList *list, gchar **desc, gboolean with_sidecars)
 
 			if (error)
 				{
-				gchar *str = file_data_get_error_string(error);
+				gchar *str = (gchar*)file_data_get_error_string(error);
 				g_string_append_printf(result, "%s: %s\n", fd->name, str);
 				g_free(str);
 				}
@@ -3319,7 +3319,7 @@ gboolean file_data_unregister_real_time_monitor(FileData *fd)
 static void marks_get_files(gpointer key, gpointer value, gpointer userdata)
 {
 	gchar *file_name = key;
-	GString *result = userdata;
+	GString *result = (GString*)userdata;
 	FileData *fd;
 
 	if (isfile(file_name))
@@ -3360,7 +3360,7 @@ gboolean marks_list_load(const gchar *path)
 			marks_value = strtok(NULL, ",");
 			if (isfile(file_path))
 				{
-				FileData *fd = file_data_new_no_grouping(file_path);
+				FileData *fd = (FileData*)file_data_new_no_grouping(file_path);
 				file_data_ref(fd);
 				gint n = 0;
 				while (n <= 9)

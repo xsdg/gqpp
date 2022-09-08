@@ -95,7 +95,7 @@ GList *vficon_pop_menu_file_list(ViewFile *vf)
 
 void vficon_pop_menu_view_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	if (!VFICON(vf)->click_fd) return;
 
@@ -115,14 +115,14 @@ void vficon_pop_menu_view_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 void vficon_pop_menu_rename_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	file_util_rename(NULL, vf_pop_menu_file_list(vf), vf->listview);
 }
 
 void vficon_pop_menu_show_names_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	vficon_toggle_filenames(vf);
 }
@@ -139,21 +139,21 @@ static void vficon_toggle_star_rating(ViewFile *vf)
 
 void vficon_pop_menu_show_star_rating_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	vficon_toggle_star_rating(vf);
 }
 
 void vficon_pop_menu_refresh_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	vf_refresh(vf);
 }
 
 void vficon_popup_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	vficon_selection_remove(vf, VFICON(vf)->click_fd, SELECTION_PRELIGHT, NULL);
 	VFICON(vf)->click_fd = NULL;
 	vf->popup = NULL;
@@ -309,7 +309,7 @@ static FileData *vficon_find_data_by_coord(ViewFile *vf, gint x, gint y, GtkTree
 
 static void vficon_mark_toggled_cb(GtkCellRendererToggle *cell, gchar *path_str, gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	GtkTreeModel *store;
 	GtkTreePath *path = gtk_tree_path_new_from_string(path_str);
 	GtkTreeIter row;
@@ -387,7 +387,7 @@ static void tip_hide(ViewFile *vf)
 
 static gboolean tip_schedule_cb(gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	GtkWidget *window;
 
 	if (!VFICON(vf)->tip_delay_id) return FALSE;
@@ -478,7 +478,7 @@ static void vficon_dnd_get(GtkWidget *UNUSED(widget), GdkDragContext *UNUSED(con
 			   GtkSelectionData *selection_data, guint UNUSED(info),
 			   guint UNUSED(time), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	GList *list = NULL;
 
 	if (!VFICON(vf)->click_fd) return;
@@ -501,7 +501,7 @@ static void vficon_drag_data_received(GtkWidget *UNUSED(entry_widget), GdkDragCo
 				      int x, int y, GtkSelectionData *selection,
 				      guint info, guint UNUSED(time), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	if (info == TARGET_TEXT_PLAIN) {
 		FileData *fd = vficon_find_data_by_coord(vf, x, y, NULL);
@@ -520,7 +520,7 @@ static void vficon_drag_data_received(GtkWidget *UNUSED(entry_widget), GdkDragCo
 
 static void vficon_dnd_begin(GtkWidget *widget, GdkDragContext *context, gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	tip_unschedule(vf);
 
@@ -539,7 +539,7 @@ static void vficon_dnd_begin(GtkWidget *widget, GdkDragContext *context, gpointe
 
 static void vficon_dnd_end(GtkWidget *UNUSED(widget), GdkDragContext *context, gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	vficon_selection_remove(vf, VFICON(vf)->click_fd, SELECTION_PRELIGHT, NULL);
 
@@ -1192,7 +1192,7 @@ static gint page_height(ViewFile *vf)
 
 static void vfi_menu_position_cb(GtkMenu *menu, gint *x, gint *y, gboolean *UNUSED(push_in), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	GtkTreeModel *store;
 	GtkTreeIter iter;
 	gint column;
@@ -1210,7 +1210,7 @@ static void vfi_menu_position_cb(GtkMenu *menu, gint *x, gint *y, gboolean *UNUS
 
 gboolean vficon_press_key_cb(GtkWidget *UNUSED(widget), GdkEventKey *event, gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	gint focus_row = 0;
 	gint focus_col = 0;
 	FileData *fd;
@@ -1342,7 +1342,7 @@ gboolean vficon_press_key_cb(GtkWidget *UNUSED(widget), GdkEventKey *event, gpoi
 
 static gboolean vficon_motion_cb(GtkWidget *UNUSED(widget), GdkEventMotion *event, gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	FileData *fd;
 
 	fd = vficon_find_data_by_coord(vf, (gint)event->x, (gint)event->y, NULL);
@@ -1353,7 +1353,7 @@ static gboolean vficon_motion_cb(GtkWidget *UNUSED(widget), GdkEventMotion *even
 
 gboolean vficon_press_cb(GtkWidget *UNUSED(widget), GdkEventButton *bevent, gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	GtkTreeIter iter;
 	FileData *fd;
 
@@ -1398,7 +1398,7 @@ gboolean vficon_press_cb(GtkWidget *UNUSED(widget), GdkEventButton *bevent, gpoi
 
 gboolean vficon_release_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	GtkTreeIter iter;
 	FileData *fd = NULL;
 	gboolean was_selected;
@@ -1479,7 +1479,7 @@ gboolean vficon_release_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer d
 
 static gboolean vficon_leave_cb(GtkWidget *UNUSED(widget), GdkEventCrossing *UNUSED(event), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	tip_unschedule(vf);
 	return FALSE;
@@ -1692,7 +1692,7 @@ static void vficon_populate_at_new_size(ViewFile *vf, gint w, gint UNUSED(h), gb
 
 static void vficon_sized_cb(GtkWidget *UNUSED(widget), GtkAllocation *allocation, gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	vficon_populate_at_new_size(vf, allocation->width, allocation->height, FALSE);
 }
@@ -2100,7 +2100,7 @@ static void vficon_cell_data_cb(GtkTreeViewColumn *UNUSED(tree_column), GtkCellR
 {
 	GList *list;
 	FileData *fd;
-	ColumnData *cd = data;
+	ColumnData *cd = (ColumnData*)data;
 	ViewFile *vf = cd->vf;
 	gchar *star_rating;
 
@@ -2133,7 +2133,7 @@ static void vficon_cell_data_cb(GtkTreeViewColumn *UNUSED(tree_column), GtkCellR
 		link = islink(fd->path) ? GQ_LINK_STR : "";
 		if (fd->sidecar_files)
 			{
-			gchar *sidecars = file_data_sc_list_to_string(fd);
+			gchar *sidecars = (gchar*)file_data_sc_list_to_string(fd);
 			if (options->show_star_rating && VFICON(vf)->show_text)
 				{
 				name_sidecars = g_strdup_printf("%s%s %s\n%s", link, fd->name, sidecars, star_rating);
@@ -2266,7 +2266,7 @@ gboolean vficon_set_fd(ViewFile *vf, FileData *dir_fd)
 
 void vficon_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	vf_refresh_idle_cancel(vf);
 

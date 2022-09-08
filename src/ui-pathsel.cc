@@ -107,7 +107,7 @@ static void dest_view_delete_dlg_cancel(GenericDialog *gd, gpointer data);
 
 static void dest_free_data(GtkWidget *UNUSED(widget), gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 
 	if (dd->gd)
 		{
@@ -410,7 +410,7 @@ static void dest_view_store_selection(Dest_Data *dd, GtkTreeView *view)
 
 static gint dest_view_rename_cb(TreeEditData *ted, const gchar *old_name, const gchar *new_name, gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 	GtkTreeModel *model;
 	GtkTreeIter iter;
 	gchar *buf;
@@ -478,7 +478,7 @@ static void dest_view_rename(Dest_Data *dd, GtkTreeView *view)
 
 static void dest_view_delete_dlg_cancel(GenericDialog *UNUSED(gd), gpointer data)
 {
-	DestDel_Data *dl = data;
+	DestDel_Data *dl = (DestDel_Data*)data;
 
 	dl->dd->gd = NULL;
 	g_free(dl->path);
@@ -487,7 +487,7 @@ static void dest_view_delete_dlg_cancel(GenericDialog *UNUSED(gd), gpointer data
 
 static void dest_view_delete_dlg_ok_cb(GenericDialog *gd, gpointer data)
 {
-	DestDel_Data *dl = data;
+	DestDel_Data *dl = (DestDel_Data*)data;
 
 	if (!unlink_file(dl->path))
 		{
@@ -566,38 +566,38 @@ static void dest_view_bookmark(Dest_Data *dd, GtkTreeView *view)
 
 static void dest_popup_dir_rename_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 	dest_view_rename(dd, GTK_TREE_VIEW(dd->d_view));
 }
 
 static void dest_popup_dir_bookmark_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 	dest_view_bookmark(dd, GTK_TREE_VIEW(dd->d_view));
 }
 
 static void dest_popup_file_rename_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 	dest_view_rename(dd, GTK_TREE_VIEW(dd->f_view));
 }
 
 static void dest_popup_file_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 	dest_view_delete(dd, GTK_TREE_VIEW(dd->f_view));
 }
 
 static void dest_popup_file_bookmark_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 	dest_view_bookmark(dd, GTK_TREE_VIEW(dd->f_view));
 }
 
 static void dest_popup_position_cb(GtkMenu *menu, gint *x, gint *y,
 				   gboolean *UNUSED(push_in), gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 	GtkTreeView *view;
 	gint cw, ch;
 
@@ -663,7 +663,7 @@ static gboolean dest_popup_menu(Dest_Data *dd, GtkTreeView *view,
 
 static gboolean dest_press_cb(GtkWidget *view, GdkEventButton *event, gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 	GtkTreePath *tpath;
 	GtkTreeViewColumn *column;
 	gint cell_x, cell_y;
@@ -692,7 +692,7 @@ static gboolean dest_press_cb(GtkWidget *view, GdkEventButton *event, gpointer d
 
 static gboolean dest_keypress_cb(GtkWidget *view, GdkEventKey *event, gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 
 	switch (event->keyval)
 		{
@@ -732,7 +732,7 @@ static gboolean dest_keypress_cb(GtkWidget *view, GdkEventKey *event, gpointer d
 
 static void dest_new_dir_cb(GtkWidget *widget, gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 	gchar *path;
 	GtkWidget *dialog_window;
 
@@ -792,7 +792,7 @@ static void dest_new_dir_cb(GtkWidget *widget, gpointer data)
 
 static void dest_select_cb(GtkTreeSelection *selection, gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 	GtkTreeView *view;
 	GtkTreeModel *store;
 	GtkTreeIter iter;
@@ -818,7 +818,7 @@ static void dest_select_cb(GtkTreeSelection *selection, gpointer data)
 
 static void dest_activate_cb(GtkWidget *view, GtkTreePath *tpath, GtkTreeViewColumn *UNUSED(column), gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 	GtkTreeModel *store;
 	GtkTreeIter iter;
 	gchar *path;
@@ -844,14 +844,14 @@ static void dest_activate_cb(GtkWidget *view, GtkTreePath *tpath, GtkTreeViewCol
 
 static void dest_home_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 
 	dest_change_dir(dd, homedir(), (dd->f_view != NULL));
 }
 
 static void dest_show_hidden_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 	gchar *buf;
 
 	dd->show_hidden = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(dd->hidden_button));
@@ -863,7 +863,7 @@ static void dest_show_hidden_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void dest_entry_changed_cb(GtkEditable *UNUSED(editable), gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 	const gchar *path;
 	gchar *buf;
 
@@ -982,7 +982,7 @@ static void dest_filter_clear(Dest_Data *dd)
 
 static void dest_filter_changed_cb(GtkEditable *UNUSED(editable), gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 	GtkWidget *entry;
 	const gchar *buf;
 	gchar *path;
@@ -1001,7 +1001,7 @@ static void dest_filter_changed_cb(GtkEditable *UNUSED(editable), gpointer data)
 
 static void dest_bookmark_select_cb(const gchar *path, gpointer data)
 {
-	Dest_Data *dd = data;
+	Dest_Data *dd = (Dest_Data*)data;
 
 	if (isdir(path))
 		{

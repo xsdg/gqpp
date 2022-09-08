@@ -101,7 +101,7 @@ typedef struct {
 
 static gboolean vflist_find_row_cb(GtkTreeModel *model, GtkTreePath *UNUSED(path), GtkTreeIter *iter, gpointer data)
 {
-	ViewFileFindRowData *find = data;
+	ViewFileFindRowData *find = (ViewFileFindRowData*)data;
 	FileData *fd;
 	gtk_tree_model_get(model, iter, FILE_COLUMN_POINTER, &fd, -1);
 	if (fd == find->fd)
@@ -222,7 +222,7 @@ static void vflist_dnd_get(GtkWidget *UNUSED(widget), GdkDragContext *UNUSED(con
 			   GtkSelectionData *selection_data, guint UNUSED(info),
 			   guint UNUSED(time), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	GList *list = NULL;
 
 	if (!VFLIST(vf)->click_fd) return;
@@ -243,7 +243,7 @@ static void vflist_dnd_get(GtkWidget *UNUSED(widget), GdkDragContext *UNUSED(con
 
 static void vflist_dnd_begin(GtkWidget *widget, GdkDragContext *context, gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	vflist_color_set(vf, VFLIST(vf)->click_fd, TRUE);
 
@@ -263,7 +263,7 @@ static void vflist_dnd_begin(GtkWidget *widget, GdkDragContext *context, gpointe
 
 static void vflist_dnd_end(GtkWidget *UNUSED(widget), GdkDragContext *context, gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	vflist_color_set(vf, VFLIST(vf)->click_fd, FALSE);
 
@@ -277,7 +277,7 @@ static void vflist_drag_data_received(GtkWidget *UNUSED(entry_widget), GdkDragCo
 				      int x, int y, GtkSelectionData *selection,
 				      guint info, guint UNUSED(time), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	if (info == TARGET_TEXT_PLAIN) {
 		FileData *fd = vflist_find_data_by_coord(vf, x, y, NULL);
@@ -368,7 +368,7 @@ GList *vflist_pop_menu_file_list(ViewFile *vf)
 
 void vflist_pop_menu_view_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	if (vflist_row_is_selected(vf, VFLIST(vf)->click_fd))
 		{
@@ -386,7 +386,7 @@ void vflist_pop_menu_view_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 void vflist_pop_menu_rename_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	GList *list;
 
 	list = vf_pop_menu_file_list(vf);
@@ -417,7 +417,7 @@ void vflist_pop_menu_rename_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 void vflist_pop_menu_thumbs_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	vflist_color_set(vf, VFLIST(vf)->click_fd, FALSE);
 	if (vf->layout)
@@ -467,7 +467,7 @@ void vflist_star_rating_set(ViewFile *vf, gboolean enable)
 
 void vflist_pop_menu_show_star_rating_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	options->show_star_rating = !options->show_star_rating;
 
@@ -479,7 +479,7 @@ void vflist_pop_menu_show_star_rating_cb(GtkWidget *UNUSED(widget), gpointer dat
 
 void vflist_pop_menu_refresh_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	vflist_color_set(vf, VFLIST(vf)->click_fd, FALSE);
 	vf_refresh(vf);
@@ -488,7 +488,7 @@ void vflist_pop_menu_refresh_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 void vflist_popup_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	vflist_color_set(vf, VFLIST(vf)->click_fd, FALSE);
 	VFLIST(vf)->click_fd = NULL;
 	vf->popup = NULL;
@@ -503,7 +503,7 @@ void vflist_popup_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static gboolean vflist_row_rename_cb(TreeEditData *UNUSED(td), const gchar *old_name, const gchar *new_name, gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	gchar *new_path;
 
 	if (!new_name || !new_name[0]) return FALSE;
@@ -519,7 +519,7 @@ static gboolean vflist_row_rename_cb(TreeEditData *UNUSED(td), const gchar *old_
 	else
 		{
 		gchar *old_path = g_build_filename(vf->dir_fd->path, old_name, NULL);
-		FileData *fd = file_data_new_group(old_path); /* get the fd from cache */
+		FileData *fd = (FileData*)file_data_new_group(old_path); /* get the fd from cache */
 		file_util_rename_simple(fd, new_path, vf->listview);
 		file_data_unref(fd);
 		g_free(old_path);
@@ -532,7 +532,7 @@ static gboolean vflist_row_rename_cb(TreeEditData *UNUSED(td), const gchar *old_
 
 static void vflist_menu_position_cb(GtkMenu *menu, gint *x, gint *y, gboolean *UNUSED(push_in), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	GtkTreeModel *store;
 	GtkTreeIter iter;
 	GtkTreePath *tpath;
@@ -549,7 +549,7 @@ static void vflist_menu_position_cb(GtkMenu *menu, gint *x, gint *y, gboolean *U
 
 gboolean vflist_press_key_cb(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	GtkTreePath *tpath;
 
 	if (event->keyval != GDK_KEY_Menu) return FALSE;
@@ -578,7 +578,7 @@ gboolean vflist_press_key_cb(GtkWidget *widget, GdkEventKey *event, gpointer dat
 
 gboolean vflist_press_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	GtkTreePath *tpath;
 	GtkTreeIter iter;
 	FileData *fd = NULL;
@@ -663,7 +663,7 @@ gboolean vflist_press_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer dat
 
 gboolean vflist_release_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	GtkTreePath *tpath;
 	GtkTreeIter iter;
 	FileData *fd = NULL;
@@ -762,7 +762,7 @@ static void vflist_select_image(ViewFile *vf, FileData *sel_fd)
 
 static gboolean vflist_select_idle_cb(gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	if (!vf->layout)
 		{
@@ -793,7 +793,7 @@ static void vflist_select_idle_cancel(ViewFile *vf)
 
 static gboolean vflist_select_cb(GtkTreeSelection *UNUSED(selection), GtkTreeModel *store, GtkTreePath *tpath, gboolean path_currently_selected, gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	GtkTreeIter iter;
 	GtkTreePath *cursor_path;
 
@@ -821,13 +821,13 @@ static gboolean vflist_select_cb(GtkTreeSelection *UNUSED(selection), GtkTreeMod
 
 static void vflist_expand_cb(GtkTreeView *UNUSED(tree_view), GtkTreeIter *iter, GtkTreePath *UNUSED(path), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	vflist_set_expanded(vf, iter, TRUE);
 }
 
 static void vflist_collapse_cb(GtkTreeView *UNUSED(tree_view), GtkTreeIter *iter, GtkTreePath *UNUSED(path), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	vflist_set_expanded(vf, iter, FALSE);
 }
 
@@ -2019,7 +2019,7 @@ static GdkColor *vflist_listview_color_shifted(GtkWidget *widget)
 static void vflist_listview_color_cb(GtkTreeViewColumn *UNUSED(tree_column), GtkCellRenderer *cell,
 				     GtkTreeModel *tree_model, GtkTreeIter *iter, gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	gboolean set;
 
 	gtk_tree_model_get(tree_model, iter, FILE_COLUMN_COLOR, &set, -1);
@@ -2068,7 +2068,7 @@ static void vflist_listview_add_column(ViewFile *vf, gint n, const gchar *title,
 
 static void vflist_listview_mark_toggled_cb(GtkCellRendererToggle *cell, gchar *path_str, gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 	GtkTreeStore *store;
 	GtkTreePath *path = gtk_tree_path_new_from_string(path_str);
 	GtkTreeIter iter;
@@ -2155,7 +2155,7 @@ gboolean vflist_set_fd(ViewFile *vf, FileData *dir_fd)
 
 void vflist_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewFile *vf = data;
+	ViewFile *vf = (ViewFile*)data;
 
 	file_data_unregister_notify_func(vf_notify_cb, vf);
 

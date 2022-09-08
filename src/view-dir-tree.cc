@@ -193,7 +193,7 @@ static void vdtree_node_free(NodeData *nd)
 
 static gboolean vdtree_dnd_drop_expand_cb(gpointer data)
 {
-	ViewDir *vd = data;
+	ViewDir *vd = (ViewDir*)data;
 	GtkTreeIter iter;
 
 	if (vd->drop_fd && vd_find_row(vd, vd->drop_fd, &iter))
@@ -794,7 +794,7 @@ const gchar *vdtree_row_get_path(ViewDir *UNUSED(vd), gint UNUSED(row))
 
 gboolean vdtree_press_key_cb(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
-	ViewDir *vd = data;
+	ViewDir *vd = (ViewDir*)data;
 	GtkTreePath *tpath;
 	GtkTreeIter iter;
 	FileData *fd = NULL;
@@ -873,7 +873,7 @@ static gboolean vdtree_clicked_on_expander(GtkTreeView *treeview, GtkTreePath *t
 
 gboolean vdtree_press_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer data)
 {
-	ViewDir *vd = data;
+	ViewDir *vd = (ViewDir*)data;
 	GtkTreePath *tpath;
 	GtkTreeViewColumn *column;
 	GtkTreeIter iter;
@@ -937,7 +937,7 @@ gboolean vdtree_press_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer dat
 
 static void vdtree_row_expanded(GtkTreeView *treeview, GtkTreeIter *iter, GtkTreePath *tpath, gpointer data)
 {
-	ViewDir *vd = data;
+	ViewDir *vd = (ViewDir*)data;
 	GtkTreeModel *store;
 	NodeData *nd = NULL;
 	FileData *fd;
@@ -963,7 +963,7 @@ static void vdtree_row_expanded(GtkTreeView *treeview, GtkTreeIter *iter, GtkTre
 
 static void vdtree_row_collapsed(GtkTreeView *treeview, GtkTreeIter *iter, GtkTreePath *tpath, gpointer data)
 {
-	ViewDir *vd = data;
+	ViewDir *vd = (ViewDir*)data;
 	GtkTreeModel *store;
 	NodeData *nd = NULL;
 	FileData *fd;
@@ -1034,7 +1034,7 @@ static gboolean vdtree_destroy_node_cb(GtkTreeModel *store, GtkTreePath *UNUSED(
 
 void vdtree_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewDir *vd = data;
+	ViewDir *vd = (ViewDir*)data;
 	GtkTreeModel *store;
 
 	vdtree_dnd_drop_expand_cancel(vd);

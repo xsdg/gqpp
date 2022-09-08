@@ -296,7 +296,7 @@ static void collection_load_thumb_do(CollectionData *cd)
 
 static void collection_load_thumb_error_cb(ThumbLoader *UNUSED(tl), gpointer data)
 {
-	CollectionData *cd = data;
+	CollectionData *cd = (CollectionData*)data;
 
 	collection_load_thumb_do(cd);
 	collection_load_thumb_step(cd);
@@ -304,7 +304,7 @@ static void collection_load_thumb_error_cb(ThumbLoader *UNUSED(tl), gpointer dat
 
 static void collection_load_thumb_done_cb(ThumbLoader *UNUSED(tl), gpointer data)
 {
-	CollectionData *cd = data;
+	CollectionData *cd = (CollectionData*)data;
 
 	collection_load_thumb_do(cd);
 	collection_load_thumb_step(cd);

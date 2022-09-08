@@ -157,7 +157,7 @@ static gboolean help_window_delete_cb(GtkWidget *widget, GdkEventAny *UNUSED(eve
 
 static void help_window_close(GtkWidget *UNUSED(widget), gpointer data)
 {
-	GtkWidget *window = data;
+	GtkWidget *window = (GtkWidget*)data;
 	gtk_widget_destroy(window);
 }
 

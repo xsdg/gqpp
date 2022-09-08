@@ -34,14 +34,14 @@ static gboolean cache_loader_phase2_idle_cb(gpointer data);
 
 static void cache_loader_phase1_done_cb(ImageLoader *UNUSED(il), gpointer data)
 {
-	CacheLoader *cl = data;
+	CacheLoader *cl = (CacheLoader*)data;
 
 	cl->idle_id = g_idle_add(cache_loader_phase2_idle_cb, cl);
 }
 
 static void cache_loader_phase1_error_cb(ImageLoader *UNUSED(il), gpointer data)
 {
-	CacheLoader *cl = data;
+	CacheLoader *cl = (CacheLoader*)data;
 
 	cl->error = TRUE;
 	cl->idle_id = g_idle_add(cache_loader_phase2_idle_cb, cl);
@@ -207,14 +207,14 @@ static gboolean cache_loader_phase2_process(CacheLoader *cl)
 
 static gboolean cache_loader_phase1_idle_cb(gpointer data)
 {
-	CacheLoader *cl = data;
+	CacheLoader *cl = (CacheLoader*)data;
 
 	return cache_loader_phase1_process(cl);
 }
 
 static gboolean cache_loader_phase2_idle_cb(gpointer data)
 {
-	CacheLoader *cl = data;
+	CacheLoader *cl = (CacheLoader*)data;
 
 	return cache_loader_phase2_process(cl);
 }

@@ -1289,14 +1289,14 @@ static void options_parse_filter_end(GQParserData *parser_data, GMarkupParseCont
 
 static void options_parse_keyword_end(GQParserData *UNUSED(parser_data), GMarkupParseContext *UNUSED(context), const gchar *UNUSED(element_name), gpointer data, GError **UNUSED(error))
 {
-	GtkTreeIter *iter_ptr = data;
+	GtkTreeIter *iter_ptr = (GtkTreeIter*)data;
 	gtk_tree_iter_free(iter_ptr);
 }
 
 
 static void options_parse_keyword(GQParserData *parser_data, GMarkupParseContext *UNUSED(context), const gchar *element_name, const gchar **attribute_names, const gchar **attribute_values, gpointer data, GError **UNUSED(error))
 {
-	GtkTreeIter *iter_ptr = data;
+	GtkTreeIter *iter_ptr = (GtkTreeIter*)data;
 	if (g_ascii_strcasecmp(element_name, "keyword") == 0)
 		{
 		GtkTreeIter *child = keyword_add_from_config(keyword_tree, iter_ptr, attribute_names, attribute_values);
@@ -1376,7 +1376,7 @@ static void options_parse_global_end(GQParserData *UNUSED(parser_data), GMarkupP
 
 static void options_parse_pane_exif(GQParserData *parser_data, GMarkupParseContext *UNUSED(context), const gchar *element_name, const gchar **attribute_names, const gchar **attribute_values, gpointer data, GError **UNUSED(error))
 {
-	GtkWidget *pane = data;
+	GtkWidget *pane = (GtkWidget*)data;
 	if (g_ascii_strcasecmp(element_name, "entry") == 0)
 		{
 		bar_pane_exif_entry_add_from_config(pane, attribute_names, attribute_values);
@@ -1391,7 +1391,7 @@ static void options_parse_pane_exif(GQParserData *parser_data, GMarkupParseConte
 
 static void options_parse_pane_keywords(GQParserData *parser_data, GMarkupParseContext *UNUSED(context), const gchar *element_name, const gchar **attribute_names, const gchar **attribute_values, gpointer data, GError **UNUSED(error))
 {
-	GtkWidget *pane = data;
+	GtkWidget *pane = (GtkWidget*)data;
 
 	if (g_ascii_strcasecmp(element_name, "expanded") == 0)
 		{
@@ -1407,7 +1407,7 @@ static void options_parse_pane_keywords(GQParserData *parser_data, GMarkupParseC
 
 static void options_parse_bar(GQParserData *parser_data, GMarkupParseContext *UNUSED(context), const gchar *element_name, const gchar **attribute_names, const gchar **attribute_values, gpointer data, GError **UNUSED(error))
 {
-	GtkWidget *bar = data;
+	GtkWidget *bar = (GtkWidget*)data;
 	if (g_ascii_strcasecmp(element_name, "pane_comment") == 0)
 		{
 		GtkWidget *pane = bar_find_pane_by_id(bar, PANE_COMMENT, options_get_id(attribute_names, attribute_values));
@@ -1514,7 +1514,7 @@ static void options_parse_bar(GQParserData *parser_data, GMarkupParseContext *UN
 
 static void options_parse_toolbar(GQParserData *parser_data, GMarkupParseContext *UNUSED(context), const gchar *element_name, const gchar **attribute_names, const gchar **attribute_values, gpointer data, GError **UNUSED(error))
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	if (g_ascii_strcasecmp(element_name, "toolitem") == 0)
 		{
 		layout_toolbar_add_from_config(lw, TOOLBAR_MAIN, attribute_names, attribute_values);
@@ -1534,7 +1534,7 @@ static void options_parse_toolbar(GQParserData *parser_data, GMarkupParseContext
 
 static void options_parse_statusbar(GQParserData *parser_data, GMarkupParseContext *UNUSED(context), const gchar *element_name, const gchar **attribute_names, const gchar **attribute_values, gpointer data, GError **UNUSED(error))
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	if (g_ascii_strcasecmp(element_name, "toolitem") == 0)
 		{
 		layout_toolbar_add_from_config(lw, TOOLBAR_STATUS, attribute_names, attribute_values);
@@ -1568,7 +1568,7 @@ static void options_parse_dialogs(GQParserData *parser_data, GMarkupParseContext
 
 static void options_parse_layout(GQParserData *parser_data, GMarkupParseContext *UNUSED(context), const gchar *element_name, const gchar **attribute_names, const gchar **attribute_values, gpointer data, GError **UNUSED(error))
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	if (g_ascii_strcasecmp(element_name, "bar") == 0)
 		{
 		if (!lw->bar)
@@ -1609,7 +1609,7 @@ static void options_parse_layout(GQParserData *parser_data, GMarkupParseContext 
 
 static void options_parse_layout_end(GQParserData *UNUSED(parser_data), GMarkupParseContext *UNUSED(context), const gchar *UNUSED(element_name), gpointer data, GError **UNUSED(error))
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	layout_util_sync(lw);
 }
 
@@ -1685,7 +1685,7 @@ void options_parse_func_pop(GQParserData *parser_data)
 
 void options_parse_func_set_data(GQParserData *parser_data, gpointer data)
 {
-	GQParserFuncData *func = parser_data->parse_func_stack->data;
+	GQParserFuncData *func = (GQParserFuncData*)parser_data->parse_func_stack->data;
 	func->data = data;
 }
 
@@ -1697,8 +1697,8 @@ static void start_element(GMarkupParseContext *context,
 			  gpointer user_data,
 			  GError **error)
 {
-	GQParserData *parser_data = user_data;
-	GQParserFuncData *func = parser_data->parse_func_stack->data;
+	GQParserData *parser_data = (GQParserData*)user_data;
+	GQParserFuncData *func = (GQParserFuncData*)parser_data->parse_func_stack->data;
 	DEBUG_2("start %s", element_name);
 
 	if (func->start_func)
@@ -1710,8 +1710,8 @@ static void end_element(GMarkupParseContext *context,
 			  gpointer user_data,
 			  GError **error)
 {
-	GQParserData *parser_data = user_data;
-	GQParserFuncData *func = parser_data->parse_func_stack->data;
+	GQParserData *parser_data = (GQParserData*)user_data;
+	GQParserFuncData *func = (GQParserFuncData*)parser_data->parse_func_stack->data;
 	DEBUG_2("end %s", element_name);
 
 	if (func->end_func)

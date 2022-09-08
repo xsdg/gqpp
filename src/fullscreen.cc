@@ -72,7 +72,7 @@ static void clear_mouse_cursor(GtkWidget *widget, gint state)
 
 static gboolean fullscreen_hide_mouse_cb(gpointer data)
 {
-	FullScreenData *fs = data;
+	FullScreenData *fs = (FullScreenData*)data;
 
 	if (!fs->hide_mouse_id) return FALSE;
 
@@ -101,7 +101,7 @@ static void fullscreen_hide_mouse_reset(FullScreenData *fs)
 
 static gboolean fullscreen_mouse_moved(GtkWidget *UNUSED(widget), GdkEventMotion *UNUSED(event), gpointer data)
 {
-	FullScreenData *fs = data;
+	FullScreenData *fs = (FullScreenData*)data;
 
 	if (!(fs->cursor_state & FULLSCREEN_CURSOR_NORMAL))
 		{
@@ -142,7 +142,7 @@ static void fullscreen_mouse_set_busy(FullScreenData *fs, gboolean busy)
 
 static gboolean fullscreen_mouse_set_busy_cb(gpointer data)
 {
-	FullScreenData *fs = data;
+	FullScreenData *fs = (FullScreenData*)data;
 
 	fs->busy_mouse_id = 0;
 	fullscreen_mouse_set_busy(fs, TRUE);
@@ -160,7 +160,7 @@ static void fullscreen_mouse_set_busy_idle(FullScreenData *fs)
 
 static void fullscreen_image_update_cb(ImageWindow *UNUSED(imd), gpointer data)
 {
-	FullScreenData *fs = data;
+	FullScreenData *fs = (FullScreenData*)data;
 
 	if (fs->imd->il &&
 	    image_loader_get_pixbuf(fs->imd->il) != image_get_pixbuf(fs->imd))
@@ -171,7 +171,7 @@ static void fullscreen_image_update_cb(ImageWindow *UNUSED(imd), gpointer data)
 
 static void fullscreen_image_complete_cb(ImageWindow *UNUSED(imd), gboolean preload, gpointer data)
 {
-	FullScreenData *fs = data;
+	FullScreenData *fs = (FullScreenData*)data;
 
 	if (!preload) fullscreen_mouse_set_busy(fs, FALSE);
 }
@@ -208,7 +208,7 @@ static gboolean fullscreen_saver_block_cb(gpointer UNUSED(data))
 
 static gboolean fullscreen_delete_cb(GtkWidget *UNUSED(widget), GdkEventAny *UNUSED(event), gpointer data)
 {
-	FullScreenData *fs = data;
+	FullScreenData *fs = (FullScreenData*)data;
 
 	fullscreen_stop(fs);
 	return TRUE;
@@ -616,7 +616,7 @@ enum {
 
 static void fullscreen_prefs_selection_cb(GtkWidget *combo, gpointer data)
 {
-	gint *value = data;
+	gint *value = (gint*)data;
 	GtkTreeModel *store;
 	GtkTreeIter iter;
 	GtkWidget *button;

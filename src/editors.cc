@@ -480,7 +480,7 @@ GList *editor_get_desktop_files(void)
 
 static void editor_list_add_cb(gpointer UNUSED(key), gpointer value, gpointer data)
 {
-	GList **listp = data;
+	GList **listp = (GList*)data;
 	EditorDescription *editor = value;
 
 	/* do not show the special commands in any list, they are called explicitly */
@@ -556,7 +556,7 @@ static void editor_data_free(EditorData *ed)
 
 static void editor_verbose_window_close(GenericDialog *gd, gpointer data)
 {
-	EditorData *ed = data;
+	EditorData *ed = (EditorData*)data;
 
 	generic_dialog_close(gd);
 	editor_verbose_data_free(ed);
@@ -565,7 +565,7 @@ static void editor_verbose_window_close(GenericDialog *gd, gpointer data)
 
 static void editor_verbose_window_stop(GenericDialog *UNUSED(gd), gpointer data)
 {
-	EditorData *ed = data;
+	EditorData *ed = (EditorData*)data;
 	ed->stopping = TRUE;
 	ed->count = 0;
 	editor_verbose_window_progress(ed, _("stopping..."));
@@ -662,7 +662,7 @@ static void editor_verbose_window_progress(EditorData *ed, const gchar *text)
 
 static gboolean editor_verbose_io_cb(GIOChannel *source, GIOCondition condition, gpointer data)
 {
-	EditorData *ed = data;
+	EditorData *ed = (EditorData*)data;
 	gchar buf[512];
 	gsize count;
 
@@ -1034,7 +1034,7 @@ err:
 
 static void editor_child_exit_cb(GPid pid, gint status, gpointer data)
 {
-	EditorData *ed = data;
+	EditorData *ed = (EditorData*)data;
 	g_spawn_close_pid(pid);
 	ed->pid = -1;
 

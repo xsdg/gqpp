@@ -1073,7 +1073,7 @@ static void download_web_file_cancel_button_cb(GenericDialog *UNUSED(gd), gpoint
 gboolean download_web_file(const gchar *text, gboolean minimized, gpointer data)
 {
 	gchar *scheme;
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gchar *tmp_dir;
 	GError *error = NULL;
 	WebData *web;

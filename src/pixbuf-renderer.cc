@@ -783,7 +783,7 @@ void pixbuf_renderer_overlay_remove(PixbufRenderer *pr, gint id)
 
 static gboolean pr_scroller_update_cb(gpointer data)
 {
-	PixbufRenderer *pr = data;
+	PixbufRenderer *pr = (PixbufRenderer*)data;
 	gint x, y;
 	gint xinc, yinc;
 
@@ -1944,7 +1944,7 @@ static void pr_size_sync(PixbufRenderer *pr, gint new_width, gint new_height)
 
 static void pr_size_cb(GtkWidget *UNUSED(widget), GtkAllocation *allocation, gpointer data)
 {
-	PixbufRenderer *pr = data;
+	PixbufRenderer *pr = (PixbufRenderer*)data;
 
 	pr_size_sync(pr, allocation->width, allocation->height);
 }

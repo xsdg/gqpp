@@ -143,7 +143,7 @@ static void image_set_osd_data(ImageWindow *imd, OverlayStateData *osd)
 
 void image_osd_histogram_toggle_channel(ImageWindow *imd)
 {
-	OverlayStateData *osd = image_get_osd_data(imd);
+	OverlayStateData *osd = (OverlayStateData*)image_get_osd_data(imd);
 
 	if (!osd || !osd->histogram) return;
 
@@ -153,7 +153,7 @@ void image_osd_histogram_toggle_channel(ImageWindow *imd)
 
 void image_osd_histogram_toggle_mode(ImageWindow *imd)
 {
-	OverlayStateData *osd = image_get_osd_data(imd);
+	OverlayStateData *osd = (OverlayStateData*)image_get_osd_data(imd);
 
 	if (!osd || !osd->histogram) return;
 
@@ -163,7 +163,7 @@ void image_osd_histogram_toggle_mode(ImageWindow *imd)
 
 void image_osd_histogram_set_channel(ImageWindow *imd, gint chan)
 {
-	OverlayStateData *osd = image_get_osd_data(imd);
+	OverlayStateData *osd = (OverlayStateData*)image_get_osd_data(imd);
 
 	if (!osd || !osd->histogram) return;
 
@@ -173,7 +173,7 @@ void image_osd_histogram_set_channel(ImageWindow *imd, gint chan)
 
 void image_osd_histogram_set_mode(ImageWindow *imd, gint mode)
 {
-	OverlayStateData *osd = image_get_osd_data(imd);
+	OverlayStateData *osd = (OverlayStateData*)image_get_osd_data(imd);
 
 	if (!osd || !osd->histogram) return;
 
@@ -183,7 +183,7 @@ void image_osd_histogram_set_mode(ImageWindow *imd, gint mode)
 
 gint image_osd_histogram_get_channel(ImageWindow *imd)
 {
-	OverlayStateData *osd = image_get_osd_data(imd);
+	OverlayStateData *osd = (OverlayStateData*)image_get_osd_data(imd);
 
 	if (!osd || !osd->histogram) return HCHAN_DEFAULT;
 
@@ -192,7 +192,7 @@ gint image_osd_histogram_get_channel(ImageWindow *imd)
 
 gint image_osd_histogram_get_mode(ImageWindow *imd)
 {
-	OverlayStateData *osd = image_get_osd_data(imd);
+	OverlayStateData *osd = (OverlayStateData*)image_get_osd_data(imd);
 
 	if (!osd || !osd->histogram) return 0;
 
@@ -611,7 +611,7 @@ static void image_osd_info_hide(OverlayStateData *osd)
 
 static gboolean image_osd_update_cb(gpointer data)
 {
-	OverlayStateData *osd = data;
+	OverlayStateData *osd = (OverlayStateData*)data;
 
 	if (osd->show & OSD_SHOW_INFO)
 		{
@@ -690,7 +690,7 @@ static void image_osd_update_schedule(OverlayStateData *osd, gboolean force)
 
 void image_osd_update(ImageWindow *imd)
 {
-	OverlayStateData *osd = image_get_osd_data(imd);
+	OverlayStateData *osd = (OverlayStateData*)image_get_osd_data(imd);
 
 	if (!osd) return;
 
@@ -699,7 +699,7 @@ void image_osd_update(ImageWindow *imd)
 
 static gboolean image_osd_timer_cb(gpointer data)
 {
-	OverlayStateData *osd = data;
+	OverlayStateData *osd = (OverlayStateData*)data;
 	gboolean done = TRUE;
 	gboolean changed = FALSE;
 	gint i;
@@ -742,7 +742,7 @@ static void image_osd_timer_schedule(OverlayStateData *osd)
 
 static void image_osd_state_cb(ImageWindow *UNUSED(imd), ImageState state, gpointer data)
 {
-	OverlayStateData *osd = data;
+	OverlayStateData *osd = (OverlayStateData*)data;
 
 	osd->changed_states |= state;
 	image_osd_update_schedule(osd, FALSE);
@@ -750,7 +750,7 @@ static void image_osd_state_cb(ImageWindow *UNUSED(imd), ImageState state, gpoin
 
 static void image_osd_notify_cb(FileData *fd, NotifyType type, gpointer data)
 {
-	OverlayStateData *osd = data;
+	OverlayStateData *osd = (OverlayStateData*)data;
 
 	if ((type & (NOTIFY_HISTMAP)) && osd->imd && fd == osd->imd->image_fd)
 		{
@@ -788,7 +788,7 @@ static void image_osd_free(OverlayStateData *osd)
 
 static void image_osd_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	OverlayStateData *osd = data;
+	OverlayStateData *osd = (OverlayStateData*)data;
 
 	osd->imd = NULL;
 	image_osd_free(osd);
@@ -796,7 +796,7 @@ static void image_osd_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void image_osd_enable(ImageWindow *imd, OsdShowFlags show)
 {
-	OverlayStateData *osd = image_get_osd_data(imd);
+	OverlayStateData *osd = (OverlayStateData*)image_get_osd_data(imd);
 
 	if (!osd)
 		{
@@ -835,14 +835,14 @@ void image_osd_set(ImageWindow *imd, OsdShowFlags show)
 
 OsdShowFlags image_osd_get(ImageWindow *imd)
 {
-	OverlayStateData *osd = image_get_osd_data(imd);
+	OverlayStateData *osd = (OverlayStateData*)image_get_osd_data(imd);
 
 	return osd ? osd->show : OSD_SHOW_NOTHING;
 }
 
 Histogram *image_osd_get_histogram(ImageWindow *imd)
 {
-	OverlayStateData *osd = image_get_osd_data(imd);
+	OverlayStateData *osd = (OverlayStateData*)image_get_osd_data(imd);
 
 	return osd ? osd->histogram : NULL;
 }
@@ -868,7 +868,7 @@ void image_osd_copy_status(ImageWindow *src, ImageWindow *dest)
  */
 void image_osd_icon(ImageWindow *imd, ImageOSDFlag flag, gint duration)
 {
-	OverlayStateData *osd = image_get_osd_data(imd);
+	OverlayStateData *osd = (OverlayStateData*)image_get_osd_data(imd);
 
 	if (!osd) return;
 

@@ -34,7 +34,7 @@ static gchar *regexp = NULL;
 
 static gboolean log_msg_cb(gpointer data)
 {
-	gchar *buf = data;
+	gchar *buf = (gchar*)data;
 	log_window_append(buf, LOG_MSG);
 	g_free(buf);
 	return FALSE;
@@ -50,7 +50,7 @@ static gboolean log_msg_cb(gpointer data)
  */
 static gboolean log_normal_cb(gpointer data)
 {
-	gchar *buf = data;
+	gchar *buf = (gchar*)data;
 	gchar *buf_casefold = g_utf8_casefold(buf, -1);
 	gchar *error_casefold = g_utf8_casefold(_("error"), -1);
 	gchar *warning_casefold = g_utf8_casefold(_("warning"), -1);

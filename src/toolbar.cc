@@ -162,7 +162,7 @@ static const UseableToolbarItems useable_toolbar_items[] = {
 static void toolbar_item_move(GtkWidget *UNUSED(widget), gpointer data,
 									gboolean up, gboolean single_step)
 {
-	GtkWidget *list_item = data;
+	GtkWidget *list_item = (GtkWidget*)data;
 	GtkWidget *box;
 	gint pos = 0;
 
@@ -235,7 +235,7 @@ static void toolbar_menu_popup(GtkWidget *widget)
 
 static gboolean toolbar_press_cb(GtkWidget *UNUSED(button), GdkEventButton *event, gpointer data)
 {
-	ToolbarButtonData *button_data = data;
+	ToolbarButtonData *button_data = (ToolbarButtonData*)data;
 
 	if (event->button == MOUSE_BUTTON_RIGHT)
 		{
@@ -349,7 +349,7 @@ static void toolbarlist_add_cb(GtkWidget *widget, gpointer data)
 	const gchar *name = g_object_get_data(G_OBJECT(widget), "toolbar_add_name");
 	const gchar *label = g_object_get_data(G_OBJECT(widget), "toolbar_add_label");
 	const gchar *stock_id = g_object_get_data(G_OBJECT(widget), "toolbar_add_stock_id");
-	ToolbarData *tbbd = data;
+	ToolbarData *tbbd = (ToolbarData*)data;
 
 	toolbarlist_add_button(name, label, stock_id, GTK_BOX(tbbd->vbox));
 }
@@ -383,7 +383,7 @@ static void toolbar_menu_add_popup(GtkWidget *widget, gpointer data)
 	GtkWidget *menu;
 	GList *editors_list;
 	GList *work;
-	ToolbarData *toolbarlist = data;
+	ToolbarData *toolbarlist = (ToolbarData*)data;
 	const UseableToolbarItems *list = useable_toolbar_items;
 
 	menu = popup_menu_short_lived();
@@ -426,7 +426,7 @@ static void toolbar_menu_add_popup(GtkWidget *widget, gpointer data)
 
 static gboolean toolbar_menu_add_cb(GtkWidget *widget, gpointer data)
 {
-	ToolbarData *toolbarlist = data;
+	ToolbarData *toolbarlist = (ToolbarData*)data;
 
 	toolbar_menu_add_popup(widget, toolbarlist);
 	return TRUE;

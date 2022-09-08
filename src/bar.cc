@@ -232,7 +232,7 @@ struct _BarData
 
 static void bar_expander_move(GtkWidget *UNUSED(widget), gpointer data, gboolean up, gboolean single_step)
 {
-	GtkWidget *expander = data;
+	GtkWidget *expander = (GtkWidget*)data;
 	GtkWidget *box;
 	gint pos;
 
@@ -294,7 +294,7 @@ static gboolean height_spin_key_press_cb(GtkWidget *UNUSED(widget), GdkEventKey 
 
 static void bar_expander_height_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	GtkWidget *expander = data;
+	GtkWidget *expander = (GtkWidget*)data;
 	GtkWidget *spin;
 	GtkWidget *window;
 	GtkWidget *data_box;
@@ -338,13 +338,13 @@ static void bar_expander_height_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void bar_expander_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	GtkWidget *expander = data;
+	GtkWidget *expander = (GtkWidget*)data;
 	gtk_widget_destroy(expander);
 }
 
 static void bar_expander_add_cb(GtkWidget *widget, gpointer UNUSED(data))
 {
-	//GtkWidget *bar = data;
+	//GtkWidget *bar = (GtkWidget*)data;
 	const KnownPanes *pane = known_panes;
 	const gchar *id = g_object_get_data(G_OBJECT(widget), "pane_add_id");
 	const gchar *config;
@@ -696,7 +696,7 @@ void bar_populate_default(GtkWidget *UNUSED(bar))
 
 static void bar_size_allocate(GtkWidget *UNUSED(widget), GtkAllocation *UNUSED(allocation), gpointer data)
 {
-	BarData *bd = data;
+	BarData *bd = (BarData*)data;
 
 	bd->width = gtk_paned_get_position(GTK_PANED(bd->lw->utility_paned));
 }
@@ -723,7 +723,7 @@ void bar_close(GtkWidget *bar)
 
 static void bar_destroy(GtkWidget *UNUSED(widget), gpointer data)
 {
-	BarData *bd = data;
+	BarData *bd = (BarData*)data;
 
 	file_data_unref(bd->fd);
 	g_free(bd);

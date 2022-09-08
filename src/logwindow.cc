@@ -76,7 +76,7 @@ static void log_window_pause_cb(GtkWidget *UNUSED(widget), gpointer UNUSED(data)
 
 static void log_window_line_wrap_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LogWindow *logwin = data;
+	LogWindow *logwin = (LogWindow*)data;
 
 	options->log_window.line_wrap = !options->log_window.line_wrap;
 
@@ -278,7 +278,7 @@ static gboolean debug_changed_cb(GtkSpinButton *widget, LogWindow *UNUSED(logwin
 
 static void search_entry_icon_cb(GtkEntry *UNUSED(entry), GtkEntryIconPosition pos, GdkEvent *UNUSED(event), gpointer userdata)
 {
-	LogWindow *logwin = userdata;
+	LogWindow *logwin = (LogWindow*)userdata;
 	GtkTextIter start_find;
 	GtkTextIter end_find;
 	GtkTextBuffer *buffer;

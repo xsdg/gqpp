@@ -101,7 +101,7 @@ static gboolean layout_key_match(guint keyval)
 
 gboolean layout_key_press_cb(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	GtkWidget *focused;
 	gboolean stop_signal = FALSE;
 	gint x = 0;
@@ -255,7 +255,7 @@ static void layout_menu_clear_marks_cb(GtkAction *UNUSED(action), gpointer UNUSE
 
 static void layout_menu_new_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	collection_window_new(NULL);
@@ -263,7 +263,7 @@ static void layout_menu_new_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_open_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	collection_dialog_load(NULL);
@@ -271,7 +271,7 @@ static void layout_menu_open_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_search_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	search_new(lw->dir_fd, layout_image_get_fd(lw));
@@ -279,7 +279,7 @@ static void layout_menu_search_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_dupes_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	dupe_window_new();
@@ -287,7 +287,7 @@ static void layout_menu_dupes_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_pan_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	pan_window_new(lw->dir_fd);
@@ -295,56 +295,56 @@ static void layout_menu_pan_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_print_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	print_window_new(layout_image_get_fd(lw), layout_selection_list(lw), layout_list(lw), layout_window(lw));
 }
 
 static void layout_menu_dir_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	if (lw->vd) vd_new_folder(lw->vd, lw->dir_fd);
 }
 
 static void layout_menu_copy_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	file_util_copy(NULL, layout_selection_list(lw), NULL, layout_window(lw));
 }
 
 static void layout_menu_copy_path_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	file_util_copy_path_list_to_clipboard(layout_selection_list(lw), TRUE);
 }
 
 static void layout_menu_copy_path_unquoted_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	file_util_copy_path_list_to_clipboard(layout_selection_list(lw), FALSE);
 }
 
 static void layout_menu_move_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	file_util_move(NULL, layout_selection_list(lw), NULL, layout_window(lw));
 }
 
 static void layout_menu_rename_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	file_util_rename(NULL, layout_selection_list(lw), layout_window(lw));
 }
 
 static void layout_menu_delete_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	options->file_ops.safe_delete_enable = FALSE;
 	file_util_delete(NULL, layout_selection_list(lw), layout_window(lw));
@@ -352,7 +352,7 @@ static void layout_menu_delete_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_move_to_trash_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	options->file_ops.safe_delete_enable = TRUE;
 	file_util_delete(NULL, layout_selection_list(lw), layout_window(lw));
@@ -360,7 +360,7 @@ static void layout_menu_move_to_trash_cb(GtkAction *UNUSED(action), gpointer dat
 
 static void layout_menu_move_to_trash_key_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	if (options->file_ops.enable_delete_key)
 		{
@@ -371,21 +371,21 @@ static void layout_menu_move_to_trash_key_cb(GtkAction *UNUSED(action), gpointer
 
 static void layout_menu_disable_grouping_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	file_data_disable_grouping_list(layout_selection_list(lw), TRUE);
 }
 
 static void layout_menu_enable_grouping_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	file_data_disable_grouping_list(layout_selection_list(lw), FALSE);
 }
 
 void layout_menu_close_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	layout_close(lw);
@@ -398,98 +398,98 @@ static void layout_menu_exit_cb(GtkAction *UNUSED(action), gpointer UNUSED(data)
 
 static void layout_menu_alter_90_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_alter_orientation(lw, ALTER_ROTATE_90);
 }
 
 static void layout_menu_rating_0_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_rating(lw, "0");
 }
 
 static void layout_menu_rating_1_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_rating(lw, "1");
 }
 
 static void layout_menu_rating_2_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_rating(lw, "2");
 }
 
 static void layout_menu_rating_3_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_rating(lw, "3");
 }
 
 static void layout_menu_rating_4_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_rating(lw, "4");
 }
 
 static void layout_menu_rating_5_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_rating(lw, "5");
 }
 
 static void layout_menu_rating_m1_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_rating(lw, "-1");
 }
 
 static void layout_menu_alter_90cc_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_alter_orientation(lw, ALTER_ROTATE_90_CC);
 }
 
 static void layout_menu_alter_180_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_alter_orientation(lw, ALTER_ROTATE_180);
 }
 
 static void layout_menu_alter_mirror_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_alter_orientation(lw, ALTER_MIRROR);
 }
 
 static void layout_menu_alter_flip_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_alter_orientation(lw, ALTER_FLIP);
 }
 
 static void layout_menu_alter_desaturate_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_set_desaturate(lw, gtk_toggle_action_get_active(action));
 }
 
 static void layout_menu_alter_ignore_alpha_cb(GtkToggleAction *action, gpointer data)
 {
-   LayoutWindow *lw = data;
+   LayoutWindow *lw = (LayoutWindow*)data;
 
 	if (lw->options.ignore_alpha == gtk_toggle_action_get_active(action)) return;
 
@@ -498,14 +498,14 @@ static void layout_menu_alter_ignore_alpha_cb(GtkToggleAction *action, gpointer 
 
 static void layout_menu_alter_none_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_alter_orientation(lw, ALTER_NONE);
 }
 
 static void layout_menu_exif_rotate_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	options->image.exif_rotate_enable = gtk_toggle_action_get_active(action);
 	layout_image_reset_orientation(lw);
@@ -518,21 +518,21 @@ static void layout_menu_select_rectangle_cb(GtkToggleAction *action, gpointer UN
 
 static void layout_menu_split_pane_sync_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	lw->options.split_pane_sync = gtk_toggle_action_get_active(action);
 }
 
 static void layout_menu_select_overunderexposed_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_set_overunderexposed(lw, gtk_toggle_action_get_active(action));
 }
 
 static void layout_menu_write_rotate(GtkToggleAction *UNUSED(action), gpointer data, gboolean keep_date)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	GtkTreeModel *store;
 	GList *work;
 	GtkTreeSelection *selection;
@@ -633,7 +633,7 @@ static void layout_menu_write_rotate_cb(GtkToggleAction *action, gpointer data)
 
 static void layout_menu_config_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	show_config_window(lw);
@@ -641,7 +641,7 @@ static void layout_menu_config_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_editors_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	show_editor_list_window();
@@ -649,7 +649,7 @@ static void layout_menu_editors_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_layout_config_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	layout_show_config_window(lw);
@@ -657,7 +657,7 @@ static void layout_menu_layout_config_cb(GtkAction *UNUSED(action), gpointer dat
 
 static void layout_menu_remove_thumb_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	cache_manager_show();
@@ -665,7 +665,7 @@ static void layout_menu_remove_thumb_cb(GtkAction *UNUSED(action), gpointer data
 
 static void layout_menu_wallpaper_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_to_root(lw);
 }
@@ -673,83 +673,83 @@ static void layout_menu_wallpaper_cb(GtkAction *UNUSED(action), gpointer data)
 /* single window zoom */
 static void layout_menu_zoom_in_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_adjust(lw, get_zoom_increment(), FALSE);
 }
 
 static void layout_menu_zoom_out_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_adjust(lw, -get_zoom_increment(), FALSE);
 }
 
 static void layout_menu_zoom_1_1_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set(lw, 1.0, FALSE);
 }
 
 static void layout_menu_zoom_fit_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set(lw, 0.0, FALSE);
 }
 
 static void layout_menu_zoom_fit_hor_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set_fill_geometry(lw, FALSE, FALSE);
 }
 
 static void layout_menu_zoom_fit_vert_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set_fill_geometry(lw, TRUE, FALSE);
 }
 
 static void layout_menu_zoom_2_1_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set(lw, 2.0, FALSE);
 }
 
 static void layout_menu_zoom_3_1_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set(lw, 3.0, FALSE);
 }
 static void layout_menu_zoom_4_1_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set(lw, 4.0, FALSE);
 }
 
 static void layout_menu_zoom_1_2_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set(lw, -2.0, FALSE);
 }
 
 static void layout_menu_zoom_1_3_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set(lw, -3.0, FALSE);
 }
 
 static void layout_menu_zoom_1_4_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set(lw, -4.0, FALSE);
 }
@@ -757,83 +757,83 @@ static void layout_menu_zoom_1_4_cb(GtkAction *UNUSED(action), gpointer data)
 /* connected zoom */
 static void layout_menu_connect_zoom_in_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_adjust(lw, get_zoom_increment(), TRUE);
 }
 
 static void layout_menu_connect_zoom_out_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_adjust(lw, -get_zoom_increment(), TRUE);
 }
 
 static void layout_menu_connect_zoom_1_1_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set(lw, 1.0, TRUE);
 }
 
 static void layout_menu_connect_zoom_fit_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set(lw, 0.0, TRUE);
 }
 
 static void layout_menu_connect_zoom_fit_hor_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set_fill_geometry(lw, FALSE, TRUE);
 }
 
 static void layout_menu_connect_zoom_fit_vert_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set_fill_geometry(lw, TRUE, TRUE);
 }
 
 static void layout_menu_connect_zoom_2_1_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set(lw, 2.0, TRUE);
 }
 
 static void layout_menu_connect_zoom_3_1_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set(lw, 3.0, TRUE);
 }
 static void layout_menu_connect_zoom_4_1_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set(lw, 4.0, TRUE);
 }
 
 static void layout_menu_connect_zoom_1_2_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set(lw, -2.0, TRUE);
 }
 
 static void layout_menu_connect_zoom_1_3_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set(lw, -3.0, TRUE);
 }
 
 static void layout_menu_connect_zoom_1_4_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_zoom_set(lw, -4.0, TRUE);
 }
@@ -841,7 +841,7 @@ static void layout_menu_connect_zoom_1_4_cb(GtkAction *UNUSED(action), gpointer 
 
 static void layout_menu_split_cb(GtkRadioAction *action, GtkRadioAction *UNUSED(current), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	ImageSplitMode mode;
 
 	layout_exit_fullscreen(lw);
@@ -852,7 +852,7 @@ static void layout_menu_split_cb(GtkRadioAction *action, GtkRadioAction *UNUSED(
 
 static void layout_menu_thumb_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_thumb_set(lw, gtk_toggle_action_get_active(action));
 }
@@ -860,7 +860,7 @@ static void layout_menu_thumb_cb(GtkToggleAction *action, gpointer data)
 
 static void layout_menu_list_cb(GtkRadioAction *action, GtkRadioAction *UNUSED(current), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	layout_views_set(lw, lw->options.dir_view_type, (FileViewType) gtk_radio_action_get_current_value(action));
@@ -868,7 +868,7 @@ static void layout_menu_list_cb(GtkRadioAction *action, GtkRadioAction *UNUSED(c
 
 static void layout_menu_view_dir_as_cb(GtkToggleAction *action,  gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 
@@ -884,7 +884,7 @@ static void layout_menu_view_dir_as_cb(GtkToggleAction *action,  gpointer data)
 
 static void layout_menu_view_in_new_window_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	view_window_new(layout_image_get_fd(lw));
@@ -892,7 +892,7 @@ static void layout_menu_view_in_new_window_cb(GtkAction *UNUSED(action), gpointe
 
 static void layout_menu_open_archive_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	LayoutWindow *lw_new;
 	gchar *dest_dir;
 	FileData *fd;
@@ -918,21 +918,21 @@ static void layout_menu_open_archive_cb(GtkAction *UNUSED(action), gpointer data
 
 static void layout_menu_fullscreen_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_full_screen_toggle(lw);
 }
 
 static void layout_menu_escape_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 }
 
 static void layout_menu_overlay_toggle_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	image_osd_toggle(lw->image);
 	layout_util_sync_views(lw);
@@ -941,7 +941,7 @@ static void layout_menu_overlay_toggle_cb(GtkAction *UNUSED(action), gpointer da
 
 static void layout_menu_overlay_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	if (gtk_toggle_action_get_active(action))
 		{
@@ -961,7 +961,7 @@ static void layout_menu_overlay_cb(GtkToggleAction *action, gpointer data)
 
 static void layout_menu_histogram_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	if (gtk_toggle_action_get_active(action))
 		{
@@ -978,7 +978,7 @@ static void layout_menu_histogram_cb(GtkToggleAction *action, gpointer data)
 
 static void layout_menu_animate_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	if (lw->options.animate == gtk_toggle_action_get_active(action)) return;
 	layout_image_animate_toggle(lw);
@@ -991,7 +991,7 @@ static void layout_menu_rectangular_selection_cb(GtkToggleAction *action, gpoint
 
 static void layout_menu_histogram_toggle_channel_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	image_osd_histogram_toggle_channel(lw->image);
 	layout_util_sync_views(lw);
@@ -999,7 +999,7 @@ static void layout_menu_histogram_toggle_channel_cb(GtkAction *UNUSED(action), g
 
 static void layout_menu_histogram_toggle_mode_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	image_osd_histogram_toggle_mode(lw->image);
 	layout_util_sync_views(lw);
@@ -1007,7 +1007,7 @@ static void layout_menu_histogram_toggle_mode_cb(GtkAction *UNUSED(action), gpoi
 
 static void layout_menu_histogram_channel_cb(GtkRadioAction *action, GtkRadioAction *UNUSED(current), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint channel = gtk_radio_action_get_current_value(action);
 	GtkToggleAction *histogram_action = GTK_TOGGLE_ACTION(gtk_action_group_get_action(lw->action_group, "ImageHistogram"));
 
@@ -1019,7 +1019,7 @@ static void layout_menu_histogram_channel_cb(GtkRadioAction *action, GtkRadioAct
 
 static void layout_menu_histogram_mode_cb(GtkRadioAction *action, GtkRadioAction *UNUSED(current), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint mode = gtk_radio_action_get_current_value(action);
 	GtkToggleAction *histogram_action = GTK_TOGGLE_ACTION(gtk_action_group_get_action(lw->action_group, "ImageHistogram"));
 
@@ -1031,14 +1031,14 @@ static void layout_menu_histogram_mode_cb(GtkRadioAction *action, GtkRadioAction
 
 static void layout_menu_refresh_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_refresh(lw);
 }
 
 static void layout_menu_bar_exif_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	layout_exif_window_new(lw);
@@ -1046,7 +1046,7 @@ static void layout_menu_bar_exif_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_search_and_run_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	layout_search_and_run_window_new(lw);
@@ -1055,7 +1055,7 @@ static void layout_menu_search_and_run_cb(GtkAction *UNUSED(action), gpointer da
 
 static void layout_menu_float_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	if (lw->options.tools_float == gtk_toggle_action_get_active(action)) return;
 
@@ -1065,7 +1065,7 @@ static void layout_menu_float_cb(GtkToggleAction *action, gpointer data)
 
 static void layout_menu_hide_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	layout_tools_hide_toggle(lw);
@@ -1073,7 +1073,7 @@ static void layout_menu_hide_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_toolbar_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	if (lw->options.toolbar_hidden == gtk_toggle_action_get_active(action)) return;
 
@@ -1083,7 +1083,7 @@ static void layout_menu_toolbar_cb(GtkToggleAction *action, gpointer data)
 
 static void layout_menu_info_pixel_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	if (lw->options.show_info_pixel == gtk_toggle_action_get_active(action)) return;
 
@@ -1094,7 +1094,7 @@ static void layout_menu_info_pixel_cb(GtkToggleAction *action, gpointer data)
 /* NOTE: these callbacks are called also from layout_util_sync_views */
 static void layout_menu_bar_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	if (layout_bar_enabled(lw) == gtk_toggle_action_get_active(action)) return;
 
@@ -1104,7 +1104,7 @@ static void layout_menu_bar_cb(GtkToggleAction *action, gpointer data)
 
 static void layout_menu_bar_sort_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	if (layout_bar_sort_enabled(lw) == gtk_toggle_action_get_active(action)) return;
 
@@ -1114,7 +1114,7 @@ static void layout_menu_bar_sort_cb(GtkToggleAction *action, gpointer data)
 
 static void layout_menu_hide_bars_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	if (lw->options.bars_state.hidden == gtk_toggle_action_get_active(action))
 		{
@@ -1125,7 +1125,7 @@ static void layout_menu_hide_bars_cb(GtkToggleAction *action, gpointer data)
 
 static void layout_menu_slideshow_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	if (layout_image_slideshow_active(lw) == gtk_toggle_action_get_active(action)) return;
 	layout_image_slideshow_toggle(lw);
@@ -1133,7 +1133,7 @@ static void layout_menu_slideshow_cb(GtkToggleAction *action, gpointer data)
 
 static void layout_menu_slideshow_pause_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_image_slideshow_pause_toggle(lw);
 }
@@ -1155,7 +1155,7 @@ static void layout_menu_slideshow_faster_cb(GtkAction *UNUSED(action), gpointer 
 
 static void layout_menu_stereo_mode_next_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint mode = layout_image_stereo_pixbuf_get(lw);
 
 	/* 0->1, 1->2, 2->3, 3->1 - disable auto, then cycle */
@@ -1173,14 +1173,14 @@ static void layout_menu_stereo_mode_next_cb(GtkAction *UNUSED(action), gpointer 
 
 static void layout_menu_stereo_mode_cb(GtkRadioAction *action, GtkRadioAction *UNUSED(current), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint mode = gtk_radio_action_get_current_value(action);
 	layout_image_stereo_pixbuf_set(lw, mode);
 }
 
 static void layout_menu_help_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	help_window_show("index.html");
@@ -1188,7 +1188,7 @@ static void layout_menu_help_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_help_search_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	help_search_window_show();
@@ -1196,7 +1196,7 @@ static void layout_menu_help_search_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_help_keys_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	help_window_show("GuideReferenceKeyboardShortcuts.html");
@@ -1204,7 +1204,7 @@ static void layout_menu_help_keys_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_notes_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	help_window_show("release_notes");
@@ -1212,7 +1212,7 @@ static void layout_menu_notes_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_changelog_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	help_window_show("changelog");
@@ -1259,7 +1259,7 @@ static void layout_menu_foreach_func(
 	gchar *key_name, *menu_name;
 	gchar **subset_lt_arr, **subset_gt_arr;
 	gchar *subset_lt, *converted_name;
-	GPtrArray *array = data;
+	GPtrArray *array = (GPtrArray*)data;
 
 	path = g_strescape(accel_path, NULL);
 	name = gtk_accelerator_name(accel_key, accel_mods);
@@ -1382,7 +1382,7 @@ static void layout_menu_kbd_map_cb(GtkAction *UNUSED(action), gpointer UNUSED(da
 
 static void layout_menu_about_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	show_about_window(lw);
@@ -1390,7 +1390,7 @@ static void layout_menu_about_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_log_window_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_exit_fullscreen(lw);
 	log_window_new(lw);
@@ -1405,35 +1405,35 @@ static void layout_menu_log_window_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_select_all_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_select_all(lw);
 }
 
 static void layout_menu_unselect_all_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_select_none(lw);
 }
 
 static void layout_menu_invert_selection_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_select_invert(lw);
 }
 
 static void layout_menu_file_filter_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_file_filter_set(lw, gtk_toggle_action_get_active(action));
 }
 
 static void layout_menu_marks_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_marks_set(lw, gtk_toggle_action_get_active(action));
 }
@@ -1441,7 +1441,7 @@ static void layout_menu_marks_cb(GtkToggleAction *action, gpointer data)
 
 static void layout_menu_set_mark_sel_cb(GtkAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint mark = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(action), "mark_num"));
 	g_assert(mark >= 1 && mark <= FILEDATA_MARKS_SIZE);
 
@@ -1450,7 +1450,7 @@ static void layout_menu_set_mark_sel_cb(GtkAction *action, gpointer data)
 
 static void layout_menu_res_mark_sel_cb(GtkAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint mark = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(action), "mark_num"));
 	g_assert(mark >= 1 && mark <= FILEDATA_MARKS_SIZE);
 
@@ -1459,7 +1459,7 @@ static void layout_menu_res_mark_sel_cb(GtkAction *action, gpointer data)
 
 static void layout_menu_toggle_mark_sel_cb(GtkAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint mark = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(action), "mark_num"));
 	g_assert(mark >= 1 && mark <= FILEDATA_MARKS_SIZE);
 
@@ -1468,7 +1468,7 @@ static void layout_menu_toggle_mark_sel_cb(GtkAction *action, gpointer data)
 
 static void layout_menu_sel_mark_cb(GtkAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint mark = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(action), "mark_num"));
 	g_assert(mark >= 1 && mark <= FILEDATA_MARKS_SIZE);
 
@@ -1477,7 +1477,7 @@ static void layout_menu_sel_mark_cb(GtkAction *action, gpointer data)
 
 static void layout_menu_sel_mark_or_cb(GtkAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint mark = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(action), "mark_num"));
 	g_assert(mark >= 1 && mark <= FILEDATA_MARKS_SIZE);
 
@@ -1486,7 +1486,7 @@ static void layout_menu_sel_mark_or_cb(GtkAction *action, gpointer data)
 
 static void layout_menu_sel_mark_and_cb(GtkAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint mark = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(action), "mark_num"));
 	g_assert(mark >= 1 && mark <= FILEDATA_MARKS_SIZE);
 
@@ -1495,7 +1495,7 @@ static void layout_menu_sel_mark_and_cb(GtkAction *action, gpointer data)
 
 static void layout_menu_sel_mark_minus_cb(GtkAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint mark = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(action), "mark_num"));
 	g_assert(mark >= 1 && mark <= FILEDATA_MARKS_SIZE);
 
@@ -1504,7 +1504,7 @@ static void layout_menu_sel_mark_minus_cb(GtkAction *action, gpointer data)
 
 static void layout_menu_mark_filter_toggle_cb(GtkAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint mark = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(action), "mark_num"));
 	g_assert(mark >= 1 && mark <= FILEDATA_MARKS_SIZE);
 
@@ -1521,13 +1521,13 @@ static void layout_menu_mark_filter_toggle_cb(GtkAction *action, gpointer data)
 
 static void layout_menu_image_first_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	layout_image_first(lw);
 }
 
 static void layout_menu_image_prev_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint i;
 
 	if (lw->options.split_pane_sync)
@@ -1553,7 +1553,7 @@ static void layout_menu_image_prev_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_image_next_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint i;
 
 	if (lw->options.split_pane_sync)
@@ -1579,7 +1579,7 @@ static void layout_menu_image_next_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_page_first_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	FileData *fd = layout_image_get_fd(lw);
 
 	if (fd->page_total > 0)
@@ -1590,7 +1590,7 @@ static void layout_menu_page_first_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_page_last_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	FileData *fd = layout_image_get_fd(lw);
 
 	if (fd->page_total > 0)
@@ -1601,7 +1601,7 @@ static void layout_menu_page_last_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_page_next_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	FileData *fd = layout_image_get_fd(lw);
 
 	if (fd->page_total > 0)
@@ -1612,7 +1612,7 @@ static void layout_menu_page_next_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_page_previous_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	FileData *fd = layout_image_get_fd(lw);
 
 	if (fd->page_total > 0)
@@ -1623,7 +1623,7 @@ static void layout_menu_page_previous_cb(GtkAction *UNUSED(action), gpointer dat
 
 static void layout_menu_image_forward_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	/* Obtain next image */
 	layout_set_path(lw, image_chain_forward());
@@ -1631,7 +1631,7 @@ static void layout_menu_image_forward_cb(GtkAction *UNUSED(action), gpointer dat
 
 static void layout_menu_image_back_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	/* Obtain previous image */
 	layout_set_path(lw, image_chain_back());
@@ -1639,7 +1639,7 @@ static void layout_menu_image_back_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_split_pane_next_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint active_frame;
 
 	active_frame = lw->active_split_image;
@@ -1657,7 +1657,7 @@ static void layout_menu_split_pane_next_cb(GtkAction *UNUSED(action), gpointer d
 
 static void layout_menu_split_pane_prev_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint active_frame;
 
 	active_frame = lw->active_split_image;
@@ -1679,7 +1679,7 @@ static void layout_menu_split_pane_prev_cb(GtkAction *UNUSED(action), gpointer d
 
 static void layout_menu_split_pane_updown_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint active_frame;
 
 	active_frame = lw->active_split_image;
@@ -1697,13 +1697,13 @@ static void layout_menu_split_pane_updown_cb(GtkAction *UNUSED(action), gpointer
 
 static void layout_menu_image_last_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	layout_image_last(lw);
 }
 
 static void layout_menu_back_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	FileData *dir_fd;
 
 	/* Obtain previous path */
@@ -1714,7 +1714,7 @@ static void layout_menu_back_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_forward_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	FileData *dir_fd;
 
 	/* Obtain next path */
@@ -1725,7 +1725,7 @@ static void layout_menu_forward_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_home_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	const gchar *path;
 
 	if (lw->options.home_path && *lw->options.home_path)
@@ -1735,7 +1735,7 @@ static void layout_menu_home_cb(GtkAction *UNUSED(action), gpointer data)
 
 	if (path)
 		{
-		FileData *dir_fd = file_data_new_dir(path);
+		FileData *dir_fd = (FileData*)file_data_new_dir(path);
 		layout_set_fd(lw, dir_fd);
 		file_data_unref(dir_fd);
 		}
@@ -1743,7 +1743,7 @@ static void layout_menu_home_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_up_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	ViewDir *vd = lw->vd;
 	gchar *path;
 
@@ -1752,7 +1752,7 @@ static void layout_menu_up_cb(GtkAction *UNUSED(action), gpointer data)
 
 	if (vd->select_func)
 		{
-		FileData *fd = file_data_new_dir(path);
+		FileData *fd = (FileData*)file_data_new_dir(path);
 		vd->select_func(vd, fd, vd->select_data);
 		file_data_unref(fd);
 		}
@@ -1769,7 +1769,7 @@ static void layout_menu_up_cb(GtkAction *UNUSED(action), gpointer data)
 
 static void layout_menu_edit_cb(GtkAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	const gchar *key = gtk_action_get_name(action);
 
 	if (!editor_window_flag_set(key))
@@ -1787,7 +1787,7 @@ static void layout_menu_metadata_write_cb(GtkAction *UNUSED(action), gpointer UN
 static GtkWidget *last_focussed = NULL;
 static void layout_menu_keyword_autocomplete_cb(GtkAction *UNUSED(action), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	GtkWidget *tmp;
 	gboolean auto_has_focus;
 
@@ -1812,7 +1812,7 @@ static void layout_menu_keyword_autocomplete_cb(GtkAction *UNUSED(action), gpoin
 #ifdef HAVE_LCMS
 static void layout_color_menu_enable_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	if (layout_image_color_profile_get_use(lw) == gtk_toggle_action_get_active(action)) return;
 
@@ -1829,7 +1829,7 @@ static void layout_color_menu_enable_cb()
 #ifdef HAVE_LCMS
 static void layout_color_menu_use_image_cb(GtkToggleAction *action, gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint input;
 	gboolean use_image;
 
@@ -1848,7 +1848,7 @@ static void layout_color_menu_use_image_cb()
 #ifdef HAVE_LCMS
 static void layout_color_menu_input_cb(GtkRadioAction *action, GtkRadioAction *UNUSED(current), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint type;
 	gint input;
 	gboolean use_image;
@@ -2127,7 +2127,7 @@ static void layout_menu_new_window_update(LayoutWindow *lw)
 
 static void window_rename_cancel_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
-	RenameWindow *rw = data;
+	RenameWindow *rw = (RenameWindow*)data;
 
 	generic_dialog_close(rw->gd);
 	g_free(rw);
@@ -2135,7 +2135,7 @@ static void window_rename_cancel_cb(GenericDialog *UNUSED(gd), gpointer data)
 
 static void window_rename_ok(GenericDialog *UNUSED(gd), gpointer data)
 {
-	RenameWindow *rw = data;
+	RenameWindow *rw = (RenameWindow*)data;
 	gchar *path;
 	gboolean window_layout_name_exists = FALSE;
 	GList *list = NULL;
@@ -2188,28 +2188,28 @@ static void window_rename_ok(GenericDialog *UNUSED(gd), gpointer data)
 
 static void window_rename_ok_cb(GenericDialog *gd, gpointer data)
 {
-	RenameWindow *rw = data;
+	RenameWindow *rw = (RenameWindow*)data;
 
 	window_rename_ok(gd, rw);
 }
 
 static void window_rename_entry_activate_cb(GenericDialog *gd, gpointer data)
 {
-	RenameWindow *rw = data;
+	RenameWindow *rw = (RenameWindow*)data;
 
 	window_rename_ok(gd, rw);
 }
 
 static void window_delete_cancel_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
-	DeleteWindow *dw = data;
+	DeleteWindow *dw = (DeleteWindow*)data;
 
 	g_free(dw);
 }
 
 static void window_delete_ok_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
-	DeleteWindow *dw = data;
+	DeleteWindow *dw = (DeleteWindow*)data;
 	gchar *path;
 	gchar *xml_name;
 
@@ -2234,7 +2234,7 @@ static void layout_menu_window_default_cb(GtkWidget *UNUSED(widget), gpointer UN
 
 static void layout_menu_windows_menu_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	GtkWidget *menu;
 	GtkWidget *sub_menu;
 	gchar *menu_label;
@@ -2264,7 +2264,7 @@ static void layout_menu_windows_menu_cb(GtkWidget *UNUSED(widget), gpointer data
 
 static void layout_menu_view_menu_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	GtkWidget *menu;
 	GtkWidget *sub_menu;
 	gchar *menu_label;
@@ -2351,7 +2351,7 @@ static void change_window_id(const gchar *infile, const gchar *outfile)
 
 static void layout_menu_window_from_current_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	gint fd_in = -1;
 	gint fd_out = -1;
 	char * tmp_file_in;
@@ -2387,14 +2387,14 @@ static void layout_menu_window_from_current_cb(GtkWidget *UNUSED(widget), gpoint
 
 static void layout_menu_window_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	layout_menu_new_window_update(lw);
 }
 
 static void layout_menu_window_rename_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	RenameWindow *rw;
 	GtkWidget *hbox;
 
@@ -2425,7 +2425,7 @@ static void layout_menu_window_rename_cb(GtkWidget *UNUSED(widget), gpointer dat
 
 static void layout_menu_window_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	DeleteWindow *dw;
 	GtkWidget *hbox;
 
@@ -3933,7 +3933,7 @@ static gboolean layout_bar_enabled(LayoutWindow *lw)
 
 static void layout_bar_destroyed(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	lw->bar = NULL;
 /*
@@ -4028,7 +4028,7 @@ static gboolean layout_bar_sort_enabled(LayoutWindow *lw)
 
 static void layout_bar_sort_destroyed(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 
 	lw->bar_sort = NULL;
 
@@ -4177,7 +4177,7 @@ void layout_bars_close(LayoutWindow *lw)
 
 static gboolean layout_exif_window_destroy(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LayoutWindow *lw = data;
+	LayoutWindow *lw = (LayoutWindow*)data;
 	lw->exif_window = NULL;
 
 	return TRUE;

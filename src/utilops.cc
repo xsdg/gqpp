@@ -547,7 +547,7 @@ static gint file_util_perform_ci_cb(gpointer resume_data, EditorFlags flags, GLi
 
 static void file_util_resume_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 	if (ud->external)
 		editor_resume(ud->resume_data);
 	else
@@ -556,7 +556,7 @@ static void file_util_resume_cb(GenericDialog *UNUSED(gd), gpointer data)
 
 static void file_util_abort_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 	if (ud->external)
 		editor_skip(ud->resume_data);
 	else
@@ -567,7 +567,7 @@ static void file_util_abort_cb(GenericDialog *UNUSED(gd), gpointer data)
 
 static gint file_util_perform_ci_cb(gpointer resume_data, EditorFlags flags, GList *list, gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 	gint ret = EDITOR_CB_CONTINUE;
 
 	ud->resume_data = resume_data;
@@ -654,7 +654,7 @@ static gint file_util_perform_ci_cb(gpointer resume_data, EditorFlags flags, GLi
 
 static gboolean file_util_perform_ci_internal(gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 
 	if (!ud->perform_idle_id)
 		{
@@ -854,7 +854,7 @@ static void file_util_perform_ci_dir(UtilityData *ud, gboolean internal, gboolea
 
 static gint file_util_perform_ci_dir_cb(gpointer UNUSED(resume_data), EditorFlags flags, GList *UNUSED(list), gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 	file_util_perform_ci_dir(ud, FALSE, !EDITOR_ERRORS_BUT_SKIPPED(flags));
 	return EDITOR_CB_CONTINUE; /* does not matter, there was just single directory */
 }
@@ -978,14 +978,14 @@ static GdkPixbuf *file_util_get_error_icon(FileData *fd, GList *list, GtkWidget 
 
 static void file_util_check_resume_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 	ud->phase = UTILITY_PHASE_CHECKED;
 	file_util_dialog_run(ud);
 }
 
 static void file_util_check_abort_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 	ud->phase = UTILITY_PHASE_START;
 	file_util_dialog_run(ud);
 }
@@ -1069,7 +1069,7 @@ void file_util_check_ci(UtilityData *ud)
 
 static void file_util_cancel_cb(GenericDialog *gd, gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 
 	generic_dialog_close(gd);
 
@@ -1081,7 +1081,7 @@ static void file_util_cancel_cb(GenericDialog *gd, gpointer data)
 
 static void file_util_discard_cb(GenericDialog *gd, gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 
 	generic_dialog_close(gd);
 
@@ -1093,7 +1093,7 @@ static void file_util_discard_cb(GenericDialog *gd, gpointer data)
 
 static void file_util_ok_cb(GenericDialog *gd, gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 
 	generic_dialog_close(gd);
 
@@ -1104,7 +1104,7 @@ static void file_util_ok_cb(GenericDialog *gd, gpointer data)
 
 static void file_util_fdlg_cancel_cb(FileDialog *fdlg, gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 
 	file_dialog_close(fdlg);
 
@@ -1147,7 +1147,7 @@ static void file_util_dest_folder_update_path(UtilityData *ud)
 
 static void file_util_fdlg_rename_cb(FileDialog *fdlg, gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 	gchar *desc = NULL;
 	GenericDialog *d = NULL;
 
@@ -1183,7 +1183,7 @@ static void file_util_fdlg_rename_cb(FileDialog *fdlg, gpointer data)
 
 static void file_util_fdlg_ok_cb(FileDialog *fdlg, gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 
 	file_util_dest_folder_update_path(ud);
 	if (isdir(ud->dest_path)) file_dialog_sync_history(fdlg, TRUE);
@@ -1199,7 +1199,7 @@ static void file_util_fdlg_ok_cb(FileDialog *fdlg, gpointer data)
 
 static void file_util_dest_folder_entry_cb(GtkWidget *UNUSED(entry), gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 	file_util_dest_folder_update_path(ud);
 }
 
@@ -1420,19 +1420,19 @@ static void file_util_rename_preview_update(UtilityData *ud)
 
 static void file_util_rename_preview_entry_cb(GtkWidget *UNUSED(entry), gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 	file_util_rename_preview_update(ud);
 }
 
 static void file_util_rename_preview_adj_cb(GtkWidget *UNUSED(spin), gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 	file_util_rename_preview_update(ud);
 }
 
 static gboolean file_util_rename_idle_cb(gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 
 	file_util_rename_preview_update(ud);
 
@@ -1443,7 +1443,7 @@ static gboolean file_util_rename_idle_cb(gpointer data)
 static void file_util_rename_preview_order_cb(GtkTreeModel *UNUSED(treemodel), GtkTreePath *UNUSED(tpath),
 					      GtkTreeIter *UNUSED(iter), gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 
 	if (ud->update_idle_id) return;
 
@@ -1455,7 +1455,7 @@ static gboolean file_util_preview_cb(GtkTreeSelection *UNUSED(selection), GtkTre
 				     GtkTreePath *tpath, gboolean path_currently_selected,
 				     gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 	GtkTreeIter iter;
 	FileData *fd = NULL;
 
@@ -1500,7 +1500,7 @@ static void box_append_safe_delete_status(GenericDialog *gd)
 
 static void file_util_details_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 	if (ud->details_func && ud->sel_fd)
 		{
 		ud->details_func(ud, ud->sel_fd);
@@ -1933,7 +1933,7 @@ static void file_util_details_dialog_close_cb(GtkWidget *UNUSED(widget), gpointe
 
 static void file_util_details_dialog_destroy_cb(GtkWidget *widget, gpointer data)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 	g_signal_handlers_disconnect_by_func(ud->gd->dialog, (gpointer)(file_util_details_dialog_close_cb), widget);
 }
 
@@ -1945,7 +1945,7 @@ static void file_util_details_dialog_ok_cb(GenericDialog *UNUSED(gd), gpointer U
 
 static void file_util_details_dialog_exclude(GenericDialog *gd, gpointer data, gboolean discard)
 {
-	UtilityData *ud = data;
+	UtilityData *ud = (UtilityData*)data;
 	FileData *fd = g_object_get_data(G_OBJECT(gd->dialog), "file_data");
 
 	if (!fd) return;
@@ -1999,7 +1999,7 @@ static gchar *file_util_details_get_message(UtilityData *ud, FileData *fd, const
 
 	if (error)
 		{
-		gchar *err_msg = file_data_get_error_string(error);
+		gchar *err_msg = (gchar*)file_data_get_error_string(error);
 		g_string_append(message, err_msg);
 		if (stock_id) *stock_id = (error & CHANGE_ERROR_MASK) ? GTK_STOCK_DIALOG_ERROR : GTK_STOCK_DIALOG_WARNING;
 		}
@@ -2926,7 +2926,7 @@ static void file_util_create_dir_full(FileData *fd, const gchar *dest_path, GtkW
 
 static gboolean file_util_write_metadata_first_after_done(gpointer data)
 {
-	UtilityDelayData *dd = data;
+	UtilityDelayData *dd = (UtilityDelayData*)data;
 
 	/* start the delayed operation with original arguments */
 	switch (dd->type)
@@ -2949,7 +2949,7 @@ static gboolean file_util_write_metadata_first_after_done(gpointer data)
 
 static void file_util_write_metadata_first_done(gboolean success, const gchar *UNUSED(done_path), gpointer data)
 {
-	UtilityDelayData *dd = data;
+	UtilityDelayData *dd = (UtilityDelayData*)data;
 
 	if (success)
 		{
@@ -3160,7 +3160,7 @@ void file_util_copy_path_list_to_clipboard(GList *list, gboolean quoted)
 
 static void new_folder_entry_activate_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	GtkDialog *dialog = data;
+	GtkDialog *dialog = (GtkDialog*)data;
 
 	gtk_dialog_response(dialog, GTK_RESPONSE_ACCEPT);
 }

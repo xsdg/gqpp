@@ -778,7 +778,7 @@ static void gq_accel_map_print(
 		    gboolean	changed)
 {
 	GString *gstring = g_string_new(changed ? NULL : "; ");
-	SecureSaveInfo *ssi = data;
+	SecureSaveInfo *ssi = (SecureSaveInfo*)data;
 	gchar *tmp, *name;
 
 	g_string_append(gstring, "(gtk_accel_path \"");

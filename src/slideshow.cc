@@ -308,7 +308,7 @@ static void slideshow_timer_reset(SlideShowData *ss);
 
 static gboolean slideshow_loop_cb(gpointer data)
 {
-	SlideShowData *ss = data;
+	SlideShowData *ss = (SlideShowData*)data;
 
 	if (ss->paused) return TRUE;
 

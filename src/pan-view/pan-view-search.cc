@@ -387,7 +387,7 @@ static gboolean pan_search_by_date(PanWindow *pw, const gchar *text)
 
 void pan_search_activate_cb(const gchar *text, gpointer data)
 {
-	PanWindow *pw = data;
+	PanWindow *pw = (PanWindow*)data;
 
 	if (!text) return;
 
@@ -418,7 +418,7 @@ void pan_search_activate(PanWindow *pw)
 
 void pan_search_toggle_cb(GtkWidget *button, gpointer data)
 {
-	PanWindow *pw = data;
+	PanWindow *pw = (PanWindow*)data;
 	PanViewSearchUi *ui = pw->search_ui;
 	gboolean visible;
 

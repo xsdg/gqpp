@@ -118,7 +118,7 @@ static gchar *set_pwd(gchar *filename)
 
 static gboolean remote_server_client_cb(GIOChannel *source, GIOCondition condition, gpointer data)
 {
-	RemoteClient *client = data;
+	RemoteClient *client = (RemoteClient*)data;
 	RemoteConnection *rc;
 	GIOStatus status = G_IO_STATUS_NORMAL;
 
@@ -213,7 +213,7 @@ static void remote_server_clients_close(RemoteConnection *rc)
 
 static gboolean remote_server_read_cb(GIOChannel *UNUSED(source), GIOCondition UNUSED(condition), gpointer data)
 {
-	RemoteConnection *rc = data;
+	RemoteConnection *rc = (RemoteConnection*)data;
 	gint fd;
 	guint alen;
 
@@ -526,7 +526,7 @@ static void gr_slideshow_start_rec(const gchar *text, GIOChannel *UNUSED(channel
 
 	tilde_filename = expand_tilde(text);
 
-	FileData *dir_fd = file_data_new_dir(tilde_filename);
+	FileData *dir_fd = (FileData*)file_data_new_dir(tilde_filename);
 	g_free(tilde_filename);
 
 	layout_valid(&lw_id);
@@ -1192,7 +1192,7 @@ static void gr_config_load(const gchar *text, GIOChannel *UNUSED(channel), gpoin
 static void gr_get_sidecars(const gchar *text, GIOChannel *channel, gpointer UNUSED(data))
 {
 	gchar *filename = expand_tilde(text);
-	FileData *fd = file_data_new_group(filename);
+	FileData *fd = (FileData*)file_data_new_group(filename);
 
 	GList *work;
 	if (fd->parent) fd = fd->parent;
@@ -1215,7 +1215,7 @@ static void gr_get_sidecars(const gchar *text, GIOChannel *channel, gpointer UNU
 static void gr_get_destination(const gchar *text, GIOChannel *channel, gpointer UNUSED(data))
 {
 	gchar *filename = expand_tilde(text);
-	FileData *fd = file_data_new_group(filename);
+	FileData *fd = (FileData*)file_data_new_group(filename);
 
 	if (fd->change && fd->change->dest)
 		{
@@ -1239,7 +1239,7 @@ static void gr_file_view(const gchar *text, GIOChannel *UNUSED(channel), gpointe
 
 static void gr_list_clear(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer data)
 {
-	RemoteData *remote_data = data;
+	RemoteData *remote_data = (RemoteData*)data;
 
 	remote_data->command_collection = NULL;
 	remote_data->file_list = NULL;
@@ -1248,7 +1248,7 @@ static void gr_list_clear(const gchar *UNUSED(text), GIOChannel *UNUSED(channel)
 
 static void gr_list_add(const gchar *text, GIOChannel *UNUSED(channel), gpointer data)
 {
-	RemoteData *remote_data = data;
+	RemoteData *remote_data = (RemoteData*)data;
 	gboolean is_new = TRUE;
 	gchar *path = NULL;
 	FileData *fd;
@@ -1360,7 +1360,7 @@ static void gr_lua(const gchar *text, GIOChannel *channel, gpointer UNUSED(data)
 
 	if (lua_command[0] && lua_command[1])
 		{
-		FileData *fd = file_data_new_group(lua_command[0]);
+		FileData *fd = (FileData*)file_data_new_group(lua_command[0]);
 		result = g_strdup(lua_callvalue(fd, lua_command[1], NULL));
 		if (result)
 			{

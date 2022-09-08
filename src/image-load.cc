@@ -281,7 +281,7 @@ struct _ImageLoaderAreaParam {
 
 static gboolean image_loader_emit_area_ready_cb(gpointer data)
 {
-	ImageLoaderAreaParam *par = data;
+	ImageLoaderAreaParam *par = (ImageLoaderAreaParam*)data;
 	ImageLoader *il = par->il;
 	guint x, y, w, h;
 	g_mutex_lock(il->data_mutex);
@@ -300,21 +300,21 @@ static gboolean image_loader_emit_area_ready_cb(gpointer data)
 
 static gboolean image_loader_emit_done_cb(gpointer data)
 {
-	ImageLoader *il = data;
+	ImageLoader *il = (ImageLoader*)data;
 	g_signal_emit(il, signals[SIGNAL_DONE], 0);
 	return FALSE;
 }
 
 static gboolean image_loader_emit_error_cb(gpointer data)
 {
-	ImageLoader *il = data;
+	ImageLoader *il = (ImageLoader*)data;
 	g_signal_emit(il, signals[SIGNAL_ERROR], 0);
 	return FALSE;
 }
 
 static gboolean image_loader_emit_percent_cb(gpointer data)
 {
-	ImageLoader *il = data;
+	ImageLoader *il = (ImageLoader*)data;
 	g_signal_emit(il, signals[SIGNAL_PERCENT], 0, image_loader_get_percent(il));
 	return FALSE;
 }
@@ -322,7 +322,7 @@ static gboolean image_loader_emit_percent_cb(gpointer data)
 static gboolean image_loader_emit_size_cb(gpointer data)
 {
 	gint width, height;
-	ImageLoader *il = data;
+	ImageLoader *il = (ImageLoader*)data;
 	g_mutex_lock(il->data_mutex);
 	width = il->actual_width;
 	height = il->actual_height;
@@ -476,7 +476,7 @@ static void image_loader_area_updated_cb(gpointer UNUSED(loader),
 				 guint x, guint y, guint w, guint h,
 				 gpointer data)
 {
-	ImageLoader *il = data;
+	ImageLoader *il = (ImageLoader*)data;
 
 	if (!image_loader_get_pixbuf(il))
 		{
@@ -500,7 +500,7 @@ static void image_loader_area_updated_cb(gpointer UNUSED(loader),
 
 static void image_loader_area_prepared_cb(gpointer loader, gpointer data)
 {
-	ImageLoader *il = data;
+	ImageLoader *il = (ImageLoader*)data;
 	GdkPixbuf *pb;
 	guchar *pix;
 	size_t h, rs;
@@ -532,7 +532,7 @@ static void image_loader_area_prepared_cb(gpointer loader, gpointer data)
 static void image_loader_size_cb(gpointer loader,
 				 gint width, gint height, gpointer data)
 {
-	ImageLoader *il = data;
+	ImageLoader *il = (ImageLoader*)data;
 	gchar **mime_types;
 	gboolean scale = FALSE;
 	gint n;
@@ -1168,7 +1168,7 @@ void image_loader_delay_area_ready(ImageLoader *il, gboolean enable)
 static gboolean image_loader_idle_cb(gpointer data)
 {
 	gboolean ret = FALSE;
-	ImageLoader *il = data;
+	ImageLoader *il = (ImageLoader*)data;
 
 	if (il->idle_id)
 		{
@@ -1239,7 +1239,7 @@ static void image_loader_thread_wait_high(void)
 
 static void image_loader_thread_run(gpointer data, gpointer UNUSED(user_data))
 {
-	ImageLoader *il = data;
+	ImageLoader *il = (ImageLoader*)data;
 	gboolean cont;
 	gboolean err;
 

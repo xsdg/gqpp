@@ -790,7 +790,7 @@ static void search_result_collection_from_selection(SearchData *sd)
 
 static gboolean search_result_update_idle_cb(gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	search_status_update(sd);
 
@@ -810,7 +810,7 @@ static void search_result_update_idle_cancel(SearchData *sd)
 static gboolean search_result_select_cb(GtkTreeSelection *UNUSED(selection), GtkTreeModel *UNUSED(store),
 					GtkTreePath *UNUSED(tpath), gboolean UNUSED(selected), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	if (!sd->update_idle_id)
 		{
@@ -855,7 +855,7 @@ static void search_result_thumb_do(SearchData *sd)
 
 static void search_result_thumb_done_cb(ThumbLoader *UNUSED(tl), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	search_result_thumb_do(sd);
 	search_result_thumb_step(sd);
@@ -994,14 +994,14 @@ static void search_result_thumb_enable(SearchData *sd, gboolean enable)
 
 static void sr_menu_view_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	if (sd->click_fd) layout_set_fd(NULL, sd->click_fd);
 }
 
 static void sr_menu_viewnew_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	GList *list;
 
 	list = search_result_selection_list(sd);
@@ -1011,7 +1011,7 @@ static void sr_menu_viewnew_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void sr_menu_select_all_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	GtkTreeSelection *selection;
 
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(sd->result_view));
@@ -1020,7 +1020,7 @@ static void sr_menu_select_all_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void sr_menu_select_none_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	GtkTreeSelection *selection;
 
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(sd->result_view));
@@ -1030,7 +1030,7 @@ static void sr_menu_select_none_cb(GtkWidget *UNUSED(widget), gpointer data)
 static void sr_menu_edit_cb(GtkWidget *widget, gpointer data)
 {
 	SearchData *sd;
-	const gchar *key = data;
+	const gchar *key = (gchar*)data;
 
 	sd = submenu_item_get_data(widget);
 	if (!sd) return;
@@ -1040,7 +1040,7 @@ static void sr_menu_edit_cb(GtkWidget *widget, gpointer data)
 
 static void sr_menu_print_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	print_window_new(sd->click_fd, search_result_selection_list(sd),
 			 search_result_get_filelist(sd), sd->window);
@@ -1048,28 +1048,28 @@ static void sr_menu_print_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void sr_menu_copy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	file_util_copy(NULL, search_result_selection_list(sd), NULL, sd->window);
 }
 
 static void sr_menu_move_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	file_util_move(NULL, search_result_selection_list(sd), NULL, sd->window);
 }
 
 static void sr_menu_rename_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	file_util_rename(NULL, search_result_selection_list(sd), sd->window);
 }
 
 static void sr_menu_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	options->file_ops.safe_delete_enable = FALSE;
 	file_util_delete(NULL, search_result_selection_list(sd), sd->window);
@@ -1077,7 +1077,7 @@ static void sr_menu_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void sr_menu_move_to_trash_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	options->file_ops.safe_delete_enable = TRUE;
 	file_util_delete(NULL, search_result_selection_list(sd), sd->window);
@@ -1085,28 +1085,28 @@ static void sr_menu_move_to_trash_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void sr_menu_copy_path_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	file_util_copy_path_list_to_clipboard(search_result_selection_list(sd), TRUE);
 }
 
 static void sr_menu_copy_path_unquoted_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	file_util_copy_path_list_to_clipboard(search_result_selection_list(sd), FALSE);
 }
 
 static void sr_menu_play_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	start_editor_from_file(options->image_l_click_video_editor, sd->click_fd);
 }
 
 static void search_result_menu_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	GList *editmenu_fd_list = data;
+	GList *editmenu_fd_list = (GList*)data;
 
 	filelist_free(editmenu_fd_list);
 }
@@ -1200,7 +1200,7 @@ static GtkWidget *search_result_menu(SearchData *sd, gboolean on_row, gboolean e
 
 static void search_result_menu_pos_cb(GtkMenu *menu, gint *x, gint *y, gboolean *UNUSED(push_in), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	GtkTreePath *tpath;
 	gint cx, cy, cw, ch;
 
@@ -1224,7 +1224,7 @@ static void search_result_menu_pos_cb(GtkMenu *menu, gint *x, gint *y, gboolean 
 
 static gboolean search_result_press_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	GtkTreeModel *store;
 	GtkTreePath *tpath;
 	GtkTreeIter iter;
@@ -1291,7 +1291,7 @@ static gboolean search_result_press_cb(GtkWidget *widget, GdkEventButton *bevent
 
 static gboolean search_result_release_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	GtkTreeModel *store;
 	GtkTreePath *tpath;
 	GtkTreeIter iter;
@@ -1354,7 +1354,7 @@ static gboolean search_result_release_cb(GtkWidget *widget, GdkEventButton *beve
 
 static gboolean search_result_keypress_cb(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	gboolean stop_signal = FALSE;
 	GtkTreeModel *store;
 	GtkTreeSelection *selection;
@@ -1475,7 +1475,7 @@ static gboolean search_result_keypress_cb(GtkWidget *widget, GdkEventKey *event,
 
 static gboolean search_window_keypress_cb(GtkWidget *UNUSED(widget), GdkEventKey *event, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	gboolean stop_signal = FALSE;
 
 	if (event->state & GDK_CONTROL_MASK)
@@ -1529,7 +1529,7 @@ static void search_dnd_data_set(GtkWidget *UNUSED(widget), GdkDragContext *UNUSE
 				GtkSelectionData *selection_data, guint UNUSED(info),
 				guint UNUSED(time), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	GList *list;
 
 	list = search_result_selection_list(sd);
@@ -1541,7 +1541,7 @@ static void search_dnd_data_set(GtkWidget *UNUSED(widget), GdkDragContext *UNUSE
 
 static void search_dnd_begin(GtkWidget *widget, GdkDragContext *context, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	if (sd->click_fd && !search_result_row_selected(sd, sd->click_fd))
 		{
@@ -1576,7 +1576,7 @@ static void search_gps_dnd_received_cb(GtkWidget *UNUSED(pane), GdkDragContext *
 										GtkSelectionData *selection_data, guint info,
 										guint UNUSED(time), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	GList *list;
 	gdouble latitude, longitude;
 	FileData *fd;
@@ -1615,7 +1615,7 @@ static void search_path_entry_dnd_received_cb(GtkWidget *UNUSED(pane), GdkDragCo
 										GtkSelectionData *selection_data, guint info,
 										guint UNUSED(time), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	GList *list;
 	FileData *fd;
 
@@ -1644,7 +1644,7 @@ static void search_image_content_dnd_received_cb(GtkWidget *UNUSED(pane), GdkDra
 										GtkSelectionData *selection_data, guint info,
 										guint UNUSED(time), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	GList *list;
 	FileData *fd;
 
@@ -1831,7 +1831,7 @@ static void search_file_load_process(SearchData *sd, CacheData *cd)
 
 static void search_file_load_done_cb(ImageLoader *UNUSED(il), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	search_file_load_process(sd, sd->img_cd);
 }
 
@@ -2466,7 +2466,7 @@ static gboolean search_file_next(SearchData *sd)
 
 static gboolean search_step_cb(gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	FileData *fd;
 
 	if (sd->search_buffer_count > SEARCH_BUFFER_FLUSH_SIZE)
@@ -2518,7 +2518,7 @@ static gboolean search_step_cb(gpointer data)
 			path = fd->path + strlen(sd->search_dir_fd->path);
 			if (path != fd->path)
 				{
-				FileData *dir_fd = file_data_new_dir(path);
+				FileData *dir_fd = (FileData*)file_data_new_dir(path);
 				success = filelist_read(dir_fd, &list, NULL);
 				file_data_unref(dir_fd);
 				}
@@ -2577,7 +2577,7 @@ static gboolean search_step_cb(gpointer data)
 
 static void search_similarity_load_done_cb(ImageLoader *UNUSED(il), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	search_file_load_process(sd, sd->search_similarity_cd);
 }
 
@@ -2684,7 +2684,7 @@ static void search_start(SearchData *sd)
 
 static void search_start_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	GtkTreeViewColumn *column;
 	gchar *path;
 	gchar *entry_text;
@@ -2852,7 +2852,7 @@ enum {
 
 static void search_thumb_toggle_cb(GtkWidget *button, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	search_result_thumb_enable(sd, gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)));
 }
@@ -2975,7 +2975,7 @@ static gboolean menu_choice_get_match_type(GtkWidget *combo, MatchType *type)
 
 static void menu_choice_path_cb(GtkWidget *combo, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	if (!menu_choice_get_match_type(combo, &sd->search_type)) return;
 
@@ -2986,14 +2986,14 @@ static void menu_choice_path_cb(GtkWidget *combo, gpointer data)
 
 static void menu_choice_name_cb(GtkWidget *combo, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	if (!menu_choice_get_match_type(combo, &sd->match_name)) return;
 }
 
 static void menu_choice_size_cb(GtkWidget *combo, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	if (!menu_choice_get_match_type(combo, &sd->match_size)) return;
 
@@ -3003,7 +3003,7 @@ static void menu_choice_size_cb(GtkWidget *combo, gpointer data)
 
 static void menu_choice_rating_cb(GtkWidget *combo, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	if (!menu_choice_get_match_type(combo, &sd->match_rating)) return;
 
@@ -3013,21 +3013,21 @@ static void menu_choice_rating_cb(GtkWidget *combo, gpointer data)
 
 static void menu_choice_class_cb(GtkWidget *combo, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	if (!menu_choice_get_match_type(combo, &sd->match_class)) return;
 }
 
 static void menu_choice_marks_cb(GtkWidget *combo, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	if (!menu_choice_get_match_type(combo, &sd->match_marks)) return;
 }
 
 static void menu_choice_date_cb(GtkWidget *combo, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	if (!menu_choice_get_match_type(combo, &sd->match_date)) return;
 
@@ -3037,7 +3037,7 @@ static void menu_choice_date_cb(GtkWidget *combo, gpointer data)
 
 static void menu_choice_dimensions_cb(GtkWidget *combo, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	if (!menu_choice_get_match_type(combo, &sd->match_dimensions)) return;
 
@@ -3047,28 +3047,28 @@ static void menu_choice_dimensions_cb(GtkWidget *combo, gpointer data)
 
 static void menu_choice_keyword_cb(GtkWidget *combo, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	if (!menu_choice_get_match_type(combo, &sd->match_keywords)) return;
 }
 
 static void menu_choice_comment_cb(GtkWidget *combo, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	if (!menu_choice_get_match_type(combo, &sd->match_comment)) return;
 }
 
 static void menu_choice_spin_cb(GtkAdjustment *adjustment, gpointer data)
 {
-	gint *value = data;
+	gint *value = (gint*)data;
 
 	*value = (gint)gtk_adjustment_get_value(adjustment);
 }
 
 static void menu_choice_gps_cb(GtkWidget *combo, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	if (!menu_choice_get_match_type(combo, &sd->match_gps)) return;
 
@@ -3095,7 +3095,7 @@ static GtkWidget *menu_spin(GtkWidget *box, gdouble min, gdouble max, gint value
 
 static void menu_choice_check_cb(GtkWidget *button, gpointer data)
 {
-	GtkWidget *widget = data;
+	GtkWidget *widget = (GtkWidget*)data;
 	gboolean active;
 	gboolean *value;
 
@@ -3206,7 +3206,7 @@ static void search_window_close(SearchData *sd)
 
 static void search_window_close_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	search_window_close(sd);
 }
@@ -3218,7 +3218,7 @@ static void search_window_help_cb(GtkWidget *UNUSED(widget), gpointer UNUSED(dat
 
 static gboolean search_window_delete_cb(GtkWidget *UNUSED(widget), GdkEventAny *UNUSED(event), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	search_window_close(sd);
 	return TRUE;
@@ -3226,7 +3226,7 @@ static gboolean search_window_delete_cb(GtkWidget *UNUSED(widget), GdkEventAny *
 
 static void search_window_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	search_window_list = g_list_remove(search_window_list, sd);
 
@@ -3265,7 +3265,7 @@ static void select_collection_dialog_close_cb(FileDialog *fdlg, gpointer UNUSED(
 
 static void select_collection_dialog_ok_cb(FileDialog *fdlg, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	gchar *path;
 	gchar *path_noext;
 	gchar *collection;
@@ -3284,7 +3284,7 @@ static void select_collection_dialog_ok_cb(FileDialog *fdlg, gpointer data)
 
 static void select_collection_clicked_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 	FileDialog *fdlg;
 	const gchar *title;
 	const gchar *btntext;
@@ -3809,7 +3809,7 @@ static void search_result_change_path(SearchData *sd, FileData *fd)
 
 static void search_notify_cb(FileData *fd, NotifyType type, gpointer data)
 {
-	SearchData *sd = data;
+	SearchData *sd = (SearchData*)data;
 
 	if (!(type & NOTIFY_CHANGE) || !fd->change) return;
 

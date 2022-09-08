@@ -144,7 +144,7 @@ static void pan_filter_status(PanWindow *pw, const gchar *text)
 
 static void pan_filter_kw_button_cb(GtkButton *widget, gpointer data)
 {
-	PanFilterCallbackState *cb_state = data;
+	PanFilterCallbackState *cb_state = (PanFilterCallbackState*)data;
 	PanWindow *pw = cb_state->pw;
 	PanViewFilterUi *ui = pw->filter_ui;
 
@@ -160,7 +160,7 @@ static void pan_filter_kw_button_cb(GtkButton *widget, gpointer data)
 void pan_filter_activate_cb(const gchar *text, gpointer data)
 {
 	GtkWidget *kw_button;
-	PanWindow *pw = data;
+	PanWindow *pw = (PanWindow*)data;
 	PanViewFilterUi *ui = pw->filter_ui;
 	GtkTreeIter iter;
 
@@ -216,7 +216,7 @@ void pan_filter_activate(PanWindow *pw)
 
 void pan_filter_toggle_cb(GtkWidget *button, gpointer data)
 {
-	PanWindow *pw = data;
+	PanWindow *pw = (PanWindow*)data;
 	PanViewFilterUi *ui = pw->filter_ui;
 	gboolean visible;
 
@@ -267,7 +267,7 @@ void pan_filter_toggle_visible(PanWindow *pw, gboolean enable)
 
 void pan_filter_toggle_button_cb(GtkWidget *UNUSED(button), gpointer data)
 {
-	PanWindow *pw = data;
+	PanWindow *pw = (PanWindow*)data;
 	PanViewFilterUi *ui = pw->filter_ui;
 
 	gint old_classes = ui->filter_classes;
