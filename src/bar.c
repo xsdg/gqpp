@@ -302,12 +302,12 @@ static void bar_expander_height_cb(GtkWidget *UNUSED(widget), gpointer data)
 	gint x, y;
 	gint w, h;
 	GdkDisplay *display;
-	GdkDeviceManager *device_manager;
+	GdkSeat *seat;
 	GdkDevice *device;
 
 	display = gdk_display_get_default();
-	device_manager = gdk_display_get_device_manager(display);
-	device = gdk_device_manager_get_client_pointer(device_manager);
+	seat = gdk_display_get_default_seat(display);
+	device = gdk_seat_get_pointer(seat);
 	gdk_device_get_position(device, NULL, &x, &y);
 
 	list = gtk_container_get_children(GTK_CONTAINER(expander));

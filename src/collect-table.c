@@ -568,14 +568,13 @@ static void tip_show(CollectTable *ct)
 	GtkWidget *label;
 	gint x, y;
 	GdkDisplay *display;
-	GdkDeviceManager *device_manager;
+	GdkSeat *seat;
 	GdkDevice *device;
 
 	if (ct->tip_window) return;
 
-	device_manager = gdk_display_get_device_manager(gdk_window_get_display(
-								gtk_widget_get_window(ct->listview)));
-	device = gdk_device_manager_get_client_pointer(device_manager);
+	seat = gdk_display_get_default_seat(gdk_window_get_display(gtk_widget_get_window(ct->listview)));
+	device = gdk_seat_get_pointer(seat);
 	gdk_window_get_device_position(gtk_widget_get_window(ct->listview),
 								device, &x, &y, NULL);
 
@@ -593,8 +592,8 @@ static void tip_show(CollectTable *ct)
 	gtk_widget_show(label);
 
 	display = gdk_display_get_default();
-	device_manager = gdk_display_get_device_manager(display);
-	device = gdk_device_manager_get_client_pointer(device_manager);
+	seat = gdk_display_get_default_seat(display);
+	device = gdk_seat_get_pointer(seat);
 	gdk_device_get_position(device, NULL, &x, &y);
 
 	if (!gtk_widget_get_realized(ct->tip_window)) gtk_widget_realize(ct->tip_window);
@@ -647,8 +646,8 @@ static void tip_unschedule(CollectTable *ct)
 static void tip_update(CollectTable *ct, CollectInfo *info)
 {
 	GdkDisplay *display = gdk_display_get_default();
-	GdkDeviceManager *device_manager = gdk_display_get_device_manager(display);
-	GdkDevice *device = gdk_device_manager_get_client_pointer(device_manager);
+	GdkSeat *seat = gdk_display_get_default_seat(display);
+	GdkDevice *device = gdk_seat_get_pointer(seat);
 
 	tip_schedule(ct);
 
@@ -1395,16 +1394,15 @@ static CollectInfo *collection_table_insert_find(CollectTable *ct, CollectInfo *
 	GtkTreeIter iter;
 	GtkTreePath *tpath;
 	GtkTreeViewColumn *column;
-	GdkDeviceManager *device_manager;
+	GdkSeat *seat;
 	GdkDevice *device;
 
 	store = gtk_tree_view_get_model(GTK_TREE_VIEW(ct->listview));
 
 	if (!use_coord)
 		{
-		device_manager = gdk_display_get_device_manager(gdk_window_get_display(
-									gtk_widget_get_window(ct->listview)));
-		device = gdk_device_manager_get_client_pointer(device_manager);
+		seat = gdk_display_get_default_seat(gdk_window_get_display(gtk_widget_get_window(ct->listview)));
+		device = gdk_seat_get_pointer(seat);
 		gdk_window_get_device_position(gtk_widget_get_window(ct->listview),
 									device, &x, &y, NULL);
 		}
@@ -1617,14 +1615,14 @@ static gboolean collection_table_auto_scroll_idle_cb(gpointer data)
 	GdkWindow *window;
 	gint x, y;
 	gint w, h;
-	GdkDeviceManager *device_manager;
+	GdkSeat *seat;
 	GdkDevice *device;
 
 	if (!ct->drop_idle_id) return FALSE;
 
 	window = gtk_widget_get_window(ct->listview);
-	device_manager = gdk_display_get_device_manager(gdk_window_get_display(window));
-	device = gdk_device_manager_get_client_pointer(device_manager);
+	seat = gdk_display_get_default_seat(gdk_window_get_display(window));
+	device = gdk_seat_get_pointer(seat);
 	gdk_window_get_device_position(window, device, &x, &y, NULL);
 
 	w = gdk_window_get_width(window);

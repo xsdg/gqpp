@@ -2034,14 +2034,15 @@ static gboolean pr_mouse_motion_cb(GtkWidget *widget, GdkEventMotion *event, gpo
 {
 	PixbufRenderer *pr;
 	gint accel;
-	GdkDeviceManager *device_manager;
+	GdkSeat *seat;
 	GdkDevice *device;
 
 	/* This is a hack, but work far the best, at least for single pointer systems.
 	 * See https://bugzilla.gnome.org/show_bug.cgi?id=587714 for more. */
 	gint x, y;
-	device_manager = gdk_display_get_device_manager(gdk_window_get_display(event->window));
-	device = gdk_device_manager_get_client_pointer(device_manager);
+	seat = gdk_display_get_default_seat(gdk_window_get_display(event->window));
+	device = gdk_seat_get_pointer(seat);
+
 	gdk_window_get_device_position(event->window, device, &x, &y, NULL);
 
 	event->x = x;

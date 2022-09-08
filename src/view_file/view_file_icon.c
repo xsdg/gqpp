@@ -345,14 +345,13 @@ static void tip_show(ViewFile *vf)
 	GtkWidget *label;
 	gint x, y;
 	GdkDisplay *display;
-	GdkDeviceManager *device_manager;
+	GdkSeat *seat;
 	GdkDevice *device;
 
 	if (VFICON(vf)->tip_window) return;
 
-	device_manager = gdk_display_get_device_manager(gdk_window_get_display(
-						gtk_tree_view_get_bin_window(GTK_TREE_VIEW(vf->listview))));
-	device = gdk_device_manager_get_client_pointer(device_manager);
+	seat = gdk_display_get_default_seat(gdk_window_get_display(gtk_tree_view_get_bin_window(GTK_TREE_VIEW(vf->listview))));
+	device = gdk_seat_get_pointer(seat);
 	gdk_window_get_device_position(gtk_tree_view_get_bin_window(GTK_TREE_VIEW(vf->listview)),
 						device, &x, &y, NULL);
 
@@ -370,8 +369,8 @@ static void tip_show(ViewFile *vf)
 	gtk_widget_show(label);
 
 	display = gdk_display_get_default();
-	device_manager = gdk_display_get_device_manager(display);
-	device = gdk_device_manager_get_client_pointer(device_manager);
+	seat = gdk_display_get_default_seat(display);
+	device = gdk_seat_get_pointer(seat);
 	gdk_device_get_position(device, NULL, &x, &y);
 
 	if (!gtk_widget_get_realized(VFICON(vf)->tip_window)) gtk_widget_realize(VFICON(vf)->tip_window);
@@ -434,8 +433,8 @@ static void tip_unschedule(ViewFile *vf)
 static void tip_update(ViewFile *vf, FileData *fd)
 {
 	GdkDisplay *display = gdk_display_get_default();
-	GdkDeviceManager *device_manager = gdk_display_get_device_manager(display);
-	GdkDevice *device = gdk_device_manager_get_client_pointer(device_manager);
+	GdkSeat *seat = gdk_display_get_default_seat(display);
+	GdkDevice *device = gdk_seat_get_pointer(seat);
 
 	if (VFICON(vf)->tip_window)
 		{

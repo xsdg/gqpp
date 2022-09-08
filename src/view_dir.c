@@ -966,7 +966,7 @@ void vd_dnd_drop_scroll_cancel(ViewDir *vd)
 static gboolean vd_auto_scroll_idle_cb(gpointer data)
 {
 	ViewDir *vd = data;
-	GdkDeviceManager *device_manager;
+	GdkSeat *seat;
 	GdkDevice *device;
 
 	if (vd->drop_fd)
@@ -976,8 +976,8 @@ static gboolean vd_auto_scroll_idle_cb(gpointer data)
 		gint w, h;
 
 		window = gtk_widget_get_window(vd->view);
-		device_manager = gdk_display_get_device_manager(gdk_window_get_display(window));
-		device = gdk_device_manager_get_client_pointer(device_manager);
+		seat = gdk_display_get_default_seat(gdk_window_get_display(window));
+		device = gdk_seat_get_pointer(seat);
 		gdk_window_get_device_position(window, device, &x, &y, NULL);
 
 		w = gdk_window_get_width(window);
