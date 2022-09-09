@@ -1134,5 +1134,10 @@ struct _hard_coded_window_keys {
 	gchar *text;  /**< menu item label - NULL if end of list */
 };
 
+// ZERO ENUM VALUES
+// These are necessary because enums are inherently ints in C, but are their own
+// types in C++ (even though those types are convertible from/to int).
+constexpr GdkModifierType NO_GDK_MODIFIER = (GdkModifierType)0;
+
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */
