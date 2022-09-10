@@ -299,7 +299,7 @@ GtkWidget *search_and_run_new(LayoutWindow *lw)
 
 	gtk_window_set_resizable(GTK_WINDOW(sar->window), TRUE);
 
-	sar->vbox = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+	sar->vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	gtk_container_add(GTK_CONTAINER(sar->window), sar->vbox);
 	gtk_widget_show(sar->vbox);
 

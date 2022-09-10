@@ -164,7 +164,7 @@ GtkWidget *osd_new(gint max_cols, GtkWidget *template_view)
 	gdouble entries;
 	GtkWidget *viewport;
 
-	vbox = gtk_vbox_new(FALSE, 0);
+	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 
 	pref_label_new(vbox, _("To include predefined tags in the template, click a button or drag-and-drop"));
 

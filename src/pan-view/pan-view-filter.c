@@ -67,14 +67,14 @@ PanViewFilterUi *pan_filter_ui_new(PanWindow *pw)
 	}
 
 	// Build the actual filter UI.
-	ui->filter_box = gtk_hbox_new(FALSE, PREF_PAD_SPACE);
+	ui->filter_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 	pref_spacer(ui->filter_box, 0);
 	pref_label_new(ui->filter_box, _("Keyword Filter:"));
 
 	gtk_box_pack_start(GTK_BOX(ui->filter_box), ui->filter_mode_combo, FALSE, FALSE, 0);
 	gtk_widget_show(ui->filter_mode_combo);
 
-	hbox = gtk_hbox_new(TRUE, PREF_PAD_SPACE);
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 	gtk_box_pack_start(GTK_BOX(ui->filter_box), hbox, TRUE, TRUE, 0);
 	gtk_widget_show(hbox);
 
@@ -87,7 +87,7 @@ PanViewFilterUi *pan_filter_ui_new(PanWindow *pw)
 	//gtk_box_pack_start(GTK_BOX(hbox), ui->filter_label, FALSE, FALSE, 0);
 	//gtk_widget_show(ui->filter_label);
 
-	ui->filter_kw_hbox = gtk_hbox_new(FALSE, PREF_PAD_SPACE);
+	ui->filter_kw_hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 	gtk_box_pack_start(GTK_BOX(hbox), ui->filter_kw_hbox, TRUE, TRUE, 0);
 	gtk_widget_show(ui->filter_kw_hbox);
 
@@ -95,7 +95,7 @@ PanViewFilterUi *pan_filter_ui_new(PanWindow *pw)
 	ui->filter_button = gtk_toggle_button_new();
 	gtk_button_set_relief(GTK_BUTTON(ui->filter_button), GTK_RELIEF_NONE);
 	gtk_button_set_focus_on_click(GTK_BUTTON(ui->filter_button), FALSE);
-	hbox = gtk_hbox_new(FALSE, PREF_PAD_GAP);
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 	gtk_container_add(GTK_CONTAINER(ui->filter_button), hbox);
 	gtk_widget_show(hbox);
 	ui->filter_button_arrow = gtk_image_new_from_icon_name("pan-up", GTK_ICON_SIZE_BUTTON);

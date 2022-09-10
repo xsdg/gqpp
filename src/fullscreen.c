@@ -657,7 +657,7 @@ GtkWidget *fullscreen_prefs_selection_new(const gchar *text, gint *screen_value,
 
 	if (!screen_value) return NULL;
 
-	vbox = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	DEBUG_NAME(vbox);
 	hbox = pref_box_new(vbox, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 	if (text) pref_label_new(hbox, text);

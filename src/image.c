@@ -2202,7 +2202,7 @@ ImageWindow *image_new(gboolean frame)
 
 	image_options_set(imd);
 
-	imd->widget = gtk_vbox_new(0, 0);
+	imd->widget = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	DEBUG_NAME(imd->widget);
 
 	image_set_frame(imd, frame);

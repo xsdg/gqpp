@@ -145,7 +145,7 @@ static GtkWidget *shortcuts_new(LayoutWindow *lw)
 
 	scd->lw = lw;
 
-	scd->vbox = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+	scd->vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	g_object_set_data(G_OBJECT(scd->vbox), "shortcuts_data", scd);
 	g_signal_connect(G_OBJECT(scd->vbox), "destroy",
 			G_CALLBACK(shortcuts_destroy), scd);

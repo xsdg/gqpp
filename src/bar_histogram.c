@@ -281,7 +281,7 @@ static GtkWidget *bar_pane_histogram_new(const gchar *id, const gchar *title, gi
 	histogram_set_channel(phd->histogram, histogram_channel);
 	histogram_set_mode(phd->histogram, histogram_mode);
 
-	phd->widget = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+	phd->widget = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 
 	g_object_set_data(G_OBJECT(phd->widget), "pane_data", phd);
 	g_signal_connect(G_OBJECT(phd->widget), "destroy",

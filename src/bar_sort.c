@@ -649,7 +649,7 @@ static GtkWidget *bar_sort_new(LayoutWindow *lw, SortActionType action,
 	sd->undo_dest_list = NULL;
 	sd->undo_collection = NULL;
 
-	sd->vbox = gtk_vbox_new(FALSE, PREF_PAD_GAP);
+	sd->vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	DEBUG_NAME(sd->vbox);
 	g_object_set_data(G_OBJECT(sd->vbox), "bar_sort_data", sd);
 	g_signal_connect(G_OBJECT(sd->vbox), "destroy",
