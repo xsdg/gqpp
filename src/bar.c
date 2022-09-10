@@ -282,14 +282,12 @@ static void height_spin_changed_cb(GtkSpinButton *spin, gpointer data)
 	gtk_widget_set_size_request(GTK_WIDGET(data), -1, gtk_spin_button_get_value_as_int(spin));
 }
 
-static gboolean height_spin_key_press_cb(GtkWidget *UNUSED(widget), GdkEventKey *event, gpointer data)
+static void height_spin_key_press_cb(GtkEventControllerKey *UNUSED(controller), gint keyval, guint UNUSED(keycode), GdkModifierType UNUSED(state), gpointer data)
 {
-	if ((event->keyval == GDK_KEY_Return || event->keyval == GDK_KEY_Escape))
+	if ((keyval == GDK_KEY_Return || keyval == GDK_KEY_Escape))
 		{
 		gtk_widget_destroy(GTK_WIDGET(data));
 		}
-
-	return TRUE;
 }
 
 static void bar_expander_height_cb(GtkWidget *UNUSED(widget), gpointer data)
@@ -304,6 +302,7 @@ static void bar_expander_height_cb(GtkWidget *UNUSED(widget), gpointer data)
 	GdkDisplay *display;
 	GdkSeat *seat;
 	GdkDevice *device;
+	GtkEventController *controller;
 
 	display = gdk_display_get_default();
 	seat = gdk_display_get_default_seat(display);
@@ -326,7 +325,8 @@ static void bar_expander_height_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 	spin = gtk_spin_button_new_with_range(1, 1000, 1);
 	g_signal_connect(G_OBJECT(spin), "value-changed", G_CALLBACK(height_spin_changed_cb), data_box);
-	g_signal_connect(G_OBJECT(spin), "key-press-event", G_CALLBACK(height_spin_key_press_cb), window);
+	controller = gtk_event_controller_key_new(spin);
+	g_signal_connect(controller, "key-pressed", G_CALLBACK(height_spin_key_press_cb), window);
 
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin), h);
 	gtk_container_add(GTK_CONTAINER(window), spin);
