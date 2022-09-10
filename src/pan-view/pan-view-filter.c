@@ -98,7 +98,7 @@ PanViewFilterUi *pan_filter_ui_new(PanWindow *pw)
 	hbox = gtk_hbox_new(FALSE, PREF_PAD_GAP);
 	gtk_container_add(GTK_CONTAINER(ui->filter_button), hbox);
 	gtk_widget_show(hbox);
-	ui->filter_button_arrow = gtk_arrow_new(GTK_ARROW_UP, GTK_SHADOW_NONE);
+	ui->filter_button_arrow = gtk_image_new_from_icon_name("pan-up", GTK_ICON_SIZE_BUTTON);
 	gtk_box_pack_start(GTK_BOX(hbox), ui->filter_button_arrow, FALSE, FALSE, 0);
 	gtk_widget_show(ui->filter_button_arrow);
 	pref_label_new(hbox, _("Filter"));
@@ -219,6 +219,7 @@ void pan_filter_toggle_cb(GtkWidget *button, gpointer data)
 	PanWindow *pw = data;
 	PanViewFilterUi *ui = pw->filter_ui;
 	gboolean visible;
+	GtkWidget *parent;
 
 	visible = gtk_widget_get_visible(ui->filter_box);
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)) == visible) return;
@@ -226,12 +227,30 @@ void pan_filter_toggle_cb(GtkWidget *button, gpointer data)
 	if (visible)
 		{
 		gtk_widget_hide(ui->filter_box);
-		gtk_arrow_set(GTK_ARROW(ui->filter_button_arrow), GTK_ARROW_UP, GTK_SHADOW_NONE);
+
+		parent = gtk_widget_get_parent(ui->filter_button_arrow);
+
+		gtk_widget_destroy(ui->filter_button_arrow);
+		ui->filter_button_arrow = gtk_image_new_from_icon_name("pan-up", GTK_ICON_SIZE_BUTTON);
+
+		gtk_box_pack_start(GTK_BOX(parent), ui->filter_button_arrow, FALSE, FALSE, 0);
+		gtk_box_reorder_child(GTK_BOX(parent), ui->filter_button_arrow, 0);
+
+		gtk_widget_show(ui->filter_button_arrow);
 		}
 	else
 		{
 		gtk_widget_show(ui->filter_box);
-		gtk_arrow_set(GTK_ARROW(ui->filter_button_arrow), GTK_ARROW_DOWN, GTK_SHADOW_NONE);
+
+		parent = gtk_widget_get_parent(ui->filter_button_arrow);
+
+		gtk_widget_destroy(ui->filter_button_arrow);
+		ui->filter_button_arrow = gtk_image_new_from_icon_name("pan-down", GTK_ICON_SIZE_BUTTON);
+
+		gtk_box_pack_start(GTK_BOX(parent), ui->filter_button_arrow, FALSE, FALSE, 0);
+		gtk_box_reorder_child(GTK_BOX(parent), ui->filter_button_arrow, 0);
+
+		gtk_widget_show(ui->filter_button_arrow);
 		gtk_widget_grab_focus(ui->filter_entry);
 		}
 }

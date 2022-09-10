@@ -60,7 +60,7 @@ PanViewSearchUi *pan_search_ui_new(PanWindow *pw)
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 	gtk_container_add(GTK_CONTAINER(ui->search_button), hbox);
 	gtk_widget_show(hbox);
-	ui->search_button_arrow = gtk_arrow_new(GTK_ARROW_UP, GTK_SHADOW_NONE);
+	ui->search_button_arrow = gtk_image_new_from_icon_name("pan-up", GTK_ICON_SIZE_BUTTON);
 	gtk_box_pack_start(GTK_BOX(hbox), ui->search_button_arrow, FALSE, FALSE, 0);
 	gtk_widget_show(ui->search_button_arrow);
 	pref_label_new(hbox, _("Find"));
@@ -421,6 +421,7 @@ void pan_search_toggle_cb(GtkWidget *button, gpointer data)
 	PanWindow *pw = data;
 	PanViewSearchUi *ui = pw->search_ui;
 	gboolean visible;
+	GtkWidget *parent;
 
 	visible = gtk_widget_get_visible(ui->search_box);
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)) == visible) return;
@@ -428,12 +429,30 @@ void pan_search_toggle_cb(GtkWidget *button, gpointer data)
 	if (visible)
 		{
 		gtk_widget_hide(ui->search_box);
-		gtk_arrow_set(GTK_ARROW(ui->search_button_arrow), GTK_ARROW_UP, GTK_SHADOW_NONE);
+
+		parent = gtk_widget_get_parent(ui->search_button_arrow);
+
+		gtk_widget_destroy(ui->search_button_arrow);
+		ui->search_button_arrow = gtk_image_new_from_icon_name("pan-up", GTK_ICON_SIZE_BUTTON);
+
+		gtk_box_pack_start(GTK_BOX(parent), ui->search_button_arrow, FALSE, FALSE, 0);
+		gtk_box_reorder_child(GTK_BOX(parent), ui->search_button_arrow, 0);
+
+		gtk_widget_show(ui->search_button_arrow);
 		}
 	else
 		{
 		gtk_widget_show(ui->search_box);
-		gtk_arrow_set(GTK_ARROW(ui->search_button_arrow), GTK_ARROW_DOWN, GTK_SHADOW_NONE);
+
+		parent = gtk_widget_get_parent(ui->search_button_arrow);
+
+		gtk_widget_destroy(ui->search_button_arrow);
+		ui->search_button_arrow = gtk_image_new_from_icon_name("pan-down", GTK_ICON_SIZE_BUTTON);
+
+		gtk_box_pack_start(GTK_BOX(parent), ui->search_button_arrow, FALSE, FALSE, 0);
+		gtk_box_reorder_child(GTK_BOX(parent), ui->search_button_arrow, 0);
+
+		gtk_widget_show(ui->search_button_arrow);
 		gtk_widget_grab_focus(ui->search_entry);
 		}
 }
