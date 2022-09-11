@@ -462,7 +462,7 @@ void fullscreen_prefs_list_free(GList *list)
 	work = list;
 	while (work)
 		{
-		ScreenData *sd = work->data;
+		ScreenData *sd = (ScreenData *)work->data;
 		work = work->next;
 
 		g_free(sd->description);
@@ -479,7 +479,7 @@ ScreenData *fullscreen_prefs_list_find(GList *list, gint screen)
 	work = list;
 	while (work)
 		{
-		ScreenData *sd = work->data;
+		ScreenData *sd = (ScreenData *)work->data;
 		work = work->next;
 
 		if (sd->number == screen) return sd;
@@ -627,7 +627,7 @@ static void fullscreen_prefs_selection_cb(GtkWidget *combo, gpointer data)
 	if (!gtk_combo_box_get_active_iter(GTK_COMBO_BOX(combo), &iter)) return;
 	gtk_tree_model_get(store, &iter, FS_MENU_COLUMN_VALUE, value, -1);
 
-	button = g_object_get_data(G_OBJECT(combo), BUTTON_ABOVE_KEY);
+	button = (GtkWidget *)g_object_get_data(G_OBJECT(combo), BUTTON_ABOVE_KEY);
 	if (button)
 		{
 		gtk_widget_set_sensitive(button, *value != -1);
@@ -682,7 +682,7 @@ GtkWidget *fullscreen_prefs_selection_new(const gchar *text, gint *screen_value,
 	work = list;
 	while (work)
 		{
-		ScreenData *sd = work->data;
+		ScreenData *sd = (ScreenData *)work->data;
 
 		fullscreen_prefs_selection_add(store, sd->description, sd->number);
 		if (*screen_value == sd->number) current = n;

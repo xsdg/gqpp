@@ -383,7 +383,7 @@ static void vd_drop_menu_filter_cb(GtkWidget *widget, gpointer data)
 
 	if (!vd->drop_fd) return;
 
-	key = g_object_get_data(G_OBJECT(widget), "filter_key");
+	key = (const gchar *)g_object_get_data(G_OBJECT(widget), "filter_key");
 
 	path = vd->drop_fd->path;
 	list = vd->drop_list;
@@ -415,7 +415,7 @@ GtkWidget *vd_drop_menu(ViewDir *vd, gint active)
 	while (work)
 		{
 		GtkWidget *item;
-		const EditorDescription *editor = work->data;
+		const EditorDescription *editor = (const EditorDescription *)work->data;
 		gchar *key;
 		work = work->next;
 
@@ -654,7 +654,7 @@ static void vd_pop_menu_sort_cb(GtkWidget *widget, gpointer data)
 	ViewDir *vd;
 	SortType type;
 
-	vd = submenu_item_get_data(widget);
+	vd = (ViewDir *)submenu_item_get_data(widget);
 
 	if (!vd) return;
 	if (!vd->layout) return;

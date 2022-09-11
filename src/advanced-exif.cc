@@ -170,7 +170,7 @@ void advanced_exif_set_fd(GtkWidget *window, FileData *fd)
 {
 	ExifWin *ew;
 
-	ew = g_object_get_data(G_OBJECT(window), "advanced_exif_data");
+	ew = (ExifWin *)g_object_get_data(G_OBJECT(window), "advanced_exif_data");
 	if (!ew) return;
 
 	/* store this, advanced view toggle needs to reload data */

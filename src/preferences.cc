@@ -566,7 +566,7 @@ static void config_window_ok_cb(GtkWidget *widget, gpointer data)
 	gint h;
 	gint page_number;
 
-	lw = layout_window_list->data;
+	lw = (LayoutWindow *)layout_window_list->data;
 
 	window = gtk_widget_get_window(widget);
 	gdk_window_get_root_origin(window, &x, &y);
@@ -1103,7 +1103,7 @@ static void video_menu_cb(GtkWidget *combo, gpointer data)
 {
 	gchar **option = (gchar*)data;
 
-	EditorDescription *ed = g_list_nth_data(editor_list_get(), gtk_combo_box_get_active(GTK_COMBO_BOX(combo)));
+	EditorDescription *ed = (EditorDescription *)g_list_nth_data(editor_list_get(), gtk_combo_box_get_active(GTK_COMBO_BOX(combo)));
 	*option = ed->key;
 }
 
@@ -1154,7 +1154,7 @@ static void filter_store_populate(void)
 		FilterEntry *fe;
 		GtkTreeIter iter;
 
-		fe = work->data;
+		fe = (FilterEntry *)work->data;
 		work = work->next;
 
 		gtk_list_store_append(filter_store, &iter);
@@ -1341,7 +1341,7 @@ static gboolean filter_add_scroll(gpointer data)
 	column = gtk_tree_view_get_column(GTK_TREE_VIEW(data), 0);
 
 	list_cells = gtk_cell_layout_get_cells(GTK_CELL_LAYOUT(column));
-	cell = g_list_last(list_cells)->data;
+	cell = (GtkCellRenderer *)g_list_last(list_cells)->data;
 
 	store = gtk_tree_view_get_model(GTK_TREE_VIEW(data));
 	valid = gtk_tree_model_get_iter_first(store, &iter);
@@ -1609,7 +1609,7 @@ static void accel_store_populate(void)
 	if (!accel_store || !layout_window_list || !layout_window_list->data) return;
 
 	gtk_tree_store_clear(accel_store);
-	lw = layout_window_list->data; /* get the actions from the first window, it should not matter, they should be the same in all windows */
+	lw = (LayoutWindow *)layout_window_list->data; /* get the actions from the first window, it should not matter, they should be the same in all windows */
 
 	g_assert(lw && lw->ui_manager);
 	groups = gtk_ui_manager_get_action_groups(lw->ui_manager);
@@ -1892,7 +1892,7 @@ static guint star_rating_symbol_test(GtkWidget *UNUSED(widget), gpointer data)
 
 	list = gtk_container_get_children(hbox);
 
-	hex_code_entry = g_list_nth_data(list, 2);
+	hex_code_entry = (GtkEntry *)g_list_nth_data(list, 2);
 	hex_code_full = g_strdup(gtk_entry_get_text(hex_code_entry));
 
 	hex_code = g_strsplit(hex_code_full, "+", 2);
@@ -3070,7 +3070,7 @@ static gboolean keywords_find_file(gpointer data)
 		{
 		FileData *fd;
 
-		fd = kfd->list->data;
+		fd = (FileData *)kfd->list->data;
 		kfd->list = g_list_remove(kfd->list, fd);
 
 		keywords = metadata_read_list(fd, KEYWORD_KEY, METADATA_PLAIN);
@@ -3095,7 +3095,7 @@ static gboolean keywords_find_file(gpointer data)
 		{
 		FileData *fd;
 
-		fd = kfd->list_dir->data;
+		fd = (FileData *)kfd->list_dir->data;
 		kfd->list_dir = g_list_remove(kfd->list_dir, fd);
 
 		keywords_find_folder(kfd, fd);
@@ -3766,7 +3766,7 @@ static void config_tab_toolbar_main(GtkWidget *notebook)
 	GtkWidget *toolbardata;
 	LayoutWindow *lw;
 
-	lw = layout_window_list->data;
+	lw = (LayoutWindow *)layout_window_list->data;
 
 	vbox = scrolled_notebook_page(notebook, _("Toolbar Main"));
 
@@ -3782,7 +3782,7 @@ static void config_tab_toolbar_status(GtkWidget *notebook)
 	GtkWidget *toolbardata;
 	LayoutWindow *lw;
 
-	lw = layout_window_list->data;
+	lw = (LayoutWindow *)layout_window_list->data;
 
 	vbox = scrolled_notebook_page(notebook, _("Toolbar Status"));
 
@@ -3823,7 +3823,7 @@ static void config_tab_advanced(GtkWidget *notebook)
 
 	while (formats_list)
 		{
-		fm = formats_list->data;
+		fm = (GdkPixbufFormat *)formats_list->data;
 		extensions = gdk_pixbuf_format_get_extensions(fm);
 
 		i = 0;

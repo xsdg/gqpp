@@ -73,7 +73,7 @@ void vf_sort_set(ViewFile *vf, SortType type, gboolean ascend)
 
 FileData *vf_index_get_data(ViewFile *vf, gint row)
 {
-	return g_list_nth_data(vf->list, row);
+	return (FileData *)g_list_nth_data(vf->list, row);
 }
 
 gint vf_index_by_fd(ViewFile *vf, FileData *fd)
@@ -100,7 +100,7 @@ guint vf_count(ViewFile *vf, gint64 *bytes)
 		work = vf->list;
 		while (work)
 			{
-			FileData *fd = work->data;
+			FileData *fd = (FileData *)work->data;
 			work = work->next;
 
 			b += fd->size;
@@ -118,7 +118,7 @@ GList *vf_get_list(ViewFile *vf)
 	GList *work;
 	for (work = vf->list; work; work = work->next)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		list = g_list_prepend(list, file_data_ref(fd));
 		}
 
@@ -349,7 +349,7 @@ static void vf_pop_menu_edit_cb(GtkWidget *widget, gpointer data)
 	ViewFile *vf;
 	const gchar *key = (gchar*)data;
 
-	vf = submenu_item_get_data(widget);
+	vf = (ViewFile *)submenu_item_get_data(widget);
 
 	if (!vf) return;
 
@@ -482,7 +482,7 @@ static void vf_pop_menu_sort_cb(GtkWidget *widget, gpointer data)
 
 	if (!gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget))) return;
 
-	vf = submenu_item_get_data(widget);
+	vf = (ViewFile *)submenu_item_get_data(widget);
 	if (!vf) return;
 
 	type = (SortType)GPOINTER_TO_INT(data);
@@ -604,7 +604,7 @@ static void vf_pop_menu_collections_cb(GtkWidget *widget, gpointer data)
 	ViewFile *vf;
 	GList *selection_list;
 
-	vf = submenu_item_get_data(widget);
+	vf = (ViewFile *)submenu_item_get_data(widget);
 	selection_list = vf_selection_get_list(vf);
 	pop_menu_collections(selection_list, data);
 
@@ -1103,7 +1103,7 @@ static gboolean vf_file_filter_class_set_all_cb(GtkWidget *widget, gpointer data
 	children = gtk_container_get_children(GTK_CONTAINER(parent));
 	while (children)
 		{
-		child = children->data;
+		child = (GtkWidget *)children->data;
 		if (i < FILE_FORMAT_CLASSES)
 			{
 			gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(child), state);
@@ -1467,7 +1467,7 @@ static void vf_thumb_reset_all(ViewFile *vf)
 
 	for (work = vf->list; work; work = work->next)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		if (fd->thumb_pixbuf)
 			{
 			g_object_unref(fd->thumb_pixbuf);
@@ -1792,7 +1792,7 @@ static gboolean vf_read_metadata_in_idle_cb(gpointer data)
 
 	while (work)
 		{
-		fd = work->data;
+		fd = (FileData *)work->data;
 
 		if (fd && !fd->metadata_in_idle_loaded)
 			{

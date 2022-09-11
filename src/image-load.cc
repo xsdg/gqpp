@@ -360,7 +360,7 @@ static ImageLoaderAreaParam *image_loader_queue_area_ready(ImageLoader *il, GLis
 {
 	if (*list)
 		{
-		ImageLoaderAreaParam *prev_par = (*list)->data;
+		ImageLoaderAreaParam *prev_par = (ImageLoaderAreaParam *)(*list)->data;
 		if (prev_par->x == x && prev_par->w == w &&
 		    prev_par->y + prev_par->h == y)
 			{
@@ -782,7 +782,7 @@ static void image_loader_setup_loader(ImageLoader *il)
 	else
 		image_loader_backend_set_default(&il->backend);
 
-	il->loader = il->backend.loader_new(image_loader_area_updated_cb, image_loader_size_cb, image_loader_area_prepared_cb, il);
+	il->loader = (gpointer *)il->backend.loader_new(image_loader_area_updated_cb, image_loader_size_cb, image_loader_area_prepared_cb, il);
 
 #ifdef HAVE_TIFF
 	format = il->backend.get_format_name(il->loader);
@@ -1146,7 +1146,7 @@ void image_loader_delay_area_ready(ImageLoader *il, gboolean enable)
 
 		while (work)
 			{
-			ImageLoaderAreaParam *par = work->data;
+			ImageLoaderAreaParam *par = (ImageLoaderAreaParam *)work->data;
 			work = work->next;
 
 			g_signal_emit(il, signals[SIGNAL_AREA_READY], 0, par->x, par->y, par->w, par->h);

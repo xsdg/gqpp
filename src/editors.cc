@@ -385,7 +385,7 @@ gboolean editor_read_desktop_file(const gchar *path)
 
 static gboolean editor_remove_desktop_file_cb(gpointer UNUSED(key), gpointer value, gpointer UNUSED(user_data))
 {
-	EditorDescription *editor = value;
+	EditorDescription *editor = (EditorDescription *)value;
 	return editor->hidden || editor->ignored;
 }
 
@@ -481,7 +481,7 @@ GList *editor_get_desktop_files(void)
 static void editor_list_add_cb(gpointer UNUSED(key), gpointer value, gpointer data)
 {
 	GList **listp = (GList*)data;
-	EditorDescription *editor = value;
+	EditorDescription *editor = (EditorDescription *)value;
 
 	/* do not show the special commands in any list, they are called explicitly */
 	if (strcmp(editor->key, CMD_COPY) == 0 ||
@@ -500,8 +500,8 @@ static void editor_list_add_cb(gpointer UNUSED(key), gpointer value, gpointer da
 
 static gint editor_sort(gconstpointer a, gconstpointer b)
 {
-	const EditorDescription *ea = a;
-	const EditorDescription *eb = b;
+	const EditorDescription *ea = (const EditorDescription *)a;
+	const EditorDescription *eb = (const EditorDescription *)b;
 	gchar *caseless_name_ea;
 	gchar *caseless_name_eb;
 	gchar *collate_key_ea;
@@ -729,7 +729,7 @@ static gchar *editor_command_path_parse(const FileData *fd, gboolean consider_si
 			while (work)
 				{
 				GList *work2;
-				gchar *ext = work->data;
+				gchar *ext = (gchar *)work->data;
 				work = work->next;
 
 				if (strcmp(ext, "*") == 0 ||
@@ -742,7 +742,7 @@ static gchar *editor_command_path_parse(const FileData *fd, gboolean consider_si
 				work2 = consider_sidecars ? fd->sidecar_files : NULL;
 				while (work2)
 					{
-					FileData *sfd = work2->data;
+					FileData *sfd = (FileData *)work2->data;
 					work2 = work2->next;
 
 					if (g_ascii_strcasecmp(ext, sfd->extension) == 0)
@@ -903,7 +903,7 @@ EditorFlags editor_command_parse(const EditorDescription *editor, GList *list, g
 
 							while (!pathl && work)
 								{
-								FileData *fd = work->data;
+								FileData *fd = (FileData *)work->data;
 								pathl = editor_command_path_parse(fd,
 												  consider_sidecars,
 												  (*p == 'f') ? PATH_FILE : PATH_FILE_URL,
@@ -942,7 +942,7 @@ EditorFlags editor_command_parse(const EditorDescription *editor, GList *list, g
 
 						while (work)
 							{
-							FileData *fd = work->data;
+							FileData *fd = (FileData *)work->data;
 							pathl = editor_command_path_parse(fd, consider_sidecars, (*p == 'F') ? PATH_FILE : PATH_FILE_URL, editor);
 							if (pathl)
 								{
@@ -1045,7 +1045,7 @@ static void editor_child_exit_cb(GPid pid, gint status, gpointer data)
 static EditorFlags editor_command_one(const EditorDescription *editor, GList *list, EditorData *ed)
 {
 	gchar *command;
-	FileData *fd = (ed->flags & EDITOR_NO_PARAM) ? NULL : list->data;;
+	FileData *fd = (FileData *)(ed->flags & EDITOR_NO_PARAM) ? NULL : list->data;;
 	GPid pid;
 	gint standard_output;
 	gint standard_error;
@@ -1161,7 +1161,7 @@ static EditorFlags editor_command_next_start(EditorData *ed)
 		FileData *fd;
 		EditorFlags error;
 
-		fd = (ed->flags & EDITOR_NO_PARAM) ? NULL : ed->list->data;
+		fd = (FileData *)(ed->flags & EDITOR_NO_PARAM) ? NULL : ed->list->data;
 
 		if (ed->vd)
 			{
@@ -1318,7 +1318,7 @@ EditorFlags start_editor_from_filelist_full(const gchar *key, GList *list, const
 	EditorDescription *editor;
 	if (!key) return EDITOR_ERROR_EMPTY;
 
-	editor = g_hash_table_lookup(editors, key);
+	editor = (EditorDescription *)g_hash_table_lookup(editors, key);
 
 	if (!editor) return EDITOR_ERROR_EMPTY;
 	if (!list && !(editor->flags & EDITOR_NO_PARAM)) return EDITOR_ERROR_NO_FILE;
@@ -1373,7 +1373,7 @@ gboolean editor_window_flag_set(const gchar *key)
 	EditorDescription *editor;
 	if (!key) return TRUE;
 
-	editor = g_hash_table_lookup(editors, key);
+	editor = (EditorDescription *)g_hash_table_lookup(editors, key);
 	if (!editor) return TRUE;
 
 	return !!(editor->flags & EDITOR_KEEP_FS);
@@ -1384,7 +1384,7 @@ gboolean editor_is_filter(const gchar *key)
 	EditorDescription *editor;
 	if (!key) return TRUE;
 
-	editor = g_hash_table_lookup(editors, key);
+	editor = (EditorDescription *)g_hash_table_lookup(editors, key);
 	if (!editor) return TRUE;
 
 	return !!(editor->flags & EDITOR_DEST);
@@ -1395,7 +1395,7 @@ gboolean editor_no_param(const gchar *key)
 	EditorDescription *editor;
 	if (!key) return FALSE;
 
-	editor = g_hash_table_lookup(editors, key);
+	editor = (EditorDescription *)g_hash_table_lookup(editors, key);
 	if (!editor) return FALSE;
 
 	return !!(editor->flags & EDITOR_NO_PARAM);
@@ -1406,7 +1406,7 @@ gboolean editor_blocks_file(const gchar *key)
 	EditorDescription *editor;
 	if (!key) return FALSE;
 
-	editor = g_hash_table_lookup(editors, key);
+	editor = (EditorDescription *)g_hash_table_lookup(editors, key);
 	if (!editor) return FALSE;
 
 	/* Decide if the image file should be blocked during editor execution
@@ -1432,7 +1432,7 @@ const gchar *editor_get_error_str(EditorFlags flags)
 
 const gchar *editor_get_name(const gchar *key)
 {
-	EditorDescription *editor = g_hash_table_lookup(editors, key);
+	EditorDescription *editor = (EditorDescription *)g_hash_table_lookup(editors, key);
 
 	if (!editor) return NULL;
 

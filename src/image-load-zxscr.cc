@@ -80,7 +80,7 @@ static gboolean image_loader_zxscr_load(gpointer loader, const guchar *buf, gsiz
 	width = 256;
 	height = 192;
 
-	pixels = g_try_malloc(width * height * 3);
+	pixels = (guint8 *)g_try_malloc(width * height * 3);
 
 	if (!pixels)
 		{

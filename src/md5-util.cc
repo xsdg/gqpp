@@ -378,7 +378,7 @@ gchar *md5_digest_to_text(guchar digest[16])
 	gchar *result;
 	gint i;
 
-	result = g_malloc(33);
+	result = (gchar *)g_malloc(33);
 	for (i = 0; i < 16; i++)
 		{
 		result[2*i] = hex_digits[digest[i] >> 4];

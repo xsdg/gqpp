@@ -290,7 +290,7 @@ static gboolean pan_view_list_contains_kw_pattern(GList *haystack, PanViewFilter
 		GList *work = g_list_first(haystack);
 		while (work)
 			{
-			gchar *keyword = work->data;
+			gchar *keyword = (gchar *)work->data;
 			work = work->next;
 			if (g_regex_match(filter->kw_regex, keyword, 0x0, NULL))
 				{
@@ -304,7 +304,7 @@ static gboolean pan_view_list_contains_kw_pattern(GList *haystack, PanViewFilter
 		{
 		// regex compile failed; fall back to exact string match.
 		GList *found_elem = g_list_find_custom(haystack, filter->keyword, (GCompareFunc)g_strcmp0);
-		if (found_elem && found_kw) *found_kw = found_elem->data;
+		if (found_elem && found_kw) *found_kw = (gchar *)found_elem->data;
 		return !!found_elem;
 		}
 }
@@ -324,7 +324,7 @@ gboolean pan_filter_fd_list(GList **fd_list, GList *filter_elements, gint filter
 	work = *fd_list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		GList *last_work = work;
 		work = work->next;
 
@@ -345,7 +345,7 @@ gboolean pan_filter_fd_list(GList **fd_list, GList *filter_elements, gint filter
 
 			while (filter_element)
 				{
-				PanViewFilterElement *filter = filter_element->data;
+				PanViewFilterElement *filter = (PanViewFilterElement *)filter_element->data;
 				filter_element = filter_element->next;
 				gchar *found_kw = NULL;
 				gboolean has_kw = pan_view_list_contains_kw_pattern(img_keywords, filter, &found_kw);

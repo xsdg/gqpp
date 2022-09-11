@@ -237,7 +237,7 @@ static gboolean slideshow_step(SlideShowData *ss, gboolean forward)
 		{
 		CollectInfo *info;
 
-		info = g_list_nth_data(ss->cd->list, row);
+		info = (CollectInfo *)g_list_nth_data(ss->cd->list, row);
 		ss->slide_fd = file_data_ref(info->fd);
 
 		if (ss->lw)
@@ -292,7 +292,7 @@ static gboolean slideshow_step(SlideShowData *ss, gboolean forward)
 		else if (ss->cd)
 			{
 			CollectInfo *info;
-			info = g_list_nth_data(ss->cd->list, r);
+			info = (CollectInfo *)g_list_nth_data(ss->cd->list, r);
 			if (info) image_prebuffer_set(ss->imd, info->fd);
 			}
 		else if (ss->from_selection)

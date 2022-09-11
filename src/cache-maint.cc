@@ -220,7 +220,7 @@ static gboolean cache_maintain_home_cb(gpointer data)
 		return FALSE;
 		}
 
-	fd = cm->list->data;
+	fd = (FileData *)cm->list->data;
 
 	DEBUG_1("purge chk (%d) \"%s\"", (cm->clear && !cm->metadata), fd->path);
 
@@ -245,7 +245,7 @@ static gboolean cache_maintain_home_cb(gpointer data)
 			work = list;
 			while (work)
 				{
-				FileData *fd_list = work->data;
+				FileData *fd_list = (FileData *)work->data;
 				gchar *path_buf = g_strdup(fd_list->path);
 				gchar *dot;
 
@@ -293,7 +293,7 @@ static gboolean cache_maintain_home_cb(gpointer data)
 				}
 			}
 
-		fd = cm->list->data;
+		fd = (FileData *)cm->list->data;
 		cm->done_list = g_list_remove(cm->done_list, fd);
 		cm->list = g_list_remove(cm->list, fd);
 		file_data_unref(fd);
@@ -303,7 +303,7 @@ static gboolean cache_maintain_home_cb(gpointer data)
 		{
 		const gchar *buf;
 
-		fd = cm->list->data;
+		fd = (FileData *)cm->list->data;
 		if (strlen(fd->path) > base_length)
 			{
 			buf = fd->path + base_length;
@@ -739,7 +739,7 @@ static gboolean cache_manager_render_file(CacheOpsData *cd)
 		FileData *fd;
 		gint success;
 
-		fd = cd->list->data;
+		fd = (FileData *)cd->list->data;
 		cd->list = g_list_remove(cd->list, fd);
 
 		cd->tl = (ThumbLoaderStd *)thumb_loader_new(options->thumbnails.max_width, options->thumbnails.max_height);
@@ -772,7 +772,7 @@ static gboolean cache_manager_render_file(CacheOpsData *cd)
 		{
 		FileData *fd;
 
-		fd = cd->list_dir->data;
+		fd = (FileData *)cd->list_dir->data;
 		cd->list_dir = g_list_remove(cd->list_dir, fd);
 
 		cache_manager_render_folder(cd, fd);
@@ -1011,7 +1011,7 @@ static gint cache_manager_standard_clean_clear_cb(gpointer data)
 		{
 		FileData *next_fd;
 
-		next_fd = cd->list->data;
+		next_fd = (FileData *)cd->list->data;
 		cd->list = g_list_remove(cd->list, next_fd);
 
 		DEBUG_1("thumb removed: %s", next_fd->path);
@@ -1065,7 +1065,7 @@ static void cache_manager_standard_clean_valid_cb(const gchar *path, gboolean va
 		{
 		FileData *next_fd;
 
-		next_fd = cd->list->data;
+		next_fd = (FileData *)cd->list->data;
 		cd->list = g_list_remove(cd->list, next_fd);
 
 		cd->tl = thumb_loader_std_thumb_file_validate(next_fd->path, cd->days,
@@ -1417,7 +1417,7 @@ static gboolean cache_manager_sim_file(CacheOpsData *cd)
 	if (cd->list)
 		{
 		FileData *fd;
-		fd = cd->list->data;
+		fd = (FileData *)cd->list->data;
 		cd->list = g_list_remove(cd->list, fd);
 
 		load_mask = CACHE_LOADER_DIMENSIONS | CACHE_LOADER_DATE | CACHE_LOADER_MD5SUM | CACHE_LOADER_SIMILARITY;
@@ -1441,7 +1441,7 @@ static gboolean cache_manager_sim_file(CacheOpsData *cd)
 		{
 		FileData *fd;
 
-		fd = cd->list_dir->data;
+		fd = (FileData *)cd->list_dir->data;
 		cd->list_dir = g_list_remove(cd->list_dir, fd);
 
 		cache_manager_sim_folder((CacheOpsData *)cd, fd);

@@ -270,7 +270,7 @@ static void parts_list_free(GList *list)
 	GList *work = list;
 	while (work)
 		{
-		PathData *pd = work->data;
+		PathData *pd = (PathData *)work->data;
 		g_free(pd->name);
 		g_free(pd);
 		work = work->next;
@@ -296,7 +296,7 @@ static GList *parts_list_add_node_points(ViewDir *vd, GList *list)
 		FileData *fd = NULL;
 
 		pd = g_new0(PathData, 1);
-		pd->name = work->data;
+		pd->name = (gchar *)work->data;
 
 		while (valid && !fd)
 			{
@@ -556,7 +556,7 @@ gboolean vdtree_populate_path_by_iter(ViewDir *vd, GtkTreeIter *iter, gboolean f
 		{
 		FileData *fd;
 
-		fd = work->data;
+		fd = (FileData *)work->data;
 		work = work->next;
 
 		if (strcmp(fd->name, ".") == 0 || strcmp(fd->name, "..") == 0)
@@ -602,7 +602,7 @@ gboolean vdtree_populate_path_by_iter(ViewDir *vd, GtkTreeIter *iter, gboolean f
 	work = old;
 	while (work)
 		{
-		NodeData *cnd = work->data;
+		NodeData *cnd = (NodeData *)work->data;
 		work = work->next;
 
 		if (vd->click_fd == cnd->fd) vd->click_fd = NULL;
@@ -644,7 +644,7 @@ FileData *vdtree_populate_path(ViewDir *vd, FileData *target_fd, gboolean expand
 	work = list;
 	while (work)
 		{
-		PathData *pd = work->data;
+		PathData *pd = (PathData *)work->data;
 		if (pd->node == NULL)
 			{
 			PathData *parent_pd;
@@ -661,7 +661,7 @@ FileData *vdtree_populate_path(ViewDir *vd, FileData *target_fd, gboolean expand
 				return NULL;
 				}
 
-			parent_pd = work->prev->data;
+			parent_pd = (PathData *)work->prev->data;
 
 			if (!vd_find_row(vd, parent_pd->node, &parent_iter) ||
 			    !vdtree_populate_path_by_iter(vd, &parent_iter, force, target_fd) ||
@@ -702,7 +702,7 @@ FileData *vdtree_populate_path(ViewDir *vd, FileData *target_fd, gboolean expand
 	work = g_list_last(list);
 	if (work)
 		{
-		PathData *pd = work->data;
+		PathData *pd = (PathData *)work->data;
 		fd = pd->node;
 		}
 	parts_list_free(list);

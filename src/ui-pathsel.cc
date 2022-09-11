@@ -264,7 +264,7 @@ static void dest_populate(Dest_Data *dd, const gchar *path)
 			{
 			GtkTreeIter iter;
 			gchar *filepath;
-			const gchar *name = list->data;
+			const gchar *name = (const gchar *)list->data;
 
 			filepath = g_build_filename(path, name, NULL);
 
@@ -601,7 +601,7 @@ static void dest_popup_position_cb(GtkMenu *menu, gint *x, gint *y,
 	GtkTreeView *view;
 	gint cw, ch;
 
-	view = g_object_get_data(G_OBJECT(menu), "active_view");
+	view = (GtkTreeView *)g_object_get_data(G_OBJECT(menu), "active_view");
 
 	tree_view_get_cell_clamped(view, dd->right_click_path, 0, TRUE, x, y, &cw, &ch);
 	*y += ch;
@@ -912,8 +912,8 @@ static void dest_filter_list_sync(Dest_Data *dd)
 		gchar *name;
 		gchar *filter;
 
-		name = twork->data;
-		filter = fwork->data;
+		name = (gchar *)twork->data;
+		filter = (gchar *)fwork->data;
 
 		gtk_list_store_append(store, &iter);
 		gtk_list_store_set(store, &iter, FILTER_COLUMN_NAME, name,
@@ -942,7 +942,7 @@ static void dest_filter_add(Dest_Data *dd, const gchar *filter, const gchar *des
 	work = dd->filter_list;
 	while (work)
 		{
-		gchar *f = work->data;
+		gchar *f = (gchar *)work->data;
 
 		if (strcmp(f, filter) == 0)
 			{
@@ -1246,7 +1246,7 @@ GtkWidget *path_selection_new(const gchar *path, GtkWidget *entry)
 
 void path_selection_sync_to_entry(GtkWidget *entry)
 {
-	Dest_Data *dd = g_object_get_data(G_OBJECT(entry), "destination_data");
+	Dest_Data *dd = (Dest_Data *)g_object_get_data(G_OBJECT(entry), "destination_data");
 	const gchar *path;
 
 	if (!dd) return;
@@ -1271,7 +1271,7 @@ void path_selection_sync_to_entry(GtkWidget *entry)
 void path_selection_add_select_func(GtkWidget *entry,
 				    void (*func)(const gchar *, gpointer), gpointer data)
 {
-	Dest_Data *dd = g_object_get_data(G_OBJECT(entry), "destination_data");
+	Dest_Data *dd = (Dest_Data *)g_object_get_data(G_OBJECT(entry), "destination_data");
 
 	if (!dd) return;
 
@@ -1281,7 +1281,7 @@ void path_selection_add_select_func(GtkWidget *entry,
 
 void path_selection_add_filter(GtkWidget *entry, const gchar *filter, const gchar *description, gboolean set)
 {
-	Dest_Data *dd = g_object_get_data(G_OBJECT(entry), "destination_data");
+	Dest_Data *dd = (Dest_Data *)g_object_get_data(G_OBJECT(entry), "destination_data");
 
 	if (!dd) return;
 	if (!filter) return;
@@ -1291,7 +1291,7 @@ void path_selection_add_filter(GtkWidget *entry, const gchar *filter, const gcha
 
 void path_selection_clear_filter(GtkWidget *entry)
 {
-	Dest_Data *dd = g_object_get_data(G_OBJECT(entry), "destination_data");
+	Dest_Data *dd = (Dest_Data *)g_object_get_data(G_OBJECT(entry), "destination_data");
 
 	if (!dd) return;
 

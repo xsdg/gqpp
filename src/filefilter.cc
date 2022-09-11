@@ -95,7 +95,7 @@ static FilterEntry *filter_get_by_key(const gchar *key)
 	work = filter_list;
 	while (work)
 		{
-		FilterEntry *fe = work->data;
+		FilterEntry *fe = (FilterEntry *)work->data;
 		work = work->next;
 
 		if (strcmp(fe->key, key) == 0) return fe;
@@ -142,7 +142,7 @@ static void filter_add_if_missing(const gchar *key, const gchar *description, co
 	work = filter_list;
 	while (work)
 		{
-		FilterEntry *fe = work->data;
+		FilterEntry *fe = (FilterEntry *)work->data;
 		work = work->next;
 		if (fe->key && strcmp(fe->key, key) == 0)
 			{
@@ -168,7 +168,7 @@ void filter_reset(void)
 	work = filter_list;
 	while (work)
 		{
-		FilterEntry *fe = work->data;
+		FilterEntry *fe = (FilterEntry *)work->data;
 		work = work->next;
 		filter_entry_free(fe);
 		}
@@ -217,7 +217,7 @@ void filter_add_defaults(void)
 		GString *filter = NULL;
 		guint i;
 
-		format = work->data;
+		format = (GdkPixbufFormat *)work->data;
 		work = work->next;
 
 		name = gdk_pixbuf_format_get_name(format);
@@ -398,7 +398,7 @@ void filter_rebuild(void)
 		{
 		FilterEntry *fe;
 
-		fe = work->data;
+		fe = (FilterEntry *)work->data;
 		work = work->next;
 
 		if (fe->enabled)
@@ -448,7 +448,7 @@ static const gchar *filter_name_find(GList *filter, const gchar *name)
 	work = filter;
 	while (work)
 		{
-		gchar *filter = work->data;
+		gchar *filter = (gchar *)work->data;
 		guint lf = strlen(filter);
 
 		if (ln >= lf)
@@ -516,7 +516,7 @@ void filter_write_list(GString *outstr, gint indent)
 	work = filter_list;
 	while (work)
 		{
-		FilterEntry *fe = work->data;
+		FilterEntry *fe = (FilterEntry *)work->data;
 		work = work->next;
 
 		WRITE_NL(); WRITE_STRING("<file_type ");
@@ -586,7 +586,7 @@ static void sidecar_ext_free_list(void)
 	work = sidecar_ext_list;
 	while (work)
 		{
-		gchar *ext = work->data;
+		gchar *ext = (gchar *)work->data;
 		work = work->next;
 		g_free(ext);
 		}

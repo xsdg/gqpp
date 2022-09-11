@@ -565,12 +565,12 @@ static void layout_menu_write_rotate(GtkToggleAction *UNUSED(action), gpointer d
 		{
 		if (lw->vf->type == FILEVIEW_ICON)
 			{
-			fd_n = work->data;
+			fd_n = (FileData *)work->data;
 			work = work->next;
 			}
 		else
 			{
-			tpath = work->data;
+			tpath = (GtkTreePath *)work->data;
 			gtk_tree_model_get_iter(store, &iter, tpath);
 			gtk_tree_model_get(store, &iter, FILE_COLUMN_POINTER, &fd_n, -1);
 			work = work->next;
@@ -1329,7 +1329,7 @@ static void layout_menu_kbd_map_cb(GtkAction *UNUSED(action), gpointer UNUSED(da
 					{
 					if (!(g_ascii_strcasecmp(g_ptr_array_index(array,index+1), post_key[0])))
 						{
-						key_name = g_ptr_array_index(array,index+0);
+						key_name = (char *)g_ptr_array_index(array,index+0);
 						break;
 						}
 					}
@@ -1882,7 +1882,7 @@ static void layout_menu_recent_cb(GtkWidget *widget, gpointer UNUSED(data))
 
 	n = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(widget), "recent_index"));
 
-	path = g_list_nth_data(history_list_get_by_key("recent"), n);
+	path = (gchar *)g_list_nth_data(history_list_get_by_key("recent"), n);
 
 	if (!path) return;
 
@@ -1947,7 +1947,7 @@ void layout_recent_update_all(void)
 	work = layout_window_list;
 	while (work)
 		{
-		LayoutWindow *lw = work->data;
+		LayoutWindow *lw = (LayoutWindow *)work->data;
 		work = work->next;
 
 		layout_menu_recent_update(lw);
@@ -1998,8 +1998,8 @@ struct _DeleteWindow
 
 static gint layout_window_menu_list_sort_cb(gconstpointer a, gconstpointer b)
 {
-	const WindowNames *wna = a;
-	const WindowNames *wnb = b;
+	const WindowNames *wna = (const WindowNames *)a;
+	const WindowNames *wnb = (const WindowNames *)b;
 
 	return g_strcmp0((gchar *)wna->name, (gchar *)wnb->name);
 }
@@ -2035,7 +2035,7 @@ static GList *layout_window_menu_list(GList *listin)
 			dupe = FALSE;
 			while (list)
 				{
-				lw_tmp = list->data;
+				lw_tmp = (LayoutWindow *)list->data;
 				if (g_strcmp0(lw_tmp->options.id, name_base) == 0)
 					{
 					dupe = TRUE;
@@ -2069,7 +2069,7 @@ static void layout_menu_new_window_cb(GtkWidget *UNUSED(widget), gpointer data)
 	GList *menulist = NULL;
 
 	menulist = layout_window_menu_list(menulist);
-	WindowNames *wn = g_list_nth(menulist, n )->data;
+	WindowNames *wn = (WindowNames *)g_list_nth(menulist, n )->data;
 
 	if (wn->path)
 		{
@@ -2114,7 +2114,7 @@ static void layout_menu_new_window_update(LayoutWindow *lw)
 	n = 0;
 	while (list)
 		{
-		wn = list->data;
+		wn = (WindowNames *)list->data;
 		item = menu_item_add_simple(sub_menu, wn->name, G_CALLBACK(layout_menu_new_window_cb), GINT_TO_POINTER(n));
 		if (wn->displayed)
 			{
@@ -2147,7 +2147,7 @@ static void window_rename_ok(GenericDialog *UNUSED(gd), gpointer data)
 	list = layout_window_menu_list(list);
 	while (list)
 		{
-		WindowNames *ln = list->data;
+		WindowNames *ln = (WindowNames *)list->data;
 		if (g_strcmp0(ln->name, new_id) == 0)
 			{
 			gchar *buf;
@@ -3114,7 +3114,7 @@ static void layout_actions_editor_add(GString *desc, GList *path, GList *old_pat
 
 	for (i =  0; i < to_close; i++)
 		{
-		gchar *name = old_path->data;
+		gchar *name = (gchar *)old_path->data;
 		if (g_str_has_suffix(name, "Section"))
 			{
 			g_string_append(desc,	"      </placeholder>");
@@ -3132,7 +3132,7 @@ static void layout_actions_editor_add(GString *desc, GList *path, GList *old_pat
 
 	for (i =  0; i < to_open; i++)
 		{
-		gchar *name = path->data;
+		gchar *name = (gchar *)path->data;
 		if (g_str_has_suffix(name, "Section"))
 			{
 			g_string_append_printf(desc,	"      <placeholder name='%s'>", name);
@@ -3185,7 +3185,7 @@ static void layout_actions_setup_editors(LayoutWindow *lw)
 	while (work)
 		{
 		GList *path;
-		EditorDescription *editor = work->data;
+		EditorDescription *editor = (EditorDescription *)work->data;
 		GtkActionEntry entry = { editor->key,
 		                         NULL,
 		                         editor->name,
@@ -3324,7 +3324,7 @@ static gboolean layout_editors_reload_idle_cb(gpointer UNUSED(data))
 		work = layout_window_list;
 		while (work)
 			{
-			LayoutWindow *lw = work->data;
+			LayoutWindow *lw = (LayoutWindow *)work->data;
 			work = work->next;
 			layout_actions_setup_editors(lw);
 			if (lw->bar_sort_enabled)
@@ -3499,13 +3499,13 @@ void layout_toolbar_add_default(LayoutWindow *lw, ToolbarType type)
 		case TOOLBAR_MAIN:
 			if (layout_window_list)
 				{
-				lw_first = layout_window_list->data;
+				lw_first = (LayoutWindow *)layout_window_list->data;
 				if (lw_first->toolbar_actions[TOOLBAR_MAIN])
 					{
 					work_action = lw_first->toolbar_actions[type];
 					while (work_action)
 						{
-						gchar *action = work_action->data;
+						gchar *action = (gchar *)work_action->data;
 						work_action = work_action->next;
 						layout_toolbar_add(lw, type, action);
 						}
@@ -3545,13 +3545,13 @@ void layout_toolbar_add_default(LayoutWindow *lw, ToolbarType type)
 		case TOOLBAR_STATUS:
 			if (layout_window_list)
 				{
-				lw_first = layout_window_list->data;
+				lw_first = (LayoutWindow *)layout_window_list->data;
 				if (lw_first->toolbar_actions[TOOLBAR_MAIN])
 					{
 					work_action = lw_first->toolbar_actions[type];
 					while (work_action)
 						{
-						gchar *action = work_action->data;
+						gchar *action = (gchar *)work_action->data;
 						work_action = work_action->next;
 						layout_toolbar_add(lw, type, action);
 						}
@@ -3601,7 +3601,7 @@ void layout_toolbar_write_config(LayoutWindow *lw, ToolbarType type, GString *ou
 	WRITE_NL(); WRITE_STRING("<clear/>");
 	while (work)
 		{
-		gchar *action = work->data;
+		gchar *action = (gchar *)work->data;
 		work = work->next;
 		WRITE_NL(); WRITE_STRING("<toolitem ");
 		write_char_option(outstr, indent + 1, "action", action);
@@ -3660,7 +3660,7 @@ void layout_util_status_update_write_all(void)
 	work = layout_window_list;
 	while (work)
 		{
-		LayoutWindow *lw = work->data;
+		LayoutWindow *lw = (LayoutWindow *)work->data;
 		work = work->next;
 
 		layout_util_status_update_write(lw);

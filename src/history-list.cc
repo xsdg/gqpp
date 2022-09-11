@@ -48,7 +48,7 @@ const gchar *history_chain_back()
 
 	chain_index = chain_index > 0 ? chain_index - 1 : 0;
 
-	return g_list_nth_data(history_chain, chain_index);
+	return (const gchar *)g_list_nth_data(history_chain, chain_index);
 }
 
 const gchar *history_chain_forward()
@@ -58,7 +58,7 @@ const gchar *history_chain_forward()
 
 	chain_index = chain_index < last ? chain_index + 1 : last;
 
-	return g_list_nth_data(history_chain, chain_index);
+	return (const gchar *)g_list_nth_data(history_chain, chain_index);
 }
 
 /**
@@ -121,7 +121,7 @@ const gchar *image_chain_back()
 
 	image_chain_index = image_chain_index > 0 ? image_chain_index - 1 : 0;
 
-	return g_list_nth_data(image_chain, image_chain_index);
+	return (const gchar *)g_list_nth_data(image_chain, image_chain_index);
 }
 
 const gchar *image_chain_forward()
@@ -131,7 +131,7 @@ const gchar *image_chain_forward()
 
 	image_chain_index = image_chain_index < last ? image_chain_index + 1 : last;
 
-	return g_list_nth_data(image_chain, image_chain_index);
+	return (const gchar *)g_list_nth_data(image_chain, image_chain_index);
 }
 
 /**
@@ -300,7 +300,7 @@ gboolean history_list_save(const gchar *path)
 		HistoryData *hd;
 		GList *work;
 
-		hd = list->data;
+		hd = (HistoryData *)list->data;
 		list = list->prev;
 
 		secure_fprintf(ssi, "[%s]\n", hd->key);
@@ -356,7 +356,7 @@ static HistoryData *history_list_find_by_key(const gchar *key)
 
 	while (work)
 		{
-		HistoryData *hd = work->data;
+		HistoryData *hd = (HistoryData *)work->data;
 		if (strcmp(hd->key, key) == 0) return hd;
 		work = work->next;
 		}
@@ -370,7 +370,7 @@ const gchar *history_list_find_last_path_by_key(const gchar *key)
 	hd = history_list_find_by_key(key);
 	if (!hd || !hd->list) return NULL;
 
-	return hd->list->data;
+	return (const gchar *)hd->list->data;
 }
 
 void history_list_free_key(const gchar *key)
@@ -403,7 +403,7 @@ void history_list_add_to_key(const gchar *key, const gchar *path, gint max)
 	work = hd->list;
 	while (work)
 		{
-		gchar *buf = work->data;
+		gchar *buf = (gchar *)work->data;
 
 		if (strcmp(buf, path) == 0)
 			{
@@ -459,7 +459,7 @@ void history_list_item_change(const gchar *key, const gchar *oldpath, const gcha
 	work = hd->list;
 	while (work)
 		{
-		gchar *buf = work->data;
+		gchar *buf = (gchar *)work->data;
 		if (strcmp(buf, oldpath) == 0)
 			{
 			if (newpath)
@@ -490,7 +490,7 @@ void history_list_item_move(const gchar *key, const gchar *path, gint direction)
 	work = hd->list;
 	while (work)
 		{
-		gchar *buf = work->data;
+		gchar *buf = (gchar *)work->data;
 		if (strcmp(buf, path) == 0)
 			{
 			p += direction;

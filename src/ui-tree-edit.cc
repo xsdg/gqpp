@@ -205,7 +205,7 @@ gboolean tree_edit_by_path(GtkTreeView *tree, GtkTreePath *tpath, gint column, c
 	work = list;
 	while (work && !cell)
 		{
-		cell = work->data;
+		cell = (GtkCellRenderer *)work->data;
 		if (!GTK_IS_CELL_RENDERER_TEXT(cell))
 			{
 			cell = NULL;
@@ -303,7 +303,7 @@ gboolean tree_view_get_cell_origin(GtkTreeView *widget, GtkTreePath *tpath, gint
 		work = renderers;
 		while (work && !cell)
 			{
-			cell = work->data;
+			cell = (GtkCellRenderer *)work->data;
 			work = work->next;
 			if (!GTK_IS_CELL_RENDERER_TEXT(cell)) cell = NULL;
 			}
@@ -555,7 +555,7 @@ void widget_auto_scroll_stop(GtkWidget *widget)
 {
 	AutoScrollData *sd;
 
-	sd = g_object_get_data(G_OBJECT(widget), "autoscroll");
+	sd = (AutoScrollData *)g_object_get_data(G_OBJECT(widget), "autoscroll");
 	if (!sd) return;
 	g_object_set_data(G_OBJECT(widget), "autoscroll", NULL);
 

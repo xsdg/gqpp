@@ -102,7 +102,7 @@ static gboolean print_job_render_image(PrintWindow *pw)
 {
 	FileData *fd = NULL;
 
-	fd = g_list_nth_data(pw->source_selection, pw->job_page);
+	fd = (FileData *)g_list_nth_data(pw->source_selection, pw->job_page);
 	if (!fd) return FALSE;
 
 	image_loader_free(pw->job_loader);
@@ -159,7 +159,7 @@ static gint set_toggle(GSList *list, TextPosition pos)
 	GtkToggleButton *new_sel;
 	gint new_pos = - 1;
 
-	current_sel = g_slist_nth(list, pos)->data;
+	current_sel = g_slist_nth(list, (GtkToggleButton *)pos)->data;
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(current_sel)))
 		{
 		new_pos = (pos - 1);
@@ -167,7 +167,7 @@ static gint set_toggle(GSList *list, TextPosition pos)
 			{
 			new_pos = HEADER_1;
 			}
-		new_sel = g_slist_nth(list, new_pos)->data;
+		new_sel = g_slist_nth(list, (GtkToggleButton *)new_pos)->data;
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(new_sel), TRUE);
 		}
 	return new_pos;
@@ -568,10 +568,10 @@ static void draw_page(GtkPrintOperation *UNUSED(operation), GtkPrintContext *con
 	gchar *tmp;
 	gint total;
 
-	fd = g_list_nth_data(pw->source_selection, page_nr);
+	fd = (FileData *)g_list_nth_data(pw->source_selection, page_nr);
 	total = g_list_length(pw->source_selection);
 
-	pixbuf = g_list_nth_data(pw->print_pixbuf_queue, page_nr);
+	pixbuf = (GdkPixbuf *)g_list_nth_data(pw->print_pixbuf_queue, page_nr);
 	if (fd->exif_orientation != EXIF_ORIENTATION_TOP_LEFT)
 		{
 		rotated = pixbuf_apply_orientation(pixbuf, fd->exif_orientation);
@@ -828,7 +828,7 @@ static void end_print_cb(GtkPrintOperation *operation,
 	work = pw->print_pixbuf_queue;
 	while (work)
 		{
-		pixbuf = work->data;
+		pixbuf = (GdkPixbuf *)work->data;
 		if (pixbuf)
 			{
 			g_object_unref(pixbuf);

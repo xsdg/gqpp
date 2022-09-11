@@ -62,7 +62,7 @@ static void bar_pane_rating_set_fd(GtkWidget *pane, FileData *fd)
 {
 	PaneRatingData *prd;
 
-	prd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	prd = (PaneRatingData *)g_object_get_data(G_OBJECT(pane), "pane_data");
 	if (!prd) return;
 
 	file_data_unref(prd->fd);
@@ -75,7 +75,7 @@ static void bar_pane_rating_write_config(GtkWidget *pane, GString *outstr, gint 
 {
 	PaneRatingData *prd;
 
-	prd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	prd = (PaneRatingData *)g_object_get_data(G_OBJECT(pane), "pane_data");
 	if (!prd) return;
 
 	WRITE_NL();
@@ -230,7 +230,7 @@ void bar_pane_rating_update_from_config(GtkWidget *pane, const gchar **attribute
 	PaneRatingData *prd;
 	gchar *title = NULL;
 
-	prd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	prd = (PaneRatingData *)g_object_get_data(G_OBJECT(pane), "pane_data");
 	if (!prd) return;
 
 	while (*attribute_names)

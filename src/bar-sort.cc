@@ -101,7 +101,7 @@ static void bar_sort_collection_list_build(GtkWidget *bookmarks)
 		FileData *fd;
 		gchar *name;
 
-		fd = work->data;
+		fd = (FileData *)work->data;
 		work = work->next;
 
 		if (file_extension_match(fd->path, GQ_COLLECTION_EXT))
@@ -252,7 +252,7 @@ static void bar_sort_undo_folder(SortData *sd, GtkWidget *button)
 		}
 
 	layout_refresh(sd->lw);
-	origin = (sd->undo_src_list)->data;
+	origin = (gchar *)(sd->undo_src_list)->data;
 
 	if (isfile(origin))
 		{
@@ -270,7 +270,7 @@ static void bar_sort_undo_collection(SortData *sd)
 	while (work)
 		{
 		gchar *source;
-		source = work->data;
+		source = (gchar *)work->data;
 		work = work->next;
 		collect_manager_remove(file_data_new_group(source), sd->undo_collection);
 		}
@@ -359,7 +359,7 @@ static void bar_sort_bookmark_select_collection(SortData *sd, FileData *source, 
 		{
 		FileData *image_fd;
 
-		image_fd = list->data;
+		image_fd = (FileData *)list->data;
 		list = list->next;
 		collect_manager_add(image_fd, path);
 		}
@@ -417,7 +417,7 @@ static void bar_sort_set_filter_cb(GtkWidget *button, gpointer data)
 	const gchar *key;
 
 	if (!gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button))) return;
-	key = g_object_get_data(G_OBJECT(button), "filter_key");
+	key = (const gchar *)g_object_get_data(G_OBJECT(button), "filter_key");
 	bar_sort_set_action(sd, BAR_SORT_FILTER, key);
 }
 
@@ -594,7 +594,7 @@ void bar_sort_close(GtkWidget *bar)
 {
 	SortData *sd;
 
-	sd = g_object_get_data(G_OBJECT(bar), "bar_sort_data");
+	sd = (SortData *)g_object_get_data(G_OBJECT(bar), "bar_sort_data");
 	if (!sd) return;
 
 	gtk_widget_destroy(sd->vbox);
@@ -689,7 +689,7 @@ static GtkWidget *bar_sort_new(LayoutWindow *lw, SortActionType action,
 	while (work)
 		{
 		GtkWidget *button;
-		EditorDescription *editor = work->data;
+		EditorDescription *editor = (EditorDescription *)work->data;
 		gchar *key;
 		gboolean select = FALSE;
 
@@ -810,7 +810,7 @@ void bar_sort_write_config(GtkWidget *bar, GString *outstr, gint indent)
 	SortData *sd;
 
 	if (!bar) return;
-	sd = g_object_get_data(G_OBJECT(bar), "bar_sort_data");
+	sd = (SortData *)g_object_get_data(G_OBJECT(bar), "bar_sort_data");
 	if (!sd) return;
 
 	WRITE_NL(); WRITE_STRING("<bar_sort ");

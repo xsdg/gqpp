@@ -81,8 +81,8 @@ void image_sim_free(ImageSimilarityData *sd)
 
 static gint image_sim_channel_eq_sort_cb(gconstpointer a, gconstpointer b)
 {
-	gint *pa = (gpointer)a;
-	gint *pb = (gpointer)b;
+	gint *pa = (gint *)(gpointer)a;
+	gint *pb = (gint *)(gpointer)b;
 	if (pa[1] < pb[1]) return -1;
 	if (pa[1] > pb[1]) return 1;
 	return 0;

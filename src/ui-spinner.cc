@@ -56,7 +56,7 @@ static void spinner_set_frame(SpinnerData *sp, guint frame)
 {
 	GdkPixbuf *pb;
 
-	pb = g_list_nth_data(sp->list, frame);
+	pb = (GdkPixbuf *)g_list_nth_data(sp->list, frame);
 	if (pb) gtk_image_set_from_pixbuf(GTK_IMAGE(sp->image), pb);
 
 	sp->frame = frame;
@@ -110,7 +110,7 @@ static void spinner_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 	work = sp->list;
 	while (work)
 		{
-		GdkPixbuf *pb = work->data;
+		GdkPixbuf *pb = (GdkPixbuf *)work->data;
 		work = work->next;
 
 		g_object_unref(pb);
@@ -171,7 +171,7 @@ GtkWidget *spinner_new(const gchar *path, gint interval)
 		{
 		GdkPixbuf *pb;
 
-		pb = sp->list->data;
+		pb = (GdkPixbuf *)sp->list->data;
 		sp->image = gtk_image_new_from_pixbuf(pb);
 		}
 	else
@@ -193,7 +193,7 @@ void spinner_set_interval(GtkWidget *spinner, gint interval)
 {
 	SpinnerData *sp;
 
-	sp = g_object_get_data(G_OBJECT(spinner), "spinner");
+	sp = (SpinnerData *)g_object_get_data(G_OBJECT(spinner), "spinner");
 
 	spinner_set_timeout(sp, interval);
 }
@@ -202,7 +202,7 @@ void spinner_step(GtkWidget *spinner, gboolean reset)
 {
 	SpinnerData *sp;
 
-	sp = g_object_get_data(G_OBJECT(spinner), "spinner");
+	sp = (SpinnerData *)g_object_get_data(G_OBJECT(spinner), "spinner");
 	if (sp->timer_id)
 		{
 		log_printf("spinner warning: attempt to step with timer set\n");

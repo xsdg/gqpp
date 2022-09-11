@@ -156,7 +156,7 @@ static CollectInfo *collection_table_find_data(CollectTable *ct, gint row, gint 
 
 		if (iter) *iter = p;
 
-		return g_list_nth_data(list, col);
+		return (CollectInfo *)g_list_nth_data(list, col);
 		}
 
 	return NULL;
@@ -184,7 +184,7 @@ static CollectInfo *collection_table_find_data_by_coord(CollectTable *ct, gint x
 
 	n = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(column), "column_number"));
 	if (iter) *iter = row;
-	return g_list_nth_data(list, n);
+	return (CollectInfo *)g_list_nth_data(list, n);
 }
 
 static guint collection_table_list_count(CollectTable *ct, gint64 *bytes)
@@ -197,7 +197,7 @@ static guint collection_table_list_count(CollectTable *ct, gint64 *bytes)
 		work = ct->cd->list;
 		while (work)
 			{
-			CollectInfo *ci = work->data;
+			CollectInfo *ci = (CollectInfo *)work->data;
 			work = work->next;
 			b += ci->fd->size;
 			}
@@ -218,7 +218,7 @@ static guint collection_table_selection_count(CollectTable *ct, gint64 *bytes)
 		work = ct->selection;
 		while (work)
 			{
-			CollectInfo *ci = work->data;
+			CollectInfo *ci = (CollectInfo *)work->data;
 			work = work->next;
 			b += ci->fd->size;
 			}
@@ -373,7 +373,7 @@ static void collection_table_verify_selections(CollectTable *ct)
 	work = ct->selection;
 	while (work)
 		{
-		CollectInfo *info = work->data;
+		CollectInfo *info = (CollectInfo *)work->data;
 		work = work->next;
 		if (!g_list_find(ct->cd->list, info))
 			{
@@ -426,7 +426,7 @@ static void collection_table_select_invert_all(CollectTable *ct)
 	work = ct->cd->list;
 	while (work)
 		{
-		CollectInfo *info = work->data;
+		CollectInfo *info = (CollectInfo *)work->data;
 
 		if (INFO_SELECTED(info))
 			{
@@ -511,7 +511,7 @@ static void collection_table_select_region_util(CollectTable *ct, CollectInfo *s
 		work = g_list_find(ct->cd->list, start);
 		while (work)
 			{
-			info = work->data;
+			info = (CollectInfo *)work->data;
 			collection_table_select_util(ct, info, select);
 
 			if (work->data != end)
@@ -670,7 +670,7 @@ static void tip_update(CollectTable *ct, CollectInfo *info)
 				return;
 				}
 
-			label = g_object_get_data(G_OBJECT(ct->tip_window), "tip_label");
+			label = (GtkWidget *)g_object_get_data(G_OBJECT(ct->tip_window), "tip_label");
 			gtk_label_set_text(GTK_LABEL(label), ct->show_text ? ct->tip_info->fd->path : ct->tip_info->fd->name);
 			}
 		}
@@ -722,7 +722,7 @@ static void collection_table_popup_edit_cb(GtkWidget *widget, gpointer data)
 	CollectTable *ct;
 	const gchar *key = (gchar*)data;
 
-	ct = submenu_item_get_data(widget);
+	ct = (CollectTable *)submenu_item_get_data(widget);
 
 	if (!ct) return;
 
@@ -785,7 +785,7 @@ static void collection_table_popup_sort_cb(GtkWidget *widget, gpointer data)
 	CollectTable *ct;
 	SortType type;
 
-	ct = submenu_item_get_data(widget);
+	ct = (CollectTable *)submenu_item_get_data(widget);
 
 	if (!ct) return;
 
@@ -798,7 +798,7 @@ static void collection_table_popup_randomize_cb(GtkWidget *widget, gpointer UNUS
 {
 	CollectTable *ct;
 
-	ct = submenu_item_get_data(widget);
+	ct = (CollectTable *)submenu_item_get_data(widget);
 
 	if (!ct) return;
 
@@ -909,7 +909,7 @@ static void collection_table_popup_goto_original_cb(GtkWidget *UNUSED(widget), g
 	list = collection_table_selection_get_list(ct);
 	if (list)
 		{
-		fd = list->data;
+		fd = (FileData *)list->data;
 		if (fd)
 			{
 			layout_set_fd(lw, fd);
@@ -1435,7 +1435,7 @@ static CollectInfo *collection_table_insert_find(CollectTable *ct, CollectInfo *
 		gtk_tree_model_get(store, &iter, CTABLE_COLUMN_POINTER, &list, -1);
 
 		n = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(column), "column_number"));
-		info = g_list_nth_data(list, n);
+		info = (CollectInfo *)g_list_nth_data(list, n);
 
 		if (info)
 			{
@@ -1455,7 +1455,7 @@ static CollectInfo *collection_table_insert_find(CollectTable *ct, CollectInfo *
 			{
 			gint col;
 
-			info = work->data;
+			info = (CollectInfo *)work->data;
 			*after = TRUE;
 
 			if (collection_table_find_iter(ct, info, &iter, &col))
@@ -1486,7 +1486,7 @@ static CollectInfo *collection_table_insert_point(CollectTable *ct, gint x, gint
 		work = g_list_find(ct->cd->list, info);
 		if (work && work->next)
 			{
-			info = work->next->data;
+			info = (CollectInfo *)work->next->data;
 			}
 		else
 			{
@@ -1860,7 +1860,7 @@ static void collection_table_populate(CollectTable *ct, gboolean resize)
 			gtk_tree_view_column_set_fixed_width(column, thumb_width + (THUMB_BORDER_PADDING * 6));
 
 			list = gtk_cell_layout_get_cells(GTK_CELL_LAYOUT(column));
-			cell = (list) ? list->data : NULL;
+			cell = (GtkCellRenderer *)(list) ? list->data : NULL;
 			g_list_free(list);
 
 			if (cell && GQV_IS_CELL_RENDERER_ICON(cell))
@@ -1949,7 +1949,7 @@ static void collection_table_sync(CollectTable *ct)
 			CollectInfo *info;
 			if (work)
 				{
-				info = work->data;
+				info = (CollectInfo *)work->data;
 				work = work->next;
 				c++;
 				}
@@ -2199,7 +2199,7 @@ static void confirm_dir_list_do(CollectTable *ct, GList *list, gboolean recursiv
 	GList *work = list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 		if (isdir(fd->path)) collection_table_add_dir_recursive(ct, fd, recursive);
 		}
@@ -2380,7 +2380,7 @@ static void collection_table_dnd_receive(GtkWidget *UNUSED(widget), GdkDragConte
 			work = list;
 			while (work)
 				{
-				FileData *fd = work->data;
+				FileData *fd = (FileData *)work->data;
 				if (isdir(fd->path))
 					{
 					GtkWidget *menu;
@@ -2511,7 +2511,7 @@ static void collection_table_cell_data_cb(GtkTreeViewColumn *UNUSED(tree_column)
 	 */
 	if (cd->number == COLLECT_TABLE_MAX_COLUMNS) return;
 
-	info = g_list_nth_data(list, cd->number);
+	info = (CollectInfo *)g_list_nth_data(list, cd->number);
 
 	style = gtk_widget_get_style(ct->listview);
 	if (info && (info->flag_mask & SELECTION_SELECTED) )

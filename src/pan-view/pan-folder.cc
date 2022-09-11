@@ -42,7 +42,7 @@ static void pan_flower_size(PanWindow *pw, gint *width, gint *height)
 		{
 		PanItem *pi;
 
-		pi = work->data;
+		pi = (PanItem *)work->data;
 		work = work->next;
 
 		if (x1 > pi->x) x1 = pi->x;
@@ -61,7 +61,7 @@ static void pan_flower_size(PanWindow *pw, gint *width, gint *height)
 		{
 		PanItem *pi;
 
-		pi = work->data;
+		pi = (PanItem *)work->data;
 		work = work->next;
 
 		pi->x -= x1;
@@ -71,7 +71,7 @@ static void pan_flower_size(PanWindow *pw, gint *width, gint *height)
 			{
 			gint *coord;
 
-			coord = pi->data;
+			coord = (gint *)pi->data;
 			coord[0] -= x1;
 			coord[1] -= y1;
 			coord[2] -= x1;
@@ -108,7 +108,7 @@ static void pan_flower_move(FlowerGroup *group, gint x, gint y)
 		{
 		PanItem *pi;
 
-		pi = work->data;
+		pi = (PanItem *)work->data;
 		work = work->next;
 
 		pi->x += x;
@@ -204,7 +204,7 @@ static void pan_flower_build(PanWindow *pw, FlowerGroup *group, FlowerGroup *par
 		{
 		FlowerGroup *child;
 
-		child = work->data;
+		child = (FlowerGroup *)work->data;
 		work = work->next;
 
 		group->circumference += child->diameter;
@@ -215,7 +215,7 @@ static void pan_flower_build(PanWindow *pw, FlowerGroup *group, FlowerGroup *par
 		{
 		FlowerGroup *child;
 
-		child = work->data;
+		child = (FlowerGroup *)work->data;
 		work = work->prev;
 
 		pan_flower_build(pw, child, group);
@@ -272,7 +272,7 @@ static FlowerGroup *pan_flower_group(PanWindow *pw, FileData *dir_fd, gint x, gi
 		FileData *fd;
 		PanItem *pi;
 
-		fd = work->data;
+		fd = (FileData *)work->data;
 		work = work->next;
 
 		if (pw->size > PAN_IMAGE_SIZE_THUMB_LARGE)
@@ -316,7 +316,7 @@ static FlowerGroup *pan_flower_group(PanWindow *pw, FileData *dir_fd, gint x, gi
 		FileData *fd;
 		FlowerGroup *child;
 
-		fd = work->data;
+		fd = (FileData *)work->data;
 		work = work->next;
 
 		if (!pan_is_ignored(fd->path, pw->ignore_symlinks))
@@ -333,7 +333,7 @@ static FlowerGroup *pan_flower_group(PanWindow *pw, FileData *dir_fd, gint x, gi
 			{
 			PanItem *pi;
 
-			pi = work->data;
+			pi = (PanItem *)work->data;
 			work = work->next;
 
 			pan_item_free(pi);
@@ -365,7 +365,7 @@ void pan_flower_compute(PanWindow *pw, FileData *dir_fd,
 	list = pan_item_find_by_fd(pw, PAN_ITEM_BOX, dir_fd, FALSE, FALSE);
 	if (list)
 		{
-		PanItem *pi = list->data;
+		PanItem *pi = (PanItem *)list->data;
 		*scroll_x = pi->x + pi->width / 2;
 		*scroll_y = pi->y + pi->height / 2;
 		}
@@ -415,7 +415,7 @@ static void pan_folder_tree_path(PanWindow *pw, FileData *dir_fd,
 		FileData *fd;
 		PanItem *pi;
 
-		fd = work->data;
+		fd = (FileData *)work->data;
 		work = work->next;
 
 		if (pw->size > PAN_IMAGE_SIZE_THUMB_LARGE)
@@ -443,7 +443,7 @@ static void pan_folder_tree_path(PanWindow *pw, FileData *dir_fd,
 		{
 		FileData *fd;
 
-		fd = work->data;
+		fd = (FileData *)work->data;
 		work = work->next;
 
 		if (!pan_is_ignored(fd->path, pw->ignore_symlinks))

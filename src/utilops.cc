@@ -360,8 +360,8 @@ static void generic_dialog_image_set(UtilityData *ud, FileData *fd)
 	FileData *fd2 = NULL;
 	gchar *buf;
 
-	imd = g_object_get_data(G_OBJECT(ud->gd->dialog), "img_image");
-	label = g_object_get_data(G_OBJECT(ud->gd->dialog), "img_label");
+	imd = (ImageWindow *)g_object_get_data(G_OBJECT(ud->gd->dialog), "img_image");
+	label = (GtkWidget *)g_object_get_data(G_OBJECT(ud->gd->dialog), "img_label");
 
 	if (!imd) return;
 
@@ -372,8 +372,8 @@ static void generic_dialog_image_set(UtilityData *ud, FileData *fd)
 
 	if (ud->type == UTILITY_TYPE_RENAME || ud->type == UTILITY_TYPE_COPY || ud->type == UTILITY_TYPE_MOVE)
 		{
-		imd = g_object_get_data(G_OBJECT(ud->gd->dialog), "img_image2");
-		label = g_object_get_data(G_OBJECT(ud->gd->dialog), "img_label2");
+		imd = (ImageWindow *)g_object_get_data(G_OBJECT(ud->gd->dialog), "img_image2");
+		label = (GtkWidget *)g_object_get_data(G_OBJECT(ud->gd->dialog), "img_label2");
 
 		if (imd)
 			{
@@ -513,7 +513,7 @@ static GtkWidget *file_util_dialog_add_list(GtkWidget *box, GList *list, gboolea
 
 	while (list)
 		{
-		FileData *fd = list->data;
+		FileData *fd = (FileData *)list->data;
 		GtkTreeIter iter;
 		gchar *sidecars;
 
@@ -581,7 +581,7 @@ static gint file_util_perform_ci_cb(gpointer resume_data, EditorFlags flags, GLi
 		g_string_append(msg, "\n");
 		while (list)
 			{
-			FileData *fd = list->data;
+			FileData *fd = (FileData *)list->data;
 
 			g_string_append(msg, fd->path);
 			g_string_append(msg, "\n");
@@ -611,7 +611,7 @@ static gint file_util_perform_ci_cb(gpointer resume_data, EditorFlags flags, GLi
 
 	while (list)  /* be careful, file_util_perform_ci_internal can pass ud->flist as list */
 		{
-		FileData *fd = list->data;
+		FileData *fd = (FileData *)list->data;
 		list = list->next;
 
 		if (!EDITOR_ERRORS(flags)) /* files were successfully deleted, call the maint functions */
@@ -729,7 +729,7 @@ static void file_util_perform_ci_dir(UtilityData *ud, gboolean internal, gboolea
 				{
 				FileData *fd;
 
-				fd = work->data;
+				fd = (FileData *)work->data;
 				work = work->next;
 
 				if (!fail)
@@ -805,7 +805,7 @@ static void file_util_perform_ci_dir(UtilityData *ud, gboolean internal, gboolea
 				{
 				FileData *fd;
 
-				fd = work->data;
+				fd = (FileData *)work->data;
 				work = work->next;
 
 				if (!fail)
@@ -1799,7 +1799,7 @@ static void file_util_finalize_all(UtilityData *ud)
 
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 		if (ud->phase == UTILITY_PHASE_DONE) ud->finalize_func(fd);
 		else if (ud->phase == UTILITY_PHASE_DISCARD) ud->discard_func(fd);
@@ -1946,7 +1946,7 @@ static void file_util_details_dialog_ok_cb(GenericDialog *UNUSED(gd), gpointer U
 static void file_util_details_dialog_exclude(GenericDialog *gd, gpointer data, gboolean discard)
 {
 	UtilityData *ud = (UtilityData*)data;
-	FileData *fd = g_object_get_data(G_OBJECT(gd->dialog), "file_data");
+	FileData *fd = (FileData *)g_object_get_data(G_OBJECT(gd->dialog), "file_data");
 
 	if (!fd) return;
 	file_util_exclude_fd(ud, fd);
@@ -1987,7 +1987,7 @@ static gchar *file_util_details_get_message(UtilityData *ud, FileData *fd, const
 
 		while (work)
 			{
-			FileData *sfd = work->data;
+			FileData *sfd = (FileData *)work->data;
 			work =work->next;
 			g_string_append_printf(message, _(" '%s'\n"), sfd->path);
 			}
@@ -2102,7 +2102,7 @@ static void file_util_write_metadata_details_dialog(UtilityData *ud, FileData *f
 	i = 0;
 	while (work)
 		{
-		const gchar *key = work->data;
+		const gchar *key = (const gchar *)work->data;
 		gchar *title = exif_get_description_by_key(key);
 		gchar *title_f = g_strdup_printf("%s:", title);
 		gchar *value = metadata_read_string(fd, key, METADATA_FORMATTED);
@@ -2153,7 +2153,7 @@ static void file_util_mark_ungrouped_files(GList *work)
 {
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		file_data_set_regroup_when_finished(fd, TRUE);
 		work = work->next;
 		}
@@ -2498,7 +2498,7 @@ static GList *file_util_delete_dir_remaining_folders(GList *dlist)
 		{
 		FileData *fd;
 
-		fd = dlist->data;
+		fd = (FileData *)dlist->data;
 		dlist = dlist->next;
 
 		if (!fd->name ||
@@ -2552,7 +2552,7 @@ static gboolean file_util_delete_dir_empty_path(UtilityData *ud, FileData *fd, g
 		{
 		FileData *lfd;
 
-		lfd = work->data;
+		lfd = (FileData *)work->data;
 		work = work->next;
 
 		ok = file_util_delete_dir_empty_path(ud, lfd, level);
@@ -2563,7 +2563,7 @@ static gboolean file_util_delete_dir_empty_path(UtilityData *ud, FileData *fd, g
 		{
 		FileData *lfd;
 
-		lfd = work->data;
+		lfd = (FileData *)work->data;
 		work = work->next;
 
 		DEBUG_1("deltree child: %s", lfd->path);
@@ -2596,7 +2596,7 @@ static gboolean file_util_delete_dir_prepare(UtilityData *ud, GList *flist, GLis
 		{
 		FileData *fd;
 
-		fd = work->data;
+		fd = (FileData *)work->data;
 		work = work->next;
 
 		ok = file_util_delete_dir_empty_path(ud, fd, 0);
@@ -2624,7 +2624,7 @@ static gboolean file_util_delete_dir_prepare(UtilityData *ud, GList *flist, GLis
 			{
 			FileData *fd;
 
-			fd = work->data;
+			fd = (FileData *)work->data;
 			work = work->next;
 			file_data_sc_free_ci(fd);
 			}
@@ -2778,7 +2778,7 @@ static gboolean file_util_rename_dir_scan(UtilityData *ud, FileData *fd)
 		{
 		FileData *lfd;
 
-		lfd = work->data;
+		lfd = (FileData *)work->data;
 		work = work->next;
 
 		ud->content_list = g_list_prepend(ud->content_list, file_data_ref(lfd));
@@ -2805,7 +2805,7 @@ static gboolean file_util_rename_dir_prepare(UtilityData *ud, const gchar *new_p
 		gchar *np;
 		FileData *fd;
 
-		fd = work->data;
+		fd = (FileData *)work->data;
 		work = work->next;
 
 		g_assert(strncmp(fd->path, ud->dir_fd->path, orig_len) == 0);
@@ -2830,7 +2830,7 @@ static gboolean file_util_rename_dir_prepare(UtilityData *ud, const gchar *new_p
 			{
 			FileData *fd;
 
-			fd = work->data;
+			fd = (FileData *)work->data;
 			work = work->next;
 			file_data_sc_free_ci(fd);
 			}
@@ -2974,7 +2974,7 @@ static gboolean file_util_write_metadata_first(UtilityType type, UtilityPhase ph
 	work = flist;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 
 		if (fd->change)
@@ -3124,7 +3124,7 @@ void file_util_copy_path_list_to_clipboard(GList *list, gboolean quoted)
 	path_list_str = g_string_new("");
 	work = list;
 	while (work) {
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 
 		if (!fd || !*fd->path) continue;

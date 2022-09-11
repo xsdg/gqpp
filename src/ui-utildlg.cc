@@ -67,7 +67,7 @@ static void generic_dialog_save_window(const gchar *title, const gchar *role, gi
 	work = g_list_first(dialog_windows);
 	while (work)
 		{
-		DialogWindow *dw = work->data;
+		DialogWindow *dw = (DialogWindow *)work->data;
 		if (g_strcmp0(dw->title ,title) == 0 && g_strcmp0(dw->role, role) == 0)
 			{
 			dw->x = x;
@@ -97,7 +97,7 @@ static gboolean generic_dialog_find_window(const gchar *title, const gchar *role
 	work = g_list_first(dialog_windows);
 	while (work)
 		{
-		DialogWindow *dw = work->data;
+		DialogWindow *dw = (DialogWindow *)work->data;
 
 		if (g_strcmp0(dw->title,title) == 0 && g_strcmp0(dw->role, role) == 0)
 			{
@@ -370,7 +370,7 @@ void generic_dialog_windows_write_config(GString *outstr, gint indent)
 		work = g_list_first(dialog_windows);
 		while (work)
 			{
-			DialogWindow *dw = work->data;
+			DialogWindow *dw = (DialogWindow *)work->data;
 			WRITE_NL(); WRITE_STRING("<window ");
 			write_char_option(outstr, indent + 1, "title", dw->title);
 			write_char_option(outstr, indent + 1, "role", dw->role);

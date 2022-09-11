@@ -69,7 +69,7 @@ static gchar *layout_titles[] = { N_("Tools"), N_("Files"), N_("Image") };
 
 static void layout_config_destroy(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LayoutConfig * lc = data;
+	LayoutConfig * lc = (LayoutConfig *)data;
 
 	g_list_free(lc->style_widgets);
 	g_free(lc);
@@ -168,12 +168,12 @@ void layout_config_set(GtkWidget *widget, gint style, const gchar *order)
 	GtkWidget *button;
 	gint a, b, c;
 
-	lc = g_object_get_data(G_OBJECT(widget), "layout_config");
+	lc = (LayoutConfig *)g_object_get_data(G_OBJECT(widget), "layout_config");
 
 	if (!lc) return;
 
 	style = CLAMP(style, 0, layout_config_style_count);
-	button = g_list_nth_data(lc->style_widgets, style);
+	button = (GtkWidget *)g_list_nth_data(lc->style_widgets, style);
 	if (!button) return;
 
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), TRUE);
@@ -189,7 +189,7 @@ gchar *layout_config_get(GtkWidget *widget, gint *style)
 {
 	LayoutConfig *lc;
 
-	lc = g_object_get_data(G_OBJECT(widget), "layout_config");
+	lc = (LayoutConfig *)g_object_get_data(G_OBJECT(widget), "layout_config");
 
 	/* this should not happen */
 	if (!lc) return NULL;
@@ -207,7 +207,7 @@ static void layout_config_widget_click_cb(GtkWidget *widget, gpointer data)
 {
 	LayoutConfig *lc;
 
-	lc = g_object_get_data(G_OBJECT(widget), "layout_config");
+	lc = (LayoutConfig *)g_object_get_data(G_OBJECT(widget), "layout_config");
 
 	if (lc) lc->style = GPOINTER_TO_INT(data);
 }

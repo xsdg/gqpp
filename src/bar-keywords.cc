@@ -93,7 +93,7 @@ static void keyword_list_push(GtkWidget *textview, GList *list)
 
 	while (list)
 		{
-		const gchar *word = list->data;
+		const gchar *word = (const gchar *)list->data;
 		GtkTextIter iter;
 
 		gtk_text_buffer_get_end_iter(buffer, &iter);
@@ -261,7 +261,7 @@ void bar_pane_keywords_set_fd(GtkWidget *pane, FileData *fd)
 {
 	PaneKeywordsData *pkd;
 
-	pkd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	pkd = (PaneKeywordsData *)g_object_get_data(G_OBJECT(pane), "pane_data");
 	if (!pkd) return;
 
 	file_data_unref(pkd->fd);
@@ -305,7 +305,7 @@ static void bar_pane_keywords_write_config(GtkWidget *pane, GString *outstr, gin
 	GList *path_expanded = NULL;
 	gint w, h;
 
-	pkd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	pkd = (PaneKeywordsData *)g_object_get_data(G_OBJECT(pane), "pane_data");
 	if (!pkd) return;
 
 	gtk_widget_get_size_request(GTK_WIDGET(pane), &w, &h);
@@ -341,7 +341,7 @@ gint bar_pane_keywords_event(GtkWidget *bar, GdkEvent *event)
 {
 	PaneKeywordsData *pkd;
 
-	pkd = g_object_get_data(G_OBJECT(bar), "pane_data");
+	pkd = (PaneKeywordsData *)g_object_get_data(G_OBJECT(bar), "pane_data");
 	if (!pkd) return FALSE;
 
 	if (gtk_widget_has_focus(pkd->keyword_view)) return gtk_widget_event(pkd->keyword_view, event);
@@ -451,7 +451,7 @@ static void bar_pane_keywords_set_selection(PaneKeywordsData *pkd, gboolean appe
 	work = list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 
 		if (append)
@@ -637,7 +637,7 @@ static gboolean bar_pane_keywords_dnd_skip_existing(GtkTreeModel *keyword_tree, 
 	GList *work = *keywords;
 	while (work)
 		{
-		gchar *keyword = work->data;
+		gchar *keyword = (gchar *)work->data;
 		if (keyword_exists(keyword_tree, NULL, dest_kw_iter, keyword, FALSE, NULL))
 			{
 			GList *next = work->next;
@@ -685,7 +685,7 @@ static void bar_pane_keywords_dnd_receive(GtkWidget *tree_view, GdkDragContext *
 		{
 		case TARGET_APP_KEYWORD_PATH:
 			{
-			GList *path = *(gpointer *)gtk_selection_data_get_data(selection_data);
+			GList *path = (GList *)*(gpointer *)gtk_selection_data_get_data(selection_data);
 			src_valid = keyword_tree_get_iter(keyword_tree, &src_kw_iter, path);
 			string_list_free(path);
 			break;
@@ -771,7 +771,7 @@ static void bar_pane_keywords_dnd_receive(GtkWidget *tree_view, GdkDragContext *
 	work = new_keywords;
 	while (work)
 		{
-		gchar *keyword = work->data;
+		gchar *keyword = (gchar *)work->data;
 		keyword_set(GTK_TREE_STORE(keyword_tree), &new_kw_iter, keyword, TRUE);
 		work = work->next;
 
@@ -1148,7 +1148,7 @@ static void bar_pane_keywords_revert_cb(GtkWidget *UNUSED(menu_widget), gpointer
 	work = pkd->expanded_rows;
 	while (work)
 		{
-		path = work->data;
+		path = (gchar *)work->data;
 		tree_path = gtk_tree_path_new_from_string(path);
 		gtk_tree_view_expand_to_path(GTK_TREE_VIEW(pkd->keyword_treeview), tree_path);
 		work = work->next;
@@ -1290,7 +1290,7 @@ static void bar_pane_keywords_add_to_selected_cb(GtkWidget *UNUSED(menu_widget),
 	work = list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 		metadata_append_list(fd, KEYWORD_KEY, keywords);
 		}
@@ -1434,7 +1434,7 @@ void bar_pane_keywords_close(GtkWidget *bar)
 {
 	PaneKeywordsData *pkd;
 
-	pkd = g_object_get_data(G_OBJECT(bar), "pane_data");
+	pkd = (PaneKeywordsData *)g_object_get_data(G_OBJECT(bar), "pane_data");
 	if (!pkd) return;
 
 	g_free(pkd->pane.id);
@@ -1679,7 +1679,7 @@ void bar_pane_keywords_update_from_config(GtkWidget *pane, const gchar **attribu
 {
 	PaneKeywordsData *pkd;
 
-	pkd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	pkd = (PaneKeywordsData *)g_object_get_data(G_OBJECT(pane), "pane_data");
 	if (!pkd) return;
 
 	gchar *title = NULL;
@@ -1716,7 +1716,7 @@ void bar_pane_keywords_entry_add_from_config(GtkWidget *pane, const gchar **attr
 	gchar *path = NULL;
 	GtkTreePath *tree_path;
 
-	pkd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	pkd = (PaneKeywordsData *)g_object_get_data(G_OBJECT(pane), "pane_data");
 	if (!pkd) return;
 
 	while (*attribute_names)

@@ -165,7 +165,7 @@ gboolean pan_is_link_loop(const gchar *s)
 		gchar *buf;
 		gint l;
 
-		buf = g_malloc(st.st_size + 1);
+		buf = (gchar *)g_malloc(st.st_size + 1);
 		l = readlink(sl, buf, st.st_size);
 		if (l == st.st_size)
 			{
@@ -247,7 +247,7 @@ GList *pan_list_tree(FileData *dir_fd, SortType sort, gboolean ascend,
 		{
 		FileData *fd;
 
-		fd = folders->data;
+		fd = (FileData *)folders->data;
 		folders = g_list_remove(folders, fd);
 
 		if (!pan_is_ignored(fd->path, ignore_symlinks) &&

@@ -144,8 +144,8 @@ static SortType collection_list_sort_method = SORT_NAME;
 
 static gint collection_list_sort_cb(gconstpointer a, gconstpointer b)
 {
-	const CollectInfo *cia = a;
-	const CollectInfo *cib = b;
+	const CollectInfo *cia = (const CollectInfo *)a;
+	const CollectInfo *cib = (const CollectInfo *)b;
 
 	switch (collection_list_sort_method)
 		{
@@ -282,7 +282,7 @@ CollectInfo *collection_list_find_fd(GList *list, FileData *fd)
 
 	while (work)
 		{
-		CollectInfo *ci = work->data;
+		CollectInfo *ci = (CollectInfo *)work->data;
 		if (ci->fd == fd) return ci;
 		work = work->next;
 		}
@@ -297,7 +297,7 @@ GList *collection_list_to_filelist(GList *list)
 
 	while (work)
 		{
-		CollectInfo *info = work->data;
+		CollectInfo *info = (CollectInfo *)work->data;
 		filelist = g_list_prepend(filelist, file_data_ref(info->fd));
 		work = work->next;
 		}
@@ -313,7 +313,7 @@ CollectWindow *collection_window_find(CollectionData *cd)
 	work = collection_window_list;
 	while (work)
 		{
-		CollectWindow *cw = work->data;
+		CollectWindow *cw = (CollectWindow *)work->data;
 		if (cw->cd == cd) return cw;
 		work = work->next;
 		}
@@ -330,7 +330,7 @@ CollectWindow *collection_window_find_by_path(const gchar *path)
 	work = collection_window_list;
 	while (work)
 		{
-		CollectWindow *cw = work->data;
+		CollectWindow *cw = (CollectWindow *)work->data;
 		if (cw->cd->path && strcmp(cw->cd->path, path) == 0) return cw;
 		work = work->next;
 		}
@@ -413,7 +413,7 @@ void collection_contents(const gchar *name, GString **contents)
 		work = cd->list;
 		while (work)
 			{
-			ci = work->data;
+			ci = (CollectInfo *)work->data;
 			fd = ci->fd;
 			*contents = g_string_append(*contents, g_strdup(fd->path));
 			*contents = g_string_append(*contents, "\n");
@@ -447,7 +447,7 @@ GList *collection_contents_fd(const gchar *name)
 		work = cd->list;
 		while (work)
 			{
-			ci = work->data;
+			ci = (CollectInfo *)work->data;
 			list = g_list_append(list, ci->fd);
 
 			work = work->next;
@@ -558,7 +558,7 @@ gint collection_to_number(CollectionData *cd)
 
 CollectionData *collection_from_number(gint n)
 {
-	return g_list_nth_data(collection_list, n);
+	return (CollectionData *)g_list_nth_data(collection_list, n);
 }
 
 CollectionData *collection_from_dnd_data(const gchar *data, GList **list, GList **info_list)
@@ -596,7 +596,7 @@ CollectionData *collection_from_dnd_data(const gchar *data, GList **list, GList 
 		else
 			while (*ptr == '\n') ptr++;
 
-		info = g_list_nth_data(cd->list, item_number);
+		info = (CollectInfo *)g_list_nth_data(cd->list, item_number);
 		if (!info) continue;
 
 		if (list) *list = g_list_append(*list, file_data_ref(info->fd));
@@ -641,14 +641,14 @@ gchar *collection_info_list_to_dnd_data(CollectionData *cd, GList *list, gint *l
 
 	*length += 1; /* ending nul char */
 
-	uri_text = g_malloc(*length);
+	uri_text = (gchar *)g_malloc(*length);
 	ptr = uri_text;
 
 	work = g_list_last(temp);
 	while (work)
 		{
 		gint len;
-		gchar *text = work->data;
+		gchar *text = (gchar *)work->data;
 
 		work = work->prev;
 
@@ -679,7 +679,7 @@ CollectInfo *collection_next_by_info(CollectionData *cd, CollectInfo *info)
 
 	if (!work) return NULL;
 	work = work->next;
-	if (work) return work->data;
+	if (work) return (CollectInfo *)work->data;
 	return NULL;
 }
 
@@ -691,13 +691,13 @@ CollectInfo *collection_prev_by_info(CollectionData *cd, CollectInfo *info)
 
 	if (!work) return NULL;
 	work = work->prev;
-	if (work) return work->data;
+	if (work) return (CollectInfo *)work->data;
 	return NULL;
 }
 
 CollectInfo *collection_get_first(CollectionData *cd)
 {
-	if (cd->list) return cd->list->data;
+	if (cd->list) return (CollectInfo *)cd->list->data;
 
 	return NULL;
 }
@@ -708,7 +708,7 @@ CollectInfo *collection_get_last(CollectionData *cd)
 
 	list = g_list_last(cd->list);
 
-	if (list) return list->data;
+	if (list) return (CollectInfo *)list->data;
 
 	return NULL;
 }
@@ -1301,7 +1301,7 @@ gboolean collection_window_modified_exists(void)
 	work = collection_window_list;
 	while (work)
 		{
-		CollectWindow *cw = work->data;
+		CollectWindow *cw = (CollectWindow *)work->data;
 		if (cw->cd->changed)
 			{
 			ret = TRUE;

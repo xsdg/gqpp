@@ -85,7 +85,7 @@ gboolean layout_valid(LayoutWindow **lw)
 	if (*lw == NULL)
 		{
 		if (current_lw) *lw = current_lw;
-		else if (layout_window_list) *lw = layout_window_list->data;
+		else if (layout_window_list) *lw = (LayoutWindow *)layout_window_list->data;
 		return (*lw != NULL);
 		}
 	return (g_list_find(layout_window_list, *lw) != NULL);
@@ -98,7 +98,7 @@ LayoutWindow *layout_find_by_image(ImageWindow *imd)
 	work = layout_window_list;
 	while (work)
 		{
-		LayoutWindow *lw = work->data;
+		LayoutWindow *lw = (LayoutWindow *)work->data;
 		work = work->next;
 
 		if (lw->image == imd) return lw;
@@ -114,7 +114,7 @@ LayoutWindow *layout_find_by_image_fd(ImageWindow *imd)
 	work = layout_window_list;
 	while (work)
 		{
-		LayoutWindow *lw = work->data;
+		LayoutWindow *lw = (LayoutWindow *)work->data;
 		work = work->next;
 
 		if (lw->image->image_fd == imd->image_fd)
@@ -133,14 +133,14 @@ LayoutWindow *layout_find_by_layout_id(const gchar *id)
 	if (strcmp(id, LAYOUT_ID_CURRENT) == 0)
 		{
 		if (current_lw) return current_lw;
-		if (layout_window_list) return layout_window_list->data;
+		if (layout_window_list) return (LayoutWindow *)layout_window_list->data;
 		return NULL;
 		}
 
 	work = layout_window_list;
 	while (work)
 		{
-		LayoutWindow *lw = work->data;
+		LayoutWindow *lw = (LayoutWindow *)work->data;
 		work = work->next;
 
 		if (lw->options.id && strcmp(id, lw->options.id) == 0)
@@ -205,7 +205,7 @@ static void layout_box_folders_changed_cb(GtkWidget *widget, gpointer UNUSED(dat
 	work = layout_window_list;
 	while (work)
 		{
-		lw = work->data;
+		lw = (LayoutWindow *)work->data;
 		lw->options.folder_window.vdivider_pos = gtk_paned_get_position(GTK_PANED(widget));
 		work = work->next;
 		}
@@ -309,7 +309,7 @@ static gboolean path_entry_tooltip_cb(GtkWidget *widget, gpointer UNUSED(data))
 	gchar *current_path;
 
 	box_child_list = gtk_container_get_children(GTK_CONTAINER(widget));
-	path_entry = box_child_list->data;
+	path_entry = (GtkComboBox *)box_child_list->data;
 	current_path = gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(path_entry));
 	gtk_widget_set_tooltip_text(GTK_WIDGET(widget), current_path);
 
@@ -411,7 +411,7 @@ static void layout_sort_menu_cb(GtkWidget *widget, gpointer data)
 
 	if (!gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget))) return;
 
-	lw = submenu_item_get_data(widget);
+	lw = (LayoutWindow *)submenu_item_get_data(widget);
 	if (!lw) return;
 
 	type = (SortType)GPOINTER_TO_INT(data);
@@ -2043,7 +2043,7 @@ void layout_colors_update(void)
 	while (work)
 		{
 		gint i;
-		LayoutWindow *lw = work->data;
+		LayoutWindow *lw = (LayoutWindow *)work->data;
 		work = work->next;
 
 		if (!lw->image) continue;
@@ -3070,7 +3070,7 @@ LayoutWindow *layout_new_from_default()
 	if (success)
 		{
 		work = g_list_last(layout_window_list);
-		lw = work->data;
+		lw = (LayoutWindow *)work->data;
 		g_free(lw->options.id);
 		lw->options.id = g_strdup(layout_get_unique_id());
 		}

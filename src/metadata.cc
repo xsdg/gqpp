@@ -93,8 +93,8 @@ static void metadata_cache_update(FileData *fd, const gchar *key, const GList *v
 	work = fd->cached_metadata;
 	while (work)
 		{
-		GList *entry = work->data;
-		gchar *entry_key = entry->data;
+		GList *entry = (GList *)work->data;
+		gchar *entry_key = (gchar *)entry->data;
 
 		if (strcmp(entry_key, key) == 0)
 			{
@@ -124,8 +124,8 @@ static const GList *metadata_cache_get(FileData *fd, const gchar *key)
 	work = fd->cached_metadata;
 	while (work)
 		{
-		GList *entry = work->data;
-		gchar *entry_key = entry->data;
+		GList *entry = (GList *)work->data;
+		gchar *entry_key = (gchar *)entry->data;
 
 		if (strcmp(entry_key, key) == 0)
 			{
@@ -146,8 +146,8 @@ static void metadata_cache_remove(FileData *fd, const gchar *key)
 	work = fd->cached_metadata;
 	while (work)
 		{
-		GList *entry = work->data;
-		gchar *entry_key = entry->data;
+		GList *entry = (GList *)work->data;
+		gchar *entry_key = (gchar *)entry->data;
 
 		if (strcmp(entry_key, key) == 0)
 			{
@@ -170,7 +170,7 @@ void metadata_cache_free(FileData *fd)
 	work = fd->cached_metadata;
 	while (work)
 		{
-		GList *entry = work->data;
+		GList *entry = (GList *)work->data;
 		string_list_free(entry);
 
 		work = work->next;
@@ -240,7 +240,7 @@ gboolean metadata_write_queue_remove_list(GList *list)
 	work = list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 		ret = ret && metadata_write_queue_remove(fd);
 		}
@@ -273,7 +273,7 @@ gboolean metadata_write_queue_confirm(gboolean force_dialog, FileUtilDoneFunc do
 	work = metadata_write_queue;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 
 		if (!isname(fd->path))
@@ -402,7 +402,7 @@ gboolean metadata_write_list(FileData *fd, const gchar *key, const GList *values
 
 		while (work)
 			{
-			FileData *sfd = work->data;
+			FileData *sfd = (FileData *)work->data;
 			work = work->next;
 
 			if (sfd->format_class == FORMAT_CLASS_META) continue;
@@ -449,7 +449,7 @@ static gboolean metadata_file_write(gchar *path, const GList *keywords, const gc
 	secure_fprintf(ssi, "[keywords]\n");
 	while (keywords && secsave_errno == SS_ERR_NONE)
 		{
-		const gchar *word = keywords->data;
+		const gchar *word = (const gchar *)keywords->data;
 		keywords = keywords->next;
 
 		secure_fprintf(ssi, "%s\n", word);
@@ -486,7 +486,7 @@ static gboolean metadata_legacy_write(FileData *fd)
 
 	have_keywords = g_hash_table_lookup_extended(fd->modified_xmp, KEYWORD_KEY, NULL, &keywords);
 	have_comment = g_hash_table_lookup_extended(fd->modified_xmp, COMMENT_KEY, NULL, &comment_l);
-	comment = (have_comment && comment_l) ? ((GList *)comment_l)->data : NULL;
+	comment = (const gchar *)(have_comment && comment_l) ? ((GList *)comment_l)->data : NULL;
 
 	if (!have_keywords || !have_comment) metadata_file_read(metadata_pathl, &orig_keywords, &orig_comment);
 
@@ -653,7 +653,7 @@ static GList *remove_duplicate_strings_from_list(GList *list)
 
 	while (work)
 		{
-		gchar *key = work->data;
+		gchar *key = (gchar *)work->data;
 
 		if (g_hash_table_lookup(hashtable, key) == NULL)
 			{
@@ -679,7 +679,7 @@ GList *metadata_read_list(FileData *fd, const gchar *key, MetadataFormat format)
 	/* unwritten data override everything */
 	if (fd->modified_xmp && format == METADATA_PLAIN)
 		{
-	        list = g_hash_table_lookup(fd->modified_xmp, key);
+	        list = (GList *)g_hash_table_lookup(fd->modified_xmp, key);
 		if (list) return string_list_copy(list);
 		}
 
@@ -742,7 +742,7 @@ gchar *metadata_read_string(FileData *fd, const gchar *key, MetadataFormat forma
 	GList *string_list = metadata_read_list(fd, key, format);
 	if (string_list)
 		{
-		gchar *str = string_list->data;
+		gchar *str = (gchar *)string_list->data;
 		string_list->data = NULL;
 		string_list_free(string_list);
 		return str;
@@ -941,7 +941,7 @@ gchar *find_string_in_list_utf8nocase(GList *list, const gchar *string)
 
 	while (list)
 		{
-		gchar *haystack = list->data;
+		gchar *haystack = (gchar *)list->data;
 
 		if (haystack)
 			{
@@ -972,7 +972,7 @@ gchar *find_string_in_list_utf8case(GList *list, const gchar *string)
 {
 	while (list)
 		{
-		gchar *haystack = list->data;
+		gchar *haystack = (gchar *)list->data;
 
 		if (haystack && strcmp(haystack, string) == 0)
 			return haystack;
@@ -1387,7 +1387,7 @@ static gboolean keyword_tree_is_set_casefold(GtkTreeModel *keyword_tree, GtkTree
 			gchar *iter_casefold = keyword_get_casefold(keyword_tree, &iter);
 			while (work)
 				{
-				const gchar *casefold = work->data;
+				const gchar *casefold = (const gchar *)work->data;
 				work = work->next;
 
 				if (strcmp(iter_casefold, casefold) == 0)
@@ -1434,7 +1434,7 @@ static gboolean keyword_tree_is_set_casefull(GtkTreeModel *keyword_tree, GtkTree
 			gchar *iter_name = keyword_get_name(keyword_tree, &iter);
 			while (work)
 				{
-				const gchar *name = work->data;
+				const gchar *name = (const gchar *)work->data;
 				work = work->next;
 
 				if (strcmp(iter_name, name) == 0)
@@ -1467,7 +1467,7 @@ gboolean keyword_tree_is_set(GtkTreeModel *keyword_tree, GtkTreeIter *iter, GLis
 		work = kw_list;
 		while (work)
 			{
-			const gchar *kw = work->data;
+			const gchar *kw = (const gchar *)work->data;
 			work = work->next;
 
 			casefold_list = g_list_prepend(casefold_list, g_utf8_casefold(kw, -1));

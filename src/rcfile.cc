@@ -714,7 +714,7 @@ gboolean save_config_to_file(const gchar *utf8_path, ConfOptions *options, Layou
 			work = layout_window_list;
 			while (work)
 				{
-				LayoutWindow *lw = work->data;
+				LayoutWindow *lw = (LayoutWindow *)work->data;
 				layout_write_config(lw, outstr, indent);
 				work = work->next;
 				}

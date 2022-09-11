@@ -81,7 +81,7 @@ FileData *vdlist_row_by_path(ViewDir *vd, const gchar *path, gint *row)
 	work = VDLIST(vd)->list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		if (strcmp(fd->path, path) == 0)
 			{
 			if (row) *row = n;
@@ -130,7 +130,7 @@ const gchar *vdlist_row_get_path(ViewDir *vd, gint row)
 {
 	FileData *fd;
 
-	fd = g_list_nth_data(VDLIST(vd)->list, row);
+	fd = (FileData *)g_list_nth_data(VDLIST(vd)->list, row);
 
 	if (fd) return fd->path;
 
@@ -193,7 +193,7 @@ static gboolean vdlist_populate(ViewDir *vd, gboolean clear)
 		const gchar *date = "";
 		gboolean done = FALSE;
 
-		fd = work->data;
+		fd = (FileData *)work->data;
 
 		if (access_file(fd->path, R_OK | X_OK) && fd->name)
 			{
@@ -350,7 +350,7 @@ gboolean vdlist_set_fd(ViewDir *vd, FileData *dir_fd)
 	work = VDLIST(vd)->list;
 	while (work && !found)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		if (!old_path || strcmp(old_path, fd->name) == 0) found = fd;
 		work = work->next;
 		}

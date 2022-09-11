@@ -181,8 +181,8 @@ hard_coded_window_keys dupe_window_keys[] = {
  */
 static void dupe_comparison_func(gpointer d1, gpointer d2)
 {
-	DupeQueueItem *dqi = d1;
-	DupeWindow *dw = d2;
+	DupeQueueItem *dqi = (DupeQueueItem *)d1;
+	DupeWindow *dw = (DupeWindow *)d2;
 	DupeSearchMatch *dsm;
 	DupeItem *di;
 	GList *matches = NULL;
@@ -193,7 +193,7 @@ static void dupe_comparison_func(gpointer d1, gpointer d2)
 		GList *work = dqi->work;
 		while (work)
 			{
-			di = work->data;
+			di = (DupeItem *)work->data;
 
 			/* forward for second set, back for simple compare */
 			if (dw->second_set)
@@ -479,7 +479,7 @@ static void dupe_list_free(GList *list)
 	GList *work = list;
 	while (work)
 		{
-		DupeItem *di = work->data;
+		DupeItem *di = (DupeItem *)work->data;
 		work = work->next;
 		dupe_item_free(di);
 		}
@@ -670,7 +670,7 @@ static void dupe_listview_add(DupeWindow *dw, DupeItem *parent, DupeItem *child)
 
 		if (child->group)
 			{
-			dm = child->group->data;
+			dm = (DupeMatch *)child->group->data;
 			rank = (gint)floor(dm->rank);
 			}
 		else
@@ -757,7 +757,7 @@ static void dupe_listview_populate(DupeWindow *dw)
 	work = g_list_last(dw->dupes);
 	while (work)
 		{
-		DupeItem *parent = work->data;
+		DupeItem *parent = (DupeItem *)work->data;
 		GList *temp;
 
 		dupe_listview_add(dw, parent, NULL);
@@ -765,7 +765,7 @@ static void dupe_listview_populate(DupeWindow *dw)
 		temp = g_list_last(parent->group);
 		while (temp)
 			{
-			DupeMatch *dm = temp->data;
+			DupeMatch *dm = (DupeMatch *)temp->data;
 			DupeItem *child;
 
 			child = dm->di;
@@ -848,7 +848,7 @@ static GList *dupe_listview_get_selection(DupeWindow *UNUSED(dw), GtkWidget *lis
 	work = slist;
 	while (work)
 		{
-		GtkTreePath *tpath = work->data;
+		GtkTreePath *tpath = (GtkTreePath *)work->data;
 		DupeItem *di = NULL;
 		GtkTreeIter iter;
 
@@ -879,7 +879,7 @@ static gboolean dupe_listview_item_is_selected(DupeWindow *UNUSED(dw), DupeItem 
 	work = slist;
 	while (!found && work)
 		{
-		GtkTreePath *tpath = work->data;
+		GtkTreePath *tpath = (GtkTreePath *)work->data;
 		DupeItem *di_n;
 		GtkTreeIter iter;
 
@@ -952,7 +952,7 @@ static DupeMatch *dupe_match_find_match(DupeItem *child, DupeItem *parent)
 	work = parent->group;
 	while (work)
 		{
-		DupeMatch *dm = work->data;
+		DupeMatch *dm = (DupeMatch *)work->data;
 		if (dm->di == child) return dm;
 		work = work->next;
 		}
@@ -1036,7 +1036,7 @@ static void dupe_match_link_clear(DupeItem *parent, gboolean unlink_children)
 	work = parent->group;
 	while (work)
 		{
-		DupeMatch *dm = work->data;
+		DupeMatch *dm = (DupeMatch *)work->data;
 		work = work->next;
 
 		if (unlink_children) dupe_match_unlink_child(parent, dm->di);
@@ -1096,7 +1096,7 @@ static DupeItem *dupe_match_highest_rank(DupeItem *child)
 	work = child->group;
 	while (work)
 		{
-		DupeMatch *dm = work->data;
+		DupeMatch *dm = (DupeMatch *)work->data;
 		if (!dr || dm->rank > dr->rank)
 			{
 			dr = dm;
@@ -1122,7 +1122,7 @@ static void dupe_match_rank_update(DupeItem *parent)
 	work = parent->group;
 	while (work)
 		{
-		DupeMatch *dm = work->data;
+		DupeMatch *dm = (DupeMatch *)work->data;
 		work = work->next;
 		rank += dm->rank;
 		c++;
@@ -1147,7 +1147,7 @@ static DupeItem *dupe_match_find_parent(DupeWindow *dw, DupeItem *child)
 	work = child->group;
 	while (work)
 		{
-		DupeMatch *dm = work->data;
+		DupeMatch *dm = (DupeMatch *)work->data;
 		if (g_list_find(dw->dupes, dm->di)) return dm->di;
 		work = work->next;
 		}
@@ -1166,7 +1166,7 @@ static void dupe_match_reset_list(GList *work)
 {
 	while (work)
 		{
-		DupeItem *di = work->data;
+		DupeItem *di = (DupeItem *)work->data;
 		work = work->next;
 
 		dupe_match_link_clear(di, FALSE);
@@ -1183,7 +1183,7 @@ static void dupe_match_reparent(DupeWindow *dw, DupeItem *old_parent, DupeItem *
 	work = old_parent->group;
 	while (work)
 		{
-		DupeMatch *dm = work->data;
+		DupeMatch *dm = (DupeMatch *)work->data;
 		dupe_match_unlink_child(old_parent, dm->di);
 		dupe_match_link_child(new_parent, dm->di, dm->rank);
 		work = work->next;
@@ -1205,7 +1205,7 @@ static void dupe_match_print_group(DupeItem *di)
 	work = di->group;
 	while (work)
 		{
-		DupeMatch *dm = work->data;
+		DupeMatch *dm = (DupeMatch *)work->data;
 		work = work->next;
 
 		log_printf("  %f %s\n", dm->rank, dm->di->fd->name);
@@ -1221,7 +1221,7 @@ static void dupe_match_print_list(GList *list)
 	work = list;
 	while (work)
 		{
-		DupeItem *di = work->data;
+		DupeItem *di = (DupeItem *)work->data;
 		dupe_match_print_group(di);
 		work = work->next;
 		}
@@ -1257,7 +1257,7 @@ static GList *dupe_match_unlink_by_rank(DupeItem *child, DupeItem *parent, GList
 		work = parent->group;
 		while (work)
 			{
-			DupeMatch *dm = work->data;
+			DupeMatch *dm = (DupeMatch *)work->data;
 			DupeItem *orphan;
 
 			work = work->next;
@@ -1307,7 +1307,7 @@ static GList *dupe_match_group_filter(GList *list, DupeItem *di, DupeWindow *dw)
 	work = g_list_last(di->group);
 	while (work)
 		{
-		DupeMatch *dm = work->data;
+		DupeMatch *dm = (DupeMatch *)work->data;
 		work = work->prev;
 		list = dupe_match_unlink_by_rank(di, dm->di, list, dw);
 		}
@@ -1332,7 +1332,7 @@ static GList *dupe_match_group_trim(GList *list, DupeWindow *dw)
 	work = list;
 	while (work)
 		{
-		DupeItem *di = work->data;
+		DupeItem *di = (DupeItem *)work->data;
 		if (!di->second) list = dupe_match_group_filter(list, di, dw);
 		work = work->next;
 		if (di->second) list = g_list_remove(list, di);
@@ -1364,7 +1364,7 @@ static void dupe_match_sort_groups(GList *list)
 	work = list;
 	while (work)
 		{
-		DupeItem *di = work->data;
+		DupeItem *di = (DupeItem *)work->data;
 		di->group = g_list_sort(di->group, dupe_match_sort_groups_cb);
 		work = work->next;
 		}
@@ -1419,7 +1419,7 @@ static GList *dupe_match_rank_sort(GList *source_list)
 	work = source_list;
 	while (work)
 		{
-		DupeItem *di = work->data;
+		DupeItem *di = (DupeItem *)work->data;
 
 		if (di->group)
 			{
@@ -1740,7 +1740,7 @@ static DUPE_CHECK_RESULT dupe_match_check(DupeItem *di1, DupeItem *di2, gpointer
 static gint dupe_match_binary_search_cb(gconstpointer a, gconstpointer b)
 {
 	const DupeItem *di1 = *((DupeItem **) a);
-	const DupeItem *di2 = b;
+	const DupeItem *di2 = (const DupeItem *)b;
 	DupeMatchType mask = param_match_mask;
 
 	if (mask & DUPE_MATCH_ALL)
@@ -1893,7 +1893,7 @@ static void dupe_array_check(DupeWindow *dw )
 	work = dw->list;
 	while (work)
 		{
-		DupeItem *di = work->data;
+		DupeItem *di = (DupeItem *)work->data;
 		g_array_append_val(array_set1, di);
 		work = work->next;
 		}
@@ -1915,12 +1915,12 @@ static void dupe_array_check(DupeWindow *dw )
 
 			for (i_set1 = 0; i_set1 <= (gint)(array_set1->len) - 1; i_set1++)
 				{
-				DupeItem *di1 = g_array_index(array_set1, gpointer, i_set1);
+				DupeItem *di1 = (DupeItem *)g_array_index(array_set1, gpointer, i_set1);
 				DupeItem *di2 = NULL;
 				/* If multiple identical entries in set 1, use the last one */
 				if (i_set1 < (gint)(array_set1->len) - 2)
 					{
-					di2 = g_array_index(array_set1, gpointer, i_set1 + 1);
+					di2 = (DupeItem *)g_array_index(array_set1, gpointer, i_set1 + 1);
 					check_result = dupe_match_check(di1, di2, dw);
 					if (check_result == DUPE_MATCH || check_result == DUPE_NAME_MATCH)
 						{
@@ -1949,7 +1949,7 @@ static void dupe_array_check(DupeWindow *dw )
 
 				if (match_found)
 					{
-					di2 = g_array_index(array_set2, gpointer, out_match_index);
+					di2 = (DupeItem *)g_array_index(array_set2, gpointer, out_match_index);
 
 					check_result = dupe_match_check(di1, di2, dw);
 					if (check_result == DUPE_MATCH || check_result == DUPE_NAME_MATCH)
@@ -1965,7 +1965,7 @@ static void dupe_array_check(DupeWindow *dw )
 							break;
 							}
 						/* Look for multiple matches in set 2 for item di1 */
-						di2 = g_array_index(array_set2, gpointer, i_set2);
+						di2 = (DupeItem *)g_array_index(array_set2, gpointer, i_set2);
 						check_result = dupe_match_check(di1, di2, dw);
 						while (check_result == DUPE_MATCH || check_result == DUPE_NAME_MATCH)
 							{
@@ -1978,7 +1978,7 @@ static void dupe_array_check(DupeWindow *dw )
 								{
 								break;
 								}
-							di2 = g_array_index(array_set2, gpointer, i_set2);
+							di2 = (DupeItem *)g_array_index(array_set2, gpointer, i_set2);
 							check_result = dupe_match_check(di1, di2, dw);
 							}
 						}
@@ -1996,8 +1996,8 @@ static void dupe_array_check(DupeWindow *dw )
 			{
 			for (i_set1 = 0; i_set1 <= (gint)(array_set1->len) - 2; i_set1++)
 				{
-				DupeItem *di1 = g_array_index(array_set1, gpointer, i_set1);
-				DupeItem *di2 = g_array_index(array_set1, gpointer, i_set1 + 1);
+				DupeItem *di1 = (DupeItem *)g_array_index(array_set1, gpointer, i_set1);
+				DupeItem *di2 = (DupeItem *)g_array_index(array_set1, gpointer, i_set1 + 1);
 
 				check_result = dupe_match_check(di1, di2, dw);
 				if (check_result == DUPE_MATCH || check_result == DUPE_NAME_MATCH)
@@ -2013,7 +2013,7 @@ static void dupe_array_check(DupeWindow *dw )
 						break;
 						}
 					/* Look for multiple matches for item di1 */
-					di2 = g_array_index(array_set1, gpointer, i_set1 + 1);
+					di2 = (DupeItem *)g_array_index(array_set1, gpointer, i_set1 + 1);
 					check_result = dupe_match_check(di1, di2, dw);
 					while (check_result == DUPE_MATCH || check_result == DUPE_NAME_MATCH)
 						{
@@ -2027,7 +2027,7 @@ static void dupe_array_check(DupeWindow *dw )
 							{
 							break;
 							}
-						di2 = g_array_index(array_set1, gpointer, i_set1 + 1);
+						di2 = (DupeItem *)g_array_index(array_set1, gpointer, i_set1 + 1);
 						check_result = dupe_match_check(di1, di2, dw);
 						}
 					}
@@ -2266,7 +2266,7 @@ static void dupe_loader_done_cb(ImageLoader *il, gpointer data)
 
 	if (dw->setup_point)
 		{
-		DupeItem *di = dw->setup_point->data;
+		DupeItem *di = (DupeItem *)dw->setup_point->data;
 
 		if (!di->simd)
 			{
@@ -2334,7 +2334,7 @@ static gboolean create_checksums_dimensions(DupeWindow *dw, GList *list)
 
 			while (dw->setup_point)
 				{
-				DupeItem *di = dw->setup_point->data;
+				DupeItem *di = (DupeItem *)dw->setup_point->data;
 
 				dw->setup_point = dupe_setup_point_step(dw, dw->setup_point);
 				dw->setup_n++;
@@ -2371,7 +2371,7 @@ static gboolean create_checksums_dimensions(DupeWindow *dw, GList *list)
 
 			while (dw->setup_point)
 				{
-				DupeItem *di = dw->setup_point->data;
+				DupeItem *di = (DupeItem *)dw->setup_point->data;
 
 				dw->setup_point = dupe_setup_point_step(dw, dw->setup_point);
 				dw->setup_n++;
@@ -2465,7 +2465,7 @@ static gboolean dupe_check_cb(gpointer data)
 
 			while (dw->setup_point)
 				{
-				DupeItem *di = dw->setup_point->data;
+				DupeItem *di = (DupeItem *)dw->setup_point->data;
 
 				if (!di->simd)
 					{
@@ -2542,7 +2542,7 @@ static gboolean dupe_check_cb(gpointer data)
 				{
 				dw->setup_n++;
 				dupe_window_update_progress(dw, _("Sorting..."), 0.0, FALSE);
-				search_match_list_item = dw->search_matches_sorted->data;
+				search_match_list_item = (DupeSearchMatch *)dw->search_matches_sorted->data;
 
 				if (!dupe_match_link_exists(search_match_list_item->a, search_match_list_item->b))
 					{
@@ -2704,7 +2704,7 @@ static void dupe_item_remove(DupeWindow *dw, DupeItem *di)
 				DupeItem *new_parent;
 				DupeMatch *dm;
 
-				dm = parent->group->data;
+				dm = (DupeMatch *)parent->group->data;
 				new_parent = dm->di;
 				dupe_match_reparent(dw, parent, new_parent);
 				dupe_listview_remove(dw, parent);
@@ -2773,7 +2773,7 @@ static gboolean dupe_files_add_queue_cb(gpointer data)
 		return FALSE;
 		}
 
-	fd = queue->data;
+	fd = (FileData *)queue->data;
 	if (fd)
 		{
 		if (isfile(fd->path))
@@ -2894,7 +2894,7 @@ static void dupe_files_add(DupeWindow *dw, CollectionData *UNUSED(collection), C
 	work = g_list_first(dw->list);
 	while (work)
 		{
-		di_list = work->data;
+		di_list = (DupeItem *)work->data;
 		if (di_list->fd == di->fd)
 			{
 			return;
@@ -2910,7 +2910,7 @@ static void dupe_files_add(DupeWindow *dw, CollectionData *UNUSED(collection), C
 		work = g_list_first(dw->second_list);
 		while (work)
 			{
-			di_list = work->data;
+			di_list = (DupeItem *)work->data;
 			if (di_list->fd == di->fd)
 				{
 				return;
@@ -2939,14 +2939,14 @@ static void dupe_init_list_cache(DupeWindow *dw)
 
 	for (GList *i = dw->list; i != NULL; i = i->next)
 		{
-			DupeItem *di = i->data;
+			DupeItem *di = (DupeItem *)i->data;
 
 			g_hash_table_add(dw->list_cache, di->fd);
 		}
 
 	for (GList *i = dw->second_list; i != NULL; i = i->next)
 		{
-			DupeItem *di = i->data;
+			DupeItem *di = (DupeItem *)i->data;
 
 			g_hash_table_add(dw->second_list_cache, di->fd);
 		}
@@ -2998,7 +2998,7 @@ void dupe_window_add_files(DupeWindow *dw, GList *list, gboolean recurse)
 	work = list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 		if (isdir(fd->path) && !recurse)
 			{
@@ -3091,7 +3091,7 @@ static void dupe_item_update_fd_in_list(DupeWindow *dw, FileData *fd, GList *wor
 {
 	while (work)
 		{
-		DupeItem *di = work->data;
+		DupeItem *di = (DupeItem *)work->data;
 
 		if (di->fd == fd)
 			dupe_item_update(dw, di);
@@ -3258,7 +3258,7 @@ static void dupe_window_remove_selection(DupeWindow *dw, GtkWidget *listview)
 	work = slist;
 	while (work)
 		{
-		GtkTreePath *tpath = work->data;
+		GtkTreePath *tpath = (GtkTreePath *)work->data;
 		DupeItem *di = NULL;
 
 		gtk_tree_model_get_iter(store, &iter, tpath);
@@ -3275,7 +3275,7 @@ static void dupe_window_remove_selection(DupeWindow *dw, GtkWidget *listview)
 		{
 		DupeItem *di;
 
-		di = work->data;
+		di = (DupeItem *)work->data;
 		work = work->next;
 		dupe_item_remove(dw, di);
 		}
@@ -3374,7 +3374,7 @@ static void dupe_menu_edit_cb(GtkWidget *widget, gpointer data)
 	DupeWindow *dw;
 	const gchar *key = (gchar*)data;
 
-	dw = submenu_item_get_data(widget);
+	dw = (DupeWindow *)submenu_item_get_data(widget);
 	if (!dw) return;
 
 	dupe_window_edit_selected(dw, key);
@@ -3499,7 +3499,7 @@ static void dupe_pop_menu_collections_cb(GtkWidget *widget, gpointer data)
 	DupeWindow *dw;
 	GList *selection_list;
 
-	dw = submenu_item_get_data(widget);
+	dw = (DupeWindow *)submenu_item_get_data(widget);
 	selection_list = dupe_listview_get_selection(dw, dw->listview);
 	pop_menu_collections(selection_list, data);
 
@@ -4107,7 +4107,7 @@ static void dupe_listview_set_height(GtkWidget *listview, gboolean thumb)
 
 	list = gtk_cell_layout_get_cells(GTK_CELL_LAYOUT(column));
 	if (!list) return;
-	cell = list->data;
+	cell = (GtkCellRenderer *)list->data;
 	g_list_free(list);
 
 	g_object_set(G_OBJECT(cell), "height", (thumb) ? options->thumbnails.max_height : -1, NULL);
@@ -4257,7 +4257,7 @@ static gboolean dupe_window_keypress_cb(GtkWidget *UNUSED(widget), GdkEventKey *
 		GList *last;
 
 		last = g_list_last(slist);
-		tpath = last->data;
+		tpath = (GtkTreePath *)last->data;
 
 		/* last is newest selected file */
 		gtk_tree_model_get_iter(store, &iter, tpath);
@@ -4914,7 +4914,7 @@ static void confirm_dir_list_add(GtkWidget *UNUSED(widget), gpointer data)
 	work = d->list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 		if (isdir(fd->path))
 			{
@@ -5045,7 +5045,7 @@ static void dupe_dnd_data_get(GtkWidget *widget, GdkDragContext *context,
 			work = list;
 			while (work)
 				{
-				FileData *fd = work->data;
+				FileData *fd = (FileData *)work->data;
 				if (isdir(fd->path))
 					{
 					GtkWidget *menu;
@@ -5290,7 +5290,7 @@ static void export_duplicates_data_save_cb(FileDialog *fdlg, gpointer data)
 	slist = gtk_tree_selection_get_selected_rows(selection, &store);
 	work = slist;
 
-	tpath = work->data;
+	tpath = (GtkTreePath *)work->data;
 	gtk_tree_model_get_iter(store, &iter, tpath);
 	gtk_tree_model_get(GTK_TREE_MODEL(store), &iter, DUPE_COLUMN_COLOR, &color_new, -1);
 	color_old = !color_new;
@@ -5298,7 +5298,7 @@ static void export_duplicates_data_save_cb(FileDialog *fdlg, gpointer data)
 
 	while (work)
 		{
-		tpath = work->data;
+		tpath = (GtkTreePath *)work->data;
 		gtk_tree_model_get_iter(store, &iter, tpath);
 
 		gtk_tree_model_get(GTK_TREE_MODEL(store), &iter, DUPE_COLUMN_POINTER, &di, -1);
@@ -5383,7 +5383,7 @@ static void export_duplicates_data_save_cb(FileDialog *fdlg, gpointer data)
 static void pop_menu_export(GList *UNUSED(selection_list), gpointer dupe_window, gpointer data)
 {
 	const gint index = GPOINTER_TO_INT(data);
-	DupeWindow *dw = dupe_window;
+	DupeWindow *dw = (DupeWindow *)dupe_window;
 	gchar *title = "Export duplicates data";
 	gchar *default_path = "/tmp/";
 	gchar *file_extension;
@@ -5429,7 +5429,7 @@ static void dupe_pop_menu_export_cb(GtkWidget *widget, gpointer data)
 	DupeWindow *dw;
 	GList *selection_list;
 
-	dw = submenu_item_get_data(widget);
+	dw = (DupeWindow *)submenu_item_get_data(widget);
 	selection_list = dupe_listview_get_selection(dw, dw->listview);
 	pop_menu_export(selection_list, dw, data);
 

@@ -133,7 +133,7 @@ static void menu_item_add_main_window_accelerator(GtkWidget *menu, GtkAccelGroup
 
 	pango_parse_markup(menu_label, -1, '_', NULL, &menu_label_text, NULL, NULL);
 
-	lw = layout_window_list->data; /* get the actions from the first window, it should not matter, they should be the same in all windows */
+	lw = (LayoutWindow *)layout_window_list->data; /* get the actions from the first window, it should not matter, they should be the same in all windows */
 
 	g_assert(lw && lw->ui_manager);
 	groups = gtk_ui_manager_get_action_groups(lw->ui_manager);
@@ -189,8 +189,8 @@ GtkWidget *menu_item_add(GtkWidget *menu, const gchar *label,
 	hard_coded_window_keys *window_keys;
 
 	item = gtk_menu_item_new_with_mnemonic(label);
-	window_keys = g_object_get_data(G_OBJECT(menu), "window_keys");
-	accel_group = g_object_get_data(G_OBJECT(menu), "accel_group");
+	window_keys = (hard_coded_window_keys *)g_object_get_data(G_OBJECT(menu), "window_keys");
+	accel_group = (GtkAccelGroup *)g_object_get_data(G_OBJECT(menu), "accel_group");
 
 	if (accel_group && window_keys)
 		{
@@ -215,8 +215,8 @@ GtkWidget *menu_item_add_stock(GtkWidget *menu, const gchar *label, const gchar 
 	hard_coded_window_keys *window_keys;
 
 	item = gtk_image_menu_item_new_with_mnemonic(label);
-	window_keys = g_object_get_data(G_OBJECT(menu), "window_keys");
-	accel_group = g_object_get_data(G_OBJECT(menu), "accel_group");
+	window_keys = (hard_coded_window_keys *)g_object_get_data(G_OBJECT(menu), "window_keys");
+	accel_group = (GtkAccelGroup *)g_object_get_data(G_OBJECT(menu), "accel_group");
 
 	image = gtk_image_new_from_stock(stock_id, GTK_ICON_SIZE_MENU);
 	gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(item), image);
@@ -245,8 +245,8 @@ GtkWidget *menu_item_add_sensitive(GtkWidget *menu, const gchar *label, gboolean
 
 	item = menu_item_add(menu, label, func, data);
 	gtk_widget_set_sensitive(item, sensitive);
-	window_keys = g_object_get_data(G_OBJECT(menu), "window_keys");
-	accel_group = g_object_get_data(G_OBJECT(menu), "accel_group");
+	window_keys = (hard_coded_window_keys *)g_object_get_data(G_OBJECT(menu), "window_keys");
+	accel_group = (GtkAccelGroup *)g_object_get_data(G_OBJECT(menu), "accel_group");
 	if (accel_group && window_keys)
 		{
 		menu_item_add_accelerator(item, accel_group, window_keys);
@@ -268,8 +268,8 @@ GtkWidget *menu_item_add_stock_sensitive(GtkWidget *menu, const gchar *label, co
 
 	item = menu_item_add_stock(menu, label, stock_id, func, data);
 	gtk_widget_set_sensitive(item, sensitive);
-	window_keys = g_object_get_data(G_OBJECT(menu), "window_keys");
-	accel_group = g_object_get_data(G_OBJECT(menu), "accel_group");
+	window_keys = (hard_coded_window_keys *)g_object_get_data(G_OBJECT(menu), "window_keys");
+	accel_group = (GtkAccelGroup *)g_object_get_data(G_OBJECT(menu), "accel_group");
 	if (accel_group && window_keys)
 		{
 		menu_item_add_accelerator(item, accel_group, window_keys);
@@ -290,8 +290,8 @@ GtkWidget *menu_item_add_check(GtkWidget *menu, const gchar *label, gboolean act
 	hard_coded_window_keys *window_keys;
 
 	item = gtk_check_menu_item_new_with_mnemonic(label);
-	window_keys = g_object_get_data(G_OBJECT(menu), "window_keys");
-	accel_group = g_object_get_data(G_OBJECT(menu), "accel_group");
+	window_keys = (hard_coded_window_keys *)g_object_get_data(G_OBJECT(menu), "window_keys");
+	accel_group = (GtkAccelGroup *)g_object_get_data(G_OBJECT(menu), "accel_group");
 
 	if (accel_group && window_keys)
 		{
@@ -318,8 +318,8 @@ GtkWidget *menu_item_add_radio(GtkWidget *menu, const gchar *label, gpointer ite
 	g_object_set_data(G_OBJECT(item), "menu_item_radio_data", item_data);
 	g_object_set(G_OBJECT(item), "draw-as-radio", TRUE, NULL);
 
-	window_keys = g_object_get_data(G_OBJECT(menu), "window_keys");
-	accel_group = g_object_get_data(G_OBJECT(menu), "accel_group");
+	window_keys = (hard_coded_window_keys *)g_object_get_data(G_OBJECT(menu), "window_keys");
+	accel_group = (GtkAccelGroup *)g_object_get_data(G_OBJECT(menu), "accel_group");
 	if (accel_group && window_keys)
 		{
 		menu_item_add_accelerator(item, accel_group, window_keys);

@@ -575,7 +575,7 @@ gboolean copy_file(const gchar *s, const gchar *t)
 		gchar *link_target;
 		ssize_t i;
 
-		link_target = g_malloc(st.st_size + 1);
+		link_target = (gchar *)g_malloc(st.st_size + 1);
 		i = readlink(sl, link_target, st.st_size);
 		if (i<0)
 			{
@@ -591,7 +591,7 @@ gboolean copy_file(const gchar *s, const gchar *t)
 			gchar *lastslash = strrchr(sl, G_DIR_SEPARATOR);
 			gint len = lastslash - sl + 1;
 
-			absolute = g_malloc(len + st.st_size + 1);
+			absolute = (gchar *)g_malloc(len + st.st_size + 1);
 			strncpy(absolute, sl, len);
 			strcpy(absolute + len, link_target);
 			g_free(link_target);
@@ -751,7 +751,7 @@ GList *string_list_copy(const GList *list)
 		{
 		gchar *path;
 
-		path = work->data;
+		path = (gchar *)work->data;
 		work = work->next;
 
 		new_list = g_list_prepend(new_list, g_strdup(path));
@@ -1028,7 +1028,7 @@ struct _WebData
 static void web_file_async_ready_cb(GObject *source_object, GAsyncResult *res, gpointer data)
 {
 	GError *error = NULL;
-	WebData* web = data;
+	WebData* web = (WebData *)data;
 	gchar *tmp_filename;
 
 	if (!g_cancellable_is_cancelled(web->cancellable))
@@ -1055,7 +1055,7 @@ static void web_file_async_ready_cb(GObject *source_object, GAsyncResult *res, g
 
 static void web_file_progress_cb(goffset current_num_bytes, goffset total_num_bytes, gpointer data)
 {
-	WebData* web = data;
+	WebData* web = (WebData *)data;
 
 	if (!g_cancellable_is_cancelled(web->cancellable))
 		{
@@ -1065,7 +1065,7 @@ static void web_file_progress_cb(goffset current_num_bytes, goffset total_num_by
 
 static void download_web_file_cancel_button_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
-	WebData* web = data;
+	WebData* web = (WebData *)data;
 
 	g_cancellable_cancel(web->cancellable);
 }

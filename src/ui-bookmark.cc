@@ -213,7 +213,7 @@ static void bookmark_select_cb(GtkWidget *button, gpointer data)
 	BookMarkData *bm = (BookMarkData*)data;
 	BookButtonData *b;
 
-	b = g_object_get_data(G_OBJECT(button), "bookbuttondata");
+	b = (BookButtonData *)g_object_get_data(G_OBJECT(button), "bookbuttondata");
 	if (!b) return;
 
 	if (bm->select_func) bm->select_func(b->path, bm->select_data);
@@ -333,7 +333,7 @@ static void bookmark_move(BookMarkData *bm, GtkWidget *button, gint direction)
 
 	if (!bm->editable) return;
 
-	b = g_object_get_data(G_OBJECT(button), "bookbuttondata");
+	b = (BookButtonData *)g_object_get_data(G_OBJECT(button), "bookbuttondata");
 	if (!b) return;
 
 	list = gtk_container_get_children(GTK_CONTAINER(bm->box));
@@ -403,7 +403,7 @@ static void bookmark_menu_popup(BookMarkData *bm, GtkWidget *button,
 	GtkWidget *menu;
 	BookButtonData *b;
 
-	b = g_object_get_data(G_OBJECT(button), "bookbuttondata");
+	b = (BookButtonData *)g_object_get_data(G_OBJECT(button), "bookbuttondata");
 	if (!b) return;
 
 	bm->active_button = b;
@@ -483,7 +483,7 @@ static void bookmark_drag_set_data(GtkWidget *button,
 	return;
 	if (gdk_drag_context_get_dest_window(context) == gtk_widget_get_window(bm->widget)) return;
 
-	b = g_object_get_data(G_OBJECT(button), "bookbuttondata");
+	b = (BookButtonData *)g_object_get_data(G_OBJECT(button), "bookbuttondata");
 	if (!b) return;
 
 	list = g_list_append(list, b->path);
@@ -528,7 +528,7 @@ static gboolean bookmark_path_tooltip_cb(GtkWidget *button, gpointer UNUSED(data
 {
 	BookButtonData *b;
 
-	b = g_object_get_data(G_OBJECT(button), "bookbuttondata");
+	b = (BookButtonData *)g_object_get_data(G_OBJECT(button), "bookbuttondata");
 	gtk_widget_set_tooltip_text(GTK_WIDGET(button), b->path);
 
 	return FALSE;
@@ -580,9 +580,9 @@ static void bookmark_populate(BookMarkData *bm)
 			{
 			gchar *name;
 
-			name = work->data;
+			name = (gchar *)work->data;
 			work = work->next;
-			path = work->data;
+			path = (gchar *)work->data;
 			work = work->next;
 
 			if (strcmp(name, ".") == 0)
@@ -704,7 +704,7 @@ static void bookmark_populate_all(const gchar *key)
 		{
 		BookMarkData *bm;
 
-		bm = work->data;
+		bm = (BookMarkData *)work->data;
 		work = work->next;
 
 		if (strcmp(bm->key, key) == 0)
@@ -741,7 +741,7 @@ static void bookmark_dnd_get_data(GtkWidget *UNUSED(widget),
 		work = list;
 		while (work)
 			{
-			gchar *path = work->data;
+			gchar *path = (gchar *)work->data;
 			gchar *buf;
 
 			work = work->next;
@@ -828,7 +828,7 @@ void bookmark_list_set_key(GtkWidget *list, const gchar *key)
 
 	if (!list || !key) return;
 
-	bm = g_object_get_data(G_OBJECT(list), BOOKMARK_DATA_KEY);
+	bm = (BookMarkData *)g_object_get_data(G_OBJECT(list), BOOKMARK_DATA_KEY);
 	if (!bm) return;
 
 	if (bm->key && strcmp(bm->key, key) == 0) return;
@@ -843,7 +843,7 @@ void bookmark_list_set_no_defaults(GtkWidget *list, gboolean no_defaults)
 {
 	BookMarkData *bm;
 
-	bm = g_object_get_data(G_OBJECT(list), BOOKMARK_DATA_KEY);
+	bm = (BookMarkData *)g_object_get_data(G_OBJECT(list), BOOKMARK_DATA_KEY);
 	if (!bm) return;
 
 	bm->no_defaults = no_defaults;
@@ -853,7 +853,7 @@ void bookmark_list_set_editable(GtkWidget *list, gboolean editable)
 {
 	BookMarkData *bm;
 
-	bm = g_object_get_data(G_OBJECT(list), BOOKMARK_DATA_KEY);
+	bm = (BookMarkData *)g_object_get_data(G_OBJECT(list), BOOKMARK_DATA_KEY);
 	if (!bm) return;
 
 	bm->editable = editable;
@@ -863,7 +863,7 @@ void bookmark_list_set_only_directories(GtkWidget *list, gboolean only_directori
 {
 	BookMarkData *bm;
 
-	bm = g_object_get_data(G_OBJECT(list), BOOKMARK_DATA_KEY);
+	bm = (BookMarkData *)g_object_get_data(G_OBJECT(list), BOOKMARK_DATA_KEY);
 	if (!bm) return;
 
 	bm->only_directories = only_directories;
@@ -874,7 +874,7 @@ void bookmark_list_add(GtkWidget *list, const gchar *name, const gchar *path)
 	BookMarkData *bm;
 	gchar *buf;
 
-	bm = g_object_get_data(G_OBJECT(list), BOOKMARK_DATA_KEY);
+	bm = (BookMarkData *)g_object_get_data(G_OBJECT(list), BOOKMARK_DATA_KEY);
 	if (!bm) return;
 
 	buf = bookmark_string(name, path, NULL);
@@ -964,7 +964,7 @@ void history_combo_append_history(GtkWidget *widget, const gchar *text)
 	HistoryComboData *hc;
 	gchar *new_text;
 
-	hc = g_object_get_data(G_OBJECT(widget), "history_combo_data");
+	hc = (HistoryComboData *)g_object_get_data(G_OBJECT(widget), "history_combo_data");
 	if (!hc)
 		{
 		log_printf("widget is not a history combo\n");

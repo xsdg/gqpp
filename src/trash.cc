@@ -59,7 +59,7 @@ static gint file_util_safe_number(gint64 free_space)
 		FileData *fd;
 		gint v;
 
-		fd = work->data;
+		fd = (FileData *)work->data;
 		work = work->next;
 
 		v = (gint)strtol(fd->name, NULL, 10);
@@ -79,7 +79,7 @@ static gint file_util_safe_number(gint64 free_space)
 			sorted = TRUE;
 			}
 
-		fd = list->data;
+		fd = (FileData *)list->data;
 		list = g_list_remove(list, fd);
 
 		DEBUG_1("expunging from trash for space: %s", fd->name);

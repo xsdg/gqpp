@@ -295,7 +295,7 @@ static gboolean image_loader_psd_load(gpointer loader, const guchar *buf, gsize 
 	ctx->state = PSD_STATE_HEADER;
 
 	/* we'll allocate larger buffer once we know image size */
-	ctx->buffer = g_malloc(PSD_HEADER_SIZE);
+	ctx->buffer = (guchar *)g_malloc(PSD_HEADER_SIZE);
 	reset_context_buffer(ctx);
 
 	ctx->ch_bufs = NULL;
@@ -340,11 +340,11 @@ static gboolean image_loader_psd_load(gpointer loader, const guchar *buf, gsize 
 					/* we need buffer that can contain one channel data for one
 					   row in RLE compressed format. 2*width should be enough */
 					g_free(ctx->buffer);
-					ctx->buffer = g_malloc(ctx->width * 2 * ctx->depth_bytes);
+					ctx->buffer = (guchar *)g_malloc(ctx->width * 2 * ctx->depth_bytes);
 					
 					/* this will be needed for RLE decompression */
 					ctx->lines_lengths =
-						g_malloc(2 * ctx->channels * ctx->height);
+						(guint16 *)g_malloc(2 * ctx->channels * ctx->height);
 					
 					ctx->pixbuf = gdk_pixbuf_new(GDK_COLORSPACE_RGB,
 						FALSE, 8, ctx->width, ctx->height);
@@ -358,10 +358,10 @@ static gboolean image_loader_psd_load(gpointer loader, const guchar *buf, gsize 
 					}
 					
 					/* create separate buffers for each channel */
-					ctx->ch_bufs = g_malloc(sizeof(guchar*) * ctx->channels);
+					ctx->ch_bufs = (guchar **)g_malloc(sizeof(guchar*) * ctx->channels);
 					for (i = 0; i < ctx->channels; i++) {
 						ctx->ch_bufs[i] =
-							g_malloc(ctx->width*ctx->height*ctx->depth_bytes);
+							(guchar *)g_malloc(ctx->width*ctx->height*ctx->depth_bytes);
 
 						if (ctx->ch_bufs[i] == NULL) {
 						log_printf("warning: Insufficient memory to load PSD image file\n");

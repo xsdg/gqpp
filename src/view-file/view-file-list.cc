@@ -176,7 +176,7 @@ static void vflist_store_clear(ViewFile *vf, gboolean unlock_files)
 		filelist_read(vf->dir_fd, &files, NULL);
 		while (files)
 			{
-			FileData *fd = files->data;
+			FileData *fd = (FileData *)files->data;
 			files = files->next;
 			file_data_unlock(fd);
 			file_data_unref(fd);  // undo the ref that got added in filelist_read
@@ -341,7 +341,7 @@ GList *vflist_selection_get_one(ViewFile *vf, FileData *fd)
 				GList *work = fd->sidecar_files;
 				while (work)
 					{
-					FileData *sfd = work->data;
+					FileData *sfd = (FileData *)work->data;
 					list = g_list_prepend(list, file_data_ref(sfd));
 					work = work->next;
 					}
@@ -439,7 +439,7 @@ void vflist_star_rating_set(ViewFile *vf, gboolean enable)
 	work = columns;
 	while (work)
 		{
-		GtkTreeViewColumn *column = work->data;
+		GtkTreeViewColumn *column = (GtkTreeViewColumn *)work->data;
 		gint col_idx = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(column), "column_store_idx"));
 		work = work->next;
 
@@ -990,7 +990,7 @@ static void vflist_setup_iter_recursive(ViewFile *vf, GtkTreeStore *store, GtkTr
 	while (work)
 		{
 		gint match;
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		gboolean done = FALSE;
 
 		while (!done)
@@ -1093,7 +1093,7 @@ static void vflist_setup_iter_recursive(ViewFile *vf, GtkTreeStore *store, GtkTr
 		{
 		gint i;
 		gint num_total = num_prepended + num_ordered;
-		gint *new_order = g_malloc(num_total * sizeof(gint));
+		gint *new_order = (gint *)g_malloc(num_total * sizeof(gint));
 
 		for (i = 0; i < num_total; i++)
 			{
@@ -1123,7 +1123,7 @@ void vflist_sort_set(ViewFile *vf, SortType type, gboolean ascend)
 	i = 0;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		g_hash_table_insert(fd_idx_hash, fd, GINT_TO_POINTER(i));
 		i++;
 		work = work->next;
@@ -1134,13 +1134,13 @@ void vflist_sort_set(ViewFile *vf, SortType type, gboolean ascend)
 
 	vf->list = filelist_sort(vf->list, vf->sort_method, vf->sort_ascend);
 
-	new_order = g_malloc(i * sizeof(gint));
+	new_order = (gint *)g_malloc(i * sizeof(gint));
 
 	work = vf->list;
 	i = 0;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		new_order[i] = GPOINTER_TO_INT(g_hash_table_lookup(fd_idx_hash, fd));
 		i++;
 		work = work->next;
@@ -1165,7 +1165,7 @@ void vflist_thumb_progress_count(GList *list, gint *count, gint *done)
 	GList *work = list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 
 		if (fd->thumb_pixbuf) (*done)++;
@@ -1183,7 +1183,7 @@ void vflist_read_metadata_progress_count(GList *list, gint *count, gint *done)
 	GList *work = list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 
 		if (fd->metadata_in_idle_loaded) (*done)++;
@@ -1244,7 +1244,7 @@ FileData *vflist_thumb_next_fd(ViewFile *vf)
 		GList *work = vf->list;
 		while (work && !fd)
 			{
-			FileData *fd_p = work->data;
+			FileData *fd_p = (FileData *)work->data;
 			if (!fd_p->thumb_pixbuf)
 				fd = fd_p;
 			else
@@ -1253,7 +1253,7 @@ FileData *vflist_thumb_next_fd(ViewFile *vf)
 
 				while (work2 && !fd)
 					{
-					fd_p = work2->data;
+					fd_p = (FileData *)work2->data;
 					if (!fd_p->thumb_pixbuf) fd = fd_p;
 					work2 = work2->next;
 					}
@@ -1352,7 +1352,7 @@ FileData *vflist_star_next_fd(ViewFile *vf)
 
 		while (work && !fd)
 			{
-			FileData *fd_p = work->data;
+			FileData *fd_p = (FileData *)work->data;
 
 			if (fd_p && fd_p->rating == STAR_RATING_NOT_READ)
 				{
@@ -1394,7 +1394,7 @@ gint vflist_index_by_fd(ViewFile *vf, FileData *fd)
 	work = vf->list;
 	while (work)
 		{
-		FileData *list_fd = work->data;
+		FileData *list_fd = (FileData *)work->data;
 		if (list_fd == fd) return p;
 
 		work2 = list_fd->sidecar_files;
@@ -1404,7 +1404,7 @@ gint vflist_index_by_fd(ViewFile *vf, FileData *fd)
 			   it is sufficient for next/prev navigation but it should be rewritten
 			   without using indexes at all
 			*/
-			FileData *sidecar_fd = work2->data;
+			FileData *sidecar_fd = (FileData *)work2->data;
 			if (sidecar_fd == fd) return p;
 			work2 = work2->next;
 			}
@@ -1435,7 +1435,7 @@ static gboolean vflist_row_is_selected(ViewFile *vf, FileData *fd)
 	work = slist;
 	while (!found && work)
 		{
-		GtkTreePath *tpath = work->data;
+		GtkTreePath *tpath = (GtkTreePath *)work->data;
 		FileData *fd_n;
 		GtkTreeIter iter;
 
@@ -1476,7 +1476,7 @@ guint vflist_selection_count(ViewFile *vf, gint64 *bytes)
 		work = slist;
 		while (work)
 			{
-			GtkTreePath *tpath = work->data;
+			GtkTreePath *tpath = (GtkTreePath *)work->data;
 			GtkTreeIter iter;
 			FileData *fd;
 
@@ -1510,7 +1510,7 @@ GList *vflist_selection_get_list(ViewFile *vf)
 	work = slist;
 	while (work)
 		{
-		GtkTreePath *tpath = work->data;
+		GtkTreePath *tpath = (GtkTreePath *)work->data;
 		FileData *fd;
 		GtkTreeIter iter;
 
@@ -1525,7 +1525,7 @@ GList *vflist_selection_get_list(ViewFile *vf)
 			GList *work2 = fd->sidecar_files;
 			while (work2)
 				{
-				FileData *sfd = work2->data;
+				FileData *sfd = (FileData *)work2->data;
 				list = g_list_prepend(list, file_data_ref(sfd));
 				work2 = work2->next;
 				}
@@ -1552,7 +1552,7 @@ GList *vflist_selection_get_list_by_index(ViewFile *vf)
 	work = slist;
 	while (work)
 		{
-		GtkTreePath *tpath = work->data;
+		GtkTreePath *tpath = (GtkTreePath *)work->data;
 		FileData *fd;
 		GtkTreeIter iter;
 
@@ -1684,7 +1684,7 @@ void vflist_select_list(ViewFile *vf, GList *list)
 		{
 		FileData *fd;
 
-		fd = work->data;
+		fd = (FileData *)work->data;
 
 		if (vflist_find_row(vf, fd, &iter) < 0) return;
 		if (!vflist_row_is_selected(vf, fd))
@@ -1709,7 +1709,7 @@ static void vflist_select_closest(ViewFile *vf, FileData *sel_fd)
 	while (work)
 		{
 		gint match;
-		fd = work->data;
+		fd = (FileData *)work->data;
 		work = work->next;
 
 		match = filelist_sort_compare_filedata_full(fd, sel_fd, vf->sort_method, vf->sort_ascend);
@@ -1780,7 +1780,7 @@ void vflist_selection_to_mark(ViewFile *vf, gint mark, SelectionToMarkMode mode)
 	work = slist;
 	while (work)
 		{
-		GtkTreePath *tpath = work->data;
+		GtkTreePath *tpath = (GtkTreePath *)work->data;
 		FileData *fd;
 		GtkTreeIter iter;
 
@@ -1841,7 +1841,7 @@ static void vflist_listview_set_columns(GtkWidget *listview, gboolean thumb, gbo
 
 	list = gtk_cell_layout_get_cells(GTK_CELL_LAYOUT(column));
 	if (!list) return;
-	cell = list->data;
+	cell = (GtkCellRenderer *)list->data;
 	g_list_free(list);
 
 	g_object_set(G_OBJECT(cell), "height", options->thumbnails.max_height, NULL);
@@ -2275,7 +2275,7 @@ void vflist_marks_set(ViewFile *vf, gboolean enable)
 	work = columns;
 	while (work)
 		{
-		GtkTreeViewColumn *column = work->data;
+		GtkTreeViewColumn *column = (GtkTreeViewColumn *)work->data;
 		gint col_idx = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(column), "column_store_idx"));
 		work = work->next;
 

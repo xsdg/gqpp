@@ -546,7 +546,7 @@ gqv_cell_renderer_icon_get_layout(GQvCellRendererIcon *cellicon, GtkWidget *widg
 GtkCellRenderer *
 gqv_cell_renderer_icon_new(void)
 {
-	return g_object_new(GQV_TYPE_CELL_RENDERER_ICON, NULL);
+	return (GtkCellRenderer *)g_object_new(GQV_TYPE_CELL_RENDERER_ICON, NULL);
 }
 
 static void gqv_cell_renderer_icon_get_size(GtkCellRenderer    *cell,

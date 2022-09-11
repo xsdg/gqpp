@@ -113,7 +113,7 @@ static void bar_pane_histogram_set_fd(GtkWidget *pane, FileData *fd)
 {
 	PaneHistogramData *phd;
 
-	phd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	phd = (PaneHistogramData *)g_object_get_data(G_OBJECT(pane), "pane_data");
 	if (!phd) return;
 
 	file_data_unref(phd->fd);
@@ -126,7 +126,7 @@ static void bar_pane_histogram_write_config(GtkWidget *pane, GString *outstr, gi
 {
 	PaneHistogramData *phd;
 
-	phd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	phd = (PaneHistogramData *)g_object_get_data(G_OBJECT(pane), "pane_data");
 	if (!phd) return;
 
 	WRITE_NL(); WRITE_STRING("<pane_histogram ");
@@ -345,7 +345,7 @@ void bar_pane_histogram_update_from_config(GtkWidget *pane, const gchar **attrib
 {
 	PaneHistogramData *phd;
 
-	phd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	phd = (PaneHistogramData *)g_object_get_data(G_OBJECT(pane), "pane_data");
 	if (!phd) return;
 
 	gint histogram_channel = phd->histogram->histogram_channel;

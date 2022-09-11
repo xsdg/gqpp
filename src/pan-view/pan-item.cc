@@ -138,7 +138,7 @@ void pan_item_box_shadow(PanItem *pi, gint offset, gint fade)
 
 	if (!pi || pi->type != PAN_ITEM_BOX) return;
 
-	shadow = pi->data;
+	shadow = (gint *)pi->data;
 	if (shadow)
 		{
 		pi->width -= shadow[0];
@@ -166,7 +166,7 @@ gint pan_item_box_draw(PanWindow *UNUSED(pw), PanItem *pi, GdkPixbuf *pixbuf, Pi
 	bw = pi->width;
 	bh = pi->height;
 
-	shadow = pi->data;
+	shadow = (gint *)pi->data;
 	if (shadow)
 		{
 		bw -= shadow[0];
@@ -308,7 +308,7 @@ gint pan_item_tri_draw(PanWindow *UNUSED(pw), PanItem *pi, GdkPixbuf *pixbuf, Pi
 			     pi->x, pi->y, pi->width, pi->height,
 			     &rx, &ry, &rw, &rh) && pi->data)
 		{
-		gint *coord = pi->data;
+		gint *coord = (gint *)pi->data;
 		pixbuf_draw_triangle(pixbuf,
 				     rx - x, ry - y, rw, rh,
 				     coord[0] - x, coord[1] - y,
@@ -616,7 +616,7 @@ static void pan_item_image_find_size(PanWindow *pw, PanItem *pi, gint w, gint h)
 		{
 		PanCacheData *pc;
 
-		pc = work->data;
+		pc = (PanCacheData *)work->data;
 		work = work->next;
 
 		if (pc->cd && pc->cd->dimensions &&
@@ -704,7 +704,7 @@ PanItem *pan_item_find_by_key(PanWindow *pw, PanItemType type, const gchar *key)
 		{
 		PanItem *pi;
 
-		pi = work->data;
+		pi = (PanItem *)work->data;
 		if ((pi->type == type || type == PAN_ITEM_NONE) &&
 		     pi->key && strcmp(pi->key, key) == 0)
 			{
@@ -717,7 +717,7 @@ PanItem *pan_item_find_by_key(PanWindow *pw, PanItemType type, const gchar *key)
 		{
 		PanItem *pi;
 
-		pi = work->data;
+		pi = (PanItem *)work->data;
 		if ((pi->type == type || type == PAN_ITEM_NONE) &&
 		     pi->key && strcmp(pi->key, key) == 0)
 			{
@@ -741,7 +741,7 @@ static GList *pan_item_find_by_path_l(GList *list, GList *search_list,
 		{
 		PanItem *pi;
 
-		pi = work->data;
+		pi = (PanItem *)work->data;
 		if ((pi->type == type || type == PAN_ITEM_NONE) && pi->fd)
 			{
 			gboolean match = FALSE;
@@ -817,7 +817,7 @@ static PanItem *pan_item_find_by_coord_l(GList *list, PanItemType type, gint x, 
 		{
 		PanItem *pi;
 
-		pi = work->data;
+		pi = (PanItem *)work->data;
 		if ((pi->type == type || type == PAN_ITEM_NONE) &&
 		     x >= pi->x && x < pi->x + pi->width &&
 		     y >= pi->y && y < pi->y + pi->height &&
@@ -921,7 +921,7 @@ void pan_text_alignment_calc(PanTextAlignment *ta, PanItem *box)
 		{
 		PanItem *p;
 
-		p = work1->data;
+		p = (PanItem *)work1->data;
 		work1 = work1->next;
 
 		if (p && p->width > cw1) cw1 = p->width;
@@ -932,7 +932,7 @@ void pan_text_alignment_calc(PanTextAlignment *ta, PanItem *box)
 		{
 		PanItem *p;
 
-		p = work2->data;
+		p = (PanItem *)work2->data;
 		work2 = work2->next;
 
 		if (p && p->width > cw2) cw2 = p->width;
@@ -948,8 +948,8 @@ void pan_text_alignment_calc(PanTextAlignment *ta, PanItem *box)
 		PanItem *p2;
 		gint height = 0;
 
-		p1 = work1->data;
-		p2 = work2->data;
+		p1 = (PanItem *)work1->data;
+		p2 = (PanItem *)work2->data;
 		work1 = work1->next;
 		work2 = work2->next;
 

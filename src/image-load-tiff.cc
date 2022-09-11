@@ -221,7 +221,7 @@ static gboolean image_loader_tiff_load (gpointer loader, const guchar *buf, gsiz
 	lt->requested_height = height;
 	lt->size_cb(loader, lt->requested_width, lt->requested_height, lt->data);
 
-	pixels = g_try_malloc (bytes);
+	pixels = (guchar *)g_try_malloc (bytes);
 
 	if (!pixels)
 		{

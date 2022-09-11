@@ -507,7 +507,7 @@ static void li_pop_menu_edit_cb(GtkWidget *widget, gpointer data)
 	LayoutWindow *lw;
 	const gchar *key = (gchar*)data;
 
-	lw = submenu_item_get_data(widget);
+	lw = (LayoutWindow *)submenu_item_get_data(widget);
 
 	if (!editor_window_flag_set(key))
 		{
@@ -521,7 +521,7 @@ static void li_pop_menu_alter_cb(GtkWidget *widget, gpointer data)
 	LayoutWindow *lw = (LayoutWindow*)data;
 	AlterType type;
 
-	lw = submenu_item_get_data(widget);
+	lw = (LayoutWindow *)submenu_item_get_data(widget);
 	type = (AlterType)GPOINTER_TO_INT(data);
 
 	image_alter_orientation(lw->image, lw->image->image_fd, type);
@@ -542,7 +542,7 @@ static GtkWidget *li_pop_menu_click_parent(GtkWidget *widget, LayoutWindow *lw)
 	menu = gtk_widget_get_toplevel(widget);
 	if (!menu) return NULL;
 
-	parent = g_object_get_data(G_OBJECT(menu), "click_parent");
+	parent = (GtkWidget *)g_object_get_data(G_OBJECT(menu), "click_parent");
 
 	if (!parent && lw->full_screen)
 		{
@@ -742,7 +742,7 @@ static void layout_pop_menu_collections_cb(GtkWidget *widget, gpointer data)
 	LayoutWindow *lw;
 	GList *selection_list = NULL;
 
-	lw = submenu_item_get_data(widget);
+	lw = (LayoutWindow *)submenu_item_get_data(widget);
 	selection_list = g_list_append(selection_list, layout_image_get_fd(lw));
 	pop_menu_collections(selection_list, data);
 
@@ -936,7 +936,7 @@ static void layout_image_dnd_receive(GtkWidget *widget, GdkDragContext *UNUSED(c
 
 		if (list)
 			{
-			FileData *fd = list->data;
+			FileData *fd = (FileData *)list->data;
 
 			if (isfile(fd->path))
 				{
@@ -1226,12 +1226,12 @@ void layout_image_alter_orientation(LayoutWindow *lw, AlterType type)
 		{
 		if (lw->vf->type == FILEVIEW_ICON)
 			{
-			fd_n = work->data;
+			fd_n = (FileData *)work->data;
 			work = work->next;
 			}
 		else
 			{
-			tpath = work->data;
+			tpath = (GtkTreePath *)work->data;
 			gtk_tree_model_get_iter(store, &iter, tpath);
 			gtk_tree_model_get(store, &iter, FILE_COLUMN_POINTER, &fd_n, -1);
 			work = work->next;
@@ -1275,12 +1275,12 @@ void layout_image_rating(LayoutWindow *lw, const gchar *rating)
 		{
 		if (lw->vf->type == FILEVIEW_ICON)
 			{
-			fd_n = work->data;
+			fd_n = (FileData *)work->data;
 			work = work->next;
 			}
 		else
 			{
-			tpath = work->data;
+			tpath = (GtkTreePath *)work->data;
 			gtk_tree_model_get_iter(store, &iter, tpath);
 			gtk_tree_model_get(store, &iter, FILE_COLUMN_POINTER, &fd_n, -1);
 			work = work->next;
@@ -2258,7 +2258,7 @@ static void layout_image_setup_split_common(LayoutWindow *lw, gint n)
 
 				while (work && j < i)
 					{
-					FileData *fd = work->data;
+					FileData *fd = (FileData *)work->data;
 					work = work->prev;
 
 					if (!fd || !*fd->path || fd->parent ||
