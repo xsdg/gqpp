@@ -486,7 +486,7 @@ static gboolean metadata_legacy_write(FileData *fd)
 
 	have_keywords = g_hash_table_lookup_extended(fd->modified_xmp, KEYWORD_KEY, NULL, &keywords);
 	have_comment = g_hash_table_lookup_extended(fd->modified_xmp, COMMENT_KEY, NULL, &comment_l);
-	comment = (const gchar *)(have_comment && comment_l) ? ((GList *)comment_l)->data : NULL;
+	comment = (have_comment && comment_l) ? (const gchar *)((GList *)comment_l)->data : NULL;
 
 	if (!have_keywords || !have_comment) metadata_file_read(metadata_pathl, &orig_keywords, &orig_comment);
 

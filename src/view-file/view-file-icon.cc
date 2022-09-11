@@ -1578,7 +1578,7 @@ static void vficon_populate(ViewFile *vf, gboolean resize, gboolean keep_positio
 			gtk_tree_view_column_set_fixed_width(column, thumb_width + (THUMB_BORDER_PADDING * 6));
 
 			list = gtk_cell_layout_get_cells(GTK_CELL_LAYOUT(column));
-			cell = (GtkCellRenderer *)(list) ? list->data : NULL;
+			cell = (list) ? (GtkCellRenderer *)list->data : NULL;
 			g_list_free(list);
 
 			if (cell && GQV_IS_CELL_RENDERER_ICON(cell))

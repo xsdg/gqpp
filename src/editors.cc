@@ -1045,7 +1045,7 @@ static void editor_child_exit_cb(GPid pid, gint status, gpointer data)
 static EditorFlags editor_command_one(const EditorDescription *editor, GList *list, EditorData *ed)
 {
 	gchar *command;
-	FileData *fd = (FileData *)(ed->flags & EDITOR_NO_PARAM) ? NULL : list->data;;
+	FileData *fd = (ed->flags & EDITOR_NO_PARAM) ? NULL : (FileData *)list->data;;
 	GPid pid;
 	gint standard_output;
 	gint standard_error;
@@ -1161,7 +1161,7 @@ static EditorFlags editor_command_next_start(EditorData *ed)
 		FileData *fd;
 		EditorFlags error;
 
-		fd = (FileData *)(ed->flags & EDITOR_NO_PARAM) ? NULL : ed->list->data;
+		fd = (ed->flags & EDITOR_NO_PARAM) ? NULL : (FileData *)ed->list->data;
 
 		if (ed->vd)
 			{

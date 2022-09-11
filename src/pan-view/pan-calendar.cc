@@ -347,7 +347,7 @@ void pan_calendar_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *he
 			dx = x + PAN_CAL_DOT_GAP * 2;
 			dy = y + PAN_CAL_DOT_GAP * 2;
 
-			fd = (FileData *)(work) ? work->data : NULL;
+			fd = (work) ? (FileData *)work->data : NULL;
 			while (fd && pan_date_compare(fd->date, dt, PAN_DATE_LENGTH_DAY))
 				{
 				PanItem *pi;
@@ -373,7 +373,7 @@ void pan_calendar_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *he
 				n++;
 
 				work = work->next;
-				fd = (FileData *)(work) ? work->data : NULL;
+				fd = (work) ? (FileData *)work->data : NULL;
 				}
 
 			if (n > 0)
