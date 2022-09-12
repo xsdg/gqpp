@@ -88,7 +88,7 @@ hard_coded_window_keys collection_window_keys[] = {
 	{NO_GDK_MODIFIER, GDK_KEY_Return, N_("View")},
 	{NO_GDK_MODIFIER, 'V', N_("View in new window")},
 	{GDK_CONTROL_MASK, 'A', N_("Select all")},
-	{GDK_CONTROL_MASK + GDK_SHIFT_MASK, 'A', N_("Select none")},
+	{(GdkModifierType)(GDK_CONTROL_MASK + GDK_SHIFT_MASK), 'A', N_("Select none")},
 	{GDK_MOD1_MASK, 'R', N_("Rectangular selection")},
 	{NO_GDK_MODIFIER, GDK_KEY_space, N_("Select single file")},
 	{GDK_CONTROL_MASK, GDK_KEY_space, N_("Toggle select image")},
@@ -351,14 +351,14 @@ static void collection_table_selection_add(CollectTable *ct, CollectInfo *info, 
 {
 	if (!info) return;
 
-	collection_table_selection_set(ct, info, info->flag_mask | mask, iter);
+	collection_table_selection_set(ct, info, (SelectionType)(info->flag_mask | mask), iter);
 }
 
 static void collection_table_selection_remove(CollectTable *ct, CollectInfo *info, SelectionType mask, GtkTreeIter *iter)
 {
 	if (!info) return;
 
-	collection_table_selection_set(ct, info, info->flag_mask & ~mask, iter);
+	collection_table_selection_set(ct, info, (SelectionType)(info->flag_mask & ~mask), iter);
 }
 /*
  *-------------------------------------------------------------------
@@ -393,7 +393,7 @@ void collection_table_select_all(CollectTable *ct)
 	while (work)
 		{
 		ct->selection = g_list_append(ct->selection, work->data);
-		collection_table_selection_add(ct, work->data, SELECTION_SELECTED, NULL);
+		collection_table_selection_add(ct, (CollectInfo *)work->data, SELECTION_SELECTED, NULL);
 		work = work->next;
 		}
 
@@ -407,7 +407,7 @@ void collection_table_unselect_all(CollectTable *ct)
 	work = ct->selection;
 	while (work)
 		{
-		collection_table_selection_remove(ct, work->data, SELECTION_SELECTED, NULL);
+		collection_table_selection_remove(ct, (CollectInfo *)work->data, SELECTION_SELECTED, NULL);
 		work = work->next;
 		}
 
@@ -1043,7 +1043,7 @@ static GtkWidget *collection_table_popup_menu(CollectTable *ct, gboolean over_ic
 				G_CALLBACK(collection_table_popup_delete_cb), ct);
 
 	menu_item_add_divider(menu);
-	submenu = submenu_add_sort(NULL, G_CALLBACK(collection_table_popup_sort_cb), ct, FALSE, TRUE, FALSE, 0);
+	submenu = submenu_add_sort(NULL, G_CALLBACK(collection_table_popup_sort_cb), ct, FALSE, TRUE, FALSE, (SortType)0);
 	menu_item_add_divider(submenu);
 	menu_item_add(submenu, _("Randomize"),
 			G_CALLBACK(collection_table_popup_randomize_cb), ct);
@@ -2452,7 +2452,7 @@ static void collection_table_dnd_leave(GtkWidget *UNUSED(widget), GdkDragContext
 
 static void collection_table_dnd_init(CollectTable *ct)
 {
-	gtk_drag_source_set(ct->listview, GDK_BUTTON1_MASK | GDK_BUTTON2_MASK,
+	gtk_drag_source_set(ct->listview, (GdkModifierType)(GDK_BUTTON1_MASK | GDK_BUTTON2_MASK),
 			    collection_drag_types, n_collection_drag_types,
 			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
 	g_signal_connect(G_OBJECT(ct->listview), "drag_data_get",
@@ -2463,7 +2463,7 @@ static void collection_table_dnd_init(CollectTable *ct)
 			 G_CALLBACK(collection_table_dnd_end), ct);
 
 	gtk_drag_dest_set(ct->listview,
-			  GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_HIGHLIGHT | GTK_DEST_DEFAULT_DROP,
+			  (GdkModifierType)(GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_HIGHLIGHT | GTK_DEST_DEFAULT_DROP),
 			  collection_drop_types, n_collection_drop_types,
 			  GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_ASK);
 	g_signal_connect(G_OBJECT(ct->listview), "drag_motion",

@@ -113,7 +113,7 @@ gqv_cell_renderer_icon_get_type(void)
 
 		cell_icon_type = g_type_register_static(GTK_TYPE_CELL_RENDERER,
 							"GQvCellRendererIcon",
-							&cell_icon_info, 0);
+							&cell_icon_info, (GTypeFlags)0);
 		}
 
 	return cell_icon_type;
@@ -122,7 +122,7 @@ gqv_cell_renderer_icon_get_type(void)
 static void
 gqv_cell_renderer_icon_init_wrapper(void *data, void *UNUSED(user_data))
 {
-	gqv_cell_renderer_icon_init(data);
+	gqv_cell_renderer_icon_init((GQvCellRendererIcon *)data);
 }
 
 static void
@@ -135,7 +135,7 @@ gqv_cell_renderer_icon_init(GQvCellRendererIcon *cellicon)
 static void
 gqv_cell_renderer_icon_class_init_wrapper(void *data, void *UNUSED(user_data))
 {
-	gqv_cell_renderer_icon_class_init(data);
+	gqv_cell_renderer_icon_class_init((GQvCellRendererIconClass *)data);
 }
 
 static void
@@ -452,10 +452,10 @@ gqv_cell_renderer_icon_set_property(GObject		*object,
 		}
 		break;
 	case PROP_BACKGROUND_GDK:
-		set_bg_color(cellicon, g_value_get_boxed(value));
+		set_bg_color(cellicon, (GdkColor *)g_value_get_boxed(value));
 		break;
 	case PROP_FOREGROUND_GDK:
-		set_fg_color(cellicon, g_value_get_boxed(value));
+		set_fg_color(cellicon, (GdkColor *)g_value_get_boxed(value));
 		break;
 	case PROP_FOCUSED:
 		cellicon->focused = g_value_get_boolean(value);
@@ -751,10 +751,10 @@ static void gqv_cell_renderer_icon_render(GtkCellRenderer *cell,
 			{
 			for (i = 0; i < cellicon->num_marks; i++)
 				{
-  				state &= ~(GTK_STATE_FLAG_CHECKED);
+  				state = (GtkStateFlags)(state & ~GTK_STATE_FLAG_CHECKED);
 
 				if ((cellicon->marks & (1 << i)))
-					state |= GTK_STATE_FLAG_CHECKED;
+					state = (GtkStateFlags)(state | GTK_STATE_FLAG_CHECKED);
 				cairo_save (cr);
 
 				cairo_rectangle(cr,

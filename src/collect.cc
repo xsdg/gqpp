@@ -751,7 +751,7 @@ static CollectInfo *collection_info_new_if_not_exists(CollectionData *cd, struct
 	if (g_hash_table_lookup(cd->existence, fd->path)) return NULL;
 
 	ci = collection_info_new(fd, st, NULL);
-	if (ci) g_hash_table_insert(cd->existence, fd->path, "");
+	if (ci) g_hash_table_insert(cd->existence, fd->path, &(""));
 	return ci;
 }
 
@@ -876,7 +876,7 @@ void collection_remove_by_info_list(CollectionData *cd, GList *list)
 	work = list;
 	while (work)
 		{
-		cd->list = collection_list_remove(cd->list, work->data);
+		cd->list = collection_list_remove(cd->list, (CollectInfo *)work->data);
 		work = work->next;
 		}
 	cd->changed = (cd->list != NULL);
@@ -1357,7 +1357,7 @@ CollectWindow *collection_window_new(const gchar *path)
 	geometry.base_width = COLLECT_DEF_WIDTH;
 	geometry.base_height = COLLECT_DEF_HEIGHT;
 	gtk_window_set_geometry_hints(GTK_WINDOW(cw->window), NULL, &geometry,
-				      GDK_HINT_MIN_SIZE | GDK_HINT_BASE_SIZE);
+				      (GdkWindowHints)(GDK_HINT_MIN_SIZE | GDK_HINT_BASE_SIZE));
 
 	if (options->collections_on_top)
 		{

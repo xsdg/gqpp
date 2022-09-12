@@ -192,7 +192,7 @@ gboolean editor_read_desktop_file(const gchar *path)
 	if (g_hash_table_lookup(editors, key)) return FALSE; /* the file found earlier wins */
 
 	key_file = g_key_file_new();
-	if (!g_key_file_load_from_file(key_file, path, 0, NULL))
+	if (!g_key_file_load_from_file(key_file, path, (GKeyFileFlags)0, NULL))
 		{
 		g_key_file_free(key_file);
 		return FALSE;

@@ -179,7 +179,7 @@ static void bar_sort_undo_set(SortData *sd, GList *src_list, const gchar *dest)
 		GList *work = sd->undo_src_list;
 		while(work)
 			{
-			gchar *filename =  g_strdup(filename_from_path(work->data));
+			gchar *filename =  g_strdup(filename_from_path((const gchar *)work->data));
 			gchar *dest_path = g_build_filename(g_strdup(dest), filename, NULL);
 			sd->undo_dest_list = g_list_prepend(sd->undo_dest_list, g_strdup(dest_path));
 			work = work->next;
@@ -214,12 +214,12 @@ static void bar_sort_undo_folder(SortData *sd, GtkWidget *button)
 				{
 				GList *work = NULL;
 
-				src_path = g_strdup(sd->undo_src_list->data);
+				src_path = g_strdup((const gchar *)sd->undo_src_list->data);
 				src_dir = remove_level_from_path(src_path);
 				list = sd->undo_dest_list;
 				while (list)
 					{
-					work = g_list_prepend(work, file_data_new_group(list->data));
+					work = g_list_prepend(work, file_data_new_group((const gchar *)list->data));
 					list=list->next;
 					}
 				file_util_move_simple(work, src_dir, sd->lw->window);
@@ -239,7 +239,7 @@ static void bar_sort_undo_folder(SortData *sd, GtkWidget *button)
 				delete_list = sd->undo_dest_list;
 				while (delete_list)
 					{
-					work = g_list_append(work, file_data_new_group(delete_list->data));
+					work = g_list_append(work, file_data_new_group((const gchar *)delete_list->data));
 					delete_list = delete_list->next;
 					}
 				options->file_ops.safe_delete_enable = TRUE;
@@ -740,7 +740,7 @@ static GtkWidget *bar_sort_new(LayoutWindow *lw, SortActionType action,
 					      _("Undo last image"),
 					      G_CALLBACK(bar_sort_undo_cb), sd);
 
-	sd->mode = -1;
+	sd->mode = (SortModeType)-1;
 	bar_sort_mode_sync(sd, mode);
 	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), sd->mode);
 
@@ -791,9 +791,9 @@ void bar_sort_cold_start(LayoutWindow *lw, const gchar **attribute_names, const 
 		log_printf("unknown attribute %s = %s\n", option, value);
 		}
 
-	lw->options.action = action;
-	lw->options.mode = mode;
-	lw->options.selection = selection;
+	lw->options.action = (SortActionType)action;
+	lw->options.mode = (SortModeType)mode;
+	lw->options.selection = (SortSelectionType)selection;
 	lw->options.filter_key = g_strdup(filter_key);
 	lw->bar_sort_enabled = enabled;
 
