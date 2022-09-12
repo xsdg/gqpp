@@ -502,7 +502,7 @@ GtkWidget *advanced_exif_new(LayoutWindow *lw)
 	gtk_tree_view_set_search_equal_func(GTK_TREE_VIEW(ew->listview), search_function_cb, ew, NULL);
 
 	gtk_drag_source_set(ew->listview,
-			   GDK_BUTTON1_MASK | GDK_BUTTON2_MASK,
+			   (GdkModifierType)(Gdk_BUTTON1_MASK | GDK_BUTTON2_MASK),
 			   advanced_exif_drag_types, n_exif_drag_types,
 			   GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
 

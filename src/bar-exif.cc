@@ -368,7 +368,7 @@ static void bar_pane_exif_entry_dnd_get(GtkWidget *entry, GdkDragContext *UNUSED
 		{
 		case TARGET_APP_EXIF_ENTRY:
 			gtk_selection_data_set(selection_data, gtk_selection_data_get_target(selection_data),
-					       8, (gpointer) &entry, sizeof(entry));
+					       8, (const guchar *) &entry, sizeof(entry));
 			break;
 
 		case TARGET_TEXT_PLAIN:
@@ -446,7 +446,7 @@ static void bar_pane_exif_entry_dnd_init(GtkWidget *entry)
 {
 	ExifEntry *ee = (ExifEntry *)g_object_get_data(G_OBJECT(entry), "entry_data");
 
-	gtk_drag_source_set(entry, GDK_BUTTON1_MASK | GDK_BUTTON2_MASK,
+	gtk_drag_source_set(entry, (GdkModifierType)(GDK_BUTTON1_MASK | GDK_BUTTON2_MASK),
 			    bar_pane_exif_drag_types, n_exif_entry_drag_types,
 			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
 	g_signal_connect(G_OBJECT(entry), "drag_data_get",
@@ -461,7 +461,7 @@ static void bar_pane_exif_entry_dnd_init(GtkWidget *entry)
 static void bar_pane_exif_dnd_init(GtkWidget *pane)
 {
 	gtk_drag_dest_set(pane,
-			  GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_HIGHLIGHT | GTK_DEST_DEFAULT_DROP,
+			  (GtkDestDefaults)(GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_HIGHLIGHT | GTK_DEST_DEFAULT_DROP),
 			  bar_pane_exif_drop_types, n_exif_entry_drop_types,
 			  GDK_ACTION_COPY | GDK_ACTION_MOVE);
 	g_signal_connect(G_OBJECT(pane), "drag_data_received",
