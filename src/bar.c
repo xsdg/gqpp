@@ -416,7 +416,7 @@ static void bar_menu_popup(GtkWidget *widget)
 		menu_item_add_divider(menu);
 		}
 
-	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, bar, 0, GDK_CURRENT_TIME);
+	gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 }
 
 static void bar_menu_add_popup(GtkWidget *widget)
@@ -437,7 +437,7 @@ static void bar_menu_add_popup(GtkWidget *widget)
 		pane++;
 		}
 
-	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, bar, 0, GDK_CURRENT_TIME);
+	gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 }
 
 

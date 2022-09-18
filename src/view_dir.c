@@ -846,7 +846,7 @@ static void vd_dnd_end(GtkWidget *UNUSED(widget), GdkDragContext *context, gpoin
 static void vd_dnd_drop_receive(GtkWidget *widget,
 				GdkDragContext *UNUSED(context), gint x, gint y,
 				GtkSelectionData *selection_data, guint info,
-				guint time, gpointer data)
+				guint UNUSED(time), gpointer data)
 {
 	ViewDir *vd = data;
 	GtkTreePath *tpath;
@@ -924,7 +924,7 @@ static void vd_dnd_drop_receive(GtkWidget *widget,
 		if (done == FALSE)
 			{
 			vd->popup = vd_drop_menu(vd, active);
-			gtk_menu_popup(GTK_MENU(vd->popup), NULL, NULL, NULL, NULL, 0, time);
+			gtk_menu_popup_at_pointer(GTK_MENU(vd->popup), NULL);
 			}
 
 		vd->drop_fd = fd;
@@ -1209,8 +1209,7 @@ gboolean vd_press_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer data)
 			}
 
 		vd->popup = vd_pop_menu(vd, vd->click_fd);
-		gtk_menu_popup(GTK_MENU(vd->popup), NULL, NULL, NULL, NULL,
-			       bevent->button, bevent->time);
+		gtk_menu_popup_at_pointer(GTK_MENU(vd->popup), NULL);
 
 		return TRUE;
 		}

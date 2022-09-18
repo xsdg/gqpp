@@ -387,18 +387,8 @@ static void bookmark_menu_remove_cb(GtkWidget *UNUSED(widget), gpointer data)
 	bookmark_populate_all(bm->key);
 }
 
-static void bookmark_menu_position_cb(GtkMenu *UNUSED(menu), gint *x, gint *y, gint *UNUSED(pushed_in), gpointer data)
-{
-	GtkWidget *button = data;
-	GtkAllocation allocation;
-
-	gtk_widget_get_allocation(button, &allocation);
-	gdk_window_get_origin(gtk_widget_get_window(button), x, y);
-	*y += allocation.y + allocation.height;
-}
-
 static void bookmark_menu_popup(BookMarkData *bm, GtkWidget *button,
-				gint button_n, guint32 time, gboolean local)
+				gint UNUSED(button_n), guint32 UNUSED(time), gboolean local)
 {
 	GtkWidget *menu;
 	BookButtonData *b;
@@ -420,12 +410,11 @@ static void bookmark_menu_popup(BookMarkData *bm, GtkWidget *button,
 
 	if (local)
 		{
-		gtk_menu_popup(GTK_MENU(menu), NULL, NULL,
-			       bookmark_menu_position_cb, button, button_n, time);
+		gtk_menu_popup_at_widget(GTK_MENU(menu), button, GDK_GRAVITY_NORTH_EAST, GDK_GRAVITY_CENTER, NULL);
 		}
 	else
 		{
-		gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, button_n, time);
+		gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 		}
 }
 

@@ -386,17 +386,7 @@ static void view_step_to_end(ViewWindow *vw, gboolean last)
  *-----------------------------------------------------------------------------
  */
 
-static void view_window_menu_pos_cb(GtkMenu *menu, gint *x, gint *y, gboolean *UNUSED(push_in), gpointer data)
-{
-	ViewWindow *vw = data;
-	ImageWindow *imd;
-
-	imd = view_window_active_image(vw);
-	gdk_window_get_origin(gtk_widget_get_window(imd->pr), x, y);
-	popup_menu_position_clamp(menu, x, y, 0);
-}
-
-static gboolean view_window_key_press_cb(GtkWidget *UNUSED(widget), GdkEventKey *event, gpointer data)
+static gboolean view_window_key_press_cb(GtkWidget * (widget), GdkEventKey *event, gpointer data)
 {
 	ViewWindow *vw = data;
 	ImageWindow *imd;
@@ -626,8 +616,7 @@ static gboolean view_window_key_press_cb(GtkWidget *UNUSED(widget), GdkEventKey 
 			case GDK_KEY_Menu:
 			case GDK_KEY_F10:
 				menu = view_popup_menu(vw);
-				gtk_menu_popup(GTK_MENU(menu), NULL, NULL,
-					       view_window_menu_pos_cb, vw, 0, GDK_CURRENT_TIME);
+				gtk_menu_popup_at_widget(GTK_MENU(menu), widget, GDK_GRAVITY_CENTER, GDK_GRAVITY_CENTER, NULL);
 				break;
 			default:
 				stop_signal = FALSE;
@@ -685,7 +674,7 @@ static void button_cb(ImageWindow *imd, GdkEventButton *event, gpointer data)
 			break;
 		case MOUSE_BUTTON_RIGHT:
 			menu = view_popup_menu(vw);
-			gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, event->time);
+			gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 			break;
 		default:
 			break;
@@ -1611,7 +1600,7 @@ static GtkWidget *view_confirm_dir_list(ViewWindow *vw, GList *list)
 static void view_window_get_dnd_data(GtkWidget *UNUSED(widget), GdkDragContext *context,
 				     gint UNUSED(x), gint UNUSED(y),
 				     GtkSelectionData *selection_data, guint info,
-				     guint time, gpointer data)
+				     guint UNUSED(time), gpointer data)
 {
 	ViewWindow *vw = data;
 	ImageWindow *imd;
@@ -1640,7 +1629,7 @@ static void view_window_get_dnd_data(GtkWidget *UNUSED(widget), GdkDragContext *
 					{
 					GtkWidget *menu;
 					menu = view_confirm_dir_list(vw, list);
-					gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 0, time);
+					gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 					return;
 					}
 				work = work->next;

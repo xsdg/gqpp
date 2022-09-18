@@ -594,22 +594,8 @@ static void dest_popup_file_bookmark_cb(GtkWidget *UNUSED(widget), gpointer data
 	dest_view_bookmark(dd, GTK_TREE_VIEW(dd->f_view));
 }
 
-static void dest_popup_position_cb(GtkMenu *menu, gint *x, gint *y,
-				   gboolean *UNUSED(push_in), gpointer data)
-{
-	Dest_Data *dd = data;
-	GtkTreeView *view;
-	gint cw, ch;
-
-	view = g_object_get_data(G_OBJECT(menu), "active_view");
-
-	tree_view_get_cell_clamped(view, dd->right_click_path, 0, TRUE, x, y, &cw, &ch);
-	*y += ch;
-	popup_menu_position_clamp(menu, x, y, 0);
-}
-
 static gboolean dest_popup_menu(Dest_Data *dd, GtkTreeView *view,
-			        guint button, guint32 time, gboolean local)
+			        guint UNUSED(button), guint32 UNUSED(time), gboolean local)
 {
 	GtkWidget *menu;
 
@@ -650,12 +636,12 @@ static gboolean dest_popup_menu(Dest_Data *dd, GtkTreeView *view,
 	if (local)
 		{
 		g_object_set_data(G_OBJECT(menu), "active_view", view);
-		gtk_menu_popup(GTK_MENU(menu), NULL, NULL,
-			       dest_popup_position_cb, dd, button, time);
+		gtk_menu_popup_at_widget(GTK_MENU(menu), GTK_WIDGET(view), GDK_GRAVITY_CENTER, GDK_GRAVITY_CENTER, NULL);
 		}
 	else
 		{
-		gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, button, time);
+		gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
+
 		}
 
 	return TRUE;

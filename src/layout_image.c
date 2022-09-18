@@ -868,20 +868,12 @@ static GtkWidget *layout_image_pop_menu(LayoutWindow *lw)
 	return menu;
 }
 
-static void layout_image_menu_pos_cb(GtkMenu *menu, gint *x, gint *y, gboolean *UNUSED(push_in), gpointer data)
-{
-	LayoutWindow *lw = data;
-
-	gdk_window_get_origin(gtk_widget_get_window(lw->image->pr), x, y);
-	popup_menu_position_clamp(menu, x, y, 0);
-}
-
 void layout_image_menu_popup(LayoutWindow *lw)
 {
 	GtkWidget *menu;
 
 	menu = layout_image_pop_menu(lw);
-	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, layout_image_menu_pos_cb, lw, 0, GDK_CURRENT_TIME);
+	gtk_menu_popup_at_widget(GTK_MENU(menu), lw->image->widget, GDK_GRAVITY_EAST, GDK_GRAVITY_CENTER, NULL);
 }
 
 /*
@@ -1908,7 +1900,7 @@ static void layout_image_button_cb(ImageWindow *imd, GdkEventButton *event, gpoi
 				{
 				g_object_set_data(G_OBJECT(menu), "click_parent", imd->widget);
 				}
-			gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, event->time);
+			gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 			break;
 		default:
 			break;
@@ -2042,7 +2034,7 @@ static void layout_image_button_inactive_cb(ImageWindow *imd, GdkEventButton *ev
 				{
 				g_object_set_data(G_OBJECT(menu), "click_parent", imd->widget);
 				}
-			gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, event->time);
+			gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 			break;
 		default:
 			break;

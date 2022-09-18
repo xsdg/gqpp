@@ -213,9 +213,6 @@ static void toolbar_item_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 static void toolbar_menu_popup(GtkWidget *widget)
 {
 	GtkWidget *menu;
-	GtkWidget *vbox;
-
-	vbox = gtk_widget_get_parent(widget);
 
 	menu = popup_menu_short_lived();
 
@@ -230,7 +227,7 @@ static void toolbar_menu_popup(GtkWidget *widget)
 		menu_item_add_divider(menu);
 		}
 
-	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, vbox, 0, GDK_CURRENT_TIME);
+	gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 }
 
 static gboolean toolbar_press_cb(GtkWidget *UNUSED(button), GdkEventButton *event, gpointer data)
@@ -378,7 +375,7 @@ static void get_desktop_data(const gchar *name, gchar **label, gchar **stock_id)
 	g_list_free(editors_list);
 }
 
-static void toolbar_menu_add_popup(GtkWidget *widget, gpointer data)
+static void toolbar_menu_add_popup(GtkWidget *UNUSED(widget), gpointer data)
 {
 	GtkWidget *menu;
 	GList *editors_list;
@@ -421,7 +418,7 @@ static void toolbar_menu_add_popup(GtkWidget *widget, gpointer data)
 		}
 	g_list_free(editors_list);
 
-	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, widget, 0, GDK_CURRENT_TIME);
+	gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 }
 
 static gboolean toolbar_menu_add_cb(GtkWidget *widget, gpointer data)

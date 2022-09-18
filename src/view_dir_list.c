@@ -395,7 +395,7 @@ gboolean vdlist_press_key_cb(GtkWidget *widget, GdkEventKey *event, gpointer dat
 
 	vd->popup = vd_pop_menu(vd, vd->click_fd);
 
-	gtk_menu_popup(GTK_MENU(vd->popup), NULL, NULL, vd_menu_position_cb, vd, 0, GDK_CURRENT_TIME);
+	gtk_menu_popup_at_pointer(GTK_MENU(vd->popup), NULL);
 
 	return TRUE;
 }
@@ -427,8 +427,7 @@ gboolean vdlist_press_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer dat
 	if (bevent->button == MOUSE_BUTTON_RIGHT)
 		{
 		vd->popup = vd_pop_menu(vd, vd->click_fd);
-		gtk_menu_popup(GTK_MENU(vd->popup), NULL, NULL, NULL, NULL,
-			       bevent->button, bevent->time);
+		gtk_menu_popup_at_pointer(GTK_MENU(vd->popup), NULL);
 		return TRUE;
 		}
 

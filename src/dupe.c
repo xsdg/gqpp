@@ -3627,7 +3627,7 @@ static gboolean dupe_listview_press_cb(GtkWidget *widget, GdkEventButton *bevent
 			{
 			menu = dupe_menu_popup_second(dw, di);
 			}
-		gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, bevent->button, bevent->time);
+		gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 		}
 
 	if (!di) return FALSE;
@@ -4199,34 +4199,7 @@ static void dupe_window_custom_threshold_cb(GtkWidget *widget, gpointer data)
 	dupe_window_recompare(dw);
 }
 
-static void dupe_popup_menu_pos_cb(GtkMenu *menu, gint *x, gint *y, gboolean *UNUSED(push_in), gpointer data)
-{
-	GtkWidget *view = data;
-	GtkTreePath *tpath;
-	gint cx, cy, cw, ch;
-	gint column;
-
-	gtk_tree_view_get_cursor(GTK_TREE_VIEW(view), &tpath, NULL);
-	if (!tpath) return;
-
-	if (gtk_tree_view_get_column(GTK_TREE_VIEW(view), DUPE_COLUMN_NAME - 1) != NULL)
-		{
-		column = DUPE_COLUMN_NAME - 1;
-		}
-	else
-		{
-		/* dw->second_listview */
-		column = 0;
-		}
-	tree_view_get_cell_clamped(GTK_TREE_VIEW(view), tpath, column, TRUE, &cx, &cy, &cw, &ch);
-	gtk_tree_path_free(tpath);
-	cy += ch;
-	popup_menu_position_clamp(menu, &cx, &cy, 0);
-	*x = cx;
-	*y = cy;
-}
-
-static gboolean dupe_window_keypress_cb(GtkWidget *UNUSED(widget), GdkEventKey *event, gpointer data)
+static gboolean dupe_window_keypress_cb(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
 	DupeWindow *dw = data;
 	gboolean stop_signal = FALSE;
@@ -4386,16 +4359,14 @@ static gboolean dupe_window_keypress_cb(GtkWidget *UNUSED(widget), GdkEventKey *
 					GtkWidget *menu;
 
 					menu = dupe_menu_popup_main(dw, di);
-					gtk_menu_popup(GTK_MENU(menu), NULL, NULL,
-						       dupe_popup_menu_pos_cb, listview, 0, GDK_CURRENT_TIME);
+					gtk_menu_popup_at_widget(GTK_MENU(menu), widget, GDK_GRAVITY_CENTER, GDK_GRAVITY_CENTER, NULL);
 					}
 				else
 					{
 					GtkWidget *menu;
 
 					menu = dupe_menu_popup_second(dw, di);
-					gtk_menu_popup(GTK_MENU(menu), NULL, NULL,
-						       dupe_popup_menu_pos_cb, listview, 0, GDK_CURRENT_TIME);
+					gtk_menu_popup_at_widget(GTK_MENU(menu), widget, GDK_GRAVITY_CENTER, GDK_GRAVITY_CENTER, NULL);
 					}
 				break;
 			default:
@@ -5016,7 +4987,7 @@ static void dupe_dnd_data_set(GtkWidget *widget, GdkDragContext *UNUSED(context)
 static void dupe_dnd_data_get(GtkWidget *widget, GdkDragContext *context,
 			      gint UNUSED(x), gint UNUSED(y),
 			      GtkSelectionData *selection_data, guint info,
-			      guint time, gpointer data)
+			      guint UNUSED(time), gpointer data)
 {
 	DupeWindow *dw = data;
 	GtkWidget *source;
@@ -5050,7 +5021,7 @@ static void dupe_dnd_data_get(GtkWidget *widget, GdkDragContext *context,
 					{
 					GtkWidget *menu;
 					menu = dupe_confirm_dir_list(dw, list);
-					gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 0, time);
+					gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 					return;
 					}
 				work = work->next;

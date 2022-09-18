@@ -1247,25 +1247,7 @@ static gint page_height(CollectTable *ct)
 	return ret;
 }
 
-static void collection_table_menu_pos_cb(GtkMenu *menu, gint *x, gint *y, gboolean *UNUSED(push_in), gpointer data)
-{
-	CollectTable *ct = data;
-	GtkTreeModel *store;
-	GtkTreeIter iter;
-	gint column;
-	GtkTreePath *tpath;
-	gint cw, ch;
-
-	if (!collection_table_find_iter(ct, ct->click_info, &iter, &column)) return;
-	store = gtk_tree_view_get_model(GTK_TREE_VIEW(ct->listview));
-	tpath = gtk_tree_model_get_path(store, &iter);
-	tree_view_get_cell_clamped(GTK_TREE_VIEW(ct->listview), tpath, column, FALSE, x, y, &cw, &ch);
-	gtk_tree_path_free(tpath);
-	*y += ch;
-	popup_menu_position_clamp(menu, x, y, 0);
-}
-
-static gboolean collection_table_press_key_cb(GtkWidget *UNUSED(widget), GdkEventKey *event, gpointer data)
+static gboolean collection_table_press_key_cb(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
 	CollectTable *ct = data;
 	gint focus_row = 0;
@@ -1329,7 +1311,8 @@ static gboolean collection_table_press_key_cb(GtkWidget *UNUSED(widget), GdkEven
 			tip_unschedule(ct);
 
 			ct->popup = collection_table_popup_menu(ct, (info != NULL));
-			gtk_menu_popup(GTK_MENU(ct->popup), NULL, NULL, collection_table_menu_pos_cb, ct, 0, GDK_CURRENT_TIME);
+			gtk_menu_popup_at_widget(GTK_MENU(ct->popup), widget, GDK_GRAVITY_SOUTH, GDK_GRAVITY_CENTER, NULL);
+
 			break;
 		default:
 			stop_signal = FALSE;
@@ -1713,7 +1696,7 @@ static gboolean collection_table_press_cb(GtkWidget *UNUSED(widget), GdkEventBut
 			break;
 		case MOUSE_BUTTON_RIGHT:
 			ct->popup = collection_table_popup_menu(ct, (info != NULL));
-			gtk_menu_popup(GTK_MENU(ct->popup), NULL, NULL, NULL, NULL, bevent->button, bevent->time);
+			gtk_menu_popup_at_pointer(GTK_MENU(ct->popup), NULL);
 			break;
 		default:
 			break;
@@ -2322,7 +2305,7 @@ static void collection_table_dnd_get(GtkWidget *UNUSED(widget), GdkDragContext *
 static void collection_table_dnd_receive(GtkWidget *UNUSED(widget), GdkDragContext *context,
 					  gint x, gint y,
 					  GtkSelectionData *selection_data, guint info,
-					  guint time, gpointer data)
+					  guint UNUSED(time), gpointer data)
 {
 	CollectTable *ct = data;
 	GList *list = NULL;
@@ -2386,7 +2369,7 @@ static void collection_table_dnd_receive(GtkWidget *UNUSED(widget), GdkDragConte
 					ct->drop_list = list;
 					ct->drop_info = drop_info;
 					menu = collection_table_drop_menu(ct);
-					gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 0, time);
+					gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 					return;
 					}
 				work = work->next;

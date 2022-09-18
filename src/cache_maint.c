@@ -100,7 +100,7 @@ static void cache_maintenance_status_icon_activate_cb(GtkStatusIcon *UNUSED(stat
 	/* take ownership of menu */
 	g_object_ref_sink(G_OBJECT(menu));
 
-	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 0, gtk_get_current_event_time());
+	gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 }
 
 void cache_maintenance(const gchar *path)

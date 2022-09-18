@@ -440,8 +440,6 @@ static void layout_sort_button_press_cb(GtkWidget *UNUSED(widget), gpointer data
 {
 	LayoutWindow *lw = data;
 	GtkWidget *menu;
-	GdkEvent *event;
-	guint32 etime;
 
 	menu = submenu_add_sort(NULL, G_CALLBACK(layout_sort_menu_cb), lw, FALSE, FALSE, TRUE, lw->sort_method);
 
@@ -462,18 +460,7 @@ static void layout_sort_button_press_cb(GtkWidget *UNUSED(widget), gpointer data
 	g_signal_connect(G_OBJECT(menu), "selection_done",
 			 G_CALLBACK(layout_sort_menu_hide_cb), NULL);
 
-	event = gtk_get_current_event();
-	if (event)
-		{
-		etime = gdk_event_get_time(event);
-		gdk_event_free(event);
-		}
-	else
-		{
-		etime = 0;
-		}
-
-	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 0, etime);
+	gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 }
 
 static GtkWidget *layout_sort_button(LayoutWindow *lw, GtkWidget *box)
@@ -533,8 +520,6 @@ static void layout_zoom_button_press_cb(GtkWidget *UNUSED(widget), gpointer data
 {
 	LayoutWindow *lw = data;
 	GtkWidget *menu;
-	GdkEvent *event;
-	guint32 etime;
 
 	menu = submenu_add_zoom(NULL, G_CALLBACK(layout_zoom_menu_cb),
 			lw, FALSE, FALSE, TRUE, options->image.zoom_mode);
@@ -570,18 +555,7 @@ static void layout_zoom_button_press_cb(GtkWidget *UNUSED(widget), gpointer data
 	g_signal_connect(G_OBJECT(menu), "selection_done",
 			 G_CALLBACK(layout_zoom_menu_hide_cb), NULL);
 
-	event = gtk_get_current_event();
-	if (event)
-		{
-		etime = gdk_event_get_time(event);
-		gdk_event_free(event);
-		}
-	else
-		{
-		etime = 0;
-		}
-
-	gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 0, etime);
+	gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 }
 
 static GtkWidget *layout_zoom_button(LayoutWindow *lw, GtkWidget *box, gint size, gboolean UNUSED(expand))

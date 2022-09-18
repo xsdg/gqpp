@@ -1189,25 +1189,7 @@ static gint page_height(ViewFile *vf)
  *-------------------------------------------------------------------
  */
 
-static void vfi_menu_position_cb(GtkMenu *menu, gint *x, gint *y, gboolean *UNUSED(push_in), gpointer data)
-{
-	ViewFile *vf = data;
-	GtkTreeModel *store;
-	GtkTreeIter iter;
-	gint column;
-	GtkTreePath *tpath;
-	gint cw, ch;
-
-	if (!vficon_find_iter(vf, VFICON(vf)->click_fd, &iter, &column)) return;
-	store = gtk_tree_view_get_model(GTK_TREE_VIEW(vf->listview));
-	tpath = gtk_tree_model_get_path(store, &iter);
-	tree_view_get_cell_clamped(GTK_TREE_VIEW(vf->listview), tpath, column, FALSE, x, y, &cw, &ch);
-	gtk_tree_path_free(tpath);
-	*y += ch;
-	popup_menu_position_clamp(menu, x, y, 0);
-}
-
-gboolean vficon_press_key_cb(GtkWidget *UNUSED(widget), GdkEventKey *event, gpointer data)
+gboolean vficon_press_key_cb(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
 	ViewFile *vf = data;
 	gint focus_row = 0;
@@ -1280,7 +1262,7 @@ gboolean vficon_press_key_cb(GtkWidget *UNUSED(widget), GdkEventKey *event, gpoi
 			tip_unschedule(vf);
 
 			vf->popup = vf_pop_menu(vf);
-			gtk_menu_popup(GTK_MENU(vf->popup), NULL, NULL, vfi_menu_position_cb, vf, 0, GDK_CURRENT_TIME);
+			gtk_menu_popup_at_widget(GTK_MENU(vf->popup), widget, GDK_GRAVITY_EAST, GDK_GRAVITY_CENTER, NULL);
 			break;
 		default:
 			stop_signal = FALSE;
@@ -1386,7 +1368,7 @@ gboolean vficon_press_cb(GtkWidget *UNUSED(widget), GdkEventButton *bevent, gpoi
 			break;
 		case MOUSE_BUTTON_RIGHT:
 			vf->popup = vf_pop_menu(vf);
-			gtk_menu_popup(GTK_MENU(vf->popup), NULL, NULL, NULL, NULL, bevent->button, bevent->time);
+			gtk_menu_popup_at_pointer(GTK_MENU(vf->popup), NULL);
 			break;
 		default:
 			break;

@@ -872,7 +872,7 @@ static gboolean bar_pane_gps_map_keypress_cb(GtkWidget *UNUSED(widget), GdkEvent
 	if (bevent->button == MOUSE_BUTTON_RIGHT)
 		{
 		menu = bar_pane_gps_menu(pgd);
-		gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, bevent->button, bevent->time);
+		gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 		return TRUE;
 		}
 	else if (bevent->button == MOUSE_BUTTON_MIDDLE)

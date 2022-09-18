@@ -1198,24 +1198,6 @@ static GtkWidget *search_result_menu(SearchData *sd, gboolean on_row, gboolean e
 	return menu;
 }
 
-static void search_result_menu_pos_cb(GtkMenu *menu, gint *x, gint *y, gboolean *UNUSED(push_in), gpointer data)
-{
-	SearchData *sd = data;
-	GtkTreePath *tpath;
-	gint cx, cy, cw, ch;
-
-	gtk_tree_view_get_cursor(GTK_TREE_VIEW(sd->result_view), &tpath, NULL);
-	if (!tpath) return;
-
-	tree_view_get_cell_clamped(GTK_TREE_VIEW(sd->result_view), tpath,
-				   SEARCH_COLUMN_NAME - 1, TRUE, &cx, &cy, &cw, &ch);
-	gtk_tree_path_free(tpath);
-	cy += ch;
-	popup_menu_position_clamp(menu, &cx, &cy, 0);
-	*x = cx;
-	*y = cy;
-}
-
 /*
  *-------------------------------------------------------------------
  * result list input
@@ -1247,7 +1229,7 @@ static gboolean search_result_press_cb(GtkWidget *widget, GdkEventButton *bevent
 		GtkWidget *menu;
 
 		menu = search_result_menu(sd, (mfd != NULL), (search_result_count(sd, NULL) == 0));
-		gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, bevent->button, bevent->time);
+		gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 		}
 
 	if (!mfd) return FALSE;
@@ -1460,8 +1442,8 @@ static gboolean search_result_keypress_cb(GtkWidget *widget, GdkEventKey *event,
 					sd->click_fd = NULL;
 
 				menu = search_result_menu(sd, (mfd != NULL), (search_result_count(sd, NULL) > 0));
-				gtk_menu_popup(GTK_MENU(menu), NULL, NULL,
-					       search_result_menu_pos_cb, sd, 0, GDK_CURRENT_TIME);
+
+				gtk_menu_popup_at_widget(GTK_MENU(menu), widget, GDK_GRAVITY_EAST, GDK_GRAVITY_CENTER, NULL);
 				}
 				break;
 			default:

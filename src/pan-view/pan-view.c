@@ -1178,15 +1178,7 @@ FileData *pan_menu_click_fd(PanWindow *pw)
 	return NULL;
 }
 
-static void pan_window_menu_pos_cb(GtkMenu *menu, gint *x, gint *y, gboolean *UNUSED(push_in), gpointer data)
-{
-	PanWindow *pw = data;
-
-	gdk_window_get_origin(gtk_widget_get_window(pw->imd->pr), x, y);
-	popup_menu_position_clamp(menu, x, y, 0);
-}
-
-static gboolean pan_window_key_press_cb(GtkWidget *UNUSED(widget), GdkEventKey *event, gpointer data)
+static gboolean pan_window_key_press_cb(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
 	PanWindow *pw = data;
 	PixbufRenderer *pr;
@@ -1369,8 +1361,8 @@ static gboolean pan_window_key_press_cb(GtkWidget *UNUSED(widget), GdkEventKey *
 				case GDK_KEY_Menu:
 				case GDK_KEY_F10:
 					menu = pan_popup_menu(pw);
-					gtk_menu_popup(GTK_MENU(menu), NULL, NULL,
-						       pan_window_menu_pos_cb, pw, 0, GDK_CURRENT_TIME);
+					gtk_menu_popup_at_widget(GTK_MENU(menu), widget, GDK_GRAVITY_SOUTH, GDK_GRAVITY_CENTER, NULL);
+
 					break;
 				case '/':
 					pan_search_toggle_visible(pw, TRUE);
@@ -1595,7 +1587,7 @@ static void button_cb(PixbufRenderer *pr, GdkEventButton *event, gpointer data)
 		case MOUSE_BUTTON_RIGHT:
 			pan_info_update(pw, pi);
 			menu = pan_popup_menu(pw);
-			gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, 3, event->time);
+			gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 			break;
 		default:
 			break;

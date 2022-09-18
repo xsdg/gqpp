@@ -254,7 +254,7 @@ static gboolean bar_pane_histogram_press_cb(GtkWidget *UNUSED(widget), GdkEventB
 		GtkWidget *menu;
 
 		menu = bar_pane_histogram_menu(phd);
-		gtk_menu_popup(GTK_MENU(menu), NULL, NULL, NULL, NULL, bevent->button, bevent->time);
+		gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 		return TRUE;
 	}
 
