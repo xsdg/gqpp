@@ -880,7 +880,7 @@ PanItem *pan_text_alignment_add(PanTextAlignment *ta, const gchar *label, const 
 	if (label)
 		{
 		item = pan_item_text_new(ta->pw, ta->x, ta->y, label,
-					 PAN_TEXT_ATTR_BOLD, 0,
+					 PAN_TEXT_ATTR_BOLD, (PanBorderType)0,
 					 PAN_POPUP_TEXT_COLOR, 255);
 		pan_item_set_key(item, ta->key);
 		}
@@ -893,7 +893,7 @@ PanItem *pan_text_alignment_add(PanTextAlignment *ta, const gchar *label, const 
 	if (text)
 		{
 		item = pan_item_text_new(ta->pw, ta->x, ta->y, text,
-					 PAN_TEXT_ATTR_NONE, 0,
+					 PAN_TEXT_ATTR_NONE, (PanBorderType)0,
 					 PAN_POPUP_TEXT_COLOR, 255);
 		pan_item_set_key(item, ta->key);
 		}
