@@ -202,10 +202,10 @@ static gchar *bookmark_string(const gchar *name, const gchar *path, const gchar 
 
 	if (icon)
 		{
-		return g_strdup_printf("%s"MARKER_PATH"%s"MARKER_ICON"%s", name, path, icon);
+		return g_strdup_printf("%s" MARKER_PATH "%s" MARKER_ICON "%s", name, path, icon);
 		}
 
-	return g_strdup_printf("%s"MARKER_PATH"%s", name, path);
+	return g_strdup_printf("%s" MARKER_PATH "%s", name, path);
 }
 
 static void bookmark_select_cb(GtkWidget *button, gpointer data)
