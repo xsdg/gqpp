@@ -63,7 +63,7 @@
 #define SEARCH_BUFFER_MATCH_MISS 1
 #define SEARCH_BUFFER_FLUSH_SIZE 99
 
-#define FORMAT_CLASS_BROKEN FILE_FORMAT_CLASSES + 1
+#define FORMAT_CLASS_BROKEN ((FileFormatClass)(FILE_FORMAT_CLASSES + 1))
 
 typedef enum {
 	SEARCH_MATCH_NONE,
@@ -358,7 +358,7 @@ hard_coded_window_keys search_window_keys[] = {
 	{GDK_SHIFT_MASK, GDK_KEY_Delete, N_("Delete")},
 	{NO_GDK_MODIFIER, GDK_KEY_Delete, N_("Remove")},
 	{GDK_CONTROL_MASK, 'A', N_("Select all")},
-	{GDK_CONTROL_MASK + GDK_SHIFT_MASK, 'A', N_("Select none")},
+	{(GdkModifierType)(GDK_CONTROL_MASK + GDK_SHIFT_MASK), 'A', N_("Select none")},
 	{GDK_CONTROL_MASK, GDK_KEY_Delete, N_("Clear")},
 	{GDK_CONTROL_MASK, 'T', N_("Toggle thumbs")},
 	{GDK_CONTROL_MASK, 'W', N_("Close window")},
@@ -1670,9 +1670,9 @@ static void search_image_content_dnd_received_cb(GtkWidget *UNUSED(pane), GdkDra
 
 static void search_dnd_init(SearchData *sd)
 {
-	gtk_drag_source_set(sd->result_view, GDK_BUTTON1_MASK | GDK_BUTTON2_MASK,
+	gtk_drag_source_set(sd->result_view, (GdkModifierType)(GDK_BUTTON1_MASK | GDK_BUTTON2_MASK),
 			    result_drag_types, n_result_drag_types,
-			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			    (GdkDragAction)(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 	g_signal_connect(G_OBJECT(sd->result_view), "drag_data_get",
 			 G_CALLBACK(search_dnd_data_set), sd);
 	g_signal_connect(G_OBJECT(sd->result_view), "drag_begin",
@@ -2014,13 +2014,13 @@ static gboolean search_file_next(SearchData *sd)
 				}
 			if (sd->search_name_match_case)
 				{
-				match = g_regex_match(sd->search_name_regex, fd_name_or_path, 0, NULL);
+				match = g_regex_match(sd->search_name_regex, fd_name_or_path, (GRegexMatchFlags)0, NULL);
 				}
 			else
 				{
 				/* sd->search_name is converted in search_start() */
 				gchar *haystack = g_utf8_strdown(fd_name_or_path, -1);
-				match = g_regex_match(sd->search_name_regex, haystack, 0, NULL);
+				match = g_regex_match(sd->search_name_regex, haystack, (GRegexMatchFlags)0, NULL);
 				g_free(haystack);
 				}
 			}
@@ -2211,11 +2211,11 @@ static gboolean search_file_next(SearchData *sd)
 
 			if (sd->match_comment == SEARCH_MATCH_CONTAINS)
 				{
-				match = g_regex_match(sd->search_comment_regex, comment, 0, NULL);
+				match = g_regex_match(sd->search_comment_regex, comment, (GRegexMatchFlags)0, NULL);
 				}
 			else if (sd->match_comment == SEARCH_MATCH_NONE)
 				{
-				match = !g_regex_match(sd->search_comment_regex, comment, 0, NULL);
+				match = !g_regex_match(sd->search_comment_regex, comment, (GRegexMatchFlags)0, NULL);
 				}
 			g_free(comment);
 			}
@@ -2606,13 +2606,13 @@ static void search_start(SearchData *sd)
 		g_regex_unref(sd->search_name_regex);
 		}
 
-	sd->search_name_regex = g_regex_new(sd->search_name, 0, 0, &error);
+	sd->search_name_regex = g_regex_new(sd->search_name, (GRegexCompileFlags)0, (GRegexMatchFlags)0, &error);
 	if (error)
 		{
 		log_printf("Error: could not compile regular expression %s\n%s\n", sd->search_name, error->message);
 		g_error_free(error);
 		error = NULL;
-		sd->search_name_regex = g_regex_new("", 0, 0, NULL);
+		sd->search_name_regex = g_regex_new("", (GRegexCompileFlags)0, (GRegexMatchFlags)0, NULL);
 		}
 
 	if (!sd->search_comment_match_case)
@@ -2628,13 +2628,13 @@ static void search_start(SearchData *sd)
 		g_regex_unref(sd->search_comment_regex);
 		}
 
-	sd->search_comment_regex = g_regex_new(sd->search_comment, 0, 0, &error);
+	sd->search_comment_regex = g_regex_new(sd->search_comment, (GRegexCompileFlags)0, (GRegexMatchFlags)0, &error);
 	if (error)
 		{
 		log_printf("Error: could not compile regular expression %s\n%s\n", sd->search_comment, error->message);
 		g_error_free(error);
 		error = NULL;
-		sd->search_comment_regex = g_regex_new("", 0, 0, NULL);
+		sd->search_comment_regex = g_regex_new("", (GRegexCompileFlags)0, (GRegexMatchFlags)0, NULL);
 		}
 
 	sd->search_count = 0;
@@ -3371,7 +3371,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	geometry.base_width = DEF_SEARCH_WIDTH;
 	geometry.base_height = DEF_SEARCH_HEIGHT;
 	gtk_window_set_geometry_hints(GTK_WINDOW(sd->window), NULL, &geometry,
-				      GDK_HINT_MIN_SIZE | GDK_HINT_BASE_SIZE);
+				      (GdkWindowHints)(GDK_HINT_MIN_SIZE | GDK_HINT_BASE_SIZE));
 
 	if (lw && options->save_window_positions)
 		{

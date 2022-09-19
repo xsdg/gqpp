@@ -215,7 +215,7 @@ gboolean register_theme_icon_as_stock(const gchar *key, const gchar *icon)
 	pixbuf = gtk_icon_theme_load_icon(icon_theme,
                            icon, /* icon name */
                            64, /* size */
-                           0,  /* flags */
+                           (GtkIconLookupFlags)0,  /* flags */
                            &error);
 	if (!pixbuf)
 		{
@@ -233,7 +233,7 @@ gboolean register_theme_icon_as_stock(const gchar *key, const gchar *icon)
 			pixbuf = gtk_icon_theme_load_icon(icon_theme,
 		                           icon2, /* icon name */
 		                           64, /* size */
-		                           0,  /* flags */
+		                           (GtkIconLookupFlags)0,  /* flags */
 		                           &error);
 			if (error)
 				{

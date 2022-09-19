@@ -189,7 +189,7 @@ static void remote_server_client_add(RemoteConnection *rc, gint fd)
 	client->fd = fd;
 
 	channel = g_io_channel_unix_new(fd);
-	client->channel_id = g_io_add_watch_full(channel, G_PRIORITY_DEFAULT, G_IO_IN | G_IO_HUP,
+	client->channel_id = g_io_add_watch_full(channel, G_PRIORITY_DEFAULT, (GIOCondition)(G_IO_IN | G_IO_HUP),
 						 remote_server_client_cb, client, NULL);
 	g_io_channel_unref(channel);
 
@@ -465,7 +465,7 @@ static void gr_new_window(const gchar *UNUSED(text), GIOChannel *UNUSED(channel)
 	layout_set_path(lw_id, pwd);
 }
 
-static gboolean gr_close_window_cb()
+static gboolean gr_close_window_cb(gpointer UNUSED(data))
 {
 	if (!layout_valid(&lw_id)) return FALSE;
 

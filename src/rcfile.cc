@@ -1745,7 +1745,7 @@ gboolean load_config_from_buf(const gchar *buf, gsize size, gboolean startup)
 	parser_data->startup = startup;
 	options_parse_func_push(parser_data, options_parse_toplevel, NULL, NULL);
 
-	context = g_markup_parse_context_new(&parser, 0, parser_data, NULL);
+	context = g_markup_parse_context_new(&parser, (GMarkupParseFlags)0, parser_data, NULL);
 
 	if (g_markup_parse_context_parse(context, buf, size, NULL) == FALSE)
 		{

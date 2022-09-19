@@ -257,16 +257,16 @@ static gboolean match_func(GtkEntryCompletion *completion, const gchar *key, Gtk
 	reg_exp_str = g_string_new("\\b(\?=.*:)");
 	reg_exp_str = g_string_append(reg_exp_str, key);
 
-	reg_exp = g_regex_new(reg_exp_str->str, G_REGEX_CASELESS, 0, &error);
+	reg_exp = g_regex_new(reg_exp_str->str, G_REGEX_CASELESS, (GRegexMatchFlags)0, &error);
 	if (error)
 		{
 		log_printf("Error: could not compile regular expression %s\n%s\n", reg_exp_str->str, error->message);
 		g_error_free(error);
 		error = NULL;
-		reg_exp = g_regex_new("", 0, 0, NULL);
+		reg_exp = g_regex_new("", (GRegexCompileFlags)0, 0, NULL);
 		}
 
-	ret = g_regex_match(reg_exp, normalized, 0, NULL);
+	ret = g_regex_match(reg_exp, normalized, (GRegexMatchFlags)0, NULL);
 
 	if (sar->match_found == FALSE && ret == TRUE)
 		{
@@ -295,7 +295,7 @@ GtkWidget *search_and_run_new(LayoutWindow *lw)
 	geometry.max_width = 1500;
 	geometry.min_height = 10;
 	geometry.max_height = 10;
-	gtk_window_set_geometry_hints(GTK_WINDOW(sar->window), NULL, &geometry, GDK_HINT_MIN_SIZE | GDK_HINT_MAX_SIZE);
+	gtk_window_set_geometry_hints(GTK_WINDOW(sar->window), NULL, &geometry, (GdkWindowHints)(GDK_HINT_MIN_SIZE | GDK_HINT_MAX_SIZE));
 
 	gtk_window_set_resizable(GTK_WINDOW(sar->window), TRUE);
 

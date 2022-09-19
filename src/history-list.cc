@@ -314,7 +314,7 @@ gboolean history_list_save(const gchar *path)
 			{
 			if ((!(strcmp(hd->key, "path_list") == 0 && list_count > options->open_recent_list_maxsize))
 					&&
-					(!(strcmp((gchar *)hd->key, "recent") == 0 && (!isfile(work->data))))
+					(!(strcmp((gchar *)hd->key, "recent") == 0 && (!isfile((gchar *)work->data))))
 					&&
 					(!(strcmp((gchar *)hd->key, "image_list") == 0 && list_count > options->recent_folder_image_list_maxsize)))
 				{

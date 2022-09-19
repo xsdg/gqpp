@@ -125,7 +125,7 @@ static void print_set_font_cb(GtkWidget *widget, gpointer data)
 {
 	gpointer option;
 
-	if (g_strcmp0(data, "Image text font") == 0)
+	if (g_strcmp0((gchar *)data, "Image text font") == 0)
 		{
 		option = options->printer.image_font;
 		}
@@ -138,8 +138,8 @@ static void print_set_font_cb(GtkWidget *widget, gpointer data)
 	char *font;
 	PangoFontDescription *font_desc;
 
-	dialog = gtk_font_chooser_dialog_new(data, GTK_WINDOW(gtk_widget_get_toplevel(widget)));
-	gtk_font_chooser_set_font(GTK_FONT_CHOOSER(dialog), option);
+	dialog = gtk_font_chooser_dialog_new((gchar *)data, GTK_WINDOW(gtk_widget_get_toplevel(widget)));
+	gtk_font_chooser_set_font(GTK_FONT_CHOOSER(dialog), (gchar *)option);
 
 	if (gtk_dialog_run(GTK_DIALOG(dialog)) != GTK_RESPONSE_CANCEL)
 		{
@@ -159,7 +159,7 @@ static gint set_toggle(GSList *list, TextPosition pos)
 	GtkToggleButton *new_sel;
 	gint new_pos = - 1;
 
-	current_sel = g_slist_nth(list, (GtkToggleButton *)pos)->data;
+	current_sel = (GtkToggleButton *)g_slist_nth(list, pos)->data;
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(current_sel)))
 		{
 		new_pos = (pos - 1);
@@ -167,7 +167,7 @@ static gint set_toggle(GSList *list, TextPosition pos)
 			{
 			new_pos = HEADER_1;
 			}
-		new_sel = g_slist_nth(list, (GtkToggleButton *)new_pos)->data;
+		new_sel = (GtkToggleButton *)g_slist_nth(list, new_pos)->data;
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(new_sel), TRUE);
 		}
 	return new_pos;
@@ -400,7 +400,7 @@ static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 	hbox = pref_box_new(subgroup, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
 
 	button = pref_button_new(NULL, GTK_STOCK_SELECT_FONT, _("Font"), FALSE,
-				 G_CALLBACK(print_set_font_cb), "Image text font");
+				 G_CALLBACK(print_set_font_cb), g_strdup("Image text font"));
 
 	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
@@ -454,7 +454,7 @@ static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 	hbox = pref_box_new(subgroup, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
 
 	button = pref_button_new(NULL, GTK_STOCK_SELECT_FONT, _("Font"), FALSE,
-				 G_CALLBACK(print_set_font_cb), "Page text font");
+				 G_CALLBACK(print_set_font_cb), g_strdup("Page text font"));
 
 	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
@@ -511,7 +511,7 @@ gchar *form_image_text(const gchar *template_string, FileData *fd, PrintWindow *
 	osd_template_insert(vars, "number", g_strdup_printf("%d", page_nr + 1), OSDT_NO_DUP);
 	osd_template_insert(vars, "total", g_strdup_printf("%d", total), OSDT_NO_DUP);
 	osd_template_insert(vars, "name", (gchar *) name, OSDT_NONE);
-	osd_template_insert(vars, "date", fd ? ((gchar *) text_from_time(fd->date)) : "", OSDT_NONE);
+	osd_template_insert(vars, "date", g_strdup(fd ? text_from_time(fd->date) : ""), OSDT_NONE);
 	osd_template_insert(vars, "size", fd ? (text_from_size_abrev(fd->size)) : g_strdup(""), OSDT_FREE);
 
 	if (fd->pixbuf)

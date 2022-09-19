@@ -207,7 +207,7 @@ static void toolbar_item_move_bottom_cb(GtkWidget *widget, gpointer data)
 
 static void toolbar_item_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	gtk_widget_destroy(data);
+	gtk_widget_destroy((GtkWidget *)data);
 }
 
 static void toolbar_menu_popup(GtkWidget *widget)

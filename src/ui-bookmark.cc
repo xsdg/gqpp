@@ -369,12 +369,12 @@ static void bookmark_menu_move(BookMarkData *bm, gint direction)
 
 static void bookmark_menu_up_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	bookmark_menu_move(data, -1);
+	bookmark_menu_move((BookMarkData *)data, -1);
 }
 
 static void bookmark_menu_down_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	bookmark_menu_move(data, 1);
+	bookmark_menu_move((BookMarkData *)data, 1);
 }
 
 static void bookmark_menu_remove_cb(GtkWidget *UNUSED(widget), gpointer data)
@@ -604,7 +604,7 @@ static void bookmark_populate(BookMarkData *bm)
 		{
 		BookButtonData *b;
 
-		b = bookmark_from_string(work->data);
+		b = bookmark_from_string((gchar *)work->data);
 		if (b)
 			{
 			if (strcmp(b->name, ".") == 0)
@@ -679,7 +679,7 @@ static void bookmark_populate(BookMarkData *bm)
 
 			gtk_drag_source_set(b->button, GDK_BUTTON1_MASK,
 					    bookmark_drag_types, bookmark_drag_types_n,
-					    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+					    (GdkDragAction)(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 			g_signal_connect(G_OBJECT(b->button), "drag_data_get",
 					 G_CALLBACK(bookmark_drag_set_data), bm);
 			g_signal_connect(G_OBJECT(b->button), "drag_begin",
@@ -811,9 +811,9 @@ GtkWidget *bookmark_list_new(const gchar *key,
 	bm->widget = scrolled;
 
 	gtk_drag_dest_set(scrolled,
-			  GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_DROP,
+			  (GtkDestDefaults)(GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_DROP),
 			  bookmark_drop_types, bookmark_drop_types_n,
-			  GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			  (GdkDragAction)(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 	g_signal_connect(G_OBJECT(scrolled), "drag_data_received",
 			 G_CALLBACK(bookmark_dnd_get_data), bm);
 

@@ -150,7 +150,7 @@ static void pr_stereo_temp_disable(PixbufRenderer *pr, gboolean disable);
 
 static void pixbuf_renderer_class_init_wrapper(void *g_class, void *UNUSED(class_data))
 {
-	pixbuf_renderer_class_init(g_class);
+	pixbuf_renderer_class_init((PixbufRendererClass *)g_class);
 }
 
 static void pixbuf_renderer_init_wrapper(PixbufRenderer *pr, void *UNUSED(class_data))
@@ -179,7 +179,7 @@ GType pixbuf_renderer_get_type(void)
 			};
 
 		pixbuf_renderer_type = g_type_register_static(GTK_TYPE_EVENT_BOX, "PixbufRenderer",
-							      &pixbuf_renderer_info, 0);
+							      &pixbuf_renderer_info, (GTypeFlags)0);
 		}
 
 	return pixbuf_renderer_type;
@@ -204,7 +204,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 							    -1000.0,
 							    1000.0,
 							    PR_ZOOM_MIN,
-							    G_PARAM_READABLE | G_PARAM_WRITABLE));
+							    (GParamFlags)(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 
 	g_object_class_install_property(gobject_class,
 					PROP_ZOOM_MAX,
@@ -214,7 +214,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 							    -1000.0,
 							    1000.0,
 							    PR_ZOOM_MIN,
-							    G_PARAM_READABLE | G_PARAM_WRITABLE));
+							    (GParamFlags)(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 
 	g_object_class_install_property(gobject_class,
 					PROP_ZOOM_QUALITY,
@@ -224,7 +224,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 							  GDK_INTERP_NEAREST,
 							  GDK_INTERP_BILINEAR,
 							  GDK_INTERP_BILINEAR,
-							  G_PARAM_READABLE | G_PARAM_WRITABLE));
+							  (GParamFlags)(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 
 	g_object_class_install_property(gobject_class,
 					PROP_ZOOM_2PASS,
@@ -232,7 +232,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 							     "2 pass zoom",
 							     NULL,
 							     TRUE,
-							     G_PARAM_READABLE | G_PARAM_WRITABLE));
+							     (GParamFlags)(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 
 	g_object_class_install_property(gobject_class,
 					PROP_ZOOM_EXPAND,
@@ -240,7 +240,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 							     "Expand image in autozoom.",
 							     NULL,
 							     FALSE,
-							     G_PARAM_READABLE | G_PARAM_WRITABLE));
+							     (GParamFlags)(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 	g_object_class_install_property(gobject_class,
 					PROP_SCROLL_RESET,
 					g_param_spec_uint("scroll_reset",
@@ -249,7 +249,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 							  PR_SCROLL_RESET_TOPLEFT,
 							  PR_SCROLL_RESET_NOCHANGE,
 							  PR_SCROLL_RESET_TOPLEFT,
-							  G_PARAM_READABLE | G_PARAM_WRITABLE));
+							  (GParamFlags)(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 
 	g_object_class_install_property(gobject_class,
 					PROP_DELAY_FLIP,
@@ -257,7 +257,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 							     "Delay image update",
 							     NULL,
 							     FALSE,
-							     G_PARAM_READABLE | G_PARAM_WRITABLE));
+							     (GParamFlags)(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 
 	g_object_class_install_property(gobject_class,
 					PROP_LOADING,
@@ -265,7 +265,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 							     "Image actively loading",
 							     NULL,
 							     FALSE,
-							     G_PARAM_READABLE | G_PARAM_WRITABLE));
+							     (GParamFlags)(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 
 	g_object_class_install_property(gobject_class,
 					PROP_COMPLETE,
@@ -273,7 +273,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 							     "Image rendering complete",
 							     NULL,
 							     FALSE,
-							     G_PARAM_READABLE | G_PARAM_WRITABLE));
+							     (GParamFlags)(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 
 	g_object_class_install_property(gobject_class,
 					PROP_CACHE_SIZE_DISPLAY,
@@ -283,7 +283,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 							  0,
 							  128,
 							  PR_CACHE_SIZE_DEFAULT,
-							  G_PARAM_READABLE | G_PARAM_WRITABLE));
+							  (GParamFlags)(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 
 	g_object_class_install_property(gobject_class,
 					PROP_CACHE_SIZE_TILES,
@@ -293,7 +293,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 							  0,
 							  256,
 							  PR_CACHE_SIZE_DEFAULT,
-							  G_PARAM_READABLE | G_PARAM_WRITABLE));
+							  (GParamFlags)(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 
 	g_object_class_install_property(gobject_class,
 					PROP_WINDOW_FIT,
@@ -301,7 +301,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 							     "Fit window to image size",
 							     NULL,
 							     FALSE,
-							     G_PARAM_READABLE | G_PARAM_WRITABLE));
+							     (GParamFlags)(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 
 	g_object_class_install_property(gobject_class,
 					PROP_WINDOW_LIMIT,
@@ -309,7 +309,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 							     "Limit size of parent window",
 							     NULL,
 							     FALSE,
-							     G_PARAM_READABLE | G_PARAM_WRITABLE));
+							     (GParamFlags)(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 
 	g_object_class_install_property(gobject_class,
 					PROP_WINDOW_LIMIT_VALUE,
@@ -319,7 +319,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 							  10,
 							  150,
 							  100,
-							  G_PARAM_READABLE | G_PARAM_WRITABLE));
+							  (GParamFlags)(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 
 	g_object_class_install_property(gobject_class,
 					PROP_AUTOFIT_LIMIT,
@@ -337,7 +337,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 							  10,
 							  150,
 							  100,
-							  G_PARAM_READABLE | G_PARAM_WRITABLE));
+							  (GParamFlags)(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 
 	g_object_class_install_property(gobject_class,
 					PROP_ENLARGEMENT_LIMIT_VALUE,
@@ -347,7 +347,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 							  100,
 							  999,
 							  500,
-							  G_PARAM_READABLE | G_PARAM_WRITABLE));
+							  (GParamFlags)(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 
 
 	signals[SIGNAL_ZOOM] =
@@ -509,7 +509,7 @@ static void pixbuf_renderer_set_property(GObject *object, guint prop_id,
 			pr->zoom_max = g_value_get_double(value);
 			break;
 		case PROP_ZOOM_QUALITY:
-			pr->zoom_quality = g_value_get_uint(value);
+			pr->zoom_quality = (GtkInterpType)g_value_get_uint(value);
 			break;
 		case PROP_ZOOM_2PASS:
 			pr->zoom_2pass = g_value_get_boolean(value);
@@ -518,7 +518,7 @@ static void pixbuf_renderer_set_property(GObject *object, guint prop_id,
 			pr->zoom_expand = g_value_get_boolean(value);
 			break;
 		case PROP_SCROLL_RESET:
-			pr->scroll_reset = g_value_get_uint(value);
+			pr->scroll_reset = (PixbufRendererScrollResetType)g_value_get_uint(value);
 			break;
 		case PROP_DELAY_FLIP:
 			pr->delay_flip = g_value_get_boolean(value);
@@ -644,7 +644,7 @@ static void widget_set_cursor(GtkWidget *widget, gint icon)
 		}
 	else
 		{
-		cursor = gdk_cursor_new(icon);
+		cursor = gdk_cursor_new((GdkCursorType)icon);
 		}
 
 	gdk_window_set_cursor(gtk_widget_get_window(widget), cursor);
@@ -1215,7 +1215,7 @@ void pixbuf_renderer_set_tiles(PixbufRenderer *pr, gint width, gint height,
 	pr->func_tile_data = user_data;
 
 	pr_stereo_temp_disable(pr, TRUE);
-	pr_zoom_sync(pr, zoom, PR_ZOOM_FORCE | PR_ZOOM_NEW, 0, 0);
+	pr_zoom_sync(pr, zoom, (PrZoomFlags)(PR_ZOOM_FORCE | PR_ZOOM_NEW), 0, 0);
 }
 
 void pixbuf_renderer_set_tiles_size(PixbufRenderer *pr, gint width, gint height)
@@ -1798,7 +1798,7 @@ static void pr_zoom_sync(PixbufRenderer *pr, gdouble zoom,
 		old_cy = pr->y_scroll + pr->vis_height / 2;
 		}
 
-	if (force) clamp_flags |= PR_ZOOM_INVALIDATE;
+	if (force) clamp_flags = (PrZoomFlags)(clamp_flags | PR_ZOOM_INVALIDATE);
 	if (!pr_zoom_clamp(pr, zoom, clamp_flags)) return;
 
 	(void) pr_size_clamp(pr);
@@ -2127,7 +2127,7 @@ static gboolean pr_mouse_press_cb(GtkWidget *widget, GdkEventButton *bevent, gpo
 			pr->drag_last_y = bevent->y;
 			pr->drag_moved = 0;
 			gdk_pointer_grab(gtk_widget_get_window(widget), FALSE,
-					 GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_RELEASE_MASK,
+					 (GdkEventMask)(GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_RELEASE_MASK),
 					 NULL, NULL, bevent->time);
 			gtk_grab_add(widget);
 			break;
@@ -2500,7 +2500,7 @@ static void pr_set_pixbuf(PixbufRenderer *pr, GdkPixbuf *pixbuf, gdouble zoom, P
 	pr_pixbuf_size_sync(pr);
 	pr->renderer->update_pixbuf(pr->renderer, flags & PR_ZOOM_LAZY);
 	if (pr->renderer2) pr->renderer2->update_pixbuf(pr->renderer2, flags & PR_ZOOM_LAZY);
-	pr_zoom_sync(pr, zoom, flags | PR_ZOOM_FORCE | PR_ZOOM_NEW, 0, 0);
+	pr_zoom_sync(pr, zoom, (PrZoomFlags)(flags | PR_ZOOM_FORCE | PR_ZOOM_NEW), 0, 0);
 }
 
 void pixbuf_renderer_set_pixbuf(PixbufRenderer *pr, GdkPixbuf *pixbuf, gdouble zoom)
@@ -2509,7 +2509,7 @@ void pixbuf_renderer_set_pixbuf(PixbufRenderer *pr, GdkPixbuf *pixbuf, gdouble z
 
 	pr_source_tile_unset(pr);
 
-	pr_set_pixbuf(pr, pixbuf, zoom, 0);
+	pr_set_pixbuf(pr, pixbuf, zoom, (PrZoomFlags)0);
 
 	pr_update_signal(pr);
 }
@@ -2630,7 +2630,7 @@ void pixbuf_renderer_move(PixbufRenderer *pr, PixbufRenderer *source)
 		pr->source_tiles = source->source_tiles;
 		source->source_tiles = NULL;
 
-		pr_zoom_sync(pr, source->zoom, PR_ZOOM_FORCE | PR_ZOOM_NEW, 0, 0);
+		pr_zoom_sync(pr, source->zoom, (PrZoomFlags)(PR_ZOOM_FORCE | PR_ZOOM_NEW), 0, 0);
 		}
 	else
 		{
@@ -2687,7 +2687,7 @@ void pixbuf_renderer_copy(PixbufRenderer *pr, PixbufRenderer *source)
 		pr->source_tiles = source->source_tiles;
 		source->source_tiles = NULL;
 
-		pr_zoom_sync(pr, source->zoom, PR_ZOOM_FORCE | PR_ZOOM_NEW, 0, 0);
+		pr_zoom_sync(pr, source->zoom, (PrZoomFlags)(PR_ZOOM_FORCE | PR_ZOOM_NEW), 0, 0);
 		}
 	else
 		{
@@ -2806,7 +2806,7 @@ void pixbuf_renderer_stereo_set(PixbufRenderer *pr, gint stereo_mode)
 	if (redraw)
 		{
 		pr_size_sync(pr, pr->window_width, pr->window_height); /* recalculate new viewport */
-		pr_zoom_sync(pr, pr->zoom, PR_ZOOM_FORCE | PR_ZOOM_NEW, 0, 0);
+		pr_zoom_sync(pr, pr->zoom, (PrZoomFlags)(PR_ZOOM_FORCE | PR_ZOOM_NEW), 0, 0);
 		}
 }
 
