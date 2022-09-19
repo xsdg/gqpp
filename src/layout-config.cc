@@ -54,7 +54,8 @@ struct _LayoutConfig
 };
 
 
-static LayoutStyle layout_config_styles[] = {
+// TODO(xsdg): Do layout_config_style_count differently.
+static LayoutStyle layout_config_styles[4] = {
 	/* 1, 2, 3 */
 	{ LAYOUT_LEFT | LAYOUT_TOP, LAYOUT_LEFT | LAYOUT_BOTTOM, LAYOUT_RIGHT },
 	{ LAYOUT_LEFT | LAYOUT_TOP, LAYOUT_RIGHT | LAYOUT_TOP, LAYOUT_BOTTOM },

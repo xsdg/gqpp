@@ -2463,7 +2463,7 @@ static void collection_table_dnd_init(CollectTable *ct)
 			 G_CALLBACK(collection_table_dnd_end), ct);
 
 	gtk_drag_dest_set(ct->listview,
-			  (GdkModifierType)(GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_HIGHLIGHT | GTK_DEST_DEFAULT_DROP),
+			  (GtkDestDefaults)(GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_HIGHLIGHT | GTK_DEST_DEFAULT_DROP),
 			  collection_drop_types, n_collection_drop_types,
 			  (GdkDragAction)(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_ASK));
 	g_signal_connect(G_OBJECT(ct->listview), "drag_motion",

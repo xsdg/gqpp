@@ -448,7 +448,7 @@ static void bar_pane_exif_entry_dnd_init(GtkWidget *entry)
 
 	gtk_drag_source_set(entry, (GdkModifierType)(GDK_BUTTON1_MASK | GDK_BUTTON2_MASK),
 			    bar_pane_exif_drag_types, n_exif_entry_drag_types,
-			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			    (GdkDragAction)(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 	g_signal_connect(G_OBJECT(entry), "drag_data_get",
 			 G_CALLBACK(bar_pane_exif_entry_dnd_get), ee);
 

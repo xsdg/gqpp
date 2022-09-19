@@ -333,7 +333,7 @@ gchar *image_osd_mkinfo(const gchar *str, FileData *fd, GHashTable *vars)
 #endif
 		else
 			{
-			data = g_strdup(g_hash_table_lookup(vars, name));
+			data = g_strdup((gchar *)g_hash_table_lookup(vars, name));
 			if (!data)
 				data = metadata_read_string(fd, name, METADATA_FORMATTED);
 			}

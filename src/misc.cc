@@ -384,7 +384,7 @@ gint get_cpu_cores(void)
 
 void tree_path_free_wrapper(void *data, void *UNUSED(useradata))
 {
-	gtk_tree_path_free(data);
+	gtk_tree_path_free((GtkTreePath *)data);
 }
 
 /* Copied from the libarchive .repo. examples */

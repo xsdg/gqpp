@@ -83,7 +83,7 @@ void history_chain_append_end(const gchar *path)
 		else
 			{
 			work = g_list_last(history_chain);
-			if (g_strcmp0(work->data , path) != 0)
+			if (g_strcmp0((gchar *)work->data , path) != 0)
 				{
 				history_chain = g_list_append (history_chain, g_strdup(path));
 				chain_index = g_list_length(history_chain) - 1;
@@ -158,7 +158,7 @@ void image_chain_append_end(const gchar *path)
 		else
 			{
 			work = g_list_last(image_chain);
-			if (g_strcmp0(work->data , path) != 0)
+			if (g_strcmp0((gchar *)work->data , path) != 0)
 				{
 				image_chain = g_list_append(image_chain, g_strdup(path));
 				image_chain_index = g_list_length(image_chain) - 1;
@@ -314,9 +314,9 @@ gboolean history_list_save(const gchar *path)
 			{
 			if ((!(strcmp(hd->key, "path_list") == 0 && list_count > options->open_recent_list_maxsize))
 					&&
-					(!(strcmp(hd->key, "recent") == 0 && (!isfile(work->data))))
+					(!(strcmp((gchar *)hd->key, "recent") == 0 && (!isfile(work->data))))
 					&&
-					(!(strcmp(hd->key, "image_list") == 0 && list_count > options->recent_folder_image_list_maxsize)))
+					(!(strcmp((gchar *)hd->key, "image_list") == 0 && list_count > options->recent_folder_image_list_maxsize)))
 				{
 				secure_fprintf(ssi, "\"%s\"\n", (gchar *)work->data);
 				}
@@ -552,13 +552,13 @@ gchar *get_recent_viewed_folder_image(gchar *path)
 
 	while (work)
 		{
-		dirname = g_path_get_dirname(work->data);
+		dirname = g_path_get_dirname((gchar *)work->data);
 
 		if (g_strcmp0(dirname, path) == 0)
 			{
-			if (isfile(work->data))
+			if (isfile((gchar *)work->data))
 				{
-				ret = g_strdup(work->data);
+				ret = g_strdup((gchar *)work->data);
 				}
 			g_free(dirname);
 			break;
@@ -598,7 +598,7 @@ static void update_recent_viewed_folder_image_list(const gchar *path)
 
 	while (work)
 		{
-		list_dir = g_path_get_dirname(work->data);
+		list_dir = g_path_get_dirname((gchar *)work->data);
 
 		/* If folder already in list, update and move to start of list */
 		if (g_strcmp0(list_dir, image_dir) == 0)

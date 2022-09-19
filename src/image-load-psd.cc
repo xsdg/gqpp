@@ -319,7 +319,7 @@ static gboolean image_loader_psd_load(gpointer loader, const guchar *buf, gsize 
 					ctx->channels = hd.channels;
 					ctx->depth = hd.depth;
 					ctx->depth_bytes = (ctx->depth/8 > 0 ? ctx->depth/8 : 1);
-					ctx->color_mode = hd.color_mode;
+					ctx->color_mode = (PsdColorMode)hd.color_mode;
 					
 					if (ctx->color_mode != PSD_MODE_RGB
 					    && ctx->color_mode != PSD_MODE_GRAYSCALE
@@ -395,7 +395,7 @@ static gboolean image_loader_psd_load(gpointer loader, const guchar *buf, gsize 
 			case PSD_STATE_COMPRESSION:
 				if (feed_buffer(ctx->buffer, &ctx->bytes_read, &buf, &size, 2))
 				{
-					ctx->compression = read_uint16(ctx->buffer);
+					ctx->compression = (PsdCompressionType)read_uint16(ctx->buffer);
 
 					if (ctx->compression == PSD_COMPRESSION_RLE) {
 						ctx->state = PSD_STATE_LINES_LENGTHS;

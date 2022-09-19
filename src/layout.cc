@@ -1491,8 +1491,8 @@ static void layout_location_compute(LayoutLocation l1, LayoutLocation l2,
 {
 	LayoutLocation l;
 
-	l = l1 & l2;	/* get common compass direction */
-	l = l1 - l;	/* remove it */
+	l = (LayoutLocation)(l1 & l2);	/* get common compass direction */
+	l = (LayoutLocation)(l1 - l);	/* remove it */
 
 	if (layout_location_first(l))
 		{
@@ -1634,7 +1634,7 @@ static void layout_tools_setup(LayoutWindow *lw, GtkWidget *tools, GtkWidget *fi
 			}
 		else
 			{
-			hints = 0;
+			hints = (GdkWindowHints)0;
 			}
 
 		geometry.min_width = DEFAULT_MINIMAL_WINDOW_SIZE;
@@ -1642,7 +1642,7 @@ static void layout_tools_setup(LayoutWindow *lw, GtkWidget *tools, GtkWidget *fi
 		geometry.base_width = TOOLWINDOW_DEF_WIDTH;
 		geometry.base_height = TOOLWINDOW_DEF_HEIGHT;
 		gtk_window_set_geometry_hints(GTK_WINDOW(lw->tools), NULL, &geometry,
-					      GDK_HINT_MIN_SIZE | GDK_HINT_BASE_SIZE | hints);
+					      (GdkWindowHints)(GDK_HINT_MIN_SIZE | GDK_HINT_BASE_SIZE | hints));
 
 
 		gtk_window_set_resizable(GTK_WINDOW(lw->tools), TRUE);
@@ -1877,7 +1877,7 @@ static void layout_grid_setup(LayoutWindow *lw)
 	h = lw->h_pane = gtk_hpaned_new();
 	DEBUG_NAME(h);
 
-	if (!layout_location_vertical(priority_location))
+	if (!layout_location_vertical((LayoutLocation)priority_location))
 		{
 		GtkWidget *tmp;
 
@@ -1888,7 +1888,7 @@ static void layout_grid_setup(LayoutWindow *lw)
 
 	gtk_box_pack_start(GTK_BOX(lw->group_box), v, TRUE, TRUE, 0);
 
-	if (!layout_location_first(priority_location))
+	if (!layout_location_first((LayoutLocation)priority_location))
 		{
 		gtk_paned_pack1(GTK_PANED(v), h, FALSE, TRUE);
 		gtk_paned_pack2(GTK_PANED(v), w3, TRUE, TRUE);
@@ -1915,8 +1915,8 @@ static void layout_grid_setup(LayoutWindow *lw)
 	/* fix to have image pane visible when it is left and priority widget */
 	if (lw->options.main_window.hdivider_pos == -1 &&
 	    w1 == image_sb &&
-	    !layout_location_vertical(priority_location) &&
-	    layout_location_first(priority_location))
+	    !layout_location_vertical((LayoutLocation)priority_location) &&
+	    layout_location_first((LayoutLocation)priority_location))
 		{
 		gtk_widget_set_size_request(image_sb, 200, -1);
 		}
@@ -2611,8 +2611,8 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 
 	layout_config_parse(lw->options.style, lw->options.order,
 			    &lw->dir_location,  &lw->file_location, &lw->image_location);
-	if (lw->options.dir_view_type > DIRVIEW_LAST) lw->options.dir_view_type = 0;
-	if (lw->options.file_view_type > FILEVIEW_LAST) lw->options.file_view_type = 0;
+	if (lw->options.dir_view_type > DIRVIEW_LAST) lw->options.dir_view_type = (DirViewType)0;
+	if (lw->options.file_view_type > FILEVIEW_LAST) lw->options.file_view_type = (FileViewType)0;
 
 	/* divider positions */
 
@@ -2643,7 +2643,7 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 		}
 	else
 		{
-		hint_mask = 0;
+		hint_mask = (GdkWindowHints)0;
 		}
 
 	hint.min_width = 32;
@@ -2651,7 +2651,7 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 	hint.base_width = 0;
 	hint.base_height = 0;
 	gtk_window_set_geometry_hints(GTK_WINDOW(lw->window), NULL, &hint,
-				      GDK_HINT_MIN_SIZE | GDK_HINT_BASE_SIZE | hint_mask);
+				      (GdkWindowHints)(GDK_HINT_MIN_SIZE | GDK_HINT_BASE_SIZE | hint_mask));
 
 	if (options->save_window_positions || isfile(default_path))
 		{
@@ -2716,7 +2716,7 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 	gtk_widget_show(lw->window);
 	layout_tools_hide(lw, lw->options.tools_hidden);
 
-	image_osd_set(lw->image, lw->options.image_overlay.state);
+	image_osd_set(lw->image, (OsdShowFlags)lw->options.image_overlay.state);
 	histogram = image_osd_get_histogram(lw->image);
 
 	histogram->histogram_channel = lw->options.image_overlay.histogram_channel;

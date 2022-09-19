@@ -1341,7 +1341,7 @@ gboolean keyword_tree_get_iter(GtkTreeModel *keyword_tree, GtkTreeIter *iter_ptr
 		while (TRUE)
 			{
 			gchar *name = keyword_get_name(keyword_tree, &iter);
-			if (strcmp(name, path->data) == 0) break;
+			if (strcmp(name, (gchar *)path->data) == 0) break;
 			g_free(name);
 			if (!gtk_tree_model_iter_next(keyword_tree, &iter)) return FALSE;
 			}

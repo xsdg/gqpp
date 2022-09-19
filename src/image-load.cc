@@ -89,7 +89,7 @@ GType image_loader_get_type(void)
 			(GInstanceInitFunc)image_loader_init, /* instance_init */
 			NULL	/* value_table */
 			};
-		type = g_type_register_static(G_TYPE_OBJECT, "ImageLoaderType", &info, 0);
+		type = g_type_register_static(G_TYPE_OBJECT, "ImageLoaderType", &info, (GTypeFlags)0);
 		}
 	return type;
 }
@@ -132,7 +132,7 @@ static void image_loader_init(GTypeInstance *instance, gpointer UNUSED(g_class))
 
 static void image_loader_class_init_wrapper(void *data, void *UNUSED(user_data))
 {
-	image_loader_class_init(data);
+	image_loader_class_init((ImageLoaderClass *)data);
 }
 
 static void image_loader_class_init(ImageLoaderClass *loader_class)
@@ -1071,7 +1071,7 @@ static gboolean image_loader_setup_source(ImageLoader *il)
 			return FALSE;
 			}
 
-		il->mapped_file = mmap(0, il->bytes_total, PROT_READ|PROT_WRITE, MAP_PRIVATE, load_fd, 0);
+		il->mapped_file = (guchar *)mmap(0, il->bytes_total, PROT_READ|PROT_WRITE, MAP_PRIVATE, load_fd, 0);
 		close(load_fd);
 		if (il->mapped_file == MAP_FAILED)
 			{

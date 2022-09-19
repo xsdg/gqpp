@@ -110,6 +110,12 @@ typedef enum {
 	LAYOUT_BOTTOM = 1 << 3
 } LayoutLocation;
 
+// Used for type-safe bitwise ops on enum flags.
+inline LayoutLocation operator | (LayoutLocation lhs, LayoutLocation rhs)
+{
+    using T = std::underlying_type_t <LayoutLocation>;
+    return static_cast<LayoutLocation>(static_cast<T>(lhs) | static_cast<T>(rhs));
+}
 
 typedef enum {
 	IMAGE_STATE_NONE	= 0,

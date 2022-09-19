@@ -207,7 +207,7 @@ void image_osd_toggle(ImageWindow *imd)
 	show = image_osd_get(imd);
 	if (show == OSD_SHOW_NOTHING)
 		{
-		image_osd_set(imd, OSD_SHOW_INFO | OSD_SHOW_STATUS);
+		image_osd_set(imd, (OsdShowFlags)(OSD_SHOW_INFO | OSD_SHOW_STATUS));
 		return;
 		}
 	else
@@ -218,7 +218,7 @@ void image_osd_toggle(ImageWindow *imd)
 			}
 		else
 			{
-			image_osd_set(imd, show | OSD_SHOW_HISTOGRAM);
+			image_osd_set(imd, (OsdShowFlags)(show | OSD_SHOW_HISTOGRAM));
 			}
 		}
 }
@@ -302,8 +302,8 @@ static GdkPixbuf *image_osd_info_render(OverlayStateData *osd)
 		osd_template_insert(vars, "total", g_strdup_printf("%d", t), OSDT_NO_DUP);
 		osd_template_insert(vars, "name", (gchar *) name, OSDT_NONE);
 		osd_template_insert(vars, "path", (gchar *) image_get_path(imd), OSDT_NONE);
-		osd_template_insert(vars, "date", imd->image_fd ? ((gchar *) text_from_time(imd->image_fd->date)) : "", OSDT_NONE);
-		osd_template_insert(vars, "size", imd->image_fd ? (text_from_size_abrev(imd->image_fd->size)) : g_strdup(""), OSDT_FREE);
+		osd_template_insert(vars, "date", imd->image_fd ? text_from_time(imd->image_fd->date) : g_strdup(""), OSDT_NONE);
+		osd_template_insert(vars, "size", imd->image_fd ? text_from_size_abrev(imd->image_fd->size) : g_strdup(""), OSDT_FREE);
 		osd_template_insert(vars, "zoom", image_zoom_get_as_text(imd), OSDT_FREE);
 
 		if (!imd->unknown)
@@ -570,11 +570,11 @@ static void image_osd_icons_update(OverlayStateData *osd)
 		{
 		if (osd->icon_time[i] > 0)
 			{
-			image_osd_icon_show(osd, i);
+			image_osd_icon_show(osd, (ImageOSDFlag)i);
 			}
 		else
 			{
-			image_osd_icon_hide(osd, i);
+			image_osd_icon_hide(osd, (ImageOSDFlag)i);
 			}
 		}
 }
@@ -585,7 +585,7 @@ static void image_osd_icons_hide(OverlayStateData *osd)
 
 	for (i = 0; i < IMAGE_OSD_COUNT; i++)
 		{
-		image_osd_icon_hide(osd, i);
+		image_osd_icon_hide(osd, (ImageOSDFlag)i);
 		}
 }
 
@@ -673,14 +673,14 @@ static gboolean image_osd_update_cb(gpointer data)
 		}
 
 	osd->changed_states = IMAGE_STATE_NONE;
-	osd->notify = 0;
+	osd->notify = (NotifyType)0;
 	osd->idle_id = 0;
 	return FALSE;
 }
 
 static void image_osd_update_schedule(OverlayStateData *osd, gboolean force)
 {
-	if (force) osd->changed_states |= IMAGE_STATE_IMAGE;
+	if (force) osd->changed_states = (ImageState)(osd->changed_states | IMAGE_STATE_IMAGE);
 
 	if (!osd->idle_id)
 		{
@@ -744,7 +744,7 @@ static void image_osd_state_cb(ImageWindow *UNUSED(imd), ImageState state, gpoin
 {
 	OverlayStateData *osd = (OverlayStateData*)data;
 
-	osd->changed_states |= state;
+	osd->changed_states = (ImageState)(osd->changed_states | state);
 	image_osd_update_schedule(osd, FALSE);
 }
 
@@ -755,7 +755,7 @@ static void image_osd_notify_cb(FileData *fd, NotifyType type, gpointer data)
 	if ((type & (NOTIFY_HISTMAP)) && osd->imd && fd == osd->imd->image_fd)
 		{
 		DEBUG_1("Notify osd: %s %04x", fd->path, type);
-		osd->notify |= type;
+		osd->notify = (NotifyType)(osd->notify | type);
 		image_osd_update_schedule(osd, FALSE);
 		}
 }
