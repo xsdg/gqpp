@@ -228,7 +228,7 @@ static char *ZDParseString(const ZoneDetect *library, uint32_t *index)
         }
     }
 
-    char *const str = malloc((size_t)(strLength + 1));
+    char *const str = (char *const)malloc((size_t)(strLength + 1));
 
     if(str) {
 #if defined(_MSC_VER)
@@ -288,7 +288,7 @@ static int ZDParseHeader(ZoneDetect *library)
 
     uint32_t index = UINT32_C(7);
 
-    library->fieldNames = malloc(library->numFields * sizeof *library->fieldNames);
+    library->fieldNames = (char **)malloc(library->numFields * sizeof *library->fieldNames);
     if (!library->fieldNames) {
         return -1;
     }
@@ -545,7 +545,7 @@ static int32_t* ZDPolygonToListInternal(const ZoneDetect *library, uint32_t poly
     size_t listLength = 2 * 100;
     size_t listIndex = 0;
 
-    int32_t* list = malloc(sizeof(int32_t) * listLength);
+    int32_t* list = (int32_t *)malloc(sizeof(int32_t) * listLength);
     if(!list) {
         goto fail;
     }
@@ -565,7 +565,7 @@ static int32_t* ZDPolygonToListInternal(const ZoneDetect *library, uint32_t poly
                 goto fail;
             }
 
-            list = realloc(list, sizeof(int32_t) * listLength);
+            list = (int32_t *)realloc(list, sizeof(int32_t) * listLength);
             if(!list) {
                 goto fail;
             }
@@ -605,7 +605,7 @@ float* ZDPolygonToList(const ZoneDetect *library, uint32_t polygonId, size_t* le
         goto fail;
     }
 
-    flData = malloc(sizeof(float) * length);
+    flData = (float *)malloc(sizeof(float) * length);
     if(!flData) {
         goto fail;
     }
@@ -814,7 +814,7 @@ void ZDCloseDatabase(ZoneDetect *library)
 
 ZoneDetect *ZDOpenDatabaseFromMemory(void* buffer, size_t length)
 {
-    ZoneDetect *const library = malloc(sizeof *library);
+    ZoneDetect *const library = (ZoneDetect *const)malloc(sizeof *library);
 
     if(library) {
         memset(library, 0, sizeof(*library));
@@ -830,7 +830,7 @@ ZoneDetect *ZDOpenDatabaseFromMemory(void* buffer, size_t length)
             goto fail;
         }
 
-        library->mapping = buffer;
+        library->mapping = (uint8_t *)buffer;
 
         /* Parse the header */
         if(ZDParseHeader(library)) {
@@ -848,7 +848,7 @@ fail:
 
 ZoneDetect *ZDOpenDatabase(const char *path)
 {
-    ZoneDetect *const library = malloc(sizeof *library);
+    ZoneDetect *const library = (ZoneDetect *const)malloc(sizeof *library);
 
     if(library) {
         memset(library, 0, sizeof(*library));
@@ -892,7 +892,7 @@ ZoneDetect *ZDOpenDatabase(const char *path)
         }
         lseek(library->fd, 0, SEEK_SET);
 
-        library->mapping = mmap(NULL, (size_t)library->length, PROT_READ, MAP_PRIVATE | MAP_FILE, library->fd, 0);
+        library->mapping = (uint8_t *)mmap(NULL, (size_t)library->length, PROT_READ, MAP_PRIVATE | MAP_FILE, library->fd, 0);
         if(library->mapping == MAP_FAILED) {
             zdError(ZD_E_DB_MMAP, errno);
             goto fail;
@@ -925,7 +925,7 @@ ZoneDetectResult *ZDLookup(const ZoneDetect *library, float lat, float lon, floa
     uint32_t metadataIndex = 0;
     uint32_t polygonIndex = 0;
 
-    ZoneDetectResult *results = malloc(sizeof *results);
+    ZoneDetectResult *results = (ZoneDetectResult *)malloc(sizeof *results);
     if(!results) {
         return NULL;
     }
@@ -954,7 +954,7 @@ ZoneDetectResult *ZDLookup(const ZoneDetect *library, float lat, float lon, floa
                 if(lookupResult == ZD_LOOKUP_PARSE_ERROR) {
                     break;
                 } else if(lookupResult != ZD_LOOKUP_NOT_IN_ZONE) {
-                    ZoneDetectResult *const newResults = realloc(results, sizeof *newResults * (numResults + 2));
+                    ZoneDetectResult *const newResults = (ZoneDetectResult *const)realloc(results, sizeof *newResults * (numResults + 2));
 
                     if(newResults) {
                         results = newResults;
@@ -1024,7 +1024,7 @@ ZoneDetectResult *ZDLookup(const ZoneDetect *library, float lat, float lon, floa
     /* Lookup metadata */
     for(i = 0; i < numResults; i++) {
         uint32_t tmpIndex = library->metadataOffset + results[i].metaId;
-        results[i].data = malloc(library->numFields * sizeof *results[i].data);
+        results[i].data = (char **)malloc(library->numFields * sizeof *results[i].data);
         if(results[i].data) {
             size_t j;
             for(j = 0; j < library->numFields; j++) {
