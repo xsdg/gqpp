@@ -561,7 +561,7 @@ static void vf_pop_menu_toggle_mark_sel_cb(GtkWidget *UNUSED(widget), gpointer d
 static void vf_pop_menu_toggle_view_type_cb(GtkWidget *widget, gpointer data)
 {
 	ViewFile *vf = (ViewFile*)data;
-	FileViewType new_type = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(widget), "menu_item_radio_data"));
+	FileViewType new_type = (FileViewType)GPOINTER_TO_INT(g_object_get_data(G_OBJECT(widget), "menu_item_radio_data"));
 	if (!vf->layout) return;
 
 	layout_views_set(vf->layout, vf->layout->options.dir_view_type, new_type);
@@ -1642,26 +1642,26 @@ GRegex *vf_file_filter_get_filter(ViewFile *vf)
 
 	if (!gtk_widget_get_visible(vf->file_filter.combo))
 		{
-		return g_regex_new("", 0, 0, NULL);
+		return g_regex_new("", (GRegexCompileFlags)0, (GRegexMatchFlags)0, NULL);
 		}
 
 	file_filter_text = gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(vf->file_filter.combo));
 
 	if (file_filter_text[0] != '\0')
 		{
-		ret = g_regex_new(file_filter_text, vf->file_filter.case_sensitive ? 0 : G_REGEX_CASELESS, 0, &error);
+		ret = g_regex_new(file_filter_text, vf->file_filter.case_sensitive ? (GRegexCompileFlags)0 : G_REGEX_CASELESS, (GRegexMatchFlags)0, &error);
 		if (error)
 			{
 			log_printf("Error: could not compile regular expression %s\n%s\n", file_filter_text, error->message);
 			g_error_free(error);
 			error = NULL;
-			ret = g_regex_new("", 0, 0, NULL);
+			ret = g_regex_new("", (GRegexCompileFlags)0, (GRegexMatchFlags)0, NULL);
 			}
 		g_free(file_filter_text);
 		}
 	else
 		{
-		ret = g_regex_new("", 0, 0, NULL);
+		ret = g_regex_new("", (GRegexCompileFlags)0, (GRegexMatchFlags)0, NULL);
 		}
 
 	return ret;
@@ -1741,8 +1741,8 @@ void vf_notify_cb(FileData *fd, NotifyType type, gpointer data)
 	ViewFile *vf = (ViewFile*)data;
 	gboolean refresh;
 
-	NotifyType interested = NOTIFY_CHANGE | NOTIFY_REREAD | NOTIFY_GROUPING;
-	if (vf->marks_enabled) interested |= NOTIFY_MARKS | NOTIFY_METADATA;
+	NotifyType interested = (NotifyType)(NOTIFY_CHANGE | NOTIFY_REREAD | NOTIFY_GROUPING);
+	if (vf->marks_enabled) interested = (NotifyType)(interested | NOTIFY_MARKS | NOTIFY_METADATA);
 	/** @FIXME NOTIFY_METADATA should be checked by the keyword-to-mark functions and converted to NOTIFY_MARKS only if there was a change */
 
 	if (!(type & interested) || vf->refresh_idle_id || !vf->dir_fd) return;

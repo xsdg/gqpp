@@ -263,7 +263,7 @@ static gboolean match_func(GtkEntryCompletion *completion, const gchar *key, Gtk
 		log_printf("Error: could not compile regular expression %s\n%s\n", reg_exp_str->str, error->message);
 		g_error_free(error);
 		error = NULL;
-		reg_exp = g_regex_new("", (GRegexCompileFlags)0, 0, NULL);
+		reg_exp = g_regex_new("", (GRegexCompileFlags)0, (GRegexpMatchFlags)0, NULL);
 		}
 
 	ret = g_regex_match(reg_exp, normalized, (GRegexMatchFlags)0, NULL);

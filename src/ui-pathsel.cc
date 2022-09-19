@@ -227,12 +227,13 @@ static void dest_populate(Dest_Data *dd, const gchar *path)
 		GtkTreeIter iter;
 		gchar *filepath;
 
-		if (strcmp(list->data, ".") == 0)
+		if (strcmp((gchar *)list->data, ".") == 0)
 			{
 			filepath = g_strdup(path);
 			}
-		else if (strcmp(list->data, "..") == 0)
+		else if (strcmp((gchar *)list->data, "..") == 0)
 			{
+			// TODO(xsdg): Fix const behavior here.
 			gchar *p;
 			filepath = g_strdup(path);
 			p = (gchar *)filename_from_path(filepath);
@@ -369,7 +370,7 @@ static void dest_dnd_init(Dest_Data *dd)
 {
 	gtk_tree_view_enable_model_drag_source(GTK_TREE_VIEW(dd->d_view), GDK_BUTTON1_MASK,
 					       dest_drag_types, dest_drag_types_n,
-					       GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK | GDK_ACTION_ASK);
+					       (GdkDragAction)(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK | GDK_ACTION_ASK));
 	g_signal_connect(G_OBJECT(dd->d_view), "drag_data_get",
 			 G_CALLBACK(dest_dnd_set_data), dd);
 
@@ -377,7 +378,7 @@ static void dest_dnd_init(Dest_Data *dd)
 		{
 		gtk_tree_view_enable_model_drag_source(GTK_TREE_VIEW(dd->f_view), GDK_BUTTON1_MASK,
 						       dest_drag_types, dest_drag_types_n,
-						       GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK | GDK_ACTION_ASK);
+						       (GdkDragAction)(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK | GDK_ACTION_ASK));
 		g_signal_connect(G_OBJECT(dd->f_view), "drag_data_get",
 				 G_CALLBACK(dest_dnd_set_data), dd);
 		}
@@ -1061,7 +1062,7 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 		paned = gtk_hpaned_new();
 		DEBUG_NAME(paned);
 		gtk_table_attach(GTK_TABLE(table), paned, 0, 3, 1, 2,
-				 GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
+				 (GtkAttachOptions)(GTK_EXPAND | GTK_FILL), (GtkAttachOptions)(GTK_EXPAND | GTK_FILL), 0, 0);
 		gtk_widget_show(paned);
 		gtk_paned_add1(GTK_PANED(paned), hbox2);
 		}
@@ -1069,7 +1070,7 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 		{
 		paned = NULL;
 		gtk_table_attach(GTK_TABLE(table), hbox2, 0, 1, 1, 2,
-				 GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
+				 (GtkAttachOptions)(GTK_EXPAND | GTK_FILL), (GtkAttachOptions)(GTK_EXPAND | GTK_FILL), 0, 0);
 		}
 	gtk_widget_show(hbox2);
 
@@ -1162,7 +1163,7 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 		else
 			{
 			gtk_table_attach(GTK_TABLE(table), scrolled, 2, 3, 1, 2,
-				 GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
+				 (GtkAttachOptions)(GTK_EXPAND | GTK_FILL), (GtkAttachOptions)(GTK_EXPAND | GTK_FILL), 0, 0);
 			}
 		gtk_widget_show(scrolled);
 

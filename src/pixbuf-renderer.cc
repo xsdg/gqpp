@@ -327,7 +327,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 							     "Limit size of image when autofitting",
 							     NULL,
 							     FALSE,
-							     G_PARAM_READABLE | G_PARAM_WRITABLE));
+							     (GParamFlags)(G_PARAM_READABLE | G_PARAM_WRITABLE)));
 
 	g_object_class_install_property(gobject_class,
 					PROP_AUTOFIT_LIMIT_VALUE,
@@ -509,7 +509,7 @@ static void pixbuf_renderer_set_property(GObject *object, guint prop_id,
 			pr->zoom_max = g_value_get_double(value);
 			break;
 		case PROP_ZOOM_QUALITY:
-			pr->zoom_quality = (GtkInterpType)g_value_get_uint(value);
+			pr->zoom_quality = (GdkInterpType)g_value_get_uint(value);
 			break;
 		case PROP_ZOOM_2PASS:
 			pr->zoom_2pass = g_value_get_boolean(value);

@@ -146,7 +146,7 @@ GList *uri_filelist_from_uris(gchar **uris, GList **uri_error_list)
 GList *uri_filelist_from_gtk_selection_data(GtkSelectionData *selection_data)
 {
 	GList *errors = NULL;
-	gchar **uris = (gchar*)gtk_selection_data_get_uris(selection_data);
+	gchar **uris = (gchar**)gtk_selection_data_get_uris(selection_data);
 	GList *ret = uri_filelist_from_uris(uris, &errors);
 	if(errors)
 		{

@@ -116,7 +116,7 @@ void pan_calendar_update(PanWindow *pw, PanItem *pi_day)
 		gchar *buf;
 
 		buf = pan_date_value_string(pi_day->fd->date, PAN_DATE_LENGTH_WEEK);
-		plabel = pan_item_text_new(pw, x, y, buf, PAN_TEXT_ATTR_BOLD | PAN_TEXT_ATTR_HEADING,
+		plabel = pan_item_text_new(pw, x, y, buf, (PanTextAttrType)(PAN_TEXT_ATTR_BOLD | PAN_TEXT_ATTR_HEADING),
 					   PAN_TEXT_BORDER_SIZE,
 					   PAN_CAL_POPUP_TEXT_COLOR, 255);
 		pan_item_set_key(plabel, "day_bubble");
@@ -309,7 +309,7 @@ void pan_calendar_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *he
 					    PAN_CAL_MONTH_BORDER_COLOR, PAN_CAL_MONTH_ALPHA);
 		buf = pan_date_value_string(dt, PAN_DATE_LENGTH_MONTH);
 		pi_text = pan_item_text_new(pw, x, y, buf,
-					    PAN_TEXT_ATTR_BOLD | PAN_TEXT_ATTR_HEADING,
+					    (PanTextAttrType)(PAN_TEXT_ATTR_BOLD | PAN_TEXT_ATTR_HEADING),
 					    PAN_TEXT_BORDER_SIZE,
 					    PAN_CAL_MONTH_TEXT_COLOR, 255);
 		g_free(buf);
@@ -394,7 +394,7 @@ void pan_calendar_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *he
 				}
 
 			buf = g_strdup_printf("%d", day);
-			pi_day_number = pan_item_text_new(pw, x + 4, y + 4, buf, PAN_TEXT_ATTR_BOLD | PAN_TEXT_ATTR_HEADING,
+			pi_day_number = pan_item_text_new(pw, x + 4, y + 4, buf, (PanTextAttrType)(PAN_TEXT_ATTR_BOLD | PAN_TEXT_ATTR_HEADING),
 					  PAN_TEXT_BORDER_SIZE,
 					  PAN_CAL_DAY_TEXT_COLOR, 255);
 			g_free(buf);

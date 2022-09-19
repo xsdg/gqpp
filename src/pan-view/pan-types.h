@@ -67,7 +67,7 @@
 #define PAN_BOX_OUTLINE_COLOR 0, 0, 0
 #define PAN_BOX_OUTLINE_ALPHA 128
 
-#define PAN_TEXT_BORDER_SIZE 4
+#define PAN_TEXT_BORDER_SIZE ((PanBorderType)4)
 #define PAN_TEXT_COLOR 0, 0, 0
 
 /* popup info box */
