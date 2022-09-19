@@ -46,8 +46,7 @@ struct _ColorMan {
 	gint incremental_sync;
 	gint row;
 
-        /* TODO(xsdg): Confirm that this change works correctly. */
-	ColorManCache *profile;
+	gpointer profile;
 
 	guint idle_id; /* event source id */
 

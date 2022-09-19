@@ -61,8 +61,8 @@ struct _EditorDescription {
 	gboolean disabled;	/**< display disabled by user */
 };
 
-#define EDITOR_ERRORS(flags) ((flags) & EDITOR_ERROR_MASK)
-#define EDITOR_ERRORS_BUT_SKIPPED(flags) (!!(((flags) & EDITOR_ERROR_MASK) && !((flags) & EDITOR_ERROR_SKIPPED)))
+#define EDITOR_ERRORS(flags) (EditorFlags)((flags) & EDITOR_ERROR_MASK)
+#define EDITOR_ERRORS_BUT_SKIPPED(flags) (EditorFlags)(!!(((flags) & EDITOR_ERROR_MASK) && !((flags) & EDITOR_ERROR_SKIPPED)))
 
 
 /**

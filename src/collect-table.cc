@@ -2454,7 +2454,7 @@ static void collection_table_dnd_init(CollectTable *ct)
 {
 	gtk_drag_source_set(ct->listview, (GdkModifierType)(GDK_BUTTON1_MASK | GDK_BUTTON2_MASK),
 			    collection_drag_types, n_collection_drag_types,
-			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			    (GdkDragAction)(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 	g_signal_connect(G_OBJECT(ct->listview), "drag_data_get",
 			 G_CALLBACK(collection_table_dnd_get), ct);
 	g_signal_connect(G_OBJECT(ct->listview), "drag_begin",
@@ -2465,7 +2465,7 @@ static void collection_table_dnd_init(CollectTable *ct)
 	gtk_drag_dest_set(ct->listview,
 			  (GdkModifierType)(GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_HIGHLIGHT | GTK_DEST_DEFAULT_DROP),
 			  collection_drop_types, n_collection_drop_types,
-			  GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_ASK);
+			  (GdkDragAction)(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_ASK));
 	g_signal_connect(G_OBJECT(ct->listview), "drag_motion",
 			 G_CALLBACK(collection_table_dnd_motion), ct);
 	g_signal_connect(G_OBJECT(ct->listview), "drag_leave",

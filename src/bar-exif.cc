@@ -463,7 +463,7 @@ static void bar_pane_exif_dnd_init(GtkWidget *pane)
 	gtk_drag_dest_set(pane,
 			  (GtkDestDefaults)(GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_HIGHLIGHT | GTK_DEST_DEFAULT_DROP),
 			  bar_pane_exif_drop_types, n_exif_entry_drop_types,
-			  GDK_ACTION_COPY | GDK_ACTION_MOVE);
+			  (GdkDragAction)(GDK_ACTION_COPY | GDK_ACTION_MOVE));
 	g_signal_connect(G_OBJECT(pane), "drag_data_received",
 			 G_CALLBACK(bar_pane_exif_dnd_receive), NULL);
 }

@@ -311,7 +311,7 @@ void color_man_correct_region(ColorMan *cm, GdkPixbuf *pixbuf, gint x, gint y, g
 	pixbuf_width = gdk_pixbuf_get_width(pixbuf);
 	pixbuf_height = gdk_pixbuf_get_height(pixbuf);
 
-	cc = cm->profile;
+	cc = (ColorManCache *)cm->profile;
 
 	pix = gdk_pixbuf_get_pixels(pixbuf);
 	rs = gdk_pixbuf_get_rowstride(pixbuf);
@@ -466,7 +466,7 @@ gboolean color_man_get_status(ColorMan *cm, gchar **image_profile, gchar **scree
 	ColorManCache *cc;
 	if (!cm) return FALSE;
 
-	cc = cm->profile;
+	cc = (ColorManCache *)cm->profile;
 
 	if (image_profile) *image_profile = color_man_get_profile_name(cc->profile_in_type, cc->profile_in);
 	if (screen_profile) *screen_profile = color_man_get_profile_name(cc->profile_out_type, cc->profile_out);
@@ -480,7 +480,7 @@ void color_man_free(ColorMan *cm)
 	if (cm->idle_id) g_source_remove(cm->idle_id);
 	if (cm->pixbuf) g_object_unref(cm->pixbuf);
 
-	color_man_cache_unref(cm->profile);
+	color_man_cache_unref((ColorManCache *)cm->profile);
 
 	g_free(cm);
 }

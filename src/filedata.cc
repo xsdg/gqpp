@@ -1190,7 +1190,7 @@ gint filelist_sort_compare_filedata_full(FileData *fa, FileData *fb, SortType me
 
 static gint filelist_sort_file_cb(gpointer a, gpointer b)
 {
-	return filelist_sort_compare_filedata(a, b);
+	return filelist_sort_compare_filedata((FileData *)a, (FileData *)b);
 }
 
 GList *filelist_sort_full(GList *list, SortType method, gboolean ascend, GCompareFunc cb)
@@ -1865,7 +1865,7 @@ GList *file_data_filter_marks_list(GList *list, guint filter)
 
 gboolean file_data_filter_file_filter(FileData *fd, GRegex *filter)
 {
-	return g_regex_match(filter, fd->name, 0, NULL);
+	return g_regex_match(filter, fd->name, (GRegexMatchFlags)0, NULL);
 }
 
 GList *file_data_filter_file_filter_list(GList *list, GRegex *filter)
@@ -1959,9 +1959,9 @@ gboolean file_data_register_mark_func(gint n, FileDataGetMarkFunc get_mark_func,
 
 void file_data_get_registered_mark_func(gint n, FileDataGetMarkFunc *get_mark_func, FileDataSetMarkFunc *set_mark_func, gpointer *data)
 {
-	if (get_mark_func) *get_mark_func = ((get_mark_func)*)file_data_get_mark_func[n];
-	if (set_mark_func) *set_mark_func = ((set_mark_func)*)file_data_set_mark_func[n];
-	if (data) *data = ((data)*)file_data_mark_func_data[n];
+	if (get_mark_func) *get_mark_func = file_data_get_mark_func[n];
+	if (set_mark_func) *set_mark_func = file_data_set_mark_func[n];
+	if (data) *data = file_data_mark_func_data[n];
 }
 
 gint file_data_get_user_orientation(FileData *fd)

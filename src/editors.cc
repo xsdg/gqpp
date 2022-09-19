@@ -342,13 +342,13 @@ gboolean editor_read_desktop_file(const gchar *path)
 			}
 		}
 
-	if (g_key_file_get_boolean(key_file, DESKTOP_GROUP, "X-Geeqie-Keep-Fullscreen", NULL)) editor->flags |= EDITOR_KEEP_FS;
-	if (g_key_file_get_boolean(key_file, DESKTOP_GROUP, "X-Geeqie-Verbose", NULL)) editor->flags |= EDITOR_VERBOSE;
-	if (g_key_file_get_boolean(key_file, DESKTOP_GROUP, "X-Geeqie-Verbose-Multi", NULL)) editor->flags |= EDITOR_VERBOSE_MULTI;
-	if (g_key_file_get_boolean(key_file, DESKTOP_GROUP, "X-Geeqie-Filter", NULL)) editor->flags |= EDITOR_DEST;
-	if (g_key_file_get_boolean(key_file, DESKTOP_GROUP, "Terminal", NULL)) editor->flags |= EDITOR_TERMINAL;
+	if (g_key_file_get_boolean(key_file, DESKTOP_GROUP, "X-Geeqie-Keep-Fullscreen", NULL)) editor->flags = (EditorFlags)(editor->flags | EDITOR_KEEP_FS);
+	if (g_key_file_get_boolean(key_file, DESKTOP_GROUP, "X-Geeqie-Verbose", NULL)) editor->flags = (EditorFlags)(editor->flags | EDITOR_VERBOSE);
+	if (g_key_file_get_boolean(key_file, DESKTOP_GROUP, "X-Geeqie-Verbose-Multi", NULL)) editor->flags = (EditorFlags)(editor->flags | EDITOR_VERBOSE_MULTI);
+	if (g_key_file_get_boolean(key_file, DESKTOP_GROUP, "X-Geeqie-Filter", NULL)) editor->flags = (EditorFlags)(editor->flags | EDITOR_DEST);
+	if (g_key_file_get_boolean(key_file, DESKTOP_GROUP, "Terminal", NULL)) editor->flags = (EditorFlags)(editor->flags | EDITOR_TERMINAL);
 
-	editor->flags |= editor_command_parse(editor, NULL, FALSE, NULL);
+	editor->flags = (EditorFlags)(editor->flags | editor_command_parse(editor, NULL, FALSE, NULL));
 
 	if ((editor->flags & EDITOR_NO_PARAM) && !category_geeqie) editor->hidden = TRUE;
 
@@ -361,7 +361,7 @@ gboolean editor_read_desktop_file(const gchar *path)
 	disabled = FALSE;
 	while (work)
 		{
-		if (g_strcmp0(path, work->data) == 0)
+		if (g_strcmp0(path, (const char *)work->data) == 0)
 			{
 			disabled = TRUE;
 			break;
@@ -480,7 +480,7 @@ GList *editor_get_desktop_files(void)
 
 static void editor_list_add_cb(gpointer UNUSED(key), gpointer value, gpointer data)
 {
-	GList **listp = (GList*)data;
+	GList **listp = (GList**)data;
 	EditorDescription *editor = (EditorDescription *)value;
 
 	/* do not show the special commands in any list, they are called explicitly */
@@ -829,7 +829,7 @@ EditorFlags editor_command_parse(const EditorDescription *editor, GList *list, g
 
 	if (editor->exec == NULL || editor->exec[0] == '\0')
 		{
-		flags |= EDITOR_ERROR_EMPTY;
+		flags = (EditorFlags)(flags | EDITOR_ERROR_EMPTY);
 		goto err;
 		}
 
@@ -877,10 +877,10 @@ EditorFlags editor_command_parse(const EditorDescription *editor, GList *list, g
 				{
 				case 'f': /* single file */
 				case 'u': /* single url */
-					flags |= EDITOR_FOR_EACH;
+					flags = (EditorFlags)(flags | EDITOR_FOR_EACH);
 					if (flags & EDITOR_SINGLE_COMMAND)
 						{
-						flags |= EDITOR_ERROR_INCOMPATIBLE;
+						flags = (EditorFlags)(flags | EDITOR_ERROR_INCOMPATIBLE);
 						goto err;
 						}
 					if (list)
@@ -888,7 +888,7 @@ EditorFlags editor_command_parse(const EditorDescription *editor, GList *list, g
 						/* use the first file from the list */
 						if (!list->data)
 							{
-							flags |= EDITOR_ERROR_NO_FILE;
+							flags = (EditorFlags)(flags | EDITOR_ERROR_NO_FILE);
 							goto err;
 							}
 						pathl = editor_command_path_parse((FileData *)list->data,
@@ -914,7 +914,7 @@ EditorFlags editor_command_parse(const EditorDescription *editor, GList *list, g
 
 						if (!pathl)
 							{
-							flags |= EDITOR_ERROR_NO_FILE;
+							flags = (EditorFlags)(flags | EDITOR_ERROR_NO_FILE);
 							goto err;
 							}
 						if (output)
@@ -927,10 +927,10 @@ EditorFlags editor_command_parse(const EditorDescription *editor, GList *list, g
 
 				case 'F':
 				case 'U':
-					flags |= EDITOR_SINGLE_COMMAND;
+					flags = (EditorFlags)(flags | EDITOR_SINGLE_COMMAND);
 					if (flags & (EDITOR_FOR_EACH | EDITOR_DEST))
 						{
-						flags |= EDITOR_ERROR_INCOMPATIBLE;
+						flags = (EditorFlags)(flags | EDITOR_ERROR_INCOMPATIBLE);
 						goto err;
 						}
 
@@ -960,7 +960,7 @@ EditorFlags editor_command_parse(const EditorDescription *editor, GList *list, g
 							}
 						if (!ok)
 							{
-							flags |= EDITOR_ERROR_NO_FILE;
+							flags = (EditorFlags)(flags | EDITOR_ERROR_NO_FILE);
 							goto err;
 							}
 						}
@@ -1000,7 +1000,7 @@ EditorFlags editor_command_parse(const EditorDescription *editor, GList *list, g
 					/* deprecated according to spec, ignore */
 					break;
 				default:
-					flags |= EDITOR_ERROR_SYNTAX;
+					flags = (EditorFlags)(flags | EDITOR_ERROR_SYNTAX);
 					goto err;
 				}
 			}
@@ -1011,7 +1011,7 @@ EditorFlags editor_command_parse(const EditorDescription *editor, GList *list, g
 		p++;
 		}
 
-	if (!(flags & (EDITOR_FOR_EACH | EDITOR_SINGLE_COMMAND))) flags |= EDITOR_NO_PARAM;
+	if (!(flags & (EDITOR_FOR_EACH | EDITOR_SINGLE_COMMAND))) flags = (EditorFlags)(flags | EDITOR_NO_PARAM);
 
 	if (output)
 		{
@@ -1053,7 +1053,7 @@ static EditorFlags editor_command_one(const EditorDescription *editor, GList *li
 
 	ed->pid = -1;
 	ed->flags = editor->flags;
-	ed->flags |= editor_command_parse(editor, list, TRUE, &command);
+	ed->flags = (EditorFlags)(ed->flags | editor_command_parse(editor, list, TRUE, &command));
 
 	ok = !EDITOR_ERRORS(ed->flags);
 
@@ -1068,7 +1068,7 @@ static EditorFlags editor_command_one(const EditorDescription *editor, GList *li
 			if (!ok) log_printf("ERROR: cannot execute shell command '%s'\n", options->shell.path);
 			}
 
-		if (!ok) ed->flags |= EDITOR_ERROR_CANT_EXEC;
+		if (!ok) ed->flags = (EditorFlags)(ed->flags | EDITOR_ERROR_CANT_EXEC);
 		}
 
 	if (ok)
@@ -1104,7 +1104,7 @@ static EditorFlags editor_command_one(const EditorDescription *editor, GList *li
 
 		g_free(working_directory);
 
-		if (!ok) ed->flags |= EDITOR_ERROR_CANT_EXEC;
+		if (!ok) ed->flags = (EditorFlags)(ed->flags | EDITOR_ERROR_CANT_EXEC);
 		}
 
 	if (ok)
@@ -1133,7 +1133,7 @@ static EditorFlags editor_command_one(const EditorDescription *editor, GList *li
 			g_io_channel_set_flags(channel_output, G_IO_FLAG_NONBLOCK, NULL);
 			g_io_channel_set_encoding(channel_output, NULL, NULL);
 
-			g_io_add_watch_full(channel_output, G_PRIORITY_HIGH, G_IO_IN | G_IO_ERR | G_IO_HUP,
+			g_io_add_watch_full(channel_output, G_PRIORITY_HIGH, (GIOCondition)(G_IO_IN | G_IO_ERR | G_IO_HUP),
 					    editor_verbose_io_cb, ed, NULL);
 			g_io_channel_unref(channel_output);
 
@@ -1141,7 +1141,7 @@ static EditorFlags editor_command_one(const EditorDescription *editor, GList *li
 			g_io_channel_set_flags(channel_error, G_IO_FLAG_NONBLOCK, NULL);
 			g_io_channel_set_encoding(channel_error, NULL, NULL);
 
-			g_io_add_watch_full(channel_error, G_PRIORITY_HIGH, G_IO_IN | G_IO_ERR | G_IO_HUP,
+			g_io_add_watch_full(channel_error, G_PRIORITY_HIGH, (GIOCondition)(G_IO_IN | G_IO_ERR | G_IO_HUP),
 					    editor_verbose_io_cb, ed, NULL);
 			g_io_channel_unref(channel_error);
 			}
@@ -1184,7 +1184,7 @@ static EditorFlags editor_command_next_start(EditorData *ed)
 			}
 
 		if (!error)
-			return 0;
+			return (EditorFlags)0;
 
 		/* command was not started, call the finish immediately */
 		return editor_command_next_finish(ed, 0);
@@ -1199,7 +1199,7 @@ static EditorFlags editor_command_next_finish(EditorData *ed, gint status)
 	gint cont = ed->stopping ? EDITOR_CB_SKIP : EDITOR_CB_CONTINUE;
 
 	if (status)
-		ed->flags |= EDITOR_ERROR_STATUS;
+		ed->flags = (EditorFlags)(ed->flags | EDITOR_ERROR_STATUS);
 
 	if (ed->flags & EDITOR_FOR_EACH)
 		{
@@ -1254,7 +1254,7 @@ static EditorFlags editor_command_done(EditorData *ed)
 	/* free the not-handled items */
 	if (ed->list)
 		{
-		ed->flags |= EDITOR_ERROR_SKIPPED;
+		ed->flags = (EditorFlags)(ed->flags | EDITOR_ERROR_SKIPPED);
 		if (ed->callback) ed->callback(NULL, ed->flags, ed->list, ed->data);
 		filelist_free(ed->list);
 		ed->list = NULL;
@@ -1271,12 +1271,12 @@ static EditorFlags editor_command_done(EditorData *ed)
 
 void editor_resume(gpointer ed)
 {
-	editor_command_next_start(ed);
+	editor_command_next_start((EditorData *)ed);
 }
 
 void editor_skip(gpointer ed)
 {
-	editor_command_done(ed);
+	editor_command_done((EditorData *)ed);
 }
 
 static EditorFlags editor_command_start(const EditorDescription *editor, const gchar *text, GList *list, const gchar *working_directory, EditorCallback cb, gpointer data)
@@ -1296,7 +1296,7 @@ static EditorFlags editor_command_start(const EditorDescription *editor, const g
 	ed->working_directory = g_strdup(working_directory);
 
 	if ((flags & EDITOR_VERBOSE_MULTI) && list && list->next)
-		flags |= EDITOR_VERBOSE;
+		flags = (EditorFlags)(ed->flags | EDITOR_VERBOSE);
 
 	if (flags & EDITOR_VERBOSE)
 		editor_verbose_window(ed, text);
@@ -1327,7 +1327,7 @@ EditorFlags start_editor_from_filelist_full(const gchar *key, GList *list, const
 
 	if (EDITOR_ERRORS(error)) return error;
 
-	error |= editor_command_start(editor, editor->name, list, working_directory, cb, data);
+	error = (EditorFlags)(error | editor_command_start(editor, editor->name, list, working_directory, cb, data));
 
 	if (EDITOR_ERRORS(error))
 		{
@@ -1350,7 +1350,7 @@ EditorFlags start_editor_from_file_full(const gchar *key, FileData *fd, EditorCa
 	GList *list;
 	EditorFlags error;
 
-	if (!fd) return FALSE;
+	if (!fd) return (EditorFlags)0;
 
 	list = g_list_append(NULL, fd);
 	error = start_editor_from_filelist_full(key, list, NULL, cb, data);

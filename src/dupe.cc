@@ -156,7 +156,7 @@ hard_coded_window_keys dupe_window_keys[] = {
 	{NO_GDK_MODIFIER, GDK_KEY_Delete, N_("Remove")},
 	{GDK_CONTROL_MASK, GDK_KEY_Delete, N_("Clear")},
 	{GDK_CONTROL_MASK, 'A', N_("Select all")},
-	{(GtkModifierType)(GDK_CONTROL_MASK + GDK_SHIFT_MASK), 'A', N_("Select none")},
+	{(GdkModifierType)(GDK_CONTROL_MASK + GDK_SHIFT_MASK), 'A', N_("Select none")},
 	{GDK_CONTROL_MASK, 'T', N_("Toggle thumbs")},
 	{GDK_CONTROL_MASK, 'W', N_("Close window")},
 	{NO_GDK_MODIFIER, GDK_KEY_Return, N_("View")},
@@ -5075,7 +5075,7 @@ static void dupe_dest_set(GtkWidget *widget, gboolean enable)
 		gtk_drag_dest_set(widget,
 			(GtkDestDefaults)(GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_HIGHLIGHT | GTK_DEST_DEFAULT_DROP),
 			dupe_drop_types, n_dupe_drop_types,
-			GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_ASK);
+			(GdkDragAction)(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_ASK));
 
 		}
 	else
@@ -5135,7 +5135,7 @@ static void dupe_dnd_init(DupeWindow *dw)
 {
 	gtk_drag_source_set(dw->listview, (GdkModifierType)(GDK_BUTTON1_MASK | GDK_BUTTON2_MASK),
 			    dupe_drag_types, n_dupe_drag_types,
-			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			    (GdkDragAction)(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 	g_signal_connect(G_OBJECT(dw->listview), "drag_data_get",
 			 G_CALLBACK(dupe_dnd_data_set), dw);
 	g_signal_connect(G_OBJECT(dw->listview), "drag_begin",
@@ -5149,7 +5149,7 @@ static void dupe_dnd_init(DupeWindow *dw)
 
 	gtk_drag_source_set(dw->second_listview, (GdkModifierType)(GDK_BUTTON1_MASK | GDK_BUTTON2_MASK),
 			    dupe_drag_types, n_dupe_drag_types,
-			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			    (GdkDragAction)(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 	g_signal_connect(G_OBJECT(dw->second_listview), "drag_data_get",
 			 G_CALLBACK(dupe_dnd_data_set), dw);
 	g_signal_connect(G_OBJECT(dw->second_listview), "drag_begin",

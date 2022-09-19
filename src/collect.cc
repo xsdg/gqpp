@@ -747,11 +747,12 @@ void collection_set_update_info_func(CollectionData *cd,
 static CollectInfo *collection_info_new_if_not_exists(CollectionData *cd, struct stat *st, FileData *fd)
 {
 	CollectInfo *ci;
+        static const char *empty_str = "";
 
 	if (g_hash_table_lookup(cd->existence, fd->path)) return NULL;
 
 	ci = collection_info_new(fd, st, NULL);
-	if (ci) g_hash_table_insert(cd->existence, fd->path, &(""));
+	if (ci) g_hash_table_insert(cd->existence, fd->path, empty_str);
 	return ci;
 }
 
