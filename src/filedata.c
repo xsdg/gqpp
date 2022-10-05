@@ -24,12 +24,12 @@
 
 #include "filefilter.h"
 #include "cache.h"
-#include "thumb_standard.h"
-#include "ui_fileops.h"
+#include "thumb-standard.h"
+#include "ui-fileops.h"
 #include "metadata.h"
 #include "trash.h"
 #include "histogram.h"
-#include "secure_save.h"
+#include "secure-save.h"
 
 #include "exif.h"
 #include "misc.h"
@@ -3117,7 +3117,7 @@ GList *file_data_process_groups_in_selection(GList *list, gboolean ungroup, GLis
 
 /* might use file_maint_ functions for now, later it should be changed to a system of callbacks */
 /** @FIXME do we need the ignore_list? It looks like a workaround for ineffective
-   implementation in view_file_list.c */
+   implementation in view-file-list.c */
 
 
 typedef struct _NotifyIdleData NotifyIdleData;

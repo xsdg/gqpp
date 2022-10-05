@@ -65,10 +65,10 @@
 
 #include "main.h"
 #include "exif-int.h"
-#include "jpeg_parser.h"
+#include "jpeg-parser.h"
 
-#include "format_raw.h"
-#include "ui_fileops.h"
+#include "format-raw.h"
+#include "ui-fileops.h"
 
 
 /*

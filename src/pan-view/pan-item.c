@@ -22,8 +22,8 @@
 #include "pan-item.h"
 
 #include "image.h"
-#include "pixbuf_util.h"
-#include "ui_misc.h"
+#include "pixbuf-util.h"
+#include "ui-misc.h"
 
 /*
  *-----------------------------------------------------------------------------

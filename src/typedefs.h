@@ -648,7 +648,7 @@ struct _FileData {
 	gchar *group;
 	gchar *sym_link;
 
-	SelectionType selected;  /**< Used by view_file_icon. */
+	SelectionType selected;  /**< Used by view-file-icon. */
 
 	gint page_num;
 	gint page_total;
@@ -939,7 +939,7 @@ struct _ViewDirInfoTree
 
 struct _ViewFile
 {
-	FileViewType type; 	/**< @todo (xsdg): Turn this into a union (see VFLIST and VFICON from view_file.h). */
+	FileViewType type; 	/**< @todo (xsdg): Turn this into a union (see VFLIST and VFICON from view-file.h). */
 
 	gpointer info;
 

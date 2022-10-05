@@ -26,9 +26,9 @@
 #include "pan-item.h"
 #include "pan-util.h"
 #include "pan-view.h"
-#include "ui_fileops.h"
-#include "ui_tabcomp.h"
-#include "ui_misc.h"
+#include "ui-fileops.h"
+#include "ui-tabcomp.h"
+#include "ui-misc.h"
 
 PanViewFilterUi *pan_filter_ui_new(PanWindow *pw)
 {

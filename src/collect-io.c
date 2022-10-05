@@ -24,11 +24,11 @@
 
 #include "collect.h"
 #include "filedata.h"
-#include "layout_util.h"
+#include "layout-util.h"
 #include "misc.h"
-#include "secure_save.h"
+#include "secure-save.h"
 #include "thumb.h"
-#include "ui_fileops.h"
+#include "ui-fileops.h"
 
 #define GQ_COLLECTION_MARKER "#" GQ_APPNAME
 

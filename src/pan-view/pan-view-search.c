@@ -26,8 +26,8 @@
 #include "pan-item.h"
 #include "pan-util.h"
 #include "pan-view.h"
-#include "ui_tabcomp.h"
-#include "ui_misc.h"
+#include "ui-tabcomp.h"
+#include "ui-misc.h"
 
 PanViewSearchUi *pan_search_ui_new(PanWindow *pw)
 {

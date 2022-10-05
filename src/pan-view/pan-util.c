@@ -21,7 +21,7 @@
 
 #include "pan-util.h"
 
-#include "ui_fileops.h"
+#include "ui-fileops.h"
 
 
 /*

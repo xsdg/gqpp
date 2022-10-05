@@ -24,8 +24,8 @@
 
 #include "collect.h"
 #include "image.h"
-#include "ui_fileops.h"
-#include "pixbuf_util.h"
+#include "ui-fileops.h"
+#include "pixbuf-util.h"
 
 
 GtkTargetEntry dnd_file_drag_types[] = {

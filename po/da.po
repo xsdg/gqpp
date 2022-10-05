@@ -92,35 +92,35 @@ msgstr ""
 msgid "Tethered photography"
 msgstr ""
 
-#: src/advanced_exif.c:437 src/cache_maint.c:1773 src/preferences.c:133
+#: src/advanced-exif.c:437 src/cache-maint.c:1773 src/preferences.c:133
 #: src/preferences.c:2851 src/search.c:2281 src/search.c:3610
 msgid "Metadata"
 msgstr ""
 
-#: src/advanced_exif.c:493 src/preferences.c:2756
+#: src/advanced-exif.c:493 src/preferences.c:2756
 msgid "Description"
 msgstr ""
 
-#: src/advanced_exif.c:494
+#: src/advanced-exif.c:494
 msgid "Value"
 msgstr ""
 
-#: src/advanced_exif.c:495 src/desktop_file.c:631 src/dupe.c:3978
+#: src/advanced-exif.c:495 src/desktop-file.c:631 src/dupe.c:3978
 #: src/dupe.c:4703 src/dupe.c:5287 src/osd.c:38 src/search.c:3694
-#: src/utilops.c:507 src/view_file/view_file_list.c:2228
+#: src/utilops.c:507 src/view-file/view-file-list.c:2228
 msgid "Name"
 msgstr "Navn"
 
-#: src/advanced_exif.c:496
+#: src/advanced-exif.c:496
 msgid "Tag"
 msgstr ""
 
-#: src/advanced_exif.c:497
+#: src/advanced-exif.c:497
 #, fuzzy
 msgid "Format"
 msgstr "Normal"
 
-#: src/advanced_exif.c:498
+#: src/advanced-exif.c:498
 msgid "Elements"
 msgstr ""
 
@@ -172,7 +172,7 @@ msgstr "Samlinger"
 msgid "Copyright"
 msgstr "Kopiér"
 
-#: src/bar.c:214 src/bar_gps.c:1023
+#: src/bar.c:214 src/bar-gps.c:1023
 msgid "GPS Map"
 msgstr ""
 
@@ -181,12 +181,12 @@ msgstr ""
 msgid "Move to _top"
 msgstr "Flyt"
 
-#: src/bar.c:404 src/toolbar.c:225 src/ui_bookmark.c:414
+#: src/bar.c:404 src/toolbar.c:225 src/ui-bookmark.c:414
 #, fuzzy
 msgid "Move _up"
 msgstr "Flyt"
 
-#: src/bar.c:405 src/toolbar.c:226 src/ui_bookmark.c:416
+#: src/bar.c:405 src/toolbar.c:226 src/ui-bookmark.c:416
 #, fuzzy
 msgid "Move _down"
 msgstr "Flyt"
@@ -210,101 +210,101 @@ msgstr "Fjern"
 msgid "Add Pane"
 msgstr "%d billeder"
 
-#: src/bar_comment.c:236
+#: src/bar-comment.c:236
 #, fuzzy
 msgid "Add text to selected files"
 msgstr ""
 "Vil nu slette filen:\n"
 "%s"
 
-#: src/bar_comment.c:237
+#: src/bar-comment.c:237
 msgid "Replace existing text in selected files"
 msgstr ""
 
-#: src/bar_exif.c:225
+#: src/bar-exif.c:225
 msgid "<empty label, fixme>"
 msgstr ""
 
-#: src/bar_exif.c:562 src/bar_exif.c:572
+#: src/bar-exif.c:562 src/bar-exif.c:572
 #, fuzzy
 msgid "Configure entry"
 msgstr "Ændr indstillinger"
 
-#: src/bar_exif.c:562 src/bar_exif.c:572 src/bar_exif.c:660
+#: src/bar-exif.c:562 src/bar-exif.c:572 src/bar-exif.c:660
 #, fuzzy
 msgid "Add entry"
 msgstr "Tilføj indhold"
 
-#: src/bar_exif.c:578
+#: src/bar-exif.c:578
 msgid "Key:"
 msgstr ""
 
-#: src/bar_exif.c:587
+#: src/bar-exif.c:587
 msgid "Title:"
 msgstr ""
 
-#: src/bar_exif.c:596
+#: src/bar-exif.c:596
 msgid "Show only if set"
 msgstr ""
 
-#: src/bar_exif.c:597
+#: src/bar-exif.c:597
 msgid "Editable (supported only for XMP)"
 msgstr ""
 
-#: src/bar_exif.c:646
+#: src/bar-exif.c:646
 #, fuzzy, c-format
 msgid "Configure \"%s\""
 msgstr "Ændr indstillinger"
 
-#: src/bar_exif.c:647 src/bar_keywords.c:1369
+#: src/bar-exif.c:647 src/bar-keywords.c:1369
 #, fuzzy, c-format
 msgid "Remove \"%s\""
 msgstr "Fjern"
 
-#: src/bar_exif.c:648
+#: src/bar-exif.c:648
 #, fuzzy, c-format
 msgid "Copy \"%s\""
 msgstr "Kopiér"
 
-#: src/bar_exif.c:661
+#: src/bar-exif.c:661
 #, fuzzy
 msgid "Show hidden entries"
 msgstr "Vis skjulte"
 
-#: src/bar_gps.c:187
+#: src/bar-gps.c:187
 #, c-format
 msgid ""
 "\n"
 "Do you want to geocode image %s?"
 msgstr ""
 
-#: src/bar_gps.c:192
+#: src/bar-gps.c:192
 #, c-format
 msgid ""
 "\n"
 "Do you want to geocode %i images?"
 msgstr ""
 
-#: src/bar_gps.c:197
+#: src/bar-gps.c:197
 msgid ""
 "\n"
 "This image is already geocoded!"
 msgstr ""
 
-#: src/bar_gps.c:202
+#: src/bar-gps.c:202
 msgid ""
 "\n"
 "One image is already geocoded!"
 msgstr ""
 
-#: src/bar_gps.c:207
+#: src/bar-gps.c:207
 #, c-format
 msgid ""
 "\n"
 "%i Images are already geocoded!"
 msgstr ""
 
-#: src/bar_gps.c:212
+#: src/bar-gps.c:212
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -312,238 +312,238 @@ msgid ""
 "Position: %s \n"
 msgstr "Samlinger"
 
-#: src/bar_gps.c:214
+#: src/bar-gps.c:214
 #, fuzzy
 msgid "Geocode images"
 msgstr "Indlæs næste billede"
 
-#: src/bar_gps.c:218
+#: src/bar-gps.c:218
 msgid "Write lat/long to meta-data?"
 msgstr ""
 
-#: src/bar_gps.c:732
+#: src/bar-gps.c:732
 #, fuzzy, c-format
 msgid "Zoom %i"
 msgstr "Zoom ind"
 
-#: src/bar_gps.c:750
+#: src/bar-gps.c:750
 #, fuzzy, c-format
 msgid "Zoom level %i"
 msgstr "Zoom ind"
 
-#: src/bar_gps.c:755
+#: src/bar-gps.c:755
 #, fuzzy
 msgid "Loading map"
 msgstr "Indlæser miniaturer..."
 
-#: src/bar_gps.c:821
+#: src/bar-gps.c:821
 msgid "Enable markers"
 msgstr ""
 
-#: src/bar_gps.c:823
+#: src/bar-gps.c:823
 msgid "Centre map on marker"
 msgstr ""
 
-#: src/bar_gps.c:845
+#: src/bar-gps.c:845
 msgid ""
 "Move map centre to marker\n"
 " is disabled"
 msgstr ""
 
-#: src/bar_gps.c:850
+#: src/bar-gps.c:850
 msgid ""
 "Move map centre to marker\n"
 " is enabled"
 msgstr ""
 
-#: src/bar_gps.c:854
+#: src/bar-gps.c:854
 #, fuzzy
 msgid "Map centering"
 msgstr "Ditheringsmetode:"
 
-#: src/bar_gps.c:959 src/menu.c:334 src/osd.c:42 src/preferences.c:2244
+#: src/bar-gps.c:959 src/menu.c:334 src/osd.c:42 src/preferences.c:2244
 #, fuzzy
 msgid "Zoom"
 msgstr "Zoom ind"
 
-#: src/bar_gps.c:969
+#: src/bar-gps.c:969
 #, fuzzy
 msgid "Zoom level"
 msgstr "Zoom ind"
 
-#: src/bar_histogram.c:234 src/layout_util.c:2672
+#: src/bar-histogram.c:234 src/layout-util.c:2672
 msgid "Histogram on _Red"
 msgstr ""
 
-#: src/bar_histogram.c:235 src/layout_util.c:2673
+#: src/bar-histogram.c:235 src/layout-util.c:2673
 msgid "Histogram on _Green"
 msgstr ""
 
-#: src/bar_histogram.c:236 src/layout_util.c:2674
+#: src/bar-histogram.c:236 src/layout-util.c:2674
 msgid "Histogram on _Blue"
 msgstr ""
 
-#: src/bar_histogram.c:237 src/layout_util.c:2675
+#: src/bar-histogram.c:237 src/layout-util.c:2675
 msgid "_Histogram on RGB"
 msgstr ""
 
-#: src/bar_histogram.c:238 src/layout_util.c:2676
+#: src/bar-histogram.c:238 src/layout-util.c:2676
 msgid "Histogram on _Value"
 msgstr ""
 
-#: src/bar_histogram.c:242 src/layout_util.c:2680
+#: src/bar-histogram.c:242 src/layout-util.c:2680
 msgid "Li_near Histogram"
 msgstr ""
 
-#: src/bar_histogram.c:243
+#: src/bar-histogram.c:243
 msgid "L_og Histogram"
 msgstr ""
 
-#: src/bar_keywords.c:490
+#: src/bar-keywords.c:490
 #, fuzzy
 msgid "Add selected keywords to selected files"
 msgstr ""
 "Vil nu slette filen:\n"
 "%s"
 
-#: src/bar_keywords.c:491
+#: src/bar-keywords.c:491
 msgid "Replace existing keywords in selected files with selected keywords"
 msgstr ""
 
-#: src/bar_keywords.c:962
+#: src/bar-keywords.c:962
 #, fuzzy
 msgid "Edit keyword"
 msgstr "Redigerer"
 
-#: src/bar_keywords.c:962 src/bar_keywords.c:969 src/bar_keywords.c:1314
+#: src/bar-keywords.c:962 src/bar-keywords.c:969 src/bar-keywords.c:1314
 #, fuzzy
 msgid "New keyword"
 msgstr "Dimensioner"
 
-#: src/bar_keywords.c:969
+#: src/bar-keywords.c:969
 #, fuzzy
 msgid "Configure keyword"
 msgstr "Ændr indstillinger"
 
-#: src/bar_keywords.c:975
+#: src/bar-keywords.c:975
 #, fuzzy
 msgid "Keyword:"
 msgstr "Dimensioner"
 
-#: src/bar_keywords.c:984
+#: src/bar-keywords.c:984
 #, fuzzy
 msgid "Keyword type:"
 msgstr "Usorteret"
 
-#: src/bar_keywords.c:986
+#: src/bar-keywords.c:986
 msgid "Active keyword"
 msgstr ""
 
-#: src/bar_keywords.c:989
+#: src/bar-keywords.c:989
 #, fuzzy
 msgid "Helper"
 msgstr "/_Hjælp"
 
-#: src/bar_keywords.c:1063
+#: src/bar-keywords.c:1063
 msgid "This will disconnect all Marks Keywords connections"
 msgstr ""
 
-#: src/bar_keywords.c:1065
+#: src/bar-keywords.c:1065
 #, fuzzy
 msgid "Marks Keywords"
 msgstr "Dimensioner"
 
-#: src/bar_keywords.c:1338
+#: src/bar-keywords.c:1338
 #, fuzzy, c-format
 msgid "Add \"%s\" to all selected images"
 msgstr ""
 "Vil nu slette filen:\n"
 "%s"
 
-#: src/bar_keywords.c:1344
+#: src/bar-keywords.c:1344
 #, c-format
 msgid "Hide \"%s\""
 msgstr ""
 
-#: src/bar_keywords.c:1351
+#: src/bar-keywords.c:1351
 #, fuzzy, c-format
 msgid "Mark %d"
 msgstr "Redigerer"
 
-#: src/bar_keywords.c:1359
+#: src/bar-keywords.c:1359
 #, c-format
 msgid "Connect \"%s\" to mark"
 msgstr ""
 
-#: src/bar_keywords.c:1366
+#: src/bar-keywords.c:1366
 #, fuzzy, c-format
 msgid "Edit \"%s\""
 msgstr "Redigerer"
 
-#: src/bar_keywords.c:1376
+#: src/bar-keywords.c:1376
 #, c-format
 msgid "Disconnect \"%s\" from mark %s"
 msgstr ""
 
-#: src/bar_keywords.c:1383
+#: src/bar-keywords.c:1383
 msgid "Disconnect all Mark Keyword connections"
 msgstr ""
 
-#: src/bar_keywords.c:1394 src/bar_keywords.c:1408
+#: src/bar-keywords.c:1394 src/bar-keywords.c:1408
 msgid "Expand checked"
 msgstr ""
 
-#: src/bar_keywords.c:1395 src/bar_keywords.c:1409
+#: src/bar-keywords.c:1395 src/bar-keywords.c:1409
 msgid "Collapse unchecked"
 msgstr ""
 
-#: src/bar_keywords.c:1396 src/bar_keywords.c:1410
+#: src/bar-keywords.c:1396 src/bar-keywords.c:1410
 msgid "Hide unchecked"
 msgstr ""
 
-#: src/bar_keywords.c:1397
+#: src/bar-keywords.c:1397
 msgid "Revert all hidden"
 msgstr ""
 
-#: src/bar_keywords.c:1399 src/dupe.c:3991
+#: src/bar-keywords.c:1399 src/dupe.c:3991
 #, fuzzy
 msgid "Show all"
 msgstr "Vis skjulte"
 
-#: src/bar_keywords.c:1400
+#: src/bar-keywords.c:1400
 msgid "Collapse all"
 msgstr ""
 
-#: src/bar_keywords.c:1401
+#: src/bar-keywords.c:1401
 msgid "Revert"
 msgstr ""
 
-#: src/bar_keywords.c:1405
+#: src/bar-keywords.c:1405
 msgid "On any change"
 msgstr ""
 
-#: src/bar_keywords.c:1901
+#: src/bar-keywords.c:1901
 #, fuzzy, c-format
 msgid "Error: Unable to write keywords list to: %s\n"
 msgstr ""
 "Kunne ikke oprette mappen:\n"
 "%s"
 
-#: src/bar_rating.c:167
+#: src/bar-rating.c:167
 #, fuzzy
 msgid "Rejected"
 msgstr "Slet filer"
 
-#: src/bar_rating.c:171
+#: src/bar-rating.c:171
 msgid "Unrated"
 msgstr ""
 
-#: src/bar_sort.c:435
+#: src/bar-sort.c:435
 #, fuzzy
 msgid "Sort Manager Operations"
 msgstr "Sortér efter navn"
 
-#: src/bar_sort.c:438
+#: src/bar-sort.c:438
 msgid ""
 "Additional operations utilising plugins\n"
 "may be included by setting:\n"
@@ -553,7 +553,7 @@ msgid ""
 "in the plugin file."
 msgstr ""
 
-#: src/bar_sort.c:506
+#: src/bar-sort.c:506
 #, fuzzy, c-format
 msgid ""
 "The collection:\n"
@@ -561,12 +561,12 @@ msgid ""
 "already exists."
 msgstr "Fil ved navn %s findes allerede."
 
-#: src/bar_sort.c:507
+#: src/bar-sort.c:507
 #, fuzzy
 msgid "Collection exists"
 msgstr "Tom samling"
 
-#: src/bar_sort.c:521 src/collect.c:1216 src/collect-dlg.c:93
+#: src/bar-sort.c:521 src/collect.c:1216 src/collect-dlg.c:93
 #, c-format
 msgid ""
 "Failed to save the collection:\n"
@@ -575,61 +575,61 @@ msgstr ""
 "Kunne ikke gemme samlingen:\n"
 "%s"
 
-#: src/bar_sort.c:522 src/collect.c:1217 src/collect-dlg.c:94
+#: src/bar-sort.c:522 src/collect.c:1217 src/collect-dlg.c:94
 msgid "Save Failed"
 msgstr "Gem mislykkedes"
 
-#: src/bar_sort.c:557 src/bar_sort.c:737
+#: src/bar-sort.c:557 src/bar-sort.c:737
 msgid "Add Bookmark"
 msgstr ""
 
-#: src/bar_sort.c:561
+#: src/bar-sort.c:561
 #, fuzzy
 msgid "Add Collection"
 msgstr "Samlinger"
 
-#: src/bar_sort.c:578 src/shortcuts.c:118 src/ui_bookmark.c:295
+#: src/bar-sort.c:578 src/shortcuts.c:118 src/ui-bookmark.c:295
 #, fuzzy
 msgid "Name:"
 msgstr "Navn"
 
-#: src/bar_sort.c:658
+#: src/bar-sort.c:658
 #, fuzzy
 msgid "Sort Manager"
 msgstr "Sortér efter navn"
 
-#: src/bar_sort.c:667 src/pan-view/pan-view.c:1909 src/ui_pathsel.c:1100
+#: src/bar-sort.c:667 src/pan-view/pan-view.c:1909 src/ui-pathsel.c:1100
 #, fuzzy
 msgid "Folders"
 msgstr "Fliser"
 
-#: src/bar_sort.c:668 src/options.c:248
+#: src/bar-sort.c:668 src/options.c:248
 msgid "Collections"
 msgstr "Samlinger"
 
-#: src/bar_sort.c:677 src/collect-table.c:82 src/dupe.c:151 src/img-view.c:92
+#: src/bar-sort.c:677 src/collect-table.c:82 src/dupe.c:151 src/img-view.c:92
 #: src/pan-view/pan-view.c:99 src/preferences.c:693 src/preferences.c:804
 #: src/search.c:354 src/toolbar.c:94 src/utilops.c:2350
 msgid "Copy"
 msgstr "Kopiér"
 
-#: src/bar_sort.c:681 src/collect-table.c:83 src/dupe.c:152 src/img-view.c:93
+#: src/bar-sort.c:681 src/collect-table.c:83 src/dupe.c:152 src/img-view.c:93
 #: src/pan-view/pan-view.c:100 src/preferences.c:695 src/preferences.c:805
 #: src/search.c:355 src/toolbar.c:95 src/utilops.c:2300
 msgid "Move"
 msgstr "Flyt"
 
-#: src/bar_sort.c:722
+#: src/bar-sort.c:722
 #, fuzzy
 msgid "Add image"
 msgstr "%d billeder"
 
-#: src/bar_sort.c:725
+#: src/bar-sort.c:725
 #, fuzzy
 msgid "Add selection"
 msgstr "Vælg ingen"
 
-#: src/bar_sort.c:740
+#: src/bar-sort.c:740
 msgid "Undo last image"
 msgstr ""
 
@@ -640,120 +640,120 @@ msgid ""
 "error: %s\n"
 msgstr "fejl ved gemning af konfigfil: %s\n"
 
-#: src/cache_maint.c:72
+#: src/cache-maint.c:72
 #, fuzzy
 msgid "Geeqie: Creating sim data..."
 msgstr "Læser lighedsdata..."
 
-#: src/cache_maint.c:78
+#: src/cache-maint.c:78
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "Rydder miniaturer..."
 
-#: src/cache_maint.c:94
+#: src/cache-maint.c:94
 #, fuzzy
 msgid "Exit Geeqie Cache Maintenance"
 msgstr "Hjælp - Geeqie"
 
-#: src/cache_maint.c:111
+#: src/cache-maint.c:111
 #, fuzzy
 msgid "Geeqie: Cleaning thumbs..."
 msgstr "Rydder miniaturer..."
 
-#: src/cache_maint.c:184 src/cache_maint.c:684 src/cache_maint.c:787
-#: src/cache_maint.c:984 src/cache_maint.c:1455 src/editors.c:1245
+#: src/cache-maint.c:184 src/cache-maint.c:684 src/cache-maint.c:787
+#: src/cache-maint.c:984 src/cache-maint.c:1455 src/editors.c:1245
 #: src/preferences.c:3043
 #, fuzzy
 msgid "done"
 msgstr "Ingen"
 
-#: src/cache_maint.c:374
+#: src/cache-maint.c:374
 #, fuzzy
 msgid "Removing old metadata..."
 msgstr "Læser lighedsdata..."
 
-#: src/cache_maint.c:378
+#: src/cache-maint.c:378
 #, fuzzy
 msgid "Clearing cached thumbnails..."
 msgstr "Rydder miniaturer..."
 
-#: src/cache_maint.c:382 src/cache_maint.c:1157
+#: src/cache-maint.c:382 src/cache-maint.c:1157
 #, fuzzy
 msgid "Removing old thumbnails..."
 msgstr "Udrenser gamle miniaturer..."
 
-#: src/cache_maint.c:385 src/cache_maint.c:1160
+#: src/cache-maint.c:385 src/cache-maint.c:1160
 msgid "Maintenance"
 msgstr ""
 
-#: src/cache_maint.c:698 src/cache_maint.c:1334
+#: src/cache-maint.c:698 src/cache-maint.c:1334
 #, fuzzy
 msgid "stopped"
 msgstr "Sortér efter nummer"
 
-#: src/cache_maint.c:817 src/cache_maint.c:1486 src/cache_maint.c:1616
+#: src/cache-maint.c:817 src/cache-maint.c:1486 src/cache-maint.c:1616
 #: src/preferences.c:3125
 #, fuzzy
 msgid "Invalid folder"
 msgstr "Ugyldigt filnavn"
 
-#: src/cache_maint.c:818 src/cache_maint.c:1487 src/cache_maint.c:1617
+#: src/cache-maint.c:818 src/cache-maint.c:1487 src/cache-maint.c:1617
 #: src/preferences.c:3126
 msgid "The specified folder can not be found."
 msgstr ""
 
-#: src/cache_maint.c:886 src/cache_maint.c:900 src/cache_maint.c:1753
+#: src/cache-maint.c:886 src/cache-maint.c:900 src/cache-maint.c:1753
 #, fuzzy
 msgid "Create thumbnails"
 msgstr "Gem miniaturer"
 
-#: src/cache_maint.c:894 src/cache_maint.c:1167 src/cache_maint.c:1536
-#: src/cache_maint.c:1655 src/preferences.c:3164
+#: src/cache-maint.c:894 src/cache-maint.c:1167 src/cache-maint.c:1536
+#: src/cache-maint.c:1655 src/preferences.c:3164
 #, fuzzy
 msgid "S_tart"
 msgstr "Dato"
 
-#: src/cache_maint.c:907 src/cache_maint.c:1549 src/cache_maint.c:1665
+#: src/cache-maint.c:907 src/cache-maint.c:1549 src/cache-maint.c:1665
 #: src/preferences.c:3177 src/preferences.c:3526
 #, fuzzy
 msgid "Folder:"
 msgstr "Fliser"
 
-#: src/cache_maint.c:910 src/cache_maint.c:1552 src/cache_maint.c:1668
+#: src/cache-maint.c:910 src/cache-maint.c:1552 src/cache-maint.c:1668
 #: src/preferences.c:3180
 #, fuzzy
 msgid "Select folder"
 msgstr "Vælg ingen"
 
-#: src/cache_maint.c:914 src/preferences.c:3184
+#: src/cache-maint.c:914 src/preferences.c:3184
 #, fuzzy
 msgid "Include subfolders"
 msgstr "Ugyldigt filnavn"
 
-#: src/cache_maint.c:915
+#: src/cache-maint.c:915
 msgid "Store thumbnails local to source images"
 msgstr ""
 
-#: src/cache_maint.c:924 src/cache_maint.c:1176 src/cache_maint.c:1562
+#: src/cache-maint.c:924 src/cache-maint.c:1176 src/cache-maint.c:1562
 #: src/preferences.c:3192
 msgid "click start to begin"
 msgstr ""
 
-#: src/cache_maint.c:1096 src/editors.c:1171
+#: src/cache-maint.c:1096 src/editors.c:1171
 #, fuzzy
 msgid "running..."
 msgstr "Sammenligner..."
 
-#: src/cache_maint.c:1152
+#: src/cache-maint.c:1152
 msgid "Clearing thumbnails..."
 msgstr "Rydder miniaturer..."
 
-#: src/cache_maint.c:1233 src/cache_maint.c:1236 src/cache_maint.c:1729
-#: src/cache_maint.c:1748
+#: src/cache-maint.c:1233 src/cache-maint.c:1236 src/cache-maint.c:1729
+#: src/cache-maint.c:1748
 msgid "Clear cache"
 msgstr "Ryd mellemlager"
 
-#: src/cache_maint.c:1237
+#: src/cache-maint.c:1237
 #, fuzzy
 msgid ""
 "This will remove all thumbnails and sim. files\n"
@@ -762,108 +762,108 @@ msgstr ""
 "Dette vil slette alle miniaturer, der\n"
 "er blevet gemt på disken, fortsæt?"
 
-#: src/cache_maint.c:1282
+#: src/cache-maint.c:1282
 #, fuzzy, c-format
 msgid "Location: %s"
 msgstr "Samlinger"
 
-#: src/cache_maint.c:1531
+#: src/cache-maint.c:1531
 #, fuzzy
 msgid "Create sim. files"
 msgstr "Kunne ikke oprette mappe"
 
-#: src/cache_maint.c:1542
+#: src/cache-maint.c:1542
 #, fuzzy
 msgid "Create sim. files recursively"
 msgstr "Gem miniaturer"
 
-#: src/cache_maint.c:1650 src/cache_maint.c:1784
+#: src/cache-maint.c:1650 src/cache-maint.c:1784
 #, fuzzy
 msgid "Background cache maintenance"
 msgstr "Hjælp - Geeqie"
 
-#: src/cache_maint.c:1658
+#: src/cache-maint.c:1658
 msgid ""
 "Recursively delete orphaned thumbnails\n"
 "and .sim files, and create new\n"
 "thumbnails and .sim files"
 msgstr ""
 
-#: src/cache_maint.c:1702
+#: src/cache-maint.c:1702
 #, fuzzy
 msgid "Cache Maintenance"
 msgstr "Hjælp - Geeqie"
 
-#: src/cache_maint.c:1714
+#: src/cache-maint.c:1714
 msgid "Cache and Data Maintenance"
 msgstr ""
 
-#: src/cache_maint.c:1718
+#: src/cache-maint.c:1718
 #, fuzzy
 msgid "Geeqie thumbnail and sim. cache"
 msgstr "Gem miniaturer"
 
-#: src/cache_maint.c:1724 src/cache_maint.c:1743 src/cache_maint.c:1779
+#: src/cache-maint.c:1724 src/cache-maint.c:1743 src/cache-maint.c:1779
 #, fuzzy
 msgid "Clean up"
 msgstr "Ryd"
 
-#: src/cache_maint.c:1727
+#: src/cache-maint.c:1727
 msgid "Remove orphaned or outdated thumbnails and sim. files."
 msgstr ""
 
-#: src/cache_maint.c:1732
+#: src/cache-maint.c:1732
 #, fuzzy
 msgid "Delete all cached data."
 msgstr "Gem miniaturer"
 
-#: src/cache_maint.c:1735
+#: src/cache-maint.c:1735
 #, fuzzy
 msgid "Shared thumbnail cache"
 msgstr "Gem miniaturer"
 
-#: src/cache_maint.c:1746
+#: src/cache-maint.c:1746
 msgid "Remove orphaned or outdated thumbnails."
 msgstr ""
 
-#: src/cache_maint.c:1751
+#: src/cache-maint.c:1751
 #, fuzzy
 msgid "Delete all cached thumbnails."
 msgstr "Gem miniaturer"
 
-#: src/cache_maint.c:1757
+#: src/cache-maint.c:1757
 #, fuzzy
 msgid "Render"
 msgstr "Omdøb"
 
-#: src/cache_maint.c:1760
+#: src/cache-maint.c:1760
 msgid "Render thumbnails for a specific folder."
 msgstr ""
 
-#: src/cache_maint.c:1763
+#: src/cache-maint.c:1763
 #, fuzzy
 msgid "File similarity cache"
 msgstr "Ryd mellemlager"
 
-#: src/cache_maint.c:1767
+#: src/cache-maint.c:1767
 msgid "Create"
 msgstr "Opret"
 
-#: src/cache_maint.c:1770
+#: src/cache-maint.c:1770
 #, fuzzy
 msgid "Create sim. files recursively."
 msgstr "Gem miniaturer"
 
-#: src/cache_maint.c:1782
+#: src/cache-maint.c:1782
 msgid "Remove orphaned keywords and comments."
 msgstr ""
 
-#: src/cache_maint.c:1788
+#: src/cache-maint.c:1788
 #, fuzzy
 msgid "Select"
 msgstr "Vælg ingen"
 
-#: src/cache_maint.c:1791
+#: src/cache-maint.c:1791
 msgid "Run cache maintenance as a background job."
 msgstr ""
 
@@ -992,15 +992,15 @@ msgstr "Omdøb"
 
 #: src/collect-table.c:85 src/collect-table.c:1038 src/dupe.c:154
 #: src/dupe.c:3573 src/img-view.c:95 src/img-view.c:96 src/img-view.c:1430
-#: src/layout_image.c:815 src/pan-view/pan-view.c:102
+#: src/layout-image.c:815 src/pan-view/pan-view.c:102
 #: src/pan-view/pan-view.c:2417 src/search.c:357 src/search.c:1191
-#: src/view_file/view_file.c:717
+#: src/view-file/view-file.c:717
 #, fuzzy
 msgid "Move to Trash"
 msgstr "Flyt"
 
 #: src/collect-table.c:86 src/dupe.c:161 src/img-view.c:98 src/img-view.c:136
-#: src/layout_util.c:2493 src/pan-view/pan-view.c:103 src/search.c:364
+#: src/layout-util.c:2493 src/pan-view/pan-view.c:103 src/search.c:364
 #, fuzzy
 msgid "Close window"
 msgstr "Luk vindue"
@@ -1010,23 +1010,23 @@ msgstr "Luk vindue"
 msgid "View"
 msgstr "Vis"
 
-#: src/collect-table.c:89 src/dupe.c:163 src/layout_util.c:2586
+#: src/collect-table.c:89 src/dupe.c:163 src/layout-util.c:2586
 #: src/search.c:366
 #, fuzzy
 msgid "View in new window"
 msgstr "Vis i nyt vindue"
 
 #: src/collect-table.c:90 src/collect-table.c:1006 src/dupe.c:158
-#: src/dupe.c:3532 src/dupe.c:3870 src/layout_util.c:2490 src/preferences.c:810
+#: src/dupe.c:3532 src/dupe.c:3870 src/layout-util.c:2490 src/preferences.c:810
 #: src/search.c:360 src/search.c:1158 src/toolbar.c:101
-#: src/view_file/view_file.c:1087 src/view_file/view_file.c:1137
+#: src/view-file/view-file.c:1087 src/view-file/view-file.c:1137
 msgid "Select all"
 msgstr "Vælg alle"
 
 #: src/collect-table.c:91 src/collect-table.c:1008 src/dupe.c:159
-#: src/dupe.c:166 src/dupe.c:3534 src/dupe.c:3872 src/layout_util.c:2491
+#: src/dupe.c:166 src/dupe.c:3534 src/dupe.c:3872 src/layout-util.c:2491
 #: src/preferences.c:811 src/search.c:361 src/search.c:1160 src/toolbar.c:102
-#: src/view_file/view_file.c:1142
+#: src/view-file/view-file.c:1142
 msgid "Select none"
 msgstr "Vælg ingen"
 
@@ -1106,24 +1106,24 @@ msgstr "%d filer (%d)%s"
 msgid "%s, %d images"
 msgstr "%d billeder"
 
-#: src/collect-table.c:261 src/layout_util.c:1935 src/layout_util.c:3672
+#: src/collect-table.c:261 src/layout-util.c:1935 src/layout-util.c:3672
 msgid "Empty"
 msgstr "Tom"
 
 #: src/collect-table.c:275 src/dupe.c:2172 src/search.c:435
-#: src/view_file/view_file.c:1376 src/view_file/view_file.c:1485
+#: src/view-file/view-file.c:1376 src/view-file/view-file.c:1485
 msgid "Loading thumbs..."
 msgstr "Indlæser miniaturer..."
 
 #: src/collect-table.c:988 src/dupe.c:3527 src/dupe.c:3865
-#: src/layout_util.c:2471 src/search.c:1153
+#: src/layout-util.c:2471 src/search.c:1153
 #, fuzzy
 msgid "_View"
 msgstr "/_Vis"
 
 #: src/collect-table.c:990 src/dupe.c:3529 src/dupe.c:3867 src/img-view.c:1417
-#: src/layout_image.c:787 src/pan-view/pan-view.c:2397 src/search.c:1155
-#: src/view_file/view_file.c:698
+#: src/layout-image.c:787 src/pan-view/pan-view.c:2397 src/search.c:1155
+#: src/view-file/view-file.c:698
 #, fuzzy
 msgid "View in _new window"
 msgstr "Vis i nyt vindue"
@@ -1153,56 +1153,56 @@ msgid "Invert selection"
 msgstr "Vælg ingen"
 
 #: src/collect-table.c:1024 src/dupe.c:3559 src/img-view.c:1421
-#: src/layout_image.c:801 src/layout_util.c:2483 src/pan-view/pan-view.c:2403
-#: src/search.c:1177 src/view_file/view_file.c:704
+#: src/layout-image.c:801 src/layout-util.c:2483 src/pan-view/pan-view.c:2403
+#: src/search.c:1177 src/view-file/view-file.c:704
 #, fuzzy
 msgid "_Copy..."
 msgstr "Kopiér..."
 
 #: src/collect-table.c:1026 src/dupe.c:3561 src/img-view.c:1422
-#: src/layout_image.c:803 src/layout_util.c:2484 src/pan-view/pan-view.c:2405
-#: src/search.c:1179 src/view_file/view_file.c:706
+#: src/layout-image.c:803 src/layout-util.c:2484 src/pan-view/pan-view.c:2405
+#: src/search.c:1179 src/view-file/view-file.c:706
 #, fuzzy
 msgid "_Move..."
 msgstr "Flyt..."
 
 #: src/collect-table.c:1028 src/dupe.c:3563 src/img-view.c:1423
-#: src/layout_image.c:805 src/layout_util.c:2485 src/pan-view/pan-view.c:2407
-#: src/search.c:1181 src/view_dir.c:735 src/view_file/view_file.c:708
+#: src/layout-image.c:805 src/layout-util.c:2485 src/pan-view/pan-view.c:2407
+#: src/search.c:1181 src/view-dir.c:735 src/view-file/view-file.c:708
 #, fuzzy
 msgid "_Rename..."
 msgstr "Omdøb..."
 
 #: src/collect-table.c:1030 src/dupe.c:3565 src/img-view.c:1424
-#: src/search.c:1183 src/view_dir.c:738
+#: src/search.c:1183 src/view-dir.c:738
 #, fuzzy
 msgid "_Copy path"
 msgstr "Kopiér"
 
 #: src/collect-table.c:1032 src/dupe.c:3567 src/img-view.c:1425
-#: src/search.c:1185 src/view_dir.c:741
+#: src/search.c:1185 src/view-dir.c:741
 #, fuzzy
 msgid "_Copy path unquoted"
 msgstr "Kopiér"
 
 #: src/collect-table.c:1037 src/dupe.c:3572 src/img-view.c:1429
-#: src/layout_image.c:814 src/layout_util.c:2486 src/layout_util.c:2487
-#: src/layout_util.c:2488 src/pan-view/pan-view.c:2416 src/search.c:1190
-#: src/view_file/view_file.c:716
+#: src/layout-image.c:814 src/layout-util.c:2486 src/layout-util.c:2487
+#: src/layout-util.c:2488 src/pan-view/pan-view.c:2416 src/search.c:1190
+#: src/view-file/view-file.c:716
 #, fuzzy
 msgid "Move to Trash..."
 msgstr "Flyt..."
 
 #: src/collect-table.c:1041 src/dupe.c:3576 src/img-view.c:1433
-#: src/layout_image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
-#: src/view_dir.c:744 src/view_file/view_file.c:720
+#: src/layout-image.c:819 src/pan-view/pan-view.c:2420 src/search.c:1194
+#: src/view-dir.c:744 src/view-file/view-file.c:720
 #, fuzzy
 msgid "_Delete..."
 msgstr "Slet..."
 
 #: src/collect-table.c:1042 src/dupe.c:3577 src/img-view.c:1434
-#: src/layout_image.c:820 src/pan-view/pan-view.c:2421 src/search.c:1195
-#: src/ui_pathsel.c:644 src/view_file/view_file.c:721
+#: src/layout-image.c:820 src/pan-view/pan-view.c:2421 src/search.c:1195
+#: src/ui-pathsel.c:644 src/view-file/view-file.c:721
 #, fuzzy
 msgid "_Delete"
 msgstr "Slet"
@@ -1212,18 +1212,18 @@ msgstr "Slet"
 msgid "Randomize"
 msgstr "Tilfældig"
 
-#: src/collect-table.c:1050 src/view_dir.c:759 src/view_file/view_file.c:746
+#: src/collect-table.c:1050 src/view-dir.c:759 src/view-file/view-file.c:746
 #, fuzzy
 msgid "_Sort"
 msgstr "Sortér"
 
-#: src/collect-table.c:1053 src/view_file/view_file.c:762
+#: src/collect-table.c:1053 src/view-file/view-file.c:762
 #, fuzzy
 msgid "Show filename _text"
 msgstr "Vis skjulte"
 
-#: src/collect-table.c:1055 src/view_file/view_file.c:770
-#: src/view_file/view_file.c:774
+#: src/collect-table.c:1055 src/view-file/view-file.c:770
+#: src/view-file/view-file.c:774
 #, fuzzy
 msgid "Show star rating"
 msgstr "Sortér efter dato"
@@ -1238,13 +1238,13 @@ msgstr "Gem samling"
 msgid "Save collection _as..."
 msgstr "Gem samling som..."
 
-#: src/collect-table.c:1063 src/layout_util.c:2526
-#: src/view_file/view_file.c:731
+#: src/collect-table.c:1063 src/layout-util.c:2526
+#: src/view-file/view-file.c:731
 #, fuzzy
 msgid "_Find duplicates..."
 msgstr "Find dubletter..."
 
-#: src/collect-table.c:1065 src/dupe.c:3556 src/layout_util.c:2528
+#: src/collect-table.c:1065 src/dupe.c:3556 src/layout-util.c:2528
 #: src/search.c:1174
 #, fuzzy
 msgid "Print..."
@@ -1271,7 +1271,7 @@ msgid "_Skip folders"
 msgstr "Udelad mapper"
 
 #: src/collect-table.c:2248 src/dupe.c:4972 src/img-view.c:1600
-#: src/view_dir.c:431
+#: src/view-dir.c:431
 msgid "Cancel"
 msgstr "Annullér"
 
@@ -1297,25 +1297,25 @@ msgstr "Spejl"
 msgid "warning"
 msgstr ""
 
-#: src/desktop_file.c:83 src/desktop_file.c:95 src/desktop_file.c:101
+#: src/desktop-file.c:83 src/desktop-file.c:95 src/desktop-file.c:101
 msgid "Can't save"
 msgstr ""
 
-#: src/desktop_file.c:83
+#: src/desktop-file.c:83
 msgid "Please specify file name."
 msgstr ""
 
-#: src/desktop_file.c:95
+#: src/desktop-file.c:95
 #, fuzzy
 msgid "Could not create directory"
 msgstr "Kunne ikke oprette mappe"
 
-#: src/desktop_file.c:191 src/desktop_file.c:650
+#: src/desktop-file.c:191 src/desktop-file.c:650
 #, fuzzy
 msgid "Desktop file"
 msgstr "til:"
 
-#: src/desktop_file.c:301 src/ui_pathsel.c:494
+#: src/desktop-file.c:301 src/ui-pathsel.c:494
 #, c-format
 msgid ""
 "Unable to delete file:\n"
@@ -1324,17 +1324,17 @@ msgstr ""
 "Kunne ikke slette fil:\n"
 "%s"
 
-#: src/desktop_file.c:302 src/ui_pathsel.c:495 src/utilops.c:2177
+#: src/desktop-file.c:302 src/ui-pathsel.c:495 src/utilops.c:2177
 #: src/utilops.c:2213 src/utilops.c:2735
 msgid "File deletion failed"
 msgstr "Filsletning mislykkedes"
 
-#: src/desktop_file.c:346 src/desktop_file.c:354 src/ui_pathsel.c:537
-#: src/ui_pathsel.c:545
+#: src/desktop-file.c:346 src/desktop-file.c:354 src/ui-pathsel.c:537
+#: src/ui-pathsel.c:545
 msgid "Delete file"
 msgstr "Slet fil"
 
-#: src/desktop_file.c:352 src/ui_pathsel.c:543
+#: src/desktop-file.c:352 src/ui-pathsel.c:543
 #, c-format
 msgid ""
 "About to delete the file:\n"
@@ -1343,25 +1343,25 @@ msgstr ""
 "Vil nu slette filen:\n"
 "%s"
 
-#: src/desktop_file.c:384
+#: src/desktop-file.c:384
 #, fuzzy
 msgid "new.desktop"
 msgstr "til:"
 
-#: src/desktop_file.c:549
+#: src/desktop-file.c:549
 msgid "Plugins"
 msgstr ""
 
-#: src/desktop_file.c:618
+#: src/desktop-file.c:618
 msgid "Disabled"
 msgstr ""
 
-#: src/desktop_file.c:640
+#: src/desktop-file.c:640
 msgid "Hidden"
 msgstr ""
 
-#: src/desktop_file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/osd.c:39
-#: src/search.c:3698 src/ui_pathsel.c:1112 src/utilops.c:503
+#: src/desktop-file.c:659 src/dupe.c:3984 src/dupe.c:4707 src/osd.c:39
+#: src/search.c:3698 src/ui-pathsel.c:1112 src/utilops.c:503
 msgid "Path"
 msgstr "Sti"
 
@@ -1371,7 +1371,7 @@ msgid "Delete"
 msgstr "Slet"
 
 #: src/dupe.c:157 src/preferences.c:2058 src/preferences.c:2090
-#: src/preferences.c:2218 src/search.c:362 src/view_file/view_file.c:1188
+#: src/preferences.c:2218 src/search.c:362 src/view-file/view-file.c:1188
 #: src/window.c:400
 #, fuzzy
 msgid "Clear"
@@ -1477,13 +1477,13 @@ msgid "Name case-insensitive"
 msgstr ""
 
 #: src/dupe.c:3980 src/dupe.c:4704 src/dupe.c:5287 src/osd.c:41
-#: src/preferences.c:2425 src/search.c:3695 src/view_file/view_file_list.c:2240
+#: src/preferences.c:2425 src/search.c:3695 src/view-file/view-file-list.c:2240
 msgid "Size"
 msgstr "Størrelse"
 
 #: src/dupe.c:3981 src/dupe.c:4705 src/dupe.c:5287 src/exif.c:334
 #: src/exif-common.c:916 src/osd.c:40 src/search.c:3696
-#: src/view_file/view_file_list.c:2244
+#: src/view-file/view-file-list.c:2244
 msgid "Date"
 msgstr "Dato"
 
@@ -2607,8 +2607,8 @@ msgstr ""
 "Kunne ikke oprette mappen:\n"
 "%s"
 
-#: src/fullscreen.c:242 src/img-view.c:131 src/layout_util.c:2588
-#: src/layout_util.c:2589 src/layout_util.c:2590 src/pan-view/pan-view.c:120
+#: src/fullscreen.c:242 src/img-view.c:131 src/layout-util.c:2588
+#: src/layout-util.c:2589 src/layout-util.c:2590 src/pan-view/pan-view.c:120
 #: src/pan-view/pan-view.c:121 src/pan-view/pan-view.c:122
 #: src/preferences.c:2438
 #, fuzzy
@@ -2680,7 +2680,7 @@ msgstr ""
 msgid "Linear Histogram on value"
 msgstr ""
 
-#: src/history_list.c:291
+#: src/history-list.c:291
 #, fuzzy, c-format
 msgid "Unable to write history lists to: %s\n"
 msgstr ""
@@ -2692,36 +2692,36 @@ msgstr ""
 msgid " (Collection %s)"
 msgstr "Samlinger"
 
-#: src/image_load_cr3.c:161 src/image_load_jpeg.c:164
+#: src/image-load-cr3.c:161 src/image-load-jpeg.c:164
 #, c-format
 msgid "Error interpreting JPEG image file (%s)"
 msgstr ""
 
-#: src/image_load_j2k.c:202
+#: src/image-load-j2k.c:202
 msgid "Could not open file for reading"
 msgstr ""
 
-#: src/image_load_j2k.c:212
+#: src/image-load-j2k.c:212
 msgid "Unknown jpeg2000 decoder type"
 msgstr ""
 
-#: src/image_load_j2k.c:219
+#: src/image-load-j2k.c:219
 msgid "Couldn't set parameters on decoder for file."
 msgstr ""
 
-#: src/image_load_j2k.c:227
+#: src/image-load-j2k.c:227
 msgid "Couldn't read JP2 header from file"
 msgstr ""
 
-#: src/image_load_j2k.c:233
+#: src/image-load-j2k.c:233
 msgid "Couldn't decode JP2 image in file"
 msgstr ""
 
-#: src/image_load_j2k.c:239
+#: src/image-load-j2k.c:239
 msgid "Couldn't decompress JP2 image in file"
 msgstr ""
 
-#: src/image_load_j2k.c:246
+#: src/image-load-j2k.c:246
 msgid "JP2 image not rgb"
 msgstr ""
 
@@ -2760,63 +2760,63 @@ msgstr "%d billeder"
 msgid "Next"
 msgstr "Indlæs næste billede"
 
-#: src/img-view.c:112 src/img-view.c:113 src/layout_util.c:2554
-#: src/layout_util.c:2555 src/pan-view/pan-view.c:108
+#: src/img-view.c:112 src/img-view.c:113 src/layout-util.c:2554
+#: src/layout-util.c:2555 src/pan-view/pan-view.c:108
 #: src/pan-view/pan-view.c:109 src/preferences.c:825 src/toolbar.c:116
 msgid "Zoom in"
 msgstr "Zoom ind"
 
-#: src/img-view.c:114 src/layout_util.c:2556 src/layout_util.c:2557
+#: src/img-view.c:114 src/layout-util.c:2556 src/layout-util.c:2557
 #: src/pan-view/pan-view.c:110 src/preferences.c:826 src/toolbar.c:117
 msgid "Zoom out"
 msgstr "Zoom ud"
 
 #: src/img-view.c:115 src/img-view.c:116 src/img-view.c:1406
-#: src/layout_image.c:776 src/layout_util.c:2560 src/layout_util.c:2561
+#: src/layout-image.c:776 src/layout-util.c:2560 src/layout-util.c:2561
 #: src/preferences.c:828 src/toolbar.c:119
 #, fuzzy
 msgid "Zoom to fit"
 msgstr "/Vis/_Zoom to vindue"
 
 #: src/img-view.c:117 src/img-view.c:118 src/img-view.c:119
-#: src/layout_util.c:2558 src/layout_util.c:2559 src/pan-view/pan-view.c:111
+#: src/layout-util.c:2558 src/layout-util.c:2559 src/pan-view/pan-view.c:111
 #: src/pan-view/pan-view.c:112 src/pan-view/pan-view.c:113
 #: src/preferences.c:827 src/toolbar.c:118
 #, fuzzy
 msgid "Zoom 1:1"
 msgstr "Zoom 1:1"
 
-#: src/img-view.c:120 src/layout_util.c:2564 src/pan-view/pan-view.c:114
+#: src/img-view.c:120 src/layout-util.c:2564 src/pan-view/pan-view.c:114
 #: src/preferences.c:831 src/toolbar.c:122
 #, fuzzy
 msgid "Zoom 2:1"
 msgstr "Zoom 1:1"
 
-#: src/img-view.c:121 src/layout_util.c:2565 src/pan-view/pan-view.c:115
+#: src/img-view.c:121 src/layout-util.c:2565 src/pan-view/pan-view.c:115
 #: src/preferences.c:832 src/toolbar.c:123
 #, fuzzy
 msgid "Zoom 3:1"
 msgstr "Zoom 1:1"
 
-#: src/img-view.c:122 src/layout_util.c:2566 src/pan-view/pan-view.c:116
+#: src/img-view.c:122 src/layout-util.c:2566 src/pan-view/pan-view.c:116
 #: src/preferences.c:833 src/toolbar.c:124
 #, fuzzy
 msgid "Zoom 4:1"
 msgstr "Zoom 1:1"
 
-#: src/img-view.c:123 src/layout_util.c:2569 src/layout_util.c:2585
+#: src/img-view.c:123 src/layout-util.c:2569 src/layout-util.c:2585
 #: src/pan-view/pan-view.c:117 src/preferences.c:836 src/toolbar.c:127
 #, fuzzy
 msgid "Zoom 1:4"
 msgstr "Zoom 1:1"
 
-#: src/img-view.c:124 src/layout_util.c:2568 src/layout_util.c:2584
+#: src/img-view.c:124 src/layout-util.c:2568 src/layout-util.c:2584
 #: src/pan-view/pan-view.c:118
 #, fuzzy
 msgid "Zoom 1:3"
 msgstr "Zoom 1:1"
 
-#: src/img-view.c:125 src/layout_util.c:2567 src/layout_util.c:2583
+#: src/img-view.c:125 src/layout-util.c:2567 src/layout-util.c:2583
 #: src/pan-view/pan-view.c:119 src/preferences.c:834 src/toolbar.c:125
 #, fuzzy
 msgid "Zoom 1:2"
@@ -2832,12 +2832,12 @@ msgstr "/Vis/_Zoom to vindue"
 msgid "Zoom fit window height"
 msgstr "/Vis/_Zoom to vindue"
 
-#: src/img-view.c:128 src/layout_util.c:2632
+#: src/img-view.c:128 src/layout-util.c:2632
 #, fuzzy
 msgid "Toggle slideshow"
 msgstr "Stop billedserie"
 
-#: src/img-view.c:129 src/layout_util.c:2597 src/preferences.c:842
+#: src/img-view.c:129 src/layout-util.c:2597 src/preferences.c:842
 #: src/toolbar.c:138
 #, fuzzy
 msgid "Pause slideshow"
@@ -2868,77 +2868,77 @@ msgstr "Forlad fuldskærm"
 msgid "Desaturate"
 msgstr "Dato"
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1891
-#: src/layout_util.c:914 src/view_file/view_file.c:396
+#: src/img-view.c:672 src/layout-image.c:692 src/layout-image.c:1891
+#: src/layout-util.c:914 src/view-file/view-file.c:396
 #, fuzzy
 msgid "Cannot open archive file"
 msgstr "Kunne ikke oprette mappe"
 
-#: src/img-view.c:672 src/layout_image.c:692 src/layout_image.c:1891
-#: src/layout_util.c:914 src/preferences.c:4219 src/preferences.c:4227
-#: src/view_file/view_file.c:396
+#: src/img-view.c:672 src/layout-image.c:692 src/layout-image.c:1891
+#: src/layout-util.c:914 src/preferences.c:4219 src/preferences.c:4227
+#: src/view-file/view-file.c:396
 #, fuzzy
 msgid "See the Log Window"
 msgstr "Vinduer"
 
-#: src/img-view.c:1403 src/layout_image.c:773 src/layout_util.c:2554
-#: src/layout_util.c:2555 src/layout_util.c:2570 src/layout_util.c:2571
+#: src/img-view.c:1403 src/layout-image.c:773 src/layout-util.c:2554
+#: src/layout-util.c:2555 src/layout-util.c:2570 src/layout-util.c:2571
 #: src/pan-view/pan-view.c:2382
 #, fuzzy
 msgid "Zoom _in"
 msgstr "Zoom ind"
 
-#: src/img-view.c:1404 src/layout_image.c:774 src/layout_util.c:2556
-#: src/layout_util.c:2557 src/layout_util.c:2572 src/layout_util.c:2573
+#: src/img-view.c:1404 src/layout-image.c:774 src/layout-util.c:2556
+#: src/layout-util.c:2557 src/layout-util.c:2572 src/layout-util.c:2573
 #: src/pan-view/pan-view.c:2384
 #, fuzzy
 msgid "Zoom _out"
 msgstr "Zoom ud"
 
-#: src/img-view.c:1405 src/layout_image.c:775 src/layout_util.c:2558
-#: src/layout_util.c:2559 src/layout_util.c:2574 src/layout_util.c:2575
+#: src/img-view.c:1405 src/layout-image.c:775 src/layout-util.c:2558
+#: src/layout-util.c:2559 src/layout-util.c:2574 src/layout-util.c:2575
 #: src/pan-view/pan-view.c:2386
 #, fuzzy
 msgid "Zoom _1:1"
 msgstr "Zoom 1:1"
 
-#: src/img-view.c:1418 src/layout_image.c:790
+#: src/img-view.c:1418 src/layout-image.c:790
 msgid "_Go to directory view"
 msgstr ""
 
-#: src/img-view.c:1446 src/img-view.c:1460 src/layout_image.c:832
-#: src/layout_image.c:846 src/layout_util.c:2632
+#: src/img-view.c:1446 src/img-view.c:1460 src/layout-image.c:832
+#: src/layout-image.c:846 src/layout-util.c:2632
 #, fuzzy
 msgid "Toggle _slideshow"
 msgstr "Stop billedserie"
 
-#: src/img-view.c:1449 src/layout_image.c:835
+#: src/img-view.c:1449 src/layout-image.c:835
 #, fuzzy
 msgid "Continue slides_how"
 msgstr "Fortsæt billedserie"
 
-#: src/img-view.c:1454 src/img-view.c:1462 src/layout_image.c:840
-#: src/layout_image.c:847
+#: src/img-view.c:1454 src/img-view.c:1462 src/layout-image.c:840
+#: src/layout-image.c:847
 #, fuzzy
 msgid "Pause slides_how"
 msgstr "Afbryd billedserie"
 
-#: src/img-view.c:1468 src/layout_image.c:857 src/pan-view/pan-view.c:2474
+#: src/img-view.c:1468 src/layout-image.c:857 src/pan-view/pan-view.c:2474
 #, fuzzy
 msgid "Exit _full screen"
 msgstr "Forlad fuldskærm"
 
-#: src/img-view.c:1472 src/layout_image.c:853 src/pan-view/pan-view.c:2478
+#: src/img-view.c:1472 src/layout-image.c:853 src/pan-view/pan-view.c:2478
 #, fuzzy
 msgid "_Full screen"
 msgstr "Fuldskærm"
 
-#: src/img-view.c:1476 src/layout_util.c:2493 src/pan-view/pan-view.c:2482
+#: src/img-view.c:1476 src/layout-util.c:2493 src/pan-view/pan-view.c:2482
 #, fuzzy
 msgid "C_lose window"
 msgstr "Luk vindue"
 
-#: src/layout.c:460 src/view_dir.c:758 src/view_file/view_file.c:743
+#: src/layout.c:460 src/view-dir.c:758 src/view-file/view-file.c:743
 msgid "Ascending"
 msgstr ""
 
@@ -3025,7 +3025,7 @@ msgstr "Vælg ingen"
 msgid "[Pixel x,y coord]: (Pixel R,G,B value)"
 msgstr ""
 
-#: src/layout.c:1625 src/layout_config.c:67
+#: src/layout.c:1625 src/layout-config.c:67
 #, fuzzy
 msgid "Tools"
 msgstr "Fliser"
@@ -3080,1523 +3080,1523 @@ msgstr ""
 msgid "Invalid geometry\n"
 msgstr "Ugyldigt filnavn"
 
-#: src/layout_config.c:67 src/ui_pathsel.c:1179
+#: src/layout-config.c:67 src/ui-pathsel.c:1179
 #, fuzzy
 msgid "Files"
 msgstr "Fliser"
 
-#: src/layout_config.c:67 src/preferences.c:131 src/preferences.c:2242
+#: src/layout-config.c:67 src/preferences.c:131 src/preferences.c:2242
 #: src/search.c:2261 src/search.c:3606
 msgid "Image"
 msgstr "Billede"
 
-#: src/layout_config.c:358
+#: src/layout-config.c:358
 msgid "(drag to change order)"
 msgstr ""
 
-#: src/layout_image.c:793 src/layout_util.c:2285 src/layout_util.c:2587
-#: src/view_file/view_file.c:701
+#: src/layout-image.c:793 src/layout-util.c:2285 src/layout-util.c:2587
+#: src/view-file/view-file.c:701
 #, fuzzy
 msgid "Open archive"
 msgstr "/Filer/Åbn _nylige"
 
-#: src/layout_image.c:807 src/layout_util.c:2532 src/pan-view/pan-view.c:2409
-#: src/view_file/view_file.c:710
+#: src/layout-image.c:807 src/layout-util.c:2532 src/pan-view/pan-view.c:2409
+#: src/view-file/view-file.c:710
 #, fuzzy
 msgid "_Copy path to clipboard"
 msgstr "Kopiér"
 
-#: src/layout_image.c:808 src/layout_util.c:2533 src/pan-view/pan-view.c:2411
-#: src/view_file/view_file.c:712
+#: src/layout-image.c:808 src/layout-util.c:2533 src/pan-view/pan-view.c:2411
+#: src/view-file/view-file.c:712
 #, fuzzy
 msgid "_Copy path unquoted to clipboard"
 msgstr "Kopiér"
 
-#: src/layout_image.c:809
+#: src/layout-image.c:809
 #, fuzzy
 msgid "Copy _image to clipboard"
 msgstr "Kopiér"
 
-#: src/layout_image.c:860 src/layout_util.c:2639
+#: src/layout-image.c:860 src/layout-util.c:2639
 msgid "GIF _animation"
 msgstr ""
 
-#: src/layout_image.c:864
+#: src/layout-image.c:864
 #, fuzzy
 msgid "Hide file _list"
 msgstr "Vis/skjul filliste"
 
-#: src/layout_image.c:2116
+#: src/layout-image.c:2116
 #, c-format
 msgid "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 msgstr ""
 
-#: src/layout_image.c:2124
+#: src/layout-image.c:2124
 #, c-format
 msgid "[%*s,%*s]: RGB(---,---,---)"
 msgstr ""
 
-#: src/layout_util.c:244 src/layout_util.c:2618
+#: src/layout-util.c:244 src/layout-util.c:2618
 #, fuzzy
 msgid "Clear Marks"
 msgstr "Ryd mellemlager"
 
-#: src/layout_util.c:591
+#: src/layout-util.c:591
 #, fuzzy
 msgid "Operation failed:\n"
 msgstr "Filsletning mislykkedes"
 
-#: src/layout_util.c:594
+#: src/layout-util.c:594
 msgid "No file extension\n"
 msgstr ""
 
-#: src/layout_util.c:596
+#: src/layout-util.c:596
 #, fuzzy
 msgid "Cannot create tmp file\n"
 msgstr "Kunne ikke oprette mappe"
 
-#: src/layout_util.c:598
+#: src/layout-util.c:598
 msgid "Operation not supported for filetype\n"
 msgstr ""
 
-#: src/layout_util.c:600
+#: src/layout-util.c:600
 msgid "File is not writable\n"
 msgstr ""
 
-#: src/layout_util.c:602
+#: src/layout-util.c:602
 #, fuzzy
 msgid "Exiftran error\n"
 msgstr "Filter:"
 
-#: src/layout_util.c:604
+#: src/layout-util.c:604
 #, fuzzy
 msgid "Mogrify error\n"
 msgstr "Spejl"
 
-#: src/layout_util.c:608
+#: src/layout-util.c:608
 #, fuzzy
 msgid "Image orientation"
 msgstr "Dimensioner"
 
-#: src/layout_util.c:2080
+#: src/layout-util.c:2080
 #, c-format
 msgid "Error: window layout name: %s does not exist\n"
 msgstr ""
 
-#: src/layout_util.c:2154
+#: src/layout-util.c:2154
 #, fuzzy, c-format
 msgid "Window layout name \"%s\" already exists."
 msgstr "Filnavnet %s eksisterer allerede."
 
-#: src/layout_util.c:2155 src/layout_util.c:2404 src/layout_util.c:2520
+#: src/layout-util.c:2155 src/layout-util.c:2404 src/layout-util.c:2520
 #, fuzzy
 msgid "Rename window"
 msgstr "/Filer/_Ny samling"
 
-#: src/layout_util.c:2255 src/layout_util.c:2435 src/layout_util.c:2521
+#: src/layout-util.c:2255 src/layout-util.c:2435 src/layout-util.c:2521
 #, fuzzy
 msgid "Delete window"
 msgstr "Luk vindue"
 
-#: src/layout_util.c:2405 src/layout_util.c:2436
+#: src/layout-util.c:2405 src/layout-util.c:2436
 msgid "OK"
 msgstr ""
 
-#: src/layout_util.c:2407
+#: src/layout-util.c:2407
 #, fuzzy
 msgid "rename window"
 msgstr "/Filer/_Ny samling"
 
-#: src/layout_util.c:2438
+#: src/layout-util.c:2438
 msgid "Delete window layout"
 msgstr ""
 
-#: src/layout_util.c:2464
+#: src/layout-util.c:2464
 #, fuzzy
 msgid "_File"
 msgstr "/_Filer"
 
-#: src/layout_util.c:2465
+#: src/layout-util.c:2465
 msgid "_Go"
 msgstr ""
 
-#: src/layout_util.c:2466
+#: src/layout-util.c:2466
 #, fuzzy
 msgid "_Edit"
 msgstr "/Redigér"
 
-#: src/layout_util.c:2467
+#: src/layout-util.c:2467
 #, fuzzy
 msgid "_Select"
 msgstr "Vælg ingen"
 
-#: src/layout_util.c:2468 src/menu.c:411
+#: src/layout-util.c:2468 src/menu.c:411
 #, fuzzy
 msgid "_Orientation"
 msgstr "Dimensioner"
 
-#: src/layout_util.c:2469
+#: src/layout-util.c:2469
 #, fuzzy
 msgid "_Rating"
 msgstr "Filter:"
 
-#: src/layout_util.c:2470
+#: src/layout-util.c:2470
 #, fuzzy
 msgid "P_references"
 msgstr "/Redigér/_Indstillinger"
 
-#: src/layout_util.c:2472
+#: src/layout-util.c:2472
 #, fuzzy
 msgid "_Files and Folders"
 msgstr "Vis skjulte"
 
-#: src/layout_util.c:2473
+#: src/layout-util.c:2473
 #, fuzzy
 msgid "_Zoom"
 msgstr "Zoom ind"
 
-#: src/layout_util.c:2474
+#: src/layout-util.c:2474
 #, fuzzy
 msgid "_Color Management"
 msgstr "Sortér efter navn"
 
-#: src/layout_util.c:2475
+#: src/layout-util.c:2475
 #, fuzzy
 msgid "_Connected Zoom"
 msgstr "Zoom ud"
 
-#: src/layout_util.c:2476
+#: src/layout-util.c:2476
 msgid "Spli_t"
 msgstr ""
 
-#: src/layout_util.c:2477
+#: src/layout-util.c:2477
 msgid "Stere_o"
 msgstr ""
 
-#: src/layout_util.c:2478 src/layout_util.c:2636
+#: src/layout-util.c:2478 src/layout-util.c:2636
 #, fuzzy
 msgid "Image _Overlay"
 msgstr "Billede"
 
-#: src/layout_util.c:2479 src/menu.c:121
+#: src/layout-util.c:2479 src/menu.c:121
 msgid "_Plugins"
 msgstr ""
 
-#: src/layout_util.c:2480
+#: src/layout-util.c:2480
 #, fuzzy
 msgid "_Windows"
 msgstr "Vinduer"
 
-#: src/layout_util.c:2481
+#: src/layout-util.c:2481
 #, fuzzy
 msgid "_Help"
 msgstr "/_Hjælp"
 
-#: src/layout_util.c:2483
+#: src/layout-util.c:2483
 #, fuzzy
 msgid "Copy..."
 msgstr "Kopiér..."
 
-#: src/layout_util.c:2484
+#: src/layout-util.c:2484
 #, fuzzy
 msgid "Move..."
 msgstr "Flyt..."
 
-#: src/layout_util.c:2485
+#: src/layout-util.c:2485
 #, fuzzy
 msgid "Rename..."
 msgstr "Omdøb..."
 
-#: src/layout_util.c:2489
+#: src/layout-util.c:2489
 #, fuzzy
 msgid "Delete..."
 msgstr "Slet..."
 
-#: src/layout_util.c:2490
+#: src/layout-util.c:2490
 #, fuzzy
 msgid "Select _all"
 msgstr "Vælg alle"
 
-#: src/layout_util.c:2491
+#: src/layout-util.c:2491
 #, fuzzy
 msgid "Select _none"
 msgstr "Vælg ingen"
 
-#: src/layout_util.c:2492
+#: src/layout-util.c:2492
 #, fuzzy
 msgid "_Invert Selection"
 msgstr "Vælg ingen"
 
-#: src/layout_util.c:2492
+#: src/layout-util.c:2492
 #, fuzzy
 msgid "Invert Selection"
 msgstr "Vælg ingen"
 
-#: src/layout_util.c:2494
+#: src/layout-util.c:2494
 #, fuzzy
 msgid "_Quit"
 msgstr "Kvalitet"
 
-#: src/layout_util.c:2494 src/preferences.c:854 src/toolbar.c:150
+#: src/layout-util.c:2494 src/preferences.c:854 src/toolbar.c:150
 #, fuzzy
 msgid "Quit"
 msgstr "Kvalitet"
 
-#: src/layout_util.c:2495
+#: src/layout-util.c:2495
 #, fuzzy
 msgid "_First Image"
 msgstr "%d billeder"
 
-#: src/layout_util.c:2495 src/preferences.c:786 src/toolbar.c:74
+#: src/layout-util.c:2495 src/preferences.c:786 src/toolbar.c:74
 #, fuzzy
 msgid "First Image"
 msgstr "%d billeder"
 
-#: src/layout_util.c:2496 src/layout_util.c:2497 src/layout_util.c:2498
+#: src/layout-util.c:2496 src/layout-util.c:2497 src/layout-util.c:2498
 #, fuzzy
 msgid "_Previous Image"
 msgstr "%d billeder"
 
-#: src/layout_util.c:2496 src/layout_util.c:2497 src/layout_util.c:2498
+#: src/layout-util.c:2496 src/layout-util.c:2497 src/layout-util.c:2498
 #: src/preferences.c:787 src/toolbar.c:75
 #, fuzzy
 msgid "Previous Image"
 msgstr "%d billeder"
 
-#: src/layout_util.c:2499 src/layout_util.c:2500 src/layout_util.c:2511
+#: src/layout-util.c:2499 src/layout-util.c:2500 src/layout-util.c:2511
 #, fuzzy
 msgid "_Next Image"
 msgstr "Indlæs næste billede"
 
-#: src/layout_util.c:2499 src/layout_util.c:2500 src/layout_util.c:2511
+#: src/layout-util.c:2499 src/layout-util.c:2500 src/layout-util.c:2511
 #: src/preferences.c:788 src/toolbar.c:76
 #, fuzzy
 msgid "Next Image"
 msgstr "Indlæs næste billede"
 
-#: src/layout_util.c:2502 src/toolbar.c:86
+#: src/layout-util.c:2502 src/toolbar.c:86
 #, fuzzy
 msgid "Image Forward"
 msgstr "Billede"
 
-#: src/layout_util.c:2502
+#: src/layout-util.c:2502
 msgid "Forward in image history"
 msgstr ""
 
-#: src/layout_util.c:2503 src/toolbar.c:87
+#: src/layout-util.c:2503 src/toolbar.c:87
 #, fuzzy
 msgid "Image Back"
 msgstr "Billede"
 
-#: src/layout_util.c:2503
+#: src/layout-util.c:2503
 msgid "Back in image history"
 msgstr ""
 
-#: src/layout_util.c:2505
+#: src/layout-util.c:2505
 #, fuzzy
 msgid "_First Page"
 msgstr "%d billeder"
 
-#: src/layout_util.c:2505
+#: src/layout-util.c:2505
 msgid "First Page of multi-page image"
 msgstr ""
 
-#: src/layout_util.c:2506
+#: src/layout-util.c:2506
 #, fuzzy
 msgid "_Last Page"
 msgstr "Indlæs næste billede"
 
-#: src/layout_util.c:2506
+#: src/layout-util.c:2506
 msgid "Last Page of multi-page image"
 msgstr ""
 
-#: src/layout_util.c:2507
+#: src/layout-util.c:2507
 #, fuzzy
 msgid "_Next Page"
 msgstr "Indlæs næste billede"
 
-#: src/layout_util.c:2507
+#: src/layout-util.c:2507
 msgid "Next Page of multi-page image"
 msgstr ""
 
-#: src/layout_util.c:2508
+#: src/layout-util.c:2508
 #, fuzzy
 msgid "_Previous Page"
 msgstr "%d billeder"
 
-#: src/layout_util.c:2508
+#: src/layout-util.c:2508
 msgid "Previous Page of multi-page image"
 msgstr ""
 
-#: src/layout_util.c:2512
+#: src/layout-util.c:2512
 #, fuzzy
 msgid "_Last Image"
 msgstr "Indlæs næste billede"
 
-#: src/layout_util.c:2512 src/preferences.c:789 src/toolbar.c:77
+#: src/layout-util.c:2512 src/preferences.c:789 src/toolbar.c:77
 #, fuzzy
 msgid "Last Image"
 msgstr "Indlæs næste billede"
 
-#: src/layout_util.c:2513
+#: src/layout-util.c:2513
 msgid "_Back"
 msgstr ""
 
-#: src/layout_util.c:2513
+#: src/layout-util.c:2513
 msgid "Back in folder history"
 msgstr ""
 
-#: src/layout_util.c:2514
+#: src/layout-util.c:2514
 #, fuzzy
 msgid "_Forward"
 msgstr "Billede"
 
-#: src/layout_util.c:2514
+#: src/layout-util.c:2514
 msgid "Forward in folder history"
 msgstr ""
 
-#: src/layout_util.c:2515
+#: src/layout-util.c:2515
 #, fuzzy
 msgid "_Home"
 msgstr "Hjem"
 
-#: src/layout_util.c:2515 src/options.c:244 src/preferences.c:792
-#: src/toolbar.c:80 src/ui_bookmark.c:560 src/ui_pathsel.c:1047
+#: src/layout-util.c:2515 src/options.c:244 src/preferences.c:792
+#: src/toolbar.c:80 src/ui-bookmark.c:560 src/ui-pathsel.c:1047
 msgid "Home"
 msgstr "Hjem"
 
-#: src/layout_util.c:2516
+#: src/layout-util.c:2516
 msgid "_Up"
 msgstr ""
 
-#: src/layout_util.c:2516
+#: src/layout-util.c:2516
 #, fuzzy
 msgid "Up one folder"
 msgstr "Hjælp - Geeqie"
 
-#: src/layout_util.c:2517 src/toolbar.c:88
+#: src/layout-util.c:2517 src/toolbar.c:88
 #, fuzzy
 msgid "New window"
 msgstr "/Filer/_Ny samling"
 
-#: src/layout_util.c:2518
+#: src/layout-util.c:2518
 msgid "default"
 msgstr ""
 
-#: src/layout_util.c:2518
+#: src/layout-util.c:2518
 #, fuzzy
 msgid "New window (default)"
 msgstr "/Filer/_Ny samling"
 
-#: src/layout_util.c:2519
+#: src/layout-util.c:2519
 #, fuzzy
 msgid "from current"
 msgstr "Brug nuværende"
 
-#: src/layout_util.c:2522
+#: src/layout-util.c:2522
 #, fuzzy
 msgid "_New collection"
 msgstr "Gem samling"
 
-#: src/layout_util.c:2522 src/menu.c:472 src/preferences.c:799 src/toolbar.c:89
+#: src/layout-util.c:2522 src/menu.c:472 src/preferences.c:799 src/toolbar.c:89
 #, fuzzy
 msgid "New collection"
 msgstr "Gem samling"
 
-#: src/layout_util.c:2523
+#: src/layout-util.c:2523
 #, fuzzy
 msgid "_Open collection..."
 msgstr "Åbn samling"
 
-#: src/layout_util.c:2523
+#: src/layout-util.c:2523
 #, fuzzy
 msgid "Open collection..."
 msgstr "Åbn samling"
 
-#: src/layout_util.c:2524
+#: src/layout-util.c:2524
 #, fuzzy
 msgid "Open recen_t"
 msgstr "/Filer/Åbn _nylige"
 
-#: src/layout_util.c:2524
+#: src/layout-util.c:2524
 #, fuzzy
 msgid "Open recent collection"
 msgstr "Åbn samling"
 
-#: src/layout_util.c:2525
+#: src/layout-util.c:2525
 #, fuzzy
 msgid "_Search..."
 msgstr "Sammenligner..."
 
-#: src/layout_util.c:2525
+#: src/layout-util.c:2525
 #, fuzzy
 msgid "Search..."
 msgstr "Sammenligner..."
 
-#: src/layout_util.c:2526
+#: src/layout-util.c:2526
 #, fuzzy
 msgid "Find duplicates..."
 msgstr "Find dubletter..."
 
-#: src/layout_util.c:2527
+#: src/layout-util.c:2527
 #, fuzzy
 msgid "Pa_n view"
 msgstr " - Geeqie"
 
-#: src/layout_util.c:2527 src/preferences.c:809 src/toolbar.c:99
+#: src/layout-util.c:2527 src/preferences.c:809 src/toolbar.c:99
 #, fuzzy
 msgid "Pan view"
 msgstr " - Geeqie"
 
-#: src/layout_util.c:2528
+#: src/layout-util.c:2528
 #, fuzzy
 msgid "_Print..."
 msgstr "/Filer/_Omdøb..."
 
-#: src/layout_util.c:2529
+#: src/layout-util.c:2529
 #, fuzzy
 msgid "N_ew folder..."
 msgstr "Hjælp - Geeqie"
 
-#: src/layout_util.c:2529
+#: src/layout-util.c:2529
 #, fuzzy
 msgid "New folder..."
 msgstr "Hjælp - Geeqie"
 
-#: src/layout_util.c:2530 src/view_file/view_file.c:725
+#: src/layout-util.c:2530 src/view-file/view-file.c:725
 msgid "Enable file _grouping"
 msgstr ""
 
-#: src/layout_util.c:2530
+#: src/layout-util.c:2530
 #, fuzzy
 msgid "Enable file grouping"
 msgstr "Tillad delete-knap"
 
-#: src/layout_util.c:2531 src/view_file/view_file.c:727
+#: src/layout-util.c:2531 src/view-file/view-file.c:727
 msgid "Disable file groupi_ng"
 msgstr ""
 
-#: src/layout_util.c:2531
+#: src/layout-util.c:2531
 #, fuzzy
 msgid "Disable file grouping"
 msgstr "Inkludér filer af typen:"
 
-#: src/layout_util.c:2532
+#: src/layout-util.c:2532
 #, fuzzy
 msgid "Copy path to clipboard"
 msgstr "Kopiér"
 
-#: src/layout_util.c:2533
+#: src/layout-util.c:2533
 #, fuzzy
 msgid "Copy path unquoted to clipboard"
 msgstr "Kopiér"
 
-#: src/layout_util.c:2534
+#: src/layout-util.c:2534
 #, fuzzy
 msgid "_Rating 0"
 msgstr "Filter:"
 
-#: src/layout_util.c:2534
+#: src/layout-util.c:2534
 #, fuzzy
 msgid "Rating 0"
 msgstr "Filter:"
 
-#: src/layout_util.c:2535
+#: src/layout-util.c:2535
 #, fuzzy
 msgid "_Rating 1"
 msgstr "Filter:"
 
-#: src/layout_util.c:2535
+#: src/layout-util.c:2535
 #, fuzzy
 msgid "Rating 1"
 msgstr "Filter:"
 
-#: src/layout_util.c:2536
+#: src/layout-util.c:2536
 #, fuzzy
 msgid "_Rating 2"
 msgstr "Filter:"
 
-#: src/layout_util.c:2536
+#: src/layout-util.c:2536
 #, fuzzy
 msgid "Rating 2"
 msgstr "Filter:"
 
-#: src/layout_util.c:2537
+#: src/layout-util.c:2537
 #, fuzzy
 msgid "_Rating 3"
 msgstr "Filter:"
 
-#: src/layout_util.c:2537
+#: src/layout-util.c:2537
 #, fuzzy
 msgid "Rating 3"
 msgstr "Filter:"
 
-#: src/layout_util.c:2538
+#: src/layout-util.c:2538
 #, fuzzy
 msgid "_Rating 4"
 msgstr "Filter:"
 
-#: src/layout_util.c:2538
+#: src/layout-util.c:2538
 #, fuzzy
 msgid "Rating 4"
 msgstr "Filter:"
 
-#: src/layout_util.c:2539
+#: src/layout-util.c:2539
 #, fuzzy
 msgid "_Rating 5"
 msgstr "Filter:"
 
-#: src/layout_util.c:2539
+#: src/layout-util.c:2539
 #, fuzzy
 msgid "Rating 5"
 msgstr "Filter:"
 
-#: src/layout_util.c:2540
+#: src/layout-util.c:2540
 #, fuzzy
 msgid "_Rating -1"
 msgstr "Filter:"
 
-#: src/layout_util.c:2540
+#: src/layout-util.c:2540
 #, fuzzy
 msgid "Rating -1"
 msgstr "Filter:"
 
-#: src/layout_util.c:2541
+#: src/layout-util.c:2541
 #, fuzzy
 msgid "_Rotate clockwise 90°"
 msgstr "Rotér med uret"
 
-#: src/layout_util.c:2541
+#: src/layout-util.c:2541
 #, fuzzy
 msgid "Image Rotate clockwise 90°"
 msgstr "Rotér med uret"
 
-#: src/layout_util.c:2542
+#: src/layout-util.c:2542
 #, fuzzy
 msgid "Rotate _counterclockwise 90°"
 msgstr "Rotér mod uret"
 
-#: src/layout_util.c:2542 src/menu.c:356 src/preferences.c:820
+#: src/layout-util.c:2542 src/menu.c:356 src/preferences.c:820
 #: src/toolbar.c:111
 #, fuzzy
 msgid "Rotate counterclockwise 90°"
 msgstr "Rotér mod uret"
 
-#: src/layout_util.c:2543
+#: src/layout-util.c:2543
 #, fuzzy
 msgid "Rotate 1_80°"
 msgstr "Rotér 180"
 
-#: src/layout_util.c:2543
+#: src/layout-util.c:2543
 #, fuzzy
 msgid "Image Rotate 180°"
 msgstr "Rotér 180"
 
-#: src/layout_util.c:2544
+#: src/layout-util.c:2544
 #, fuzzy
 msgid "_Mirror"
 msgstr "Spejl"
 
-#: src/layout_util.c:2544
+#: src/layout-util.c:2544
 #, fuzzy
 msgid "Image Mirror"
 msgstr "Billede"
 
-#: src/layout_util.c:2545
+#: src/layout-util.c:2545
 #, fuzzy
 msgid "_Flip"
 msgstr "Omvendt"
 
-#: src/layout_util.c:2545
+#: src/layout-util.c:2545
 #, fuzzy
 msgid "Image Flip"
 msgstr "Billede"
 
-#: src/layout_util.c:2546
+#: src/layout-util.c:2546
 #, fuzzy
 msgid "_Original state"
 msgstr "Omdøb:"
 
-#: src/layout_util.c:2546
+#: src/layout-util.c:2546
 #, fuzzy
 msgid "Image rotate Original state"
 msgstr "Omdøb:"
 
-#: src/layout_util.c:2547
+#: src/layout-util.c:2547
 #, fuzzy
 msgid "P_references..."
 msgstr "/Redigér/_Indstillinger"
 
-#: src/layout_util.c:2547
+#: src/layout-util.c:2547
 #, fuzzy
 msgid "Preferences..."
 msgstr "/Redigér/_Indstillinger"
 
-#: src/layout_util.c:2548
+#: src/layout-util.c:2548
 #, fuzzy
 msgid "Configure _Plugins..."
 msgstr "Ændr indstillinger"
 
-#: src/layout_util.c:2548
+#: src/layout-util.c:2548
 #, fuzzy
 msgid "Configure Plugins..."
 msgstr "Ændr indstillinger"
 
-#: src/layout_util.c:2549
+#: src/layout-util.c:2549
 #, fuzzy
 msgid "_Configure this window..."
 msgstr "Ændr indstillinger"
 
-#: src/layout_util.c:2549
+#: src/layout-util.c:2549
 #, fuzzy
 msgid "Configure this window..."
 msgstr "Ændr indstillinger"
 
-#: src/layout_util.c:2550
+#: src/layout-util.c:2550
 #, fuzzy
 msgid "_Cache maintenance..."
 msgstr "Hjælp - Geeqie"
 
-#: src/layout_util.c:2550
+#: src/layout-util.c:2550
 #, fuzzy
 msgid "Cache maintenance..."
 msgstr "Hjælp - Geeqie"
 
-#: src/layout_util.c:2551
+#: src/layout-util.c:2551
 #, fuzzy
 msgid "Set as _wallpaper"
 msgstr "Brug som baggrund"
 
-#: src/layout_util.c:2551
+#: src/layout-util.c:2551
 #, fuzzy
 msgid "Set as wallpaper"
 msgstr "Brug som baggrund"
 
-#: src/layout_util.c:2552
+#: src/layout-util.c:2552
 #, fuzzy
 msgid "_Save metadata"
 msgstr "Indlæs næste billede"
 
-#: src/layout_util.c:2552 src/toolbar.c:136
+#: src/layout-util.c:2552 src/toolbar.c:136
 #, fuzzy
 msgid "Save metadata"
 msgstr "Indlæs næste billede"
 
-#: src/layout_util.c:2553
+#: src/layout-util.c:2553
 #, fuzzy
 msgid "Keyword autocomplete"
 msgstr "Usorteret"
 
-#: src/layout_util.c:2553
+#: src/layout-util.c:2553
 #, fuzzy
 msgid "Keyword Autocomplete"
 msgstr "Usorteret"
 
-#: src/layout_util.c:2560 src/layout_util.c:2561 src/layout_util.c:2576
-#: src/layout_util.c:2577
+#: src/layout-util.c:2560 src/layout-util.c:2561 src/layout-util.c:2576
+#: src/layout-util.c:2577
 #, fuzzy
 msgid "_Zoom to fit"
 msgstr "/Vis/_Zoom to vindue"
 
-#: src/layout_util.c:2562 src/layout_util.c:2578
+#: src/layout-util.c:2562 src/layout-util.c:2578
 msgid "Fit _Horizontally"
 msgstr ""
 
-#: src/layout_util.c:2562
+#: src/layout-util.c:2562
 msgid "Fit Horizontally"
 msgstr ""
 
-#: src/layout_util.c:2563 src/layout_util.c:2579
+#: src/layout-util.c:2563 src/layout-util.c:2579
 msgid "Fit _Vertically"
 msgstr ""
 
-#: src/layout_util.c:2563
+#: src/layout-util.c:2563
 msgid "Fit Vertically"
 msgstr ""
 
-#: src/layout_util.c:2564 src/layout_util.c:2580
+#: src/layout-util.c:2564 src/layout-util.c:2580
 #, fuzzy
 msgid "Zoom _2:1"
 msgstr "Zoom 1:1"
 
-#: src/layout_util.c:2565 src/layout_util.c:2581
+#: src/layout-util.c:2565 src/layout-util.c:2581
 #, fuzzy
 msgid "Zoom _3:1"
 msgstr "Zoom 1:1"
 
-#: src/layout_util.c:2566 src/layout_util.c:2582
+#: src/layout-util.c:2566 src/layout-util.c:2582
 #, fuzzy
 msgid "Zoom _4:1"
 msgstr "Zoom 1:1"
 
-#: src/layout_util.c:2570 src/layout_util.c:2571 src/preferences.c:837
+#: src/layout-util.c:2570 src/layout-util.c:2571 src/preferences.c:837
 #: src/toolbar.c:128
 #, fuzzy
 msgid "Connected Zoom in"
 msgstr "Zoom ud"
 
-#: src/layout_util.c:2572 src/layout_util.c:2573
+#: src/layout-util.c:2572 src/layout-util.c:2573
 #, fuzzy
 msgid "Connected Zoom out"
 msgstr "Zoom ud"
 
-#: src/layout_util.c:2574 src/layout_util.c:2575
+#: src/layout-util.c:2574 src/layout-util.c:2575
 #, fuzzy
 msgid "Connected Zoom 1:1"
 msgstr "Vælg zoom 1:1"
 
-#: src/layout_util.c:2576 src/layout_util.c:2577
+#: src/layout-util.c:2576 src/layout-util.c:2577
 #, fuzzy
 msgid "Connected Zoom to fit"
 msgstr "/Vis/_Zoom to vindue"
 
-#: src/layout_util.c:2578
+#: src/layout-util.c:2578
 msgid "Connected Fit Horizontally"
 msgstr ""
 
-#: src/layout_util.c:2579
+#: src/layout-util.c:2579
 msgid "Connected Fit Vertically"
 msgstr ""
 
-#: src/layout_util.c:2580
+#: src/layout-util.c:2580
 #, fuzzy
 msgid "Connected Zoom 2:1"
 msgstr "Vælg zoom 1:1"
 
-#: src/layout_util.c:2581
+#: src/layout-util.c:2581
 #, fuzzy
 msgid "Connected Zoom 3:1"
 msgstr "Vælg zoom 1:1"
 
-#: src/layout_util.c:2582
+#: src/layout-util.c:2582
 #, fuzzy
 msgid "Connected Zoom 4:1"
 msgstr "Vælg zoom 1:1"
 
-#: src/layout_util.c:2583
+#: src/layout-util.c:2583
 #, fuzzy
 msgid "Connected Zoom 1:2"
 msgstr "Zoom 1:1"
 
-#: src/layout_util.c:2584
+#: src/layout-util.c:2584
 #, fuzzy
 msgid "Connected Zoom 1:3"
 msgstr "Zoom 1:1"
 
-#: src/layout_util.c:2585
+#: src/layout-util.c:2585
 #, fuzzy
 msgid "Connected Zoom 1:4"
 msgstr "Zoom 1:1"
 
-#: src/layout_util.c:2586
+#: src/layout-util.c:2586
 #, fuzzy
 msgid "_View in new window"
 msgstr "Vis i nyt vindue"
 
-#: src/layout_util.c:2588 src/layout_util.c:2589 src/layout_util.c:2590
+#: src/layout-util.c:2588 src/layout-util.c:2589 src/layout-util.c:2590
 #, fuzzy
 msgid "F_ull screen"
 msgstr "Fuldskærm"
 
-#: src/layout_util.c:2591 src/layout_util.c:2592
+#: src/layout-util.c:2591 src/layout-util.c:2592
 #, fuzzy
 msgid "_Leave full screen"
 msgstr "Geeqie fuldskærm"
 
-#: src/layout_util.c:2591 src/layout_util.c:2592
+#: src/layout-util.c:2591 src/layout-util.c:2592
 #, fuzzy
 msgid "Leave full screen"
 msgstr "Geeqie fuldskærm"
 
-#: src/layout_util.c:2593
+#: src/layout-util.c:2593
 msgid "_Cycle through overlay modes"
 msgstr ""
 
-#: src/layout_util.c:2593
+#: src/layout-util.c:2593
 msgid "Cycle through Overlay modes"
 msgstr ""
 
-#: src/layout_util.c:2594
+#: src/layout-util.c:2594
 msgid "Cycle through histogram ch_annels"
 msgstr ""
 
-#: src/layout_util.c:2594
+#: src/layout-util.c:2594
 msgid "Cycle through histogram channels"
 msgstr ""
 
-#: src/layout_util.c:2595
+#: src/layout-util.c:2595
 msgid "Cycle through histogram mo_des"
 msgstr ""
 
-#: src/layout_util.c:2595
+#: src/layout-util.c:2595
 msgid "Cycle through histogram modes"
 msgstr ""
 
-#: src/layout_util.c:2596
+#: src/layout-util.c:2596
 #, fuzzy
 msgid "_Hide file list"
 msgstr "Vis/skjul filliste"
 
-#: src/layout_util.c:2596 src/preferences.c:841 src/toolbar.c:137
+#: src/layout-util.c:2596 src/preferences.c:841 src/toolbar.c:137
 #, fuzzy
 msgid "Hide file list"
 msgstr "Vis/skjul filliste"
 
-#: src/layout_util.c:2597
+#: src/layout-util.c:2597
 #, fuzzy
 msgid "_Pause slideshow"
 msgstr "Afbryd billedserie"
 
-#: src/layout_util.c:2598
+#: src/layout-util.c:2598
 msgid "Faster"
 msgstr ""
 
-#: src/layout_util.c:2598 src/preferences.c:843 src/toolbar.c:139
+#: src/layout-util.c:2598 src/preferences.c:843 src/toolbar.c:139
 #, fuzzy
 msgid "Slideshow Faster"
 msgstr " Billedserie"
 
-#: src/layout_util.c:2599
+#: src/layout-util.c:2599
 msgid "Slower"
 msgstr ""
 
-#: src/layout_util.c:2599 src/preferences.c:844 src/toolbar.c:140
+#: src/layout-util.c:2599 src/preferences.c:844 src/toolbar.c:140
 #, fuzzy
 msgid "Slideshow Slower"
 msgstr " Billedserie"
 
-#: src/layout_util.c:2600
+#: src/layout-util.c:2600
 #, fuzzy
 msgid "_Refresh"
 msgstr "Genindlæs"
 
-#: src/layout_util.c:2600 src/preferences.c:845 src/toolbar.c:141
+#: src/layout-util.c:2600 src/preferences.c:845 src/toolbar.c:141
 #, fuzzy
 msgid "Refresh"
 msgstr "Genindlæs"
 
-#: src/layout_util.c:2601
+#: src/layout-util.c:2601
 msgid "_Help manual"
 msgstr ""
 
-#: src/layout_util.c:2601
+#: src/layout-util.c:2601
 msgid "Help manual"
 msgstr ""
 
-#: src/layout_util.c:2602 src/window.c:371
+#: src/layout-util.c:2602 src/window.c:371
 msgid "On-line help search"
 msgstr ""
 
-#: src/layout_util.c:2603
+#: src/layout-util.c:2603
 #, fuzzy
 msgid "_Keyboard shortcuts"
 msgstr "/Hjælp/_Tastaturgenveje"
 
-#: src/layout_util.c:2603
+#: src/layout-util.c:2603
 #, fuzzy
 msgid "Keyboard shortcuts"
 msgstr "/Hjælp/_Tastaturgenveje"
 
-#: src/layout_util.c:2604
+#: src/layout-util.c:2604
 #, fuzzy
 msgid "_Keyboard map"
 msgstr "/Hjælp/_Tastaturgenveje"
 
-#: src/layout_util.c:2604
+#: src/layout-util.c:2604
 #, fuzzy
 msgid "Keyboard map"
 msgstr "Indlæser miniaturer..."
 
-#: src/layout_util.c:2605
+#: src/layout-util.c:2605
 msgid "_Readme"
 msgstr ""
 
-#: src/layout_util.c:2605
+#: src/layout-util.c:2605
 msgid "Readme"
 msgstr ""
 
-#: src/layout_util.c:2606
+#: src/layout-util.c:2606
 #, fuzzy
 msgid "_ChangeLog"
 msgstr "Gå til hjemmemappe"
 
-#: src/layout_util.c:2606
+#: src/layout-util.c:2606
 #, fuzzy
 msgid "ChangeLog notes"
 msgstr "Gå til hjemmemappe"
 
-#: src/layout_util.c:2607 src/search_and_run.c:291
+#: src/layout-util.c:2607 src/search-and-run.c:291
 msgid "Search and Run command"
 msgstr ""
 
-#: src/layout_util.c:2607
+#: src/layout-util.c:2607
 msgid "Search commands by keyword and run them"
 msgstr ""
 
-#: src/layout_util.c:2608
+#: src/layout-util.c:2608
 #, fuzzy
 msgid "_About"
 msgstr "/Hjælp/Om"
 
-#: src/layout_util.c:2608
+#: src/layout-util.c:2608
 #, fuzzy
 msgid "About"
 msgstr "/Hjælp/Om"
 
-#: src/layout_util.c:2609
+#: src/layout-util.c:2609
 #, fuzzy
 msgid "_Log Window"
 msgstr "Vinduer"
 
-#: src/layout_util.c:2609
+#: src/layout-util.c:2609
 #, fuzzy
 msgid "Log Window"
 msgstr "Vinduer"
 
-#: src/layout_util.c:2610
+#: src/layout-util.c:2610
 #, fuzzy
 msgid "_Exif window"
 msgstr "Luk vindue"
 
-#: src/layout_util.c:2610 src/preferences.c:847 src/toolbar.c:143
+#: src/layout-util.c:2610 src/preferences.c:847 src/toolbar.c:143
 #, fuzzy
 msgid "Exif window"
 msgstr "/Filer/_Ny samling"
 
-#: src/layout_util.c:2611
+#: src/layout-util.c:2611
 msgid "_Cycle through stereo modes"
 msgstr ""
 
-#: src/layout_util.c:2611
+#: src/layout-util.c:2611
 msgid "Cycle through stereo modes"
 msgstr ""
 
-#: src/layout_util.c:2612
+#: src/layout-util.c:2612
 #, fuzzy
 msgid "_Next Pane"
 msgstr "Indlæs næste billede"
 
-#: src/layout_util.c:2612
+#: src/layout-util.c:2612
 #, fuzzy
 msgid "Next Split Pane"
 msgstr "Indlæs næste billede"
 
-#: src/layout_util.c:2613
+#: src/layout-util.c:2613
 #, fuzzy
 msgid "_Previous Pane"
 msgstr "%d billeder"
 
-#: src/layout_util.c:2613
+#: src/layout-util.c:2613
 #, fuzzy
 msgid "Previous Split Pane"
 msgstr "%d billeder"
 
-#: src/layout_util.c:2614
+#: src/layout-util.c:2614
 #, fuzzy
 msgid "_Up Pane"
 msgstr "Indlæs næste billede"
 
-#: src/layout_util.c:2614
+#: src/layout-util.c:2614
 #, fuzzy
 msgid "Up Split Pane"
 msgstr "Størrelse"
 
-#: src/layout_util.c:2615
+#: src/layout-util.c:2615
 #, fuzzy
 msgid "_Down Pane"
 msgstr "Indlæs næste billede"
 
-#: src/layout_util.c:2615
+#: src/layout-util.c:2615
 #, fuzzy
 msgid "Down Split Pane"
 msgstr "Størrelse"
 
-#: src/layout_util.c:2616
+#: src/layout-util.c:2616
 #, fuzzy
 msgid "_Write orientation to file"
 msgstr "Overskriv fil"
 
-#: src/layout_util.c:2616
+#: src/layout-util.c:2616
 #, fuzzy
 msgid "Write orientation to file"
 msgstr "Overskriv fil"
 
-#: src/layout_util.c:2617
+#: src/layout-util.c:2617
 #, fuzzy
 msgid "_Write orientation to file (preserve timestamp)"
 msgstr "Overskriv fil"
 
-#: src/layout_util.c:2617
+#: src/layout-util.c:2617
 #, fuzzy
 msgid "Write orientation to file (preserve timestamp)"
 msgstr "Overskriv fil"
 
-#: src/layout_util.c:2618
+#: src/layout-util.c:2618
 #, fuzzy
 msgid "Clear Marks..."
 msgstr "Ryd mellemlager"
 
-#: src/layout_util.c:2622
+#: src/layout-util.c:2622
 #, fuzzy
 msgid "Show _Thumbnails"
 msgstr "Gem miniaturer"
 
-#: src/layout_util.c:2622
+#: src/layout-util.c:2622
 #, fuzzy
 msgid "Show Thumbnails"
 msgstr "Gem miniaturer"
 
-#: src/layout_util.c:2623
+#: src/layout-util.c:2623
 #, fuzzy
 msgid "Show _Marks"
 msgstr "Vis skjulte"
 
-#: src/layout_util.c:2623
+#: src/layout-util.c:2623
 #, fuzzy
 msgid "Show Marks"
 msgstr "Vis skjulte"
 
-#: src/layout_util.c:2624
+#: src/layout-util.c:2624
 #, fuzzy
 msgid "Show File Filter"
 msgstr "Vis skjulte"
 
-#: src/layout_util.c:2625
+#: src/layout-util.c:2625
 #, fuzzy
 msgid "Pi_xel Info"
 msgstr "Filter:"
 
-#: src/layout_util.c:2625
+#: src/layout-util.c:2625
 #, fuzzy
 msgid "Show Pixel Info"
 msgstr "Vis skjulte"
 
-#: src/layout_util.c:2626
+#: src/layout-util.c:2626
 #, fuzzy
 msgid "Hide _alpha"
 msgstr "/Vis/tear1"
 
-#: src/layout_util.c:2626
+#: src/layout-util.c:2626
 #, fuzzy
 msgid "Hide alpha channel"
 msgstr "/Vis/tear1"
 
-#: src/layout_util.c:2627
+#: src/layout-util.c:2627
 #, fuzzy
 msgid "_Float file list"
 msgstr "/Vis/_Løsriv filliste"
 
-#: src/layout_util.c:2627 src/preferences.c:851 src/toolbar.c:147
+#: src/layout-util.c:2627 src/preferences.c:851 src/toolbar.c:147
 #, fuzzy
 msgid "Float file list"
 msgstr "/Vis/_Løsriv filliste"
 
-#: src/layout_util.c:2628
+#: src/layout-util.c:2628
 #, fuzzy
 msgid "Hide tool_bar"
 msgstr "/Vis/tear1"
 
-#: src/layout_util.c:2628
+#: src/layout-util.c:2628
 #, fuzzy
 msgid "Hide toolbar"
 msgstr "/Vis/tear1"
 
-#: src/layout_util.c:2629
+#: src/layout-util.c:2629
 msgid "_Info sidebar"
 msgstr ""
 
-#: src/layout_util.c:2629 src/preferences.c:852 src/toolbar.c:148
+#: src/layout-util.c:2629 src/preferences.c:852 src/toolbar.c:148
 msgid "Info sidebar"
 msgstr ""
 
-#: src/layout_util.c:2630
+#: src/layout-util.c:2630
 #, fuzzy
 msgid "Sort _manager"
 msgstr "Sortér efter navn"
 
-#: src/layout_util.c:2630 src/preferences.c:853 src/toolbar.c:149
+#: src/layout-util.c:2630 src/preferences.c:853 src/toolbar.c:149
 #, fuzzy
 msgid "Sort manager"
 msgstr "Sortér efter navn"
 
-#: src/layout_util.c:2631
+#: src/layout-util.c:2631
 #, fuzzy
 msgid "Hide Bars"
 msgstr "/Vis/tear1"
 
-#: src/layout_util.c:2633
+#: src/layout-util.c:2633
 #, fuzzy
 msgid "Use _color profiles"
 msgstr "Alle filer"
 
-#: src/layout_util.c:2633 src/toolbar.c:135
+#: src/layout-util.c:2633 src/toolbar.c:135
 #, fuzzy
 msgid "Use color profiles"
 msgstr "Alle filer"
 
-#: src/layout_util.c:2634
+#: src/layout-util.c:2634
 msgid "Use profile from _image"
 msgstr ""
 
-#: src/layout_util.c:2634
+#: src/layout-util.c:2634
 msgid "Use profile from image"
 msgstr ""
 
-#: src/layout_util.c:2635
+#: src/layout-util.c:2635
 #, fuzzy
 msgid "Toggle _grayscale"
 msgstr "Stop billedserie"
 
-#: src/layout_util.c:2635
+#: src/layout-util.c:2635
 #, fuzzy
 msgid "Toggle grayscale"
 msgstr "Stop billedserie"
 
-#: src/layout_util.c:2636
+#: src/layout-util.c:2636
 #, fuzzy
 msgid "Image Overlay"
 msgstr "Billede"
 
-#: src/layout_util.c:2637
+#: src/layout-util.c:2637
 msgid "_Show Histogram"
 msgstr ""
 
-#: src/layout_util.c:2637
+#: src/layout-util.c:2637
 #, fuzzy
 msgid "Show Histogram"
 msgstr "Sortér efter dato"
 
-#: src/layout_util.c:2638
+#: src/layout-util.c:2638
 #, fuzzy
 msgid "Rectangular Selection"
 msgstr "Firkantet markering"
 
-#: src/layout_util.c:2639
+#: src/layout-util.c:2639
 msgid "Toggle GIF animation"
 msgstr ""
 
-#: src/layout_util.c:2640
+#: src/layout-util.c:2640
 #, fuzzy
 msgid "_Exif rotate"
 msgstr "/Vis/_Genindlæs lister"
 
-#: src/layout_util.c:2640
+#: src/layout-util.c:2640
 #, fuzzy
 msgid "Toggle Exif rotate"
 msgstr "/Vis/_Genindlæs lister"
 
-#: src/layout_util.c:2641 src/preferences.c:850 src/toolbar.c:146
+#: src/layout-util.c:2641 src/preferences.c:850 src/toolbar.c:146
 #, fuzzy
 msgid "Draw Rectangle"
 msgstr "Vælg alle"
 
-#: src/layout_util.c:2642
+#: src/layout-util.c:2642
 msgid "Over/Under Exposed"
 msgstr ""
 
-#: src/layout_util.c:2642
+#: src/layout-util.c:2642
 msgid "Highlight over/under exposed"
 msgstr ""
 
-#: src/layout_util.c:2643 src/preferences.c:838 src/toolbar.c:129
+#: src/layout-util.c:2643 src/preferences.c:838 src/toolbar.c:129
 #, fuzzy
 msgid "Split Pane Sync"
 msgstr "Størrelse"
 
-#: src/layout_util.c:2647
+#: src/layout-util.c:2647
 #, fuzzy
 msgid "Images as _List"
 msgstr "Billede"
 
-#: src/layout_util.c:2647
+#: src/layout-util.c:2647
 #, fuzzy
 msgid "View Images as List"
 msgstr "/Vis/Som _billedserie"
 
-#: src/layout_util.c:2648
+#: src/layout-util.c:2648
 #, fuzzy
 msgid "Images as I_cons"
 msgstr "Dimensioner"
 
-#: src/layout_util.c:2648
+#: src/layout-util.c:2648
 #, fuzzy
 msgid "View Images as Icons"
 msgstr "Dimensioner"
 
-#: src/layout_util.c:2652
+#: src/layout-util.c:2652
 #, fuzzy
 msgid "T_oggle Folder View"
 msgstr "Stop billedserie"
 
-#: src/layout_util.c:2652
+#: src/layout-util.c:2652
 #, fuzzy
 msgid "Toggle Folders View"
 msgstr "Stop billedserie"
 
-#: src/layout_util.c:2656
+#: src/layout-util.c:2656
 msgid "_Horizontal"
 msgstr ""
 
-#: src/layout_util.c:2656
+#: src/layout-util.c:2656
 #, fuzzy
 msgid "Split panes horizontal."
 msgstr "Størrelse"
 
-#: src/layout_util.c:2657
+#: src/layout-util.c:2657
 msgid "_Vertical"
 msgstr ""
 
-#: src/layout_util.c:2657
+#: src/layout-util.c:2657
 #, fuzzy
 msgid "Split panes vertical"
 msgstr "Størrelse"
 
-#: src/layout_util.c:2658
+#: src/layout-util.c:2658
 msgid "_Quad"
 msgstr ""
 
-#: src/layout_util.c:2658
+#: src/layout-util.c:2658
 #, fuzzy
 msgid "Split panes quad"
 msgstr "Størrelse"
 
-#: src/layout_util.c:2659
+#: src/layout-util.c:2659
 #, fuzzy
 msgid "_Single"
 msgstr "Størrelse"
 
-#: src/layout_util.c:2659
+#: src/layout-util.c:2659
 #, fuzzy
 msgid "Single pane"
 msgstr "Indlæs næste billede"
 
-#: src/layout_util.c:2663
+#: src/layout-util.c:2663
 msgid "Input _0: sRGB"
 msgstr ""
 
-#: src/layout_util.c:2663
+#: src/layout-util.c:2663
 msgid "Input 0: sRGB"
 msgstr ""
 
-#: src/layout_util.c:2664
+#: src/layout-util.c:2664
 msgid "Input _1: AdobeRGB compatible"
 msgstr ""
 
-#: src/layout_util.c:2664
+#: src/layout-util.c:2664
 msgid "Input 1: AdobeRGB compatible"
 msgstr ""
 
-#: src/layout_util.c:2665
+#: src/layout-util.c:2665
 msgid "Input _2"
 msgstr ""
 
-#: src/layout_util.c:2665
+#: src/layout-util.c:2665
 msgid "Input 2"
 msgstr ""
 
-#: src/layout_util.c:2666
+#: src/layout-util.c:2666
 msgid "Input _3"
 msgstr ""
 
-#: src/layout_util.c:2666
+#: src/layout-util.c:2666
 msgid "Input 3"
 msgstr ""
 
-#: src/layout_util.c:2667
+#: src/layout-util.c:2667
 msgid "Input _4"
 msgstr ""
 
-#: src/layout_util.c:2667
+#: src/layout-util.c:2667
 msgid "Input 4"
 msgstr ""
 
-#: src/layout_util.c:2668
+#: src/layout-util.c:2668
 msgid "Input _5"
 msgstr ""
 
-#: src/layout_util.c:2668
+#: src/layout-util.c:2668
 msgid "Input 5"
 msgstr ""
 
-#: src/layout_util.c:2672
+#: src/layout-util.c:2672
 msgid "Histogram on Red"
 msgstr ""
 
-#: src/layout_util.c:2673
+#: src/layout-util.c:2673
 msgid "Histogram on Green"
 msgstr ""
 
-#: src/layout_util.c:2674
+#: src/layout-util.c:2674
 msgid "Histogram on Blue"
 msgstr ""
 
-#: src/layout_util.c:2675
+#: src/layout-util.c:2675
 msgid "Histogram on RGB"
 msgstr ""
 
-#: src/layout_util.c:2676
+#: src/layout-util.c:2676
 msgid "Histogram on Value"
 msgstr ""
 
-#: src/layout_util.c:2680
+#: src/layout-util.c:2680
 msgid "Linear Histogram"
 msgstr ""
 
-#: src/layout_util.c:2681
+#: src/layout-util.c:2681
 msgid "_Log Histogram"
 msgstr ""
 
-#: src/layout_util.c:2681
+#: src/layout-util.c:2681
 msgid "Log Histogram"
 msgstr ""
 
-#: src/layout_util.c:2685
+#: src/layout-util.c:2685
 msgid "_Auto"
 msgstr ""
 
-#: src/layout_util.c:2685
+#: src/layout-util.c:2685
 msgid "Stereo Auto"
 msgstr ""
 
-#: src/layout_util.c:2686
+#: src/layout-util.c:2686
 msgid "_Side by Side"
 msgstr ""
 
-#: src/layout_util.c:2686
+#: src/layout-util.c:2686
 msgid "Stereo Side by Side"
 msgstr ""
 
-#: src/layout_util.c:2687
+#: src/layout-util.c:2687
 msgid "_Cross"
 msgstr ""
 
-#: src/layout_util.c:2687
+#: src/layout-util.c:2687
 msgid "Stereo Cross"
 msgstr ""
 
-#: src/layout_util.c:2688
+#: src/layout-util.c:2688
 msgid "_Off"
 msgstr ""
 
-#: src/layout_util.c:2688
+#: src/layout-util.c:2688
 msgid "Stereo Off"
 msgstr ""
 
-#: src/layout_util.c:3021
+#: src/layout-util.c:3021
 #, c-format
 msgid "Mark _%d"
 msgstr ""
 
-#: src/layout_util.c:3022 src/view_file/view_file.c:650
+#: src/layout-util.c:3022 src/view-file/view-file.c:650
 #, c-format
 msgid "_Set mark %d"
 msgstr ""
 
-#: src/layout_util.c:3022
+#: src/layout-util.c:3022
 #, fuzzy, c-format
 msgid "Set mark %d"
 msgstr "Vælg alle"
 
-#: src/layout_util.c:3023 src/view_file/view_file.c:651
+#: src/layout-util.c:3023 src/view-file/view-file.c:651
 #, c-format
 msgid "_Reset mark %d"
 msgstr ""
 
-#: src/layout_util.c:3023
+#: src/layout-util.c:3023
 #, fuzzy, c-format
 msgid "Reset mark %d"
 msgstr "Vælg alle"
 
-#: src/layout_util.c:3024 src/layout_util.c:3025 src/view_file/view_file.c:652
+#: src/layout-util.c:3024 src/layout-util.c:3025 src/view-file/view-file.c:652
 #, c-format
 msgid "_Toggle mark %d"
 msgstr ""
 
-#: src/layout_util.c:3024 src/layout_util.c:3025
+#: src/layout-util.c:3024 src/layout-util.c:3025
 #, fuzzy, c-format
 msgid "Toggle mark %d"
 msgstr "Vælg alle"
 
-#: src/layout_util.c:3026
+#: src/layout-util.c:3026
 #, fuzzy, c-format
 msgid "Se_lect mark %d"
 msgstr "Vælg alle"
 
-#: src/layout_util.c:3026 src/layout_util.c:3027
+#: src/layout-util.c:3026 src/layout-util.c:3027
 #, fuzzy, c-format
 msgid "Select mark %d"
 msgstr "Vælg alle"
 
-#: src/layout_util.c:3027 src/view_file/view_file.c:653
+#: src/layout-util.c:3027 src/view-file/view-file.c:653
 #, fuzzy, c-format
 msgid "_Select mark %d"
 msgstr "Vælg alle"
 
-#: src/layout_util.c:3028 src/view_file/view_file.c:654
+#: src/layout-util.c:3028 src/view-file/view-file.c:654
 #, fuzzy, c-format
 msgid "_Add mark %d"
 msgstr "Redigerer"
 
-#: src/layout_util.c:3028
+#: src/layout-util.c:3028
 #, fuzzy, c-format
 msgid "Add mark %d"
 msgstr "Redigerer"
 
-#: src/layout_util.c:3029 src/view_file/view_file.c:655
+#: src/layout-util.c:3029 src/view-file/view-file.c:655
 #, c-format
 msgid "_Intersection with mark %d"
 msgstr ""
 
-#: src/layout_util.c:3029
+#: src/layout-util.c:3029
 #, fuzzy, c-format
 msgid "Intersection with mark %d"
 msgstr "Vælg alle"
 
-#: src/layout_util.c:3030 src/view_file/view_file.c:656
+#: src/layout-util.c:3030 src/view-file/view-file.c:656
 #, c-format
 msgid "_Unselect mark %d"
 msgstr ""
 
-#: src/layout_util.c:3030
+#: src/layout-util.c:3030
 #, fuzzy, c-format
 msgid "Unselect mark %d"
 msgstr "Vælg alle"
 
-#: src/layout_util.c:3031
+#: src/layout-util.c:3031
 #, fuzzy, c-format
 msgid "_Filter mark %d"
 msgstr "Vælg alle"
 
-#: src/layout_util.c:3031
+#: src/layout-util.c:3031
 #, fuzzy, c-format
 msgid "Filter mark %d"
 msgstr "Vælg alle"
 
-#: src/layout_util.c:3646
+#: src/layout-util.c:3646
 #, c-format
 msgid "Number of files with unsaved metadata: %d"
 msgstr ""
 
-#: src/layout_util.c:3652
+#: src/layout-util.c:3652
 msgid "No unsaved metadata"
 msgstr ""
 
-#: src/layout_util.c:3700
+#: src/layout-util.c:3700
 #, c-format
 msgid ""
 "Image profile: %s\n"
 "Screen profile: %s"
 msgstr ""
 
-#: src/layout_util.c:3708
+#: src/layout-util.c:3708
 msgid "Click to enable color management"
 msgstr ""
 
-#: src/layout_util.c:3713
+#: src/layout-util.c:3713
 msgid "Color profiles not supported"
 msgstr ""
 
-#: src/layout_util.c:3735
+#: src/layout-util.c:3735
 #, c-format
 msgid "Input _%d: %s"
 msgstr ""
@@ -5142,13 +5142,13 @@ msgid ""
 "  Error code: "
 msgstr ""
 
-#: src/options.c:246 src/ui_bookmark.c:571
+#: src/options.c:246 src/ui-bookmark.c:571
 #, fuzzy
 msgid "Desktop"
 msgstr "til:"
 
 #: src/options.c:267 src/search.c:2338 src/search.c:2342 src/search.c:3627
-#: src/search.c:3631 src/view_file/view_file.c:915
+#: src/search.c:3631 src/view-file/view-file.c:915
 #, fuzzy
 msgid "Mark "
 msgstr "Redigerer"
@@ -5647,7 +5647,7 @@ msgstr "/Filer/_Ny samling"
 msgid "Search"
 msgstr "Sammenligner..."
 
-#: src/preferences.c:803 src/toolbar.c:93 src/ui_pathsel.c:1049
+#: src/preferences.c:803 src/toolbar.c:93 src/ui-pathsel.c:1049
 #: src/utilops.c:3189
 #, fuzzy
 msgid "New folder"
@@ -6272,7 +6272,7 @@ msgstr "Filter:"
 msgid "Enabled"
 msgstr ""
 
-#: src/preferences.c:2773 src/view_file/view_file.c:1227
+#: src/preferences.c:2773 src/view-file/view-file.c:1227
 msgid "Class"
 msgstr ""
 
@@ -7561,43 +7561,43 @@ msgstr ""
 msgid "Marks"
 msgstr "Vis skjulte"
 
-#: src/secure_save.c:407
+#: src/secure-save.c:407
 #, fuzzy
 msgid "Cannot read the file"
 msgstr "Kunne ikke oprette mappe"
 
-#: src/secure_save.c:409
+#: src/secure-save.c:409
 #, fuzzy
 msgid "Cannot get file status"
 msgstr "Sammenlign to sæt filer"
 
-#: src/secure_save.c:411
+#: src/secure-save.c:411
 msgid "Cannot access the file"
 msgstr ""
 
-#: src/secure_save.c:413
+#: src/secure-save.c:413
 #, fuzzy
 msgid "Cannot create temp file"
 msgstr "Kunne ikke oprette mappe"
 
-#: src/secure_save.c:415
+#: src/secure-save.c:415
 #, fuzzy
 msgid "Cannot rename the file"
 msgstr "Kunne ikke oprette mappe"
 
-#: src/secure_save.c:417
+#: src/secure-save.c:417
 msgid "File saving disabled by option"
 msgstr ""
 
-#: src/secure_save.c:419
+#: src/secure-save.c:419
 msgid "Out of memory"
 msgstr ""
 
-#: src/secure_save.c:421
+#: src/secure-save.c:421
 msgid "Cannot write the file"
 msgstr ""
 
-#: src/secure_save.c:425
+#: src/secure-save.c:425
 msgid "Secure file saving error"
 msgstr ""
 
@@ -7693,111 +7693,111 @@ msgstr ""
 msgid "Using system Trash bin"
 msgstr ""
 
-#: src/ui_bookmark.c:137 src/ui_bookmark.c:200
+#: src/ui-bookmark.c:137 src/ui-bookmark.c:200
 msgid "New Bookmark"
 msgstr ""
 
-#: src/ui_bookmark.c:283 src/ui_bookmark.c:289
+#: src/ui-bookmark.c:283 src/ui-bookmark.c:289
 #, fuzzy
 msgid "Edit Bookmark"
 msgstr "Redigerer"
 
-#: src/ui_bookmark.c:304
+#: src/ui-bookmark.c:304
 #, fuzzy
 msgid "Path:"
 msgstr "Sti"
 
-#: src/ui_bookmark.c:313
+#: src/ui-bookmark.c:313
 msgid "Icon:"
 msgstr ""
 
-#: src/ui_bookmark.c:319
+#: src/ui-bookmark.c:319
 #, fuzzy
 msgid "Select icon"
 msgstr "Vælg ingen"
 
-#: src/ui_bookmark.c:412
+#: src/ui-bookmark.c:412
 #, fuzzy
 msgid "_Properties..."
 msgstr "/Redigér/_Indstillinger"
 
-#: src/ui_bookmark.c:418
+#: src/ui-bookmark.c:418
 #, fuzzy
 msgid "_Remove"
 msgstr "Fjern"
 
-#: src/ui_fileops.c:88
+#: src/ui-fileops.c:88
 msgid ""
 "One or more filenames are not encoded with the preferred locale character "
 "set.\n"
 msgstr ""
 
-#: src/ui_fileops.c:89
+#: src/ui-fileops.c:89
 #, c-format
 msgid "Operations on, and display of these files with %s may not succeed.\n"
 msgstr ""
 
-#: src/ui_fileops.c:91
+#: src/ui-fileops.c:91
 msgid ""
 "If your filenames are not encoded in utf-8, try setting the environment "
 "variable G_BROKEN_FILENAMES=1\n"
 msgstr ""
 
-#: src/ui_fileops.c:93
+#: src/ui-fileops.c:93
 #, c-format
 msgid "It appears G_BROKEN_FILENAMES is set to %s\n"
 msgstr ""
 
-#: src/ui_fileops.c:95
+#: src/ui-fileops.c:95
 msgid "It appears G_BROKEN_FILENAMES is not set\n"
 msgstr ""
 
-#: src/ui_fileops.c:97
+#: src/ui-fileops.c:97
 #, c-format
 msgid ""
 "The locale appears to be set to \"%s\"\n"
 "(set by the LANG environment variable)\n"
 msgstr ""
 
-#: src/ui_fileops.c:102
+#: src/ui-fileops.c:102
 msgid ""
 "\n"
 "Preferred encoding appears to be UTF-8, however the file:\n"
 msgstr ""
 
-#: src/ui_fileops.c:103 src/ui_fileops.c:106 src/ui_fileops.c:108
+#: src/ui-fileops.c:103 src/ui-fileops.c:106 src/ui-fileops.c:108
 msgid "[name not displayable]"
 msgstr ""
 
-#: src/ui_fileops.c:106
+#: src/ui-fileops.c:106
 #, c-format
 msgid "\"%s\" is encoded in valid UTF-8."
 msgstr ""
 
-#: src/ui_fileops.c:108
+#: src/ui-fileops.c:108
 #, c-format
 msgid "\"%s\" is not encoded in valid UTF-8."
 msgstr ""
 
-#: src/ui_fileops.c:113 src/ui_fileops.c:118
+#: src/ui-fileops.c:113 src/ui-fileops.c:118
 msgid "Filename encoding locale mismatch"
 msgstr ""
 
-#: src/ui_fileops.c:1047
+#: src/ui-fileops.c:1047
 #, fuzzy
 msgid "Web file download failed"
 msgstr "Filsletning mislykkedes"
 
-#: src/ui_fileops.c:1110
+#: src/ui-fileops.c:1110
 msgid "Download web file"
 msgstr ""
 
-#: src/ui_fileops.c:1112
+#: src/ui-fileops.c:1112
 #, fuzzy
 msgid "Downloading "
 msgstr "Indlæser miniaturer..."
 
-#: src/ui_help.c:117
+#: src/ui-help.c:117
 #, c-format
 msgid ""
 "Unable to load:\n"
@@ -7806,33 +7806,33 @@ msgstr ""
 "Kunne ikke indlæse:\n"
 "%s"
 
-#: src/ui_pathsel.c:432
+#: src/ui-pathsel.c:432
 #, fuzzy, c-format
 msgid "A file with name %s already exists."
 msgstr "Filnavnet %s eksisterer allerede."
 
-#: src/ui_pathsel.c:433 src/ui_pathsel.c:439 src/utilops.c:2373
+#: src/ui-pathsel.c:433 src/ui-pathsel.c:439 src/utilops.c:2373
 #: src/utilops.c:2400 src/utilops.c:2866
 #, fuzzy
 msgid "Rename failed"
 msgstr "Omdøb:"
 
-#: src/ui_pathsel.c:438
+#: src/ui-pathsel.c:438
 #, c-format
 msgid "Failed to rename %s to %s."
 msgstr ""
 
-#: src/ui_pathsel.c:634 src/ui_pathsel.c:642
+#: src/ui-pathsel.c:634 src/ui-pathsel.c:642
 #, fuzzy
 msgid "_Rename"
 msgstr "Omdøb"
 
-#: src/ui_pathsel.c:636 src/ui_pathsel.c:646
+#: src/ui-pathsel.c:636 src/ui-pathsel.c:646
 #, fuzzy
 msgid "Add _Bookmark"
 msgstr "Redigerer"
 
-#: src/ui_pathsel.c:759
+#: src/ui-pathsel.c:759
 #, fuzzy, c-format
 msgid ""
 "Unable to create folder:\n"
@@ -7841,34 +7841,34 @@ msgstr ""
 "Kunne ikke oprette mappen:\n"
 "%s"
 
-#: src/ui_pathsel.c:760
+#: src/ui-pathsel.c:760
 #, fuzzy
 msgid "Error creating folder"
 msgstr "Fejl ved mappeoprettelse"
 
-#: src/ui_pathsel.c:980
+#: src/ui-pathsel.c:980
 msgid "All Files"
 msgstr "Alle filer"
 
-#: src/ui_pathsel.c:1052
+#: src/ui-pathsel.c:1052
 msgid "Show hidden"
 msgstr "Vis skjulte"
 
-#: src/ui_pathsel.c:1137
+#: src/ui-pathsel.c:1137
 msgid "Filter:"
 msgstr "Filter:"
 
-#: src/ui_tabcomp.c:945
+#: src/ui-tabcomp.c:945
 #, fuzzy
 msgid "Select path"
 msgstr "Vælg alle"
 
-#: src/ui_tabcomp.c:967
+#: src/ui-tabcomp.c:967
 #, fuzzy
 msgid "All files"
 msgstr "Alle filer"
 
-#: src/uri_utils.c:43
+#: src/uri-utils.c:43
 msgid "Drag and Drop failed"
 msgstr ""
 
@@ -8240,118 +8240,118 @@ msgstr "Slet fil"
 msgid "Cannot create folder:"
 msgstr "Kunne ikke oprette mappe"
 
-#: src/view_dir.c:411
+#: src/view-dir.c:411
 #, fuzzy
 msgid "_Copy"
 msgstr "Kopiér"
 
-#: src/view_dir.c:413
+#: src/view-dir.c:413
 #, fuzzy
 msgid "_Move"
 msgstr "Flyt"
 
-#: src/view_dir.c:714
+#: src/view-dir.c:714
 msgid "_Up to parent"
 msgstr ""
 
-#: src/view_dir.c:719
+#: src/view-dir.c:719
 #, fuzzy
 msgid "_Slideshow"
 msgstr "Billedserie"
 
-#: src/view_dir.c:721
+#: src/view-dir.c:721
 msgid "Slideshow recursive"
 msgstr "Medtag mapper i billedserie"
 
-#: src/view_dir.c:725
+#: src/view-dir.c:725
 #, fuzzy
 msgid "Find _duplicates..."
 msgstr "Find dubletter..."
 
-#: src/view_dir.c:727
+#: src/view-dir.c:727
 msgid "Find duplicates recursive..."
 msgstr "Find dubletter også i mapper..."
 
-#: src/view_dir.c:732
+#: src/view-dir.c:732
 msgid "_New folder..."
 msgstr ""
 
-#: src/view_dir.c:749
+#: src/view-dir.c:749
 #, fuzzy
 msgid "View as _List"
 msgstr "Dimensioner"
 
-#: src/view_dir.c:752
+#: src/view-dir.c:752
 #, fuzzy
 msgid "View as _Tree"
 msgstr "/Vis/F_uldskærm"
 
-#: src/view_dir.c:765
+#: src/view-dir.c:765
 #, fuzzy
 msgid "Show _hidden files"
 msgstr "Vis skjulte"
 
-#: src/view_dir.c:768 src/view_file/view_file.c:779
+#: src/view-dir.c:768 src/view-file/view-file.c:779
 #, fuzzy
 msgid "Re_fresh"
 msgstr "Genindlæs"
 
-#: src/view_file/view_file.c:749
+#: src/view-file/view-file.c:749
 #, fuzzy
 msgid "Images as List"
 msgstr "/Vis/Som _billedserie"
 
-#: src/view_file/view_file.c:752
+#: src/view-file/view-file.c:752
 #, fuzzy
 msgid "Images as Icons"
 msgstr "Dimensioner"
 
-#: src/view_file/view_file.c:758
+#: src/view-file/view-file.c:758
 #, fuzzy
 msgid "Show _thumbnails"
 msgstr "Gem miniaturer"
 
-#: src/view_file/view_file.c:904
+#: src/view-file/view-file.c:904
 #, fuzzy
 msgid "Mark text"
 msgstr "Redigerer"
 
-#: src/view_file/view_file.c:907
+#: src/view-file/view-file.c:907
 #, fuzzy
 msgid "Set mark text"
 msgstr "Vælg alle"
 
-#: src/view_file/view_file.c:908
+#: src/view-file/view-file.c:908
 msgid "This will set or clear the mark text."
 msgstr ""
 
-#: src/view_file/view_file.c:1185
+#: src/view-file/view-file.c:1185
 msgid "Use regular expressions"
 msgstr ""
 
-#: src/view_file/view_file.c:1215
+#: src/view-file/view-file.c:1215
 msgid "Case"
 msgstr ""
 
-#: src/view_file/view_file.c:1217
+#: src/view-file/view-file.c:1217
 msgid "Case sensitive"
 msgstr ""
 
-#: src/view_file/view_file.c:1234
+#: src/view-file/view-file.c:1234
 #, fuzzy
 msgid "Select Class filter"
 msgstr "Vælg ingen"
 
-#: src/view_file/view_file.c:1789
+#: src/view-file/view-file.c:1789
 #, fuzzy
 msgid "Loading meta..."
 msgstr "Indlæser miniaturer..."
 
-#: src/view_file/view_file_icon.c:2153 src/view_file/view_file_list.c:930
+#: src/view-file/view-file-icon.c:2153 src/view-file/view-file-list.c:930
 msgid " [NO GROUPING]"
 msgstr ""
 
-#: src/view_file/view_file_list.c:515
+#: src/view-file/view-file-list.c:515
 #, c-format
 msgid ""
 "Invalid file name:\n"
@@ -8360,16 +8360,16 @@ msgstr ""
 "Ugyldigt filnavn:\n"
 "%s"
 
-#: src/view_file/view_file_list.c:516
+#: src/view-file/view-file-list.c:516
 msgid "Error renaming file"
 msgstr "Fejl ved navngivning af fil"
 
-#: src/view_file/view_file_list.c:2232
+#: src/view-file/view-file-list.c:2232
 #, fuzzy
 msgid "NameStars"
 msgstr "Navn"
 
-#: src/view_file/view_file_list.c:2236
+#: src/view-file/view-file-list.c:2236
 msgid "Stars"
 msgstr ""
 
