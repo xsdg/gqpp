@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="1">
+    <builddir>../geeqie-cppcheck-build-dir</builddir>
+    <platform>Unspecified</platform>
+    <analyze-all-vs-configs>false</analyze-all-vs-configs>
+    <check-headers>true</check-headers>
+    <check-unused-templates>true</check-unused-templates>
+    <max-ctu-depth>2</max-ctu-depth>
+    <max-template-recursion>100</max-template-recursion>
+    <includedir>
+        <dir name="src/"/>
+    </includedir>
+    <defines>
+        <define name="FILEDATA_MARKS_SIZE=10"/>
+        <define name="HAVE_ARCHIVE"/>
+        <define name="HAVE_CLUTTER"/>
+        <define name="HAVE_DJVU"/>
+        <define name="HAVE_EXIV2"/>
+        <define name="HAVE_EXIV2_ERROR_CODE"/>
+        <define name="HAVE_FFLUSH"/>
+        <define name="HAVE_FFMPEGTHUMBNAILER"/>
+        <define name="HAVE_FFMPEGTHUMBNAILER_METADATA"/>
+        <define name="HAVE_FFMPEGTHUMBNAILER_RGB"/>
+        <define name="HAVE_FFMPEGTHUMBNAILER_WH"/>
+        <define name="HAVE_FSYNC"/>
+        <define name="HAVE_HEIF"/>
+        <define name="HAVE_J2K"/>
+        <define name="HAVE_JPEG"/>
+        <define name="HAVE_JPEGXL"/>
+        <define name="HAVE_LCMS"/>
+        <define name="HAVE_LCMS2"/>
+        <define name="HAVE_LIBCHAMPLAIN"/>
+        <define name="HAVE_LIBCHAMPLAIN_GTK"/>
+        <define name="HAVE_LUA"/>
+        <define name="HAVE_PDF"/>
+        <define name="HAVE_RAW"/>
+        <define name="HAVE_SPELL"/>
+        <define name="HAVE_STRVERSCMP"/>
+        <define name="HAVE_TIFF"/>
+        <define name="HAVE_WEBP"/>
+    </defines>
+    <undefines>
+        <undefine>ENABLE_NLS</undefine>
+        <undefine>G_KEY_FILE_DESKTOP_GROUP</undefine>
+        <undefine>HAVE__NL_TIME_FIRST_WEEKDAY</undefine>
+        <undefine>UNUSED</undefine>
+        <undefine>ZD_EXPORT</undefine>
+    </undefines>
+    <paths>
+        <dir name="../src"/>
+    </paths>
+    <libraries>
+        <library>cairo</library>
+        <library>gnu</library>
+        <library>gtk</library>
+        <library>lua</library>
+        <library>posix</library>
+    </libraries>
+    <suppressions>
+        <suppression fileName="*" symbolName="*">variableScope</suppression>
+    </suppressions>
+</project>

@@ -69,6 +69,7 @@ Makefile.in
 /build-stamp
 /debian/geeqie*
 /debian/files
+/geeqie-cppcheck-build-dir
 
 # The files that are autocreated(!)
 /src/gq-marshal.[ch]
