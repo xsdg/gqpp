@@ -22,9 +22,7 @@
 #include "main.h"
 #include "layout.h"
 
-#include "color-man.h"
 #include "filedata.h"
-#include "histogram.h"
 #include "history-list.h"
 #include "image.h"
 #include "image-overlay.h"
@@ -33,7 +31,6 @@
 #include "layout-util.h"
 #include "logwindow.h"
 #include "menu.h"
-#include "pixbuf-renderer.h"
 #include "pixbuf-util.h"
 #include "utilops.h"
 #include "view-dir.h"

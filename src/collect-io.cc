@@ -25,7 +25,6 @@
 #include "collect.h"
 #include "filedata.h"
 #include "layout-util.h"
-#include "misc.h"
 #include "secure-save.h"
 #include "thumb.h"
 #include "ui-fileops.h"

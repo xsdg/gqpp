@@ -22,7 +22,6 @@
 #include "main.h"
 #include "cache-maint.h"
 
-#include "cache.h"
 #include "cache-loader.h"
 #include "filedata.h"
 #include "layout.h"

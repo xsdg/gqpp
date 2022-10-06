@@ -21,10 +21,7 @@
 
 #include "pan-view-filter.h"
 
-#include "image.h"
 #include "metadata.h"
-#include "pan-item.h"
-#include "pan-util.h"
 #include "pan-view.h"
 #include "ui-fileops.h"
 #include "ui-tabcomp.h"

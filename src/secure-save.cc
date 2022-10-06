@@ -20,8 +20,6 @@
 
 #include "main.h"
 #include <glib/gprintf.h>
-#include <glib/gstdio.h>
-#include <errno.h>
 #include <utime.h>
 
 #include "secure-save.h"

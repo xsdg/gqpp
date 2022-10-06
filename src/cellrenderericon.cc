@@ -17,12 +17,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <stdlib.h>
-#include <gtk/gtk.h> /* To define GTK_CHECK_VERSION */
 #include "main.h"
 #include "cellrenderericon.h"
-#include "intl.h"
-
 
 #define FIXED_ICON_SIZE_MAX 512
 

@@ -30,9 +30,7 @@
 #include "misc.h"
 #include "secure-save.h"
 #include "ui-fileops.h"
-#include "ui-misc.h"
 #include "utilops.h"
-#include "filefilter.h"
 #include "layout-util.h"
 #include "rcfile.h"
 

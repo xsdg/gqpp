@@ -21,12 +21,9 @@
 
 #include "main.h"
 #include "cache-loader.h"
-#include "cache.h"
 
 #include "filedata.h"
-#include "exif.h"
 #include "metadata.h"
-#include "md5-util.h"
 #include "ui-fileops.h"
 
 

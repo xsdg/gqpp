@@ -28,7 +28,6 @@
 #include "ui-fileops.h"
 
 #include <utime.h>
-#include <errno.h>
 
 
 /**

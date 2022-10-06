@@ -23,11 +23,8 @@
 #include "desktop-file.h"
 
 #include "editors.h"
-#include "filedata.h"
-#include "misc.h"
 #include "ui-misc.h"
 #include "ui-fileops.h"
-#include "ui-utildlg.h"
 #include "pixbuf-util.h"
 #include "window.h"
 #include "utilops.h"

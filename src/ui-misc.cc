@@ -19,15 +19,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <config.h>
-#include "intl.h"
-
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#include <gtk/gtk.h>
-#include <gdk/gdkkeysyms.h>
 
 #include "main.h"
 #include "ui-misc.h"

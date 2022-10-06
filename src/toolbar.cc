@@ -22,7 +22,6 @@
 #include "main.h"
 #include "toolbar.h"
 
-#include "collect.h"
 #include "layout-util.h"
 #include "ui-fileops.h"
 #include "ui-misc.h"

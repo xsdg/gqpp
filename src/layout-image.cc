@@ -23,7 +23,6 @@
 #include "layout-image.h"
 
 #include "collect.h"
-#include "color-man.h"
 #include "dnd.h"
 #include "editors.h"
 #include "exif.h"
@@ -33,7 +32,6 @@
 #include "image.h"
 #include "image-overlay.h"
 #include "img-view.h"
-#include "layout.h"
 #include "layout-util.h"
 #include "menu.h"
 #include "metadata.h"
@@ -46,8 +44,6 @@
 #include "uri-utils.h"
 #include "utilops.h"
 #include "view-file.h"
-
-#include <gdk/gdkkeysyms.h> /* for keyboard values */
 
 #define FILE_COLUMN_POINTER 0
 

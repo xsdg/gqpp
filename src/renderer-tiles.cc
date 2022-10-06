@@ -19,20 +19,12 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
 
 #include "main.h"
-#include "pixbuf-renderer.h"
 #include "renderer-tiles.h"
-
-#include "intl.h"
-#include "layout.h"
-
-#include <gtk/gtk.h>
-
 
 /* comment this out if not using this from within Geeqie
  * defining GQ_BUILD does these things:

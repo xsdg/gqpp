@@ -23,7 +23,6 @@
 #include "search.h"
 
 #include "cache.h"
-#include "collect.h"
 #include "collect-table.h"
 #include "dnd.h"
 #include "dupe.h"
@@ -31,7 +30,6 @@
 #include "filedata.h"
 #include "image-load.h"
 #include "img-view.h"
-#include "layout.h"
 #include "layout-util.h"
 #include "math.h"
 #include "menu.h"
@@ -51,9 +49,6 @@
 #include "utilops.h"
 #include "window.h"
 #include "bar-keywords.h"
-
-#include <gdk/gdkkeysyms.h> /* for keyboard values */
-
 
 #define DEF_SEARCH_WIDTH  700
 #define DEF_SEARCH_HEIGHT 650

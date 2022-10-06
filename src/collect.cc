@@ -25,10 +25,8 @@
 #include "collect-dlg.h"
 #include "collect-io.h"
 #include "collect-table.h"
-#include "editors.h"
 #include "filedata.h"
 #include "img-view.h"
-#include "layout.h"
 #include "layout-image.h"
 #include "layout-util.h"
 #include "misc.h"
@@ -38,9 +36,6 @@
 #include "ui-tree-edit.h"
 #include "utilops.h"
 #include "window.h"
-
-#include <gdk/gdkkeysyms.h> /* for keyboard values */
-
 
 #define COLLECT_DEF_WIDTH 440
 #define COLLECT_DEF_HEIGHT 450

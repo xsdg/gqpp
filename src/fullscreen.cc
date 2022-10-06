@@ -25,7 +25,6 @@
 #include "image.h"
 #include "misc.h"
 #include "ui-fileops.h"
-#include "ui-menu.h"
 #include "ui-misc.h"
 #include "window.h"
 #include "image-load.h"

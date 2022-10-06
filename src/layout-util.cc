@@ -29,11 +29,9 @@
 #include "cache-maint.h"
 #include "collect.h"
 #include "collect-dlg.h"
-#include "compat.h"
 #include "color-man.h"
 #include "dupe.h"
 #include "editors.h"
-#include "filedata.h"
 #include "history-list.h"
 #include "image.h"
 #include "image-overlay.h"
@@ -53,7 +51,6 @@
 #include "ui-fileops.h"
 #include "ui-menu.h"
 #include "ui-misc.h"
-#include "ui-tabcomp.h"
 #include "utilops.h"
 #include "view-dir.h"
 #include "view-file.h"
@@ -62,7 +59,6 @@
 #include "desktop-file.h"
 
 #include <sys/wait.h>
-#include <gdk/gdkkeysyms.h> /* for keyboard values */
 #include "keymap-template.h"
 
 #define MENU_EDIT_ACTION_OFFSET 16

@@ -26,9 +26,6 @@
 #include "collect-io.h"
 #include "utilops.h"
 #include "ui-fileops.h"
-#include "ui-tabcomp.h"
-#include "ui-utildlg.h"
-
 
 enum {
 	DIALOG_SAVE,

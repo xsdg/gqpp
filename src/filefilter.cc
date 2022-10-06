@@ -23,9 +23,6 @@
 #include "filefilter.h"
 
 #include "cache.h"
-#include "misc.h"
-#include "secure-save.h"
-#include "thumb-standard.h"
 #include "ui-fileops.h"
 #include "rcfile.h"
 

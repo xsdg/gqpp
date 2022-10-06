@@ -20,11 +20,10 @@
 
 #include "main.h"
 #include "misc.h"
+
 #include "ui-fileops.h"
 
-#include <errno.h>
 #include <langinfo.h>
-#include <locale.h>
 
 gdouble get_zoom_increment(void)
 {

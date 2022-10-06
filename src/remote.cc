@@ -30,7 +30,6 @@
 #include "filefilter.h"
 #include "image.h"
 #include "img-view.h"
-#include "layout.h"
 #include "layout-image.h"
 #include "layout-util.h"
 #include "misc.h"
@@ -43,7 +42,6 @@
 #include <sys/socket.h>
 #include <sys/un.h>
 #include <signal.h>
-#include <errno.h>
 
 #include "glua.h"
 

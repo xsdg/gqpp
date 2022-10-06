@@ -22,23 +22,17 @@
 #include "main.h"
 #include "image.h"
 
-
-#include "collect.h"
 #include "collect-table.h"
 #include "color-man.h"
 #include "exif.h"
 #include "metadata.h"
-#include "histogram.h"
 #include "history-list.h"
 #include "image-load.h"
-#include "image-overlay.h"
 #include "layout.h"
 #include "layout-image.h"
 #include "pixbuf-renderer.h"
 #include "pixbuf-util.h"
 #include "ui-fileops.h"
-
-#include "filedata.h"
 #include "filecache.h"
 
 #include <math.h>

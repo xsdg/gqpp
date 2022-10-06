@@ -24,7 +24,6 @@
 #include "logwindow.h"
 #include "ui-fileops.h"
 
-#include <glib/gprintf.h>
 #include <regex.h>
 
 /*

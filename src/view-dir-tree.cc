@@ -22,21 +22,10 @@
 #include "main.h"
 #include "view-dir-tree.h"
 
-
-#include "dnd.h"
-#include "dupe.h"
 #include "filedata.h"
-#include "layout.h"
-#include "layout-image.h"
-#include "layout-util.h"
-#include "utilops.h"
 #include "ui-fileops.h"
-#include "ui-menu.h"
 #include "ui-tree-edit.h"
 #include "view-dir.h"
-
-#include <gdk/gdkkeysyms.h> /* for keyboard values */
-
 
 #define VDTREE(_vd_) ((ViewDirInfoTree *)(_vd_->info))
 

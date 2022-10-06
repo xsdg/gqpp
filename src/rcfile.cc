@@ -19,9 +19,6 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <glib/gstdio.h>
-#include <errno.h>
-
 #include "main.h"
 #include "rcfile.h"
 
@@ -34,12 +31,10 @@
 #include "bar-sort.h"
 #include "editors.h"
 #include "filefilter.h"
-#include "misc.h"
 #include "pixbuf-renderer.h"
 #include "secure-save.h"
 #include "slideshow.h"
 #include "ui-fileops.h"
-#include "layout.h"
 #include "layout-util.h"
 #include "bar.h"
 #include "metadata.h"

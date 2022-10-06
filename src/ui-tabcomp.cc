@@ -19,19 +19,9 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <config.h>
-#include "intl.h"
-
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include <sys/types.h>
 #include <dirent.h>
-
-#include <gdk/gdk.h>
-#include <gtk/gtk.h>
-#include <gdk-pixbuf/gdk-pixbuf.h>
 
 #include "main.h"
 #include "ui-tabcomp.h"
@@ -41,9 +31,6 @@
 #include "ui-fileops.h"
 #include "ui-spinner.h"
 #include "ui-utildlg.h"
-
-#include <gdk/gdkkeysyms.h> /* for key values */
-
 
 /* define this to enable a pop-up menu that shows possible matches
  * #define TAB_COMPLETION_ENABLE_POPUP_MENU

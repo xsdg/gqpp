@@ -28,7 +28,6 @@
 #include "layout-image.h"
 #include "layout-util.h"
 #include "menu.h"
-#include "pixbuf-util.h"
 #include "ui-fileops.h"
 #include "ui-tree-edit.h"
 #include "ui-menu.h"

@@ -19,26 +19,16 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <config.h>
-
-#include <pwd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <sys/param.h>
-#include <dirent.h>
 #include <utime.h>
-
-#include <glib.h>
-#include <gtk/gtk.h>	/* for locale warning dialog */
 
 #include "main.h"
 #include "ui-fileops.h"
 
-#include "ui-utildlg.h"	/* for locale warning dialog */
 #include "md5-util.h"
-
 #include "filefilter.h"
 #include "layout.h"
 #include "utilops.h"

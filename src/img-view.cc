@@ -31,13 +31,10 @@
 #include "image.h"
 #include "image-load.h"
 #include "image-overlay.h"
-#include "layout.h"
-#include "layout-image.h"
 #include "layout-util.h"
 #include "menu.h"
 #include "misc.h"
 #include "pixbuf-util.h"
-#include "pixbuf-renderer.h"
 #include "print.h"
 #include "slideshow.h"
 #include "ui-fileops.h"
@@ -45,9 +42,6 @@
 #include "uri-utils.h"
 #include "utilops.h"
 #include "window.h"
-
-#include <gdk/gdkkeysyms.h> /* for keyboard values */
-
 
 typedef struct _ViewWindow ViewWindow;
 struct _ViewWindow

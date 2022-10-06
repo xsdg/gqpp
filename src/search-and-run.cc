@@ -18,12 +18,9 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <gdk/gdkkeysyms.h>
-
 #include "main.h"
 #include "search-and-run.h"
 
-#include "layout-util.h"
 #include "ui-misc.h"
 #include "window.h"
 

@@ -22,24 +22,12 @@
 #include "main.h"
 #include "bar.h"
 
-#include "filedata.h"
-#include "history-list.h"
-#include "metadata.h"
-#include "misc.h"
-#include "ui-fileops.h"
-#include "ui-misc.h"
-#include "ui-utildlg.h"
-
-#include "ui-menu.h"
-#include "bar-comment.h"
-#include "bar-keywords.h"
-#include "bar-exif.h"
 #include "bar-histogram.h"
-#include "histogram.h"
+#include "filedata.h"
+#include "metadata.h"
 #include "rcfile.h"
-#include "bar-gps.h"
-
-#include <gdk/gdkkeysyms.h>
+#include "ui-menu.h"
+#include "ui-misc.h"
 
 typedef struct _KnownPanes KnownPanes;
 struct _KnownPanes

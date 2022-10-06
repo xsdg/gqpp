@@ -25,8 +25,6 @@
 #include "exif.h"
 #include "metadata.h"
 #include "filedata.h"
-#include "history-list.h"
-#include "misc.h"
 #include "ui-misc.h"
 #include "ui-menu.h"
 #include "bar.h"
@@ -34,9 +32,6 @@
 #include "dnd.h"
 #include "ui-utildlg.h"
 #include "layout.h"
-
-
-#include <math.h>
 
 #define MIN_HEIGHT 25
 /*

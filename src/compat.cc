@@ -18,7 +18,6 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "main.h"
 #include "compat.h"
 
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

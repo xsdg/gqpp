@@ -21,40 +21,32 @@
 
 #include "pan-view.h"
 
-#include "main.h"
 #include "bar-exif.h"
 #include "dnd.h"
 #include "editors.h"
 #include "exif.h"
 #include "fullscreen.h"
-#include "history-list.h"
 #include "image.h"
 #include "img-view.h"
 #include "layout-util.h"
 #include "menu.h"
 #include "metadata.h"
-#include "misc.h"
 #include "pan-calendar.h"
 #include "pan-folder.h"
 #include "pan-grid.h"
-#include "pan-item.h"
 #include "pan-timeline.h"
 #include "pan-util.h"
 #include "pan-view-filter.h"
 #include "pan-view-search.h"
-#include "pixbuf-renderer.h"
 #include "pixbuf-util.h"
 #include "thumb.h"
 #include "ui-fileops.h"
 #include "ui-menu.h"
 #include "ui-misc.h"
 #include "ui-tabcomp.h"
-#include "ui-utildlg.h"
 #include "uri-utils.h"
 #include "utilops.h"
 #include "window.h"
-
-#include <gdk/gdkkeysyms.h> /* for keyboard values */
 
 #include <math.h>
 

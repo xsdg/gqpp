@@ -27,7 +27,6 @@
 #include "collect-io.h"
 #include "dnd.h"
 #include "dupe.h"
-#include "editors.h"
 #include "filedata.h"
 #include "img-view.h"
 #include "layout.h"
@@ -46,8 +45,6 @@
 #include "icons/marker.xpm"
 #define MARKER_WIDTH 26
 #define MARKER_HEIGHT 32
-
-#include <gdk/gdkkeysyms.h> /* for keyboard values */
 
 /* between these, the icon width is increased by thumb_max_width / 2 */
 #define THUMB_MIN_ICON_WIDTH 128

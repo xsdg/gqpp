@@ -22,12 +22,8 @@
 #include "logwindow.h"
 
 #include "misc.h"
-#include "secure-save.h"
 #include "ui-misc.h"
 #include "window.h"
-
-#include <gdk/gdkkeysyms.h>
-
 
 typedef struct _LogWindow LogWindow;
 

@@ -20,9 +20,6 @@
 #include "main.h"
 #include "options.h"
 
-#include "bar-exif.h"
-#include "editors.h"
-#include "filefilter.h"
 #include "histogram.h" /* HCHAN_RGB */
 #include "image-overlay.h" /* OSD_SHOW_NOTHING */
 #include "layout.h"
@@ -30,7 +27,6 @@
 #include "rcfile.h"
 #include "ui-bookmark.h"
 #include "ui-fileops.h"
-#include "window.h"
 
 ConfOptions *options;
 CommandLine *command_line;

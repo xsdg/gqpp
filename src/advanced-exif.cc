@@ -23,7 +23,6 @@
 #include "advanced-exif.h"
 
 #include "exif.h"
-#include "metadata.h"
 #include "filedata.h"
 #include "history-list.h"
 #include "layout-util.h"
@@ -31,11 +30,6 @@
 #include "ui-misc.h"
 #include "window.h"
 #include "dnd.h"
-
-/** @FIXME not needed when bar-exif.cc is improved */
-#include "bar-exif.h"
-
-#include <math.h>
 
 #define ADVANCED_EXIF_DATA_COLUMN_WIDTH 200
 

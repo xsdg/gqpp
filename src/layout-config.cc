@@ -22,9 +22,6 @@
 #include "main.h"
 #include "layout-config.h"
 
-
-#include "layout.h"
-
 #include "ui-misc.h"
 
 

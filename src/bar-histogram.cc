@@ -23,9 +23,7 @@
 #include "bar-histogram.h"
 
 #include "bar.h"
-#include "metadata.h"
 #include "filedata.h"
-#include "menu.h"
 #include "ui-menu.h"
 #include "ui-misc.h"
 #include "histogram.h"

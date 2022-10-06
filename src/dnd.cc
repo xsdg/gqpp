@@ -22,9 +22,6 @@
 #include "main.h"
 #include "dnd.h"
 
-#include "collect.h"
-#include "image.h"
-#include "ui-fileops.h"
 #include "pixbuf-util.h"
 
 

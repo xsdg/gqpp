@@ -21,7 +21,6 @@
 
 #include "pan-calendar.h"
 
-#include <glib/gprintf.h>
 #include <math.h>
 
 #include "misc.h"

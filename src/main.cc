@@ -19,12 +19,9 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <gdk/gdkkeysyms.h> /* for keyboard values */
-
 #include <signal.h>
 #include <sys/mman.h>
 
-#include <math.h>
 #ifdef G_OS_UNIX
 #include <pwd.h>
 #endif
@@ -39,23 +36,18 @@
 #include "filefilter.h"
 #include "history-list.h"
 #include "image.h"
-#include "image-overlay.h"
 #include "img-view.h"
-#include "layout.h"
 #include "layout-image.h"
 #include "layout-util.h"
 #include "misc.h"
-#include "options.h"
 #include "rcfile.h"
 #include "remote.h"
 #include "secure-save.h"
-#include "similar.h"
 #include "ui-fileops.h"
 #include "ui-utildlg.h"
 #include "cache-maint.h"
 #include "thumb.h"
 #include "metadata.h"
-#include "editors.h"
 #include "exif.h"
 #include "histogram.h"
 #include "pixbuf-util.h"
@@ -1464,6 +1456,19 @@ gint main(gint argc, gchar *argv[])
 		g_signal_connect(default_settings, "notify::gtk-theme-name", G_CALLBACK(theme_change_cb), NULL);
 		set_theme_bg_color();
 		}
+#ifdef HAVE_RAW
+DEBUG_0("HAVE_RAW    "    );
+#else
+
+DEBUG_0("not have raw     "    );
+#endif
+#ifndef HAVE_RAW
+DEBUG_0("ggggg  "   );
+#else
+DEBUG_0("not ggg     "    );
+#endif
+
+
 
 	DEBUG_1("%s main: gtk_main", get_exec_time());
 	gtk_main();

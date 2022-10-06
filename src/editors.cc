@@ -24,15 +24,10 @@
 
 #include "filedata.h"
 #include "filefilter.h"
-#include "misc.h"
 #include "pixbuf-util.h"
 #include "ui-fileops.h"
 #include "ui-spinner.h"
-#include "ui-utildlg.h"
 #include "utilops.h"
-
-#include <errno.h>
-
 
 #define EDITOR_WINDOW_WIDTH 500
 #define EDITOR_WINDOW_HEIGHT 300

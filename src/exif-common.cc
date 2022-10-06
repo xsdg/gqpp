@@ -21,13 +21,7 @@
 
 #define _XOPEN_SOURCE
 
-#include <stdio.h>
 #include <string.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/mman.h>
 #include <math.h>
 
 #ifdef HAVE_LCMS
@@ -40,17 +34,10 @@
 #endif
 #endif
 
-#include <glib.h>
-
-#include "intl.h"
-
 #include "main.h"
 #include "exif.h"
 
-#include "filedata.h"
-#include "filefilter.h"
 #include "filecache.h"
-#include "format-raw.h"
 #include "glua.h"
 #include "ui-fileops.h"
 #include "cache.h"

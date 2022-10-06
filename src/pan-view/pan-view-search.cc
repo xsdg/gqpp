@@ -23,7 +23,6 @@
 
 #include "image.h"
 #include "pan-calendar.h"
-#include "pan-item.h"
 #include "pan-util.h"
 #include "pan-view.h"
 #include "ui-tabcomp.h"

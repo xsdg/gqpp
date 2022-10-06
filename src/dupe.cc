@@ -25,15 +25,12 @@
 #include "dupe.h"
 
 #include "cache.h"
-#include "collect.h"
 #include "collect-table.h"
 #include "dnd.h"
-#include "editors.h"
 #include "filedata.h"
 #include "history-list.h"
 #include "image-load.h"
 #include "img-view.h"
-#include "layout.h"
 #include "layout-image.h"
 #include "layout-util.h"
 #include "md5-util.h"
@@ -49,9 +46,6 @@
 #include "uri-utils.h"
 #include "utilops.h"
 #include "window.h"
-
-#include <gdk/gdkkeysyms.h> /* for keyboard values */
-
 
 #include <math.h>
 
