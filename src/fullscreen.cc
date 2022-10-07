@@ -588,23 +588,23 @@ void fullscreen_prefs_get_geometry(gint screen, GtkWidget *widget, gint *x, gint
 	fullscreen_prefs_list_free(list);
 }
 
-gint fullscreen_prefs_find_screen_for_widget(GtkWidget *widget)
-{
-	GdkScreen *screen;
-	gint monitor;
-	gint n;
+//gint fullscreen_prefs_find_screen_for_widget(GtkWidget *widget)
+//{
+	//GdkScreen *screen;
+	//gint monitor;
+	//gint n;
 
-	if (!widget || !gtk_widget_get_window(widget)) return 0;
+	//if (!widget || !gtk_widget_get_window(widget)) return 0;
 
-	screen = gtk_widget_get_screen(widget);
-	monitor = gdk_screen_get_monitor_at_window(screen, gtk_widget_get_window(widget));
+	//screen = gtk_widget_get_screen(widget);
+	//monitor = gdk_screen_get_monitor_at_window(screen, gtk_widget_get_window(widget));
 
-	n = (gdk_screen_get_number(screen)+1) * 100 + monitor + 1;
+	//n = (gdk_screen_get_number(screen)+1) * 100 + monitor + 1;
 
-	DEBUG_1("Screen appears to be %d", n);
+	//DEBUG_1("Screen appears to be %d", n);
 
-	return n;
-}
+	//return n;
+//}
 
 enum {
 	FS_MENU_COLUMN_NAME = 0,

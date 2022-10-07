@@ -689,15 +689,15 @@ static void bar_size_allocate(GtkWidget *UNUSED(widget), GtkAllocation *UNUSED(a
 	bd->width = gtk_paned_get_position(GTK_PANED(bd->lw->utility_paned));
 }
 
-gint bar_get_width(GtkWidget *bar)
-{
-	BarData *bd;
+//gint bar_get_width(GtkWidget *bar)
+//{
+	//BarData *bd;
 
-	bd = g_object_get_data(G_OBJECT(bar), "bar_data");
-	if (!bd) return 0;
+	//bd = g_object_get_data(G_OBJECT(bar), "bar_data");
+	//if (!bd) return 0;
 
-	return bd->width;
-}
+	//return bd->width;
+//}
 
 void bar_close(GtkWidget *bar)
 {

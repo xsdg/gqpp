@@ -768,15 +768,15 @@ GList * bar_pane_exif_list()
 	return exif_list;
 }
 
-void bar_pane_exif_close(GtkWidget *widget)
-{
-	PaneExifData *ped;
+//void bar_pane_exif_close(GtkWidget *widget)
+//{
+	//PaneExifData *ped;
 
-	ped = g_object_get_data(G_OBJECT(widget), "pane_data");
-	if (!ped) return;
+	//ped = g_object_get_data(G_OBJECT(widget), "pane_data");
+	//if (!ped) return;
 
-	gtk_widget_destroy(ped->vbox);
-}
+	//gtk_widget_destroy(ped->vbox);
+//}
 
 static void bar_pane_exif_destroy(GtkWidget *UNUSED(widget), gpointer data)
 {

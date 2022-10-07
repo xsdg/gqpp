@@ -1300,19 +1300,19 @@ void layout_marks_set(LayoutWindow *lw, gboolean enable)
 	layout_list_sync_marks(lw);
 }
 
-gboolean layout_thumb_get(LayoutWindow *lw)
-{
-	if (!layout_valid(&lw)) return FALSE;
+//gboolean layout_thumb_get(LayoutWindow *lw)
+//{
+	//if (!layout_valid(&lw)) return FALSE;
 
-	return lw->options.show_thumbnails;
-}
+	//return lw->options.show_thumbnails;
+//}
 
-gboolean layout_marks_get(LayoutWindow *lw)
-{
-	if (!layout_valid(&lw)) return FALSE;
+//gboolean layout_marks_get(LayoutWindow *lw)
+//{
+	//if (!layout_valid(&lw)) return FALSE;
 
-	return lw->options.show_marks;
-}
+	//return lw->options.show_marks;
+//}
 
 void layout_sort_set(LayoutWindow *lw, SortType type, gboolean ascend)
 {
@@ -1413,15 +1413,15 @@ void layout_views_set_sort(LayoutWindow *lw, SortType method, gboolean ascend)
 	layout_style_set(lw, -1, NULL);
 }
 
-gboolean layout_views_get(LayoutWindow *lw, DirViewType *dir_view_type, FileViewType *file_view_type)
-{
-	if (!layout_valid(&lw)) return FALSE;
+//gboolean layout_views_get(LayoutWindow *lw, DirViewType *dir_view_type, FileViewType *file_view_type)
+//{
+	//if (!layout_valid(&lw)) return FALSE;
 
-	*dir_view_type = lw->options.dir_view_type;
-	*file_view_type = lw->options.file_view_type;
+	//*dir_view_type = lw->options.dir_view_type;
+	//*file_view_type = lw->options.file_view_type;
 
-	return TRUE;
-}
+	//return TRUE;
+//}
 
 /*
  *-----------------------------------------------------------------------------

@@ -206,9 +206,6 @@ typedef enum {
 	SIZER_POS_BOTTOM = 1 << 3
 } SizerPositionType;
 
-GtkWidget *sizer_new(GtkWidget *parent, GtkWidget *bounding_widget,
-		     SizerPositionType position);
-
 void sizer_set_limits(GtkWidget *sizer,
 		      gint hsize_min, gint hsize_max,
 		      gint vsize_min, gint vsize_max);

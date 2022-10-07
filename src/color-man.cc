@@ -413,12 +413,12 @@ ColorMan *color_man_new(ImageWindow *imd, GdkPixbuf *pixbuf,
 				  screen_type, screen_file, screen_data, screen_data_len);
 }
 
-void color_man_start_bg(ColorMan *cm, ColorManDoneFunc done_func, gpointer done_data)
-{
-	cm->func_done = done_func;
-	cm->func_done_data = done_data;
-	cm->idle_id = g_idle_add(color_man_idle_cb, cm);
-}
+//void color_man_start_bg(ColorMan *cm, ColorManDoneFunc done_func, gpointer done_data)
+//{
+	//cm->func_done = done_func;
+	//cm->func_done_data = done_data;
+	//cm->idle_id = g_idle_add(color_man_idle_cb, cm);
+//}
 
 ColorMan *color_man_new_embedded(ImageWindow *imd, GdkPixbuf *pixbuf,
 				 guchar *input_data, guint input_data_len,

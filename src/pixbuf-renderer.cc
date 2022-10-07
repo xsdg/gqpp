@@ -728,12 +728,12 @@ void pixbuf_renderer_set_parent(PixbufRenderer *pr, GtkWindow *window)
 	pr->parent_window = GTK_WIDGET(window);
 }
 
-GtkWindow *pixbuf_renderer_get_parent(PixbufRenderer *pr)
-{
-	g_return_val_if_fail(IS_PIXBUF_RENDERER(pr), NULL);
+//GtkWindow *pixbuf_renderer_get_parent(PixbufRenderer *pr)
+//{
+	//g_return_val_if_fail(IS_PIXBUF_RENDERER(pr), NULL);
 
-	return GTK_WINDOW(pr->parent_window);
-}
+	//return GTK_WINDOW(pr->parent_window);
+//}
 
 
 /*
@@ -2540,11 +2540,11 @@ void pixbuf_renderer_set_orientation(PixbufRenderer *pr, gint orientation)
 	pr_zoom_sync(pr, pr->zoom, PR_ZOOM_FORCE, 0, 0);
 }
 
-gint pixbuf_renderer_get_orientation(PixbufRenderer *pr)
-{
-	if (!pr) return 1;
-	return pr->orientation;
-}
+//gint pixbuf_renderer_get_orientation(PixbufRenderer *pr)
+//{
+	//if (!pr) return 1;
+	//return pr->orientation;
+//}
 
 void pixbuf_renderer_set_stereo_data(PixbufRenderer *pr, StereoPixbufData stereo_data)
 {
@@ -2980,26 +2980,26 @@ gboolean pixbuf_renderer_get_visible_rect(PixbufRenderer *pr, GdkRectangle *rect
 	return TRUE;
 }
 
-gboolean pixbuf_renderer_get_virtual_rect(PixbufRenderer *pr, GdkRectangle *rect)
-{
-	g_return_val_if_fail(IS_PIXBUF_RENDERER(pr), FALSE);
-	g_return_val_if_fail(rect != NULL, FALSE);
+//gboolean pixbuf_renderer_get_virtual_rect(PixbufRenderer *pr, GdkRectangle *rect)
+//{
+	//g_return_val_if_fail(IS_PIXBUF_RENDERER(pr), FALSE);
+	//g_return_val_if_fail(rect != NULL, FALSE);
 
-	if ((!pr->pixbuf && !pr->source_tiles_enabled))
-		{
-		rect->x = 0;
-		rect->y = 0;
-		rect->width = 0;
-		rect->height = 0;
-		return FALSE;
-		}
+	//if ((!pr->pixbuf && !pr->source_tiles_enabled))
+		//{
+		//rect->x = 0;
+		//rect->y = 0;
+		//rect->width = 0;
+		//rect->height = 0;
+		//return FALSE;
+		//}
 
-	rect->x = pr->x_scroll;
-	rect->y = pr->y_scroll;
-	rect->width = pr->vis_width;
-	rect->height = pr->vis_height;
-	return TRUE;
-}
+	//rect->x = pr->x_scroll;
+	//rect->y = pr->y_scroll;
+	//rect->width = pr->vis_width;
+	//rect->height = pr->vis_height;
+	//return TRUE;
+//}
 
 void pixbuf_renderer_set_size_early(PixbufRenderer *UNUSED(pr), guint UNUSED(width), guint UNUSED(height))
 {

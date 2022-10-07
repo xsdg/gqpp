@@ -1423,13 +1423,13 @@ static gboolean vflist_row_is_selected(ViewFile *vf, FileData *fd)
 	return found;
 }
 
-gboolean vflist_index_is_selected(ViewFile *vf, gint row)
-{
-	FileData *fd;
+//gboolean vflist_index_is_selected(ViewFile *vf, gint row)
+//{
+	//FileData *fd;
 
-	fd = vf_index_get_data(vf, row);
-	return vflist_row_is_selected(vf, fd);
-}
+	//fd = vf_index_get_data(vf, row);
+	//return vflist_row_is_selected(vf, fd);
+//}
 
 guint vflist_selection_count(ViewFile *vf, gint64 *bytes)
 {

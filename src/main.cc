@@ -1456,19 +1456,6 @@ gint main(gint argc, gchar *argv[])
 		g_signal_connect(default_settings, "notify::gtk-theme-name", G_CALLBACK(theme_change_cb), NULL);
 		set_theme_bg_color();
 		}
-#ifdef HAVE_RAW
-DEBUG_0("HAVE_RAW    "    );
-#else
-
-DEBUG_0("not have raw     "    );
-#endif
-#ifndef HAVE_RAW
-DEBUG_0("ggggg  "   );
-#else
-DEBUG_0("not ggg     "    );
-#endif
-
-
 
 	DEBUG_1("%s main: gtk_main", get_exec_time());
 	gtk_main();

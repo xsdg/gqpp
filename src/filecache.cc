@@ -130,15 +130,15 @@ void file_cache_put(FileCacheData *fc, FileData *fd, gulong size)
 	file_cache_set_size(fc, fc->max_size);
 }
 
-gulong file_cache_get_max_size(FileCacheData *fc)
-{
-	return fc->max_size;
-}
+//gulong file_cache_get_max_size(FileCacheData *fc)
+//{
+	//return fc->max_size;
+//}
 
-gulong file_cache_get_size(FileCacheData *fc)
-{
-	return fc->size;
-}
+//gulong file_cache_get_size(FileCacheData *fc)
+//{
+	//return fc->size;
+//}
 
 void file_cache_set_max_size(FileCacheData *fc, gulong size)
 {

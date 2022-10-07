@@ -804,14 +804,14 @@ static void vficon_select_region_util(ViewFile *vf, FileData *start, FileData *e
 		}
 }
 
-gboolean vficon_index_is_selected(ViewFile *vf, gint row)
-{
-	FileData *fd = g_list_nth_data(vf->list, row);
+//gboolean vficon_index_is_selected(ViewFile *vf, gint row)
+//{
+	//FileData *fd = g_list_nth_data(vf->list, row);
 
-	if (!fd) return FALSE;
+	//if (!fd) return FALSE;
 
-	return (fd->selected & SELECTION_SELECTED);
-}
+	//return (fd->selected & SELECTION_SELECTED);
+//}
 
 guint vficon_selection_count(ViewFile *vf, gint64 *bytes)
 {

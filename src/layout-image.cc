@@ -58,11 +58,11 @@ static void layout_image_animate_update_image(LayoutWindow *lw);
  *----------------------------------------------------------------------------
  */
 
-void layout_image_overlay_toggle(LayoutWindow *lw)
-{
-	if (!lw) return;
-	image_osd_toggle(lw->image);
-}
+//void layout_image_overlay_toggle(LayoutWindow *lw)
+//{
+	//if (!lw) return;
+	//image_osd_toggle(lw->image);
+//}
 
 /*
  *----------------------------------------------------------------------------
@@ -1332,12 +1332,12 @@ void layout_image_set_overunderexposed(LayoutWindow *lw, gboolean overunderexpos
 	image_set_overunderexposed(lw->image, overunderexposed);
 }
 
-gboolean layout_image_get_overunderexposed(LayoutWindow *lw)
-{
-	if (!layout_valid(&lw)) return FALSE;
+//gboolean layout_image_get_overunderexposed(LayoutWindow *lw)
+//{
+	//if (!layout_valid(&lw)) return FALSE;
 
-	return image_get_overunderexposed(lw->image);
-}
+	//return image_get_overunderexposed(lw->image);
+//}
 
 void layout_image_set_ignore_alpha(LayoutWindow *lw, gboolean ignore_alpha)
 {
@@ -1391,12 +1391,12 @@ const gchar *layout_image_get_path(LayoutWindow *lw)
 	return image_get_path(lw->image);
 }
 
-const gchar *layout_image_get_name(LayoutWindow *lw)
-{
-	if (!layout_valid(&lw)) return NULL;
+//const gchar *layout_image_get_name(LayoutWindow *lw)
+//{
+	//if (!layout_valid(&lw)) return NULL;
 
-	return image_get_name(lw->image);
-}
+	//return image_get_name(lw->image);
+//}
 
 FileData *layout_image_get_fd(LayoutWindow *lw)
 {

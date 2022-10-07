@@ -1737,10 +1737,10 @@ static void accel_default_cb(GtkWidget *UNUSED(widget), gpointer data)
 	g_idle_add((GSourceFunc)accel_default_scroll, data);
 }
 
-void accel_remove_selection(GtkTreeModel *UNUSED(model), GtkTreePath *UNUSED(path), GtkTreeIter *iter, gpointer UNUSED(data))
-{
-	gtk_tree_store_set(accel_store, iter, AE_KEY, "", -1);
-}
+//void accel_remove_selection(GtkTreeModel *UNUSED(model), GtkTreePath *UNUSED(path), GtkTreeIter *iter, gpointer UNUSED(data))
+//{
+	//gtk_tree_store_set(accel_store, iter, AE_KEY, "", -1);
+//}
 
 void accel_reset_selection(GtkTreeModel *model, GtkTreePath *UNUSED(path), GtkTreeIter *iter, gpointer UNUSED(data))
 {

@@ -60,33 +60,33 @@ gboolean pixbuf_to_file_as_png(GdkPixbuf *pixbuf, const gchar *filename)
  *-----------------------------------------------------------------------------
  */
 
-gboolean pixbuf_to_file_as_jpg(GdkPixbuf *pixbuf, const gchar *filename, gint quality)
-{
-	GError *error = NULL;
-	gchar *qbuf;
-	gboolean ret;
+//gboolean pixbuf_to_file_as_jpg(GdkPixbuf *pixbuf, const gchar *filename, gint quality)
+//{
+	//GError *error = NULL;
+	//gchar *qbuf;
+	//gboolean ret;
 
-	if (!pixbuf || !filename) return FALSE;
+	//if (!pixbuf || !filename) return FALSE;
 
-	if (quality == -1) quality = 75;
-	if (quality < 1 || quality > 100)
-		{
-		log_printf("Jpeg not saved, invalid quality %d\n", quality);
-		return FALSE;
-		}
+	//if (quality == -1) quality = 75;
+	//if (quality < 1 || quality > 100)
+		//{
+		//log_printf("Jpeg not saved, invalid quality %d\n", quality);
+		//return FALSE;
+		//}
 
-	qbuf = g_strdup_printf("%d", quality);
-	ret = gdk_pixbuf_save(pixbuf, filename, "jpeg", &error, "quality", qbuf, NULL);
-	g_free(qbuf);
+	//qbuf = g_strdup_printf("%d", quality);
+	//ret = gdk_pixbuf_save(pixbuf, filename, "jpeg", &error, "quality", qbuf, NULL);
+	//g_free(qbuf);
 
-	if (error)
-		{
-		log_printf("Error saving jpeg to %s\n%s\n", filename, error->message);
-		g_error_free(error);
-		}
+	//if (error)
+		//{
+		//log_printf("Error saving jpeg to %s\n%s\n", filename, error->message);
+		//g_error_free(error);
+		//}
 
-	return ret;
-}
+	//return ret;
+//}
 
 /*
  *-----------------------------------------------------------------------------
@@ -676,20 +676,20 @@ void pixbuf_draw_rect_fill(GdkPixbuf *pb,
 		}
 }
 
-void pixbuf_draw_rect(GdkPixbuf *pb,
-		      gint x, gint y, gint w, gint h,
-		      gint r, gint g, gint b, gint a,
-		      gint left, gint right, gint top, gint bottom)
-{
-	pixbuf_draw_rect_fill(pb, x + left, y, w - left - right, top,
-			      r, g, b ,a);
-	pixbuf_draw_rect_fill(pb, x + w - right, y, right, h,
-			      r, g, b ,a);
-	pixbuf_draw_rect_fill(pb, x + left, y + h - bottom, w - left - right, bottom,
-			      r, g, b ,a);
-	pixbuf_draw_rect_fill(pb, x, y, left, h,
-			      r, g, b ,a);
-}
+//void pixbuf_draw_rect(GdkPixbuf *pb,
+		      //gint x, gint y, gint w, gint h,
+		      //gint r, gint g, gint b, gint a,
+		      //gint left, gint right, gint top, gint bottom)
+//{
+	//pixbuf_draw_rect_fill(pb, x + left, y, w - left - right, top,
+			      //r, g, b ,a);
+	//pixbuf_draw_rect_fill(pb, x + w - right, y, right, h,
+			      //r, g, b ,a);
+	//pixbuf_draw_rect_fill(pb, x + left, y + h - bottom, w - left - right, bottom,
+			      //r, g, b ,a);
+	//pixbuf_draw_rect_fill(pb, x, y, left, h,
+			      //r, g, b ,a);
+//}
 
 void pixbuf_set_rect_fill(GdkPixbuf *pb,
 			  gint x, gint y, gint w, gint h,

@@ -1213,34 +1213,34 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 	return table;
 }
 
-GtkWidget *path_selection_new(const gchar *path, GtkWidget *entry)
-{
-	return path_selection_new_with_files(entry, path, NULL, NULL);
-}
+//GtkWidget *path_selection_new(const gchar *path, GtkWidget *entry)
+//{
+	//return path_selection_new_with_files(entry, path, NULL, NULL);
+//}
 
-void path_selection_sync_to_entry(GtkWidget *entry)
-{
-	Dest_Data *dd = g_object_get_data(G_OBJECT(entry), "destination_data");
-	const gchar *path;
+//void path_selection_sync_to_entry(GtkWidget *entry)
+//{
+	//Dest_Data *dd = g_object_get_data(G_OBJECT(entry), "destination_data");
+	//const gchar *path;
 
-	if (!dd) return;
+	//if (!dd) return;
 
-	path = gtk_entry_get_text(GTK_ENTRY(entry));
+	//path = gtk_entry_get_text(GTK_ENTRY(entry));
 
-	if (isdir(path) && (!dd->path || strcmp(path, dd->path) != 0))
-		{
-		dest_populate(dd, path);
-		}
-	else
-		{
-		gchar *buf = remove_level_from_path(path);
-		if (isdir(buf) && (!dd->path || strcmp(buf, dd->path) != 0))
-			{
-			dest_populate(dd, buf);
-			}
-		g_free(buf);
-		}
-}
+	//if (isdir(path) && (!dd->path || strcmp(path, dd->path) != 0))
+		//{
+		//dest_populate(dd, path);
+		//}
+	//else
+		//{
+		//gchar *buf = remove_level_from_path(path);
+		//if (isdir(buf) && (!dd->path || strcmp(buf, dd->path) != 0))
+			//{
+			//dest_populate(dd, buf);
+			//}
+		//g_free(buf);
+		//}
+//}
 
 void path_selection_add_select_func(GtkWidget *entry,
 				    void (*func)(const gchar *, gpointer), gpointer data)

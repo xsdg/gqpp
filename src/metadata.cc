@@ -230,20 +230,20 @@ gboolean metadata_write_queue_remove(FileData *fd)
 	return TRUE;
 }
 
-gboolean metadata_write_queue_remove_list(GList *list)
-{
-	GList *work;
-	gboolean ret = TRUE;
+//gboolean metadata_write_queue_remove_list(GList *list)
+//{
+	//GList *work;
+	//gboolean ret = TRUE;
 
-	work = list;
-	while (work)
-		{
-		FileData *fd = work->data;
-		work = work->next;
-		ret = ret && metadata_write_queue_remove(fd);
-		}
-	return ret;
-}
+	//work = list;
+	//while (work)
+		//{
+		//FileData *fd = work->data;
+		//work = work->next;
+		//ret = ret && metadata_write_queue_remove(fd);
+		//}
+	//return ret;
+//}
 
 void metadata_notify_cb(FileData *fd, NotifyType type, gpointer UNUSED(data))
 {

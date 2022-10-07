@@ -202,14 +202,14 @@ void pan_filter_activate_cb(const gchar *text, gpointer data)
 	pan_layout_update(pw);
 }
 
-void pan_filter_activate(PanWindow *pw)
-{
-	gchar *text;
+//void pan_filter_activate(PanWindow *pw)
+//{
+	//gchar *text;
 
-	text = g_strdup(gtk_entry_get_text(GTK_ENTRY(pw->filter_ui->filter_entry)));
-	pan_filter_activate_cb(text, pw);
-	g_free(text);
-}
+	//text = g_strdup(gtk_entry_get_text(GTK_ENTRY(pw->filter_ui->filter_entry)));
+	//pan_filter_activate_cb(text, pw);
+	//g_free(text);
+//}
 
 void pan_filter_toggle_cb(GtkWidget *button, gpointer data)
 {
@@ -252,34 +252,34 @@ void pan_filter_toggle_cb(GtkWidget *button, gpointer data)
 		}
 }
 
-void pan_filter_toggle_visible(PanWindow *pw, gboolean enable)
-{
-	PanViewFilterUi *ui = pw->filter_ui;
-	if (pw->fs) return;
+//void pan_filter_toggle_visible(PanWindow *pw, gboolean enable)
+//{
+	//PanViewFilterUi *ui = pw->filter_ui;
+	//if (pw->fs) return;
 
-	if (enable)
-		{
-		if (gtk_widget_get_visible(ui->filter_box))
-			{
-			gtk_widget_grab_focus(ui->filter_entry);
-			}
-		else
-			{
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ui->filter_button), TRUE);
-			}
-		}
-	else
-		{
-		if (gtk_widget_get_visible(ui->filter_entry))
-			{
-			if (gtk_widget_has_focus(ui->filter_entry))
-				{
-				gtk_widget_grab_focus(GTK_WIDGET(pw->imd->widget));
-				}
-			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ui->filter_button), FALSE);
-			}
-		}
-}
+	//if (enable)
+		//{
+		//if (gtk_widget_get_visible(ui->filter_box))
+			//{
+			//gtk_widget_grab_focus(ui->filter_entry);
+			//}
+		//else
+			//{
+			//gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ui->filter_button), TRUE);
+			//}
+		//}
+	//else
+		//{
+		//if (gtk_widget_get_visible(ui->filter_entry))
+			//{
+			//if (gtk_widget_has_focus(ui->filter_entry))
+				//{
+				//gtk_widget_grab_focus(GTK_WIDGET(pw->imd->widget));
+				//}
+			//gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(ui->filter_button), FALSE);
+			//}
+		//}
+//}
 
 void pan_filter_toggle_button_cb(GtkWidget *UNUSED(button), gpointer data)
 {

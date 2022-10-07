@@ -334,11 +334,11 @@ GtkWidget *pref_checkbox_new(GtkWidget *parent_box, const gchar *text, gboolean 
 	return real_pref_checkbox_new(parent_box, text, FALSE, active, func, data);
 }
 
-GtkWidget *pref_checkbox_new_mnemonic(GtkWidget *parent_box, const gchar *text, gboolean active,
-				      GCallback func, gpointer data)
-{
-	return real_pref_checkbox_new(parent_box, text, TRUE, active, func, data);
-}
+//GtkWidget *pref_checkbox_new_mnemonic(GtkWidget *parent_box, const gchar *text, gboolean active,
+				      //GCallback func, gpointer data)
+//{
+	//return real_pref_checkbox_new(parent_box, text, TRUE, active, func, data);
+//}
 
 static void pref_checkbox_int_cb(GtkWidget *widget, gpointer data)
 {
@@ -381,13 +381,13 @@ static void pref_checkbox_link_sensitivity_swap_cb(GtkWidget *button, gpointer d
 	gtk_widget_set_sensitive(widget, !gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)));
 }
 
-void pref_checkbox_link_sensitivity_swap(GtkWidget *button, GtkWidget *widget)
-{
-	g_signal_connect(G_OBJECT(button), "toggled",
-			 G_CALLBACK(pref_checkbox_link_sensitivity_swap_cb), widget);
+//void pref_checkbox_link_sensitivity_swap(GtkWidget *button, GtkWidget *widget)
+//{
+	//g_signal_connect(G_OBJECT(button), "toggled",
+			 //G_CALLBACK(pref_checkbox_link_sensitivity_swap_cb), widget);
 
-	pref_checkbox_link_sensitivity_swap_cb(button, widget);
-}
+	//pref_checkbox_link_sensitivity_swap_cb(button, widget);
+//}
 
 static GtkWidget *real_pref_radiobutton_new(GtkWidget *parent_box, GtkWidget *sibling,
 					    const gchar *text, gboolean mnemonic_text, gboolean active,
@@ -430,12 +430,12 @@ GtkWidget *pref_radiobutton_new(GtkWidget *parent_box, GtkWidget *sibling,
 	return real_pref_radiobutton_new(parent_box, sibling, text, FALSE, active, func, data);
 }
 
-GtkWidget *pref_radiobutton_new_mnemonic(GtkWidget *parent_box, GtkWidget *sibling,
-					 const gchar *text, gboolean active,
-					 GCallback func, gpointer data)
-{
-	return real_pref_radiobutton_new(parent_box, sibling, text, TRUE, active, func, data);
-}
+//GtkWidget *pref_radiobutton_new_mnemonic(GtkWidget *parent_box, GtkWidget *sibling,
+					 //const gchar *text, gboolean active,
+					 //GCallback func, gpointer data)
+//{
+	//return real_pref_radiobutton_new(parent_box, sibling, text, TRUE, active, func, data);
+//}
 
 #define PREF_RADIO_VALUE_KEY "pref_radio_value"
 
@@ -449,20 +449,20 @@ static void pref_radiobutton_int_cb(GtkWidget *widget, gpointer data)
 		}
 }
 
-GtkWidget *pref_radiobutton_new_int(GtkWidget *parent_box, GtkWidget *sibling,
-				    const gchar *text, gboolean active,
-				    gboolean *result, gboolean value,
-				    GCallback UNUSED(func), gpointer UNUSED(data))
-{
-	GtkWidget *button;
+//GtkWidget *pref_radiobutton_new_int(GtkWidget *parent_box, GtkWidget *sibling,
+				    //const gchar *text, gboolean active,
+				    //gboolean *result, gboolean value,
+				    //GCallback UNUSED(func), gpointer UNUSED(data))
+//{
+	//GtkWidget *button;
 
-	button = pref_radiobutton_new(parent_box, sibling, text, active,
-				      G_CALLBACK(pref_radiobutton_int_cb), result);
-	g_object_set_data(G_OBJECT(button), PREF_RADIO_VALUE_KEY, GINT_TO_POINTER(value));
-	if (active) *result = value;
+	//button = pref_radiobutton_new(parent_box, sibling, text, active,
+				      //G_CALLBACK(pref_radiobutton_int_cb), result);
+	//g_object_set_data(G_OBJECT(button), PREF_RADIO_VALUE_KEY, GINT_TO_POINTER(value));
+	//if (active) *result = value;
 
-	return button;
-}
+	//return button;
+//}
 
 static GtkWidget *real_pref_spin_new(GtkWidget *parent_box, const gchar *text, const gchar *suffix,
 				     gboolean mnemonic_text,
@@ -520,14 +520,14 @@ GtkWidget *pref_spin_new(GtkWidget *parent_box, const gchar *text, const gchar *
 				  min, max, step, digits, value, func, data);
 }
 
-GtkWidget *pref_spin_new_mnemonic(GtkWidget *parent_box, const gchar *text, const gchar *suffix,
-				  gdouble min, gdouble max, gdouble step, gint digits,
-				  gdouble value,
-				  GCallback func, gpointer data)
-{
-	return real_pref_spin_new(parent_box, text, suffix, TRUE,
-				  min, max, step, digits, value, func, data);
-}
+//GtkWidget *pref_spin_new_mnemonic(GtkWidget *parent_box, const gchar *text, const gchar *suffix,
+				  //gdouble min, gdouble max, gdouble step, gint digits,
+				  //gdouble value,
+				  //GCallback func, gpointer data)
+//{
+	//return real_pref_spin_new(parent_box, text, suffix, TRUE,
+				  //min, max, step, digits, value, func, data);
+//}
 
 static void pref_spin_int_cb(GtkWidget *widget, gpointer data)
 {
@@ -772,28 +772,28 @@ GtkWidget *pref_toolbar_button(GtkWidget *toolbar,
 	return item;
 }
 
-void pref_toolbar_button_set_icon(GtkWidget *button, GtkWidget *widget, const gchar *stock_id)
-{
-	if (widget)
-		{
-		gtk_tool_button_set_icon_widget(GTK_TOOL_BUTTON(button), widget);
-		}
-	else if (stock_id)
-		{
-		gtk_tool_button_set_stock_id(GTK_TOOL_BUTTON(button), stock_id);
-		}
-}
+//void pref_toolbar_button_set_icon(GtkWidget *button, GtkWidget *widget, const gchar *stock_id)
+//{
+	//if (widget)
+		//{
+		//gtk_tool_button_set_icon_widget(GTK_TOOL_BUTTON(button), widget);
+		//}
+	//else if (stock_id)
+		//{
+		//gtk_tool_button_set_stock_id(GTK_TOOL_BUTTON(button), stock_id);
+		//}
+//}
 
-GtkWidget *pref_toolbar_spacer(GtkWidget *toolbar)
-{
-	GtkWidget *item;
+//GtkWidget *pref_toolbar_spacer(GtkWidget *toolbar)
+//{
+	//GtkWidget *item;
 
-	item = GTK_WIDGET(gtk_separator_tool_item_new());
-	gtk_container_add(GTK_CONTAINER(toolbar), item);
-	gtk_widget_show(item);
+	//item = GTK_WIDGET(gtk_separator_tool_item_new());
+	//gtk_container_add(GTK_CONTAINER(toolbar), item);
+	//gtk_widget_show(item);
 
-	return item;
-}
+	//return item;
+//}
 
 
 /*
@@ -1125,325 +1125,25 @@ void date_selection_time_set(GtkWidget *widget, time_t t)
 	date_selection_set(widget, lt->tm_mday, lt->tm_mon + 1, lt->tm_year + 1900);
 }
 
-time_t date_selection_time_get(GtkWidget *widget)
-{
-	struct tm lt;
-	gint day = 0;
-	gint month = 0;
-	gint year = 0;
-
-	date_selection_get(widget, &day, &month ,&year);
-
-	lt.tm_sec = 0;
-	lt.tm_min = 0;
-	lt.tm_hour = 0;
-	lt.tm_mday = day;
-	lt.tm_mon = month - 1;
-	lt.tm_year = year - 1900;
-	lt.tm_isdst = 0;
-
-	return mktime(&lt);
-}
-
-
-/*
- *-----------------------------------------------------------------------------
- * Sizer, without using a GtkPaned
- *-----------------------------------------------------------------------------
- */
-
-#define SIZER_DATA_KEY "sizer_data"
-
-typedef struct _SizerData SizerData;
-struct _SizerData
-{
-	GtkWidget *sizer;
-	GtkWidget *parent;
-	GtkWidget *bounding_widget;
-	SizerPositionType position;
-
-	gint hsize_min;
-	gint hsize_max;
-	gint vsize_min;
-	gint vsize_max;
-
-	gboolean in_drag;
-	gint press_x;
-	gint press_y;
-	gint press_width;
-	gint press_height;
-
-	gboolean handle_prelit;
-};
-
-
-static gint sizer_default_handle_size(void)
-{
-	gint handle_size = 5;
-	GtkWidget *paned;
-	GtkStyle *style;
-
-	paned = gtk_hpaned_new();
-
-	style = gtk_rc_get_style(paned);
-	gtk_widget_set_style(paned, style);
-	gtk_widget_style_get(paned, "handle_size", &handle_size, NULL);
-
-	gtk_widget_destroy(paned);
-
-	return handle_size;
-}
-
-static gboolean sizer_motion_cb(GtkWidget *UNUSED(widget), GdkEventMotion *event, gpointer data)
-{
-	SizerData *sd = data;
-	gint x, y;
-	gint w, h;
-	GtkAllocation parent_allocation;
-
-	if (!sd->in_drag) return FALSE;
-
-	x = sd->press_x - event->x_root;
-	y = sd->press_y - event->y_root;
-
-	w = sd->press_width;
-	h = sd->press_height;
-
-	if (sd->position & SIZER_POS_LEFT)
-		{
-		w += x;
-		}
-	else if (sd->position & SIZER_POS_RIGHT)
-		{
-		w -= x;
-		}
-
-	if (sd->position & SIZER_POS_TOP)
-		{
-		h += y;
-		}
-	else if (sd->position & SIZER_POS_BOTTOM)
-		{
-		h -= y;
-		}
-
-	if (sd->hsize_min >= 0) w = MAX(w, sd->hsize_min);
-	if (sd->vsize_min >= 0) h = MAX(h, sd->vsize_min);
-
-	if (sd->bounding_widget)
-		{
-		GtkAllocation sizer_allocation;
-		GtkAllocation bounding_allocation;
-		gtk_widget_get_allocation(sd->sizer, &sizer_allocation);
-		gtk_widget_get_allocation(sd->bounding_widget, &bounding_allocation);
-		w = CLAMP(w, sizer_allocation.width, bounding_allocation.width);
-		h = CLAMP(h, sizer_allocation.height, bounding_allocation.height);
-		}
-	else
-		{
-		GtkAllocation sizer_allocation;
-		gtk_widget_get_allocation(sd->sizer, &sizer_allocation);
-		if (w < sizer_allocation.width) w = sizer_allocation.width;
-		if (h < sizer_allocation.height) h = sizer_allocation.height;
-		}
-
-	if (sd->hsize_max >= 0) w = MIN(w, sd->hsize_max);
-	if (sd->vsize_max >= 0) h = MIN(h, sd->vsize_max);
-
-	gtk_widget_get_allocation(sd->parent, &parent_allocation);
-	if (w == parent_allocation.width) w = -1;
-	if (h == parent_allocation.height) h = -1;
-
-	if (w > 0 || h > 0) gtk_widget_set_size_request(sd->parent, w, h);
-
-	return TRUE;
-}
-
-static gboolean sizer_press_cb(GtkWidget *UNUSED(widget), GdkEventButton *bevent, gpointer data)
-{
-	SizerData *sd = data;
-	GtkAllocation parent_allocation;
-
-	if (bevent->button != MOUSE_BUTTON_LEFT) return FALSE;
-
-	sd->in_drag = TRUE;
-	sd->press_x = bevent->x_root;
-	sd->press_y = bevent->y_root;
-
-	gtk_widget_get_allocation(sd->parent, &parent_allocation);
-	sd->press_width = parent_allocation.width;
-	sd->press_height = parent_allocation.height;
-
-	gdk_pointer_grab(gtk_widget_get_window(sd->sizer), FALSE,
-			 GDK_POINTER_MOTION_MASK | GDK_BUTTON_RELEASE_MASK,
-			 NULL, NULL, bevent->time);
-	gtk_grab_add(sd->sizer);
-
-	return TRUE;
-}
-
-static gboolean sizer_release_cb(GtkWidget *UNUSED(widget), GdkEventButton *bevent, gpointer data)
-{
-	SizerData *sd = data;
-
-	if (bevent->button != MOUSE_BUTTON_LEFT) return FALSE;
-
-	if (gdk_pointer_is_grabbed() && gtk_widget_has_grab(sd->sizer))
-		{
-		gtk_grab_remove(sd->sizer);
-		gdk_pointer_ungrab(bevent->time);
-		}
-
-	sd->in_drag = FALSE;
-
-	return TRUE;
-}
-
-static void sizer_set_prelight(SizerData *sd, gboolean prelit)
-{
-	GtkAllocation sizer_allocation;
-	gtk_widget_get_allocation(sd->sizer, &sizer_allocation);
-
-	sd->handle_prelit = prelit;
-	gtk_widget_queue_draw_area(sd->sizer, 0, 0,
-				   sizer_allocation.width, sizer_allocation.height);
-}
-
-static gboolean sizer_enter_cb(GtkWidget *UNUSED(widget), GdkEventCrossing *UNUSED(event), gpointer data)
-{
-	SizerData *sd = data;
-
-	sizer_set_prelight(sd, TRUE);
-	return TRUE;
-}
-
-static gboolean sizer_leave_cb(GtkWidget *UNUSED(widget), GdkEventCrossing *UNUSED(event), gpointer data)
-{
-	SizerData *sd = data;
-
-	sizer_set_prelight(sd, FALSE);
-	return TRUE;
-}
-
-static gboolean sizer_expose_cb(GtkWidget *widget, GdkEventExpose *UNUSED(event), gpointer UNUSED(data))
-{
-	GtkAllocation allocation;
-
-	gtk_widget_get_allocation(widget, &allocation);
-
-	cairo_t *cr = gdk_cairo_create(gtk_widget_get_window(widget));
-
-	gtk_render_handle (gtk_widget_get_style_context (widget),
-	                   cr, allocation.x, allocation.y, allocation.width, allocation.height);
-	cairo_destroy(cr);
-
-	return TRUE;
-}
-
-static void sizer_realize_cb(GtkWidget *widget, gpointer data)
-{
-	SizerData *sd = data;
-	GdkCursorType n;
-
-	n = 0;
-	if (sd->position & SIZER_POS_TOP || sd->position & SIZER_POS_BOTTOM)
-		{
-		n = GDK_SB_V_DOUBLE_ARROW;
-		}
-	if (sd->position & SIZER_POS_LEFT || sd->position & SIZER_POS_RIGHT)
-		{
-		n = (n != 0) ? GDK_FLEUR : GDK_SB_H_DOUBLE_ARROW;
-		}
-
-	if (n != 0 && gtk_widget_get_window(widget))
-		{
-		GdkCursor *cursor;
-		cursor = gdk_cursor_new(n);
-		gdk_window_set_cursor(gtk_widget_get_window(widget), cursor);
-		g_object_unref(G_OBJECT(cursor));
-		}
-}
-
-static void sizer_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
-{
-	SizerData *sd = data;
-
-	g_free(sd);
-}
-
-GtkWidget *sizer_new(GtkWidget *parent, GtkWidget *bounding_widget,
-		     SizerPositionType position)
-{
-	SizerData *sd;
-	gint handle_size;
-
-	sd = g_new0(SizerData, 1);
-
-	sd->sizer = gtk_event_box_new();
-	sd->parent = parent;
-	sd->bounding_widget = bounding_widget;
-	sd->position = position;
-	sd->hsize_min = -1;
-	sd->hsize_max = -1;
-	sd->vsize_min = -1;
-	sd->vsize_max = -1;
-
-	sd->in_drag = FALSE;
-	sd->handle_prelit = FALSE;
-
-	g_signal_connect(G_OBJECT(sd->sizer), "destroy",
-			 G_CALLBACK(sizer_destroy_cb), sd);
-
-	g_signal_connect(G_OBJECT(sd->sizer), "motion_notify_event",
-			 G_CALLBACK(sizer_motion_cb), sd);
-	g_signal_connect(G_OBJECT(sd->sizer), "button_press_event",
-			 G_CALLBACK(sizer_press_cb), sd);
-	g_signal_connect(G_OBJECT(sd->sizer), "button_release_event",
-			 G_CALLBACK(sizer_release_cb), sd);
-
-	g_signal_connect(G_OBJECT(sd->sizer), "enter_notify_event",
-			 G_CALLBACK(sizer_enter_cb), sd);
-	g_signal_connect(G_OBJECT(sd->sizer), "leave_notify_event",
-			 G_CALLBACK(sizer_leave_cb), sd);
-
-	gtk_widget_set_events(sd->sizer, GDK_POINTER_MOTION_MASK |
-					 GDK_BUTTON_RELEASE_MASK | GDK_BUTTON_PRESS_MASK |
-					 GDK_ENTER_NOTIFY_MASK | GDK_LEAVE_NOTIFY_MASK);
-
-	g_signal_connect(sd->sizer, "realize",
-			 G_CALLBACK(sizer_realize_cb), sd);
-	g_signal_connect(sd->sizer, "expose_event",
-			 G_CALLBACK(sizer_expose_cb), sd);
-
-	handle_size = sizer_default_handle_size();
-
-	gtk_widget_set_size_request(sd->sizer, handle_size, handle_size);
-#if 0
-	/* use this if you add a shadow border to the handle */
-	gtk_widget_set_size_request(sd->sizer, handle_size + sd->sizer->style->xthickness * 2,
-					       handle_size + sd->sizer->style->ythickness * 2);
-#endif
-
-	g_object_set_data(G_OBJECT(sd->sizer), SIZER_DATA_KEY,sd);
-
-	return sd->sizer;
-}
-
-void sizer_set_limits(GtkWidget *sizer,
-		      gint hsize_min, gint hsize_max,
-		      gint vsize_min, gint vsize_max)
-{
-	SizerData *sd;
-
-	sd = g_object_get_data(G_OBJECT(sizer), SIZER_DATA_KEY);
-	if (!sd) return;
-
-	sd->hsize_min = hsize_min;
-	sd->hsize_max = hsize_max;
-	sd->vsize_min = vsize_min;
-	sd->vsize_max = vsize_max;
-}
-
+//time_t date_selection_time_get(GtkWidget *widget)
+//{
+	//struct tm lt;
+	//gint day = 0;
+	//gint month = 0;
+	//gint year = 0;
+
+	//date_selection_get(widget, &day, &month ,&year);
+
+	//lt.tm_sec = 0;
+	//lt.tm_min = 0;
+	//lt.tm_hour = 0;
+	//lt.tm_mday = day;
+	//lt.tm_mon = month - 1;
+	//lt.tm_year = year - 1900;
+	//lt.tm_isdst = 0;
+
+	//return mktime(&lt);
+//}
 
 /*
  *-----------------------------------------------------------------------------
@@ -1573,43 +1273,43 @@ gboolean pref_list_int_get(const gchar *group, const gchar *key, gint *result)
 	return FALSE;
 }
 
-void pref_list_double_set(const gchar *group, const gchar *key, gdouble value)
-{
-	gchar text[G_ASCII_DTOSTR_BUF_SIZE];
+//void pref_list_double_set(const gchar *group, const gchar *key, gdouble value)
+//{
+	//gchar text[G_ASCII_DTOSTR_BUF_SIZE];
 
-	g_ascii_dtostr(text, sizeof(text), value);
-	pref_list_set(group, key, PREF_LIST_MARKER_DOUBLE, text);
-}
+	//g_ascii_dtostr(text, sizeof(text), value);
+	//pref_list_set(group, key, PREF_LIST_MARKER_DOUBLE, text);
+//}
 
-gboolean pref_list_double_get(const gchar *group, const gchar *key, gdouble *result)
-{
-	const gchar *text;
+//gboolean pref_list_double_get(const gchar *group, const gchar *key, gdouble *result)
+//{
+	//const gchar *text;
 
-	if (!group || !key)
-		{
-		*result = 0;
-		return FALSE;
-		}
+	//if (!group || !key)
+		//{
+		//*result = 0;
+		//return FALSE;
+		//}
 
-	if (pref_list_get(group, key, PREF_LIST_MARKER_DOUBLE, &text) && text)
-		{
-		*result = g_ascii_strtod(text, NULL);
-		return TRUE;
-		}
+	//if (pref_list_get(group, key, PREF_LIST_MARKER_DOUBLE, &text) && text)
+		//{
+		//*result = g_ascii_strtod(text, NULL);
+		//return TRUE;
+		//}
 
-	*result = 0;
-	return FALSE;
-}
+	//*result = 0;
+	//return FALSE;
+//}
 
-void pref_list_string_set(const gchar *group, const gchar *key, const gchar *value)
-{
-	pref_list_set(group, key, PREF_LIST_MARKER_STRING, value);
-}
+//void pref_list_string_set(const gchar *group, const gchar *key, const gchar *value)
+//{
+	//pref_list_set(group, key, PREF_LIST_MARKER_STRING, value);
+//}
 
-gboolean pref_list_string_get(const gchar *group, const gchar *key, const gchar **result)
-{
-	return pref_list_get(group, key, PREF_LIST_MARKER_STRING, result);
-}
+//gboolean pref_list_string_get(const gchar *group, const gchar *key, const gchar **result)
+//{
+	//return pref_list_get(group, key, PREF_LIST_MARKER_STRING, result);
+//}
 
 
 void pref_color_button_set_cb(GtkWidget *widget, gpointer data)

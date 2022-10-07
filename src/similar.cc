@@ -62,10 +62,10 @@ void image_sim_alternate_set(gboolean enable)
 	alternate_enabled = enable;
 }
 
-gboolean image_sim_alternate_enabled(void)
-{
-	return alternate_enabled;
-}
+//gboolean image_sim_alternate_enabled(void)
+//{
+	//return alternate_enabled;
+//}
 
 ImageSimilarityData *image_sim_new(void)
 {

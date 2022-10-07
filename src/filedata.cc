@@ -583,49 +583,49 @@ void read_rating_data(FileData *file)
 		}
 }
 
-void set_exif_time_data(GList *files)
-{
-	DEBUG_1("%s set_exif_time_data: ...", get_exec_time());
+//void set_exif_time_data(GList *files)
+//{
+	//DEBUG_1("%s set_exif_time_data: ...", get_exec_time());
 
-	while (files)
-		{
-		FileData *file = files->data;
+	//while (files)
+		//{
+		//FileData *file = files->data;
 
-		read_exif_time_data(file);
-		files = files->next;
-		}
-}
+		//read_exif_time_data(file);
+		//files = files->next;
+		//}
+//}
 
-void set_exif_time_digitized_data(GList *files)
-{
-	DEBUG_1("%s set_exif_time_digitized_data: ...", get_exec_time());
+//void set_exif_time_digitized_data(GList *files)
+//{
+	//DEBUG_1("%s set_exif_time_digitized_data: ...", get_exec_time());
 
-	while (files)
-		{
-		FileData *file = files->data;
+	//while (files)
+		//{
+		//FileData *file = files->data;
 
-		read_exif_time_digitized_data(file);
-		files = files->next;
-		}
-}
+		//read_exif_time_digitized_data(file);
+		//files = files->next;
+		//}
+//}
 
-void set_rating_data(GList *files)
-{
-	gchar *rating_str;
-	DEBUG_1("%s set_rating_data: ...", get_exec_time());
+//void set_rating_data(GList *files)
+//{
+	//gchar *rating_str;
+	//DEBUG_1("%s set_rating_data: ...", get_exec_time());
 
-	while (files)
-		{
-		FileData *file = files->data;
-		rating_str = metadata_read_string(file, RATING_KEY, METADATA_PLAIN);
-		if (rating_str )
-			{
-			file->rating = atoi(rating_str);
-			g_free(rating_str);
-			}
-		files = files->next;
-		}
-}
+	//while (files)
+		//{
+		//FileData *file = files->data;
+		//rating_str = metadata_read_string(file, RATING_KEY, METADATA_PLAIN);
+		//if (rating_str )
+			//{
+			//file->rating = atoi(rating_str);
+			//g_free(rating_str);
+			//}
+		//files = files->next;
+		//}
+//}
 
 FileData *file_data_new_no_grouping(const gchar *path_utf8)
 {
@@ -1211,10 +1211,10 @@ GList *filelist_sort(GList *list, SortType method, gboolean ascend)
 	return filelist_sort_full(list, method, ascend, (GCompareFunc) filelist_sort_file_cb);
 }
 
-GList *filelist_insert_sort(GList *list, FileData *fd, SortType method, gboolean ascend)
-{
-	return filelist_insert_sort_full(list, fd, method, ascend, (GCompareFunc) filelist_sort_file_cb);
-}
+//GList *filelist_insert_sort(GList *list, FileData *fd, SortType method, gboolean ascend)
+//{
+	//return filelist_insert_sort_full(list, fd, method, ascend, (GCompareFunc) filelist_sort_file_cb);
+//}
 
 /*
  *-----------------------------------------------------------------------------
@@ -1963,19 +1963,19 @@ void file_data_get_registered_mark_func(gint n, FileDataGetMarkFunc *get_mark_fu
 	if (data) *data = file_data_mark_func_data[n];
 }
 
-gint file_data_get_user_orientation(FileData *fd)
-{
-	return fd->user_orientation;
-}
+//gint file_data_get_user_orientation(FileData *fd)
+//{
+	//return fd->user_orientation;
+//}
 
-void file_data_set_user_orientation(FileData *fd, gint value)
-{
-	if (fd->user_orientation == value) return;
+//void file_data_set_user_orientation(FileData *fd, gint value)
+//{
+	//if (fd->user_orientation == value) return;
 
-	fd->user_orientation = value;
-	file_data_increment_version(fd);
-	file_data_send_notification(fd, NOTIFY_ORIENTATION);
-}
+	//fd->user_orientation = value;
+	//file_data_increment_version(fd);
+	//file_data_send_notification(fd, NOTIFY_ORIENTATION);
+//}
 
 
 /*
@@ -3198,22 +3198,22 @@ gboolean file_data_unregister_notify_func(FileDataNotifyFunc func, gpointer data
 }
 
 
-gboolean file_data_send_notification_idle_cb(gpointer data)
-{
-	NotifyIdleData *nid = (NotifyIdleData *)data;
-	GList *work = notify_func_list;
+//gboolean file_data_send_notification_idle_cb(gpointer data)
+//{
+	//NotifyIdleData *nid = (NotifyIdleData *)data;
+	//GList *work = notify_func_list;
 
-	while (work)
-		{
-		NotifyData *nd = (NotifyData *)work->data;
+	//while (work)
+		//{
+		//NotifyData *nd = (NotifyData *)work->data;
 
-		nd->func(nid->fd, nid->type, nd->data);
-		work = work->next;
-		}
-	file_data_unref(nid->fd);
-	g_free(nid);
-	return FALSE;
-}
+		//nd->func(nid->fd, nid->type, nd->data);
+		//work = work->next;
+		//}
+	//file_data_unref(nid->fd);
+	//g_free(nid);
+	//return FALSE;
+//}
 
 void file_data_send_notification(FileData *fd, NotifyType type)
 {

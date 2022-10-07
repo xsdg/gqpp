@@ -189,24 +189,24 @@ void spinner_set_interval(GtkWidget *spinner, gint interval)
 	spinner_set_timeout(sp, interval);
 }
 
-void spinner_step(GtkWidget *spinner, gboolean reset)
-{
-	SpinnerData *sp;
+//void spinner_step(GtkWidget *spinner, gboolean reset)
+//{
+	//SpinnerData *sp;
 
-	sp = g_object_get_data(G_OBJECT(spinner), "spinner");
-	if (sp->timer_id)
-		{
-		log_printf("spinner warning: attempt to step with timer set\n");
-		return;
-		}
+	//sp = g_object_get_data(G_OBJECT(spinner), "spinner");
+	//if (sp->timer_id)
+		//{
+		//log_printf("spinner warning: attempt to step with timer set\n");
+		//return;
+		//}
 
-	if (reset)
-		{
-		spinner_set_frame(sp, 0);
-		}
-	else
-		{
-		spinner_increment_frame(sp);
-		}
-}
+	//if (reset)
+		//{
+		//spinner_set_frame(sp, 0);
+		//}
+	//else
+		//{
+		//spinner_increment_frame(sp);
+		//}
+//}
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

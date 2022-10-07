@@ -614,17 +614,17 @@ void file_dialog_add_path_widgets(FileDialog *fdlg, const gchar *default_path, c
 			 G_CALLBACK(file_dialog_entry_cb), fdlg);
 }
 
-void file_dialog_add_filter(FileDialog *fdlg, const gchar *filter, const gchar *filter_desc, gboolean set)
-{
-	if (!fdlg->entry) return;
-	path_selection_add_filter(fdlg->entry, filter, filter_desc, set);
-}
+//void file_dialog_add_filter(FileDialog *fdlg, const gchar *filter, const gchar *filter_desc, gboolean set)
+//{
+	//if (!fdlg->entry) return;
+	//path_selection_add_filter(fdlg->entry, filter, filter_desc, set);
+//}
 
-void file_dialog_clear_filter(FileDialog *fdlg)
-{
-	if (!fdlg->entry) return;
-	path_selection_clear_filter(fdlg->entry);
-}
+//void file_dialog_clear_filter(FileDialog *fdlg)
+//{
+	//if (!fdlg->entry) return;
+	//path_selection_clear_filter(fdlg->entry);
+//}
 
 void file_dialog_sync_history(FileDialog *fdlg, gboolean dir_only)
 {

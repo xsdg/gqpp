@@ -1304,13 +1304,13 @@ void image_set_scroll_func(ImageWindow *imd,
 	imd->data_scroll = data;
 }
 
-void image_set_scroll_notify_func(ImageWindow *imd,
-				  void (*func)(ImageWindow *imd, gint x, gint y, gint width, gint height, gpointer data),
-				  gpointer data)
-{
-	imd->func_scroll_notify = func;
-	imd->data_scroll_notify = data;
-}
+//void image_set_scroll_notify_func(ImageWindow *imd,
+				  //void (*func)(ImageWindow *imd, gint x, gint y, gint width, gint height, gpointer data),
+				  //gpointer data)
+//{
+	//imd->func_scroll_notify = func;
+	//imd->data_scroll_notify = data;
+//}
 
 void image_set_focus_in_func(ImageWindow *imd,
 			   void (*func)(ImageWindow *, gpointer),
@@ -1787,10 +1787,10 @@ gdouble image_zoom_get_default(ImageWindow *imd)
 }
 
 /* stereo */
-gint image_stereo_get(ImageWindow *imd)
-{
-	return pixbuf_renderer_stereo_get((PixbufRenderer *)imd->pr);
-}
+//gint image_stereo_get(ImageWindow *imd)
+//{
+	//return pixbuf_renderer_stereo_get((PixbufRenderer *)imd->pr);
+//}
 
 void image_stereo_set(ImageWindow *imd, gint stereo_mode)
 {
@@ -1798,12 +1798,12 @@ void image_stereo_set(ImageWindow *imd, gint stereo_mode)
 	pixbuf_renderer_stereo_set((PixbufRenderer *)imd->pr, stereo_mode);
 }
 
-void image_stereo_swap(ImageWindow *imd)
-{
-	gint stereo_mode = pixbuf_renderer_stereo_get((PixbufRenderer *)imd->pr);
-	stereo_mode ^= PR_STEREO_SWAP;
-	pixbuf_renderer_stereo_set((PixbufRenderer *)imd->pr, stereo_mode);
-}
+//void image_stereo_swap(ImageWindow *imd)
+//{
+	//gint stereo_mode = pixbuf_renderer_stereo_get((PixbufRenderer *)imd->pr);
+	//stereo_mode ^= PR_STEREO_SWAP;
+	//pixbuf_renderer_stereo_set((PixbufRenderer *)imd->pr, stereo_mode);
+//}
 
 StereoPixbufData image_stereo_pixbuf_get(ImageWindow *imd)
 {

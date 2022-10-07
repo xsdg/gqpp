@@ -3064,10 +3064,10 @@ void file_util_start_editor_from_filelist(const gchar *key, GList *list, const g
 	file_util_start_editor_full(key, NULL, list, NULL, working_directory, parent, UTILITY_PHASE_ENTERING);
 }
 
-void file_util_start_filter_from_file(const gchar *key, FileData *fd, const gchar *dest_path, GtkWidget *parent)
-{
-	file_util_start_editor_full(key, fd, NULL, dest_path, NULL, parent, UTILITY_PHASE_ENTERING);
-}
+//void file_util_start_filter_from_file(const gchar *key, FileData *fd, const gchar *dest_path, GtkWidget *parent)
+//{
+	//file_util_start_editor_full(key, fd, NULL, dest_path, NULL, parent, UTILITY_PHASE_ENTERING);
+//}
 
 void file_util_start_filter_from_filelist(const gchar *key, GList *list, const gchar *dest_path, GtkWidget *parent)
 {
