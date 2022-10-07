@@ -28,9 +28,11 @@
 compile()
 {
 compiler="$1"
+rm -r build > /dev/null 2>&1
+meson setup build > /dev/null 2>&1
 
 printf '\e[32m%s\n' "$compiler all disabled"
-meson configure build -Darchive=disabled -Dcms=disabled -Ddjvu=disabled -Dexiv2=disabled -Dvideothumbnailer=disabled -Dgps-map=disabled -Dheif=disabled -Dj2k=disabled -Djpeg=disabled -Djpegxl=disabled -Dlibraw=disabled -Dlua=disabled -Dpdf=disabled -Dspell=disabled -Dtiff=disabled -Dwebp=disabled
+meson configure --auto-features disabled build
 
 if (! ninja -C build clean > /dev/null 2>&1)
 then
@@ -42,7 +44,7 @@ then
 fi
 
 printf '\e[32m%s\n' "$compiler none disabled"
-meson configure build -Darchive=auto -Dcms=auto -Ddjvu=auto -Dexiv2=auto -Dvideothumbnailer=auto -Dgps-map=auto -Dheif=auto -Dj2k=auto -Djpeg=auto -Djpegxl=auto -Dlibraw=auto -Dlua=auto -Dpdf=auto -Dspell=auto -Dtiff=auto -Dwebp=auto
+meson configure --auto-features auto build
 
 if (! ninja -C build clean > /dev/null 2>&1)
 then
