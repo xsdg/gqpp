@@ -99,7 +99,7 @@ Geeqie is available:
 
 * as a [flatpak](https://flathub.org/apps/details/org.geeqie.Geeqie) from the [Flathub site](https://flathub.org/home).
 
-* as an [AppImage](https://www.geeqie.org/AppImage/index.html) (Generated from the latest sources).
+* as an [AppImage](https://www.geeqie.org/AppImage/index.html) - x86_64 and arm64 (Generated from the latest sources).
 
 * as a [Homebrew](https://formulae.brew.sh/formula/geeqie) or [MacPorts](https://ports.macports.org/port/geeqie) package for macOS.
 

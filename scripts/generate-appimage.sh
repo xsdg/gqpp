@@ -27,13 +27,37 @@
 ## will be created.
 ##
 
+x86_64()
+{
+	linuxdeploy-x86_64.AppImage \
+		--appdir ./AppDir --output appimage \
+		--desktop-file ./AppDir/usr/share/applications/geeqie.desktop \
+		--icon-file ./AppDir/usr/share/pixmaps/geeqie.png \
+		--plugin gtk \
+		--executable ./AppDir/usr/bin/geeqie
+}
+
+## @FIXME arm AppImage of linuxdeploy does not yet exist
+## Compile from sources
+aarch64()
+{
+	linuxdeploy \
+		--appdir ./AppDir --output appimage \
+		--desktop-file ./AppDir/usr/share/applications/geeqie.desktop \
+		--icon-file ./AppDir/usr/share/pixmaps/geeqie.png \
+		--plugin gtk \
+		--executable ./AppDir/usr/bin/geeqie
+
+	appimagetool-aarch64.AppImage ./AppDir/ ./Geeqie-aarch64.AppImage
+}
+
 if [ ! -f geeqie.spec.in ] || [ ! -d .git ]
 then
 	printf '%s\n' "This is not a Geeqie folder"
 	exit 1
 fi
 
-if ! target_dir=$(realpath "$1");
+if ! target_dir=$(realpath "$1")
 then
 	printf '%s\n' "No target dir specified"
 	exit 1
@@ -41,7 +65,10 @@ fi
 
 rm -rf ./build-appimge
 rm -rf "$target_dir"/AppDir
-mkdir "$target_dir"/AppDir || { printf '%s\n' "Cannot make $target_dir/AppDir"; exit 1; }
+mkdir "$target_dir"/AppDir || {
+	printf '%s\n' "Cannot make $target_dir/AppDir"
+	exit 1
+}
 
 meson setup build-appimage
 meson configure build-appimage -Dprefix="/usr/"
@@ -50,13 +77,25 @@ DESTDIR=/"$target_dir"/AppDir ninja -C build-appimage install
 VERSION=$(git tag | tail -1)
 export VERSION
 
-cd "$target_dir" || { printf '%s\n' "Cannot cd to $target_dir"; exit 1; }
+cd "$target_dir" || {
+	printf '%s\n' "Cannot cd to $target_dir"
+	exit 1
+}
 
-linuxdeploy-x86_64.AppImage \
-	--appdir ./AppDir --output appimage \
-	--desktop-file ./AppDir/usr/share/applications/geeqie.desktop \
-	--icon-file ./AppDir/usr/share/pixmaps/geeqie.png \
-	--plugin gtk \
-	--executable ./AppDir/usr/bin/geeqie
+case $(uname -m) in
+	"x86_64")
+		x86_64
 
-mv "./Geeqie-$VERSION-x86_64.AppImage" "$(./Geeqie-"$VERSION"-x86_64.AppImage -v | sed 's/git//' | sed 's/-.* /-/' | sed 's/ /-v/' | sed 's/-GTK3//').AppImage"
+		mv "./Geeqie-$VERSION-x86_64.AppImage" "$(./Geeqie-"$VERSION"-x86_64.AppImage -v | sed 's/git//' | sed 's/-.* /-/' | sed 's/ /-v/' | sed 's/-GTK3//')-x86_64.AppImage"
+		;;
+
+	"aarch64")
+		aarch64
+
+		mv "./Geeqie-aarch64.AppImage" "$(./Geeqie-aarch64.AppImage -v | sed 's/git//' | sed 's/-.* /-/' | sed 's/ /-v/' | sed 's/-GTK3//')-aarch64.AppImage"
+		;;
+
+	*)
+		printf "Architecture unknown"
+		;;
+esac
