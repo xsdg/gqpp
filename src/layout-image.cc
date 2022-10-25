@@ -103,6 +103,14 @@ void layout_image_full_screen_start(LayoutWindow *lw)
 
 	image_osd_copy_status(lw->full_screen->normal_imd, lw->image);
 	layout_image_animate_update_image(lw);
+
+	/** @FIXME This is a hack to fix #1037 Fullscreen loads black
+	 * The problem occurs when zoom is set to Original Size.
+	 * An extra reload is required to force the image to be displayed.
+	 * See also image-view.cc real_view_window_new()
+	 * This is probably not the correct solution.
+	 **/
+	image_reload(lw->image);
 }
 
 void layout_image_full_screen_stop(LayoutWindow *lw)

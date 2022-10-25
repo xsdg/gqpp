@@ -989,6 +989,7 @@ static ViewWindow *real_view_window_new(FileData *fd, GList *list, CollectionDat
 	 * The problem occurs when zoom is set to Original Size and Preload
 	 * Next Image is set.
 	 * An extra reload is required to force the image to be displayed.
+	 * See also layout-image.cc layout_image_full_screen_start()
 	 * This is probably not the correct solution.
 	 **/
 	image_reload(vw->imd);
