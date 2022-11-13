@@ -457,7 +457,16 @@ static gboolean image_post_process_color(ImageWindow *imd, gint start_row, gbool
 
 	if (exif)
 		{
-		profile = exif_get_color_profile(exif, &profile_len);
+		if (g_strcmp0(imd->image_fd->format_name, "heif") == 0)
+			{
+			profile = heif_color_profile(imd->image_fd, &profile_len);
+			}
+
+		if (!profile)
+			{
+			profile = exif_get_color_profile(exif, &profile_len);
+			}
+
 		if (profile)
 			{
 			if (!imd->color_profile_use_image)

@@ -410,7 +410,16 @@ void thumb_loader_std_calibrate_pixbuf(FileData *fd, GdkPixbuf *pixbuf) {
 
 	if (exif)
 		{
-		profile = exif_get_color_profile(exif, &profile_len);
+		if (g_strcmp0(fd->format_name, "heif") == 0)
+			{
+			profile = heif_color_profile(fd, &profile_len);
+			}
+
+		if (!profile)
+			{
+			profile = exif_get_color_profile(exif, &profile_len);
+			}
+
 		if (profile)
 			{
 			DEBUG_1("Found embedded color profile");
