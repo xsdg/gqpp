@@ -368,12 +368,17 @@ lua_dep = []
 req_version = '>=5.3'
 option = get_option('lua')
 if not option.disabled()
-    lua_dep = dependency('lua5.3',  version : req_version, required : get_option('lua'))
+    foreach name : ['lua', 'lua5.3', 'lua-5.3', 'lua53']
+        lua_dep = dependency(name, version: req_version, required: get_option('lua'))
+        if lua_dep.found()
+            break
+        endif
+    endforeach
     if lua_dep.found()
         conf_data.set('HAVE_LUA', 1)
         summary({'lua' : ['lua supported:', true]}, section : 'Configuration', bool_yn : true)
     else
-        summary({'lua' : ['lua5.3 ' + req_version + ' not found - lua supported:', false]}, section : 'Configuration', bool_yn : true)
+        summary({'lua' : ['lua ' + req_version + ' not found - lua supported:', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
     summary({'lua' : ['disabled - lua supported:', false]}, section : 'Configuration', bool_yn : true)
