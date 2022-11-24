@@ -133,8 +133,8 @@ void dnd_set_drag_icon(GtkWidget *widget, GdkDragContext *context, GdkPixbuf *pi
 		h = sh * DND_ICON_SIZE / sw;
 		}
 
-	dest = gdk_pixbuf_scale_simple(pixbuf, w, h, GDK_INTERP_BILINEAR);
-	pixbuf_draw_border(dest, w, h);
+	dest = gdk_pixbuf_scale_simple(pixbuf, MAX(1, w), MAX(1, h), GDK_INTERP_BILINEAR);
+	pixbuf_draw_border(dest, MAX(1, w), MAX(1, h));
 
 	if (items > 1)
 		{
