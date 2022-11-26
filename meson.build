@@ -71,14 +71,14 @@ configuration_inc = include_directories('.')
 # External programs
 gdk_pixbuf_csource = find_program('gdk-pixbuf-csource', required : true)
 glib_genmarshal = find_program('glib-genmarshal', required : true)
-gnome_doc_tool = find_program('yelp-build', required : false)
-if gnome_doc_tool.found()
-    summary({'help' : ['Help files created:', true]}, section : 'Documentation', bool_yn : true)
-else
-    summary({'help' : ['yelp-build not found - Help files created:', false]}, section : 'Documentation', bool_yn : true)
-endif
 
-running_from_git = find_program('git', required: false).found() and fs.is_dir('.git')
+option = get_option('git')
+if not option.disabled()
+    running_from_git = find_program('git', required: false).found() and fs.is_dir('.git')
+else
+    running_from_git = false
+    summary({'git' : ['disabled - ChangeLog, ChangeLog.html, lua-api help file created:', false]}, section : 'Documentation', bool_yn : true)
+endif
 
 debug = get_option('debug')
 
@@ -195,6 +195,18 @@ else
     summary({'djvu' : ['disabled - djvu files supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
+option = get_option('evince')
+if not option.disabled()
+    evince = find_program('evince', required : false)
+    if evince.found()
+        summary({'print preview' : ['print preview supported:', true]}, section : 'Configuration', bool_yn : true)
+    else
+        summary({'print preview' : ['evince not found - print preview supported:', false]}, section : 'Configuration', bool_yn : true)
+    endif
+else
+    summary({'print preview' : ['disabled - print preview supported:', false]}, section : 'Configuration', bool_yn : true)
+endif
+
 exiv2_dep = []
 req_version = '>=0.11'
 option = get_option('exiv2')
@@ -208,42 +220,6 @@ if not option.disabled()
     endif
 else
     summary({'exiv2' : ['disabled - image data processed by exiv2:', false]}, section : 'Configuration', bool_yn : true)
-endif
-
-libffmpegthumbnailer_dep = []
-req_version = '>=2.1.0'
-option = get_option('videothumbnailer')
-if not option.disabled()
-    libffmpegthumbnailer_dep = dependency('libffmpegthumbnailer',
-        version : req_version,
-        required : get_option('videothumbnailer'))
-
-    if libffmpegthumbnailer_dep.found()
-        conf_data.set('HAVE_FFMPEGTHUMBNAILER', 1)
-        summary({'videothumbnailer' : ['thumbnails of video files supported:', true]}, section : 'Configuration', bool_yn : true)
-
-        result = cc.has_member('struct video_thumbnailer_struct', 'prefer_embedded_metadata', prefix : '#include <libffmpegthumbnailer/videothumbnailerc.h>')
-        if result
-            conf_data.set('HAVE_FFMPEGTHUMBNAILER_METADATA', 1)
-        endif
-        summary({'fmpegthumbnailer_metadata' : ['fmpegthumbnailer_metadata found:', result]}, section : 'Thumbnailer', bool_yn : true)
-
-        result = cc.has_member('struct image_data_struct', 'image_data_width', prefix : '#include <libffmpegthumbnailer/videothumbnailerc.h>' )
-        if result
-            conf_data.set('HAVE_FFMPEGTHUMBNAILER_RGB', 1)
-        endif
-        summary({'fmpegthumbnailer_rgb' : ['fmpegthumbnailer_rgb found:', result]}, section : 'Thumbnailer', bool_yn : true)
-
-        result = cc.has_function('video_thumbnailer_set_size', dependencies : libffmpegthumbnailer_dep)
-        if result
-            conf_data.set('HAVE_FFMPEGTHUMBNAILER_WH', 1)
-        endif
-        summary({'fmpegthumbnailer_set_size' : ['fmpegthumbnailer_set_size found:', result]}, section : 'Thumbnailer', bool_yn : true)
-    else
-        summary({'videothumbnailer' : ['libvideothumbnailer ' + req_version + ' not found - thumbnails of video files supported', false]}, section : 'Configuration', bool_yn : true)
-    endif
-else
-    summary({'videothumbnailer' : ['disabled -thumbnails of video files supported', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 champlain_dep = []
@@ -384,6 +360,27 @@ else
     summary({'lua' : ['disabled - lua supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
+option = get_option('pandoc')
+if not option.disabled()
+    pandoc = find_program('pandoc', required : false)
+    if pandoc.found()
+        readme_html = custom_target(
+            'README.html',
+            input: 'README.md',
+            output: 'README.html',
+            command: [pandoc, '@INPUT@', '-o', '@OUTPUT@'],
+            install: true,
+            install_dir: helpdir)
+
+        summary({'README' : ['README.html created:', true]}, section : 'Documentation', bool_yn : true)
+    else
+        summary({'README' : ['pandoc not found - README.html created:', false]}, section : 'Documentation', bool_yn : true)
+    endif
+    install_data('README.md', 'COPYING', 'TODO', 'AUTHORS', install_dir : helpdir)
+else
+    summary({'pandoc' : ['disabled - README.html created:', false]}, section : 'Documentation', bool_yn : true)
+endif
+
 poppler_glib_dep = []
 req_version = '>=0.62'
 option = get_option('pdf')
@@ -408,10 +405,10 @@ if not option.disabled()
         conf_data.set('HAVE_SPELL', 1)
         summary({'spell' : ['spelling checks enabled', true]}, section : 'Configuration', bool_yn : true)
     else
-        summary({'spell' : ['gspell-1 ' + req_version + ' not found - spelling checks not enabled', false]}, section : 'Configuration', bool_yn : true)
+        summary({'spell' : ['gspell-1 ' + req_version + ' not found - spelling checks enabled', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    summary({'spell' : ['disabled - spelling checks not enabled', false]}, section : 'Configuration', bool_yn : true)
+    summary({'spell' : ['disabled - spelling checks enabled', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 tiff_dep = []
@@ -430,6 +427,42 @@ if not option.disabled()
     endif
 else
     summary({'tiff' : ['disabled - tiff files supported:', false]}, section : 'Configuration', bool_yn : true)
+endif
+
+libffmpegthumbnailer_dep = []
+req_version = '>=2.1.0'
+option = get_option('videothumbnailer')
+if not option.disabled()
+    libffmpegthumbnailer_dep = dependency('libffmpegthumbnailer',
+        version : req_version,
+        required : get_option('videothumbnailer'))
+
+    if libffmpegthumbnailer_dep.found()
+        conf_data.set('HAVE_FFMPEGTHUMBNAILER', 1)
+        summary({'videothumbnailer' : ['thumbnails of video files supported:', true]}, section : 'Configuration', bool_yn : true)
+
+        result = cc.has_member('struct video_thumbnailer_struct', 'prefer_embedded_metadata', prefix : '#include <libffmpegthumbnailer/videothumbnailerc.h>')
+        if result
+            conf_data.set('HAVE_FFMPEGTHUMBNAILER_METADATA', 1)
+        endif
+        summary({'fmpegthumbnailer_metadata' : ['fmpegthumbnailer_metadata found:', result]}, section : 'Thumbnailer', bool_yn : true)
+
+        result = cc.has_member('struct image_data_struct', 'image_data_width', prefix : '#include <libffmpegthumbnailer/videothumbnailerc.h>' )
+        if result
+            conf_data.set('HAVE_FFMPEGTHUMBNAILER_RGB', 1)
+        endif
+        summary({'fmpegthumbnailer_rgb' : ['fmpegthumbnailer_rgb found:', result]}, section : 'Thumbnailer', bool_yn : true)
+
+        result = cc.has_function('video_thumbnailer_set_size', dependencies : libffmpegthumbnailer_dep)
+        if result
+            conf_data.set('HAVE_FFMPEGTHUMBNAILER_WH', 1)
+        endif
+        summary({'fmpegthumbnailer_set_size' : ['fmpegthumbnailer_set_size found:', result]}, section : 'Thumbnailer', bool_yn : true)
+    else
+        summary({'videothumbnailer' : ['libvideothumbnailer ' + req_version + ' not found - thumbnails of video files supported', false]}, section : 'Configuration', bool_yn : true)
+    endif
+else
+    summary({'videothumbnailer' : ['disabled -thumbnails of video files supported', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 libwebp_dep = []
@@ -511,32 +544,6 @@ if running_from_git
 elif fs.exists('ChangeLog.html')
     install_data('ChangeLog', 'ChangeLog.html', install_dir: helpdir)
     summary({'ChangeLog' : ['ChangeLog, ChangeLog.html installed from dist:', true]}, section : 'Documentation', bool_yn : true)
-else
-    summary({'ChangeLog' : ['ChangeLog, ChangeLog.html created:', false]}, section : 'Documentation', bool_yn : true)
-endif
-
-pandoc = find_program('pandoc', required : false)
-if pandoc.found()
-    readme_html = custom_target(
-        'README.html',
-        input: 'README.md',
-        output: 'README.html',
-        command: [pandoc, '@INPUT@', '-o', '@OUTPUT@'],
-        install: true,
-        install_dir: helpdir)
-
-    summary({'README' : ['README.html created:', true]}, section : 'Documentation', bool_yn : true)
-else
-    summary({'README' : ['pandoc not found - README.html created:', false]}, section : 'Documentation', bool_yn : true)
-endif
-install_data('README.md', 'COPYING', 'TODO', 'AUTHORS',
-             install_dir : helpdir)
-
-evince = find_program('evince', required : false)
-if evince.found()
-    summary({'print preview' : ['print preview supported:', true]}, section : 'Documentation', bool_yn : true)
-else
-    summary({'print preview' : ['evince not found - print preview supported:', false]}, section : 'Documentation', bool_yn : true)
 endif
 
 install_data('geeqie.png', install_dir : icondir)
