@@ -39,6 +39,22 @@
 
 static GdkPixbuf *file_util_get_error_icon(FileData *fd, GList *list, GtkWidget *widget);
 
+static GtkTargetEntry target_types[] =
+{
+	{(gchar *)"text/plain", 0, CLIPBOARD_TEXT_PLAIN},
+	{(gchar *)"text/uri-list", 0, CLIPBOARD_TEXT_URI_LIST},
+	{(gchar *)"x-special/gnome-copied-files", 0, CLIPBOARD_X_SPECIAL_GNOME_COPIED_FILES},
+	{(gchar *)"UTF8_STRING", 0, CLIPBOARD_UTF8_STRING}
+};
+static gint target_types_n = 4;
+
+typedef struct _ClipboardData ClipboardData;
+struct _ClipboardData
+{
+	GList *path_list; /**< g_strdup(fd->path) */
+	gboolean quoted;
+};
+
 /*
  *--------------------------------------------------------------------------
  * Adds 1 or 2 images (if 2, side by side) to a GenericDialog
@@ -3089,66 +3105,169 @@ void file_util_rename_dir(FileData *source_fd, const gchar *new_path, GtkWidget 
 	file_util_rename_dir_full(source_fd, new_path, parent, UTILITY_PHASE_ENTERING, done_func, done_data);
 }
 
+/**
+ * @brief
+ * @param clipboard
+ * @param selection_data
+ * @param info
+ * @param data #_ClipboardData
+ *
+ *
+ */
+static void clipboard_get_func(GtkClipboard *clipboard, GtkSelectionData *selection_data, guint info, gpointer data)
+{
+	ClipboardData *cbd = static_cast<ClipboardData *>(data);
+	gchar *file_path;
+	gchar *file_path_quoted = NULL;
+	gchar *file_path_uri;
+	GString *path_list_str;
+	GList *work;
+
+	path_list_str = g_string_new("");
+	work = cbd->path_list;
+
+	if (clipboard == gtk_clipboard_get(GDK_SELECTION_CLIPBOARD) && info == CLIPBOARD_X_SPECIAL_GNOME_COPIED_FILES)
+		{
+		g_string_append(path_list_str, "copy");
+
+		while (work)
+			{
+			file_path = static_cast<gchar *>(work->data);
+			work = work->next;
+
+			file_path_uri = g_filename_to_uri(file_path, NULL, NULL);
+			g_string_append(path_list_str, "\n");
+			g_string_append(path_list_str, file_path_uri);
+			g_free(file_path_uri);
+			}
+		}
+	else
+		{
+		while (work)
+			{
+			file_path = static_cast<gchar *>(work->data);
+			work = work->next;
+
+			if (cbd->quoted)
+				{
+				file_path_quoted = g_shell_quote(file_path);
+				g_string_append(path_list_str, file_path_quoted);
+				g_free(file_path_quoted);
+				}
+			else
+				{
+				g_string_append(path_list_str, file_path);
+				}
+
+			if (work)
+				{
+				g_string_append_c(path_list_str, ' ');
+				}
+			}
+		}
+
+	gtk_selection_data_set(selection_data, gtk_selection_data_get_target(selection_data), 8, reinterpret_cast<guchar *>(path_list_str->str), strlen(path_list_str->str));
+
+	g_string_free(path_list_str, TRUE);
+}
+
+/**
+ * @brief
+ * @param UNUSED
+ * @param data _ClipboardData
+ *
+ *
+ */
+static void clipboard_clear_func(GtkClipboard *UNUSED(clipboard), gpointer data)
+{
+	ClipboardData *cbd = static_cast<ClipboardData *>(data);
+
+	string_list_free(cbd->path_list);
+	g_free(cbd);
+}
 
 void file_util_copy_path_to_clipboard(FileData *fd, gboolean quoted)
 {
+	ClipboardData *cbd;
+
 	if (!fd || !*fd->path) return;
 
-	if (options->clipboard_selection == CLIPBOARD_PRIMARY)
+
+	if (options->clipboard_selection == CLIPBOARD_PRIMARY || options->clipboard_selection == CLIPBOARD_BOTH)
 		{
-		gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_PRIMARY), quoted ? g_shell_quote(fd->path) :  fd->path , -1);
+		cbd = g_new0(ClipboardData, 1);
+		cbd->path_list = NULL;
+		cbd->quoted = quoted;
+		cbd->path_list = g_list_append(cbd->path_list, g_strdup(fd->path));
+
+		gtk_clipboard_set_with_data(gtk_clipboard_get(GDK_SELECTION_PRIMARY), target_types, target_types_n, clipboard_get_func, clipboard_clear_func, cbd);
 		}
-	else if (options->clipboard_selection == CLIPBOARD_CLIPBOARD)
+
+	if (options->clipboard_selection == CLIPBOARD_CLIPBOARD || options->clipboard_selection == CLIPBOARD_BOTH)
 		{
-		gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), quoted ? g_shell_quote(fd->path) :  fd->path , -1);
-		}
-	else
-		{
-		gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_PRIMARY), quoted ? g_shell_quote(fd->path) :  fd->path , -1);
-		gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), quoted ? g_shell_quote(fd->path) :  fd->path , -1);
+		cbd = g_new0(ClipboardData, 1);
+		cbd->path_list = NULL;
+		cbd->quoted = quoted;
+		cbd->path_list = g_list_append(cbd->path_list, g_strdup(fd->path));
+
+		gtk_clipboard_set_with_data(gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), target_types, target_types_n, clipboard_get_func, clipboard_clear_func, cbd);
 		}
 }
 
-void file_util_copy_path_list_to_clipboard(GList *list, gboolean quoted)
+/**
+ * @brief
+ * @param fd_list List of fd
+ * @param quoted
+ *
+ *
+ */
+void file_util_copy_path_list_to_clipboard(GList *fd_list, gboolean quoted)
 {
+	ClipboardData *cbd;
+	FileData *fd;
 	GList *work;
-	GString *path_list_str;
 
-	path_list_str = g_string_new("");
-	work = list;
-	while (work) {
-		FileData *fd = work->data;
-		work = work->next;
+	if (options->clipboard_selection == CLIPBOARD_PRIMARY || options->clipboard_selection == CLIPBOARD_BOTH)
+		{
+		cbd = g_new0(ClipboardData, 1);
+		cbd->path_list = NULL;
+		cbd->quoted = quoted;
+		work = fd_list;
 
-		if (!fd || !*fd->path) continue;
-
-		if (quoted)
+		while (work)
 			{
-			g_string_append(path_list_str, g_shell_quote(fd->path));
+			fd = static_cast<FileData *>(work->data);
+			work = work->next;
+
+			if (!fd || !*fd->path) continue;
+
+			cbd->path_list = g_list_append(cbd->path_list, g_strdup(fd->path));
 			}
-		else
+
+			gtk_clipboard_set_with_data(gtk_clipboard_get(GDK_SELECTION_PRIMARY), target_types, target_types_n, clipboard_get_func, clipboard_clear_func, cbd);
+		}
+
+	if (options->clipboard_selection == CLIPBOARD_CLIPBOARD || options->clipboard_selection == CLIPBOARD_BOTH)
+		{
+		cbd = g_new0(ClipboardData, 1);
+		cbd->path_list = NULL;
+		cbd->quoted = quoted;
+		work = fd_list;
+
+		while (work)
 			{
-			g_string_append(path_list_str, fd->path);
+			fd = static_cast<FileData *>(work->data);
+			work = work->next;
+
+			if (!fd || !*fd->path) continue;
+
+			cbd->path_list = g_list_append(cbd->path_list, g_strdup(fd->path));
 			}
-		if (work) g_string_append_c(path_list_str, ' ');
+
+			gtk_clipboard_set_with_data(gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), target_types, target_types_n, clipboard_get_func, clipboard_clear_func, cbd);
 		}
 
-	if (options->clipboard_selection == CLIPBOARD_PRIMARY)
-		{
-		gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_PRIMARY), path_list_str->str, path_list_str->len);
-		}
-	else if  (options->clipboard_selection == CLIPBOARD_CLIPBOARD)
-		{
-		gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), path_list_str->str, path_list_str->len);
-		}
-	else
-		{
-		gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_PRIMARY), path_list_str->str, path_list_str->len);
-		gtk_clipboard_set_text(gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), path_list_str->str, path_list_str->len);
-		}
-
-	g_string_free(path_list_str, TRUE);
-	filelist_free(list);
+	filelist_free(fd_list);
 }
 
 static void new_folder_entry_activate_cb(GtkWidget *UNUSED(widget), gpointer data)

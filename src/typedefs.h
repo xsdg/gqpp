@@ -34,6 +34,13 @@ typedef enum {
 } ZoomStyle;
 
 typedef enum {
+	CLIPBOARD_TEXT_PLAIN	= 0,
+	CLIPBOARD_TEXT_URI_LIST	= 1,
+	CLIPBOARD_X_SPECIAL_GNOME_COPIED_FILES	= 2,
+	CLIPBOARD_UTF8_STRING	= 3
+} ClipboardDestination;
+
+typedef enum {
 	CLIPBOARD_PRIMARY	= 0,
 	CLIPBOARD_CLIPBOARD = 1,
 	CLIPBOARD_BOTH = 2
