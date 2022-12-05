@@ -509,6 +509,199 @@ GenericDialog *warning_dialog(const gchar *heading, const gchar *text,
 
 /*
  *-----------------------------------------------------------------------------
+ * AppImage version update notification message with fade-out
+ *-----------------------------------------------------------------------------
+ * 
+ * It is expected that the version file on the server has the following format
+ * for the first two lines in these formats:
+ * 
+ * 1. x86_64 AppImage - e.g. Geeqie-v2.0+20221113-x86_64.AppImage
+ * 2. arm AppImage - e.g. Geeqie-v2.0+20221025-aarch64.AppImage
+ */
+
+typedef struct _AppImageData AppImageData;
+struct _AppImageData
+{
+	GFile *version_file;
+	GDataInputStream *data_input_stream;
+	GFileInputStream *file_input_stream;
+	GThreadPool *thread_pool;
+	GtkWidget *window;
+	guint id;
+};
+
+static gboolean appimage_notification_close_cb(gpointer data)
+{
+	AppImageData *appimage_data = static_cast<AppImageData *>(data);
+
+	if (appimage_data->window && gtk_window_get_opacity(GTK_WINDOW(appimage_data->window)) != 0)
+		{
+		g_source_remove(appimage_data->id);
+		}
+
+	if (appimage_data->window)
+		{
+		gtk_widget_destroy(appimage_data->window);
+		}
+
+	g_object_unref(appimage_data->data_input_stream);
+	g_object_unref(appimage_data->file_input_stream);
+	g_object_unref(appimage_data->version_file);
+	g_thread_pool_free(appimage_data->thread_pool, TRUE, TRUE);
+	g_free(appimage_data);
+
+	return FALSE;
+}
+
+static gboolean appimage_notification_fade_cb(gpointer data)
+{
+	AppImageData *appimage_data = static_cast<AppImageData *>(data);
+
+	gtk_window_set_opacity(GTK_WINDOW(appimage_data->window), (gtk_window_get_opacity(GTK_WINDOW(appimage_data->window)) - 0.02));
+
+	if (gtk_window_get_opacity(GTK_WINDOW(appimage_data->window)) == 0)
+		{
+		g_idle_add(appimage_notification_close_cb, data);
+
+		return FALSE;
+		}
+
+	return TRUE;
+}
+
+static gboolean user_close_cb(GtkWidget *UNUSED(widget), GdkEvent *UNUSED(event), gpointer data)
+{
+	AppImageData *appimage_data = static_cast<AppImageData *>(data);
+
+	g_idle_add(appimage_notification_close_cb, appimage_data);
+
+	return FALSE;
+}
+
+static void show_notification_message(gchar *version_string_from_file, AppImageData *appimage_data)
+{
+	GtkWidget *label;
+	gint server_version;
+	gint running_version;
+	gchar *version_string;
+
+	server_version = atoi(strtok(strstr(version_string_from_file, "+") + 1, "-") );
+	version_string = g_strdup(strstr(VERSION, "git"));
+	running_version = atoi(strtok(version_string + 3, "-") );
+	g_free(version_string);
+
+	if (server_version > running_version)
+		{
+		appimage_data->window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+		label = gtk_label_new (_("A new Geeqie AppImage is available"));
+		gtk_widget_show(label);
+		gtk_container_add(GTK_CONTAINER(appimage_data->window), label);
+		gtk_window_set_decorated(GTK_WINDOW(appimage_data->window), FALSE);
+		gtk_widget_set_size_request(appimage_data->window, 300, 40);
+		gtk_window_set_gravity(GTK_WINDOW(appimage_data->window), GDK_GRAVITY_NORTH_EAST);
+		gtk_window_move(GTK_WINDOW(appimage_data->window), (gdk_screen_width() * 0.8), (gdk_screen_height() / 20));
+		gtk_window_set_skip_taskbar_hint(GTK_WINDOW(appimage_data->window), TRUE);
+		gtk_window_set_focus_on_map(GTK_WINDOW(appimage_data->window), FALSE);
+		g_signal_connect(appimage_data->window, "focus-in-event", G_CALLBACK(user_close_cb), appimage_data);
+		appimage_data->id = g_timeout_add(100, appimage_notification_fade_cb, appimage_data);
+		gtk_widget_show((appimage_data->window));
+		}
+	else
+		{
+		g_idle_add(appimage_notification_close_cb, appimage_data);
+		}
+}
+
+#ifdef __arm__
+static void appimage_data_arm_read_line_async_ready_cb(GObject *source_object, GAsyncResult *res, gpointer data)
+{
+	AppImageData *appimage_data = static_cast<AppImageData *>(data);
+	gsize length;
+	gchar *result;
+
+	result = g_data_input_stream_read_line_finish(appimage_data->data_input_stream, res, &length, NULL);
+
+	if (result && strstr(result, "-aarch64.AppImage"))
+		{
+		show_notification_message(result, appimage_data);
+		}
+	else
+		{
+		g_idle_add(appimage_notification_close_cb, data);
+		}
+
+	g_free(result);
+}
+#endif
+
+static void appimage_data_x86_read_line_async_ready_cb(GObject *UNUSED(source_object), GAsyncResult *res, gpointer data)
+{
+	AppImageData *appimage_data = static_cast<AppImageData *>(data);
+	gsize length;
+	gchar *result;
+
+	result = g_data_input_stream_read_line_finish(appimage_data->data_input_stream, res, &length, NULL);
+
+#ifdef __x86_64__
+	if (result && strstr(result, "-x86_64.AppImage"))
+		{
+		show_notification_message(result, appimage_data);
+		}
+	else
+		{
+		g_idle_add(appimage_notification_close_cb, data);
+		}
+#endif
+
+#ifdef __arm__
+	g_data_input_stream_read_line_async(appimage_data->data_input_stream, G_PRIORITY_LOW, NULL, appimage_data_arm_read_line_async_ready_cb, appimage_data);
+#endif
+
+	g_free(result);
+}
+
+static void appimage_notification_func(gpointer data, gpointer UNUSED(user_data))
+{
+	AppImageData *appimage_data = static_cast<AppImageData *>(data);
+	GNetworkMonitor *net_mon;
+	GSocketConnectable *geeqie_github_io;
+	gboolean internet_available = FALSE;
+
+	net_mon = g_network_monitor_get_default();
+	geeqie_github_io = g_network_address_parse_uri(APPIMAGE_VERSION_FILE, 80, NULL);
+	if (geeqie_github_io)
+		{
+		internet_available = g_network_monitor_can_reach(net_mon, geeqie_github_io, NULL, NULL);
+		g_object_unref(geeqie_github_io);
+		}
+
+	if (internet_available)
+		{
+		appimage_data->version_file = g_file_new_for_uri(APPIMAGE_VERSION_FILE);
+		appimage_data->file_input_stream = g_file_read(appimage_data->version_file, NULL, NULL);
+		appimage_data->data_input_stream = g_data_input_stream_new(G_INPUT_STREAM(appimage_data->file_input_stream));
+
+		g_data_input_stream_read_line_async(appimage_data->data_input_stream, G_PRIORITY_LOW, NULL, appimage_data_x86_read_line_async_ready_cb, appimage_data);
+		}
+	else
+		{
+		g_thread_pool_free(appimage_data->thread_pool, TRUE, TRUE);
+		g_free(appimage_data);
+		}
+}
+
+void appimage_notification()
+{
+	AppImageData *appimage_data;
+
+	appimage_data = g_new0(AppImageData, 1);
+
+	appimage_data->thread_pool = g_thread_pool_new(appimage_notification_func, appimage_data, 1, FALSE, NULL);
+	g_thread_pool_push(appimage_data->thread_pool, appimage_data, NULL);
+}
+
+/*
+ *-----------------------------------------------------------------------------
  * generic file ops dialog routines
  *-----------------------------------------------------------------------------
  */

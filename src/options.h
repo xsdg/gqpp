@@ -75,6 +75,8 @@ struct _ConfOptions
 	gboolean marks_save;		/**< save marks on exit */
 	gchar *marks_tooltips[FILEDATA_MARKS_SIZE];
 
+	gboolean appimage_notifications;
+
 	gboolean with_rename;
 	gboolean collections_on_top;
 	gboolean hide_window_in_fullscreen;

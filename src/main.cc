@@ -1469,6 +1469,12 @@ gint main(gint argc, gchar *argv[])
 		set_theme_bg_color();
 		}
 
+	/* Show a fade-out notification window if the server has a newer AppImage version */
+	if (options->appimage_notifications && g_getenv("APPDIR") && strstr(g_getenv("APPDIR"), "/tmp/.mount_Geeqie"))
+		{
+		appimage_notification();
+		}
+
 	DEBUG_1("%s main: gtk_main", get_exec_time());
 	gtk_main();
 

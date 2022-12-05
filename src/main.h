@@ -124,6 +124,7 @@
 #include "debug.h"
 #include "options.h"
 
+#define APPIMAGE_VERSION_FILE "https://raw.githubusercontent.com/geeqie/geeqie.github.io/master/AppImage/appimages.txt"
 #define TIMEZONE_DATABASE_WEB "https://cdn.bertold.org/zonedetect/db/db.zip"
 #define TIMEZONE_DATABASE_FILE "timezone21.bin"
 #define TIMEZONE_DATABASE_VERSION "out_v1"
