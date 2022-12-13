@@ -332,6 +332,8 @@ See the shell scripts section in the Doxygen documentation (`File List`, `detail
 Use American, rather than British English, spelling. This will facilitate consistent
 text searches. User text may be translated via the en_GB.po file.
 
+To avoid confusion between American and British date formats, use ISO format (YYYY-MM-DD) where possible.
+
 To document the code use the following rules to allow extraction with Doxygen.  
 Not all comments have to be Doxygen comments.
 
