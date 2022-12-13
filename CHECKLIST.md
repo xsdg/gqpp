@@ -84,3 +84,5 @@ In `Describe this release` copy-paste the relevant section of `NEWS`.
 Upload the `/tmp/geeqie-<n.m>.tar.xz` and `/tmp/geeqie-<n.m>.tar.xz.asc` files created above
 
 Click `Publish release`
+
+Update the [Wikipedia entry](https://en.wikipedia.org/wiki/Geeqie)
