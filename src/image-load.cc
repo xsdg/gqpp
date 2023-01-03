@@ -1008,6 +1008,26 @@ static gboolean image_loader_setup_source(ImageLoader *il)
 			}
 		else
 			{
+			il->mapped_file = libraw_get_preview(il, (guint *)&il->bytes_total);
+
+			if (il->mapped_file)
+				{
+				/* Both exiv2 and libraw sometimes return a pointer to a file
+				 * section that is not a jpeg */
+				if (!(il->mapped_file[0] == 0xFF && il->mapped_file[1] == 0xD8))
+					{
+					il->mapped_file = NULL;
+					}
+				else
+					{
+					il->preview = IMAGE_LOADER_PREVIEW_LIBRAW;
+					}
+				}
+			}
+
+		/* If libraw does not find a thumbnail, try exiv2 */
+		if (!il->mapped_file)
+			{
 			il->mapped_file = exif_get_preview(exif, (guint *)&il->bytes_total, 0, 0); /* get the largest available preview image or NULL for normal images*/
 
 			if (il->mapped_file)
@@ -1021,24 +1041,6 @@ static gboolean image_loader_setup_source(ImageLoader *il)
 				else
 					{
 					il->preview = IMAGE_LOADER_PREVIEW_EXIF;
-					}
-				}
-			}
-
-		/* If exiv2 does not find a thumbnail, try libraw (which may be slower) */
-		if (!il->mapped_file)
-			{
-			il->mapped_file = libraw_get_preview(il, (guint *)&il->bytes_total);
-
-			if (il->mapped_file)
-				{
-				if (!(il->mapped_file[0] == 0xFF && il->mapped_file[1] == 0xD8))
-					{
-					il->mapped_file = NULL;
-					}
-				else
-					{
-					il->preview = IMAGE_LOADER_PREVIEW_LIBRAW;
 					}
 				}
 			}

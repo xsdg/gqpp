@@ -362,8 +362,8 @@
  * object image_loader_setuploader
  * circle "il->memory_mapped"
  * object exif_get_preview_
- * object exif_get_preview
  * object libraw_get_preview
+ * object exif_get_preview
  * 
  * image_change : image.cc
  * image_change_complete : image.cc
@@ -376,12 +376,12 @@
  * image_loader_setuploader : -
  * image_loader_setuploader : Select backend using magic
  * image_loader_setup_source : image-load.cc
+ * libraw_get_preview : image-load-libraw.cc
  * exif_get_preview : exiv2.cc
  * exif_get_preview : EXIV2_TEST_VERSION(0,17,90)
  * exif_get_preview_ : exif.cc
  * exif_get_preview_ : -
  * exif_get_preview_ : If exiv2 not installed
- * libraw_get_preview : image-load-libraw.cc
  * 
  * image_change --> image_change_complete
  * image_change_complete --> image_load_begin
@@ -390,8 +390,8 @@
  * image_loader_start_thread --> image_loader_thread_run
  * image_loader_start_thread --> image_loader_setup_source
  * image_loader_setup_source --> exif_get_preview_
- * image_loader_setup_source --> exif_get_preview
- * image_loader_setup_source --> libraw_get_preview : Try libraw if exiv2 fails
+ * image_loader_setup_source --> exif_get_preview : Try exiv2 if libraw fails
+ * image_loader_setup_source --> libraw_get_preview
  * exif_get_preview_ ..> "il->memory_mapped"
  * exif_get_preview ..> "il->memory_mapped"
  * libraw_get_preview ..> "il->memory_mapped"

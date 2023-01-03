@@ -3,80 +3,231 @@
 ## @file
 ## @brief Extract embedded jpegs from a raw file
 ##
+## Use exiftool if it detects a higher number of preview
+## images, otherwise use exiv2 if available
+## - exiv2 does not see the largest preview image in a .cr3 file.
+##
+## Note that exiftool is noticeably slower than exiv2
+##
 ## - Display a list of the embedded files
 ## - Extract the selected image to a tmp folder
+## - Rotate image if exif data is available
 ## - If jpgicc is installed, correct for currently selected rendering intent
-##  and store in a new file
+## - Store in a new file
 ## - Set Geeqie focus to the newly generated image
 ##
 
-if ! [ -x "$(command -v exiv2)" ]
+use_exiftool="false"
+
+if ! [ -x "$(command -v exiftool)" ]
 then
-	zenity --info --width=300 --height=100 --text="Export jpeg from raw file\n\nexiv2 is not installed" --title="Geeqie export jpeg" 2>/dev/null
-	exit 1
+	if ! [ -x "$(command -v exiv2)" ]
+	then
+		zenity --info --width=300 --height=100 --text="Export jpeg from raw file\n\nNeither exiftoool nor exiv2 are installed" --title="Geeqie export jpeg" 2> /dev/null
+		exit 1
+	fi
 fi
 
 if ! [ -x "$(command -v jpgicc)" ]
 then
-	zenity --info --width=300 --height=100 --text="Export jpeg from raw file\n\njpgicc is not installed\ncolor corrections will not be made\nYou may install via liblcms2-utils" --title="Geeqie export jpeg" 2>/dev/null
-fi
-
-count=$(exiv2 -pp "$1" | wc -l)
-if [ "$count" -eq 0 ]
-then
-	zenity --info --width=300 --height=100 --text="Export jpeg from raw file\n\nFile contains no embedded images" --title="Geeqie export jpeg" 2>/dev/null
-	exit 1
+	zenity --info --width=300 --height=100 --text="Export jpeg from raw file\n\njpgicc is not installed\ncolor corrections will not be made\nYou may install via liblcms2-utils" --title="Geeqie export jpeg" 2> /dev/null
 fi
 
 IFS='
 '
 
-list=$(exiv2 -pp "$1")
-image_list=""
+exiv2_count=0
+if list=$(exiv2 --print preview "$1")
+then
+	if [ "$(echo "$list" | wc --words)" -gt 1 ]
+	then
+		exiv2_count=$(echo "$list" | wc --lines)
+	fi
+fi
+
+exiftool_count=0
+in_list=$(exiftool -veryshort -preview:all -orientation# "$1")
+if echo "$in_list" | grep --quiet Orientation -
+then
+	exiftool_count=$(($(echo "$in_list" | wc --lines) - 1))
+else
+	exiftool_count=$(echo "$in_list" | wc --words)
+fi
+
+if [ "$exiftool_count" -gt "$exiv2_count" ]
+then
+	use_exiftool="true"
+	count="$exiftool_count"
+else
+	count="$exiv2_count"
+fi
+
+if [ "$use_exiftool" = "true" ]
+then
+	# An integer value is returned by a # suffix
+	in_list=$(exiftool -veryshort -preview:all -orientation# "$1")
+
+	if [ "$(echo "$in_list" | wc --lines)" -gt 0 ]
+	then
+		# $in_list is in the form of lines e.g.
+		#
+		# OtherImage: (Binary data 138367 bytes, use -b option to extract)
+		# PreviewImage: (Binary data 138367 bytes, use -b option to extract)
+		# ...
+		# Orientation: 8
+
+		if echo "$in_list" | grep --quiet Orientation -
+		then
+			orientation=$(echo "$in_list" | tail --lines=1 | cut --delimiter=' ' --fields=2)
+			count=$(($(echo "$in_list" | wc --lines) - 1))
+			list=$(echo "$in_list" | head --lines=-1 | sort --field-separator=: --key=2 --sort=human-numeric --reverse)
+		else
+			orientation=0
+			list="$in_list"
+		fi
+	else
+		count=0
+	fi
+else
+	orientation_str=$(exiv2 -g Exif.Image.Orientation -pv "$1")
+
+	# orientation in the form e.g.
+	# 0x0112 Image        Orientation                 Short       1  8
+
+	orientation=$(echo "$orientation_str" | tr --squeeze-repeats ' ' | cut --delimiter=' ' --fields=6)
+fi
+
+if [ "$count" -eq 0 ]
+then
+	zenity --info --width=300 --height=100 --text="Export jpeg from raw file\n\nFile contains no embedded images" --title="Geeqie export jpeg" 2> /dev/null
+	exit 0
+fi
+
+case "$orientation" in
+	2)
+		rotation="-flop"
+		;;
+	3)
+		rotation="-rotate 180"
+		;;
+	4)
+		rotation="-flip"
+		;;
+	5)
+		rotation="-transpose"
+		;;
+	6)
+		rotation="-rotate 90"
+		;;
+	7)
+		rotation="-transverse"
+		;;
+	8)
+		rotation="-rotate -90"
+		;;
+	*)
+		rotation=""
+		;;
+esac
+
 n=1
+image_list=""
 
 for image in $list
 do
-	if [ "$n" -eq "$count" ]
+	if [ "$use_exiftool" = "true" ]
 	then
-		image_list="${image_list:+${image_list}}TRUE\n$image\n$n"
+		# $image is in the form of e.g.
+		# OtherImage: (Binary data 138367 bytes, use -b option to extract)
+
+		preview_name_colon=$(echo "$image" | cut --delimiter=' ' --fields=1)
+		preview_name=$(echo "$preview_name_colon" | cut --delimiter=':' --fields=1)
+		bytes=$(echo "$image" | cut --delimiter=' ' --fields=4)
+
+		params=$(exiftool -b -"$preview_name" "$1" | exiftool -veryshort -short -ImageSize -MIMEType -)
+		size=$(echo "$params" | head -1)
+		mime=$(echo "$params" | tail -1)
+
+		if [ "$n" -eq "$count" ]
+		then
+			image_list="${image_list:+${image_list}}TRUE\nPreview $n: $mime,\t $size pixels,\t $bytes bytes\n$n:$preview_name:$mime"
+		else
+			image_list="${image_list:+${image_list}}FALSE\nPreview $n: $mime,\t $size pixels,\t $bytes bytes\n$n:$preview_name:$mime\n"
+		fi
 	else
-		image_list="${image_list:+${image_list}}FALSE\n$image\n$n\n"
+		if [ "$n" -eq "$count" ]
+		then
+			image_list="${image_list:+${image_list}}TRUE\n$image\n$n"
+		else
+			image_list="${image_list:+${image_list}}FALSE\n$image\n$n\n"
+		fi
 	fi
+
 	n=$((n + 1))
 done
 
-image_selected=$(echo "$image_list" | zenity  --width=500 --height=250 --title="Geeqie export jpeg" --list  --text "Select embedded image" --radiolist  --column "Select" --column "Image" --column "n" --hide-column=3 --print-column=3 2>/dev/null) 
+image_selected=$(echo "$image_list" | zenity --width=500 --height=250 --title="Geeqie export jpeg" --list --text "Select embedded image" --radiolist --column "Select" --column "Image" --column "n" --hide-column=3 --print-column=3 2> /dev/null)
 
 if [ -n "$image_selected" ]
 then
 	tmpdir=$(mktemp -d "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 
-	exiv2 --location "$tmpdir" -ep"$image_selected" "$1"
-
-	render_str=$(geeqie --remote --get-render-intent)
-
-	case $render_str in
-		"Perceptual" )
-		render_key=0;;
-		"Relative Colorimetric" )
-		render_key=1;;
-		"Saturation" )
-		render_key=2;;
-		"Absolute Colorimetric" )
-		render_key=3;;
-	esac
-
-	filename=$(basename "$tmpdir/"* ".jpg")
-	if [ -x "$(command -v jpgicc)" ]
+	if [ "$use_exiftool" = "true" ]
 	then
-		filename_ri="$tmpdir/""$filename""-ri.jpg"
-		jpgicc -t $render_key "$tmpdir/""$filename"".jpg"  "$filename_ri"
+		# $image_selected is in the form e.g.
+		# 4:jpegfromraw:image/jpeg
 
-		rm "$tmpdir/""$filename"".jpg"
-
-		geeqie --remote view:"$filename_ri"
+		image_no=$(echo "$image_selected" | cut --delimiter=':' --fields=1)
+		image_id=$(echo "$image_selected" | cut --delimiter=':' --fields=2)
+		image_mime=$(echo "$image_selected" | cut --delimiter=':' --fields=3)
+		image_extension=$(echo "$image_mime" | cut --delimiter='/' --fields=2)
+		base_name=$(basename "$1")
+		image_name="${base_name%.*}"
+		exiftool -b -"$image_id" "$1" > "$tmpdir/$image_name-preview$image_no.$image_extension"
 	else
-		geeqie --remote view:"$tmpdir/""$filename"".jpg"
+		exiv2 --location "$tmpdir" -ep"$image_selected" "$1"
 	fi
+
+	if [ -n "$rotation" ]
+	then
+		command_str="mogrify $rotation \"$tmpdir/*\""
+		sh -c "$command_str"
+	fi
+
+	base_name=$(basename "$tmpdir/"*)
+	image_extension="${base_name##*.}"
+
+	if echo "$base_name" | grep --quiet --ignore-case "\.jpeg$" || echo "$base_name" | grep --quiet --ignore-case "\.jpg$"
+	then
+		render_str=$(geeqie --remote --get-render-intent)
+
+		case $render_str in
+			"Perceptual")
+				render_key=0
+				;;
+			"Relative Colorimetric")
+				render_key=1
+				;;
+			"Saturation")
+				render_key=2
+				;;
+			"Absolute Colorimetric")
+				render_key=3
+				;;
+			*)
+				render_key=0
+				;;
+		esac
+
+		filename=$(basename "$tmpdir/"* ".$image_extension")
+		if [ -x "$(command -v jpgicc)" ]
+		then
+			filename_ri="$tmpdir/""$filename""-ri.jpg"
+			jpgicc -t "$render_key" "$tmpdir/""$filename"".$image_extension" "$filename_ri"
+
+			rm "$tmpdir/$filename.$image_extension"
+		fi
+	fi
+
+	geeqie --remote view:"$tmpdir/"
 fi
