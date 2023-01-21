@@ -20,4 +20,4 @@ build_dir="$PWD"
 
 cd "$(dirname "$1")" || return 1
 
-${XXD} "$(basename "$1")" "$build_dir/$2"
+${XXD} "$(basename "$1")" > "$build_dir/$2"
