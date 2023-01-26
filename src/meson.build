@@ -256,14 +256,16 @@ ui_icons_h = custom_target('ui_icons', output : 'ui_icons.h',
 
 project_sources += ui_icons_h
 
-xxd = find_program('generate-ClayRGB1998-icc-h.sh', dirs : join_paths(meson.source_root(), 'scripts'))
+if conf_data.has('HAVE_LCMS')
+    xxd_sh = find_program('generate-ClayRGB1998-icc-h.sh', dirs : join_paths(meson.source_root(), 'scripts'))
 
-ClayRGB1998_icc_h = custom_target('ClayRGB1998',
-                    input: 'ClayRGB1998.icc',
-                    output : 'ClayRGB1998_icc.h',
-                    command : [xxd, '@INPUT@', '@OUTPUT@'])
+    ClayRGB1998_icc_h = custom_target('ClayRGB1998',
+                        input: 'ClayRGB1998.icc',
+                        output : 'ClayRGB1998_icc.h',
+                        command : [xxd_sh, '@INPUT@', '@OUTPUT@'])
 
-project_sources += ClayRGB1998_icc_h
+    project_sources += ClayRGB1998_icc_h
+endif
 
 executable('geeqie', project_sources,
 dependencies : [
