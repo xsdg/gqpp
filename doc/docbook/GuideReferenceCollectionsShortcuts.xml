@@ -42,7 +42,6 @@ keyboard shortcuts
 <row> <entry> <code> 	Ctrl + <keycap>  S </keycap> </code> </entry> <entry>  Save collection as </entry> </row>
 <row> <entry> <code> 	Ctrl + <keycap>  T </keycap> </code> </entry> <entry>  Show filename text </entry> </row>
 <row> <entry> <code> 	 <keycap>  N </keycap> </code> </entry> <entry>  Sort by name </entry> </row>
-<row> <entry> <code> 	 <keycap>  I </keycap> </code> </entry> <entry>  Sort by number </entry> </row>
 <row> <entry> <code> 	 <keycap>  D </keycap> </code> </entry> <entry>  Sort by date </entry> </row>
 <row> <entry> <code> 	 <keycap>  B </keycap> </code> </entry> <entry>  Sort by size </entry> </row>
 <row> <entry> <code> 	 <keycap>  P </keycap> </code> </entry> <entry>  Sort by path </entry> </row>

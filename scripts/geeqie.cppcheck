@@ -35,7 +35,6 @@
         <define name="HAVE_PDF"/>
         <define name="HAVE_RAW"/>
         <define name="HAVE_SPELL"/>
-        <define name="HAVE_STRVERSCMP"/>
         <define name="HAVE_TIFF"/>
         <define name="HAVE_WEBP"/>
     </defines>

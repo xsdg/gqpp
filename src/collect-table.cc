@@ -95,7 +95,6 @@ hard_coded_window_keys collection_window_keys[] = {
 	{GDK_CONTROL_MASK, 'S', N_("Save collection as")},
 	{GDK_CONTROL_MASK, 'T', N_("Show filename text")},
 	{0, 'N', N_("Sort by name")},
-	{0, 'I', N_("Sort by number")},
 	{0, 'D', N_("Sort by date")},
 	{0, 'B', N_("Sort by size")},
 	{0, 'P', N_("Sort by path")},

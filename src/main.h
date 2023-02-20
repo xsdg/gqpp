@@ -24,12 +24,6 @@
 
 #include <config.h>
 
-#ifdef HAVE_STRVERSCMP
-#  ifndef _GNU_SOURCE
-#    define _GNU_SOURCE
-#  endif
-#endif
-
 #include "intl.h"
 
 

@@ -2689,7 +2689,7 @@ static void config_tab_files(GtkWidget *notebook)
 			      options->file_filter.show_parent_directory, &c_options->file_filter.show_parent_directory);
 	pref_checkbox_new_int(group, _("Case sensitive sort"),
 			      options->file_sort.case_sensitive, &c_options->file_sort.case_sensitive);
-	pref_checkbox_new_int(group, _("Natural sort order"),
+	pref_checkbox_new_int(group, _("Natural sort order - Requires restart"),
 					  options->file_sort.natural, &c_options->file_sort.natural);
 	pref_checkbox_new_int(group, _("Disable file extension checks"),
 			      options->file_filter.disable_file_extension_checks, &c_options->file_filter.disable_file_extension_checks);

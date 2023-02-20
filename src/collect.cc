@@ -183,11 +183,6 @@ static gint collection_list_sort_cb(gconstpointer a, gconstpointer b)
 			if (cia->fd->format_class < cib->fd->format_class) return -1;
 			if (cia->fd->format_class > cib->fd->format_class) return 1;
 			break;
-#ifdef HAVE_STRVERSCMP
-		case SORT_NUMBER:
-			return strverscmp(cia->fd->name, cib->fd->name);
-			break;
-#endif
 		default:
 			break;
 		}
@@ -1030,11 +1025,6 @@ static gboolean collection_window_keypress(GtkWidget *UNUSED(widget), GdkEventKe
 			case 'N': case 'n':
 				collection_set_sort_method(cw->cd, SORT_NAME);
 				break;
-#ifdef HAVE_STRVERSCMP
-			case 'I': case 'i':
-				collection_set_sort_method(cw->cd, SORT_NUMBER);
-				break;
-#endif
 			case 'D': case 'd':
 				collection_set_sort_method(cw->cd, SORT_TIME);
 				break;
