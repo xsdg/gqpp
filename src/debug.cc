@@ -21,8 +21,14 @@
 #include "main.h"
 #include "debug.h"
 
+#include "filedata.h"
 #include "logwindow.h"
+#include "misc.h"
 #include "ui-fileops.h"
+
+#ifdef HAVE_EXECINFO_H
+#include <execinfo.h>
+#endif
 
 #include <regex.h>
 
@@ -248,6 +254,119 @@ void set_regexp(gchar *cmd_regexp)
 gchar *get_regexp(void)
 {
 	return g_strdup(regexp);
+}
+
+#ifdef HAVE_EXECINFO_H
+/**
+ * @brief Backtrace of geeqie files
+ * @param file 
+ * @param function 
+ * @param line 
+ * 
+ * Requires command line program addr2line \n
+ * Prints the contents of the backtrace buffer for Geeqie files. \n
+ * Format printed is: \n
+ * <full path to source file>:<line number>
+ *
+ * The log window F1 command and options->log_window.action may be used
+ * to open an editor at a backtrace location.
+ */
+void log_print_backtrace(const gchar *file, const gchar *function, gint line)
+{
+	FILE *fp;
+	char **bt_syms;
+	char path[2048];
+	gchar *address_offset;
+	gchar *cmd_line;
+	gchar *exe_path;
+	gchar *function_name;
+	gchar *paren_end;
+	gchar *paren_start;
+	gint bt_size;
+	gint i;
+	void *bt[1024];
+
+	if (runcmd((gchar *)"which addr2line >/dev/null 2>&1") == 0)
+		{
+		exe_path = g_path_get_dirname(gq_executable_path);
+		bt_size = backtrace(bt, 1024);
+		bt_syms = backtrace_symbols(bt, bt_size);
+
+		log_printf("Backtrace start");
+		log_printf("%s/../%s:%d %s\n", exe_path, file, line, function);
+
+		/* Last item is always "??:?", so ignore it */
+		for (i = 1; i < bt_size - 1; i++)
+			{
+			if (strstr(bt_syms[i], GQ_APPNAME_LC))
+				{
+				paren_start = g_strstr_len(bt_syms[i], -1, "(");
+				paren_end = g_strstr_len(bt_syms[i], -1, ")");
+				address_offset = g_strndup(paren_start + 1, paren_end - paren_start - 1);
+
+				cmd_line = g_strconcat("addr2line -p -f -C -e ", gq_executable_path, " ", address_offset, NULL);
+
+				fp = popen(cmd_line, "r");
+				if (fp == NULL)
+					{
+					log_printf("Failed to run command: %s", cmd_line);
+					}
+				else
+					{
+					while (fgets(path, sizeof(path), fp) != NULL)
+						{
+						/* Remove redundant newline */
+						path[strlen(path) - 1] = '\0';
+
+						function_name = g_strndup(path, g_strstr_len(path, strlen(path), "(") - path);
+
+						log_printf("%s %s", g_strstr_len(path, -1, "at ") + 3, function_name);
+
+						g_free(function_name);
+						}
+					}
+
+				pclose(fp);
+
+				g_free(address_offset);
+				g_free(cmd_line);
+				}
+			}
+		log_printf("Backtrace end");
+
+		free(bt_syms);
+		g_free(exe_path);
+		}
+}
+#else
+void log_print_backtrace(const gchar *file, const gchar *function, gint line)
+{
+}
+#endif
+
+/**
+ * @brief Print ref. count and image name
+ * @param file 
+ * @param function 
+ * @param line 
+ * 
+ * Print image ref. count and full path name of all images in
+ * the file_data_pool.
+ */
+void log_print_file_data_dump(const gchar *file, const gchar *function, gint line)
+{
+	gchar *exe_path;
+
+	exe_path = g_path_get_dirname(gq_executable_path);
+
+	log_printf("FileData dump start");
+	log_printf("%s/../%s:%d %s\n", exe_path, file, line, function);
+
+	file_data_dump();
+
+	log_printf("FileData dump end");
+
+	g_free(exe_path);
 }
 
 #endif /* DEBUG */

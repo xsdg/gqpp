@@ -500,6 +500,12 @@ else
     summary({'nl_langinfo' : ['nl_langinfo not found - first weekday depends on locale:', false, 'first weekday defaults to Monday']}, section : 'Documentation', bool_yn : true)
 endif
 
+# Required only for backtrace debugging
+result = cc.check_header('execinfo.h')
+if result
+    conf_data.set('HAVE_EXECINFO_H', 1)
+endif
+
 conf_data.set_quoted('GETTEXT_PACKAGE', meson.project_name())
 conf_data.set_quoted('GQ_APPDIR', gq_appdir)
 conf_data.set_quoted('GQ_BINDIR', gq_bindir)

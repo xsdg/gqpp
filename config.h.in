@@ -218,4 +218,6 @@
 /* Define for large files, on AIX-style hosts. */
 /* #undef _LARGE_FILES */
 
+/* Define to 1 if you have the <execinfo.h> header file. */
+#mesondefine HAVE_EXECINFO_H
 #endif

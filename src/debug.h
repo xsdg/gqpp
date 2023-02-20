@@ -29,6 +29,9 @@
 void log_domain_printf(const gchar *domain, const gchar *format, ...) G_GNUC_PRINTF(2, 3);
 void log_domain_print_debug(const gchar *domain, const gchar *file_name, const gchar *function_name,
 							int line_number, const gchar *format, ...) G_GNUC_PRINTF(5, 6);
+void log_print_file_data_dump(const gchar *file, const gchar *function_name, gint line_number);
+void log_print_backtrace(const gchar *file, const gchar *function_name, gint line_number);
+
 #define log_printf(...) log_domain_printf(DOMAIN_INFO, __VA_ARGS__)
 
 #ifdef DEBUG
@@ -73,6 +76,15 @@ void init_exec_time(void);
 				gtk_widget_set_name(GTK_WIDGET(widget), g_strdup_printf("%s:%d", __FILE__, __LINE__)); \
 				} while(0)
 
+#define DEBUG_BT() do \
+				{ \
+				log_print_backtrace(__FILE__, __func__, __LINE__); \
+				} while(0)
+
+#define DEBUG_FD() do \
+				{ \
+				log_print_file_data_dump(__FILE__, __func__, __LINE__); \
+				} while(0)
 #else /* DEBUG */
 
 #define get_regexp() (0)
@@ -87,6 +99,8 @@ void init_exec_time(void);
 #define DEBUG_N(n, ...)  do { } while(0)
 
 #define DEBUG_NAME(widget) do { } while(0)
+#define DEBUG_BT() do { } while(0)
+#define DEBUG_FD() do { } while(0)
 
 #endif /* DEBUG */
 

@@ -348,6 +348,7 @@ struct _ConfOptions
 		gboolean paused;
 		gboolean line_wrap;
 		gboolean timer_data;
+		gchar *action; /** Used with F1 key */
 	} log_window;
 
 	/* star rating */

@@ -686,6 +686,38 @@ FileData *file_data_ref(FileData *fd)
 	return fd;
 }
 
+/**
+ * @brief Print ref. count and image name
+ * @param  
+ * 
+ * Print image ref. count and full path name of all images in
+ * the file_data_pool.
+ *
+ * Used only by DEBUG_FD()
+ */
+void file_data_dump()
+{
+	FileData *fd;
+	GList *list;
+
+	if (file_data_pool)
+		{
+		list = g_hash_table_get_values(file_data_pool);
+
+		log_printf("%d", global_file_data_count);
+		log_printf("%d", g_list_length(list));
+
+		while (list)
+			{
+			fd = list->data;
+			log_printf("%-4d %s", fd->ref, fd->path);
+			list = list->next;
+			}
+
+		g_list_free(list);
+		}
+}
+
 static void file_data_free(FileData *fd)
 {
 	g_assert(fd->magick == FD_MAGICK);

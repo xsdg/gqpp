@@ -188,5 +188,7 @@ void file_data_inc_page_num(FileData *fd);
 void file_data_dec_page_num(FileData *fd);
 void file_data_set_page_total(FileData *fd, gint page_total);
 void file_data_set_page_num(FileData *fd, gint page_num);
+
+void file_data_dump();
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

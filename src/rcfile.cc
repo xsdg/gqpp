@@ -346,6 +346,7 @@ static void write_global_attributes(GString *outstr, gint indent)
 
 	WRITE_NL(); WRITE_UINT(*options, log_window_lines);
 	WRITE_NL(); WRITE_BOOL(*options, log_window.timer_data);
+	WRITE_NL(); WRITE_CHAR(*options, log_window.action);
 
 	WRITE_NL(); WRITE_BOOL(*options, appimage_notifications);
 	WRITE_NL(); WRITE_BOOL(*options, marks_save);
@@ -847,6 +848,7 @@ static gboolean load_global_params(const gchar **attribute_names, const gchar **
 
 		if (READ_INT(*options, log_window_lines)) continue;
 		if (READ_BOOL(*options, log_window.timer_data)) continue;
+		if (READ_CHAR(*options, log_window.action)) continue;
 
 		if (READ_BOOL(*options, appimage_notifications)) continue;
 		if (READ_BOOL(*options, marks_save)) continue;
