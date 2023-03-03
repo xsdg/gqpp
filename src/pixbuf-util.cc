@@ -24,8 +24,6 @@
 #include "exif.h"
 #include "ui-fileops.h"
 
-#include "icons/icons_inline.h"
-
 #include <math.h>
 
 
@@ -98,63 +96,67 @@ typedef struct _PixbufInline PixbufInline;
 struct _PixbufInline
 {
 	const gchar *key;
-	const guint8 *data;
+	const gchar *data;
 };
 
 static PixbufInline inline_pixbuf_data[] = {
-	{ PIXBUF_INLINE_FOLDER_CLOSED,	folder_closed },
-	{ PIXBUF_INLINE_FOLDER_LOCKED,	folder_locked },
-	{ PIXBUF_INLINE_FOLDER_OPEN,	folder_open },
-	{ PIXBUF_INLINE_FOLDER_UP,	folder_up },
-	{ PIXBUF_INLINE_SCROLLER,	icon_scroller },
-	{ PIXBUF_INLINE_BROKEN,		icon_broken },
-	{ PIXBUF_INLINE_METADATA,	icon_metadata },
-	{ PIXBUF_INLINE_UNKNOWN,	icon_unknown },
-	{ PIXBUF_INLINE_VIDEO,		icon_video },
-	{ PIXBUF_INLINE_COLLECTION,	icon_collection },
-	{ PIXBUF_INLINE_ICON,		gqview_icon },
-	{ PIXBUF_INLINE_LOGO,		geeqie_logo },
-	{ PIXBUF_INLINE_ARCHIVE,	icon_archive },
-	{ PIXBUF_INLINE_ICON_FLOAT,	icon_float },
-	{ PIXBUF_INLINE_ICON_THUMB,	icon_thumb },
-	{ PIXBUF_INLINE_ICON_BOOK,	icon_book },
-	{ PIXBUF_INLINE_ICON_CONFIG,	icon_config },
-	{ PIXBUF_INLINE_ICON_TOOLS,	icon_tools },
-	{ PIXBUF_INLINE_ICON_VIEW,	icon_view },
-	{ PIXBUF_INLINE_ICON_PANORAMA,	icon_panorama },
-	{ PIXBUF_INLINE_ICON_MAINTENANCE,	icon_maintenance },
-	{ PIXBUF_INLINE_ICON_ZOOMFILLHOR,	icon_zoomfillhor },
-	{ PIXBUF_INLINE_ICON_ZOOMFILLVERT,	icon_zoomfillvert },
-	{ PIXBUF_INLINE_ICON_HIDETOOLS,	icon_hidetools },
-	{ PIXBUF_INLINE_ICON_EXIF,	icon_exif },
-	{ PIXBUF_INLINE_ICON_MARKS,	icon_marks },
-	{ PIXBUF_INLINE_ICON_INFO,	icon_info },
-	{ PIXBUF_INLINE_ICON_SORT,	icon_sort },
-	{ PIXBUF_INLINE_ICON_PDF,	icon_pdf },
-	{ PIXBUF_INLINE_ICON_DRAW_RECTANGLE,	icon_draw_rectangle },
-	{ PIXBUF_INLINE_ICON_MOVE,	icon_move },
-	{ PIXBUF_INLINE_ICON_RENAME,	icon_rename },
-	{ PIXBUF_INLINE_ICON_SELECT_ALL,	icon_select_all },
-	{ PIXBUF_INLINE_ICON_SELECT_NONE,	icon_select_none },
-	{ PIXBUF_INLINE_ICON_SELECT_INVERT,	icon_select_invert },
-	{ PIXBUF_INLINE_ICON_SELECT_RECTANGLE,	icon_select_rectangle },
-	{ PIXBUF_INLINE_ICON_FILE_FILTER,	icon_file_filter },
-	{ PIXBUF_INLINE_ICON_CW,	icon_rotate_clockwise },
-	{ PIXBUF_INLINE_ICON_CCW,	icon_rotate_counter_clockwise },
-	{ PIXBUF_INLINE_ICON_180,	icon_rotate_180 },
-	{ PIXBUF_INLINE_ICON_MIRROR,	icon_mirror },
-	{ PIXBUF_INLINE_ICON_FLIP,	icon_flip },
-	{ PIXBUF_INLINE_ICON_ORIGINAL,	icon_original },
-	{ PIXBUF_INLINE_ICON_TRASH,	icon_trash },
-	{ PIXBUF_INLINE_ICON_HEIF,	icon_heic },
-	{ PIXBUF_INLINE_ICON_GRAYSCALE,	icon_grayscale },
-	{ PIXBUF_INLINE_ICON_EXPOSURE,	icon_exposure },
-	{ PIXBUF_INLINE_SPLIT_PANE_SYNC, icon_split_pane_sync },
+	{ PIXBUF_INLINE_ARCHIVE,	"gq-archive-file.png" },
+	{ PIXBUF_INLINE_BROKEN,	"gq-sheet-broken.png" },
+	{ PIXBUF_INLINE_COLLECTION,	"gq-collection.png" },
+	{ PIXBUF_INLINE_FOLDER_CLOSED,	"gq-folder-closed.png" },
+	{ PIXBUF_INLINE_FOLDER_LOCKED,	"gq-folder-locked.png" },
+	{ PIXBUF_INLINE_FOLDER_OPEN,	"gq-folder-open.png" },
+	{ PIXBUF_INLINE_FOLDER_UP,	"gq-folder-up.png" },
+	{ PIXBUF_INLINE_ICON,	"gqview-icon.png" },
+	{ PIXBUF_INLINE_ICON_180,	"gq-icon-rotate-180.png" },
+	{ PIXBUF_INLINE_ICON_BOOK,	"gq-icon-book.png" },
+	{ PIXBUF_INLINE_ICON_CCW,	"gq-icon-rotate-counter-clockwise.png" },
+	{ PIXBUF_INLINE_ICON_CONFIG,	"gq-icon-config.png" },
+	{ PIXBUF_INLINE_ICON_CW,	"gq-icon-rotate-clockwise.png" },
+	{ PIXBUF_INLINE_ICON_DRAW_RECTANGLE,	"gq-icon-draw-rectangle.png" },
+	{ PIXBUF_INLINE_ICON_EXIF,	"gq-icon-exif.png" },
+	{ PIXBUF_INLINE_ICON_EXPOSURE,	"gq-icon-exposure.png" },
+	{ PIXBUF_INLINE_ICON_FILE_FILTER,	"gq-icon-file-filter.png" },
+	{ PIXBUF_INLINE_ICON_FLIP,	"gq-icon-flip.png" },
+	{ PIXBUF_INLINE_ICON_FLOAT,	"gq-icon-float.png" },
+	{ PIXBUF_INLINE_ICON_GRAYSCALE,	"gq-icon-grayscale.png" },
+	{ PIXBUF_INLINE_ICON_HEIF,	"gq-icon-heic.png" },
+	{ PIXBUF_INLINE_ICON_HIDETOOLS,		"gq-icon-hidetools.png" },
+	{ PIXBUF_INLINE_ICON_INFO,	"gq-icon-info.png" },
+	{ PIXBUF_INLINE_ICON_MAINTENANCE,	"gq-icon-maintenance.png" },
+	{ PIXBUF_INLINE_ICON_MARKS,	"gq-icon-marks.png" },
+	{ PIXBUF_INLINE_ICON_MIRROR,	"gq-icon-mirror.png" },
+	{ PIXBUF_INLINE_ICON_MOVE,	"gq-icon-move.png" },
+	{ PIXBUF_INLINE_ICON_ORIGINAL,	"gq-icon-original.png" },
+	{ PIXBUF_INLINE_ICON_PANORAMA,	"gq-icon-panorama.png" },
+	{ PIXBUF_INLINE_ICON_PDF,	"gq-icon-pdf.png" },
+	{ PIXBUF_INLINE_ICON_RENAME,	"gq-icon-rename.png" },
+	{ PIXBUF_INLINE_ICON_SELECT_ALL,	"gq-icon-select-all.png" },
+	{ PIXBUF_INLINE_ICON_SELECT_INVERT,	"gq-icon-select-invert.png" },
+	{ PIXBUF_INLINE_ICON_SELECT_NONE,	"gq-icon-select-none.png" },
+	{ PIXBUF_INLINE_ICON_SELECT_RECTANGLE,	"gq-icon-select-rectangle.png" },
+	{ PIXBUF_INLINE_ICON_SORT,	"gq-icon-sort.png" },
+	{ PIXBUF_INLINE_ICON_THUMB,	"gq-icon-thumb.png" },
+	{ PIXBUF_INLINE_ICON_TOOLS,		"gq-icon-tools.png" },
+	{ PIXBUF_INLINE_ICON_TRASH,	"gq-icon-trash.png" },
+	{ PIXBUF_INLINE_ICON_VIEW,	"gq-icon-view.png" },
+	{ PIXBUF_INLINE_ICON_ZOOMFILLHOR,	"gq-icon-zoomfillhor.png" },
+	{ PIXBUF_INLINE_ICON_ZOOMFILLVERT,	"gq-icon-zoomfillvert.png" },
+	{ PIXBUF_INLINE_LOGO,	"geeqie-logo.png" },
+	{ PIXBUF_INLINE_METADATA,	"gq-sheet-metadata.png" },
+	{ PIXBUF_INLINE_SCROLLER,	"gq-scroller.png" },
+	{ PIXBUF_INLINE_SPLIT_PANE_SYNC, "gq-icon-split-pane-sync.png" },
+	{ PIXBUF_INLINE_UNKNOWN,	"gq-sheet-unknown.png" },
+	{ PIXBUF_INLINE_VIDEO,	"gq-sheet-video.png" },
 	{ NULL, NULL }
 };
 
 GdkPixbuf *pixbuf_inline(const gchar *key)
 {
+	GError *error = NULL;
+	GInputStream *in_stream;
+	GdkPixbuf *icon_pixbuf;
+	gchar *path;
 	gint i;
 
 	if (!key) return NULL;
@@ -164,7 +166,30 @@ GdkPixbuf *pixbuf_inline(const gchar *key)
 		{
 		if (strcmp(inline_pixbuf_data[i].key, key) == 0)
 			{
-			return gdk_pixbuf_new_from_inline(-1, inline_pixbuf_data[i].data, FALSE, NULL);
+			path = g_build_filename(GQ_RESOURCE_PATH_ICONS, inline_pixbuf_data[i].data, NULL);
+
+			in_stream = g_resources_open_stream(path, G_RESOURCE_LOOKUP_FLAGS_NONE, &error);
+			g_free(path);
+
+			if (error)
+				{
+				log_printf("warning: inline pixbuf error: %s", error->message);
+				g_error_free(error);
+				g_object_unref(in_stream);
+				return NULL;
+				}
+
+			icon_pixbuf = gdk_pixbuf_new_from_stream(in_stream, NULL, &error);
+			g_object_unref(in_stream);
+
+			if (error)
+				{
+				log_printf("warning: inline pixbuf error: %s", error->message);
+				g_error_free(error);
+				return NULL;
+				}
+
+			return icon_pixbuf;
 			}
 		i++;
 		}

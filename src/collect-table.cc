@@ -42,10 +42,6 @@
 #include "uri-utils.h"
 #include "view-file.h"
 
-#include "icons/marker.xpm"
-#define MARKER_WIDTH 26
-#define MARKER_HEIGHT 32
-
 /* between these, the icon width is increased by thumb_max_width / 2 */
 #define THUMB_MIN_ICON_WIDTH 128
 #define THUMB_MAX_ICON_WIDTH 150
@@ -1480,6 +1476,10 @@ static void collection_table_insert_marker(CollectTable *ct, CollectInfo *info, 
 	GdkRectangle cell;
 	GdkWindow *parent;
 	gint x_parent, y_parent;
+	GError *error = NULL;
+	GInputStream *in_stream;
+	GdkPixbuf *pb;
+	gchar *path;
 
 	parent = gtk_widget_get_window(gtk_widget_get_toplevel(ct->listview));
 	gdk_window_get_position(parent, &x_parent, &y_parent);
@@ -1501,7 +1501,21 @@ static void collection_table_insert_marker(CollectTable *ct, CollectInfo *info, 
 		{
 		GdkWindowAttr attributes;
 		gint attributes_mask;
-		GdkPixbuf *pb = gdk_pixbuf_new_from_xpm_data((const gchar **)marker_xpm);
+
+		path = g_build_filename(GQ_RESOURCE_PATH_ICONS, "gq-marker.xpm", NULL);
+		in_stream = g_resources_open_stream(path, G_RESOURCE_LOOKUP_FLAGS_NONE, &error);
+		g_free(path);
+
+		pb = gdk_pixbuf_new_from_stream(in_stream, NULL, &error);
+		g_object_unref(in_stream);
+
+		if (error)
+			{
+			log_printf("warning: collection marker error: %s", error->message);
+			g_error_free(error);
+			return;
+			}
+
 		gint w = gdk_pixbuf_get_width(pb);
 		gint h = gdk_pixbuf_get_height(pb);
 
