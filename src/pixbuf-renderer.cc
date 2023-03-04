@@ -888,7 +888,7 @@ static void pr_scroller_start(PixbufRenderer *pr, gint x, gint y)
 #ifdef GQ_BUILD
 		gchar *resource_path;
 
-		resource_path = g_build_filename(GQ_RESOURCE_PATH_ICONS, PIXBUF_INLINE_SCROLLER, ".png", NULL);
+		resource_path = g_build_filename(GQ_RESOURCE_PATH_ICONS, PIXBUF_INLINE_SCROLLER ".png", NULL);
 
 		pixbuf = gdk_pixbuf_new_from_resource(resource_path, NULL);
 		g_free(resource_path);
