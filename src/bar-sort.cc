@@ -63,6 +63,7 @@ struct _SortData
 	GtkWidget *collection_group;
 
 	GtkWidget *add_button;
+	GtkWidget *help_button;
 	GtkWidget *undo_button;
 	SortActionType undo_action;
 	GList *undo_src_list;
@@ -425,11 +426,9 @@ static void bar_filter_help_cb(GenericDialog *UNUSED(gd), gpointer UNUSED(data))
 	help_window_show("GuidePluginsConfig.html#Geeqieextensions");
 }
 
-static gboolean bar_filter_message_cb(GtkWidget *UNUSED(widget), GdkEventButton *event, gpointer UNUSED(data))
+static void bar_filter_help_dialog()
 {
 	GenericDialog *gd;
-
-	if (event->button != MOUSE_BUTTON_RIGHT) return FALSE;
 
 	gd = generic_dialog_new(_("Sort Manager Operations"),
 				"sort_manager_operations", NULL, TRUE, NULL, NULL);
@@ -439,6 +438,20 @@ static gboolean bar_filter_message_cb(GtkWidget *UNUSED(widget), GdkEventButton 
 	generic_dialog_add_button(gd, GTK_STOCK_OK, NULL, NULL, TRUE);
 
 	gtk_widget_show(gd->dialog);
+}
+
+static gboolean bar_filter_message_cb(GtkWidget *UNUSED(widget), GdkEventButton *event, gpointer UNUSED(data))
+{
+	if (event->button != MOUSE_BUTTON_RIGHT) return FALSE;
+
+	bar_filter_help_dialog();
+
+	return TRUE;
+}
+
+static void bar_sort_help_cb(GtkWidget *button, gpointer UNUSED(data))
+{
+	bar_filter_help_dialog();
 
 	return TRUE;
 }
@@ -671,6 +684,7 @@ static GtkWidget *bar_sort_new(LayoutWindow *lw, SortActionType action,
 
 	sd->folder_group = pref_box_new(sd->vbox, FALSE, GTK_ORIENTATION_VERTICAL, 0);
 	DEBUG_NAME(sd->folder_group);
+	gtk_widget_set_tooltip_text(sd->folder_group, _("See the Help file for additional functions"));
 
 	buttongrp = pref_radiobutton_new(sd->folder_group, NULL,
 					 _("Copy"), (sd->action == BAR_SORT_COPY),
@@ -738,6 +752,9 @@ static GtkWidget *bar_sort_new(LayoutWindow *lw, SortActionType action,
 	sd->undo_button = pref_toolbar_button(tbar, GTK_STOCK_UNDO, NULL, FALSE,
 					      _("Undo last image"),
 					      G_CALLBACK(bar_sort_undo_cb), sd);
+	sd->help_button = pref_toolbar_button(tbar, GTK_STOCK_HELP, NULL, FALSE,
+					      _("Functions additional to Copy and Move"),
+					      G_CALLBACK(bar_sort_help_cb), sd);
 
 	sd->mode = -1;
 	bar_sort_mode_sync(sd, mode);
