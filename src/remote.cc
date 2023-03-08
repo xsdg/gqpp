@@ -1252,6 +1252,14 @@ static void gr_list_add(const gchar *text, GIOChannel *UNUSED(channel), gpointer
 	FileData *fd;
 	FileData *first;
 
+	/** @FIXME Should check if file is in current dir, has tilde or is relative */
+	if (!isfile(text))
+		{
+		log_printf("Warning: File does not exist --remote --list-add:%s", text);
+
+		return;
+		}
+
 	/* If there is a files list on the command line
 	 * check if they are all in the same folder
 	 */
