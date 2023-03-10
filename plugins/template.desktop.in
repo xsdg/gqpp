@@ -49,6 +49,39 @@ Icon=gtk-file
 Categories=X-Geeqie;
 OnlyShowIn=X-Geeqie;
 
+# This is a filter - see symlink.desktop and geeqie-symlink for an example
+# of how to use this feature, or see the Additional Preferences/Plugins
+# section of the Help file.
+#X-Geeqie-Filter=true
+
+# Terminal output from the plugin command can be displayed:
+#X-Geeqie-Verbose=true
+
+# Terminal output from the plugin command can be displayed only when
+# multiple files are selected:
+#X-Geeqie-Verbose-Multi=true
+
+# If you want to run a plugin in full-screen mode and wish full-screen
+# to be maintained:
+#X-Geeqie-Keep-Fullscreen=true
+
+# The plugin can be restricted to run on only certain file types,
+# for example:
+#X-Geeqie-File-Extensions=.jpg; .cr2
+
+# The key or key combination to execute this function can be set as
+# in this example:
+# N.B. This value may conflict with a setting in Keyboard Options
+#X-Geeqie-Hotkey=<control>y
+
+# A desktop file with one of the following names has a special function.
+# It will replace the corresponding internal command.
+# geeqie-copy-command.desktop
+# geeqie-move-command.desktop
+# geeqie-rename-command.desktop
+# geeqie-delete-command.desktop
+# geeqie-folder-command.desktop
+
 # Uncomment the following line to include in a Geeqie menu
 # other than in the default path of PluginsMenu
 #X-Geeqie-Menu-Path=<FileMenuPath>
@@ -95,11 +128,5 @@ OnlyShowIn=X-Geeqie;
 #    HelpMenu
 #    HelpMenu/HelpSection
 
-# This is a filter - see symlink.desktop and geeqie-symlink for an example
-# of how to use this feature, or the Plugins section of the Help file.
-#X-Geeqie-Filter=true
-
-# It can be made verbose
-#X-Geeqie-Verbose=true
-
-# For other keys such as MimeType see https://developer.gnome.org/desktop-entry-spec/
+# For other keys such as MimeType see:
+# https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-0.9.5.html
