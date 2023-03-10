@@ -58,6 +58,10 @@
 #include <clutter-gtk/clutter-gtk.h>
 #endif
 
+#ifdef HAVE_EXECINFO_H
+#include <execinfo.h>
+#endif
+
 gboolean thumb_format_changed = FALSE;
 static RemoteConnection *remote_connection = NULL;
 
@@ -70,6 +74,92 @@ gchar *gq_bindir;
 gchar *gq_executable_path;
 gchar *desktop_file_template;
 gchar *instance_identifier;
+
+#if defined(SA_SIGINFO)
+void sigsegv_handler_cb(int UNUSED(signo), siginfo_t *info, void *UNUSED(context))
+{
+	gchar hex_char[16];
+	gint i;
+	guint64 addr;
+	guint64 char_index;
+#ifdef HAVE_EXECINFO_H
+	gint bt_size;
+	void *bt[1024];
+#endif
+
+	hex_char[0] = '0';
+	hex_char[1] = '1';
+	hex_char[2] = '2';
+	hex_char[3] = '3';
+	hex_char[4] = '4';
+	hex_char[5] = '5';
+	hex_char[6] = '6';
+	hex_char[7] = '7';
+	hex_char[8] = '8';
+	hex_char[9] = '9';
+	hex_char[10] = 'a';
+	hex_char[11] = 'b';
+	hex_char[12] = 'c';
+	hex_char[13] = 'd';
+	hex_char[14] = 'e';
+	hex_char[15] = 'f';
+
+	write(STDOUT_FILENO, "Geeqie fatal error\n", 19);
+	write(STDOUT_FILENO, "Signal: Segmentation fault\n", 27);
+
+	write(STDOUT_FILENO, "Code: ", 6);
+	write(STDOUT_FILENO,  (info->si_code == SEGV_MAPERR) ? "Address not mapped" : "Invalid permissions", strlen((info->si_code == SEGV_MAPERR) ? "Address not mapped" : "Invalid permissions"));
+	write(STDOUT_FILENO, "\n", 1);
+
+	write(STDOUT_FILENO, "Address: ", 9);
+
+	if (info->si_addr == 0)
+		{
+		write(STDOUT_FILENO, "0x0\n", 4);
+		}
+	else
+		{
+		/* Assume the address is 64-bit */
+		write(STDOUT_FILENO, "0x", 2);
+		addr = info->si_addr;
+
+		for (i = 0; i < 16; i++)
+			{
+			char_index = addr & 0xf000000000000000;
+			char_index = char_index >> 60;
+			addr = addr << 4;
+
+			write(STDOUT_FILENO, &hex_char[char_index], 1);
+			}
+		write(STDOUT_FILENO, "\n", 1);
+		}
+
+#ifdef HAVE_EXECINFO_H
+	bt_size = backtrace(bt, 1024);
+	backtrace_symbols_fd(bt, bt_size, STDOUT_FILENO);
+#endif
+
+	exit(EXIT_FAILURE);
+}
+#else /* defined(SA_SIGINFO) */
+void sigsegv_handler_cb(int UNUSED(signo))
+{
+#ifdef HAVE_EXECINFO_H
+	gint bt_size;
+	void *bt[1024];
+#endif
+
+	write(STDOUT_FILENO, "Geeqie fatal error\n", 19);
+	write(STDOUT_FILENO, "Signal: Segmentation fault\n", 27);
+
+#ifdef HAVE_EXECINFO_H
+	bt_size = backtrace(bt, 1024);
+	backtrace_symbols_fd(bt, bt_size, STDOUT_FILENO);
+#endif
+
+	exit(EXIT_FAILURE);
+}
+#endif /* defined(SA_SIGINFO) */
 
 /*
  *-----------------------------------------------------------------------------
@@ -1048,6 +1138,16 @@ static void setup_sigbus_handler(void)
 #endif
 }
 
+static void setup_sigsegv_handler(void)
+{
+	struct sigaction sigsegv_action;
+	sigfillset(&sigsegv_action.sa_mask);
+	sigsegv_action.sa_sigaction = sigsegv_handler_cb;
+	sigsegv_action.sa_flags = SA_SIGINFO;
+
+	sigaction(SIGSEGV, &sigsegv_action, NULL);
+}
+
 static void set_theme_bg_color()
 {
 	GdkRGBA bg_color;
@@ -1204,6 +1304,9 @@ gint main(gint argc, gchar *argv[])
 
 	/* setup random seed for random slideshow */
 	srand(time(NULL));
+
+	/* seg. fault handler */
+	setup_sigsegv_handler();
 
 #if 0
 	/* See later comment; this handler leads to UB. */

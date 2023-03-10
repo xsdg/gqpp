@@ -279,7 +279,7 @@ void log_print_backtrace(const gchar *file, const gchar *function, gint line)
 	gchar *address_offset;
 	gchar *cmd_line;
 	gchar *exe_path;
-	gchar *function_name;
+	gchar *function_name = NULL;
 	gchar *paren_end;
 	gchar *paren_start;
 	gint bt_size;
@@ -318,8 +318,10 @@ void log_print_backtrace(const gchar *file, const gchar *function, gint line)
 						/* Remove redundant newline */
 						path[strlen(path) - 1] = '\0';
 
-						function_name = g_strndup(path, g_strstr_len(path, strlen(path), "(") - path);
-
+						if (g_strstr_len(path, strlen(path), "(") != NULL)
+							{
+							function_name = g_strndup(path, g_strstr_len(path, strlen(path), "(") - path);
+							}
 						log_printf("%s %s", g_strstr_len(path, -1, "at ") + 3, function_name);
 
 						g_free(function_name);

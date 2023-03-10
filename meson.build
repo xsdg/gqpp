@@ -45,7 +45,7 @@ project(
     version : run_command('./version.sh', check : true).stdout().strip(),
     license : ['GPL-2.0-or-later'],
     meson_version : '>=0.53.0',
-    default_options : ['warning_level=3', 'buildtype=debugoptimized']
+    default_options : ['warning_level=3', 'buildtype=debugoptimized', 'cpp_link_args=-rdynamic']
 )
 
 # To inhibit warnings from the generated files icons_inline.h and ui_icons.h
@@ -211,6 +211,20 @@ if not option.disabled()
     endif
 else
     summary({'print preview' : ['disabled - print preview supported:', false]}, section : 'Configuration', bool_yn : true)
+endif
+
+# Required only for seg. fault stacktrace and backtrace debugging
+option = get_option('execinfo')
+if not option.disabled()
+    result = cc.check_header('execinfo.h')
+    if result
+        conf_data.set('HAVE_EXECINFO_H', 1)
+        summary({'execinfo' : ['stacktrace supported:', true]}, section : 'Configuration', bool_yn : true)
+    else
+        summary({'execinfo' : ['stacktrace supported:', false]}, section : 'Configuration', bool_yn : true)
+    endif
+else
+    summary({'execinfo' : ['stacktrace supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 exiv2_dep = []
@@ -499,12 +513,6 @@ if cc.links(code, name : 'nl_langinfo and _NL_TIME_FIRST_WEEKDAY')
     summary({'nl_langinfo' : ['first weekday depends on locale:', true]}, section : 'Documentation', bool_yn : true)
 else
     summary({'nl_langinfo' : ['nl_langinfo not found - first weekday depends on locale:', false, 'first weekday defaults to Monday']}, section : 'Documentation', bool_yn : true)
-endif
-
-# Required only for backtrace debugging
-result = cc.check_header('execinfo.h')
-if result
-    conf_data.set('HAVE_EXECINFO_H', 1)
 endif
 
 conf_data.set_quoted('GETTEXT_PACKAGE', meson.project_name())
