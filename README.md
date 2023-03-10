@@ -141,7 +141,7 @@ List compile options:
 
 Apply options e.g.:  
 `sudo ninja -C build uninstall`  
-`meson configure -Dpdf=enable -Dwebp=disable`  
+`meson configure build -Dpdf=enabled -Dwebp=disabled`  
 `ninja -C build install`
 
 Re-display configuration data:  
