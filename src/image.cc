@@ -1105,6 +1105,10 @@ static void image_change_complete(ImageWindow *imd, gdouble zoom)
 	image_reset(imd);
 	imd->unknown = TRUE;
 
+	/** @FIXME Might be improved when the wepb animation changes happen */
+	g_object_set(G_OBJECT(imd->pr), "zoom_2pass", options->image.zoom_2pass, NULL);
+	g_object_set(G_OBJECT(imd->pr), "zoom_quality", options->image.zoom_quality, NULL);
+
 	if (!imd->image_fd)
 		{
 		image_change_pixbuf(imd, NULL, zoom, FALSE);
