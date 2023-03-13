@@ -36,7 +36,6 @@
         <define name="HAVE_RAW"/>
         <define name="HAVE_SPELL"/>
         <define name="HAVE_TIFF"/>
-        <define name="HAVE_WEBP"/>
     </defines>
     <undefines>
         <undefine>ENABLE_NLS</undefine>

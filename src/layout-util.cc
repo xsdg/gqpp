@@ -2632,7 +2632,7 @@ static GtkToggleActionEntry menu_toggle_entries[] = {
   { "ImageOverlay",	NULL,			N_("Image _Overlay"),			NULL,			N_("Image Overlay"),			CB(layout_menu_overlay_cb),	 FALSE },
   { "ImageHistogram",	NULL,			N_("_Show Histogram"),			NULL,			N_("Show Histogram"),			CB(layout_menu_histogram_cb),	 FALSE },
   { "RectangularSelection",	PIXBUF_INLINE_ICON_SELECT_RECTANGLE,	N_("Rectangular Selection"),			"<alt>R",			N_("Rectangular Selection"),			CB(layout_menu_rectangular_selection_cb),	 FALSE },
-  { "Animate",	NULL,	N_("GIF _animation"),		"A",			N_("Toggle GIF animation"),			CB(layout_menu_animate_cb),	 FALSE  },
+  { "Animate",	NULL,	N_("_Animation"),		"A",			N_("Toggle animation"),			CB(layout_menu_animate_cb),	 FALSE  },
   { "ExifRotate",	GTK_STOCK_ORIENTATION_PORTRAIT,			N_("_Exif rotate"),  		"<alt>X",		N_("Toggle Exif rotate"),			CB(layout_menu_exif_rotate_cb), FALSE },
   { "DrawRectangle",	PIXBUF_INLINE_ICON_DRAW_RECTANGLE,			N_("Draw Rectangle"),  		NULL,		N_("Draw Rectangle"),			CB(layout_menu_select_rectangle_cb), FALSE },
   { "OverUnderExposed",	PIXBUF_INLINE_ICON_EXPOSURE,	N_("Over/Under Exposed"),  	"<shift>E",		N_("Highlight over/under exposed"),		CB(layout_menu_select_overunderexposed_cb), FALSE },

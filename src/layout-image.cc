@@ -347,7 +347,7 @@ static gboolean layout_image_animate_check(LayoutWindow *lw)
 {
 	if (!layout_valid(&lw)) return FALSE;
 
-	if(!lw->options.animate || lw->image->image_fd == NULL || lw->image->image_fd->extension == NULL || g_ascii_strcasecmp(lw->image->image_fd->extension,".GIF")!=0)
+	if(!lw->options.animate || lw->image->image_fd == NULL || lw->image->image_fd->extension == NULL || (g_ascii_strcasecmp(lw->image->image_fd->extension,".GIF")!=0 && g_ascii_strcasecmp(lw->image->image_fd->extension,".WEBP")!=0))
 		{
 		if(lw->animation)
 			{
@@ -453,7 +453,7 @@ static gboolean layout_image_animate_new_file(LayoutWindow *lw)
 		}
 	else
 		{
-		log_printf("Error reading GIF file: %s\nError: %s\n", lw->image->image_fd->path, error->message);
+		log_printf("Error reading animation file: %s\nError: %s\n", lw->image->image_fd->path, error->message);
 		}
 
 	return TRUE;

@@ -8,7 +8,7 @@
 ## Dialogs allow the user to install additional features.
 ##
 
-version="2022-07-30"
+version="2023-03-11"
 description='
 Geeqie is an image viewer.
 This script will download, compile, and install Geeqie on Debian-based systems.
@@ -71,8 +71,8 @@ libimage-exiftool-perl (for jpeg extraction plugin)
 libimage-exiftool-perl
 libheif (for HEIF support)
 libheif-dev
-libwebp (for WebP images)
-libwebp-dev
+webp-pixbuf-loader (for WebP images)
+webp-pixbuf-loader
 libdjvulibre (for DjVu images)
 libdjvulibre-dev
 libopenjp2 (for JP2 images)
