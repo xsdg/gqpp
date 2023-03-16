@@ -322,6 +322,10 @@ void log_print_backtrace(const gchar *file, const gchar *function, gint line)
 							{
 							function_name = g_strndup(path, g_strstr_len(path, strlen(path), "(") - path);
 							}
+						else
+							{
+							function_name = g_strdup("");
+							}
 						log_printf("%s %s", g_strstr_len(path, -1, "at ") + 3, function_name);
 
 						g_free(function_name);
