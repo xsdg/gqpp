@@ -76,16 +76,38 @@ gchar *desktop_file_template;
 gchar *instance_identifier;
 
 #if defined(SA_SIGINFO)
-void sigsegv_handler_cb(int UNUSED(signo), siginfo_t *info, void *UNUSED(context))
+void sig_handler_cb(int signo, siginfo_t *info, void *UNUSED(context))
 {
 	gchar hex_char[16];
-	gint i;
+	gchar *signal_name = NULL;
+	gint i = 0;
 	guint64 addr;
 	guint64 char_index;
 #ifdef HAVE_EXECINFO_H
 	gint bt_size;
 	void *bt[1024];
 #endif
+	struct signals
+		{
+		gint sig_no;
+		gchar *sig_name;
+		};
+	struct signals signals_list[7];
+
+	signals_list[0].sig_no = SIGABRT;
+	signals_list[0].sig_name = "Abort";
+	signals_list[1].sig_no = SIGBUS;
+	signals_list[1].sig_name = "Bus error";
+	signals_list[2].sig_no = SIGFPE;
+	signals_list[2].sig_name = "Floating-point exception";
+	signals_list[3].sig_no = SIGILL;
+	signals_list[3].sig_name = "Illegal instruction";
+	signals_list[4].sig_no = SIGIOT;
+	signals_list[4].sig_name = "IOT trap";
+	signals_list[5].sig_no = SIGSEGV;
+	signals_list[5].sig_name = "Invalid memory reference";
+	signals_list[6].sig_no = -1;
+	signals_list[6].sig_name = "END";
 
 	hex_char[0] = '0';
 	hex_char[1] = '1';
@@ -104,23 +126,36 @@ void sigsegv_handler_cb(int UNUSED(signo), siginfo_t *info, void *UNUSED(context
 	hex_char[14] = 'e';
 	hex_char[15] = 'f';
 
-	write(STDOUT_FILENO, "Geeqie fatal error\n", 19);
-	write(STDOUT_FILENO, "Signal: Segmentation fault\n", 27);
+	signal_name = "Unknown signal";
+	while (signals_list[i].sig_no != -1)
+		{
+		if (signo == signals_list[i].sig_no)
+			{
+			signal_name = signals_list[i].sig_name;
+			break;
+			}
+		i++;
+		}
 
-	write(STDOUT_FILENO, "Code: ", 6);
-	write(STDOUT_FILENO,  (info->si_code == SEGV_MAPERR) ? "Address not mapped" : "Invalid permissions", strlen((info->si_code == SEGV_MAPERR) ? "Address not mapped" : "Invalid permissions"));
-	write(STDOUT_FILENO, "\n", 1);
+	write(STDERR_FILENO, "Geeqie fatal error\n", 19);
+	write(STDERR_FILENO, "Signal: ", 8);
+	write(STDERR_FILENO, signal_name, strlen(signal_name));
+	write(STDERR_FILENO, "\n", 1);
 
-	write(STDOUT_FILENO, "Address: ", 9);
+	write(STDERR_FILENO, "Code: ", 6);
+	write(STDERR_FILENO,  (info->si_code == SEGV_MAPERR) ? "Address not mapped" : "Invalid permissions", strlen((info->si_code == SEGV_MAPERR) ? "Address not mapped" : "Invalid permissions"));
+	write(STDERR_FILENO, "\n", 1);
+
+	write(STDERR_FILENO, "Address: ", 9);
 
 	if (info->si_addr == 0)
 		{
-		write(STDOUT_FILENO, "0x0\n", 4);
+		write(STDERR_FILENO, "0x0\n", 4);
 		}
 	else
 		{
 		/* Assume the address is 64-bit */
-		write(STDOUT_FILENO, "0x", 2);
+		write(STDERR_FILENO, "0x", 2);
 		addr = info->si_addr;
 
 		for (i = 0; i < 16; i++)
@@ -129,32 +164,32 @@ void sigsegv_handler_cb(int UNUSED(signo), siginfo_t *info, void *UNUSED(context
 			char_index = char_index >> 60;
 			addr = addr << 4;
 
-			write(STDOUT_FILENO, &hex_char[char_index], 1);
+			write(STDERR_FILENO, &hex_char[char_index], 1);
 			}
-		write(STDOUT_FILENO, "\n", 1);
+		write(STDERR_FILENO, "\n", 1);
 		}
 
 #ifdef HAVE_EXECINFO_H
 	bt_size = backtrace(bt, 1024);
-	backtrace_symbols_fd(bt, bt_size, STDOUT_FILENO);
+	backtrace_symbols_fd(bt, bt_size, STDERR_FILENO);
 #endif
 
 	exit(EXIT_FAILURE);
 }
 #else /* defined(SA_SIGINFO) */
-void sigsegv_handler_cb(int UNUSED(signo))
+void sig_handler_cb(int UNUSED(signo))
 {
 #ifdef HAVE_EXECINFO_H
 	gint bt_size;
 	void *bt[1024];
 #endif
 
-	write(STDOUT_FILENO, "Geeqie fatal error\n", 19);
-	write(STDOUT_FILENO, "Signal: Segmentation fault\n", 27);
+	write(STDERR_FILENO, "Geeqie fatal error\n", 19);
+	write(STDERR_FILENO, "Signal: Segmentation fault\n", 27);
 
 #ifdef HAVE_EXECINFO_H
 	bt_size = backtrace(bt, 1024);
-	backtrace_symbols_fd(bt, bt_size, STDOUT_FILENO);
+	backtrace_symbols_fd(bt, bt_size, STDERR_FILENO);
 #endif
 
 	exit(EXIT_FAILURE);
@@ -1138,13 +1173,18 @@ static void setup_sigbus_handler(void)
 #endif
 }
 
-static void setup_sigsegv_handler(void)
+static void setup_sig_handler(void)
 {
 	struct sigaction sigsegv_action;
 	sigfillset(&sigsegv_action.sa_mask);
-	sigsegv_action.sa_sigaction = sigsegv_handler_cb;
+	sigsegv_action.sa_sigaction = sig_handler_cb;
 	sigsegv_action.sa_flags = SA_SIGINFO;
 
+	sigaction(SIGABRT, &sigsegv_action, NULL);
+	sigaction(SIGBUS, &sigsegv_action, NULL);
+	sigaction(SIGFPE, &sigsegv_action, NULL);
+	sigaction(SIGILL, &sigsegv_action, NULL);
+	sigaction(SIGIOT, &sigsegv_action, NULL);
 	sigaction(SIGSEGV, &sigsegv_action, NULL);
 }
 
@@ -1221,39 +1261,6 @@ static void create_application_paths()
 	g_free(path);
 }
 
-gboolean stderr_channel_cb(GIOChannel *source, GIOCondition UNUSED(condition), gpointer UNUSED(data))
-{
-	static GString *message_str = NULL;
-	gchar buf[10] = {0};
-	gsize count;
-
-	if (!message_str)
-		{
-		message_str = g_string_new(NULL);
-		}
-
-	g_io_channel_read_chars(source, buf, 1, &count, NULL);
-
-	if (count > 0)
-		{
-		if (buf[0] == '\n')
-			{
-			log_printf("%s", message_str->str);
-			g_string_free(message_str, TRUE);
-			message_str = NULL;
-			}
-		else
-			{
-			message_str = g_string_append_c(message_str, buf[0]);
-			}
-		return TRUE;
-		}
-	else
-		{
-		return FALSE;
-		}
-}
-
 gint main(gint argc, gchar *argv[])
 {
 	CollectionData *first_collection = NULL;
@@ -1271,6 +1278,13 @@ gint main(gint argc, gchar *argv[])
 	gdk_threads_init();
 	gdk_threads_enter();
 
+	/* seg. fault handler */
+#ifdef HAVE_DEVELOPER
+	backward::SignalHandling sh{};
+#else
+	setup_sig_handler();
+#endif
+
 	/* init execution time counter (debug only) */
 	init_exec_time();
 
@@ -1285,17 +1299,6 @@ gint main(gint argc, gchar *argv[])
 	textdomain(PACKAGE);
 #endif
 
-	/* Tee stderr to log window */
-	if (pipe(fd_stderr) == 0)
-		{
-		if (dup2(fd_stderr[1], fileno(stderr)) != -1)
-			{
-			close(fd_stderr[1]);
-			stderr_channel = g_io_channel_unix_new(fd_stderr[0]);
-			g_io_add_watch(stderr_channel, G_IO_IN, (GIOFunc)stderr_channel_cb, NULL);
-			}
-		}
-
 	exif_init();
 
 #ifdef HAVE_LUA
@@ -1304,9 +1307,6 @@ gint main(gint argc, gchar *argv[])
 
 	/* setup random seed for random slideshow */
 	srand(time(NULL));
-
-	/* seg. fault handler */
-	setup_sigsegv_handler();
 
 #if 0
 	/* See later comment; this handler leads to UB. */

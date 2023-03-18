@@ -68,6 +68,14 @@ i18n = import('i18n')
 fs = import('fs')
 configuration_inc = include_directories('.')
 
+# Extended stack trace using backward-app
+option = get_option('devel')
+if option.enabled()
+    if cc.has_link_argument('-ldwarf')
+        add_project_link_arguments('-ldwarf', language: 'cpp')
+    endif
+endif
+
 # External programs
 gdk_pixbuf_csource = find_program('gdk-pixbuf-csource', required : true)
 glib_compile_resources = find_program('glib-compile-resources', required : true)
@@ -149,6 +157,41 @@ conf_data.set('DEBUG', debug)
 
 gtk_dep = dependency('gtk+-3.0', version : '>=3.22', required: true)
 glib_dep = dependency('glib-2.0', version : '>=2.52', required: true)
+
+# Required only when backward-cpp is used
+libdw_dep = []
+libunwind_dep = []
+option = get_option('devel')
+if option.enabled()
+    libdw_dep = dependency('libdw', required : true)
+    if libdw_dep.found()
+        libunwind_dep = dependency('libunwind', required : true)
+        if libunwind_dep.found()
+            conf_data.set('HAVE_DEVELOPER', 1)
+            summary({'developer mode' : ['extended stacktrace:', true]}, section : 'Debugging', bool_yn : true)
+        else
+            summary({'developer mode' : ['libunwind not found. extended stacktrace:', false]}, section : 'Debugging', bool_yn : true)
+        endif
+    else
+        summary({'developer mode' : ['libdw not found. extended stacktrace:', false]}, section : 'Debugging', bool_yn : true)
+    endif
+else
+    summary({'developer mode' : ['extended stacktrace:', false]}, section : 'Debugging', bool_yn : true)
+endif
+
+# Required only for seg. fault stacktrace and backtrace debugging
+option = get_option('execinfo')
+if not option.disabled()
+    result = cc.check_header('execinfo.h')
+    if result
+        conf_data.set('HAVE_EXECINFO_H', 1)
+        summary({'execinfo' : ['stacktrace supported:', true]}, section : 'Debugging', bool_yn : true)
+    else
+        summary({'execinfo' : ['stacktrace supported:', false]}, section : 'Debugging', bool_yn : true)
+    endif
+else
+    summary({'execinfo' : ['stacktrace supported:', false]}, section : 'Debugging', bool_yn : true)
+endif
 
 libarchive_dep = []
 req_version = '>=3.4.0'

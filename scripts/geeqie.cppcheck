@@ -15,6 +15,8 @@
         <define name="HAVE_ARCHIVE"/>
         <define name="HAVE_CLUTTER"/>
         <define name="HAVE_DJVU"/>
+        <define name="HAVE_DEVELOPER"/>
+        <define name="HAVE_EXECINFO_H"/>
         <define name="HAVE_EXIV2"/>
         <define name="HAVE_EXIV2_ERROR_CODE"/>
         <define name="HAVE_FFLUSH"/>
