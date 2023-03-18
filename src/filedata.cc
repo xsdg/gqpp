@@ -1489,6 +1489,11 @@ FileData *file_data_new_group(const gchar *path_utf8)
 	FileData *fd;
 	GList *files;
 
+	if (!file_data_pool)
+		{
+		file_data_pool = g_hash_table_new(g_str_hash, g_str_equal);
+		}
+
 	if (!stat_utf8(path_utf8, &st))
 		{
 		st.st_size = 0;
