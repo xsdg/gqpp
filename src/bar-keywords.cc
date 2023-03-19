@@ -1924,16 +1924,19 @@ GList *keyword_list_get()
 	GtkTreeIter iter;
 	gboolean valid;
 
-	valid = gtk_tree_model_get_iter_first(GTK_TREE_MODEL(keyword_store), &iter);
-
-	while (valid)
+	if (keyword_store)
 		{
-		gtk_tree_model_get (GTK_TREE_MODEL(keyword_store), &iter, 0, &string, -1);
-		string_nl = g_strconcat(string, "\n", NULL);
-		ret_list = g_list_append(ret_list, string);
-		valid = gtk_tree_model_iter_next(GTK_TREE_MODEL(keyword_store), &iter);
+		valid = gtk_tree_model_get_iter_first(GTK_TREE_MODEL(keyword_store), &iter);
 
-		g_free(string_nl);
+		while (valid)
+			{
+			gtk_tree_model_get (GTK_TREE_MODEL(keyword_store), &iter, 0, &string, -1);
+			string_nl = g_strconcat(string, "\n", NULL);
+			ret_list = g_list_append(ret_list, string);
+			valid = gtk_tree_model_iter_next(GTK_TREE_MODEL(keyword_store), &iter);
+
+			g_free(string_nl);
+			}
 		}
 
 	return ret_list;
@@ -1945,7 +1948,14 @@ void keyword_list_set(GList *keyword_list)
 
 	if (!keyword_list) return;
 
-	gtk_list_store_clear(keyword_store);
+	if (keyword_store)
+		{
+		gtk_list_store_clear(keyword_store);
+		}
+	else
+		{
+		keyword_store = gtk_list_store_new(1, G_TYPE_STRING);
+		}
 
 	while (keyword_list)
 		{
