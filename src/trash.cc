@@ -22,6 +22,7 @@
 #include "main.h"
 #include "trash.h"
 #include "utilops.h"
+#include "window.h"
 
 #include "editors.h"
 #include "filedata.h"
@@ -116,11 +117,17 @@ static gchar *file_util_safe_dest(const gchar *path)
 	return dest;
 }
 
+static void move_to_trash_failed_cb(GenericDialog *UNUSED(gd), gpointer UNUSED(data))
+{
+	help_window_show("TrashFailed.html");
+}
+
 gboolean file_util_safe_unlink(const gchar *path)
 {
 	static GenericDialog *gd = NULL;
 	gchar *result = NULL;
 	gboolean success = TRUE;
+	gchar *message;
 
 	if (!isfile(path)) return FALSE;
 
@@ -179,10 +186,22 @@ gboolean file_util_safe_unlink(const gchar *path)
 		}
 	else
 		{
-		GFile *tmp = g_file_new_for_path (path);
-		g_file_trash(tmp, FALSE, NULL);
-		g_object_unref(tmp);
-		}
+		GFile *tmp = g_file_new_for_path(path);
+		GError *error = NULL;
+
+		if (!g_file_trash(tmp, FALSE, &error) )
+			{
+			message = g_strconcat("See the Help file for a possible workaround.\n\n", error->message, NULL);
+			gd = warning_dialog(_("Move to trash failed\n\n"), message, GTK_STOCK_DIALOG_ERROR, NULL);
+			generic_dialog_add_button(gd, GTK_STOCK_HELP, "Help", move_to_trash_failed_cb, FALSE);
+
+			g_free(message);
+			g_error_free(error);
+
+			/* A second warning dialog is not necessary */
+			// success = FALSE;
+			}
+	}
 
 	return success;
 }

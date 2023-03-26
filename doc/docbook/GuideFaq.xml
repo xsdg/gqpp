@@ -2,6 +2,45 @@
 <chapter id="GuideFaq">
   <title>Frequently Asked Questions</title>
   <para />
+  <section id="TrashFailed">
+    <title>Move to Trash failed</title>
+    <para />
+    <section id="HowdoIfixtrashproblem">
+      <title>How do I fix move to trash failed?</title>
+      <para>It appears that some distributions will only trash files that are in the same filesytem as where the Trash bin is located.</para>
+      <para>
+        The location of the Trash bin for some systems is
+        <code>$HOME/.local/share/Trash</code>
+        .
+      </para>
+      <para>
+        If you attempt to trash a file not in this filesystem, an attempt is made to find directory
+        <code>&lt;top of filesystem&gt;/.Trash-&lt;uid&gt;</code>
+        where
+        <code>&lt;uid&gt;</code>
+        is your user id (in a terminal type
+        <code>id</code>
+        to display it). If this directory does not exist, then the action will fail.
+      </para>
+      <para>You may create this directory and set write access to it as follows:</para>
+      <para />
+      <para>
+        <code>cd</code>
+        to the directory where the file to be deleted is
+        <para />
+        <code>df --human-readable .</code>
+        (Note the dot!) The "Mounted on" column shows the top of the filesystem.
+        <para />
+        <code>cd &lt;the top of the filesystem shown above&gt;</code>
+        <para />
+        <code>sudo mkdir .Trash-&lt;uid&gt;</code>
+        <para />
+        <code>sudo chown &lt;your user name&gt; .Trash-&lt;uid&gt;</code>
+        <para />
+        <code>sudo chmod u+rwx .Trash-&lt;uid&gt;</code>
+      </para>
+    </section>
+  </section>
   <section id="Imageviewing">
     <title>Image viewing</title>
     <para />
