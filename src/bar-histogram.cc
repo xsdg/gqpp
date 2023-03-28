@@ -243,26 +243,22 @@ static GtkWidget *bar_pane_histogram_menu(PaneHistogramData *phd)
 	return menu;
 }
 
-static gboolean bar_pane_histogram_press_cb(GtkWidget *UNUSED(widget), GdkEventButton *bevent, gpointer data)
+static gboolean bar_pane_histogram_press_cb(GtkGesture *UNUSED(gesture), gint UNUSED(n_press), gdouble UNUSED(x), gdouble UNUSED(y), gpointer data)
 {
 	PaneHistogramData *phd = data;
+	GtkWidget *menu;
 
-	if (bevent->button == MOUSE_BUTTON_RIGHT)
-		{
-		GtkWidget *menu;
+	menu = bar_pane_histogram_menu(phd);
+	gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 
-		menu = bar_pane_histogram_menu(phd);
-		gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
-		return TRUE;
-	}
-
-	return FALSE;
+	return TRUE;
 }
 
 
 static GtkWidget *bar_pane_histogram_new(const gchar *id, const gchar *title, gint height, gboolean expanded, gint histogram_channel, gint histogram_mode)
 {
 	PaneHistogramData *phd;
+	GtkGesture *gesture;
 
 	phd = g_new0(PaneHistogramData, 1);
 
@@ -299,7 +295,15 @@ static GtkWidget *bar_pane_histogram_new(const gchar *id, const gchar *title, gi
 	gtk_widget_show(phd->drawing_area);
 	gtk_widget_add_events(phd->drawing_area, GDK_BUTTON_PRESS_MASK);
 
-	g_signal_connect(G_OBJECT(phd->drawing_area), "button_press_event", G_CALLBACK(bar_pane_histogram_press_cb), phd);
+
+#ifdef HAVE_GTK4
+	gesture = gtk_gesture_click_new();
+	gtk_widget_add_controller(phd->drawing_area, GTK_EVENT_CONTROLLER(gesture));
+#else
+	gesture = gtk_gesture_multi_press_new(phd->drawing_area);
+#endif
+	gtk_gesture_single_set_button(GTK_GESTURE_SINGLE(gesture), MOUSE_BUTTON_RIGHT);
+	g_signal_connect(gesture, "pressed", G_CALLBACK(bar_pane_histogram_press_cb), phd);
 
 	gtk_widget_show(phd->widget);
 

@@ -155,7 +155,13 @@ conf_data = configuration_data()
 conf_data.set_quoted('VERSION', meson.project_version())
 conf_data.set('DEBUG', debug)
 
-gtk_dep = dependency('gtk+-3.0', version : '>=3.22', required: true)
+option = get_option('gtk4')
+if option.enabled()
+    gtk_dep = dependency('gtk4', required: true)
+    conf_data.set('HAVE_GTK4', 1)
+else
+    gtk_dep = dependency('gtk+-3.0', version : '>=3.24', required: true)
+endif
 glib_dep = dependency('glib-2.0', version : '>=2.52', required: true)
 
 # Required only when backward-cpp is used
