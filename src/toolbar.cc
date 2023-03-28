@@ -229,16 +229,13 @@ static void toolbar_menu_popup(GtkWidget *widget)
 	gtk_menu_popup_at_pointer(GTK_MENU(menu), NULL);
 }
 
-static gboolean toolbar_press_cb(GtkWidget *UNUSED(button), GdkEventButton *event, gpointer data)
+static gboolean toolbar_press_cb(GtkGesture *UNUSED(gesture), int UNUSED(n_press), double UNUSED(x), double UNUSED(y), gpointer data)
 {
 	ToolbarButtonData *button_data = data;
 
-	if (event->button == MOUSE_BUTTON_RIGHT)
-		{
-		toolbar_menu_popup(button_data->button);
-		return TRUE;
-		}
-	return FALSE;
+	toolbar_menu_popup(button_data->button);
+
+	return TRUE;
 }
 
 static void get_toolbar_item(const gchar *name, gchar **label, gchar **stock_id)
@@ -281,6 +278,7 @@ static void toolbarlist_add_button(const gchar *name, const gchar *label,
 {
 	ToolbarButtonData *toolbar_entry;
 	GtkWidget *hbox;
+	GtkGesture *gesture;
 
 	toolbar_entry = g_new(ToolbarButtonData,1);
 	toolbar_entry->button = gtk_button_new();
@@ -298,8 +296,15 @@ static void toolbarlist_add_button(const gchar *name, const gchar *label,
 	toolbar_entry->button_label = gtk_label_new(label);
 	toolbar_entry->name = g_strdup(name);
 	toolbar_entry->stock_id = g_strdup(stock_id);
-	g_signal_connect(G_OBJECT(toolbar_entry->button), "button_release_event",
-									G_CALLBACK(toolbar_press_cb), toolbar_entry);
+
+#ifdef HAVE_GTK4
+	gesture = gtk_gesture_click_new();
+	gtk_widget_add_controller(toolbar_entry->button, GTK_EVENT_CONTROLLER(gesture));
+#else
+	gesture = gtk_gesture_multi_press_new(toolbar_entry->button);
+#endif
+	gtk_gesture_single_set_button(GTK_GESTURE_SINGLE(gesture), MOUSE_BUTTON_RIGHT);
+	g_signal_connect(gesture, "released", G_CALLBACK(toolbar_press_cb), toolbar_entry);
 
 	if (toolbar_entry->stock_id)
 		{
