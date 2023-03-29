@@ -29,6 +29,6 @@ typedef enum {
 
 GtkWidget *osd_new(gint max_cols, GtkWidget *template_view);
 gchar *image_osd_mkinfo(const gchar *str, FileData *fd, GHashTable *vars);
-void osd_template_insert(GHashTable *vars, gchar *keyword, gchar *value, OsdTemplateFlags flags);
+void osd_template_insert(GHashTable *vars, const gchar *keyword, const gchar *value, OsdTemplateFlags flags);
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

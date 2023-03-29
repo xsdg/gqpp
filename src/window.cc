@@ -169,7 +169,7 @@ static int help_browser_command(const gchar *command, const gchar *path)
  *        string   exec string and use results for command line
  *        !string  use text following ! as command line, replacing optional %s with html file path
 */
-static gchar *html_browsers[] =
+static const gchar *html_browsers[] =
 {
 	/* Our specific script */
 	GQ_APPNAME_LC "_html_browser", NULL,

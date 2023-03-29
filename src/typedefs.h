@@ -1137,7 +1137,7 @@ typedef struct _hard_coded_window_keys hard_coded_window_keys;
 struct _hard_coded_window_keys {
 	GdkModifierType mask; /**< modifier key mask */
 	guint key_value;  /**< GDK_keyval */
-	gchar *text;  /**< menu item label - NULL if end of list */
+	const gchar *text;  /**< menu item label - NULL if end of list */
 };
 
 #endif

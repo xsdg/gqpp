@@ -90,7 +90,7 @@ void sig_handler_cb(int signo, siginfo_t *info, void *UNUSED(context))
 	struct signals
 		{
 		gint sig_no;
-		gchar *sig_name;
+		const gchar *sig_name;
 		};
 	struct signals signals_list[7];
 

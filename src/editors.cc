@@ -633,7 +633,7 @@ static EditorVerboseData *editor_verbose_window(EditorData *ed, const gchar *tex
 	return vd;
 }
 
-static void editor_verbose_window_fill(EditorVerboseData *vd, gchar *text, gint len)
+static void editor_verbose_window_fill(EditorVerboseData *vd, const gchar *text, gint len)
 {
 	GtkTextBuffer *buffer;
 	GtkTextIter iter;

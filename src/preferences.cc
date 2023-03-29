@@ -523,7 +523,7 @@ static void config_window_help_cb(GtkWidget *UNUSED(widget), gpointer data)
 	GtkWidget *notebook = (GtkWidget *)data;
 	gint i;
 
-	static gchar *html_section[] =
+	static const gchar *html_section[] =
 	{
 	"GuideOptionsGeneral.html",
 	"GuideOptionsImage.html",

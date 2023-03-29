@@ -33,8 +33,8 @@ typedef struct _KnownPanes KnownPanes;
 struct _KnownPanes
 {
 	PaneType type;
-	gchar *id;
-	gchar *title;
+	const gchar *id;
+	const gchar *title;
 	const gchar *config;
 };
 

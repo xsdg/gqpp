@@ -1214,7 +1214,7 @@ static void layout_menu_changelog_cb(GtkAction *UNUSED(action), gpointer data)
 	help_window_show("changelog");
 }
 
-static char *keyboard_map_hardcoded[][2] = {
+static const char *keyboard_map_hardcoded[][2] = {
 	{"Scroll","Left"},
 	{"FastScroll", "&lt;Shift&gt;Left"},
 	{"Left Border", "&lt;Primary&gt;Left"},
@@ -2973,8 +2973,8 @@ static gchar *menu_translate(const gchar *path, gpointer UNUSED(data))
 	return (gchar *)(_(path));
 }
 
-static void layout_actions_setup_mark(LayoutWindow *lw, gint mark, gchar *name_tmpl,
-				      gchar *label_tmpl, gchar *accel_tmpl, gchar *tooltip_tmpl, GCallback cb)
+static void layout_actions_setup_mark(LayoutWindow *lw, gint mark, const gchar *name_tmpl,
+				      const gchar *label_tmpl, const gchar *accel_tmpl, const gchar *tooltip_tmpl, GCallback cb)
 {
 	gchar name[50];
 	gchar label[100];

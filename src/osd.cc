@@ -456,7 +456,7 @@ gchar *image_osd_mkinfo(const gchar *str, FileData *fd, GHashTable *vars)
 	return ret;
 }
 
-void osd_template_insert(GHashTable *vars, gchar *keyword, gchar *value, OsdTemplateFlags flags)
+void osd_template_insert(GHashTable *vars, const gchar *keyword, const gchar *value, OsdTemplateFlags flags)
 {
 	if (!value)
 		{

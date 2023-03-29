@@ -191,7 +191,7 @@ gchar *decode_geo_parameters(const gchar *input_text)
 }
 
 /* Run a command like system() but may output debug messages. */
-int runcmd(gchar *cmd)
+int runcmd(const gchar *cmd)
 {
 #if 1
 	return system(cmd);

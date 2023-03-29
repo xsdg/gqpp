@@ -274,7 +274,7 @@ gboolean read_int_unit_option(const gchar *option, const gchar *label, const gch
 	return TRUE;
 }
 
-void write_bool_option(GString *str, gint UNUSED(indent), gchar *label, gint n)
+void write_bool_option(GString *str, gint UNUSED(indent), const gchar *label, gint n)
 {
 	g_string_append_printf(str, "%s = \"%s\" ", label, n ? "true" : "false");
 }

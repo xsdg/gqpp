@@ -1585,13 +1585,13 @@ static void gr_lua(const gchar *text, GIOChannel *channel, gpointer UNUSED(data)
 
 typedef struct _RemoteCommandEntry RemoteCommandEntry;
 struct _RemoteCommandEntry {
-	gchar *opt_s;
-	gchar *opt_l;
+	const gchar *opt_s;
+	const gchar *opt_l;
 	void (*func)(const gchar *text, GIOChannel *channel, gpointer data);
 	gboolean needs_extra;
 	gboolean prefer_command_line;
-	gchar *parameter;
-	gchar *description;
+	const gchar *parameter;
+	const gchar *description;
 };
 
 static RemoteCommandEntry remote_commands[] = {
