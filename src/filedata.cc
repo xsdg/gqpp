@@ -196,7 +196,7 @@ static gboolean file_data_check_changed_files_recursive(FileData *fd, struct sta
 	work = fd->sidecar_files;
 	while (work)
 		{
-		FileData *sfd = work->data;
+		FileData *sfd = (FileData *)work->data;
 		struct stat st;
 		work = work->next;
 
@@ -777,7 +777,7 @@ static void file_data_consider_free(FileData *fd)
 	work = parent->sidecar_files;
 	while (work)
 		{
-		FileData *sfd = work->data;
+		FileData *sfd = (FileData *)work->data;
 		if (file_data_check_has_ref(sfd)) return;
 		work = work->next;
 		}
@@ -789,7 +789,7 @@ static void file_data_consider_free(FileData *fd)
 	work = parent->sidecar_files;
 	while (work)
 		{
-		FileData *sfd = work->data;
+		FileData *sfd = (FileData *)work->data;
 		file_data_free(sfd);
 		work = work->next;
 		}
@@ -880,7 +880,7 @@ void file_data_lock_list(GList *list)
 	work = list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 		file_data_lock(fd);
 		}
@@ -898,7 +898,7 @@ void file_data_unlock_list(GList *list)
 	work = list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 		file_data_unlock(fd);
 		}
@@ -958,7 +958,7 @@ static void file_data_check_sidecars(const GList *basename_list)
 	work = basename_list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 		g_assert(fd->magick == FD_MAGICK);
 		DEBUG_2("basename: %p %s", (void *)fd, fd->name);
@@ -1006,7 +1006,7 @@ static void file_data_check_sidecars(const GList *basename_list)
 	work = basename_list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 		g_assert(fd->parent == NULL || fd->sidecar_files == NULL);
 
@@ -1039,7 +1039,7 @@ static void file_data_check_sidecars(const GList *basename_list)
 	new_sidecars = NULL;
 	while (work)
 		{
-		FileData *sfd = work->data;
+		FileData *sfd = (FileData *)work->data;
 		g_assert(sfd->magick == FD_MAGICK);
 		g_assert(sfd->parent == NULL && sfd->sidecar_files == NULL);
 		sfd->parent = parent_fd;
@@ -1096,7 +1096,7 @@ void file_data_disable_grouping(FileData *fd, gboolean disable)
 			GList *work = sidecar_files;
 			while (work)
 				{
-				FileData *sfd = work->data;
+				FileData *sfd = (FileData *)work->data;
 				work = work->next;
 				file_data_disconnect_sidecar_file(fd, sfd);
 				file_data_send_notification(sfd, NOTIFY_GROUPING);
@@ -1124,7 +1124,7 @@ void file_data_disable_grouping_list(GList *fd_list, gboolean disable)
 	work = fd_list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 
 		file_data_disable_grouping(fd, disable);
 		work = work->next;
@@ -1333,7 +1333,7 @@ static GList *filelist_filter_out_sidecars(GList *flist)
 
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 
 		work = work->next;
 		if (fd->parent) /* remove fd's that are children */
@@ -1768,7 +1768,7 @@ gchar *file_data_get_sidecar_path(FileData *fd, gboolean existing_only)
 	gchar *extended_extension = g_strconcat(fd->parent ? fd->parent->extension : fd->extension, ".xmp", NULL);
 	while (work)
 		{
-		FileData *sfd = work->data;
+		FileData *sfd = (FileData *)work->data;
 		work = work->next;
 		if (g_ascii_strcasecmp(sfd->extension, ".xmp") == 0 || g_ascii_strcasecmp(sfd->extension, extended_extension) == 0)
 			{
@@ -1878,7 +1878,7 @@ GList *file_data_filter_marks_list(GList *list, guint filter)
 	work = list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		GList *link = work;
 		work = work->next;
 
@@ -1905,7 +1905,7 @@ GList *file_data_filter_file_filter_list(GList *list, GRegex *filter)
 	work = list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		GList *link = work;
 		work = work->next;
 
@@ -1945,7 +1945,7 @@ GList *file_data_filter_class_list(GList *list, guint filter)
 	work = list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		GList *link = work;
 		work = work->next;
 
@@ -2024,7 +2024,7 @@ gchar *file_data_sc_list_to_string(FileData *fd)
 	work = fd->sidecar_files;
 	while (work)
 		{
-		FileData *sfd = work->data;
+		FileData *sfd = (FileData *)work->data;
 
 		result = g_string_append(result, "+ ");
 		result = g_string_append(result, sfd->extension);
@@ -2139,7 +2139,7 @@ static gboolean file_data_sc_add_ci(FileData *fd, FileDataChangeType type)
 	work = fd->sidecar_files;
 	while (work)
 		{
-		FileData *sfd = work->data;
+		FileData *sfd = (FileData *)work->data;
 
 		if (sfd->change) return FALSE;
 		work = work->next;
@@ -2150,7 +2150,7 @@ static gboolean file_data_sc_add_ci(FileData *fd, FileDataChangeType type)
 	work = fd->sidecar_files;
 	while (work)
 		{
-		FileData *sfd = work->data;
+		FileData *sfd = (FileData *)work->data;
 
 		file_data_add_ci(sfd, type, NULL, NULL);
 		work = work->next;
@@ -2170,7 +2170,7 @@ static gboolean file_data_sc_check_ci(FileData *fd, FileDataChangeType type)
 	work = fd->sidecar_files;
 	while (work)
 		{
-		FileData *sfd = work->data;
+		FileData *sfd = (FileData *)work->data;
 
 		if (!sfd->change || sfd->change->type != type) return FALSE;
 		work = work->next;
@@ -2229,7 +2229,7 @@ void file_data_sc_free_ci(FileData *fd)
 	work = fd->sidecar_files;
 	while (work)
 		{
-		FileData *sfd = work->data;
+		FileData *sfd = (FileData *)work->data;
 
 		file_data_free_ci(sfd);
 		work = work->next;
@@ -2244,7 +2244,7 @@ gboolean file_data_sc_add_ci_delete_list(GList *fd_list)
 	work = fd_list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 
 		if (!file_data_sc_add_ci_delete(fd)) ret = FALSE;
 		work = work->next;
@@ -2260,7 +2260,7 @@ static void file_data_sc_revert_ci_list(GList *fd_list)
 	work = fd_list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 
 		file_data_sc_free_ci(fd);
 		work = work->prev;
@@ -2274,7 +2274,7 @@ static gboolean file_data_sc_add_ci_list_call_func(GList *fd_list, const gchar *
 	work = fd_list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 
 		if (!func(fd, dest))
 			{
@@ -2315,7 +2315,7 @@ gboolean file_data_add_ci_write_metadata_list(GList *fd_list)
 	work = fd_list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 
 		if (!file_data_add_ci_write_metadata(fd)) ret = FALSE;
 		work = work->next;
@@ -2331,7 +2331,7 @@ void file_data_free_ci_list(GList *fd_list)
 	work = fd_list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 
 		file_data_free_ci(fd);
 		work = work->next;
@@ -2345,7 +2345,7 @@ void file_data_sc_free_ci_list(GList *fd_list)
 	work = fd_list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 
 		file_data_sc_free_ci(fd);
 		work = work->next;
@@ -2444,7 +2444,7 @@ static void file_data_sc_update_ci(FileData *fd, const gchar *dest_path)
 	work = fd->sidecar_files;
 	while (work)
 		{
-		FileData *sfd = work->data;
+		FileData *sfd = (FileData *)work->data;
 
 		file_data_update_ci_dest_preserve_ext(sfd, dest_path);
 		work = work->next;
@@ -2490,7 +2490,7 @@ static gboolean file_data_sc_update_ci_list_call_func(GList *fd_list,
 	work = fd_list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 
 		if (!func(fd, dest)) ret = FALSE;
 		work = work->next;
@@ -2777,7 +2777,7 @@ gint file_data_sc_verify_ci(FileData *fd, GList *list)
 	work = fd->sidecar_files;
 	while (work)
 		{
-		FileData *sfd = work->data;
+		FileData *sfd = (FileData *)work->data;
 
 		ret |= file_data_verify_ci(sfd, list);
 		work = work->next;
@@ -3010,7 +3010,7 @@ gboolean file_data_sc_perform_ci(FileData *fd)
 	work = fd->sidecar_files;
 	while (work)
 		{
-		FileData *sfd = work->data;
+		FileData *sfd = (FileData *)work->data;
 
 		if (!file_data_perform_ci(sfd)) ret = FALSE;
 		work = work->next;
@@ -3066,7 +3066,7 @@ gboolean file_data_sc_apply_ci(FileData *fd)
 	work = fd->sidecar_files;
 	while (work)
 		{
-		FileData *sfd = work->data;
+		FileData *sfd = (FileData *)work->data;
 
 		file_data_apply_ci(sfd);
 		work = work->next;
@@ -3102,7 +3102,7 @@ GList *file_data_process_groups_in_selection(GList *list, gboolean ungroup, GLis
 		{
 		while (work)
 			{
-			FileData *fd = work->data;
+			FileData *fd = (FileData *)work->data;
 			work = work->next;
 
 			if (!file_data_list_contains_whole_group(list, fd))
@@ -3121,7 +3121,7 @@ GList *file_data_process_groups_in_selection(GList *list, gboolean ungroup, GLis
 	work = list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 
 		if (!fd->parent ||

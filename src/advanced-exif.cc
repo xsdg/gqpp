@@ -187,7 +187,7 @@ static void advanced_exif_dnd_get(GtkWidget *listview, GdkDragContext *UNUSED(co
 				  GtkSelectionData *selection_data, guint UNUSED(info),
 				  guint UNUSED(time), gpointer UNUSED(data))
 {
-	//ExifWin *ew = data;
+	//ExifWin *ew = (//ExifWin *)data;
 	GtkTreeSelection *sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(listview));
 	GtkTreeIter iter;
 
@@ -207,7 +207,7 @@ static void advanced_exif_dnd_get(GtkWidget *listview, GdkDragContext *UNUSED(co
 
 static void advanced_exif_dnd_begin(GtkWidget *listview, GdkDragContext *context, gpointer UNUSED(data))
 {
-	//ExifWin *ew = data;
+	//ExifWin *ew = (//ExifWin *)data;
 	GtkTreeSelection *sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(listview));
 	GtkTreeIter iter;
 
@@ -281,7 +281,7 @@ void advanced_exif_close(ExifWin *ew)
 
 static gboolean advanced_exif_delete_cb(GtkWidget *UNUSED(widget), GdkEvent *UNUSED(event), gpointer data)
 {
-	ExifWin *ew = data;
+	ExifWin *ew = (ExifWin *)data;
 
 	if (!ew) return FALSE;
 
@@ -337,7 +337,7 @@ static gint advanced_exif_sort_cb(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIt
 static gboolean advanced_exif_mouseclick(GtkWidget *UNUSED(widget),
 						GdkEventButton *UNUSED(bevent), gpointer data)
 {
-	ExifWin *ew = data;
+	ExifWin *ew = (ExifWin *)data;
 	GtkTreePath *path;
 	GtkTreeViewColumn *column;
 	GtkTreeIter iter;
@@ -371,7 +371,7 @@ static gboolean advanced_exif_mouseclick(GtkWidget *UNUSED(widget),
 
 static gboolean advanced_exif_keypress(GtkWidget *UNUSED(widget), GdkEventKey *event, gpointer data)
 {
-	ExifWin *ew = data;
+	ExifWin *ew = (ExifWin *)data;
 	gboolean stop_signal = FALSE;
 
 	if (event->state & GDK_CONTROL_MASK)

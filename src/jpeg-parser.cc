@@ -202,7 +202,7 @@ static gint mpo_parse_Index_IFD_entry(const guchar *tiff, guint offset,
 	guint data_offset;
 	guint data_length;
 
-	MPOData *mpo = data;
+	MPOData *mpo = (MPOData *)data;
 
 	tag = tiff_byte_get_int16(tiff + offset + TIFF_TIFD_OFFSET_TAG, bo);
 	format = tiff_byte_get_int16(tiff + offset + TIFF_TIFD_OFFSET_FORMAT, bo);
@@ -272,7 +272,7 @@ static gint mpo_parse_Attributes_IFD_entry(const guchar *tiff, guint offset,
 	guint count;
 	guint data_val;
 
-	MPOEntry *mpe = data;
+	MPOEntry *mpe = (MPOEntry *)data;
 
 	tag = tiff_byte_get_int16(tiff + offset + TIFF_TIFD_OFFSET_TAG, bo);
 	format = tiff_byte_get_int16(tiff + offset + TIFF_TIFD_OFFSET_FORMAT, bo);

@@ -295,7 +295,7 @@ static void collection_load_thumb_do(CollectionData *cd)
 
 static void collection_load_thumb_error_cb(ThumbLoader *UNUSED(tl), gpointer data)
 {
-	CollectionData *cd = data;
+	CollectionData *cd = (CollectionData *)data;
 
 	collection_load_thumb_do(cd);
 	collection_load_thumb_step(cd);
@@ -303,7 +303,7 @@ static void collection_load_thumb_error_cb(ThumbLoader *UNUSED(tl), gpointer dat
 
 static void collection_load_thumb_done_cb(ThumbLoader *UNUSED(tl), gpointer data)
 {
-	CollectionData *cd = data;
+	CollectionData *cd = (CollectionData *)data;
 
 	collection_load_thumb_do(cd);
 	collection_load_thumb_step(cd);
@@ -418,7 +418,7 @@ static gboolean collection_save_private(CollectionData *cd, const gchar *path)
 	work = cd->list;
 	while (work && secsave_errno == SS_ERR_NONE)
 		{
-		CollectInfo *ci = work->data;
+		CollectInfo *ci = (CollectInfo *)work->data;
 		secure_fprintf(ssi, "\"%s\"\n", ci->fd->path);
 		work = work->next;
 		}

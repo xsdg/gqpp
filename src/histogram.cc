@@ -204,7 +204,7 @@ const HistMap *histmap_get(FileData *fd)
 
 static gboolean histmap_idle_cb(gpointer data)
 {
-	FileData *fd = data;
+	FileData *fd = (FileData *)data;
 	if (histmap_read(fd->histmap, FALSE))
 		{
 		/* finished */

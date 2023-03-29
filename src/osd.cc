@@ -93,7 +93,7 @@ struct _TagData
 
 static void tag_button_cb(GtkWidget *widget, gpointer data)
 {
-	GtkTextView *image_overlay_template_view = data;
+	GtkTextView *image_overlay_template_view = (GtkTextView *)data;
 	GtkTextBuffer *buffer;
 	TagData *td;
 
@@ -109,7 +109,7 @@ static void osd_dnd_get_cb(GtkWidget *btn, GdkDragContext *UNUSED(context),
 								guint UNUSED(time), gpointer data)
 {
 	TagData *td;
-	GtkTextView *image_overlay_template_view = data;
+	GtkTextView *image_overlay_template_view = (GtkTextView *)data;
 
 	td = g_object_get_data(G_OBJECT(btn), "tag_data");
 	gtk_selection_data_set_text(selection_data, td->key, -1);

@@ -91,7 +91,7 @@ static void metadata_cache_update(FileData *fd, const gchar *key, const GList *v
 	work = fd->cached_metadata;
 	while (work)
 		{
-		GList *entry = work->data;
+		GList *entry = (GList *)work->data;
 		gchar *entry_key = entry->data;
 
 		if (strcmp(entry_key, key) == 0)
@@ -122,7 +122,7 @@ static const GList *metadata_cache_get(FileData *fd, const gchar *key)
 	work = fd->cached_metadata;
 	while (work)
 		{
-		GList *entry = work->data;
+		GList *entry = (GList *)work->data;
 		gchar *entry_key = entry->data;
 
 		if (strcmp(entry_key, key) == 0)
@@ -144,7 +144,7 @@ static void metadata_cache_remove(FileData *fd, const gchar *key)
 	work = fd->cached_metadata;
 	while (work)
 		{
-		GList *entry = work->data;
+		GList *entry = (GList *)work->data;
 		gchar *entry_key = entry->data;
 
 		if (strcmp(entry_key, key) == 0)
@@ -168,7 +168,7 @@ void metadata_cache_free(FileData *fd)
 	work = fd->cached_metadata;
 	while (work)
 		{
-		GList *entry = work->data;
+		GList *entry = (GList *)work->data;
 		string_list_free(entry);
 
 		work = work->next;
@@ -238,7 +238,7 @@ gboolean metadata_write_queue_remove(FileData *fd)
 	//work = list;
 	//while (work)
 		//{
-		//FileData *fd = work->data;
+		//FileData *fd = (//FileData *)work->data;
 		//work = work->next;
 		//ret = ret && metadata_write_queue_remove(fd);
 		//}
@@ -271,7 +271,7 @@ gboolean metadata_write_queue_confirm(gboolean force_dialog, FileUtilDoneFunc do
 	work = metadata_write_queue;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		work = work->next;
 
 		if (!isname(fd->path))
@@ -400,7 +400,7 @@ gboolean metadata_write_list(FileData *fd, const gchar *key, const GList *values
 
 		while (work)
 			{
-			FileData *sfd = work->data;
+			FileData *sfd = (FileData *)work->data;
 			work = work->next;
 
 			if (sfd->format_class == FORMAT_CLASS_META) continue;
@@ -1050,7 +1050,7 @@ GList *string_to_keywords_list(const gchar *text)
 gboolean meta_data_get_keyword_mark(FileData *fd, gint UNUSED(n), gpointer data)
 {
 	/** @FIXME do not use global keyword_tree */
-	GList *path = data;
+	GList *path = (GList *)data;
 	GList *keywords;
 	gboolean found = FALSE;
 	keywords = metadata_read_list(fd, KEYWORD_KEY, METADATA_PLAIN);
@@ -1067,7 +1067,7 @@ gboolean meta_data_get_keyword_mark(FileData *fd, gint UNUSED(n), gpointer data)
 
 gboolean meta_data_set_keyword_mark(FileData *fd, gint UNUSED(n), gboolean value, gpointer data)
 {
-	GList *path = data;
+	GList *path = (GList *)data;
 	GList *keywords = NULL;
 	GtkTreeIter iter;
 
@@ -1688,7 +1688,7 @@ void keyword_hide_unset_in(GtkTreeStore *keyword_tree, gpointer id, GList *keywo
 static gboolean keyword_show_set_in_cb(GtkTreeModel *model, GtkTreePath *UNUSED(path), GtkTreeIter *iter_ptr, gpointer data)
 {
 	GtkTreeIter iter = *iter_ptr;
-	GList *keywords = data;
+	GList *keywords = (GList *)data;
 	gpointer id = keywords->data;
 	keywords = keywords->next; /* hack */
 	if (keyword_tree_is_set(model, &iter, keywords))

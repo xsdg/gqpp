@@ -71,7 +71,7 @@ FileData *vdlist_row_by_path(ViewDir *vd, const gchar *path, gint *row)
 	work = VDLIST(vd)->list;
 	while (work)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		if (strcmp(fd->path, path) == 0)
 			{
 			if (row) *row = n;
@@ -340,7 +340,7 @@ gboolean vdlist_set_fd(ViewDir *vd, FileData *dir_fd)
 	work = VDLIST(vd)->list;
 	while (work && !found)
 		{
-		FileData *fd = work->data;
+		FileData *fd = (FileData *)work->data;
 		if (!old_path || strcmp(old_path, fd->name) == 0) found = fd;
 		work = work->next;
 		}
@@ -359,7 +359,7 @@ void vdlist_refresh(ViewDir *vd)
 
 gboolean vdlist_press_key_cb(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
-	ViewDir *vd = data;
+	ViewDir *vd = (ViewDir *)data;
 	GtkTreePath *tpath;
 
 	if (event->keyval != GDK_KEY_Menu) return FALSE;
@@ -392,7 +392,7 @@ gboolean vdlist_press_key_cb(GtkWidget *widget, GdkEventKey *event, gpointer dat
 
 gboolean vdlist_press_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer data)
 {
-	ViewDir *vd = data;
+	ViewDir *vd = (ViewDir *)data;
 	GtkTreePath *tpath;
 	GtkTreeIter iter;
 	FileData *fd = NULL;
@@ -426,7 +426,7 @@ gboolean vdlist_press_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer dat
 
 void vdlist_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewDir *vd = data;
+	ViewDir *vd = (ViewDir *)data;
 
 	vd_dnd_drop_scroll_cancel(vd);
 	widget_auto_scroll_stop(vd->view);

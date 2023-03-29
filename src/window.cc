@@ -340,7 +340,7 @@ static void help_search_window_show_icon_press(GtkEntry *UNUSED(entry), GtkEntry
 
 static void help_search_window_ok_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
-	HelpSearchData *hsd = data;
+	HelpSearchData *hsd = (HelpSearchData *)data;
 	gchar *search_command;
 
 	search_command = g_strconcat(options->help_search_engine,
@@ -354,7 +354,7 @@ static void help_search_window_ok_cb(GenericDialog *UNUSED(gd), gpointer data)
 
 static void help_search_window_cancel_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
-	HelpSearchData *hsd = data;
+	HelpSearchData *hsd = (HelpSearchData *)data;
 
 	g_free(hsd);
 }

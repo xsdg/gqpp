@@ -101,14 +101,14 @@ static gint n_gps_entry_drop_types = 2;
 
 static void bar_pane_gps_close_cancel_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
-	PaneGPSData *pgd = data;
+	PaneGPSData *pgd = (PaneGPSData *)data;
 
 	g_list_free(pgd->geocode_list);
 }
 
 static void bar_pane_gps_close_save_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
-	PaneGPSData *pgd = data;
+	PaneGPSData *pgd = (PaneGPSData *)data;
 	FileData *fd;
 	GList *work;
 
@@ -247,7 +247,7 @@ static void bar_pane_gps_close_save_cb(GenericDialog *UNUSED(gd), gpointer data)
 
 static void bar_pane_gps_dnd_init(gpointer data)
 {
-	PaneGPSData *pgd = data;
+	PaneGPSData *pgd = (PaneGPSData *)data;
 
 	gtk_drag_dest_set(pgd->widget,
 			  GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_HIGHLIGHT | GTK_DEST_DEFAULT_DROP,
@@ -296,7 +296,7 @@ static void bar_pane_gps_thumb_error_cb(ThumbLoader *tl, gpointer UNUSED(data))
 
 static gboolean bar_pane_gps_marker_keypress_cb(GtkWidget *widget, ClutterButtonEvent *bevent, gpointer UNUSED(data))
 {
-	//PaneGPSData *pgd = data;
+	//PaneGPSData *pgd = (//PaneGPSData *)data;
 	FileData *fd;
 	ClutterActor *label_marker, *parent_marker;
 	ClutterColor marker_colour = { MARKER_COLOUR };
@@ -428,7 +428,7 @@ static gboolean bar_pane_gps_marker_keypress_cb(GtkWidget *widget, ClutterButton
 
 static gboolean bar_pane_gps_create_markers_cb(gpointer data)
 {
-	PaneGPSData *pgd = data;
+	PaneGPSData *pgd = (PaneGPSData *)data;
 	gdouble latitude;
 	gdouble longitude;
 	gdouble compass;
@@ -587,7 +587,7 @@ void bar_pane_gps_set_map_source(PaneGPSData *pgd, const gchar *map_id)
 
 void bar_pane_gps_enable_markers_checked_toggle_cb(GtkWidget *UNUSED(menu_widget), gpointer data)
 {
-	PaneGPSData *pgd = data;
+	PaneGPSData *pgd = (PaneGPSData *)data;
 
 	if (pgd->enable_markers_checked)
 		{
@@ -601,7 +601,7 @@ void bar_pane_gps_enable_markers_checked_toggle_cb(GtkWidget *UNUSED(menu_widget
 
 static void bar_pane_gps_centre_map_checked_toggle_cb(GtkWidget *UNUSED(menu_widget), gpointer data)
 {
-	PaneGPSData *pgd = data;
+	PaneGPSData *pgd = (PaneGPSData *)data;
 
 	if (pgd->centre_map_checked)
 		{
@@ -615,7 +615,7 @@ static void bar_pane_gps_centre_map_checked_toggle_cb(GtkWidget *UNUSED(menu_wid
 
 static void bar_pane_gps_change_map_cb(GtkWidget *widget, gpointer data)
 {
-	PaneGPSData *pgd = data;
+	PaneGPSData *pgd = (PaneGPSData *)data;
 	gchar *mapsource;
 
 	if (!gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget)))
@@ -725,7 +725,7 @@ static void bar_pane_gps_slider_changed_cb(GtkScaleButton *slider,
 					   gdouble zoom,
 					   gpointer data)
 {
-	PaneGPSData *pgd = data;
+	PaneGPSData *pgd = (PaneGPSData *)data;
 	GString *message;
 
 	message = g_string_new("");
@@ -740,7 +740,7 @@ static void bar_pane_gps_view_state_changed_cb(ChamplainView *view,
            				       GParamSpec *UNUSED(gobject),
            				       gpointer data)
 {
-	PaneGPSData *pgd = data;
+	PaneGPSData *pgd = (PaneGPSData *)data;
  	ChamplainState status;
  	gint zoom;
 	GString *message;
@@ -767,7 +767,7 @@ static void bar_pane_gps_view_state_changed_cb(ChamplainView *view,
 
 static void bar_pane_gps_notify_cb(FileData *fd, NotifyType type, gpointer data)
 {
-	PaneGPSData *pgd = data;
+	PaneGPSData *pgd = (PaneGPSData *)data;
 
 	if ((type & (NOTIFY_REREAD | NOTIFY_CHANGE | NOTIFY_METADATA)) &&
 	    g_list_find(pgd->selection_list, fd))
@@ -864,7 +864,7 @@ void bar_pane_gps_map_centreing(PaneGPSData *pgd)
 
 static gboolean bar_pane_gps_map_keypress_cb(GtkWidget *UNUSED(widget), GdkEventButton *bevent, gpointer data)
 {
-	PaneGPSData *pgd = data;
+	PaneGPSData *pgd = (PaneGPSData *)data;
 	GtkWidget *menu;
 	GtkClipboard *clipboard;
 	gchar *geo_coords;
@@ -902,7 +902,7 @@ static gboolean bar_pane_gps_map_keypress_cb(GtkWidget *UNUSED(widget), GdkEvent
 
 static void bar_pane_gps_destroy(GtkWidget *UNUSED(widget), gpointer data)
 {
-	PaneGPSData *pgd = data;
+	PaneGPSData *pgd = (PaneGPSData *)data;
 
 	file_data_unregister_notify_func(bar_pane_gps_notify_cb, pgd);
 

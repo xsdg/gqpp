@@ -1203,7 +1203,7 @@ void exif_free(ExifData *exif)
 	work = exif->items;
 	while (work)
 		{
-		ExifItem *item = work->data;
+		ExifItem *item = (ExifItem *)work->data;
 		work = work->next;
 		exif_item_free(item);
 		}

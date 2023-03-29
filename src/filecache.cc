@@ -65,7 +65,7 @@ gboolean file_cache_get(FileCacheData *fc, FileData *fd)
 	work = fc->list;
 	while (work)
 		{
-		FileCacheEntry *fce = work->data;
+		FileCacheEntry *fce = (FileCacheEntry *)work->data;
 		if (fce->fd == fd)
 			{
 			/* entry exists */
@@ -182,7 +182,7 @@ void file_cache_dump(FileCacheData *fc)
 
 	while (work)
 		{
-		FileCacheEntry *fe = work->data;
+		FileCacheEntry *fe = (FileCacheEntry *)work->data;
 		work = work->next;
 		DEBUG_1("cache entry: fc=%p [%lu] %s %ld", (void *)fc, ++n, fe->fd->path, fe->size);
 		}
@@ -190,7 +190,7 @@ void file_cache_dump(FileCacheData *fc)
 
 static void file_cache_notify_cb(FileData *fd, NotifyType type, gpointer data)
 {
-	FileCacheData *fc = data;
+	FileCacheData *fc = (FileCacheData *)data;
 
 	if (type & (NOTIFY_REREAD | NOTIFY_CHANGE)) /* invalidate the entry on each file change */
 		{

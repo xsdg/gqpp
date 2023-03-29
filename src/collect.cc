@@ -272,7 +272,7 @@ CollectInfo *collection_list_find_fd(GList *list, FileData *fd)
 
 	while (work)
 		{
-		CollectInfo *ci = work->data;
+		CollectInfo *ci = (CollectInfo *)work->data;
 		if (ci->fd == fd) return ci;
 		work = work->next;
 		}
@@ -287,7 +287,7 @@ GList *collection_list_to_filelist(GList *list)
 
 	while (work)
 		{
-		CollectInfo *info = work->data;
+		CollectInfo *info = (CollectInfo *)work->data;
 		filelist = g_list_prepend(filelist, file_data_ref(info->fd));
 		work = work->next;
 		}
@@ -303,7 +303,7 @@ CollectWindow *collection_window_find(CollectionData *cd)
 	work = collection_window_list;
 	while (work)
 		{
-		CollectWindow *cw = work->data;
+		CollectWindow *cw = (CollectWindow *)work->data;
 		if (cw->cd == cd) return cw;
 		work = work->next;
 		}
@@ -320,7 +320,7 @@ CollectWindow *collection_window_find_by_path(const gchar *path)
 	work = collection_window_list;
 	while (work)
 		{
-		CollectWindow *cw = work->data;
+		CollectWindow *cw = (CollectWindow *)work->data;
 		if (cw->cd->path && strcmp(cw->cd->path, path) == 0) return cw;
 		work = work->next;
 		}
@@ -901,7 +901,7 @@ void collection_update_geometry(CollectionData *cd)
 
 static void collection_notify_cb(FileData *fd, NotifyType type, gpointer data)
 {
-	CollectionData *cd = data;
+	CollectionData *cd = (CollectionData *)data;
 
 	if (!(type & NOTIFY_CHANGE) || !fd->change) return;
 
@@ -934,7 +934,7 @@ static void collection_notify_cb(FileData *fd, NotifyType type, gpointer data)
 
 static gboolean collection_window_keypress(GtkWidget *UNUSED(widget), GdkEventKey *event, gpointer data)
 {
-	CollectWindow *cw = data;
+	CollectWindow *cw = (CollectWindow *)data;
 	gboolean stop_signal = FALSE;
 	GList *list;
 
@@ -1131,7 +1131,7 @@ static void collection_window_update_title(CollectWindow *cw)
 
 static void collection_window_update_info(CollectionData *UNUSED(cd), CollectInfo *ci, gpointer data)
 {
-	CollectWindow *cw = data;
+	CollectWindow *cw = (CollectWindow *)data;
 
 	collection_table_file_update(cw->table, ci);
 }
@@ -1185,7 +1185,7 @@ static void collection_window_close_final(CollectWindow *cw)
 
 static void collection_close_save_cb(GenericDialog *gd, gpointer data)
 {
-	CollectWindow *cw = data;
+	CollectWindow *cw = (CollectWindow *)data;
 
 	cw->close_dialog = NULL;
 	generic_dialog_close(gd);
@@ -1209,7 +1209,7 @@ static void collection_close_save_cb(GenericDialog *gd, gpointer data)
 
 static void collection_close_close_cb(GenericDialog *gd, gpointer data)
 {
-	CollectWindow *cw = data;
+	CollectWindow *cw = (CollectWindow *)data;
 
 	cw->close_dialog = NULL;
 	generic_dialog_close(gd);
@@ -1219,7 +1219,7 @@ static void collection_close_close_cb(GenericDialog *gd, gpointer data)
 
 static void collection_close_cancel_cb(GenericDialog *gd, gpointer data)
 {
-	CollectWindow *cw = data;
+	CollectWindow *cw = (CollectWindow *)data;
 
 	cw->close_dialog = NULL;
 	generic_dialog_close(gd);
@@ -1286,7 +1286,7 @@ gboolean collection_window_modified_exists(void)
 	work = collection_window_list;
 	while (work)
 		{
-		CollectWindow *cw = work->data;
+		CollectWindow *cw = (CollectWindow *)work->data;
 		if (cw->cd->changed)
 			{
 			ret = TRUE;
@@ -1306,7 +1306,7 @@ gboolean collection_window_modified_exists(void)
 
 static gboolean collection_window_delete(GtkWidget *UNUSED(widget), GdkEvent *UNUSED(event), gpointer data)
 {
-	CollectWindow *cw = data;
+	CollectWindow *cw = (CollectWindow *)data;
 	collection_window_close(cw);
 
 	return TRUE;
