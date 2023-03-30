@@ -294,7 +294,7 @@ static void parse_command_line_add_dir(const gchar *dir, gchar **UNUSED(path), g
 		work = files;
 		while (work)
 			{
-			FileData *fd = (FileData *)work->data;
+			FileData *fd = static_cast<FileData *>(work->data);
 			if (!*path) *path = remove_level_from_path(fd->path);
 			if (!*file) *file = g_strdup(fd->path);
 			*list = g_list_prepend(*list, fd);
@@ -895,7 +895,7 @@ static void gq_accel_map_print(
 		    gboolean	changed)
 {
 	GString *gstring = g_string_new(changed ? NULL : "; ");
-	SecureSaveInfo *ssi = (SecureSaveInfo *)data;
+	SecureSaveInfo *ssi = static_cast<SecureSaveInfo *>(data);
 	gchar *tmp, *name;
 
 	g_string_append(gstring, "(gtk_accel_path \"");

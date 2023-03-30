@@ -116,7 +116,7 @@ static gchar *set_pwd(gchar *filename)
 
 static gboolean remote_server_client_cb(GIOChannel *source, GIOCondition condition, gpointer data)
 {
-	RemoteClient *client = (RemoteClient *)data;
+	RemoteClient *client = static_cast<RemoteClient *>(data);
 	RemoteConnection *rc;
 	GIOStatus status = G_IO_STATUS_NORMAL;
 
@@ -211,7 +211,7 @@ static void remote_server_clients_close(RemoteConnection *rc)
 
 static gboolean remote_server_read_cb(GIOChannel *UNUSED(source), GIOCondition UNUSED(condition), gpointer data)
 {
-	RemoteConnection *rc = (RemoteConnection *)data;
+	RemoteConnection *rc = static_cast<RemoteConnection *>(data);
 	gint fd;
 	guint alen;
 
@@ -932,7 +932,7 @@ static void gr_get_selection(const gchar *UNUSED(text), GIOChannel *channel, gbo
 	GList *work = selected;
 	while (work)
 		{
-		FileData *fd = (FileData *)work->data;
+		FileData *fd = static_cast<FileData *>(work->data);
 		g_assert(fd->magick == FD_MAGICK);
 
 		g_string_append_printf(out_string, "%s    %s\n",
@@ -970,7 +970,7 @@ static void gr_selection_add(const gchar *text, GIOChannel *UNUSED(channel), gpo
 		GList *file_list = layout_list(lw_id);
 		for (GList *work = file_list; work && !fd_to_select; work = work->next)
 			{
-			FileData *fd = (FileData *)work->data;
+			FileData *fd = static_cast<FileData *>(work->data);
 			if (!strcmp(path, fd->path) || g_str_has_suffix(fd->path, slash_plus_filename))
 				{
 				fd_to_select = file_data_ref(fd);
@@ -1054,7 +1054,7 @@ static void gr_selection_remove(const gchar *text, GIOChannel *UNUSED(channel), 
 	GList *link_to_remove = NULL;
 	for (GList *work = selected; work; prior_link = work, work = work->next)
 		{
-		FileData *fd = (FileData *)work->data;
+		FileData *fd = static_cast<FileData *>(work->data);
 		if (fd_to_deselect)
 			{
 			if (fd == fd_to_deselect)
@@ -1431,7 +1431,7 @@ static void gr_file_view(const gchar *text, GIOChannel *UNUSED(channel), gpointe
 
 static void gr_list_clear(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer data)
 {
-	RemoteData *remote_data = (RemoteData *)data;
+	RemoteData *remote_data = static_cast<RemoteData *>(data);
 
 	remote_data->command_collection = NULL;
 	remote_data->file_list = NULL;
@@ -1440,7 +1440,7 @@ static void gr_list_clear(const gchar *UNUSED(text), GIOChannel *UNUSED(channel)
 
 static void gr_list_add(const gchar *text, GIOChannel *UNUSED(channel), gpointer data)
 {
-	RemoteData *remote_data = (RemoteData *)data;
+	RemoteData *remote_data = static_cast<RemoteData *>(data);
 	gboolean is_new = TRUE;
 	gchar *path = NULL;
 	FileData *fd;

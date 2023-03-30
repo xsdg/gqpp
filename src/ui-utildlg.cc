@@ -58,7 +58,7 @@ static void generic_dialog_save_window(const gchar *title, const gchar *role, gi
 	work = g_list_first(dialog_windows);
 	while (work)
 		{
-		DialogWindow *dw = (DialogWindow *)work->data;
+		DialogWindow *dw = static_cast<DialogWindow *>(work->data);
 		if (g_strcmp0(dw->title ,title) == 0 && g_strcmp0(dw->role, role) == 0)
 			{
 			dw->x = x;
@@ -88,7 +88,7 @@ static gboolean generic_dialog_find_window(const gchar *title, const gchar *role
 	work = g_list_first(dialog_windows);
 	while (work)
 		{
-		DialogWindow *dw = (DialogWindow *)work->data;
+		DialogWindow *dw = static_cast<DialogWindow *>(work->data);
 
 		if (g_strcmp0(dw->title,title) == 0 && g_strcmp0(dw->role, role) == 0)
 			{
@@ -132,7 +132,7 @@ void generic_dialog_close(GenericDialog *gd)
 
 static void generic_dialog_click_cb(GtkWidget *widget, gpointer data)
 {
-	GenericDialog *gd = (GenericDialog *)data;
+	GenericDialog *gd = static_cast<GenericDialog *>(data);
 	void (*func)(GenericDialog *, gpointer);
 	gboolean auto_close;
 
@@ -145,7 +145,7 @@ static void generic_dialog_click_cb(GtkWidget *widget, gpointer data)
 
 static gboolean generic_dialog_default_key_press_cb(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
-	GenericDialog *gd = (GenericDialog *)data;
+	GenericDialog *gd = static_cast<GenericDialog *>(data);
 
 	if (event->keyval == GDK_KEY_Return && gtk_widget_has_focus(widget)
 	    && gd->default_cb)
@@ -170,7 +170,7 @@ void generic_dialog_attach_default(GenericDialog *gd, GtkWidget *widget)
 
 static gboolean generic_dialog_key_press_cb(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
-	GenericDialog *gd = (GenericDialog *)data;
+	GenericDialog *gd = static_cast<GenericDialog *>(data);
 	gboolean auto_close = gd->auto_close;
 
 	if (event->keyval == GDK_KEY_Escape)
@@ -191,7 +191,7 @@ static gboolean generic_dialog_key_press_cb(GtkWidget *widget, GdkEventKey *even
 
 static gboolean generic_dialog_delete_cb(GtkWidget *UNUSED(w), GdkEventAny *UNUSED(event), gpointer data)
 {
-	GenericDialog *gd = (GenericDialog *)data;
+	GenericDialog *gd = static_cast<GenericDialog *>(data);
 	gboolean auto_close;
 
 	auto_close = gd->auto_close;
@@ -204,7 +204,7 @@ static gboolean generic_dialog_delete_cb(GtkWidget *UNUSED(w), GdkEventAny *UNUS
 
 static void generic_dialog_show_cb(GtkWidget *widget, gpointer data)
 {
-	GenericDialog *gd = (GenericDialog *)data;
+	GenericDialog *gd = static_cast<GenericDialog *>(data);
 	if (gd->cancel_button)
 		{
 		gtk_box_reorder_child(GTK_BOX(gd->hbox), gd->cancel_button, -1);
@@ -361,7 +361,7 @@ void generic_dialog_windows_write_config(GString *outstr, gint indent)
 		work = g_list_first(dialog_windows);
 		while (work)
 			{
-			DialogWindow *dw = (DialogWindow *)work->data;
+			DialogWindow *dw = static_cast<DialogWindow *>(work->data);
 			WRITE_NL(); WRITE_STRING("<window ");
 			write_char_option(outstr, indent + 1, "title", dw->title);
 			write_char_option(outstr, indent + 1, "role", dw->role);
@@ -740,14 +740,14 @@ GtkWidget *file_dialog_add_button(FileDialog *fdlg, const gchar *stock_id, const
 
 static void file_dialog_entry_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	FileDialog *fdlg = (FileDialog *)data;
+	FileDialog *fdlg = static_cast<FileDialog *>(data);
 	g_free(fdlg->dest_path);
 	fdlg->dest_path = remove_trailing_slash(gtk_entry_get_text(GTK_ENTRY(fdlg->entry)));
 }
 
 static void file_dialog_entry_enter_cb(const gchar *UNUSED(path), gpointer data)
 {
-	GenericDialog *gd = (GenericDialog *)data;
+	GenericDialog *gd = static_cast<GenericDialog *>(data);
 
 	file_dialog_entry_cb(NULL, data);
 

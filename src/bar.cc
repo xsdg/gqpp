@@ -220,7 +220,7 @@ struct _BarData
 
 static void bar_expander_move(GtkWidget *UNUSED(widget), gpointer data, gboolean up, gboolean single_step)
 {
-	GtkWidget *expander = (GtkWidget *)data;
+	GtkWidget *expander = static_cast<GtkWidget *>(data);
 	GtkWidget *box;
 	gint pos;
 
@@ -280,7 +280,7 @@ static void height_spin_key_press_cb(GtkEventControllerKey *UNUSED(controller), 
 
 static void bar_expander_height_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	GtkWidget *expander = (GtkWidget *)data;
+	GtkWidget *expander = static_cast<GtkWidget *>(data);
 	GtkWidget *spin;
 	GtkWidget *window;
 	GtkWidget *data_box;
@@ -326,13 +326,13 @@ static void bar_expander_height_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void bar_expander_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	GtkWidget *expander = (GtkWidget *)data;
+	GtkWidget *expander = static_cast<GtkWidget *>(data);
 	gtk_widget_destroy(expander);
 }
 
 static void bar_expander_add_cb(GtkWidget *widget, gpointer UNUSED(data))
 {
-	//GtkWidget *bar = (//GtkWidget *)data;
+	//GtkWidget *bar = static_cast<//GtkWidget *>(data);
 	const KnownPanes *pane = known_panes;
 	const gchar *id = g_object_get_data(G_OBJECT(widget), "pane_add_id");
 	const gchar *config;
@@ -577,7 +577,7 @@ void bar_clear(GtkWidget *bar)
 	work = list;
 	while (work)
 		{
-		GtkWidget *widget = (GtkWidget *)work->data;
+		GtkWidget *widget = static_cast<GtkWidget *>(work->data);
 		gtk_widget_destroy(widget);
 		work = work->next;
 		}
@@ -606,7 +606,7 @@ void bar_write_config(GtkWidget *bar, GString *outstr, gint indent)
 	work = list;
 	while (work)
 		{
-		GtkWidget *expander = (GtkWidget *)work->data;
+		GtkWidget *expander = static_cast<GtkWidget *>(work->data);
 		GtkWidget *widget = gtk_bin_get_child(GTK_BIN(expander));
 		PaneData *pd = g_object_get_data(G_OBJECT(widget), "pane_data");
 		if (!pd) continue;
@@ -684,7 +684,7 @@ void bar_populate_default(GtkWidget *UNUSED(bar))
 
 static void bar_size_allocate(GtkWidget *UNUSED(widget), GtkAllocation *UNUSED(allocation), gpointer data)
 {
-	BarData *bd = (BarData *)data;
+	BarData *bd = static_cast<BarData *>(data);
 
 	bd->width = gtk_paned_get_position(GTK_PANED(bd->lw->utility_paned));
 }
@@ -711,7 +711,7 @@ void bar_close(GtkWidget *bar)
 
 static void bar_destroy(GtkWidget *UNUSED(widget), gpointer data)
 {
-	BarData *bd = (BarData *)data;
+	BarData *bd = static_cast<BarData *>(data);
 
 	file_data_unref(bd->fd);
 	g_free(bd);

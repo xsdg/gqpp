@@ -76,7 +76,7 @@ static void add_edit_items(GtkWidget *menu, GCallback func, GList *fd_list)
 
 	while (work)
 		{
-		const EditorDescription *editor = (const EditorDescription *)work->data;
+		const EditorDescription *editor = static_cast<const EditorDescription *>(work->data);
 		work = work->next;
 		gboolean active = TRUE;
 

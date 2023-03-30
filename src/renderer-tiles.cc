@@ -697,7 +697,7 @@ static void rt_overlay_queue_all(RendererTiles *rt, gint x1, gint y1, gint x2, g
 	work = rt->overlay_list;
 	while (work)
 		{
-		OverlayData *od = (OverlayData *)work->data;
+		OverlayData *od = static_cast<OverlayData *>(work->data);
 		work = work->next;
 
 		rt_overlay_queue_draw(rt, od, x1, y1, x2, y2);
@@ -711,7 +711,7 @@ static void rt_overlay_update_sizes(RendererTiles *rt)
 	work = rt->overlay_list;
 	while (work)
 		{
-		OverlayData *od = (OverlayData *)work->data;
+		OverlayData *od = static_cast<OverlayData *>(work->data);
 		work = work->next;
 
 		if (!od->window) rt_overlay_init_window(rt, od);
@@ -733,7 +733,7 @@ static OverlayData *rt_overlay_find(RendererTiles *rt, gint id)
 	work = rt->overlay_list;
 	while (work)
 		{
-		OverlayData *od = (OverlayData *)work->data;
+		OverlayData *od = static_cast<OverlayData *>(work->data);
 		work = work->next;
 
 		if (od->id == id) return od;
@@ -810,7 +810,7 @@ static void rt_overlay_list_reset_window(RendererTiles *rt)
 	work = rt->overlay_list;
 	while (work)
 		{
-		OverlayData *od = (OverlayData *)work->data;
+		OverlayData *od = static_cast<OverlayData *>(work->data);
 		work = work->next;
 		if (od->window) gdk_window_destroy(od->window);
 		od->window = NULL;
@@ -862,7 +862,7 @@ gboolean renderer_tiles_overlay_get(void *renderer, gint id, GdkPixbuf **pixbuf,
 
 static void rt_hierarchy_changed_cb(GtkWidget *UNUSED(widget), GtkWidget *UNUSED(previous_toplevel), gpointer data)
 {
-	RendererTiles *rt = (RendererTiles *)data;
+	RendererTiles *rt = static_cast<RendererTiles *>(data);
 	rt_overlay_list_reset_window(rt);
 }
 
@@ -1580,7 +1580,7 @@ static gint rt_get_queued_area(GList *work)
 
 	while (work)
 		{
-		QueueData *qd = (QueueData *)work->data;
+		QueueData *qd = static_cast<QueueData *>(work->data);
 		area += qd->w * qd->h;
 		work = work->next;
 		}
@@ -1636,7 +1636,7 @@ static gboolean rt_queue_schedule_next_draw(RendererTiles *rt, gboolean force_se
 
 static gboolean rt_queue_draw_idle_cb(gpointer data)
 {
-	RendererTiles *rt = (RendererTiles *)data;
+	RendererTiles *rt = static_cast<RendererTiles *>(data);
 	PixbufRenderer *pr = rt->pr;
 	QueueData *qd;
 	gboolean fast;
@@ -2168,7 +2168,7 @@ static gboolean rt_realize_cb(GtkWidget *widget, gpointer data)
 
 static gboolean rt_size_allocate_cb(GtkWidget *widget,  GdkRectangle *allocation, gpointer data)
 {
-	RendererTiles *rt = (RendererTiles *)data;
+	RendererTiles *rt = static_cast<RendererTiles *>(data);
 	cairo_t *cr;
 	cairo_surface_t *old_surface;
 

@@ -92,7 +92,7 @@ static FilterEntry *filter_get_by_key(const gchar *key)
 	work = filter_list;
 	while (work)
 		{
-		FilterEntry *fe = (FilterEntry *)work->data;
+		FilterEntry *fe = static_cast<FilterEntry *>(work->data);
 		work = work->next;
 
 		if (strcmp(fe->key, key) == 0) return fe;
@@ -139,7 +139,7 @@ static void filter_add_if_missing(const gchar *key, const gchar *description, co
 	work = filter_list;
 	while (work)
 		{
-		FilterEntry *fe = (FilterEntry *)work->data;
+		FilterEntry *fe = static_cast<FilterEntry *>(work->data);
 		work = work->next;
 		if (fe->key && strcmp(fe->key, key) == 0)
 			{
@@ -165,7 +165,7 @@ void filter_reset(void)
 	work = filter_list;
 	while (work)
 		{
-		FilterEntry *fe = (FilterEntry *)work->data;
+		FilterEntry *fe = static_cast<FilterEntry *>(work->data);
 		work = work->next;
 		filter_entry_free(fe);
 		}
@@ -513,7 +513,7 @@ void filter_write_list(GString *outstr, gint indent)
 	work = filter_list;
 	while (work)
 		{
-		FilterEntry *fe = (FilterEntry *)work->data;
+		FilterEntry *fe = static_cast<FilterEntry *>(work->data);
 		work = work->next;
 
 		WRITE_NL(); WRITE_STRING("<file_type ");

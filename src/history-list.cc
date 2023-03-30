@@ -356,7 +356,7 @@ static HistoryData *history_list_find_by_key(const gchar *key)
 
 	while (work)
 		{
-		HistoryData *hd = (HistoryData *)work->data;
+		HistoryData *hd = static_cast<HistoryData *>(work->data);
 		if (strcmp(hd->key, key) == 0) return hd;
 		work = work->next;
 		}

@@ -151,7 +151,7 @@ static void log_window_pause_cb(GtkWidget *UNUSED(widget), gpointer UNUSED(data)
 
 static void log_window_line_wrap_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	LogWindow *logwin = (LogWindow *)data;
+	LogWindow *logwin = static_cast<LogWindow *>(data);
 
 	options->log_window.line_wrap = !options->log_window.line_wrap;
 
@@ -642,7 +642,7 @@ void log_window_append(const gchar *str, LogType type)
 			while (g_list_length(memory) >= (guint)options->log_window_lines)
 				{
 				GList *work = g_list_last(memory);
-				LogMsg *oldest_msg = (LogMsg *)work->data;
+				LogMsg *oldest_msg = static_cast<LogMsg *>(work->data);
 
 				g_free(oldest_msg->text);
 				memory = g_list_delete_link(memory, work);
@@ -672,7 +672,7 @@ void log_window_append(const gchar *str, LogType type)
 	while (work)
 		{
 		GList *prev;
-		LogMsg *oldest_msg = (LogMsg *)work->data;
+		LogMsg *oldest_msg = static_cast<LogMsg *>(work->data);
 
 		log_window_insert_text(buffer, &iter, oldest_msg->text,
 									logwindow->color_tags[oldest_msg->type]);

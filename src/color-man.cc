@@ -337,7 +337,7 @@ void color_man_correct_region(ColorMan *cm, GdkPixbuf *pixbuf, gint x, gint y, g
 
 static gboolean color_man_idle_cb(gpointer data)
 {
-	ColorMan *cm = (ColorMan *)data;
+	ColorMan *cm = static_cast<ColorMan *>(data);
 	gint width, height;
 	gint rh;
 

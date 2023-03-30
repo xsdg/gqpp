@@ -382,7 +382,7 @@ static void view_step_to_end(ViewWindow *vw, gboolean last)
 
 static gboolean view_window_key_press_cb(GtkWidget * (widget), GdkEventKey *event, gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 	ImageWindow *imd;
 	gint stop_signal;
 	GtkWidget *menu;
@@ -633,7 +633,7 @@ static gboolean view_window_key_press_cb(GtkWidget * (widget), GdkEventKey *even
  */
 static void button_cb(ImageWindow *imd, GdkEventButton *event, gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 	GtkWidget *menu;
 	gchar *dest_dir;
 	LayoutWindow *lw_new;
@@ -677,7 +677,7 @@ static void button_cb(ImageWindow *imd, GdkEventButton *event, gpointer data)
 
 static void scroll_cb(ImageWindow *imd, GdkEventScroll *event, gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 
 	if ((event->state & GDK_CONTROL_MASK) ||
 				(imd->mouse_wheel_mode && !options->image_lm_click_nav))
@@ -738,7 +738,7 @@ static void view_image_set_buttons(ViewWindow *vw, ImageWindow *imd)
 
 static void view_fullscreen_stop_func(FullScreenData *UNUSED(fs), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 
 	vw->fs = NULL;
 
@@ -795,7 +795,7 @@ static void view_slideshow_prev(ViewWindow *vw)
 
 static void view_slideshow_stop_func(SlideShowData *UNUSED(fs), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 	GList *work;
 	FileData *fd;
 
@@ -852,7 +852,7 @@ static void view_slideshow_stop(ViewWindow *vw)
 
 static void view_window_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 
 	view_window_list = g_list_remove(view_window_list, vw);
 
@@ -875,7 +875,7 @@ static void view_window_close(ViewWindow *vw)
 
 static gboolean view_window_delete_cb(GtkWidget *UNUSED(w), GdkEventAny *UNUSED(event), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 
 	view_window_close(vw);
 	return TRUE;
@@ -999,7 +999,7 @@ static ViewWindow *real_view_window_new(FileData *fd, GList *list, CollectionDat
 
 static void view_window_collection_unref_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	CollectionData *cd = (CollectionData *)data;
+	CollectionData *cd = static_cast<CollectionData *>(data);
 
 	collection_unref(cd);
 }
@@ -1071,7 +1071,7 @@ void view_window_colors_update(void)
 	work = view_window_list;
 	while (work)
 		{
-		ViewWindow *vw = (ViewWindow *)work->data;
+		ViewWindow *vw = static_cast<ViewWindow *>(work->data);
 		work = work->next;
 
 		image_background_set_color_from_options(vw->imd, !!vw->fs);
@@ -1085,7 +1085,7 @@ gboolean view_window_find_image(ImageWindow *imd, gint *index, gint *total)
 	work = view_window_list;
 	while (work)
 		{
-		ViewWindow *vw = (ViewWindow *)work->data;
+		ViewWindow *vw = static_cast<ViewWindow *>(work->data);
 		work = work->next;
 
 		if (vw->imd == imd ||
@@ -1122,7 +1122,7 @@ gboolean view_window_find_image(ImageWindow *imd, gint *index, gint *total)
 
 static void view_new_window_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 	CollectionData *cd;
 	CollectInfo *info;
 
@@ -1170,35 +1170,35 @@ static void view_alter_cb(GtkWidget *widget, gpointer data)
 
 static void view_zoom_in_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 
 	image_zoom_adjust(view_window_active_image(vw), get_zoom_increment());
 }
 
 static void view_zoom_out_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 
 	image_zoom_adjust(view_window_active_image(vw), -get_zoom_increment());
 }
 
 static void view_zoom_1_1_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 
 	image_zoom_set(view_window_active_image(vw), 1.0);
 }
 
 static void view_zoom_fit_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 
 	image_zoom_set(view_window_active_image(vw), 0.0);
 }
 
 static void view_copy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 	ImageWindow *imd;
 
 	imd = view_window_active_image(vw);
@@ -1207,7 +1207,7 @@ static void view_copy_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void view_move_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 	ImageWindow *imd;
 
 	imd = view_window_active_image(vw);
@@ -1216,7 +1216,7 @@ static void view_move_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void view_rename_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 	ImageWindow *imd;
 
 	imd = view_window_active_image(vw);
@@ -1225,7 +1225,7 @@ static void view_rename_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void view_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 	ImageWindow *imd;
 
 	imd = view_window_active_image(vw);
@@ -1235,7 +1235,7 @@ static void view_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void view_move_to_trash_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 	ImageWindow *imd;
 
 	imd = view_window_active_image(vw);
@@ -1245,7 +1245,7 @@ static void view_move_to_trash_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void view_copy_path_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 	ImageWindow *imd;
 
 	imd = view_window_active_image(vw);
@@ -1254,7 +1254,7 @@ static void view_copy_path_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void view_copy_path_unquoted_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 	ImageWindow *imd;
 
 	imd = view_window_active_image(vw);
@@ -1263,35 +1263,35 @@ static void view_copy_path_unquoted_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void view_fullscreen_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 
 	view_fullscreen_toggle(vw, FALSE);
 }
 
 static void view_slideshow_start_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 
 	view_slideshow_start(vw);
 }
 
 static void view_slideshow_stop_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 
 	view_slideshow_stop(vw);
 }
 
 static void view_slideshow_pause_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 
 	slideshow_pause_toggle(vw->ss);
 }
 
 static void view_close_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 
 	view_window_close(vw);
 }
@@ -1309,7 +1309,7 @@ static LayoutWindow *view_new_layout_with_fd(FileData *fd)
 
 static void view_set_layout_path_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 	LayoutWindow *lw;
 	ImageWindow *imd;
 
@@ -1327,7 +1327,7 @@ static void view_set_layout_path_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void view_popup_menu_destroy_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	GList *editmenu_fd_list = (GList *)data;
+	GList *editmenu_fd_list = static_cast<GList *>(data);
 
 	filelist_free(editmenu_fd_list);
 }
@@ -1487,7 +1487,7 @@ static void view_dir_list_do(ViewWindow *vw, GList *list, gboolean skip, gboolea
 	work = list;
 	while (work)
 		{
-		FileData *fd = (FileData *)work->data;
+		FileData *fd = static_cast<FileData *>(work->data);
 		work = work->next;
 
 		if (isdir(fd->path))
@@ -1539,25 +1539,25 @@ static void view_dir_list_do(ViewWindow *vw, GList *list, gboolean skip, gboolea
 
 static void view_dir_list_add(GtkWidget *UNUSED(widget), gpointer data)
 {
-	CViewConfirmD *d = (CViewConfirmD *)data;
+	CViewConfirmD *d = static_cast<CViewConfirmD *>(data);
 	view_dir_list_do(d->vw, d->list, FALSE, FALSE);
 }
 
 static void view_dir_list_recurse(GtkWidget *UNUSED(widget), gpointer data)
 {
-	CViewConfirmD *d = (CViewConfirmD *)data;
+	CViewConfirmD *d = static_cast<CViewConfirmD *>(data);
 	view_dir_list_do(d->vw, d->list, FALSE, TRUE);
 }
 
 static void view_dir_list_skip(GtkWidget *UNUSED(widget), gpointer data)
 {
-	CViewConfirmD *d = (CViewConfirmD *)data;
+	CViewConfirmD *d = static_cast<CViewConfirmD *>(data);
 	view_dir_list_do(d->vw, d->list, TRUE, FALSE);
 }
 
 static void view_dir_list_destroy(GtkWidget *UNUSED(widget), gpointer data)
 {
-	CViewConfirmD *d = (CViewConfirmD *)data;
+	CViewConfirmD *d = static_cast<CViewConfirmD *>(data);
 	filelist_free(d->list);
 	g_free(d);
 }
@@ -1597,7 +1597,7 @@ static void view_window_get_dnd_data(GtkWidget *UNUSED(widget), GdkDragContext *
 				     GtkSelectionData *selection_data, guint info,
 				     guint UNUSED(time), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 	ImageWindow *imd;
 
 	if (gtk_drag_get_source_widget(context) == vw->imd->pr) return;
@@ -1619,7 +1619,7 @@ static void view_window_get_dnd_data(GtkWidget *UNUSED(widget), GdkDragContext *
 			work = list;
 			while (work)
 				{
-				FileData *fd = (FileData *)work->data;
+				FileData *fd = static_cast<FileData *>(work->data);
 				if (isdir(fd->path))
 					{
 					GtkWidget *menu;
@@ -1676,7 +1676,7 @@ static void view_window_set_dnd_data(GtkWidget *UNUSED(widget), GdkDragContext *
 				     GtkSelectionData *selection_data, guint UNUSED(info),
 				     guint UNUSED(time), gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 	FileData *fd;
 
 	fd = image_get_fd(vw->imd);
@@ -1805,7 +1805,7 @@ static void view_real_removed(ViewWindow *vw, FileData *fd)
 
 static void view_window_notify_cb(FileData *fd, NotifyType type, gpointer data)
 {
-	ViewWindow *vw = (ViewWindow *)data;
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
 
 	if (!(type & NOTIFY_CHANGE) || !fd->change) return;
 

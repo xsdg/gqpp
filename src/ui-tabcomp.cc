@@ -153,7 +153,7 @@ static void tab_completion_read_dir(TabCompData *td, const gchar *path)
 
 static void tab_completion_destroy(GtkWidget *UNUSED(widget), gpointer data)
 {
-	TabCompData *td = (TabCompData *)data;
+	TabCompData *td = static_cast<TabCompData *>(data);
 
 	tab_completion_free_list(td);
 	g_free(td->history_key);
@@ -208,7 +208,7 @@ static void tab_completion_emit_tab_signal(TabCompData *td)
 #ifdef TAB_COMPLETION_ENABLE_POPUP_MENU
 void tab_completion_iter_menu_items(GtkWidget *widget, gpointer data)
 {
-	TabCompData *td = (TabCompData *)data;
+	TabCompData *td = static_cast<TabCompData *>(data);
 	GtkWidget *child;
 
 	if (!gtk_widget_get_visible(widget)) return;
@@ -235,7 +235,7 @@ void tab_completion_iter_menu_items(GtkWidget *widget, gpointer data)
 
 static gboolean tab_completion_popup_key_press(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
-	TabCompData *td = (TabCompData *)data;
+	TabCompData *td = static_cast<TabCompData *>(data);
 
 	if (event->keyval == GDK_KEY_Tab ||
 	    event->keyval == GDK_KEY_BackSpace ||
@@ -532,7 +532,7 @@ static gboolean tab_completion_do(TabCompData *td)
 
 static gboolean tab_completion_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer data)
 {
-	TabCompData *td = (TabCompData *)data;
+	TabCompData *td = static_cast<TabCompData *>(data);
 	gboolean stop_signal = FALSE;
 
 	switch (event->keyval)
@@ -571,7 +571,7 @@ static gboolean tab_completion_key_pressed(GtkWidget *widget, GdkEventKey *event
 static void tab_completion_button_pressed(GtkWidget *UNUSED(widget), gpointer data)
 {
 	TabCompData *td;
-	GtkWidget *entry = (GtkWidget *)data;
+	GtkWidget *entry = static_cast<GtkWidget *>(data);
 
 	td = g_object_get_data(G_OBJECT(entry), "tab_completion_data");
 
@@ -590,7 +590,7 @@ static void tab_completion_button_pressed(GtkWidget *UNUSED(widget), gpointer da
 
 static void tab_completion_button_size_allocate(GtkWidget *button, GtkAllocation *allocation, gpointer data)
 {
-	GtkWidget *parent = (GtkWidget *)data;
+	GtkWidget *parent = static_cast<GtkWidget *>(data);
 	GtkAllocation parent_allocation;
 	gtk_widget_get_allocation(parent, &parent_allocation);
 
@@ -824,7 +824,7 @@ gchar *remove_trailing_slash(const gchar *path)
 
 static void tab_completion_select_cancel_cb(FileDialog *fd, gpointer data)
 {
-	TabCompData *td = (TabCompData *)data;
+	TabCompData *td = static_cast<TabCompData *>(data);
 
 	td->fd = NULL;
 	file_dialog_close(fd);
@@ -832,7 +832,7 @@ static void tab_completion_select_cancel_cb(FileDialog *fd, gpointer data)
 
 static void tab_completion_select_ok_cb(FileDialog *fd, gpointer data)
 {
-	TabCompData *td = (TabCompData *)data;
+	TabCompData *td = static_cast<TabCompData *>(data);
 
 	gtk_entry_set_text(GTK_ENTRY(td->entry), gtk_entry_get_text(GTK_ENTRY(fd->entry)));
 
@@ -895,7 +895,7 @@ static void tab_completion_select_show(TabCompData *td)
 
 static void tab_completion_select_pressed(GtkWidget *UNUSED(widget), gpointer data)
 {
-	TabCompData *td = (TabCompData *)data;
+	TabCompData *td = static_cast<TabCompData *>(data);
 
 	tab_completion_select_show(td);
 }
