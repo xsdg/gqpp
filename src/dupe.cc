@@ -1734,7 +1734,7 @@ static DUPE_CHECK_RESULT dupe_match_check(DupeItem *di1, DupeItem *di2, gpointer
 static gint dupe_match_binary_search_cb(gconstpointer a, gconstpointer b)
 {
 	const DupeItem *di1 = *((DupeItem **) a);
-	const DupeItem *di2 = b;
+	const DupeItem *di2 = static_cast<const DupeItem *>(b);
 	DupeMatchType mask = param_match_mask;
 
 	if (mask & DUPE_MATCH_ALL)

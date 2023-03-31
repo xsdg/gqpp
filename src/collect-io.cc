@@ -1020,8 +1020,8 @@ void collect_manager_notify_cb(FileData *fd, NotifyType type, gpointer UNUSED(da
 
 static gint collection_manager_sort_cb(gconstpointer a, gconstpointer b)
 {
-	const gchar *char_a = a;
-	const gchar *char_b = b;
+	const gchar *char_a = static_cast<const gchar *>(a);
+	const gchar *char_b = static_cast<const gchar *>(b);
 
 	return g_strcmp0(char_a, char_b);
 }

@@ -1994,8 +1994,8 @@ struct _DeleteWindow
 
 static gint layout_window_menu_list_sort_cb(gconstpointer a, gconstpointer b)
 {
-	const WindowNames *wna = a;
-	const WindowNames *wnb = b;
+	const WindowNames *wna = static_cast<const WindowNames *>(a);
+	const WindowNames *wnb = static_cast<const WindowNames *>(b);
 
 	return g_strcmp0((gchar *)wna->name, (gchar *)wnb->name);
 }

@@ -139,8 +139,8 @@ static SortType collection_list_sort_method = SORT_NAME;
 
 static gint collection_list_sort_cb(gconstpointer a, gconstpointer b)
 {
-	const CollectInfo *cia = a;
-	const CollectInfo *cib = b;
+	const CollectInfo *cia = static_cast<const CollectInfo *>(a);
+	const CollectInfo *cib = static_cast<const CollectInfo *>(b);
 
 	switch (collection_list_sort_method)
 		{

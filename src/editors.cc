@@ -495,8 +495,8 @@ static void editor_list_add_cb(gpointer UNUSED(key), gpointer value, gpointer da
 
 static gint editor_sort(gconstpointer a, gconstpointer b)
 {
-	const EditorDescription *ea = a;
-	const EditorDescription *eb = b;
+	const EditorDescription *ea = static_cast<const EditorDescription *>(a);
+	const EditorDescription *eb = static_cast<const EditorDescription *>(b);
 	gchar *caseless_name_ea;
 	gchar *caseless_name_eb;
 	gchar *collate_key_ea;

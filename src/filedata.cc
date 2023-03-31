@@ -912,8 +912,8 @@ void file_data_unlock_list(GList *list)
 
 static gint file_data_sort_by_ext(gconstpointer a, gconstpointer b)
 {
-	const FileData *fda = a;
-	const FileData *fdb = b;
+	const FileData *fda = static_cast<const FileData *>(a);
+	const FileData *fdb = static_cast<const FileData *>(b);
 
 	if (fda->sidecar_priority < fdb->sidecar_priority) return -1;
 	if (fda->sidecar_priority > fdb->sidecar_priority) return 1;
