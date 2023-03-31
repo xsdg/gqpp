@@ -321,12 +321,12 @@ static void collection_load_thumb_step(CollectionData *cd)
 		}
 
 	work = cd->list;
-	ci = work->data;
+	ci = static_cast<CollectInfo *>(work->data);
 	work = work->next;
 	/* find first unloaded thumb */
 	while (work && ci->pixbuf)
 		{
-		ci = work->data;
+		ci = static_cast<CollectInfo *>(work->data);
 		work = work->next;
 		}
 
@@ -550,7 +550,7 @@ static void collect_manager_entry_free_data(CollectManagerEntry *entry)
 		{
 		CollectManagerAction *action;
 
-		action = work->data;
+		action = static_cast<CollectManagerAction *>(work->data);
 		work = work->next;
 
 		collect_manager_action_unref(action);
@@ -614,7 +614,7 @@ static CollectManagerEntry *collect_manager_get_entry(const gchar *path)
 		{
 		CollectManagerEntry *entry;
 
-		entry = work->data;
+		entry = static_cast<CollectManagerEntry *>(work->data);
 		work = work->next;
 		if (strcmp(entry->path, path) == 0)
 			{
@@ -640,7 +640,7 @@ static void collect_manager_entry_add_action(CollectManagerEntry *entry, Collect
 			return;
 			}
 
-		orig_action = g_hash_table_lookup(entry->newpath_hash, action->newpath);
+		orig_action = static_cast<CollectManagerAction *>(g_hash_table_lookup(entry->newpath_hash, action->newpath));
 		if (orig_action)
 			{
 			/* target already exists */
@@ -654,7 +654,7 @@ static void collect_manager_entry_add_action(CollectManagerEntry *entry, Collect
 		return;
 		}
 
-	orig_action = g_hash_table_lookup(entry->newpath_hash, action->oldpath);
+	orig_action = static_cast<CollectManagerAction *>(g_hash_table_lookup(entry->newpath_hash, action->oldpath));
 	if (orig_action)
 		{
 		/* new action with the same file */
@@ -681,7 +681,7 @@ static void collect_manager_entry_add_action(CollectManagerEntry *entry, Collect
 		}
 
 
-	orig_action = g_hash_table_lookup(entry->oldpath_hash, action->oldpath);
+	orig_action = static_cast<CollectManagerAction *>(g_hash_table_lookup(entry->oldpath_hash, action->oldpath));
 	if (orig_action)
 		{
 		/* another action for the same source, ignore */
@@ -708,7 +708,7 @@ static gboolean collect_manager_process_action(CollectManagerEntry *entry, gchar
 		/* get new files */
 		if (entry->add_list)
 			{
-			action = entry->add_list->data;
+			action = static_cast<CollectManagerAction *>(entry->add_list->data);
 			g_assert(action->oldpath == NULL);
 			entry->add_list = g_list_remove(entry->add_list, action);
 			path = g_strdup(action->newpath);
@@ -719,7 +719,7 @@ static gboolean collect_manager_process_action(CollectManagerEntry *entry, gchar
 		return (path != NULL);
 		}
 
-	action = g_hash_table_lookup(entry->oldpath_hash, path);
+	action = static_cast<CollectManagerAction *>(g_hash_table_lookup(entry->oldpath_hash, path));
 
 	if (action)
 		{
@@ -746,7 +746,7 @@ static void collect_manager_refresh(void)
 		CollectManagerEntry *entry;
 		GList *list_step;
 
-		entry = work->data;
+		entry = static_cast<CollectManagerEntry *>(work->data);
 		work = work->next;
 
 		list_step = list;
@@ -754,7 +754,7 @@ static void collect_manager_refresh(void)
 			{
 			FileData *fd;
 
-			fd = list_step->data;
+			fd = static_cast<FileData *>(list_step->data);
 			list_step = list_step->next;
 
 			if (strcmp(fd->path, entry->path) == 0)
@@ -778,7 +778,7 @@ static void collect_manager_refresh(void)
 		{
 		FileData *fd;
 
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 		work = work->next;
 
 		collect_manager_entry_new(fd->path);
@@ -796,13 +796,13 @@ static void collect_manager_process_actions(gint max)
 		CollectManagerAction *action;
 		GList *work;
 
-		action = collection_manager_action_list->data;
+		action = static_cast<CollectManagerAction *>(collection_manager_action_list->data);
 		work = collection_manager_entry_list;
 		while (work)
 			{
 			CollectManagerEntry *entry;
 
-			entry = work->data;
+			entry = static_cast<CollectManagerEntry *>(work->data);
 			work = work->next;
 
 			if (action->type == COLLECTION_MANAGER_UPDATE)
@@ -869,7 +869,7 @@ static gboolean collect_manager_process_entry_list(void)
 		{
 		CollectManagerEntry *entry;
 
-		entry = work->data;
+		entry = static_cast<CollectManagerEntry *>(work->data);
 		work = work->next;
 		if (collect_manager_process_entry(entry)) return TRUE;
 		}
@@ -1054,7 +1054,7 @@ void collect_manager_list(GList **names_exc, GList **names_inc, GList **paths)
 
 	while (list)
 		{
-		fd = list->data;
+		fd = static_cast<FileData *>(list->data);
 		filename = g_strdup(filename_from_path((gchar *)fd->path));
 
 		if (file_extension_match(filename, GQ_COLLECTION_EXT))

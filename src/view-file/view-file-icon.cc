@@ -314,7 +314,7 @@ static void vficon_mark_toggled_cb(GtkCellRendererToggle *cell, gchar *path_str,
 	column = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(cell), "column_number"));
 	g_object_get(G_OBJECT(cell), "toggled_mark", &toggled_mark, NULL);
 
-	fd = g_list_nth_data(list, column);
+	fd = static_cast<FileData *>(g_list_nth_data(list, column));
 	if (fd)
 		{
 		file_data_set_mark(fd, toggled_mark, !file_data_get_mark(fd, toggled_mark));
@@ -445,7 +445,7 @@ static void tip_update(ViewFile *vf, FileData *fd)
 				return;
 				}
 
-			label = g_object_get_data(G_OBJECT(VFICON(vf)->tip_window), "tip_label");
+			label = static_cast<GtkWidget *>(g_object_get_data(G_OBJECT(VFICON(vf)->tip_window), "tip_label"));
 			gtk_label_set_text(GTK_LABEL(label), VFICON(vf)->tip_fd->name);
 			}
 		}
@@ -852,7 +852,7 @@ GList *vficon_selection_get_list(ViewFile *vf)
 		work2 = fd->sidecar_files;
 		while (work2)
 			{
-			fd = work2->data;
+			fd = static_cast<FileData *>(work2->data);
 			list = g_list_prepend(list, file_data_ref(fd));
 			work2 = work2->next;
 			}
@@ -904,7 +904,7 @@ void vficon_select_list(ViewFile *vf, GList *list)
 	work = list;
 	while (work)
 		{
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 		if (g_list_find(vf->list, fd))
 			{
 			VFICON(vf)->selection = g_list_append(VFICON(vf)->selection, fd);
@@ -990,7 +990,7 @@ static void vficon_select_closest(ViewFile *vf, FileData *sel_fd)
 		{
 		gint match;
 
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 		work = work->next;
 
 		match = filelist_sort_compare_filedata_full(fd, sel_fd, vf->sort_method, vf->sort_ascend);
@@ -1523,7 +1523,7 @@ static void vficon_populate(ViewFile *vf, gboolean resize, gboolean keep_positio
 		gtk_tree_path_free(tpath);
 
 		gtk_tree_model_get(store, &iter, FILE_COLUMN_POINTER, &list, -1);
-		if (list) visible_fd = list->data;
+		if (list) visible_fd = static_cast<FileData *>(list->data);
 		}
 
 
@@ -1547,7 +1547,7 @@ static void vficon_populate(ViewFile *vf, gboolean resize, gboolean keep_positio
 			gtk_tree_view_column_set_fixed_width(column, thumb_width + (THUMB_BORDER_PADDING * 6));
 
 			list = gtk_cell_layout_get_cells(GTK_CELL_LAYOUT(column));
-			cell = (list) ? list->data : NULL;
+			cell = static_cast<GtkCellRenderer *>((list) ? list->data : NULL);
 			g_list_free(list);
 
 			if (cell && GQV_IS_CELL_RENDERER_ICON(cell))
@@ -1590,7 +1590,7 @@ static void vficon_populate(ViewFile *vf, gboolean resize, gboolean keep_positio
 
 			if (work)
 				{
-				fd = work->data;
+				fd = static_cast<FileData *>(work->data);
 				work = work->next;
 				c++;
 				}
@@ -1756,7 +1756,7 @@ FileData *vficon_thumb_next_fd(ViewFile *vf)
 			/** @todo (xsdg): for loop here. */
 			for (; list; list = list->next)
 				{
-				FileData *fd = list->data;
+				FileData *fd = static_cast<FileData *>(list->data);
 				if (fd && !fd->thumb_pixbuf) return fd;
 				}
 
@@ -1817,7 +1817,7 @@ FileData *vficon_star_next_fd(ViewFile *vf)
 
 			for (; list; list = list->next)
 				{
-				FileData *fd = list->data;
+				FileData *fd = static_cast<FileData *>(list->data);
 				if (fd && fd->rating == STAR_RATING_NOT_READ)
 					{
 					vf->stars_filedata = fd;
@@ -1920,7 +1920,7 @@ static gboolean vficon_refresh_real(ViewFile *vf, gboolean keep_position)
 	if (VFICON(vf)->selection)
 		{
 		old_selected = g_list_copy(VFICON(vf)->selection);
-		first_selected = VFICON(vf)->selection->data;
+		first_selected = static_cast<FileData *>(VFICON(vf)->selection->data);
 		file_data_ref(first_selected);
 		g_list_free(VFICON(vf)->selection);
 		VFICON(vf)->selection = NULL;
@@ -1937,8 +1937,8 @@ static gboolean vficon_refresh_real(ViewFile *vf, gboolean keep_position)
 
 		if (work && new_work)
 			{
-			fd = work->data;
-			new_fd = new_work->data;
+			fd = static_cast<FileData *>(work->data);
+			new_fd = static_cast<FileData *>(new_work->data);
 
 			if (fd == new_fd)
 				{
@@ -1958,13 +1958,13 @@ static gboolean vficon_refresh_real(ViewFile *vf, gboolean keep_position)
 		else if (work)
 			{
 			/* old item was deleted */
-			fd = work->data;
+			fd = static_cast<FileData *>(work->data);
 			match = -1;
 			}
 		else
 			{
 			/* new item was added */
-			new_fd = new_work->data;
+			new_fd = static_cast<FileData *>(new_work->data);
 			match = 1;
 			}
 
@@ -2077,7 +2077,7 @@ static void vficon_cell_data_cb(GtkTreeViewColumn *UNUSED(tree_column), GtkCellR
 
 	gtk_tree_model_get(tree_model, iter, FILE_COLUMN_POINTER, &list, -1);
 
-	fd = g_list_nth_data(list, cd->number);
+	fd = static_cast<FileData *>(g_list_nth_data(list, cd->number));
 
 	if (fd)
 		{

@@ -244,7 +244,7 @@ gboolean file_data_check_changed_files(FileData *fd)
 		work = sidecars;
 		while (work)
 			{
-			sfd = work->data;
+			sfd = static_cast<FileData *>(work->data);
 			work = work->next;
 
 			file_data_disconnect_sidecar_file(fd, sfd);
@@ -376,7 +376,7 @@ static FileData *file_data_new(const gchar *path_utf8, struct stat *st, gboolean
 	if (!file_data_pool)
 		file_data_pool = g_hash_table_new(g_str_hash, g_str_equal);
 
-	fd = g_hash_table_lookup(file_data_pool, path_utf8);
+	fd = static_cast<FileData *>(g_hash_table_lookup(file_data_pool, path_utf8));
 	if (fd)
 		{
 		file_data_ref(fd);
@@ -384,7 +384,7 @@ static FileData *file_data_new(const gchar *path_utf8, struct stat *st, gboolean
 
 	if (!fd && file_data_planned_change_hash)
 		{
-		fd = g_hash_table_lookup(file_data_planned_change_hash, path_utf8);
+		fd = static_cast<FileData *>(g_hash_table_lookup(file_data_planned_change_hash, path_utf8));
 		if (fd)
 			{
 			DEBUG_1("planned change: using %s -> %s", path_utf8, fd->path);
@@ -481,7 +481,7 @@ FileData *file_data_new_simple(const gchar *path_utf8)
 		st.st_mtime = 0;
 		}
 
-	fd = g_hash_table_lookup(file_data_pool, path_utf8);
+	fd = static_cast<FileData *>(g_hash_table_lookup(file_data_pool, path_utf8));
 	if (!fd) fd = file_data_new(path_utf8, &st, TRUE);
 	if (fd)
 		{
@@ -709,7 +709,7 @@ void file_data_dump()
 
 		while (list)
 			{
-			fd = list->data;
+			fd = static_cast<FileData *>(list->data);
 			log_printf("%-4d %s", fd->ref, fd->path);
 			list = list->next;
 			}
@@ -933,7 +933,7 @@ static gint sidecar_file_priority(const gchar *extension)
 	work = sidecar_ext_get_list();
 
 	while (work) {
-		gchar *ext = work->data;
+		gchar *ext = static_cast<gchar *>(work->data);
 
 		work = work->next;
 		if (g_ascii_strcasecmp(extension, ext) == 0) return i;
@@ -970,7 +970,7 @@ static void file_data_check_sidecars(const GList *basename_list)
 		s_work = fd->sidecar_files;
 		while (s_work)
 			{
-			FileData *sfd = s_work->data;
+			FileData *sfd = static_cast<FileData *>(s_work->data);
 			s_work = s_work->next;
 			g_assert(sfd->magick == FD_MAGICK);
 			DEBUG_2("                  sidecar: %p %s", (void *)sfd, sfd->name);
@@ -979,7 +979,7 @@ static void file_data_check_sidecars(const GList *basename_list)
 		g_assert(fd->parent == NULL || fd->sidecar_files == NULL);
 		}
 
-	parent_fd = basename_list->data;
+	parent_fd = static_cast<FileData *>(basename_list->data);
 
 	/* check if the second and next entries of basename_list are already connected
 	   as sidecars of the first entry (parent_fd) */
@@ -1022,7 +1022,7 @@ static void file_data_check_sidecars(const GList *basename_list)
 
 		while (fd->sidecar_files)
 			{
-			FileData *sfd = fd->sidecar_files->data;
+			FileData *sfd = static_cast<FileData *>(fd->sidecar_files->data);
 			g_assert(sfd->parent == NULL || sfd->sidecar_files == NULL);
 			file_data_ref(sfd);
 			file_data_disconnect_sidecar_file(fd, sfd);
@@ -1259,7 +1259,7 @@ static GList * file_data_basename_hash_insert(GHashTable *basename_hash, FileDat
 	GList *list;
 	gchar *basename = g_strndup(fd->path, fd->extension - fd->path);
 
-	list = g_hash_table_lookup(basename_hash, basename);
+	list = static_cast<GList *>(g_hash_table_lookup(basename_hash, basename));
 
 	if (!list)
 		{
@@ -1271,11 +1271,11 @@ static GList * file_data_basename_hash_insert(GHashTable *basename_hash, FileDat
 			DEBUG_1("TG: parent extension %s",parent_extension);
 			gchar *parent_basename = g_strndup(basename, parent_extension - basename);
 			DEBUG_1("TG: parent basename %s",parent_basename);
-			FileData *parent_fd = g_hash_table_lookup(file_data_pool, basename);
+			FileData *parent_fd = static_cast<FileData *>(g_hash_table_lookup(file_data_pool, basename));
 			if (parent_fd)
 				{
 				DEBUG_1("TG: parent fd found");
-				list = g_hash_table_lookup(basename_hash, parent_basename);
+				list = static_cast<GList *>(g_hash_table_lookup(basename_hash, parent_basename));
 				if (!g_list_find(list, parent_fd))
 					{
 					DEBUG_1("TG: parent fd doesn't fit");
@@ -1507,7 +1507,7 @@ FileData *file_data_new_group(const gchar *path_utf8)
 
 	filelist_read_real(dir, &files, NULL, TRUE);
 
-	fd = g_hash_table_lookup(file_data_pool, path_utf8);
+	fd = static_cast<FileData *>(g_hash_table_lookup(file_data_pool, path_utf8));
 	if (!fd) fd = file_data_new(path_utf8, &st, TRUE);
 	if (fd)
 		{
@@ -1545,7 +1545,7 @@ GList *filelist_copy(GList *list)
 		{
 		FileData *fd;
 
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 		work = work->next;
 
 		new_list = g_list_prepend(new_list, file_data_ref(fd));
@@ -1564,7 +1564,7 @@ GList *filelist_from_path_list(GList *list)
 		{
 		gchar *path;
 
-		path = work->data;
+		path = static_cast<gchar *>(work->data);
 		work = work->next;
 
 		new_list = g_list_prepend(new_list, file_data_new_group(path));
@@ -1583,7 +1583,7 @@ GList *filelist_to_path_list(GList *list)
 		{
 		FileData *fd;
 
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 		work = work->next;
 
 		new_list = g_list_prepend(new_list, g_strdup(fd->path));
@@ -1962,7 +1962,7 @@ GList *file_data_filter_class_list(GList *list, guint filter)
 
 static void file_data_notify_mark_func(gpointer UNUSED(key), gpointer value, gpointer UNUSED(user_data))
 {
-	FileData *fd = value;
+	FileData *fd = static_cast<FileData *>(value);
 	file_data_increment_version(fd);
 	file_data_send_notification(fd, NOTIFY_MARKS);
 }
@@ -2375,7 +2375,7 @@ static void file_data_update_planned_change_hash(FileData *fd, const gchar *old_
 			file_data_unref(fd);
 			}
 
-		ofd = g_hash_table_lookup(file_data_planned_change_hash, new_path);
+		ofd = static_cast<FileData *>(g_hash_table_lookup(file_data_planned_change_hash, new_path));
 		if (ofd != fd)
 			{
 			if (ofd)
@@ -2747,7 +2747,7 @@ gint file_data_verify_ci(FileData *fd, GList *list)
 		work = list;
 		while (work)
 			{
-			fd1 = work->data;
+			fd1 = static_cast<FileData *>(work->data);
 			work = work->next;
 			if (fd1 != NULL && fd != fd1 )
 				{
@@ -2891,7 +2891,7 @@ gint file_data_verify_ci_list(GList *list, gchar **desc, gboolean with_sidecars)
 		FileData *fd;
 		gint error;
 
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 		work = work->next;
 
 		error = with_sidecars ? file_data_sc_verify_ci(fd, list) : file_data_verify_ci(fd, list);
@@ -2923,7 +2923,7 @@ gint file_data_verify_ci_list(GList *list, gchar **desc, gboolean with_sidecars)
 			FileData *fd;
 			gint error;
 
-			fd = work->data;
+			fd = static_cast<FileData *>(work->data);
 			work = work->next;
 
 			error = errors[i] & ~common_errors;
@@ -3270,7 +3270,7 @@ static guint realtime_monitor_id = 0; /* event source id */
 
 static void realtime_monitor_check_cb(gpointer key, gpointer UNUSED(value), gpointer UNUSED(data))
 {
-	FileData *fd = key;
+	FileData *fd = static_cast<FileData *>(key);
 
 	file_data_check_changed_files(fd);
 
@@ -3348,13 +3348,13 @@ gboolean file_data_unregister_real_time_monitor(FileData *fd)
 
 static void marks_get_files(gpointer key, gpointer value, gpointer userdata)
 {
-	gchar *file_name = key;
-	GString *result = userdata;
+	gchar *file_name = static_cast<gchar *>(key);
+	GString *result = static_cast<GString *>(userdata);
 	FileData *fd;
 
 	if (isfile(file_name))
 		{
-		fd = value;
+		fd = static_cast<FileData *>(value);
 		if (fd && fd->marks > 0)
 			{
 			g_string_append_printf(result, "%s,%i\n", fd->path, fd->marks);
@@ -3439,14 +3439,14 @@ gboolean marks_list_save(gchar *path, gboolean save)
 
 static void marks_clear(gpointer key, gpointer value, gpointer UNUSED(userdata))
 {
-	gchar *file_name = key;
+	gchar *file_name = static_cast<gchar *>(key);
 	gint mark_no;
 	gint n;
 	FileData *fd;
 
 	if (isfile(file_name))
 		{
-		fd = value;
+		fd = static_cast<FileData *>(value);
 		if (fd && fd->marks > 0)
 			{
 			n = 0;

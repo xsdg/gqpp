@@ -615,7 +615,7 @@ enum {
 
 static void fullscreen_prefs_selection_cb(GtkWidget *combo, gpointer data)
 {
-	gint *value = data;
+	gint *value = static_cast<gint *>(data);
 	GtkTreeModel *store;
 	GtkTreeIter iter;
 	GtkWidget *button;
@@ -626,7 +626,7 @@ static void fullscreen_prefs_selection_cb(GtkWidget *combo, gpointer data)
 	if (!gtk_combo_box_get_active_iter(GTK_COMBO_BOX(combo), &iter)) return;
 	gtk_tree_model_get(store, &iter, FS_MENU_COLUMN_VALUE, value, -1);
 
-	button = g_object_get_data(G_OBJECT(combo), BUTTON_ABOVE_KEY);
+	button = static_cast<GtkWidget *>(g_object_get_data(G_OBJECT(combo), BUTTON_ABOVE_KEY));
 	if (button)
 		{
 		gtk_widget_set_sensitive(button, *value != -1);

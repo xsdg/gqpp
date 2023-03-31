@@ -235,7 +235,7 @@ static gboolean pan_queue_step(PanWindow *pw)
 
 	if (!pw->queue) return FALSE;
 
-	pi = pw->queue->data;
+	pi = static_cast<PanItem *>(pw->queue->data);
 	pw->queue = g_list_remove(pw->queue, pi);
 	pw->queue_pi = pi;
 
@@ -365,7 +365,7 @@ static gboolean pan_window_request_tile_cb(PixbufRenderer *pr, gint x, gint y,
 		PanItem *pi;
 		gboolean queue = FALSE;
 
-		pi = work->data;
+		pi = static_cast<PanItem *>(work->data);
 		work = work->next;
 
 		pi->refcount++;
@@ -413,7 +413,7 @@ static void pan_window_dispose_tile_cb(PixbufRenderer *UNUSED(pr), gint x, gint 
 		{
 		PanItem *pi;
 
-		pi = work->data;
+		pi = static_cast<PanItem *>(work->data);
 		work = work->next;
 
 		if (pi->refcount > 0)
@@ -468,7 +468,7 @@ static void pan_window_message(PanWindow *pw, const gchar *text)
 			{
 			PanItem *pi;
 
-			pi = work->data;
+			pi = static_cast<PanItem *>(work->data);
 			work = work->next;
 
 			if (pi->fd &&
@@ -486,7 +486,7 @@ static void pan_window_message(PanWindow *pw, const gchar *text)
 			{
 			PanItem *pi;
 
-			pi = work->data;
+			pi = static_cast<PanItem *>(work->data);
 			work = work->next;
 
 			if (pi->fd &&
@@ -557,8 +557,8 @@ static void pan_window_zoom_limit(PanWindow *pw)
 
 static gint pan_cache_sort_file_cb(gpointer a, gpointer b)
 {
-	PanCacheData *pca = a;
-	PanCacheData *pcb = b;
+	PanCacheData *pca = static_cast<PanCacheData *>(a);
+	PanCacheData *pcb = static_cast<PanCacheData *>(b);
 	return filelist_sort_compare_filedata(pca->fd, pcb->fd);
 }
 GList *pan_cache_sort(GList *list, SortType method, gboolean ascend)
@@ -576,7 +576,7 @@ static void pan_cache_free(PanWindow *pw)
 		{
 		PanCacheData *pc;
 
-		pc = work->data;
+		pc = static_cast<PanCacheData *>(work->data);
 		work = work->next;
 
 		cache_sim_data_free(pc->cd);
@@ -617,7 +617,7 @@ static void pan_cache_step_done_cb(CacheLoader *cl, gint UNUSED(error), gpointer
 	if (pw->cache_list)
 		{
 		PanCacheData *pc;
-		pc = pw->cache_list->data;
+		pc = static_cast<PanCacheData *>(pw->cache_list->data);
 
 		if (!pc->cd)
 			{
@@ -640,7 +640,7 @@ static gboolean pan_cache_step(PanWindow *pw)
 
 	if (!pw->cache_todo) return TRUE;
 
-	fd = pw->cache_todo->data;
+	fd = static_cast<FileData *>(pw->cache_todo->data);
 	pw->cache_todo = g_list_remove(pw->cache_todo, fd);
 
 	pc = g_new0(PanCacheData, 1);
@@ -674,7 +674,7 @@ void pan_cache_sync_date(PanWindow *pw, GList *list)
 		FileData *fd;
 		GList *needle;
 
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 		work = work->next;
 
 		needle = haystack;
@@ -682,7 +682,7 @@ void pan_cache_sync_date(PanWindow *pw, GList *list)
 			{
 			PanCacheData *pc;
 
-			pc = needle->data;
+			pc = static_cast<PanCacheData *>(needle->data);
 			if (pc->fd == fd)
 				{
 				if (pc->cd && pc->cd->have_date && pc->cd->date >= 0)
@@ -718,7 +718,7 @@ static void pan_grid_clear(PanWindow *pw)
 		{
 		PanGrid *pg;
 
-		pg = work->data;
+		pg = static_cast<PanGrid *>(work->data);
 		work = work->next;
 
 		g_list_free(pg->list);
@@ -785,7 +785,7 @@ static void pan_grid_build(PanWindow *pw, gint width, gint height, gint grid_siz
 		PanItem *pi;
 		GList *grid;
 
-		pi = work->data;
+		pi = static_cast<PanItem *>(work->data);
 		work = work->next;
 
 		grid = pw->list_grid;
@@ -794,7 +794,7 @@ static void pan_grid_build(PanWindow *pw, gint width, gint height, gint grid_siz
 			PanGrid *pg;
 			gint rx, ry, rw, rh;
 
-			pg = grid->data;
+			pg = static_cast<PanGrid *>(grid->data);
 			grid = grid->next;
 
 			if (util_clip_region(pi->x, pi->y, pi->width, pi->height,
@@ -811,7 +811,7 @@ static void pan_grid_build(PanWindow *pw, gint width, gint height, gint grid_siz
 		{
 		PanGrid *pg;
 
-		pg = work->data;
+		pg = static_cast<PanGrid *>(work->data);
 		work = work->next;
 
 		pg->list = g_list_reverse(pg->list);
@@ -959,7 +959,7 @@ static GList *pan_layout_intersect_l(GList *list, GList *item_list,
 		PanItem *pi;
 		gint rx, ry, rw, rh;
 
-		pi = work->data;
+		pi = static_cast<PanItem *>(work->data);
 		work = work->next;
 
 		if (util_clip_region(x, y, width, height,
@@ -982,7 +982,7 @@ GList *pan_layout_intersect(PanWindow *pw, gint x, gint y, gint width, gint heig
 	grid = pw->list_grid;
 	while (grid && !pg)
 		{
-		pg = grid->data;
+		pg = static_cast<PanGrid *>(grid->data);
 		grid = grid->next;
 
 		if (x < pg->x || x + width > pg->x + pg->w ||
@@ -1018,7 +1018,7 @@ void pan_layout_resize(PanWindow *pw)
 		{
 		PanItem *pi;
 
-		pi = work->data;
+		pi = static_cast<PanItem *>(work->data);
 		work = work->next;
 
 		if (width < pi->x + pi->width) width = pi->x + pi->width;
@@ -1029,7 +1029,7 @@ void pan_layout_resize(PanWindow *pw)
 		{
 		PanItem *pi;
 
-		pi = work->data;
+		pi = static_cast<PanItem *>(work->data);
 		work = work->next;
 
 		if (width < pi->x + pi->width) width = pi->x + pi->width;
@@ -1391,9 +1391,9 @@ static void pan_info_add_exif(PanTextAlignment *ta, FileData *fd)
 	exif_list = bar_pane_exif_list();
 	while (exif_list)
 		{
-		title = exif_list->data;
+		title = static_cast<gchar *>(exif_list->data);
 		exif_list = exif_list->next;
-		key = exif_list->data;
+		key = static_cast<gchar *>(exif_list->data);
 		exif_list = exif_list->next;
 
 		text = metadata_read_string(fd, key, METADATA_FORMATTED);
@@ -2151,9 +2151,9 @@ static void pan_edit_cb(GtkWidget *widget, gpointer data)
 {
 	PanWindow *pw;
 	FileData *fd;
-	const gchar *key = data;
+	const gchar *key = static_cast<const gchar *>(data);
 
-	pw = submenu_item_get_data(widget);
+	pw = static_cast<PanWindow *>(submenu_item_get_data(widget));
 	if (!pw) return;
 
 	fd = pan_menu_click_fd(pw);
@@ -2333,7 +2333,7 @@ static void pan_pop_menu_collections_cb(GtkWidget *widget, gpointer data)
 	PanWindow *pw;
 	GList *selection_list = NULL;
 
-	pw = submenu_item_get_data(widget);
+	pw = static_cast<PanWindow *>(submenu_item_get_data(widget));
 	selection_list = g_list_append(selection_list, pan_menu_click_fd(pw));
 	pop_menu_collections(selection_list, data);
 
@@ -2491,7 +2491,7 @@ static void pan_window_get_dnd_data(GtkWidget *UNUSED(widget), GdkDragContext *c
 		list = uri_filelist_from_gtk_selection_data(selection_data);
 		if (list && isdir(((FileData *)list->data)->path))
 			{
-			FileData *fd = list->data;
+			FileData *fd = static_cast<FileData *>(list->data);
 
 			pan_layout_set_fd(pw, fd);
 			}

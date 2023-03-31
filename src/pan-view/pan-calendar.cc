@@ -87,7 +87,7 @@ void pan_calendar_update(PanWindow *pw, PanItem *pi_day)
 		PanItem *dot;
 		GList *node;
 
-		dot = work->data;
+		dot = static_cast<PanItem *>(work->data);
 		node = work;
 		work = work->next;
 
@@ -138,7 +138,7 @@ void pan_calendar_update(PanWindow *pw, PanItem *pi_day)
 			{
 			PanItem *dot;
 
-			dot = work->data;
+			dot = static_cast<PanItem *>(work->data);
 			work = work->next;
 
 			if (dot->fd)
@@ -223,7 +223,7 @@ void pan_calendar_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *he
 		{
 		FileData *fd;
 
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 		work = work->next;
 
 		if (!pan_date_compare(fd->date, tc, PAN_DATE_LENGTH_DAY))
@@ -244,7 +244,7 @@ void pan_calendar_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *he
 
 	if (list)
 		{
-		FileData *fd = list->data;
+		FileData *fd = static_cast<FileData *>(list->data);
 
 		year = pan_date_value(fd->date, PAN_DATE_LENGTH_YEAR);
 		month = pan_date_value(fd->date, PAN_DATE_LENGTH_MONTH);
@@ -346,7 +346,7 @@ void pan_calendar_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *he
 			dx = x + PAN_CAL_DOT_GAP * 2;
 			dy = y + PAN_CAL_DOT_GAP * 2;
 
-			fd = (work) ? work->data : NULL;
+			fd = static_cast<FileData *>((work) ? work->data : NULL);
 			while (fd && pan_date_compare(fd->date, dt, PAN_DATE_LENGTH_DAY))
 				{
 				PanItem *pi;
@@ -372,7 +372,7 @@ void pan_calendar_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *he
 				n++;
 
 				work = work->next;
-				fd = (work) ? work->data : NULL;
+				fd = static_cast<FileData *>((work) ? work->data : NULL);
 				}
 
 			if (n > 0)

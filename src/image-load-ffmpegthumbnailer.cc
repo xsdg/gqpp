@@ -100,7 +100,7 @@ static void image_loader_ft_set_size(gpointer loader, int width, int height)
 static gboolean image_loader_ft_load (gpointer loader, const guchar *UNUSED(buf), gsize UNUSED(count), GError **UNUSED(error))
 {
 	ImageLoaderFT *lft = (ImageLoaderFT *) loader;
-	ImageLoader *il = lft->data;
+	ImageLoader *il = static_cast<ImageLoader *>(lft->data);
 
 	image_data *image = video_thumbnailer_create_image_data();
 

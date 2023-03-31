@@ -88,7 +88,7 @@ static void keyword_list_push(GtkWidget *textview, GList *list)
 
 	while (list)
 		{
-		const gchar *word = list->data;
+		const gchar *word = static_cast<const gchar *>(list->data);
 		GtkTextIter iter;
 
 		gtk_text_buffer_get_end_iter(buffer, &iter);
@@ -256,7 +256,7 @@ void bar_pane_keywords_set_fd(GtkWidget *pane, FileData *fd)
 {
 	PaneKeywordsData *pkd;
 
-	pkd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	pkd = static_cast<PaneKeywordsData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!pkd) return;
 
 	file_data_unref(pkd->fd);
@@ -300,7 +300,7 @@ static void bar_pane_keywords_write_config(GtkWidget *pane, GString *outstr, gin
 	GList *path_expanded = NULL;
 	gint w, h;
 
-	pkd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	pkd = static_cast<PaneKeywordsData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!pkd) return;
 
 	gtk_widget_get_size_request(GTK_WIDGET(pane), &w, &h);
@@ -336,7 +336,7 @@ gint bar_pane_keywords_event(GtkWidget *bar, GdkEvent *event)
 {
 	PaneKeywordsData *pkd;
 
-	pkd = g_object_get_data(G_OBJECT(bar), "pane_data");
+	pkd = static_cast<PaneKeywordsData *>(g_object_get_data(G_OBJECT(bar), "pane_data"));
 	if (!pkd) return FALSE;
 
 	if (gtk_widget_has_focus(pkd->keyword_view)) return gtk_widget_event(pkd->keyword_view, event);
@@ -632,7 +632,7 @@ static gboolean bar_pane_keywords_dnd_skip_existing(GtkTreeModel *keyword_tree, 
 	GList *work = *keywords;
 	while (work)
 		{
-		gchar *keyword = work->data;
+		gchar *keyword = static_cast<gchar *>(work->data);
 		if (keyword_exists(keyword_tree, NULL, dest_kw_iter, keyword, FALSE, NULL))
 			{
 			GList *next = work->next;
@@ -766,7 +766,7 @@ static void bar_pane_keywords_dnd_receive(GtkWidget *tree_view, GdkDragContext *
 	work = new_keywords;
 	while (work)
 		{
-		gchar *keyword = work->data;
+		gchar *keyword = static_cast<gchar *>(work->data);
 		keyword_set(GTK_TREE_STORE(keyword_tree), &new_kw_iter, keyword, TRUE);
 		work = work->next;
 
@@ -1143,7 +1143,7 @@ static void bar_pane_keywords_revert_cb(GtkWidget *UNUSED(menu_widget), gpointer
 	work = pkd->expanded_rows;
 	while (work)
 		{
-		path = work->data;
+		path = static_cast<gchar *>(work->data);
 		tree_path = gtk_tree_path_new_from_string(path);
 		gtk_tree_view_expand_to_path(GTK_TREE_VIEW(pkd->keyword_treeview), tree_path);
 		work = work->next;
@@ -1674,7 +1674,7 @@ void bar_pane_keywords_update_from_config(GtkWidget *pane, const gchar **attribu
 {
 	PaneKeywordsData *pkd;
 
-	pkd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	pkd = static_cast<PaneKeywordsData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!pkd) return;
 
 	gchar *title = NULL;
@@ -1711,7 +1711,7 @@ void bar_pane_keywords_entry_add_from_config(GtkWidget *pane, const gchar **attr
 	gchar *path = NULL;
 	GtkTreePath *tree_path;
 
-	pkd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	pkd = static_cast<PaneKeywordsData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!pkd) return;
 
 	while (*attribute_names)

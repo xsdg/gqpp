@@ -1106,7 +1106,7 @@ gboolean exif_jpeg_parse_color(ExifData *exif, guchar *data, guint size)
 		guint i;
 
 		for (i = 0; i < chunk_count; i++) cp_length += chunk_length[i];
-		cp_data = g_malloc(cp_length);
+		cp_data = static_cast<guchar *>(g_malloc(cp_length));
 
 		for (i = 0; i < chunk_count; i++)
 			{

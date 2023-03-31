@@ -331,7 +331,7 @@ struct _HelpSearchData {
 static void help_search_window_show_icon_press(GtkEntry *UNUSED(entry), GtkEntryIconPosition UNUSED(pos),
 									GdkEvent *UNUSED(event), gpointer userdata)
 {
-	HelpSearchData *hsd = userdata;
+	HelpSearchData *hsd = static_cast<HelpSearchData *>(userdata);
 
 	g_free(hsd->text_entry);
 	hsd->text_entry = g_strdup("");

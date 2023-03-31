@@ -102,7 +102,7 @@ static gboolean print_job_render_image(PrintWindow *pw)
 {
 	FileData *fd = NULL;
 
-	fd = g_list_nth_data(pw->source_selection, pw->job_page);
+	fd = static_cast<FileData *>(g_list_nth_data(pw->source_selection, pw->job_page));
 	if (!fd) return FALSE;
 
 	image_loader_free(pw->job_loader);
@@ -138,7 +138,7 @@ static void print_set_font_cb(GtkWidget *widget, gpointer data)
 	char *font;
 	PangoFontDescription *font_desc;
 
-	dialog = gtk_font_chooser_dialog_new(data, GTK_WINDOW(gtk_widget_get_toplevel(widget)));
+	dialog = gtk_font_chooser_dialog_new(static_cast<const gchar *>(data), GTK_WINDOW(gtk_widget_get_toplevel(widget)));
 	gtk_font_chooser_set_font(GTK_FONT_CHOOSER(dialog), option);
 
 	if (gtk_dialog_run(GTK_DIALOG(dialog)) != GTK_RESPONSE_CANCEL)
@@ -159,7 +159,7 @@ static gint set_toggle(GSList *list, TextPosition pos)
 	GtkToggleButton *new_sel;
 	gint new_pos = - 1;
 
-	current_sel = g_slist_nth(list, pos)->data;
+	current_sel = static_cast<GtkToggleButton *>(g_slist_nth(list, pos)->data);
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(current_sel)))
 		{
 		new_pos = (pos - 1);
@@ -167,7 +167,7 @@ static gint set_toggle(GSList *list, TextPosition pos)
 			{
 			new_pos = HEADER_1;
 			}
-		new_sel = g_slist_nth(list, new_pos)->data;
+		new_sel = static_cast<GtkToggleButton *>(g_slist_nth(list, new_pos)->data);
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(new_sel), TRUE);
 		}
 	return new_pos;
@@ -568,10 +568,10 @@ static void draw_page(GtkPrintOperation *UNUSED(operation), GtkPrintContext *con
 	gchar *tmp;
 	gint total;
 
-	fd = g_list_nth_data(pw->source_selection, page_nr);
+	fd = static_cast<FileData *>(g_list_nth_data(pw->source_selection, page_nr));
 	total = g_list_length(pw->source_selection);
 
-	pixbuf = g_list_nth_data(pw->print_pixbuf_queue, page_nr);
+	pixbuf = static_cast<GdkPixbuf *>(g_list_nth_data(pw->print_pixbuf_queue, page_nr));
 	if (fd->exif_orientation != EXIF_ORIENTATION_TOP_LEFT)
 		{
 		rotated = pixbuf_apply_orientation(pixbuf, fd->exif_orientation);
@@ -757,7 +757,7 @@ static void begin_print(GtkPrintOperation *operation,
 						GtkPrintContext *UNUSED(context),
 						gpointer user_data)
 {
-	PrintWindow *pw = user_data;
+	PrintWindow *pw = static_cast<PrintWindow *>(user_data);
 	gint page_count;
 
 	page_count = print_layout_page_count(pw);
@@ -769,7 +769,7 @@ static void begin_print(GtkPrintOperation *operation,
 
 GObject *option_tab_cb(GtkPrintOperation *UNUSED(operation), gpointer user_data)
 {
-	PrintWindow *pw = user_data;
+	PrintWindow *pw = static_cast<PrintWindow *>(user_data);
 
 	return G_OBJECT(pw->vbox);
 }
@@ -828,7 +828,7 @@ static void end_print_cb(GtkPrintOperation *operation,
 	work = pw->print_pixbuf_queue;
 	while (work)
 		{
-		pixbuf = work->data;
+		pixbuf = static_cast<GdkPixbuf *>(work->data);
 		if (pixbuf)
 			{
 			g_object_unref(pixbuf);

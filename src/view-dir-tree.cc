@@ -285,7 +285,7 @@ static GList *parts_list_add_node_points(ViewDir *vd, GList *list)
 		FileData *fd = NULL;
 
 		pd = g_new0(PathData, 1);
-		pd->name = work->data;
+		pd->name = static_cast<gchar *>(work->data);
 
 		while (valid && !fd)
 			{
@@ -545,7 +545,7 @@ gboolean vdtree_populate_path_by_iter(ViewDir *vd, GtkTreeIter *iter, gboolean f
 		{
 		FileData *fd;
 
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 		work = work->next;
 
 		if (strcmp(fd->name, ".") == 0 || strcmp(fd->name, "..") == 0)
@@ -650,7 +650,7 @@ FileData *vdtree_populate_path(ViewDir *vd, FileData *target_fd, gboolean expand
 				return NULL;
 				}
 
-			parent_pd = work->prev->data;
+			parent_pd = static_cast<PathData *>(work->prev->data);
 
 			if (!vd_find_row(vd, parent_pd->node, &parent_iter) ||
 			    !vdtree_populate_path_by_iter(vd, &parent_iter, force, target_fd) ||

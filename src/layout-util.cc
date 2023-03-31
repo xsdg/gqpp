@@ -561,12 +561,12 @@ static void layout_menu_write_rotate(GtkToggleAction *UNUSED(action), gpointer d
 		{
 		if (lw->vf->type == FILEVIEW_ICON)
 			{
-			fd_n = work->data;
+			fd_n = static_cast<FileData *>(work->data);
 			work = work->next;
 			}
 		else
 			{
-			tpath = work->data;
+			tpath = static_cast<GtkTreePath *>(work->data);
 			gtk_tree_model_get_iter(store, &iter, tpath);
 			gtk_tree_model_get(store, &iter, FILE_COLUMN_POINTER, &fd_n, -1);
 			work = work->next;
@@ -1878,7 +1878,7 @@ static void layout_menu_recent_cb(GtkWidget *widget, gpointer UNUSED(data))
 
 	n = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(widget), "recent_index"));
 
-	path = g_list_nth_data(history_list_get_by_key("recent"), n);
+	path = static_cast<gchar *>(g_list_nth_data(history_list_get_by_key("recent"), n));
 
 	if (!path) return;
 
@@ -2031,7 +2031,7 @@ static GList *layout_window_menu_list(GList *listin)
 			dupe = FALSE;
 			while (list)
 				{
-				lw_tmp = list->data;
+				lw_tmp = static_cast<LayoutWindow *>(list->data);
 				if (g_strcmp0(lw_tmp->options.id, name_base) == 0)
 					{
 					dupe = TRUE;
@@ -2065,7 +2065,7 @@ static void layout_menu_new_window_cb(GtkWidget *UNUSED(widget), gpointer data)
 	GList *menulist = NULL;
 
 	menulist = layout_window_menu_list(menulist);
-	WindowNames *wn = g_list_nth(menulist, n )->data;
+	WindowNames *wn = static_cast<WindowNames *>(g_list_nth(menulist, n )->data);
 
 	if (wn->path)
 		{
@@ -2110,7 +2110,7 @@ static void layout_menu_new_window_update(LayoutWindow *lw)
 	n = 0;
 	while (list)
 		{
-		wn = list->data;
+		wn = static_cast<WindowNames *>(list->data);
 		item = menu_item_add_simple(sub_menu, wn->name, G_CALLBACK(layout_menu_new_window_cb), GINT_TO_POINTER(n));
 		if (wn->displayed)
 			{
@@ -2143,7 +2143,7 @@ static void window_rename_ok(GenericDialog *UNUSED(gd), gpointer data)
 	list = layout_window_menu_list(list);
 	while (list)
 		{
-		WindowNames *ln = list->data;
+		WindowNames *ln = static_cast<WindowNames *>(list->data);
 		if (g_strcmp0(ln->name, new_id) == 0)
 			{
 			gchar *buf;
@@ -3110,7 +3110,7 @@ static void layout_actions_editor_add(GString *desc, GList *path, GList *old_pat
 
 	for (i =  0; i < to_close; i++)
 		{
-		gchar *name = old_path->data;
+		gchar *name = static_cast<gchar *>(old_path->data);
 		if (g_str_has_suffix(name, "Section"))
 			{
 			g_string_append(desc,	"      </placeholder>");
@@ -3128,7 +3128,7 @@ static void layout_actions_editor_add(GString *desc, GList *path, GList *old_pat
 
 	for (i =  0; i < to_open; i++)
 		{
-		gchar *name = path->data;
+		gchar *name = static_cast<gchar *>(path->data);
 		if (g_str_has_suffix(name, "Section"))
 			{
 			g_string_append_printf(desc,	"      <placeholder name='%s'>", name);
@@ -3495,13 +3495,13 @@ void layout_toolbar_add_default(LayoutWindow *lw, ToolbarType type)
 		case TOOLBAR_MAIN:
 			if (layout_window_list)
 				{
-				lw_first = layout_window_list->data;
+				lw_first = static_cast<LayoutWindow *>(layout_window_list->data);
 				if (lw_first->toolbar_actions[TOOLBAR_MAIN])
 					{
 					work_action = lw_first->toolbar_actions[type];
 					while (work_action)
 						{
-						gchar *action = work_action->data;
+						gchar *action = static_cast<gchar *>(work_action->data);
 						work_action = work_action->next;
 						layout_toolbar_add(lw, type, action);
 						}
@@ -3541,13 +3541,13 @@ void layout_toolbar_add_default(LayoutWindow *lw, ToolbarType type)
 		case TOOLBAR_STATUS:
 			if (layout_window_list)
 				{
-				lw_first = layout_window_list->data;
+				lw_first = static_cast<LayoutWindow *>(layout_window_list->data);
 				if (lw_first->toolbar_actions[TOOLBAR_MAIN])
 					{
 					work_action = lw_first->toolbar_actions[type];
 					while (work_action)
 						{
-						gchar *action = work_action->data;
+						gchar *action = static_cast<gchar *>(work_action->data);
 						work_action = work_action->next;
 						layout_toolbar_add(lw, type, action);
 						}
@@ -3597,7 +3597,7 @@ void layout_toolbar_write_config(LayoutWindow *lw, ToolbarType type, GString *ou
 	WRITE_NL(); WRITE_STRING("<clear/>");
 	while (work)
 		{
-		gchar *action = work->data;
+		gchar *action = static_cast<gchar *>(work->data);
 		work = work->next;
 		WRITE_NL(); WRITE_STRING("<toolitem ");
 		write_char_option(outstr, indent + 1, "action", action);

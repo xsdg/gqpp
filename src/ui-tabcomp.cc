@@ -270,11 +270,11 @@ static gboolean tab_completion_popup_key_press(GtkWidget *widget, GdkEventKey *e
 
 static void tab_completion_popup_cb(GtkWidget *widget, gpointer data)
 {
-	gchar *name = data;
+	gchar *name = static_cast<gchar *>(data);
 	TabCompData *td;
 	gchar *buf;
 
-	td = g_object_get_data(G_OBJECT(widget), "tab_completion_data");
+	td = static_cast<TabCompData *>(g_object_get_data(G_OBJECT(widget), "tab_completion_data"));
 	if (!td) return;
 
 	buf = g_build_filename(td->dir_path, name, NULL);
@@ -307,7 +307,7 @@ static void tab_completion_popup_list(TabCompData *td, GList *list)
 	work = list;
 	while (work && count < TAB_COMP_POPUP_MAX)
 		{
-		gchar *name = work->data;
+		gchar *name = static_cast<gchar *>(work->data);
 		GtkWidget *item;
 
 		item = menu_item_add_simple(menu, name, G_CALLBACK(tab_completion_popup_cb), name);
@@ -393,7 +393,7 @@ static gboolean tab_completion_do(TabCompData *td)
 				gchar *buf;
 				const gchar *file;
 
-				file = td->file_list->data;
+				file = static_cast<const gchar *>(td->file_list->data);
 				buf = g_build_filename(entry_dir, file, NULL);
 				if (isdir(buf))
 					{
@@ -452,7 +452,7 @@ static gboolean tab_completion_do(TabCompData *td)
 		list = td->file_list;
 		while (list)
 			{
-			gchar *file = list->data;
+			gchar *file = static_cast<gchar *>(list->data);
 			if (strncmp(entry_file, file, l) == 0)
 				{
 				poss = g_list_prepend(poss, file);
@@ -464,7 +464,7 @@ static gboolean tab_completion_do(TabCompData *td)
 			{
 			if (!poss->next)
 				{
-				gchar *file = poss->data;
+				gchar *file = static_cast<gchar *>(poss->data);
 				gchar *buf;
 
 				buf = g_build_filename(entry_dir, file, NULL);
@@ -479,7 +479,7 @@ static gboolean tab_completion_do(TabCompData *td)
 				{
 				gsize c = strlen(entry_file);
 				gboolean done = FALSE;
-				gchar *test_file = poss->data;
+				gchar *test_file = static_cast<gchar *>(poss->data);
 
 				while (!done)
 					{
@@ -487,7 +487,7 @@ static gboolean tab_completion_do(TabCompData *td)
 					if (!list) done = TRUE;
 					while (list && !done)
 						{
-						gchar *file = list->data;
+						gchar *file = static_cast<gchar *>(list->data);
 						if (strlen(file) < c || strncmp(test_file, file, c) != 0)
 							{
 							done = TRUE;
@@ -573,7 +573,7 @@ static void tab_completion_button_pressed(GtkWidget *UNUSED(widget), gpointer da
 	TabCompData *td;
 	GtkWidget *entry = static_cast<GtkWidget *>(data);
 
-	td = g_object_get_data(G_OBJECT(entry), "tab_completion_data");
+	td = static_cast<TabCompData *>(g_object_get_data(G_OBJECT(entry), "tab_completion_data"));
 
 	if (!td) return;
 
@@ -661,7 +661,7 @@ GtkWidget *tab_completion_new_with_history(GtkWidget **entry, const gchar *text,
 
 	tab_completion_add_to_entry(combo_entry, enter_func, NULL, NULL, data);
 
-	td = g_object_get_data(G_OBJECT(combo_entry), "tab_completion_data");
+	td = static_cast<TabCompData *>(g_object_get_data(G_OBJECT(combo_entry), "tab_completion_data"));
 	if (!td) return NULL; /* this should never happen! */
 
 	td->combo = combo;
@@ -694,7 +694,7 @@ GtkWidget *tab_completion_new_with_history(GtkWidget **entry, const gchar *text,
 
 const gchar *tab_completion_set_to_last_history(GtkWidget *entry)
 {
-	TabCompData *td = g_object_get_data(G_OBJECT(entry), "tab_completion_data");
+	TabCompData *td = static_cast<TabCompData *>(g_object_get_data(G_OBJECT(entry), "tab_completion_data"));
 	const gchar *buf;
 
 	if (!td || !td->has_history) return NULL;
@@ -715,7 +715,7 @@ void tab_completion_append_to_history(GtkWidget *entry, const gchar *path)
 	GList *work;
 	gint n = 0;
 
-	td = g_object_get_data(G_OBJECT(entry), "tab_completion_data");
+	td = static_cast<TabCompData *>(g_object_get_data(G_OBJECT(entry), "tab_completion_data"));
 
 	if (!path) return;
 
@@ -791,7 +791,7 @@ void tab_completion_add_to_entry(GtkWidget *entry, void (*enter_func)(const gcha
 
 void tab_completion_add_tab_func(GtkWidget *entry, void (*tab_func)(const gchar *, gpointer), gpointer data)
 {
-	TabCompData *td = g_object_get_data(G_OBJECT(entry), "tab_completion_data");
+	TabCompData *td = static_cast<TabCompData *>(g_object_get_data(G_OBJECT(entry), "tab_completion_data"));
 
 	if (!td) return;
 
@@ -802,7 +802,7 @@ void tab_completion_add_tab_func(GtkWidget *entry, void (*tab_func)(const gchar 
 /* Add a callback function called when a new entry is appended to the list */
 void tab_completion_add_append_func(GtkWidget *entry, void (*tab_append_func)(const gchar *, gpointer, gint), gpointer data)
 {
-	TabCompData *td = g_object_get_data(G_OBJECT(entry), "tab_completion_data");
+	TabCompData *td = static_cast<TabCompData *>(g_object_get_data(G_OBJECT(entry), "tab_completion_data"));
 
 	if (!td) return;
 
@@ -906,7 +906,7 @@ void tab_completion_add_select_button(GtkWidget *entry, const gchar *title, gboo
 	GtkWidget *parent;
 	GtkWidget *hbox;
 
-	td = g_object_get_data(G_OBJECT(entry), "tab_completion_data");
+	td = static_cast<TabCompData *>(g_object_get_data(G_OBJECT(entry), "tab_completion_data"));
 
 	if (!td) return;
 

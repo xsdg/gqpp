@@ -771,7 +771,7 @@ static void image_loader_setup_loader(ImageLoader *il)
 	else
 		image_loader_backend_set_default(&il->backend);
 
-	il->loader = il->backend.loader_new(image_loader_area_updated_cb, image_loader_size_cb, image_loader_area_prepared_cb, il);
+	il->loader = static_cast<void *>(il->backend.loader_new(image_loader_area_updated_cb, image_loader_size_cb, image_loader_area_prepared_cb, il));
 
 #ifdef HAVE_TIFF
 	format = il->backend.get_format_name(il->loader);

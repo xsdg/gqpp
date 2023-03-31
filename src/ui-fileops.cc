@@ -565,7 +565,7 @@ gboolean copy_file(const gchar *s, const gchar *t)
 		gchar *link_target;
 		ssize_t i;
 
-		link_target = g_malloc(st.st_size + 1);
+		link_target = static_cast<gchar *>(g_malloc(st.st_size + 1));
 		i = readlink(sl, link_target, st.st_size);
 		if (i<0)
 			{
@@ -581,7 +581,7 @@ gboolean copy_file(const gchar *s, const gchar *t)
 			gchar *lastslash = strrchr(sl, G_DIR_SEPARATOR);
 			gint len = lastslash - sl + 1;
 
-			absolute = g_malloc(len + st.st_size + 1);
+			absolute = static_cast<gchar *>(g_malloc(len + st.st_size + 1));
 			strncpy(absolute, sl, len);
 			strcpy(absolute + len, link_target);
 			g_free(link_target);
@@ -741,7 +741,7 @@ GList *string_list_copy(const GList *list)
 		{
 		gchar *path;
 
-		path = work->data;
+		path = static_cast<gchar *>(work->data);
 		work = work->next;
 
 		new_list = g_list_prepend(new_list, g_strdup(path));

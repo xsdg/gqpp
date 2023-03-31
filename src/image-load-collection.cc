@@ -41,7 +41,7 @@ struct _ImageLoaderCOLLECTION {
 static gboolean image_loader_collection_load(gpointer loader, const guchar *UNUSED(buf), gsize UNUSED(count), GError **UNUSED(error))
 {
 	ImageLoaderCOLLECTION *ld = (ImageLoaderCOLLECTION *) loader;
-	ImageLoader *il = ld->data;
+	ImageLoader *il = static_cast<ImageLoader *>(ld->data);
 
 	#define LINE_LENGTH 1000
 

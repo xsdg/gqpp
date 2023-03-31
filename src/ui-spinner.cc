@@ -47,7 +47,7 @@ static void spinner_set_frame(SpinnerData *sp, guint frame)
 {
 	GdkPixbuf *pb;
 
-	pb = g_list_nth_data(sp->list, frame);
+	pb = static_cast<GdkPixbuf *>(g_list_nth_data(sp->list, frame));
 	if (pb) gtk_image_set_from_pixbuf(GTK_IMAGE(sp->image), pb);
 
 	sp->frame = frame;
@@ -162,7 +162,7 @@ GtkWidget *spinner_new(const gchar *path, gint interval)
 		{
 		GdkPixbuf *pb;
 
-		pb = sp->list->data;
+		pb = static_cast<GdkPixbuf *>(sp->list->data);
 		sp->image = gtk_image_new_from_pixbuf(pb);
 		}
 	else
@@ -184,7 +184,7 @@ void spinner_set_interval(GtkWidget *spinner, gint interval)
 {
 	SpinnerData *sp;
 
-	sp = g_object_get_data(G_OBJECT(spinner), "spinner");
+	sp = static_cast<SpinnerData *>(g_object_get_data(G_OBJECT(spinner), "spinner"));
 
 	spinner_set_timeout(sp, interval);
 }

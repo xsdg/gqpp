@@ -1971,7 +1971,7 @@ gboolean image_color_profile_get_status(ImageWindow *imd, gchar **image_profile,
 	ColorMan *cm;
 	if (!imd) return FALSE;
 
-	cm = imd->cm;
+	cm = static_cast<ColorMan *>(imd->cm);
 	if (!cm) return FALSE;
 	return color_man_get_status(cm, image_profile, screen_profile);
 
@@ -2076,7 +2076,7 @@ void image_options_sync(void)
 		{
 		ImageWindow *imd;
 
-		imd = work->data;
+		imd = static_cast<ImageWindow *>(work->data);
 		work = work->next;
 
 		image_options_set(imd);

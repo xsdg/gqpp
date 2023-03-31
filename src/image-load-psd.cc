@@ -295,7 +295,7 @@ static gboolean image_loader_psd_load(gpointer loader, const guchar *buf, gsize 
 	ctx->state = PSD_STATE_HEADER;
 
 	/* we'll allocate larger buffer once we know image size */
-	ctx->buffer = g_malloc(PSD_HEADER_SIZE);
+	ctx->buffer = static_cast<guchar *>(g_malloc(PSD_HEADER_SIZE));
 	reset_context_buffer(ctx);
 
 	ctx->ch_bufs = NULL;

@@ -318,7 +318,7 @@ static void rt_tile_free_all(RendererTiles *rt)
 		{
 		ImageTile *it;
 
-		it = work->data;
+		it = static_cast<ImageTile *>(work->data);
 		work = work->next;
 
 		rt_tile_free(it);
@@ -396,7 +396,7 @@ static void rt_tile_free_space(RendererTiles *rt, guint space, ImageTile *it)
 		{
 		ImageTile *needle;
 
-		needle = work->data;
+		needle = static_cast<ImageTile *>(work->data);
 		work = work->prev;
 		if (needle != it &&
 		    ((!needle->qd && !needle->qd2) || !rt_tile_is_visible(rt, needle))) rt_tile_remove(rt, needle);
@@ -413,7 +413,7 @@ static void rt_tile_invalidate_all(RendererTiles *rt)
 		{
 		ImageTile *it;
 
-		it = work->data;
+		it = static_cast<ImageTile *>(work->data);
 		work = work->next;
 
 		it->render_done = TILE_RENDER_NONE;
@@ -442,7 +442,7 @@ static void rt_tile_invalidate_region(RendererTiles *rt, gint x, gint y, gint w,
 		{
 		ImageTile *it;
 
-		it = work->data;
+		it = static_cast<ImageTile *>(work->data);
 		work = work->next;
 
 		if (it->x < x2 && it->x + it->w > x1 &&
@@ -463,7 +463,7 @@ static ImageTile *rt_tile_get(RendererTiles *rt, gint x, gint y, gboolean only_e
 		{
 		ImageTile *it;
 
-		it = work->data;
+		it = static_cast<ImageTile *>(work->data);
 		if (it->x == x && it->y == y)
 			{
 			rt->tiles = g_list_delete_link(rt->tiles, work);
@@ -601,7 +601,7 @@ static void rt_overlay_draw(RendererTiles *rt, gint x, gint y, gint w, gint h,
 		gint px, py, pw, ph;
 		gint rx, ry, rw, rh;
 
-		od = work->data;
+		od = static_cast<OverlayData *>(work->data);
 		work = work->next;
 
 		if (!od->window) rt_overlay_init_window(rt, od);
@@ -795,7 +795,7 @@ static void rt_overlay_list_clear(RendererTiles *rt)
 		{
 		OverlayData *od;
 
-		od = rt->overlay_list->data;
+		od = static_cast<OverlayData *>(rt->overlay_list->data);
 		rt_overlay_free(rt, od);
 		}
 }
@@ -1129,7 +1129,7 @@ static gboolean rt_source_tile_render(RendererTiles *rt, ImageTile *it,
 			SourceTile *st;
 			gint rx, ry, rw, rh;
 
-			st = work->data;
+			st = static_cast<SourceTile *>(work->data);
 			work = work->next;
 
 			if (pr_clip_region(st->x, st->y, pr->source_tile_width, pr->source_tile_height,
@@ -1182,7 +1182,7 @@ static gboolean rt_source_tile_render(RendererTiles *rt, ImageTile *it,
 			gint rx, ry, rw, rh;
 			gint stx, sty, stw, sth;
 
-			st = work->data;
+			st = static_cast<SourceTile *>(work->data);
 			work = work->next;
 
 			stx = floor((gdouble)st->x * scale_x);
@@ -1654,7 +1654,7 @@ static gboolean rt_queue_draw_idle_cb(gpointer data)
 
 	if (rt->draw_queue)
 		{
-		qd = rt->draw_queue->data;
+		qd = static_cast<QueueData *>(rt->draw_queue->data);
 		fast = (pr->zoom_2pass && ((pr->zoom_quality != GDK_INTERP_NEAREST && pr->scale != 1.0) || pr->post_process_slow));
 		}
 	else
@@ -1666,7 +1666,7 @@ static gboolean rt_queue_draw_idle_cb(gpointer data)
 			return rt_queue_schedule_next_draw(rt, FALSE);
 			}
 
-		qd = rt->draw_queue_2pass->data;
+		qd = static_cast<QueueData *>(rt->draw_queue_2pass->data);
 		fast = FALSE;
 		}
 
@@ -1736,7 +1736,7 @@ static void rt_queue_list_free(GList *list)
 		{
 		QueueData *qd;
 
-		qd = work->data;
+		qd = static_cast<QueueData *>(work->data);
 		work = work->next;
 
 		qd->it->qd = NULL;
@@ -2231,7 +2231,7 @@ static gboolean rt_draw_cb(GtkWidget *UNUSED(widget), cairo_t *cr, gpointer data
 	work = rt->overlay_list;
 	while (work)
 		{
-		od = work->data;
+		od = static_cast<OverlayData *>(work->data);
 		gint px, py, pw, ph;
 		pw = gdk_pixbuf_get_width(od->pixbuf);
 		ph = gdk_pixbuf_get_height(od->pixbuf);

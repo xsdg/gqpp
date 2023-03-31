@@ -152,7 +152,7 @@ static void bar_pane_comment_set_fd(GtkWidget *bar, FileData *fd)
 {
 	PaneCommentData *pcd;
 
-	pcd = g_object_get_data(G_OBJECT(bar), "pane_data");
+	pcd = static_cast<PaneCommentData *>(g_object_get_data(G_OBJECT(bar), "pane_data"));
 	if (!pcd) return;
 
 	file_data_unref(pcd->fd);
@@ -165,7 +165,7 @@ static gint bar_pane_comment_event(GtkWidget *bar, GdkEvent *event)
 {
 	PaneCommentData *pcd;
 
-	pcd = g_object_get_data(G_OBJECT(bar), "pane_data");
+	pcd = static_cast<PaneCommentData *>(g_object_get_data(G_OBJECT(bar), "pane_data"));
 	if (!pcd) return FALSE;
 
 	if (gtk_widget_has_focus(pcd->comment_view)) return gtk_widget_event(pcd->comment_view, event);
@@ -178,7 +178,7 @@ static void bar_pane_comment_write_config(GtkWidget *pane, GString *outstr, gint
 	PaneCommentData *pcd;
 	gint w, h;
 
-	pcd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	pcd = static_cast<PaneCommentData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!pcd) return;
 
 	gtk_widget_get_size_request(GTK_WIDGET(pane), &w, &h);
@@ -370,7 +370,7 @@ void bar_pane_comment_update_from_config(GtkWidget *pane, const gchar **attribut
 {
 	PaneCommentData *pcd;
 
-	pcd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	pcd = static_cast<PaneCommentData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!pcd) return;
 
 	gchar *title = NULL;

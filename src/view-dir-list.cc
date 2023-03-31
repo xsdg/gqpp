@@ -120,7 +120,7 @@ const gchar *vdlist_row_get_path(ViewDir *vd, gint row)
 {
 	FileData *fd;
 
-	fd = g_list_nth_data(VDLIST(vd)->list, row);
+	fd = static_cast<FileData *>(g_list_nth_data(VDLIST(vd)->list, row));
 
 	if (fd) return fd->path;
 
@@ -183,7 +183,7 @@ static gboolean vdlist_populate(ViewDir *vd, gboolean clear)
 		const gchar *date = "";
 		gboolean done = FALSE;
 
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 
 		if (access_file(fd->path, R_OK | X_OK) && fd->name)
 			{

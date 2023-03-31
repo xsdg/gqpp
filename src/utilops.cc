@@ -369,8 +369,8 @@ static void generic_dialog_image_set(UtilityData *ud, FileData *fd)
 	FileData *fd2 = NULL;
 	gchar *buf;
 
-	imd = g_object_get_data(G_OBJECT(ud->gd->dialog), "img_image");
-	label = g_object_get_data(G_OBJECT(ud->gd->dialog), "img_label");
+	imd = static_cast<ImageWindow *>(g_object_get_data(G_OBJECT(ud->gd->dialog), "img_image"));
+	label = static_cast<GtkWidget *>(g_object_get_data(G_OBJECT(ud->gd->dialog), "img_label"));
 
 	if (!imd) return;
 
@@ -381,8 +381,8 @@ static void generic_dialog_image_set(UtilityData *ud, FileData *fd)
 
 	if (ud->type == UTILITY_TYPE_RENAME || ud->type == UTILITY_TYPE_COPY || ud->type == UTILITY_TYPE_MOVE)
 		{
-		imd = g_object_get_data(G_OBJECT(ud->gd->dialog), "img_image2");
-		label = g_object_get_data(G_OBJECT(ud->gd->dialog), "img_label2");
+		imd = static_cast<ImageWindow *>(g_object_get_data(G_OBJECT(ud->gd->dialog), "img_image2"));
+		label = static_cast<GtkWidget *>(g_object_get_data(G_OBJECT(ud->gd->dialog), "img_label2"));
 
 		if (imd)
 			{
@@ -522,7 +522,7 @@ static GtkWidget *file_util_dialog_add_list(GtkWidget *box, GList *list, gboolea
 
 	while (list)
 		{
-		FileData *fd = list->data;
+		FileData *fd = static_cast<FileData *>(list->data);
 		GtkTreeIter iter;
 		gchar *sidecars;
 
@@ -590,7 +590,7 @@ static gint file_util_perform_ci_cb(gpointer resume_data, EditorFlags flags, GLi
 		g_string_append(msg, "\n");
 		while (list)
 			{
-			FileData *fd = list->data;
+			FileData *fd = static_cast<FileData *>(list->data);
 
 			g_string_append(msg, fd->path);
 			g_string_append(msg, "\n");
@@ -620,7 +620,7 @@ static gint file_util_perform_ci_cb(gpointer resume_data, EditorFlags flags, GLi
 
 	while (list)  /* be careful, file_util_perform_ci_internal can pass ud->flist as list */
 		{
-		FileData *fd = list->data;
+		FileData *fd = static_cast<FileData *>(list->data);
 		list = list->next;
 
 		if (!EDITOR_ERRORS(flags)) /* files were successfully deleted, call the maint functions */
@@ -738,7 +738,7 @@ static void file_util_perform_ci_dir(UtilityData *ud, gboolean internal, gboolea
 				{
 				FileData *fd;
 
-				fd = work->data;
+				fd = static_cast<FileData *>(work->data);
 				work = work->next;
 
 				if (!fail)
@@ -814,7 +814,7 @@ static void file_util_perform_ci_dir(UtilityData *ud, gboolean internal, gboolea
 				{
 				FileData *fd;
 
-				fd = work->data;
+				fd = static_cast<FileData *>(work->data);
 				work = work->next;
 
 				if (!fail)
@@ -1955,7 +1955,7 @@ static void file_util_details_dialog_ok_cb(GenericDialog *UNUSED(gd), gpointer U
 static void file_util_details_dialog_exclude(GenericDialog *gd, gpointer data, gboolean discard)
 {
 	UtilityData *ud = static_cast<UtilityData *>(data);
-	FileData *fd = g_object_get_data(G_OBJECT(gd->dialog), "file_data");
+	FileData *fd = static_cast<FileData *>(g_object_get_data(G_OBJECT(gd->dialog), "file_data"));
 
 	if (!fd) return;
 	file_util_exclude_fd(ud, fd);
@@ -2111,7 +2111,7 @@ static void file_util_write_metadata_details_dialog(UtilityData *ud, FileData *f
 	i = 0;
 	while (work)
 		{
-		const gchar *key = work->data;
+		const gchar *key = static_cast<const gchar *>(work->data);
 		gchar *title = exif_get_description_by_key(key);
 		gchar *title_f = g_strdup_printf("%s:", title);
 		gchar *value = metadata_read_string(fd, key, METADATA_FORMATTED);
@@ -2507,7 +2507,7 @@ static GList *file_util_delete_dir_remaining_folders(GList *dlist)
 		{
 		FileData *fd;
 
-		fd = dlist->data;
+		fd = static_cast<FileData *>(dlist->data);
 		dlist = dlist->next;
 
 		if (!fd->name ||
@@ -2561,7 +2561,7 @@ static gboolean file_util_delete_dir_empty_path(UtilityData *ud, FileData *fd, g
 		{
 		FileData *lfd;
 
-		lfd = work->data;
+		lfd = static_cast<FileData *>(work->data);
 		work = work->next;
 
 		ok = file_util_delete_dir_empty_path(ud, lfd, level);
@@ -2572,7 +2572,7 @@ static gboolean file_util_delete_dir_empty_path(UtilityData *ud, FileData *fd, g
 		{
 		FileData *lfd;
 
-		lfd = work->data;
+		lfd = static_cast<FileData *>(work->data);
 		work = work->next;
 
 		DEBUG_1("deltree child: %s", lfd->path);
@@ -2605,7 +2605,7 @@ static gboolean file_util_delete_dir_prepare(UtilityData *ud, GList *flist, GLis
 		{
 		FileData *fd;
 
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 		work = work->next;
 
 		ok = file_util_delete_dir_empty_path(ud, fd, 0);
@@ -2633,7 +2633,7 @@ static gboolean file_util_delete_dir_prepare(UtilityData *ud, GList *flist, GLis
 			{
 			FileData *fd;
 
-			fd = work->data;
+			fd = static_cast<FileData *>(work->data);
 			work = work->next;
 			file_data_sc_free_ci(fd);
 			}
@@ -2787,7 +2787,7 @@ static gboolean file_util_rename_dir_scan(UtilityData *ud, FileData *fd)
 		{
 		FileData *lfd;
 
-		lfd = work->data;
+		lfd = static_cast<FileData *>(work->data);
 		work = work->next;
 
 		ud->content_list = g_list_prepend(ud->content_list, file_data_ref(lfd));
@@ -2814,7 +2814,7 @@ static gboolean file_util_rename_dir_prepare(UtilityData *ud, const gchar *new_p
 		gchar *np;
 		FileData *fd;
 
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 		work = work->next;
 
 		g_assert(strncmp(fd->path, ud->dir_fd->path, orig_len) == 0);
@@ -2839,7 +2839,7 @@ static gboolean file_util_rename_dir_prepare(UtilityData *ud, const gchar *new_p
 			{
 			FileData *fd;
 
-			fd = work->data;
+			fd = static_cast<FileData *>(work->data);
 			work = work->next;
 			file_data_sc_free_ci(fd);
 			}

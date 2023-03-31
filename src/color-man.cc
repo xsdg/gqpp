@@ -221,7 +221,7 @@ static void color_man_cache_reset(void)
 		{
 		ColorManCache *cc;
 
-		cc = cm_cache_list->data;
+		cc = static_cast<ColorManCache *>(cm_cache_list->data);
 		color_man_cache_free(cc);
 		}
 }
@@ -238,7 +238,7 @@ static ColorManCache *color_man_cache_find(ColorManProfileType in_type, const gc
 		ColorManCache *cc;
 		gboolean match = FALSE;
 
-		cc = work->data;
+		cc = static_cast<ColorManCache *>(work->data);
 		work = work->next;
 
 		if (cc->profile_in_type == in_type &&
@@ -311,7 +311,7 @@ void color_man_correct_region(ColorMan *cm, GdkPixbuf *pixbuf, gint x, gint y, g
 	pixbuf_width = gdk_pixbuf_get_width(pixbuf);
 	pixbuf_height = gdk_pixbuf_get_height(pixbuf);
 
-	cc = cm->profile;
+	cc = static_cast<ColorManCache *>(cm->profile);
 
 	pix = gdk_pixbuf_get_pixels(pixbuf);
 	rs = gdk_pixbuf_get_rowstride(pixbuf);
@@ -466,7 +466,7 @@ gboolean color_man_get_status(ColorMan *cm, gchar **image_profile, gchar **scree
 	ColorManCache *cc;
 	if (!cm) return FALSE;
 
-	cc = cm->profile;
+	cc = static_cast<ColorManCache *>(cm->profile);
 
 	if (image_profile) *image_profile = color_man_get_profile_name(cc->profile_in_type, cc->profile_in);
 	if (screen_profile) *screen_profile = color_man_get_profile_name(cc->profile_out_type, cc->profile_out);

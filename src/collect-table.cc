@@ -503,7 +503,7 @@ static void collection_table_select_region_util(CollectTable *ct, CollectInfo *s
 		work = g_list_find(ct->cd->list, start);
 		while (work)
 			{
-			info = work->data;
+			info = static_cast<CollectInfo *>(work->data);
 			collection_table_select_util(ct, info, select);
 
 			if (work->data != end)
@@ -661,7 +661,7 @@ static void tip_update(CollectTable *ct, CollectInfo *info)
 				return;
 				}
 
-			label = g_object_get_data(G_OBJECT(ct->tip_window), "tip_label");
+			label = static_cast<GtkWidget *>(g_object_get_data(G_OBJECT(ct->tip_window), "tip_label"));
 			gtk_label_set_text(GTK_LABEL(label), ct->show_text ? ct->tip_info->fd->path : ct->tip_info->fd->name);
 			}
 		}
@@ -711,9 +711,9 @@ static GList *collection_table_popup_file_list(CollectTable *ct)
 static void collection_table_popup_edit_cb(GtkWidget *widget, gpointer data)
 {
 	CollectTable *ct;
-	const gchar *key = data;
+	const gchar *key = static_cast<const gchar *>(data);
 
-	ct = submenu_item_get_data(widget);
+	ct = static_cast<CollectTable *>(submenu_item_get_data(widget));
 
 	if (!ct) return;
 
@@ -776,7 +776,7 @@ static void collection_table_popup_sort_cb(GtkWidget *widget, gpointer data)
 	CollectTable *ct;
 	SortType type;
 
-	ct = submenu_item_get_data(widget);
+	ct = static_cast<CollectTable *>(submenu_item_get_data(widget));
 
 	if (!ct) return;
 
@@ -789,7 +789,7 @@ static void collection_table_popup_randomize_cb(GtkWidget *widget, gpointer UNUS
 {
 	CollectTable *ct;
 
-	ct = submenu_item_get_data(widget);
+	ct = static_cast<CollectTable *>(submenu_item_get_data(widget));
 
 	if (!ct) return;
 
@@ -900,7 +900,7 @@ static void collection_table_popup_goto_original_cb(GtkWidget *UNUSED(widget), g
 	list = collection_table_selection_get_list(ct);
 	if (list)
 		{
-		fd = list->data;
+		fd = static_cast<FileData *>(list->data);
 		if (fd)
 			{
 			layout_set_fd(lw, fd);
@@ -1408,7 +1408,7 @@ static CollectInfo *collection_table_insert_find(CollectTable *ct, CollectInfo *
 		gtk_tree_model_get(store, &iter, CTABLE_COLUMN_POINTER, &list, -1);
 
 		n = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(column), "column_number"));
-		info = g_list_nth_data(list, n);
+		info = static_cast<CollectInfo *>(g_list_nth_data(list, n));
 
 		if (info)
 			{
@@ -1428,7 +1428,7 @@ static CollectInfo *collection_table_insert_find(CollectTable *ct, CollectInfo *
 			{
 			gint col;
 
-			info = work->data;
+			info = static_cast<CollectInfo *>(work->data);
 			*after = TRUE;
 
 			if (collection_table_find_iter(ct, info, &iter, &col))
@@ -1459,7 +1459,7 @@ static CollectInfo *collection_table_insert_point(CollectTable *ct, gint x, gint
 		work = g_list_find(ct->cd->list, info);
 		if (work && work->next)
 			{
-			info = work->next->data;
+			info = static_cast<CollectInfo *>(work->next->data);
 			}
 		else
 			{
@@ -1851,7 +1851,7 @@ static void collection_table_populate(CollectTable *ct, gboolean resize)
 			gtk_tree_view_column_set_fixed_width(column, thumb_width + (THUMB_BORDER_PADDING * 6));
 
 			list = gtk_cell_layout_get_cells(GTK_CELL_LAYOUT(column));
-			cell = (list) ? list->data : NULL;
+			cell = static_cast<GtkCellRenderer *>((list) ? list->data : NULL);
 			g_list_free(list);
 
 			if (cell && GQV_IS_CELL_RENDERER_ICON(cell))
@@ -1940,7 +1940,7 @@ static void collection_table_sync(CollectTable *ct)
 			CollectInfo *info;
 			if (work)
 				{
-				info = work->data;
+				info = static_cast<CollectInfo *>(work->data);
 				work = work->next;
 				c++;
 				}
@@ -2502,7 +2502,7 @@ static void collection_table_cell_data_cb(GtkTreeViewColumn *UNUSED(tree_column)
 	 */
 	if (cd->number == COLLECT_TABLE_MAX_COLUMNS) return;
 
-	info = g_list_nth_data(list, cd->number);
+	info = static_cast<CollectInfo *>(g_list_nth_data(list, cd->number));
 
 	style = gtk_widget_get_style(ct->listview);
 	if (info && (info->flag_mask & SELECTION_SELECTED) )

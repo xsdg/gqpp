@@ -41,7 +41,7 @@ static gboolean collection_save_confirmed(FileDialog *fd, gboolean overwrite, Co
 static void collection_confirm_ok_cb(GenericDialog *UNUSED(gd), gpointer data)
 {
 	FileDialog *fd = static_cast<FileDialog *>(data);
-	CollectionData *cd = GENERIC_DIALOG(fd)->data;
+	CollectionData *cd = static_cast<CollectionData *>(GENERIC_DIALOG(fd)->data);
 
 	if (!collection_save_confirmed(fd, TRUE, cd))
 		{

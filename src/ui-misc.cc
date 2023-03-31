@@ -119,7 +119,7 @@ GtkWidget *pref_group_parent(GtkWidget *child)
 		{
 		GtkWidget *group;
 
-		group = g_object_get_data(G_OBJECT(parent), "pref_group");
+		group = static_cast<GtkWidget *>(g_object_get_data(G_OBJECT(parent), "pref_group"));
 		if (group && GTK_IS_WIDGET(group)) return group;
 
 		parent = gtk_widget_get_parent(parent);
@@ -342,7 +342,7 @@ GtkWidget *pref_checkbox_new(GtkWidget *parent_box, const gchar *text, gboolean 
 
 static void pref_checkbox_int_cb(GtkWidget *widget, gpointer data)
 {
-	gboolean *result = data;
+	gboolean *result = static_cast<gboolean *>(data);
 
 	*result = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget));
 }
@@ -441,7 +441,7 @@ GtkWidget *pref_radiobutton_new(GtkWidget *parent_box, GtkWidget *sibling,
 
 static void pref_radiobutton_int_cb(GtkWidget *widget, gpointer data)
 {
-	gboolean *result = data;
+	gboolean *result = static_cast<gboolean *>(data);
 
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)))
 		{
@@ -531,7 +531,7 @@ GtkWidget *pref_spin_new(GtkWidget *parent_box, const gchar *text, const gchar *
 
 static void pref_spin_int_cb(GtkWidget *widget, gpointer data)
 {
-	gint *var = data;
+	gint *var = static_cast<gint *>(data);
 	*var = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(widget));
 }
 
@@ -1094,7 +1094,7 @@ void date_selection_set(GtkWidget *widget, gint day, gint month, gint year)
 {
 	DateSelection *ds;
 
-	ds = g_object_get_data(G_OBJECT(widget), DATE_SELECION_KEY);
+	ds = static_cast<DateSelection *>(g_object_get_data(G_OBJECT(widget), DATE_SELECION_KEY));
 	if (!ds) return;
 
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(ds->spin_d), (gdouble)day);
@@ -1107,7 +1107,7 @@ void date_selection_get(GtkWidget *widget, gint *day, gint *month, gint *year)
 {
 	DateSelection *ds;
 
-	ds = g_object_get_data(G_OBJECT(widget), DATE_SELECION_KEY);
+	ds = static_cast<DateSelection *>(g_object_get_data(G_OBJECT(widget), DATE_SELECION_KEY));
 	if (!ds) return;
 
 	if (day) *day = gtk_spin_button_get_value(GTK_SPIN_BUTTON(ds->spin_d));
@@ -1165,7 +1165,7 @@ static GList *pref_list_find(const gchar *group, const gchar *token)
 	work = history_list_get_by_key(group);
 	while (work)
 		{
-		const gchar *text = work->data;
+		const gchar *text = static_cast<const gchar *>(work->data);
 
 		if (strncmp(text, token, l) == 0) return work;
 
@@ -1221,7 +1221,7 @@ static void pref_list_set(const gchar *group, const gchar *key, const gchar *mar
 	work = pref_list_find(group, token);
 	if (work)
 		{
-		gchar *old_path = work->data;
+		gchar *old_path = static_cast<gchar *>(work->data);
 
 		if (text)
 			{

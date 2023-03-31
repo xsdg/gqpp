@@ -61,7 +61,7 @@ void pan_grid_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *height
 		FileData *fd;
 		PanItem *pi;
 
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 		work = work->next;
 
 		if (pw->size > PAN_IMAGE_SIZE_THUMB_LARGE)

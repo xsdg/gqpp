@@ -214,7 +214,7 @@ void filter_add_defaults(void)
 		GString *filter = NULL;
 		guint i;
 
-		format = work->data;
+		format = static_cast<GdkPixbufFormat *>(work->data);
 		work = work->next;
 
 		name = gdk_pixbuf_format_get_name(format);
@@ -395,7 +395,7 @@ void filter_rebuild(void)
 		{
 		FilterEntry *fe;
 
-		fe = work->data;
+		fe = static_cast<FilterEntry *>(work->data);
 		work = work->next;
 
 		if (fe->enabled)
@@ -445,7 +445,7 @@ static const gchar *filter_name_find(GList *filter, const gchar *name)
 	work = filter;
 	while (work)
 		{
-		gchar *filter = work->data;
+		gchar *filter = static_cast<gchar *>(work->data);
 		guint lf = strlen(filter);
 
 		if (ln >= lf)
@@ -583,7 +583,7 @@ static void sidecar_ext_free_list(void)
 	work = sidecar_ext_list;
 	while (work)
 		{
-		gchar *ext = work->data;
+		gchar *ext = static_cast<gchar *>(work->data);
 		work = work->next;
 		g_free(ext);
 		}

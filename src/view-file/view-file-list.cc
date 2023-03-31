@@ -167,7 +167,7 @@ static void vflist_store_clear(ViewFile *vf, gboolean unlock_files)
 		filelist_read(vf->dir_fd, &files, NULL);
 		while (files)
 			{
-			FileData *fd = files->data;
+			FileData *fd = static_cast<FileData *>(files->data);
 			files = files->next;
 			file_data_unlock(fd);
 			file_data_unref(fd);  // undo the ref that got added in filelist_read
@@ -1226,7 +1226,7 @@ FileData *vflist_thumb_next_fd(ViewFile *vf)
 
 				while (work2 && !fd)
 					{
-					fd_p = work2->data;
+					fd_p = static_cast<FileData *>(work2->data);
 					if (!fd_p->thumb_pixbuf) fd = fd_p;
 					work2 = work2->next;
 					}
@@ -1377,7 +1377,7 @@ gint vflist_index_by_fd(ViewFile *vf, FileData *fd)
 			   it is sufficient for next/prev navigation but it should be rewritten
 			   without using indexes at all
 			*/
-			FileData *sidecar_fd = work2->data;
+			FileData *sidecar_fd = static_cast<FileData *>(work2->data);
 			if (sidecar_fd == fd) return p;
 			work2 = work2->next;
 			}
@@ -1498,7 +1498,7 @@ GList *vflist_selection_get_list(ViewFile *vf)
 			GList *work2 = fd->sidecar_files;
 			while (work2)
 				{
-				FileData *sfd = work2->data;
+				FileData *sfd = static_cast<FileData *>(work2->data);
 				list = g_list_prepend(list, file_data_ref(sfd));
 				work2 = work2->next;
 				}
@@ -1657,7 +1657,7 @@ void vflist_select_list(ViewFile *vf, GList *list)
 		{
 		FileData *fd;
 
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 
 		if (vflist_find_row(vf, fd, &iter) < 0) return;
 		if (!vflist_row_is_selected(vf, fd))
@@ -1682,7 +1682,7 @@ static void vflist_select_closest(ViewFile *vf, FileData *sel_fd)
 	while (work)
 		{
 		gint match;
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 		work = work->next;
 
 		match = filelist_sort_compare_filedata_full(fd, sel_fd, vf->sort_method, vf->sort_ascend);
@@ -1814,7 +1814,7 @@ static void vflist_listview_set_columns(GtkWidget *listview, gboolean thumb, gbo
 
 	list = gtk_cell_layout_get_cells(GTK_CELL_LAYOUT(column));
 	if (!list) return;
-	cell = list->data;
+	cell = static_cast<GtkCellRenderer *>(list->data);
 	g_list_free(list);
 
 	g_object_set(G_OBJECT(cell), "height", options->thumbnails.max_height, NULL);

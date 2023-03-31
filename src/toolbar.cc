@@ -347,9 +347,9 @@ static void toolbarlist_add_button(const gchar *name, const gchar *label,
 
 static void toolbarlist_add_cb(GtkWidget *widget, gpointer data)
 {
-	const gchar *name = g_object_get_data(G_OBJECT(widget), "toolbar_add_name");
-	const gchar *label = g_object_get_data(G_OBJECT(widget), "toolbar_add_label");
-	const gchar *stock_id = g_object_get_data(G_OBJECT(widget), "toolbar_add_stock_id");
+	const gchar *name = static_cast<const gchar *>(g_object_get_data(G_OBJECT(widget), "toolbar_add_name"));
+	const gchar *label = static_cast<const gchar *>(g_object_get_data(G_OBJECT(widget), "toolbar_add_label"));
+	const gchar *stock_id = static_cast<const gchar *>(g_object_get_data(G_OBJECT(widget), "toolbar_add_stock_id"));
 	ToolbarData *tbbd = static_cast<ToolbarData *>(data);
 
 	toolbarlist_add_button(name, label, stock_id, GTK_BOX(tbbd->vbox));
@@ -447,17 +447,17 @@ void toolbar_apply(ToolbarType bar)
 	work_windows = layout_window_list;
 	while (work_windows)
 		{
-		lw = work_windows->data;
+		lw = static_cast<LayoutWindow *>(work_windows->data);
 
 		layout_toolbar_clear(lw, bar);
 
 		work_toolbar = gtk_container_get_children(GTK_CONTAINER(toolbarlist[bar]->vbox));
 		while (work_toolbar)
 			{
-			GtkButton *button = work_toolbar->data;
+			GtkButton *button = static_cast<GtkButton *>(work_toolbar->data);
 			ToolbarButtonData *tbbd;
 
-			tbbd = g_object_get_data(G_OBJECT(button),"toolbarbuttondata");
+			tbbd = static_cast<ToolbarButtonData *>(g_object_get_data(G_OBJECT(button),"toolbarbuttondata"));
 			layout_toolbar_add(lw, bar, tbbd->name);
 
 			work_toolbar = work_toolbar->next;
@@ -484,7 +484,7 @@ static void toolbarlist_populate(LayoutWindow *lw, GtkBox *box, ToolbarType bar)
 
 	while (work)
 		{
-		gchar *name = work->data;
+		gchar *name = static_cast<gchar *>(work->data);
 		gchar *label;
 		gchar *icon;
 		work = work->next;

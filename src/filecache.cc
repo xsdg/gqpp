@@ -101,7 +101,7 @@ void file_cache_set_size(FileCacheData *fc, gulong size)
 	while (fc->size > size && work)
 		{
 		GList *prev;
-		last_fe = work->data;
+		last_fe = static_cast<FileCacheEntry *>(work->data);
 		prev = work->prev;
 		fc->list = g_list_delete_link(fc->list, work);
 		work = prev;
@@ -157,7 +157,7 @@ static void file_cache_remove_fd(FileCacheData *fc, FileData *fd)
 	while (work)
 		{
 		GList *current = work;
-		fe = work->data;
+		fe = static_cast<FileCacheEntry *>(work->data);
 		work = work->next;
 
 		if (fe->fd == fd)

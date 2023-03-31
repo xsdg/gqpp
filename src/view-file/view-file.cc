@@ -344,9 +344,9 @@ GList *vf_selection_get_one(ViewFile *vf, FileData *fd)
 static void vf_pop_menu_edit_cb(GtkWidget *widget, gpointer data)
 {
 	ViewFile *vf;
-	const gchar *key = data;
+	const gchar *key = static_cast<const gchar *>(data);
 
-	vf = submenu_item_get_data(widget);
+	vf = static_cast<ViewFile *>(submenu_item_get_data(widget));
 
 	if (!vf) return;
 
@@ -479,7 +479,7 @@ static void vf_pop_menu_sort_cb(GtkWidget *widget, gpointer data)
 
 	if (!gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget))) return;
 
-	vf = submenu_item_get_data(widget);
+	vf = static_cast<ViewFile *>(submenu_item_get_data(widget));
 	if (!vf) return;
 
 	type = (SortType)GPOINTER_TO_INT(data);
@@ -601,7 +601,7 @@ static void vf_pop_menu_collections_cb(GtkWidget *widget, gpointer data)
 	ViewFile *vf;
 	GList *selection_list;
 
-	vf = submenu_item_get_data(widget);
+	vf = static_cast<ViewFile *>(submenu_item_get_data(widget));
 	selection_list = vf_selection_get_list(vf);
 	pop_menu_collections(selection_list, data);
 
@@ -871,7 +871,7 @@ static void vf_marks_tooltip_ok_cb(GenericDialog *gd, gpointer data)
 void vf_marks_filter_on_icon_press(GtkEntry *UNUSED(entry), GtkEntryIconPosition UNUSED(pos),
 									GdkEvent *UNUSED(event), gpointer userdata)
 {
-	MarksTextEntry *mte = userdata;
+	MarksTextEntry *mte = static_cast<MarksTextEntry *>(userdata);
 
 	g_free(mte->text_entry);
 	mte->text_entry = g_strdup("");
@@ -1100,7 +1100,7 @@ static gboolean vf_file_filter_class_set_all_cb(GtkWidget *widget, gpointer data
 	children = gtk_container_get_children(GTK_CONTAINER(parent));
 	while (children)
 		{
-		child = children->data;
+		child = static_cast<GtkWidget *>(children->data);
 		if (i < FILE_FORMAT_CLASSES)
 			{
 			gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(child), state);
@@ -1789,7 +1789,7 @@ static gboolean vf_read_metadata_in_idle_cb(gpointer data)
 
 	while (work)
 		{
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 
 		if (fd && !fd->metadata_in_idle_loaded)
 			{

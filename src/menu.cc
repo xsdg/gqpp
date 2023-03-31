@@ -432,7 +432,7 @@ static void add_collection_list(GtkWidget *menu, GCallback func,
 	work = collection_list;
 	while (work)
 		{
-		const gchar *collection_name = work->data;
+		const gchar *collection_name = static_cast<const gchar *>(work->data);
 
 		menu_item_add(menu, collection_name, func,
 													GINT_TO_POINTER(index));
@@ -486,7 +486,7 @@ void pop_menu_collections(GList *selection_list, gpointer data)
 	if (index >= 0)
 		{
 		collect_manager_list(&collection_list, NULL, NULL);
-		collection_name = g_list_nth_data(collection_list, index);
+		collection_name = static_cast<gchar *>(g_list_nth_data(collection_list, index));
 		name = collection_path(collection_name);
 		cw = collection_window_new(name);
 		g_free(name);

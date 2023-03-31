@@ -199,7 +199,7 @@ static void remote_server_clients_close(RemoteConnection *rc)
 {
 	while (rc->clients)
 		{
-		RemoteClient *client = rc->clients->data;
+		RemoteClient *client = static_cast<RemoteClient *>(rc->clients->data);
 
 		rc->clients = g_list_remove(rc->clients, client);
 
@@ -876,7 +876,7 @@ static void get_filelist(const gchar *text, GIOChannel *channel, gboolean recurs
 	work = list;
 	while (work)
 		{
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 		g_string_append_printf(out_string, "%s", fd->path);
 		format_class = filter_file_get_class(fd->path);
 
@@ -979,7 +979,7 @@ static void gr_selection_add(const gchar *text, GIOChannel *UNUSED(channel), gpo
 
 			for (GList *sidecar = fd->sidecar_files; sidecar && !fd_to_select; sidecar = sidecar->next)
 				{
-				FileData *side_fd = sidecar->data;
+				FileData *side_fd = static_cast<FileData *>(sidecar->data);
 				if (!strcmp(path, side_fd->path)
 	                            || g_str_has_suffix(side_fd->path, slash_plus_filename))
 					{
@@ -1147,7 +1147,7 @@ static void gr_collection_list(const gchar *UNUSED(text), GIOChannel *channel, g
 	work = collection_list;
 	while (work)
 		{
-		const gchar *collection_name = work->data;
+		const gchar *collection_name = static_cast<const gchar *>(work->data);
 		out_string = g_string_append(out_string, g_strdup(collection_name));
 		out_string = g_string_append(out_string, "\n");
 
@@ -1396,7 +1396,7 @@ static void gr_get_sidecars(const gchar *text, GIOChannel *channel, gpointer UNU
 
 	while (work)
 		{
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 		work = work->next;
 		g_io_channel_write_chars(channel, fd->path, -1, NULL, NULL);
 		g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, NULL, NULL);
@@ -1795,7 +1795,7 @@ void remote_control(const gchar *arg_exec, GList *remote_list, const gchar *path
 			gchar *text;
 			RemoteCommandEntry *entry;
 
-			text = work->data;
+			text = static_cast<gchar *>(work->data);
 			work = work->next;
 
 			entry = remote_command_find(text, NULL);
@@ -1853,7 +1853,7 @@ void remote_control(const gchar *arg_exec, GList *remote_list, const gchar *path
 			gchar *text;
 			RemoteCommandEntry *entry;
 
-			text = work->data;
+			text = static_cast<gchar *>(work->data);
 			work = work->next;
 
 			entry = remote_command_find(text, NULL);
@@ -1906,7 +1906,7 @@ void remote_control(const gchar *arg_exec, GList *remote_list, const gchar *path
 			const gchar *name;
 			gchar *text;
 
-			name = work->data;
+			name = static_cast<const gchar *>(work->data);
 			work = work->next;
 
 			text = g_strdup_printf("file:%s", name);

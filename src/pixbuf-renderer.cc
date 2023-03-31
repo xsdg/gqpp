@@ -184,7 +184,7 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 {
 	GObjectClass *gobject_class = G_OBJECT_CLASS(renderer_class);
 
-	parent_class = g_type_class_peek_parent(renderer_class);
+	parent_class = static_cast<GtkEventBoxClass *>(g_type_class_peek_parent(renderer_class));
 
 	gobject_class->set_property = pixbuf_renderer_set_property;
 	gobject_class->get_property = pixbuf_renderer_get_property;
@@ -971,7 +971,7 @@ static void pr_source_tile_free_all(PixbufRenderer *pr)
 		{
 		SourceTile *st;
 
-		st = work->data;
+		st = static_cast<SourceTile *>(work->data);
 		work = work->next;
 
 		pr_source_tile_free(st);
@@ -1027,7 +1027,7 @@ static SourceTile *pr_source_tile_new(PixbufRenderer *pr, gint x, gint y)
 			{
 			SourceTile *needle;
 
-			needle = work->data;
+			needle = static_cast<SourceTile *>(work->data);
 			work = work->prev;
 
 			if (!pr_source_tile_visible(pr, needle))
@@ -1160,7 +1160,7 @@ static void pr_source_tile_changed(PixbufRenderer *pr, gint x, gint y, gint widt
 		SourceTile *st;
 		gint rx, ry, rw, rh;
 
-		st = work->data;
+		st = static_cast<SourceTile *>(work->data);
 		work = work->next;
 
 		if (pr_clip_region(st->x, st->y, pr->source_tile_width, pr->source_tile_height,

@@ -356,7 +356,7 @@ gchar *get_symbolic_link(const gchar *path_utf8)
 		gchar *buf;
 		gint l;
 
-		buf = g_malloc(st.st_size + 1);
+		buf = static_cast<gchar *>(g_malloc(st.st_size + 1));
 		l = readlink(sl, buf, st.st_size);
 
 		if (l == st.st_size)

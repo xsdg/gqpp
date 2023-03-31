@@ -98,7 +98,7 @@ static void tag_button_cb(GtkWidget *widget, gpointer data)
 	TagData *td;
 
 	buffer = gtk_text_view_get_buffer(image_overlay_template_view);
-	td = g_object_get_data(G_OBJECT(widget), "tag_data");
+	td = static_cast<TagData *>(g_object_get_data(G_OBJECT(widget), "tag_data"));
 	gtk_text_buffer_insert_at_cursor(GTK_TEXT_BUFFER(buffer), td->key, -1);
 
 	gtk_widget_grab_focus(GTK_WIDGET(image_overlay_template_view));
@@ -111,7 +111,7 @@ static void osd_dnd_get_cb(GtkWidget *btn, GdkDragContext *UNUSED(context),
 	TagData *td;
 	GtkTextView *image_overlay_template_view = static_cast<GtkTextView *>(data);
 
-	td = g_object_get_data(G_OBJECT(btn), "tag_data");
+	td = static_cast<TagData *>(g_object_get_data(G_OBJECT(btn), "tag_data"));
 	gtk_selection_data_set_text(selection_data, td->key, -1);
 
 	gtk_widget_grab_focus(GTK_WIDGET(image_overlay_template_view));
@@ -123,7 +123,7 @@ static void osd_btn_destroy_cb(GtkWidget *btn, GdkDragContext *UNUSED(context),
 {
 	TagData *td;
 
-	td = g_object_get_data(G_OBJECT(btn), "tag_data");
+	td = static_cast<TagData *>(g_object_get_data(G_OBJECT(btn), "tag_data"));
 	g_free(td->key);
 	g_free(td->title);
 }
@@ -218,7 +218,7 @@ static gchar *keywords_to_string(FileData *fd)
 
 		while (work)
 			{
-			gchar *kw = work->data;
+			gchar *kw = static_cast<gchar *>(work->data);
 			work = work->next;
 
 			if (!kw) continue;
@@ -333,7 +333,7 @@ gchar *image_osd_mkinfo(const gchar *str, FileData *fd, GHashTable *vars)
 #endif
 		else
 			{
-			data = g_strdup(g_hash_table_lookup(vars, name));
+			data = static_cast<const gchar *>(g_strdup(g_hash_table_lookup(vars, name)));
 			if (!data)
 				data = metadata_read_string(fd, name, METADATA_FORMATTED);
 			}

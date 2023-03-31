@@ -73,7 +73,7 @@ void pan_timeline_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *he
 		FileData *fd;
 		PanItem *pi;
 
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 		work = work->next;
 
 		if (!pan_date_compare(fd->date, group_start_date, PAN_DATE_LENGTH_DAY))
@@ -128,7 +128,7 @@ void pan_timeline_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *he
 				{
 				FileData *nfd;
 
-				nfd = needle->data;
+				nfd = static_cast<FileData *>(needle->data);
 				if (pan_date_compare(nfd->date, group_start_date, PAN_DATE_LENGTH_DAY))
 					{
 					needle = needle->next;

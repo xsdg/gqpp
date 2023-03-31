@@ -115,7 +115,7 @@ static void bar_pane_gps_close_save_cb(GenericDialog *UNUSED(gd), gpointer data)
 	work = g_list_first(pgd->geocode_list);
 	while (work)
 		{
-		fd = work->data;
+		fd = static_cast<FileData *>(work->data);
 		if (fd->name && !fd->parent)
 			{
 			work = work->next;
@@ -142,7 +142,7 @@ static void bar_pane_gps_close_save_cb(GenericDialog *UNUSED(gd), gpointer data)
 	gchar *location;
 	gchar **latlong;
 
-	pgd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	pgd = static_cast<PaneGPSData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!pgd) return;
 
 	if (info == TARGET_URI_LIST)
@@ -161,7 +161,7 @@ static void bar_pane_gps_close_save_cb(GenericDialog *UNUSED(gd), gpointer data)
 			work = list;
 			while (work)
 				{
-				fd = work->data;
+				fd = static_cast<FileData *>(work->data);
 				work = work->next;
 				if (fd->name && !fd->parent)
 					{
@@ -182,7 +182,7 @@ static void bar_pane_gps_close_save_cb(GenericDialog *UNUSED(gd), gpointer data)
 				message = g_string_new("");
 				if (count == 1)
 					{
-					fd_found = g_list_first(pgd->geocode_list)->data;
+					fd_found = static_cast<FileData *>(g_list_first(pgd->geocode_list)->data);
 					g_string_append_printf(message,
 							_("\nDo you want to geocode image %s?"), fd_found->name);
 					}
@@ -279,7 +279,7 @@ static void bar_pane_gps_thumb_done_cb(ThumbLoader *tl, gpointer data)
 	ClutterActor *actor;
 
 	marker = CLUTTER_ACTOR(data);
-	fd = g_object_get_data(G_OBJECT(marker), "file_fd");
+	fd = static_cast<FileData *>(g_object_get_data(G_OBJECT(marker), "file_fd"));
 	if (fd->thumb_pixbuf != NULL)
 		{
 		actor = gtk_clutter_texture_new();
@@ -313,7 +313,7 @@ static gboolean bar_pane_gps_marker_keypress_cb(GtkWidget *widget, ClutterButton
 	if (bevent->button == MOUSE_BUTTON_LEFT)
 		{
 		label_marker = CLUTTER_ACTOR(widget);
-		fd = g_object_get_data(G_OBJECT(label_marker), "file_fd");
+		fd = static_cast<FileData *>(g_object_get_data(G_OBJECT(label_marker), "file_fd"));
 
 		/* If the marker is showing a thumbnail, delete it
 		 */
@@ -452,7 +452,7 @@ static gboolean bar_pane_gps_create_markers_cb(gpointer data)
 
 	if(pgd->not_added)
 		{
-		fd = pgd->not_added->data;
+		fd = static_cast<FileData *>(pgd->not_added->data);
 		pgd->not_added = pgd->not_added->next;
 
 		latitude = metadata_read_GPS_coord(fd, "Xmp.exif.GPSLatitude", 0);
@@ -623,7 +623,7 @@ static void bar_pane_gps_change_map_cb(GtkWidget *widget, gpointer data)
 
 	if (!pgd) return;
 
-	mapsource = g_object_get_data(G_OBJECT(widget), "menu_item_radio_data");
+	mapsource = static_cast<gchar *>(g_object_get_data(G_OBJECT(widget), "menu_item_radio_data"));
 	bar_pane_gps_set_map_source(pgd, mapsource);
 }
 
@@ -633,7 +633,7 @@ static void bar_pane_gps_notify_selection(GtkWidget *bar, gint count)
 
 	if (count == 0) return;
 
-	pgd = g_object_get_data(G_OBJECT(bar), "pane_data");
+	pgd = static_cast<PaneGPSData *>(g_object_get_data(G_OBJECT(bar), "pane_data"));
 	if (!pgd) return;
 
 	bar_pane_gps_update(pgd);
@@ -643,7 +643,7 @@ static void bar_pane_gps_set_fd(GtkWidget *bar, FileData *fd)
 {
 	PaneGPSData *pgd;
 
-	pgd = g_object_get_data(G_OBJECT(bar), "pane_data");
+	pgd = static_cast<PaneGPSData *>(g_object_get_data(G_OBJECT(bar), "pane_data"));
 	if (!pgd) return;
 
 	file_data_unref(pgd->fd);
@@ -656,7 +656,7 @@ static gint bar_pane_gps_event(GtkWidget *bar, GdkEvent *event)
 {
 	PaneGPSData *pgd;
 
-	pgd = g_object_get_data(G_OBJECT(bar), "pane_data");
+	pgd = static_cast<PaneGPSData *>(g_object_get_data(G_OBJECT(bar), "pane_data"));
 	if (!pgd) return FALSE;
 
 	if (gtk_widget_has_focus(pgd->widget)) return gtk_widget_event(GTK_WIDGET(pgd->widget), event);
@@ -676,7 +676,7 @@ static void bar_pane_gps_write_config(GtkWidget *pane, GString *outstr, gint ind
 	gint int_position;
 	gint w, h;
 
-	pgd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	pgd = static_cast<PaneGPSData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!pgd) return;
 
 	WRITE_NL();
@@ -1078,7 +1078,7 @@ void bar_pane_gps_update_from_config(GtkWidget *pane, const gchar **attribute_na
 	gint int_longitude, int_latitude;
 	gdouble longitude, latitude;
 
-	pgd = g_object_get_data(G_OBJECT(pane), "pane_data");
+	pgd = static_cast<PaneGPSData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!pgd)
 		return;
 

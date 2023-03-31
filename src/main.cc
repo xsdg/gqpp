@@ -612,7 +612,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 
 			while (work)
 				{
-				gchar *opt = work->data;
+				gchar *opt = static_cast<gchar *>(work->data);
 
 				command_line_errors = g_string_append(command_line_errors, opt);
 				command_line_errors = g_string_append(command_line_errors, "\n");
@@ -1019,7 +1019,7 @@ static void exit_program_final(void)
 		list = layout_window_list;
 		while (list)
 			{
-			tmp_lw = list->data;
+			tmp_lw = static_cast<LayoutWindow *>(list->data);
 			if (!g_str_has_prefix(tmp_lw->options.id, "lw"))
 				{
 				save_layout(list->data);
@@ -1199,7 +1199,7 @@ static void set_theme_bg_color()
 	if (!options->image.use_custom_border_color)
 		{
 		work = layout_window_list;
-		lw = work->data;
+		lw = static_cast<LayoutWindow *>(work->data);
 
 		style_context = gtk_widget_get_style_context(lw->window);
 		gtk_style_context_get_background_color(style_context, GTK_STATE_FLAG_NORMAL, &bg_color);
@@ -1210,7 +1210,7 @@ static void set_theme_bg_color()
 
 		while (work)
 			{
-			lw = work->data;
+			lw = static_cast<LayoutWindow *>(work->data);
 			image_background_set_color(lw->image, &theme_color);
 			work = work->next;
 			}
@@ -1441,7 +1441,7 @@ gint main(gint argc, gchar *argv[])
 				CollectWindow *cw;
 				const gchar *path;
 
-				path = work->data;
+				path = static_cast<const gchar *>(work->data);
 				work = work->next;
 
 				cw = collection_window_new(path);
@@ -1472,7 +1472,7 @@ gint main(gint argc, gchar *argv[])
 				{
 				gchar *dirname;
 
-				dirname = g_path_get_dirname(work->data);
+				dirname = static_cast<const gchar *>(g_path_get_dirname(work->data));
 				if (!path)
 					{
 					path = g_strdup(dirname);
@@ -1508,7 +1508,7 @@ gint main(gint argc, gchar *argv[])
 				{
 				FileData *fd;
 
-				fd = file_data_new_simple(work->data);
+				fd = file_data_new_simple(static_cast<const gchar *>(work->data));
 				collection_add(cd, fd, FALSE);
 				file_data_unref(fd);
 				work = work->next;

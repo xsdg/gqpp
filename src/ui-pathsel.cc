@@ -252,7 +252,7 @@ static void dest_populate(Dest_Data *dd, const gchar *path)
 			{
 			GtkTreeIter iter;
 			gchar *filepath;
-			const gchar *name = list->data;
+			const gchar *name = static_cast<const gchar *>(list->data);
 
 			filepath = g_build_filename(path, name, NULL);
 
@@ -886,8 +886,8 @@ static void dest_filter_list_sync(Dest_Data *dd)
 		gchar *name;
 		gchar *filter;
 
-		name = twork->data;
-		filter = fwork->data;
+		name = static_cast<gchar *>(twork->data);
+		filter = static_cast<gchar *>(fwork->data);
 
 		gtk_list_store_append(store, &iter);
 		gtk_list_store_set(store, &iter, FILTER_COLUMN_NAME, name,
@@ -916,7 +916,7 @@ static void dest_filter_add(Dest_Data *dd, const gchar *filter, const gchar *des
 	work = dd->filter_list;
 	while (work)
 		{
-		gchar *f = work->data;
+		gchar *f = static_cast<gchar *>(work->data);
 
 		if (strcmp(f, filter) == 0)
 			{
@@ -1245,7 +1245,7 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 void path_selection_add_select_func(GtkWidget *entry,
 				    void (*func)(const gchar *, gpointer), gpointer data)
 {
-	Dest_Data *dd = g_object_get_data(G_OBJECT(entry), "destination_data");
+	Dest_Data *dd = static_cast<Dest_Data *>(g_object_get_data(G_OBJECT(entry), "destination_data"));
 
 	if (!dd) return;
 
@@ -1255,7 +1255,7 @@ void path_selection_add_select_func(GtkWidget *entry,
 
 void path_selection_add_filter(GtkWidget *entry, const gchar *filter, const gchar *description, gboolean set)
 {
-	Dest_Data *dd = g_object_get_data(G_OBJECT(entry), "destination_data");
+	Dest_Data *dd = static_cast<Dest_Data *>(g_object_get_data(G_OBJECT(entry), "destination_data"));
 
 	if (!dd) return;
 	if (!filter) return;
@@ -1265,7 +1265,7 @@ void path_selection_add_filter(GtkWidget *entry, const gchar *filter, const gcha
 
 void path_selection_clear_filter(GtkWidget *entry)
 {
-	Dest_Data *dd = g_object_get_data(G_OBJECT(entry), "destination_data");
+	Dest_Data *dd = static_cast<Dest_Data *>(g_object_get_data(G_OBJECT(entry), "destination_data"));
 
 	if (!dd) return;
 

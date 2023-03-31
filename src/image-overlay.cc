@@ -123,7 +123,7 @@ static OverlayStateData *image_get_osd_data(ImageWindow *imd)
 
 	g_assert(imd->pr);
 
-	osd = g_object_get_data(G_OBJECT(imd->pr), "IMAGE_OVERLAY_DATA");
+	osd = static_cast<OverlayStateData *>(g_object_get_data(G_OBJECT(imd->pr), "IMAGE_OVERLAY_DATA"));
 	return osd;
 }
 

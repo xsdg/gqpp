@@ -41,7 +41,7 @@ struct _ImageLoaderExternal {
 static gboolean image_loader_external_load(gpointer loader, const guchar *UNUSED(buf), gsize UNUSED(count), GError **UNUSED(error))
 {
 	ImageLoaderExternal *ld = (ImageLoaderExternal *) loader;
-	ImageLoader *il = ld->data;
+	ImageLoader *il = static_cast<ImageLoader *>(ld->data);
 	gchar *cmd_line;
 	gchar *randname;
 	gchar *tilde_filename;

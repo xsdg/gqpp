@@ -353,7 +353,7 @@ static gboolean debug_changed_cb(GtkSpinButton *widget, LogWindow *UNUSED(logwin
 
 static void search_entry_icon_cb(GtkEntry *UNUSED(entry), GtkEntryIconPosition pos, GdkEvent *UNUSED(event), gpointer userdata)
 {
-	LogWindow *logwin = userdata;
+	LogWindow *logwin = static_cast<LogWindow *>(userdata);
 	GtkTextIter start_find;
 	GtkTextIter end_find;
 	GtkTextBuffer *buffer;

@@ -165,12 +165,12 @@ void layout_config_set(GtkWidget *widget, gint style, const gchar *order)
 	GtkWidget *button;
 	gint a, b, c;
 
-	lc = g_object_get_data(G_OBJECT(widget), "layout_config");
+	lc = static_cast<LayoutConfig *>(g_object_get_data(G_OBJECT(widget), "layout_config"));
 
 	if (!lc) return;
 
 	style = CLAMP(style, 0, layout_config_style_count);
-	button = g_list_nth_data(lc->style_widgets, style);
+	button = static_cast<GtkWidget *>(g_list_nth_data(lc->style_widgets, style));
 	if (!button) return;
 
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), TRUE);
@@ -186,7 +186,7 @@ gchar *layout_config_get(GtkWidget *widget, gint *style)
 {
 	LayoutConfig *lc;
 
-	lc = g_object_get_data(G_OBJECT(widget), "layout_config");
+	lc = static_cast<LayoutConfig *>(g_object_get_data(G_OBJECT(widget), "layout_config"));
 
 	/* this should not happen */
 	if (!lc) return NULL;
@@ -204,7 +204,7 @@ static void layout_config_widget_click_cb(GtkWidget *widget, gpointer data)
 {
 	LayoutConfig *lc;
 
-	lc = g_object_get_data(G_OBJECT(widget), "layout_config");
+	lc = static_cast<LayoutConfig *>(g_object_get_data(G_OBJECT(widget), "layout_config"));
 
 	if (lc) lc->style = GPOINTER_TO_INT(data);
 }

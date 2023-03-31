@@ -195,9 +195,9 @@ static GtkWidget *bar_pane_exif_add_entry(PaneExifData *ped, const gchar *key, c
 
 static void bar_pane_exif_reparent_entry(GtkWidget *entry, GtkWidget *pane)
 {
-	PaneExifData *ped = g_object_get_data(G_OBJECT(pane), "pane_data");
+	PaneExifData *ped = static_cast<PaneExifData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	PaneExifData *old_ped;
-	ExifEntry *ee = g_object_get_data(G_OBJECT(entry), "entry_data");
+	ExifEntry *ee = static_cast<ExifEntry *>(g_object_get_data(G_OBJECT(entry), "entry_data"));
 
 	if (!ped || !ee) return;
 
@@ -225,7 +225,7 @@ static void bar_pane_exif_entry_update_title(ExifEntry *ee)
 static void bar_pane_exif_update_entry(PaneExifData *ped, GtkWidget *entry, gboolean update_title)
 {
 	gchar *text;
-	ExifEntry *ee = g_object_get_data(G_OBJECT(entry), "entry_data");
+	ExifEntry *ee = static_cast<ExifEntry *>(g_object_get_data(G_OBJECT(entry), "entry_data"));
 	gshort rating;
 
 	if (!ee) return;
@@ -291,7 +291,7 @@ void bar_pane_exif_set_fd(GtkWidget *widget, FileData *fd)
 {
 	PaneExifData *ped;
 
-	ped = g_object_get_data(G_OBJECT(widget), "pane_data");
+	ped = static_cast<PaneExifData *>(g_object_get_data(G_OBJECT(widget), "pane_data"));
 	if (!ped) return;
 
 	file_data_unref(ped->fd);
@@ -306,7 +306,7 @@ gint bar_pane_exif_event(GtkWidget *bar, GdkEvent *event)
 	gboolean ret = FALSE;
 	GList *list, *work;
 
-	ped = g_object_get_data(G_OBJECT(bar), "pane_data");
+	ped = static_cast<PaneExifData *>(g_object_get_data(G_OBJECT(bar), "pane_data"));
 	if (!ped) return FALSE;
 
 	list = gtk_container_get_children(GTK_CONTAINER(ped->vbox));
@@ -314,7 +314,7 @@ gint bar_pane_exif_event(GtkWidget *bar, GdkEvent *event)
 	while (!ret && work)
 		{
 		GtkWidget *entry = static_cast<GtkWidget *>(work->data);
-		ExifEntry *ee = g_object_get_data(G_OBJECT(entry), "entry_data");
+		ExifEntry *ee = static_cast<ExifEntry *>(g_object_get_data(G_OBJECT(entry), "entry_data"));
 		work = work->next;
 
 		if (ee->editable && gtk_widget_has_focus(ee->value_widget)) ret = gtk_widget_event(ee->value_widget, event);
@@ -357,7 +357,7 @@ static void bar_pane_exif_entry_dnd_get(GtkWidget *entry, GdkDragContext *UNUSED
 				     GtkSelectionData *selection_data, guint info,
 				     guint UNUSED(time), gpointer UNUSED(data))
 {
-	ExifEntry *ee = g_object_get_data(G_OBJECT(entry), "entry_data");
+	ExifEntry *ee = static_cast<ExifEntry *>(g_object_get_data(G_OBJECT(entry), "entry_data"));
 
 	switch (info)
 		{
@@ -384,7 +384,7 @@ static void bar_pane_exif_dnd_receive(GtkWidget *pane, GdkDragContext *UNUSED(co
 	gint pos;
 	GtkWidget *new_entry = NULL;
 
-	ped = g_object_get_data(G_OBJECT(pane), "pane_data");
+	ped = static_cast<PaneExifData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!ped) return;
 
 	switch (info)
@@ -427,7 +427,7 @@ static void bar_pane_exif_dnd_receive(GtkWidget *pane, GdkDragContext *UNUSED(co
 
 static void bar_pane_exif_entry_dnd_begin(GtkWidget *entry, GdkDragContext *context, gpointer UNUSED(data))
 {
-	ExifEntry *ee = g_object_get_data(G_OBJECT(entry), "entry_data");
+	ExifEntry *ee = static_cast<ExifEntry *>(g_object_get_data(G_OBJECT(entry), "entry_data"));
 
 	if (!ee) return;
 	dnd_set_drag_label(entry, context, ee->key);
@@ -439,7 +439,7 @@ static void bar_pane_exif_entry_dnd_end(GtkWidget *UNUSED(widget), GdkDragContex
 
 static void bar_pane_exif_entry_dnd_init(GtkWidget *entry)
 {
-	ExifEntry *ee = g_object_get_data(G_OBJECT(entry), "entry_data");
+	ExifEntry *ee = static_cast<ExifEntry *>(g_object_get_data(G_OBJECT(entry), "entry_data"));
 
 	gtk_drag_source_set(entry, GDK_BUTTON1_MASK | GDK_BUTTON2_MASK,
 			    bar_pane_exif_drag_types, n_exif_entry_drag_types,
@@ -485,8 +485,8 @@ static void bar_pane_exif_edit_ok_cb(GenericDialog *UNUSED(gd), gpointer data)
 	ConfDialogData *cdd = static_cast<ConfDialogData *>(data);
 
 	/* either one or the other */
-	PaneExifData *ped = g_object_get_data(G_OBJECT(cdd->widget), "pane_data");
-	ExifEntry *ee = g_object_get_data(G_OBJECT(cdd->widget), "entry_data");
+	PaneExifData *ped = static_cast<PaneExifData *>(g_object_get_data(G_OBJECT(cdd->widget), "pane_data"));
+	ExifEntry *ee = static_cast<ExifEntry *>(g_object_get_data(G_OBJECT(cdd->widget), "entry_data"));
 
 	if (ped)
 		{
@@ -503,7 +503,7 @@ static void bar_pane_exif_edit_ok_cb(GenericDialog *UNUSED(gd), gpointer data)
 
 		while (pane)
 			{
-			ped = g_object_get_data(G_OBJECT(pane), "pane_data");
+			ped = static_cast<PaneExifData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 			if (ped) break;
 			pane = gtk_widget_get_parent(pane);
 			}
@@ -544,7 +544,7 @@ static void bar_pane_exif_conf_dialog(GtkWidget *widget)
 
 	/* the widget can be either ExifEntry (for editing) or Pane (for new entry)
 	   we can decide it by the attached data */
-	ExifEntry *ee = g_object_get_data(G_OBJECT(widget), "entry_data");
+	ExifEntry *ee = static_cast<ExifEntry *>(g_object_get_data(G_OBJECT(widget), "entry_data"));
 
 	cdd = g_new0(ConfDialogData, 1);
 
@@ -613,7 +613,7 @@ static void bar_pane_exif_copy_entry_cb(GtkWidget *UNUSED(menu_widget), gpointer
 	const gchar *value;
 	ExifEntry *ee;
 
-	ee = g_object_get_data(G_OBJECT(widget), "entry_data");
+	ee = static_cast<ExifEntry *>(g_object_get_data(G_OBJECT(widget), "entry_data"));
 	value = gtk_label_get_text(GTK_LABEL(ee->value_widget));
 	clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
 	gtk_clipboard_set_text(clipboard, value, -1);
@@ -631,7 +631,7 @@ static void bar_pane_exif_menu_popup(GtkWidget *widget, PaneExifData *ped)
 	GtkWidget *menu;
 	/* the widget can be either ExifEntry (for editing) or Pane (for new entry)
 	   we can decide it by the attached data */
-	ExifEntry *ee = g_object_get_data(G_OBJECT(widget), "entry_data");
+	ExifEntry *ee = static_cast<ExifEntry *>(g_object_get_data(G_OBJECT(widget), "entry_data"));
 
 	menu = popup_menu_short_lived();
 
@@ -677,7 +677,7 @@ static gboolean bar_pane_exif_copy_cb(GtkWidget *widget, GdkEventButton *bevent,
 
 	if (bevent->button == MOUSE_BUTTON_LEFT)
 		{
-		ee = g_object_get_data(G_OBJECT(widget), "entry_data");
+		ee = static_cast<ExifEntry *>(g_object_get_data(G_OBJECT(widget), "entry_data"));
 		value = gtk_label_get_text(GTK_LABEL(ee->value_widget));
 		clipboard = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
 		gtk_clipboard_set_text(clipboard, value, -1);
@@ -692,7 +692,7 @@ static gboolean bar_pane_exif_copy_cb(GtkWidget *widget, GdkEventButton *bevent,
 
 static void bar_pane_exif_entry_write_config(GtkWidget *entry, GString *outstr, gint indent)
 {
-	ExifEntry *ee = g_object_get_data(G_OBJECT(entry), "entry_data");
+	ExifEntry *ee = static_cast<ExifEntry *>(g_object_get_data(G_OBJECT(entry), "entry_data"));
 	if (!ee) return;
 
 	WRITE_NL(); WRITE_STRING("<entry ");
@@ -708,7 +708,7 @@ static void bar_pane_exif_write_config(GtkWidget *pane, GString *outstr, gint in
 	PaneExifData *ped;
 	GList *work, *list;
 
-	ped = g_object_get_data(G_OBJECT(pane), "pane_data");
+	ped = static_cast<PaneExifData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!ped) return;
 
 	WRITE_NL(); WRITE_STRING("<pane_exif ");
@@ -746,19 +746,19 @@ GList * bar_pane_exif_list()
 	ExifEntry *ee;
 
 	work_windows = layout_window_list;
-	lw = work_windows->data;
+	lw = static_cast<LayoutWindow *>(work_windows->data);
 	bar = lw->bar;
 	pane = bar_find_pane_by_id(bar, PANE_EXIF, "exif");
 	if (pane)
 		{
-		ped = g_object_get_data(G_OBJECT(pane), "pane_data");
+		ped = static_cast<PaneExifData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 
 		list = gtk_container_get_children(GTK_CONTAINER(ped->vbox));
 		while (list)
 			{
-			entry = list->data;
+			entry = static_cast<GtkWidget *>(list->data);
 			list = list->next;
-			ee = g_object_get_data(G_OBJECT(entry), "entry_data");
+			ee = static_cast<ExifEntry *>(g_object_get_data(G_OBJECT(entry), "entry_data"));
 			exif_list = g_list_append(exif_list, g_strdup(ee->title));
 			exif_list = g_list_append(exif_list, g_strdup(ee->key));
 			}
@@ -877,7 +877,7 @@ void bar_pane_exif_update_from_config(GtkWidget *pane, const gchar **attribute_n
 	PaneExifData *ped;
 	gchar *title = NULL;
 
-	ped = g_object_get_data(G_OBJECT(pane), "pane_data");
+	ped = static_cast<PaneExifData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!ped) return;
 
 	while (*attribute_names)
@@ -914,7 +914,7 @@ void bar_pane_exif_entry_add_from_config(GtkWidget *pane, const gchar **attribut
 	gboolean if_set = TRUE;
 	gboolean editable = FALSE;
 
-	ped = g_object_get_data(G_OBJECT(pane), "pane_data");
+	ped = static_cast<PaneExifData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!ped) return;
 
 	while (*attribute_names)

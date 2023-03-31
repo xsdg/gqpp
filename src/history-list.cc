@@ -83,7 +83,7 @@ void history_chain_append_end(const gchar *path)
 		else
 			{
 			work = g_list_last(history_chain);
-			if (g_strcmp0(work->data , path) != 0)
+			if (g_strcmp0(work->data , path) != static_cast<const char *>(0))
 				{
 				history_chain = g_list_append (history_chain, g_strdup(path));
 				chain_index = g_list_length(history_chain) - 1;
@@ -158,7 +158,7 @@ void image_chain_append_end(const gchar *path)
 		else
 			{
 			work = g_list_last(image_chain);
-			if (g_strcmp0(work->data , path) != 0)
+			if (g_strcmp0(work->data , path) != static_cast<const char *>(0))
 				{
 				image_chain = g_list_append(image_chain, g_strdup(path));
 				image_chain_index = g_list_length(image_chain) - 1;
@@ -300,7 +300,7 @@ gboolean history_list_save(const gchar *path)
 		HistoryData *hd;
 		GList *work;
 
-		hd = list->data;
+		hd = static_cast<HistoryData *>(list->data);
 		list = list->prev;
 
 		secure_fprintf(ssi, "[%s]\n", hd->key);
@@ -403,7 +403,7 @@ void history_list_add_to_key(const gchar *key, const gchar *path, gint max)
 	work = hd->list;
 	while (work)
 		{
-		gchar *buf = work->data;
+		gchar *buf = static_cast<gchar *>(work->data);
 
 		if (strcmp(buf, path) == 0)
 			{
@@ -459,7 +459,7 @@ void history_list_item_change(const gchar *key, const gchar *oldpath, const gcha
 	work = hd->list;
 	while (work)
 		{
-		gchar *buf = work->data;
+		gchar *buf = static_cast<gchar *>(work->data);
 		if (strcmp(buf, oldpath) == 0)
 			{
 			if (newpath)
@@ -490,7 +490,7 @@ void history_list_item_move(const gchar *key, const gchar *path, gint direction)
 	work = hd->list;
 	while (work)
 		{
-		gchar *buf = work->data;
+		gchar *buf = static_cast<gchar *>(work->data);
 		if (strcmp(buf, path) == 0)
 			{
 			p += direction;
@@ -552,13 +552,13 @@ gchar *get_recent_viewed_folder_image(gchar *path)
 
 	while (work)
 		{
-		dirname = g_path_get_dirname(work->data);
+		dirname = static_cast<const gchar *>(g_path_get_dirname(work->data));
 
 		if (g_strcmp0(dirname, path) == 0)
 			{
 			if (isfile(work->data))
 				{
-				ret = g_strdup(work->data);
+				ret = static_cast<const gchar *>(g_strdup(work->data));
 				}
 			g_free(dirname);
 			break;
@@ -598,7 +598,7 @@ static void update_recent_viewed_folder_image_list(const gchar *path)
 
 	while (work)
 		{
-		list_dir = g_path_get_dirname(work->data);
+		list_dir = static_cast<const gchar *>(g_path_get_dirname(work->data));
 
 		/* If folder already in list, update and move to start of list */
 		if (g_strcmp0(list_dir, image_dir) == 0)

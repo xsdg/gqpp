@@ -100,11 +100,11 @@ static gint pan_search_by_path(PanWindow *pw, const gchar *path)
 	if (found && found->next)
 		{
 		found = found->next;
-		pi = found->data;
+		pi = static_cast<PanItem *>(found->data);
 		}
 	else
 		{
-		pi = list->data;
+		pi = static_cast<PanItem *>(list->data);
 		}
 
 	pan_info_update(pw, pi);
@@ -148,11 +148,11 @@ static gboolean pan_search_by_partial(PanWindow *pw, const gchar *text)
 	if (found && found->next)
 		{
 		found = found->next;
-		pi = found->data;
+		pi = static_cast<PanItem *>(found->data);
 		}
 	else
 		{
-		pi = list->data;
+		pi = static_cast<PanItem *>(list->data);
 		}
 
 	pan_info_update(pw, pi);
@@ -187,7 +187,7 @@ static GList *pan_search_by_date_val(PanWindow *pw, PanItemType type,
 		{
 		PanItem *pi;
 
-		pi = work->data;
+		pi = static_cast<PanItem *>(work->data);
 		work = work->prev;
 
 		if (pi->fd && (pi->type == type || type == PAN_ITEM_NONE) &&
@@ -320,11 +320,11 @@ static gboolean pan_search_by_date(PanWindow *pw, const gchar *text)
 		if (found && found->next)
 			{
 			found = found->next;
-			pi = found->data;
+			pi = static_cast<PanItem *>(found->data);
 			}
 		else
 			{
-			pi = list->data;
+			pi = static_cast<PanItem *>(list->data);
 			}
 		}
 

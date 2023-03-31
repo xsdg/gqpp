@@ -403,7 +403,7 @@ void collection_contents(const gchar *name, GString **contents)
 		work = cd->list;
 		while (work)
 			{
-			ci = work->data;
+			ci = static_cast<CollectInfo *>(work->data);
 			fd = ci->fd;
 			*contents = g_string_append(*contents, g_strdup(fd->path));
 			*contents = g_string_append(*contents, "\n");
@@ -437,7 +437,7 @@ GList *collection_contents_fd(const gchar *name)
 		work = cd->list;
 		while (work)
 			{
-			ci = work->data;
+			ci = static_cast<CollectInfo *>(work->data);
 			list = g_list_append(list, ci->fd);
 
 			work = work->next;
@@ -586,7 +586,7 @@ CollectionData *collection_from_dnd_data(const gchar *data, GList **list, GList 
 		else
 			while (*ptr == '\n') ptr++;
 
-		info = g_list_nth_data(cd->list, item_number);
+		info = static_cast<CollectInfo *>(g_list_nth_data(cd->list, item_number));
 		if (!info) continue;
 
 		if (list) *list = g_list_append(*list, file_data_ref(info->fd));
@@ -638,7 +638,7 @@ gchar *collection_info_list_to_dnd_data(CollectionData *cd, GList *list, gint *l
 	while (work)
 		{
 		gint len;
-		gchar *text = work->data;
+		gchar *text = static_cast<gchar *>(work->data);
 
 		work = work->prev;
 
@@ -866,7 +866,7 @@ void collection_remove_by_info_list(CollectionData *cd, GList *list)
 	work = list;
 	while (work)
 		{
-		cd->list = collection_list_remove(cd->list, work->data);
+		cd->list = collection_list_remove(cd->list, static_cast<CollectInfo *>(work->data));
 		work = work->next;
 		}
 	cd->changed = (cd->list != NULL);

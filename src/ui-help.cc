@@ -161,7 +161,7 @@ void help_window_set_key(GtkWidget *window, const gchar *key)
 
 	if (!window) return;
 
-	text = g_object_get_data(G_OBJECT(window), "text_widget");
+	text = static_cast<GtkWidget *>(g_object_get_data(G_OBJECT(window), "text_widget"));
 	if (!text) return;
 
 	gdk_window_raise(gtk_widget_get_window(window));

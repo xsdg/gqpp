@@ -1686,7 +1686,7 @@ void options_parse_func_pop(GQParserData *parser_data)
 
 void options_parse_func_set_data(GQParserData *parser_data, gpointer data)
 {
-	GQParserFuncData *func = parser_data->parse_func_stack->data;
+	GQParserFuncData *func = static_cast<GQParserFuncData *>(parser_data->parse_func_stack->data);
 	func->data = data;
 }
 
@@ -1698,8 +1698,8 @@ static void start_element(GMarkupParseContext *context,
 			  gpointer user_data,
 			  GError **error)
 {
-	GQParserData *parser_data = user_data;
-	GQParserFuncData *func = parser_data->parse_func_stack->data;
+	GQParserData *parser_data = static_cast<GQParserData *>(user_data);
+	GQParserFuncData *func = static_cast<GQParserFuncData *>(parser_data->parse_func_stack->data);
 	DEBUG_2("start %s", element_name);
 
 	if (func->start_func)
@@ -1711,8 +1711,8 @@ static void end_element(GMarkupParseContext *context,
 			  gpointer user_data,
 			  GError **error)
 {
-	GQParserData *parser_data = user_data;
-	GQParserFuncData *func = parser_data->parse_func_stack->data;
+	GQParserData *parser_data = static_cast<GQParserData *>(user_data);
+	GQParserFuncData *func = static_cast<GQParserFuncData *>(parser_data->parse_func_stack->data);
 	DEBUG_2("end %s", element_name);
 
 	if (func->end_func)

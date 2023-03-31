@@ -900,7 +900,7 @@ void thumb_loader_std_thumb_file_validate_cancel(ThumbLoaderStd *tl)
 
 	if (!tl) return;
 
-	tv = tl->data;
+	tv = static_cast<ThumbValidate *>(tl->data);
 
 	if (tv->idle_id)
 		{
@@ -1176,7 +1176,7 @@ static gboolean thumb_std_maint_move_idle(gpointer UNUSED(data))
 
 	if (!thumb_std_maint_move_list) return FALSE;
 
-	tm = thumb_std_maint_move_list->data;
+	tm = static_cast<TMaintMove *>(thumb_std_maint_move_list->data);
 
 	thumb_std_maint_move_list = g_list_remove(thumb_std_maint_move_list, tm);
 	if (!thumb_std_maint_move_list) thumb_std_maint_move_tail = NULL;
