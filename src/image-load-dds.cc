@@ -587,7 +587,7 @@ static gchar* image_loader_dds_get_format_name(gpointer UNUSED(loader))
 }
 static gchar** image_loader_dds_get_format_mime_types(gpointer UNUSED(loader))
 {
-	static gchar *mime[] = {"image/vnd-ms.dds", NULL};
+	static const gchar *mime[] = {"image/vnd-ms.dds", NULL};
 	return g_strdupv(mime);
 }
 

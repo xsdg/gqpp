@@ -782,7 +782,7 @@ void vd_new_folder(ViewDir *vd, FileData *dir_fd)
  */
 
 static GtkTargetEntry vd_dnd_drop_types[] = {
-	{ "text/uri-list", 0, TARGET_URI_LIST }
+	{ const_cast<gchar *>("text/uri-list"), 0, TARGET_URI_LIST }
 };
 static gint vd_dnd_drop_types_count = 1;
 

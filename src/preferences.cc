@@ -120,7 +120,7 @@ enum {
 	FILETYPES_COLUMN_COUNT
 };
 
-gchar *format_class_list[] = {
+const gchar *format_class_list[] = {
 	N_("Unknown"),
 	N_("Image"),
 	N_("RAW Image"),
@@ -772,9 +772,9 @@ static void add_zoom_style_selection_menu(GtkWidget *table, gint column, gint ro
 typedef struct _UseableMouseItems UseableMouseItems;
 struct _UseableMouseItems
 {
-	gchar *name; /* GtkActionEntry terminology */
-	gchar *label;
-	gchar *stock_id;
+	const gchar *name; /* GtkActionEntry terminology */
+	const gchar *label;
+	const gchar *stock_id;
 };
 
 static const UseableMouseItems useable_mouse_items[] = {

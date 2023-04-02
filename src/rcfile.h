@@ -37,7 +37,7 @@ void write_uint_option(GString *str, gint indent, const gchar *label, guint n);
 gboolean read_uint_option(const gchar *option, const gchar *label, const gchar *value, guint *n);
 gboolean read_uint_option_clamp(const gchar *option, const gchar *label, const gchar *value, guint *n, guint min, guint max);
 gboolean read_int_option_clamp(const gchar *option, const gchar *label, const gchar *value, gint *n, gint min, gint max);
-void write_int_unit_option(GString *str, gint indent, gchar *label, gint n, gint subunits);
+void write_int_unit_option(GString *str, gint indent, const gchar *label, gint n, gint subunits);
 gboolean read_int_unit_option(const gchar *option, const gchar *label, const gchar *value, gint *n, gint subunits);
 void write_bool_option(GString *str, gint indent, const gchar *label, gint n);
 gboolean read_bool_option(const gchar *option, const gchar *label, const gchar *value, gint *n);

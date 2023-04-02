@@ -359,7 +359,7 @@ static gchar* image_loader_tiff_get_format_name(gpointer UNUSED(loader))
 }
 static gchar** image_loader_tiff_get_format_mime_types(gpointer UNUSED(loader))
 {
-	static gchar *mime[] = {"image/tiff", NULL};
+	static const gchar *mime[] = {"image/tiff", NULL};
 	return g_strdupv(mime);
 }
 

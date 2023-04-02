@@ -142,7 +142,7 @@ static gchar* image_loader_heif_get_format_name(gpointer UNUSED(loader))
 
 static gchar** image_loader_heif_get_format_mime_types(gpointer UNUSED(loader))
 {
-	static gchar *mime[] = {"image/heic", NULL};
+	static const gchar *mime[] = {"image/heic", NULL};
 	return g_strdupv(mime);
 }
 

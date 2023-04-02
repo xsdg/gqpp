@@ -169,7 +169,7 @@ typedef enum {
 	FILE_FORMAT_CLASSES
 } FileFormatClass;
 
-extern gchar *format_class_list[]; /**< defined in preferences.cc */
+extern const gchar *format_class_list[]; /**< defined in preferences.cc */
 
 /**
  * @typedef SecureSaveErrno

@@ -310,7 +310,7 @@ static gchar* image_loader_j2k_get_format_name(gpointer UNUSED(loader))
 
 static gchar** image_loader_j2k_get_format_mime_types(gpointer UNUSED(loader))
 {
-	static gchar *mime[] = {"image/jp2", NULL};
+	static const gchar *mime[] = {"image/jp2", NULL};
 	return g_strdupv(mime);
 }
 

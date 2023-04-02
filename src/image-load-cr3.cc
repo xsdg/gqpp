@@ -484,7 +484,7 @@ static gchar* image_loader_cr3_get_format_name(gpointer UNUSED(loader))
 }
 static gchar** image_loader_cr3_get_format_mime_types(gpointer UNUSED(loader))
 {
-	static gchar *mime[] = {"image/x-canon-cr3", NULL};
+	static const gchar *mime[] = {"image/x-canon-cr3", NULL};
 	return g_strdupv(mime);
 }
 

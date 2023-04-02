@@ -123,7 +123,7 @@ static gchar* image_loader_pdf_get_format_name(gpointer UNUSED(loader))
 
 static gchar** image_loader_pdf_get_format_mime_types(gpointer UNUSED(loader))
 {
-	static gchar *mime[] = {"application/pdf", NULL};
+	static const gchar *mime[] = {"application/pdf", NULL};
 	return g_strdupv(mime);
 }
 

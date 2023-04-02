@@ -341,14 +341,14 @@ static void bar_pane_exif_notify_cb(FileData *fd, NotifyType type, gpointer data
  */
 
 static GtkTargetEntry bar_pane_exif_drag_types[] = {
-	{ TARGET_APP_EXIF_ENTRY_STRING, GTK_TARGET_SAME_APP, TARGET_APP_EXIF_ENTRY },
-	{ "text/plain", 0, TARGET_TEXT_PLAIN }
+	{ const_cast<gchar *>(TARGET_APP_EXIF_ENTRY_STRING), GTK_TARGET_SAME_APP, TARGET_APP_EXIF_ENTRY },
+	{ const_cast<gchar *>("text/plain"), 0, TARGET_TEXT_PLAIN }
 };
 static gint n_exif_entry_drag_types = 2;
 
 static GtkTargetEntry bar_pane_exif_drop_types[] = {
 	{ TARGET_APP_EXIF_ENTRY_STRING, GTK_TARGET_SAME_APP, TARGET_APP_EXIF_ENTRY },
-	{ "text/plain", 0, TARGET_TEXT_PLAIN }
+	{ const_cast<gchar *>("text/plain"), 0, TARGET_TEXT_PLAIN }
 };
 static gint n_exif_entry_drop_types = 2;
 

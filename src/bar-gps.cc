@@ -94,8 +94,8 @@ enum {
 };
 
 static GtkTargetEntry bar_pane_gps_drop_types[] = {
-	{ "text/uri-list", 0, TARGET_URI_LIST },
-	{ "text/plain", 0, TARGET_TEXT_PLAIN }
+	{ const_cast<gchar *>("text/uri-list"), 0, TARGET_URI_LIST },
+	{ const_cast<gchar *>("text/plain"), 0, TARGET_TEXT_PLAIN }
 };
 static gint n_gps_entry_drop_types = 2;
 

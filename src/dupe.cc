@@ -4946,14 +4946,14 @@ static GtkWidget *dupe_confirm_dir_list(DupeWindow *dw, GList *list)
  */
 
 static GtkTargetEntry dupe_drag_types[] = {
-	{ "text/uri-list", 0, TARGET_URI_LIST },
-	{ "text/plain", 0, TARGET_TEXT_PLAIN }
+	{ const_cast<gchar *>("text/uri-list"), 0, TARGET_URI_LIST },
+	{ const_cast<gchar *>("text/plain"), 0, TARGET_TEXT_PLAIN }
 };
 static gint n_dupe_drag_types = 2;
 
 static GtkTargetEntry dupe_drop_types[] = {
 	{ TARGET_APP_COLLECTION_MEMBER_STRING, 0, TARGET_APP_COLLECTION_MEMBER },
-	{ "text/uri-list", 0, TARGET_URI_LIST }
+	{ const_cast<gchar *>("text/uri-list"), 0, TARGET_URI_LIST }
 };
 static gint n_dupe_drop_types = 2;
 
@@ -5349,8 +5349,8 @@ static void pop_menu_export(GList *UNUSED(selection_list), gpointer dupe_window,
 {
 	const gint index = GPOINTER_TO_INT(data);
 	DupeWindow *dw = static_cast<DupeWindow *>(dupe_window);
-	gchar *title = "Export duplicates data";
-	gchar *default_path = "/tmp/";
+	const gchar *title = "Export duplicates data";
+	const gchar *default_path = "/tmp/";
 	gchar *file_extension;
 	const gchar *stock_id;
 	ExportDupesData *edd;

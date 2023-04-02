@@ -211,7 +211,7 @@ static gchar* image_loader_jpegxl_get_format_name(gpointer loader)
 
 static gchar** image_loader_jpegxl_get_format_mime_types(gpointer loader)
 {
-	static gchar *mime[] = {"image/jxl", NULL};
+	static const gchar *mime[] = {"image/jxl", NULL};
 	return g_strdupv(mime);
 }
 

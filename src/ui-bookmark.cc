@@ -93,15 +93,15 @@ enum {
 };
 
 static GtkTargetEntry bookmark_drop_types[] = {
-	{ "text/uri-list", 0, TARGET_URI_LIST },
+	{ const_cast<gchar *>("text/uri-list"), 0, TARGET_URI_LIST },
 	{ "x-url/http",    0, TARGET_X_URL },
 	{ "_NETSCAPE_URL", 0, TARGET_X_URL }
 };
 #define bookmark_drop_types_n 3
 
 static GtkTargetEntry bookmark_drag_types[] = {
-	{ "text/uri-list", 0, TARGET_URI_LIST },
-	{ "text/plain",    0, TARGET_TEXT_PLAIN }
+	{ const_cast<gchar *>("text/uri-list"), 0, TARGET_URI_LIST },
+	{ const_cast<gchar *>("text/plain"),    0, TARGET_TEXT_PLAIN }
 };
 #define bookmark_drag_types_n 2
 

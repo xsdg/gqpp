@@ -41,8 +41,8 @@ static GdkPixbuf *file_util_get_error_icon(FileData *fd, GList *list, GtkWidget 
 
 static GtkTargetEntry target_types[] =
 {
-	{(gchar *)"text/plain", 0, CLIPBOARD_TEXT_PLAIN},
-	{(gchar *)"text/uri-list", 0, CLIPBOARD_TEXT_URI_LIST},
+	{(gchar *)const_cast<gchar *>("text/plain"), 0, CLIPBOARD_TEXT_PLAIN},
+	{(gchar *)const_cast<gchar *>("text/uri-list"), 0, CLIPBOARD_TEXT_URI_LIST},
 	{(gchar *)"x-special/gnome-copied-files", 0, CLIPBOARD_X_SPECIAL_GNOME_COPIED_FILES},
 	{(gchar *)"UTF8_STRING", 0, CLIPBOARD_UTF8_STRING}
 };
@@ -278,11 +278,11 @@ enum {
 
 typedef struct _UtilityDataMessages UtilityDataMessages;
 struct _UtilityDataMessages {
-	gchar *title;
-	gchar *question;
-	gchar *desc_flist;
-	gchar *desc_source_fd;
-	gchar *fail;
+	const gchar *title;
+	const gchar *question;
+	const gchar *desc_flist;
+	const gchar *desc_source_fd;
+	const gchar *fail;
 };
 
 typedef struct _UtilityData UtilityData;

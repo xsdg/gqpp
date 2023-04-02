@@ -81,7 +81,7 @@ static const gchar *predefined_tags[][2] = {
 	{NULL, NULL}};
 
 static GtkTargetEntry osd_drag_types[] = {
-	{ "text/plain", GTK_TARGET_SAME_APP, TARGET_TEXT_PLAIN }
+	{ const_cast<gchar *>("text/plain"), GTK_TARGET_SAME_APP, TARGET_TEXT_PLAIN }
 };
 
 typedef struct _TagData TagData;

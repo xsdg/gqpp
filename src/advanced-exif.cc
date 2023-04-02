@@ -178,7 +178,7 @@ void advanced_exif_set_fd(GtkWidget *window, FileData *fd)
 }
 
 static GtkTargetEntry advanced_exif_drag_types[] = {
-	{ "text/plain", 0, TARGET_TEXT_PLAIN }
+	{ const_cast<gchar *>("text/plain"), 0, TARGET_TEXT_PLAIN }
 };
 static gint n_exif_drag_types = 1;
 

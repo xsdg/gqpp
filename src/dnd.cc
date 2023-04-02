@@ -26,15 +26,15 @@
 
 
 GtkTargetEntry dnd_file_drag_types[] = {
-	{ "text/uri-list", 0, TARGET_URI_LIST },
-	{ "text/plain", 0, TARGET_TEXT_PLAIN }
+	{ const_cast<gchar *>("text/uri-list"), 0, TARGET_URI_LIST },
+	{ const_cast<gchar *>("text/plain"), 0, TARGET_TEXT_PLAIN }
 };
 gint dnd_file_drag_types_count = 2;
 
 GtkTargetEntry dnd_file_drop_types[] = {
 	{ TARGET_APP_COLLECTION_MEMBER_STRING, 0, TARGET_APP_COLLECTION_MEMBER },
-	{ "text/uri-list", 0, TARGET_URI_LIST },
-	{ "text/plain", 0, TARGET_TEXT_PLAIN },
+	{ const_cast<gchar *>("text/uri-list"), 0, TARGET_URI_LIST },
+	{ const_cast<gchar *>("text/plain"), 0, TARGET_TEXT_PLAIN },
 };
 gint dnd_file_drop_types_count = 3;
 

@@ -526,14 +526,14 @@ static void bar_pane_keywords_changed(GtkTextBuffer *UNUSED(buffer), gpointer da
 
 static GtkTargetEntry bar_pane_keywords_drag_types[] = {
 	{ TARGET_APP_KEYWORD_PATH_STRING, GTK_TARGET_SAME_WIDGET, TARGET_APP_KEYWORD_PATH },
-	{ "text/plain", 0, TARGET_TEXT_PLAIN }
+	{ const_cast<gchar *>("text/plain"), 0, TARGET_TEXT_PLAIN }
 };
 static gint n_keywords_drag_types = 2;
 
 
 static GtkTargetEntry bar_pane_keywords_drop_types[] = {
 	{ TARGET_APP_KEYWORD_PATH_STRING, GTK_TARGET_SAME_WIDGET, TARGET_APP_KEYWORD_PATH },
-	{ "text/plain", 0, TARGET_TEXT_PLAIN }
+	{ const_cast<gchar *>("text/plain"), 0, TARGET_TEXT_PLAIN }
 };
 static gint n_keywords_drop_types = 2;
 

@@ -317,8 +317,8 @@ enum {
 };
 
 static GtkTargetEntry dest_drag_types[] = {
-	{ "text/uri-list", 0, TARGET_URI_LIST },
-	{ "text/plain",    0, TARGET_TEXT_PLAIN }
+	{ const_cast<gchar *>("text/uri-list"), 0, TARGET_URI_LIST },
+	{ const_cast<gchar *>("text/plain"),    0, TARGET_TEXT_PLAIN }
 };
 #define dest_drag_types_n 2
 

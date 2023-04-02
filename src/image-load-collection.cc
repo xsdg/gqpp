@@ -143,7 +143,7 @@ static gchar* image_loader_collection_get_format_name(gpointer UNUSED(loader))
 }
 static gchar** image_loader_collection_get_format_mime_types(gpointer UNUSED(loader))
 {
-	static gchar *mime[] = {"image/png", NULL};
+	static const gchar *mime[] = {"image/png", NULL};
 	return g_strdupv(mime);
 }
 

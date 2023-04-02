@@ -557,7 +557,7 @@ static gchar* image_loader_psd_get_format_name(gpointer UNUSED(loader))
 
 static gchar** image_loader_psd_get_format_mime_types(gpointer UNUSED(loader))
 {
-	static gchar *mime[] = {"application/psd", NULL};
+	static const gchar *mime[] = {"application/psd", NULL};
 	return g_strdupv(mime);
 }
 

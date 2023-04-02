@@ -50,8 +50,8 @@ struct _ToolbarButtonData
 	GtkWidget *button_label;
 	GtkWidget *image;
 
-	gchar *name; /* GtkActionEntry terminology */
-	gchar *stock_id;
+	const gchar *name; /* GtkActionEntry terminology */
+	const gchar *stock_id;
 };
 
 static ToolbarData *toolbarlist[2];
@@ -59,9 +59,9 @@ static ToolbarData *toolbarlist[2];
 typedef struct _UseableToolbarItems UseableToolbarItems;
 struct _UseableToolbarItems
 {
-	gchar *name; /* GtkActionEntry terminology */
-	gchar *label;
-	gchar *stock_id;
+	const gchar *name; /* GtkActionEntry terminology */
+	const gchar *label;
+	const gchar *stock_id;
 };
 
 /** @FIXME Should be created by program from menu_entries[]

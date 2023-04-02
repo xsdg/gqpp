@@ -1491,14 +1491,14 @@ static gboolean search_window_keypress_cb(GtkWidget *UNUSED(widget), GdkEventKey
  */
 
 static GtkTargetEntry result_drag_types[] = {
-	{ "text/uri-list", 0, TARGET_URI_LIST },
-	{ "text/plain", 0, TARGET_TEXT_PLAIN }
+	{ const_cast<gchar *>("text/uri-list"), 0, TARGET_URI_LIST },
+	{ const_cast<gchar *>("text/plain"), 0, TARGET_TEXT_PLAIN }
 };
 static gint n_result_drag_types = 2;
 
 static GtkTargetEntry result_drop_types[] = {
-	{ "text/uri-list", 0, TARGET_URI_LIST },
-	{ "text/plain", 0, TARGET_TEXT_PLAIN }
+	{ const_cast<gchar *>("text/uri-list"), 0, TARGET_URI_LIST },
+	{ const_cast<gchar *>("text/plain"), 0, TARGET_TEXT_PLAIN }
 };
 static gint n_result_drop_types = 2;
 
