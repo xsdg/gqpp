@@ -147,20 +147,20 @@ hard_coded_window_keys dupe_window_keys[] = {
 	{GDK_CONTROL_MASK, 'R', N_("Rename")},
 	{GDK_CONTROL_MASK, 'D', N_("Move to Trash")},
 	{GDK_SHIFT_MASK, GDK_KEY_Delete, N_("Delete")},
-	{0, GDK_KEY_Delete, N_("Remove")},
+	{static_cast<GdkModifierType>(0), GDK_KEY_Delete, N_("Remove")},
 	{GDK_CONTROL_MASK, GDK_KEY_Delete, N_("Clear")},
 	{GDK_CONTROL_MASK, 'A', N_("Select all")},
 	{GDK_CONTROL_MASK + GDK_SHIFT_MASK, 'A', N_("Select none")},
 	{GDK_CONTROL_MASK, 'T', N_("Toggle thumbs")},
 	{GDK_CONTROL_MASK, 'W', N_("Close window")},
-	{0, GDK_KEY_Return, N_("View")},
-	{0, 'V', N_("View in new window")},
-	{0, 'C', N_("Collection from selection")},
+	{static_cast<GdkModifierType>(0), GDK_KEY_Return, N_("View")},
+	{static_cast<GdkModifierType>(0), 'V', N_("View in new window")},
+	{static_cast<GdkModifierType>(0), 'C', N_("Collection from selection")},
 	{GDK_CONTROL_MASK, 'L', N_("Append list")},
-	{0, '0', N_("Select none")},
-	{0, '1', N_("Select group 1 duplicates")},
-	{0, '2', N_("Select group 2 duplicates")},
-	{0, 0, NULL}
+	{static_cast<GdkModifierType>(0), '0', N_("Select none")},
+	{static_cast<GdkModifierType>(0), '1', N_("Select group 1 duplicates")},
+	{static_cast<GdkModifierType>(0), '2', N_("Select group 2 duplicates")},
+	{static_cast<GdkModifierType>(0), 0, NULL}
 };
 
 /**
