@@ -246,7 +246,7 @@ void init_exec_time(void)
 	get_exec_time();
 }
 
-void set_regexp(gchar *cmd_regexp)
+void set_regexp(const gchar *cmd_regexp)
 {
 	regexp = g_strdup(cmd_regexp);
 }

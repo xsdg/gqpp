@@ -92,7 +92,7 @@ gchar *pan_date_value_string(time_t d, PanDateLengthType length)
 {
 	struct tm td;
 	gchar buf[128];
-	gchar *format = NULL;
+	const gchar *format = NULL;
 
 	if (!localtime_r(&d, &td)) return g_strdup("");
 

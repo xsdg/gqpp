@@ -39,7 +39,7 @@ void log_print_backtrace(const gchar *file, const gchar *function_name, gint lin
 #define DEBUG_LEVEL_MIN 0
 #define DEBUG_LEVEL_MAX 4
 
-void set_regexp(gchar *regexp);
+void set_regexp(const gchar *regexp);
 gchar *get_regexp(void);
 gint get_debug_level(void);
 void set_debug_level(gint new_level);

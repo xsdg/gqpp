@@ -106,7 +106,7 @@ static gchar *color_to_string(GdkColor *color)
 	return g_strdup_printf("#%04X%04X%04X", color->red, color->green, color->blue);
 }
 
-void write_color_option(GString *str, gint indent, gchar *label, GdkColor *color)
+void write_color_option(GString *str, gint indent, const gchar *label, GdkColor *color)
 {
 	if (color)
 		{

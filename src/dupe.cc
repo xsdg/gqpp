@@ -5321,7 +5321,7 @@ static void export_duplicates_data_save_cb(FileDialog *fdlg, gpointer data)
 		output_string = g_string_append(output_string, sep);
 		g_free(name);
 
-		output_string = g_string_append(output_string, g_strdup_printf("%"PRIu64, di->fd->size));
+		output_string = g_string_append(output_string, g_strdup_printf("%" PRIu64, di->fd->size));
 		output_string = g_string_append(output_string, sep);
 		output_string = g_string_append(output_string, text_from_time(di->fd->date));
 		output_string = g_string_append(output_string, sep);

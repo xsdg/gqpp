@@ -61,7 +61,7 @@ static LayoutStyle layout_config_styles[] = {
 
 static gint layout_config_style_count = sizeof(layout_config_styles) / sizeof(LayoutStyle);
 
-static gchar *layout_titles[] = { N_("Tools"), N_("Files"), N_("Image") };
+static const gchar *layout_titles[] = { N_("Tools"), N_("Files"), N_("Image") };
 
 
 static void layout_config_destroy(GtkWidget *UNUSED(widget), gpointer data)

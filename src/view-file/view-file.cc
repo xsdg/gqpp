@@ -368,7 +368,7 @@ static void vf_pop_menu_open_archive_cb(GtkWidget *UNUSED(widget), gpointer data
 {
 	ViewFile *vf = (ViewFile *)data;
 	LayoutWindow *lw_new;
-	FileData *fd;
+	FileData *fd = NULL;
 	gchar *dest_dir;
 
 	switch (vf->type)

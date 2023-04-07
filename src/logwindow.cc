@@ -372,8 +372,9 @@ static void search_entry_icon_cb(GtkEntry *UNUSED(entry), GtkEntryIconPosition p
 
 static void filter_entry_icon_cb(GtkEntry *entry, GtkEntryIconPosition UNUSED(pos), GdkEvent *UNUSED(event), gpointer UNUSED(userdata))
 {
-	gtk_entry_set_text(entry, "");
-	set_regexp("");
+	const gchar *blank = "";
+	gtk_entry_set_text(entry, blank);
+	set_regexp(blank);
 }
 
 static LogWindow *log_window_create(LayoutWindow *lw)

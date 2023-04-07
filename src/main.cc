@@ -83,6 +83,7 @@ void sig_handler_cb(int signo, siginfo_t *info, void *UNUSED(context))
 	gint i = 0;
 	guint64 addr;
 	guint64 char_index;
+	ssize_t len;
 #ifdef HAVE_EXECINFO_H
 	gint bt_size;
 	void *bt[1024];
@@ -137,25 +138,25 @@ void sig_handler_cb(int signo, siginfo_t *info, void *UNUSED(context))
 		i++;
 		}
 
-	write(STDERR_FILENO, "Geeqie fatal error\n", 19);
-	write(STDERR_FILENO, "Signal: ", 8);
-	write(STDERR_FILENO, signal_name, strlen(signal_name));
-	write(STDERR_FILENO, "\n", 1);
+	len = write(STDERR_FILENO, "Geeqie fatal error\n", 19);
+	len = write(STDERR_FILENO, "Signal: ", 8);
+	len = write(STDERR_FILENO, signal_name, strlen(signal_name));
+	len = write(STDERR_FILENO, "\n", 1);
 
-	write(STDERR_FILENO, "Code: ", 6);
-	write(STDERR_FILENO,  (info->si_code == SEGV_MAPERR) ? "Address not mapped" : "Invalid permissions", strlen((info->si_code == SEGV_MAPERR) ? "Address not mapped" : "Invalid permissions"));
-	write(STDERR_FILENO, "\n", 1);
+	len = write(STDERR_FILENO, "Code: ", 6);
+	len = write(STDERR_FILENO,  (info->si_code == SEGV_MAPERR) ? "Address not mapped" : "Invalid permissions", strlen((info->si_code == SEGV_MAPERR) ? "Address not mapped" : "Invalid permissions"));
+	len = write(STDERR_FILENO, "\n", 1);
 
-	write(STDERR_FILENO, "Address: ", 9);
+	len = write(STDERR_FILENO, "Address: ", 9);
 
 	if (info->si_addr == 0)
 		{
-		write(STDERR_FILENO, "0x0\n", 4);
+		len = write(STDERR_FILENO, "0x0\n", 4);
 		}
 	else
 		{
 		/* Assume the address is 64-bit */
-		write(STDERR_FILENO, "0x", 2);
+		len = write(STDERR_FILENO, "0x", 2);
 		addr = reinterpret_cast<guint64>(info->si_addr);
 
 		for (i = 0; i < 16; i++)
@@ -164,9 +165,9 @@ void sig_handler_cb(int signo, siginfo_t *info, void *UNUSED(context))
 			char_index = char_index >> 60;
 			addr = addr << 4;
 
-			write(STDERR_FILENO, &hex_char[char_index], 1);
+			len = write(STDERR_FILENO, &hex_char[char_index], 1);
 			}
-		write(STDERR_FILENO, "\n", 1);
+		len = write(STDERR_FILENO, "\n", 1);
 		}
 
 #ifdef HAVE_EXECINFO_H
@@ -1161,17 +1162,17 @@ static void sigbus_handler_cb(int UNUSED(signum), siginfo_t *info, void *UNUSED(
 }
 #endif
 
-static void setup_sigbus_handler(void)
-{
-#if defined(SIGBUS) && defined(SA_SIGINFO)
-	struct sigaction sigbus_action;
-	sigfillset(&sigbus_action.sa_mask);
-	sigbus_action.sa_sigaction = sigbus_handler_cb;
-	sigbus_action.sa_flags = SA_SIGINFO;
+//static void setup_sigbus_handler(void)
+//{
+//#if defined(SIGBUS) && defined(SA_SIGINFO)
+	//struct sigaction sigbus_action;
+	//sigfillset(&sigbus_action.sa_mask);
+	//sigbus_action.sa_sigaction = sigbus_handler_cb;
+	//sigbus_action.sa_flags = SA_SIGINFO;
 
-	sigaction(SIGBUS, &sigbus_action, NULL);
-#endif
-}
+	//sigaction(SIGBUS, &sigbus_action, NULL);
+//#endif
+//}
 
 static void setup_sig_handler(void)
 {
@@ -1270,8 +1271,6 @@ gint main(gint argc, gchar *argv[])
 	gboolean single_dir = TRUE;
 	LayoutWindow *lw;
 	GtkSettings *default_settings;
-	gint fd_stderr[2];
-	GIOChannel *stderr_channel;
 
 	gdk_set_allowed_backends("x11,*");
 

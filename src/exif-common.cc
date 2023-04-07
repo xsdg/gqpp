@@ -777,7 +777,7 @@ static gchar *exif_build_formatted_localtime(ExifData *exif)
 		{
 		time_zone_image = g_strconcat("TZ=", timezone, NULL);
 		time_zone_org = g_strconcat("TZ=", getenv("TZ"), NULL);
-		putenv("TZ=UTC");
+		setenv("TZ", "UTC", TRUE);
 
 		memset(&tm_utc, 0, sizeof(tm_utc));
 		if (exif_date_time && strptime(exif_date_time, "%Y:%m:%d:%H:%M:%S", &tm_utc))

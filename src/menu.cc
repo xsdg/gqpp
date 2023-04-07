@@ -167,7 +167,7 @@ gchar *sort_type_get_text(SortType method)
 			break;
 		}
 
-	return "";
+	return _("");
 }
 
 static GtkWidget *submenu_add_sort_item(GtkWidget *menu,
@@ -267,7 +267,7 @@ gchar *zoom_type_get_text(ZoomMode method)
 			break;
 		}
 
-	return "";
+	return _("");
 }
 
 static GtkWidget *submenu_add_zoom_item(GtkWidget *menu,
@@ -355,7 +355,7 @@ gchar *alter_type_get_text(AlterType type)
 			break;
 		}
 
-	return "";
+	return _("");
 }
 
 static void submenu_add_alter_item(GtkWidget *menu, GCallback func, AlterType type,

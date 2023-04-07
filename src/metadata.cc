@@ -863,7 +863,7 @@ gboolean metadata_write_GPS_coord(FileData *fd, const gchar *key, gdouble value)
 	gdouble min;
 	gdouble param;
 	char *coordinate;
-	char *ref;
+	const char *ref;
 	gboolean ok = TRUE;
 	char *old_locale, *saved_locale;
 

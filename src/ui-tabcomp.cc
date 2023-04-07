@@ -845,7 +845,7 @@ static void tab_completion_select_show(TabCompData *td)
 {
 	const gchar *title;
 	const gchar *path;
-	gchar *filter = NULL;
+	const gchar *filter = NULL;
 	gchar *filter_desc = NULL;
 
 	if (td->fd)

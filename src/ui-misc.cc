@@ -374,12 +374,12 @@ void pref_checkbox_link_sensitivity(GtkWidget *button, GtkWidget *widget)
 	pref_checkbox_link_sensitivity_cb(button, widget);
 }
 
-static void pref_checkbox_link_sensitivity_swap_cb(GtkWidget *button, gpointer data)
-{
-	GtkWidget *widget = static_cast<GtkWidget *>(data);
+//static void pref_checkbox_link_sensitivity_swap_cb(GtkWidget *button, gpointer data)
+//{
+	//GtkWidget *widget = static_cast<GtkWidget *>(data);
 
-	gtk_widget_set_sensitive(widget, !gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)));
-}
+	//gtk_widget_set_sensitive(widget, !gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)));
+//}
 
 //void pref_checkbox_link_sensitivity_swap(GtkWidget *button, GtkWidget *widget)
 //{
@@ -439,15 +439,15 @@ GtkWidget *pref_radiobutton_new(GtkWidget *parent_box, GtkWidget *sibling,
 
 #define PREF_RADIO_VALUE_KEY "pref_radio_value"
 
-static void pref_radiobutton_int_cb(GtkWidget *widget, gpointer data)
-{
-	gboolean *result = static_cast<gboolean *>(data);
+//static void pref_radiobutton_int_cb(GtkWidget *widget, gpointer data)
+//{
+	//gboolean *result = static_cast<gboolean *>(data);
 
-	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)))
-		{
-		*result = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(widget), PREF_RADIO_VALUE_KEY));
-		}
-}
+	//if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)))
+		//{
+		//*result = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(widget), PREF_RADIO_VALUE_KEY));
+		//}
+//}
 
 //GtkWidget *pref_radiobutton_new_int(GtkWidget *parent_box, GtkWidget *sibling,
 				    //const gchar *text, gboolean active,

@@ -52,7 +52,7 @@ struct _BookMarkData
 {
 	GtkWidget *widget;
 	GtkWidget *box;
-	gchar *key;
+	const gchar *key;
 
 	void (*select_func)(const gchar *path, gpointer data);
 	gpointer select_data;
@@ -94,8 +94,8 @@ enum {
 
 static GtkTargetEntry bookmark_drop_types[] = {
 	{ const_cast<gchar *>("text/uri-list"), 0, TARGET_URI_LIST },
-	{ "x-url/http",    0, TARGET_X_URL },
-	{ "_NETSCAPE_URL", 0, TARGET_X_URL }
+	{ const_cast<gchar *>("x-url/http"),    0, TARGET_X_URL },
+	{ const_cast<gchar *>("_NETSCAPE_URL"), 0, TARGET_X_URL }
 };
 #define bookmark_drop_types_n 3
 
@@ -191,10 +191,10 @@ static gchar *bookmark_string(const gchar *name, const gchar *path, const gchar 
 
 	if (icon)
 		{
-		return g_strdup_printf("%s"MARKER_PATH"%s"MARKER_ICON"%s", name, path, icon);
+		return g_strdup_printf("%s" MARKER_PATH "%s" MARKER_ICON "%s", name, path, icon);
 		}
 
-	return g_strdup_printf("%s"MARKER_PATH"%s", name, path);
+	return g_strdup_printf("%s" MARKER_PATH "%s", name, path);
 }
 
 static void bookmark_select_cb(GtkWidget *button, gpointer data)
@@ -318,7 +318,7 @@ static void bookmark_move(BookMarkData *bm, GtkWidget *button, gint direction)
 	BookButtonData *b;
 	gint p;
 	GList *list;
-	gchar *key_holder;
+	const gchar *key_holder;
 
 	if (!bm->editable) return;
 
@@ -742,7 +742,7 @@ static void bookmark_list_destroy(GtkWidget *UNUSED(widget), gpointer data)
 
 	bookmark_widget_list = g_list_remove(bookmark_widget_list, bm);
 
-	g_free(bm->key);
+	g_free((gpointer)bm->key);
 	g_free(bm);
 }
 
@@ -811,7 +811,7 @@ void bookmark_list_set_key(GtkWidget *list, const gchar *key)
 
 	if (bm->key && strcmp(bm->key, key) == 0) return;
 
-	g_free(bm->key);
+	g_free((gpointer)bm->key);
 	bm->key = g_strdup(key);
 
 	bookmark_populate(bm);
