@@ -71,7 +71,7 @@ struct _ImageLoaderJPEGXL {
 	gboolean abort;
 };
 
-static void free_buffer(guchar *pixels, gpointer data)
+static void free_buffer(guchar *pixels, gpointer UNUSED(data))
 {
 	g_free(pixels);
 }
@@ -157,7 +157,7 @@ static uint8_t *JxlMemoryToPixels(const uint8_t *next_in, size_t size, size_t *s
   }
 }
 
-static gboolean image_loader_jpegxl_load(gpointer loader, const guchar *buf, gsize count, GError **error)
+static gboolean image_loader_jpegxl_load(gpointer loader, const guchar *buf, gsize count, GError **UNUSED(error))
 {
 	ImageLoaderJPEGXL *ld = (ImageLoaderJPEGXL *) loader;
 	gboolean ret = FALSE;
@@ -204,18 +204,18 @@ static GdkPixbuf* image_loader_jpegxl_get_pixbuf(gpointer loader)
 	return ld->pixbuf;
 }
 
-static gchar* image_loader_jpegxl_get_format_name(gpointer loader)
+static gchar* image_loader_jpegxl_get_format_name(gpointer UNUSED(loader))
 {
 	return g_strdup("jxl");
 }
 
-static gchar** image_loader_jpegxl_get_format_mime_types(gpointer loader)
+static gchar** image_loader_jpegxl_get_format_mime_types(gpointer UNUSED(loader))
 {
 	static const gchar *mime[] = {"image/jxl", NULL};
 	return g_strdupv(const_cast<gchar **>(mime));
 }
 
-static gboolean image_loader_jpegxl_close(gpointer loader, GError **error)
+static gboolean image_loader_jpegxl_close(gpointer UNUSED(loader), GError **UNUSED(error))
 {
 	return TRUE;
 }
