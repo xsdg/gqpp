@@ -687,9 +687,9 @@ static gboolean file_util_perform_ci_internal(gpointer data)
 		gboolean last = !ud->flist->next;
 		EditorFlags status = EDITOR_ERROR_STATUS;
 
-		if (ud->with_sidecars ? file_data_sc_perform_ci(single_entry->data)
-		                      : file_data_perform_ci(single_entry->data))
-			status = 0; /* OK */
+		if (ud->with_sidecars ? file_data_sc_perform_ci(static_cast<FileData *>(single_entry->data))
+		                      : file_data_perform_ci(static_cast<FileData *>(single_entry->data)))
+			status = static_cast<EditorFlags>(0); /* OK */
 
 		ret = file_util_perform_ci_cb(GINT_TO_POINTER(!last), status, single_entry, ud);
 		g_list_free(single_entry);
@@ -1731,7 +1731,7 @@ static void file_util_dialog_init_source_dest(UtilityData *ud, gboolean second_i
 	pref_table_label(table, 0, 1, _("New name:"), 1.0);
 
 	ud->rename_entry = gtk_entry_new();
-	gtk_table_attach(GTK_TABLE(table), ud->rename_entry, 1, 2, 1, 2, GTK_EXPAND | GTK_FILL, 0, 0, 0);
+	gtk_table_attach(GTK_TABLE(table), ud->rename_entry, 1, 2, 1, 2, static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), static_cast<GtkAttachOptions>(0), 0, 0);
 	generic_dialog_attach_default(GENERIC_DIALOG(ud->gd), ud->rename_entry);
 	gtk_widget_grab_focus(ud->rename_entry);
 
@@ -1936,7 +1936,7 @@ static void file_util_warn_op_in_progress(const gchar *title)
 
 static void file_util_details_dialog_close_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	gtk_widget_destroy(data);
+	gtk_widget_destroy(GTK_WIDGET(data));
 
 }
 

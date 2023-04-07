@@ -2080,7 +2080,7 @@ static void renderer_update_zoom(void *renderer, gboolean lazy)
 	rt_tile_invalidate_all((RendererTiles *)renderer);
 	if (!lazy)
 		{
-		renderer_redraw(renderer, 0, 0, pr->width, pr->height, TRUE, TILE_RENDER_ALL, TRUE, FALSE);
+		renderer_redraw(static_cast<_RendererTiles *>(renderer), 0, 0, pr->width, pr->height, TRUE, TILE_RENDER_ALL, TRUE, FALSE);
 		}
 	rt_border_clear(rt);
 }

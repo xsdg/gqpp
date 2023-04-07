@@ -150,7 +150,7 @@ hard_coded_window_keys dupe_window_keys[] = {
 	{static_cast<GdkModifierType>(0), GDK_KEY_Delete, N_("Remove")},
 	{GDK_CONTROL_MASK, GDK_KEY_Delete, N_("Clear")},
 	{GDK_CONTROL_MASK, 'A', N_("Select all")},
-	{GDK_CONTROL_MASK + GDK_SHIFT_MASK, 'A', N_("Select none")},
+	{static_cast<GdkModifierType>(GDK_CONTROL_MASK + GDK_SHIFT_MASK), 'A', N_("Select none")},
 	{GDK_CONTROL_MASK, 'T', N_("Toggle thumbs")},
 	{GDK_CONTROL_MASK, 'W', N_("Close window")},
 	{static_cast<GdkModifierType>(0), GDK_KEY_Return, N_("View")},
@@ -390,7 +390,7 @@ static void widget_set_cursor(GtkWidget *widget, gint icon)
 		}
 	else
 		{
-		cursor = gdk_cursor_new(icon);
+		cursor = gdk_cursor_new(static_cast<GdkCursorType>(icon));
 		}
 
 	gdk_window_set_cursor(gtk_widget_get_window(widget), cursor);
@@ -704,7 +704,7 @@ static void dupe_listview_add(DupeWindow *dw, DupeItem *parent, DupeItem *child)
 		text[DUPE_COLUMN_RANK] = g_strdup_printf("%d%s", rank, (di->second) ? " (2)" : "");
 		}
 
-	text[DUPE_COLUMN_THUMB] = "";
+	text[DUPE_COLUMN_THUMB] = _("");
 	text[DUPE_COLUMN_NAME] = (gchar *)di->fd->name;
 	text[DUPE_COLUMN_SIZE] = text_from_size(di->fd->size);
 	text[DUPE_COLUMN_DATE] = (gchar *)text_from_time(di->fd->date);
@@ -1909,12 +1909,12 @@ static void dupe_array_check(DupeWindow *dw )
 
 			for (i_set1 = 0; i_set1 <= (gint)(array_set1->len) - 1; i_set1++)
 				{
-				DupeItem *di1 = g_array_index(array_set1, gpointer, i_set1);
+				DupeItem *di1 = static_cast<DupeItem *>(g_array_index(array_set1, gpointer, i_set1));
 				DupeItem *di2 = NULL;
 				/* If multiple identical entries in set 1, use the last one */
 				if (i_set1 < (gint)(array_set1->len) - 2)
 					{
-					di2 = g_array_index(array_set1, gpointer, i_set1 + 1);
+					di2 = static_cast<DupeItem *>(g_array_index(array_set1, gpointer, i_set1 + 1));
 					check_result = dupe_match_check(di1, di2, dw);
 					if (check_result == DUPE_MATCH || check_result == DUPE_NAME_MATCH)
 						{
@@ -1930,7 +1930,7 @@ static void dupe_array_check(DupeWindow *dw )
 				match_found = FALSE;
 				for(i=0; i < array_set2->len; i++)
 					{
-					di2 = g_array_index(array_set2,  gpointer, i);
+					di2 = static_cast<DupeItem *>(g_array_index(array_set2,  gpointer, i));
 					check_result = dupe_match_check(di1, di2, dw);
 					if (check_result == DUPE_MATCH)
 						{
@@ -1943,7 +1943,7 @@ static void dupe_array_check(DupeWindow *dw )
 
 				if (match_found)
 					{
-					di2 = g_array_index(array_set2, gpointer, out_match_index);
+					di2 = static_cast<DupeItem *>(g_array_index(array_set2, gpointer, out_match_index));
 
 					check_result = dupe_match_check(di1, di2, dw);
 					if (check_result == DUPE_MATCH || check_result == DUPE_NAME_MATCH)
@@ -1959,7 +1959,7 @@ static void dupe_array_check(DupeWindow *dw )
 							break;
 							}
 						/* Look for multiple matches in set 2 for item di1 */
-						di2 = g_array_index(array_set2, gpointer, i_set2);
+						di2 = static_cast<DupeItem *>(g_array_index(array_set2, gpointer, i_set2));
 						check_result = dupe_match_check(di1, di2, dw);
 						while (check_result == DUPE_MATCH || check_result == DUPE_NAME_MATCH)
 							{
@@ -1972,7 +1972,7 @@ static void dupe_array_check(DupeWindow *dw )
 								{
 								break;
 								}
-							di2 = g_array_index(array_set2, gpointer, i_set2);
+							di2 = static_cast<DupeItem *>(g_array_index(array_set2, gpointer, i_set2));
 							check_result = dupe_match_check(di1, di2, dw);
 							}
 						}
@@ -1990,8 +1990,8 @@ static void dupe_array_check(DupeWindow *dw )
 			{
 			for (i_set1 = 0; i_set1 <= (gint)(array_set1->len) - 2; i_set1++)
 				{
-				DupeItem *di1 = g_array_index(array_set1, gpointer, i_set1);
-				DupeItem *di2 = g_array_index(array_set1, gpointer, i_set1 + 1);
+				DupeItem *di1 = static_cast<DupeItem *>(g_array_index(array_set1, gpointer, i_set1));
+				DupeItem *di2 = static_cast<DupeItem *>(g_array_index(array_set1, gpointer, i_set1 + 1));
 
 				check_result = dupe_match_check(di1, di2, dw);
 				if (check_result == DUPE_MATCH || check_result == DUPE_NAME_MATCH)
@@ -2007,7 +2007,7 @@ static void dupe_array_check(DupeWindow *dw )
 						break;
 						}
 					/* Look for multiple matches for item di1 */
-					di2 = g_array_index(array_set1, gpointer, i_set1 + 1);
+					di2 = static_cast<DupeItem *>(g_array_index(array_set1, gpointer, i_set1 + 1));
 					check_result = dupe_match_check(di1, di2, dw);
 					while (check_result == DUPE_MATCH || check_result == DUPE_NAME_MATCH)
 						{
@@ -2021,7 +2021,7 @@ static void dupe_array_check(DupeWindow *dw )
 							{
 							break;
 							}
-						di2 = g_array_index(array_set1, gpointer, i_set1 + 1);
+						di2 = static_cast<DupeItem *>(g_array_index(array_set1, gpointer, i_set1 + 1));
 						check_result = dupe_match_check(di1, di2, dw);
 						}
 					}
@@ -2496,7 +2496,7 @@ static gboolean dupe_check_cb(gpointer data)
 				dw->setup_point = dupe_setup_point_step(dw, dw->setup_point);
 				dw->setup_n++;
 				}
-			dw->setup_mask |= DUPE_MATCH_SIM_MED;
+			dw->setup_mask = static_cast<DupeMatchType>(dw->setup_mask | DUPE_MATCH_SIM_MED);
 			dupe_setup_reset(dw);
 			}
 
@@ -2617,7 +2617,7 @@ static void dupe_check_start(DupeWindow *dw)
 	dw->setup_count = g_list_length(dw->list);
 	if (dw->second_set) dw->setup_count += g_list_length(dw->second_list);
 
-	dw->setup_mask = 0;
+	dw->setup_mask = DUPE_MATCH_NONE;
 	dupe_setup_reset(dw);
 
 	dw->working = g_list_last(dw->list);
@@ -4609,7 +4609,7 @@ DupeWindow *dupe_window_new()
 	geometry.base_width = DUPE_DEF_WIDTH;
 	geometry.base_height = DUPE_DEF_HEIGHT;
 	gtk_window_set_geometry_hints(GTK_WINDOW(dw->window), NULL, &geometry,
-				      GDK_HINT_MIN_SIZE | GDK_HINT_BASE_SIZE);
+				      static_cast<GdkWindowHints>(GDK_HINT_MIN_SIZE | GDK_HINT_BASE_SIZE));
 
 	if (lw && options->save_window_positions)
 		{
@@ -4952,7 +4952,7 @@ static GtkTargetEntry dupe_drag_types[] = {
 static gint n_dupe_drag_types = 2;
 
 static GtkTargetEntry dupe_drop_types[] = {
-	{ TARGET_APP_COLLECTION_MEMBER_STRING, 0, TARGET_APP_COLLECTION_MEMBER },
+	{ const_cast<gchar *>(TARGET_APP_COLLECTION_MEMBER_STRING), 0, TARGET_APP_COLLECTION_MEMBER },
 	{ const_cast<gchar *>("text/uri-list"), 0, TARGET_URI_LIST }
 };
 static gint n_dupe_drop_types = 2;
@@ -5038,9 +5038,9 @@ static void dupe_dest_set(GtkWidget *widget, gboolean enable)
 	if (enable)
 		{
 		gtk_drag_dest_set(widget,
-			GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_HIGHLIGHT | GTK_DEST_DEFAULT_DROP,
+			static_cast<GtkDestDefaults>(GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_HIGHLIGHT | GTK_DEST_DEFAULT_DROP),
 			dupe_drop_types, n_dupe_drop_types,
-			GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_ASK);
+			static_cast<GdkDragAction>(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_ASK));
 
 		}
 	else
@@ -5098,9 +5098,9 @@ static void dupe_dnd_end(GtkWidget *UNUSED(widget), GdkDragContext *UNUSED(conte
 
 static void dupe_dnd_init(DupeWindow *dw)
 {
-	gtk_drag_source_set(dw->listview, GDK_BUTTON1_MASK | GDK_BUTTON2_MASK,
+	gtk_drag_source_set(dw->listview, static_cast<GdkModifierType>(GDK_BUTTON1_MASK | GDK_BUTTON2_MASK),
 			    dupe_drag_types, n_dupe_drag_types,
-			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			    static_cast<GdkDragAction>(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 	g_signal_connect(G_OBJECT(dw->listview), "drag_data_get",
 			 G_CALLBACK(dupe_dnd_data_set), dw);
 	g_signal_connect(G_OBJECT(dw->listview), "drag_begin",
@@ -5112,9 +5112,9 @@ static void dupe_dnd_init(DupeWindow *dw)
 	g_signal_connect(G_OBJECT(dw->listview), "drag_data_received",
 			 G_CALLBACK(dupe_dnd_data_get), dw);
 
-	gtk_drag_source_set(dw->second_listview, GDK_BUTTON1_MASK | GDK_BUTTON2_MASK,
+	gtk_drag_source_set(dw->second_listview, static_cast<GdkModifierType>(GDK_BUTTON1_MASK | GDK_BUTTON2_MASK),
 			    dupe_drag_types, n_dupe_drag_types,
-			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			    static_cast<GdkDragAction>(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 	g_signal_connect(G_OBJECT(dw->second_listview), "drag_data_get",
 			 G_CALLBACK(dupe_dnd_data_set), dw);
 	g_signal_connect(G_OBJECT(dw->second_listview), "drag_begin",

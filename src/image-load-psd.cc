@@ -319,7 +319,7 @@ static gboolean image_loader_psd_load(gpointer loader, const guchar *buf, gsize 
 					ctx->channels = hd.channels;
 					ctx->depth = hd.depth;
 					ctx->depth_bytes = (ctx->depth/8 > 0 ? ctx->depth/8 : 1);
-					ctx->color_mode = hd.color_mode;
+					ctx->color_mode = static_cast<PsdColorMode>(hd.color_mode);
 					
 					if (ctx->color_mode != PSD_MODE_RGB
 					    && ctx->color_mode != PSD_MODE_GRAYSCALE
@@ -340,11 +340,11 @@ static gboolean image_loader_psd_load(gpointer loader, const guchar *buf, gsize 
 					/* we need buffer that can contain one channel data for one
 					   row in RLE compressed format. 2*width should be enough */
 					g_free(ctx->buffer);
-					ctx->buffer = g_malloc(ctx->width * 2 * ctx->depth_bytes);
+					ctx->buffer = static_cast<guchar *>(g_malloc(ctx->width * 2 * ctx->depth_bytes));
 					
 					/* this will be needed for RLE decompression */
 					ctx->lines_lengths =
-						g_malloc(2 * ctx->channels * ctx->height);
+						static_cast<guint16 *>(g_malloc(2 * ctx->channels * ctx->height));
 					
 					ctx->pixbuf = gdk_pixbuf_new(GDK_COLORSPACE_RGB,
 						FALSE, 8, ctx->width, ctx->height);
@@ -358,10 +358,10 @@ static gboolean image_loader_psd_load(gpointer loader, const guchar *buf, gsize 
 					}
 					
 					/* create separate buffers for each channel */
-					ctx->ch_bufs = g_malloc(sizeof(guchar*) * ctx->channels);
+					ctx->ch_bufs = static_cast<guchar **>(g_malloc(sizeof(guchar*) * ctx->channels));
 					for (i = 0; i < ctx->channels; i++) {
 						ctx->ch_bufs[i] =
-							g_malloc(ctx->width*ctx->height*ctx->depth_bytes);
+							static_cast<guchar *>(g_malloc(ctx->width*ctx->height*ctx->depth_bytes));
 
 						if (ctx->ch_bufs[i] == NULL) {
 						log_printf("warning: Insufficient memory to load PSD image file\n");
@@ -395,7 +395,7 @@ static gboolean image_loader_psd_load(gpointer loader, const guchar *buf, gsize 
 			case PSD_STATE_COMPRESSION:
 				if (feed_buffer(ctx->buffer, &ctx->bytes_read, &buf, &size, 2))
 				{
-					ctx->compression = read_uint16(ctx->buffer);
+					ctx->compression = static_cast<PsdCompressionType>(read_uint16(ctx->buffer));
 
 					if (ctx->compression == PSD_COMPRESSION_RLE) {
 						ctx->state = PSD_STATE_LINES_LENGTHS;
@@ -558,7 +558,7 @@ static gchar* image_loader_psd_get_format_name(gpointer UNUSED(loader))
 static gchar** image_loader_psd_get_format_mime_types(gpointer UNUSED(loader))
 {
 	static const gchar *mime[] = {"application/psd", NULL};
-	return g_strdupv(mime);
+	return g_strdupv(const_cast<gchar **>(mime));
 }
 
 static gboolean image_loader_psd_close(gpointer UNUSED(loader), GError **UNUSED(error))

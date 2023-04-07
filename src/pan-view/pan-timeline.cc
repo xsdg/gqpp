@@ -100,8 +100,8 @@ void pan_timeline_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *he
 
 				buf = pan_date_value_string(fd->date, PAN_DATE_LENGTH_MONTH);
 				pi = pan_item_text_new(pw, x, y, buf,
-						       PAN_TEXT_ATTR_BOLD | PAN_TEXT_ATTR_HEADING,
-						       PAN_TEXT_BORDER_SIZE,
+						       static_cast<PanTextAttrType>(PAN_TEXT_ATTR_BOLD | PAN_TEXT_ATTR_HEADING),
+						       PAN_BORDER_3,
 						       PAN_TEXT_COLOR, 255);
 				g_free(buf);
 				y += pi->height;
@@ -142,7 +142,7 @@ void pan_timeline_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *he
 
 			buf = pan_date_value_string(fd->date, PAN_DATE_LENGTH_WEEK);
 			pi = pan_item_text_new(pw, x, y, buf, PAN_TEXT_ATTR_NONE,
-					       PAN_TEXT_BORDER_SIZE,
+					       PAN_BORDER_3,
 					       PAN_TEXT_COLOR, 255);
 			g_free(buf);
 

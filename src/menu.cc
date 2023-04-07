@@ -44,7 +44,7 @@ static GtkWidget *add_menu_item(GtkWidget *menu, gchar *label, GtkAccelGroup *ac
 	GtkWidget *item;
 
 	item = gtk_menu_item_new_with_label(label);
-	gtk_widget_add_accelerator(item, "activate", accel_group, accel_key, accel_mods, GTK_ACCEL_VISIBLE);
+	gtk_widget_add_accelerator(item, "activate", accel_group, accel_key, static_cast<GdkModifierType>(accel_mods), GTK_ACCEL_VISIBLE);
 	g_signal_connect(G_OBJECT(item), "activate", func, data);
 	gtk_menu_shell_append(GTK_MENU_SHELL(menu), item);
 	gtk_widget_show(item);

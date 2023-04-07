@@ -284,7 +284,7 @@ static gboolean slideshow_step(SlideShowData *ss, gboolean forward)
 
 		if (ss->filelist)
 			{
-			image_prebuffer_set(ss->imd, g_list_nth_data(ss->filelist, r));
+			image_prebuffer_set(ss->imd, static_cast<FileData *>(g_list_nth_data(ss->filelist, r)));
 			}
 		else if (ss->cd)
 			{

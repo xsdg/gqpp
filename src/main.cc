@@ -79,7 +79,7 @@ gchar *instance_identifier;
 void sig_handler_cb(int signo, siginfo_t *info, void *UNUSED(context))
 {
 	gchar hex_char[16];
-	gchar *signal_name = NULL;
+	const gchar *signal_name = NULL;
 	gint i = 0;
 	guint64 addr;
 	guint64 char_index;
@@ -156,7 +156,7 @@ void sig_handler_cb(int signo, siginfo_t *info, void *UNUSED(context))
 		{
 		/* Assume the address is 64-bit */
 		write(STDERR_FILENO, "0x", 2);
-		addr = info->si_addr;
+		addr = reinterpret_cast<guint64>(info->si_addr);
 
 		for (i = 0; i < 16; i++)
 			{
@@ -418,14 +418,14 @@ static void parse_command_line(gint argc, gchar *argv[])
 				{
 				command_line->tools_show = TRUE;
 
-				remote_list = g_list_append(remote_list, "+t");
+				remote_list = g_list_append(remote_list, g_strdup("+t"));
 				}
 			else if (strcmp(cmd_line, "-t") == 0 ||
 				 strcmp(cmd_line, "--without-tools") == 0)
 				{
 				command_line->tools_hide = TRUE;
 
-				remote_list = g_list_append(remote_list, "-t");
+				remote_list = g_list_append(remote_list, g_strdup("-t"));
 				}
 			else if (strcmp(cmd_line, "-f") == 0 ||
 				 strcmp(cmd_line, "--fullscreen") == 0)
@@ -599,7 +599,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 				geometry = g_strdup_printf("--geometry=%s", command_line->geometry);
 				remote_list = g_list_prepend(remote_list, geometry);
 				}
-			remote_list = g_list_prepend(remote_list, "--new-window");
+			remote_list = g_list_prepend(remote_list, g_strdup("--new-window"));
 			}
 		g_free(app_lock);
 		}
@@ -1022,7 +1022,7 @@ static void exit_program_final(void)
 			tmp_lw = static_cast<LayoutWindow *>(list->data);
 			if (!g_str_has_prefix(tmp_lw->options.id, "lw"))
 				{
-				save_layout(list->data);
+				save_layout(static_cast<_LayoutWindow *>(list->data));
 				}
 			list = list->next;
 			}
@@ -1472,7 +1472,7 @@ gint main(gint argc, gchar *argv[])
 				{
 				gchar *dirname;
 
-				dirname = static_cast<const gchar *>(g_path_get_dirname(work->data));
+				dirname = g_path_get_dirname(static_cast<const gchar *>(work->data));
 				if (!path)
 					{
 					path = g_strdup(dirname);
@@ -1521,7 +1521,7 @@ gint main(gint argc, gchar *argv[])
 				work = work->next;
 				}
 
-			if (cd->list) layout_image_set_collection(NULL, cd, cd->list->data);
+			if (cd->list) layout_image_set_collection(NULL, cd, static_cast<CollectInfo *>(cd->list->data));
 
 			/* mem leak, we never unref this collection when !startup_command_line_collection
 			 * (the image view of the main window does not hold a ref to the collection)

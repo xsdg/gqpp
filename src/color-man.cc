@@ -291,13 +291,13 @@ static ColorManCache *color_man_cache_get(ColorManProfileType in_type, const gch
  *-------------------------------------------------------------------
  */
 
-static void color_man_done(ColorMan *cm, ColorManReturnType type)
-{
-	if (cm->func_done)
-		{
-		cm->func_done(cm, type, cm->func_done_data);
-		}
-}
+//static void color_man_done(ColorMan *cm, ColorManReturnType type)
+//{
+	//if (cm->func_done)
+		//{
+		//cm->func_done(cm, type, cm->func_done_data);
+		//}
+//}
 
 void color_man_correct_region(ColorMan *cm, GdkPixbuf *pixbuf, gint x, gint y, gint w, gint h)
 {
@@ -335,44 +335,44 @@ void color_man_correct_region(ColorMan *cm, GdkPixbuf *pixbuf, gint x, gint y, g
 
 }
 
-static gboolean color_man_idle_cb(gpointer data)
-{
-	ColorMan *cm = static_cast<ColorMan *>(data);
-	gint width, height;
-	gint rh;
+//static gboolean color_man_idle_cb(gpointer data)
+//{
+	//ColorMan *cm = static_cast<ColorMan *>(data);
+	//gint width, height;
+	//gint rh;
 
-	if (!cm->pixbuf) return FALSE;
+	//if (!cm->pixbuf) return FALSE;
 
-	if (cm->imd &&
-	    cm->pixbuf != image_get_pixbuf(cm->imd))
-		{
-		cm->idle_id = 0;
-		color_man_done(cm, COLOR_RETURN_IMAGE_CHANGED);
-		return FALSE;
-		}
+	//if (cm->imd &&
+	    //cm->pixbuf != image_get_pixbuf(cm->imd))
+		//{
+		//cm->idle_id = 0;
+		//color_man_done(cm, COLOR_RETURN_IMAGE_CHANGED);
+		//return FALSE;
+		//}
 
-	width = gdk_pixbuf_get_width(cm->pixbuf);
-	height = gdk_pixbuf_get_height(cm->pixbuf);
+	//width = gdk_pixbuf_get_width(cm->pixbuf);
+	//height = gdk_pixbuf_get_height(cm->pixbuf);
 
-	if (cm->row > height)
-		{
-		if (!cm->incremental_sync && cm->imd)
-			{
-			image_area_changed(cm->imd, 0, 0, width, height);
-			}
+	//if (cm->row > height)
+		//{
+		//if (!cm->incremental_sync && cm->imd)
+			//{
+			//image_area_changed(cm->imd, 0, 0, width, height);
+			//}
 
-		cm->idle_id = 0;
-		color_man_done(cm, COLOR_RETURN_SUCCESS);
-		return FALSE;
-		}
+		//cm->idle_id = 0;
+		//color_man_done(cm, COLOR_RETURN_SUCCESS);
+		//return FALSE;
+		//}
 
-	rh = COLOR_MAN_CHUNK_SIZE / width + 1;
-	color_man_correct_region(cm, cm->pixbuf, 0, cm->row, width, rh);
-	if (cm->incremental_sync && cm->imd) image_area_changed(cm->imd, 0, cm->row, width, rh);
-	cm->row += rh;
+	//rh = COLOR_MAN_CHUNK_SIZE / width + 1;
+	//color_man_correct_region(cm, cm->pixbuf, 0, cm->row, width, rh);
+	//if (cm->incremental_sync && cm->imd) image_area_changed(cm->imd, 0, cm->row, width, rh);
+	//cm->row += rh;
 
-	return TRUE;
-}
+	//return TRUE;
+//}
 
 static ColorMan *color_man_new_real(ImageWindow *imd, GdkPixbuf *pixbuf,
 				    ColorManProfileType input_type, const gchar *input_file,
@@ -480,7 +480,7 @@ void color_man_free(ColorMan *cm)
 	if (cm->idle_id) g_source_remove(cm->idle_id);
 	if (cm->pixbuf) g_object_unref(cm->pixbuf);
 
-	color_man_cache_unref(cm->profile);
+	color_man_cache_unref(static_cast<ColorManCache *>(cm->profile));
 
 	g_free(cm);
 }

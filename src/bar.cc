@@ -421,7 +421,7 @@ static void bar_menu_add_popup(GtkWidget *widget)
 		{
 		GtkWidget *item;
 		item = menu_item_add_stock(menu, _(pane->title), GTK_STOCK_ADD, G_CALLBACK(bar_expander_add_cb), bar);
-		g_object_set_data(G_OBJECT(item), "pane_add_id", pane->id);
+		g_object_set_data(G_OBJECT(item), "pane_add_id", const_cast<gchar *>(pane->id));
 		pane++;
 		}
 
@@ -469,7 +469,7 @@ static void bar_pane_set_fd_cb(GtkWidget *expander, gpointer data)
 	GtkWidget *widget = gtk_bin_get_child(GTK_BIN(expander));
 	PaneData *pd = static_cast<PaneData *>(g_object_get_data(G_OBJECT(widget), "pane_data"));
 	if (!pd) return;
-	if (pd->pane_set_fd) pd->pane_set_fd(widget, data);
+	if (pd->pane_set_fd) pd->pane_set_fd(widget, static_cast<FileData *>(data));
 }
 
 void bar_set_fd(GtkWidget *bar, FileData *fd)

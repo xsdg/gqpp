@@ -88,7 +88,7 @@ GType image_loader_get_type(void)
 			(GInstanceInitFunc)image_loader_init, /* instance_init */
 			NULL	/* value_table */
 			};
-		type = g_type_register_static(G_TYPE_OBJECT, "ImageLoaderType", &info, 0);
+		type = g_type_register_static(G_TYPE_OBJECT, "ImageLoaderType", &info, G_TYPE_FLAG_NONE);
 		}
 	return type;
 }
@@ -131,7 +131,7 @@ static void image_loader_init(GTypeInstance *instance, gpointer UNUSED(g_class))
 
 static void image_loader_class_init_wrapper(void *data, void *UNUSED(user_data))
 {
-	image_loader_class_init(data);
+	image_loader_class_init(static_cast<ImageLoaderClass *>(data));
 }
 
 static void image_loader_class_init(ImageLoaderClass *loader_class)
@@ -359,7 +359,7 @@ static ImageLoaderAreaParam *image_loader_queue_area_ready(ImageLoader *il, GLis
 {
 	if (*list)
 		{
-		ImageLoaderAreaParam *prev_par = (*list)->data;
+		ImageLoaderAreaParam *prev_par = static_cast<ImageLoaderAreaParam *>((*list)->data);
 		if (prev_par->x == x && prev_par->w == w &&
 		    prev_par->y + prev_par->h == y)
 			{
@@ -771,7 +771,7 @@ static void image_loader_setup_loader(ImageLoader *il)
 	else
 		image_loader_backend_set_default(&il->backend);
 
-	il->loader = static_cast<void *>(il->backend.loader_new(image_loader_area_updated_cb, image_loader_size_cb, image_loader_area_prepared_cb, il));
+	il->loader = static_cast<void **>(il->backend.loader_new(image_loader_area_updated_cb, image_loader_size_cb, image_loader_area_prepared_cb, il));
 
 #ifdef HAVE_TIFF
 	format = il->backend.get_format_name(il->loader);
@@ -1062,7 +1062,7 @@ static gboolean image_loader_setup_source(ImageLoader *il)
 			return FALSE;
 			}
 
-		il->mapped_file = mmap(0, il->bytes_total, PROT_READ|PROT_WRITE, MAP_PRIVATE, load_fd, 0);
+		il->mapped_file = static_cast<guchar *>(mmap(0, il->bytes_total, PROT_READ|PROT_WRITE, MAP_PRIVATE, load_fd, 0));
 		close(load_fd);
 		if (il->mapped_file == MAP_FAILED)
 			{

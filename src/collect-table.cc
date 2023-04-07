@@ -81,7 +81,7 @@ hard_coded_window_keys collection_window_keys[] = {
 	{static_cast<GdkModifierType>(0), GDK_KEY_Return, N_("View")},
 	{static_cast<GdkModifierType>(0), 'V', N_("View in new window")},
 	{GDK_CONTROL_MASK, 'A', N_("Select all")},
-	{GDK_CONTROL_MASK + GDK_SHIFT_MASK, 'A', N_("Select none")},
+	{static_cast<GdkModifierType>(GDK_CONTROL_MASK + GDK_SHIFT_MASK), 'A', N_("Select none")},
 	{GDK_MOD1_MASK, 'R', N_("Rectangular selection")},
 	{static_cast<GdkModifierType>(0), GDK_KEY_space, N_("Select single file")},
 	{GDK_CONTROL_MASK, GDK_KEY_space, N_("Toggle select image")},
@@ -148,7 +148,7 @@ static CollectInfo *collection_table_find_data(CollectTable *ct, gint row, gint 
 
 		if (iter) *iter = p;
 
-		return g_list_nth_data(list, col);
+		return static_cast<CollectInfo *>(g_list_nth_data(list, col));
 		}
 
 	return NULL;
@@ -176,7 +176,7 @@ static CollectInfo *collection_table_find_data_by_coord(CollectTable *ct, gint x
 
 	n = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(column), "column_number"));
 	if (iter) *iter = row;
-	return g_list_nth_data(list, n);
+	return static_cast<CollectInfo *>(g_list_nth_data(list, n));
 }
 
 static guint collection_table_list_count(CollectTable *ct, gint64 *bytes)
@@ -259,7 +259,7 @@ static void collection_table_update_status(CollectTable *ct)
 
 static void collection_table_update_extras(CollectTable *ct, gboolean loading, gdouble value)
 {
-	gchar *text;
+	const gchar *text;
 
 	if (!ct->extra_label) return;
 
@@ -343,14 +343,14 @@ static void collection_table_selection_add(CollectTable *ct, CollectInfo *info, 
 {
 	if (!info) return;
 
-	collection_table_selection_set(ct, info, info->flag_mask | mask, iter);
+	collection_table_selection_set(ct, info, static_cast<SelectionType>(info->flag_mask | mask), iter);
 }
 
 static void collection_table_selection_remove(CollectTable *ct, CollectInfo *info, SelectionType mask, GtkTreeIter *iter)
 {
 	if (!info) return;
 
-	collection_table_selection_set(ct, info, info->flag_mask & ~mask, iter);
+	collection_table_selection_set(ct, info, static_cast<SelectionType>(info->flag_mask & ~mask), iter);
 }
 /*
  *-------------------------------------------------------------------
@@ -385,7 +385,7 @@ void collection_table_select_all(CollectTable *ct)
 	while (work)
 		{
 		ct->selection = g_list_append(ct->selection, work->data);
-		collection_table_selection_add(ct, work->data, SELECTION_SELECTED, NULL);
+		collection_table_selection_add(ct, static_cast<CollectInfo *>(work->data), SELECTION_SELECTED, NULL);
 		work = work->next;
 		}
 
@@ -399,7 +399,7 @@ void collection_table_unselect_all(CollectTable *ct)
 	work = ct->selection;
 	while (work)
 		{
-		collection_table_selection_remove(ct, work->data, SELECTION_SELECTED, NULL);
+		collection_table_selection_remove(ct, static_cast<CollectInfo *>(work->data), SELECTION_SELECTED, NULL);
 		work = work->next;
 		}
 
@@ -1034,7 +1034,7 @@ static GtkWidget *collection_table_popup_menu(CollectTable *ct, gboolean over_ic
 				G_CALLBACK(collection_table_popup_delete_cb), ct);
 
 	menu_item_add_divider(menu);
-	submenu = submenu_add_sort(NULL, G_CALLBACK(collection_table_popup_sort_cb), ct, FALSE, TRUE, FALSE, 0);
+	submenu = submenu_add_sort(NULL, G_CALLBACK(collection_table_popup_sort_cb), ct, FALSE, TRUE, FALSE, SORT_NONE);
 	menu_item_add_divider(submenu);
 	menu_item_add(submenu, _("Randomize"),
 			G_CALLBACK(collection_table_popup_randomize_cb), ct);
@@ -2248,14 +2248,14 @@ static GtkWidget *collection_table_drop_menu(CollectTable *ct)
  */
 
 static GtkTargetEntry collection_drag_types[] = {
-	{ TARGET_APP_COLLECTION_MEMBER_STRING, 0, TARGET_APP_COLLECTION_MEMBER },
+	{ const_cast<gchar *>(TARGET_APP_COLLECTION_MEMBER_STRING), 0, TARGET_APP_COLLECTION_MEMBER },
 	{ const_cast<gchar *>("text/uri-list"), 0, TARGET_URI_LIST },
 	{ const_cast<gchar *>("text/plain"), 0, TARGET_TEXT_PLAIN }
 };
 static gint n_collection_drag_types = 3;
 
 static GtkTargetEntry collection_drop_types[] = {
-	{ TARGET_APP_COLLECTION_MEMBER_STRING, 0, TARGET_APP_COLLECTION_MEMBER },
+	{ const_cast<gchar *>(TARGET_APP_COLLECTION_MEMBER_STRING), 0, TARGET_APP_COLLECTION_MEMBER },
 	{ const_cast<gchar *>("text/uri-list"), 0, TARGET_URI_LIST }
 };
 static gint n_collection_drop_types = 2;
@@ -2443,9 +2443,9 @@ static void collection_table_dnd_leave(GtkWidget *UNUSED(widget), GdkDragContext
 
 static void collection_table_dnd_init(CollectTable *ct)
 {
-	gtk_drag_source_set(ct->listview, GDK_BUTTON1_MASK | GDK_BUTTON2_MASK,
+	gtk_drag_source_set(ct->listview, static_cast<GdkModifierType>(GDK_BUTTON1_MASK | GDK_BUTTON2_MASK),
 			    collection_drag_types, n_collection_drag_types,
-			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			    static_cast<GdkDragAction>(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 	g_signal_connect(G_OBJECT(ct->listview), "drag_data_get",
 			 G_CALLBACK(collection_table_dnd_get), ct);
 	g_signal_connect(G_OBJECT(ct->listview), "drag_begin",
@@ -2454,9 +2454,9 @@ static void collection_table_dnd_init(CollectTable *ct)
 			 G_CALLBACK(collection_table_dnd_end), ct);
 
 	gtk_drag_dest_set(ct->listview,
-			  GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_HIGHLIGHT | GTK_DEST_DEFAULT_DROP,
+			  static_cast<GtkDestDefaults>(GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_HIGHLIGHT | GTK_DEST_DEFAULT_DROP),
 			  collection_drop_types, n_collection_drop_types,
-			  GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_ASK);
+			  static_cast<GdkDragAction>(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_ASK));
 	g_signal_connect(G_OBJECT(ct->listview), "drag_motion",
 			 G_CALLBACK(collection_table_dnd_motion), ct);
 	g_signal_connect(G_OBJECT(ct->listview), "drag_leave",
@@ -2701,7 +2701,7 @@ CollectTable *collection_table_new(CollectionData *cd)
 	collection_table_dnd_init(ct);
 
 	gtk_widget_set_events(ct->listview, GDK_POINTER_MOTION_MASK | GDK_BUTTON_RELEASE_MASK |
-			      GDK_BUTTON_PRESS_MASK | GDK_LEAVE_NOTIFY_MASK);
+			      static_cast<GdkEventMask>(GDK_BUTTON_PRESS_MASK | GDK_LEAVE_NOTIFY_MASK));
 	g_signal_connect(G_OBJECT(ct->listview),"button_press_event",
 			 G_CALLBACK(collection_table_press_cb), ct);
 	g_signal_connect(G_OBJECT(ct->listview),"button_release_event",

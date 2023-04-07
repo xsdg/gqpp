@@ -301,14 +301,14 @@ static void image_state_set(ImageWindow *imd, ImageState state)
 		}
 	else
 		{
-		imd->state |= state;
+		imd->state = static_cast<ImageState>(imd->state | state);
 		}
 	if (imd->func_state) imd->func_state(imd, state, imd->data_state);
 }
 
 static void image_state_unset(ImageWindow *imd, ImageState state)
 {
-	imd->state &= ~state;
+	imd->state = static_cast<ImageState>(imd->state & ~state);
 	if (imd->func_state) imd->func_state(imd, state, imd->data_state);
 }
 
@@ -424,7 +424,7 @@ static gboolean image_post_process_color(ImageWindow *imd, gint start_row, gbool
 	else if (imd->color_profile_input >= COLOR_PROFILE_SRGB &&
 		 imd->color_profile_input <  COLOR_PROFILE_FILE)
 		{
-		input_type = imd->color_profile_input;
+		input_type = static_cast<ColorManProfileType>(imd->color_profile_input);
 		input_file = NULL;
 		}
 	else
@@ -517,7 +517,7 @@ static gboolean image_post_process_color(ImageWindow *imd, gint start_row, gbool
 
 			if (imd->color_profile_use_image && imd->color_profile_from_image != COLOR_PROFILE_NONE)
                                {
-                               input_type = imd->color_profile_from_image;
+                               input_type = static_cast<ColorManProfileType>(imd->color_profile_from_image);
                                input_file = NULL;
                                }
 			}
@@ -566,7 +566,7 @@ static gboolean image_post_process_color(ImageWindow *imd, gint start_row, gbool
 static void image_post_process_tile_color_cb(PixbufRenderer *UNUSED(pr), GdkPixbuf **pixbuf, gint x, gint y, gint w, gint h, gpointer data)
 {
 	ImageWindow *imd = (ImageWindow *)data;
-	if (imd->cm) color_man_correct_region(imd->cm, *pixbuf, x, y, w, h);
+	if (imd->cm) color_man_correct_region(static_cast<ColorMan *>(imd->cm), *pixbuf, x, y, w, h);
 	if (imd->desaturate) pixbuf_desaturate_rect(*pixbuf, x, y, w, h);
 	if (imd->overunderexposed) pixbuf_highlight_overunderexposed(*pixbuf, x, y, w, h);
 }
@@ -1420,17 +1420,17 @@ void image_change_pixbuf(ImageWindow *imd, GdkPixbuf *pixbuf, gdouble zoom, gboo
 
 	if (pixbuf)
 		{
-		stereo_data = imd->user_stereo;
+		stereo_data = static_cast<StereoPixbufData>(imd->user_stereo);
 		if (stereo_data == STEREO_PIXBUF_DEFAULT)
 			{
-			stereo_data = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(pixbuf), "stereo_data"));
+			stereo_data = static_cast<StereoPixbufData>(GPOINTER_TO_INT(g_object_get_data(G_OBJECT(pixbuf), "stereo_data")));
 			}
 		}
 
 	pixbuf_renderer_set_post_process_func((PixbufRenderer *)imd->pr, NULL, NULL, FALSE);
 	if (imd->cm)
 		{
-		color_man_free(imd->cm);
+		color_man_free(static_cast<ColorMan *>(imd->cm));
 		imd->cm = NULL;
 		}
 
@@ -1748,7 +1748,7 @@ gchar *image_zoom_get_as_text(ImageWindow *imd)
 	gdouble r = 1.0;
 	gint pl = 0;
 	gint pr = 0;
-	gchar *approx = " ";
+	const gchar *approx = " ";
 
 	zoom = image_zoom_get(imd);
 	scale = image_zoom_get_real(imd);
@@ -1820,7 +1820,7 @@ void image_stereo_set(ImageWindow *imd, gint stereo_mode)
 
 StereoPixbufData image_stereo_pixbuf_get(ImageWindow *imd)
 {
-	return imd->user_stereo;
+	return static_cast<StereoPixbufData>(imd->user_stereo);
 }
 
 void image_stereo_pixbuf_set(ImageWindow *imd, StereoPixbufData stereo_mode)

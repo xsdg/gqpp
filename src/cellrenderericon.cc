@@ -109,7 +109,7 @@ gqv_cell_renderer_icon_get_type(void)
 
 		cell_icon_type = g_type_register_static(GTK_TYPE_CELL_RENDERER,
 							"GQvCellRendererIcon",
-							&cell_icon_info, 0);
+							&cell_icon_info, G_TYPE_FLAG_NONE);
 		}
 
 	return cell_icon_type;
@@ -118,7 +118,7 @@ gqv_cell_renderer_icon_get_type(void)
 static void
 gqv_cell_renderer_icon_init_wrapper(void *data, void *UNUSED(user_data))
 {
-	gqv_cell_renderer_icon_init(data);
+	gqv_cell_renderer_icon_init(static_cast<GQvCellRendererIcon *>(data));
 }
 
 static void
@@ -131,7 +131,7 @@ gqv_cell_renderer_icon_init(GQvCellRendererIcon *cellicon)
 static void
 gqv_cell_renderer_icon_class_init_wrapper(void *data, void *UNUSED(user_data))
 {
-	gqv_cell_renderer_icon_class_init(data);
+	gqv_cell_renderer_icon_class_init(static_cast<GQvCellRendererIconClass *>(data));
 }
 
 static void
@@ -448,10 +448,10 @@ gqv_cell_renderer_icon_set_property(GObject		*object,
 		}
 		break;
 	case PROP_BACKGROUND_GDK:
-		set_bg_color(cellicon, g_value_get_boxed(value));
+		set_bg_color(cellicon, static_cast<GdkColor *>(g_value_get_boxed(value)));
 		break;
 	case PROP_FOREGROUND_GDK:
-		set_fg_color(cellicon, g_value_get_boxed(value));
+		set_fg_color(cellicon, static_cast<GdkColor *>(g_value_get_boxed(value)));
 		break;
 	case PROP_FOCUSED:
 		cellicon->focused = g_value_get_boolean(value);
@@ -542,7 +542,7 @@ gqv_cell_renderer_icon_get_layout(GQvCellRendererIcon *cellicon, GtkWidget *widg
 GtkCellRenderer *
 gqv_cell_renderer_icon_new(void)
 {
-	return g_object_new(GQV_TYPE_CELL_RENDERER_ICON, NULL);
+	return static_cast<GtkCellRenderer *>(g_object_new(GQV_TYPE_CELL_RENDERER_ICON, NULL));
 }
 
 static void gqv_cell_renderer_icon_get_size(GtkCellRenderer    *cell,
@@ -747,10 +747,10 @@ static void gqv_cell_renderer_icon_render(GtkCellRenderer *cell,
 			{
 			for (i = 0; i < cellicon->num_marks; i++)
 				{
-  				state &= ~(GTK_STATE_FLAG_CHECKED);
+  				state = static_cast<GtkStateFlags>(state & ~GTK_STATE_FLAG_CHECKED);
 
 				if ((cellicon->marks & (1 << i)))
-					state |= GTK_STATE_FLAG_CHECKED;
+					state = static_cast<GtkStateFlags>(state | GTK_STATE_FLAG_CHECKED);
 				cairo_save (cr);
 
 				cairo_rectangle(cr,

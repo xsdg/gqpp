@@ -179,7 +179,7 @@ static void bar_sort_undo_set(SortData *sd, GList *src_list, const gchar *dest)
 		GList *work = sd->undo_src_list;
 		while(work)
 			{
-			gchar *filename = g_strdup(filename_from_path(work->data));
+			gchar *filename = g_strdup(filename_from_path(static_cast<const gchar *>(work->data)));
 			gchar *dest_path = g_build_filename(g_strdup(dest), filename, NULL);
 			sd->undo_dest_list = g_list_prepend(sd->undo_dest_list, g_strdup(dest_path));
 			work = work->next;
@@ -449,11 +449,9 @@ static gboolean bar_filter_message_cb(GtkWidget *UNUSED(widget), GdkEventButton 
 	return TRUE;
 }
 
-static void bar_sort_help_cb(GtkWidget *button, gpointer UNUSED(data))
+static void bar_sort_help_cb(gpointer UNUSED(data))
 {
 	bar_filter_help_dialog();
-
-	return TRUE;
 }
 
 static void bar_sort_set_selection(SortData *sd, SortSelectionType selection)
@@ -756,9 +754,9 @@ static GtkWidget *bar_sort_new(LayoutWindow *lw, SortActionType action,
 					      _("Functions additional to Copy and Move"),
 					      G_CALLBACK(bar_sort_help_cb), sd);
 
-	sd->mode = -1;
+	sd->mode = static_cast<SortModeType>(-1);
 	bar_sort_mode_sync(sd, mode);
-	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), sd->mode);
+	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), static_cast<gint>(sd->mode));
 
 	return sd->vbox;
 }
@@ -788,9 +786,9 @@ GtkWidget *bar_sort_new_from_config(LayoutWindow *lw, const gchar **UNUSED(attri
 void bar_sort_cold_start(LayoutWindow *lw, const gchar **attribute_names, const gchar **attribute_values)
 {
 	gboolean enabled = TRUE;
-	gint action = 0;
-	gint mode = 0;
-	gint selection = 0;
+	gint action = BAR_SORT_COPY;
+	gint mode = BAR_SORT_MODE_FOLDER;
+	gint selection = BAR_SORT_SELECTION_IMAGE;
 	gchar *filter_key = NULL;
 
 	while (attribute_names && *attribute_names)
@@ -807,9 +805,9 @@ void bar_sort_cold_start(LayoutWindow *lw, const gchar **attribute_names, const 
 		log_printf("unknown attribute %s = %s\n", option, value);
 		}
 
-	lw->options.action = action;
-	lw->options.mode = mode;
-	lw->options.selection = selection;
+	lw->options.action = static_cast<SortActionType>(action);
+	lw->options.mode = static_cast<SortModeType>(mode);
+	lw->options.selection = static_cast<SortSelectionType>(selection);
 	lw->options.filter_key = g_strdup(filter_key);
 	lw->bar_sort_enabled = enabled;
 

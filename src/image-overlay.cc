@@ -207,7 +207,7 @@ void image_osd_toggle(ImageWindow *imd)
 	show = image_osd_get(imd);
 	if (show == OSD_SHOW_NOTHING)
 		{
-		image_osd_set(imd, OSD_SHOW_INFO | OSD_SHOW_STATUS);
+		image_osd_set(imd, static_cast<OsdShowFlags>(OSD_SHOW_INFO | OSD_SHOW_STATUS));
 		return;
 		}
 	else
@@ -218,7 +218,7 @@ void image_osd_toggle(ImageWindow *imd)
 			}
 		else
 			{
-			image_osd_set(imd, show | OSD_SHOW_HISTOGRAM);
+			image_osd_set(imd, static_cast<OsdShowFlags>(show | OSD_SHOW_HISTOGRAM));
 			}
 		}
 }
@@ -570,11 +570,11 @@ static void image_osd_icons_update(OverlayStateData *osd)
 		{
 		if (osd->icon_time[i] > 0)
 			{
-			image_osd_icon_show(osd, i);
+			image_osd_icon_show(osd, static_cast<ImageOSDFlag>(i));
 			}
 		else
 			{
-			image_osd_icon_hide(osd, i);
+			image_osd_icon_hide(osd, static_cast<ImageOSDFlag>(i));
 			}
 		}
 }
@@ -585,7 +585,7 @@ static void image_osd_icons_hide(OverlayStateData *osd)
 
 	for (i = 0; i < IMAGE_OSD_COUNT; i++)
 		{
-		image_osd_icon_hide(osd, i);
+		image_osd_icon_hide(osd, static_cast<ImageOSDFlag>(i));
 		}
 }
 
@@ -673,14 +673,14 @@ static gboolean image_osd_update_cb(gpointer data)
 		}
 
 	osd->changed_states = IMAGE_STATE_NONE;
-	osd->notify = 0;
+	osd->notify = static_cast<NotifyType>(0);
 	osd->idle_id = 0;
 	return FALSE;
 }
 
 static void image_osd_update_schedule(OverlayStateData *osd, gboolean force)
 {
-	if (force) osd->changed_states |= IMAGE_STATE_IMAGE;
+	if (force) osd->changed_states = static_cast<ImageState>(osd->changed_states | IMAGE_STATE_IMAGE);
 
 	if (!osd->idle_id)
 		{
@@ -744,7 +744,7 @@ static void image_osd_state_cb(ImageWindow *UNUSED(imd), ImageState state, gpoin
 {
 	OverlayStateData *osd = static_cast<OverlayStateData *>(data);
 
-	osd->changed_states |= state;
+	osd->changed_states = static_cast<ImageState>(osd->changed_states | state);
 	image_osd_update_schedule(osd, FALSE);
 }
 
@@ -755,7 +755,7 @@ static void image_osd_notify_cb(FileData *fd, NotifyType type, gpointer data)
 	if ((type & (NOTIFY_HISTMAP)) && osd->imd && fd == osd->imd->image_fd)
 		{
 		DEBUG_1("Notify osd: %s %04x", fd->path, type);
-		osd->notify |= type;
+		osd->notify = static_cast<NotifyType>(osd->notify | type);
 		image_osd_update_schedule(osd, FALSE);
 		}
 }

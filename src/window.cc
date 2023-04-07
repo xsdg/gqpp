@@ -192,8 +192,8 @@ static const gchar *html_browsers[] =
 
 static void help_browser_run(const gchar *path)
 {
-	gchar *name = options->helpers.html_browser.command_name;
-	gchar *cmd = options->helpers.html_browser.command_line;
+	const gchar *name = options->helpers.html_browser.command_name;
+	const gchar *cmd = options->helpers.html_browser.command_line;
 	gchar *result = NULL;
 	gint i;
 

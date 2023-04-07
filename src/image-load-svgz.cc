@@ -31,7 +31,7 @@ static gchar* image_loader_svgz_get_format_name(gpointer UNUSED(loader))
 static gchar** image_loader_svgz_get_format_mime_types(gpointer UNUSED(loader))
 {
 	static const gchar *mime[] = {"image/svg", NULL};
-	return g_strdupv(mime);
+	return g_strdupv(const_cast<gchar **>(mime));
 }
 
 static gpointer image_loader_svgz_new(ImageLoaderBackendCbAreaUpdated area_updated_cb, ImageLoaderBackendCbSize size_cb, ImageLoaderBackendCbAreaPrepared area_prepared_cb, gpointer data)

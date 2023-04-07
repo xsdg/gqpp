@@ -952,7 +952,7 @@ static void layout_image_dnd_receive(GtkWidget *widget, GdkDragContext *UNUSED(c
 				row = layout_list_get_index(lw, fd);
 				if (source && info_list)
 					{
-					layout_image_set_collection(lw, source, info_list->data);
+					layout_image_set_collection(lw, source, static_cast<CollectInfo *>(info_list->data));
 					}
 				else if (row == -1)
 					{
@@ -1045,16 +1045,16 @@ static void layout_image_dnd_init(LayoutWindow *lw, gint i)
 
 	gtk_drag_source_set(imd->pr, GDK_BUTTON2_MASK,
 			    dnd_file_drag_types, dnd_file_drag_types_count,
-			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			    static_cast<GdkDragAction>(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 	g_signal_connect(G_OBJECT(imd->pr), "drag_data_get",
 			 G_CALLBACK(layout_image_dnd_get), lw);
 	g_signal_connect(G_OBJECT(imd->pr), "drag_end",
 			 G_CALLBACK(layout_image_dnd_end), lw);
 
 	gtk_drag_dest_set(imd->pr,
-			  GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_DROP,
+			  static_cast<GtkDestDefaults>(GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_DROP),
 			  dnd_file_drop_types, dnd_file_drop_types_count,
-			  GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			  static_cast<GdkDragAction>(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 	g_signal_connect(G_OBJECT(imd->pr), "drag_data_received",
 			 G_CALLBACK(layout_image_dnd_receive), lw);
 }
@@ -1389,7 +1389,7 @@ void layout_image_stereo_pixbuf_set(LayoutWindow *lw, gint stereo_mode)
 {
 	if (!layout_valid(&lw)) return;
 
-	image_stereo_pixbuf_set(lw->image, stereo_mode);
+	image_stereo_pixbuf_set(lw->image, static_cast<StereoPixbufData>(stereo_mode));
 }
 
 const gchar *layout_image_get_path(LayoutWindow *lw)

@@ -333,7 +333,7 @@ gchar *image_osd_mkinfo(const gchar *str, FileData *fd, GHashTable *vars)
 #endif
 		else
 			{
-			data = static_cast<const gchar *>(g_strdup(g_hash_table_lookup(vars, name)));
+			data = g_strdup(static_cast<const gchar *>(g_hash_table_lookup(vars, static_cast<gconstpointer>(name))));
 			if (!data)
 				data = metadata_read_string(fd, name, METADATA_FORMATTED);
 			}
@@ -460,18 +460,18 @@ void osd_template_insert(GHashTable *vars, const gchar *keyword, const gchar *va
 {
 	if (!value)
 		{
-		g_hash_table_insert(vars, keyword, g_strdup(""));
+		g_hash_table_insert(vars, (gpointer)(keyword), static_cast<gpointer>(g_strdup("")));
 		return;
 		}
 
 	if (flags & OSDT_NO_DUP)
 		{
-		g_hash_table_insert(vars, keyword, value);
+		g_hash_table_insert(vars, (gpointer)(keyword), (gpointer)value);
 		return;
 		}
 	else
 		{
-		g_hash_table_insert(vars, keyword, g_strdup(value));
+		g_hash_table_insert(vars, (gpointer)(keyword), g_strdup(value));
 		}
 
 	if (flags & OSDT_FREE) g_free((gpointer) value);

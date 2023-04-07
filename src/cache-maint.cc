@@ -1419,7 +1419,7 @@ static gboolean cache_manager_sim_file(CacheOpsData *cd)
 		fd = static_cast<FileData *>(cd->list->data);
 		cd->list = g_list_remove(cd->list, fd);
 
-		load_mask = CACHE_LOADER_DIMENSIONS | CACHE_LOADER_DATE | CACHE_LOADER_MD5SUM | CACHE_LOADER_SIMILARITY;
+		load_mask = static_cast<CacheDataType>(CACHE_LOADER_DIMENSIONS | CACHE_LOADER_DATE | CACHE_LOADER_MD5SUM | CACHE_LOADER_SIMILARITY);
 		cd->cl = (CacheLoader *)cache_loader_new(fd, load_mask, (cache_manager_sim_file_done_cb), cd);
 
 		if (!cd->remote)

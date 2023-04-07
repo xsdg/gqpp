@@ -614,7 +614,7 @@ GtkWidget *pref_table_box(GtkWidget *table, gint column, gint row,
 		}
 
 	gtk_table_attach(GTK_TABLE(table), shell, column, column + 1, row, row + 1,
-			 GTK_EXPAND | GTK_FILL, 0, 0, 0);
+			 static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), static_cast<GtkAttachOptions>(0), 0, 0);
 
 	gtk_widget_show(shell);
 
@@ -629,7 +629,7 @@ GtkWidget *pref_table_label(GtkWidget *table, gint column, gint row,
 
 	align = gtk_alignment_new(alignment, 0.50, 0.0, 0.0);
 	gtk_table_attach(GTK_TABLE(table), align, column, column + 1, row, row + 1,
-			 GTK_FILL, 0, 0, 0);
+			 GTK_FILL, static_cast<GtkAttachOptions>(0), 0, 0);
 	gtk_widget_show(align);
 	label = gtk_label_new(text);
 	gtk_container_add(GTK_CONTAINER(align), label);
@@ -646,7 +646,7 @@ GtkWidget *pref_table_button(GtkWidget *table, gint column, gint row,
 
 	button = pref_button_new(NULL, stock_id, text, hide_stock_text, func, data);
 	gtk_table_attach(GTK_TABLE(table), button, column, column + 1, row, row + 1,
-			 GTK_FILL, 0, 0, 0);
+			 GTK_FILL, static_cast<GtkAttachOptions>(0), 0, 0);
 	gtk_widget_show(button);
 
 	return button;
@@ -692,7 +692,7 @@ GtkWidget *pref_table_spin(GtkWidget *table, gint column, gint row,
 		}
 
 	gtk_table_attach(GTK_TABLE(table), box, column, column + 1, row, row + 1,
-			 GTK_EXPAND | GTK_FILL, GTK_EXPAND | GTK_FILL, 0, 0);
+			 static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), 0, 0);
 	gtk_widget_show(box);
 
 	return spin;
@@ -972,7 +972,7 @@ static void date_selection_popup(DateSelection *ds)
 
 	gtk_widget_grab_focus(ds->calendar);
 	gdk_pointer_grab(gtk_widget_get_window(ds->window), TRUE,
-			 GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK | GDK_BUTTON_MOTION_MASK,
+			 static_cast<GdkEventMask>(GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK | GDK_BUTTON_MOTION_MASK),
 			 NULL, NULL, GDK_CURRENT_TIME);
 	gdk_keyboard_grab(gtk_widget_get_window(ds->window), TRUE, GDK_CURRENT_TIME);
 	gtk_grab_add(ds->window);

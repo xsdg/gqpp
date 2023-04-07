@@ -53,10 +53,10 @@ struct _LayoutConfig
 
 static LayoutStyle layout_config_styles[] = {
 	/* 1, 2, 3 */
-	{ LAYOUT_LEFT | LAYOUT_TOP, LAYOUT_LEFT | LAYOUT_BOTTOM, LAYOUT_RIGHT },
-	{ LAYOUT_LEFT | LAYOUT_TOP, LAYOUT_RIGHT | LAYOUT_TOP, LAYOUT_BOTTOM },
-	{ LAYOUT_LEFT, LAYOUT_RIGHT | LAYOUT_TOP, LAYOUT_RIGHT | LAYOUT_BOTTOM },
-	{ LAYOUT_TOP, LAYOUT_LEFT | LAYOUT_BOTTOM, LAYOUT_RIGHT | LAYOUT_BOTTOM }
+	{ static_cast<LayoutLocation>(LAYOUT_LEFT | LAYOUT_TOP), static_cast<LayoutLocation>(LAYOUT_LEFT | LAYOUT_BOTTOM), LAYOUT_RIGHT },
+	{ static_cast<LayoutLocation>(LAYOUT_LEFT | LAYOUT_TOP), static_cast<LayoutLocation>(LAYOUT_RIGHT | LAYOUT_TOP), LAYOUT_BOTTOM },
+	{ LAYOUT_LEFT, static_cast<LayoutLocation>(LAYOUT_RIGHT | LAYOUT_TOP), static_cast<LayoutLocation>(LAYOUT_RIGHT | LAYOUT_BOTTOM) },
+	{ LAYOUT_TOP, static_cast<LayoutLocation>(LAYOUT_LEFT | LAYOUT_BOTTOM), static_cast<LayoutLocation>(LAYOUT_RIGHT | LAYOUT_BOTTOM) }
 };
 
 static gint layout_config_style_count = sizeof(layout_config_styles) / sizeof(LayoutStyle);

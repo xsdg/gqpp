@@ -669,7 +669,7 @@ static void add_quality_menu(GtkWidget *table, gint column, gint row, const gcha
 	g_signal_connect(G_OBJECT(combo), "changed",
 			 G_CALLBACK(quality_menu_cb), option_c);
 
-	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, 0, 0, 0);
+	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, static_cast<GtkAttachOptions>(0), 0, 0);
 	gtk_widget_show(combo);
 }
 
@@ -696,7 +696,7 @@ static void add_dnd_default_action_selection_menu(GtkWidget *table, gint column,
 	g_signal_connect(G_OBJECT(combo), "changed",
 			 G_CALLBACK(dnd_default_action_selection_menu_cb), option_c);
 
-	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, 0, 0, 0);
+	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, static_cast<GtkAttachOptions>(0), 0, 0);
 	gtk_widget_show(combo);
 }
 
@@ -724,7 +724,7 @@ static void add_clipboard_selection_menu(GtkWidget *table, gint column, gint row
 	g_signal_connect(G_OBJECT(combo), "changed",
 			 G_CALLBACK(clipboard_selection_menu_cb), option_c);
 
-	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, 0, 0, 0);
+	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, static_cast<GtkAttachOptions>(0), 0, 0);
 	gtk_widget_show(combo);
 }
 
@@ -765,7 +765,7 @@ static void add_zoom_style_selection_menu(GtkWidget *table, gint column, gint ro
 
 	g_signal_connect(G_OBJECT(combo), "changed", G_CALLBACK(zoom_style_selection_menu_cb), option_c);
 
-	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, 0, 0, 0);
+	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, static_cast<GtkAttachOptions>(0), 0, 0);
 	gtk_widget_show(combo);
 }
 
@@ -905,7 +905,7 @@ static void add_mouse_selection_menu(GtkWidget *table, gint column, gint row, co
 	g_signal_connect(G_OBJECT(combo), "changed",
 			 G_CALLBACK(mouse_buttons_selection_menu_cb), option_c);
 
-	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, 0, 0, 0);
+	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, static_cast<GtkAttachOptions>(0), 0, 0);
 	gtk_widget_show(combo);
 }
 
@@ -972,7 +972,7 @@ static void add_thumb_size_menu(GtkWidget *table, gint column, gint row, gchar *
 	g_signal_connect(G_OBJECT(combo), "changed",
 			 G_CALLBACK(thumb_size_menu_cb), NULL);
 
-	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, 0, 0, 0);
+	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, static_cast<GtkAttachOptions>(0), 0, 0);
 	gtk_widget_show(combo);
 }
 
@@ -1091,7 +1091,7 @@ static void add_stereo_mode_menu(GtkWidget *table, gint column, gint row, const 
 	g_signal_connect(G_OBJECT(combo), "changed",
 			 G_CALLBACK(stereo_mode_menu_cb), option_c);
 
-	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, 0, 0, 0);
+	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, static_cast<GtkAttachOptions>(0), 0, 0);
 	gtk_widget_show(combo);
 }
 
@@ -1132,7 +1132,7 @@ static void add_video_menu(GtkWidget *table, gint column, gint row, const gchar 
 	g_signal_connect(G_OBJECT(combo), "changed",
 			 G_CALLBACK(video_menu_cb), option_c);
 
-	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, 0, 0, 0);
+	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, static_cast<GtkAttachOptions>(0), 0, 0);
 	gtk_widget_show(combo);
 }
 
@@ -1198,7 +1198,7 @@ static void filter_store_class_edit_cb(GtkCellRendererText *UNUSED(cell), gchar 
 		{
 		if (strcmp(new_text, _(format_class_list[i])) == 0)
 			{
-			fe->file_class = i;
+			fe->file_class = static_cast<FileFormatClass>(i);
 			break;
 			}
 		}
@@ -1901,7 +1901,7 @@ static guint star_rating_symbol_test(GtkWidget *UNUSED(widget), gpointer data)
 		hex_value = 0x003F; // Unicode 'Question Mark'
 		}
 	str = g_string_append_unichar(str, (gunichar)hex_value);
-	gtk_label_set_text(g_list_nth_data(list, 1), str->str);
+	gtk_label_set_text(static_cast<GtkLabel *>(g_list_nth_data(list, 1)), str->str);
 
 	g_strfreev(hex_code);
 	g_string_free(str, TRUE);
@@ -3086,7 +3086,7 @@ static gboolean keywords_find_file(gpointer data)
 		while (keywords)
 			{
 			gtk_text_buffer_get_end_iter(buffer, &iter);
-			tmp = g_strconcat(keywords->data, "\n", NULL);
+			tmp = g_strconcat(static_cast<const gchar *>(keywords->data), "\n", NULL);
 			gtk_text_buffer_insert(buffer, &iter, tmp, -1);
 			g_free(tmp);
 			keywords = keywords->next;
@@ -3239,7 +3239,7 @@ static void config_tab_keywords_save()
 		found = FALSE;
 		while (work)
 			{
-			if (g_strcmp0(work->data, kw_split) == 0)
+			if (g_strcmp0(static_cast<const gchar *>(work->data), kw_split) == 0)
 				{
 				found = TRUE;
 				break;
@@ -3319,7 +3319,7 @@ static void config_tab_keywords(GtkWidget *notebook)
 	while (kwl)
 	{
 		gtk_text_buffer_get_end_iter (buffer, &iter);
-	    tmp = g_strconcat(kwl->data, "\n", NULL);
+	    tmp = g_strconcat(static_cast<const gchar *>(kwl->data), "\n", NULL);
 		gtk_text_buffer_insert(buffer, &iter, tmp, -1);
 		kwl = kwl->next;
 		g_free(tmp);
@@ -3382,7 +3382,7 @@ static void add_intent_menu(GtkWidget *table, gint column, gint row, const gchar
 	g_signal_connect(G_OBJECT(combo), "changed",
 			 G_CALLBACK(intent_menu_cb), option_c);
 
-	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, 0, 0, 0);
+	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, static_cast<GtkAttachOptions>(0), 0, 0);
 	gtk_widget_show(combo);
 }
 #endif
@@ -3431,7 +3431,7 @@ static void config_tab_color(GtkWidget *notebook)
 			gtk_entry_set_text(GTK_ENTRY(entry), options->color_profile.input_name[i]);
 			}
 		gtk_table_attach(GTK_TABLE(table), entry, 1, 2, i + 1, i + 2,
-				 GTK_FILL | GTK_EXPAND, 0, 0, 0);
+				 static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), static_cast<GtkAttachOptions>(0), 0, 0);
 		gtk_widget_show(entry);
 		color_profile_input_name_entry[i] = entry;
 
@@ -3439,7 +3439,7 @@ static void config_tab_color(GtkWidget *notebook)
 		tab_completion_add_select_button(entry, _("Select color profile"), FALSE);
 		gtk_widget_set_size_request(entry, 160, -1);
 		gtk_table_attach(GTK_TABLE(table), tabcomp, 2, 3, i + 1, i + 2,
-				 GTK_FILL | GTK_EXPAND, 0, 0, 0);
+				 static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), static_cast<GtkAttachOptions>(0), 0, 0);
 		gtk_widget_show(tabcomp);
 		color_profile_input_file_entry[i] = entry;
 		}
@@ -3463,7 +3463,7 @@ static void config_tab_color(GtkWidget *notebook)
 #endif
 	gtk_table_attach(GTK_TABLE(table), tabcomp, 1, 2,
 			 0, 1,
-			 GTK_FILL | GTK_EXPAND, 0, 0, 0);
+			 static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), static_cast<GtkAttachOptions>(0), 0, 0);
 
 	gtk_widget_show(tabcomp);
 }

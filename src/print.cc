@@ -125,7 +125,7 @@ static void print_set_font_cb(GtkWidget *widget, gpointer data)
 {
 	gpointer option;
 
-	if (g_strcmp0(data, "Image text font") == 0)
+	if (g_strcmp0(static_cast<const gchar *>(data), "Image text font") == 0)
 		{
 		option = options->printer.image_font;
 		}
@@ -139,7 +139,7 @@ static void print_set_font_cb(GtkWidget *widget, gpointer data)
 	PangoFontDescription *font_desc;
 
 	dialog = gtk_font_chooser_dialog_new(static_cast<const gchar *>(data), GTK_WINDOW(gtk_widget_get_toplevel(widget)));
-	gtk_font_chooser_set_font(GTK_FONT_CHOOSER(dialog), option);
+	gtk_font_chooser_set_font(GTK_FONT_CHOOSER(dialog), static_cast<const gchar *>(option));
 
 	if (gtk_dialog_run(GTK_DIALOG(dialog)) != GTK_RESPONSE_CANCEL)
 		{
@@ -400,7 +400,7 @@ static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 	hbox = pref_box_new(subgroup, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
 
 	button = pref_button_new(NULL, GTK_STOCK_SELECT_FONT, _("Font"), FALSE,
-				 G_CALLBACK(print_set_font_cb), "Image text font");
+				 G_CALLBACK(print_set_font_cb), (gpointer)"Image text font");
 
 	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
@@ -454,7 +454,7 @@ static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 	hbox = pref_box_new(subgroup, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
 
 	button = pref_button_new(NULL, GTK_STOCK_SELECT_FONT, _("Font"), FALSE,
-				 G_CALLBACK(print_set_font_cb), "Page text font");
+				 G_CALLBACK(print_set_font_cb), (gpointer)"Page text font");
 
 	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);

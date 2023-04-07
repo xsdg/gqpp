@@ -99,7 +99,7 @@ static OPJ_SIZE_T opj_write_to_buffer (void* p_buffer, OPJ_SIZE_T p_nb_bytes,
             free (p_source_buffer->buf);
         }
 
-        p_source_buffer->buf = pbuf;
+        p_source_buffer->buf = static_cast<OPJ_BYTE *>(pbuf);
         p_source_buffer->cur = (guchar *)pbuf + dist;
         p_source_buffer->len = len;
     }
@@ -311,7 +311,7 @@ static gchar* image_loader_j2k_get_format_name(gpointer UNUSED(loader))
 static gchar** image_loader_j2k_get_format_mime_types(gpointer UNUSED(loader))
 {
 	static const gchar *mime[] = {"image/jp2", NULL};
-	return g_strdupv(mime);
+	return g_strdupv(const_cast<gchar **>(mime));
 }
 
 static gboolean image_loader_j2k_close(gpointer UNUSED(loader), GError **UNUSED(error))

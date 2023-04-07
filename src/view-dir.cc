@@ -548,7 +548,7 @@ static void vd_pop_submenu_dir_view_as_cb(GtkWidget *widget, gpointer data)
 {
 	ViewDir *vd = static_cast<ViewDir *>(data);
 
-	DirViewType new_type = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(widget), "menu_item_radio_data"));
+	DirViewType new_type = static_cast<DirViewType>(GPOINTER_TO_INT((g_object_get_data(G_OBJECT(widget), "menu_item_radio_data"))));
 	layout_views_set(vd->layout, new_type, vd->layout->options.file_view_type);
 }
 
@@ -791,9 +791,9 @@ static void vd_dest_set(ViewDir *vd, gint enable)
 	if (enable)
 		{
 		gtk_drag_dest_set(vd->view,
-				  GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_DROP,
+				  static_cast<GtkDestDefaults>(GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_DROP),
 				  vd_dnd_drop_types, vd_dnd_drop_types_count,
-				  GDK_ACTION_MOVE | GDK_ACTION_COPY);
+				  static_cast<GdkDragAction>(GDK_ACTION_MOVE | GDK_ACTION_COPY));
 		}
 	else
 		{
@@ -1012,7 +1012,7 @@ static gboolean vd_dnd_drop_motion(GtkWidget *UNUSED(widget), GdkDragContext *co
 	if (gtk_drag_get_source_widget(context) == vd->view)
 		{
 		/* from same window */
-		gdk_drag_status(context, 0, time);
+		gdk_drag_status(context, GDK_ACTION_DEFAULT, time);
 		return TRUE;
 		}
 	else
@@ -1044,9 +1044,9 @@ static void vd_dnd_drop_leave(GtkWidget *UNUSED(widget), GdkDragContext *UNUSED(
 
 void vd_dnd_init(ViewDir *vd)
 {
-	gtk_drag_source_set(vd->view, GDK_BUTTON1_MASK | GDK_BUTTON2_MASK,
+	gtk_drag_source_set(vd->view, static_cast<GdkModifierType>(GDK_BUTTON1_MASK | GDK_BUTTON2_MASK),
 			    dnd_file_drag_types, dnd_file_drag_types_count,
-			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_ASK);
+			    static_cast<GdkDragAction>(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_ASK));
 	g_signal_connect(G_OBJECT(vd->view), "drag_data_get",
 			 G_CALLBACK(vd_dnd_get), vd);
 	g_signal_connect(G_OBJECT(vd->view), "drag_begin",

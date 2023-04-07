@@ -143,7 +143,7 @@ static gchar* image_loader_heif_get_format_name(gpointer UNUSED(loader))
 static gchar** image_loader_heif_get_format_mime_types(gpointer UNUSED(loader))
 {
 	static const gchar *mime[] = {"image/heic", NULL};
-	return g_strdupv(mime);
+	return g_strdupv(const_cast<gchar **>(mime));
 }
 
 static void image_loader_heif_set_page_num(gpointer loader, gint page_num)

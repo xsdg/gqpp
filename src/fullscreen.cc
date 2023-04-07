@@ -270,7 +270,7 @@ FullScreenData *fullscreen_start(GtkWidget *window, ImageWindow *imd,
 	geometry.base_height = h;
 	geometry.win_gravity = GDK_GRAVITY_STATIC;
 	gtk_window_set_geometry_hints(GTK_WINDOW(fs->window), fs->window, &geometry,
-			GDK_HINT_WIN_GRAVITY | GDK_HINT_USER_POS | GDK_HINT_USER_SIZE);
+			static_cast<GdkWindowHints>(GDK_HINT_WIN_GRAVITY | GDK_HINT_USER_POS | GDK_HINT_USER_SIZE));
 
 	gtk_widget_realize(fs->window);
 

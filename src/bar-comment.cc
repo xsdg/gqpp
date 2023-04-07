@@ -73,7 +73,7 @@ static void bar_pane_comment_update(PaneCommentData *pcd)
 {
 	gchar *comment = NULL;
 	gchar *orig_comment = NULL;
-	gchar *comment_not_null;
+	const gchar *comment_not_null;
 	gshort rating;
 	GtkTextBuffer *comment_buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(pcd->comment_view));
 

@@ -259,7 +259,7 @@ static FileData *vficon_find_data(ViewFile *vf, gint row, gint col, GtkTreeIter 
 
 		if (iter) *iter = p;
 
-		return g_list_nth_data(list, col);
+		return static_cast<FileData *>(g_list_nth_data(list, col));
 		}
 
 	return NULL;
@@ -288,7 +288,7 @@ static FileData *vficon_find_data_by_coord(ViewFile *vf, gint x, gint y, GtkTree
 		if (list)
 			{
 			if (iter) *iter = row;
-			return g_list_nth_data(list, n);
+			return static_cast<FileData *>(g_list_nth_data(list, n));
 			}
 		}
 
@@ -540,12 +540,12 @@ static void vficon_dnd_end(GtkWidget *UNUSED(widget), GdkDragContext *context, g
 
 void vficon_dnd_init(ViewFile *vf)
 {
-	gtk_drag_source_set(vf->listview, GDK_BUTTON1_MASK | GDK_BUTTON2_MASK,
+	gtk_drag_source_set(vf->listview, static_cast<GdkModifierType>(GDK_BUTTON1_MASK | GDK_BUTTON2_MASK),
 			    dnd_file_drag_types, dnd_file_drag_types_count,
-			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			    static_cast<GdkDragAction>(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 	gtk_drag_dest_set(vf->listview, GTK_DEST_DEFAULT_ALL,
 			    dnd_file_drag_types, dnd_file_drag_types_count,
-			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			    static_cast<GdkDragAction>(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 
 	g_signal_connect(G_OBJECT(vf->listview), "drag_data_get",
 			 G_CALLBACK(vficon_dnd_get), vf);
@@ -595,14 +595,14 @@ static void vficon_selection_add(ViewFile *vf, FileData *fd, SelectionType mask,
 {
 	if (!fd) return;
 
-	vficon_selection_set(vf, fd, fd->selected | mask, iter);
+	vficon_selection_set(vf, fd, static_cast<SelectionType>(fd->selected | mask), iter);
 }
 
 static void vficon_selection_remove(ViewFile *vf, FileData *fd, SelectionType mask, GtkTreeIter *iter)
 {
 	if (!fd) return;
 
-	vficon_selection_set(vf, fd, fd->selected & ~mask, iter);
+	vficon_selection_set(vf, fd, static_cast<SelectionType>(fd->selected & ~mask), iter);
 }
 
 void vficon_marks_set(ViewFile *vf, gint UNUSED(enable))
@@ -2085,7 +2085,7 @@ static void vficon_cell_data_cb(GtkTreeViewColumn *UNUSED(tree_column), GtkCellR
 		GdkColor color_bg;
 		GtkStyle *style;
 		gchar *name_sidecars = NULL;
-		gchar *link;
+		const gchar *link;
 		GtkStateType state = GTK_STATE_NORMAL;
 
 		g_assert(fd->magick == FD_MAGICK);
@@ -2119,7 +2119,7 @@ static void vficon_cell_data_cb(GtkTreeViewColumn *UNUSED(tree_column), GtkCellR
 			}
 		else
 			{
-			gchar *disabled_grouping = fd->disable_grouping ? _(" [NO GROUPING]") : "";
+			const gchar *disabled_grouping = fd->disable_grouping ? _(" [NO GROUPING]") : "";
 			if (options->show_star_rating && VFICON(vf)->show_text)
 				{
 				name_sidecars = g_strdup_printf("%s%s%s\n%s", link, fd->name, disabled_grouping, star_rating);
@@ -2284,7 +2284,7 @@ ViewFile *vficon_new(ViewFile *vf, FileData *UNUSED(dir_fd))
 			 G_CALLBACK(vficon_sized_cb), vf);
 
 	gtk_widget_set_events(vf->listview, GDK_POINTER_MOTION_MASK | GDK_BUTTON_RELEASE_MASK |
-			      GDK_BUTTON_PRESS_MASK | GDK_LEAVE_NOTIFY_MASK);
+			      static_cast<GdkEventMask>(GDK_BUTTON_PRESS_MASK | GDK_LEAVE_NOTIFY_MASK));
 
 	g_signal_connect(G_OBJECT(vf->listview),"motion_notify_event",
 			 G_CALLBACK(vficon_motion_cb), vf);

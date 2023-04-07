@@ -1162,7 +1162,7 @@ static void view_alter_cb(GtkWidget *widget, gpointer data)
 	AlterType type;
 
 	vw = static_cast<ViewWindow *>(submenu_item_get_data(widget));
-	type = GPOINTER_TO_INT(data);
+	type = static_cast<AlterType>(GPOINTER_TO_INT(data));
 
 	if (!vw) return;
 	image_alter_orientation(vw->imd, vw->imd->image_fd, type);
@@ -1652,7 +1652,7 @@ static void view_window_get_dnd_data(GtkWidget *UNUSED(widget), GdkDragContext *
 
 				if (source && info_list)
 					{
-					image_change_from_collection(imd, source, info_list->data, image_zoom_get_default(imd));
+					image_change_from_collection(imd, source, static_cast<CollectInfo *>(info_list->data), image_zoom_get_default(imd));
 					}
 				else
 					{
@@ -1704,14 +1704,14 @@ static void view_window_dnd_init(ViewWindow *vw)
 
 	gtk_drag_source_set(imd->pr, GDK_BUTTON2_MASK,
 			    dnd_file_drag_types, dnd_file_drag_types_count,
-			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			    static_cast<GdkDragAction>(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 	g_signal_connect(G_OBJECT(imd->pr), "drag_data_get",
 			 G_CALLBACK(view_window_set_dnd_data), vw);
 
 	gtk_drag_dest_set(imd->pr,
-			  GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_DROP,
+			  static_cast<GtkDestDefaults>(GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_DROP),
 			  dnd_file_drop_types, dnd_file_drop_types_count,
-			  GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			  static_cast<GdkDragAction>(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 	g_signal_connect(G_OBJECT(imd->pr), "drag_data_received",
 			 G_CALLBACK(view_window_get_dnd_data), vw);
 }

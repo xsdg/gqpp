@@ -175,7 +175,7 @@ void pan_filter_activate_cb(const gchar *text, gpointer data)
 	if (g_strcmp0(text, g_regex_escape_string(text, -1)))
 		{
 		// It's an actual regex, so compile
-		element->kw_regex = g_regex_new(text, G_REGEX_ANCHORED | G_REGEX_OPTIMIZE, G_REGEX_MATCH_ANCHORED, NULL);
+		element->kw_regex = g_regex_new(text, static_cast<GRegexCompileFlags>(G_REGEX_ANCHORED | G_REGEX_OPTIMIZE), G_REGEX_MATCH_ANCHORED, NULL);
 		}
 	ui->filter_elements = g_list_append(ui->filter_elements, element);
 
@@ -308,7 +308,7 @@ static gboolean pan_view_list_contains_kw_pattern(GList *haystack, PanViewFilter
 			{
 			gchar *keyword = static_cast<gchar *>(work->data);
 			work = work->next;
-			if (g_regex_match(filter->kw_regex, keyword, 0x0, NULL))
+			if (g_regex_match(filter->kw_regex, keyword, G_REGEX_MATCH_DEFAULT, NULL))
 				{
 				if (found_kw) *found_kw = keyword;
 				return TRUE;

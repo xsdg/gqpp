@@ -271,7 +271,7 @@ static gboolean collection_load_private(CollectionData *cd, const gchar *path, C
 
 gboolean collection_load(CollectionData *cd, const gchar *path, CollectionLoadFlags flags)
 {
-	if (collection_load_private(cd, path, flags | COLLECTION_LOAD_FLUSH))
+	if (collection_load_private(cd, path, static_cast<CollectionLoadFlags>(flags | COLLECTION_LOAD_FLUSH)))
 		{
 		layout_recent_add_path(cd->path);
 		return TRUE;

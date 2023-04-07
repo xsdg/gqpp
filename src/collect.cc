@@ -548,7 +548,7 @@ gint collection_to_number(CollectionData *cd)
 
 CollectionData *collection_from_number(gint n)
 {
-	return g_list_nth_data(collection_list, n);
+	return static_cast<CollectionData *>(g_list_nth_data(collection_list, n));
 }
 
 CollectionData *collection_from_dnd_data(const gchar *data, GList **list, GList **info_list)
@@ -631,7 +631,7 @@ gchar *collection_info_list_to_dnd_data(CollectionData *cd, GList *list, gint *l
 
 	*length += 1; /* ending nul char */
 
-	uri_text = g_malloc(*length);
+	uri_text = static_cast<gchar *>(g_malloc(*length));
 	ptr = uri_text;
 
 	work = g_list_last(temp);
@@ -669,7 +669,7 @@ CollectInfo *collection_next_by_info(CollectionData *cd, CollectInfo *info)
 
 	if (!work) return NULL;
 	work = work->next;
-	if (work) return work->data;
+	if (work) return static_cast<CollectInfo *>(work->data);
 	return NULL;
 }
 
@@ -681,13 +681,13 @@ CollectInfo *collection_prev_by_info(CollectionData *cd, CollectInfo *info)
 
 	if (!work) return NULL;
 	work = work->prev;
-	if (work) return work->data;
+	if (work) return static_cast<CollectInfo *>(work->data);
 	return NULL;
 }
 
 CollectInfo *collection_get_first(CollectionData *cd)
 {
-	if (cd->list) return cd->list->data;
+	if (cd->list) return static_cast<CollectInfo *>(cd->list->data);
 
 	return NULL;
 }
@@ -698,7 +698,7 @@ CollectInfo *collection_get_last(CollectionData *cd)
 
 	list = g_list_last(cd->list);
 
-	if (list) return list->data;
+	if (list) return static_cast<CollectInfo *>(list->data);
 
 	return NULL;
 }
@@ -741,7 +741,7 @@ static CollectInfo *collection_info_new_if_not_exists(CollectionData *cd, struct
 	if (g_hash_table_lookup(cd->existence, fd->path)) return NULL;
 
 	ci = collection_info_new(fd, st, NULL);
-	if (ci) g_hash_table_insert(cd->existence, fd->path, "");
+	if (ci) g_hash_table_insert(cd->existence, fd->path, g_strdup(""));
 	return ci;
 }
 
@@ -1342,7 +1342,7 @@ CollectWindow *collection_window_new(const gchar *path)
 	geometry.base_width = COLLECT_DEF_WIDTH;
 	geometry.base_height = COLLECT_DEF_HEIGHT;
 	gtk_window_set_geometry_hints(GTK_WINDOW(cw->window), NULL, &geometry,
-				      GDK_HINT_MIN_SIZE | GDK_HINT_BASE_SIZE);
+				      static_cast<GdkWindowHints>(GDK_HINT_MIN_SIZE | GDK_HINT_BASE_SIZE));
 
 	if (options->collections_on_top)
 		{

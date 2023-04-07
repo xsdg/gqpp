@@ -80,7 +80,7 @@ static gboolean image_loader_zxscr_load(gpointer loader, const guchar *buf, gsiz
 	width = 256;
 	height = 192;
 
-	pixels = g_try_malloc(width * height * 3);
+	pixels = static_cast<guint8 *>(g_try_malloc(width * height * 3));
 
 	if (!pixels)
 		{
@@ -175,7 +175,7 @@ static gchar *image_loader_zxscr_get_format_name(gpointer UNUSED(loader))
 static gchar **image_loader_zxscr_get_format_mime_types(gpointer UNUSED(loader))
 {
 	static const gchar *mime[] = {"application/octet-stream", NULL};
-	return g_strdupv(mime);
+	return g_strdupv(const_cast<gchar **>(mime));
 }
 
 static gboolean image_loader_zxscr_close(gpointer UNUSED(loader), GError **UNUSED(error))

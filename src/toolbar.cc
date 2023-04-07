@@ -206,7 +206,7 @@ static void toolbar_item_move_bottom_cb(GtkWidget *widget, gpointer data)
 
 static void toolbar_item_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 {
-	gtk_widget_destroy(data);
+	gtk_widget_destroy(GTK_WIDGET(data));
 }
 
 static void toolbar_menu_popup(GtkWidget *widget)
@@ -261,9 +261,9 @@ static void toolbar_item_free(ToolbarButtonData *tbbd)
 {
 	if (!tbbd) return;
 
-	g_free(tbbd->name);
-	g_free(tbbd->stock_id);
-	g_free(tbbd);
+	g_free((gpointer)tbbd->name);
+	g_free((gpointer)tbbd->stock_id);
+	g_free((gpointer)tbbd);
 }
 
 static void toolbar_button_free(GtkWidget *widget)

@@ -841,7 +841,7 @@ static void layout_menu_split_cb(GtkRadioAction *action, GtkRadioAction *UNUSED(
 	ImageSplitMode mode;
 
 	layout_exit_fullscreen(lw);
-	mode = gtk_radio_action_get_current_value(action);
+	mode = static_cast<ImageSplitMode>(gtk_radio_action_get_current_value(action));
 	layout_split_change(lw, mode);
 }
 
@@ -944,7 +944,7 @@ static void layout_menu_overlay_cb(GtkToggleAction *action, gpointer data)
 		OsdShowFlags flags = image_osd_get(lw->image);
 
 		if ((flags | OSD_SHOW_INFO | OSD_SHOW_STATUS) != flags)
-			image_osd_set(lw->image, flags | OSD_SHOW_INFO | OSD_SHOW_STATUS);
+			image_osd_set(lw->image, static_cast<OsdShowFlags>(flags | OSD_SHOW_INFO | OSD_SHOW_STATUS));
 		}
 	else
 		{
@@ -961,14 +961,14 @@ static void layout_menu_histogram_cb(GtkToggleAction *action, gpointer data)
 
 	if (gtk_toggle_action_get_active(action))
 		{
-		image_osd_set(lw->image, OSD_SHOW_INFO | OSD_SHOW_STATUS | OSD_SHOW_HISTOGRAM);
+		image_osd_set(lw->image, static_cast<OsdShowFlags>(OSD_SHOW_INFO | OSD_SHOW_STATUS | OSD_SHOW_HISTOGRAM));
 		layout_util_sync_views(lw); /* show the overlay state, default channel and mode in the menu */
 		}
 	else
 		{
 		OsdShowFlags flags = image_osd_get(lw->image);
 		if (flags & OSD_SHOW_HISTOGRAM)
-			image_osd_set(lw->image, flags & ~OSD_SHOW_HISTOGRAM);
+			image_osd_set(lw->image, static_cast<OsdShowFlags>(flags & ~OSD_SHOW_HISTOGRAM));
 		}
 }
 
@@ -1293,7 +1293,8 @@ static void layout_menu_kbd_map_cb(GtkAction *UNUSED(action), gpointer UNUSED(da
 	GError *error = NULL;
 	GIOChannel *channel;
 	char **pre_key, **post_key;
-	char *key_name, *converted_line;
+	const char *key_name;
+	char *converted_line;
 	int keymap_index;
 	guint index;
 
@@ -1323,9 +1324,9 @@ static void layout_menu_kbd_map_cb(GtkAction *UNUSED(action), gpointer UNUSED(da
 				key_name = " ";
 				for (index=0; index < array->len-2; index=index+2)
 					{
-					if (!(g_ascii_strcasecmp(g_ptr_array_index(array,index+1), post_key[0])))
+					if (!(g_ascii_strcasecmp(static_cast<const gchar *>(g_ptr_array_index(array,index+1)), post_key[0])))
 						{
-						key_name = g_ptr_array_index(array,index+0);
+						key_name = static_cast<const gchar *>(g_ptr_array_index(array,index+0));
 						break;
 						}
 					}
@@ -3276,8 +3277,8 @@ void layout_actions_setup(LayoutWindow *lw)
 	DEBUG_1("%s layout_actions_setup: add toolbar", get_exec_time());
 	for (i = 0; i < TOOLBAR_COUNT; i++)
 		{
-		layout_toolbar_clear(lw, i);
-		layout_toolbar_add_default(lw, i);
+		layout_toolbar_clear(lw, static_cast<ToolbarType>(i));
+		layout_toolbar_add_default(lw, static_cast<ToolbarType>(i));
 		}
 
 	DEBUG_1("%s layout_actions_setup: marks", get_exec_time());
@@ -3306,7 +3307,7 @@ static gboolean layout_editors_reload_idle_cb(gpointer UNUSED(data))
 		return TRUE;
 		}
 
-	editor_read_desktop_file(layout_editors_desktop_files->data);
+	editor_read_desktop_file(static_cast<const gchar *>(layout_editors_desktop_files->data));
 	g_free(layout_editors_desktop_files->data);
 	layout_editors_desktop_files = g_list_delete_link(layout_editors_desktop_files, layout_editors_desktop_files);
 

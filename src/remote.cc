@@ -187,7 +187,7 @@ static void remote_server_client_add(RemoteConnection *rc, gint fd)
 	client->fd = fd;
 
 	channel = g_io_channel_unix_new(fd);
-	client->channel_id = g_io_add_watch_full(channel, G_PRIORITY_DEFAULT, G_IO_IN | G_IO_HUP,
+	client->channel_id = g_io_add_watch_full(channel, G_PRIORITY_DEFAULT, static_cast<GIOCondition>(G_IO_IN | G_IO_HUP),
 						 remote_server_client_cb, client, NULL);
 	g_io_channel_unref(channel);
 
@@ -463,7 +463,7 @@ static void gr_new_window(const gchar *UNUSED(text), GIOChannel *UNUSED(channel)
 	layout_set_path(lw_id, pwd);
 }
 
-static gboolean gr_close_window_cb()
+static gboolean gr_close_window_cb(gpointer UNUSED(data))
 {
 	if (!layout_valid(&lw_id)) return FALSE;
 
@@ -474,7 +474,7 @@ static gboolean gr_close_window_cb()
 
 static void gr_close_window(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
 {
-	g_idle_add(gr_close_window_cb, NULL);
+	g_idle_add((gr_close_window_cb), NULL);
 }
 
 static void gr_image_prev(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
@@ -922,7 +922,7 @@ static void get_filelist(const gchar *text, GIOChannel *channel, gboolean recurs
 	file_data_unref(dir_fd);
 }
 
-static void gr_get_selection(const gchar *UNUSED(text), GIOChannel *channel, gboolean UNUSED(data))
+static void gr_get_selection(const gchar *UNUSED(text), GIOChannel *channel, gpointer UNUSED(data))
 {
 	if (!layout_valid(&lw_id)) return;
 

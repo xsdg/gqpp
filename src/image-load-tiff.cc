@@ -360,7 +360,7 @@ static gchar* image_loader_tiff_get_format_name(gpointer UNUSED(loader))
 static gchar** image_loader_tiff_get_format_mime_types(gpointer UNUSED(loader))
 {
 	static const gchar *mime[] = {"image/tiff", NULL};
-	return g_strdupv(mime);
+	return g_strdupv(const_cast<gchar **>(mime));
 }
 
 static gboolean image_loader_tiff_close(gpointer UNUSED(loader), GError **UNUSED(error))

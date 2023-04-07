@@ -287,12 +287,12 @@ static void vflist_drag_data_received(GtkWidget *UNUSED(entry_widget), GdkDragCo
 
 void vflist_dnd_init(ViewFile *vf)
 {
-	gtk_drag_source_set(vf->listview, GDK_BUTTON1_MASK | GDK_BUTTON2_MASK,
+	gtk_drag_source_set(vf->listview, static_cast<GdkModifierType>(GDK_BUTTON1_MASK | GDK_BUTTON2_MASK),
 			    dnd_file_drag_types, dnd_file_drag_types_count,
-			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			    static_cast<GdkDragAction>(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 	gtk_drag_dest_set(vf->listview, GTK_DEST_DEFAULT_ALL,
 			    dnd_file_drag_types, dnd_file_drag_types_count,
-			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			    static_cast<GdkDragAction>(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 
 	g_signal_connect(G_OBJECT(vf->listview), "drag_data_get",
 			 G_CALLBACK(vflist_dnd_get), vf);
@@ -877,7 +877,7 @@ static void vflist_setup_iter(ViewFile *vf, GtkTreeStore *store, GtkTreeIter *it
 	gchar *sidecars = NULL;
 	gchar *name;
 	const gchar *time = text_from_time(fd->date);
-	gchar *link = islink(fd->path) ? GQ_LINK_STR : "";
+	const gchar *link = islink(fd->path) ? GQ_LINK_STR : "";
 	const gchar *disabled_grouping;
 	gchar *formatted;
 	gchar *formatted_with_stars;
@@ -1066,7 +1066,7 @@ static void vflist_setup_iter_recursive(ViewFile *vf, GtkTreeStore *store, GtkTr
 		{
 		gint i;
 		gint num_total = num_prepended + num_ordered;
-		gint *new_order = g_malloc(num_total * sizeof(gint));
+		gint *new_order = static_cast<gint *>(g_malloc(num_total * sizeof(gint)));
 
 		for (i = 0; i < num_total; i++)
 			{
@@ -1107,7 +1107,7 @@ void vflist_sort_set(ViewFile *vf, SortType type, gboolean ascend)
 
 	vf->list = filelist_sort(vf->list, vf->sort_method, vf->sort_ascend);
 
-	new_order = g_malloc(i * sizeof(gint));
+	new_order = static_cast<gint *>(g_malloc(i * sizeof(gint)));
 
 	work = vf->list;
 	i = 0;
@@ -1888,7 +1888,7 @@ static void vflist_populate_view(ViewFile *vf, gboolean force)
 	if (selected && vflist_selection_count(vf, NULL) == 0)
 		{
 		/* all selected files disappeared */
-		vflist_select_closest(vf, selected->data);
+		vflist_select_closest(vf, static_cast<FileData *>(selected->data));
 		}
 
 	filelist_free(selected);

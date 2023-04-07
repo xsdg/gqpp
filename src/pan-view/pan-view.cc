@@ -653,8 +653,8 @@ static gboolean pan_cache_step(PanWindow *pw)
 	cache_loader_free(pw->cache_cl);
 
 	load_mask = CACHE_LOADER_NONE;
-	if (pw->size > PAN_IMAGE_SIZE_THUMB_LARGE) load_mask |= CACHE_LOADER_DIMENSIONS;
-	if (pw->exif_date_enable) load_mask |= CACHE_LOADER_DATE;
+	if (pw->size > PAN_IMAGE_SIZE_THUMB_LARGE) load_mask = static_cast<CacheDataType>(load_mask | CACHE_LOADER_DIMENSIONS);
+	if (pw->exif_date_enable) load_mask = static_cast<CacheDataType>(load_mask | CACHE_LOADER_DATE);
 	pw->cache_cl = cache_loader_new(pc->fd, load_mask,
 					pan_cache_step_done_cb, pw);
 	return (pw->cache_cl == NULL);
@@ -1755,7 +1755,7 @@ static void pan_window_layout_change_cb(GtkWidget *combo, gpointer data)
 {
 	PanWindow *pw = (PanWindow *)data;
 
-	pw->layout = gtk_combo_box_get_active(GTK_COMBO_BOX(combo));
+	pw->layout = static_cast<PanLayoutType>(gtk_combo_box_get_active(GTK_COMBO_BOX(combo)));
 	pan_layout_update(pw);
 }
 
@@ -1763,7 +1763,7 @@ static void pan_window_layout_size_cb(GtkWidget *combo, gpointer data)
 {
 	PanWindow *pw = (PanWindow *)data;
 
-	pw->size = gtk_combo_box_get_active(GTK_COMBO_BOX(combo));
+	pw->size = static_cast<PanImageSize>(gtk_combo_box_get_active(GTK_COMBO_BOX(combo)));
 	pan_layout_update(pw);
 }
 
@@ -1938,7 +1938,7 @@ static void pan_window_new_real(FileData *dir_fd)
 			 G_CALLBACK(pan_window_image_scroll_notify_cb), pw);
 
 	gtk_table_attach(GTK_TABLE(table), pw->imd->widget, 0, 1, 0, 1,
-			 GTK_FILL | GTK_EXPAND, GTK_FILL | GTK_EXPAND, 0, 0);
+			 static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), 0, 0);
 	gtk_widget_show(GTK_WIDGET(pw->imd->widget));
 
 	pan_window_dnd_init(pw);
@@ -1949,14 +1949,14 @@ static void pan_window_new_real(FileData *dir_fd)
 	g_signal_connect(G_OBJECT(pw->scrollbar_h), "value_changed",
 			 G_CALLBACK(pan_window_scrollbar_h_value_cb), pw);
 	gtk_table_attach(GTK_TABLE(table), pw->scrollbar_h, 0, 1, 1, 2,
-			 GTK_FILL | GTK_EXPAND, 0, 0, 0);
+			 static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), static_cast<GtkAttachOptions>(0), 0, 0);
 	gtk_widget_show(pw->scrollbar_h);
 
 	pw->scrollbar_v = gtk_vscrollbar_new(NULL);
 	g_signal_connect(G_OBJECT(pw->scrollbar_v), "value_changed",
 			 G_CALLBACK(pan_window_scrollbar_v_value_cb), pw);
 	gtk_table_attach(GTK_TABLE(table), pw->scrollbar_v, 1, 2, 0, 1,
-			 0, GTK_FILL | GTK_EXPAND, 0, 0);
+			 static_cast<GtkAttachOptions>(0), static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), 0, 0);
 	gtk_widget_show(pw->scrollbar_v);
 
 	/* find bar */
@@ -2531,14 +2531,14 @@ static void pan_window_dnd_init(PanWindow *pw)
 
 	gtk_drag_source_set(widget, GDK_BUTTON2_MASK,
 			    dnd_file_drag_types, dnd_file_drag_types_count,
-			    GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			    static_cast<GdkDragAction>(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 	g_signal_connect(G_OBJECT(widget), "drag_data_get",
 			 G_CALLBACK(pan_window_set_dnd_data), pw);
 
 	gtk_drag_dest_set(widget,
-			  GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_DROP,
+			  static_cast<GtkDestDefaults>(GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_DROP),
 			  dnd_file_drop_types, dnd_file_drop_types_count,
-			  GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK);
+			  static_cast<GdkDragAction>(GDK_ACTION_COPY | GDK_ACTION_MOVE | GDK_ACTION_LINK));
 	g_signal_connect(G_OBJECT(widget), "drag_data_received",
 			 G_CALLBACK(pan_window_get_dnd_data), pw);
 }

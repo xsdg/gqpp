@@ -84,8 +84,8 @@ static gboolean cache_loader_phase2_process(CacheLoader *cl)
 				cache_sim_data_set_similarity(cl->cd, sim);
 				image_sim_free(sim);
 
-				cl->todo_mask &= ~CACHE_LOADER_SIMILARITY;
-				cl->done_mask |= CACHE_LOADER_SIMILARITY;
+				cl->todo_mask = static_cast<CacheDataType>(cl->todo_mask & ~CACHE_LOADER_SIMILARITY);
+				cl->done_mask = static_cast<CacheDataType>(cl->done_mask | CACHE_LOADER_SIMILARITY);
 				}
 
 			/* we have the dimensions via pixbuf */
@@ -95,8 +95,8 @@ static gboolean cache_loader_phase2_process(CacheLoader *cl)
 								      gdk_pixbuf_get_height(pixbuf));
 				if (cl->todo_mask & CACHE_LOADER_DIMENSIONS)
 					{
-					cl->todo_mask &= ~CACHE_LOADER_DIMENSIONS;
-					cl->done_mask |= CACHE_LOADER_DIMENSIONS;
+					cl->todo_mask = static_cast<CacheDataType>(cl->todo_mask & ~CACHE_LOADER_DIMENSIONS);
+					cl->done_mask = static_cast<CacheDataType>(cl->done_mask | CACHE_LOADER_DIMENSIONS);
 					}
 				}
 			}
@@ -104,7 +104,7 @@ static gboolean cache_loader_phase2_process(CacheLoader *cl)
 		image_loader_free(cl->il);
 		cl->il = NULL;
 
-		cl->todo_mask &= ~CACHE_LOADER_SIMILARITY;
+		cl->todo_mask = static_cast<CacheDataType>(cl->todo_mask & ~CACHE_LOADER_SIMILARITY);
 		}
 	else if (cl->todo_mask & CACHE_LOADER_DIMENSIONS &&
 		 !cl->cd->dimensions)
@@ -113,14 +113,14 @@ static gboolean cache_loader_phase2_process(CacheLoader *cl)
 		    image_load_dimensions(cl->fd, &cl->cd->width, &cl->cd->height))
 			{
 			cl->cd->dimensions = TRUE;
-			cl->done_mask |= CACHE_LOADER_DIMENSIONS;
+			cl->done_mask = static_cast<CacheDataType>(cl->done_mask | CACHE_LOADER_DIMENSIONS);
 			}
 		else
 			{
 			cl->error = TRUE;
 			}
 
-		cl->todo_mask &= ~CACHE_LOADER_DIMENSIONS;
+		cl->todo_mask = static_cast<CacheDataType>(cl->todo_mask & ~CACHE_LOADER_DIMENSIONS);
 		}
 	else if (cl->todo_mask & CACHE_LOADER_MD5SUM &&
 		 !cl->cd->have_md5sum)
@@ -128,14 +128,14 @@ static gboolean cache_loader_phase2_process(CacheLoader *cl)
 		if (md5_get_digest_from_file_utf8(cl->fd->path, cl->cd->md5sum))
 			{
 			cl->cd->have_md5sum = TRUE;
-			cl->done_mask |= CACHE_LOADER_MD5SUM;
+			cl->done_mask = static_cast<CacheDataType>(cl->done_mask | CACHE_LOADER_MD5SUM);
 			}
 		else
 			{
 			cl->error = TRUE;
 			}
 
-		cl->todo_mask &= ~CACHE_LOADER_MD5SUM;
+		cl->todo_mask = static_cast<CacheDataType>(cl->todo_mask & ~CACHE_LOADER_MD5SUM);
 		}
 	else if (cl->todo_mask & CACHE_LOADER_DATE &&
 		 !cl->cd->have_date)
@@ -164,8 +164,8 @@ static gboolean cache_loader_phase2_process(CacheLoader *cl)
 		cl->cd->date = date;
 		cl->cd->have_date = TRUE;
 
-		cl->done_mask |= CACHE_LOADER_DATE;
-		cl->todo_mask &= ~CACHE_LOADER_DATE;
+		cl->done_mask = static_cast<CacheDataType>(cl->done_mask | CACHE_LOADER_DATE);
+		cl->todo_mask = static_cast<CacheDataType>(cl->todo_mask & ~CACHE_LOADER_DATE);
 		}
 	else
 		{

@@ -127,7 +127,7 @@ static uint8_t *JxlMemoryToPixels(const uint8_t *next_in, size_t size, size_t *s
         break;
       }
       size_t pixels_buffer_size = buffer_size * sizeof(uint8_t);
-      pixels = malloc(pixels_buffer_size);
+      pixels = static_cast<uint8_t *>(malloc(pixels_buffer_size));
       void *pixels_buffer = (void *)pixels;
       if (JXL_DEC_SUCCESS != JxlDecoderSetImageOutBuffer(dec, &format,
                                                          pixels_buffer,
@@ -212,7 +212,7 @@ static gchar* image_loader_jpegxl_get_format_name(gpointer loader)
 static gchar** image_loader_jpegxl_get_format_mime_types(gpointer loader)
 {
 	static const gchar *mime[] = {"image/jxl", NULL};
-	return g_strdupv(mime);
+	return g_strdupv(const_cast<gchar **>(mime));
 }
 
 static gboolean image_loader_jpegxl_close(gpointer loader, GError **error)

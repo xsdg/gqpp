@@ -514,7 +514,7 @@ void read_exif_time_data(FileData *file)
 			struct tm time_str;
 			uint year, month, day, hour, min, sec;
 
-			sscanf(tmp, "%4d:%2d:%2d %2d:%2d:%2d", &year, &month, &day, &hour, &min, &sec);
+			sscanf(tmp, "%4u:%2u:%2u %2u:%2u:%2u", &year, &month, &day, &hour, &min, &sec);
 			time_str.tm_year  = year - 1900;
 			time_str.tm_mon   = month - 1;
 			time_str.tm_mday  = day;
@@ -552,7 +552,7 @@ void read_exif_time_digitized_data(FileData *file)
 			struct tm time_str;
 			uint year, month, day, hour, min, sec;
 
-			sscanf(tmp, "%4d:%2d:%2d %2d:%2d:%2d", &year, &month, &day, &hour, &min, &sec);
+			sscanf(tmp, "%4u:%2u:%2u %2u:%2u:%2u", &year, &month, &day, &hour, &min, &sec);
 			time_str.tm_year  = year - 1900;
 			time_str.tm_mon   = month - 1;
 			time_str.tm_mday  = day;
@@ -1215,7 +1215,7 @@ gint filelist_sort_compare_filedata_full(FileData *fa, FileData *fb, SortType me
 
 static gint filelist_sort_file_cb(gpointer a, gpointer b)
 {
-	return filelist_sort_compare_filedata(a, b);
+	return filelist_sort_compare_filedata(static_cast<FileData *>(a), static_cast<FileData *>(b));
 }
 
 GList *filelist_sort_full(GList *list, SortType method, gboolean ascend, GCompareFunc cb)
@@ -1895,7 +1895,7 @@ GList *file_data_filter_marks_list(GList *list, guint filter)
 
 gboolean file_data_filter_file_filter(FileData *fd, GRegex *filter)
 {
-	return g_regex_match(filter, fd->name, 0, NULL);
+	return g_regex_match(filter, fd->name, G_REGEX_MATCH_DEFAULT, NULL);
 }
 
 GList *file_data_filter_file_filter_list(GList *list, GRegex *filter)

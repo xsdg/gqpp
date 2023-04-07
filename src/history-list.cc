@@ -48,7 +48,7 @@ const gchar *history_chain_back()
 
 	chain_index = chain_index > 0 ? chain_index - 1 : 0;
 
-	return g_list_nth_data(history_chain, chain_index);
+	return static_cast<const gchar *>(g_list_nth_data(history_chain, chain_index));
 }
 
 const gchar *history_chain_forward()
@@ -58,7 +58,7 @@ const gchar *history_chain_forward()
 
 	chain_index = chain_index < last ? chain_index + 1 : last;
 
-	return g_list_nth_data(history_chain, chain_index);
+	return static_cast<const gchar *>(g_list_nth_data(history_chain, chain_index));
 }
 
 /**
@@ -83,7 +83,7 @@ void history_chain_append_end(const gchar *path)
 		else
 			{
 			work = g_list_last(history_chain);
-			if (g_strcmp0(work->data , path) != static_cast<const char *>(0))
+			if (g_strcmp0(static_cast<const gchar *>(work->data), path) != 0)
 				{
 				history_chain = g_list_append (history_chain, g_strdup(path));
 				chain_index = g_list_length(history_chain) - 1;
@@ -121,7 +121,7 @@ const gchar *image_chain_back()
 
 	image_chain_index = image_chain_index > 0 ? image_chain_index - 1 : 0;
 
-	return g_list_nth_data(image_chain, image_chain_index);
+	return static_cast<const gchar *>(g_list_nth_data(image_chain, image_chain_index));
 }
 
 const gchar *image_chain_forward()
@@ -131,7 +131,7 @@ const gchar *image_chain_forward()
 
 	image_chain_index = image_chain_index < last ? image_chain_index + 1 : last;
 
-	return g_list_nth_data(image_chain, image_chain_index);
+	return static_cast<const gchar *>(g_list_nth_data(image_chain, image_chain_index));
 }
 
 /**
@@ -158,7 +158,7 @@ void image_chain_append_end(const gchar *path)
 		else
 			{
 			work = g_list_last(image_chain);
-			if (g_strcmp0(work->data , path) != static_cast<const char *>(0))
+			if (g_strcmp0(static_cast<const gchar *>(work->data) , path) != 0)
 				{
 				image_chain = g_list_append(image_chain, g_strdup(path));
 				image_chain_index = g_list_length(image_chain) - 1;
@@ -314,7 +314,7 @@ gboolean history_list_save(const gchar *path)
 			{
 			if ((!(strcmp(hd->key, "path_list") == 0 && list_count > options->open_recent_list_maxsize))
 					&&
-					(!(strcmp(hd->key, "recent") == 0 && (!isfile(work->data))))
+					(!(strcmp(hd->key, "recent") == 0 && (!isfile(static_cast<const gchar *>(work->data)))))
 					&&
 					(!(strcmp(hd->key, "image_list") == 0 && list_count > options->recent_folder_image_list_maxsize)))
 				{
@@ -370,7 +370,7 @@ const gchar *history_list_find_last_path_by_key(const gchar *key)
 	hd = history_list_find_by_key(key);
 	if (!hd || !hd->list) return NULL;
 
-	return hd->list->data;
+	return static_cast<const gchar *>(hd->list->data);
 }
 
 void history_list_free_key(const gchar *key)
@@ -552,13 +552,13 @@ gchar *get_recent_viewed_folder_image(gchar *path)
 
 	while (work)
 		{
-		dirname = static_cast<const gchar *>(g_path_get_dirname(work->data));
+		dirname = g_path_get_dirname(static_cast<const gchar *>(work->data));
 
 		if (g_strcmp0(dirname, path) == 0)
 			{
-			if (isfile(work->data))
+			if (isfile(static_cast<const gchar *>(work->data)))
 				{
-				ret = static_cast<const gchar *>(g_strdup(work->data));
+				ret = g_strdup(static_cast<const gchar *>(work->data));
 				}
 			g_free(dirname);
 			break;
@@ -598,7 +598,7 @@ static void update_recent_viewed_folder_image_list(const gchar *path)
 
 	while (work)
 		{
-		list_dir = static_cast<const gchar *>(g_path_get_dirname(work->data));
+		list_dir = g_path_get_dirname(static_cast<const gchar *>(work->data));
 
 		/* If folder already in list, update and move to start of list */
 		if (g_strcmp0(list_dir, image_dir) == 0)

@@ -250,9 +250,9 @@ static void bar_pane_gps_dnd_init(gpointer data)
 	PaneGPSData *pgd = static_cast<PaneGPSData *>(data);
 
 	gtk_drag_dest_set(pgd->widget,
-			  GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_HIGHLIGHT | GTK_DEST_DEFAULT_DROP,
+			  static_cast<GtkDestDefaults>(GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_HIGHLIGHT | GTK_DEST_DEFAULT_DROP),
 			  bar_pane_gps_drop_types, n_gps_entry_drop_types,
-			  GDK_ACTION_COPY | GDK_ACTION_MOVE);
+			  static_cast<GdkDragAction>(GDK_ACTION_COPY | GDK_ACTION_MOVE));
 	g_signal_connect(G_OBJECT(pgd->widget), "drag_data_received",
 			 G_CALLBACK(bar_pane_gps_dnd_receive), NULL);
 
@@ -306,7 +306,8 @@ static gboolean bar_pane_gps_marker_keypress_cb(GtkWidget *widget, ClutterButton
 	ClutterActor *actor, *direction;
 	ClutterActor *current_image;
 	GString *text;
-	gint height, width, rotate;
+	gint height, width;
+	GdkPixbufRotation rotate;
 	gchar *altitude = NULL;
 	ThumbLoader *tl;
 
