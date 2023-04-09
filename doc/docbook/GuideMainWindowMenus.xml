@@ -1375,6 +1375,17 @@
         <term>
           <menuchoice>
             <guimenu>Split</guimenu>
+            <guimenuitem>Triple</guimenuitem>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Splits main image view in three horizontal panes.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Split</guimenu>
             <guimenuitem>Quad</guimenuitem>
           </menuchoice>
         </term>

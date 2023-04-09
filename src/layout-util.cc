@@ -2652,6 +2652,7 @@ static GtkToggleActionEntry menu_view_dir_toggle_entries[] = {
 static GtkRadioActionEntry menu_split_radio_entries[] = {
   { "SplitHorizontal",	NULL,			N_("_Horizontal"),			"E",			N_("Split panes horizontal."),			SPLIT_HOR },
   { "SplitVertical",	NULL,			N_("_Vertical"),			"U",			N_("Split panes vertical"),				SPLIT_VERT },
+  { "SplitTriple",	NULL,			N_("_Triple"),				NULL,			N_("Split panes triple"),				SPLIT_TRIPLE },
   { "SplitQuad",	NULL,			N_("_Quad"),				NULL,			N_("Split panes quad"),				SPLIT_QUAD },
   { "SplitSingle",	NULL,			N_("_Single"),				"Y",			N_("Single pane"),				SPLIT_NONE }
 };
@@ -2849,6 +2850,7 @@ static const gchar *menu_ui_description =
 "      <menu action='SplitMenu'>"
 "        <menuitem action='SplitHorizontal'/>"
 "        <menuitem action='SplitVertical'/>"
+"        <menuitem action='SplitTriple'/>"
 "        <menuitem action='SplitQuad'/>"
 "        <menuitem action='SplitSingle'/>"
 "        <separator/>"

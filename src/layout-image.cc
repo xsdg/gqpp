@@ -2354,6 +2354,55 @@ GtkWidget *layout_image_setup_split_hv(LayoutWindow *lw, gboolean horizontal)
 
 }
 
+static GtkWidget *layout_image_setup_split_triple(LayoutWindow *lw)
+{
+	GtkWidget *hpaned1;
+	GtkWidget *hpaned2;
+	GtkAllocation allocation;
+	gint i;
+	gint pane_pos;
+
+	lw->split_mode = SPLIT_TRIPLE;
+
+	layout_image_setup_split_common(lw, 3);
+
+	gtk_widget_get_allocation(lw->utility_paned, &allocation);
+
+	hpaned1 = gtk_hpaned_new();
+	DEBUG_NAME(hpaned1);
+	hpaned2 = gtk_hpaned_new();
+	DEBUG_NAME(hpaned2);
+
+	if (lw->bar && gtk_widget_get_visible(lw->bar))
+		{
+		pane_pos = (gtk_paned_get_position(GTK_PANED(lw->utility_paned))) / 3;
+		}
+	else
+		{
+		pane_pos = allocation.width / 3;
+		}
+
+	gtk_paned_set_position(GTK_PANED(hpaned1), pane_pos);
+	gtk_paned_set_position(GTK_PANED(hpaned2), pane_pos);
+
+	gtk_paned_pack1(GTK_PANED(hpaned1), lw->split_images[0]->widget, TRUE, TRUE);
+	gtk_paned_pack1(GTK_PANED(hpaned2), lw->split_images[1]->widget, TRUE, TRUE);
+	gtk_paned_pack2(GTK_PANED(hpaned2), lw->split_images[2]->widget, TRUE, TRUE);
+	gtk_paned_pack2(GTK_PANED(hpaned1), hpaned2, TRUE, TRUE);
+
+	for (i = 0; i < 3; i++)
+		{
+		gtk_widget_show(lw->split_images[i]->widget);
+		}
+
+	gtk_widget_show(hpaned1);
+	gtk_widget_show(hpaned2);
+
+	lw->split_image_widget = hpaned1;
+
+	return lw->split_image_widget;
+}
+
 GtkWidget *layout_image_setup_split_quad(LayoutWindow *lw)
 {
 	GtkWidget *hpaned;
@@ -2401,6 +2450,8 @@ GtkWidget *layout_image_setup_split(LayoutWindow *lw, ImageSplitMode mode)
 			return layout_image_setup_split_hv(lw, TRUE);
 		case SPLIT_VERT:
 			return layout_image_setup_split_hv(lw, FALSE);
+		case SPLIT_TRIPLE:
+			return layout_image_setup_split_triple(lw);
 		case SPLIT_QUAD:
 			return layout_image_setup_split_quad(lw);
 		case SPLIT_NONE:
