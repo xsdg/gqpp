@@ -1,6 +1,7 @@
 # GQView (Indonesian)
 # Copyright (C) 2003 John Ellis
 # This file is distributed under the same license as the PACKAGE package.
+# Translators:
 # Tedi Heriyanto <tedi_h@gmx.net>, 2003.
 #
 msgid ""

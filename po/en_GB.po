@@ -1,6 +1,7 @@
 # Geeqie Britsh English translation
 # Copyright (C) 2018 The Geeqie Team
 # This file is distributed under the same license as the Geeqie package.
+# Translators:
 # Colin Clark <colin.clark@cclark.uk>, 2018-2019.
 #
 msgid ""

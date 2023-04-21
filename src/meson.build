@@ -239,6 +239,7 @@ project_sources += main_sources
 subdir('icons')
 subdir('pan-view')
 subdir('view-file')
+subdir('credits')
 
 gqmarshal = gnome.genmarshal('gq-marshal', prefix : 'gq_marshal', sources : 'gq-marshal.list')
 project_sources += gqmarshal[0]

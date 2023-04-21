@@ -1,7 +1,9 @@
 # Geeqie Triditional Chinese (Big5) translation.
 # Copyright (C) 2000-2001 Free Software Foundation, Inc.
+# Translators:
 # Kam Tik <kamtik@hongkong.com>, 2000.
 # Abel Cheung <deaddog@deaddog.ws>, 2001.
+# S.J. Luo <crystal@mickey.ee.nctu.edu.tw>
 #
 msgid ""
 msgstr ""

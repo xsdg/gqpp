@@ -1,8 +1,10 @@
 # geeqie ja.po.
 # Copyright (C) 2000-2005 Free Software Foundation, Inc.
+# Translators:
 # SATO Satoru <ss@gnome.gr.jp>, 2001
 # Junichi Uekawa <dancer@debian.org>, 2002
 # Takeshi Aihana <aihana@gnome.gr.jp>, 2000-2005.
+#
 # , no-wrap
 #
 msgid ""

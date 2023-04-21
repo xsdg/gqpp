@@ -1,5 +1,6 @@
 # Nederlandse vertaling van Geeqie
 # Copyright (C) 2001-2023 Free Software Foundation, Inc.
+# Translators:
 # Hette J Visser <H.J.Visser@harrie.mine.nu>, 2001.
 # Tino Meinen <a.t.meinen@chello.nl>, 2003, 2004, 2005.
 # Marcel Pol <marcel@timelord.nl>, 2009-2010, 2021, 2023.

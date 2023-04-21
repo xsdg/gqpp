@@ -1,4 +1,6 @@
+# Translators:
 # Nikos Papadopoulos <nikos <231036448@freemail.gr>>, 2016.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"

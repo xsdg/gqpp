@@ -24,6 +24,8 @@
 
 #include "bar-keywords.h"
 #include "cache.h"
+#include "credits.h"
+#include "credits.c"
 #include "editors.h"
 #include "filedata.h"
 #include "filefilter.h"
@@ -4092,18 +4094,27 @@ void show_config_window(LayoutWindow *lw)
 
 void show_about_window(LayoutWindow *lw)
 {
-	GdkPixbuf *pixbuf_logo;
-	GdkPixbuf *pixbuf_icon;
-	gchar *authors[1000];
-	gchar *comment;
-	gint i_authors = 0;
-	gchar *path;
+	GDataInputStream *data_stream;
+	GInputStream *in_stream_authors;
+	GInputStream *in_stream_translators;
+	GResource *credits_resource;
 	GString *copyright;
-	gchar *timezone_path;
+	GdkPixbuf *pixbuf_icon;
+	GdkPixbuf *pixbuf_logo;
 	ZoneDetect *cd;
-	FILE *fp = NULL;
-#define LINE_LENGTH 1000
-	gchar line[LINE_LENGTH];
+	gchar *author_line;
+	gchar *authors[1000];
+	gchar *authors_path;
+	gchar *comment;
+	gchar *timezone_path;
+	gchar *translators;
+	gchar *translators_path;
+	gint i_authors = 0;
+	gint n = 0;
+	gsize bytes_read;
+	gsize length;
+	gsize size;
+	guint32 flags;
 
 	copyright = g_string_new(NULL);
 	copyright = g_string_append(copyright, "This program comes with absolutely no warranty.\nGNU General Public License, version 2 or later.\nSee https://www.gnu.org/licenses/old-licenses/gpl-2.0.html\n\n");
@@ -4124,25 +4135,35 @@ void show_about_window(LayoutWindow *lw)
 		}
 	g_free(timezone_path);
 
-	authors[0] = NULL;
-	path = g_build_filename(gq_helpdir, "AUTHORS", NULL);
-	fp = fopen(path, "r");
-	if (fp)
-		{
-		while(fgets(line, LINE_LENGTH, fp))
-			{
-			/* get rid of ending \n from fgets */
-			line[strlen(line) - 1] = '\0';
-			authors[i_authors] = g_strdup(line);
-			i_authors++;
-			}
-		authors[i_authors] = NULL;
-		fclose(fp);
-		}
-	g_free(path);
+	credits_resource = credits_get_resource();
 
-	comment = g_strconcat("Development and bug reports:\n", GQ_EMAIL_ADDRESS,
-						"\nhttps://github.com/BestImageViewer/geeqie/issues",NULL);
+	authors_path = g_build_filename(GQ_RESOURCE_PATH_CREDITS, "authors", NULL);
+
+	in_stream_authors = g_resource_open_stream(credits_resource, authors_path, G_RESOURCE_LOOKUP_FLAGS_NONE, NULL);
+
+	data_stream = g_data_input_stream_new(in_stream_authors);
+
+	authors[0] = NULL;
+	while ((author_line = g_data_input_stream_read_line(G_DATA_INPUT_STREAM(data_stream), &length, NULL, NULL)))
+		{
+		authors[i_authors] = g_strdup(author_line);
+		i_authors++;
+		g_free(author_line);
+		}
+	authors[i_authors] = NULL;
+
+	g_input_stream_close(in_stream_authors, NULL, NULL);
+
+	translators_path = g_build_filename(GQ_RESOURCE_PATH_CREDITS, "translators", NULL);
+
+	g_resource_get_info(credits_resource, translators_path, G_RESOURCE_LOOKUP_FLAGS_NONE, &size, &flags, NULL);
+
+	in_stream_translators = g_resource_open_stream(credits_resource, translators_path, G_RESOURCE_LOOKUP_FLAGS_NONE, NULL);
+	translators = static_cast<gchar *>(g_malloc0(size));
+	g_input_stream_read_all(in_stream_translators, translators, size, &bytes_read, NULL, NULL);
+	g_input_stream_close(in_stream_translators, NULL, NULL);
+
+	comment = g_strconcat("Project created by John Ellis\nGQview 1998\nGeeqie 2007\n\n\nDevelopment and bug reports:\n", GQ_EMAIL_ADDRESS, "\nhttps://github.com/BestImageViewer/geeqie/issues",NULL);
 
 	pixbuf_logo = pixbuf_inline(PIXBUF_INLINE_LOGO);
 	pixbuf_icon = pixbuf_inline(PIXBUF_INLINE_ICON);
@@ -4157,20 +4178,26 @@ void show_about_window(LayoutWindow *lw)
 		"website-label", "Website",
 		"comments", comment,
 		"authors", authors,
-		"translator-credits", _("translator-credits"),
+		"translator-credits", translators,
 		"wrap-license", TRUE,
 		"license", copyright->str,
 		NULL);
 
 	g_string_free(copyright, TRUE);
 
-	gint n = 0;
 	while(n < i_authors)
 		{
 		g_free(authors[n]);
 		n++;
 		}
+
+	g_free(authors_path);
 	g_free(comment);
+	g_free(translators);
+	g_free(translators_path);
+	g_object_unref(data_stream);
+	g_object_unref(in_stream_authors);
+	g_object_unref(in_stream_translators);
 
 	return;
 }

@@ -1,5 +1,6 @@
 # Geeqie Finnish translation.
 # Copyright (C) 2001, 2002, 2003, 2004, 2006 Lauri Nurmi
+# Translators:
 # Lauri Nurmi <lanurmi@iki.fi>, 2001-2006.
 #
 msgid ""

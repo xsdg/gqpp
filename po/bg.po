@@ -1,8 +1,9 @@
 # Bulgarian translation of Geeqie.
 # Copyright (C) 2005 John Ellis
 # This file is distributed under the same license as the Geeqie package.
+# Translators:
 # Vladimir Petrov <vladux@users.sourceforge.net>, 2005.
-#
+# Владимир Петров <vladux@users.sourceforge.net>
 #
 msgid ""
 msgstr ""

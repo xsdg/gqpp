@@ -1,6 +1,9 @@
 # ---------------------------------------------------------------------
 # Copyright (C) 1999-2000 Free Software Foundation, Inc.
-# Fatih Demir <kabalak@gmx.net> , 1999-2000 .
+# Translators:
+# Fatih Demir <kabalak@gmx.net> , 1999-2000
+# Yaşar Çiv <yasarciv67@gmail.com>
+#
 # ---------------------------------------------------------------------
 msgid ""
 msgstr ""

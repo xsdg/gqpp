@@ -1,8 +1,10 @@
 # geeqie pt_BR.po file.
 #
-# Created by Guilherme M. Schroeder <slump@linuxall.org>, 2001.
-# Updated by Herval Ribeiro de Azevêdo <heraze@gmail.com>, 2005.
-# Updated by Sérgio Cipolla <secipolla@gmail.com>, 2010.
+# Translators:
+# Guilherme M. Schroeder <slump@linuxall.org>, 2001.
+# Herval Ribeiro de Azevêdo <heraze@gmail.com>, 2005.
+# Sérgio Cipolla <secipolla@gmail.com>, 2010.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"

@@ -1,5 +1,6 @@
 # translation of gqview.po to Hungarian
 # Copyright (C) 2004 Free Software Foundation, Inc.
+# Translators:
 # Mátyás Tibor <templar@tempi.scene.hu>, 2001.
 # Koblinger Egmont <egmont@uhulinux.hu>, 2004.
 # Sári Gábor <saga@externet.hu>, 2004.

@@ -1,7 +1,9 @@
 # translation of ro.po to Romanian
 # Copyright (C) 2004 Free Software Foundation, Inc.
+# Translators:
 # Harald Ersch <hersch@romatsa.ro>,2002.
 # Harald Ersch <harald@ersch.ro>, 2004.
+# Sabin Iacob <iacobs@gmail.com>
 #
 msgid ""
 msgstr ""

@@ -1,14 +1,15 @@
 # gqview ru.po file. Russian locale definition for gqview.
 # Copyright (C) 1999 Free Software Foundation, Inc.
+# Translators:
 # Oleg Andryuschenko <oandr@itek.com.ua>, 1999.
-# Edited by Michael Bravo <mbravo@acm.org>, 2000.
-# Edited by drF_ckoff <dfo@antex.ru>, 2001.
-# Edited by Oleg Andryuschenko <oandr@itek.com.ua>, 2002.
-# Edited by drF_ckoff <dfo@antex.ru>, 2003-2004.
-# Edited by Vitaly Lipatov <lav@altlinux.ru>, 2005.
-# Edited by Alexandre Prokoudine <alexandre.prokoudine@gmail.com>, 2008.
-# Edited by Denis Silakov <d_uragan@rambler.ru>, 2010.
-# Edited by ashed <craysy@gmail.com>, 2021.
+# Michael Bravo <mbravo@acm.org>, 2000.
+# drF_ckoff <dfo@antex.ru>, 2001.
+# Oleg Andryuschenko <oandr@itek.com.ua>, 2002.
+# drF_ckoff <dfo@antex.ru>, 2003-2004.
+# Vitaly Lipatov <lav@altlinux.ru>, 2005.
+# Alexandre Prokoudine <alexandre.prokoudine@gmail.com>, 2008.
+# Denis Silakov <d_uragan@rambler.ru>, 2010.
+# ashed <craysy@gmail.com>, 2021.
 #
 # $Id$
 #

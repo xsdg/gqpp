@@ -1,5 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2001 Free Software Foundation, Inc.
+# Translators:
 # Matej Erman <matej.erman@guest.arnes.si>, 2001.
 #
 msgid ""

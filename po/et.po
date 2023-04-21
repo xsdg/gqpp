@@ -1,5 +1,6 @@
 # Geeqie eesti keele tõlge.
 # Copyright (C) 2001-2002 Free Software Foundation, Inc.
+# Translators:
 # Ilmar Kerm <ikerm@hot.ee>, 2001-2002.
 #
 msgid ""

@@ -2,8 +2,10 @@
 # Svenska översättningar för paketet gqview.
 # Copyright (C) 2003 John Ellis
 # This file is distributed under the same license as the gqview package.
+# Translators:
 # Hans Öfverbeck <hans.ofverbeck@home.se>, 2003-2005.
 # Tore Ericsson <tore.ericsson@telia.com>, 2011.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"

@@ -1,6 +1,8 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2002 Free Software Foundation, Inc.
 # pclouds <pclouds@vnlinux.org>, 2002.
+# Translators:
+# pclouds <pclouds@vnlinux.org>
 #
 msgid ""
 msgstr ""

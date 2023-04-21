@@ -1,7 +1,9 @@
 # Ukrainian translation of Geeqie.
 # Copyright (C) 2001 Free Software Foundation, Inc.
+# Translators:
 # Volodymyr M. Lisivka <lvm@mystery.lviv.net>, 2001,2002.
 # Olexander Kunytsa, 2002
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"

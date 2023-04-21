@@ -1,5 +1,6 @@
 # Geeqie in Danish.
 # Copyright (C) 2001 Free Software Foundation, Inc.
+# Translators:
 # Birger Langkjer <birger.langkjer@image.dk>, 2001.
 #
 msgid ""

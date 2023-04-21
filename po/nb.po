@@ -1,5 +1,6 @@
 # Geeqie in Norwegian.
 # Copyright (C) 2001 Free Software Foundation, Inc.
+# Translators:
 # Torgeir Ness Sundli <torgeir@mp3bil.no>, 2001.
 #
 msgid ""

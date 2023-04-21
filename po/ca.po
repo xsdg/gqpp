@@ -1,6 +1,7 @@
 # Penbwrdd yn Gymraeg.
 # Copyright (C) 2003 Free Software Foundation, Inc.
 # www.kyfieithu.co.uk, www.gyfieithu.co.uk, 2003.
+# Translators:
 # angel mompo <mecatxis@ya.com>, 2010.
 # Àngel Mompó <mecatxis@gmail.com>, 2012.
 # Carles Pina i Estany <carles@pina.cat>, 2021-2022

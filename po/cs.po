@@ -1,5 +1,6 @@
 # gqview cs.po
 # Copyright (C) 2001 Free Software Foundation, Inc.
+# Translators:
 # Jan Raska <jan.raska@tiscali.cz>, 2001, 2004, 2005
 # Aktualizace Michal Bukovjan <bukm@centrum.cz>, 2002.
 # Vladimír Nádvorník <nadvornik@suse.cz>, 2009

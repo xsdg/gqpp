@@ -1,8 +1,9 @@
 # geeqie de.po file.
-# Copyright (C) 1999 John Ellis.
-# Copyright (C) 2005 Danny Milosavljevic.
-# Copyright (C) 2006 Ronny Steiner
-# Copyright (C) 2009 Klaus Ethgen
+# Translators:
+# John Ellis.
+# Danny Milosavljevic.
+# Ronny Steiner
+# Klaus Ethgen
 # Matthias Warkus <mawa@iname.com>, 1999.
 #
 #

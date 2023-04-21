@@ -3,6 +3,8 @@
 # Copyright (C) Antonio C. Codazzi "la Filozofo" <f_sophia@libero.it>, 2006.
 #
 # Check Esperanto special letters= ĉŝĥĵĝŭ
+# Translators:
+# Antonio C. Codazzi <f_sophia@libero.it>
 #
 # Tradukaĵoj:
 # checksum = kontrolsumo

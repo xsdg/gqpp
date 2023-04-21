@@ -1,9 +1,10 @@
 # translation of sk.po to 
 # Slovak translations of Gqview.
 # Copyright (C) 2000,2004 Free Software Foundation, Inc.
-# Edited by Martin Pekar <cortex@nextra.sk>, 2000.
-# Edited by Ivan Priesol <priesol@iris-sk.sk>, 2001,2004.
-# Edited by Jose Riha <jose 1711 gmail com>, 2020.
+# Translators:
+# Martin Pekar <cortex@nextra.sk>, 2000.
+# Ivan Priesol <priesol@iris-sk.sk>, 2001,2004.
+# Jose Riha <jose 1711 gmail com>, 2020.
 #
 msgid ""
 msgstr ""

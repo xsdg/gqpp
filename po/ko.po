@@ -3,6 +3,7 @@
 # Translators:
 # Hyun-Jin Moon <moonhyunjin@gmail.com>, 2006.
 # JungHee Lee <daemul72@gmail.com>, 2022.
+# 이정희 <daemul72@gmail.com>
 #
 msgid ""
 msgstr ""
