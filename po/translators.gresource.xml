@@ -23,7 +23,6 @@
 
 <gresources>
   <gresource prefix="/org/geeqie/credits">
-    <file>authors</file>
     <file>translators</file>
   </gresource>
 </gresources>

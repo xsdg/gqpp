@@ -24,8 +24,10 @@
 
 #include "bar-keywords.h"
 #include "cache.h"
-#include "credits.h"
-#include "credits.c"
+//~ #include "authors.h"
+//~ #include "authors.c"
+//~ #include "translators.h"
+//~ #include "translators.c"
 #include "editors.h"
 #include "filedata.h"
 #include "filefilter.h"
@@ -4135,11 +4137,9 @@ void show_about_window(LayoutWindow *lw)
 		}
 	g_free(timezone_path);
 
-	credits_resource = credits_get_resource();
-
 	authors_path = g_build_filename(GQ_RESOURCE_PATH_CREDITS, "authors", NULL);
 
-	in_stream_authors = g_resource_open_stream(credits_resource, authors_path, G_RESOURCE_LOOKUP_FLAGS_NONE, NULL);
+	in_stream_authors = g_resources_open_stream(authors_path, G_RESOURCE_LOOKUP_FLAGS_NONE, NULL);
 
 	data_stream = g_data_input_stream_new(in_stream_authors);
 
@@ -4156,9 +4156,9 @@ void show_about_window(LayoutWindow *lw)
 
 	translators_path = g_build_filename(GQ_RESOURCE_PATH_CREDITS, "translators", NULL);
 
-	g_resource_get_info(credits_resource, translators_path, G_RESOURCE_LOOKUP_FLAGS_NONE, &size, &flags, NULL);
+	g_resources_get_info(translators_path, G_RESOURCE_LOOKUP_FLAGS_NONE, &size, &flags, NULL);
 
-	in_stream_translators = g_resource_open_stream(credits_resource, translators_path, G_RESOURCE_LOOKUP_FLAGS_NONE, NULL);
+	in_stream_translators = g_resources_open_stream(translators_path, G_RESOURCE_LOOKUP_FLAGS_NONE, NULL);
 	translators = static_cast<gchar *>(g_malloc0(size));
 	g_input_stream_read_all(in_stream_translators, translators, size, &bytes_read, NULL, NULL);
 	g_input_stream_close(in_stream_translators, NULL, NULL);

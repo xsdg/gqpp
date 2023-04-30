@@ -141,6 +141,7 @@ icondir = join_paths(datadir, 'pixmaps')
 mandir1 = join_paths(datadir, 'man', 'man1')
 
 podir = join_paths(meson.source_root(), 'po')
+scriptsdir = join_paths(meson.source_root(), 'scripts')
 
 summary({'gq_appdir': gq_appdir,
         'gq_bindir': gq_helpdir,

@@ -236,10 +236,10 @@ main_sources = files('advanced-exif.cc',
 
 project_sources += main_sources
 
+subdir('authors')
 subdir('icons')
 subdir('pan-view')
 subdir('view-file')
-subdir('credits')
 
 gqmarshal = gnome.genmarshal('gq-marshal', prefix : 'gq_marshal', sources : 'gq-marshal.list')
 project_sources += gqmarshal[0]

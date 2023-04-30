@@ -20,33 +20,25 @@
 #**********************************************************************
 
 ## @file
-## @brief Generate a list of people who have contributed translations.
+## @brief Generate lists of people who have made commits to the repository.
 ##
-## This list will be displayed in the About - Credits dialog.
+## The lists will be displayed in the About - Credits dialog.
 ##
-## It is expected that the .po files have a list of translators preceded
-## by the line "# Translators:" and terminated by a line containing only "#"
+## $1 Meson PRIVATE_DIR \n
+## $2 Meson current_build_dir \n
+## $3 running_from_git - "true" or "false" \n
+## $4 gresource.xml \n
 ##
 
-for file in "$1"/po/*.po
-do
-	base=$(basename "$file")
-	locale=${base%.po}
-	awk '$1 == "'"$locale"'" {print $0}' locales.txt
-	awk '$2 ~/Translators:/ {
-		while (1) {
-			getline $0
-		if ($0 == "#") {
-			exit
-			}
-		else {
-			print substr($0, 3)
-			}
-		}
+mkdir -p "$1"
 
-		print $0
-	}' "$file"
+if [ "$3" = "true" ]
+then
+	git log --pretty=format:"%an <%ae>" | sed 's/<>//' | sort | uniq --count | sort --general-numeric-sort --reverse --stable --key 1,1 | cut  --characters 1-8 --complement > "$1"/authors
+	printf "\n\0" >> "$1"/authors
+else
+	printf "List of authors not available\n\0" > "$1"/authors
+fi
 
-	printf "\n"
-done > "$2"/translators
-printf "\n\0" >> "$2"/translators
+glib-compile-resources --generate-header --sourcedir="$1" --target="$2"/authors.h "$4"
+glib-compile-resources --generate-source --sourcedir="$1" --target="$2"/authors.c "$4"

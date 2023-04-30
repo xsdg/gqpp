@@ -14,3 +14,59 @@
 add_project_arguments('-DGETTEXT_PACKAGE="geeqie"', language:'c')
 
 i18n.gettext(meson.project_name(), args : ['--keyword=N_', '--from-code=UTF-8'])
+
+# Create the list of translators for the About - Credits dialog
+po_sources = files([
+  'ar.po',
+  'be.po',
+  'bg.po',
+  'ca.po',
+  'cs.po',
+  'da.po',
+  'de.po',
+  'el.po',
+  'en_GB.po',
+  'eo.po',
+  'es.po',
+  'et.po',
+  'eu.po',
+  'fi.po',
+  'fr.po',
+  'hu.po',
+  'id.po',
+  'it.po',
+  'ja.po',
+  'ko.po',
+  'nb.po',
+  'nl.po',
+  'pl.po',
+  'pt_BR.po',
+  'ro.po',
+  'ru.po',
+  'sk.po',
+  'sl.po',
+  'sr@latin.po',
+  'sr.po',
+  'sv.po',
+  'th.po',
+  'tlh.po',
+  'tr.po',
+  'uk.po',
+  'vi.po',
+  'zh_CN.po',
+  'zh_TW.po'
+])
+
+po_source_list = ''
+foreach name : po_sources
+  po_source_list = po_source_list + meson.source_root() + '/' + '@0@'.format(name) + '\n'
+endforeach
+
+translators_sh = join_paths(scriptsdir, 'translators.sh')
+
+translator_resources = custom_target('translator_resources',
+                input : ['locales.txt', 'translators.gresource.xml'],
+                output : ['translators.h', 'translators.c'],
+                command : [translators_sh, '@PRIVATE_DIR@', po_source_list, meson.current_build_dir() , '@INPUT0@', '@INPUT1@'])
+
+project_sources += translator_resources
