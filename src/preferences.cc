@@ -4099,11 +4099,11 @@ void show_about_window(LayoutWindow *lw)
 	GDataInputStream *data_stream;
 	GInputStream *in_stream_authors;
 	GInputStream *in_stream_translators;
-	GResource *credits_resource;
 	GString *copyright;
 	GdkPixbuf *pixbuf_icon;
 	GdkPixbuf *pixbuf_logo;
 	ZoneDetect *cd;
+	gchar *artists[2];
 	gchar *author_line;
 	gchar *authors[1000];
 	gchar *authors_path;
@@ -4165,6 +4165,9 @@ void show_about_window(LayoutWindow *lw)
 
 	comment = g_strconcat("Project created by John Ellis\nGQview 1998\nGeeqie 2007\n\n\nDevelopment and bug reports:\n", GQ_EMAIL_ADDRESS, "\nhttps://github.com/BestImageViewer/geeqie/issues",NULL);
 
+	artists[0] = g_strdup("Néstor Díaz Valencia <nestor@estudionexos.com>");
+	artists[1] = NULL;
+
 	pixbuf_logo = pixbuf_inline(PIXBUF_INLINE_LOGO);
 	pixbuf_icon = pixbuf_inline(PIXBUF_INLINE_ICON);
 	gtk_show_about_dialog(GTK_WINDOW(lw->window),
@@ -4177,6 +4180,7 @@ void show_about_window(LayoutWindow *lw)
 		"website", GQ_WEBSITE,
 		"website-label", "Website",
 		"comments", comment,
+		"artists", artists,
 		"authors", authors,
 		"translator-credits", translators,
 		"wrap-license", TRUE,
@@ -4191,6 +4195,7 @@ void show_about_window(LayoutWindow *lw)
 		n++;
 		}
 
+	g_free(artists[0]);
 	g_free(authors_path);
 	g_free(comment);
 	g_free(translators);
