@@ -52,7 +52,7 @@ do
 			exit
 			}
 		else {
-			print $0
+			print substr($0, 3)
 			}
 		}
 		print $0
