@@ -1743,10 +1743,10 @@ static void accel_default_cb(GtkWidget *UNUSED(widget), gpointer data)
 	g_idle_add((GSourceFunc)accel_default_scroll, data);
 }
 
-//void accel_remove_selection(GtkTreeModel *UNUSED(model), GtkTreePath *UNUSED(path), GtkTreeIter *iter, gpointer UNUSED(data))
-//{
-	//gtk_tree_store_set(accel_store, iter, AE_KEY, "", -1);
-//}
+void accel_clear_selection(GtkTreeModel *UNUSED(model), GtkTreePath *UNUSED(path), GtkTreeIter *iter, gpointer UNUSED(data))
+{
+	gtk_tree_store_set(accel_store, iter, AE_KEY, "", -1);
+}
 
 void accel_reset_selection(GtkTreeModel *model, GtkTreePath *UNUSED(path), GtkTreeIter *iter, gpointer UNUSED(data))
 {
@@ -1762,6 +1762,15 @@ void accel_reset_selection(GtkTreeModel *model, GtkTreePath *UNUSED(path), GtkTr
 	gtk_tree_store_set(accel_store, iter, AE_KEY, accel, -1);
 	g_free(accel_path);
 	g_free(accel);
+}
+
+static void accel_clear_cb(GtkWidget *UNUSED(widget), gpointer data)
+{
+	GtkTreeSelection *selection;
+
+	if (!accel_store) return;
+	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(data));
+	gtk_tree_selection_selected_foreach(selection, &accel_clear_selection, NULL);
 }
 
 static void accel_reset_cb(GtkWidget *UNUSED(widget), gpointer data)
@@ -3766,6 +3775,12 @@ static void config_tab_accelerators(GtkWidget *notebook)
 
 	button = pref_button_new(NULL, NULL, _("Reset selected"), FALSE,
 				 G_CALLBACK(accel_reset_cb), accel_view);
+	gtk_widget_set_tooltip_text(button, _("Will only reset changes made before the settings are saved"));
+	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gtk_widget_show(button);
+
+	button = pref_button_new(NULL, NULL, _("Clear selected"), FALSE,
+				 G_CALLBACK(accel_clear_cb), accel_view);
 	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 }
