@@ -460,16 +460,26 @@ void history_list_item_change(const gchar *key, const gchar *oldpath, const gcha
 	while (work)
 		{
 		gchar *buf = static_cast<gchar *>(work->data);
-		if (strcmp(buf, oldpath) == 0)
+
+		if (!(g_str_has_prefix(buf, ".") && !newpath))
 			{
-			if (newpath)
+			if (strcmp(buf, oldpath) == 0)
 				{
-				work->data = g_strdup(newpath);
+				if (newpath)
+					{
+					work->data = g_strdup(newpath);
+					}
+				else
+					{
+					hd->list = g_list_remove(hd->list, buf);
+					}
+				g_free(buf);
+				return;
 				}
-			else
-				{
-				hd->list = g_list_remove(hd->list, buf);
-				}
+			}
+		else
+			{
+			hd->list = g_list_remove(hd->list, buf);
 			g_free(buf);
 			return;
 			}
