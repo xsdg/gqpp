@@ -59,7 +59,7 @@ po_sources = files([
 
 po_source_list = ''
 foreach name : po_sources
-  po_source_list = po_source_list + meson.source_root() + '/' + '@0@'.format(name) + '\n'
+  po_source_list = po_source_list + meson.project_source_root() + '/' + '@0@'.format(name) + '\n'
 endforeach
 
 translators_sh = join_paths(scriptsdir, 'translators.sh')

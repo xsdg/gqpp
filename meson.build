@@ -44,7 +44,7 @@ project(
     'cpp',
     version : run_command('./version.sh', check : true).stdout().strip(),
     license : ['GPL-2.0-or-later'],
-    meson_version : '>=0.53.0',
+    meson_version : '>=0.56.2',
     default_options : ['warning_level=3', 'buildtype=debugoptimized', 'cpp_link_args=-rdynamic']
 )
 
@@ -140,8 +140,8 @@ htmldir = join_paths(prefix, gq_htmldir)
 icondir = join_paths(datadir, 'pixmaps')
 mandir1 = join_paths(datadir, 'man', 'man1')
 
-podir = join_paths(meson.source_root(), 'po')
-scriptsdir = join_paths(meson.source_root(), 'scripts')
+podir = join_paths(meson.project_source_root(), 'po')
+scriptsdir = join_paths(meson.project_source_root(), 'scripts')
 
 summary({'gq_appdir': gq_appdir,
         'gq_bindir': gq_helpdir,
@@ -536,13 +536,17 @@ endif
 
 # libpixbufloader-webp is not loaded as part of libgdk-pixbuf. Just issue
 # a warning if not installed
-libwebp_dir = dependency('gdk-pixbuf-2.0', method: 'pkg-config').get_variable('gdk_pixbuf_moduledir')
-libwebp_dep = cc.find_library('libpixbufloader-webp', dirs : libwebp_dir, required : false)
+libwebp_dir = dependency('gdk-pixbuf-2.0', method: 'pkg-config').get_variable(pkgconfig: 'gdk_pixbuf_moduledir', internal: 'gdk_pixbuf_moduledir')
 
-if libwebp_dep.found()
-	summary({'webp' : ['webp files supported:', true]}, section : 'Configuration', bool_yn : true)
+if libwebp_dir.contains('loaders')
+    libwebp_dep = cc.find_library('pixbufloader-webp', dirs : libwebp_dir, required : false)
+    if libwebp_dep.found()
+        summary({'webp' : ['webp files supported:', true]}, section : 'Configuration', bool_yn : true)
+    else
+        summary({'webp' : ['webp-pixbuf-loader not installed - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
+    endif
 else
-	summary({'webp' : ['webp-pixbuf-loader not installed - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
+    summary({'webp' : ['webp-pixbuf-loader not installed - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 # Check for nl_langinfo and _NL_TIME_FIRST_WEEKDAY

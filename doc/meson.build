@@ -39,8 +39,8 @@ if running_from_git
     if not option.disabled()
         doxygen = find_program('doxygen', required : false)
         if doxygen.found()
-            srcdir = join_paths(meson.source_root())
-            destdir = join_paths(meson.build_root(), 'doc', 'html', 'lua-api')
+            srcdir = join_paths(meson.project_source_root())
+            destdir = join_paths(meson.project_build_root(), 'doc', 'html', 'lua-api')
             run_command(find_program('create-doxygen-lua-api.sh'), srcdir, destdir, check : false)
             summary({'lua-api' : ['lua-api help file created:', true]}, section : 'Documentation', bool_yn : true)
         else

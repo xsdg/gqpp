@@ -257,7 +257,7 @@ ui_icons_h = custom_target('ui_icons', output : 'ui_icons.h',
 project_sources += ui_icons_h
 
 if conf_data.has('HAVE_LCMS')
-    xxd_sh = find_program('generate-ClayRGB1998-icc-h.sh', dirs : join_paths(meson.source_root(), 'scripts'))
+    xxd_sh = find_program('generate-ClayRGB1998-icc-h.sh', dirs : join_paths(meson.project_source_root(), 'scripts'))
 
     ClayRGB1998_icc_h = custom_target('ClayRGB1998',
                         input: 'ClayRGB1998.icc',
