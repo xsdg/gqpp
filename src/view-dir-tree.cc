@@ -391,6 +391,10 @@ static void vdtree_add_by_data(ViewDir *vd, FileData *fd, GtkTreeIter *parent)
 			{
 			pixbuf = vd->pf->link;
 			}
+		else if (!access_file(fd->path, W_OK) )
+			{
+			pixbuf = vd->pf->read_only;
+			}
 		else
 			{
 			pixbuf = vd->pf->close;

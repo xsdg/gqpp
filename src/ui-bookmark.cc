@@ -187,7 +187,6 @@ static void bookmark_free(BookButtonData *b)
 static gchar *bookmark_string(const gchar *name, const gchar *path, const gchar *icon)
 {
 	if (!name) name = _("New Bookmark");
-	if (icon && strncmp(icon, G_DIR_SEPARATOR_S, 1) != 0) icon = NULL;
 
 	if (icon)
 		{
@@ -621,11 +620,26 @@ static void bookmark_populate(BookMarkData *bm)
 
 			if (b->icon)
 				{
-				GdkPixbuf *pixbuf;
+				GdkPixbuf *pixbuf = NULL;
 				gchar *iconl;
 
 				iconl = path_from_utf8(b->icon);
 				pixbuf = gdk_pixbuf_new_from_file(iconl, NULL);
+
+				if (isfile(b->icon))
+					{
+					pixbuf = gdk_pixbuf_new_from_file(iconl, NULL);
+					}
+				else
+					{
+					gint w, h;
+
+					w = h = 16;
+					gtk_icon_size_lookup(GTK_ICON_SIZE_BUTTON, &w, &h);
+
+					pixbuf = gtk_icon_theme_load_icon(gtk_icon_theme_get_default(), b->icon, w, GTK_ICON_LOOKUP_NO_SVG, NULL);
+					}
+
 				g_free(iconl);
 				if (pixbuf)
 					{
@@ -643,13 +657,13 @@ static void bookmark_populate(BookMarkData *bm)
 					}
 				else
 					{
-					b->image = gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE,
+					b->image = gtk_image_new_from_stock(GTK_STOCK_DIRECTORY,
 									    GTK_ICON_SIZE_BUTTON);
 					}
 				}
 			else
 				{
-				b->image = gtk_image_new_from_stock(GTK_STOCK_JUMP_TO, GTK_ICON_SIZE_BUTTON);
+				b->image = gtk_image_new_from_stock(GTK_STOCK_DIRECTORY, GTK_ICON_SIZE_BUTTON);
 				}
 			gtk_box_pack_start(GTK_BOX(box), b->image, FALSE, FALSE, 0);
 			gtk_widget_show(b->image);
@@ -711,6 +725,7 @@ static void bookmark_dnd_get_data(GtkWidget *UNUSED(widget),
 	GList *list = NULL;
 	GList *errors = NULL;
 	GList *work;
+	gchar *real_path;
 	gchar **uris;
 
 	if (!bm->editable) return;
@@ -735,9 +750,24 @@ static void bookmark_dnd_get_data(GtkWidget *UNUSED(widget),
 			work = work->next;
 
 			if (bm->only_directories && !isdir(path)) continue;
-			buf = bookmark_string(filename_from_path(path), path, NULL);
+
+			real_path = realpath(path, NULL);
+
+			if (strstr(real_path, get_collections_dir()) && isfile(path))
+				{
+				buf = bookmark_string(filename_from_path(path), path, "gq-collection");
+				}
+			else if (isfile(path))
+				{
+				buf = bookmark_string(filename_from_path(path), path, GTK_STOCK_FILE);
+				}
+			else
+				{
+				buf = bookmark_string(filename_from_path(path), path, NULL);
+				}
 			history_list_add_to_key(bm->key, buf, 0);
 			g_free(buf);
+			g_free(real_path);
 			}
 
 		string_list_free(list);
@@ -861,13 +891,33 @@ void bookmark_list_add(GtkWidget *list, const gchar *name, const gchar *path)
 {
 	BookMarkData *bm;
 	gchar *buf;
+	gchar *real_path;
 
 	bm = static_cast<BookMarkData *>(g_object_get_data(G_OBJECT(list), BOOKMARK_DATA_KEY));
 	if (!bm) return;
 
 	buf = bookmark_string(name, path, NULL);
+	real_path = realpath(path, NULL);
+
+	if (strstr(real_path, get_collections_dir()) && isfile(path))
+		{
+		buf = bookmark_string(name, path, "gq-collection");
+		}
+	else
+		{
+		if (isfile(path))
+			{
+			buf = bookmark_string(name, path, "gtk-file");
+			}
+		else
+			{
+			buf = bookmark_string(name, path, NULL);
+			}
+		}
+
 	history_list_add_to_key(bm->key, buf, 0);
 	g_free(buf);
+	g_free(real_path);
 
 	bookmark_populate_all(bm->key);
 }

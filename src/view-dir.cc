@@ -41,23 +41,95 @@
 static PixmapFolders *folder_icons_new(GtkWidget *widget)
 {
 	PixmapFolders *pf = g_new0(PixmapFolders, 1);
+	GError *error = NULL;
+	GdkPixbuf *icon;
+	gint scale;
 
-#if 1
 	GtkIconSize size = GTK_ICON_SIZE_MENU;
+
+/** @FIXME Emblems should be attached to icons via e.g.: \n
+ * GIcon *.... \n
+ * icon = g_themed_icon_new("folder"); \n
+ * emblem_icon = g_themed_icon_new("emblem_symbolic_link"); \n
+ * emblem = g_emblem_new(emblem_icon); \n
+ * emblemed = g_emblemed_icon_new(icon, emblem); \n
+ * gtk_icon_info_load_icon(icon_info, NULL) \n
+ * But there does not seem to be a way to get GtkIconInfo from a GIcon
+ */
 
 	/* Attempt to use stock gtk icons */
 	pf->close  = gtk_widget_render_icon(widget, GTK_STOCK_DIRECTORY, size, NULL);
 	pf->open   = gtk_widget_render_icon(widget, GTK_STOCK_OPEN, size, NULL);
-	pf->deny   = gtk_widget_render_icon(widget, GTK_STOCK_STOP, size, NULL);
 	pf->parent = gtk_widget_render_icon(widget, GTK_STOCK_GO_UP, size, NULL);
-	pf->link = gtk_widget_render_icon(widget, GTK_STOCK_REDO, size, NULL); /** @FIXME this is not a suitable icon */
-#else
-	/* GQView legacy icons */
-	pf->close  = pixbuf_inline(PIXBUF_INLINE_FOLDER_CLOSED);
-	pf->open   = pixbuf_inline(PIXBUF_INLINE_FOLDER_OPEN);
-	pf->deny   = pixbuf_inline(PIXBUF_INLINE_FOLDER_LOCKED);
-	pf->parent = pixbuf_inline(PIXBUF_INLINE_FOLDER_UP);
-#endif
+
+	if (gtk_icon_theme_has_icon(gtk_icon_theme_get_default(), "emblem-unreadable"))
+		{
+		icon = gtk_icon_theme_load_icon(gtk_icon_theme_get_default(), "emblem-unreadable", size, GTK_ICON_LOOKUP_USE_BUILTIN, &error);
+		if (error)
+			{
+			log_printf("Error: %s\n", error->message);
+			g_error_free(error);
+
+			pf->deny = gdk_pixbuf_copy(gtk_widget_render_icon(widget, GTK_STOCK_STOP, size, NULL));
+			}
+		else
+			{
+			pf->deny = gdk_pixbuf_copy(gtk_widget_render_icon(widget, GTK_STOCK_DIRECTORY, size, NULL));
+			scale = gdk_pixbuf_get_width(icon) / 2;
+			gdk_pixbuf_composite(icon, pf->deny, scale, scale, scale, scale, scale, scale, 0.5, 0.5, GDK_INTERP_HYPER, 255);
+
+			}
+		g_object_unref(icon);
+		}
+	else
+		{
+		pf->deny = gdk_pixbuf_copy(gtk_widget_render_icon(widget, GTK_STOCK_STOP, size, NULL));
+		}
+
+	if (gtk_icon_theme_has_icon(gtk_icon_theme_get_default(), "emblem-symbolic-link"))
+		{
+		icon = gtk_icon_theme_load_icon(gtk_icon_theme_get_default(), "emblem-symbolic-link", size, GTK_ICON_LOOKUP_USE_BUILTIN, &error);
+		if (error)
+			{
+			log_printf("Error: %s\n", error->message);
+			g_error_free(error);
+
+			pf->link = gdk_pixbuf_copy(gtk_widget_render_icon(widget, GTK_STOCK_REDO, size, NULL));
+			}
+		else
+			{
+			pf->link = gdk_pixbuf_copy(gtk_widget_render_icon(widget, GTK_STOCK_DIRECTORY, size, NULL));
+			scale = gdk_pixbuf_get_width(icon) / 2;
+			gdk_pixbuf_composite(icon, pf->link, scale, scale, scale, scale, scale, scale, 0.5, 0.5, GDK_INTERP_HYPER, 255);
+			}
+		g_object_unref(icon);
+		}
+	else
+		{
+		pf->link = gdk_pixbuf_copy(gtk_widget_render_icon(widget, GTK_STOCK_REDO, size, NULL));
+		}
+
+	pf->read_only = gdk_pixbuf_copy(gtk_widget_render_icon(widget, GTK_STOCK_DIRECTORY, size, NULL));
+
+	if (gtk_icon_theme_has_icon(gtk_icon_theme_get_default(), "emblem-readonly"))
+		{
+		icon = gtk_icon_theme_load_icon(gtk_icon_theme_get_default(), "emblem-readonly", size, GTK_ICON_LOOKUP_USE_BUILTIN, &error);
+		if (error)
+			{
+			log_printf("Error: %s\n", error->message);
+			g_error_free(error);
+
+			pf->read_only = gdk_pixbuf_copy(gtk_widget_render_icon(widget, GTK_STOCK_DIRECTORY, size, NULL));
+			}
+		else
+			{
+			gint scale = gdk_pixbuf_get_width(icon) / 2;
+			gdk_pixbuf_composite(icon, pf->read_only, scale, scale, scale, scale, scale, scale, 0.5, 0.5, GDK_INTERP_HYPER, 255);
+
+			}
+		g_object_unref(icon);
+		}
+
 	return pf;
 }
 
@@ -70,6 +142,7 @@ static void folder_icons_free(PixmapFolders *pf)
 	g_object_unref(pf->deny);
 	g_object_unref(pf->parent);
 	g_object_unref(pf->link);
+	g_object_unref(pf->read_only);
 
 	g_free(pf);
 }

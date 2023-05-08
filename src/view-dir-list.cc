@@ -199,6 +199,10 @@ static gboolean vdlist_populate(ViewDir *vd, gboolean clear)
 				{
 				pixbuf = vd->pf->parent;
 				}
+			else if (!access_file(fd->path, W_OK) )
+				{
+				pixbuf = vd->pf->read_only;
+				}
 			else
 				{
 				pixbuf = vd->pf->close;
