@@ -253,7 +253,11 @@ GtkWidget *pref_button_new(GtkWidget *parent_box, const gchar *stock_id,
 
 		button = gtk_button_new();
 
-		if (stock_id) image = gtk_image_new_from_icon_name(stock_id, GTK_ICON_SIZE_BUTTON);
+		if (stock_id)
+			{
+			image = gtk_image_new_from_stock(stock_id, GTK_ICON_SIZE_BUTTON);
+			}
+
 		if (text)
 			{
 			label = gtk_label_new_with_mnemonic(text);
