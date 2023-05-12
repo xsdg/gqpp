@@ -1156,40 +1156,39 @@ void image_loader_delay_area_ready(ImageLoader *il, gboolean enable)
 /**************************************************************************************/
 /* execution via idle calls */
 
-//static gboolean image_loader_idle_cb(gpointer data)
-//{
-	//gboolean ret = FALSE;
-	//ImageLoader *il = static_cast<ImageLoader *>(data);
+static gboolean image_loader_idle_cb(gpointer data)
+{
+	gboolean ret = FALSE;
+	ImageLoader *il = static_cast<ImageLoader *>(data);
 
-	//if (il->idle_id)
-		//{
-		//ret = image_loader_continue(il);
-		//}
+	if (il->idle_id)
+		{
+		ret = image_loader_continue(il);
+		}
 
-	//if (!ret)
-		//{
-		//image_loader_stop_source(il);
-		//}
+	if (!ret)
+		{
+		image_loader_stop_source(il);
+		}
 
-	//return ret;
-//}
+	return ret;
+}
 
+static gboolean image_loader_start_idle(ImageLoader *il)
+{
+	gboolean ret;
 
-//static gboolean image_loader_start_idle(ImageLoader *il)
-//{
-	//gboolean ret;
+	if (!il) return FALSE;
 
-	//if (!il) return FALSE;
+	if (!il->fd) return FALSE;
 
-	//if (!il->fd) return FALSE;
+	if (!image_loader_setup_source(il)) return FALSE;
 
-	//if (!image_loader_setup_source(il)) return FALSE;
+	ret = image_loader_begin(il);
 
-	//ret = image_loader_begin(il);
-
-	//if (ret && !il->done) il->idle_id = g_idle_add_full(il->idle_priority, image_loader_idle_cb, il, NULL);
-	//return ret;
-//}
+	if (ret && !il->done) il->idle_id = g_idle_add_full(il->idle_priority, image_loader_idle_cb, il, NULL);
+	return ret;
+}
 
 /**************************************************************************************/
 /* execution via thread */
