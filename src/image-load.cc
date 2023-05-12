@@ -1429,26 +1429,31 @@ const gchar *image_loader_get_error(ImageLoader *il)
 	return ret;
 }
 
+
+/**
+ *  @FIXME this can be rather slow and blocks until the size is known
+ */
 gboolean image_load_dimensions(FileData *fd, gint *width, gint *height)
 {
+	ImageLoader *il;
 	gboolean success;
-	gint width_file = 0;
-	gint height_file = 0;
 
-	gdk_pixbuf_get_file_info(fd->path, &width_file, &height_file);
+	il = image_loader_new(fd);
 
-	if (width_file && height_file)
+	success = image_loader_start_idle(il);
+
+	if (success && il->pixbuf)
 		{
-		*width = width_file;
-		*height = height_file;
-		success = TRUE;
+		if (width) *width = gdk_pixbuf_get_width(il->pixbuf);
+		if (height) *height = gdk_pixbuf_get_height(il->pixbuf);;
 		}
 	else
 		{
-		*width = -1;
-		*height = -1;
-		success = FALSE;
+		if (width) *width = -1;
+		if (height) *height = -1;
 		}
+
+	image_loader_free(il);
 
 	return success;
 }
