@@ -1,5 +1,8 @@
 # Geeqie Readme
 
+Status:  
+![Build Status](https://github.com/BestImageViewer/geeqie/actions/workflows/check-build-actions.yml/badge.svg)
+
 ## ![][image_ref_geeqie_png] Geeqie - an image viewer
 
 This is Geeqie, a successor of GQview.
