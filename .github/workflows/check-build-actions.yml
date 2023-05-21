@@ -13,7 +13,7 @@ jobs:
       with:
         action: test
         directory: build
-        setup-options: -Darchive=disabled -Dcms=disabled -Ddevel=disabled -Ddoxygen=disabled -Ddjvu=disabled -Devince=disabled -Dexecinfo=disabled -Dexiv2=disabled -Dgit=disabled -Dgps-map=disabled -Dheif=disabled -Dj2k=disabled -Djpeg=disabled -Djpegxl=disabled -Dlibraw=disabled -Dlua=disabled -Dpandoc=disabled -Dpdf=disabled -Dspell=disabled -Dtiff=dissabled -Dvideothumbnailer=disabled -Dyelp-build=disabled
+        setup-options: -Darchive=disabled -Dcms=disabled -Ddevel=disabled -Ddoxygen=disabled -Ddjvu=disabled -Devince=disabled -Dexecinfo=disabled -Dexiv2=disabled -Dgit=disabled -Dgps-map=disabled -Dheif=disabled -Dj2k=disabled -Djpeg=disabled -Djpegxl=disabled -Dlibraw=disabled -Dlua=disabled -Dpandoc=disabled -Dpdf=disabled -Dspell=disabled -Dtiff=disabled -Dvideothumbnailer=disabled -Dyelp-build=disabled
         options: --verbose
         meson-version: 0.56.2
     - name: Upload logs
