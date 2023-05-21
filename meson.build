@@ -630,3 +630,7 @@ i18n.merge_file(
     install_dir : appdatadir)
 
 configure_file(input: 'geeqie.spec.in', output: 'geeqie.spec', configuration: conf_data)
+
+# Basic test of the executable
+xvfb = find_program('xvfb-run')
+test('Basic test', xvfb, args: ['--auto-servernum', geeqie_exe, '--version'], timeout: 100)

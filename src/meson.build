@@ -267,7 +267,7 @@ if conf_data.has('HAVE_LCMS')
     project_sources += ClayRGB1998_icc_h
 endif
 
-executable('geeqie', project_sources,
+geeqie_exe = executable('geeqie', project_sources,
 dependencies : [
 gtk_dep,
 champlain_dep,
