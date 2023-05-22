@@ -1,7 +1,11 @@
 # Geeqie Readme
 
-Status:  
+Code Status:  
 ![Build Status](https://github.com/BestImageViewer/geeqie/actions/workflows/check-build-actions.yml/badge.svg)
+
+Package Status:  
+[![Packaging status](https://repology.org/badge/tiny-repos/geeqie.svg)](https://repology.org/project/geeqie/versions)
+[![latest packaged version(s)](https://repology.org/badge/latest-versions/geeqie.svg)](https://repology.org/project/geeqie/versions)
 
 ## ![][image_ref_geeqie_png] Geeqie - an image viewer
 
