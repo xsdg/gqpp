@@ -156,8 +156,8 @@ Re-display configuration data:
 
 Meaning of options:  
 `auto` If the library is not found, continue the installation  
-`enable` If the library is not found, stop the installation  
-`disable` Do not look for the library  
+`enabled` If the library is not found, stop the installation  
+`disabled` Do not look for the library  
 
 Uninstall:  
 `sudo ninja -C build uninstall`
