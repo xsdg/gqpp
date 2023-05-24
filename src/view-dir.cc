@@ -1061,7 +1061,7 @@ static gboolean vd_auto_scroll_idle_cb(gpointer data)
 		}
 
 	vd->drop_scroll_id = 0;
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static gboolean vd_auto_scroll_notify_cb(GtkWidget *UNUSED(widget), gint UNUSED(x), gint UNUSED(y), gpointer data)

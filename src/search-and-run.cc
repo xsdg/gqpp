@@ -179,7 +179,7 @@ static gboolean search_and_run_destroy(gpointer data)
 	sar->lw->sar_window = NULL;
 	gtk_widget_destroy(sar->window);
 
-	return TRUE;
+	return G_SOURCE_CONTINUE;
 }
 
 static gboolean entry_box_activate_cb(GtkWidget *UNUSED(widget), gpointer data)

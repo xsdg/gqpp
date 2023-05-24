@@ -1611,7 +1611,7 @@ static gboolean collection_table_auto_scroll_idle_cb(gpointer data)
 	GdkSeat *seat;
 	GdkDevice *device;
 
-	if (!ct->drop_idle_id) return FALSE;
+	if (!ct->drop_idle_id) return G_SOURCE_REMOVE;
 
 	window = gtk_widget_get_window(ct->listview);
 	seat = gdk_display_get_default_seat(gdk_window_get_display(window));
@@ -1626,7 +1626,7 @@ static gboolean collection_table_auto_scroll_idle_cb(gpointer data)
 		}
 
 	ct->drop_idle_id = 0;
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static gboolean collection_table_auto_scroll_notify_cb(GtkWidget *UNUSED(widget), gint UNUSED(x), gint UNUSED(y), gpointer data)
@@ -1976,12 +1976,12 @@ static gboolean collection_table_sync_idle_cb(gpointer data)
 {
 	CollectTable *ct = static_cast<CollectTable *>(data);
 
-	if (!ct->sync_idle_id) return FALSE;
+	if (!ct->sync_idle_id) return G_SOURCE_REMOVE;
 	g_source_remove(ct->sync_idle_id);
 	ct->sync_idle_id = 0;
 
 	collection_table_sync(ct);
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void collection_table_sync_idle(CollectTable *ct)

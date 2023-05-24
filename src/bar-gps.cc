@@ -500,7 +500,7 @@ static gboolean bar_pane_gps_create_markers_cb(gpointer data)
 			champlain_bounding_box_extend(pgd->bbox, latitude, longitude);
 
 			}
-		return TRUE;
+		return G_SOURCE_CONTINUE;
 		}
 
 	if (pgd->centre_map_checked)
@@ -519,7 +519,7 @@ static gboolean bar_pane_gps_create_markers_cb(gpointer data)
 	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(pgd->progress), NULL);
 	pgd->create_markers_id = 0;
 
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void bar_pane_gps_update(PaneGPSData *pgd)

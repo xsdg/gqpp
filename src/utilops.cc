@@ -673,7 +673,7 @@ static gboolean file_util_perform_ci_internal(gpointer data)
 
 		/* this is removed when ud is destroyed */
 		ud->perform_idle_id = g_idle_add(file_util_perform_ci_internal, ud);
-		return TRUE;
+		return G_SOURCE_CONTINUE;
 		}
 
 	g_assert(ud->flist);
@@ -694,16 +694,16 @@ static gboolean file_util_perform_ci_internal(gpointer data)
 		ret = file_util_perform_ci_cb(GINT_TO_POINTER(!last), status, single_entry, ud);
 		g_list_free(single_entry);
 
-		if (ret == EDITOR_CB_SUSPEND || last) return FALSE;
+		if (ret == EDITOR_CB_SUSPEND || last) return G_SOURCE_REMOVE;
 
 		if (ret == EDITOR_CB_SKIP)
 			{
 			file_util_perform_ci_cb(NULL, EDITOR_ERROR_SKIPPED, ud->flist, ud);
-			return FALSE;
+			return G_SOURCE_REMOVE;
 			}
 		}
 
-	return TRUE;
+	return G_SOURCE_CONTINUE;
 }
 
 static void file_util_perform_ci_dir(UtilityData *ud, gboolean internal, gboolean ext_result)
@@ -1446,7 +1446,7 @@ static gboolean file_util_rename_idle_cb(gpointer data)
 	file_util_rename_preview_update(ud);
 
 	ud->update_idle_id = 0;
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void file_util_rename_preview_order_cb(GtkTreeModel *UNUSED(treemodel), GtkTreePath *UNUSED(tpath),
@@ -2953,7 +2953,7 @@ static gboolean file_util_write_metadata_first_after_done(gpointer data)
 	g_free(dd->dest_path);
 	g_free(dd->editor_key);
 	g_free(dd);
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void file_util_write_metadata_first_done(gboolean success, const gchar *UNUSED(done_path), gpointer data)

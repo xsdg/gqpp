@@ -740,7 +740,7 @@ static gboolean vflist_select_idle_cb(gpointer data)
 	if (!vf->layout)
 		{
 		VFLIST(vf)->select_idle_id = 0;
-		return FALSE;
+		return G_SOURCE_REMOVE;
 		}
 
 	vf_send_update(vf);
@@ -752,7 +752,7 @@ static gboolean vflist_select_idle_cb(gpointer data)
 		}
 
 	VFLIST(vf)->select_idle_id = 0;
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void vflist_select_idle_cancel(ViewFile *vf)

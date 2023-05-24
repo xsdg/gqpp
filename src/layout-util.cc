@@ -3306,7 +3306,7 @@ static gboolean layout_editors_reload_idle_cb(gpointer UNUSED(data))
 		{
 		DEBUG_1("%s layout_editors_reload_idle_cb: get_desktop_files", get_exec_time());
 		layout_editors_desktop_files = editor_get_desktop_files();
-		return TRUE;
+		return G_SOURCE_CONTINUE;
 		}
 
 	editor_read_desktop_file(static_cast<const gchar *>(layout_editors_desktop_files->data));
@@ -3335,9 +3335,9 @@ static gboolean layout_editors_reload_idle_cb(gpointer UNUSED(data))
 		DEBUG_1("%s layout_editors_reload_idle_cb: setup_editors done", get_exec_time());
 
 		layout_editors_reload_idle_id = -1;
-		return FALSE;
+		return G_SOURCE_REMOVE;
 		}
-	return TRUE;
+	return G_SOURCE_CONTINUE;
 }
 
 void layout_editors_reload_start(void)

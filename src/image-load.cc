@@ -294,28 +294,28 @@ static gboolean image_loader_emit_area_ready_cb(gpointer data)
 
 	g_signal_emit(il, signals[SIGNAL_AREA_READY], 0, x, y, w, h);
 
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static gboolean image_loader_emit_done_cb(gpointer data)
 {
 	ImageLoader *il = static_cast<ImageLoader *>(data);
 	g_signal_emit(il, signals[SIGNAL_DONE], 0);
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static gboolean image_loader_emit_error_cb(gpointer data)
 {
 	ImageLoader *il = static_cast<ImageLoader *>(data);
 	g_signal_emit(il, signals[SIGNAL_ERROR], 0);
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static gboolean image_loader_emit_percent_cb(gpointer data)
 {
 	ImageLoader *il = static_cast<ImageLoader *>(data);
 	g_signal_emit(il, signals[SIGNAL_PERCENT], 0, image_loader_get_percent(il));
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static gboolean image_loader_emit_size_cb(gpointer data)
@@ -327,7 +327,7 @@ static gboolean image_loader_emit_size_cb(gpointer data)
 	height = il->actual_height;
 	g_mutex_unlock(il->data_mutex);
 	g_signal_emit(il, signals[SIGNAL_SIZE], 0, width, height);
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 
@@ -836,7 +836,7 @@ static gboolean image_loader_continue(ImageLoader *il)
 	gint b;
 	gint c;
 
-	if (!il) return FALSE;
+	if (!il) return G_SOURCE_REMOVE;
 
 	c = il->idle_read_loop_count ? il->idle_read_loop_count : 1;
 	while (c > 0 && !image_loader_get_stopping(il))
@@ -846,13 +846,13 @@ static gboolean image_loader_continue(ImageLoader *il)
 		if (b == 0)
 			{
 			image_loader_done(il);
-			return FALSE;
+			return G_SOURCE_REMOVE;
 			}
 
 		if (b < 0 || (b > 0 && !il->backend.write(il->loader, il->mapped_file + il->bytes_read, b, &il->error)))
 			{
 			image_loader_error(il);
-			return FALSE;
+			return G_SOURCE_REMOVE;
 			}
 
 		il->bytes_read += b;
@@ -865,7 +865,7 @@ static gboolean image_loader_continue(ImageLoader *il)
 		image_loader_emit_percent(il);
 		}
 
-	return TRUE;
+	return G_SOURCE_CONTINUE;
 }
 
 static gboolean image_loader_begin(ImageLoader *il)
@@ -1158,7 +1158,7 @@ void image_loader_delay_area_ready(ImageLoader *il, gboolean enable)
 
 static gboolean image_loader_idle_cb(gpointer data)
 {
-	gboolean ret = FALSE;
+	gboolean ret = G_SOURCE_REMOVE;
 	ImageLoader *il = static_cast<ImageLoader *>(data);
 
 	if (il->idle_id)

@@ -675,7 +675,7 @@ static gboolean image_osd_update_cb(gpointer data)
 	osd->changed_states = IMAGE_STATE_NONE;
 	osd->notify = static_cast<NotifyType>(0);
 	osd->idle_id = 0;
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void image_osd_update_schedule(OverlayStateData *osd, gboolean force)

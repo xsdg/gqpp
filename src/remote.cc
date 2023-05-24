@@ -469,7 +469,7 @@ static gboolean gr_close_window_cb(gpointer UNUSED(data))
 
 	layout_menu_close_cb(NULL, lw_id);
 
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void gr_close_window(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
@@ -674,7 +674,7 @@ static gboolean gr_quit_idle_cb(gpointer UNUSED(data))
 {
 	exit_program();
 
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void gr_quit(const gchar *UNUSED(text), GIOChannel *UNUSED(channel), gpointer UNUSED(data))
@@ -1169,7 +1169,7 @@ static gboolean wait_cb(const gpointer data)
 
 	gtk_window_move(GTK_WINDOW(lw_id->window), x, y);
 
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void gr_geometry(const gchar *text, GIOChannel *UNUSED(channel), gpointer UNUSED(data))

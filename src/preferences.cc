@@ -1367,7 +1367,7 @@ static gboolean filter_add_scroll(gpointer data)
 	gtk_tree_path_free(path);
 	g_list_free(list_cells);
 
-	return(FALSE);
+	return(G_SOURCE_REMOVE);
 }
 
 static void filter_add_cb(GtkWidget *UNUSED(widget), gpointer data)
@@ -1412,7 +1412,7 @@ static gboolean filter_default_ok_scroll(GtkTreeView *data)
 
 	gtk_tree_path_free(path);
 
-	return(FALSE);
+	return(G_SOURCE_REMOVE);
 }
 
 static void filter_default_ok_cb(GenericDialog *gd, gpointer UNUSED(data))
@@ -1733,7 +1733,7 @@ static gboolean accel_default_scroll(GtkTreeView *data)
 
 	gtk_tree_path_free(path);
 
-	return(FALSE);
+	return(G_SOURCE_REMOVE);
 }
 
 static void accel_default_cb(GtkWidget *UNUSED(widget), gpointer data)
@@ -3109,7 +3109,7 @@ static gboolean keywords_find_file(gpointer data)
 		file_data_unref(fd);
 		string_list_free(keywords);
 
-		return (TRUE);
+		return (G_SOURCE_CONTINUE);
 		}
 	else if (kfd->list_dir)
 		{
@@ -3122,12 +3122,12 @@ static gboolean keywords_find_file(gpointer data)
 
 		file_data_unref(fd);
 
-		return TRUE;
+		return G_SOURCE_CONTINUE;
 		}
 
 	keywords_find_finish(kfd);
 
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void keywords_find_start_cb(GenericDialog *UNUSED(fd), gpointer data)

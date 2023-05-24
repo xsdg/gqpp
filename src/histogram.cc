@@ -212,9 +212,9 @@ static gboolean histmap_idle_cb(gpointer data)
 		fd->histmap->pixbuf = NULL;
 		fd->histmap->idle_id = 0;
 		file_data_send_notification(fd, NOTIFY_HISTMAP);
-		return FALSE;
+		return G_SOURCE_REMOVE;
 		}
-	return TRUE;
+	return G_SOURCE_CONTINUE;
 }
 
 gboolean histmap_start_idle(FileData *fd)

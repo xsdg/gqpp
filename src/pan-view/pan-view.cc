@@ -1063,7 +1063,7 @@ static gint pan_layout_update_idle_cb(gpointer data)
 			if (pw->cache_todo)
 				{
 				pan_window_message(pw, _("Reading image data..."));
-				return TRUE;
+				return G_SOURCE_CONTINUE;
 				}
 			}
 		if (pw->cache_todo)
@@ -1086,10 +1086,10 @@ static gint pan_layout_update_idle_cb(gpointer data)
 				pw->cache_tick = 0;
 				}
 
-			if (pan_cache_step(pw)) return TRUE;
+			if (pan_cache_step(pw)) return G_SOURCE_CONTINUE;
 
 			pw->idle_id = 0;
-			return FALSE;
+			return G_SOURCE_REMOVE;
 			}
 		}
 
@@ -1124,7 +1124,7 @@ static gint pan_layout_update_idle_cb(gpointer data)
 	pan_window_message(pw, NULL);
 
 	pw->idle_id = 0;
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void pan_layout_update_idle(PanWindow *pw)

@@ -2429,7 +2429,7 @@ static gboolean dupe_check_cb(gpointer data)
 
 	if (!dw->idle_id)
 		{
-		return FALSE;
+		return G_SOURCE_REMOVE;
 		}
 
 	if (!dw->setup_done) /* Clear on 1st entry */
@@ -2438,14 +2438,14 @@ static gboolean dupe_check_cb(gpointer data)
 			{
 			if (create_checksums_dimensions(dw, dw->list))
 				{
-				return TRUE;
+				return G_SOURCE_CONTINUE;
 				}
 			}
 		if (dw->second_list)
 			{
 			if (create_checksums_dimensions(dw, dw->second_list))
 				{
-				return TRUE;
+				return G_SOURCE_CONTINUE;
 				}
 			}
 		if ((dw->match_mask & DUPE_MATCH_SIM_HIGH ||
@@ -2472,7 +2472,7 @@ static gboolean dupe_check_cb(gpointer data)
 						if (cache_sim_data_filled(di->simd))
 							{
 							image_sim_alternate_processing(di->simd);
-							return TRUE;
+							return G_SOURCE_CONTINUE;
 							}
 						}
 
@@ -2487,10 +2487,10 @@ static gboolean dupe_check_cb(gpointer data)
 						di->simd = image_sim_new();
 						image_loader_free(dw->img_loader);
 						dw->img_loader = NULL;
-						return TRUE;
+						return G_SOURCE_CONTINUE;
 						}
 					dw->idle_id = 0;
-					return FALSE;
+					return G_SOURCE_REMOVE;
 					}
 
 				dw->setup_point = dupe_setup_point_step(dw, dw->setup_point);
@@ -2523,7 +2523,7 @@ static gboolean dupe_check_cb(gpointer data)
 				{
 				dupe_window_update_progress(dw, _("Comparing..."), 0.0, FALSE);
 
-				return TRUE;
+				return G_SOURCE_CONTINUE;
 				}
 
 			if (dw->search_matches_sorted == NULL)
@@ -2547,7 +2547,7 @@ static gboolean dupe_check_cb(gpointer data)
 
 				if (dw->search_matches_sorted != NULL)
 					{
-					return TRUE;
+					return G_SOURCE_CONTINUE;
 					}
 				}
 			g_list_free(dw->search_matches);
@@ -2562,7 +2562,7 @@ static gboolean dupe_check_cb(gpointer data)
 				{
 				dw->setup_count = 0;
 				dupe_window_update_progress(dw, _("Sorting..."), 1.0, TRUE);
-				return TRUE;
+				return G_SOURCE_CONTINUE;
 				}
 			}
 
@@ -2579,7 +2579,7 @@ static gboolean dupe_check_cb(gpointer data)
 
 		widget_set_cursor(dw->listview, -1);
 
-		return FALSE;
+		return G_SOURCE_REMOVE;
 		/* The end */
 		}
 
@@ -2607,7 +2607,7 @@ static gboolean dupe_check_cb(gpointer data)
 		dupe_array_check(dw);
 		}
 
-	return TRUE;
+	return G_SOURCE_CONTINUE;
 }
 
 static void dupe_check_start(DupeWindow *dw)

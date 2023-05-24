@@ -2549,7 +2549,7 @@ static gboolean move_window_to_workspace_cb(gpointer data)
 			}
 		}
 #endif
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,

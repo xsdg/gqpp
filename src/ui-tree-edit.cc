@@ -173,7 +173,7 @@ static gboolean tree_edit_by_path_idle_cb(gpointer data)
 			 NULL, NULL, GDK_CURRENT_TIME);
 	gdk_keyboard_grab(gtk_widget_get_window(ted->window), TRUE, GDK_CURRENT_TIME);
 
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 gboolean tree_edit_by_path(GtkTreeView *tree, GtkTreePath *tpath, gint column, const gchar *text,

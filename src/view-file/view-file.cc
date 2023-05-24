@@ -1558,17 +1558,17 @@ gboolean vf_stars_cb(gpointer data)
 
 		if (vf_star_next(vf))
 			{
-			return TRUE;
+			return G_SOURCE_CONTINUE;
 			}
 		else
 			{
 			vf->stars_filedata = NULL;
 			vf->stars_id = 0;
-			return FALSE;
+			return G_SOURCE_REMOVE;
 			}
 		}
 
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 void vf_star_update(ViewFile *vf)
@@ -1703,7 +1703,7 @@ static gboolean vf_refresh_idle_cb(gpointer data)
 
 	vf_refresh(vf);
 	vf->refresh_idle_id = 0;
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 void vf_refresh_idle_cancel(ViewFile *vf)
@@ -1806,7 +1806,7 @@ static gboolean vf_read_metadata_in_idle_cb(gpointer data)
 				read_rating_data(fd);
 				}
 			fd->metadata_in_idle_loaded = TRUE;
-			return TRUE;
+			return G_SOURCE_CONTINUE;
 			}
 		work = work->next;
 		}
@@ -1814,7 +1814,7 @@ static gboolean vf_read_metadata_in_idle_cb(gpointer data)
 	vf_thumb_status(vf, 0.0, NULL);
 	vf->read_metadata_in_idle_id = 0;
 	vf_refresh(vf);
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void vf_read_metadata_in_idle_finished_cb(gpointer data)

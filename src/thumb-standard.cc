@@ -990,7 +990,7 @@ static gboolean thumb_loader_std_thumb_file_validate_idle_cb(gpointer data)
 	tv->idle_id = 0;
 	thumb_loader_std_thumb_file_validate_finish(tv, FALSE);
 
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 ThumbLoaderStd *thumb_loader_std_thumb_file_validate(const gchar *thumb_path, gint allowed_days,
@@ -1174,7 +1174,7 @@ static gboolean thumb_std_maint_move_idle(gpointer UNUSED(data))
 	TMaintMove *tm;
 	gchar *pathl;
 
-	if (!thumb_std_maint_move_list) return FALSE;
+	if (!thumb_std_maint_move_list) return G_SOURCE_REMOVE;
 
 	tm = static_cast<TMaintMove *>(thumb_std_maint_move_list->data);
 
@@ -1189,7 +1189,7 @@ static gboolean thumb_std_maint_move_idle(gpointer UNUSED(data))
 
 	thumb_std_maint_move_step(tm);
 
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 /* This will schedule a move of the thumbnail for source image to dest when idle.

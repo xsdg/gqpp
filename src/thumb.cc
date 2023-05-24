@@ -274,7 +274,7 @@ static gboolean thumb_loader_done_delay_cb(gpointer data)
 
 	if (tl->func_done) tl->func_done(tl, tl->data);
 
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void thumb_loader_delay_done(ThumbLoader *tl)

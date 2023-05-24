@@ -550,7 +550,7 @@ static gboolean appimage_notification_close_cb(gpointer data)
 	g_thread_pool_free(appimage_data->thread_pool, TRUE, TRUE);
 	g_free(appimage_data);
 
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static gboolean appimage_notification_fade_cb(gpointer data)

@@ -216,7 +216,7 @@ static gboolean cache_maintain_home_cb(gpointer data)
 		DEBUG_1("purge chk done.");
 		cm->idle_id = 0;
 		cache_maintain_home_stop(cm);
-		return FALSE;
+		return G_SOURCE_REMOVE;
 		}
 
 	fd = static_cast<FileData *>(cm->list->data);
@@ -314,7 +314,7 @@ static gboolean cache_maintain_home_cb(gpointer data)
 		gtk_entry_set_text(GTK_ENTRY(cm->entry), buf);
 		}
 
-	return TRUE;
+	return G_SOURCE_CONTINUE;
 }
 
 static void cache_maintain_home_close_cb(GenericDialog *UNUSED(gd), gpointer data)
@@ -1028,12 +1028,12 @@ static gint cache_manager_standard_clean_clear_cb(gpointer data)
 				}
 			}
 
-		return TRUE;
+		return G_SOURCE_CONTINUE;
 		}
 
 	cd->idle_id = 0;
 	cache_manager_standard_clean_done(cd);
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void cache_manager_standard_clean_valid_cb(const gchar *path, gboolean valid, gpointer data)

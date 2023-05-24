@@ -504,7 +504,7 @@ static gboolean bar_pane_keywords_changed_idle_cb(gpointer data)
 	bar_pane_keywords_write(pkd);
 	bar_keyword_tree_sync(pkd);
 	pkd->idle_id = 0;
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void bar_pane_keywords_changed(GtkTextBuffer *UNUSED(buffer), gpointer data)

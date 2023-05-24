@@ -56,7 +56,7 @@ static gboolean cache_loader_phase1_process(CacheLoader *cl)
 			g_signal_connect(G_OBJECT(cl->il), "done", (GCallback)cache_loader_phase1_done_cb, cl);
 			if (image_loader_start(cl->il))
 				{
-				return FALSE;
+				return G_SOURCE_REMOVE;
 				}
 
 			cl->error = TRUE;
@@ -65,7 +65,7 @@ static gboolean cache_loader_phase1_process(CacheLoader *cl)
 
 	cl->idle_id = g_idle_add(cache_loader_phase2_idle_cb, cl);
 
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static gboolean cache_loader_phase2_process(CacheLoader *cl)
@@ -196,10 +196,10 @@ static gboolean cache_loader_phase2_process(CacheLoader *cl)
 			cl->done_func(cl, cl->error, cl->done_data);
 			}
 
-		return FALSE;
+		return G_SOURCE_REMOVE;
 		}
 
-	return TRUE;
+	return G_SOURCE_CONTINUE;
 }
 
 static gboolean cache_loader_phase1_idle_cb(gpointer data)

@@ -883,12 +883,12 @@ static gboolean collect_manager_process_cb(gpointer UNUSED(data))
 {
 	if (collection_manager_action_list) collect_manager_refresh();
 	collect_manager_process_actions(COLLECT_MANAGER_ACTIONS_PER_IDLE);
-	if (collection_manager_action_list) return TRUE;
+	if (collection_manager_action_list) return G_SOURCE_CONTINUE;
 
-	if (collect_manager_process_entry_list()) return TRUE;
+	if (collect_manager_process_entry_list()) return G_SOURCE_CONTINUE;
 
 	DEBUG_1("collection manager is up to date");
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static gboolean collect_manager_timer_cb(gpointer UNUSED(data))

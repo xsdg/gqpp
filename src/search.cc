@@ -790,7 +790,7 @@ static gboolean search_result_update_idle_cb(gpointer data)
 	search_status_update(sd);
 
 	sd->update_idle_id = 0;
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void search_result_update_idle_cancel(SearchData *sd)
@@ -2457,9 +2457,9 @@ static gboolean search_step_cb(gpointer data)
 		if (search_file_next(sd))
 			{
 			sd->search_idle_id = 0;
-			return FALSE;
+			return G_SOURCE_REMOVE;
 			}
-		return TRUE;
+		return G_SOURCE_CONTINUE;
 		}
 
 	if (!sd->search_file_list && !sd->search_folder_list)
@@ -2469,7 +2469,7 @@ static gboolean search_step_cb(gpointer data)
 		search_stop(sd);
 		search_result_thumb_step(sd);
 
-		return FALSE;
+		return G_SOURCE_REMOVE;
 		}
 
 	fd = static_cast<FileData *>(sd->search_folder_list->data);
@@ -2549,7 +2549,7 @@ static gboolean search_step_cb(gpointer data)
 		file_data_unref(fd);
 		}
 
-	return TRUE;
+	return G_SOURCE_CONTINUE;
 }
 
 static void search_similarity_load_done_cb(ImageLoader *UNUSED(il), gpointer data)

@@ -90,20 +90,20 @@ static gboolean bar_pane_histogram_update_cb(gpointer data)
 
 	gtk_widget_queue_draw_area(GTK_WIDGET(phd->drawing_area), 0, 0, phd->histogram_width, phd->histogram_height);
 
-	if (phd->fd == NULL) return FALSE;
+	if (phd->fd == NULL) return G_SOURCE_REMOVE;
 	histmap = histmap_get(phd->fd);
 
 	if (!histmap)
 		{
 		histmap_start_idle(phd->fd);
-		return FALSE;
+		return G_SOURCE_REMOVE;
 		}
 
 	phd->pixbuf = gdk_pixbuf_new(GDK_COLORSPACE_RGB, FALSE, 8, phd->histogram_width, phd->histogram_height);
 	gdk_pixbuf_fill(phd->pixbuf, 0xffffffff);
 	histogram_draw(phd->histogram, histmap, phd->pixbuf, 0, 0, phd->histogram_width, phd->histogram_height);
 
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 
