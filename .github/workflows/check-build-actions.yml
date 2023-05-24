@@ -3,8 +3,9 @@ run-name: ${{ github.actor }} is running Geeqie check build
 on: [push]
 jobs:
   Check-Build-No-Options:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
+    - run: sudo apt-get update
     - run: sudo apt-get install build-essential libgtk-3-dev
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
