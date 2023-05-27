@@ -632,5 +632,11 @@ i18n.merge_file(
 configure_file(input: 'geeqie.spec.in', output: 'geeqie.spec', configuration: conf_data)
 
 # Basic test of the executable
-xvfb = find_program('xvfb-run')
-test('Basic test', xvfb, args: ['--auto-servernum', geeqie_exe, '--version'], timeout: 100)
+xvfb = find_program('xvfb-run', required : false)
+if xvfb.found()
+    test('Basic test', xvfb, args: ['--auto-servernum', geeqie_exe, '--version'], timeout: 100)
+    summary({'xvfb' : ['Test runs:', true]}, section : 'Debugging', bool_yn : true)
+else
+    summary({'xvfb' : ['Test runs:', false]}, section : 'Debugging', bool_yn : true)
+
+endif
