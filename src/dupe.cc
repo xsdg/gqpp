@@ -704,7 +704,7 @@ static void dupe_listview_add(DupeWindow *dw, DupeItem *parent, DupeItem *child)
 		text[DUPE_COLUMN_RANK] = g_strdup_printf("%d%s", rank, (di->second) ? " (2)" : "");
 		}
 
-	text[DUPE_COLUMN_THUMB] = _("");
+	text[DUPE_COLUMN_THUMB] = ("");
 	text[DUPE_COLUMN_NAME] = (gchar *)di->fd->name;
 	text[DUPE_COLUMN_SIZE] = text_from_size(di->fd->size);
 	text[DUPE_COLUMN_DATE] = (gchar *)text_from_time(di->fd->date);
