@@ -31,6 +31,7 @@ build-essential
 libglib2.0-0
 libtool
 meson
+ninja-build
 yelp-tools
 help2man
 doclifter"
@@ -170,19 +171,12 @@ systemProfile()
 
 install_essential()
 {
-	i=0
-
 	for file in $essential_array
 	do
-		if [ $((i % 2)) -ne 0 ]
+		if package_query "$file"
 		then
-			if package_query "$file"
-			then
-				package_install "$file"
-			fi
+			package_install "$file"
 		fi
-
-		i=$((i + 1))
 	done
 
 	if [ "$1" = "GTK3" ]
