@@ -587,28 +587,33 @@ static void show_notification_message(gchar *version_string_from_file, AppImageD
 
 	server_version = atoi(strtok(strstr(version_string_from_file, "+") + 1, "-") );
 	version_string = g_strdup(strstr(VERSION, "git"));
-	running_version = atoi(strtok(version_string + 3, "-") );
-	g_free(version_string);
 
-	if (server_version > running_version)
+	/* If a release version is running, do not look for updates */
+	if (version_string)
 		{
-		appimage_data->window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-		label = gtk_label_new (_("A new Geeqie AppImage is available"));
-		gtk_widget_show(label);
-		gtk_container_add(GTK_CONTAINER(appimage_data->window), label);
-		gtk_window_set_decorated(GTK_WINDOW(appimage_data->window), FALSE);
-		gtk_widget_set_size_request(appimage_data->window, 300, 40);
-		gtk_window_set_gravity(GTK_WINDOW(appimage_data->window), GDK_GRAVITY_NORTH_EAST);
-		gtk_window_move(GTK_WINDOW(appimage_data->window), (gdk_screen_width() * 0.8), (gdk_screen_height() / 20));
-		gtk_window_set_skip_taskbar_hint(GTK_WINDOW(appimage_data->window), TRUE);
-		gtk_window_set_focus_on_map(GTK_WINDOW(appimage_data->window), FALSE);
-		g_signal_connect(appimage_data->window, "focus-in-event", G_CALLBACK(user_close_cb), appimage_data);
-		appimage_data->id = g_timeout_add(100, appimage_notification_fade_cb, appimage_data);
-		gtk_widget_show((appimage_data->window));
-		}
-	else
-		{
-		g_idle_add(appimage_notification_close_cb, appimage_data);
+		running_version = atoi(strtok(version_string + 3, "-") );
+		g_free(version_string);
+
+		if (server_version > running_version)
+			{
+			appimage_data->window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+			label = gtk_label_new (_("A new Geeqie AppImage is available"));
+			gtk_widget_show(label);
+			gtk_container_add(GTK_CONTAINER(appimage_data->window), label);
+			gtk_window_set_decorated(GTK_WINDOW(appimage_data->window), FALSE);
+			gtk_widget_set_size_request(appimage_data->window, 300, 40);
+			gtk_window_set_gravity(GTK_WINDOW(appimage_data->window), GDK_GRAVITY_NORTH_EAST);
+			gtk_window_move(GTK_WINDOW(appimage_data->window), (gdk_screen_width() * 0.8), (gdk_screen_height() / 20));
+			gtk_window_set_skip_taskbar_hint(GTK_WINDOW(appimage_data->window), TRUE);
+			gtk_window_set_focus_on_map(GTK_WINDOW(appimage_data->window), FALSE);
+			g_signal_connect(appimage_data->window, "focus-in-event", G_CALLBACK(user_close_cb), appimage_data);
+			appimage_data->id = g_timeout_add(100, appimage_notification_fade_cb, appimage_data);
+			gtk_widget_show((appimage_data->window));
+			}
+		else
+			{
+			g_idle_add(appimage_notification_close_cb, appimage_data);
+			}
 		}
 }
 
