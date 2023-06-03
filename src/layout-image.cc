@@ -1873,7 +1873,12 @@ static void layout_image_button_cb(ImageWindow *imd, GdkEventButton *event, gpoi
 	switch (event->button)
 		{
 		case MOUSE_BUTTON_LEFT:
-			if (options->image_l_click_archive && imd-> image_fd && imd->image_fd->format_class == FORMAT_CLASS_ARCHIVE)
+			if (event->button == MOUSE_BUTTON_LEFT && event->type == GDK_2BUTTON_PRESS)
+				{
+				layout_image_full_screen_toggle(lw);
+				}
+
+			else if (options->image_l_click_archive && imd-> image_fd && imd->image_fd->format_class == FORMAT_CLASS_ARCHIVE)
 				{
 				dest_dir = open_archive(imd->image_fd);
 				if (dest_dir)

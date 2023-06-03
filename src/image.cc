@@ -175,11 +175,15 @@ static void image_press_cb(PixbufRenderer *pr, GdkEventButton *event, gpointer d
 		}
 
 	lw = layout_find_by_image(imd);
+	if (!lw)
+		{
+		layout_valid(&lw);
+		}
+
 	if (lw && event->button == MOUSE_BUTTON_LEFT && event->type == GDK_2BUTTON_PRESS
 												&& !options->image_lm_click_nav)
 		{
-		if (lw->full_screen)
-			layout_image_full_screen_stop(lw);
+		layout_image_full_screen_toggle(lw);
 		}
 }
 

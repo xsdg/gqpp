@@ -380,6 +380,23 @@ static void view_step_to_end(ViewWindow *vw, gboolean last)
  *-----------------------------------------------------------------------------
  */
 
+static void view_window_press_cb(GtkWidget *UNUSED(widget), GdkEventButton *bevent, gpointer data)
+{
+	ViewWindow *vw = static_cast<ViewWindow *>(data);
+
+	switch (bevent->button)
+		{
+		case MOUSE_BUTTON_LEFT:
+			if (bevent->type == GDK_2BUTTON_PRESS)
+				{
+				view_fullscreen_toggle(vw, TRUE);
+				}
+			break;
+		default:
+			break;
+		}
+}
+
 static gboolean view_window_key_press_cb(GtkWidget * (widget), GdkEventKey *event, gpointer data)
 {
 	ViewWindow *vw = static_cast<ViewWindow *>(data);
@@ -928,6 +945,9 @@ static ViewWindow *real_view_window_new(FileData *fd, GList *list, CollectionDat
 			 G_CALLBACK(view_window_delete_cb), vw);
 	g_signal_connect(G_OBJECT(vw->window), "key_press_event",
 			 G_CALLBACK(view_window_key_press_cb), vw);
+	g_signal_connect(G_OBJECT(vw->window), "button_press_event",
+			 G_CALLBACK(view_window_press_cb), vw);
+
 	if (cd && info)
 		{
 		image_change_from_collection(vw->imd, cd, info, image_zoom_get_default(NULL));
