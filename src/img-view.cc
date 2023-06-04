@@ -382,7 +382,7 @@ static void view_step_to_end(ViewWindow *vw, gboolean last)
 
 static void view_window_press_cb(GtkWidget *UNUSED(widget), GdkEventButton *bevent, gpointer data)
 {
-	ViewWindow *vw = static_cast<ViewWindow *>(data);
+	auto vw = static_cast<ViewWindow *>(data);
 
 	switch (bevent->button)
 		{
