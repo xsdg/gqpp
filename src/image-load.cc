@@ -663,6 +663,7 @@ static void image_loader_setup_loader(ImageLoader *il)
 #ifdef HAVE_HEIF
 	if (il->bytes_total >= 12 &&
 		((memcmp(il->mapped_file + 4, "ftypheic", 8) == 0) ||
+		(memcmp(il->mapped_file + 4, "ftypheix", 8) == 0) ||
 		(memcmp(il->mapped_file + 4, "ftypmsf1", 8) == 0) ||
 		(memcmp(il->mapped_file + 4, "ftypmif1", 8) == 0) ||
 		(memcmp(il->mapped_file + 4, "ftypavif", 8) == 0)))
