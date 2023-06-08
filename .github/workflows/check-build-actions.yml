@@ -1,6 +1,6 @@
 name: Geeqie check build
 run-name: ${{ github.actor }} is running Geeqie check build
-on: [push]
+on: [push, pull_request]
 jobs:
   Check-Build-No-Options:
     runs-on: ubuntu-22.04
