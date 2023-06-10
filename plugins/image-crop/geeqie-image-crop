@@ -34,7 +34,7 @@ process_raw ()
 		res=1
 	fi
 
-	return $res
+	return "$res"
 }
 
 process_plain ()

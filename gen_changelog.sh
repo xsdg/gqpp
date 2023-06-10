@@ -11,7 +11,7 @@
 
 builddir="$2"
 
-cd "$1"
+cd "$1" || exit
 
 [ ! -e "ChangeLog.gqview" ] && exit 1
 [ ! -x "$(command -v git)" ] && exit 1
@@ -40,6 +40,7 @@ mv -f "$builddir/ChangeLog.$$.new.html" "$builddir/ChangeLog.html"
 
 # Meson: distribute in tarballs. The first variable is more reliable, but requires Meson 0.58.
 # Fallback to the older one if necessary
+# shellcheck disable=SC2154
 for distdir in "$MESON_PROJECT_DIST_ROOT" "$MESON_DIST_ROOT"; do
     if [ -n "$distdir" ]; then
         cp -f "$builddir/ChangeLog.html" "$distdir/ChangeLog.html"

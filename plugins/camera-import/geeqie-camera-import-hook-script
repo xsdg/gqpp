@@ -4,6 +4,7 @@
 ## @brief Camera import hook script
 ##
 
+# shellcheck disable=2154
 if [ "$ACTION" = "download" ]
 then
 	printf '%s\n' "$ARGUMENT" >> /tmp/geeqie-camera-import-files

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ## @file
 ## @brief Create a new release
@@ -16,14 +16,6 @@
 ##
 ## It is expected that the first line of NEWS is in the form "Geeqie \<a.b[.d]\>
 ##
-
-error_handler ()
-{
-	echo "Error on line: $1"
-	exit 1
-}
-trap 'error_handler ${LINENO}' ERR
-
 
 version=
 start=

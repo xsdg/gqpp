@@ -47,5 +47,5 @@ then
 	zenity --text-info --title="Geeqie tethered photography" --window-icon=/usr/local/share/pixmaps/geeqie.png --ok-label="Stop" --cancel-label="Abort" <"$tmpfile" 2>/dev/null
 fi
 
-kill $gphoto2_pid
+kill "$gphoto2_pid"
 rm "$tmpfile"

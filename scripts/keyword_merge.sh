@@ -14,7 +14,7 @@ merge_file()
 flag=0
 while read -r line_merge
 do
-	if [ $flag -eq 0 ]
+	if [ "$flag" -eq 0 ]
 	then
 		if [ "$line_merge" != "${line_merge%<keyword_tree>*}" ]
 		then
@@ -40,11 +40,11 @@ then
 fi
 
 
-if [ $np -ge 3 ]
+if [ "$np" -ge 3 ]
 then
 	zenity --error --text "Too many parameters"
 	exit
-elif [ $np -eq 0 ]
+elif [ "$np" -eq 0 ]
 then
 	config_main=$(zenity --file-selection --file-filter="geeqierc.xml" --file-filter="*.xml" --file-filter="*" --title="Select main configuration file")
 	if [ $? -eq 1 ]
@@ -56,7 +56,7 @@ then
 	then
 		exit
 	fi
-elif [ $np -eq 1 ]
+elif [ "$np" -eq 1 ]
 then
 	config_merge=$(zenity --file-selection --file-filter="geeqierc.xml" --file-filter="*.xml" --file-filter="*" --title="Select configuration file to merge from")
 	if [ $? -eq 1 ]

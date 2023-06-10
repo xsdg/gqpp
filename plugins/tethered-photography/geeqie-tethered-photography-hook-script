@@ -4,6 +4,7 @@
 ## @brief Tethered photography hook script
 ##
 
+# shellcheck disable=SC2154
 if [ "$ACTION" = "download" ]
 then
 	notify-send --expire-time=4000 "$ARGUMENT"  --icon=geeqie

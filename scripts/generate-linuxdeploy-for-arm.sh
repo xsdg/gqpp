@@ -41,13 +41,13 @@ sudo apt install libgirepository1.0-dev
 
 rm -rf /tmp/linuxdeploy-*
 
-cd "$HOME"
+cd "$HOME" || exit
 if [ ! -d bin ]
 then
 	mkdir bin
 fi
 
-cd "$HOME"/bin
+cd "$HOME"/bin || exit
 
 if [ ! -f appimagetool-aarch64.AppImage ]
 then
@@ -67,7 +67,7 @@ then
 	mv linuxdeploy linuxdeploy-download
 fi
 
-cd linuxdeploy-download
+cd linuxdeploy-download || exit
 
 # Use arm architecture
 sed -i 's/"x86_64"/"aarch64"/g' ./ci/build.sh
@@ -104,7 +104,7 @@ then
 	git clone --recursive https://github.com/linuxdeploy/linuxdeploy-plugin-appimage.git
 fi
 
-cd linuxdeploy-plugin-appimage
+cd linuxdeploy-plugin-appimage || exit
 
 # Always use /tmp
 sed -i 's/TEMP_BASE=\/dev\/shm/TEMP_BASE=\/tmp/' ./ci/build-appimage.sh

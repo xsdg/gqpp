@@ -156,8 +156,8 @@ systemProfile()
 			then
 				DIST="${DIST}[$(tr "\n" ' ' < /etc/UnitedLinux-release | sed s/VERSION.*//)]"
 			fi
-			OS=$(lowercase $OS)
-			DistroBasedOn=$(lowercase $DistroBasedOn)
+			OS=$(lowercase "$OS")
+			DistroBasedOn=$(lowercase "$DistroBasedOn")
 			readonly OS
 			readonly DIST
 			readonly DistroBasedOn
@@ -244,7 +244,7 @@ package_query()
 			status=0
 		fi
 	fi
-	return $status
+	return "$status"
 }
 
 package_install()
@@ -343,7 +343,7 @@ do
 	esac
 done
 
-if [ "$LIST" ]
+if [ -n "$LIST" ]
 then
 	printf '%b\n' "Essential libraries:"
 	for file in $essential_array
@@ -417,12 +417,11 @@ then
 	exit 1
 fi" > "$install_pass_script"
 chmod +x "$install_pass_script"
-export SUDO_ASKPASS=$install_pass_script
+export SUDO_ASKPASS="$install_pass_script"
 
 if [ "$gtk_version" = "Uninstall" ]
 then
 	uninstall
-	exit
 fi
 
 # Put the install log in tmp, to avoid writing to PWD during a new install
@@ -453,7 +452,7 @@ do
 	i=$((i + 1))
 done
 
-kill $zen_pid 2> /dev/null
+kill "$zen_pid" 2> /dev/null
 
 # Ask the user which options to install
 if [ -n "$option_string" ]
@@ -511,7 +510,7 @@ fi
 printf '%b\n' "20" > "$zen_pipe"
 printf '%b\n' "#Cleaning installed version..." > "$zen_pipe"
 
-if [ $mode = "install" ]
+if [ "$mode" = "install" ]
 then
 	cd geeqie || exit 1
 else
@@ -521,7 +520,7 @@ fi
 printf '%b\n' "30" > "$zen_pipe"
 printf '%b\n' "#Checkout required version..." > "$zen_pipe"
 
-if [ "$BACK" ]
+if [ -n "$BACK" ]
 then
 	if ! git checkout master~"$BACK" >> "$install_log" 2>&1
 	then
@@ -529,7 +528,7 @@ then
 		zenity --title="$title" --width=370 --height=400 --error --text="Git error:\n\n$git_error" 2> /dev/null
 		exit_install
 	fi
-elif [ "$COMMIT" ]
+elif [ -n "$COMMIT" ]
 then
 
 	if ! git checkout "$COMMIT" >> "$install_log" 2>&1
@@ -538,14 +537,13 @@ then
 		zenity --title="$title" --width=370 --height=400 --error --text="Git error:\n\n$git_error" 2> /dev/null
 		exit_install
 	fi
-elif [ "$TAG" ]
+elif [ -n "$TAG" ]
 then
 	if ! git checkout "$TAG" >> "$install_log" 2>&1
 	then
 		git_error=$(tail -n5 "$install_log" 2>&1)
 		zenity --title="$title" --width=370 --height=400 --error --text="Git error:\n\n$git_error" 2> /dev/null
 		exit_install
-		exit
 	fi
 fi
 
