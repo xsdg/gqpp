@@ -635,8 +635,49 @@ configure_file(input: 'geeqie.spec.in', output: 'geeqie.spec', configuration: co
 xvfb = find_program('xvfb-run', required : false)
 if xvfb.found()
     test('Basic test', xvfb, args: ['--auto-servernum', geeqie_exe, '--version'], timeout: 100)
-    summary({'xvfb' : ['Test runs:', true]}, section : 'Debugging', bool_yn : true)
+    summary({'xvfb' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
 else
-    summary({'xvfb' : ['Test runs:', false]}, section : 'Debugging', bool_yn : true)
+    summary({'xvfb' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+endif
 
+# Shellcheck
+shellcheck_exe = find_program('shellcheck', required : false)
+script_sources = files('./doc/create-doxygen-lua-api.sh',
+'./doc/create-shortcuts-xml.sh',
+'./gen_changelog.sh',
+'./geeqie-install-debian.sh',
+'./plugins/camera-import/geeqie-camera-import',
+'./plugins/camera-import/geeqie-camera-import-hook-script',
+'./plugins/export-jpeg/geeqie-export-jpeg',
+'./plugins/image-crop/geeqie-image-crop',
+'./plugins/random-image/geeqie-random-image',
+'./plugins/rotate/geeqie-rotate',
+'./plugins/symlink/geeqie-symlink',
+'./plugins/tethered-photography/geeqie-tethered-photography',
+'./plugins/tethered-photography/geeqie-tethered-photography-hook-script',
+'./po/gen_translations_stats.sh',
+'./po/regen_potfiles.sh',
+'./scripts/authors.sh',
+'./scripts/check-compiles.sh',
+'./scripts/doxygen-help.sh',
+'./scripts/doxygen.sh',
+'./scripts/generate-ClayRGB1998-icc-h.sh',
+'./scripts/generate-appimage.sh',
+'./scripts/generate-linuxdeploy-for-arm.sh',
+'./scripts/generate-man-page.sh',
+'./scripts/keyword_merge.sh',
+'./scripts/new-release.sh',
+'./scripts/template-desktop.sh',
+'./scripts/translators.sh',
+'./scripts/untranslated-text.sh',
+'./scripts/web-help.sh',
+'./version.sh',)
+
+if shellcheck_exe.found()
+    foreach script : script_sources
+        test('Shellcheck', shellcheck_exe, args: ['--norc', '--shell=sh', '--enable=add-default-case,avoid-nullary-conditions,check-unassigned-uppercase,deprecate-which,quote-safe-variables', script], timeout: 100)
+    endforeach
+    summary({'shellcheck' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+else
+    summary({'shellcheck' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
 endif
