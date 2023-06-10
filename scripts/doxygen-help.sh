@@ -41,14 +41,7 @@
 ##  
 ##  **********************************************************************
 ##  
-## To generate the Doxygen html files set the following
-## environment variables:  
-## DOCDIR (destination folder)  
-## SRCDIR (must point to the level above the source code)  
-## PROJECT  
-## VERSION
-##  
-## Then run 'doxygen doxygen.conf'
+## To generate the Doxygen html files run 'doxygen.sh'
 ##
  
 if [ -z "${DOCDIR}" ]
