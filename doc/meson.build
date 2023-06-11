@@ -50,3 +50,6 @@ if running_from_git
         summary({'lua-api' : ['disabled - lua-api help file created:', false]}, section : 'Documentation', bool_yn : true)
     endif
 endif
+
+script_sources += files('create-doxygen-lua-api.sh',
+'create-shortcuts-xml.sh')

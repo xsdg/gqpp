@@ -1,5 +1,5 @@
 # This file is a part of Geeqie project (https://www.geeqie.org/).
-# Copyright (C) 2008 - 2022 The Geeqie Team
+# Copyright (C) 2008 - 2023 The Geeqie Team
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -9,16 +9,20 @@
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#
+# GNU General Public License for more details.
 
-install_data('geeqie-export-jpeg', install_dir : gq_bindir)
+script_sources += files('authors.sh',
+'check-compiles.sh',
+'doxygen-help.sh',
+'doxygen.sh',
+'generate-ClayRGB1998-icc-h.sh',
+'generate-appimage.sh',
+'generate-linuxdeploy-for-arm.sh',
+'generate-man-page.sh',
+'keyword_merge.sh',
+'new-release.sh',
+'template-desktop.sh',
+'translators.sh',
+'untranslated-text.sh',
+'web-help.sh')
 
-i18n.merge_file(
-    input : 'export-jpeg.desktop.in',
-    output : 'export-jpeg.desktop',
-    type : 'desktop',
-    po_dir : podir,
-    install : true,
-    install_dir : desktopdir)
-
-script_sources += files('geeqie-export-jpeg')

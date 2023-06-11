@@ -20,3 +20,6 @@ i18n.merge_file(
     po_dir : podir,
     install : true,
     install_dir : desktopdir)
+
+script_sources += files('geeqie-tethered-photography',
+'geeqie-tethered-photography-hook-script')
