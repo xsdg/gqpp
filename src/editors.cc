@@ -106,6 +106,7 @@ static GList *editor_mime_types_to_extensions(gchar **mime_types)
 		{"image/heic",		".heic"},
 		{"image/jpeg",		".jpeg;.jpg;.mpo"},
 		{"image/jpg",		".jpg;.jpeg"},
+		{"image/jxl",		".jxl"},
 		{"image/webp",		".webp"},
 		{"image/pcx",		".pcx"},
 		{"image/png",		".png"},

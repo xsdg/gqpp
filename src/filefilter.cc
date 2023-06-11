@@ -190,6 +190,9 @@ void filter_add_defaults()
 #ifdef HAVE_DJVU
 	filter_add_if_missing("djvu", "DjVu Format", ".djvu;.djv", FORMAT_CLASS_DOCUMENT, FALSE, FALSE, TRUE);
 #endif
+#ifdef HAVE_JXL
+	filter_add_if_missing("jxl", "JXL", ".jxl", FORMAT_CLASS_IMAGE, FALSE, TRUE, TRUE);
+#endif
 #ifdef HAVE_J2K
 	filter_add_if_missing("jp2", "JPEG 2000", ".jp2", FORMAT_CLASS_IMAGE, FALSE, FALSE, TRUE);
 #endif
