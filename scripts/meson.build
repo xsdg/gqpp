@@ -13,6 +13,7 @@
 
 script_sources += files('authors.sh',
 'check-compiles.sh',
+'devel-install.sh',
 'doxygen-help.sh',
 'doxygen.sh',
 'generate-ClayRGB1998-icc-h.sh',
