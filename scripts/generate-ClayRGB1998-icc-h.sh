@@ -12,7 +12,13 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-# Allow standalone replacement for xxd
+## @file
+## @brief Allow standalone replacement for xxd
+##
+## xxd is used to generate ClayRGB1998_icc.h from ClayRGB1998.icc.
+## Installing xxd brings in vi, which loads unnecessary data.
+## The alternative is to use xxdi.pl if installed.
+
 command -v xxdi.pl >/dev/null 2>&1 && XXD="xxdi.pl" || XXD="xxd -i"
 
 # To generate the required code, xxd has to run in the same folder as the source
