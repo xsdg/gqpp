@@ -1843,11 +1843,11 @@ static void autocomplete_keywords_list_load(const gchar *path)
 
 	pathl = path_from_utf8(path);
 	f = fopen(pathl, "r");
-	g_free(pathl);
 
 	if (!f)
 		{
 		log_printf("Warning: keywords file %s not loaded", pathl);
+		g_free(pathl);
 		return;
 		}
 
@@ -1857,8 +1857,11 @@ static void autocomplete_keywords_list_load(const gchar *path)
 		{
 		fclose(f);
 		log_printf("Warning: keywords file %s not loaded", pathl);
+		g_free(pathl);
 		return;
 		}
+
+	g_free(pathl);
 
 	while (fgets(s_buf, sizeof(s_buf), f))
 		{

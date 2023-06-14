@@ -496,8 +496,8 @@ static void plugin_disable_cb(GtkCellRendererToggle *UNUSED(renderer), gchar *pa
 
 			if (haystack && strcmp(haystack, path) == 0)
 				{
-				g_free(haystack);
 				options->disabled_plugins = g_list_remove(options->disabled_plugins, haystack);
+				g_free(haystack);
 				}
 
 			list = list->next;

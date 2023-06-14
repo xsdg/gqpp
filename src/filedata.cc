@@ -3215,8 +3215,8 @@ gboolean file_data_unregister_notify_func(FileDataNotifyFunc func, gpointer data
 		if (nd->func == func && nd->data == data)
 			{
 			notify_func_list = g_list_delete_link(notify_func_list, work);
-			g_free(nd);
 			DEBUG_2("Notify func unregistered: %p", (void *)nd);
+			g_free(nd);
 			return TRUE;
 			}
 		work = work->next;
