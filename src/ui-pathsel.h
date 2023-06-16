@@ -25,7 +25,6 @@
 
 GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 					 const gchar *filter, const gchar *filter_desc);
-GtkWidget *path_selection_new(const gchar *path, GtkWidget *entry);
 
 void path_selection_sync_to_entry(GtkWidget *entry);
 

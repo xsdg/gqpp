@@ -31,7 +31,6 @@ void write_color_option(GString *str, gint indent, const gchar *label, GdkColor 
 gboolean read_color_option(const gchar *option, const gchar *label, const gchar *value, GdkColor *color);
 void write_int_option(GString *str, gint indent, const gchar *label, gint n);
 gboolean read_int_option(const gchar *option, const gchar *label, const gchar *value, gint *n);
-void write_ushort_option(GString *str, gint indent, const gchar *label, guint16 n);
 gboolean read_ushort_option(const gchar *option, const gchar *label, const gchar *value, guint16 *n);
 void write_uint_option(GString *str, gint indent, const gchar *label, guint n);
 gboolean read_uint_option(const gchar *option, const gchar *label, const gchar *value, guint *n);

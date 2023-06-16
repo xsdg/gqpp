@@ -29,7 +29,6 @@ void collection_info_free_thumb(CollectInfo *ci);
 void collection_info_free(CollectInfo *ci);
 
 void collection_info_set_thumb(CollectInfo *ci, GdkPixbuf *pixbuf);
-gboolean collection_info_load_thumb(CollectInfo *ci);
 
 void collection_list_free(GList *list);
 

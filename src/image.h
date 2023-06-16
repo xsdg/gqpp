@@ -44,9 +44,6 @@ void image_set_scroll_func(ImageWindow *imd,
 void image_set_focus_in_func(ImageWindow *imd,
 	void (*func)(ImageWindow *, gpointer),
 	gpointer data);
-void image_set_scroll_notify_func(ImageWindow *imd,
-				  void (*func)(ImageWindow *imd, gint x, gint y, gint width, gint height, gpointer data),
-				  gpointer data);
 void image_set_complete_func(ImageWindow *imd,
 			     void (*func)(ImageWindow *imd, gint preload, gpointer data),
 			     gpointer data);
@@ -92,7 +89,6 @@ void image_alter_orientation(ImageWindow *imd, FileData *fd, AlterType type);
 void image_set_desaturate(ImageWindow *imd, gboolean desaturate);
 gboolean image_get_desaturate(ImageWindow *imd);
 void image_set_overunderexposed(ImageWindow *imd, gboolean overunderexposed);
-gboolean image_get_overunderexposed(ImageWindow *imd);
 void image_set_ignore_alpha(ImageWindow *imd, gboolean ignore_alpha);
 
 /* zoom */
@@ -107,9 +103,7 @@ gchar *image_zoom_get_as_text(ImageWindow *imd);
 gdouble image_zoom_get_default(ImageWindow *imd);
 
 /* stereo */
-gint image_stereo_get(ImageWindow *imd);
 void image_stereo_set(ImageWindow *imd, gint stereo_mode);
-void image_stereo_swap(ImageWindow *imd);
 
 StereoPixbufData image_stereo_pixbuf_get(ImageWindow *imd);
 void image_stereo_pixbuf_set(ImageWindow *imd, StereoPixbufData stereo_mode);

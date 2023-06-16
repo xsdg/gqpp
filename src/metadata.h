@@ -30,7 +30,6 @@
 void metadata_cache_free(FileData *fd);
 
 gboolean metadata_write_queue_remove(FileData *fd);
-gboolean metadata_write_queue_remove_list(GList *list);
 gboolean metadata_write_perform(FileData *fd);
 gboolean metadata_write_queue_confirm(gboolean force_dialog, FileUtilDoneFunc done_func, gpointer done_data);
 void metadata_notify_cb(FileData *fd, NotifyType type, gpointer data);

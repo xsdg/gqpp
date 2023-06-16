@@ -68,8 +68,6 @@ void bar_set_fd(GtkWidget *bar, FileData *fd);
 void bar_notify_selection(GtkWidget *bar, gint count);
 gboolean bar_event(GtkWidget *bar, GdkEvent *event);
 
-gint bar_get_width(GtkWidget *bar);
-
 GtkWidget *bar_pane_expander_title(const gchar *title);
 void bar_update_expander(GtkWidget *pane);
 gboolean bar_pane_translate_title(PaneType type, const gchar *id, gchar **title);

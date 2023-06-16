@@ -86,10 +86,8 @@ void layout_mark_filter_toggle(LayoutWindow *lw, gint mark);
 void layout_refresh(LayoutWindow *lw);
 
 void layout_thumb_set(LayoutWindow *lw, gboolean enable);
-gboolean layout_thumb_get(LayoutWindow *lw);
 
 void layout_marks_set(LayoutWindow *lw, gboolean enable);
-gboolean layout_marks_get(LayoutWindow *lw);
 
 void layout_file_filter_set(LayoutWindow *lw, gboolean enable);
 
@@ -100,7 +98,6 @@ gboolean layout_geometry_get(LayoutWindow *lw, gint *x, gint *y, gint *w, gint *
 gboolean layout_geometry_get_dividers(LayoutWindow *lw, gint *h, gint *v);
 
 void layout_views_set(LayoutWindow *lw, DirViewType dir_view_type, FileViewType file_view_type);
-gboolean layout_views_get(LayoutWindow *lw, DirViewType *dir_view_type, FileViewType *file_view_type);
 
 void layout_views_set_sort(LayoutWindow *lw, SortType method, gboolean ascend);
 

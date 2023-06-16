@@ -24,7 +24,6 @@
 
 
 gboolean pixbuf_to_file_as_png (GdkPixbuf *pixbuf, const gchar *filename);
-gboolean pixbuf_to_file_as_jpg(GdkPixbuf *pixbuf, const gchar *filename, gint quality);
 
 void pixbuf_inline_register_stock_icons();
 gboolean register_theme_icon_as_stock(const gchar *key, const gchar *icon);
@@ -86,11 +85,6 @@ GdkPixbuf* pixbuf_apply_orientation(GdkPixbuf *pixbuf, gint orientation);
 void pixbuf_draw_rect_fill(GdkPixbuf *pb,
 			   gint x, gint y, gint w, gint h,
 			   gint r, gint g, gint b, gint a);
-
-void pixbuf_draw_rect(GdkPixbuf *pb,
-		      gint x, gint y, gint w, gint h,
-		      gint r, gint g, gint b, gint a,
-		      gint left, gint right, gint top, gint bottom);
 
 void pixbuf_set_rect_fill(GdkPixbuf *pb,
 			  gint x, gint y, gint w, gint h,

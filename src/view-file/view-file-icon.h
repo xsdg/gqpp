@@ -55,7 +55,6 @@ gint vficon_index_by_fd(ViewFile *vf, FileData *in_fd);
 guint vficon_count(ViewFile *vf, gint64 *bytes);
 GList *vficon_get_list(ViewFile *vf);
 
-gboolean vficon_index_is_selected(ViewFile *vf, gint row);
 guint vficon_selection_count(ViewFile *vf, gint64 *bytes);
 GList *vficon_selection_get_list(ViewFile *vf);
 GList *vficon_selection_get_list_by_index(ViewFile *vf);

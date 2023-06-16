@@ -842,11 +842,6 @@ void color_man_correct_region(ColorMan *UNUSED(cm), GdkPixbuf *UNUSED(pixbuf), g
 	/* no op */
 }
 
-void color_man_start_bg(ColorMan *UNUSED(cm), ColorManDoneFunc UNUSED(done_func), gpointer UNUSED(done_data))
-{
-	/* no op */
-}
-
 gboolean color_man_get_status(ColorMan *UNUSED(cm), gchar **UNUSED(image_profile), gchar **UNUSED(screen_profile))
 {
 	return FALSE;

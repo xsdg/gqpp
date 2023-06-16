@@ -706,11 +706,6 @@ void image_set_overunderexposed(ImageWindow *imd, gboolean overunderexposed)
 	pixbuf_renderer_set_orientation(reinterpret_cast<PixbufRenderer *>(imd->pr), imd->orientation);
 }
 
-gboolean image_get_overunderexposed(ImageWindow *imd)
-{
-	return imd->overunderexposed;
-}
-
 void image_set_ignore_alpha(ImageWindow *imd, gboolean ignore_alpha)
 {
    pixbuf_renderer_set_ignore_alpha(reinterpret_cast<PixbufRenderer *>(imd->pr), ignore_alpha);

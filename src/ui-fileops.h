@@ -70,7 +70,6 @@ gboolean filetime_set(const gchar *s, time_t tval);
 gboolean is_readable_file(const gchar *s);
 gboolean access_file(const gchar *s, gint mode);
 gboolean unlink_file(const gchar *s);
-gboolean symlink_utf8(const gchar *source, const gchar *target);
 gboolean mkdir_utf8(const gchar *s, gint mode);
 gboolean rmdir_utf8(const gchar *s);
 gboolean copy_file_attributes(const gchar *s, const gchar *t, gint perms, gint mtime);
@@ -88,7 +87,6 @@ void string_list_free(GList *list);
 GList *string_list_copy(const GList *list);
 
 gchar *unique_filename(const gchar *path, const gchar *ext, const gchar *divider, gboolean pad);
-gchar *unique_filename_simple(const gchar *path);
 
 const gchar *filename_from_path(const gchar *path);
 gchar *remove_level_from_path(const gchar *path);

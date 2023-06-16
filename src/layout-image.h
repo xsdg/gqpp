@@ -49,7 +49,6 @@ gboolean layout_image_color_profile_get_status(LayoutWindow *lw, gchar **image_p
 
 
 const gchar *layout_image_get_path(LayoutWindow *lw);
-const gchar *layout_image_get_name(LayoutWindow *lw);
 FileData *layout_image_get_fd(LayoutWindow *lw);
 CollectionData *layout_image_get_collection(LayoutWindow *lw, CollectInfo **info);
 gint layout_image_get_index(LayoutWindow *lw);
@@ -64,7 +63,6 @@ void layout_image_alter_orientation(LayoutWindow *lw, AlterType type);
 void layout_image_set_desaturate(LayoutWindow *lw, gboolean desaturate);
 gboolean layout_image_get_desaturate(LayoutWindow *lw);
 void layout_image_set_overunderexposed(LayoutWindow *lw, gboolean overunderexposed);
-gboolean layout_image_get_overunderexposed(LayoutWindow *lw);
 void layout_image_set_ignore_alpha(LayoutWindow *lw, gboolean ignore_alpha);
 
 void layout_image_rating(LayoutWindow *lw, const gchar *rating);
@@ -101,8 +99,6 @@ gboolean layout_image_slideshow_pause_toggle(LayoutWindow *lw);
 gboolean layout_image_slideshow_paused(LayoutWindow *lw);
 
 void layout_image_animate_toggle(LayoutWindow *lw);
-
-void layout_image_overlay_toggle(LayoutWindow *lw);
 
 void layout_image_notify_cb(FileData *fd, NotifyType type, gpointer data);
 void layout_image_reset_orientation(LayoutWindow *lw);

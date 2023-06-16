@@ -87,7 +87,7 @@ gboolean tree_view_move_cursor_away(GtkTreeView *widget, GtkTreeIter *iter, gboo
  * @headerfile tree_path_to_row
  * utility to return row position of given GtkTreePath
  */
-gint tree_path_to_row(GtkTreePath *tpath);
+//gint tree_path_to_row(GtkTreePath *tpath);
 
 
 /**
@@ -105,7 +105,7 @@ void shift_color(GdkColor *src, gshort val, gint direction);
  *
  * shift_value is 1 to 100, representing the percent of the shift.
  */
-void style_shift_color(GtkStyle *style, GtkStateType type, gshort shift_value, gint direction);
+//void style_shift_color(GtkStyle *style, GtkStateType type, gshort shift_value, gint direction);
 
 /**
  * @def STYLE_SHIFT_STANDARD

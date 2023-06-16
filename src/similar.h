@@ -44,7 +44,6 @@ gdouble image_sim_compare_fast(ImageSimilarityData *a, ImageSimilarityData *b, g
 
 
 void image_sim_alternate_set(gboolean enable);
-gboolean image_sim_alternate_enabled();
 void image_sim_alternate_processing(ImageSimilarityData *sd);
 
 

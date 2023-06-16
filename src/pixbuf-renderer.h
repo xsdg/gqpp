@@ -252,7 +252,6 @@ GType pixbuf_renderer_get_type();
 PixbufRenderer *pixbuf_renderer_new();
 
 void pixbuf_renderer_set_parent(PixbufRenderer *pr, GtkWindow *window);
-GtkWindow *pixbuf_renderer_get_parent(PixbufRenderer *pr);
 
 /**
  * @headerfile pixbuf_renderer_set_pixbuf
@@ -269,7 +268,6 @@ void pixbuf_renderer_set_pixbuf_lazy(PixbufRenderer *pr, GdkPixbuf *pixbuf, gdou
 GdkPixbuf *pixbuf_renderer_get_pixbuf(PixbufRenderer *pr);
 
 void pixbuf_renderer_set_orientation(PixbufRenderer *pr, gint orientation);
-gint pixbuf_renderer_get_orientation(PixbufRenderer *pr);
 
 /**
  * @headerfile pixbuf_renderer_set_stereo_data
@@ -340,7 +338,7 @@ gboolean pixbuf_renderer_get_visible_rect(PixbufRenderer *pr, GdkRectangle *rect
  * actual size of the PixbufRenderer window minus borders,
  * x and y are the scroll offset and include zoom factor.
  */
-gboolean pixbuf_renderer_get_virtual_rect(PixbufRenderer *pr, GdkRectangle *rect);
+//gboolean pixbuf_renderer_get_virtual_rect(PixbufRenderer *pr, GdkRectangle *rect);
 
 /**
  * @headerfile pixbuf_renderer_set_color

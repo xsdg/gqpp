@@ -35,13 +35,9 @@ ViewDir *vd_new(LayoutWindow *lw);
 
 void vd_set_select_func(ViewDir *vdl, void (*func)(ViewDir *vdl, FileData *fd, gpointer data), gpointer data);
 
-void vd_set_layout(ViewDir *vdl, LayoutWindow *layout);
-
 gboolean vd_set_fd(ViewDir *vdl, FileData *dir_fd);
 void vd_refresh(ViewDir *vdl);
 gboolean vd_find_row(ViewDir *vd, FileData *fd, GtkTreeIter *iter);
-
-const gchar *vd_row_get_path(ViewDir *vdl, gint row);
 
 void vd_color_set(ViewDir *vd, FileData *fd, gint color_set);
 void vd_popup_destroy_cb(GtkWidget *widget, gpointer data);
@@ -53,8 +49,6 @@ void vd_new_folder(ViewDir *vd, FileData *dir_fd);
 
 void vd_dnd_drop_scroll_cancel(ViewDir *vd);
 void vd_dnd_init(ViewDir *vd);
-
-void vd_menu_position_cb(GtkMenu *menu, gint *x, gint *y, gboolean *push_in, gpointer data);
 
 void vd_activate_cb(GtkTreeView *tview, GtkTreePath *tpath, GtkTreeViewColumn *column, gpointer data);
 void vd_color_cb(GtkTreeViewColumn *tree_column, GtkCellRenderer *cell, GtkTreeModel *tree_model, GtkTreeIter *iter, gpointer data);

@@ -69,8 +69,6 @@ void color_man_update();
 
 void color_man_correct_region(ColorMan *cm, GdkPixbuf *pixbuf, gint x, gint y, gint w, gint h);
 
-void color_man_start_bg(ColorMan *cm, ColorManDoneFunc don_func, gpointer done_data);
-
 gboolean color_man_get_status(ColorMan *cm, gchar **image_profile, gchar **screen_profile);
 
 guchar *heif_color_profile(FileData *fd, guint *profile_len);
