@@ -277,7 +277,15 @@ else
 endif
 
 exiv2_dep = []
-req_version = '>=0.11'
+# See https://github.com/BestImageViewer/geeqie/issues/1090
+# for the reason for 0.28.0 exclusion
+req_version = ['>=0.11', '!=0.28.0']
+
+req_version_str = ''
+foreach req_version_str_ : req_version
+    req_version_str += req_version_str_
+endforeach
+
 option = get_option('exiv2')
 if not option.disabled()
     exiv2_dep = dependency('exiv2', version : req_version, required : get_option('exiv2'))
@@ -285,7 +293,7 @@ if not option.disabled()
         conf_data.set('HAVE_EXIV2', 1)
         summary({'exiv2' : ['image metadata processed by exiv2:', true]}, section : 'Configuration', bool_yn : true)
     else
-        summary({'exiv2' : ['exiv2 ' + req_version + ' not found - image data not processed by exiv2:', false]}, section : 'Configuration', bool_yn : true)
+        summary({'exiv2' : ['exiv2 ' + req_version_str + ' not found - image data not processed by exiv2:', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
     summary({'exiv2' : ['disabled - image data processed by exiv2:', false]}, section : 'Configuration', bool_yn : true)
