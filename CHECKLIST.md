@@ -66,23 +66,23 @@ meson compile geeqie-update-po
 
 Carry out the above actions to ensure the master branch is up to date, and then the following actions for new version \<n.m\>.
 
-Edit `org.geeqie.Geeqie.appdata.xml.in` - Change date and version \
-Edit `NEWS` - The usual information. Ensure the first line is of the form `Geeqie <n.m[.p]>`
+* Edit `org.geeqie.Geeqie.appdata.xml.in` - Change date and version
+* Edit `NEWS` - The usual information. Ensure the first line is of the form `Geeqie <n.m[.p]>`
 
 ```sh
 ./scripts/new-release.sh <-h for list of options>
 ```
 
-Go to `https://github.com/BestImageViewer/geeqie/releases` and click on `Draft a new release`.
+* Go to `https://github.com/BestImageViewer/geeqie/releases` and click on `Draft a new release`.
 
-Under `Release title` insert "Geeqie \<n.m\>"
+* Under `Release title` insert "Geeqie \<n.m\>"
 
-Under `Choose a tag` select `v<n.m>`
+* Under `Choose a tag` select `v<n.m>`
 
-In `Describe this release` copy-paste the relevant section of `NEWS`.
+* In `Describe this release` copy-paste the relevant section of `NEWS`.
 
-Upload the `/tmp/geeqie-<n.m>.tar.xz` and `/tmp/geeqie-<n.m>.tar.xz.asc` files created above
+* Upload the `/tmp/geeqie-<n.m>.tar.xz` and `/tmp/geeqie-<n.m>.tar.xz.asc` files created above
 
-Click `Publish release`
+* Click `Publish release`
 
-Update the [Wikipedia entry](https://en.wikipedia.org/wiki/Geeqie)
+* Update the [Wikipedia entry](https://en.wikipedia.org/wiki/Geeqie)
