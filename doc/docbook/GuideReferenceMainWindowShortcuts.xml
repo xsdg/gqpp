@@ -118,7 +118,7 @@ keyboard shortcuts
 <row> <entry> <code> <keycap> S </keycap> </code> </entry> <entry> Toggle slideshow </entry> </row>
 <row> <entry> <code> <keycap> Shift + G </keycap> </code> </entry> <entry> Toggle grayscale </entry> </row>
 <row> <entry> <code> <keycap> Alt + R </keycap> </code> </entry> <entry> Rectangular Selection </entry> </row>
-<row> <entry> <code> <keycap> A </keycap> </code> </entry> <entry> Toggle GIF animation </entry> </row>
+<row> <entry> <code> <keycap> A </keycap> </code> </entry> <entry> Toggle animation </entry> </row>
 <row> <entry> <code> <keycap> Alt + X </keycap> </code> </entry> <entry> Toggle Exif rotate </entry> </row>
 <row> <entry> <code> <keycap> Shift + E </keycap> </code> </entry> <entry> Highlight over/under exposed </entry> </row>
 <row> <entry> <code> <keycap> Ctrl + L </keycap> </code> </entry> <entry> View Images as List </entry> </row>
