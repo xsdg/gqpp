@@ -34,6 +34,7 @@ src/dupe.cc
 src/editors.cc
 src/exif.cc
 src/exif-common.cc
+src/exiv2.cc
 src/filecache.cc
 src/filedata.cc
 src/filefilter.cc
@@ -64,7 +65,6 @@ src/image-load-pdf.cc
 src/image-load-psd.cc
 src/image-load-svgz.cc
 src/image-load-tiff.cc
-src/image-load-webp.cc
 src/image-load-zxscr.cc
 src/image-overlay.cc
 src/img-view.cc
