@@ -81,10 +81,10 @@ awk_window='BEGIN {
 	{FS=","}
 	while ($0 !~ /^hard_coded_window_keys/) {getline}
 }
-$0~/\{0, 0/ {exit}
+$0~/\{static_cast\<GdkModifierType\>\(0\), 0/ {exit}
 {
-gsub(/{0/, "", $1);
-gsub(/{GDK_CONTROL_MASK \+ GDK_SHIFT_MASK/, "Ctrl + Shift +", $1);
+gsub(/\{static_cast\<GdkModifierType\>\(0\)/, "", $1);
+gsub(/\{static_cast\<GdkModifierType\>\(GDK_CONTROL_MASK \+ GDK_SHIFT_MASK\)/, "Ctrl + Shift +", $1);
 gsub(/{GDK_CONTROL_MASK/, "Ctrl +", $1);
 gsub(/{GDK_SHIFT_MASK/, "Shift +", $1);
 gsub(/{GDK_MOD1_MASK/, "Alt +", $1);
@@ -103,7 +103,7 @@ awk_main_window='BEGIN {
 	{FS=","}
 }
 $0 ~ /^  { "/ {
-	if ($4 !~ /NULL/) {
+	if ($4 !~ /nullptr/) {
 		{
 		gsub(/^[[:space:]]+|[[:space:]]+$/,"",$4);
 		gsub(/^[[:space:]]+|[[:space:]]+$/,"",$5);
