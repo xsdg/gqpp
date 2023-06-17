@@ -1,3 +1,14 @@
+Geeqie 2.1
+============
+
+- Additional --selection remote commands
+- Split view additional 3-image layout
+- Many bug fixes
+- Some progress in GTK4 migration
+- Change source code from c to c++
+- Much progress in making source code warning-free
+- Updated language support
+
 Geeqie 2.0.1
 ============
 
