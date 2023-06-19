@@ -440,6 +440,7 @@ else
     summary({'lua' : ['disabled - lua supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
+# Install standard documents
 option = get_option('pandoc')
 if not option.disabled()
     pandoc = find_program('pandoc', required : false)
@@ -456,10 +457,10 @@ if not option.disabled()
     else
         summary({'README' : ['pandoc not found - README.html created:', false]}, section : 'Documentation', bool_yn : true)
     endif
-    install_data('README.md', 'COPYING', 'TODO', install_dir : helpdir)
 else
     summary({'pandoc' : ['disabled - README.html created:', false]}, section : 'Documentation', bool_yn : true)
 endif
+install_data('README.md', 'COPYING', 'TODO', install_dir : helpdir)
 
 poppler_glib_dep = []
 req_version = '>=0.62'
