@@ -52,6 +52,9 @@ struct PaneCommentData
 	FileData *fd;
 	gchar *key;
 	gint height;
+#ifdef HAVE_SPELL
+	GspellTextView *gspell_view;
+#endif
 };
 
 
@@ -241,7 +244,9 @@ static void bar_pane_comment_destroy(GtkWidget *UNUSED(widget), gpointer data)
 	auto pcd = static_cast<PaneCommentData *>(data);
 
 	file_data_unregister_notify_func(bar_pane_comment_notify_cb, pcd);
-
+#ifdef HAVE_SPELL
+	g_object_unref(pcd->gspell_view);
+#endif
 	file_data_unref(pcd->fd);
 	g_free(pcd->key);
 
@@ -256,9 +261,6 @@ static GtkWidget *bar_pane_comment_new(const gchar *id, const gchar *title, cons
 	PaneCommentData *pcd;
 	GtkWidget *scrolled;
 	GtkTextBuffer *buffer;
-#ifdef HAVE_SPELL
-	GspellTextView *gspell_view;
-#endif
 
 	pcd = g_new0(PaneCommentData, 1);
 
@@ -268,7 +270,9 @@ static GtkWidget *bar_pane_comment_new(const gchar *id, const gchar *title, cons
 	pcd->pane.title = bar_pane_expander_title(title);
 	pcd->pane.id = g_strdup(id);
 	pcd->pane.type = PANE_COMMENT;
-
+#ifdef HAVE_SPELL
+	pcd->gspell_view = nullptr;
+#endif
 	pcd->pane.expanded = expanded;
 
 	pcd->key = g_strdup(key);
@@ -300,8 +304,8 @@ static GtkWidget *bar_pane_comment_new(const gchar *id, const gchar *title, cons
 		{
 		if (options->metadata.check_spelling)
 			{
-			gspell_view = gspell_text_view_get_from_gtk_text_view(GTK_TEXT_VIEW(pcd->comment_view));
-			gspell_text_view_basic_setup(gspell_view);
+			pcd->gspell_view = gspell_text_view_get_from_gtk_text_view(GTK_TEXT_VIEW(pcd->comment_view));
+			gspell_text_view_basic_setup(pcd->gspell_view);
 			}
 	}
 #endif
