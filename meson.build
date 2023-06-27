@@ -591,6 +591,9 @@ configure_file(input : 'config.h.in',
 script_sources = []
 subdir('scripts')
 
+# For gtk builder checks on .ui files
+ui_sources = []
+
 # Process subdirs before the sources
 subdir('po')
 subdir('plugins')
@@ -661,4 +664,12 @@ if shellcheck_exe.found()
     summary({'shellcheck' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
 else
     summary({'shellcheck' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+endif
+
+gtk_builder_tool = find_program('gtk-builder-tool', required : false)
+if gtk_builder_tool.found()
+    test('UI Build', gtk_builder_tool, args: ['validate', ui_sources], timeout: 100)
+    summary({'gtk-builder-tool' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+else
+    summary({'gtk-builder-tool' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
 endif

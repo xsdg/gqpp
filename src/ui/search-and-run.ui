@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.40.0 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <object class="GtkListStore" id="command_store">
+    <columns>
+      <!-- column-name gchararray1 -->
+      <column type="gchararray"/>
+      <!-- column-name GObject1 -->
+      <column type="GObject"/>
+    </columns>
+  </object>
+  <object class="GtkEntryCompletion" id="completion">
+    <property name="model">command_store</property>
+    <property name="text-column">0</property>
+    <child>
+      <object class="GtkCellRendererText" id="cellrenderertext1"/>
+      <attributes>
+        <attribute name="text">0</attribute>
+      </attributes>
+    </child>
+  </object>
+  <object class="GtkWindow" id="search_and_run">
+    <property name="name">sar_window</property>
+    <property name="width-request">500</property>
+    <property name="height-request">10</property>
+    <property name="can-focus">False</property>
+    <property name="valign">start</property>
+    <property name="hexpand">False</property>
+    <property name="title" translatable="yes">Search and Run command - Geeqie</property>
+    <property name="role">sar_window</property>
+    <property name="resizable">False</property>
+    <property name="modal">True</property>
+    <property name="icon-name">geeqie.png</property>
+    <child>
+      <object class="GtkEntry" id="entry">
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="tooltip-text" translatable="yes">Search for commands and run them</property>
+        <property name="primary-icon-name">edit-find</property>
+        <property name="secondary-icon-tooltip-text" translatable="yes">Search for commands and run them</property>
+        <property name="completion">completion</property>
+      </object>
+    </child>
+  </object>
+</interface>
