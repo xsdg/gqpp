@@ -668,7 +668,9 @@ endif
 
 gtk_builder_tool = find_program('gtk-builder-tool', required : false)
 if gtk_builder_tool.found()
-    test('UI Build', gtk_builder_tool, args: ['validate', ui_sources], timeout: 100)
+    foreach ui_file : ui_sources
+        test('UI Build', gtk_builder_tool, args: ['validate', ui_file], timeout: 100)
+    endforeach
     summary({'gtk-builder-tool' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
 else
     summary({'gtk-builder-tool' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
