@@ -666,12 +666,17 @@ else
     summary({'shellcheck' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
 endif
 
-gtk_builder_tool = find_program('gtk-builder-tool', required : false)
-if gtk_builder_tool.found()
-    foreach ui_file : ui_sources
-        test('UI Build', gtk_builder_tool, args: ['validate', ui_file], timeout: 100)
-    endforeach
-    summary({'gtk-builder-tool' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+# GtkBuilder .ui check
+if xvfb.found()
+    gtk_builder_tool = find_program('gtk-builder-tool', required : false)
+    if gtk_builder_tool.found()
+        foreach ui_file : ui_sources
+            test('UI Build', xvfb, args: ['--auto-servernum', gtk_builder_tool.full_path(), 'validate', ui_file], timeout: 100)
+        endforeach
+        summary({'gtk-builder-tool' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+    else
+        summary({'gtk-builder-tool' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+    endif
 else
-    summary({'gtk-builder-tool' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+    summary({'gtk-builder-tool xvfb' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
 endif
