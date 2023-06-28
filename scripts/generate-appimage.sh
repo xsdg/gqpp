@@ -30,7 +30,8 @@
 x86_64()
 {
 	linuxdeploy-x86_64.AppImage \
-		--appdir ./AppDir --output appimage \
+		--appdir ./AppDir \
+		--output appimage \
 		--desktop-file ./AppDir/usr/share/applications/geeqie.desktop \
 		--icon-file ./AppDir/usr/share/pixmaps/geeqie.png \
 		--plugin gtk \
@@ -42,7 +43,8 @@ x86_64()
 aarch64()
 {
 	linuxdeploy \
-		--appdir ./AppDir --output appimage \
+		--appdir ./AppDir \
+		--output appimage \
 		--desktop-file ./AppDir/usr/share/applications/geeqie.desktop \
 		--icon-file ./AppDir/usr/share/pixmaps/geeqie.png \
 		--plugin gtk \
@@ -86,13 +88,17 @@ case $(uname -m) in
 	"x86_64")
 		x86_64
 
-		mv "./Geeqie-$VERSION-x86_64.AppImage" "$(./Geeqie-"$VERSION"-x86_64.AppImage -v | sed 's/git//' | sed 's/-.* /-/' | sed 's/ /-v/' | sed 's/-GTK3//')-x86_64.AppImage"
+		new_version="$(./Geeqie-"$VERSION"-x86_64.AppImage -v | sed 's/git//' | sed 's/-.* /-/' | sed 's/ /-v/' | sed 's/-GTK3//')-x86_64.AppImage"
+		mv "./Geeqie-$VERSION-x86_64.AppImage" "$new_version"
+		gpg --armor --detach-sign --output "$new_version.asc" "$new_version"
 		;;
 
 	"aarch64")
 		aarch64
 
-		mv "./Geeqie-aarch64.AppImage" "$(./Geeqie-aarch64.AppImage -v | sed 's/git//' | sed 's/-.* /-/' | sed 's/ /-v/' | sed 's/-GTK3//')-aarch64.AppImage"
+		new_version="$(./Geeqie-aarch64.AppImage -v | sed 's/git//' | sed 's/-.* /-/' | sed 's/ /-v/' | sed 's/-GTK3//')-aarch64.AppImage"
+		mv "./Geeqie-aarch64.AppImage" "$new_version"
+		gpg --armor --detach-sign --output "$new_version.asc" "$new_version"
 		;;
 
 	*)
