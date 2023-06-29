@@ -255,7 +255,7 @@ struct MatchFileData
 struct MatchList
 {
 	const gchar *text;
-	const MatchType type;
+	MatchType type;
 };
 
 static const MatchList text_search_menu_path[] = {

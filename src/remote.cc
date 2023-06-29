@@ -1159,7 +1159,7 @@ static void gr_collection_list(const gchar *UNUSED(text), GIOChannel *channel, g
 	g_string_free(out_string, TRUE);
 }
 
-static gboolean wait_cb(const gpointer data)
+static gboolean wait_cb(gpointer data)
 {
 	gint position = GPOINTER_TO_INT(data);
 	gint x = position >> 16;

@@ -46,10 +46,10 @@
 struct FormatRawEntry {
 	const gchar *extension;
 	FormatRawMatchType magic_type;
-	const guint magic_offset;
+	guint magic_offset;
 	gconstpointer magic_pattern;
-	const guint magic_length;
-	const FormatRawExifType exif_type;
+	guint magic_length;
+	FormatRawExifType exif_type;
 	FormatRawExifParseFunc exif_func;
 	const gchar *description;
 	FormatRawParseFunc func_parse;
@@ -72,7 +72,7 @@ static FormatRawEntry format_raw_list[] = {
 struct FormatExifEntry {
 	FormatExifMatchType header_type;
 	gconstpointer header_pattern;
-	const guint header_length;
+	guint header_length;
 	const gchar *description;
 	FormatExifParseFunc func_parse;
 };
