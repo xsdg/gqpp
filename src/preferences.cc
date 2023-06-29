@@ -3672,6 +3672,43 @@ static void config_tab_behavior(GtkWidget *notebook)
 }
 
 /* accelerators tab */
+
+static gboolean accel_search_function_cb(GtkTreeModel *model, gint column, const gchar *key, GtkTreeIter *iter, gpointer UNUSED(data))
+{
+	gboolean ret = TRUE;
+	gchar *key_nocase;
+	gchar *text;
+	gchar *text_nocase;
+
+	gtk_tree_model_get(model, iter, column, &text, -1);
+	text_nocase = g_utf8_casefold(text, -1);
+	key_nocase = g_utf8_casefold(key, -1);
+
+	if (g_strstr_len(text_nocase, -1, key_nocase))
+		{
+		ret = FALSE;
+		}
+
+	g_free(key_nocase);
+	g_free(text);
+	g_free(text_nocase);
+
+	return ret;
+}
+
+static void accel_row_activated_cb(GtkTreeView *tree_view, GtkTreePath *UNUSED(path), GtkTreeViewColumn *column, gpointer UNUSED(user_data))
+{
+	GList *list;
+	gint col_num = 0;
+
+	list = gtk_tree_view_get_columns(tree_view);
+	col_num = g_list_index(list, column);
+
+	g_list_free(list);
+
+	gtk_tree_view_set_search_column(tree_view, col_num);
+}
+
 static void config_tab_accelerators(GtkWidget *notebook)
 {
 	GtkWidget *hbox;
@@ -3757,6 +3794,13 @@ static void config_tab_accelerators(GtkWidget *notebook)
 	gtk_tree_view_column_set_sort_column_id(column, AE_ACCEL);
 	gtk_tree_view_column_set_resizable(column, TRUE);
 	gtk_tree_view_append_column(GTK_TREE_VIEW(accel_view), column);
+
+	/* Search on text in column */
+	gtk_tree_view_set_activate_on_single_click(GTK_TREE_VIEW(accel_view), TRUE);
+	g_signal_connect(accel_view, "row_activated", G_CALLBACK(accel_row_activated_cb), accel_store);
+	gtk_tree_view_set_enable_search(GTK_TREE_VIEW(accel_view), TRUE);
+	gtk_tree_view_set_search_column(GTK_TREE_VIEW(accel_view), AE_TOOLTIP);
+	gtk_tree_view_set_search_equal_func(GTK_TREE_VIEW(accel_view), accel_search_function_cb, nullptr, nullptr);
 
 	accel_store_populate();
 	gtk_container_add(GTK_CONTAINER(scrolled), accel_view);
