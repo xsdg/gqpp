@@ -23,7 +23,7 @@
 
 #include "exif-int.h"
 
-gboolean format_nikon_raw(guchar *data, const guint len,
+gboolean format_nikon_raw(guchar *data, guint len,
 		          guint *image_offset, guint *exif_offset);
 
 #define FORMAT_RAW_NIKON { "nef", \

@@ -42,7 +42,7 @@
  *-----------------------------------------------------------------------------
  */
 
-static guint olympus_tiff_table(guchar *data, const guint len, guint offset, ExifByteOrder bo,
+static guint olympus_tiff_table(guchar *data, guint len, guint offset, ExifByteOrder bo,
 				gint level,
 				guint *image_offset, guint *exif_offset);
 

@@ -42,13 +42,13 @@ enum FormatRawExifType {
 using FormatRawParseFunc = gboolean (*)(guchar *, const guint, guint *, guint *);
 using FormatRawExifParseFunc = gboolean (*)(guchar *, const guint, ExifData *);
 
-gboolean format_raw_img_exif_offsets(guchar *data, const guint len,
+gboolean format_raw_img_exif_offsets(guchar *data, guint len,
 				     guint *image_offset, guint *exif_offset);
 gboolean format_raw_img_exif_offsets_fd(gint fd, const gchar *path,
-				        guchar *header_data, const guint header_len,
+				        guchar *header_data, guint header_len,
 				        guint *image_offset, guint *exif_offset);
 
-FormatRawExifType format_raw_exif_offset(guchar *data, const guint len, guint *exif_offset,
+FormatRawExifType format_raw_exif_offset(guchar *data, guint len, guint *exif_offset,
 					 FormatRawExifParseFunc *exif_parse_func);
 
 

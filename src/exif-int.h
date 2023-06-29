@@ -148,7 +148,7 @@ gint exif_parse_IFD_table(ExifData *exif,
 			  gint level,
 			  const ExifMarker *list);
 
-gint exif_tiff_directory_offset(guchar *data, const guint len,
+gint exif_tiff_directory_offset(guchar *data, guint len,
 				guint *offset, ExifByteOrder *bo);
 gint exif_tiff_parse(ExifData *exif, guchar *tiff, guint size, ExifMarker *list);
 

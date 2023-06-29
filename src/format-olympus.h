@@ -24,7 +24,7 @@
 #include "exif-int.h"
 
 
-gboolean format_olympus_raw(guchar *data, const guint len,
+gboolean format_olympus_raw(guchar *data, guint len,
 			    guint *image_offset, guint *exif_offset);
 
 

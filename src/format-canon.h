@@ -26,10 +26,10 @@
 #include "exif-int.h"
 
 
-gboolean format_canon_raw_crw(guchar *data, const guint len,
+gboolean format_canon_raw_crw(guchar *data, guint len,
 			      guint *image_offset, guint *exif_offset);
 
-gboolean format_canon_raw_cr2(guchar *data, const guint len,
+gboolean format_canon_raw_cr2(guchar *data, guint len,
 			      guint *image_offset, guint *exif_offset);
 
 #define FORMAT_RAW_CANON { "crw", \
