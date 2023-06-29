@@ -1241,7 +1241,7 @@ gboolean keyword_exists(GtkTreeModel *keyword_tree, GtkTreeIter *parent_ptr, Gtk
 
 	while (TRUE)
 		{
-		if (!(exclude_sibling && sibling && keyword_compare(keyword_tree, &iter, sibling) == 0))
+		if (!exclude_sibling || !sibling || keyword_compare(keyword_tree, &iter, sibling) != 0)
 			{
 			if (options->metadata.keywords_case_sensitive)
 				{

@@ -1002,10 +1002,10 @@ static gboolean pr_source_tile_visible(PixbufRenderer *pr, SourceTile *st)
 	x2 = pr->x_scroll + pr->vis_width;
 	y2 = pr->y_scroll + pr->vis_height;
 
-	return !(static_cast<gdouble>(st->x) * pr->scale > static_cast<gdouble>(x2) ||
-		 static_cast<gdouble>(st->x + pr->source_tile_width) * pr->scale < static_cast<gdouble>(x1) ||
-		 static_cast<gdouble>(st->y) * pr->scale > static_cast<gdouble>(y2) ||
-		 static_cast<gdouble>(st->y + pr->source_tile_height) * pr->scale < static_cast<gdouble>(y1));
+	return static_cast<gdouble>(st->x) * pr->scale <= static_cast<gdouble>(x2) &&
+		 static_cast<gdouble>(st->x + pr->source_tile_width) * pr->scale >= static_cast<gdouble>(x1) &&
+		 static_cast<gdouble>(st->y) * pr->scale <= static_cast<gdouble>(y2) &&
+		 static_cast<gdouble>(st->y + pr->source_tile_height) * pr->scale >= static_cast<gdouble>(y1);
 }
 
 static SourceTile *pr_source_tile_new(PixbufRenderer *pr, gint x, gint y)

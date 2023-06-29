@@ -889,12 +889,12 @@ static gint exif_parse_IFD_entry(ExifData *exif, guchar *tiff, guint offset,
 		 * FIXME: what exactly is this test trying to do?
 		 * ok, so this test is to allow the case of swapped signed/unsigned mismatch to leak through?
 		 */
-		if (!(marker->format == EXIF_FORMAT_RATIONAL_UNSIGNED && format == EXIF_FORMAT_RATIONAL) &&
-		    !(marker->format == EXIF_FORMAT_RATIONAL && format == EXIF_FORMAT_RATIONAL_UNSIGNED) &&
+		if ((marker->format != EXIF_FORMAT_RATIONAL_UNSIGNED || format != EXIF_FORMAT_RATIONAL) &&
+		    (marker->format != EXIF_FORMAT_RATIONAL || format != EXIF_FORMAT_RATIONAL_UNSIGNED) &&
 			/* short fits into a long so allow this mismatch
 			 * as well (some tags allowed to be unsigned short _or_ unsigned long)
 			 */
-		    !(marker->format == EXIF_FORMAT_LONG_UNSIGNED && format == EXIF_FORMAT_SHORT_UNSIGNED) )
+		    (marker->format != EXIF_FORMAT_LONG_UNSIGNED || format != EXIF_FORMAT_SHORT_UNSIGNED) )
 			{
 			if (format < EXIF_FORMAT_COUNT)
 				{

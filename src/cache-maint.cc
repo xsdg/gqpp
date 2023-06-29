@@ -149,7 +149,7 @@ static gboolean isempty(const gchar *path)
 		{
 		gchar *name = dir->d_name;
 
-		if (!(name[0] == '.' && (name[1] == '\0' || (name[1] == '.' && name[2] == '\0'))) )
+		if (name[0] != '.' || (name[1] != '\0' && (name[1] != '.' || name[2] != '\0')) )
 			{
 			closedir(dp);
 			return FALSE;

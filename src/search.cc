@@ -2704,9 +2704,9 @@ static void search_start_cb(GtkWidget *UNUSED(widget), gpointer data)
 			sd->search_lat = 1000;
 			sd->search_lon = 1000;
 			sscanf(entry_text," %lf  %lf ", &sd->search_lat, &sd->search_lon );
-			if (!(entry_text != nullptr && !g_strstr_len(entry_text, -1, "Error") &&
-						sd->search_lat >= -90 && sd->search_lat <= 90 &&
-						sd->search_lon >= -180 && sd->search_lon <= 180))
+			if (entry_text == nullptr || g_strstr_len(entry_text, -1, "Error") ||
+						sd->search_lat < -90 || sd->search_lat > 90 ||
+						sd->search_lon < -180 || sd->search_lon > 180)
 				{
 				file_util_warning_dialog(_(
 						"Entry does not contain a valid lat/long value"),

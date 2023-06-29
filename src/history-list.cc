@@ -311,11 +311,11 @@ gboolean history_list_save(const gchar *path)
 		list_count = g_list_position(hd->list, g_list_last(hd->list)) + 1;
 		while (work && secsave_errno == SS_ERR_NONE)
 			{
-			if ((!(strcmp(hd->key, "path_list") == 0 && list_count > options->open_recent_list_maxsize))
+			if ((strcmp(hd->key, "path_list") != 0 || list_count <= options->open_recent_list_maxsize)
 					&&
-					(!(strcmp(hd->key, "recent") == 0 && (!isfile(static_cast<const gchar *>(work->data)))))
+					(strcmp(hd->key, "recent") != 0 || !(!isfile(static_cast<const gchar *>(work->data))))
 					&&
-					(!(strcmp(hd->key, "image_list") == 0 && list_count > options->recent_folder_image_list_maxsize)))
+					(strcmp(hd->key, "image_list") != 0 || list_count <= options->recent_folder_image_list_maxsize))
 				{
 				secure_fprintf(ssi, "\"%s\"\n", static_cast<gchar *>(work->data));
 				}

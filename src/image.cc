@@ -673,7 +673,7 @@ void image_alter_orientation(ImageWindow *imd, FileData *fd_n, AlterType type)
 			}
 		}
 
-	if (imd->image_fd == fd_n && !(options->metadata.write_orientation && !options->image.exif_rotate_enable))
+	if (imd->image_fd == fd_n && (!options->metadata.write_orientation || options->image.exif_rotate_enable))
 		{
 		imd->orientation = orientation;
 		pixbuf_renderer_set_orientation(reinterpret_cast<PixbufRenderer *>(imd->pr), orientation);

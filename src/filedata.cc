@@ -1417,7 +1417,7 @@ static gboolean filelist_read_real(const gchar *dir_path, GList **files, GList *
 				{
 				/* we ignore the .thumbnails dir for cleanliness */
 				if (dirs &&
-				    !(name[0] == '.' && (name[1] == '\0' || (name[1] == '.' && name[2] == '\0'))) &&
+				    (name[0] != '.' || (name[1] != '\0' && (name[1] != '.' || name[2] != '\0'))) &&
 				    strcmp(name, GQ_CACHE_LOCAL_THUMB) != 0 &&
 				    strcmp(name, GQ_CACHE_LOCAL_METADATA) != 0 &&
 				    strcmp(name, THUMB_FOLDER_LOCAL) != 0)

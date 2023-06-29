@@ -1020,7 +1020,7 @@ static gboolean image_loader_setup_source(ImageLoader *il)
 				{
 				/* Both exiv2 and libraw sometimes return a pointer to a file
 				 * section that is not a jpeg */
-				if (!(il->mapped_file[0] == 0xFF && il->mapped_file[1] == 0xD8))
+				if (il->mapped_file[0] != 0xFF || il->mapped_file[1] != 0xD8)
 					{
 					il->mapped_file = nullptr;
 					}
@@ -1040,7 +1040,7 @@ static gboolean image_loader_setup_source(ImageLoader *il)
 				{
 				/* Both exiv2 and libraw sometimes return a pointer to a file
 				 * section that is not a jpeg */
-				if (!(il->mapped_file[0] == 0xFF && il->mapped_file[1] == 0xD8))
+				if (il->mapped_file[0] != 0xFF || il->mapped_file[1] != 0xD8)
 					{
 					il->mapped_file = nullptr;
 					}
