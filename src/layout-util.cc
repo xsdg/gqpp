@@ -1214,7 +1214,7 @@ static void layout_menu_changelog_cb(GtkAction *UNUSED(action), gpointer data)
 	help_window_show("changelog");
 }
 
-static const char *keyboard_map_hardcoded[][2] = {
+static constexpr const char *keyboard_map_hardcoded[][2] = {
 	{"Scroll","Left"},
 	{"FastScroll", "&lt;Shift&gt;Left"},
 	{"Left Border", "&lt;Primary&gt;Left"},
@@ -1241,7 +1241,6 @@ static const char *keyboard_map_hardcoded[][2] = {
 	{"ScrollDown", "&lt;Shift&gt;MW5"},
 	{"ZoomIn", "&lt;Primary&gt;MW4"},
 	{"ZoomOut", "&lt;Primary&gt;MW5"},
-	{nullptr, nullptr}
 };
 
 static void layout_menu_foreach_func(
@@ -1331,15 +1330,13 @@ static void layout_menu_kbd_map_cb(GtkAction *UNUSED(action), gpointer UNUSED(da
 						}
 					}
 
-				index=0;
-				while (keyboard_map_hardcoded[index][0])
+				for (const auto& m : keyboard_map_hardcoded)
 					{
-					if (!(g_strcmp0(keyboard_map_hardcoded[index][1], post_key[0])))
+					if (!(g_strcmp0(m[1], post_key[0])))
 						{
-						key_name = keyboard_map_hardcoded[index][0];
+						key_name = m[0];
 						break;
 						}
-					index++;
 					}
 
 				converted_line = g_strconcat(pre_key[0], ">", key_name, "<", post_key[1], "\n", NULL);

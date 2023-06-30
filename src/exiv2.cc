@@ -75,7 +75,7 @@ struct AltKey
 };
 
 /* this is a list of keys that should be converted, even with the older Exiv2 which does not support it directly */
-static const AltKey alt_keys[] = {
+static constexpr AltKey alt_keys[] = {
 	{"Xmp.tiff.Orientation",		"Exif.Image.Orientation", 	nullptr},
 	{"Xmp.dc.title",			nullptr,				"Iptc.Application2.ObjectName"		},
 	{"Xmp.photoshop.Urgency",		nullptr,				"Iptc.Application2.Urgency"		},
@@ -98,7 +98,6 @@ static const AltKey alt_keys[] = {
 	{"Xmp.dc.rights",			nullptr,				"Iptc.Application2.Copyright"		},
 	{"Xmp.dc.description",			nullptr,				"Iptc.Application2.Caption"		},
 	{"Xmp.photoshop.CaptionWriter",		nullptr,				"Iptc.Application2.Writer"		},
-	{nullptr, nullptr, nullptr}
 	};
 
 static void _debug_exception(const char* file,
@@ -899,13 +898,8 @@ gchar *exif_get_tag_description_by_key(const gchar *key)
 
 static const AltKey *find_alt_key(const gchar *xmp_key)
 {
-	gint i = 0;
-
-	while (alt_keys[i].xmp_key)
-		{
-		if (strcmp(xmp_key, alt_keys[i].xmp_key) == 0) return &alt_keys[i];
-		i++;
-		}
+	for (const auto& k : alt_keys)
+		if (strcmp(xmp_key, k.xmp_key) == 0) return &k;
 	return nullptr;
 }
 

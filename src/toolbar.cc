@@ -66,7 +66,7 @@ struct UseableToolbarItems
  /** The user is limited to selecting from this list of menu items
   * plus any desktop files
   **/
-static const UseableToolbarItems useable_toolbar_items[] = {
+static constexpr UseableToolbarItems useable_toolbar_items[] = {
 	{"FirstImage",	N_("First Image"), GTK_STOCK_GOTO_TOP},
 	{"PrevImage",	N_("Previous Image"), GTK_STOCK_GO_UP},
 	{"NextImage",	N_("Next Image"), GTK_STOCK_GO_DOWN},
@@ -144,7 +144,6 @@ static const UseableToolbarItems useable_toolbar_items[] = {
 	{"SBar",	N_("Info sidebar"), PIXBUF_INLINE_ICON_INFO},
 	{"SBarSort",	N_("Sort manager"), PIXBUF_INLINE_ICON_SORT},
 	{"Quit",	N_("Quit"), GTK_STOCK_QUIT},
-	{nullptr,		nullptr, nullptr}
 };
 
 /**
@@ -237,19 +236,17 @@ static gboolean toolbar_press_cb(GtkGesture *UNUSED(gesture), int UNUSED(n_press
 
 static void get_toolbar_item(const gchar *name, gchar **label, gchar **stock_id)
 {
-	const UseableToolbarItems *list = useable_toolbar_items;
 	*label = nullptr;
 	*stock_id = nullptr;
 
-	while (list->name)
+	for (const auto& l : useable_toolbar_items)
 		{
-		if (g_strcmp0(list->name, name) == 0)
+		if (g_strcmp0(l.name, name) == 0)
 			{
-			*label = g_strdup(gettext(list->label));
-			*stock_id = g_strdup(list->stock_id);
+			*label = g_strdup(gettext(l.label));
+			*stock_id = g_strdup(l.stock_id);
 			break;
 			}
-		list++;
 		}
 }
 
@@ -382,21 +379,19 @@ static void toolbar_menu_add_popup(GtkWidget *UNUSED(widget), gpointer data)
 	GList *editors_list;
 	GList *work;
 	auto toolbarlist = static_cast<ToolbarData *>(data);
-	const UseableToolbarItems *list = useable_toolbar_items;
 
 	menu = popup_menu_short_lived();
 
 	/* get standard menu item data */
-	while (list->name)
+	for (const auto& l : useable_toolbar_items)
 		{
 		GtkWidget *item;
-		item = menu_item_add_stock(menu, gettext(list->label), list->stock_id,
+		item = menu_item_add_stock(menu, gettext(l.label), l.stock_id,
 										G_CALLBACK(toolbarlist_add_cb), toolbarlist);
-		g_object_set_data(G_OBJECT(item), "toolbar_add_name", g_strdup(list->name));
-		g_object_set_data(G_OBJECT(item), "toolbar_add_label", g_strdup(gettext(list->label)));
-		g_object_set_data(G_OBJECT(item), "toolbar_add_stock_id", g_strdup(list->stock_id));
+		g_object_set_data(G_OBJECT(item), "toolbar_add_name", g_strdup(l.name));
+		g_object_set_data(G_OBJECT(item), "toolbar_add_label", g_strdup(gettext(l.label)));
+		g_object_set_data(G_OBJECT(item), "toolbar_add_stock_id", g_strdup(l.stock_id));
 		g_signal_connect(G_OBJECT(item), "destroy", G_CALLBACK(toolbar_button_free), item);
-		list++;
 		}
 
 	/* get desktop file data */

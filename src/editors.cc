@@ -99,7 +99,7 @@ static GList *editor_mime_types_to_extensions(gchar **mime_types)
 {
 	/** @FIXME this should be rewritten to use the shared mime database, as soon as we switch to gio */
 
-	static const gchar *conv_table[][2] = {
+	static constexpr const gchar *conv_table[][2] = {
 		{"image/*",		"*"},
 		{"image/bmp",		".bmp"},
 		{"image/gif",		".gif"},
@@ -155,15 +155,15 @@ static GList *editor_mime_types_to_extensions(gchar **mime_types)
 		{"image/x-xpixmap",	".xpm"},
 		{"application/x-navi-animation",		".ani"},
 		{"application/x-ptoptimizer-script",	".pto"},
-		{nullptr, nullptr}};
+	};
 
-	gint i, j;
+	gint i;
 	GList *list = nullptr;
 
 	for (i = 0; mime_types[i]; i++)
-		for (j = 0; conv_table[j][0]; j++)
-			if (strcmp(mime_types[i], conv_table[j][0]) == 0)
-				list = g_list_concat(list, filter_to_list(conv_table[j][1]));
+		for (const auto& c : conv_table)
+			if (strcmp(mime_types[i], c[0]) == 0)
+				list = g_list_concat(list, filter_to_list(c[1]));
 
 	return list;
 }
