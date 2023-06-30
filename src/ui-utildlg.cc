@@ -25,6 +25,7 @@
 #include "ui-utildlg.h"
 
 #include "filedata.h"
+#include "misc.h"
 #include "rcfile.h"
 #include "ui-fileops.h"
 #include "ui-misc.h"
@@ -511,18 +512,12 @@ GenericDialog *warning_dialog(const gchar *heading, const gchar *text,
  * AppImage version update notification message with fade-out
  *-----------------------------------------------------------------------------
  *
- * It is expected that the version file on the server has the following format
- * for the first two lines in these formats:
- *
- * 1. x86_64 AppImage - e.g. Geeqie-v2.0+20221113-x86_64.AppImage
- * 2. arm AppImage - e.g. Geeqie-v2.0+20221025-aarch64.AppImage
+ * If the current version is not on GitHub, assume a newer one is available
+ * and show a fade-out message.
  */
 
 struct AppImageData
 {
-	GFile *version_file;
-	GDataInputStream *data_input_stream;
-	GFileInputStream *file_input_stream;
 	GThreadPool *thread_pool;
 	GtkWidget *window;
 	guint id;
@@ -542,9 +537,6 @@ static gboolean appimage_notification_close_cb(gpointer data)
 		gtk_widget_destroy(appimage_data->window);
 		}
 
-	g_object_unref(appimage_data->data_input_stream);
-	g_object_unref(appimage_data->file_input_stream);
-	g_object_unref(appimage_data->version_file);
 	g_thread_pool_free(appimage_data->thread_pool, TRUE, TRUE);
 	g_free(appimage_data);
 
@@ -576,120 +568,74 @@ static gboolean user_close_cb(GtkWidget *UNUSED(widget), GdkEvent *UNUSED(event)
 	return FALSE;
 }
 
-static void show_notification_message(gchar *version_string_from_file, AppImageData *appimage_data)
+static void show_notification_message(AppImageData *appimage_data)
 {
-	GtkWidget *label;
-	gint server_version;
-	gint running_version;
-	gchar *version_string;
+	GtkBuilder *builder;
+	gchar *ui_path;
 
-	server_version = atoi(strtok(strstr(version_string_from_file, "+") + 1, "-") );
-	version_string = g_strdup(strstr(VERSION, "git"));
+	ui_path = g_build_filename(GQ_RESOURCE_PATH_UI, "appimage-notification.ui", nullptr);
+	builder = gtk_builder_new_from_resource(ui_path);
 
-	/* If a release version is running, do not look for updates */
-	if (version_string)
-		{
-		running_version = atoi(strtok(version_string + 3, "-") );
-		g_free(version_string);
+	appimage_data->window = GTK_WIDGET(gtk_builder_get_object(builder, "appimage_notification"));
 
-		if (server_version > running_version)
-			{
-			appimage_data->window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-			label = gtk_label_new (_("A new Geeqie AppImage is available"));
-			gtk_widget_show(label);
-			gtk_container_add(GTK_CONTAINER(appimage_data->window), label);
-			gtk_window_set_decorated(GTK_WINDOW(appimage_data->window), FALSE);
-			gtk_widget_set_size_request(appimage_data->window, 300, 40);
-			gtk_window_set_gravity(GTK_WINDOW(appimage_data->window), GDK_GRAVITY_NORTH_EAST);
-			gtk_window_move(GTK_WINDOW(appimage_data->window), (gdk_screen_width() * 0.8), (gdk_screen_height() / 20));
-			gtk_window_set_skip_taskbar_hint(GTK_WINDOW(appimage_data->window), TRUE);
-			gtk_window_set_focus_on_map(GTK_WINDOW(appimage_data->window), FALSE);
-			g_signal_connect(appimage_data->window, "focus-in-event", G_CALLBACK(user_close_cb), appimage_data);
-			appimage_data->id = g_timeout_add(100, appimage_notification_fade_cb, appimage_data);
-			gtk_widget_show((appimage_data->window));
-			}
-		else
-			{
-			g_idle_add(appimage_notification_close_cb, appimage_data);
-			}
-		}
+	gtk_window_move(GTK_WINDOW(appimage_data->window), (gdk_screen_width() * 0.8), (gdk_screen_height() / 20));
+	g_signal_connect(appimage_data->window, "focus-in-event", G_CALLBACK(user_close_cb), appimage_data);
+	appimage_data->id = g_timeout_add(100, appimage_notification_fade_cb, appimage_data);
+
+	g_object_unref(builder);
+	gtk_widget_show(appimage_data->window);
+
+	g_free(ui_path);
 }
 
-#ifdef __arm__
-static void appimage_data_arm_read_line_async_ready_cb(GObject *source_object, GAsyncResult *res, gpointer data)
+void appimage_notification_func(gpointer data, gpointer UNUSED(user_data))
 {
+	gboolean internet_available = FALSE;
+	gchar *architecture;
+	gchar const *wget_appfile;
+	GNetworkMonitor *net_mon;
+	GSocketConnectable *geeqie_github;
+	gchar **version_split;
 	auto appimage_data = static_cast<AppImageData *>(data);
-	gsize length;
-	gchar *result;
 
-	result = g_data_input_stream_read_line_finish(appimage_data->data_input_stream, res, &length, nullptr);
-
-	if (result && strstr(result, "-aarch64.AppImage"))
+	/* If this is a release version, do not check for updates */
+	if (g_strrstr(VERSION, "git"))
 		{
-		show_notification_message(result, appimage_data);
-		}
-	else
-		{
-		g_idle_add(appimage_notification_close_cb, data);
-		}
+		net_mon = g_network_monitor_get_default();
+		geeqie_github = g_network_address_parse_uri("https://github.com/", 80, nullptr);
 
-	g_free(result);
-}
-#endif
+		if (geeqie_github)
+			{
+			internet_available = g_network_monitor_can_reach(net_mon, geeqie_github, nullptr, nullptr);
+			g_object_unref(geeqie_github);
+			}
 
-static void appimage_data_x86_read_line_async_ready_cb(GObject *UNUSED(source_object), GAsyncResult *res, gpointer data)
-{
-	auto appimage_data = static_cast<AppImageData *>(data);
-	gsize length;
-	gchar *result;
-
-	result = g_data_input_stream_read_line_finish(appimage_data->data_input_stream, res, &length, nullptr);
+		if (internet_available)
+			{
+			/** @FIXME Use glib instead of wget */
+			if (runcmd("which wget >/dev/null 2>&1") == 0)
+				{
+				/* VERSION looks like: 2.0.1+git20220116-c791cbee */
+				version_split = g_strsplit_set(VERSION, "+-", -1);
 
 #ifdef __x86_64__
-	if (result && strstr(result, "-x86_64.AppImage"))
-		{
-		show_notification_message(result, appimage_data);
-		}
-	else
-		{
-		g_idle_add(appimage_notification_close_cb, data);
-		}
+				architecture = g_strdup("-x86_64");
 #endif
-
 #ifdef __arm__
-	g_data_input_stream_read_line_async(appimage_data->data_input_stream, G_PRIORITY_LOW, nullptr, appimage_data_arm_read_line_async_ready_cb, appimage_data);
+				architecture = g_strdup("-aarch64");
 #endif
 
-	g_free(result);
-}
+				wget_appfile = g_strconcat("wget -q --method=HEAD https://github.com/BestImageViewer/geeqie/releases/download/continuous/Geeqie-v", version_split[0], "+", version_split[1] + 3, architecture, ".AppImage >/dev/null 2>&1", nullptr);
 
-static void appimage_notification_func(gpointer data, gpointer UNUSED(user_data))
-{
-	auto appimage_data = static_cast<AppImageData *>(data);
-	GNetworkMonitor *net_mon;
-	GSocketConnectable *geeqie_github_io;
-	gboolean internet_available = FALSE;
+				if (runcmd(wget_appfile) != 0)
+					{
+					show_notification_message(appimage_data);
+					}
 
-	net_mon = g_network_monitor_get_default();
-	geeqie_github_io = g_network_address_parse_uri(APPIMAGE_VERSION_FILE, 80, nullptr);
-	if (geeqie_github_io)
-		{
-		internet_available = g_network_monitor_can_reach(net_mon, geeqie_github_io, nullptr, nullptr);
-		g_object_unref(geeqie_github_io);
-		}
-
-	if (internet_available)
-		{
-		appimage_data->version_file = g_file_new_for_uri(APPIMAGE_VERSION_FILE);
-		appimage_data->file_input_stream = g_file_read(appimage_data->version_file, nullptr, nullptr);
-		appimage_data->data_input_stream = g_data_input_stream_new(G_INPUT_STREAM(appimage_data->file_input_stream));
-
-		g_data_input_stream_read_line_async(appimage_data->data_input_stream, G_PRIORITY_LOW, nullptr, appimage_data_x86_read_line_async_ready_cb, appimage_data);
-		}
-	else
-		{
-		g_thread_pool_free(appimage_data->thread_pool, TRUE, TRUE);
-		g_free(appimage_data);
+				g_free(architecture);
+				g_strfreev(version_split);
+				}
+			}
 		}
 }
 

@@ -9,7 +9,7 @@
 # TODO(xsdg): Re-write this in a simpler way and test that it works: (cd ..; find ... | sort > $TMP)
 
 TMP=POTFILES.$$
-( (find ../src/ -type f \( -name '*.c' -o -name '*.cc' \) ; find ../ -type f -name '*.desktop.in' ; find ../ -type f -name '*.appdata.xml.in') | while read -r f; do
+( (find ../src/ -type f \( -name '*.c' -o -name '*.cc' -o -name "*.ui" \) ; find ../ -type f -name '*.desktop.in' ; find ../ -type f -name '*.appdata.xml.in') | while read -r f; do
 	(echo "$f" | sed 's#^../##')
 done) | sort > "$TMP"
 diff -u POTFILES "$TMP"

@@ -109,12 +109,14 @@ src/thumb.cc
 src/thumb-standard.cc
 src/toolbar.cc
 src/trash.cc
+src/ui/appimage-notification.ui
 src/ui-bookmark.cc
 src/ui-fileops.cc
 src/ui-help.cc
 src/ui-menu.cc
 src/ui-misc.cc
 src/ui-pathsel.cc
+src/ui/search-and-run.ui
 src/ui-spinner.cc
 src/ui-tabcomp.cc
 src/ui-tree-edit.cc
