@@ -36,6 +36,8 @@
 #include "uri-utils.h"
 #include "view-file.h"
 
+#include <vector>
+
 /* Index to tree store */
 enum {
 	FILE_COLUMN_POINTER = 0,
@@ -1064,20 +1066,18 @@ static void vflist_setup_iter_recursive(ViewFile *vf, GtkTreeStore *store, GtkTr
 	/* move the prepended entries to the correct position */
 	if (num_prepended)
 		{
-		gint i;
 		gint num_total = num_prepended + num_ordered;
-		auto new_order = static_cast<gint *>(g_malloc(num_total * sizeof(gint)));
+		std::vector<gint> new_order;
+		new_order.reserve(num_total);
 
-		for (i = 0; i < num_total; i++)
+		for (gint i = 0; i < num_total; i++)
 			{
 			if (i < num_ordered)
 				new_order[i] = num_prepended + i;
 			else
 				new_order[i] = num_total - 1 - i;
 			}
-		gtk_tree_store_reorder(store, parent_iter, new_order);
-
-		g_free(new_order);
+		gtk_tree_store_reorder(store, parent_iter, new_order.data());
 		}
 }
 
@@ -1085,7 +1085,6 @@ void vflist_sort_set(ViewFile *vf, SortType type, gboolean ascend)
 {
 	gint i;
 	GHashTable *fd_idx_hash = g_hash_table_new(nullptr, nullptr);
-	gint *new_order;
 	GtkTreeStore *store;
 	GList *work;
 
@@ -1107,7 +1106,8 @@ void vflist_sort_set(ViewFile *vf, SortType type, gboolean ascend)
 
 	vf->list = filelist_sort(vf->list, vf->sort_method, vf->sort_ascend);
 
-	new_order = static_cast<gint *>(g_malloc(i * sizeof(gint)));
+	std::vector<gint> new_order;
+	new_order.reserve(i);
 
 	work = vf->list;
 	i = 0;
@@ -1120,9 +1120,8 @@ void vflist_sort_set(ViewFile *vf, SortType type, gboolean ascend)
 		}
 
 	store = GTK_TREE_STORE(gtk_tree_view_get_model(GTK_TREE_VIEW(vf->listview)));
-	gtk_tree_store_reorder(store, nullptr, new_order);
+	gtk_tree_store_reorder(store, nullptr, new_order.data());
 
-	g_free(new_order);
 	g_hash_table_destroy(fd_idx_hash);
 }
 

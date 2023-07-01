@@ -25,6 +25,7 @@
 #include "image.h"
 #include "ui-fileops.h"
 
+#include <vector>
 
 #ifdef HAVE_LCMS
 /*** color support enabled ***/
@@ -495,8 +496,8 @@ void color_man_update()
 
 static cmsToneCurve* colorspaces_create_transfer(int32_t size, double (*fct)(double))
 {
-	auto values = static_cast<float *>(g_malloc(sizeof(float) * size));
-
+	std::vector<float> values;
+	values.reserve(size);
 	for(int32_t i = 0; i < size; ++i)
 		{
 		const double x = static_cast<float>(i) / (size - 1);
@@ -504,9 +505,7 @@ static cmsToneCurve* colorspaces_create_transfer(int32_t size, double (*fct)(dou
 		values[i] = static_cast<float>(y);
 		}
 
-	cmsToneCurve* result = cmsBuildTabulatedToneCurveFloat(nullptr, size, values);
-	g_free(values);
-	return result;
+	return cmsBuildTabulatedToneCurveFloat(nullptr, size, values.data());
 }
 
 // https://www.itu.int/dms_pubrec/itu-r/rec/bt/R-REC-BT.2100-2-201807-I!!PDF-F.pdf
