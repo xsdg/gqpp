@@ -45,7 +45,19 @@ static gchar** image_loader_gdk_get_format_mime_types(gpointer loader)
 
 static gpointer image_loader_gdk_new(ImageLoaderBackendCbAreaUpdated area_updated_cb, ImageLoaderBackendCbSize size_cb, ImageLoaderBackendCbAreaPrepared area_prepared_cb, gpointer data)
 {
-        GdkPixbufLoader *loader = gdk_pixbuf_loader_new();
+	auto il = static_cast<ImageLoader *>(data);
+	GdkPixbufLoader *loader;
+
+	/** @FIXME gdk-pixbuf-loader does not recognize .xbm files unless
+	 * the mime type is given. There should be a general case */
+	if (g_ascii_strncasecmp(il->fd->extension, ".xbm", 4) == 0)
+		{
+		loader = gdk_pixbuf_loader_new_with_mime_type("image/x-xbitmap", nullptr);
+		}
+	else
+		{
+		loader = gdk_pixbuf_loader_new();
+		}
 
 	g_signal_connect(G_OBJECT(loader), "area_updated", G_CALLBACK(area_updated_cb), data);
 	g_signal_connect(G_OBJECT(loader), "size_prepared", G_CALLBACK(size_cb), data);
