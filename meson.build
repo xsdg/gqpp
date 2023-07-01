@@ -651,31 +651,47 @@ else
     summary({'xvfb' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
 endif
 
-# Shellcheck
-shellcheck_exe = find_program('shellcheck', required : false)
-script_sources += files('gen_changelog.sh',
-'geeqie-install-debian.sh',
-'version.sh')
+# The tests are run on GitHub with all options disabled, and then
+# with all or most options enabled. Shellcheck and GtkBuilder need only
+# be run once when options are disabled. Use option archive as a flag.
 
-if shellcheck_exe.found()
-    foreach script : script_sources
-        test('Shellcheck', shellcheck_exe, args: ['--norc', '--shell=sh', '--enable=add-default-case,avoid-nullary-conditions,check-unassigned-uppercase,deprecate-which,quote-safe-variables', script], timeout: 100)
-    endforeach
-    summary({'shellcheck' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+# Shellcheck
+option = get_option('archive')
+if option.disabled()
+    shellcheck_exe = find_program('shellcheck', required : false)
+    script_sources += files('gen_changelog.sh',
+    'geeqie-install-debian.sh',
+    'version.sh')
+
+    if shellcheck_exe.found()
+        foreach script : script_sources
+            script_path = '@0@'.format(script)
+            test('Shellcheck_ ' + script_path, shellcheck_exe, args: ['--norc', '--shell=sh', '--enable=add-default-case,avoid-nullary-conditions,check-unassigned-uppercase,deprecate-which,quote-safe-variables', script], timeout: 100)
+        endforeach
+        summary({'shellcheck' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+    else
+        summary({'shellcheck' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+    endif
 else
     summary({'shellcheck' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
 endif
 
 # GtkBuilder .ui check
-if xvfb.found()
-    gtk_builder_tool = find_program('gtk-builder-tool', required : false)
-    if gtk_builder_tool.found()
-        foreach ui_file : ui_sources
-            test('UI Build', xvfb, args: ['--auto-servernum', gtk_builder_tool.full_path(), 'validate', ui_file], timeout: 100)
-        endforeach
-        summary({'gtk-builder-tool' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+option = get_option('archive')
+if option.disabled()
+    if xvfb.found()
+        gtk_builder_tool = find_program('gtk-builder-tool', required : false)
+        if gtk_builder_tool.found()
+            foreach ui_file : ui_sources
+                ui_path = '@0@'.format(ui_file)
+                test('UI Build_ ' + ui_path, xvfb, args: ['--auto-servernum', gtk_builder_tool.full_path(), 'validate', ui_file], timeout: 100)
+            endforeach
+            summary({'gtk-builder-tool' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+        else
+            summary({'gtk-builder-tool' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+        endif
     else
-        summary({'gtk-builder-tool' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+        summary({'gtk-builder-tool xvfb' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
     endif
 else
     summary({'gtk-builder-tool xvfb' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
