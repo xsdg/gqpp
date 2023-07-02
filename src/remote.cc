@@ -1263,11 +1263,16 @@ static void gr_file_info(const gchar *UNUSED(text), GIOChannel *channel, gpointe
 		fd = file_data_new_group(filename);
 		out_string = g_string_new(nullptr);
 
-		format_class = filter_file_get_class(image_get_path(lw_id->image));
-		if (format_class)
+		if (fd->pixbuf)
 			{
-			g_string_append_printf(out_string, _("Class: %s\n"), format_class_list[format_class]);
+			format_class = filter_file_get_class(image_get_path(lw_id->image));
 			}
+		else
+			{
+			format_class = FORMAT_CLASS_UNKNOWN;
+			}
+
+		g_string_append_printf(out_string, _("Class: %s\n"), format_class_list[format_class]);
 
 		if (fd->page_total > 1)
 			{
