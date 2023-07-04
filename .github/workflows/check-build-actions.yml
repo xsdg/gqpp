@@ -35,6 +35,7 @@ jobs:
     - run: sudo apt-get install evince
     - run: sudo apt-get install libarchive-dev
     - run: sudo apt-get install libchamplain-0.12-dev libchamplain-gtk-0.12-dev
+    - run: sudo apt-get install libdw-dev
     #~ - run: sudo apt-get install libffmpegthumbnailer-dev
     - run: sudo apt-get install libgexiv2-dev
     - run: sudo apt-get install libgspell-1-dev
