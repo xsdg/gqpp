@@ -51,6 +51,7 @@ jobs:
       with:
         action: test
         directory: build
+        setup-options: -Ddevel=enabled
         options: --verbose
         meson-version: 0.56.2
     - name: Upload logs
