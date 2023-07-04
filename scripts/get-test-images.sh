@@ -26,11 +26,14 @@
 ## $2 git test image repo. \n
 ##
 
-mkdir -p "$1"
-
-if ! git clone "$2" "$1"
+if [ ! -d "$1" ]
 then
-	exit 1
+	mkdir -p "$1"
+
+	if ! git clone "$2" "$1"
+	then
+		exit 1
+	fi
 fi
 
 for file in "$1/images/"*

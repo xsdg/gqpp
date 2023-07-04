@@ -700,28 +700,32 @@ endif
 # Image checks
 option = get_option('devel')
 if option.enabled()
-    get_test_images_sh = find_program('get-test-images.sh', dirs : scriptsdir, required : true)
-    image_test_sh = find_program('image-test.sh', dirs : scriptsdir, required : true)
+    if xvfb.found()
+        get_test_images_sh = find_program('get-test-images.sh', dirs : scriptsdir, required : true)
+        image_test_sh = find_program('image-test.sh', dirs : scriptsdir, required : true)
 
-    images_dir = join_paths(meson.current_build_dir(), 'test-images.p')
+        images_dir = join_paths(meson.current_build_dir(), 'test-images.p')
 
-    message('Downloading test images')
-    sources_list = run_command(get_test_images_sh, images_dir,  'https://github.com/caclark/geeqie-test.git', check: true)
+        message('Downloading test images')
+        sources_list = run_command(get_test_images_sh, images_dir,  'https://github.com/caclark/geeqie-test.git', check: true)
 
-    sources = sources_list.stdout().strip().split('\n')
+        sources = sources_list.stdout().strip().split('\n')
 
-    foreach image : sources
-        image_path = '@0@'.format(image)
-        path_array = image_path.split('/')
-        image_name = path_array[path_array.length() - 1]
+        foreach image : sources
+            image_path = '@0@'.format(image)
+            path_array = image_path.split('/')
+            image_name = path_array[path_array.length() - 1]
 
-        if image_name.startswith('fail')
-            test('Image_ ' + image_name, image_test_sh, args: [geeqie_exe, image], is_parallel : false, should_fail : true, timeout: 100)
-        else
-            test('Image_ ' + image_name, image_test_sh, args: [geeqie_exe, image], is_parallel : false, timeout: 100)
-        endif
-    endforeach
-    summary({'Image tests' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+            if image_name.startswith('fail')
+                test('Image_ ' + image_name, image_test_sh, args: [geeqie_exe, image], is_parallel : false, should_fail : true, timeout: 100)
+            else
+                test('Image_ ' + image_name, image_test_sh, args: [geeqie_exe, image], is_parallel : false, timeout: 100)
+            endif
+        endforeach
+        summary({'Image tests' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+    else
+        summary({'Image tests' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+    endif
 else
     summary({'Image tests' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
 endif

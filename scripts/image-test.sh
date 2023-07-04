@@ -27,13 +27,13 @@
 ##
 ##
 
-"$1" "$2" &
+xvfb-run --auto-servernum "$1" "$2" &
 
 # Wait for remote to initialize
 sleep 1
 
-result=$($1 --remote --get-file-info)
-"$1" --remote --quit
+result=$(xvfb-run --auto-servernum $1 --remote --get-file-info)
+xvfb-run --auto-servernum "$1" --remote --quit
 
 if echo "$result" | grep -q "Class: Unknown"
 then
