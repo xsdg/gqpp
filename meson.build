@@ -715,7 +715,11 @@ if option.enabled()
         path_array = image_path.split('/')
         image_name = path_array[path_array.length() - 1]
 
-        test('Image_ ' + image_name, image_test_sh, args: [geeqie_exe, image], is_parallel : false, timeout: 100)
+        if image_name.startswith('fail')
+            test('Image_ ' + image_name, image_test_sh, args: [geeqie_exe, image], is_parallel : false, should_fail : true, timeout: 100)
+        else
+            test('Image_ ' + image_name, image_test_sh, args: [geeqie_exe, image], is_parallel : false, timeout: 100)
+        endif
     endforeach
     summary({'Image tests' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
 else
