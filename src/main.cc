@@ -175,6 +175,9 @@ void sig_handler_cb(int signo, siginfo_t *info, void *UNUSED(context))
 	backtrace_symbols_fd(bt, bt_size, STDERR_FILENO);
 #endif
 
+	/* Avoid "not used" warning */
+	len++;
+
 	exit(EXIT_FAILURE);
 }
 #else /* defined(SA_SIGINFO) */
@@ -1147,20 +1150,21 @@ void exit_program()
  * an alternative approach.
  */
 /** @FIXME this probably needs some better ifdefs. Please report any compilation problems */
+/** @FIXME This section needs revising */
 
-#if defined(SIGBUS) && defined(SA_SIGINFO)
-static void sigbus_handler_cb(int UNUSED(signum), siginfo_t *info, void *UNUSED(context))
-{
-	/*
-	 * @FIXME Design and implement a POSIX-acceptable approach,
-	 * after first documenting the sitations where SIGBUS occurs.
-	 * See https://github.com/BestImageViewer/geeqie/issues/1052 for discussion
-	 */
+//#if defined(SIGBUS) && defined(SA_SIGINFO)
+//static void sigbus_handler_cb(int UNUSED(signum), siginfo_t *info, void *UNUSED(context))
+//{
+	///*
+	 //* @FIXME Design and implement a POSIX-acceptable approach,
+	 //* after first documenting the sitations where SIGBUS occurs.
+	 //* See https://github.com/BestImageViewer/geeqie/issues/1052 for discussion
+	 //*/
 
-	DEBUG_1("SIGBUS %p NOT HANDLED", info->si_addr);
-	exit(EXIT_FAILURE);
-}
-#endif
+	//DEBUG_1("SIGBUS %p NOT HANDLED", info->si_addr);
+	//exit(EXIT_FAILURE);
+//}
+//#endif
 
 //static void setup_sigbus_handler(void)
 //{
@@ -1174,6 +1178,7 @@ static void sigbus_handler_cb(int UNUSED(signum), siginfo_t *info, void *UNUSED(
 //#endif
 //}
 
+#ifndef HAVE_DEVELOPER
 static void setup_sig_handler()
 {
 	struct sigaction sigsegv_action;
@@ -1188,6 +1193,7 @@ static void setup_sig_handler()
 	sigaction(SIGIOT, &sigsegv_action, nullptr);
 	sigaction(SIGSEGV, &sigsegv_action, nullptr);
 }
+#endif
 
 static void set_theme_bg_color()
 {
