@@ -233,8 +233,8 @@ static gchar *keywords_to_string(FileData *fd)
 
 	if (kwstr)
 		{
-		ret = kwstr->str;
-		g_string_free(kwstr, FALSE);
+		ret = g_strdup(kwstr->str);
+		g_string_free(kwstr, TRUE);
 		}
 
 	return ret;
@@ -449,8 +449,8 @@ gchar *image_osd_mkinfo(const gchar *str, FileData *fd, GHashTable *vars)
 
 	g_strchomp(osd_info->str);
 
-	ret = osd_info->str;
-	g_string_free(osd_info, FALSE);
+	ret = g_strdup(osd_info->str);
+	g_string_free(osd_info, TRUE);
 
 	return ret;
 }
