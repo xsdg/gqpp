@@ -22,7 +22,7 @@
 
 #include "image-load.h"
 #include "image-load-heif.h"
-
+#include <vector>
 #ifdef HAVE_HEIF
 #include <libheif/heif.h>
 
@@ -71,10 +71,10 @@ static gboolean image_loader_heif_load(gpointer loader, const guchar *buf, gsize
 		page_total = heif_context_get_number_of_top_level_images(ctx);
 		ld->page_total = page_total;
 
-		guint32 IDs[page_total * sizeof(guint32)];
+		std::vector<heif_item_id> IDs(page_total);
 
 		/* get list of all (top level) image IDs */
-		heif_context_get_list_of_top_level_image_IDs(ctx, IDs, page_total);
+		heif_context_get_list_of_top_level_image_IDs(ctx, IDs.data(), page_total);
 
 		error_code = heif_context_get_image_handle(ctx, IDs[ld->page_num], &handle);
 		if (error_code.code)
