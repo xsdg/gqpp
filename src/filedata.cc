@@ -3429,7 +3429,7 @@ gboolean marks_list_save(gchar *path, gboolean save)
 		g_hash_table_foreach(file_data_pool, marks_get_files, marks);
 		}
 	secure_fprintf(ssi, "%s", marks->str);
-	g_string_free(marks, FALSE);
+	g_string_free(marks, TRUE);
 
 	secure_fprintf(ssi, "#end\n");
 	return (secure_close(ssi) == 0);
