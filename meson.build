@@ -643,9 +643,10 @@ i18n.merge_file(
 configure_file(input: 'geeqie.spec.in', output: 'geeqie.spec', configuration: conf_data)
 
 # Basic test of the executable
+# is_parallel false is to avoid problems with images tests
 xvfb = find_program('xvfb-run', required : false)
 if xvfb.found()
-    test('Basic test', xvfb, args: ['--auto-servernum', geeqie_exe, '--version'], timeout: 100)
+    test('Basic test', xvfb, args: ['--auto-servernum', geeqie_exe, '--version'], is_parallel : false, timeout: 100)
     summary({'xvfb' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
 else
     summary({'xvfb' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
@@ -654,6 +655,8 @@ endif
 # The tests are run on GitHub with all options disabled, and then
 # with all or most options enabled. Shellcheck and GtkBuilder need only
 # be run once when options are disabled. Use option archive as a flag.
+# Image tests use option devel as a flag so that normal users do not
+# download the test image database.
 
 # Shellcheck
 option = get_option('archive')

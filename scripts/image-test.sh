@@ -30,7 +30,12 @@
 xvfb-run --auto-servernum "$1" "$2" &
 
 # Wait for remote to initialize
-sleep 1
+while [ ! -e "$HOME/.config/geeqie/.command" ] ;
+do
+	sleep 1
+done
+
+sleep 2
 
 result=$(xvfb-run --auto-servernum "$1" --remote --get-file-info)
 xvfb-run --auto-servernum "$1" --remote --quit
