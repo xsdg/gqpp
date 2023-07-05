@@ -441,8 +441,9 @@ static gchar *exif_build_formatted_Flash(ExifData *exif)
 	/* red-eye (bit 6) */
 	if ((n >> 5) & 0x01) string = append_comma_text(string, _("red-eye reduction"));
 
-	text = string->str;
-	g_string_free(string, FALSE);
+	text = g_strdup(string->str);
+	g_string_free(string, TRUE);
+
 	return text;
 }
 
@@ -574,8 +575,8 @@ static gchar *exif_build_formatted_GPSPosition(ExifData *exif)
 		g_string_append_printf(string, ", %0lu° %0lu' %0.2f\" %.1s", p1, p2, p3, ref);
 		} // if (item && ref)
 
-	text = string->str;
-	g_string_free(string, FALSE);
+	text = g_strdup(string->str);
+	g_string_free(string, TRUE);
 
 	return text;
 } // static gchar *exif_build_forma...
