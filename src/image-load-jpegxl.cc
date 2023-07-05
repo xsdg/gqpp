@@ -91,6 +91,11 @@ static uint8_t *JxlMemoryToPixels(const uint8_t *next_in, size_t size, size_t *s
     return nullptr;
   }
 
+   /* Avoid compiler warning - used uninitialized */
+   /* This file will be replaced by libjxl at some time */
+   *stride = 0;
+   *ysize = 0;
+   
   JxlBasicInfo info;
   int success = 0;
   JxlPixelFormat format = {4, JXL_TYPE_UINT8, JXL_NATIVE_ENDIAN, 0};
