@@ -1443,8 +1443,8 @@ static gchar *exif_item_get_data_as_text_full(ExifItem *item, MetadataFormat for
 		g_string_append(string, " ...");
 		}
 
-	text = string->str;
-	g_string_free(string, FALSE);
+	text = g_strdup(string->str);
+	g_string_free(string, TRUE);
 
 	return text;
 }
@@ -1454,7 +1454,7 @@ gchar *exif_item_get_string(ExifItem *item, gint UNUSED(idx))
 	return exif_item_get_data_as_text_full(item, METADATA_PLAIN);
 }
 
-gchar *exif_item_get_data_as_text(ExifItem *item, ExifData *exif)
+gchar *exif_item_get_data_as_text(ExifItem *item, ExifData *UNUSED(exif))
 {
 	return exif_item_get_data_as_text_full(item, METADATA_FORMATTED);
 }

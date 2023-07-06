@@ -70,8 +70,8 @@ struct ExifMarker
 	guint		tag;
 	ExifFormatType	format;
 	gint		components;
-	gchar		*key;
-	gchar		*description;
+	const gchar		*key;
+	const gchar		*description;
 	ExifTextList	*list;
 };
 
