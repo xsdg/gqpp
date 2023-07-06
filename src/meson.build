@@ -242,9 +242,18 @@ subdir('pan-view')
 subdir('ui')
 subdir('view-file')
 
-gqmarshal = gnome.genmarshal('gq-marshal', prefix : 'gq_marshal', sources : 'gq-marshal.list')
-project_sources += gqmarshal[0]
-project_sources += gqmarshal[1]
+gq_marshal = gnome.genmarshal('gq-marshal', prefix : 'gq_marshal', sources : 'gq-marshal.list')
+
+project_sources += gq_marshal[1]
+
+gq_marshal_pragma_sh = find_program('gq-marshal-pragma.sh', dirs : scriptsdir)
+
+gq_marshal_pragma = custom_target('gq-marshal-pragma',
+                    input : gq_marshal[0],
+                    output : 'gq-marshal-pragma.c',
+                    command : [gq_marshal_pragma_sh, '@INPUT@', '@OUTPUT@'])
+
+project_sources += gq_marshal_pragma
 
 icon_pairs = [
 'icon_spinner', files('ui_spinner.png'),
