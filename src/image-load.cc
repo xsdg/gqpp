@@ -21,29 +21,46 @@
 
 #include "main.h"
 #include "image-load.h"
-#include "image-load-cr3.h"
-#include "image-load-gdk.h"
-#include "image-load-jpeg.h"
-#include "image-load-tiff.h"
-#include "image-load-dds.h"
-#include "image-load-djvu.h"
-#include "image-load-external.h"
-#include "image-load-pdf.h"
-#include "image-load-psd.h"
-#include "image-load-heif.h"
-#include "image-load-ffmpegthumbnailer.h"
-#include "image-load-collection.h"
-#include "image-load-zxscr.h"
-#include "image-load-j2k.h"
-#include "image-load-jpegxl.h"
-#include "image-load-libraw.h"
-#include "image-load-svgz.h"
-#include "misc.h"
 
 #include "exif.h"
 #include "filedata.h"
-#include "ui-fileops.h"
 #include "gq-marshal.h"
+#include "image-load-collection.h"
+#include "image-load-dds.h"
+#include "image-load-external.h"
+#include "image-load-gdk.h"
+#include "image-load-libraw.h"
+#include "image-load-psd.h"
+#include "image-load-svgz.h"
+#include "image-load-zxscr.h"
+#include "misc.h"
+#include "ui-fileops.h"
+
+#ifdef HAVE_DJVU
+	#include "image-load-djvu.h"
+#endif
+#ifdef HAVE_FFMPEGTHUMBNAILER
+	#include "image-load-ffmpegthumbnailer.h"
+#endif
+#ifdef HAVE_HEIF
+	#include "image-load-heif.h"
+#endif
+#ifdef HAVE_J2K
+	#include "image-load-j2k.h"
+#endif
+#ifdef HAVE_JPEG
+	#include "image-load-cr3.h"
+	#include "image-load-jpeg.h"
+#endif
+#ifdef HAVE_JPEGXL
+	#include "image-load-jpegxl.h"
+#endif
+#ifdef HAVE_PDF
+	#include "image-load-pdf.h"
+#endif
+#ifdef HAVE_TIFF
+	#include "image-load-tiff.h"
+#endif
 
 #include <fcntl.h>
 #include <sys/mman.h>
