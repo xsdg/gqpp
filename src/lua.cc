@@ -24,9 +24,7 @@
 
 #define _XOPEN_SOURCE
 
-#include <lua.h>
-#include <lauxlib.h>
-#include <lualib.h>
+#include <lua.hpp>
 
 #include <stdio.h>
 #include <glib.h>
