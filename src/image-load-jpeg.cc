@@ -24,6 +24,9 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+/** This is a Will Not Fix */
+#pragma GCC diagnostic ignored "-Wclobbered"
+
 #include "main.h"
 
 #include "image-load.h"
