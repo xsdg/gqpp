@@ -22,7 +22,7 @@ jobs:
       uses: actions/upload-artifact@v2
       if: always()
       with:
-        name: logs-all
+        name: logs-all-no-options
         path: /home/runner/work/geeqie/geeqie/build/meson-logs/*.txt
         retention-days: 5
 
@@ -63,6 +63,6 @@ jobs:
       uses: actions/upload-artifact@v2
       if: always()
       with:
-        name: logs-all
+        name: logs-all-most-options
         path: /home/runner/work/geeqie/geeqie/build/meson-logs/*.txt
         retention-days: 5
