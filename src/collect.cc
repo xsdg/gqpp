@@ -112,15 +112,18 @@ void collection_info_set_thumb(CollectInfo *ci, GdkPixbuf *pixbuf)
 	ci->pixbuf = pixbuf;
 }
 
-//gboolean collection_info_load_thumb(CollectInfo *ci)
-//{
-	//if (!ci) return FALSE;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+gboolean collection_info_load_thumb_unused(CollectInfo *ci)
+{
+	if (!ci) return FALSE;
 
-	//collection_info_free_thumb(ci);
+	collection_info_free_thumb(ci);
 
-	//log_printf("collection_info_load_thumb not implemented!\n(because an instant thumb loader not implemented)");
-	//return FALSE;
-//}
+	log_printf("collection_info_load_thumb not implemented!\n(because an instant thumb loader not implemented)");
+	return FALSE;
+}
+#pragma GCC diagnostic pop
 
 void collection_list_free(GList *list)
 {

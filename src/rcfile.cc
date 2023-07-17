@@ -154,10 +154,13 @@ gboolean read_int_option(const gchar *option, const gchar *label, const gchar *v
 	return TRUE;
 }
 
-//void write_ushort_option(GString *str, gint UNUSED(indent), const gchar *label, guint16 n)
-//{
-	//g_string_append_printf(str, "%s = \"%uh\" ", label, n);
-//}
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+void write_ushort_option_unused(GString *str, gint UNUSED(indent), const gchar *label, guint16 n)
+{
+	g_string_append_printf(str, "%s = \"%uh\" ", label, n);
+}
+#pragma GCC diagnostic pop
 
 gboolean read_ushort_option(const gchar *option, const gchar *label, const gchar *value, guint16 *n)
 {

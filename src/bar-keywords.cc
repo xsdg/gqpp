@@ -1421,16 +1421,19 @@ static gboolean bar_pane_keywords_menu_cb(GtkWidget *widget, GdkEventButton *bev
  *-------------------------------------------------------------------
  */
 
-//void bar_pane_keywords_close(GtkWidget *bar)
-//{
-	//PaneKeywordsData *pkd;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+void bar_pane_keywords_close_unused(GtkWidget *bar)
+{
+	PaneKeywordsData *pkd;
 
-	//pkd = g_object_get_data(G_OBJECT(bar), "pane_data");
-	//if (!pkd) return;
+	pkd = static_cast<PaneKeywordsData *>(g_object_get_data(G_OBJECT(bar), "pane_data"));
+	if (!pkd) return;
 
-	//g_free(pkd->pane.id);
-	//gtk_widget_destroy(pkd->widget);
-//}
+	g_free(pkd->pane.id);
+	gtk_widget_destroy(pkd->widget);
+}
+#pragma GCC diagnostic pop
 
 static void bar_pane_keywords_destroy(GtkWidget *UNUSED(widget), gpointer data)
 {

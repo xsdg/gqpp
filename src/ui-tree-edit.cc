@@ -461,15 +461,18 @@ gboolean tree_view_move_cursor_away(GtkTreeView *widget, GtkTreeIter *iter, gboo
 	return move;
 }
 
-//gint tree_path_to_row(GtkTreePath *tpath)
-//{
-	//gint *indices;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+gint tree_path_to_row_unused(GtkTreePath *tpath)
+{
+	gint *indices;
 
-	//indices = gtk_tree_path_get_indices(tpath);
-	//if (indices) return indices[0];
+	indices = gtk_tree_path_get_indices(tpath);
+	if (indices) return indices[0];
 
-	//return -1;
-//}
+	return -1;
+}
+#pragma GCC diagnostic pop
 
 
 /*
@@ -511,13 +514,16 @@ void shift_color(GdkColor *src, gshort val, gint direction)
 /* darkens or lightens a style's color for given state
  * esp. useful for alternating dark/light in (c)lists
  */
-//void style_shift_color(GtkStyle *style, GtkStateType type, gshort shift_value, gint direction)
-//{
-	//if (!style) return;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+void style_shift_color_unused(GtkStyle *style, GtkStateType type, gshort shift_value, gint direction)
+{
+	if (!style) return;
 
-	//shift_color(&style->base[type], shift_value, direction);
-	//shift_color(&style->bg[type], shift_value, direction);
-//}
+	shift_color(&style->base[type], shift_value, direction);
+	shift_color(&style->bg[type], shift_value, direction);
+}
+#pragma GCC diagnostic pop
 
 /*
  *-------------------------------------------------------------------

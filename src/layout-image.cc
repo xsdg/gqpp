@@ -57,12 +57,14 @@ static void layout_image_animate_update_image(LayoutWindow *lw);
  * full screen overlay
  *----------------------------------------------------------------------------
  */
-
-//void layout_image_overlay_toggle(LayoutWindow *lw)
-//{
-	//if (!lw) return;
-	//image_osd_toggle(lw->image);
-//}
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+static void layout_image_overlay_toggle_unused(LayoutWindow *lw)
+{
+	if (!lw) return;
+	image_osd_toggle(lw->image);
+}
+#pragma GCC diagnostic pop
 
 /*
  *----------------------------------------------------------------------------
@@ -1331,12 +1333,16 @@ void layout_image_set_overunderexposed(LayoutWindow *lw, gboolean overunderexpos
 	image_set_overunderexposed(lw->image, overunderexposed);
 }
 
-//gboolean layout_image_get_overunderexposed(LayoutWindow *lw)
-//{
-	//if (!layout_valid(&lw)) return FALSE;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+gboolean layout_image_get_overunderexposed_unused(LayoutWindow *lw)
+{
+	if (!layout_valid(&lw)) return FALSE;
 
-	//return image_get_overunderexposed(lw->image);
-//}
+//	return image_get_overunderexposed(lw->image);
+	return FALSE;
+}
+#pragma GCC diagnostic pop
 
 void layout_image_set_ignore_alpha(LayoutWindow *lw, gboolean ignore_alpha)
 {
@@ -1390,12 +1396,15 @@ const gchar *layout_image_get_path(LayoutWindow *lw)
 	return image_get_path(lw->image);
 }
 
-//const gchar *layout_image_get_name(LayoutWindow *lw)
-//{
-	//if (!layout_valid(&lw)) return NULL;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+const gchar *layout_image_get_name_unused(LayoutWindow *lw)
+{
+	if (!layout_valid(&lw)) return NULL;
 
-	//return image_get_name(lw->image);
-//}
+	return image_get_name(lw->image);
+}
+#pragma GCC diagnostic pop
 
 FileData *layout_image_get_fd(LayoutWindow *lw)
 {

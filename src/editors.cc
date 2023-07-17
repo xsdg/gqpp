@@ -1425,12 +1425,16 @@ const gchar *editor_get_error_str(EditorFlags flags)
 	return _("Unknown error.");
 }
 
-//const gchar *editor_get_name(const gchar *key)
-//{
-	//EditorDescription *editor = g_hash_table_lookup(editors, key);
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+const gchar *editor_get_name_unused(const gchar *key)
+{
+	EditorDescription *editor = static_cast<EditorDescription *>(g_hash_table_lookup(editors, key));
 
-	//if (!editor) return NULL;
+	if (!editor) return NULL;
 
-	//return editor->name;
-//}
+	return editor->name;
+}
+#pragma GCC diagnostic pop
+
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

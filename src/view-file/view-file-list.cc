@@ -1422,13 +1422,16 @@ static gboolean vflist_row_is_selected(ViewFile *vf, FileData *fd)
 	return found;
 }
 
-//gboolean vflist_index_is_selected(ViewFile *vf, gint row)
-//{
-	//FileData *fd;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+gboolean vflist_index_is_selected_unused(ViewFile *vf, gint row)
+{
+	FileData *fd;
 
-	//fd = vf_index_get_data(vf, row);
-	//return vflist_row_is_selected(vf, fd);
-//}
+	fd = vf_index_get_data(vf, row);
+	return vflist_row_is_selected(vf, fd);
+}
+#pragma GCC diagnostic pop
 
 guint vflist_selection_count(ViewFile *vf, gint64 *bytes)
 {

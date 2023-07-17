@@ -169,20 +169,23 @@ void help_window_set_key(GtkWidget *window, const gchar *key)
 	if (key) help_window_scroll(text, key);
 }
 
-//void help_window_set_file(GtkWidget *window, const gchar *path, const gchar *key)
-//{
-	//GtkWidget *text;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+void help_window_set_file_unused(GtkWidget *window, const gchar *path, const gchar *key)
+{
+	GtkWidget *text;
 
-	//if (!window || !path) return;
+	if (!window || !path) return;
 
-	//text = g_object_get_data(G_OBJECT(window), "text_widget");
-	//if (!text) return;
+	text = static_cast<GtkWidget *>(g_object_get_data(G_OBJECT(window), "text_widget"));
+	if (!text) return;
 
-	//gdk_window_raise(gtk_widget_get_window(window));
+	gdk_window_raise(gtk_widget_get_window(window));
 
-	//help_window_load_text(text, path);
-	//help_window_scroll(text, key);
-//}
+	help_window_load_text(text, path);
+	help_window_scroll(text, key);
+}
+#pragma GCC diagnostic pop
 
 GtkWidget *help_window_new(const gchar *title,
 			   const gchar *subclass,
@@ -259,8 +262,12 @@ GtkWidget *help_window_new(const gchar *title,
 	return window;
 }
 
-//GtkWidget *help_window_get_box(GtkWidget *window)
-//{
-	//return g_object_get_data(G_OBJECT(window), "text_vbox");
-//}
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+GtkWidget *help_window_get_box_unused(GtkWidget *window)
+{
+	return static_cast<GtkWidget *>(g_object_get_data(G_OBJECT(window), "text_vbox"));
+}
+#pragma GCC diagnostic pop
+
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

@@ -431,24 +431,27 @@ gboolean unlink_file(const gchar *s)
 	return ret;
 }
 
-//gboolean symlink_utf8(const gchar *source, const gchar *target)
-//{
-	//gchar *sl;
-	//gchar *tl;
-	//gboolean ret;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+gboolean symlink_utf8_unused(const gchar *source, const gchar *target)
+{
+	gchar *sl;
+	gchar *tl;
+	gboolean ret;
 
-	//if (!source || !target) return FALSE;
+	if (!source || !target) return FALSE;
 
-	//sl = path_from_utf8(source);
-	//tl = path_from_utf8(target);
+	sl = path_from_utf8(source);
+	tl = path_from_utf8(target);
 
-	//ret = (symlink(sl, tl) == 0);
+	ret = (symlink(sl, tl) == 0);
 
-	//g_free(sl);
-	//g_free(tl);
+	g_free(sl);
+	g_free(tl);
 
-	//return ret;
-//}
+	return ret;
+}
+#pragma GCC diagnostic pop
 
 gboolean mkdir_utf8(const gchar *s, gint mode)
 {
@@ -782,34 +785,37 @@ gchar *unique_filename(const gchar *path, const gchar *ext, const gchar *divider
 	return unique;
 }
 
-//gchar *unique_filename_simple(const gchar *path)
-//{
-	//gchar *unique;
-	//const gchar *name;
-	//const gchar *ext;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+gchar *unique_filename_simple_unused(const gchar *path)
+{
+	gchar *unique;
+	const gchar *name;
+	const gchar *ext;
 
-	//if (!path) return NULL;
+	if (!path) return NULL;
 
-	//name = filename_from_path(path);
-	//if (!name) return NULL;
+	name = filename_from_path(path);
+	if (!name) return NULL;
 
-	//ext = registered_extension_from_path(name);
+	ext = registered_extension_from_path(name);
 
-	//if (!ext)
-		//{
-		//unique = unique_filename(path, NULL, "_", TRUE);
-		//}
-	//else
-		//{
-		//gchar *base;
+	if (!ext)
+		{
+		unique = unique_filename(path, NULL, "_", TRUE);
+		}
+	else
+		{
+		gchar *base;
 
-		//base = remove_extension_from_path(path);
-		//unique = unique_filename(base, ext, "_", TRUE);
-		//g_free(base);
-		//}
+		base = remove_extension_from_path(path);
+		unique = unique_filename(base, ext, "_", TRUE);
+		g_free(base);
+		}
 
-	//return unique;
-//}
+	return unique;
+}
+#pragma GCC diagnostic pop
 
 const gchar *filename_from_path(const gchar *path)
 {

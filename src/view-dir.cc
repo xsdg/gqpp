@@ -229,10 +229,13 @@ void vd_set_select_func(ViewDir *vd,
 	vd->select_data = data;
 }
 
-//void vd_set_layout(ViewDir *vd, LayoutWindow *layout)
-//{
-	//vd->layout = layout;
-//}
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+void vd_set_layout_unused(ViewDir *vd, LayoutWindow *layout)
+{
+	vd->layout = layout;
+}
+#pragma GCC diagnostic pop
 
 gboolean vd_set_fd(ViewDir *vd, FileData *dir_fd)
 {
@@ -260,18 +263,21 @@ void vd_refresh(ViewDir *vd)
 	}
 }
 
-//const gchar *vd_row_get_path(ViewDir *vd, gint row)
-//{
-	//const gchar *ret = NULL;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+const gchar *vd_row_get_path_unused(ViewDir *vd, gint row)
+{
+	const gchar *ret = NULL;
 
-	//switch (vd->type)
-	//{
-	//case DIRVIEW_LIST: ret = vdlist_row_get_path(vd, row); break;
-	//case DIRVIEW_TREE: ret = vdtree_row_get_path(vd, row); break;
-	//}
+	switch (vd->type)
+	{
+	case DIRVIEW_LIST: ret = vdlist_row_get_path(vd, row); break;
+	case DIRVIEW_TREE: ret = vdtree_row_get_path(vd, row); break;
+	}
 
-	//return ret;
-//}
+	return ret;
+}
+#pragma GCC diagnostic pop
 
 /* the calling stack is this:
    vd_select_row -> select_func -> layout_set_fd -> vd_set_fd
@@ -1142,22 +1148,25 @@ void vd_dnd_init(ViewDir *vd)
  *----------------------------------------------------------------------------
  */
 
-//void vd_menu_position_cb(GtkMenu *menu, gint *x, gint *y, gboolean *UNUSED(push_in), gpointer data)
-//{
-	//ViewDir *vd = static_cast<//ViewDir *>(data);
-	//GtkTreeModel *store;
-	//GtkTreeIter iter;
-	//GtkTreePath *tpath;
-	//gint cw, ch;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+void vd_menu_position_cb_unused(GtkMenu *menu, gint *x, gint *y, gboolean *UNUSED(push_in), gpointer data)
+{
+	ViewDir *vd = static_cast<ViewDir *>(data);
+	GtkTreeModel *store;
+	GtkTreeIter iter;
+	GtkTreePath *tpath;
+	gint cw, ch;
 
-	//if (!vd_find_row(vd, vd->click_fd, &iter)) return;
-	//store = gtk_tree_view_get_model(GTK_TREE_VIEW(vd->view));
-	//tpath = gtk_tree_model_get_path(store, &iter);
-	//tree_view_get_cell_clamped(GTK_TREE_VIEW(vd->view), tpath, 0, TRUE, x, y, &cw, &ch);
-	//gtk_tree_path_free(tpath);
-	//*y += ch;
-	//popup_menu_position_clamp(menu, x, y, 0);
-//}
+	if (!vd_find_row(vd, vd->click_fd, &iter)) return;
+	store = gtk_tree_view_get_model(GTK_TREE_VIEW(vd->view));
+	tpath = gtk_tree_model_get_path(store, &iter);
+	tree_view_get_cell_clamped(GTK_TREE_VIEW(vd->view), tpath, 0, TRUE, x, y, &cw, &ch);
+	gtk_tree_path_free(tpath);
+	*y += ch;
+	popup_menu_position_clamp(menu, x, y, 0);
+}
+#pragma GCC diagnostic pop
 
 void vd_activate_cb(GtkTreeView *tview, GtkTreePath *tpath, GtkTreeViewColumn *UNUSED(column), gpointer data)
 {

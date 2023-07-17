@@ -61,10 +61,13 @@ void image_sim_alternate_set(gboolean enable)
 	alternate_enabled = enable;
 }
 
-//gboolean image_sim_alternate_enabled(void)
-//{
-	//return alternate_enabled;
-//}
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+gboolean image_sim_alternate_enabled_unused(void)
+{
+	return alternate_enabled;
+}
+#pragma GCC diagnostic pop
 
 ImageSimilarityData *image_sim_new()
 {

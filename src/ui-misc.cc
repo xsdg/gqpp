@@ -338,11 +338,14 @@ GtkWidget *pref_checkbox_new(GtkWidget *parent_box, const gchar *text, gboolean 
 	return real_pref_checkbox_new(parent_box, text, FALSE, active, func, data);
 }
 
-//GtkWidget *pref_checkbox_new_mnemonic(GtkWidget *parent_box, const gchar *text, gboolean active,
-				      //GCallback func, gpointer data)
-//{
-	//return real_pref_checkbox_new(parent_box, text, TRUE, active, func, data);
-//}
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+GtkWidget *pref_checkbox_new_mnemonic_unused(GtkWidget *parent_box, const gchar *text, gboolean active,
+				      GCallback func, gpointer data)
+{
+	return real_pref_checkbox_new(parent_box, text, TRUE, active, func, data);
+}
+#pragma GCC diagnostic pop
 
 static void pref_checkbox_int_cb(GtkWidget *widget, gpointer data)
 {
@@ -378,20 +381,23 @@ void pref_checkbox_link_sensitivity(GtkWidget *button, GtkWidget *widget)
 	pref_checkbox_link_sensitivity_cb(button, widget);
 }
 
-//static void pref_checkbox_link_sensitivity_swap_cb(GtkWidget *button, gpointer data)
-//{
-	//GtkWidget *widget = static_cast<GtkWidget *>(data);
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+static void pref_checkbox_link_sensitivity_swap_cb_unused(GtkWidget *button, gpointer data)
+{
+	GtkWidget *widget = static_cast<GtkWidget *>(data);
 
-	//gtk_widget_set_sensitive(widget, !gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)));
-//}
+	gtk_widget_set_sensitive(widget, !gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)));
+}
 
-//void pref_checkbox_link_sensitivity_swap(GtkWidget *button, GtkWidget *widget)
-//{
-	//g_signal_connect(G_OBJECT(button), "toggled",
-			 //G_CALLBACK(pref_checkbox_link_sensitivity_swap_cb), widget);
+void pref_checkbox_link_sensitivity_swap_unused(GtkWidget *button, GtkWidget *widget)
+{
+	g_signal_connect(G_OBJECT(button), "toggled",
+			 G_CALLBACK(pref_checkbox_link_sensitivity_swap_cb_unused), widget);
 
-	//pref_checkbox_link_sensitivity_swap_cb(button, widget);
-//}
+	pref_checkbox_link_sensitivity_swap_cb_unused(button, widget);
+}
+#pragma GCC diagnostic pop
 
 static GtkWidget *real_pref_radiobutton_new(GtkWidget *parent_box, GtkWidget *sibling,
 					    const gchar *text, gboolean mnemonic_text, gboolean active,
@@ -434,39 +440,42 @@ GtkWidget *pref_radiobutton_new(GtkWidget *parent_box, GtkWidget *sibling,
 	return real_pref_radiobutton_new(parent_box, sibling, text, FALSE, active, func, data);
 }
 
-//GtkWidget *pref_radiobutton_new_mnemonic(GtkWidget *parent_box, GtkWidget *sibling,
-					 //const gchar *text, gboolean active,
-					 //GCallback func, gpointer data)
-//{
-	//return real_pref_radiobutton_new(parent_box, sibling, text, TRUE, active, func, data);
-//}
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+GtkWidget *pref_radiobutton_new_mnemonic_unused(GtkWidget *parent_box, GtkWidget *sibling,
+					 const gchar *text, gboolean active,
+					 GCallback func, gpointer data)
+{
+	return real_pref_radiobutton_new(parent_box, sibling, text, TRUE, active, func, data);
+}
 
 #define PREF_RADIO_VALUE_KEY "pref_radio_value"
 
-//static void pref_radiobutton_int_cb(GtkWidget *widget, gpointer data)
-//{
-	//gboolean *result = static_cast<gboolean *>(data);
+static void pref_radiobutton_int_cb_unused(GtkWidget *widget, gpointer data)
+{
+	gboolean *result = static_cast<gboolean *>(data);
 
-	//if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)))
-		//{
-		//*result = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(widget), PREF_RADIO_VALUE_KEY));
-		//}
-//}
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)))
+		{
+		*result = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(widget), PREF_RADIO_VALUE_KEY));
+		}
+}
 
-//GtkWidget *pref_radiobutton_new_int(GtkWidget *parent_box, GtkWidget *sibling,
-				    //const gchar *text, gboolean active,
-				    //gboolean *result, gboolean value,
-				    //GCallback UNUSED(func), gpointer UNUSED(data))
-//{
-	//GtkWidget *button;
+GtkWidget *pref_radiobutton_new_int_unused(GtkWidget *parent_box, GtkWidget *sibling,
+				    const gchar *text, gboolean active,
+				    gboolean *result, gboolean value,
+				    GCallback UNUSED(func), gpointer UNUSED(data))
+{
+	GtkWidget *button;
 
-	//button = pref_radiobutton_new(parent_box, sibling, text, active,
-				      //G_CALLBACK(pref_radiobutton_int_cb), result);
-	//g_object_set_data(G_OBJECT(button), PREF_RADIO_VALUE_KEY, GINT_TO_POINTER(value));
-	//if (active) *result = value;
+	button = pref_radiobutton_new(parent_box, sibling, text, active,
+				      G_CALLBACK(pref_radiobutton_int_cb_unused), result);
+	g_object_set_data(G_OBJECT(button), PREF_RADIO_VALUE_KEY, GINT_TO_POINTER(value));
+	if (active) *result = value;
 
-	//return button;
-//}
+	return button;
+}
+#pragma GCC diagnostic pop
 
 static GtkWidget *real_pref_spin_new(GtkWidget *parent_box, const gchar *text, const gchar *suffix,
 				     gboolean mnemonic_text,
@@ -524,14 +533,17 @@ GtkWidget *pref_spin_new(GtkWidget *parent_box, const gchar *text, const gchar *
 				  min, max, step, digits, value, func, data);
 }
 
-//GtkWidget *pref_spin_new_mnemonic(GtkWidget *parent_box, const gchar *text, const gchar *suffix,
-				  //gdouble min, gdouble max, gdouble step, gint digits,
-				  //gdouble value,
-				  //GCallback func, gpointer data)
-//{
-	//return real_pref_spin_new(parent_box, text, suffix, TRUE,
-				  //min, max, step, digits, value, func, data);
-//}
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+GtkWidget *pref_spin_new_mnemonic_unused(GtkWidget *parent_box, const gchar *text, const gchar *suffix,
+				  gdouble min, gdouble max, gdouble step, gint digits,
+				  gdouble value,
+				  GCallback func, gpointer data)
+{
+	return real_pref_spin_new(parent_box, text, suffix, TRUE,
+				  min, max, step, digits, value, func, data);
+}
+#pragma GCC diagnostic pop
 
 static void pref_spin_int_cb(GtkWidget *widget, gpointer data)
 {
@@ -776,28 +788,31 @@ GtkWidget *pref_toolbar_button(GtkWidget *toolbar,
 	return item;
 }
 
-//void pref_toolbar_button_set_icon(GtkWidget *button, GtkWidget *widget, const gchar *stock_id)
-//{
-	//if (widget)
-		//{
-		//gtk_tool_button_set_icon_widget(GTK_TOOL_BUTTON(button), widget);
-		//}
-	//else if (stock_id)
-		//{
-		//gtk_tool_button_set_stock_id(GTK_TOOL_BUTTON(button), stock_id);
-		//}
-//}
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+void pref_toolbar_button_set_icon_unused(GtkWidget *button, GtkWidget *widget, const gchar *stock_id)
+{
+	if (widget)
+		{
+		gtk_tool_button_set_icon_widget(GTK_TOOL_BUTTON(button), widget);
+		}
+	else if (stock_id)
+		{
+		gtk_tool_button_set_stock_id(GTK_TOOL_BUTTON(button), stock_id);
+		}
+}
 
-//GtkWidget *pref_toolbar_spacer(GtkWidget *toolbar)
-//{
-	//GtkWidget *item;
+GtkWidget *pref_toolbar_spacer_unused(GtkWidget *toolbar)
+{
+	GtkWidget *item;
 
-	//item = GTK_WIDGET(gtk_separator_tool_item_new());
-	//gtk_container_add(GTK_CONTAINER(toolbar), item);
-	//gtk_widget_show(item);
+	item = GTK_WIDGET(gtk_separator_tool_item_new());
+	gtk_container_add(GTK_CONTAINER(toolbar), item);
+	gtk_widget_show(item);
 
-	//return item;
-//}
+	return item;
+}
+#pragma GCC diagnostic pop
 
 
 /*
@@ -1128,25 +1143,28 @@ void date_selection_time_set(GtkWidget *widget, time_t t)
 	date_selection_set(widget, lt->tm_mday, lt->tm_mon + 1, lt->tm_year + 1900);
 }
 
-//time_t date_selection_time_get(GtkWidget *widget)
-//{
-	//struct tm lt;
-	//gint day = 0;
-	//gint month = 0;
-	//gint year = 0;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+time_t date_selection_time_get_unused(GtkWidget *widget)
+{
+	struct tm lt;
+	gint day = 0;
+	gint month = 0;
+	gint year = 0;
 
-	//date_selection_get(widget, &day, &month ,&year);
+	date_selection_get(widget, &day, &month ,&year);
 
-	//lt.tm_sec = 0;
-	//lt.tm_min = 0;
-	//lt.tm_hour = 0;
-	//lt.tm_mday = day;
-	//lt.tm_mon = month - 1;
-	//lt.tm_year = year - 1900;
-	//lt.tm_isdst = 0;
+	lt.tm_sec = 0;
+	lt.tm_min = 0;
+	lt.tm_hour = 0;
+	lt.tm_mday = day;
+	lt.tm_mon = month - 1;
+	lt.tm_year = year - 1900;
+	lt.tm_isdst = 0;
 
-	//return mktime(&lt);
-//}
+	return mktime(&lt);
+}
+#pragma GCC diagnostic pop
 
 /*
  *-----------------------------------------------------------------------------
@@ -1276,44 +1294,46 @@ gboolean pref_list_int_get(const gchar *group, const gchar *key, gint *result)
 	return FALSE;
 }
 
-//void pref_list_double_set(const gchar *group, const gchar *key, gdouble value)
-//{
-	//gchar text[G_ASCII_DTOSTR_BUF_SIZE];
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+void pref_list_double_set_unused(const gchar *group, const gchar *key, gdouble value)
+{
+	gchar text[G_ASCII_DTOSTR_BUF_SIZE];
 
-	//g_ascii_dtostr(text, sizeof(text), value);
-	//pref_list_set(group, key, PREF_LIST_MARKER_DOUBLE, text);
-//}
+	g_ascii_dtostr(text, sizeof(text), value);
+	pref_list_set(group, key, PREF_LIST_MARKER_DOUBLE, text);
+}
 
-//gboolean pref_list_double_get(const gchar *group, const gchar *key, gdouble *result)
-//{
-	//const gchar *text;
+gboolean pref_list_double_get_unused(const gchar *group, const gchar *key, gdouble *result)
+{
+	const gchar *text;
 
-	//if (!group || !key)
-		//{
-		//*result = 0;
-		//return FALSE;
-		//}
+	if (!group || !key)
+		{
+		*result = 0;
+		return FALSE;
+		}
 
-	//if (pref_list_get(group, key, PREF_LIST_MARKER_DOUBLE, &text) && text)
-		//{
-		//*result = g_ascii_strtod(text, NULL);
-		//return TRUE;
-		//}
+	if (pref_list_get(group, key, PREF_LIST_MARKER_DOUBLE, &text) && text)
+		{
+		*result = g_ascii_strtod(text, NULL);
+		return TRUE;
+		}
 
-	//*result = 0;
-	//return FALSE;
-//}
+	*result = 0;
+	return FALSE;
+}
 
-//void pref_list_string_set(const gchar *group, const gchar *key, const gchar *value)
-//{
-	//pref_list_set(group, key, PREF_LIST_MARKER_STRING, value);
-//}
+void pref_list_string_set_unused(const gchar *group, const gchar *key, const gchar *value)
+{
+	pref_list_set(group, key, PREF_LIST_MARKER_STRING, value);
+}
 
-//gboolean pref_list_string_get(const gchar *group, const gchar *key, const gchar **result)
-//{
-	//return pref_list_get(group, key, PREF_LIST_MARKER_STRING, result);
-//}
-
+gboolean pref_list_string_get_unused(const gchar *group, const gchar *key, const gchar **result)
+{
+	return pref_list_get(group, key, PREF_LIST_MARKER_STRING, result);
+}
+#pragma GCC diagnostic pop
 
 void pref_color_button_set_cb(GtkWidget *widget, gpointer data)
 {

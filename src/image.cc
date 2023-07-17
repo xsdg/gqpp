@@ -1315,13 +1315,16 @@ void image_set_scroll_func(ImageWindow *imd,
 	imd->data_scroll = data;
 }
 
-//void image_set_scroll_notify_func(ImageWindow *imd,
-				  //void (*func)(ImageWindow *imd, gint x, gint y, gint width, gint height, gpointer data),
-				  //gpointer data)
-//{
-	//imd->func_scroll_notify = func;
-	//imd->data_scroll_notify = data;
-//}
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+void image_set_scroll_notify_func_unused(ImageWindow *imd,
+				  void (*func)(ImageWindow *imd, gint x, gint y, gint width, gint height, gpointer data),
+				  gpointer data)
+{
+	imd->func_scroll_notify = func;
+	imd->data_scroll_notify = data;
+}
+#pragma GCC diagnostic pop
 
 void image_set_focus_in_func(ImageWindow *imd,
 			   void (*func)(ImageWindow *, gpointer),
@@ -1798,10 +1801,14 @@ gdouble image_zoom_get_default(ImageWindow *imd)
 }
 
 /* stereo */
-//gint image_stereo_get(ImageWindow *imd)
-//{
-	//return pixbuf_renderer_stereo_get((PixbufRenderer *)imd->pr);
-//}
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+gint image_stereo_get_unused(ImageWindow *imd)
+{
+	return pixbuf_renderer_stereo_get((PixbufRenderer *)imd->pr);
+}
+#pragma GCC diagnostic pop
 
 void image_stereo_set(ImageWindow *imd, gint stereo_mode)
 {
@@ -1809,12 +1816,15 @@ void image_stereo_set(ImageWindow *imd, gint stereo_mode)
 	pixbuf_renderer_stereo_set(reinterpret_cast<PixbufRenderer *>(imd->pr), stereo_mode);
 }
 
-//void image_stereo_swap(ImageWindow *imd)
-//{
-	//gint stereo_mode = pixbuf_renderer_stereo_get((PixbufRenderer *)imd->pr);
-	//stereo_mode ^= PR_STEREO_SWAP;
-	//pixbuf_renderer_stereo_set((PixbufRenderer *)imd->pr, stereo_mode);
-//}
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+void image_stereo_swap_unused(ImageWindow *imd)
+{
+	gint stereo_mode = pixbuf_renderer_stereo_get((PixbufRenderer *)imd->pr);
+	stereo_mode ^= PR_STEREO_SWAP;
+	pixbuf_renderer_stereo_set((PixbufRenderer *)imd->pr, stereo_mode);
+}
+#pragma GCC diagnostic pop
 
 StereoPixbufData image_stereo_pixbuf_get(ImageWindow *imd)
 {

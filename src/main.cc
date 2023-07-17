@@ -1152,31 +1152,34 @@ void exit_program()
 /** @FIXME this probably needs some better ifdefs. Please report any compilation problems */
 /** @FIXME This section needs revising */
 
-//#if defined(SIGBUS) && defined(SA_SIGINFO)
-//static void sigbus_handler_cb(int UNUSED(signum), siginfo_t *info, void *UNUSED(context))
-//{
-	///*
-	 //* @FIXME Design and implement a POSIX-acceptable approach,
-	 //* after first documenting the sitations where SIGBUS occurs.
-	 //* See https://github.com/BestImageViewer/geeqie/issues/1052 for discussion
-	 //*/
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+#if defined(SIGBUS) && defined(SA_SIGINFO)
+static void sigbus_handler_cb_unused(int UNUSED(signum), siginfo_t *info, void *UNUSED(context))
+{
+	/*
+	 * @FIXME Design and implement a POSIX-acceptable approach,
+	 * after first documenting the sitations where SIGBUS occurs.
+	 * See https://github.com/BestImageViewer/geeqie/issues/1052 for discussion
+	 */
 
-	//DEBUG_1("SIGBUS %p NOT HANDLED", info->si_addr);
-	//exit(EXIT_FAILURE);
-//}
-//#endif
+	DEBUG_1("SIGBUS %p NOT HANDLED", info->si_addr);
+	exit(EXIT_FAILURE);
+}
+#endif
 
-//static void setup_sigbus_handler(void)
-//{
-//#if defined(SIGBUS) && defined(SA_SIGINFO)
-	//struct sigaction sigbus_action;
-	//sigfillset(&sigbus_action.sa_mask);
-	//sigbus_action.sa_sigaction = sigbus_handler_cb;
-	//sigbus_action.sa_flags = SA_SIGINFO;
+static void setup_sigbus_handler_unused(void)
+{
+#if defined(SIGBUS) && defined(SA_SIGINFO)
+	struct sigaction sigbus_action;
+	sigfillset(&sigbus_action.sa_mask);
+	sigbus_action.sa_sigaction = sigbus_handler_cb_unused;
+	sigbus_action.sa_flags = SA_SIGINFO;
 
-	//sigaction(SIGBUS, &sigbus_action, NULL);
-//#endif
-//}
+	sigaction(SIGBUS, &sigbus_action, NULL);
+#endif
+}
+#pragma GCC diagnostic pop
 
 #ifndef HAVE_DEVELOPER
 static void setup_sig_handler()
