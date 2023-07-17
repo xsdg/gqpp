@@ -158,6 +158,12 @@
             </entry>
             <entry>Smooth scroll</entry>
           </row>
+          <row>
+            <entry>
+              <code>Control + Shift + right-click</code>
+            </entry>
+            <entry>Duplicates window only - show image technical data</entry>
+          </row>
         </tbody>
       </tgroup>
     </table>
