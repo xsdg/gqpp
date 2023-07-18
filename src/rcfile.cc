@@ -402,7 +402,6 @@ static void write_global_attributes(GString *outstr, gint indent)
 	WRITE_NL(); WRITE_COLOR(*options, image.border_color);
 	WRITE_NL(); WRITE_COLOR(*options, image.alpha_color_1);
 	WRITE_NL(); WRITE_COLOR(*options, image.alpha_color_2);
-	//~ WRITE_NL(); WRITE_BOOL(*options, image.use_clutter_renderer);
 	WRITE_NL(); WRITE_INT(*options, image.tile_size);
 
 	/* Thumbnails Options */
@@ -417,7 +416,6 @@ static void write_global_attributes(GString *outstr, gint indent)
 	WRITE_NL(); WRITE_BOOL(*options, thumbnails.use_color_management);
 	WRITE_NL(); WRITE_BOOL(*options, thumbnails.use_ft_metadata);
 	WRITE_NL(); WRITE_INT(*options, thumbnails.collection_preview);
-// 	WRITE_NL(); WRITE_BOOL(*options, thumbnails.use_ft_metadata_small);
 
 	/* File sorting Options */
 	WRITE_NL(); WRITE_INT(*options, file_sort.method);
@@ -892,7 +890,6 @@ static gboolean load_global_params(const gchar **attribute_names, const gchar **
 		if (READ_COLOR(*options, image.border_color)) continue;
 		if (READ_COLOR(*options, image.alpha_color_1)) continue;
 		if (READ_COLOR(*options, image.alpha_color_2)) continue;
-		//~ if (READ_BOOL(*options, image.use_clutter_renderer)) continue;
 		if (READ_INT(*options, image.tile_size)) continue;
 
 		/* Thumbnails options */
@@ -908,7 +905,6 @@ static gboolean load_global_params(const gchar **attribute_names, const gchar **
 		if (READ_BOOL(*options, thumbnails.use_color_management)) continue;
 		if (READ_INT(*options, thumbnails.collection_preview)) continue;
 		if (READ_BOOL(*options, thumbnails.use_ft_metadata)) continue;
-// 		if (READ_BOOL(*options, thumbnails.use_ft_metadata_small)) continue;
 
 		/* File sorting options */
 		if (READ_UINT_ENUM(*options, file_sort.method)) continue;

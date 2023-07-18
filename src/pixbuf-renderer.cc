@@ -405,14 +405,6 @@ static void pixbuf_renderer_class_init(PixbufRendererClass *renderer_class)
 
 static RendererFuncs *pr_backend_renderer_new(PixbufRenderer *pr)
 {
-	//~ if (options->image.use_clutter_renderer && !options->disable_gpu)
-		//~ {
-//~ #ifdef HAVE_CLUTTER
-		//~ return renderer_clutter_new(pr);
-//~ #else
-		//~ log_printf("Warning: Geeqie is built without clutter renderer support");
-//~ #endif
-		//~ }
 	return renderer_tiles_new(pr);
 }
 

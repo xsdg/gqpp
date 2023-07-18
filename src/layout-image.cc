@@ -1353,27 +1353,29 @@ void layout_image_set_ignore_alpha(LayoutWindow *lw, gboolean ignore_alpha)
 }
 
 /* stereo */
-/*
-gint layout_image_stereo_get(LayoutWindow *lw)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+gint layout_image_stereo_get_unused(LayoutWindow *lw)
 {
 	if (!layout_valid(&lw)) return 0;
 
-	return image_stereo_get(lw->image);
+//	return image_stereo_get(lw->image);
+	return 0;
 }
 
-void layout_image_stereo_set(LayoutWindow *lw, gint stereo_mode)
+void layout_image_stereo_set_unused(LayoutWindow *lw, gint stereo_mode)
 {
 	if (!layout_valid(&lw)) return;
 
 	image_stereo_set(lw->image, stereo_mode);
 }
-void layout_image_stereo_swap(LayoutWindow *lw)
+void layout_image_stereo_swap_unused(LayoutWindow *lw)
 {
 	if (!layout_valid(&lw)) return;
 
-	image_stereo_swap(lw->image);
+//	image_stereo_swap(lw->image);
 }
-*/
+#pragma GCC diagnostic pop
 
 gint layout_image_stereo_pixbuf_get(LayoutWindow *lw)
 {
@@ -1458,8 +1460,7 @@ void layout_image_set_with_ahead(LayoutWindow *lw, FileData *fd, FileData *read_
 {
 	if (!layout_valid(&lw)) return;
 
-/*
-This should be handled at the caller: in vflist_select_image
+/** @FIXME This should be handled at the caller: in vflist_select_image
 	if (path)
 		{
 		const gchar *old_path;

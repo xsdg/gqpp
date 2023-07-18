@@ -96,7 +96,6 @@ static void image_loader_ft_set_size(gpointer loader, int width, int height)
 	DEBUG_1("TG: setting size, w=%d, h=%d", width, height);
 }
 
-// static gboolean image_loader_ft_loadfromdisk(gpointer loader, const gchar *path, GError **error)
 static gboolean image_loader_ft_load (gpointer loader, const guchar *UNUSED(buf), gsize UNUSED(count), GError **UNUSED(error))
 {
 	auto lft = static_cast<ImageLoaderFT *>(loader);
@@ -105,7 +104,6 @@ static gboolean image_loader_ft_load (gpointer loader, const guchar *UNUSED(buf)
 	image_data *image = video_thumbnailer_create_image_data();
 
 #ifdef HAVE_FFMPEGTHUMBNAILER_WH
-//	DEBUG_1("TG: FT requested size w=%d:h=%d for %s", lft->requested_width > 0, lft->requested_height, il->fd->path);
 	video_thumbnailer_set_size(lft->vt, lft->requested_width, lft->requested_height);
 #else
 	lft->vt->thumbnail_size = MAX(lft->requested_width,lft->requested_height);

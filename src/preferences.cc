@@ -24,10 +24,6 @@
 
 #include "bar-keywords.h"
 #include "cache.h"
-//~ #include "authors.h"
-//~ #include "authors.c"
-//~ #include "translators.h"
-//~ #include "translators.c"
 #include "editors.h"
 #include "filedata.h"
 #include "filefilter.h"
@@ -297,7 +293,6 @@ static void config_window_apply()
 	options->image.limit_autofit_size = c_options->image.limit_autofit_size;
 	options->image.max_autofit_size = c_options->image.max_autofit_size;
 	options->image.max_enlargement_size = c_options->image.max_enlargement_size;
-	//~ options->image.use_clutter_renderer = c_options->image.use_clutter_renderer;
 	options->image.tile_size = c_options->image.tile_size;
 	options->progressive_key_scrolling = c_options->progressive_key_scrolling;
 	options->keyboard_scroll_step = c_options->keyboard_scroll_step;
@@ -318,7 +313,6 @@ static void config_window_apply()
 	options->thumbnails.use_color_management = c_options->thumbnails.use_color_management;
 	options->thumbnails.collection_preview = c_options->thumbnails.collection_preview;
 	options->thumbnails.use_ft_metadata = c_options->thumbnails.use_ft_metadata;
-// 	options->thumbnails.use_ft_metadata_small = c_options->thumbnails.use_ft_metadata_small;
 	options->thumbnails.spec_standard = c_options->thumbnails.spec_standard;
 	options->metadata.enable_metadata_dirs = c_options->metadata.enable_metadata_dirs;
 	options->file_filter.show_hidden_files = c_options->file_filter.show_hidden_files;
@@ -2029,9 +2023,6 @@ static void config_tab_general(GtkWidget *notebook)
 #ifdef HAVE_FFMPEGTHUMBNAILER_METADATA
 	pref_checkbox_new_int(group, _("Use embedded metadata in video files as thumbnails when available"),
 			      options->thumbnails.use_ft_metadata, &c_options->thumbnails.use_ft_metadata);
-
-// 	pref_checkbox_new_int(group, _("Ignore embedded metadata if size is too small"),
-// 			      options->thumbnails.use_ft_metadata_small, &c_options->thumbnails.use_ft_metadata_small);
 #endif
 
 	pref_spacer(group, PREF_PAD_GROUP);
@@ -2252,9 +2243,6 @@ static void config_tab_image(GtkWidget *notebook)
 	GtkWidget *enlargement_button;
 	GtkWidget *table;
 	GtkWidget *spin;
-//~ #ifdef HAVE_CLUTTER
-	//~ GtkWidget *gpu_accel;
-//~ #endif
 
 	vbox = scrolled_notebook_page(notebook, _("Image"));
 
@@ -2262,26 +2250,9 @@ static void config_tab_image(GtkWidget *notebook)
 
 	table = pref_table_new(group, 2, 1, FALSE, FALSE);
 	add_quality_menu(table, 0, 0, _("Quality:"), options->image.zoom_quality, &c_options->image.zoom_quality);
-	//~ if (options->image.use_clutter_renderer && !options->disable_gpu)
-		//~ {
-		//~ gtk_widget_set_sensitive(table, FALSE);
-		//~ }
-
-//~ #ifdef HAVE_CLUTTER
-	//~ gpu_accel = pref_checkbox_new_int(group, _("Use GPU acceleration via Clutter library (Requires restart)"),
-			      //~ options->image.use_clutter_renderer, &c_options->image.use_clutter_renderer);
-	//~ if (options->disable_gpu && !options->override_disable_gpu)
-		//~ {
-		//~ gtk_widget_set_sensitive(gpu_accel, FALSE);
-		//~ }
-//~ #endif
 
 	pref_checkbox_new_int(group, _("Two pass rendering (apply HQ zoom and color correction in second pass)"),
 			      options->image.zoom_2pass, &c_options->image.zoom_2pass);
-	//~ if (options->image.use_clutter_renderer && !options->disable_gpu)
-		//~ {
-		//~ gtk_widget_set_sensitive(two_pass, FALSE);
-		//~ }
 
 	c_options->image.zoom_increment = options->image.zoom_increment;
 	spin = pref_spin_new(group, _("Zoom increment:"), nullptr,
@@ -2314,7 +2285,6 @@ static void config_tab_image(GtkWidget *notebook)
 	gtk_widget_set_tooltip_text(GTK_WIDGET(hbox), _("This value will set the virtual size of the window when \"Fit image to window\" is set. Instead of using the actual size of the window, the specified percentage of the window will be used. It allows one to keep a border around the image (values lower than 100%) or to auto zoom the image (values greater than 100%). It affects fullscreen mode too."));
 
 	group = pref_group_new(vbox, FALSE, _("Tile size"), GTK_ORIENTATION_VERTICAL);
-	//~ gtk_widget_set_sensitive(group, !options->image.use_clutter_renderer);
 
 	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 	spin = pref_spin_new_int(hbox, _("Pixels"), _("(Requires restart)"),

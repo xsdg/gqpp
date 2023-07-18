@@ -34,8 +34,6 @@
 #include "dnd.h"
 #include "secure-save.h"
 
-
-//static void bar_pane_keywords_keyword_update_all(void);
 static void bar_pane_keywords_changed(GtkTextBuffer *buffer, gpointer data);
 
 static void autocomplete_keywords_list_load(const gchar *path);

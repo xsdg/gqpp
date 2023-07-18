@@ -358,7 +358,6 @@ void bar_pane_histogram_update_from_config(GtkWidget *pane, const gchar **attrib
 		const gchar *value = *attribute_values++;
 
 		if (READ_CHAR_FULL("id", phd->pane.id)) continue;
-//		if (READ_CHAR_FULL("pane.title", title)) continue;
 		if (READ_BOOL_FULL("expanded", phd->pane.expanded)) continue;
 		if (READ_INT_FULL("histogram_channel", histogram_channel)) continue;
 		if (READ_INT_FULL("histogram_mode", histogram_mode)) continue;

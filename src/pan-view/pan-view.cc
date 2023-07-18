@@ -1922,14 +1922,6 @@ static void pan_window_new_real(FileData *dir_fd)
 	gtk_table_set_row_spacings(GTK_TABLE(table), 2);
 	gtk_table_set_col_spacings(GTK_TABLE(table), 2);
 
-	/** @FIXME pan view does not work correctly when renderer-clutter()
-	 * is used.
-	 */
-	gint temp = options->image.use_clutter_renderer;
-	options->image.use_clutter_renderer = FALSE;
-	pw->imd = image_new(TRUE);
-	options->image.use_clutter_renderer = temp;
-
 	pw->imd_normal = pw->imd;
 
 	g_signal_connect(G_OBJECT(pw->imd->pr), "zoom",

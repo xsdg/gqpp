@@ -1974,13 +1974,6 @@ void layout_style_set(LayoutWindow *lw, gint style, const gchar *order)
 	lw->info_pixel = nullptr;
 	lw->info_zoom = nullptr;
 
-/*
-	if (lw->ui_manager) g_object_unref(lw->ui_manager);
-	lw->ui_manager = NULL;
-	lw->action_group = NULL;
-	lw->action_group_editors = NULL;
-*/
-
 	gtk_container_remove(GTK_CONTAINER(lw->main_box), lw->group_box);
 	lw->group_box = nullptr;
 
@@ -1991,9 +1984,6 @@ void layout_style_set(LayoutWindow *lw, gint style, const gchar *order)
 
 	layout_util_sync(lw);
 	layout_status_update_all(lw);
-
-
-	// printf("%d %d %d \n", G_OBJECT(lw->utility_box)->ref_count, G_OBJECT(lw->menu_bar)->ref_count, G_OBJECT(lw->toolbar)->ref_count);
 
 	/* sync */
 
@@ -2241,14 +2231,14 @@ static void startup_path_set_home_cb(GtkWidget *widget, gpointer data)
 	lc->options.startup_path = STARTUP_PATH_HOME;
 }
 
-
-/*
-static void layout_config_save_cb(GtkWidget *widget, gpointer data)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+static void layout_config_save_cb_unused(GtkWidget *UNUSED(widget), gpointer UNUSED(data))
 {
-	layout_config_apply();
+	//layout_config_apply();
 	save_options(options);
 }
-*/
+#pragma GCC diagnostic pop
 
 void layout_show_config_window(LayoutWindow *lw)
 {
@@ -2630,11 +2620,8 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 	if (options->save_window_positions || isfile(default_path))
 		{
 		gtk_window_set_default_size(GTK_WINDOW(lw->window), lw->options.main_window.w, lw->options.main_window.h);
-//		if (!layout_window_list)
-//			{
 		gtk_window_move(GTK_WINDOW(lw->window), lw->options.main_window.x, lw->options.main_window.y);
 		if (lw->options.main_window.maximized) gtk_window_maximize(GTK_WINDOW(lw->window));
-//			}
 
 		g_idle_add(move_window_to_workspace_cb, lw);
 		}

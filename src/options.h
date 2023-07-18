@@ -156,7 +156,6 @@ struct ConfOptions
 		guint zoom_quality;
 		gint zoom_increment;	/**< 100 is 1.0, 5 is 0.05, 200 is 2.0, etc. */
 		ZoomStyle zoom_style;
-		gboolean use_clutter_renderer;
 
 		gboolean use_custom_border_color_in_fullscreen;
 		gboolean use_custom_border_color;
@@ -180,7 +179,6 @@ struct ConfOptions
 		gboolean use_color_management;
 		gboolean use_ft_metadata;
 		gint collection_preview;
-// 		gboolean use_ft_metadata_small;
 	} thumbnails;
 
 	/* file filtering */

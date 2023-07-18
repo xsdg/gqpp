@@ -293,7 +293,6 @@ static void bar_pane_gps_thumb_error_cb(ThumbLoader *tl, gpointer UNUSED(data))
 
 static gboolean bar_pane_gps_marker_keypress_cb(GtkWidget *widget, ClutterButtonEvent *bevent, gpointer UNUSED(data))
 {
-	//PaneGPSData *pgd = static_cast<//PaneGPSData *>(data);
 	FileData *fd;
 	ClutterActor *label_marker, *parent_marker;
 	ClutterColor marker_colour = { MARKER_COLOUR };

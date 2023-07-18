@@ -478,8 +478,9 @@ static void dupe_list_free(GList *list)
 	g_list_free(list);
 }
 
-/*
-static DupeItem *dupe_item_find_fd_by_list(FileData *fd, GList *work)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+static DupeItem *dupe_item_find_fd_by_list_unused(FileData *fd, GList *work)
 {
 	while (work)
 		{
@@ -492,22 +493,18 @@ static DupeItem *dupe_item_find_fd_by_list(FileData *fd, GList *work)
 
 	return NULL;
 }
-*/
 
-/*
-static DupeItem *dupe_item_find_fd(DupeWindow *dw, FileData *fd)
+static DupeItem *dupe_item_find_fd_unused(DupeWindow *dw, FileData *fd)
 {
 	DupeItem *di;
 
-	di = dupe_item_find_fd_by_list(fd, dw->list);
-	if (!di && dw->second_set) di = dupe_item_find_fd_by_list(fd, dw->second_list);
+	di = dupe_item_find_fd_by_list_unused(fd, dw->list);
+	if (!di && dw->second_set) di = dupe_item_find_fd_by_list_unused(fd, dw->second_list);
 
 	return di;
 }
-*/
 
-/*
-static DupeItem *dupe_item_find_path_by_list(const gchar *path, GList *work)
+static DupeItem *dupe_item_find_path_by_list_unused(const gchar *path, GList *work)
 {
 	while (work)
 		{
@@ -520,19 +517,17 @@ static DupeItem *dupe_item_find_path_by_list(const gchar *path, GList *work)
 
 	return NULL;
 }
-*/
 
-/*
-static DupeItem *dupe_item_find_path(DupeWindow *dw, const gchar *path)
+static DupeItem *dupe_item_find_path_unused(DupeWindow *dw, const gchar *path)
 {
 	DupeItem *di;
 
-	di = dupe_item_find_path_by_list(path, dw->list);
-	if (!di && dw->second_set) di = dupe_item_find_path_by_list(path, dw->second_list);
+	di = dupe_item_find_path_by_list_unused(path, dw->list);
+	if (!di && dw->second_set) di = dupe_item_find_path_by_list_unused(path, dw->second_list);
 
 	return di;
 }
-*/
+#pragma GCC diagnostic pop
 
 /*
  * ------------------------------------------------------------------
@@ -2733,19 +2728,20 @@ static void dupe_item_remove(DupeWindow *dw, DupeItem *di)
 	dupe_window_update_count(dw, FALSE);
 }
 
-/*
-static gboolean dupe_item_remove_by_path(DupeWindow *dw, const gchar *path)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+static gboolean dupe_item_remove_by_path_unused(DupeWindow *dw, const gchar *path)
 {
 	DupeItem *di;
 
-	di = dupe_item_find_path(dw, path);
+	di = dupe_item_find_path_unused(dw, path);
 	if (!di) return FALSE;
 
 	dupe_item_remove(dw, di);
 
 	return TRUE;
 }
-*/
+#pragma GCC diagnostic pop
 
 static gboolean dupe_files_add_queue_cb(gpointer data)
 {

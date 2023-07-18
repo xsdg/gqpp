@@ -330,7 +330,6 @@ static void bar_expander_delete_cb(GtkWidget *UNUSED(widget), gpointer data)
 
 static void bar_expander_add_cb(GtkWidget *widget, gpointer UNUSED(data))
 {
-	//GtkWidget *bar = static_cast<//GtkWidget *>(data);
 	const KnownPanes *pane = known_panes;
 	auto id = static_cast<const gchar *>(g_object_get_data(G_OBJECT(widget), "pane_add_id"));
 	const gchar *config;

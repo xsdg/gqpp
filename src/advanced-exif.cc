@@ -186,7 +186,6 @@ static void advanced_exif_dnd_get(GtkWidget *listview, GdkDragContext *UNUSED(co
 				  GtkSelectionData *selection_data, guint UNUSED(info),
 				  guint UNUSED(time), gpointer UNUSED(data))
 {
-	//ExifWin *ew = static_cast<//ExifWin *>(data);
 	GtkTreeSelection *sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(listview));
 	GtkTreeIter iter;
 
@@ -197,7 +196,6 @@ static void advanced_exif_dnd_get(GtkWidget *listview, GdkDragContext *UNUSED(co
 
 		gtk_tree_model_get(store, &iter, EXIF_ADVCOL_NAME, &key, -1);
 		gtk_selection_data_set_text(selection_data, key, -1);
-		//printf("%s\n",key);
 		g_free(key);
 		}
 
@@ -206,7 +204,6 @@ static void advanced_exif_dnd_get(GtkWidget *listview, GdkDragContext *UNUSED(co
 
 static void advanced_exif_dnd_begin(GtkWidget *listview, GdkDragContext *context, gpointer UNUSED(data))
 {
-	//ExifWin *ew = static_cast<//ExifWin *>(data);
 	GtkTreeSelection *sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(listview));
 	GtkTreeIter iter;
 
@@ -390,7 +387,7 @@ static gboolean advanced_exif_keypress(GtkWidget *UNUSED(widget), GdkEventKey *e
 		}
 
 	return stop_signal;
-} // static gboolean advanced_exif_...
+}
 
 static gboolean search_function_cb(GtkTreeModel *model, gint column, const gchar *key, GtkTreeIter *iter, gpointer UNUSED(data))
 {

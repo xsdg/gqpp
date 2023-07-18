@@ -78,8 +78,9 @@ static void pixbuf_draw_border(GdkPixbuf *pixbuf, gint w, gint h)
 		}
 }
 
-/*
-static void pixbuf_draw_rect(GdkPixbuf *pixbuf, gint x, gint y, gint w, gint h, guint8 val)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
+static void pixbuf_draw_rect_unused(GdkPixbuf *pixbuf, gint x, gint y, gint w, gint h, guint8 val)
 {
 	gboolean alpha;
 	gint rs;
@@ -103,7 +104,8 @@ static void pixbuf_draw_rect(GdkPixbuf *pixbuf, gint x, gint y, gint w, gint h, 
 			}
 		}
 }
-*/
+#pragma GCC diagnostic pop
+
 void dnd_set_drag_icon(GtkWidget *widget, GdkDragContext *context, GdkPixbuf *pixbuf, gint items)
 {
 	GdkPixbuf *dest;
