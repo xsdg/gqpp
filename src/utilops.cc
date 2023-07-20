@@ -1681,10 +1681,6 @@ static void file_util_dialog_init_source_dest(UtilityData *ud, gboolean second_i
 	gtk_tree_selection_set_mode(GTK_TREE_SELECTION(selection), GTK_SELECTION_SINGLE);
 	gtk_tree_selection_set_select_function(selection, file_util_preview_cb, ud, nullptr);
 
-
-//	column = file_util_rename_multiple_add_column(rd, _("Preview"), RENAME_COLUMN_PREVIEW);
-//	gtk_tree_view_column_set_visible(column, FALSE);
-
 	gtk_tree_view_set_reorderable(GTK_TREE_VIEW(ud->listview), TRUE);
 
 	store = gtk_tree_view_get_model(GTK_TREE_VIEW(ud->listview));
@@ -1701,7 +1697,6 @@ static void file_util_dialog_init_source_dest(UtilityData *ud, gboolean second_i
 		generic_dialog_add_image(ud->gd, box, nullptr, nullptr, FALSE, nullptr, nullptr, FALSE);
 		}
 
-//	gtk_container_add(GTK_CONTAINER(scrolled), view);
 	gtk_widget_show(ud->gd->dialog);
 
 
@@ -1784,8 +1779,6 @@ static void file_util_dialog_init_source_dest(UtilityData *ud, gboolean second_i
 	ud->format_spin = pref_spin_new(box2, nullptr, nullptr,
 					0.0, 1000000.0, 1.0, 0, options->cp_mv_rn.formatted_start,
 					G_CALLBACK(file_util_rename_preview_adj_cb), ud);
-
-//	gtk_combo_box_set_active(GTK_COMBO_BOX(ud->combo_type), 0); /* callback will take care of the rest */
 
 	file_util_dialog_list_select(ud->listview, 0);
 }
@@ -2872,8 +2865,6 @@ static void file_util_rename_dir_full(FileData *fd, const gchar *new_path, GtkWi
 		file_util_data_free(ud);
 		return;
 		}
-
-//	ud->flist = filelist_recursive(fd);
 
 	file_util_dialog_run(ud);
 }

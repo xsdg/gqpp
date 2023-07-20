@@ -148,11 +148,11 @@ static gboolean image_loader_ft_load (gpointer loader, const guchar *UNUSED(buf)
 		return FALSE;
 		}
 
-/* See comment in image_loader_area_prepared_cb
+/** See comment in image_loader_area_prepared_cb
  * Geeqie uses area_prepared signal to fill pixbuf with background color.
- * We can't do it here as pixbuf already contains the data */
-// 	lft->area_prepared_cb(loader, lft->data);
-
+ * We can't do it here as pixbuf already contains the data
+ * lft->area_prepared_cb(loader, lft->data);
+ */
 	lft->area_updated_cb(loader, 0, 0, gdk_pixbuf_get_width(lft->pixbuf), gdk_pixbuf_get_height(lft->pixbuf), lft->data);
 
 	return TRUE;

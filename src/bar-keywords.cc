@@ -1568,8 +1568,6 @@ static GtkWidget *bar_pane_keywords_new(const gchar *id, const gchar *title, con
 
 	gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(pkd->keyword_treeview), FALSE);
 
-//	gtk_tree_view_set_search_column(GTK_TREE_VIEW(pkd->keyword_treeview), FILTER_KEYWORD_COLUMN_);
-
 	column = gtk_tree_view_column_new();
 	gtk_tree_view_column_set_sizing(column, GTK_TREE_VIEW_COLUMN_GROW_ONLY);
 

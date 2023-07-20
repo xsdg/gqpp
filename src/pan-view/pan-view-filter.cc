@@ -81,8 +81,6 @@ PanViewFilterUi *pan_filter_ui_new(PanWindow *pw)
 	gtk_widget_show(combo);
 
 	ui->filter_label = gtk_label_new("");/** @todo (xsdg): Figure out whether it's useful to keep this label around. */
-	//gtk_box_pack_start(GTK_BOX(hbox), ui->filter_label, FALSE, FALSE, 0);
-	//gtk_widget_show(ui->filter_label);
 
 	ui->filter_kw_hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 	gtk_box_pack_start(GTK_BOX(hbox), ui->filter_kw_hbox, TRUE, TRUE, 0);
@@ -126,9 +124,6 @@ PanViewFilterUi *pan_filter_ui_new(PanWindow *pw)
 void pan_filter_ui_destroy(PanViewFilterUi **ui_ptr)
 {
 	if (ui_ptr == nullptr || *ui_ptr == nullptr) return;
-
-	// Note that g_clear_pointer handles already-NULL pointers.
-	//g_clear_pointer(&(*ui_ptr)->filter_kw_table, g_hash_table_destroy);
 
 	g_free(*ui_ptr);
 	*ui_ptr = nullptr;

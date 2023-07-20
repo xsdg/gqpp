@@ -84,28 +84,12 @@ gint tree_view_row_make_visible(GtkTreeView *widget, GtkTreeIter *iter, gboolean
 gboolean tree_view_move_cursor_away(GtkTreeView *widget, GtkTreeIter *iter, gboolean only_selected);
 
 /**
- * @headerfile tree_path_to_row
- * utility to return row position of given GtkTreePath
- */
-//gint tree_path_to_row(GtkTreePath *tpath);
-
-
-/**
  * @headerfile shift_color
  * shifts a GdkColor values lighter or darker \n
  * val is percent from 1 to 100, or -1 for default (usually 10%) \n
  * direction is -1 darker, 0 auto, 1 lighter
  */
 void shift_color(GdkColor *src, gshort val, gint direction);
-
-/**
- * @headerfile style_shift_color
- * Shifts a style's color for given state
- * Useful for alternating dark/light rows in lists. \n
- *
- * shift_value is 1 to 100, representing the percent of the shift.
- */
-//void style_shift_color(GtkStyle *style, GtkStateType type, gshort shift_value, gint direction);
 
 /**
  * @def STYLE_SHIFT_STANDARD

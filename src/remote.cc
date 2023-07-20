@@ -529,7 +529,7 @@ static void gr_slideshow_start_rec(const gchar *text, GIOChannel *UNUSED(channel
 	list = filelist_recursive_full(dir_fd, lw_id->sort_method, lw_id->sort_ascend);
 	file_data_unref(dir_fd);
 	if (!list) return;
-//printf("length: %d\n", g_list_length(list));
+
 	layout_image_slideshow_stop(lw_id);
 	layout_image_slideshow_start_from_list(lw_id, list);
 }

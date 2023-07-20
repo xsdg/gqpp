@@ -517,7 +517,6 @@ static void pixbuf_renderer_set_property(GObject *object, guint prop_id,
 			pr->complete = g_value_get_boolean(value);
 			break;
 		case PROP_CACHE_SIZE_DISPLAY:
-//			pr->tile_cache_max = g_value_get_uint(value);
 			break;
 		case PROP_CACHE_SIZE_TILES:
 			pr->source_tiles_cache_size = g_value_get_uint(value);
@@ -583,7 +582,6 @@ static void pixbuf_renderer_get_property(GObject *object, guint prop_id,
 			g_value_set_boolean(value, pr->complete);
 			break;
 		case PROP_CACHE_SIZE_DISPLAY:
-//			g_value_set_uint(value, pr->tile_cache_max);
 			break;
 		case PROP_CACHE_SIZE_TILES:
 			g_value_set_uint(value, pr->source_tiles_cache_size);
@@ -988,10 +986,6 @@ static gboolean pr_source_tile_visible(PixbufRenderer *pr, SourceTile *st)
 
 	if (!st) return FALSE;
 
-//	x1 = ROUND_DOWN(pr->x_scroll, pr->tile_width);
-//	y1 = ROUND_DOWN(pr->y_scroll, pr->tile_height);
-//	x2 = ROUND_UP(pr->x_scroll + pr->vis_width, pr->tile_width);
-//	y2 = ROUND_UP(pr->y_scroll + pr->vis_height, pr->tile_height);
 	x1 = pr->x_scroll;
 	y1 = pr->y_scroll;
 	x2 = pr->x_scroll + pr->vis_width;
@@ -1428,7 +1422,6 @@ void pr_tile_coords_map_orientation(gint orientation,
 			/* The other values are out of range */
 			break;
 		}
-//	log_printf("tile coord y:%f, ih:%d, th:%f ry:%f\n", tile_y, image_h, tile_h, *res_x);
 }
 
 void pr_tile_region_map_orientation(gint orientation,
@@ -1491,7 +1484,6 @@ void pr_tile_region_map_orientation(gint orientation,
 			/* The other values are out of range */
 			break;
 		}
-//	log_printf("inside y:%d, th:%d, ah:%d ry:%d\n", area_y, tile_h, area_h, *res_x);
 }
 
 void pr_coords_map_orientation_reverse(gint orientation,
@@ -3020,12 +3012,6 @@ void pixbuf_renderer_set_size_early(PixbufRenderer *UNUSED(pr), guint UNUSED(wid
 	pr->image_height = height;
 
 	pr_zoom_clamp(pr, zoom, PR_ZOOM_FORCE, NULL);
-
-	//w = width;
-	//h = height;
-
-	//pr->width = width;
-	//pr->height = height;
 #endif
 }
 

@@ -847,8 +847,9 @@ GtkWidget *bar_pane_expander_title(const gchar *title)
 	GtkWidget *widget = gtk_label_new(title);
 
 	pref_label_bold(widget, TRUE, FALSE);
-	//gtk_label_set_ellipsize(GTK_LABEL(widget), PANGO_ELLIPSIZE_END);
-	/** @FIXME do not work */
+	/** @FIXME do not work
+	 * gtk_label_set_ellipsize(GTK_LABEL(widget), PANGO_ELLIPSIZE_END);
+	*/
 
 	return widget;
 }

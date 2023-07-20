@@ -269,7 +269,6 @@ static gboolean image_loader_jpeg_load (gpointer loader, const guchar *buf, gsiz
 	struct error_handler_data jerr;
 
 	lj->stereo = FALSE;
-//	DEBUG_1("TG: JPG requested size w=%d:h=%d", lj->requested_width > 0, lj->requested_height);
 
 	MPOData *mpo = jpeg_get_mpo_data(buf, count);
 	if (mpo && mpo->num_images > 1)
@@ -350,7 +349,6 @@ static gboolean image_loader_jpeg_load (gpointer loader, const guchar *buf, gsiz
 
 	lj->requested_width = lj->stereo ? cinfo.image_width * 2: cinfo.image_width;
 	lj->requested_height = cinfo.image_height;
-//	DEBUG_1("TG: JPG requested size v2 w=%d:h=%d", lj->requested_width > 0, lj->requested_height);
 	lj->size_cb(loader, lj->requested_width, lj->requested_height, lj->data);
 
 	cinfo.scale_num = 1;

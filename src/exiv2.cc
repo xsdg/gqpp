@@ -188,7 +188,6 @@ public:
 		try
 			{
 			image_ = Exiv2::ImageFactory::open(pathl_);
-//			g_assert (image.get() != 0);
 			image_->readMetadata();
 
 #if EXIV2_TEST_VERSION(0,16,0)
@@ -712,7 +711,6 @@ char *exif_item_get_description(ExifItem *item)
 		return utf8_validate_or_convert((reinterpret_cast<Exiv2::Metadatum *>(item))->tagLabel().c_str());
 	}
 	catch (std::exception& e) {
-//		debug_exception(e);
 		return nullptr;
 	}
 }

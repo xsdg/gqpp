@@ -1608,8 +1608,6 @@ static void options_parse_layout(GQParserData *parser_data, GMarkupParseContext 
 static void options_parse_layout_end(GQParserData *UNUSED(parser_data), GMarkupParseContext *UNUSED(context), const gchar *UNUSED(element_name), gpointer data, GError **UNUSED(error))
 {
 	auto lw = static_cast<LayoutWindow *>(data);
-	//~ LayoutWindow *lw = (LayoutWindow *)data;
-	//~ LayoutWindow *lw = data;
 	layout_util_sync(lw);
 }
 

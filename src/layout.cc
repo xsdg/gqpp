@@ -2389,8 +2389,6 @@ void layout_sync_options_with_current_state(LayoutWindow *lw)
 
 	layout_geometry_get_dividers(lw, &lw->options.main_window.hdivider_pos, &lw->options.main_window.vdivider_pos);
 
-//	layout_sort_get(NULL, &options->file_sort.method, &options->file_sort.ascending);
-
 	layout_geometry_get_tools(lw, &lw->options.float_window.x, &lw->options.float_window.y,
 				  &lw->options.float_window.w, &lw->options.float_window.h, &lw->options.float_window.vdivider_pos);
 
@@ -2567,10 +2565,6 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 	lw->sort_ascend = TRUE;
 
 	layout_set_unique_id(lw);
-//	lw->options.tools_float = popped;
-//	lw->options.tools_hidden = hidden;
-//	lw->bar_sort_enabled = options->panels.sort.enabled;
-//	lw->bar_enabled = options->panels.info.enabled;
 
 	/* default layout */
 

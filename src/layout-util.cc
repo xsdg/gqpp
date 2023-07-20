@@ -3881,7 +3881,6 @@ void layout_util_sync(LayoutWindow *lw)
 	layout_util_sync_views(lw);
 	layout_util_sync_thumb(lw);
 	layout_menu_recent_update(lw);
-//	layout_menu_edit_update(lw);
 }
 
 /**
@@ -3973,8 +3972,6 @@ void layout_bar_set(LayoutWindow *lw, GtkWidget *bar)
 	g_signal_connect(G_OBJECT(lw->bar), "destroy",
 			 G_CALLBACK(layout_bar_destroyed), lw);
 
-
-//	gtk_box_pack_start(GTK_BOX(lw->utility_box), lw->bar, FALSE, FALSE, 0);
 	gtk_paned_pack2(GTK_PANED(lw->utility_paned), lw->bar, FALSE, TRUE);
 
 	bar_set_fd(lw->bar, layout_image_get_fd(lw));

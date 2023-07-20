@@ -475,10 +475,6 @@ static ImageTile *rt_tile_get(RendererTiles *rt, gint x, gint y, gboolean only_e
 
 static gint pixmap_calc_size(cairo_surface_t *UNUSED(surface))
 {
-//	gint w, h, d;
-
-//	d = gdk_drawable_get_depth(pixmap);
-//	gdk_drawable_get_size(pixmap, &w, &h);
 	return options->image.tile_size * options->image.tile_size * 4 / 8;
 }
 
@@ -1503,8 +1499,6 @@ static void rt_tile_expose(RendererTiles *rt, ImageTile *it,
 			   gboolean new_data, gboolean fast)
 {
 	PixbufRenderer *pr = rt->pr;
-	//~ GtkWidget *box;
-	//~ GdkWindow *window;
 	cairo_t *cr;
 
 	/* clamp to visible */
@@ -1530,9 +1524,6 @@ static void rt_tile_expose(RendererTiles *rt, ImageTile *it,
 	if (h < 1) return;
 
 	rt_tile_render(rt, it, x, y, w, h, new_data, fast);
-
-	//~ box = GTK_WIDGET(pr);
-	//~ window = gtk_widget_get_window(box);
 
 	cr = cairo_create(rt->surface);
 	cairo_set_source_surface(cr, it->surface, pr->x_offset + (it->x - rt->x_scroll) + rt->stereo_off_x, pr->y_offset + (it->y - rt->y_scroll) + rt->stereo_off_y);

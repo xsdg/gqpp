@@ -155,9 +155,6 @@ static void image_loader_class_init(ImageLoaderClass *loader_class)
 {
 	GObjectClass *gobject_class = G_OBJECT_CLASS (loader_class);
 
-//	gobject_class->set_property = image_loader_set_property;
-//	gobject_class->get_property = image_loader_get_property;
-
 	gobject_class->finalize = image_loader_finalize;
 
 

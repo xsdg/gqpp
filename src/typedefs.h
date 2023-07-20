@@ -822,18 +822,11 @@ struct LayoutWindow
 	GtkWidget *tools;
 	GtkWidget *tools_pane;
 
-//	gint tools_float;
-//	gint tools_hidden;
 	GtkWidget *menu_tool_bar; /**< Combined menu and toolbar box */
 	GtkWidget *menu_bar; /**< referenced by lw, exist during whole lw lifetime */
 	/* toolbar */
 
 	GtkWidget *toolbar[TOOLBAR_COUNT]; /**< referenced by lw, exist during whole lw lifetime */
-//	gint toolbar_hidden;
-
-//	GtkWidget *thumb_button;
-//	gint thumbs_enabled;
-//	gint marks_enabled;
 
 	GtkWidget *back_button;
 
@@ -844,14 +837,11 @@ struct LayoutWindow
 	ViewDir *vd;
 	GtkWidget *dir_view;
 
-//	DirViewType dir_view_type;
-
 	/* file view */
 
 	LayoutLocation file_location;
 
 	ViewFile *vf;
-//	FileViewType file_view_type;
 
 	GtkWidget *file_view;
 
@@ -874,12 +864,6 @@ struct LayoutWindow
 
 	FullScreenData *full_screen;
 
-	/* dividers */
-
-//	gint div_h;
-//	gint div_v;
-//	gint div_float;
-
 	/* misc */
 
 	GtkWidget *utility_box; /**< referenced by lw, exist during whole lw lifetime */
@@ -888,9 +872,6 @@ struct LayoutWindow
 	GtkWidget *bar;
 
 	gboolean bar_sort_enabled; /**< Set during start-up, and checked when the editors have loaded */
-//	gint bar_enabled;
-
-//	gint bar_width;
 
 	GtkWidget *exif_window;
 	GtkWidget *sar_window; /**< Search and Run window */

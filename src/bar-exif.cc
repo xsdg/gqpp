@@ -141,9 +141,7 @@ static void bar_pane_exif_setup_entry_box(PaneExifData *ped, ExifEntry *ee)
 	else
 		{
 		ee->value_widget = gtk_label_new(nullptr);
-//		gtk_label_set_width_chars(GTK_LABEL(ee->value_widget), 20);
 		gtk_label_set_ellipsize(GTK_LABEL(ee->value_widget), PANGO_ELLIPSIZE_END);
-//		gtk_widget_set_size_request(ee->value_widget, 100, -1);
 		gtk_label_set_xalign(GTK_LABEL(ee->value_widget), 0.0);
 		gtk_label_set_yalign(GTK_LABEL(ee->value_widget), 0.5);
 		}

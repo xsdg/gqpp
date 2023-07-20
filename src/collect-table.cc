@@ -1534,8 +1534,9 @@ static void collection_table_insert_marker(CollectTable *ct, CollectInfo *info, 
 		cairo_t *cr = cairo_create(img);
 		gdk_cairo_set_source_pixbuf(cr, pb, 0, 0);
 		cairo_paint(cr);
-		/** @FIXME this is a hack to get the background color */
-		//~ pattern = cairo_pattern_create_for_surface(img);
+		/** @FIXME this is a hack to get the background color
+		 * pattern = cairo_pattern_create_for_surface(img);
+		 */
 		pattern = cairo_pattern_create_rgb (1.0, 0.0, 0.0);
 		mask = gdk_cairo_region_create_from_surface(img);
 		gdk_window_shape_combine_region(ct->marker_window, mask, 0, 0);

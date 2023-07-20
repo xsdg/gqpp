@@ -832,7 +832,6 @@ static gint image_cache_get(ImageWindow *imd)
 		image_change_pixbuf(imd, imd->image_fd->pixbuf, image_zoom_get(imd), FALSE);
 		}
 
-//	file_cache_dump(image_get_cache());
 	return success;
 }
 
@@ -925,8 +924,6 @@ static void image_load_done_cb(ImageLoader *UNUSED(il), gpointer data)
 	image_loader_free(imd->il);
 	imd->il = nullptr;
 
-//	image_post_process(imd, TRUE);
-
 	image_read_ahead_start(imd);
 }
 
@@ -1004,7 +1001,6 @@ static gboolean image_read_ahead_check(ImageWindow *imd)
 		file_data_unref(imd->read_ahead_fd);
 		imd->read_ahead_fd = nullptr;
 
-//		image_post_process(imd, FALSE);
 		return TRUE;
 		}
 

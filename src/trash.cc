@@ -199,7 +199,6 @@ gboolean file_util_safe_unlink(const gchar *path)
 			g_error_free(error);
 
 			/* A second warning dialog is not necessary */
-			// success = FALSE;
 			}
 	}
 

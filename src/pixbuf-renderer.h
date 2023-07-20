@@ -93,8 +93,6 @@ enum OverlayRendererFlags {
 
 struct RendererFuncs
 {
-//	void (*redraw)(void *renderer, gint x, gint y, gint w, gint h,
-  //                   gint clamp, ImageRenderType render, gboolean new_data, gboolean only_existing);
     void (*area_changed)(void *renderer, gint src_x, gint src_y, gint src_w, gint src_h); /**< pixbuf area changed */
 	void (*invalidate_region)(void *renderer, gint x, gint y, gint w, gint h);
 	void (*scroll)(void *renderer, gint x_off, gint y_off); /**< scroll */
@@ -332,13 +330,6 @@ gboolean pixbuf_renderer_get_scaled_size(PixbufRenderer *pr, gint *width, gint *
  * region of image in pixel coordinates
  */
 gboolean pixbuf_renderer_get_visible_rect(PixbufRenderer *pr, GdkRectangle *rect);
-
-/**
- * @headerfile pixbuf_renderer_get_virtual_rect
- * actual size of the PixbufRenderer window minus borders,
- * x and y are the scroll offset and include zoom factor.
- */
-//gboolean pixbuf_renderer_get_virtual_rect(PixbufRenderer *pr, GdkRectangle *rect);
 
 /**
  * @headerfile pixbuf_renderer_set_color
