@@ -2987,6 +2987,16 @@ static gboolean file_data_perform_delete(FileData *fd)
 
 gboolean file_data_perform_ci(FileData *fd)
 {
+	/** @FIXME When a directory that is a symbolic link is deleted,
+	 * at this point fd->change is null because no FileDataChangeInfo
+	 * has been set up. Therefore there is a seg. fault.
+	 * This code simply aborts the delete.
+	 */
+	if (!fd->change)
+		{
+		return FALSE;
+		}
+
 	FileDataChangeType type = fd->change->type;
 
 	switch (type)
