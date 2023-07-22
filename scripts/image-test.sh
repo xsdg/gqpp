@@ -37,6 +37,13 @@ done
 
 sleep 2
 
+# Check if Geeqie crashed
+if ! pgrep geeqie
+then
+	rm "$HOME/.config/geeqie/.command"
+	exit 1
+fi
+
 result=$(xvfb-run --auto-servernum "$1" --remote --get-file-info)
 xvfb-run --auto-servernum "$1" --remote --quit
 
