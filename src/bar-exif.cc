@@ -562,7 +562,7 @@ static void bar_pane_exif_conf_dialog(GtkWidget *widget)
 
 	generic_dialog_add_message(gd, nullptr, ee ? _("Configure entry") : _("Add entry"), nullptr, FALSE);
 
-	generic_dialog_add_button(gd, GTK_STOCK_OK, nullptr,
+	generic_dialog_add_button(gd, GQ_ICON_OK, "OK",
 				  bar_pane_exif_edit_ok_cb, TRUE);
 
 	table = pref_table_new(gd->vbox, 3, 2, FALSE, TRUE);
@@ -638,9 +638,9 @@ static void bar_pane_exif_menu_popup(GtkWidget *widget, PaneExifData *ped)
 		gchar *del = g_strdup_printf(_("Remove \"%s\""), ee->title);
 		gchar *copy = g_strdup_printf(_("Copy \"%s\""), ee->title);
 
-		menu_item_add_stock(menu, conf, GTK_STOCK_EDIT, G_CALLBACK(bar_pane_exif_conf_dialog_cb), widget);
-		menu_item_add_stock(menu, del, GTK_STOCK_DELETE, G_CALLBACK(bar_pane_exif_delete_entry_cb), widget);
-		menu_item_add_stock(menu, copy, GTK_STOCK_COPY, G_CALLBACK(bar_pane_exif_copy_entry_cb), widget);
+		menu_item_add_icon(menu, conf, GQ_ICON_EDIT, G_CALLBACK(bar_pane_exif_conf_dialog_cb), widget);
+		menu_item_add_icon(menu, del, GQ_ICON_DELETE, G_CALLBACK(bar_pane_exif_delete_entry_cb), widget);
+		menu_item_add_icon(menu, copy, GQ_ICON_COPY, G_CALLBACK(bar_pane_exif_copy_entry_cb), widget);
 		menu_item_add_divider(menu);
 
 		g_free(conf);
@@ -648,7 +648,7 @@ static void bar_pane_exif_menu_popup(GtkWidget *widget, PaneExifData *ped)
 		}
 
 	/* for the pane */
-	menu_item_add_stock(menu, _("Add entry"), GTK_STOCK_ADD, G_CALLBACK(bar_pane_exif_conf_dialog_cb), ped->widget);
+	menu_item_add_icon(menu, _("Add entry"), GQ_ICON_ADD, G_CALLBACK(bar_pane_exif_conf_dialog_cb), ped->widget);
 	menu_item_add_check(menu, _("Show hidden entries"), ped->show_all, G_CALLBACK(bar_pane_exif_toggle_show_all_cb), ped);
 
 	gtk_menu_popup_at_pointer(GTK_MENU(menu), nullptr);

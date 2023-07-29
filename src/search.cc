@@ -1133,13 +1133,13 @@ static GtkWidget *search_result_menu(SearchData *sd, gboolean on_row, gboolean e
 	g_object_set_data(G_OBJECT(menu), "accel_group", accel_group);
 
 	video = (on_row && sd->click_fd && sd->click_fd->format_class == FORMAT_CLASS_VIDEO);
-	menu_item_add_stock_sensitive(menu, _("_Play"), GTK_STOCK_MEDIA_PLAY, video,
+	menu_item_add_icon_sensitive(menu, _("_Play"), GQ_ICON_PREV_PAGE , video,
 			    G_CALLBACK(sr_menu_play_cb), sd);
 	menu_item_add_divider(menu);
 
 	menu_item_add_sensitive(menu, _("_View"), on_row,
 				G_CALLBACK(sr_menu_view_cb), sd);
-	menu_item_add_stock_sensitive(menu, _("View in _new window"), GTK_STOCK_NEW, on_row,
+	menu_item_add_icon_sensitive(menu, _("View in _new window"), GQ_ICON_NEW, on_row,
 				      G_CALLBACK(sr_menu_viewnew_cb), sd);
 	menu_item_add_divider(menu);
 	menu_item_add_sensitive(menu, _("Select all"), !empty,
@@ -1158,10 +1158,10 @@ static GtkWidget *search_result_menu(SearchData *sd, gboolean on_row, gboolean e
 				G_CALLBACK(search_pop_menu_collections_cb), sd);
 	gtk_widget_set_sensitive(item, on_row);
 
-	menu_item_add_stock_sensitive(menu, _("Print..."), GTK_STOCK_PRINT, on_row,
+	menu_item_add_icon_sensitive(menu, _("Print..."), GQ_ICON_PRINT, on_row,
 				      G_CALLBACK(sr_menu_print_cb), sd);
 	menu_item_add_divider(menu);
-	menu_item_add_stock_sensitive(menu, _("_Copy..."), GTK_STOCK_COPY, on_row,
+	menu_item_add_icon_sensitive(menu, _("_Copy..."), GQ_ICON_COPY, on_row,
 				      G_CALLBACK(sr_menu_copy_cb), sd);
 	menu_item_add_sensitive(menu, _("_Move..."), on_row,
 				G_CALLBACK(sr_menu_move_cb), sd);
@@ -1173,13 +1173,13 @@ static GtkWidget *search_result_menu(SearchData *sd, gboolean on_row, gboolean e
 				G_CALLBACK(sr_menu_copy_path_unquoted_cb), sd);
 
 	menu_item_add_divider(menu);
-	menu_item_add_stock_sensitive(menu,
+	menu_item_add_icon_sensitive(menu,
 				options->file_ops.confirm_move_to_trash ? _("Move to Trash...") :
-					_("Move to Trash"), PIXBUF_INLINE_ICON_TRASH, on_row,
+					_("Move to Trash"), GQ_ICON_DELETE, on_row,
 				G_CALLBACK(sr_menu_move_to_trash_cb), sd);
-	menu_item_add_stock_sensitive(menu,
+	menu_item_add_icon_sensitive(menu,
 				options->file_ops.confirm_delete ? _("_Delete...") :
-					_("_Delete"), GTK_STOCK_DELETE, on_row,
+					_("_Delete"), GQ_ICON_DELETE_SHRED, on_row,
 				G_CALLBACK(sr_menu_delete_cb), sd);
 
 	return menu;
@@ -3255,17 +3255,17 @@ static void select_collection_clicked_cb(GtkWidget *, gpointer data)
 	const gchar *title;
 	const gchar *btntext;
 	gpointer btnfunc;
-	const gchar *stock_id;
+	const gchar *icon_name;
 
 	title = _("Select collection");
 	btntext = nullptr;
 	btnfunc = reinterpret_cast<void *>(select_collection_dialog_ok_cb);
-	stock_id = GTK_STOCK_OK;
+	icon_name = GQ_ICON_OK;
 
 	fdlg = file_util_file_dlg(title, "dlg_collection", sd->window, select_collection_dialog_close_cb, sd);
 
 	generic_dialog_add_message(GENERIC_DIALOG(fdlg), nullptr, title, nullptr, FALSE);
-	file_dialog_add_button(fdlg, stock_id, btntext, reinterpret_cast<void(*)(FileDialog *, gpointer)>(btnfunc), TRUE);
+	file_dialog_add_button(fdlg, icon_name, btntext, reinterpret_cast<void(*)(FileDialog *, gpointer)>(btnfunc), TRUE);
 
 	file_dialog_add_path_widgets(fdlg, get_collections_dir(), nullptr, "search_collection", GQ_COLLECTION_EXT, _("Collection Files"));
 
@@ -3701,20 +3701,20 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	gtk_box_pack_start(GTK_BOX(hbox), sd->spinner, FALSE, FALSE, 0);
 	gtk_widget_show(sd->spinner);
 
-	sd->button_help = pref_button_new(hbox, GTK_STOCK_HELP, nullptr, FALSE, G_CALLBACK(search_window_help_cb), sd);
+	sd->button_help = pref_button_new(hbox, GQ_ICON_HELP, _("Help"), G_CALLBACK(search_window_help_cb), sd);
 	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_help), "F1");
 	gtk_widget_set_sensitive(sd->button_help, TRUE);
 	pref_spacer(hbox, PREF_PAD_BUTTON_GAP);
-	sd->button_start = pref_button_new(hbox, GTK_STOCK_FIND, nullptr, FALSE,
+	sd->button_start = pref_button_new(hbox, GQ_ICON_FIND, nullptr,
 					   G_CALLBACK(search_start_cb), sd);
 	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_start), "Ctrl-Return");
 	pref_spacer(hbox, PREF_PAD_BUTTON_GAP);
-	sd->button_stop = pref_button_new(hbox, GTK_STOCK_STOP, nullptr, FALSE,
+	sd->button_stop = pref_button_new(hbox, GQ_ICON_STOP, _("Stop"),
 					  G_CALLBACK(search_start_cb), sd);
 	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_stop), "Ctrl-Return");
 	gtk_widget_set_sensitive(sd->button_stop, FALSE);
 	pref_spacer(hbox, PREF_PAD_BUTTON_GAP);
-	sd->button_close = pref_button_new(hbox, GTK_STOCK_CLOSE, nullptr, FALSE, G_CALLBACK(search_window_close_cb), sd);
+	sd->button_close = pref_button_new(hbox, GQ_ICON_CLOSE, _("Close"), G_CALLBACK(search_window_close_cb), sd);
 	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_close), "Ctrl-W");
 	gtk_widget_set_sensitive(sd->button_close, TRUE);
 

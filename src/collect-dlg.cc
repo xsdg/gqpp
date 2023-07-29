@@ -80,7 +80,7 @@ static gboolean collection_save_confirmed(FileDialog *fd, gboolean overwrite, Co
 		generic_dialog_add_message(gd, GTK_STOCK_DIALOG_QUESTION,
 					   _("Overwrite existing file?"), fd->dest_path, TRUE);
 
-		generic_dialog_add_button(gd, GTK_STOCK_OK, _("_Overwrite"), collection_confirm_ok_cb, TRUE);
+		generic_dialog_add_button(gd, GQ_ICON_OK, _("_Overwrite"), collection_confirm_ok_cb, TRUE);
 
 		gtk_widget_show(gd->dialog);
 
@@ -194,7 +194,7 @@ static void collection_save_or_load_dialog(const gchar *path,
 	const gchar *title;
 	const gchar *btntext;
 	gpointer btnfunc;
-	const gchar *stock_id;
+	const gchar *icon_name;
 
 	if (type == DIALOG_SAVE || type == DIALOG_SAVE_CLOSE)
 		{
@@ -202,14 +202,14 @@ static void collection_save_or_load_dialog(const gchar *path,
 		title = _("Save collection");
 		btntext = nullptr;
 		btnfunc = reinterpret_cast<gpointer>(collection_save_cb);
-		stock_id = GTK_STOCK_SAVE;
+		icon_name = GQ_ICON_SAVE;
 		}
 	else if (type == DIALOG_LOAD)
 		{
 		title = _("Open collection");
 		btntext = nullptr;
 		btnfunc = reinterpret_cast<gpointer>(collection_load_cb);
-		stock_id = GTK_STOCK_OPEN;
+		icon_name = GQ_ICON_OPEN;
 		}
 	else
 		{
@@ -217,7 +217,7 @@ static void collection_save_or_load_dialog(const gchar *path,
 		title = _("Append collection");
 		btntext = _("_Append");
 		btnfunc = reinterpret_cast<gpointer>(collection_append_cb);
-		stock_id = GTK_STOCK_ADD;
+		icon_name = GQ_ICON_ADD;
 		}
 
 	if (cd) collection_ref(cd);
@@ -229,7 +229,7 @@ static void collection_save_or_load_dialog(const gchar *path,
 			     collection_save_or_load_dialog_close_cb, cd);
 
 	generic_dialog_add_message(GENERIC_DIALOG(fd), nullptr, title, nullptr, FALSE);
-	file_dialog_add_button(fd, stock_id, btntext, reinterpret_cast<void (*)(FileDialog *, gpointer)>(btnfunc), TRUE);
+	file_dialog_add_button(fd, icon_name, btntext, reinterpret_cast<void (*)(FileDialog *, gpointer)>(btnfunc), TRUE);
 
 	file_dialog_add_path_widgets(fd, get_collections_dir(), path,
 				     "collection_load_save", GQ_COLLECTION_EXT, _("Collection Files"));

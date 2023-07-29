@@ -692,13 +692,13 @@ GtkWidget *vf_pop_menu(ViewFile *vf)
 	submenu_add_edit(menu, &item, G_CALLBACK(vf_pop_menu_edit_cb), vf, vf->editmenu_fd_list);
 	gtk_widget_set_sensitive(item, active);
 
-	menu_item_add_stock_sensitive(menu, _("View in _new window"), GTK_STOCK_NEW, active,
+	menu_item_add_icon_sensitive(menu, _("View in _new window"), GQ_ICON_NEW, active,
 				      G_CALLBACK(vf_pop_menu_view_cb), vf);
 
-	menu_item_add_stock_sensitive(menu, _("Open archive"), GTK_STOCK_OPEN, active & class_archive, G_CALLBACK(vf_pop_menu_open_archive_cb), vf);
+	menu_item_add_icon_sensitive(menu, _("Open archive"), GQ_ICON_OPEN, active & class_archive, G_CALLBACK(vf_pop_menu_open_archive_cb), vf);
 
 	menu_item_add_divider(menu);
-	menu_item_add_stock_sensitive(menu, _("_Copy..."), GTK_STOCK_COPY, active,
+	menu_item_add_icon_sensitive(menu, _("_Copy..."), GQ_ICON_COPY, active,
 				      G_CALLBACK(vf_pop_menu_copy_cb), vf);
 	menu_item_add_sensitive(menu, _("_Move..."), active,
 				G_CALLBACK(vf_pop_menu_move_cb), vf);
@@ -709,13 +709,13 @@ GtkWidget *vf_pop_menu(ViewFile *vf)
 	menu_item_add_sensitive(menu, _("_Copy path unquoted to clipboard"), active,
 				G_CALLBACK(vf_pop_menu_copy_path_unquoted_cb), vf);
 	menu_item_add_divider(menu);
-	menu_item_add_stock_sensitive(menu,
+	menu_item_add_icon_sensitive(menu,
 				options->file_ops.confirm_move_to_trash ? _("Move to Trash...") :
-					_("Move to Trash"), PIXBUF_INLINE_ICON_TRASH, active,
+					_("Move to Trash"), GQ_ICON_DELETE, active,
 				G_CALLBACK(vf_pop_menu_move_to_trash_cb), vf);
-	menu_item_add_stock_sensitive(menu,
+	menu_item_add_icon_sensitive(menu,
 				options->file_ops.confirm_delete ? _("_Delete...") :
-					_("_Delete"), GTK_STOCK_DELETE, active,
+					_("_Delete"), GQ_ICON_DELETE_SHRED, active,
 				G_CALLBACK(vf_pop_menu_delete_cb), vf);
 	menu_item_add_divider(menu);
 
@@ -725,7 +725,7 @@ GtkWidget *vf_pop_menu(ViewFile *vf)
 				G_CALLBACK(vf_pop_menu_disable_grouping_cb), vf);
 
 	menu_item_add_divider(menu);
-	menu_item_add_stock_sensitive(menu, _("_Find duplicates..."), GTK_STOCK_FIND, active,
+	menu_item_add_icon_sensitive(menu, _("_Find duplicates..."), GQ_ICON_FIND, active,
 				G_CALLBACK(vf_pop_menu_duplicates_cb), vf);
 	menu_item_add_divider(menu);
 
@@ -773,7 +773,7 @@ GtkWidget *vf_pop_menu(ViewFile *vf)
 		break;
 	}
 
-	menu_item_add_stock(menu, _("Re_fresh"), GTK_STOCK_REFRESH, G_CALLBACK(vf_pop_menu_refresh_cb), vf);
+	menu_item_add_icon(menu, _("Re_fresh"), GQ_ICON_REFRESH, G_CALLBACK(vf_pop_menu_refresh_cb), vf);
 
 	return menu;
 }
@@ -901,9 +901,9 @@ static gboolean vf_marks_tooltip_cb(GtkWidget *widget,
 				     vf_marks_tooltip_cancel_cb, mte);
 	generic_dialog_add_message(mte->gd, GTK_STOCK_DIALOG_QUESTION, _("Set mark text"),
 				   _("This will set or clear the mark text."), FALSE);
-	generic_dialog_add_button(mte->gd, GTK_STOCK_OK, nullptr,
+	generic_dialog_add_button(mte->gd, GQ_ICON_OK, "OK",
 				  vf_marks_tooltip_ok_cb, TRUE);
-	generic_dialog_add_button(mte->gd, GTK_STOCK_HELP, nullptr,
+	generic_dialog_add_button(mte->gd, GQ_ICON_HELP, _("Help"),
 				  vf_marks_tooltip_help_cb, FALSE);
 
 	table = pref_table_new(mte->gd->vbox, 3, 1, FALSE, TRUE);
@@ -918,7 +918,7 @@ static gboolean vf_marks_tooltip_cb(GtkWidget *widget,
 	generic_dialog_attach_default(mte->gd, mte->edit_widget);
 
 	gtk_entry_set_icon_from_icon_name(GTK_ENTRY(mte->edit_widget),
-				      GTK_ENTRY_ICON_SECONDARY, "edit-clear");
+				      GTK_ENTRY_ICON_SECONDARY, GQ_ICON_CLEAR);
 	gtk_entry_set_icon_tooltip_text(GTK_ENTRY(mte->edit_widget),
 					GTK_ENTRY_ICON_SECONDARY, "Clear");
 	g_signal_connect(GTK_ENTRY(mte->edit_widget), "icon-press",
@@ -1176,7 +1176,7 @@ static GtkWidget *vf_file_filter_init(ViewFile *vf)
 	gtk_widget_show((GTK_WIDGET(vf->file_filter.combo)));
 	gtk_widget_set_tooltip_text(GTK_WIDGET(vf->file_filter.combo), _("Use regular expressions"));
 
-	gtk_entry_set_icon_from_icon_name(GTK_ENTRY(combo_entry), GTK_ENTRY_ICON_SECONDARY, "edit-clear");
+	gtk_entry_set_icon_from_icon_name(GTK_ENTRY(combo_entry), GTK_ENTRY_ICON_SECONDARY, GQ_ICON_CLEAR);
 	gtk_entry_set_icon_tooltip_text (GTK_ENTRY(combo_entry), GTK_ENTRY_ICON_SECONDARY, _("Clear"));
 	g_signal_connect(GTK_ENTRY(combo_entry), "icon-press", G_CALLBACK(file_filter_clear_cb), combo_entry);
 
@@ -1215,7 +1215,7 @@ static GtkWidget *vf_file_filter_init(ViewFile *vf)
 	gtk_widget_show(menubar);
 
 	box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
-	icon = gtk_image_new_from_icon_name("pan-down", GTK_ICON_SIZE_MENU);
+	icon = gtk_image_new_from_icon_name(GQ_ICON_PAN_DOWN, GTK_ICON_SIZE_MENU);
 	label = gtk_label_new(_("Class"));
 
 	gtk_box_pack_start(GTK_BOX(box), label, FALSE, FALSE, 0);

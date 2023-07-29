@@ -1674,8 +1674,6 @@ static void pan_window_image_scroll_notify_cb(PixbufRenderer *pr, gpointer data)
 	gtk_adjustment_set_value(adj, static_cast<gdouble>(rect.x));
 
 	pref_signal_block_data(pw->scrollbar_h, pw);
-	gtk_adjustment_changed(adj);
-	gtk_adjustment_value_changed(adj);
 	pref_signal_unblock_data(pw->scrollbar_h, pw);
 
 	adj = gtk_range_get_adjustment(GTK_RANGE(pw->scrollbar_v));
@@ -1687,8 +1685,6 @@ static void pan_window_image_scroll_notify_cb(PixbufRenderer *pr, gpointer data)
 	gtk_adjustment_set_value(adj, static_cast<gdouble>(rect.y));
 
 	pref_signal_block_data(pw->scrollbar_v, pw);
-	gtk_adjustment_changed(adj);
-	gtk_adjustment_value_changed(adj);
 	pref_signal_unblock_data(pw->scrollbar_v, pw);
 }
 
@@ -2031,7 +2027,7 @@ static gboolean pan_warning(FileData *dir_fd)
 	gd = generic_dialog_new(_("Pan View Performance"), "pan_view_warning", nullptr, FALSE,
 				nullptr, nullptr);
 	gd->data = file_data_ref(dir_fd);
-	generic_dialog_add_button(gd, GTK_STOCK_OK, nullptr,
+	generic_dialog_add_button(gd, GQ_ICON_OK, "OK",
 				  pan_warning_ok_cb, TRUE);
 
 	box = generic_dialog_add_message(gd, GTK_STOCK_DIALOG_INFO,
@@ -2322,15 +2318,15 @@ static GtkWidget *pan_popup_menu(PanWindow *pw)
 	g_object_set_data(G_OBJECT(menu), "window_keys", pan_view_window_keys);
 	g_object_set_data(G_OBJECT(menu), "accel_group", accel_group);
 
-	menu_item_add_stock_sensitive(menu, _("_Play"), GTK_STOCK_MEDIA_PLAY, video,
+	menu_item_add_icon_sensitive(menu, _("_Play"), GQ_ICON_PLAY, video,
 			    G_CALLBACK(pan_play_cb), pw);
 	menu_item_add_divider(menu);
 
-	menu_item_add_stock(menu, _("Zoom _in"), GTK_STOCK_ZOOM_IN,
+	menu_item_add_icon(menu, _("Zoom _in"), GQ_ICON_ZOOM_IN,
 			    G_CALLBACK(pan_zoom_in_cb), pw);
-	menu_item_add_stock(menu, _("Zoom _out"), GTK_STOCK_ZOOM_OUT,
+	menu_item_add_icon(menu, _("Zoom _out"), GQ_ICON_ZOOM_OUT,
 			    G_CALLBACK(pan_zoom_out_cb), pw);
-	menu_item_add_stock(menu, _("Zoom _1:1"), GTK_STOCK_ZOOM_100,
+	menu_item_add_icon(menu, _("Zoom _1:1"), GQ_ICON_ZOOM_100,
 			    G_CALLBACK(pan_zoom_1_1_cb), pw);
 	menu_item_add_divider(menu);
 
@@ -2341,13 +2337,13 @@ static GtkWidget *pan_popup_menu(PanWindow *pw)
 	submenu_add_edit(menu, &item, G_CALLBACK(pan_edit_cb), pw, editmenu_fd_list);
 	gtk_widget_set_sensitive(item, active);
 
-	menu_item_add_stock_sensitive(menu, _("View in _new window"), GTK_STOCK_NEW, active,
+	menu_item_add_icon_sensitive(menu, _("View in _new window"), GQ_ICON_NEW, active,
 				      G_CALLBACK(pan_new_window_cb), pw);
-	menu_item_add_stock(menu, _("Go to original"), GTK_STOCK_FIND,
+	menu_item_add_icon(menu, _("Go to original"), GQ_ICON_FIND,
 			G_CALLBACK(pan_go_to_original_cb), pw);
 
 	menu_item_add_divider(menu);
-	menu_item_add_stock_sensitive(menu, _("_Copy..."), GTK_STOCK_COPY, active,
+	menu_item_add_icon_sensitive(menu, _("_Copy..."), GQ_ICON_COPY, active,
 				      G_CALLBACK(pan_copy_cb), pw);
 	menu_item_add_sensitive(menu, _("_Move..."), active,
 				G_CALLBACK(pan_move_cb), pw);
@@ -2359,13 +2355,13 @@ static GtkWidget *pan_popup_menu(PanWindow *pw)
 				G_CALLBACK(pan_copy_path_unquoted_cb), pw);
 
 	menu_item_add_divider(menu);
-	menu_item_add_stock_sensitive(menu,
+	menu_item_add_icon_sensitive(menu,
 				options->file_ops.confirm_move_to_trash ? _("Move to Trash...") :
-					_("Move to Trash"), PIXBUF_INLINE_ICON_TRASH, active,
+					_("Move to Trash"), GQ_ICON_DELETE, active,
 						G_CALLBACK(pan_move_to_trash_cb), pw);
-	menu_item_add_stock_sensitive(menu,
+	menu_item_add_icon_sensitive(menu,
 				options->file_ops.confirm_delete ? _("_Delete...") :
-					_("_Delete"), GTK_STOCK_DELETE, active,
+					_("_Delete"), GQ_ICON_DELETE_SHRED, active,
 						G_CALLBACK(pan_delete_cb), pw);
 
 	menu_item_add_divider(menu);
@@ -2418,15 +2414,15 @@ static GtkWidget *pan_popup_menu(PanWindow *pw)
 
 	if (pw->fs)
 		{
-		menu_item_add(menu, _("Exit _full screen"), G_CALLBACK(pan_fullscreen_cb), pw);
+		menu_item_add_icon(menu, _("Exit _full screen"), GQ_ICON_LEAVE_FULLSCREEN, G_CALLBACK(pan_fullscreen_cb), pw);
 		}
 	else
 		{
-		menu_item_add(menu, _("_Full screen"), G_CALLBACK(pan_fullscreen_cb), pw);
+		menu_item_add_icon(menu, _("_Full screen"), GQ_ICON_FULLSCREEN, G_CALLBACK(pan_fullscreen_cb), pw);
 		}
 
 	menu_item_add_divider(menu);
-	menu_item_add_stock(menu, _("C_lose window"), GTK_STOCK_CLOSE, G_CALLBACK(pan_close_cb), pw);
+	menu_item_add_icon(menu, _("C_lose window"), GQ_ICON_CLOSE, G_CALLBACK(pan_close_cb), pw);
 
 	return menu;
 }

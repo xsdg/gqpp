@@ -524,7 +524,7 @@ static void dest_view_delete(Dest_Data *dd, GtkTreeView *view)
 				    dd->entry, TRUE,
 				    dest_view_delete_dlg_cancel, dl);
 
-	generic_dialog_add_button(dd->gd, GTK_STOCK_DELETE, nullptr, dest_view_delete_dlg_ok_cb, TRUE);
+	generic_dialog_add_button(dd->gd, GQ_ICON_DELETE, "Delete", dest_view_delete_dlg_ok_cb, TRUE);
 
 	text = g_strdup_printf(_("About to delete the file:\n %s"), path);
 	generic_dialog_add_message(dd->gd, GTK_STOCK_DIALOG_QUESTION,
@@ -604,7 +604,7 @@ static gboolean dest_popup_menu(Dest_Data *dd, GtkTreeView *view, guint, guint32
 		menu = popup_menu_short_lived();
 		menu_item_add_sensitive(menu, _("_Rename"), !normal_dir,
 			      G_CALLBACK(dest_popup_dir_rename_cb), dd);
-		menu_item_add_stock(menu, _("Add _Bookmark"), GTK_STOCK_JUMP_TO,
+		menu_item_add_icon(menu, _("Add _Bookmark"), GQ_ICON_GO_JUMP,
 			      G_CALLBACK(dest_popup_dir_bookmark_cb), dd);
 		}
 	else
@@ -612,9 +612,9 @@ static gboolean dest_popup_menu(Dest_Data *dd, GtkTreeView *view, guint, guint32
 		menu = popup_menu_short_lived();
 		menu_item_add(menu, _("_Rename"),
 				G_CALLBACK(dest_popup_file_rename_cb), dd);
-		menu_item_add_stock(menu, _("_Delete"), GTK_STOCK_DELETE,
+		menu_item_add_icon(menu, _("_Delete"), GQ_ICON_DELETE,
 				G_CALLBACK(dest_popup_file_delete_cb), dd);
-		menu_item_add_stock(menu, _("Add _Bookmark"), GTK_STOCK_JUMP_TO,
+		menu_item_add_icon(menu, _("Add _Bookmark"), GQ_ICON_GO_JUMP,
 				G_CALLBACK(dest_popup_file_bookmark_cb), dd);
 		}
 
@@ -1015,9 +1015,9 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 
 	hbox2 = pref_table_box(table, 0, 0, GTK_ORIENTATION_HORIZONTAL, nullptr);
 	gtk_box_set_spacing(GTK_BOX(hbox2), PREF_PAD_BUTTON_GAP);
-	pref_button_new(hbox2, nullptr, _("Home"), FALSE,
+	pref_button_new(hbox2, nullptr, _("Home"),
 			G_CALLBACK(dest_home_cb), dd);
-	pref_button_new(hbox2, nullptr, _("New folder"), FALSE,
+	pref_button_new(hbox2, nullptr, _("New folder"),
 			G_CALLBACK(dest_new_dir_cb), dd);
 
 	dd->hidden_button = gtk_check_button_new_with_label(_("Show hidden"));

@@ -370,7 +370,7 @@ void help_search_window_show()
 				help_search_window_cancel_cb, hsd);
 	generic_dialog_add_message(gd, nullptr, _("Search the on-line help files.\n"), nullptr, FALSE);
 
-	generic_dialog_add_button(gd, GTK_STOCK_OK, nullptr,
+	generic_dialog_add_button(gd, GQ_ICON_OK, "OK",
 				  help_search_window_ok_cb, TRUE);
 
 	label1 = pref_label_new(GENERIC_DIALOG(gd)->vbox, _("Search engine:"));
@@ -392,7 +392,7 @@ void help_search_window_show()
 	gtk_widget_show(hsd->edit_widget);
 
 	gtk_entry_set_icon_from_icon_name(GTK_ENTRY(hsd->edit_widget),
-						GTK_ENTRY_ICON_SECONDARY, "edit-clear");
+						GTK_ENTRY_ICON_SECONDARY, GQ_ICON_CLEAR);
 	gtk_entry_set_icon_tooltip_text (GTK_ENTRY(hsd->edit_widget),
 						GTK_ENTRY_ICON_SECONDARY, _("Clear"));
 	g_signal_connect(GTK_ENTRY(hsd->edit_widget), "icon-press",

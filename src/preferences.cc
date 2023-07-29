@@ -770,43 +770,43 @@ struct UseableMouseItems
 {
 	const gchar *name; /* GtkActionEntry terminology */
 	const gchar *label;
-	const gchar *stock_id;
+	const gchar *icon_name;
 };
 
 static const UseableMouseItems useable_mouse_items[] = {
 	{"", "", nullptr},
-	{"FirstImage",	N_("First Image"), GTK_STOCK_GOTO_TOP},
-	{"PrevImage",	N_("Previous Image"), GTK_STOCK_GO_UP},
-	{"NextImage",	N_("Next Image"), GTK_STOCK_GO_DOWN},
-	{"LastImage",	N_("Last Image"), GTK_STOCK_GOTO_BOTTOM},
-	{"Back",	N_("Back"), GTK_STOCK_GO_BACK},
-	{"Forward",	N_("Forward"), GTK_STOCK_GO_FORWARD},
-	{"Home",	N_("Home"), GTK_STOCK_HOME},
-	{"Up",	N_("Up"), GTK_STOCK_GO_UP},
-	{"FirstPage",	N_("First page"), GTK_STOCK_MEDIA_PREVIOUS},
-	{"LastPage",	N_("Last Page"), GTK_STOCK_MEDIA_NEXT},
-	{"NextPage",	N_("Next page"), GTK_STOCK_MEDIA_FORWARD},
-	{"PrevPage",	N_("Previous Page"), GTK_STOCK_MEDIA_REWIND},
-	{"NewWindow",	N_("New _window"), GTK_STOCK_NEW},
-	{"NewCollection",	N_("New collection"), GTK_STOCK_INDEX},
-	{"OpenCollection",	N_("Open collection"), GTK_STOCK_OPEN},
-	{"Search",	N_("Search"), GTK_STOCK_FIND},
-	{"FindDupes",	N_("Find duplicates"), GTK_STOCK_FIND},
-	{"NewFolder",	N_("New folder"),GTK_STOCK_DIRECTORY},
-	{"Copy",	N_("Copy"), GTK_STOCK_COPY},
+	{"FirstImage",	N_("First Image"), GQ_ICON_GO_TOP},
+	{"PrevImage",	N_("Previous Image"), GQ_ICON_GO_UP},
+	{"NextImage",	N_("Next Image"), GQ_ICON_GO_DOWN},
+	{"LastImage",	N_("Last Image"), GQ_ICON_GO_BOTTOM},
+	{"Back",	N_("Back"), GQ_ICON_GO_PREV},
+	{"Forward",	N_("Forward"), GQ_ICON_GO_NEXT},
+	{"Home",	N_("Home"), GQ_ICON_HOME},
+	{"Up",	N_("Up"), GQ_ICON_GO_UP},
+	{"FirstPage",	N_("First page"), GQ_ICON_PREV_PAGE},
+	{"LastPage",	N_("Last Page"), GQ_ICON_NEXT_PAGE},
+	{"NextPage",	N_("Next page"), GQ_ICON_FORWARD_PAGE},
+	{"PrevPage",	N_("Previous Page"), GQ_ICON_BACK_PAGE},
+	{"NewWindow",	N_("New _window"), GQ_ICON_NEW},
+	{"NewCollection",	N_("New collection"), GQ_ICON_COLLECTION},
+	{"OpenCollection",	N_("Open collection"), GQ_ICON_OPEN},
+	{"Search",	N_("Search"), GQ_ICON_FIND},
+	{"FindDupes",	N_("Find duplicates"), GQ_ICON_FIND},
+	{"NewFolder",	N_("New folder"),GQ_ICON_DIRECTORY},
+	{"Copy",	N_("Copy"), GQ_ICON_COPY},
 	{"Move",	N_("Move"), PIXBUF_INLINE_ICON_MOVE},
 	{"Rename",	N_("Rename"), PIXBUF_INLINE_ICON_RENAME},
-	{"Delete",	N_("Delete"), GTK_STOCK_DELETE},
-	{"CloseWindow",	N_("Close Window"), GTK_STOCK_CLOSE},
+	{"Delete",	N_("Delete"), GQ_ICON_DELETE},
+	{"CloseWindow",	N_("Close Window"), GQ_ICON_CLOSE},
 	{"PanView",	N_("Pan view"), PIXBUF_INLINE_ICON_PANORAMA},
 	{"SelectAll",	N_("Select all"), PIXBUF_INLINE_ICON_SELECT_ALL},
 	{"SelectNone",	N_("Select none"), PIXBUF_INLINE_ICON_SELECT_NONE},
 	{"SelectInvert",	N_("Select invert"), PIXBUF_INLINE_ICON_SELECT_INVERT},
 	{"ShowFileFilter",	N_("Show file filter"), PIXBUF_INLINE_ICON_FILE_FILTER},
 	{"RectangularSelection",	N_("Select rectangle"), PIXBUF_INLINE_ICON_SELECT_RECTANGLE},
-	{"Print",	N_("Print"), GTK_STOCK_PRINT},
-	{"Preferences",	N_("Preferences"), GTK_STOCK_PREFERENCES},
-	{"LayoutConfig",	N_("Configure this window"), GTK_STOCK_PREFERENCES},
+	{"Print",	N_("Print"), GQ_ICON_PRINT},
+	{"Preferences",	N_("Preferences"), GQ_ICON_PREFERENCES},
+	{"LayoutConfig",	N_("Configure this window"), GQ_ICON_PREFERENCES},
 	{"Maintenance",	N_("Cache maintenance"), PIXBUF_INLINE_ICON_MAINTENANCE},
 	{"RotateCW",	N_("Rotate clockwise 90°"), PIXBUF_INLINE_ICON_CW},
 	{"RotateCCW",	N_("Rotate counterclockwise 90°"), PIXBUF_INLINE_ICON_CCW},
@@ -814,28 +814,28 @@ static const UseableMouseItems useable_mouse_items[] = {
 	{"Mirror",	N_("Mirror"), PIXBUF_INLINE_ICON_MIRROR},
 	{"Flip",	N_("Flip"), PIXBUF_INLINE_ICON_FLIP},
 	{"AlterNone",	N_("Original state"), PIXBUF_INLINE_ICON_ORIGINAL},
-	{"ZoomIn",	N_("Zoom in"), GTK_STOCK_ZOOM_IN},
-	{"ZoomOut",	N_("Zoom out"), GTK_STOCK_ZOOM_OUT},
-	{"Zoom100",	N_("Zoom 1:1"), GTK_STOCK_ZOOM_100},
-	{"ZoomFit",	N_("Zoom to fit"), GTK_STOCK_ZOOM_FIT},
+	{"ZoomIn",	N_("Zoom in"), GQ_ICON_ZOOM_IN},
+	{"ZoomOut",	N_("Zoom out"), GQ_ICON_ZOOM_OUT},
+	{"Zoom100",	N_("Zoom 1:1"), GQ_ICON_ZOOM_100},
+	{"ZoomFit",	N_("Zoom to fit"), GQ_ICON_ZOOM_FIT},
 	{"ZoomFillHor",	N_("Fit Horizontaly"), PIXBUF_INLINE_ICON_ZOOMFILLHOR},
 	{"ZoomFillVert",	N_("Fit vertically"), PIXBUF_INLINE_ICON_ZOOMFILLVERT},
-	{"Zoom200",	N_("Zoom 2:1"), GTK_STOCK_FILE},
-	{"Zoom300",	N_("Zoom 3:1"), GTK_STOCK_FILE},
-	{"Zoom400",	N_("Zoom 4:1"), GTK_STOCK_FILE},
-	{"Zoom50",	N_("Zoom 1:2"), GTK_STOCK_FILE},
-	{"Zoom33",	N_("Zoom1:3"), GTK_STOCK_FILE},
-	{"Zoom25",	N_("Zoom 1:4"), GTK_STOCK_FILE},
-	{"ConnectZoomIn",	N_("Connected Zoom in"), GTK_STOCK_ZOOM_IN},
+	{"Zoom200",	N_("Zoom 2:1"), GQ_ICON_GENERIC},
+	{"Zoom300",	N_("Zoom 3:1"), GQ_ICON_GENERIC},
+	{"Zoom400",	N_("Zoom 4:1"), GQ_ICON_GENERIC},
+	{"Zoom50",	N_("Zoom 1:2"), GQ_ICON_GENERIC},
+	{"Zoom33",	N_("Zoom 1:3"), GQ_ICON_GENERIC},
+	{"Zoom25",	N_("Zoom 1:4"), GQ_ICON_GENERIC},
+	{"ConnectZoomIn",	N_("Connected Zoom in"), GQ_ICON_ZOOM_IN},
 	{"SplitPaneSync",	N_("Split Pane Sync"), PIXBUF_INLINE_SPLIT_PANE_SYNC},
 	{"Grayscale",	N_("Grayscale"), PIXBUF_INLINE_ICON_GRAYSCALE},
 	{"OverUnderExposed",	N_("Over Under Exposed"), PIXBUF_INLINE_ICON_EXPOSURE},
 	{"HideTools",	N_("Hide file list"), PIXBUF_INLINE_ICON_HIDETOOLS},
-	{"SlideShowPause",	N_("Pause slideshow"), GTK_STOCK_MEDIA_PAUSE},
-	{"SlideShowFaster",	N_("Slideshow Faster"), GTK_STOCK_FILE},
-	{"SlideShowSlower",	N_("Slideshow Slower"), GTK_STOCK_FILE},
-	{"Refresh",	N_("Refresh"), GTK_STOCK_REFRESH},
-	{"HelpContents",	N_("Help"), GTK_STOCK_HELP},
+	{"SlideShowPause",	N_("Pause slideshow"), GQ_ICON_PAUSE},
+	{"SlideShowFaster",	N_("Slideshow Faster"), GQ_ICON_GENERIC},
+	{"SlideShowSlower",	N_("Slideshow Slower"), GQ_ICON_GENERIC},
+	{"Refresh",	N_("Refresh"), GQ_ICON_REFRESH},
+	{"HelpContents",	N_("Help"), GQ_ICON_HELP},
 	{"ExifWin",	N_("Exif window"), PIXBUF_INLINE_ICON_EXIF},
 	{"Thumbnails",	N_("Show thumbnails"), PIXBUF_INLINE_ICON_THUMB},
 	{"ShowMarks",	N_("Show marks"), PIXBUF_INLINE_ICON_MARKS},
@@ -843,7 +843,7 @@ static const UseableMouseItems useable_mouse_items[] = {
 	{"FloatTools",	N_("Float file list"), PIXBUF_INLINE_ICON_FLOAT},
 	{"SBar",	N_("Info sidebar"), PIXBUF_INLINE_ICON_INFO},
 	{"SBarSort",	N_("Sort manager"), PIXBUF_INLINE_ICON_SORT},
-	{"Quit",	N_("Quit"), GTK_STOCK_QUIT},
+	{"Quit",	N_("Quit"), GQ_ICON_QUIT},
 	{nullptr,		nullptr, nullptr}
 };
 
@@ -1425,7 +1425,7 @@ static void filter_default_cb(GtkWidget *widget, gpointer data)
 				dummy_cancel_cb, data);
 	generic_dialog_add_message(gd, GTK_STOCK_DIALOG_QUESTION, _("Reset filters"),
 				   _("This will reset the file filters to the defaults.\nContinue?"), TRUE);
-	generic_dialog_add_button(gd, GTK_STOCK_OK, nullptr, filter_default_ok_cb, TRUE);
+	generic_dialog_add_button(gd, GQ_ICON_OK, "OK", filter_default_ok_cb, TRUE);
 	gtk_widget_show(gd->dialog);
 }
 
@@ -1456,7 +1456,7 @@ static void safe_delete_clear_cb(GtkWidget *widget, gpointer)
 				dummy_cancel_cb, nullptr);
 	generic_dialog_add_message(gd, GTK_STOCK_DIALOG_QUESTION, _("Clear trash"),
 				    _("This will remove the trash contents."), FALSE);
-	generic_dialog_add_button(gd, GTK_STOCK_OK, nullptr, safe_delete_clear_ok_cb, TRUE);
+	generic_dialog_add_button(gd, GQ_ICON_OK, "OK", safe_delete_clear_ok_cb, TRUE);
 	entry = gtk_entry_new();
 	gtk_widget_set_can_focus(entry, FALSE);
 	gtk_editable_set_editable(GTK_EDITABLE(entry), FALSE);
@@ -1504,7 +1504,7 @@ static void image_overlay_default_template_cb(GtkWidget *widget, gpointer data)
 				dummy_cancel_cb, data);
 	generic_dialog_add_message(gd, GTK_STOCK_DIALOG_QUESTION, _("Reset image overlay template string"),
 				   _("This will reset the image overlay template string to the default.\nContinue?"), TRUE);
-	generic_dialog_add_button(gd, GTK_STOCK_OK, nullptr, image_overlay_default_template_ok_cb, TRUE);
+	generic_dialog_add_button(gd, GQ_ICON_OK, "OK", image_overlay_default_template_ok_cb, TRUE);
 	gtk_widget_show(gd->dialog);
 }
 
@@ -2034,18 +2034,18 @@ static void config_tab_general(GtkWidget *notebook)
 	gtk_box_pack_start(GTK_BOX(hbox), star_rating_entry, FALSE, FALSE, 0);
 	gtk_entry_set_width_chars(GTK_ENTRY(star_rating_entry), 15);
 	gtk_widget_show(star_rating_entry);
-	button = pref_button_new(nullptr, nullptr, _("Set"), FALSE,
+	button = pref_button_new(nullptr, nullptr, _("Set"),
 					G_CALLBACK(star_rating_star_test_cb), hbox);
 	gtk_widget_set_tooltip_text(button, _("Display selected character"));
 	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 	gtk_widget_set_tooltip_text(star_rating_entry, _("Hexadecimal representation of a Unicode character. A list of all Unicode characters may be found on the Internet."));
 	gtk_entry_set_icon_from_icon_name(GTK_ENTRY(star_rating_entry),
-						GTK_ENTRY_ICON_SECONDARY, "edit-clear");
+						GTK_ENTRY_ICON_SECONDARY, GQ_ICON_CLEAR);
 	gtk_entry_set_icon_tooltip_text (GTK_ENTRY(star_rating_entry),
 						GTK_ENTRY_ICON_SECONDARY, _("Clear"));
 	gtk_entry_set_icon_from_icon_name(GTK_ENTRY(star_rating_entry),
-						GTK_ENTRY_ICON_PRIMARY, "document-revert");
+						GTK_ENTRY_ICON_PRIMARY, GQ_ICON_REVERT);
 	gtk_entry_set_icon_tooltip_text (GTK_ENTRY(star_rating_entry),
 						GTK_ENTRY_ICON_PRIMARY, _("Default"));
 	g_signal_connect(GTK_ENTRY(star_rating_entry), "icon-press",
@@ -2066,18 +2066,18 @@ static void config_tab_general(GtkWidget *notebook)
 	gtk_box_pack_start(GTK_BOX(hbox), star_rating_entry, FALSE, FALSE, 0);
 	gtk_entry_set_width_chars(GTK_ENTRY(star_rating_entry), 15);
 	gtk_widget_show(star_rating_entry);
-	button = pref_button_new(nullptr, nullptr, _("Set"), FALSE,
+	button = pref_button_new(nullptr, nullptr, _("Set"),
 					G_CALLBACK(star_rating_rejected_test_cb), hbox);
 	gtk_widget_set_tooltip_text(button, _("Display selected character"));
 	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 	gtk_widget_set_tooltip_text(star_rating_entry, _("Hexadecimal representation of a Unicode character. A list of all Unicode characters may be found on the Internet."));
 	gtk_entry_set_icon_from_icon_name(GTK_ENTRY(star_rating_entry),
-						GTK_ENTRY_ICON_SECONDARY, "edit-clear");
+						GTK_ENTRY_ICON_SECONDARY, GQ_ICON_CLEAR);
 	gtk_entry_set_icon_tooltip_text (GTK_ENTRY(star_rating_entry),
 						GTK_ENTRY_ICON_SECONDARY, _("Clear"));
 	gtk_entry_set_icon_from_icon_name(GTK_ENTRY(star_rating_entry),
-						GTK_ENTRY_ICON_PRIMARY, "document-revert");
+						GTK_ENTRY_ICON_PRIMARY, GQ_ICON_REVERT);
 	gtk_entry_set_icon_tooltip_text (GTK_ENTRY(star_rating_entry),
 						GTK_ENTRY_ICON_PRIMARY, _("Default"));
 	g_signal_connect(GTK_ENTRY(star_rating_entry), "icon-press",
@@ -2179,11 +2179,11 @@ static void config_tab_general(GtkWidget *notebook)
 
 	if (isfile(tz->timezone_database_user))
 		{
-		button = pref_button_new(GTK_WIDGET(hbox), nullptr, _("Update"), FALSE, G_CALLBACK(timezone_database_install_cb), tz);
+		button = pref_button_new(GTK_WIDGET(hbox), nullptr, _("Update"), G_CALLBACK(timezone_database_install_cb), tz);
 		}
 	else
 		{
-		button = pref_button_new(GTK_WIDGET(hbox), nullptr, _("Install"), FALSE, G_CALLBACK(timezone_database_install_cb), tz);
+		button = pref_button_new(GTK_WIDGET(hbox), nullptr, _("Install"), G_CALLBACK(timezone_database_install_cb), tz);
 		}
 
 	download_locn = g_strconcat(_("Download database from: "), TIMEZONE_DATABASE_WEB, NULL);
@@ -2212,11 +2212,11 @@ static void config_tab_general(GtkWidget *notebook)
 	gtk_widget_set_tooltip_text(help_search_engine_entry, _("The format varies between search engines, e.g the format may be:\nhttps://www.search_engine.com/search?q=site:geeqie.org/help\nhttps://www.search_engine.com/?q=site:geeqie.org/help"));
 
 	gtk_entry_set_icon_from_icon_name(GTK_ENTRY(help_search_engine_entry),
-						GTK_ENTRY_ICON_SECONDARY, "edit-clear");
+						GTK_ENTRY_ICON_SECONDARY, GQ_ICON_CLEAR);
 	gtk_entry_set_icon_tooltip_text (GTK_ENTRY(help_search_engine_entry),
 						GTK_ENTRY_ICON_SECONDARY, _("Clear"));
 	gtk_entry_set_icon_from_icon_name(GTK_ENTRY(help_search_engine_entry),
-						GTK_ENTRY_ICON_PRIMARY, "document-revert");
+						GTK_ENTRY_ICON_PRIMARY, GQ_ICON_REVERT);
 	gtk_entry_set_icon_tooltip_text (GTK_ENTRY(help_search_engine_entry),
 						GTK_ENTRY_ICON_PRIMARY, _("Default"));
 	g_signal_connect(GTK_ENTRY(help_search_engine_entry), "icon-press",
@@ -2392,7 +2392,7 @@ static void config_tab_windows(GtkWidget *notebook)
 
 	subgroup = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 	pref_label_new(subgroup, _("Use current layout for default: "));
-	button = pref_button_new(subgroup, nullptr, _("Set"), FALSE, G_CALLBACK(save_default_window_layout_cb), nullptr);
+	button = pref_button_new(subgroup, nullptr, _("Set"), G_CALLBACK(save_default_window_layout_cb), nullptr);
 
 	GtkWidget *popover;
 
@@ -2475,29 +2475,29 @@ static void config_tab_osd(GtkWidget *notebook)
 
 	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
 
-	button = pref_button_new(nullptr, GTK_STOCK_SELECT_FONT, _("Font"), FALSE,
+	button = pref_button_new(nullptr, GQ_ICON_SELECT_FONT, _("Font"),
 				 G_CALLBACK(image_overlay_set_font_cb), notebook);
 
 	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
-	button = pref_button_new(nullptr, GTK_STOCK_COLOR_PICKER, _("Text"), FALSE,
+	button = pref_button_new(nullptr, GQ_ICON_SELECT_COLOR, _("Text"),
 				 G_CALLBACK(image_overlay_set_text_colour_cb), nullptr);
 	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
-	button = pref_button_new(nullptr, GTK_STOCK_COLOR_PICKER, _("Background"), FALSE,
+	button = pref_button_new(nullptr, GQ_ICON_SELECT_COLOR, _("Background"),
 				 G_CALLBACK(image_overlay_set_background_colour_cb), nullptr);
 	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 	image_overlay_set_text_colours();
 
-	button = pref_button_new(nullptr, nullptr, _("Defaults"), FALSE,
+	button = pref_button_new(nullptr, nullptr, _("Defaults"),
 				 G_CALLBACK(image_overlay_default_template_cb), image_overlay_template_view);
 	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
-	button = pref_button_new(nullptr, GTK_STOCK_HELP, nullptr, FALSE,
+	button = pref_button_new(nullptr, GQ_ICON_HELP, _("Help"),
 				 G_CALLBACK(image_overlay_help_cb), nullptr);
 	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
@@ -2798,17 +2798,17 @@ static void config_tab_files(GtkWidget *notebook)
 
 	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
 
-	button = pref_button_new(nullptr, nullptr, _("Defaults"), FALSE,
+	button = pref_button_new(nullptr, nullptr, _("Defaults"),
 				 G_CALLBACK(filter_default_cb), filter_view);
 	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
-	button = pref_button_new(nullptr, GTK_STOCK_REMOVE, nullptr, FALSE,
+	button = pref_button_new(nullptr, GQ_ICON_REMOVE, _("Remove"),
 				 G_CALLBACK(filter_remove_cb), filter_view);
 	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
-	button = pref_button_new(nullptr, GTK_STOCK_ADD, nullptr, FALSE,
+	button = pref_button_new(nullptr, GQ_ICON_ADD, _("Add"),
 				 G_CALLBACK(filter_add_cb), filter_view);
 	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
@@ -3136,11 +3136,11 @@ static void keywords_find_dialog(GtkWidget *widget, const gchar *path)
 									nullptr, kfd);
 	gtk_window_set_default_size(GTK_WINDOW(kfd->gd->dialog), KEYWORD_DIALOG_WIDTH, -1);
 	kfd->gd->cancel_cb = keywords_find_close_cb;
-	kfd->button_close = generic_dialog_add_button(kfd->gd, GTK_STOCK_CLOSE, nullptr,
+	kfd->button_close = generic_dialog_add_button(kfd->gd, GQ_ICON_CLOSE, _("Close"),
 						     keywords_find_close_cb, FALSE);
-	kfd->button_start = generic_dialog_add_button(kfd->gd, GTK_STOCK_OK, _("S_tart"),
+	kfd->button_start = generic_dialog_add_button(kfd->gd, GQ_ICON_OK, _("S_tart"),
 						     keywords_find_start_cb, FALSE);
-	kfd->button_stop = generic_dialog_add_button(kfd->gd, GTK_STOCK_STOP, nullptr,
+	kfd->button_stop = generic_dialog_add_button(kfd->gd, GQ_ICON_STOP, _("Stop"),
 						    keywords_find_stop_cb, FALSE);
 	gtk_widget_set_sensitive(kfd->button_stop, FALSE);
 
@@ -3249,7 +3249,7 @@ static void config_tab_keywords(GtkWidget *notebook)
 
 	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
 
-	button = pref_button_new(hbox, GTK_STOCK_EXECUTE, _("Search"), FALSE,
+	button = pref_button_new(hbox, GQ_ICON_RUN, _("Search"),
 				   G_CALLBACK(keywords_find_cb), keyword_text);
 	gtk_widget_set_tooltip_text(button, "Search for existing keywords");
 
@@ -3514,12 +3514,12 @@ static void config_tab_behavior(GtkWidget *notebook)
 	spin = pref_spin_new_int(hbox, _("Maximum size:"), _("MiB"),
 				 0, 2048, 1, options->file_ops.safe_delete_folder_maxsize, &c_options->file_ops.safe_delete_folder_maxsize);
 	gtk_widget_set_tooltip_markup(spin, _("Set to 0 for unlimited size"));
-	button = pref_button_new(nullptr, nullptr, _("View"), FALSE,
+	button = pref_button_new(nullptr, nullptr, _("View"),
 				 G_CALLBACK(safe_delete_view_cb), nullptr);
 	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
-	button = pref_button_new(nullptr, GTK_STOCK_CLEAR, nullptr, FALSE,
+	button = pref_button_new(nullptr, GQ_ICON_CLEAR, nullptr,
 				 G_CALLBACK(safe_delete_clear_cb), nullptr);
 	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 
@@ -3769,18 +3769,18 @@ static void config_tab_accelerators(GtkWidget *notebook)
 
 	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
 
-	button = pref_button_new(nullptr, nullptr, _("Defaults"), FALSE,
+	button = pref_button_new(nullptr, nullptr, _("Defaults"),
 				 G_CALLBACK(accel_default_cb), accel_view);
 	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
-	button = pref_button_new(nullptr, nullptr, _("Reset selected"), FALSE,
+	button = pref_button_new(nullptr, nullptr, _("Reset selected"),
 				 G_CALLBACK(accel_reset_cb), accel_view);
 	gtk_widget_set_tooltip_text(button, _("Will only reset changes made before the settings are saved"));
 	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
-	button = pref_button_new(nullptr, nullptr, _("Clear selected"), FALSE,
+	button = pref_button_new(nullptr, nullptr, _("Clear selected"),
 				 G_CALLBACK(accel_clear_cb), accel_view);
 	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
@@ -4056,13 +4056,13 @@ static void config_window_create(LayoutWindow *lw)
 	gtk_box_pack_end(GTK_BOX(win_vbox), hbox, FALSE, FALSE, 0);
 	gtk_widget_show(hbox);
 
-	button = pref_button_new(nullptr, GTK_STOCK_HELP, nullptr, FALSE,
+	button = pref_button_new(nullptr, GQ_ICON_HELP, _("Help"),
 				 G_CALLBACK(config_window_help_cb), notebook);
 	gtk_container_add(GTK_CONTAINER(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_show(button);
 
-	button = pref_button_new(nullptr, GTK_STOCK_OK, nullptr, FALSE,
+	button = pref_button_new(nullptr, GQ_ICON_OK, "OK",
 				 G_CALLBACK(config_window_ok_cb), notebook);
 	gtk_container_add(GTK_CONTAINER(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);
@@ -4071,7 +4071,7 @@ static void config_window_create(LayoutWindow *lw)
 
 	ct_button = button;
 
-	button = pref_button_new(nullptr, GTK_STOCK_CANCEL, nullptr, FALSE,
+	button = pref_button_new(nullptr, GQ_ICON_CANCEL, _("Cancel"),
 				 G_CALLBACK(config_window_close_cb), nullptr);
 	gtk_container_add(GTK_CONTAINER(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);
