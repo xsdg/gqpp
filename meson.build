@@ -755,3 +755,22 @@ if running_from_git
 else
     summary({'Code Correctness' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
 endif
+
+# Lua test
+option = get_option('lua')
+if not option.disabled()
+    if lua_dep.found()
+        if xvfb.found()
+            lua_test_sh = find_program('lua-test.sh', dirs : scriptsdir, required : true)
+            test('Lua test', lua_test_sh, args: [geeqie_exe], is_parallel : false, timeout: 100)
+
+            summary({'lua' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+        else
+            summary({'lua' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+        endif
+    else
+        summary({'lua' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+    endif
+else
+    summary({'lua' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+endif
