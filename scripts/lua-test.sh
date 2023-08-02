@@ -65,15 +65,18 @@ base_lua=$(basename "$lua_test_file")
 result=$(xvfb-run --auto-servernum "$1" --remote --lua:"$lua_test_image","$base_lua")
 xvfb-run --auto-servernum "$1" --remote --quit
 
+## @FIXME Running on GitHub gives additional dbind-WARNINGs. The data required is the last n lines.
+result_tail=$(printf "%s" "$result" | tail --lines=7)
+
 expected=$(printf "%s\n.%s\n%s\n%s\n%s\n%s\n%s" "$(basename "$lua_test_image")" jpeg "$lua_test_image" "$(stat -c %Y "$lua_test_image")" "$(stat -c %s "$lua_test_image")" 0 200)
 
-printf "        Result               Expected\n"
-printf '%s\n' "$result" "$expected"| pr -2  --omit-header
+printf "Result                              Expected\n"
+printf '%s\n' "$result_tail" "$expected"| pr -2  --omit-header
 
 rm "$lua_test_image"
 rm "$lua_test_file"
 
-if [ "$result" = "$expected" ]
+if [ "$result_tail" = "$expected" ]
 then
 	exit 0
 else
