@@ -1048,6 +1048,7 @@ static gboolean collection_window_keypress(GtkWidget *, GdkEventKey *event, gpoi
 				if (list)
 					{
 					collection_remove_by_info_list(cw->cd, list);
+					collection_table_refresh(cw->table);
 					g_list_free(list);
 					}
 				else

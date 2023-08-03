@@ -862,6 +862,7 @@ static void collection_table_popup_remove_cb(GtkWidget *, gpointer data)
 		}
 
 	collection_remove_by_info_list(ct->cd, list);
+	collection_table_refresh(ct);
 	g_list_free(list);
 }
 
