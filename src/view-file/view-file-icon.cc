@@ -1675,12 +1675,13 @@ static void vficon_sized_cb(GtkWidget *, GtkAllocation *allocation, gpointer dat
  *-----------------------------------------------------------------------------
  */
 
-void vficon_sort_set(ViewFile *vf, SortType type, gboolean ascend)
+void vficon_sort_set(ViewFile *vf, SortType type, gboolean ascend, gboolean case_sensitive)
 {
-	if (vf->sort_method == type && vf->sort_ascend == ascend) return;
+	if (vf->sort_method == type && vf->sort_ascend == ascend && vf->sort_case == case_sensitive) return;
 
 	vf->sort_method = type;
 	vf->sort_ascend = ascend;
+	vf->sort_case = case_sensitive;
 
 	if (!vf->list) return;
 
@@ -1917,8 +1918,8 @@ static gboolean vficon_refresh_real(ViewFile *vf, gboolean keep_position)
 
 		}
 
-	vf->list = filelist_sort(vf->list, vf->sort_method, vf->sort_ascend); /* the list might not be sorted if there were renames */
-	new_filelist = filelist_sort(new_filelist, vf->sort_method, vf->sort_ascend);
+	vf->list = filelist_sort(vf->list, vf->sort_method, vf->sort_ascend, vf->sort_case); /* the list might not be sorted if there were renames */
+	new_filelist = filelist_sort(new_filelist, vf->sort_method, vf->sort_ascend, vf->sort_case);
 
 	if (VFICON(vf)->selection)
 		{

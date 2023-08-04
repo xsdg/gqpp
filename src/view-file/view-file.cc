@@ -53,12 +53,12 @@ void vf_send_update(ViewFile *vf)
  *-----------------------------------------------------------------------------
  */
 
-void vf_sort_set(ViewFile *vf, SortType type, gboolean ascend)
+void vf_sort_set(ViewFile *vf, SortType type, gboolean ascend, gboolean case_sensitive)
 {
 	switch (vf->type)
 	{
-	case FILEVIEW_LIST: vflist_sort_set(vf, type, ascend); break;
-	case FILEVIEW_ICON: vficon_sort_set(vf, type, ascend); break;
+	case FILEVIEW_LIST: vflist_sort_set(vf, type, ascend, case_sensitive); break;
+	case FILEVIEW_ICON: vficon_sort_set(vf, type, ascend, case_sensitive); break;
 	}
 }
 
@@ -491,11 +491,11 @@ static void vf_pop_menu_sort_cb(GtkWidget *widget, gpointer data)
 
 	if (vf->layout)
 		{
-		layout_sort_set(vf->layout, type, vf->sort_ascend);
+		layout_sort_set_files(vf->layout, type, vf->sort_ascend, vf->sort_case);
 		}
 	else
 		{
-		vf_sort_set(vf, type, vf->sort_ascend);
+		vf_sort_set(vf, type, vf->sort_ascend, vf->sort_case);
 		}
 }
 
@@ -505,11 +505,25 @@ static void vf_pop_menu_sort_ascend_cb(GtkWidget *, gpointer data)
 
 	if (vf->layout)
 		{
-		layout_sort_set(vf->layout, vf->sort_method, !vf->sort_ascend);
+		layout_sort_set_files(vf->layout, vf->sort_method, !vf->sort_ascend, vf->sort_case);
 		}
 	else
 		{
-		vf_sort_set(vf, vf->sort_method, !vf->sort_ascend);
+		vf_sort_set(vf, vf->sort_method, !vf->sort_ascend, vf->sort_case);
+		}
+}
+
+static void vf_pop_menu_sort_case_cb(GtkWidget *, gpointer data)
+{
+	auto vf = static_cast<ViewFile *>(data);
+
+	if (vf->layout)
+		{
+		layout_sort_set_files(vf->layout, vf->sort_method, vf->sort_ascend, !vf->sort_case);
+		}
+	else
+		{
+		vf_sort_set(vf, vf->sort_method, vf->sort_ascend, !vf->sort_case);
 		}
 }
 
@@ -739,6 +753,8 @@ GtkWidget *vf_pop_menu(ViewFile *vf)
 	menu_item_add_divider(submenu);
 	menu_item_add_check(submenu, _("Ascending"), vf->sort_ascend,
 			    G_CALLBACK(vf_pop_menu_sort_ascend_cb), vf);
+	menu_item_add_check(submenu, _("Case"), vf->sort_ascend,
+			    G_CALLBACK(vf_pop_menu_sort_case_cb), vf);
 
 	item = menu_item_add(menu, _("_Sort"), nullptr, nullptr);
 	gtk_menu_item_set_submenu(GTK_MENU_ITEM(item), submenu);

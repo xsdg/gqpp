@@ -91,15 +91,15 @@ void layout_marks_set(LayoutWindow *lw, gboolean enable);
 
 void layout_file_filter_set(LayoutWindow *lw, gboolean enable);
 
-void layout_sort_set(LayoutWindow *lw, SortType type, gboolean ascend);
-gboolean layout_sort_get(LayoutWindow *lw, SortType *type, gboolean *ascend);
+void layout_sort_set_files(LayoutWindow *lw, SortType type, gboolean ascend, gboolean case_sensitive);
+gboolean layout_sort_get(LayoutWindow *lw, SortType *type, gboolean *ascend, gboolean *case_sensitive);
 
 gboolean layout_geometry_get(LayoutWindow *lw, gint *x, gint *y, gint *w, gint *h);
 gboolean layout_geometry_get_dividers(LayoutWindow *lw, gint *h, gint *v);
 
 void layout_views_set(LayoutWindow *lw, DirViewType dir_view_type, FileViewType file_view_type);
 
-void layout_views_set_sort(LayoutWindow *lw, SortType method, gboolean ascend);
+void layout_views_set_sort_dir(LayoutWindow *lw, SortType method, gboolean ascend, gboolean case_sensitive);
 
 void layout_status_update(LayoutWindow *lw, const gchar *text);
 

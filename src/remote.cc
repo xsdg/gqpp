@@ -526,7 +526,7 @@ static void gr_slideshow_start_rec(const gchar *text, GIOChannel *, gpointer)
 	g_free(tilde_filename);
 
 	layout_valid(&lw_id);
-	list = filelist_recursive_full(dir_fd, lw_id->sort_method, lw_id->sort_ascend);
+	list = filelist_recursive_full(dir_fd, lw_id->options.file_view_list_sort.method, lw_id->options.file_view_list_sort.ascend, lw_id->options.file_view_list_sort.case_sensitive);
 	file_data_unref(dir_fd);
 	if (!list) return;
 

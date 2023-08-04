@@ -155,6 +155,9 @@ gchar *sort_type_get_text(SortType method)
 		case SORT_PATH:
 			return _("Sort by path");
 			break;
+		case SORT_NUMBER:
+			return _("Sort by number");
+			break;
 		case SORT_RATING:
 			return _("Sort by rating");
 			break;
@@ -201,6 +204,7 @@ GtkWidget *submenu_add_sort(GtkWidget *menu, GCallback func, gpointer data,
 	g_object_set_data(G_OBJECT(submenu), "submenu_data", data);
 
 	submenu_add_sort_item(submenu, func, SORT_NAME, show_current, type);
+	submenu_add_sort_item(submenu, func, SORT_NUMBER, show_current, type);
 	submenu_add_sort_item(submenu, func, SORT_TIME, show_current, type);
 	submenu_add_sort_item(submenu, func, SORT_CTIME, show_current, type);
 	submenu_add_sort_item(submenu, func, SORT_EXIFTIME, show_current, type);
@@ -233,6 +237,7 @@ GtkWidget *submenu_add_dir_sort(GtkWidget *menu, GCallback func, gpointer data,
 	g_object_set_data(G_OBJECT(submenu), "submenu_data", data);
 
 	submenu_add_sort_item(submenu, func, SORT_NAME, show_current, type);
+	submenu_add_sort_item(submenu, func, SORT_NUMBER, show_current, type);
 	submenu_add_sort_item(submenu, func, SORT_TIME, show_current, type);
 	if (include_path) submenu_add_sort_item(submenu, func, SORT_PATH, show_current, type);
 	if (include_none) submenu_add_sort_item(submenu, func, SORT_NONE, show_current, type);

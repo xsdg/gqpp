@@ -417,14 +417,21 @@ static void layout_sort_menu_cb(GtkWidget *widget, gpointer data)
 		{
 		vf_read_metadata_in_idle(lw->vf);
 		}
-	layout_sort_set(lw, type, lw->sort_ascend);
+	layout_sort_set_files(lw, type, lw->options.file_view_list_sort.ascend, lw->options.file_view_list_sort.case_sensitive);
 }
 
 static void layout_sort_menu_ascend_cb(GtkWidget *, gpointer data)
 {
 	auto lw = static_cast<LayoutWindow *>(data);
 
-	layout_sort_set(lw, lw->sort_method, !lw->sort_ascend);
+	layout_sort_set_files(lw, lw->options.file_view_list_sort.method, !lw->options.file_view_list_sort.ascend, lw->options.file_view_list_sort.case_sensitive);
+}
+
+static void layout_sort_menu_case_cb(GtkWidget *, gpointer data)
+{
+	auto lw = static_cast<LayoutWindow *>(data);
+
+	layout_sort_set_files(lw, lw->options.file_view_list_sort.method, lw->options.file_view_list_sort.ascend, !lw->options.file_view_list_sort.case_sensitive);
 }
 
 static void layout_sort_menu_hide_cb(GtkWidget *widget, gpointer)
@@ -438,7 +445,7 @@ static void layout_sort_button_press_cb(GtkWidget *, gpointer data)
 	auto lw = static_cast<LayoutWindow *>(data);
 	GtkWidget *menu;
 
-	menu = submenu_add_sort(nullptr, G_CALLBACK(layout_sort_menu_cb), lw, FALSE, FALSE, TRUE, lw->sort_method);
+	menu = submenu_add_sort(nullptr, G_CALLBACK(layout_sort_menu_cb), lw, FALSE, FALSE, TRUE, lw->options.file_view_list_sort.method);
 
 	/* take ownership of menu */
 #ifdef GTK_OBJECT_FLOATING
@@ -452,7 +459,8 @@ static void layout_sort_button_press_cb(GtkWidget *, gpointer data)
 
 	/* ascending option */
 	menu_item_add_divider(menu);
-	menu_item_add_check(menu, _("Ascending"), lw->sort_ascend, G_CALLBACK(layout_sort_menu_ascend_cb), lw);
+	menu_item_add_check(menu, _("Ascending"), lw->options.file_view_list_sort.ascend, G_CALLBACK(layout_sort_menu_ascend_cb), lw);
+	menu_item_add_check(menu, _("Case"), lw->options.file_view_list_sort.case_sensitive, G_CALLBACK(layout_sort_menu_case_cb), lw);
 
 	g_signal_connect(G_OBJECT(menu), "selection_done",
 			 G_CALLBACK(layout_sort_menu_hide_cb), NULL);
@@ -473,7 +481,7 @@ static GtkWidget *layout_sort_button(LayoutWindow *lw, GtkWidget *box)
 	gtk_widget_show(frame);
 
 	image = gtk_image_new_from_icon_name(GQ_ICON_PAN_DOWN, GTK_ICON_SIZE_BUTTON);
-	button = gtk_button_new_with_label(sort_type_get_text(lw->sort_method));
+	button = gtk_button_new_with_label(sort_type_get_text(lw->options.file_view_list_sort.method));
 	gtk_button_set_image(GTK_BUTTON(button), image);
 	g_signal_connect(G_OBJECT(button), "clicked",
 			 G_CALLBACK(layout_sort_button_press_cb), lw);
@@ -1011,7 +1019,7 @@ static void layout_list_sync_sort(LayoutWindow *lw)
 {
 	if (!layout_valid(&lw)) return;
 
-	if (lw->vf) vf_sort_set(lw->vf, lw->sort_method, lw->sort_ascend);
+	if (lw->vf) vf_sort_set(lw->vf, lw->options.file_view_list_sort.method, lw->options.file_view_list_sort.ascend, lw->options.file_view_list_sort.case_sensitive);
 }
 
 GList *layout_selection_list(LayoutWindow *lw)
@@ -1234,7 +1242,7 @@ gboolean layout_set_fd(LayoutWindow *lw, FileData *fd)
 	if (options->metadata.confirm_on_dir_change && dir_changed)
 		metadata_write_queue_confirm(FALSE, nullptr, nullptr);
 
-	if (lw->vf && (options->read_metadata_in_idle || (lw->sort_method == SORT_EXIFTIME || lw->sort_method == SORT_EXIFTIMEDIGITIZED || lw->sort_method == SORT_RATING)))
+	if (lw->vf && (options->read_metadata_in_idle || (lw->options.file_view_list_sort.method == SORT_EXIFTIME || lw->options.file_view_list_sort.method == SORT_EXIFTIMEDIGITIZED || lw->options.file_view_list_sort.method == SORT_RATING)))
 		{
 		vf_read_metadata_in_idle(lw->vf);
 		}
@@ -1317,24 +1325,26 @@ gboolean layout_marks_get_unused(LayoutWindow *lw)
 }
 #pragma GCC diagnostic pop
 
-void layout_sort_set(LayoutWindow *lw, SortType type, gboolean ascend)
+void layout_sort_set_files(LayoutWindow *lw, SortType type, gboolean ascend, gboolean case_sensitive)
 {
 	if (!layout_valid(&lw)) return;
-	if (lw->sort_method == type && lw->sort_ascend == ascend) return;
+	if (lw->options.file_view_list_sort.method == type && lw->options.file_view_list_sort.ascend == ascend && lw->options.file_view_list_sort.case_sensitive == case_sensitive) return;
 
-	lw->sort_method = type;
-	lw->sort_ascend = ascend;
+	lw->options.file_view_list_sort.method = type; //??
+	lw->options.file_view_list_sort.ascend = ascend;
+	lw->options.file_view_list_sort.case_sensitive = case_sensitive;
 
 	if (lw->info_sort) gtk_button_set_label(GTK_BUTTON(lw->info_sort), sort_type_get_text(type));
 	layout_list_sync_sort(lw);
 }
 
-gboolean layout_sort_get(LayoutWindow *lw, SortType *type, gboolean *ascend)
+gboolean layout_sort_get(LayoutWindow *lw, SortType *type, gboolean *ascend, gboolean *case_sensitive)
 {
 	if (!layout_valid(&lw)) return FALSE;
 
-	if (type) *type = lw->sort_method;
-	if (ascend) *ascend = lw->sort_ascend;
+	if (type) *type = lw->options.file_view_list_sort.method;
+	if (ascend) *ascend = lw->options.file_view_list_sort.ascend;
+	if (case_sensitive) *case_sensitive = lw->options.file_view_list_sort.case_sensitive;
 
 	return TRUE;
 }
@@ -1404,14 +1414,15 @@ void layout_views_set(LayoutWindow *lw, DirViewType dir_view_type, FileViewType 
 	layout_style_set(lw, -1, nullptr);
 }
 
-void layout_views_set_sort(LayoutWindow *lw, SortType method, gboolean ascend)
+void layout_views_set_sort_dir(LayoutWindow *lw, SortType method, gboolean ascend, gboolean case_sensitive)
 {
 	if (!layout_valid(&lw)) return;
 
-	if (lw->options.dir_view_list_sort.method == method && lw->options.dir_view_list_sort.ascend == ascend) return;
+	if (lw->options.dir_view_list_sort.method == method && lw->options.dir_view_list_sort.ascend == ascend && lw->options.dir_view_list_sort.case_sensitive == case_sensitive) return;
 
 	lw->options.dir_view_list_sort.method = method;
 	lw->options.dir_view_list_sort.ascend = ascend;
+	lw->options.dir_view_list_sort.case_sensitive = case_sensitive;
 
 	layout_style_set(lw, -1, nullptr);
 }
@@ -2553,8 +2564,9 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 	else
 		init_layout_options(&lw->options);
 
-	lw->sort_method = SORT_NAME;
-	lw->sort_ascend = TRUE;
+	lw->options.file_view_list_sort.method = SORT_NAME;
+	lw->options.file_view_list_sort.ascend = TRUE;
+	lw->options.file_view_list_sort.case_sensitive = TRUE;
 
 	layout_set_unique_id(lw);
 
@@ -2686,8 +2698,14 @@ void layout_write_attributes(LayoutOptions *layout, GString *outstr, gint indent
 	WRITE_NL(); WRITE_CHAR(*layout, order);
 	WRITE_NL(); WRITE_UINT(*layout, dir_view_type);
 	WRITE_NL(); WRITE_UINT(*layout, file_view_type);
+
+	WRITE_NL(); WRITE_UINT(*layout, file_view_list_sort.method);
+	WRITE_NL(); WRITE_BOOL(*layout, file_view_list_sort.ascend);
+	WRITE_NL(); WRITE_BOOL(*layout, file_view_list_sort.case_sensitive);
+
 	WRITE_NL(); WRITE_UINT(*layout, dir_view_list_sort.method);
 	WRITE_NL(); WRITE_BOOL(*layout, dir_view_list_sort.ascend);
+	WRITE_NL(); WRITE_BOOL(*layout, dir_view_list_sort.case_sensitive);
 	WRITE_NL(); WRITE_BOOL(*layout, show_marks);
 	WRITE_NL(); WRITE_BOOL(*layout, show_file_filter);
 	WRITE_NL(); WRITE_BOOL(*layout, show_thumbnails);
@@ -2808,8 +2826,12 @@ void layout_load_attributes(LayoutOptions *layout, const gchar **attribute_names
 
 		if (READ_UINT_ENUM(*layout, dir_view_type)) continue;
 		if (READ_UINT_ENUM(*layout, file_view_type)) continue;
+		if (READ_UINT_ENUM(*layout, file_view_list_sort.method)) continue;
+		if (READ_BOOL(*layout, file_view_list_sort.ascend)) continue;
+		if (READ_BOOL(*layout, file_view_list_sort.case_sensitive)) continue;
 		if (READ_UINT_ENUM(*layout, dir_view_list_sort.method)) continue;
 		if (READ_BOOL(*layout, dir_view_list_sort.ascend)) continue;
+		if (READ_BOOL(*layout, dir_view_list_sort.case_sensitive)) continue;
 		if (READ_BOOL(*layout, show_marks)) continue;
 		if (READ_BOOL(*layout, show_file_filter)) continue;
 		if (READ_BOOL(*layout, show_thumbnails)) continue;
@@ -2978,7 +3000,9 @@ LayoutWindow *layout_new_from_config(const gchar **attribute_names, const gchar 
 		}
 
 	lw = layout_new_with_geometry(nullptr, &lop, use_commandline ? command_line->geometry : nullptr);
-	layout_sort_set(lw, options->file_sort.method, options->file_sort.ascending);
+	layout_sort_set_files(lw, lw->options.file_view_list_sort.method, lw->options.file_view_list_sort.ascend, lw->options.file_view_list_sort.case_sensitive);
+
+
 	layout_set_path(lw, path);
 
 	if (use_commandline && command_line->startup_full_screen) layout_image_full_screen_start(lw);

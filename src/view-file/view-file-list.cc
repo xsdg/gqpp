@@ -1083,14 +1083,14 @@ static void vflist_setup_iter_recursive(ViewFile *vf, GtkTreeStore *store, GtkTr
 		}
 }
 
-void vflist_sort_set(ViewFile *vf, SortType type, gboolean ascend)
+void vflist_sort_set(ViewFile *vf, SortType type, gboolean ascend, gboolean case_sensitive)
 {
 	gint i;
 	GHashTable *fd_idx_hash = g_hash_table_new(nullptr, nullptr);
 	GtkTreeStore *store;
 	GList *work;
 
-	if (vf->sort_method == type && vf->sort_ascend == ascend) return;
+	if (vf->sort_method == type && vf->sort_ascend == ascend && vf->sort_case == case_sensitive) return;
 	if (!vf->list) return;
 
 	work = vf->list;
@@ -1105,8 +1105,9 @@ void vflist_sort_set(ViewFile *vf, SortType type, gboolean ascend)
 
 	vf->sort_method = type;
 	vf->sort_ascend = ascend;
+	vf->sort_case = case_sensitive;
 
-	vf->list = filelist_sort(vf->list, vf->sort_method, vf->sort_ascend);
+	vf->list = filelist_sort(vf->list, vf->sort_method, vf->sort_ascend, vf->sort_case);
 
 	std::vector<gint> new_order;
 	new_order.reserve(i);
@@ -1933,7 +1934,7 @@ gboolean vflist_refresh(ViewFile *vf)
 		file_data_register_notify_func(vf_notify_cb, vf, NOTIFY_PRIORITY_MEDIUM);
 
 		DEBUG_1("%s vflist_refresh: sort", get_exec_time());
-		vf->list = filelist_sort(vf->list, vf->sort_method, vf->sort_ascend);
+		vf->list = filelist_sort(vf->list, vf->sort_method, vf->sort_ascend, vf->sort_case);
 		}
 
 	DEBUG_1("%s vflist_refresh: populate view", get_exec_time());

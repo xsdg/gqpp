@@ -226,7 +226,7 @@ gboolean pan_is_ignored(const gchar *s, gboolean ignore_symlinks)
 	return FALSE;
 }
 
-GList *pan_list_tree(FileData *dir_fd, SortType sort, gboolean ascend,
+GList *pan_list_tree(FileData *dir_fd, SortType sort, gboolean ascend, gboolean case_sensitive,
 		     gboolean ignore_symlinks)
 {
 	GList *flist;
@@ -237,8 +237,8 @@ GList *pan_list_tree(FileData *dir_fd, SortType sort, gboolean ascend,
 	filelist_read(dir_fd, &flist, &dlist);
 	if (sort != SORT_NONE)
 		{
-		flist = filelist_sort(flist, sort, ascend);
-		dlist = filelist_sort(dlist, sort, ascend);
+		flist = filelist_sort(flist, sort, ascend, case_sensitive);
+		dlist = filelist_sort(dlist, sort, ascend, case_sensitive);
 		}
 
 	result = flist;
@@ -255,8 +255,8 @@ GList *pan_list_tree(FileData *dir_fd, SortType sort, gboolean ascend,
 			{
 			if (sort != SORT_NONE)
 				{
-				flist = filelist_sort(flist, sort, ascend);
-				dlist = filelist_sort(dlist, sort, ascend);
+				flist = filelist_sort(flist, sort, ascend, case_sensitive);
+				dlist = filelist_sort(dlist, sort, ascend, case_sensitive);
 				}
 
 			result = g_list_concat(result, flist);

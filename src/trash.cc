@@ -74,7 +74,7 @@ static gint file_util_safe_number(gint64 free_space)
 
 		if (!sorted)
 			{
-			list = filelist_sort(list, SORT_NAME, TRUE);
+			list = filelist_sort(list, SORT_NAME, TRUE, TRUE);
 			sorted = TRUE;
 			}
 

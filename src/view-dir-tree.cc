@@ -971,10 +971,11 @@ static void vdtree_row_collapsed(GtkTreeView *treeview, GtkTreeIter *iter, GtkTr
 		}
 }
 
-static gint vdtree_sort_cb(GtkTreeModel *store, GtkTreeIter *a, GtkTreeIter *b, gpointer)
+static gint vdtree_sort_cb(GtkTreeModel *store, GtkTreeIter *a, GtkTreeIter *b, gpointer data)
 {
 	NodeData *nda;
 	NodeData *ndb;
+	auto vd = static_cast<ViewDir *>(data);
 
 	gtk_tree_model_get(store, a, DIR_COLUMN_POINTER, &nda, -1);
 	gtk_tree_model_get(store, b, DIR_COLUMN_POINTER, &ndb, -1);
@@ -983,10 +984,34 @@ static gint vdtree_sort_cb(GtkTreeModel *store, GtkTreeIter *a, GtkTreeIter *b, 
 	if (!nda->fd) return 1;
 	if (!ndb->fd) return -1;
 
-	if (options->file_sort.case_sensitive)
-		return strcmp(nda->fd->collate_key_name, ndb->fd->collate_key_name);
+	if (vd->layout->options.dir_view_list_sort.method == SORT_NUMBER)
+		{
+		if (vd->layout->options.dir_view_list_sort.case_sensitive == TRUE)
+			{
+			return strcmp(nda->fd->collate_key_name_natural, ndb->fd->collate_key_name_natural);
+			}
+		else
+			{
+			return strcmp(nda->fd->collate_key_name_nocase_natural, ndb->fd->collate_key_name_nocase_natural);
+			}
+		}
+	else if (vd->layout->options.dir_view_list_sort.method == SORT_TIME)
+		{
+		if (nda->fd->date < ndb->fd->date) return -1;
+		if (nda->fd->date > ndb->fd->date) return 1;
+		return 0;
+		}
 	else
-		return strcmp(nda->fd->collate_key_name_nocase, ndb->fd->collate_key_name_nocase);
+		{
+		if (vd->layout->options.dir_view_list_sort.case_sensitive == TRUE)
+			{
+			return strcmp(nda->fd->collate_key_name, ndb->fd->collate_key_name);
+			}
+		else
+			{
+			return strcmp(nda->fd->collate_key_name_nocase, ndb->fd->collate_key_name_nocase);
+			}
+		}
 }
 
 /*

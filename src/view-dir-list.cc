@@ -139,18 +139,20 @@ static gboolean vdlist_populate(ViewDir *vd, gboolean clear)
 	FileData *fd;
 	SortType sort_type = SORT_NAME;
 	gboolean sort_ascend = TRUE;
+	gboolean sort_case = TRUE;
 	gchar *link = nullptr;
 
 	if (vd->layout)
 		{
 		sort_type = vd->layout->options.dir_view_list_sort.method;
 		sort_ascend = vd->layout->options.dir_view_list_sort.ascend;
+		sort_case = vd->layout->options.dir_view_list_sort.case_sensitive;
 		}
 
 	old_list = VDLIST(vd)->list;
 
 	ret = filelist_read(vd->dir_fd, nullptr, &VDLIST(vd)->list);
-	VDLIST(vd)->list = filelist_sort(VDLIST(vd)->list, sort_type, sort_ascend);
+	VDLIST(vd)->list = filelist_sort(VDLIST(vd)->list, sort_type, sort_ascend, sort_case);
 
 	/* add . and .. */
 

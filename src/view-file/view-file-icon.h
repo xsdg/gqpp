@@ -36,7 +36,7 @@ ViewFile *vficon_new(ViewFile *vf, FileData *dir_fd);
 gboolean vficon_set_fd(ViewFile *vf, FileData *dir_fd);
 gboolean vficon_refresh(ViewFile *vf);
 
-void vficon_sort_set(ViewFile *vf, SortType type, gboolean ascend);
+void vficon_sort_set(ViewFile *vf, SortType type, gboolean ascend, gboolean case_sensitive);
 
 void vficon_marks_set(ViewFile *vf, gboolean enable);
 void vficon_star_rating_set(ViewFile *vf, gboolean enable);

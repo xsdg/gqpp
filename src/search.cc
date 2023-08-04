@@ -2517,12 +2517,12 @@ static gboolean search_step_cb(gpointer data)
 
 		if (success)
 			{
-			list = filelist_sort(list, SORT_NAME, TRUE);
+			list = filelist_sort(list, SORT_NAME, TRUE, TRUE);
 			sd->search_file_list = list;
 
 			if (sd->search_path_recurse)
 				{
-				dlist = filelist_sort(dlist, SORT_NAME, TRUE);
+				dlist = filelist_sort(dlist, SORT_NAME, TRUE, TRUE);
 				sd->search_folder_list = g_list_concat(dlist, sd->search_folder_list);
 				}
 			else
@@ -2874,7 +2874,7 @@ static gint search_result_sort_cb(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIt
 			return sort_matchdata_dimensions(fda, fdb);
 			break;
 		case SEARCH_COLUMN_PATH:
-			return utf8_compare(fda->fd->path, fdb->fd->path, options->file_sort.case_sensitive);
+			return utf8_compare(fda->fd->path, fdb->fd->path, TRUE);
 			break;
 		default:
 			break;

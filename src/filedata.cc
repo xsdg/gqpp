@@ -50,6 +50,7 @@ static void file_data_disconnect_sidecar_file(FileData *target, FileData *sfd);
 
 static SortType filelist_sort_method = SORT_NONE;
 static gboolean filelist_sort_ascend = TRUE;
+static gboolean filelist_sort_case = TRUE;
 
 /*
  *-----------------------------------------------------------------------------
@@ -281,16 +282,10 @@ static void file_data_set_collate_keys(FileData *fd)
 	g_free(fd->collate_key_name);
 	g_free(fd->collate_key_name_nocase);
 
-	if (options->file_sort.natural)
-		{
-	 	fd->collate_key_name = g_utf8_collate_key_for_filename(fd->name, -1);
-	 	fd->collate_key_name_nocase = g_utf8_collate_key_for_filename(caseless_name, -1);
-		}
-	else
-		{
-		fd->collate_key_name = g_utf8_collate_key(valid_name, -1);
-		fd->collate_key_name_nocase = g_utf8_collate_key(caseless_name, -1);
-		}
+ 	fd->collate_key_name_natural = g_utf8_collate_key_for_filename(fd->name, -1);
+ 	fd->collate_key_name_nocase_natural = g_utf8_collate_key_for_filename(caseless_name, -1);
+	fd->collate_key_name = g_utf8_collate_key(valid_name, -1);
+	fd->collate_key_name_nocase = g_utf8_collate_key(caseless_name, -1);
 
 	g_free(valid_name);
 	g_free(caseless_name);
@@ -1187,11 +1182,16 @@ gint filelist_sort_compare_filedata(FileData *fa, FileData *fb)
 			if (fa->format_class > fb->format_class) return 1;
 			/* fall back to name */
 			break;
+		case SORT_NUMBER:
+			ret = strcmp(fa->collate_key_name_natural, fb->collate_key_name_natural);
+			if (ret != 0) return ret;
+			/* fall back to name */
+			break;
 		default:
 			break;
 		}
 
-	if (options->file_sort.case_sensitive)
+	if (filelist_sort_case)
 		ret = strcmp(fa->collate_key_name, fb->collate_key_name);
 	else
 		ret = strcmp(fa->collate_key_name_nocase, fb->collate_key_name_nocase);
@@ -1216,30 +1216,32 @@ static gint filelist_sort_file_cb(gpointer a, gpointer b)
 	return filelist_sort_compare_filedata(static_cast<FileData *>(a), static_cast<FileData *>(b));
 }
 
-GList *filelist_sort_full(GList *list, SortType method, gboolean ascend, GCompareFunc cb)
+GList *filelist_sort_full(GList *list, SortType method, gboolean ascend, gboolean case_sensitive, GCompareFunc cb)
 {
 	filelist_sort_method = method;
 	filelist_sort_ascend = ascend;
+	filelist_sort_case = case_sensitive;
 	return g_list_sort(list, cb);
 }
 
-GList *filelist_insert_sort_full(GList *list, gpointer data, SortType method, gboolean ascend, GCompareFunc cb)
+GList *filelist_insert_sort_full(GList *list, gpointer data, SortType method, gboolean ascend, gboolean case_sensitive, GCompareFunc cb)
 {
 	filelist_sort_method = method;
 	filelist_sort_ascend = ascend;
+	filelist_sort_case = case_sensitive;
 	return g_list_insert_sorted(list, data, cb);
 }
 
-GList *filelist_sort(GList *list, SortType method, gboolean ascend)
+GList *filelist_sort(GList *list, SortType method, gboolean ascend, gboolean case_sensitive)
 {
-	return filelist_sort_full(list, method, ascend, reinterpret_cast<GCompareFunc>(filelist_sort_file_cb));
+	return filelist_sort_full(list, method, ascend, case_sensitive, reinterpret_cast<GCompareFunc>(filelist_sort_file_cb));
 }
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-function"
 GList *filelist_insert_sort_unused(GList *list, FileData *fd, SortType method, gboolean ascend)
 {
-	return filelist_insert_sort_full(list, fd, method, ascend, (GCompareFunc) filelist_sort_file_cb);
+	return filelist_insert_sort_full(list, fd, method, ascend, ascend, (GCompareFunc) filelist_sort_file_cb);
 }
 #pragma GCC diagnostic pop
 
@@ -1664,7 +1666,7 @@ static void filelist_recursive_append(GList **list, GList *dirs)
 		}
 }
 
-static void filelist_recursive_append_full(GList **list, GList *dirs, SortType method, gboolean ascend)
+static void filelist_recursive_append_full(GList **list, GList *dirs, SortType method, gboolean ascend, gboolean case_sensitive)
 {
 	GList *work;
 
@@ -1678,12 +1680,12 @@ static void filelist_recursive_append_full(GList **list, GList *dirs, SortType m
 		if (filelist_read(fd, &f, &d))
 			{
 			f = filelist_filter(f, FALSE);
-			f = filelist_sort_full(f, method, ascend, reinterpret_cast<GCompareFunc>(filelist_sort_file_cb));
+			f = filelist_sort_full(f, method, ascend, case_sensitive, reinterpret_cast<GCompareFunc>(filelist_sort_file_cb));
 			*list = g_list_concat(*list, f);
 
 			d = filelist_filter(d, TRUE);
 			d = filelist_sort_path(d);
-			filelist_recursive_append_full(list, d, method, ascend);
+			filelist_recursive_append_full(list, d, method, ascend, case_sensitive);
 			filelist_free(d);
 			}
 
@@ -1708,18 +1710,18 @@ GList *filelist_recursive(FileData *dir_fd)
 	return list;
 }
 
-GList *filelist_recursive_full(FileData *dir_fd, SortType method, gboolean ascend)
+GList *filelist_recursive_full(FileData *dir_fd, SortType method, gboolean ascend, gboolean case_sensitive)
 {
 	GList *list;
 	GList *d;
 
 	if (!filelist_read(dir_fd, &list, &d)) return nullptr;
 	list = filelist_filter(list, FALSE);
-	list = filelist_sort_full(list, method, ascend, reinterpret_cast<GCompareFunc>(filelist_sort_file_cb));
+	list = filelist_sort_full(list, method, ascend, case_sensitive, reinterpret_cast<GCompareFunc>(filelist_sort_file_cb));
 
 	d = filelist_filter(d, TRUE);
 	d = filelist_sort_path(d);
-	filelist_recursive_append_full(&list, d, method, ascend);
+	filelist_recursive_append_full(&list, d, method, ascend, case_sensitive);
 	filelist_free(d);
 
 	return list;

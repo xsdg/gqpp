@@ -79,9 +79,9 @@ void file_data_disable_grouping_list(GList *fd_list, gboolean disable);
 
 gint filelist_sort_compare_filedata(FileData *fa, FileData *fb);
 gint filelist_sort_compare_filedata_full(FileData *fa, FileData *fb, SortType method, gboolean ascend);
-GList *filelist_sort(GList *list, SortType method, gboolean ascend);
-GList *filelist_sort_full(GList *list, SortType method, gboolean ascend, GCompareFunc cb);
-GList *filelist_insert_sort_full(GList *list, gpointer data, SortType method, gboolean ascend, GCompareFunc cb);
+GList *filelist_sort(GList *list, SortType method, gboolean ascend, gboolean case_sensitive);
+GList *filelist_sort_full(GList *list, SortType method, gboolean ascend, gboolean case_sensitive, GCompareFunc cb);
+GList *filelist_insert_sort_full(GList *list, gpointer data, SortType method, gboolean ascend, gboolean case_sensitive, GCompareFunc cb);
 
 gboolean filelist_read(FileData *dir_fd, GList **files, GList **dirs);
 gboolean filelist_read_lstat(FileData *dir_fd, GList **files, GList **dirs);
@@ -94,7 +94,7 @@ GList *filelist_filter(GList *list, gboolean is_dir_list);
 
 GList *filelist_sort_path(GList *list);
 GList *filelist_recursive(FileData *dir_fd);
-GList *filelist_recursive_full(FileData *dir_fd, SortType method, gboolean ascend);
+GList *filelist_recursive_full(FileData *dir_fd, SortType method, gboolean ascend, gboolean case_sensitive);
 
 using FileDataGetMarkFunc = gboolean (*)(FileData *, gint, gpointer);
 using FileDataSetMarkFunc = gboolean (*)(FileData *, gint, gboolean, gpointer);

@@ -31,7 +31,7 @@ void pan_layout_resize(PanWindow *pw);
 
 void pan_cache_sync_date(PanWindow *pw, GList *list);
 
-GList *pan_cache_sort(GList *list, SortType method, gboolean ascend);
+GList *pan_cache_sort(GList *list, SortType method, gboolean ascend, gboolean case_sensitive);
 
 void pan_info_update(PanWindow *pw, PanItem *pi);
 

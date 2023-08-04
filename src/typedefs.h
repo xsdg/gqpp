@@ -83,6 +83,7 @@ enum SortType {
 	SORT_TIME,
 	SORT_CTIME,
 	SORT_PATH,
+	SORT_NUMBER,
 	SORT_EXIFTIME,
 	SORT_EXIFTIMEDIGITIZED,
 	SORT_RATING,
@@ -613,6 +614,8 @@ struct FileData {
 	gchar *format_name; /**< set by the image loader */
 	gchar *collate_key_name;
 	gchar *collate_key_name_nocase;
+	gchar *collate_key_name_natural;
+	gchar *collate_key_name_nocase_natural;
 	gint64 size;
 	time_t date;
 	time_t cdate;
@@ -672,7 +675,14 @@ struct LayoutOptions
 	struct {
 		SortType method;
 		gboolean ascend;
+		gboolean case_sensitive;
 	} dir_view_list_sort;
+
+	struct {
+		SortType method;
+		gboolean ascend;
+		gboolean case_sensitive;
+	} file_view_list_sort;
 
 	gboolean show_thumbnails;
 	gboolean show_marks;
@@ -845,9 +855,6 @@ struct LayoutWindow
 
 	GtkWidget *file_view;
 
-	SortType sort_method;
-	gboolean sort_ascend;
-
 	GtkWidget *info_box; /**< status bar */
 	GtkWidget *info_progress_bar; /**< status bar */
 	GtkWidget *info_sort; /**< status bar */
@@ -948,6 +955,7 @@ struct ViewFile
 
 	SortType sort_method;
 	gboolean sort_ascend;
+	gboolean sort_case;
 
 	/* func list */
 	void (*func_thumb_status)(ViewFile *vf, gdouble val, const gchar *text, gpointer data);

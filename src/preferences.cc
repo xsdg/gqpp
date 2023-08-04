@@ -268,7 +268,6 @@ static void config_window_apply()
 	if (options->file_filter.show_parent_directory != c_options->file_filter.show_parent_directory) refresh = TRUE;
 	if (options->file_filter.show_dot_directory != c_options->file_filter.show_dot_directory) refresh = TRUE;
 	if (options->file_sort.case_sensitive != c_options->file_sort.case_sensitive) refresh = TRUE;
-	if (options->file_sort.natural != c_options->file_sort.natural) refresh = TRUE;
 	if (options->file_filter.disable_file_extension_checks != c_options->file_filter.disable_file_extension_checks) refresh = TRUE;
 	if (options->file_filter.disable != c_options->file_filter.disable) refresh = TRUE;
 
@@ -321,7 +320,6 @@ static void config_window_apply()
 	options->file_filter.disable_file_extension_checks = c_options->file_filter.disable_file_extension_checks;
 
 	options->file_sort.case_sensitive = c_options->file_sort.case_sensitive;
-	options->file_sort.natural = c_options->file_sort.natural;
 	options->file_filter.disable = c_options->file_filter.disable;
 
 	config_entry_to_option(sidecar_ext_entry, &options->sidecar.ext, nullptr);
@@ -2658,10 +2656,7 @@ static void config_tab_files(GtkWidget *notebook)
 			      options->file_filter.show_hidden_files, &c_options->file_filter.show_hidden_files);
 	pref_checkbox_new_int(group, _("Show parent folder (..)"),
 			      options->file_filter.show_parent_directory, &c_options->file_filter.show_parent_directory);
-	pref_checkbox_new_int(group, _("Case sensitive sort"),
-			      options->file_sort.case_sensitive, &c_options->file_sort.case_sensitive);
-	pref_checkbox_new_int(group, _("Natural sort order - Requires restart"),
-					  options->file_sort.natural, &c_options->file_sort.natural);
+	pref_checkbox_new_int(group, _("Case sensitive sort (Search and Collection windows, and tab completion)"), options->file_sort.case_sensitive, &c_options->file_sort.case_sensitive);
 	pref_checkbox_new_int(group, _("Disable file extension checks"),
 			      options->file_filter.disable_file_extension_checks, &c_options->file_filter.disable_file_extension_checks);
 

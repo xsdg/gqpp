@@ -24,7 +24,7 @@
       </varlistentry>
       <varlistentry>
         <term>
-          <guilabel>Case sensitive sort</guilabel>
+          <guilabel>Case sensitive sort (Collection and Search windows, and tab completion)</guilabel>
         </term>
         <listitem>
           <para>Files and folders are sorted such that upper case letters occur before lower case letters.</para>
@@ -33,15 +33,6 @@
             <para />
             Disabled result: A, a, B, b, C, c
           </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <guilabel>Natural sort order</guilabel>
-        </term>
-        <listitem>
-          <para>Files and folders are sorted with the dot '.' treated as a special case, so the order is e.g. "event.c" "event.h" "eventgenerator.c". Also, files containing numbers are sorted as "file1" "file5" "file10".</para>
-          <note>If this option is selected and a standard numerical sort is required and the files are in a single folder, a workaround is to put the files in a temporary collection and select Sort By Path</note>
         </listitem>
       </varlistentry>
       <varlistentry>

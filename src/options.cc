@@ -75,10 +75,7 @@ ConfOptions *init_options(ConfOptions *options)
 	options->file_ops.safe_delete_path = nullptr;
 	options->file_ops.no_trash = FALSE;
 
-	options->file_sort.ascending = TRUE;
 	options->file_sort.case_sensitive = FALSE;
-	options->file_sort.method = SORT_NAME;
-	options->file_sort.natural = FALSE;
 
 	options->fullscreen.above = FALSE;
 	options->fullscreen.clean_flip = FALSE;
@@ -292,7 +289,11 @@ LayoutOptions *init_layout_options(LayoutOptions *options)
 
 	options->dir_view_type = DIRVIEW_LIST;
 	options->dir_view_list_sort.ascend = TRUE;
+	options->dir_view_list_sort.case_sensitive = TRUE;
 	options->dir_view_list_sort.method = SORT_NAME;
+	options->file_view_list_sort.ascend = TRUE;
+	options->file_view_list_sort.case_sensitive = TRUE;
+	options->file_view_list_sort.method = SORT_NAME;
 	options->file_view_type = FILEVIEW_LIST;
 	options->float_window.h = 450;
 	options->float_window.vdivider_pos = -1;
@@ -352,7 +353,6 @@ static void sync_options_with_current_state(ConfOptions *options)
 	if (layout_valid(&lw))
 		{
 		layout_sync_options_with_current_state(lw);
-		layout_sort_get(lw, &options->file_sort.method, &options->file_sort.ascending);
 
 		options->color_profile.enabled = layout_image_color_profile_get_use(lw);
 		layout_image_color_profile_get(lw,
