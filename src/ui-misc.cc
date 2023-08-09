@@ -244,6 +244,7 @@ GtkWidget *pref_button_new(GtkWidget *parent_box, const gchar *icon_name,
 
 	if (text)
 		{
+		gtk_button_set_use_underline(GTK_BUTTON(button), TRUE);
 		gtk_button_set_label(GTK_BUTTON(button), text);
 		}
 
