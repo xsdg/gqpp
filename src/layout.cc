@@ -1327,7 +1327,7 @@ void layout_sort_set_files(LayoutWindow *lw, SortType type, gboolean ascend, gbo
 	if (!layout_valid(&lw)) return;
 	if (lw->options.file_view_list_sort.method == type && lw->options.file_view_list_sort.ascend == ascend && lw->options.file_view_list_sort.case_sensitive == case_sensitive) return;
 
-	lw->options.file_view_list_sort.method = type; //??
+	lw->options.file_view_list_sort.method = type;
 	lw->options.file_view_list_sort.ascend = ascend;
 	lw->options.file_view_list_sort.case_sensitive = case_sensitive;
 
