@@ -1889,6 +1889,7 @@ static void pan_window_new_real(FileData *dir_fd)
 	gtk_table_set_row_spacings(GTK_TABLE(table), 2);
 	gtk_table_set_col_spacings(GTK_TABLE(table), 2);
 
+	pw->imd = image_new(TRUE);
 	pw->imd_normal = pw->imd;
 
 	g_signal_connect(G_OBJECT(pw->imd->pr), "zoom",
