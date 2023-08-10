@@ -36,180 +36,117 @@ enum {
 	DIALOG_APPEND
 };
 
+static void collection_save_confirmed(GenericDialog *gdlg, gboolean overwrite, CollectionData *cd);
 
-static gboolean collection_save_confirmed(FileDialog *fd, gboolean overwrite, CollectionData *cd);
-
-
-static void collection_confirm_ok_cb(GenericDialog *, gpointer data)
+static void collection_confirm_ok_cb(GenericDialog *gdlg, gpointer data)
 {
-	auto fd = static_cast<FileDialog *>(data);
-	auto cd = static_cast<CollectionData *>(GENERIC_DIALOG(fd)->data);
+	auto cd = static_cast<CollectionData *>(data);
 
-	if (!collection_save_confirmed(fd, TRUE, cd))
-		{
-		collection_unref(cd);
-		file_dialog_close(fd);
-		}
+	collection_save_confirmed(gdlg, TRUE, cd);
 }
 
-static void collection_confirm_cancel_cb(GenericDialog *, gpointer)
+static void collection_confirm_cancel_cb(GenericDialog *gdlg, gpointer)
 {
-	/* this is a no-op, so the cancel button is added */
+	generic_dialog_close(gdlg);
 }
 
-static gboolean collection_save_confirmed(FileDialog *fd, gboolean overwrite, CollectionData *cd)
+static void collection_save_confirmed(GenericDialog *gdlg, gboolean overwrite, CollectionData *cd)
 {
 	gchar *buf;
+	GenericDialog *gdlg_overwrite;
 
-	if (isdir(fd->dest_path))
+	generic_dialog_close(gdlg);
+
+	if (!overwrite && isfile(cd->collection_path))
 		{
-		buf = g_strdup_printf(_("Specified path:\n%s\nis a folder, collections are files"), fd->dest_path);
-		file_util_warning_dialog(_("Invalid filename"), buf, GQ_ICON_DIALOG_INFO, GENERIC_DIALOG(fd)->dialog);
-		g_free(buf);
-		return FALSE;
+		gdlg_overwrite = file_util_gen_dlg(_("Overwrite collection"), "dlg_confirm", nullptr, FALSE, collection_confirm_cancel_cb, cd);
+		generic_dialog_add_message(gdlg_overwrite, GQ_ICON_DIALOG_QUESTION, _("Overwrite existing collection?"), cd->name, TRUE);
+		generic_dialog_add_button(gdlg_overwrite, GQ_ICON_OK, _("Overwrite"), collection_confirm_ok_cb, TRUE);
+
+		gtk_widget_show(gdlg_overwrite->dialog);
+
+		return;
 		}
 
-	if (!overwrite && isfile(fd->dest_path))
+	if (!collection_save(cd, cd->collection_path))
 		{
-		GenericDialog *gd;
-
-		gd = file_util_gen_dlg(_("Overwrite File"), "dlg_confirm",
-					GENERIC_DIALOG(fd)->dialog, TRUE,
-					collection_confirm_cancel_cb, fd);
-
-		generic_dialog_add_message(gd, GQ_ICON_DIALOG_QUESTION,
-					   _("Overwrite existing file?"), fd->dest_path, TRUE);
-
-		generic_dialog_add_button(gd, GQ_ICON_OK, _("_Overwrite"), collection_confirm_ok_cb, TRUE);
-
-		gtk_widget_show(gd->dialog);
-
-		return TRUE;
-		}
-
-	if (!collection_save(cd, fd->dest_path))
-		{
-		buf = g_strdup_printf(_("Failed to save the collection:\n%s"), fd->dest_path);
-		file_util_warning_dialog(_("Save Failed"), buf, GQ_ICON_DIALOG_ERROR, GENERIC_DIALOG(fd)->dialog);
+		buf = g_strdup_printf(_("Failed to save the collection:\n%s"), cd->collection_path);
+		file_util_warning_dialog(_("Save Failed"), buf, GQ_ICON_DIALOG_ERROR, GENERIC_DIALOG(gdlg)->dialog);
 		g_free(buf);
 		}
 
 	collection_unref(cd);
-	file_dialog_sync_history(fd, TRUE);
-
-	if (fd->type == DIALOG_SAVE_CLOSE) collection_window_close_by_collection(cd);
-	file_dialog_close(fd);
-
-	return TRUE;
+	collection_window_close_by_collection(cd);
 }
 
-static void collection_save_cb(FileDialog *fd, gpointer data)
+static void collection_save_cb(GenericDialog *gd, gpointer data)
 {
 	auto cd = static_cast<CollectionData *>(data);
-	const gchar *path;
 
-	path = fd->dest_path;
+	cd->collection_path = g_strconcat(get_collections_dir(), G_DIR_SEPARATOR_S, gtk_entry_get_text(GTK_ENTRY(cd->dialog_name_entry)), GQ_COLLECTION_EXT, nullptr);
 
-	/** @FIXME utf8 */
-	if (!file_extension_match(path, GQ_COLLECTION_EXT))
-		{
-		gchar *buf;
-		buf = g_strconcat(path, GQ_COLLECTION_EXT, NULL);
-		gtk_entry_set_text(GTK_ENTRY(fd->entry), buf);
-		g_free(buf);
-		}
-
-	collection_save_confirmed(fd, FALSE, cd);
+	collection_save_confirmed(gd, FALSE, cd);
 }
 
-static void real_collection_button_pressed(FileDialog *fd, gpointer data, gint append)
+static void real_collection_button_pressed(GenericDialog *, gpointer data)
 {
 	auto cd = static_cast<CollectionData *>(data);
-	gboolean err = FALSE;
-	std::unique_ptr<gchar, decltype(&g_free)> text{nullptr, g_free};
+	GList *collection_list = nullptr;
 
-	if (!isname(fd->dest_path))
-		{
-		err = TRUE;
-		text.reset(g_strdup_printf(_("No such file '%s'."), fd->dest_path));
-		}
-	if (!err && isdir(fd->dest_path))
-		{
-		err = TRUE;
-		text.reset(g_strdup_printf(_("'%s' is a directory, not a collection file."), fd->dest_path));
-		}
-	if (!err && !access_file(fd->dest_path, R_OK))
-		{
-		err = TRUE;
-		text.reset(g_strdup_printf(_("You do not have read permissions on the file '%s'."), fd->dest_path));
-		}
+	collect_manager_list(nullptr, nullptr, &collection_list);
 
-	if (err)
-		{
-		if (text)
-			{
-			file_util_warning_dialog(_("Can not open collection file"), text.get(), GQ_ICON_DIALOG_ERROR, nullptr);
-			}
-		return;
-		}
+	auto append_collection_path = static_cast<gchar *>(g_list_nth_data(collection_list, cd->collection_append_index));
+	collection_load(cd, append_collection_path, COLLECTION_LOAD_APPEND);
 
-	if (append)
-		{
-		collection_load(cd, fd->dest_path, COLLECTION_LOAD_APPEND);
-		collection_unref(cd);
-		}
-	else
-		{
-		collection_window_new(fd->dest_path);
-		}
-
-	file_dialog_sync_history(fd, TRUE);
-	file_dialog_close(fd);
+	collection_unref(cd);
+	string_list_free(collection_list);
 }
 
-static void collection_load_cb(FileDialog *fd, gpointer data)
+static void collection_append_cb(GenericDialog *gd, gpointer data)
 {
-	real_collection_button_pressed(fd, data, FALSE);
+	real_collection_button_pressed(gd, data);
 }
 
-static void collection_append_cb(FileDialog *fd, gpointer data)
-{
-	real_collection_button_pressed(fd, data, TRUE);
-}
-
-static void collection_save_or_load_dialog_close_cb(FileDialog *fd, gpointer data)
+static void collection_save_or_load_dialog_close_cb(GenericDialog *gdlg, gpointer data)
 {
 	auto cd = static_cast<CollectionData *>(data);
 
 	if (cd) collection_unref(cd);
-	file_dialog_close(fd);
+	generic_dialog_close(gdlg);
 }
 
-static void collection_save_or_load_dialog(const gchar *path,
-					   gint type, CollectionData *cd)
+static void collection_append_menu_cb(GtkWidget *collection_append_combo, gpointer data)
 {
-	FileDialog *fd;
+	auto option = static_cast<gint *>(data);
+
+	*option = gtk_combo_box_get_active(GTK_COMBO_BOX(collection_append_combo));
+}
+
+static void collection_save_or_append_dialog(gint type, CollectionData *cd)
+{
+	GenericDialog *gdlg;
 	GtkWidget *parent = nullptr;
 	CollectWindow *cw;
 	const gchar *title;
 	const gchar *btntext;
 	gpointer btnfunc;
 	const gchar *icon_name;
+	GList *collection_list = nullptr;
+	GList *work;
+	GString *out_string = g_string_new(nullptr);
+	GtkWidget *collection_append_combo;
+	GtkWidget *existing_collections;
+	GtkWidget *save_as_label;
+	GtkWidget *scrolled;
+	GtkWidget *viewport;
 
 	if (type == DIALOG_SAVE || type == DIALOG_SAVE_CLOSE)
 		{
 		if (!cd) return;
 		title = _("Save collection");
-		btntext = nullptr;
+		btntext = _("Save");
 		btnfunc = reinterpret_cast<gpointer>(collection_save_cb);
 		icon_name = GQ_ICON_SAVE;
-		}
-	else if (type == DIALOG_LOAD)
-		{
-		title = _("Open collection");
-		btntext = nullptr;
-		btnfunc = reinterpret_cast<gpointer>(collection_load_cb);
-		icon_name = GQ_ICON_OPEN;
 		}
 	else
 		{
@@ -225,43 +162,100 @@ static void collection_save_or_load_dialog(const gchar *path,
 	cw = collection_window_find(cd);
 	if (cw) parent = cw->window;
 
-	fd = file_util_file_dlg(title, "dlg_collection", parent,
-			     collection_save_or_load_dialog_close_cb, cd);
+	if (g_strcmp0(icon_name, GQ_ICON_SAVE) == 0)
+		{
+		gdlg = file_util_gen_dlg(title, "dlg_collection_save", NULL, FALSE, collection_save_or_load_dialog_close_cb, cd);
 
-	generic_dialog_add_message(GENERIC_DIALOG(fd), nullptr, title, nullptr, FALSE);
-	file_dialog_add_button(fd, icon_name, btntext, reinterpret_cast<void (*)(FileDialog *, gpointer)>(btnfunc), TRUE);
+		generic_dialog_add_message(GENERIC_DIALOG(gdlg), nullptr, title, _("Existing collections:"), FALSE);
+		generic_dialog_add_button(gdlg, icon_name, btntext, reinterpret_cast<void (*)(GenericDialog *, gpointer)>(btnfunc), TRUE);
 
-	file_dialog_add_path_widgets(fd, get_collections_dir(), path,
-				     "collection_load_save", GQ_COLLECTION_EXT, _("Collection Files"));
+		collect_manager_list(&collection_list, nullptr, nullptr);
 
-	fd->type = type;
+		work = collection_list;
+		while (work)
+			{
+			auto collection_name = static_cast<const gchar *>(work->data);
+			out_string = g_string_append(out_string, g_strdup(collection_name));
+			out_string = g_string_append(out_string, "\n");
 
-	gtk_widget_show(GENERIC_DIALOG(fd)->dialog);
+			work = work->next;
+			}
+
+		string_list_free(collection_list);
+
+		existing_collections = gtk_label_new(out_string->str);
+
+		scrolled = gtk_scrolled_window_new(nullptr, nullptr);
+		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+		gtk_widget_show(scrolled);
+
+		viewport = gtk_viewport_new(nullptr, nullptr);
+		gtk_viewport_set_shadow_type(GTK_VIEWPORT(viewport), GTK_SHADOW_NONE);
+		gtk_container_add(GTK_CONTAINER(viewport), existing_collections);
+		gtk_widget_show(viewport);
+		gtk_widget_show(existing_collections);
+		gtk_container_add(GTK_CONTAINER(scrolled), viewport);
+
+		gtk_box_pack_start(GTK_BOX(gdlg->vbox), scrolled, TRUE,TRUE, 0);
+
+		save_as_label = gtk_label_new("Save collection as:");
+		gtk_box_pack_start(GTK_BOX(gdlg->vbox), save_as_label, FALSE,FALSE, 0);
+		gtk_label_set_xalign(GTK_LABEL(save_as_label), 0.0);
+		gtk_widget_show(save_as_label);
+
+		cd->dialog_name_entry = gtk_entry_new();
+		gtk_widget_show(cd->dialog_name_entry);
+
+		gtk_box_pack_start(GTK_BOX(gdlg->vbox), cd->dialog_name_entry, FALSE, FALSE, 0);
+
+		gtk_entry_set_text(GTK_ENTRY(cd->dialog_name_entry), cd->name);
+		gtk_widget_grab_focus(cd->dialog_name_entry);
+		gtk_widget_show(GENERIC_DIALOG(gdlg)->dialog);
+		}
+	else if (g_strcmp0(icon_name, GQ_ICON_ADD) == 0)
+		{
+		gdlg = file_util_gen_dlg(title, "dlg_collection_append", parent, true, nullptr, cd);
+
+		generic_dialog_add_message(GENERIC_DIALOG(gdlg), nullptr, title, _("Select from existing collections:"), FALSE);
+		generic_dialog_add_button(gdlg, GQ_ICON_CANCEL, _("Cancel"), nullptr, TRUE);
+		generic_dialog_add_button(gdlg, icon_name, btntext, reinterpret_cast<void (*)(GenericDialog *, gpointer)>(btnfunc), TRUE);
+
+		collect_manager_list(&collection_list, nullptr, nullptr);
+
+		collection_append_combo = gtk_combo_box_text_new();
+
+		work = collection_list;
+		while (work)
+			{
+			auto collection_name = static_cast<const gchar *>(work->data);
+			gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(collection_append_combo), collection_name);
+			work = work->next;
+			}
+		string_list_free(collection_list);
+
+		gtk_combo_box_set_active(GTK_COMBO_BOX(collection_append_combo), 0);
+
+		g_signal_connect(G_OBJECT(collection_append_combo), "changed", G_CALLBACK(collection_append_menu_cb), &cd->collection_append_index);
+
+		gtk_widget_show(collection_append_combo);
+
+		gtk_box_pack_start(GTK_BOX(gdlg->vbox), collection_append_combo, TRUE,TRUE, 0);
+		gtk_widget_show(GENERIC_DIALOG(gdlg)->dialog);
+		}
 }
 
-void collection_dialog_save_as(gchar *path, CollectionData *cd)
+void collection_dialog_save_as(CollectionData *cd)
 {
-	if (!path) path = cd->path;
-	if (!path) path = cd->name;
-
-	collection_save_or_load_dialog(path, DIALOG_SAVE, cd);
+	collection_save_or_append_dialog(DIALOG_SAVE, cd);
 }
 
-void collection_dialog_save_close(gchar *path, CollectionData *cd)
+void collection_dialog_save_close(CollectionData *cd)
 {
-	if (!path) path = cd->path;
-	if (!path) path = cd->name;
-
-	collection_save_or_load_dialog(path, DIALOG_SAVE_CLOSE, cd);
+	collection_save_or_append_dialog(DIALOG_SAVE_CLOSE, cd);
 }
 
-void collection_dialog_load(gchar *path)
+void collection_dialog_append(CollectionData *cd)
 {
-	collection_save_or_load_dialog(path, DIALOG_LOAD, nullptr);
-}
-
-void collection_dialog_append(gchar *path, CollectionData *cd)
-{
-	collection_save_or_load_dialog(path, DIALOG_APPEND, cd);
+	collection_save_or_append_dialog(DIALOG_APPEND, cd);
 }
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

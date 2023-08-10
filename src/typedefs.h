@@ -451,6 +451,10 @@ struct CollectionData
 	gboolean changed; /**< contents changed since save flag */
 
 	GHashTable *existence;
+
+	GtkWidget *dialog_name_entry;
+	gchar *collection_path; /**< Full path to collection including extension */
+	gint collection_append_index;
 };
 
 struct CollectTable

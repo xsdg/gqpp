@@ -95,6 +95,8 @@ hard_coded_window_keys collection_window_keys[] = {
 	{static_cast<GdkModifierType>(0), 'B', N_("Sort by size")},
 	{static_cast<GdkModifierType>(0), 'P', N_("Sort by path")},
 	{GDK_SHIFT_MASK, 'P', N_("Print")},
+	{GDK_MOD1_MASK, 'A', N_("Append (Append collection dialog)")},
+	{GDK_MOD1_MASK, 'D', N_("Discard (Close modified collection dialog)")},
 	{static_cast<GdkModifierType>(0), 0, nullptr}
 };
 
@@ -677,7 +679,7 @@ static void collection_table_popup_save_as_cb(GtkWidget *, gpointer data)
 {
 	auto ct = static_cast<CollectTable *>(data);
 
-	collection_dialog_save_as(nullptr, ct->cd);
+	collection_dialog_save_as(ct->cd);
 }
 
 static void collection_table_popup_save_cb(GtkWidget *widget, gpointer data)
@@ -887,7 +889,7 @@ static void collection_table_popup_add_collection_cb(GtkWidget *, gpointer data)
 {
 	auto ct = static_cast<CollectTable *>(data);
 
-	collection_dialog_append(nullptr, ct->cd);
+	collection_dialog_append(ct->cd);
 }
 
 static void collection_table_popup_goto_original_cb(GtkWidget *, gpointer data)

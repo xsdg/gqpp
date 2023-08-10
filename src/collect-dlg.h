@@ -23,11 +23,11 @@
 #define COLLECT_DLG_H
 
 
-void collection_dialog_save_as(gchar *path, CollectionData *cd);
-void collection_dialog_save_close(gchar *path, CollectionData *cd);
+void collection_dialog_save_as(CollectionData *cd);
+void collection_dialog_save_close(CollectionData *cd);
 
-void collection_dialog_load(gchar *path);
-void collection_dialog_append(gchar *path, CollectionData *cd);
+//~ void collection_dialog_load(gchar *path);
+void collection_dialog_append(CollectionData *cd);
 
 
 #endif

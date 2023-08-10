@@ -1062,7 +1062,7 @@ void collect_manager_list(GList **names_exc, GList **names_inc, GList **paths)
 				}
 			if (paths != nullptr)
 				{
-				*paths = g_list_insert_sorted(*paths,fd->path,
+				*paths = g_list_insert_sorted(*paths, g_strdup(fd->path),
 											collection_manager_sort_cb);
 				*paths = g_list_first(*paths);
 				}

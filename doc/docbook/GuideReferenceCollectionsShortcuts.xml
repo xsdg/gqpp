@@ -45,4 +45,6 @@ keyboard shortcuts
 <row> <entry> <code> 	 <keycap>  D </keycap> </code> </entry> <entry>  Sort by date </entry> </row>
 <row> <entry> <code> 	 <keycap>  B </keycap> </code> </entry> <entry>  Sort by size </entry> </row>
 <row> <entry> <code> 	 <keycap>  P </keycap> </code> </entry> <entry>  Sort by path </entry> </row>
-<row> <entry> <code> 	Shift + <keycap>  P </keycap> </code> </entry> <entry>  Print </entry> </row> </tbody></tgroup></table>
+<row> <entry> <code> 	Shift + <keycap>  P </keycap> </code> </entry> <entry>  Print </entry> </row>
+<row> <entry> <code> 	Alt + <keycap>  A </keycap> </code> </entry> <entry>  Append (Append collection dialog) </entry> </row>
+<row> <entry> <code> 	Alt + <keycap>  D </keycap> </code> </entry> <entry>  Discard (Close modified collection dialog) </entry> </row> </tbody></tgroup></table>

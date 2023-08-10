@@ -29,6 +29,7 @@
 #include "cache-maint.h"
 #include "collect.h"
 #include "collect-dlg.h"
+#include "collect-io.h"
 #include "color-man.h"
 #include "dupe.h"
 #include "editors.h"
@@ -257,12 +258,29 @@ static void layout_menu_new_cb(GtkAction *, gpointer data)
 	collection_window_new(nullptr);
 }
 
-static void layout_menu_open_cb(GtkAction *, gpointer data)
+static void layout_menu_open_cb(GtkAction *widget, gpointer data)
 {
 	auto lw = static_cast<LayoutWindow *>(data);
+	gchar *path;
+	gint n;
+	GList *collection_list = nullptr;
 
 	layout_exit_fullscreen(lw);
-	collection_dialog_load(nullptr);
+
+	n = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(widget), "recent_index"));
+	collect_manager_list(nullptr, nullptr, &collection_list);
+
+	path = static_cast<gchar *>(g_list_nth_data(collection_list, n));
+
+	if (path)
+		{
+		/* make a copy of it */
+		path = g_strdup(path);
+		collection_window_new(path);
+		g_free(path);
+		}
+
+	string_list_free(collection_list);
 }
 
 static void layout_menu_search_cb(GtkAction *, gpointer data)
@@ -1886,7 +1904,7 @@ static void layout_menu_recent_cb(GtkWidget *widget, gpointer)
 	g_free(path);
 }
 
-static void layout_menu_recent_update(LayoutWindow *lw)
+static void layout_menu_collection_recent_update(LayoutWindow *lw)
 {
 	GtkWidget *menu;
 	GtkWidget *recent;
@@ -1934,6 +1952,62 @@ static void layout_menu_recent_update(LayoutWindow *lw)
 	gtk_widget_set_sensitive(recent, (n != 0));
 }
 
+static void layout_menu_collection_open_update(LayoutWindow *lw)
+{
+	gboolean free_name = FALSE;
+	gchar *name;
+	gint n;
+	GList *collection_list = nullptr;
+	GList *work;
+	GtkWidget *item;
+	GtkWidget *menu;
+	GtkWidget *recent;
+
+	if (!lw->ui_manager) return;
+
+	collect_manager_list(&collection_list, nullptr, nullptr);
+
+	n = 0;
+
+	menu = gtk_menu_new();
+
+	work = collection_list;
+	while (work)
+		{
+		const gchar *filename = static_cast<gchar *>(work->data);
+
+		if (file_extension_match(filename, GQ_COLLECTION_EXT))
+			{
+			name = remove_extension_from_path(filename);
+			free_name = TRUE;
+			}
+		else
+			{
+			name = const_cast<gchar *>(filename);
+			}
+
+		item = menu_item_add_simple(menu, name, G_CALLBACK(layout_menu_open_cb), lw);
+		if (free_name)
+			{
+			g_free(name);
+			}
+		g_object_set_data(G_OBJECT(item), "recent_index", GINT_TO_POINTER(n));
+		work = work->next;
+		n++;
+		}
+
+	string_list_free(collection_list);
+
+	if (n == 0)
+		{
+		menu_item_add(menu, _("Empty"), nullptr, nullptr);
+		}
+
+	recent = gtk_ui_manager_get_widget(lw->ui_manager, "/MainMenu/FileMenu/OpenCollection");
+	gtk_menu_item_set_submenu(GTK_MENU_ITEM(recent), menu);
+	gtk_widget_set_sensitive(recent, (n != 0));
+}
+
 void layout_recent_update_all()
 {
 	GList *work;
@@ -1944,7 +2018,8 @@ void layout_recent_update_all()
 		auto lw = static_cast<LayoutWindow *>(work->data);
 		work = work->next;
 
-		layout_menu_recent_update(lw);
+		layout_menu_collection_recent_update(lw);
+		layout_menu_collection_open_update(lw);
 		}
 }
 
@@ -2511,7 +2586,7 @@ static GtkActionEntry menu_entries[] = {
   { "RenameWindow",	GQ_ICON_EDIT,		N_("Rename window"),	nullptr,	N_("Rename window"),	CB(layout_menu_window_rename_cb) },
   { "DeleteWindow",	GQ_ICON_DELETE,		N_("Delete window"),	nullptr,	N_("Delete window"),	CB(layout_menu_window_delete_cb) },
   { "NewCollection",	GQ_ICON_COLLECTION,	N_("_New collection"),			"C",			N_("New collection"),			CB(layout_menu_new_cb) },
-  { "OpenCollection",	GQ_ICON_OPEN,		N_("_Open collection..."),		"O",			N_("Open collection..."),		CB(layout_menu_open_cb) },
+  { "OpenCollection",	GQ_ICON_OPEN,		N_("_Open collection..."),		"O",			N_("Open collection..."),		nullptr },
   { "OpenRecent",	nullptr,			N_("Open recen_t"),			nullptr,			N_("Open recent collection"),			nullptr },
   { "Search",		GQ_ICON_FIND,		N_("_Search..."),			"F3",			N_("Search..."),			CB(layout_menu_search_cb) },
   { "FindDupes",	GQ_ICON_FIND,		N_("_Find duplicates..."),		"D",			N_("Find duplicates..."),		CB(layout_menu_dupes_cb) },
@@ -3880,7 +3955,8 @@ void layout_util_sync(LayoutWindow *lw)
 {
 	layout_util_sync_views(lw);
 	layout_util_sync_thumb(lw);
-	layout_menu_recent_update(lw);
+	layout_menu_collection_recent_update(lw);
+	layout_menu_collection_open_update(lw);
 }
 
 /**

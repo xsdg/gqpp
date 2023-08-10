@@ -502,6 +502,7 @@ void collection_free(CollectionData *cd)
 
 	g_hash_table_destroy(cd->existence);
 
+	g_free(cd->collection_path);
 	g_free(cd->path);
 	g_free(cd->name);
 
@@ -977,7 +978,7 @@ static gboolean collection_window_keypress(GtkWidget *, GdkEventKey *event, gpoi
 				file_util_delete(nullptr, collection_table_selection_get_list(cw->table), cw->window);
 				break;
 			case 'S': case 's':
-				collection_dialog_save_as(nullptr, cw->cd);
+				collection_dialog_save_as(cw->cd);
 				break;
 			case 'W': case 'w':
 				collection_window_close(cw);
@@ -1003,7 +1004,7 @@ static gboolean collection_window_keypress(GtkWidget *, GdkEventKey *event, gpoi
 			case 'S': case 's':
 				if (!cw->cd->path)
 					{
-					collection_dialog_save_as(nullptr, cw->cd);
+					collection_dialog_save_as(cw->cd);
 					}
 				else if (!collection_save(cw->cd, cw->cd->path))
 					{
@@ -1011,7 +1012,7 @@ static gboolean collection_window_keypress(GtkWidget *, GdkEventKey *event, gpoi
 					}
 				break;
 			case 'A': case 'a':
-				collection_dialog_append(nullptr, cw->cd);
+				collection_dialog_append(cw->cd);
 				break;
 			case 'N': case 'n':
 				collection_set_sort_method(cw->cd, SORT_NAME);
@@ -1184,7 +1185,7 @@ static void collection_close_save_cb(GenericDialog *gd, gpointer data)
 
 	if (!cw->cd->path)
 		{
-		collection_dialog_save_close(nullptr, cw->cd);
+		collection_dialog_save_close(cw->cd);
 		return;
 		}
 	else if (!collection_save(cw->cd, cw->cd->path))
