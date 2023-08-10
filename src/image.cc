@@ -33,6 +33,7 @@
 #include "pixbuf-renderer.h"
 #include "pixbuf-util.h"
 #include "ui-fileops.h"
+#include "ui-misc.h"
 #include "filecache.h"
 
 #include <cmath>
@@ -184,6 +185,20 @@ static void image_press_cb(PixbufRenderer *pr, GdkEventButton *event, gpointer d
 		{
 		layout_image_full_screen_toggle(lw);
 		}
+}
+
+static void image_release_cb(PixbufRenderer *, GdkEventButton *event, gpointer data)
+{
+	auto imd = static_cast<ImageWindow *>(data);
+	LayoutWindow *lw;
+
+	lw = layout_find_by_image(imd);
+	if (!lw)
+		{
+		layout_valid(&lw);
+		}
+
+	defined_mouse_buttons(NULL, event, lw);
 }
 
 static void image_drag_cb(PixbufRenderer *pr, GdkEventMotion *event, gpointer data)
@@ -2200,6 +2215,8 @@ ImageWindow *image_new(gboolean frame)
 			 G_CALLBACK(image_click_cb), imd);
 	g_signal_connect(G_OBJECT(imd->pr), "button_press_event",
 			 G_CALLBACK(image_press_cb), imd);
+	g_signal_connect(G_OBJECT(imd->pr), "button_release_event",
+			 G_CALLBACK(image_release_cb), imd);
 	g_signal_connect(G_OBJECT(imd->pr), "scroll_notify",
 			 G_CALLBACK(image_scroll_notify_cb), imd);
 
