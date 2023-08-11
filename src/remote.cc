@@ -36,6 +36,7 @@
 #include "pixbuf-renderer.h"
 #include "slideshow.h"
 #include "ui-fileops.h"
+#include "utilops.h"
 #include "rcfile.h"
 #include "view-file.h"
 
@@ -1528,6 +1529,147 @@ static void gr_list_add(const gchar *text, GIOChannel *, gpointer data)
 		}
 }
 
+static void gr_action(const gchar *text, GIOChannel *, gpointer)
+{
+	GtkAction *action;
+
+	if (!layout_valid(&lw_id))
+		{
+		return;
+		}
+
+	if (g_strstr_len(text, -1, ".desktop") != nullptr)
+		{
+		file_util_start_editor_from_filelist(text, layout_selection_list(lw_id), layout_get_path(lw_id), lw_id->window);
+		}
+	else
+		{
+		action = gtk_action_group_get_action(lw_id->action_group, text);
+		if (action)
+			{
+			gtk_action_activate(action);
+			}
+		else
+			{
+			log_printf("Action %s unknown", text);
+			}
+		}
+}
+
+static gint simple_sort(gconstpointer a, gconstpointer b)
+{
+	return g_strcmp0((gchar *)a, (gchar *)b);
+}
+
+static void gr_action_list(const gchar *, GIOChannel *channel, gpointer)
+{
+	const gchar *accel_path;
+	gchar *action_list;
+	gchar *action_name;
+	gchar *comment_list;
+	gchar *label;
+	gchar *tooltip;
+	gint max_length = 0;
+	GList *actions;
+	GList *groups;
+	GList *list_final = nullptr;
+	GList *list = nullptr;
+	GList *work;
+	GString *out_string = g_string_new(nullptr);
+	GtkAction *action;
+
+	if (!layout_valid(&lw_id))
+		{
+		return;
+		}
+
+	groups = gtk_ui_manager_get_action_groups(lw_id->ui_manager);
+	while (groups)
+		{
+		actions = gtk_action_group_list_actions(GTK_ACTION_GROUP(groups->data));
+		while (actions)
+			{
+			action = GTK_ACTION(actions->data);
+			accel_path = gtk_action_get_accel_path(action);
+
+				if (accel_path && gtk_accel_map_lookup_entry(accel_path, nullptr))
+					{
+					g_object_get(action, "tooltip", &tooltip, "label", &label, NULL);
+
+					action_name = g_path_get_basename(accel_path);
+
+					/* Used for output column padding */
+					if (g_utf8_strlen(action_name, -1) > max_length)
+						{
+						max_length = g_utf8_strlen(action_name, -1);
+						}
+
+					/* Tooltips with newlines affect output format */
+					if (tooltip && (g_strstr_len(tooltip, -1, "\n") == nullptr) )
+						{
+						list = g_list_prepend(list, g_strdup(tooltip));
+						}
+					else
+						{
+						list = g_list_prepend(list, g_strdup(label));
+						}
+
+					list = g_list_prepend(list, g_strdup(action_name));
+
+					g_free(action_name);
+					g_free(label);
+					g_free(tooltip);
+					}
+
+			actions = actions->next;
+			}
+
+		groups = groups->next;
+		}
+
+	/* Pad the action names to the same column for readable output */
+	work = list;
+	while (work)
+		{
+		/* Menu actions are irrelevant */
+		if (g_strstr_len(static_cast<gchar *>(work->data), -1, "Menu") == nullptr)
+			{
+			action_list = g_strdup_printf("%-*s", max_length + 4, static_cast<gchar *>(work->data));
+
+			work=work->next;
+
+			comment_list = static_cast<gchar *>(work->data);
+			list_final = g_list_prepend(list_final, g_strconcat(action_list, comment_list, nullptr));
+
+			g_free(action_list);
+			}
+		else
+			{
+			work = work->next;
+			}
+		work = work->next;
+		}
+
+	string_list_free(list);
+
+	list_final = g_list_sort(list_final, simple_sort);
+
+	work = list_final;
+	while (work)
+		{
+		out_string = g_string_append(out_string, static_cast<gchar *>(work->data) );
+		out_string = g_string_append(out_string, "\n");
+		work = work->next;
+		}
+
+	string_list_free(list_final);
+
+	g_io_channel_write_chars(channel, out_string->str, -1, nullptr, nullptr);
+	g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, nullptr, nullptr);
+
+	g_string_free(out_string, TRUE);
+}
+
 static void gr_raise(const gchar *, GIOChannel *, gpointer)
 {
 	if (layout_valid(&lw_id))
@@ -1598,6 +1740,8 @@ struct RemoteCommandEntry {
 
 static RemoteCommandEntry remote_commands[] = {
 	/* short, long                  callback,               extra, prefer, parameter, description */
+	{ nullptr, "--action:",          gr_action,            TRUE,  FALSE, N_("<ACTION>"), N_("execute keyboard action (See Help/Reference/Remote Keyboard Actions)") },
+	{ nullptr, "--action-list",          gr_action_list,    FALSE,  FALSE, nullptr, N_("list available keyboard actions (some are redundant)") },
 	{ "-b", "--back",               gr_image_prev,          FALSE, FALSE, nullptr, N_("previous image") },
 	{ nullptr, "--close-window",       gr_close_window,        FALSE, FALSE, nullptr, N_("close window") },
 	{ nullptr, "--config-load:",       gr_config_load,         TRUE,  FALSE, N_("<FILE>|layout ID"), N_("load configuration from FILE") },

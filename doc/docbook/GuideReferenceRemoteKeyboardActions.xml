@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<section id="GuideReferenceRemoteKeyboardActions">
+  <title id="titleGuideReferenceRemoteKeyboardActions">Remote Keyboard Actions</title>
+  <para>
+    The command:
+    <para />
+    <code>geeqie --remote --action:&lt;action&gt;</code>
+    <para />
+    can be used to simulate keyboard actions. An example is:
+    <para />
+    <code>geeqie --remote --action:"ZoomIn"</code>
+    <para />
+    The actions available are shown in the Edit/Preferences/Keyboard dialog. The two end columns are relevant. The final component of the Accel column is the action code that should be used. The Tooltip column provides a description of the action. Both columns can be sorted by clicking the header.
+    <para />
+    The available action codes may also be listed by:
+    <para />
+    <code>geeqie --remote --action-list</code>
+  </para>
+</section>

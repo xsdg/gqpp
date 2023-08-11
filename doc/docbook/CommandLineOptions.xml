@@ -7,8 +7,8 @@
 <refmeta>
 <refentrytitle>GEEQIE</refentrytitle>
 <manvolnum>1</manvolnum>
-<refmiscinfo class='source'>June 2023</refmiscinfo>
-<refmiscinfo class='manual'>Geeqie 2.1 GTK3</refmiscinfo>
+<refmiscinfo class='source'>August 2023</refmiscinfo>
+<refmiscinfo class='manual'>Geeqie 2.1+git20230810-c41eb43c GTK3</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>Geeqie</refname>
@@ -30,7 +30,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
 
 <para>Generated for version:</para>
 
-<para>Geeqie 2.1</para>
+<para>Geeqie 2.1+git20230810-c41eb43c</para>
 
 <refsect2 id='valid_options'><title>Valid options:</title>
 <variablelist remap='TP'>
@@ -145,6 +145,18 @@ zooming, panning, thumbnails and sorting images into collections.</para>
 
 <refsect2 id='remote_command_list'><title>Remote command list:</title>
 <variablelist remap='TP'>
+  <varlistentry>
+  <term><emphasis role='strong' remap='B'>--action</emphasis>:&lt;ACTION&gt;</term>
+  <listitem>
+<para>execute keyboard action (See Help/Reference/Remote Keyboard Actions)</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term><emphasis role='strong' remap='B'>--action-list</emphasis></term>
+  <listitem>
+<para>list available keyboard actions (some are redundant)</para>
+  </listitem>
+  </varlistentry>
   <varlistentry>
   <term><emphasis role='strong' remap='B'>-b</emphasis> <emphasis role='strong' remap='B'>--back</emphasis></term>
   <listitem>

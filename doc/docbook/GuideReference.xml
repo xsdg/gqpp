@@ -2,6 +2,7 @@
 <chapter id="GuideReference">
   <title>Reference</title>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceCommandLine.xml" />
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceRemoteKeyboardActions.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceKeyboardShortcuts.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceThumbnails.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceMetadata.xml" />
