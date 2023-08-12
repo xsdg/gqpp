@@ -404,6 +404,13 @@ struct ThumbLoader
 	guint idle_done_id; /**< event source id */
 };
 
+struct ActionItem
+{
+	const gchar *name; /* GtkActionEntry terminology */
+	const gchar *label;
+	const gchar *icon_name;
+};
+
 struct AnimationData
 {
 	ImageWindow *iw;

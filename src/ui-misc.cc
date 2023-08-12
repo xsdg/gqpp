@@ -23,9 +23,10 @@
 #include <cstring>
 
 #include "main.h"
-#include "ui-misc.h"
-
 #include "history-list.h"
+#include "layout.h"
+#include "ui-misc.h"
+#include "utilops.h"
 
 #include <langinfo.h>
 
@@ -1379,6 +1380,142 @@ gchar *text_widget_text_pull_selected(GtkWidget *text_widget)
 		}
 }
 
+static gint simple_sort_cb(gconstpointer a, gconstpointer b)
+{
+	const ActionItem *a_action;
+	const ActionItem *b_action;
+
+	a_action = static_cast<const ActionItem *>(a);
+	b_action = static_cast<const ActionItem *>(b);
+
+	return g_strcmp0(a_action->name, b_action->name);
+}
+
+void free_action_items_cb(gpointer data)
+{
+	ActionItem *action_item;
+
+	action_item = static_cast<ActionItem *>(data);
+	g_free((gchar *)action_item->name);
+	g_free((gchar *)action_item->label);
+	g_free(action_item);
+}
+
+void action_items_free(GList *list)
+{
+	g_list_free_full(list, free_action_items_cb);
+}
+
+/**
+ * @brief Get a list of menu actions
+ * @param
+ * @returns GList ActionItem
+ *
+ * Free returned list with action_items_free(list)
+ *
+ * The list generated is used in the --remote --action-list command and
+ * programmable mouse buttons 8 and 9.
+ */
+GList* get_action_items()
+{
+	ActionItem *action_item;
+	const gchar *accel_path;
+	gboolean duplicate;
+	gchar *action_name;
+	gchar *label;
+	gchar *tooltip;
+	GList *actions;
+	GList *groups;
+	GList *list = nullptr;
+	GList *work;
+	GtkAction *action;
+	LayoutWindow *lw = nullptr;
+
+	if (!layout_valid(&lw))
+		{
+		return nullptr;
+		}
+
+	groups = gtk_ui_manager_get_action_groups(lw->ui_manager);
+	while (groups)
+		{
+		actions = gtk_action_group_list_actions(GTK_ACTION_GROUP(groups->data));
+		while (actions)
+			{
+			action = GTK_ACTION(actions->data);
+			accel_path = gtk_action_get_accel_path(action);
+
+			if (accel_path && gtk_accel_map_lookup_entry(accel_path, nullptr))
+				{
+				g_object_get(action, "tooltip", &tooltip, "label", &label, NULL);
+
+				action_name = g_path_get_basename(accel_path);
+
+				/* Menu actions are irrelevant */
+				if (g_strstr_len(action_name, -1, "Menu") == nullptr)
+					{
+					action_item = g_new0(ActionItem, 1);
+
+					/* .desktop items need the program name, Geeqie menu items need the tooltip */
+					if (g_strstr_len(action_name, -1, ".desktop") == nullptr)
+						{
+
+						/* Tooltips with newlines affect output format */
+						if (tooltip && (g_strstr_len(tooltip, -1, "\n") == nullptr) )
+							{
+							action_item->label = g_strdup(tooltip);
+							}
+						else
+							{
+							action_item->label = g_strdup(label);
+							}
+						}
+					else
+						{
+						action_item->label = g_strdup(label);
+						}
+
+					action_item->name = g_strdup(action_name);
+
+					/* Ignore duplicate entries */
+					work = list;
+					duplicate = FALSE;
+					while (work)
+						{
+						if (g_strcmp0(tooltip, static_cast<ActionItem *>(work->data)->label) == 0)
+							{
+							duplicate = TRUE;
+							break;
+							}
+						work = work->next;
+						}
+
+					if (duplicate)
+						{
+						g_free((gchar *)action_item->name);
+						g_free((gchar *)action_item->label);
+						g_free(action_item);
+						}
+					else
+						{
+						list = g_list_prepend(list, action_item);
+						}
+					g_free(action_name);
+					g_free(label);
+					g_free(tooltip);
+					}
+				}
+			actions = actions->next;
+			}
+
+		groups = groups->next;
+		}
+
+	list = g_list_sort(list, simple_sort_cb);
+
+	return list;
+}
+
 gboolean defined_mouse_buttons(GtkWidget *, GdkEventButton *event, gpointer data)
 {
 	auto lw = static_cast<LayoutWindow *>(data);
@@ -1390,23 +1527,39 @@ gboolean defined_mouse_buttons(GtkWidget *, GdkEventButton *event, gpointer data
 		case MOUSE_BUTTON_8:
 			if (options->mouse_button_8)
 				{
-				action = gtk_action_group_get_action(lw->action_group, options->mouse_button_8);
-				if (action)
+				if (g_strstr_len(options->mouse_button_8, -1, ".desktop") != nullptr)
 					{
-					gtk_action_activate(action);
+					file_util_start_editor_from_filelist(options->mouse_button_8, layout_selection_list(lw), layout_get_path(lw), lw->window);
+					ret = TRUE;
 					}
-				ret = TRUE;
+				else
+					{
+					action = gtk_action_group_get_action(lw->action_group, options->mouse_button_8);
+					if (action)
+						{
+						gtk_action_activate(action);
+						}
+					ret = TRUE;
+					}
 				}
-				break;
+			break;
 		case MOUSE_BUTTON_9:
 			if (options->mouse_button_9)
 				{
-				action = gtk_action_group_get_action(lw->action_group, options->mouse_button_9);
-				if (action)
+				if (g_strstr_len(options->mouse_button_9, -1, ".desktop") != nullptr)
 					{
-					gtk_action_activate(action);
+					file_util_start_editor_from_filelist(options->mouse_button_9, layout_selection_list(lw), layout_get_path(lw), lw->window);
 					}
-				ret = TRUE;
+				else
+					{
+					action = gtk_action_group_get_action(lw->action_group, options->mouse_button_9);
+					ret = TRUE;
+					if (action)
+						{
+						gtk_action_activate(action);
+						}
+					ret = TRUE;
+					}
 				}
 			break;
 		default:

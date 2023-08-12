@@ -763,116 +763,43 @@ static void add_zoom_style_selection_menu(GtkWidget *table, gint column, gint ro
 	gtk_widget_show(combo);
 }
 
-struct UseableMouseItems
-{
-	const gchar *name; /* GtkActionEntry terminology */
-	const gchar *label;
-	const gchar *icon_name;
-};
-
-static const UseableMouseItems useable_mouse_items[] = {
-	{"", "", nullptr},
-	{"FirstImage",	N_("First Image"), GQ_ICON_GO_TOP},
-	{"PrevImage",	N_("Previous Image"), GQ_ICON_GO_UP},
-	{"NextImage",	N_("Next Image"), GQ_ICON_GO_DOWN},
-	{"LastImage",	N_("Last Image"), GQ_ICON_GO_BOTTOM},
-	{"Back",	N_("Back"), GQ_ICON_GO_PREV},
-	{"Forward",	N_("Forward"), GQ_ICON_GO_NEXT},
-	{"Home",	N_("Home"), GQ_ICON_HOME},
-	{"Up",	N_("Up"), GQ_ICON_GO_UP},
-	{"FirstPage",	N_("First page"), GQ_ICON_PREV_PAGE},
-	{"LastPage",	N_("Last Page"), GQ_ICON_NEXT_PAGE},
-	{"NextPage",	N_("Next page"), GQ_ICON_FORWARD_PAGE},
-	{"PrevPage",	N_("Previous Page"), GQ_ICON_BACK_PAGE},
-	{"NewWindow",	N_("New _window"), GQ_ICON_NEW},
-	{"NewCollection",	N_("New collection"), GQ_ICON_COLLECTION},
-	{"OpenCollection",	N_("Open collection"), GQ_ICON_OPEN},
-	{"Search",	N_("Search"), GQ_ICON_FIND},
-	{"FindDupes",	N_("Find duplicates"), GQ_ICON_FIND},
-	{"NewFolder",	N_("New folder"),GQ_ICON_DIRECTORY},
-	{"Copy",	N_("Copy"), GQ_ICON_COPY},
-	{"Move",	N_("Move"), PIXBUF_INLINE_ICON_MOVE},
-	{"Rename",	N_("Rename"), PIXBUF_INLINE_ICON_RENAME},
-	{"Delete",	N_("Delete"), GQ_ICON_DELETE},
-	{"CloseWindow",	N_("Close Window"), GQ_ICON_CLOSE},
-	{"PanView",	N_("Pan view"), PIXBUF_INLINE_ICON_PANORAMA},
-	{"SelectAll",	N_("Select all"), PIXBUF_INLINE_ICON_SELECT_ALL},
-	{"SelectNone",	N_("Select none"), PIXBUF_INLINE_ICON_SELECT_NONE},
-	{"SelectInvert",	N_("Select invert"), PIXBUF_INLINE_ICON_SELECT_INVERT},
-	{"ShowFileFilter",	N_("Show file filter"), PIXBUF_INLINE_ICON_FILE_FILTER},
-	{"RectangularSelection",	N_("Select rectangle"), PIXBUF_INLINE_ICON_SELECT_RECTANGLE},
-	{"Print",	N_("Print"), GQ_ICON_PRINT},
-	{"Preferences",	N_("Preferences"), GQ_ICON_PREFERENCES},
-	{"LayoutConfig",	N_("Configure this window"), GQ_ICON_PREFERENCES},
-	{"Maintenance",	N_("Cache maintenance"), PIXBUF_INLINE_ICON_MAINTENANCE},
-	{"RotateCW",	N_("Rotate clockwise 90°"), PIXBUF_INLINE_ICON_CW},
-	{"RotateCCW",	N_("Rotate counterclockwise 90°"), PIXBUF_INLINE_ICON_CCW},
-	{"Rotate180",	N_("Rotate 180°"), PIXBUF_INLINE_ICON_180},
-	{"Mirror",	N_("Mirror"), PIXBUF_INLINE_ICON_MIRROR},
-	{"Flip",	N_("Flip"), PIXBUF_INLINE_ICON_FLIP},
-	{"AlterNone",	N_("Original state"), PIXBUF_INLINE_ICON_ORIGINAL},
-	{"ZoomIn",	N_("Zoom in"), GQ_ICON_ZOOM_IN},
-	{"ZoomOut",	N_("Zoom out"), GQ_ICON_ZOOM_OUT},
-	{"Zoom100",	N_("Zoom 1:1"), GQ_ICON_ZOOM_100},
-	{"ZoomFit",	N_("Zoom to fit"), GQ_ICON_ZOOM_FIT},
-	{"ZoomFillHor",	N_("Fit Horizontaly"), PIXBUF_INLINE_ICON_ZOOMFILLHOR},
-	{"ZoomFillVert",	N_("Fit vertically"), PIXBUF_INLINE_ICON_ZOOMFILLVERT},
-	{"Zoom200",	N_("Zoom 2:1"), GQ_ICON_GENERIC},
-	{"Zoom300",	N_("Zoom 3:1"), GQ_ICON_GENERIC},
-	{"Zoom400",	N_("Zoom 4:1"), GQ_ICON_GENERIC},
-	{"Zoom50",	N_("Zoom 1:2"), GQ_ICON_GENERIC},
-	{"Zoom33",	N_("Zoom 1:3"), GQ_ICON_GENERIC},
-	{"Zoom25",	N_("Zoom 1:4"), GQ_ICON_GENERIC},
-	{"ConnectZoomIn",	N_("Connected Zoom in"), GQ_ICON_ZOOM_IN},
-	{"SplitPaneSync",	N_("Split Pane Sync"), PIXBUF_INLINE_SPLIT_PANE_SYNC},
-	{"Grayscale",	N_("Grayscale"), PIXBUF_INLINE_ICON_GRAYSCALE},
-	{"OverUnderExposed",	N_("Over Under Exposed"), PIXBUF_INLINE_ICON_EXPOSURE},
-	{"HideTools",	N_("Hide file list"), PIXBUF_INLINE_ICON_HIDETOOLS},
-	{"SlideShowPause",	N_("Pause slideshow"), GQ_ICON_PAUSE},
-	{"SlideShowFaster",	N_("Slideshow Faster"), GQ_ICON_GENERIC},
-	{"SlideShowSlower",	N_("Slideshow Slower"), GQ_ICON_GENERIC},
-	{"Refresh",	N_("Refresh"), GQ_ICON_REFRESH},
-	{"HelpContents",	N_("Help"), GQ_ICON_HELP},
-	{"ExifWin",	N_("Exif window"), PIXBUF_INLINE_ICON_EXIF},
-	{"Thumbnails",	N_("Show thumbnails"), PIXBUF_INLINE_ICON_THUMB},
-	{"ShowMarks",	N_("Show marks"), PIXBUF_INLINE_ICON_MARKS},
-	{"DrawRectangle",	N_("Draw Rectangle"), PIXBUF_INLINE_ICON_DRAW_RECTANGLE},
-	{"FloatTools",	N_("Float file list"), PIXBUF_INLINE_ICON_FLOAT},
-	{"SBar",	N_("Info sidebar"), PIXBUF_INLINE_ICON_INFO},
-	{"SBarSort",	N_("Sort manager"), PIXBUF_INLINE_ICON_SORT},
-	{"Quit",	N_("Quit"), GQ_ICON_QUIT},
-	{nullptr,		nullptr, nullptr}
-};
-
 static void mouse_buttons_selection_menu_cb(GtkWidget *combo, gpointer data)
 {
+	ActionItem *action_item = nullptr;
 	auto option = static_cast<gchar **>(data);
 	gchar *label;
+	GList *list;
+	GList *work;
 
 	label = gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(combo));
 
-	const UseableMouseItems *list = useable_mouse_items;
+	list = get_action_items();
+	work = list;
 
-	while (list->name)
+	while (work)
 		{
-		if (g_strcmp0(list->label, label) == 0)
+		action_item = static_cast<ActionItem *>(work->data);
+		if (g_strcmp0(action_item->label, label) == 0)
 			{
 			break;
 			}
-		list++;
+		work=work->next;
 		}
 
 	g_free(*option);
-	*option = g_strdup(list->name);
+	*option = g_strdup(action_item->name);
 	g_free(label);
+	action_items_free(list);
 }
 
-static void add_mouse_selection_menu(GtkWidget *table, gint column, gint row, const gchar *text,
-			     gchar *option, gchar **option_c)
+static void add_mouse_selection_menu(GtkWidget *table, gint column, gint row, const gchar *text, gchar *option, gchar **option_c)
 {
-	GtkWidget *combo;
+	ActionItem *action_item;
 	gint current = 0;
 	gint i = 0;
+	GList *list;
+	GList *work;
+	GtkWidget *combo;
 
 	*option_c = option;
 
@@ -880,23 +807,26 @@ static void add_mouse_selection_menu(GtkWidget *table, gint column, gint row, co
 
 	combo = gtk_combo_box_text_new();
 
-	const UseableMouseItems *list = useable_mouse_items;
-
-	while (list->name)
+	list = get_action_items();
+	work = list;
+	while (work)
 		{
-		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), list->label);
-		if (g_strcmp0(list->name, option) == 0)
+		action_item = static_cast<ActionItem *>(work->data);
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), action_item->label);
+
+		if (g_strcmp0(action_item->name, option) == 0)
 			{
 			current = i;
 			}
 		i++;
-		list++;
+		work = work->next;
 		}
+
+	action_items_free(list);
 
 	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), current);
 
-	g_signal_connect(G_OBJECT(combo), "changed",
-			 G_CALLBACK(mouse_buttons_selection_menu_cb), option_c);
+	g_signal_connect(G_OBJECT(combo), "changed", G_CALLBACK(mouse_buttons_selection_menu_cb), option_c);
 
 	gtk_table_attach(GTK_TABLE(table), combo, column + 1, column + 2, row, row + 1, GTK_SHRINK, static_cast<GtkAttachOptions>(0), 0, 0);
 	gtk_widget_show(combo);

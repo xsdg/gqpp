@@ -228,6 +228,9 @@ GtkWidget *pref_color_button_new(GtkWidget *parent_box,
 gchar *text_widget_text_pull(GtkWidget *text_widget);
 gchar *text_widget_text_pull_selected(GtkWidget *text_widget);
 
+GList* get_action_items();
+void action_items_free(GList *list);
+
 gboolean defined_mouse_buttons(GtkWidget *widget, GdkEventButton *event, gpointer data);
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

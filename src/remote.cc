@@ -36,6 +36,7 @@
 #include "pixbuf-renderer.h"
 #include "slideshow.h"
 #include "ui-fileops.h"
+#include "ui-misc.h"
 #include "utilops.h"
 #include "rcfile.h"
 #include "view-file.h"
@@ -1556,103 +1557,53 @@ static void gr_action(const gchar *text, GIOChannel *, gpointer)
 		}
 }
 
-static gint simple_sort(gconstpointer a, gconstpointer b)
-{
-	return g_strcmp0((gchar *)a, (gchar *)b);
-}
-
 static void gr_action_list(const gchar *, GIOChannel *channel, gpointer)
 {
-	const gchar *accel_path;
+	ActionItem *action_item;
 	gchar *action_list;
-	gchar *action_name;
-	gchar *comment_list;
-	gchar *label;
-	gchar *tooltip;
 	gint max_length = 0;
-	GList *actions;
-	GList *groups;
 	GList *list_final = nullptr;
 	GList *list = nullptr;
 	GList *work;
 	GString *out_string = g_string_new(nullptr);
-	GtkAction *action;
 
 	if (!layout_valid(&lw_id))
 		{
 		return;
 		}
 
-	groups = gtk_ui_manager_get_action_groups(lw_id->ui_manager);
-	while (groups)
-		{
-		actions = gtk_action_group_list_actions(GTK_ACTION_GROUP(groups->data));
-		while (actions)
-			{
-			action = GTK_ACTION(actions->data);
-			accel_path = gtk_action_get_accel_path(action);
-
-				if (accel_path && gtk_accel_map_lookup_entry(accel_path, nullptr))
-					{
-					g_object_get(action, "tooltip", &tooltip, "label", &label, NULL);
-
-					action_name = g_path_get_basename(accel_path);
-
-					/* Used for output column padding */
-					if (g_utf8_strlen(action_name, -1) > max_length)
-						{
-						max_length = g_utf8_strlen(action_name, -1);
-						}
-
-					/* Tooltips with newlines affect output format */
-					if (tooltip && (g_strstr_len(tooltip, -1, "\n") == nullptr) )
-						{
-						list = g_list_prepend(list, g_strdup(tooltip));
-						}
-					else
-						{
-						list = g_list_prepend(list, g_strdup(label));
-						}
-
-					list = g_list_prepend(list, g_strdup(action_name));
-
-					g_free(action_name);
-					g_free(label);
-					g_free(tooltip);
-					}
-
-			actions = actions->next;
-			}
-
-		groups = groups->next;
-		}
-
-	/* Pad the action names to the same column for readable output */
+	list = get_action_items();
 	work = list;
+
+	/* Get the length required for padding */
 	while (work)
 		{
-		/* Menu actions are irrelevant */
-		if (g_strstr_len(static_cast<gchar *>(work->data), -1, "Menu") == nullptr)
+		action_item = static_cast<ActionItem *>(work->data);
+		if (g_utf8_strlen(action_item->name, -1) > max_length)
 			{
-			action_list = g_strdup_printf("%-*s", max_length + 4, static_cast<gchar *>(work->data));
-
-			work=work->next;
-
-			comment_list = static_cast<gchar *>(work->data);
-			list_final = g_list_prepend(list_final, g_strconcat(action_list, comment_list, nullptr));
-
-			g_free(action_list);
+			max_length = g_utf8_strlen(action_item->name, -1);
 			}
-		else
-			{
-			work = work->next;
-			}
+
 		work = work->next;
 		}
 
-	string_list_free(list);
+	work = list;
 
-	list_final = g_list_sort(list_final, simple_sort);
+	/* Pad the action names to the same column for readable output */
+	while (work)
+		{
+		action_item = static_cast<ActionItem *>(work->data);
+
+		action_list = g_strdup_printf("%-*s", max_length + 4, action_item->name);
+		list_final = g_list_prepend(list_final, g_strconcat(action_list, action_item->label, nullptr));
+
+		g_free(action_list);
+		work = work->next;
+		}
+
+	action_items_free(list);
+
+	list_final = g_list_reverse(list_final);
 
 	work = list_final;
 	while (work)
