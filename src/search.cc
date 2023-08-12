@@ -3705,7 +3705,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_help), "F1");
 	gtk_widget_set_sensitive(sd->button_help, TRUE);
 	pref_spacer(hbox, PREF_PAD_BUTTON_GAP);
-	sd->button_start = pref_button_new(hbox, GQ_ICON_FIND, nullptr,
+	sd->button_start = pref_button_new(hbox, GQ_ICON_FIND, _("Find"),
 					   G_CALLBACK(search_start_cb), sd);
 	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_start), "Ctrl-Return");
 	pref_spacer(hbox, PREF_PAD_BUTTON_GAP);
