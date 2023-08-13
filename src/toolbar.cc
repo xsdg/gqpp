@@ -61,91 +61,6 @@ struct UseableToolbarItems
 	const gchar *stock_id;
 };
 
-/** @FIXME Should be created by program from menu_entries[]
- * in layout-util.cc */
- /** The user is limited to selecting from this list of menu items
-  * plus any desktop files
-  **/
-static constexpr UseableToolbarItems useable_toolbar_items[] = {
-	{"FirstImage",	N_("First Image"), GQ_ICON_GO_TOP},
-	{"PrevImage",	N_("Previous Image"), GQ_ICON_GO_UP},
-	{"NextImage",	N_("Next Image"), GQ_ICON_GO_DOWN},
-	{"LastImage",	N_("Last Image"), GQ_ICON_GO_BOTTOM},
-	{"Back",	N_("Back"), GQ_ICON_GO_PREV},
-	{"Forward",	N_("Forward"), GQ_ICON_GO_NEXT},
-	{"Home",	N_("Home"), GQ_ICON_HOME},
-	{"Up",	N_("Up"), GQ_ICON_GO_UP},
-	{"FirstPage",	N_("First page"), GQ_ICON_PREV_PAGE},
-	{"LastPage",	N_("Last Page"), GQ_ICON_NEXT_PAGE},
-	{"NextPage",	N_("Next page"), GQ_ICON_FORWARD_PAGE},
-	{"PrevPage",	N_("Previous Page"), GQ_ICON_BACK_PAGE},
-	{"ImageForward",	N_("Image Forward"), GQ_ICON_GO_LAST},
-	{"ImageBack",	N_("Image Back"), GQ_ICON_GO_FIRST},
-	{"NewWindow",	N_("New window"), GQ_ICON_NEW},
-	{"NewCollection",	N_("New collection"), GQ_ICON_COLLECTION},
-	{"OpenCollection",	N_("Open collection"), GQ_ICON_OPEN},
-	{"Search",	N_("Search"), GQ_ICON_FIND},
-	{"FindDupes",	N_("Find duplicates"), GQ_ICON_FIND},
-	{"NewFolder",	N_("New folder"),GQ_ICON_DIRECTORY},
-	{"Copy",	N_("Copy"), GQ_ICON_COPY},
-	{"Move",	N_("Move"), PIXBUF_INLINE_ICON_MOVE},
-	{"Rename",	N_("Rename"), PIXBUF_INLINE_ICON_RENAME},
-	{"Delete",	N_("Delete"), GQ_ICON_DELETE},
-	{"CloseWindow",	N_("Close Window"), GQ_ICON_CLOSE},
-	{"PanView",	N_("Pan view"), PIXBUF_INLINE_ICON_PANORAMA},
-	{"OpenArchive",	N_("Open Archive"), PIXBUF_INLINE_ARCHIVE},
-	{"SelectAll",	N_("Select all"), PIXBUF_INLINE_ICON_SELECT_ALL},
-	{"SelectNone",	N_("Select none"), PIXBUF_INLINE_ICON_SELECT_NONE},
-	{"SelectInvert",	N_("Select invert"), PIXBUF_INLINE_ICON_SELECT_INVERT},
-	{"ShowFileFilter",	N_("Show file filter"), PIXBUF_INLINE_ICON_FILE_FILTER},
-	{"RectangularSelection",	N_("Select rectangle"), PIXBUF_INLINE_ICON_SELECT_RECTANGLE},
-	{"Print",	N_("Print"), GQ_ICON_PRINT},
-	{"Preferences",	N_("Preferences"), GQ_ICON_PREFERENCES},
-	{"LayoutConfig",	N_("Configure this window"), GQ_ICON_PREFERENCES},
-	{"Maintenance",	N_("Cache maintenance"), PIXBUF_INLINE_ICON_MAINTENANCE},
-	{"RotateCW",	N_("Rotate clockwise 90°"), PIXBUF_INLINE_ICON_CW},
-	{"RotateCCW",	N_("Rotate counterclockwise 90°"), PIXBUF_INLINE_ICON_CCW},
-	{"Rotate180",	N_("Rotate 180°"), PIXBUF_INLINE_ICON_180},
-	{"Mirror",	N_("Mirror"), PIXBUF_INLINE_ICON_MIRROR},
-	{"Flip",	N_("Flip"), PIXBUF_INLINE_ICON_FLIP},
-	{"AlterNone",	N_("Original state"), PIXBUF_INLINE_ICON_ORIGINAL},
-	{"ZoomIn",	N_("Zoom in"), GQ_ICON_ZOOM_IN},
-	{"ZoomOut",	N_("Zoom out"), GQ_ICON_ZOOM_OUT},
-	{"Zoom100",	N_("Zoom 1:1"), GQ_ICON_ZOOM_100},
-	{"ZoomFit",	N_("Zoom to fit"), GQ_ICON_ZOOM_FIT},
-	{"ZoomFillHor",	N_("Fit Horizontaly"), PIXBUF_INLINE_ICON_ZOOMFILLHOR},
-	{"ZoomFillVert",	N_("Fit vertically"), PIXBUF_INLINE_ICON_ZOOMFILLVERT},
-	{"Zoom200",	N_("Zoom 2:1"), GQ_ICON_GENERIC},
-	{"Zoom300",	N_("Zoom 3:1"), GQ_ICON_GENERIC},
-	{"Zoom400",	N_("Zoom 4:1"), GQ_ICON_GENERIC},
-	{"Zoom50",	N_("Zoom 1:2"), GQ_ICON_GENERIC},
-	{"Zoom33",	N_("Zoom 1:3"), GQ_ICON_GENERIC},
-	{"Zoom25",	N_("Zoom 1:4"), GQ_ICON_GENERIC},
-	{"ConnectZoomIn",	N_("Connected Zoom in"), GQ_ICON_ZOOM_IN},
-	{"SplitPaneSync",	N_("Split Pane Sync"), PIXBUF_INLINE_SPLIT_PANE_SYNC},
-	{"Grayscale",	N_("Grayscale"), PIXBUF_INLINE_ICON_GRAYSCALE},
-	{"OverUnderExposed",	N_("Over Under Exposed"), PIXBUF_INLINE_ICON_EXPOSURE},
-	{"ShowInfoPixel",	N_("Pixel Info"), 	GQ_ICON_SELECT_COLOR},
-	{"IgnoreAlpha",	N_("Ignore Alpha"), 	GQ_ICON_STRIKETHROUGH},
-	{"ExifRotate",	N_("Exif rotate"),	GQ_ICON_ROTATE},
-	{"UseColorProfiles",	N_("Use color profiles"),	GQ_ICON_COLOR_MANAGEMENT},
-	{"SaveMetadata",	N_("Save metadata"),	GQ_ICON_SAVE},
-	{"HideTools",	N_("Hide file list"), PIXBUF_INLINE_ICON_HIDETOOLS},
-	{"SlideShowPause",	N_("Pause slideshow"), GQ_ICON_PAUSE},
-	{"SlideShowFaster",	N_("Slideshow Faster"), GQ_ICON_GENERIC},
-	{"SlideShowSlower",	N_("Slideshow Slower"), GQ_ICON_GENERIC},
-	{"Refresh",	N_("Refresh"), GQ_ICON_REFRESH},
-	{"HelpContents",	N_("Help"), GQ_ICON_HELP},
-	{"ExifWin",	N_("Exif window"), PIXBUF_INLINE_ICON_EXIF},
-	{"Thumbnails",	N_("Show thumbnails"), PIXBUF_INLINE_ICON_THUMB},
-	{"ShowMarks",	N_("Show marks"), PIXBUF_INLINE_ICON_MARKS},
-	{"DrawRectangle",	N_("Draw Rectangle"), PIXBUF_INLINE_ICON_DRAW_RECTANGLE},
-	{"FloatTools",	N_("Float file list"), PIXBUF_INLINE_ICON_FLOAT},
-	{"SBar",	N_("Info sidebar"), PIXBUF_INLINE_ICON_INFO},
-	{"SBarSort",	N_("Sort manager"), PIXBUF_INLINE_ICON_SORT},
-	{"Quit",	N_("Quit"), GQ_ICON_QUIT},
-};
-
 /**
  * @brief
  * @param widget Not used
@@ -235,20 +150,30 @@ static gboolean toolbar_press_cb(GtkGesture *, int, double, double, gpointer dat
 
 static void get_toolbar_item(const gchar *name, gchar **label, gchar **stock_id)
 {
+	ActionItem *action_item;
+	GList *list;
+	GList *work;
 	*label = nullptr;
 	*stock_id = nullptr;
 
-	for (const auto& l : useable_toolbar_items)
+	list = get_action_items();
+
+	work = list;
+	while (work)
 		{
-		if (g_strcmp0(l.name, name) == 0)
+		action_item = static_cast<ActionItem *>(work->data);
+		if (g_strcmp0(action_item->name, name) == 0)
 			{
-			*label = g_strdup(gettext(l.label));
-			*stock_id = g_strdup(l.stock_id);
+			*label = g_strdup(action_item->label);
+			*stock_id = g_strdup(action_item->icon_name);
 			break;
 			}
-		}
-}
 
+		work = work->next;
+		}
+
+	action_items_free(list);
+}
 
 static void toolbar_item_free(ToolbarButtonData *tbbd)
 {
@@ -374,44 +299,32 @@ static void get_desktop_data(const gchar *name, gchar **label, gchar **stock_id)
 
 static void toolbar_menu_add_popup(GtkWidget *, gpointer data)
 {
-	GtkWidget *menu;
-	GList *editors_list;
-	GList *work;
+	ActionItem *action_item;
 	auto toolbarlist = static_cast<ToolbarData *>(data);
+	GList *list;
+	GList *work;
+	GtkWidget *item;
+	GtkWidget *menu;
 
 	menu = popup_menu_short_lived();
 
-	/* get standard menu item data */
-	for (const auto& l : useable_toolbar_items)
-		{
-		GtkWidget *item;
-		item = menu_item_add_stock(menu, gettext(l.label), l.stock_id,
-										G_CALLBACK(toolbarlist_add_cb), toolbarlist);
-		g_object_set_data(G_OBJECT(item), "toolbar_add_name", g_strdup(l.name));
-		g_object_set_data(G_OBJECT(item), "toolbar_add_label", g_strdup(gettext(l.label)));
-		g_object_set_data(G_OBJECT(item), "toolbar_add_stock_id", g_strdup(l.stock_id));
-		g_signal_connect(G_OBJECT(item), "destroy", G_CALLBACK(toolbar_button_free), item);
-		}
+	list = get_action_items();
 
-	/* get desktop file data */
-	editors_list = editor_list_get();
-	work = editors_list;
+	work = list;
 	while (work)
 		{
-		auto editor = static_cast<const EditorDescription *>(work->data);
+		action_item = static_cast<ActionItem *>(work->data);
 
-		GtkWidget *item;
-		gchar *icon = g_strconcat(editor->icon, ".desktop", NULL);
-
-		item = menu_item_add_icon(menu, editor->name, icon,
-										G_CALLBACK(toolbarlist_add_cb), toolbarlist);
-		g_object_set_data(G_OBJECT(item), "toolbar_add_name", g_strdup(editor->key));
-		g_object_set_data(G_OBJECT(item), "toolbar_add_label", g_strdup(editor->name));
-		g_object_set_data(G_OBJECT(item), "toolbar_add_stock_id", icon);
+		item = menu_item_add_stock(menu, action_item->label, action_item->icon_name, G_CALLBACK(toolbarlist_add_cb), toolbarlist);
+		g_object_set_data(G_OBJECT(item), "toolbar_add_name", g_strdup(action_item->name));
+		g_object_set_data(G_OBJECT(item), "toolbar_add_label", g_strdup(action_item->label));
+		g_object_set_data(G_OBJECT(item), "toolbar_add_stock_id", g_strdup(action_item->icon_name));
 		g_signal_connect(G_OBJECT(item), "destroy", G_CALLBACK(toolbar_button_free), item);
+
 		work = work->next;
 		}
-	g_list_free(editors_list);
+
+	action_items_free(list);
 
 	gtk_menu_popup_at_pointer(GTK_MENU(menu), nullptr);
 }

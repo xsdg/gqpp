@@ -1396,6 +1396,7 @@ void free_action_items_cb(gpointer data)
 	ActionItem *action_item;
 
 	action_item = static_cast<ActionItem *>(data);
+	g_free((gchar *)action_item->icon_name);
 	g_free((gchar *)action_item->name);
 	g_free((gchar *)action_item->label);
 	g_free(action_item);
@@ -1476,6 +1477,7 @@ GList* get_action_items()
 						}
 
 					action_item->name = g_strdup(action_name);
+					action_item->icon_name = g_strdup(gtk_action_get_stock_id(action));
 
 					/* Ignore duplicate entries */
 					work = list;
@@ -1492,6 +1494,7 @@ GList* get_action_items()
 
 					if (duplicate)
 						{
+						g_free((gchar *)action_item->icon_name);
 						g_free((gchar *)action_item->name);
 						g_free((gchar *)action_item->label);
 						g_free(action_item);
