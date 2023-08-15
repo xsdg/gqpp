@@ -24,6 +24,7 @@ jobs:
       with:
         action: test
         directory: build
+        setup-options: -Dgit=disabled
         options: --verbose
         meson-version: 0.56.2
 
