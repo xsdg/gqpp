@@ -85,6 +85,7 @@ ConfOptions *init_options(ConfOptions *options)
 	options->appimage_notifications = TRUE;
 	options->marks_save = TRUE;
 	options->with_rename = FALSE;
+	options->collections_duplicates = FALSE;
 	options->collections_on_top = FALSE;
 	options->hide_window_in_fullscreen = TRUE;
 

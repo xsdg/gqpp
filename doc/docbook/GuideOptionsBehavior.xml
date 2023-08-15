@@ -166,6 +166,14 @@
       </varlistentry>
       <varlistentry>
         <term>
+          <guilabel>Permit duplicates in Collections</guilabel>
+        </term>
+       <listitem>
+          <para>If this option is set, an image can be inserted into a Collection any number of times.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
           <guilabel>Open Collections on top</guilabel>
         </term>
         <listitem>

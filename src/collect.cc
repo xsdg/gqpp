@@ -730,7 +730,10 @@ static CollectInfo *collection_info_new_if_not_exists(CollectionData *cd, struct
 {
 	CollectInfo *ci;
 
-	if (g_hash_table_lookup(cd->existence, fd->path)) return nullptr;
+	if (!options->collections_duplicates)
+		{
+		if (g_hash_table_lookup(cd->existence, fd->path)) return nullptr;
+		}
 
 	ci = collection_info_new(fd, st, nullptr);
 	if (ci) g_hash_table_insert(cd->existence, fd->path, g_strdup(""));

@@ -444,6 +444,7 @@ static void config_window_apply()
 
 	options->marks_save = c_options->marks_save;
 	options->with_rename = c_options->with_rename;
+	options->collections_duplicates = c_options->collections_duplicates;
 	options->collections_on_top = c_options->collections_on_top;
 	options->hide_window_in_fullscreen = c_options->hide_window_in_fullscreen;
 	config_entry_to_option(help_search_engine_entry, &options->help_search_engine, nullptr);
@@ -3483,6 +3484,10 @@ static void config_tab_behavior(GtkWidget *notebook)
 	with_rename = pref_checkbox_new_int(group, _("Use \"With Rename\" as default for Copy/Move dialogs"),
 				options->with_rename, &c_options->with_rename);
 	gtk_widget_set_tooltip_text(with_rename,"Change the default button for Copy/Move dialogs");
+
+	collections_on_top = pref_checkbox_new_int(group, _("Permit duplicates in Collections"),
+				options->collections_duplicates, &c_options->collections_duplicates);
+	gtk_widget_set_tooltip_text(collections_on_top,"Allow the same image to be in a Collection more than once");
 
 	collections_on_top = pref_checkbox_new_int(group, _("Open collections on top"),
 				options->collections_on_top, &c_options->collections_on_top);
