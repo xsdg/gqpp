@@ -216,6 +216,8 @@ struct BarData
 	gint width;
 };
 
+static const gchar *bar_pane_get_default_config(const gchar *id);
+
 static void bar_expander_move(GtkWidget *, gpointer data, gboolean up, gboolean single_step)
 {
 	auto expander = static_cast<GtkWidget *>(data);
@@ -865,7 +867,7 @@ gboolean bar_pane_translate_title(PaneType type, const gchar *id, gchar **title)
 	return TRUE;
 }
 
-const gchar *bar_pane_get_default_config(const gchar *id)
+static const gchar *bar_pane_get_default_config(const gchar *id)
 {
 	const KnownPanes *pane = known_panes;
 

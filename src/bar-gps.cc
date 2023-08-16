@@ -564,7 +564,7 @@ static void bar_pane_gps_update(PaneGPSData *pgd)
 	pgd->num_added = 0;
 }
 
-void bar_pane_gps_set_map_source(PaneGPSData *pgd, const gchar *map_id)
+static void bar_pane_gps_set_map_source(PaneGPSData *pgd, const gchar *map_id)
 {
 	ChamplainMapSource *map_source;
 	ChamplainMapSourceFactory *map_factory;
@@ -580,7 +580,7 @@ void bar_pane_gps_set_map_source(PaneGPSData *pgd, const gchar *map_id)
 	g_object_unref(map_factory);
 }
 
-void bar_pane_gps_enable_markers_checked_toggle_cb(GtkWidget *, gpointer data)
+static void bar_pane_gps_enable_markers_checked_toggle_cb(GtkWidget *, gpointer data)
 {
 	auto pgd = static_cast<PaneGPSData *>(data);
 
@@ -769,7 +769,7 @@ static void bar_pane_gps_notify_cb(FileData *fd, NotifyType type, gpointer data)
 		}
 }
 
-const gchar *bar_pane_gps_get_map_id(PaneGPSData *pgd)
+static const gchar *bar_pane_gps_get_map_id(PaneGPSData *pgd)
 {
 	const gchar *map_id;
 	ChamplainMapSource *mapsource;
@@ -828,7 +828,7 @@ static GtkWidget *bar_pane_gps_menu(PaneGPSData *pgd)
 
 /* Determine if the map is to be re-centred on the marker when another photo is selected
  */
-void bar_pane_gps_map_centreing(PaneGPSData *pgd)
+static void bar_pane_gps_map_centreing(PaneGPSData *pgd)
 {
 	GenericDialog *gd;
 	GString *message = g_string_new("");

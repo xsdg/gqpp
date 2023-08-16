@@ -71,7 +71,6 @@ gboolean bar_event(GtkWidget *bar, GdkEvent *event);
 GtkWidget *bar_pane_expander_title(const gchar *title);
 void bar_update_expander(GtkWidget *pane);
 gboolean bar_pane_translate_title(PaneType type, const gchar *id, gchar **title);
-const gchar *bar_pane_get_default_config(const gchar *id);
 
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

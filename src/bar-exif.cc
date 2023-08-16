@@ -283,7 +283,7 @@ static void bar_pane_exif_update(PaneExifData *ped)
 	gtk_widget_set_sensitive(ped->pane.title, !ped->all_hidden);
 }
 
-void bar_pane_exif_set_fd(GtkWidget *widget, FileData *fd)
+static void bar_pane_exif_set_fd(GtkWidget *widget, FileData *fd)
 {
 	PaneExifData *ped;
 
@@ -296,7 +296,7 @@ void bar_pane_exif_set_fd(GtkWidget *widget, FileData *fd)
 	bar_pane_exif_update(ped);
 }
 
-gint bar_pane_exif_event(GtkWidget *bar, GdkEvent *event)
+static gint bar_pane_exif_event(GtkWidget *bar, GdkEvent *event)
 {
 	PaneExifData *ped;
 	gboolean ret = FALSE;
