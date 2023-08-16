@@ -590,13 +590,16 @@ static void show_notification_message(AppImageData *appimage_data)
 
 void appimage_notification_func(gpointer data, gpointer)
 {
+	auto appimage_data = static_cast<AppImageData *>(data);
 	gboolean internet_available = FALSE;
-	gchar *architecture;
-	gchar const *wget_appfile;
+	gchar **version_split;
+	GFile *file_github;
+	GFileInfo *file_info;
 	GNetworkMonitor *net_mon;
 	GSocketConnectable *geeqie_github;
-	gchar **version_split;
-	auto appimage_data = static_cast<AppImageData *>(data);
+	struct tm current_version_date;
+	int64_t file_github_date;
+	unsigned int year, month, day;
 
 	/* If this is a release version, do not check for updates */
 	if (g_strrstr(VERSION, "git"))
@@ -612,29 +615,31 @@ void appimage_notification_func(gpointer data, gpointer)
 
 		if (internet_available)
 			{
-			/** @FIXME Use glib instead of wget */
-			if (runcmd("which wget >/dev/null 2>&1") == 0)
+			/* VERSION looks like: 2.0.1+git20220116-c791cbee */
+			version_split = g_strsplit_set(VERSION, "+-", -1);
+
+			file_github = g_file_new_for_uri("https://github.com/BestImageViewer/geeqie/releases/download/continuous/Geeqie-latest-x86_64.AppImage");
+			file_info = g_file_query_info(file_github, "time::modified", G_FILE_QUERY_INFO_NONE, nullptr, nullptr);
+
+			file_github_date = g_file_info_get_attribute_uint64(file_info, "time::modified");
+
+			sscanf(version_split[1] + 3, "%4u%2u%2u", &year, &month, &day);
+			current_version_date.tm_year  = year - 1900;
+			current_version_date.tm_mon   = month - 1;
+			current_version_date.tm_mday  = day;
+			current_version_date.tm_hour  = 0;
+			current_version_date.tm_min   = 0;
+			current_version_date.tm_sec   = 0;
+			current_version_date.tm_isdst = 0;
+
+			if (file_github_date > mktime(&current_version_date))
 				{
-				/* VERSION looks like: 2.0.1+git20220116-c791cbee */
-				version_split = g_strsplit_set(VERSION, "+-", -1);
-
-#ifdef __x86_64__
-				architecture = g_strdup("-x86_64");
-#endif
-#ifdef __arm__
-				architecture = g_strdup("-aarch64");
-#endif
-
-				wget_appfile = g_strconcat("wget -q --method=HEAD https://github.com/BestImageViewer/geeqie/releases/download/continuous/Geeqie-v", version_split[0], "+", version_split[1] + 3, architecture, ".AppImage >/dev/null 2>&1", nullptr);
-
-				if (runcmd(wget_appfile) != 0)
-					{
-					show_notification_message(appimage_data);
-					}
-
-				g_free(architecture);
-				g_strfreev(version_split);
+				show_notification_message(appimage_data);
 				}
+
+			g_object_unref(file_github);
+			g_object_unref(file_info);
+			g_strfreev(version_split);
 			}
 		}
 }
