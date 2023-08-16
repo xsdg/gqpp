@@ -1,0 +1,38 @@
+# appimage-builder recipe see https://appimage-builder.readthedocs.io for details
+version: 1
+
+script:
+  # Refer to https://github.com/AppImageCrafters/appimage-builder/issues/271
+  - which mksquashfs || apt install squashfs-tools
+
+AppDir:
+  path: /home/runner/work/geeqie/geeqie/AppDir/
+  app_info:
+    id: geeqie
+    name: Geeqie
+    icon: geeqie
+    version: minimal-latest
+    exec: usr/local/bin/geeqie
+    exec_args: $@
+  apt:
+    arch:
+    - amd64
+    allow_unauthenticated: true
+    sources:
+    - sourceline: deb http://im.archive.ubuntu.com/ubuntu/ jammy main restricted
+    - sourceline: deb http://im.archive.ubuntu.com/ubuntu/ jammy-updates main restricted
+    - sourceline: deb http://im.archive.ubuntu.com/ubuntu/ jammy universe
+    - sourceline: deb http://im.archive.ubuntu.com/ubuntu/ jammy-updates universe
+    include:
+    - libtiff5
+
+  files:
+    include: []
+    exclude:
+    - usr/share/man
+    - usr/share/doc/*/README.*
+    - usr/share/doc/*/changelog.*
+    - usr/share/doc/*/NEWS.*
+    - usr/share/doc/*/TODO.*
+AppImage:
+  arch: x86_64
