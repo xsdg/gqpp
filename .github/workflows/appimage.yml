@@ -1,6 +1,6 @@
 name: Geeqie AppImage build
 run-name: ${{ github.actor }} is running Geeqie AppImage build
-on: [push, pull_request]
+on: [push]
 jobs:
   Build-AppImage:
     runs-on: ubuntu-22.04
