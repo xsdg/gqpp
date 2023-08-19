@@ -4295,6 +4295,21 @@ static gboolean dupe_window_keypress_cb(GtkWidget *widget, GdkEventKey *event, g
 				}
 			}
 		}
+	else if (event->state & GDK_SHIFT_MASK)
+		{
+		stop_signal = TRUE;
+		switch (event->keyval)
+			{
+			case GDK_KEY_Delete:
+			case GDK_KEY_KP_Delete:
+				options->file_ops.safe_delete_enable = FALSE;
+				file_util_delete_notify_done(nullptr, dupe_listview_get_selection(dw, dw->listview), dw->window, delete_finished_cb, dw);
+				break;
+			default:
+				stop_signal = FALSE;
+				break;
+			}
+		}
 	else
 		{
 		stop_signal = TRUE;
