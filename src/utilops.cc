@@ -165,6 +165,18 @@ static void generic_dialog_add_image(GenericDialog *gd, GtkWidget *box,
  *--------------------------------------------------------------------------
  */
 
+/**
+ * @brief
+ * @param title
+ * @param role
+ * @param parent
+ * @param auto_close
+ * @param cancel_cb
+ * @param data
+ * @returns
+ *
+ * \image html file_util_gen_dlg.png "Typical implementation" width=200
+ */
 GenericDialog *file_util_gen_dlg(const gchar *title,
 				 const gchar *role,
 				 GtkWidget *parent, gboolean auto_close,
@@ -181,6 +193,17 @@ GenericDialog *file_util_gen_dlg(const gchar *title,
 	return gd;
 }
 
+/**
+ * @brief
+ * @param title
+ * @param role
+ * @param parent
+ * @param cancel_cb
+ * @param data
+ * @returns
+ *
+ * \image html file_util_file_dlg.png "Typical implementation including optional filter, buttons and path widgets" width=300
+ */
 FileDialog *file_util_file_dlg(const gchar *title,
 			       const gchar *role,
 			       GtkWidget *parent,
