@@ -22,7 +22,7 @@ jobs:
     - uses: actions/setup-python@v4
     - uses: BSFishy/meson-build@v1.0.3
       with:
-        action: test
+        action: build
         directory: build
         setup-options: -Dgit=disabled
         options: --verbose

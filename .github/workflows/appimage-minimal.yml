@@ -12,7 +12,7 @@ jobs:
     - uses: actions/setup-python@v4
     - uses: BSFishy/meson-build@v1.0.3
       with:
-        action: test
+        action: build
         directory: build
         setup-options: -Darchive=disabled -Dcms=disabled -Ddevel=disabled -Ddoxygen=disabled -Ddjvu=disabled -Devince=disabled -Dexecinfo=disabled -Dexiv2=disabled -Dgit=disabled -Dgps-map=disabled -Dheif=disabled -Dj2k=disabled -Djpeg=disabled -Djpegxl=disabled -Dlibraw=disabled -Dlua=disabled -Dpandoc=disabled -Dpdf=disabled -Dspell=disabled -Dtiff=disabled -Dvideothumbnailer=disabled -Dyelp-build=disabled
         options: --verbose

@@ -34,5 +34,9 @@ AppDir:
     - usr/share/doc/*/changelog.*
     - usr/share/doc/*/NEWS.*
     - usr/share/doc/*/TODO.*
+    - usr/lib/libuim-scm.so.0
+    - usr/lib/gtk-3.0/3.0.0/immodules/im-uim.so
+    - usr/lib/im-uim.so
+    - usr/lib/libuim.so.8
 AppImage:
   arch: x86_64
