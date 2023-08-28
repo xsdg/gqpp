@@ -1,0 +1,56 @@
+# appimage-builder recipe see https://appimage-builder.readthedocs.io for details
+version: 1
+
+script:
+  # Refer to https://github.com/AppImageCrafters/appimage-builder/issues/271
+  - which mksquashfs || apt install squashfs-tools
+
+AppDir:
+  path: ./AppDir
+  app_info:
+    id: geeqie
+    name: Geeqie
+    icon: geeqie
+    version: latest
+    exec: usr/bin/geeqie
+    exec_args: $@
+  apt:
+    arch:
+    - arm64
+    allow_unauthenticated: true
+    sources:
+    - sourceline: deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports jammy main restricted
+    - sourceline: deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports jammy-updates main restricted
+    - sourceline: deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports jammy universe
+    - sourceline: deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports jammy-updates universe
+    include:
+    - evince
+    - libarchive13
+    - libchamplain-0.12
+    - libchamplain-gtk-0.12-0
+    - libdjvulibre21
+    - libgexiv2-2
+    - libgspell-1-2
+    - libheif1
+    - libjpeg8
+    - liblcms2-2
+    - liblua5.3-0
+    - libopenjp2-7
+    - libraw20
+    - librsvg2-common
+    - libtiff5
+
+  files:
+    include: []
+    exclude:
+    - usr/share/man
+    - usr/share/doc/*/README.*
+    - usr/share/doc/*/changelog.*
+    - usr/share/doc/*/NEWS.*
+    - usr/share/doc/*/TODO.*
+    - usr/lib/libuim-scm.so.0
+    - usr/lib/gtk-3.0/3.0.0/immodules/im-uim.so
+    - usr/lib/im-uim.so
+    - usr/lib/libuim.so.8
+AppImage:
+  arch: aarch64

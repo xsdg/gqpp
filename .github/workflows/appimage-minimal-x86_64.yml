@@ -1,5 +1,5 @@
-name: Geeqie minimal AppImage build
-run-name: ${{ github.actor }} is running Geeqie minimal AppImage build
+name: Geeqie minimal x86_64 AppImage build
+run-name: ${{ github.actor }} is running Geeqie minimal x86_64 AppImage build
 on: [push]
 jobs:
   Build-AppImage:
@@ -23,7 +23,7 @@ jobs:
     - name: build AppImage
       uses: AppImageCrafters/build-appimage-action@master
       with:
-        recipe: AppImageBuilderMinimal.yml
+        recipe: AppImageBuilderMinimal-x86_64.yml
 
     - name: Create Release
       uses: ncipollo/release-action@v1

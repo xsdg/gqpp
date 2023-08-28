@@ -1,0 +1,59 @@
+name: Geeqie minimal aarch64 AppImage build
+run-name: ${{ github.actor }} is running Geeqie minimal aarch64 AppImage build
+on: [push]
+jobs:
+  Build-AppImage:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [aarch64]
+        include:
+        - arch: aarch64
+          cpu: cortex-a53
+          base_image: raspios_lite_arm64:latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: pguyot/arm-runner-action@v2
+      with:
+        base_image: ${{ matrix.base_image }}
+        cpu: ${{ matrix.cpu }}
+        cpu_info: ${{ matrix.cpu_info }}
+        image_additional_mb: 400
+        bind_mount_repository: false
+        import_github_env: true
+        export_github_env: true
+        copy_artifact_path: geeqie.gz
+        commands: |
+            yes | sudo apt-get update
+            yes | sudo apt-get install build-essential libgtk-3-dev libgtk-3-bin
+            yes | sudo apt-get install git
+            yes | sudo apt-get install python3 python3-pip python3-setuptools  python3-wheel ninja-build
+            yes | sudo apt-get install meson
+            yes | sudo apt-get install gettext
+            mkdir -p $GITHUB_WORKSPACE/AppDir
+            mkdir -p $GITHUB_WORKSPACE/AppDir/usr
+            meson setup -Darchive=disabled -Dcms=disabled -Ddevel=disabled -Ddoxygen=disabled -Ddjvu=disabled -Devince=disabled -Dexecinfo=disabled -Dexiv2=disabled -Dgit=disabled -Dgps-map=disabled -Dheif=disabled -Dj2k=disabled -Djpeg=disabled -Djpegxl=disabled -Dlibraw=disabled -Dlua=disabled -Dpandoc=disabled -Dpdf=disabled -Dspell=disabled -Dtiff=disabled -Dvideothumbnailer=disabled -Dyelp-build=disabled -Dprefix=$GITHUB_WORKSPACE/AppDir/usr build
+            ninja -C build install
+            tar -czvf geeqie.gz $GITHUB_WORKSPACE/
+
+    - run: tar -xvf geeqie.gz
+    - run: mkdir -p AppDir
+    - run: cp -var  ./home/runner/work/geeqie/geeqie/AppDir/ .
+    - uses: AppImageCrafters/build-appimage-action@master
+      with:
+        recipe: AppImageBuilderMinimal-aarch64.yml
+
+    - uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: true
+        tag: continuous
+        name: Continuous build
+        prerelease: true
+        artifacts: "*.AppImage"
+
+    - uses: actions/upload-artifact@v2
+      if: always()
+      with:
+        name: logs-all-build-appimage
+        path: /home/runner/work/geeqie/geeqie/build/meson-logs/*.txt
+        retention-days: 5

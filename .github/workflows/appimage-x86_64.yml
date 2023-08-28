@@ -1,5 +1,5 @@
-name: Geeqie AppImage build
-run-name: ${{ github.actor }} is running Geeqie AppImage build
+name: Geeqie x86_64 AppImage build
+run-name: ${{ github.actor }} is running Geeqie x86_64 AppImage build
 on: [push]
 jobs:
   Build-AppImage:
@@ -33,7 +33,7 @@ jobs:
     - name: build AppImage
       uses: AppImageCrafters/build-appimage-action@master
       with:
-        recipe: AppImageBuilder.yml
+        recipe: AppImageBuilder-x86_64.yml
 
     - name: Create Release
       uses: ncipollo/release-action@v1
