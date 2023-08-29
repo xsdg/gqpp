@@ -1427,8 +1427,10 @@ GList* get_action_items()
 	gchar *tooltip;
 	GList *actions;
 	GList *groups;
-	GList *list = nullptr;
-	GList *work;
+	GList *list_duplicates = nullptr;
+	GList *list_unique = nullptr;
+	GList *work1;
+	GList *work2;
 	GtkAction *action;
 	LayoutWindow *lw = nullptr;
 
@@ -1476,36 +1478,10 @@ GList* get_action_items()
 						action_item->label = g_strdup(label);
 						}
 
-					action_item->name = g_strdup(action_name);
+					action_item->name = action_name;
 					action_item->icon_name = g_strdup(gtk_action_get_stock_id(action));
 
-					/* Ignore duplicate entries */
-					work = list;
-					duplicate = FALSE;
-					while (work)
-						{
-						if (g_strcmp0(tooltip, static_cast<ActionItem *>(work->data)->label) == 0)
-							{
-							duplicate = TRUE;
-							break;
-							}
-						work = work->next;
-						}
-
-					if (duplicate)
-						{
-						g_free((gchar *)action_item->icon_name);
-						g_free((gchar *)action_item->name);
-						g_free((gchar *)action_item->label);
-						g_free(action_item);
-						}
-					else
-						{
-						list = g_list_prepend(list, action_item);
-						}
-					g_free(action_name);
-					g_free(label);
-					g_free(tooltip);
+					list_duplicates = g_list_prepend(list_duplicates, action_item);
 					}
 				}
 			actions = actions->next;
@@ -1514,9 +1490,40 @@ GList* get_action_items()
 		groups = groups->next;
 		}
 
-	list = g_list_sort(list, simple_sort_cb);
+	/* Use the shortest name i.e. ignore -Alt versions. Sort makes the shortest first in the list */
+	list_duplicates = g_list_sort(list_duplicates, simple_sort_cb);
 
-	return list;
+	/* Ignore duplicate entries */
+	work1 = list_duplicates;
+	while (work1)
+		{
+		duplicate = FALSE;
+		work2 = list_unique;
+		/* The first entry must be unique, list_unique is null so control bypasses the while */
+		while (work2)
+			{
+			if (g_strcmp0(static_cast<ActionItem *>(work2->data)->label, static_cast<ActionItem *>(work1->data)->label) == 0)
+				{
+				duplicate = TRUE;
+				break;
+				}
+			work2 = work2->next;
+			}
+
+		if (!duplicate)
+			{
+			action_item = g_new0(ActionItem, 1);
+			action_item->name = g_strdup(static_cast<ActionItem *>(work1->data)->name);
+			action_item->label = g_strdup(static_cast<ActionItem *>(work1->data)->label);
+			action_item->icon_name = g_strdup(static_cast<ActionItem *>(work1->data)->icon_name);
+			list_unique = g_list_append(list_unique, action_item);
+			}
+		work1 = work1->next;
+		}
+
+	g_list_free_full(list_duplicates, free_action_items_cb);
+
+	return list_unique;
 }
 
 gboolean defined_mouse_buttons(GtkWidget *, GdkEventButton *event, gpointer data)
