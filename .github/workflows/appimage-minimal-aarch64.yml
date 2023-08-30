@@ -19,7 +19,7 @@ jobs:
         base_image: ${{ matrix.base_image }}
         cpu: ${{ matrix.cpu }}
         cpu_info: ${{ matrix.cpu_info }}
-        image_additional_mb: 400
+        image_additional_mb: 1000
         bind_mount_repository: false
         import_github_env: true
         export_github_env: true
