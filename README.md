@@ -123,7 +123,7 @@ The minimal version can display jpegs, pngs and some other formats, but does not
 This script file will download the latest Continuous Build AppImages for you:
 
 ```sh
-wget https://github.com/BestImageViewer/geeqie/blob/master/scripts/geeqie-download-appimage.sh
+wget https://raw.githubusercontent.com/BestImageViewer/geeqie/master/scripts/geeqie-download-appimage.sh
 chmod +x geeqie-download-appimage.sh
 ```
 
