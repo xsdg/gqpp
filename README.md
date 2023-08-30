@@ -29,6 +29,8 @@ The project website is <https://www.geeqie.org/> and you will find the latest so
 
 * [Features](#features)
 * [Downloading](#downloading)
+* [AppImages](#appimages)
+* [Installation Scripts](#installation-scripts)
 * [Compiling and Installing](#compiling-and-installing)
 * [Notes and changes for the latest release](#notes-and-changes-for-the-latest-release)
 * [Requirements](#requirements)
@@ -112,7 +114,22 @@ Geeqie is available:
 
 * via WSL2 on Windows 11 - see notes below.
 
-However Geeqie is stable and you may compile the latest version from sources.
+### AppImages
+
+The Continuous Build release version has AppImages that are automatically generated each time the source code is updated. There are two versions - the full version is about 120MB and the minimal version is about 10MB and will therefore load much faster.
+
+The minimal version can display jpegs, pngs and some other formats, but does not have the range of the full version.
+
+This script file will download the latest Continuous Build AppImages for you:
+
+```sh
+wget https://github.com/BestImageViewer/geeqie/blob/master/scripts/geeqie-download-appimage.sh
+chmod +x geeqie-download-appimage.sh
+```
+
+### Installation scripts
+
+Geeqie is stable and you may compile the latest version from sources.
 
 There are two scripts which will download and compile the sources for you.
 
