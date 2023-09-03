@@ -43,14 +43,6 @@ meson compile geeqie-update-po
 
 * Commit the changes and push to the .repo
 
-* Generate a new AppImage (note that this should be run on a **20.04 system**)
-
-```sh
-./scripts/generate-appimage.sh <location of local appimages folder>
-```
-
-* Upload AppImage to web AppImages location
-* Edit `<location of local geeqie.github.io>/AppImage/appimages.txt` to include latest AppImage at the *top* of the list
 * Update the web-page Help files if they have changed
     * commit and push if necessary
 
