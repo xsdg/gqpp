@@ -265,7 +265,10 @@ static RemoteConnection *remote_server_open(const gchar *path)
 	if (fd == -1) return nullptr;
 
 	addr.sun_family = AF_UNIX;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstringop-truncation"
 	strncpy(addr.sun_path, path, sizeof(addr.sun_path));
+#pragma GCC diagnostic pop
 	if (bind(fd, reinterpret_cast<const struct sockaddr*>(&addr), sizeof(addr)) == -1 ||
 	    listen(fd, REMOTE_SERVER_BACKLOG) == -1)
 		{
@@ -314,7 +317,10 @@ static RemoteConnection *remote_client_open(const gchar *path)
 	if (fd == -1) return nullptr;
 
 	addr.sun_family = AF_UNIX;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstringop-truncation"
 	strncpy(addr.sun_path, path, sizeof(addr.sun_path));
+#pragma GCC diagnostic pop
 	if (connect(fd, reinterpret_cast<struct sockaddr*>(&addr), sizeof(addr)) == -1)
 		{
 		DEBUG_1("error connecting to socket: %s", strerror(errno));

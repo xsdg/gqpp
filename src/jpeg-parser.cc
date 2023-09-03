@@ -325,7 +325,7 @@ MPOData *jpeg_get_mpo_data(const guchar *data, guint size)
 	if (jpeg_segment_find(data, size, JPEG_MARKER_APP2, "MPF\x00", 4, &seg_offset, &seg_size) && seg_size >16)
 		{
 		guint offset;
-		guint next_offset;
+		guint next_offset = 0;
 		TiffByteOrder bo;
 		MPOData *mpo;
 		guint i;
