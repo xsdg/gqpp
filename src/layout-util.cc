@@ -3461,12 +3461,10 @@ GtkWidget *layout_actions_toolbar(LayoutWindow *lw, ToolbarType type)
 		{
 		case TOOLBAR_MAIN:
 			lw->toolbar[type] = gtk_ui_manager_get_widget(lw->ui_manager, "/ToolBar");
-			gtk_toolbar_set_icon_size(GTK_TOOLBAR(lw->toolbar[type]), GTK_ICON_SIZE_SMALL_TOOLBAR);
 			gtk_toolbar_set_style(GTK_TOOLBAR(lw->toolbar[type]), GTK_TOOLBAR_ICONS);
 			break;
 		case TOOLBAR_STATUS:
 			lw->toolbar[type] = gtk_ui_manager_get_widget(lw->ui_manager, "/StatusBar");
-			gtk_toolbar_set_icon_size(GTK_TOOLBAR(lw->toolbar[type]), GTK_ICON_SIZE_MENU);
 			gtk_toolbar_set_style(GTK_TOOLBAR(lw->toolbar[type]), GTK_TOOLBAR_ICONS);
 			gtk_toolbar_set_show_arrow(GTK_TOOLBAR(lw->toolbar[type]), FALSE);
 			break;
