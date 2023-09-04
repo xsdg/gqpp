@@ -16,7 +16,7 @@ jobs:
     - run: sudo apt-get install liblua5.3-dev
     - run: sudo apt-get install libpoppler-glib-dev
     - run: sudo apt-get install libraw-dev libomp-dev
-    - run: sudo apt-get install webp-pixbuf-loader
+    - run: sudo apt-get install libwebp-dev
 
     - uses: actions/checkout@v3
     - run: git fetch --tags --force

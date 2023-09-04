@@ -110,6 +110,9 @@
 /* Define to enable use of custom tiff loader */
 #mesondefine HAVE_TIFF
 
+/* Define to enable use of custom webp loader */
+#mesondefine HAVE_WEBP
+
 /* Version number of package */
 #mesondefine VERSION
 

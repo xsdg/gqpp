@@ -533,19 +533,19 @@ else
     summary({'videothumbnailer' : ['disabled -thumbnails of video files supported', false]}, section : 'Configuration', bool_yn : true)
 endif
 
-# libpixbufloader-webp is not loaded as part of libgdk-pixbuf. Just issue
-# a warning if not installed
-libwebp_dir = dependency('gdk-pixbuf-2.0', method: 'pkg-config').get_variable(pkgconfig: 'gdk_pixbuf_moduledir', internal: 'gdk_pixbuf_moduledir')
-
-if libwebp_dir.contains('loaders')
-    libwebp_dep = cc.find_library('pixbufloader-webp', dirs : libwebp_dir, required : false)
+libwebp_dep = []
+req_version = '>=0.6.1'
+option = get_option('webp')
+if not option.disabled()
+    libwebp_dep = dependency('libwebp', version : req_version, required : get_option('webp'))
     if libwebp_dep.found()
+        conf_data.set('HAVE_WEBP', 1)
         summary({'webp' : ['webp files supported:', true]}, section : 'Configuration', bool_yn : true)
     else
-        summary({'webp' : ['webp-pixbuf-loader not installed - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
+        summary({'webp' : ['libwebp ' + req_version + ' not found - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    summary({'webp' : ['webp-pixbuf-loader not installed - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
+    summary({'webp' : ['disabled - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 # Check for nl_langinfo and _NL_TIME_FIRST_WEEKDAY

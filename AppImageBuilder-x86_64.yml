@@ -39,6 +39,7 @@ AppDir:
     - libraw20
     - librsvg2-common
     - libtiff5
+    - libwebp7
 
   files:
     include: []
