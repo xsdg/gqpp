@@ -17,6 +17,7 @@ jobs:
     - run: sudo apt-get install libpoppler-glib-dev
     - run: sudo apt-get install libraw-dev libomp-dev
     - run: sudo apt-get install libwebp-dev
+    - run: sudo apt-get install gettext
 
     - uses: actions/checkout@v3
     - run: git fetch --tags --force
@@ -27,7 +28,7 @@ jobs:
         directory: build
         setup-options: -Dgit=disabled
         options: --verbose
-        meson-version: 0.56.2
+        meson-version: 1.0.1
 
     - name: build
       run: DESTDIR=/home/runner/work/geeqie/geeqie/AppDir ninja -C build install
