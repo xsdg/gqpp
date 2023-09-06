@@ -293,14 +293,14 @@ void filter_add_defaults()
 	filter_add_if_missing("rw2", "Panasonic raw format", ".rw2", FORMAT_CLASS_RAWIMAGE, FALSE, TRUE, TRUE);
 
 	/* video files */
-	filter_add_if_missing("mp4", "MP4 video file", ".mp4;.m4v;.3gp;.3g2", FORMAT_CLASS_VIDEO, FALSE, FALSE, FALSE);
-	filter_add_if_missing("3gp", "3GP video file", ".3gp;.3g2", FORMAT_CLASS_VIDEO, FALSE, FALSE, FALSE);
-	filter_add_if_missing("mov", "MOV video file", ".mov;.qt", FORMAT_CLASS_VIDEO, FALSE, FALSE, FALSE);
-	filter_add_if_missing("avi", "AVI video file", ".avi", FORMAT_CLASS_VIDEO, FALSE, FALSE, FALSE);
-	filter_add_if_missing("mpg", "MPG video file", ".mpg;.mpeg;.mts;.m2ts", FORMAT_CLASS_VIDEO, FALSE, FALSE, FALSE);
-	filter_add_if_missing("mkv", "Matroska video file", ".mkv;.webm", FORMAT_CLASS_VIDEO, FALSE, FALSE, FALSE);
-	filter_add_if_missing("wmv", "Windows Media Video file", ".wmv;.asf", FORMAT_CLASS_VIDEO, FALSE, FALSE, FALSE);
-	filter_add_if_missing("flv", "Flash Video file", ".flv", FORMAT_CLASS_VIDEO, FALSE, FALSE, FALSE);
+	filter_add_if_missing("mp4", "MP4 video file", ".mp4;.m4v;.3gp;.3g2", FORMAT_CLASS_VIDEO, FALSE, FALSE, TRUE);
+	filter_add_if_missing("3gp", "3GP video file", ".3gp;.3g2", FORMAT_CLASS_VIDEO, FALSE, FALSE, TRUE);
+	filter_add_if_missing("mov", "MOV video file", ".mov;.qt", FORMAT_CLASS_VIDEO, FALSE, FALSE, TRUE);
+	filter_add_if_missing("avi", "AVI video file", ".avi", FORMAT_CLASS_VIDEO, FALSE, FALSE, TRUE);
+	filter_add_if_missing("mpg", "MPG video file", ".mpg;.mpeg;.mts;.m2ts", FORMAT_CLASS_VIDEO, FALSE, FALSE, TRUE);
+	filter_add_if_missing("mkv", "Matroska video file", ".mkv;.webm", FORMAT_CLASS_VIDEO, FALSE, FALSE, TRUE);
+	filter_add_if_missing("wmv", "Windows Media Video file", ".wmv;.asf", FORMAT_CLASS_VIDEO, FALSE, FALSE, TRUE);
+	filter_add_if_missing("flv", "Flash Video file", ".flv", FORMAT_CLASS_VIDEO, FALSE, FALSE, TRUE);
 }
 
 GList *filter_to_list(const gchar *extensions)

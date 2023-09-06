@@ -11,21 +11,10 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #
 
-subdir('camera-import')
-subdir('export-jpeg')
-subdir('geocode-parameters')
-subdir('image-crop')
-subdir('lens')
-subdir('random-image')
-subdir('rotate')
-subdir('symlink')
-subdir('tethered-photography')
-subdir('video-player')
-
 i18n.merge_file(
-    input : 'template.desktop.in',
-    output : 'template.desktop',
+    input : 'video-player.desktop.in',
+    output : 'video-player.desktop',
     type : 'desktop',
     po_dir : podir,
     install : true,
-    install_dir : appdir)
+    install_dir : desktopdir)

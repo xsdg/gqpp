@@ -137,8 +137,8 @@ ConfOptions *init_options(ConfOptions *options)
 	options->mousewheel_scrolls = FALSE;
 	options->image_lm_click_nav = TRUE;
 	options->image_l_click_archive = FALSE;
-	options->image_l_click_video = FALSE;
-	options->image_l_click_video_editor = nullptr;
+	options->image_l_click_video = TRUE;
+	options->image_l_click_video_editor = g_strdup("video-player.desktop");
 	options->open_recent_list_maxsize = 10;
 	options->recent_folder_image_list_maxsize = 10;
 	options->place_dialogs_under_mouse = FALSE;

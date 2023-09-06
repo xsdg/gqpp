@@ -1,0 +1,21 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Video player
+Comment=Display videos in Geeqie
+
+# Requires xdg-utils
+
+Exec=xdg-open %f
+
+# Desktop files that are usable only in Geeqie should be marked like this:
+Categories=X-Geeqie;
+OnlyShowIn=X-Geeqie;
+
+TryExec=xdg-open
+
+# If you want to run a plugin in full-screen mode and wish full-screen
+# to be maintained:
+X-Geeqie-Keep-Fullscreen=true
+
+Icon=geeqie
