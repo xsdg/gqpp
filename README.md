@@ -126,6 +126,13 @@ This script file will download the latest Continuous Build AppImages for you:
 wget https://raw.githubusercontent.com/BestImageViewer/geeqie/master/scripts/geeqie-download-appimage.sh
 chmod +x geeqie-download-appimage.sh
 ```
+You should read the contents of the file before running it. The option ```--help``` gives some information about its functions.
+
+The script downloads both the full size and the minimal versions of the AppIamge, and sets symbolic links to these files.
+
+The full version takes a noticeable time to load, and runs slightly slower than a normal packaged release.
+The above script has the option ```--extract``` which extracts the contents of the full size AppImage to a local sub-directory.
+If the executable is run from there the loading and run time is the same as for a packaged release.
 
 ### Installation scripts
 
