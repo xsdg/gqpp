@@ -14,6 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: git fetch --tags --force
+    - run: git fetch --depth=1000000
     - uses: pguyot/arm-runner-action@v2
       with:
         base_image: ${{ matrix.base_image }}
@@ -47,7 +48,7 @@ jobs:
             yes | sudo apt-get install gettext
             mkdir -p $GITHUB_WORKSPACE/AppDir
             mkdir -p $GITHUB_WORKSPACE/AppDir/usr
-            meson setup -Ddevel=disabled -Ddoxygen=disabled -Dgit=disabled -Dyelp-build=disabled -Dprefix=$GITHUB_WORKSPACE/AppDir/usr build
+            meson setup -Ddevel=disabled -Ddoxygen=disabled -Dyelp-build=disabled -Dprefix=$GITHUB_WORKSPACE/AppDir/usr build
             ninja -C build install
             tar -czvf geeqie.gz $GITHUB_WORKSPACE/
 
