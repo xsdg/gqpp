@@ -32,6 +32,7 @@ jobs:
             yes | sudo apt-get install evince
             yes | sudo apt-get install libarchive-dev
             yes | sudo apt-get install libchamplain-0.12-dev libchamplain-gtk-0.12-dev
+            yes | sudo apt-get install libffmpegthumbnailer-dev
             yes | sudo apt-get install libgexiv2-dev
             yes | sudo apt-get install libgspell-1-dev
             yes | sudo apt-get install libheif-dev
