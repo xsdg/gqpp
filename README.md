@@ -120,19 +120,20 @@ The Continuous Build release version has AppImages that are automatically genera
 
 The minimal version can display jpegs, pngs and some other formats, but does not have the range of the full version.
 
-This script file will download the latest Continuous Build AppImages for you:
+This script file will download to $HOME/bin the latest Continuous Build AppImages for you:
 
 ```sh
 wget https://raw.githubusercontent.com/BestImageViewer/geeqie/master/scripts/geeqie-download-appimage.sh
 chmod +x geeqie-download-appimage.sh
 ```
-You should read the contents of the file before running it. The option ```--help``` gives some information about its functions.
 
-The script downloads both the full size and the minimal versions of the AppIamge, and sets symbolic links to these files.
+The script can download either the full size or the minimal version of the AppIamge, and sets a symbolic link to the executable file. The ```--help``` option lists all options.
 
 The full version takes a noticeable time to load, and runs slightly slower than a normal packaged release.
-The above script has the option ```--extract``` which extracts the contents of the full size AppImage to a local sub-directory.
-If the executable is run from there the loading and run time is the same as for a packaged release.
+The above script has the option ```--extract``` which extracts the contents of either AppImage to a sub-directory under $HOME/bin.
+With this option the loading and run time is the same as for a packaged release.
+
+There are also options to install desktop icons, menu items, and to revert to earlier downloaded versions.
 
 ### Installation scripts
 
