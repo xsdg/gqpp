@@ -385,6 +385,13 @@ struct ConfOptions
 		gint duplicates;
 	} threads;
 
+	/* Selectable bars */
+	struct {
+		gboolean menu_bar;
+		gboolean tool_bar;
+		gboolean status_bar;
+	} selectable_bars;
+
 	gchar *mouse_button_8; /**< user-definable mouse buttons */
 	gchar *mouse_button_9; /**< user-definable mouse buttons */
 
@@ -555,7 +562,7 @@ struct LayoutOptions
 
 	gboolean tools_float;
 	gboolean tools_hidden;
-	gboolean toolbar_hidden;
+	gboolean selectable_toolbars_hidden;
 
 	struct {
 		gboolean info;

@@ -442,6 +442,10 @@ static void config_window_apply()
 	options->show_predefined_keyword_tree = c_options->show_predefined_keyword_tree;
 	options->expand_menu_toolbar = c_options->expand_menu_toolbar;
 
+	options->selectable_bars.menu_bar = c_options->selectable_bars.menu_bar;
+	options->selectable_bars.tool_bar = c_options->selectable_bars.tool_bar;
+	options->selectable_bars.status_bar = c_options->selectable_bars.status_bar;
+
 	options->marks_save = c_options->marks_save;
 	options->with_rename = c_options->with_rename;
 	options->collections_duplicates = c_options->collections_duplicates;
@@ -2067,6 +2071,20 @@ static void config_tab_general(GtkWidget *notebook)
 	pref_checkbox_new_int(group, _("Expand menu and toolbar (NOTE! Geeqie must be restarted for change to take effect)"),
 				options->expand_menu_toolbar, &c_options->expand_menu_toolbar);
 	gtk_widget_set_tooltip_text(group, _("Expand the menu and toolbar to the full width of the window"));
+
+	pref_spacer(group, PREF_PAD_GROUP);
+
+	group = pref_group_new(vbox, FALSE, _("Hide Selectable Bars"), GTK_ORIENTATION_VERTICAL);
+
+	pref_checkbox_new_int(group, _("Menu bar"),
+				options->selectable_bars.menu_bar, &c_options->selectable_bars.menu_bar);
+
+	pref_checkbox_new_int(group, _("Tool bar"),
+				options->selectable_bars.tool_bar, &c_options->selectable_bars.tool_bar);
+
+	pref_checkbox_new_int(group, _("Status bar"),
+				options->selectable_bars.status_bar, &c_options->selectable_bars.status_bar);
+	gtk_widget_set_tooltip_text(group, _("The Hide Selectable Bars menu item (default keystroke is control-backtick) will toggle the display of the bars selected here"));
 
 	pref_spacer(group, PREF_PAD_GROUP);
 

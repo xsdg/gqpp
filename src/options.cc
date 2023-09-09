@@ -330,7 +330,7 @@ LayoutOptions *init_layout_options(LayoutOptions *options)
 	options->show_thumbnails = FALSE;
 	options->style = 0;
 	options->show_info_pixel = FALSE;
-	options->toolbar_hidden = FALSE;
+	options->selectable_toolbars_hidden = FALSE;
 	options->tools_float = FALSE;
 	options->tools_hidden = FALSE;
 	options->image_overlay.histogram_channel = HCHAN_RGB;

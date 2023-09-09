@@ -246,6 +246,13 @@
       <para>Geeqie must be restarted for changes to take effect.</para>
     </note>
   </section>
+  <section id="HideSelectableBars">
+    <title>Hide Selectable Bars</title>
+    <para>The menu item Hide Selectable Bars will toggle display of the bars selected here. The default keystroke for this action is <code>control + backtick</code></para>
+    <note>
+      <para>Geeqie must be restarted for changes to take effect.</para>
+    </note>
+  </section>
   <section id="AppImageUpdatesNotifications">
     <title>AppImage updates notifications</title>
     <para>Show a notification on start-up if the server has a newer version than the current. Requires an Internet connection. Displayed only if an AppImage is being run.</para>

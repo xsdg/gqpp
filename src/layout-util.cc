@@ -1085,14 +1085,14 @@ static void layout_menu_hide_cb(GtkAction *, gpointer data)
 	layout_tools_hide_toggle(lw);
 }
 
-static void layout_menu_toolbar_cb(GtkToggleAction *action, gpointer data)
+static void layout_menu_selectable_toolbars_cb(GtkToggleAction *action, gpointer data)
 {
 	auto lw = static_cast<LayoutWindow *>(data);
 
-	if (lw->options.toolbar_hidden == gtk_toggle_action_get_active(action)) return;
+	if (lw->options.selectable_toolbars_hidden == gtk_toggle_action_get_active(action)) return;
 
 	layout_exit_fullscreen(lw);
-	layout_toolbar_toggle(lw);
+	layout_selectable_toolbars_toggle(lw);
 }
 
 static void layout_menu_info_pixel_cb(GtkToggleAction *action, gpointer data)
@@ -2691,10 +2691,10 @@ static GtkToggleActionEntry menu_toggle_entries[] = {
   { "ShowInfoPixel",	GQ_ICON_SELECT_COLOR,	N_("Pi_xel Info"),			nullptr,			N_("Show Pixel Info"),			CB(layout_menu_info_pixel_cb),	 FALSE  },
   { "IgnoreAlpha", GQ_ICON_STRIKETHROUGH,           N_("Hide _alpha"),          "<shift>A",     N_("Hide alpha channel"),       CB(layout_menu_alter_ignore_alpha_cb), FALSE},
   { "FloatTools",	PIXBUF_INLINE_ICON_FLOAT,N_("_Float file list"),		"L",			N_("Float file list"),			CB(layout_menu_float_cb),	 FALSE  },
-  { "HideToolbar",	nullptr,			N_("Hide tool_bar"),			nullptr,			N_("Hide toolbar"),			CB(layout_menu_toolbar_cb),	 FALSE  },
+  { "HideSelectableToolbars",	nullptr,			N_("Hide Selectable Bars"),			"<control>grave",			N_("Hide Selectable Bars"),			CB(layout_menu_selectable_toolbars_cb),	 FALSE  },
   { "SBar",	GQ_ICON_PROPERTIES,			N_("_Info sidebar"),			"<control>K",		N_("Info sidebar"),			CB(layout_menu_bar_cb),		 FALSE  },
   { "SBarSort",	PIXBUF_INLINE_ICON_SORT,	N_("Sort _manager"),			"<shift>S",		N_("Sort manager"),			CB(layout_menu_bar_sort_cb),	 FALSE  },
-  { "HideBars",		nullptr,			N_("Hide Bars"),			"grave",		N_("Hide Bars"),			CB(layout_menu_hide_bars_cb),	 FALSE  },
+  { "HideBars",		nullptr,			N_("Hide Bars and Files"),			"grave",		N_("Hide Bars and Files"),			CB(layout_menu_hide_bars_cb),	 FALSE  },
   { "SlideShow",	GQ_ICON_PLAY,	N_("Toggle _slideshow"),		"S",			N_("Toggle slideshow"),			CB(layout_menu_slideshow_cb),	 FALSE  },
   { "UseColorProfiles",	GQ_ICON_COLOR_MANAGEMENT,	N_("Use _color profiles"), 		nullptr,			N_("Use color profiles"), 		CB(layout_color_menu_enable_cb), FALSE},
   { "UseImageProfile",	nullptr,			N_("Use profile from _image"),		nullptr,			N_("Use profile from image"),		CB(layout_color_menu_use_image_cb), FALSE},
@@ -2884,7 +2884,6 @@ static const gchar *menu_ui_description =
 "        <separator/>"
 "        <menuitem action='FloatTools'/>"
 "        <menuitem action='HideTools'/>"
-"        <menuitem action='HideToolbar'/>"
 "      </menu>"
 "      <placeholder name='DirSection'/>"
 "      <separator/>"
@@ -2973,6 +2972,7 @@ static const gchar *menu_ui_description =
 "      <menuitem action='SBar'/>"
 "      <menuitem action='SBarSort'/>"
 "      <menuitem action='HideBars'/>"
+"      <menuitem action='HideSelectableToolbars'/>"
 "      <menuitem action='ShowInfoPixel'/>"
 "      <menuitem action='IgnoreAlpha'/>"
 "      <placeholder name='ToolsSection'/>"
@@ -3872,8 +3872,8 @@ static void layout_util_sync_views(LayoutWindow *lw)
 	action = gtk_action_group_get_action(lw->action_group, "SBarSort");
 	gtk_toggle_action_set_active(GTK_TOGGLE_ACTION(action), layout_bar_sort_enabled(lw));
 
-	action = gtk_action_group_get_action(lw->action_group, "HideToolbar");
-	gtk_toggle_action_set_active(GTK_TOGGLE_ACTION(action), lw->options.toolbar_hidden);
+	action = gtk_action_group_get_action(lw->action_group, "HideSelectableToolbars");
+	gtk_toggle_action_set_active(GTK_TOGGLE_ACTION(action), lw->options.selectable_toolbars_hidden);
 
 	action = gtk_action_group_get_action(lw->action_group, "ShowInfoPixel");
 	gtk_toggle_action_set_active(GTK_TOGGLE_ACTION(action), lw->options.show_info_pixel);

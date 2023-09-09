@@ -884,6 +884,8 @@ static GtkWidget *layout_image_pop_menu(LayoutWindow *lw)
 
 	item = menu_item_add_check(menu, _("Hide file _list"), lw->options.tools_hidden,
 				   G_CALLBACK(li_pop_menu_hide_cb), lw);
+
+	item = menu_item_add_check(menu, _("Hide Selectable Bars"), lw->options.selectable_toolbars_hidden, G_CALLBACK(layout_selectable_toolbars_toggle), lw);
 	if (fullscreen) gtk_widget_set_sensitive(item, FALSE);
 
 	return menu;

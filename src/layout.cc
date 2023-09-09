@@ -341,7 +341,6 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 
 		gtk_widget_show(scroll_window);
 		gtk_widget_show(menu_bar);
-		if (lw->options.toolbar_hidden) gtk_widget_hide(toolbar);
 
 		gtk_box_pack_start(GTK_BOX(box), scroll_window, FALSE, FALSE, 0);
 		gtk_box_pack_start(GTK_BOX(box), toolbar, FALSE, FALSE, 0);
@@ -352,7 +351,6 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 		DEBUG_NAME(menu_tool_bar);
 		gtk_widget_show(menu_tool_bar);
 		gtk_box_pack_start(GTK_BOX(lw->main_box), lw->menu_tool_bar, FALSE, FALSE, 0);
-		if (lw->options.toolbar_hidden) gtk_widget_hide(lw->toolbar[TOOLBAR_MAIN]);
 		}
 
 	tabcomp = tab_completion_new_with_history(&lw->path_entry, nullptr, "path_list", -1,
@@ -2094,20 +2092,81 @@ gboolean layout_tools_float_get(LayoutWindow *lw, gboolean *popped, gboolean *hi
 	return TRUE;
 }
 
-void layout_toolbar_toggle(LayoutWindow *lw)
+void layout_selectable_toolbars_toggle(LayoutWindow *lw)
 {
+	lw = current_lw;
+
 	if (!layout_valid(&lw)) return;
 	if (!lw->toolbar[TOOLBAR_MAIN]) return;
+	if (!lw->menu_bar) return;
+	if (!lw->info_box) return;
 
-	lw->options.toolbar_hidden = !lw->options.toolbar_hidden;
+	lw->options.selectable_toolbars_hidden = !lw->options.selectable_toolbars_hidden;
 
-	if (lw->options.toolbar_hidden)
+	if (options->selectable_bars.tool_bar)
 		{
-		if (gtk_widget_get_visible(lw->toolbar[TOOLBAR_MAIN])) gtk_widget_hide(lw->toolbar[TOOLBAR_MAIN]);
+		if (lw->options.selectable_toolbars_hidden)
+			{
+			if (gtk_widget_get_visible(lw->toolbar[TOOLBAR_MAIN]))
+				{
+				gtk_widget_hide(lw->toolbar[TOOLBAR_MAIN]);
+				}
+			}
+		else
+			{
+			if (!gtk_widget_get_visible(lw->toolbar[TOOLBAR_MAIN]))
+				{
+				gtk_widget_show(lw->toolbar[TOOLBAR_MAIN]);
+				}
+			}
 		}
 	else
 		{
-		if (!gtk_widget_get_visible(lw->toolbar[TOOLBAR_MAIN])) gtk_widget_show(lw->toolbar[TOOLBAR_MAIN]);
+		gtk_widget_show(lw->toolbar[TOOLBAR_MAIN]);
+		}
+
+	if (options->selectable_bars.menu_bar)
+		{
+		if (lw->options.selectable_toolbars_hidden)
+			{
+			if (gtk_widget_get_visible(lw->menu_bar))
+				{
+				gtk_widget_hide(lw->menu_bar);
+				}
+			}
+		else
+			{
+			if (!gtk_widget_get_visible(lw->menu_bar))
+				{
+				gtk_widget_show(lw->menu_bar);
+				}
+			}
+		}
+	else
+		{
+		gtk_widget_show(lw->menu_bar);
+		}
+
+	if (options->selectable_bars.status_bar)
+		{
+		if (lw->options.selectable_toolbars_hidden)
+			{
+			if (gtk_widget_get_visible(lw->info_box))
+				{
+				gtk_widget_hide(lw->info_box);
+				}
+			}
+		else
+			{
+			if (!gtk_widget_get_visible(lw->info_box))
+				{
+				gtk_widget_show(lw->info_box);
+				}
+			}
+		}
+	else
+		{
+		gtk_widget_show(lw->info_box);
 		}
 }
 
@@ -2731,7 +2790,6 @@ void layout_write_attributes(LayoutOptions *layout, GString *outstr, gint indent
 	WRITE_NL(); WRITE_BOOL(*layout, tools_hidden);
 	WRITE_SEPARATOR();
 
-	WRITE_NL(); WRITE_BOOL(*layout, toolbar_hidden);
 	WRITE_NL(); WRITE_BOOL(*layout, show_info_pixel);
 	WRITE_NL(); WRITE_BOOL(*layout, ignore_alpha);
 	WRITE_SEPARATOR();
@@ -2851,7 +2909,6 @@ void layout_load_attributes(LayoutOptions *layout, const gchar **attribute_names
 
 		if (READ_BOOL(*layout, tools_float)) continue;
 		if (READ_BOOL(*layout, tools_hidden)) continue;
-		if (READ_BOOL(*layout, toolbar_hidden)) continue;
 		if (READ_BOOL(*layout, show_info_pixel)) continue;
 		if (READ_BOOL(*layout, ignore_alpha)) continue;
 

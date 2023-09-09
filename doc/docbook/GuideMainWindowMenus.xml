@@ -1202,17 +1202,6 @@
           </para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>
-          <menuchoice>
-            <guimenu>Files and Folders</guimenu>
-            <guimenuitem>Hide toolbar</guimenuitem>
-          </menuchoice>
-        </term>
-        <listitem>
-          <para>Toggles visibility of the tool bar. A check appears next to this item when the tool bar is not visible.</para>
-        </listitem>
-      </varlistentry>
     </variablelist>
     <variablelist>
       <varlistentry>
@@ -1491,10 +1480,33 @@
       </varlistentry>
       <varlistentry>
         <term>
-          <guimenu>Hide Bars</guimenu>
+          <menuchoice>
+            <shortcut>
+              <keycombo>
+                <keycap>`</keycap>
+              </keycombo>
+            </shortcut>
+            <guimenu>Hide Bars and Files</guimenu>
+          </menuchoice>
+         </term>
+        <listitem>
+          <para>This item is intended to be used by its shortcut key. When pressed, the info sidebar, sort manager, file list, menu and status bars will be hidden (if displayed). Pressing the shortcut key again will revert the display to its previous layout.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo>
+                <keycap>Control</keycap>
+                <keycap>`</keycap>
+              </keycombo>
+            </shortcut>
+            <guimenu>Hide Selectable Bars</guimenu>
+          </menuchoice>
         </term>
         <listitem>
-          <para>This item is intended to be used by its shortcut key - by default this is the backtick key. When pressed, the info sidebar, sort manager and file list will be hidden (if displayed). Pressing backtick again will revert the display to its previous layout.</para>
+          <para>This item is intended to be used by its shortcut key. When pressed, bars selected in Preferences/General will be hidden. Pressing shortcut key again will revert the display to its previous layout.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
