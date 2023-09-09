@@ -23,12 +23,13 @@
 ## @brief Download full and minimal AppImages from the Continuous build release on GitHub.
 ## Optionally extract the full size AppImage.
 ##
-## The user may modify the symbolic links as appropriate.
+## Downloads are made to $HOME/bin.
+## It is expected that $HOME/bin exists and that it is in $PATH.
 ##
 ## Downloads will not be made unless the server version is newer than the local file.
 ##
 
-version="2023-09-08"
+version="2023-09-09"
 backups=3
 
 show_help()
@@ -41,7 +42,7 @@ Continuous Build release on GitHub.
 -e --extract Extract AppImage
 -h --help Display this message
 -m --minimal Download minimal version of AppImage
--r --revert <n> Revert to downloaded AppImage backup
+-r --revert <n> Revert to downloaded AppImage backup. For the latest version set <n> to 0
 -v --version Display version of this file
 
 The Continuous Build release is updated each
@@ -87,7 +88,7 @@ extract=0
 minimal=""
 desktop=0
 backups_option=0
-revert=0
+revert=""
 revert_option=0
 
 while :
@@ -156,12 +157,11 @@ done
 if [ ! -d "$HOME/bin" ]
 then
 	printf "\$HOME/bin does not exist.
-It is required for this script to run.\n"
+It is required for this script to run.
+Also, \$HOME/bin should be in \$PATH.\n"
 
 	exit 1
 fi
-
-cd "$HOME/bin/" || exit 1
 
 if [ "$backups_option" -eq 1 ] && {
 	[ "$minimal" = "-minimal" ] || [ "$extract" -eq 1 ] || [ "$revert_option" -eq 1 ]
@@ -220,8 +220,8 @@ then
 	cd "$tmp_dir" || exit 1
 
 	app=$(find "$HOME/bin/" -name "Geeqie*latest*\.AppImage" -print | sort --reverse | head -1)
-	$app --appimage-extract "usr/local/share/applications/geeqie.desktop"
-	$app --appimage-extract "usr/local/share/pixmaps/geeqie.png"
+	$app --appimage-extract "usr/local/share/applications/geeqie.desktop" > /dev/null
+	$app --appimage-extract "usr/local/share/pixmaps/geeqie.png" > /dev/null
 	xdg-desktop-icon install --novendor "squashfs-root/usr/local/share/applications/geeqie.desktop"
 	xdg-icon-resource install --novendor --size 48 "squashfs-root/usr/local/share/pixmaps/geeqie.png"
 	xdg-desktop-menu install --novendor "squashfs-root/usr/local/share/applications/geeqie.desktop"
@@ -230,39 +230,49 @@ then
 	exit 0
 fi
 
+# The cd needs to be here because the --backups option needs PWD
+cd "$HOME/bin/" || exit 1
+
 if [ "$revert_option" -eq 1 ]
 then
-	if ! [ "$revert" -gt 0 ] 2> /dev/null
+	if ! [ "$revert" -ge 0 ] 2> /dev/null
 	then
 		printf "%s is not an integer\n" "$revert"
 
 		exit 1
 	else
-		if ! [ -f "$HOME/bin/Geeqie$minimal-latest-$architecture.AppImage.$revert" ]
+		if [ "$revert" -eq 0 ]
 		then
-			printf "Backup $HOME/bin/Geeqie%s-latest-$architecture.AppImage.%s does not exist\n" "$minimal" "$revert"
-
-			exit 1
-		fi
-
-		if [ "$extract" -eq 1 ]
-		then
-			rm --recursive --force "Geeqie$minimal-latest-$architecture-AppImage"
-			mkdir "Geeqie$minimal-latest-$architecture-AppImage"
-			cd "Geeqie$minimal-latest-$architecture-AppImage" || exit 1
-
-			printf "Extracting AppImage\n"
-			../"Geeqie$minimal-latest-$architecture.AppImage.$revert" --appimage-extract | cut --characters 1-50 | tr '\n' '\r'
-			printf "\nExtraction complete\n"
-
-			cd ..
-			ln --symbolic --force "./Geeqie$minimal-latest-$architecture-AppImage/squashfs-root/AppRun" geeqie
+			revert=""
 		else
-			ln --symbolic --force "$HOME/bin/Geeqie$minimal-latest-$architecture.AppImage.$revert" geeqie
+			revert=".$revert"
 		fi
-
-		exit 0
 	fi
+
+	if ! [ -f "$HOME/bin/Geeqie$minimal-latest-$architecture.AppImage$revert" ]
+	then
+		printf "Backup $HOME/bin/Geeqie%s-latest-$architecture.AppImage%s does not exist\n" "$minimal" "$revert"
+
+		exit 1
+	fi
+
+	if [ "$extract" -eq 1 ]
+	then
+		rm --recursive --force "Geeqie$minimal-latest-$architecture-AppImage"
+		mkdir "Geeqie$minimal-latest-$architecture-AppImage"
+		cd "Geeqie$minimal-latest-$architecture-AppImage" || exit 1
+
+		printf "Extracting AppImage\n"
+		../"Geeqie$minimal-latest-$architecture.AppImage$revert" --appimage-extract | cut --characters 1-50 | tr '\n' '\r'
+		printf "\nExtraction complete\n"
+
+		cd ..
+		ln --symbolic --force "./Geeqie$minimal-latest-$architecture-AppImage/squashfs-root/AppRun" geeqie
+	else
+		ln --symbolic --force "$HOME/bin/Geeqie$minimal-latest-$architecture.AppImage$revert" geeqie
+	fi
+
+	exit 0
 fi
 
 log_file=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
