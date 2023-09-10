@@ -1581,9 +1581,17 @@ gint main(gint argc, gchar *argv[])
 		}
 
 	/* Show a fade-out notification window if the server has a newer AppImage version */
-	if (options->appimage_notifications && g_getenv("APPDIR") && strstr(g_getenv("APPDIR"), "/tmp/.mount_Geeqie"))
+	if (options->appimage_notifications)
 		{
-		appimage_notification();
+		if (g_getenv("APPDIR") && strstr(g_getenv("APPDIR"), "/tmp/.mount_Geeqie"))
+			{
+			appimage_notification();
+			}
+		else if (g_strstr_len(gq_executable_path, -1, "AppRun"))
+			{
+			/* Probably running an extracted AppImage */
+			appimage_notification();
+			}
 		}
 
 	DEBUG_1("%s main: gtk_main", get_exec_time());
