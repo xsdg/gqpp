@@ -2092,81 +2092,79 @@ gboolean layout_tools_float_get(LayoutWindow *lw, gboolean *popped, gboolean *hi
 	return TRUE;
 }
 
-void layout_selectable_toolbars_toggle(LayoutWindow *lw)
+void layout_selectable_toolbars_toggle(LayoutWindow *)
 {
-	lw = current_lw;
+	if (!layout_valid(&current_lw)) return;
+	if (!current_lw->toolbar[TOOLBAR_MAIN]) return;
+	if (!current_lw->menu_bar) return;
+	if (!current_lw->info_box) return;
 
-	if (!layout_valid(&lw)) return;
-	if (!lw->toolbar[TOOLBAR_MAIN]) return;
-	if (!lw->menu_bar) return;
-	if (!lw->info_box) return;
-
-	lw->options.selectable_toolbars_hidden = !lw->options.selectable_toolbars_hidden;
+	current_lw->options.selectable_toolbars_hidden = !current_lw->options.selectable_toolbars_hidden;
 
 	if (options->selectable_bars.tool_bar)
 		{
-		if (lw->options.selectable_toolbars_hidden)
+		if (current_lw->options.selectable_toolbars_hidden)
 			{
-			if (gtk_widget_get_visible(lw->toolbar[TOOLBAR_MAIN]))
+			if (gtk_widget_get_visible(current_lw->toolbar[TOOLBAR_MAIN]))
 				{
-				gtk_widget_hide(lw->toolbar[TOOLBAR_MAIN]);
+				gtk_widget_hide(current_lw->toolbar[TOOLBAR_MAIN]);
 				}
 			}
 		else
 			{
-			if (!gtk_widget_get_visible(lw->toolbar[TOOLBAR_MAIN]))
+			if (!gtk_widget_get_visible(current_lw->toolbar[TOOLBAR_MAIN]))
 				{
-				gtk_widget_show(lw->toolbar[TOOLBAR_MAIN]);
+				gtk_widget_show(current_lw->toolbar[TOOLBAR_MAIN]);
 				}
 			}
 		}
 	else
 		{
-		gtk_widget_show(lw->toolbar[TOOLBAR_MAIN]);
+		gtk_widget_show(current_lw->toolbar[TOOLBAR_MAIN]);
 		}
 
 	if (options->selectable_bars.menu_bar)
 		{
-		if (lw->options.selectable_toolbars_hidden)
+		if (current_lw->options.selectable_toolbars_hidden)
 			{
-			if (gtk_widget_get_visible(lw->menu_bar))
+			if (gtk_widget_get_visible(current_lw->menu_bar))
 				{
-				gtk_widget_hide(lw->menu_bar);
+				gtk_widget_hide(current_lw->menu_bar);
 				}
 			}
 		else
 			{
-			if (!gtk_widget_get_visible(lw->menu_bar))
+			if (!gtk_widget_get_visible(current_lw->menu_bar))
 				{
-				gtk_widget_show(lw->menu_bar);
+				gtk_widget_show(current_lw->menu_bar);
 				}
 			}
 		}
 	else
 		{
-		gtk_widget_show(lw->menu_bar);
+		gtk_widget_show(current_lw->menu_bar);
 		}
 
 	if (options->selectable_bars.status_bar)
 		{
-		if (lw->options.selectable_toolbars_hidden)
+		if (current_lw->options.selectable_toolbars_hidden)
 			{
-			if (gtk_widget_get_visible(lw->info_box))
+			if (gtk_widget_get_visible(current_lw->info_box))
 				{
-				gtk_widget_hide(lw->info_box);
+				gtk_widget_hide(current_lw->info_box);
 				}
 			}
 		else
 			{
-			if (!gtk_widget_get_visible(lw->info_box))
+			if (!gtk_widget_get_visible(current_lw->info_box))
 				{
-				gtk_widget_show(lw->info_box);
+				gtk_widget_show(current_lw->info_box);
 				}
 			}
 		}
 	else
 		{
-		gtk_widget_show(lw->info_box);
+		gtk_widget_show(current_lw->info_box);
 		}
 }
 
