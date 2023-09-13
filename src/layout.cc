@@ -2612,10 +2612,6 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 	else
 		init_layout_options(&lw->options);
 
-	lw->options.file_view_list_sort.method = SORT_NAME;
-	lw->options.file_view_list_sort.ascend = TRUE;
-	lw->options.file_view_list_sort.case_sensitive = TRUE;
-
 	layout_set_unique_id(lw);
 
 	/* default layout */
