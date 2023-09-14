@@ -2264,7 +2264,7 @@ static void save_default_window_layout_cb(GtkWidget *, gpointer)
 	layout_valid(&lw);
 
 	tmp_id = lw->options.id;
-	lw->options.id = g_strdup("lw_default");
+	lw->options.id = g_strdup("");
 
 	default_path = g_build_filename(get_rc_dir(), DEFAULT_WINDOW_LAYOUT, NULL);
 	save_default_layout_options_to_file(default_path, options, lw);

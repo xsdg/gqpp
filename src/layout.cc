@@ -3082,13 +3082,15 @@ LayoutWindow *layout_new_from_default()
 		{
 		work = g_list_last(layout_window_list);
 		lw = static_cast<LayoutWindow *>(work->data);
-		g_free(lw->options.id);
-		lw->options.id = g_strdup(layout_get_unique_id());
 		}
 	else
 		{
 		lw = layout_new_from_config(nullptr, nullptr, TRUE);
 		}
+
+	g_free(lw->options.id);
+	lw->options.id = g_strdup(layout_get_unique_id());
+
 	return lw;
 }
 
