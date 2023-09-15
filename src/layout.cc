@@ -1106,6 +1106,10 @@ void layout_mark_filter_toggle(LayoutWindow *lw, gint mark)
 	if (lw->vf) vf_mark_filter_toggle(lw->vf, mark);
 }
 
+guint layout_window_count()
+{
+	return g_list_length(layout_window_list);
+}
 
 /*
  *-----------------------------------------------------------------------------

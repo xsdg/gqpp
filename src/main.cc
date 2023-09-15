@@ -1086,6 +1086,7 @@ static gint exit_confirm_dlg()
 	GtkWidget *parent;
 	LayoutWindow *lw;
 	gchar *msg;
+	GString *message;
 
 	if (exit_dialog)
 		{
@@ -1093,7 +1094,7 @@ static gint exit_confirm_dlg()
 		return TRUE;
 		}
 
-	if (!collection_window_modified_exists()) return FALSE;
+	if (!collection_window_modified_exists() && (layout_window_count() == 1)) return FALSE;
 
 	parent = nullptr;
 	lw = nullptr;
@@ -1108,12 +1109,28 @@ static gint exit_confirm_dlg()
 				exit_confirm_cancel_cb, nullptr);
 	g_free(msg);
 	msg = g_strdup_printf(_("Quit %s"), GQ_APPNAME);
-	generic_dialog_add_message(exit_dialog, GQ_ICON_DIALOG_QUESTION,
-				   msg, _("Collections have been modified. Quit anyway?"), TRUE);
+
+	message = g_string_new(NULL);
+
+	if (collection_window_modified_exists())
+		{
+		message = g_string_append(message, _("Collections have been modified.\n"));
+		}
+
+	if (layout_window_count() > 1)
+		{
+		g_string_append_printf(message, _("%d windows are open.\n\n"), layout_window_count());
+		}
+
+	message = g_string_append(message, _("Quit anyway?"));
+
+	generic_dialog_add_message(exit_dialog, GQ_ICON_DIALOG_QUESTION, msg, message->str, TRUE);
 	g_free(msg);
 	generic_dialog_add_button(exit_dialog, GQ_ICON_QUIT, _("Quit"), exit_confirm_exit_cb, TRUE);
 
 	gtk_widget_show(exit_dialog->dialog);
+
+	g_string_free(message, TRUE);
 
 	return TRUE;
 }

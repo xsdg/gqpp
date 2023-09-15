@@ -243,5 +243,7 @@ void layout_split_change(LayoutWindow *lw, ImageSplitMode mode);
 
 void save_layout(LayoutWindow *lw);
 gchar *layout_get_unique_id();
+guint layout_window_count();
+
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */
