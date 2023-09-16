@@ -44,7 +44,6 @@ gboolean pixbuf_scale_aspect(gint req_w, gint req_h, gint old_w, gint old_h, gin
 #define PIXBUF_INLINE_ICON_DRAW_RECTANGLE	"gq-icon-draw-rectangle"
 #define PIXBUF_INLINE_ICON_EXIF		"gq-icon-exif"
 #define PIXBUF_INLINE_ICON_EXPOSURE		"gq-icon-exposure"
-#define PIXBUF_INLINE_ICON_FILE_FILTER	"gq-icon-file-filter"
 #define PIXBUF_INLINE_ICON_FLOAT	"gq-icon-float"
 #define PIXBUF_INLINE_ICON_GRAYSCALE	"gq-icon-grayscale"
 #define PIXBUF_INLINE_ICON_HEIF		"gq-icon-heic"

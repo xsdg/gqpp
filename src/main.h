@@ -157,6 +157,7 @@
 #define GQ_ICON_FIND "edit-find"
 #define GQ_ICON_REPLACE "edit-find-replace"
 #define GQ_ICON_PRINT "document-print"
+#define GQ_ICON_FILE_FILTER "preview-file"
 
 #define GQ_ICON_GO_TOP "go-top"
 #define GQ_ICON_GO_BOTTOM "go-bottom"

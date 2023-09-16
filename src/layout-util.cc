@@ -2687,7 +2687,7 @@ static GtkActionEntry menu_entries[] = {
 static GtkToggleActionEntry menu_toggle_entries[] = {
   { "Thumbnails",	PIXBUF_INLINE_ICON_THUMB,N_("Show _Thumbnails"),		"T",			N_("Show Thumbnails"),			CB(layout_menu_thumb_cb),	 FALSE },
   { "ShowMarks",        PIXBUF_INLINE_ICON_MARKS,	N_("Show _Marks"),			"M",			N_("Show Marks"),			CB(layout_menu_marks_cb),	 FALSE  },
-  { "ShowFileFilter", PIXBUF_INLINE_ICON_FILE_FILTER,	N_("Show File Filter"),	nullptr,	N_("Show File Filter"),	CB(layout_menu_file_filter_cb),	 FALSE  },
+  { "ShowFileFilter", GQ_ICON_FILE_FILTER,	N_("Show File Filter"),	nullptr,	N_("Show File Filter"),	CB(layout_menu_file_filter_cb),	 FALSE  },
   { "ShowInfoPixel",	GQ_ICON_SELECT_COLOR,	N_("Pi_xel Info"),			nullptr,			N_("Show Pixel Info"),			CB(layout_menu_info_pixel_cb),	 FALSE  },
   { "IgnoreAlpha", GQ_ICON_STRIKETHROUGH,           N_("Hide _alpha"),          "<shift>A",     N_("Hide alpha channel"),       CB(layout_menu_alter_ignore_alpha_cb), FALSE},
   { "FloatTools",	PIXBUF_INLINE_ICON_FLOAT,N_("_Float file list"),		"L",			N_("Float file list"),			CB(layout_menu_float_cb),	 FALSE  },

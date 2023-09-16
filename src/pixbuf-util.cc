@@ -114,7 +114,6 @@ static PixbufInline inline_pixbuf_data[] = {
 	{ PIXBUF_INLINE_ICON_DRAW_RECTANGLE,	"gq-icon-draw-rectangle.png" },
 	{ PIXBUF_INLINE_ICON_EXIF,	"gq-icon-exif.png" },
 	{ PIXBUF_INLINE_ICON_EXPOSURE,	"gq-icon-exposure.png" },
-	{ PIXBUF_INLINE_ICON_FILE_FILTER,	"gq-icon-file-filter.png" },
 	{ PIXBUF_INLINE_ICON_FLOAT,	"gq-icon-float.png" },
 	{ PIXBUF_INLINE_ICON_GRAYSCALE,	"gq-icon-grayscale.png" },
 	{ PIXBUF_INLINE_ICON_HEIF,	"gq-icon-heic.png" },
