@@ -104,66 +104,89 @@ struct PixbufInline
 };
 
 static PixbufInline inline_pixbuf_data[] = {
-	{ PIXBUF_INLINE_ARCHIVE,	"gq-archive-file.png" },
-	{ PIXBUF_INLINE_BROKEN,	"gq-sheet-broken.png" },
-	{ PIXBUF_INLINE_COLLECTION,	"gq-collection.png" },
-	{ PIXBUF_INLINE_ICON,	"gqview-icon.png" },
-	{ PIXBUF_INLINE_ICON_180,	"gq-icon-rotate-180.png" },
-	{ PIXBUF_INLINE_ICON_BOOK,	"gq-icon-book.png" },
-	{ PIXBUF_INLINE_ICON_CONFIG,	"gq-icon-config.png" },
-	{ PIXBUF_INLINE_ICON_DRAW_RECTANGLE,	"gq-icon-draw-rectangle.png" },
-	{ PIXBUF_INLINE_ICON_EXIF,	"gq-icon-exif.png" },
-	{ PIXBUF_INLINE_ICON_EXPOSURE,	"gq-icon-exposure.png" },
-	{ PIXBUF_INLINE_ICON_FLOAT,	"gq-icon-float.png" },
-	{ PIXBUF_INLINE_ICON_GRAYSCALE,	"gq-icon-grayscale.png" },
-	{ PIXBUF_INLINE_ICON_HEIF,	"gq-icon-heic.png" },
-	{ PIXBUF_INLINE_ICON_HIDETOOLS,		"gq-icon-hidetools.png" },
-	{ PIXBUF_INLINE_ICON_MAINTENANCE,	"gq-icon-maintenance.png" },
-	{ PIXBUF_INLINE_ICON_MARKS,	"gq-icon-marks.png" },
-	{ PIXBUF_INLINE_ICON_MOVE,	"gq-icon-move.png" },
-	{ PIXBUF_INLINE_ICON_ORIGINAL,	"gq-icon-original.png" },
-	{ PIXBUF_INLINE_ICON_PANORAMA,	"gq-icon-panorama.png" },
-	{ PIXBUF_INLINE_ICON_PDF,	"gq-icon-pdf.png" },
-	{ PIXBUF_INLINE_ICON_RENAME,	"gq-icon-rename.png" },
-	{ PIXBUF_INLINE_ICON_SELECT_ALL,	"gq-icon-select-all.png" },
-	{ PIXBUF_INLINE_ICON_SELECT_INVERT,	"gq-icon-select-invert.png" },
-	{ PIXBUF_INLINE_ICON_SELECT_NONE,	"gq-icon-select-none.png" },
-	{ PIXBUF_INLINE_ICON_SELECT_RECTANGLE,	"gq-icon-select-rectangle.png" },
-	{ PIXBUF_INLINE_ICON_SORT,	"gq-icon-sort.png" },
-	{ PIXBUF_INLINE_ICON_THUMB,	"gq-icon-thumb.png" },
-	{ PIXBUF_INLINE_ICON_TOOLS,		"gq-icon-tools.png" },
-	{ PIXBUF_INLINE_ICON_TRASH,	"gq-icon-trash.png" },
-	{ PIXBUF_INLINE_ICON_VIEW,	"gq-icon-view.png" },
-	{ PIXBUF_INLINE_ICON_ZOOMFILLHOR,	"gq-icon-zoomfillhor.png" },
-	{ PIXBUF_INLINE_ICON_ZOOMFILLVERT,	"gq-icon-zoomfillvert.png" },
-	{ PIXBUF_INLINE_LOGO,	"geeqie-logo.png" },
-	{ PIXBUF_INLINE_METADATA,	"gq-sheet-metadata.png" },
-	{ PIXBUF_INLINE_SCROLLER,	"gq-scroller.png" },
-	{ PIXBUF_INLINE_SPLIT_PANE_SYNC, "gq-icon-split-pane-sync.png" },
-	{ PIXBUF_INLINE_UNKNOWN,	"gq-sheet-unknown.png" },
-	{ PIXBUF_INLINE_VIDEO,	"gq-sheet-video.png" },
-	{ nullptr, nullptr }
+	{  PIXBUF_INLINE_ARCHIVE,                "gq-icon-archive-file" },
+	{  PIXBUF_INLINE_BROKEN,                 "gq-icon-broken" },
+	{  PIXBUF_INLINE_COLLECTION,             "gq-icon-collection" },
+	{  PIXBUF_INLINE_ICON_180,               "gq-icon-rotate-180" },
+	{  PIXBUF_INLINE_ICON_BOOK,              "gq-icon-book" },
+	{  PIXBUF_INLINE_ICON_CONFIG,            "gq-icon-config" },
+	{  PIXBUF_INLINE_ICON_DRAW_RECTANGLE,    "gq-icon-draw-rectangle" },
+	{  PIXBUF_INLINE_ICON_EXIF,              "gq-icon-exif" },
+	{  PIXBUF_INLINE_ICON_EXPOSURE,          "gq-icon-exposure" },
+	{  PIXBUF_INLINE_ICON_FLOAT,             "gq-icon-float" },
+	{  PIXBUF_INLINE_ICON,                   "gqview-icon" },
+	{  PIXBUF_INLINE_ICON_GRAYSCALE,         "gq-icon-grayscale" },
+	{  PIXBUF_INLINE_ICON_HEIF,              "gq-icon-heic" },
+	{  PIXBUF_INLINE_ICON_HIDETOOLS,         "gq-icon-hidetools" },
+	{  PIXBUF_INLINE_ICON_MAINTENANCE,       "gq-icon-maintenance" },
+	{  PIXBUF_INLINE_ICON_MARKS,             "gq-icon-marks" },
+	{  PIXBUF_INLINE_ICON_MOVE,              "gq-icon-move" },
+	{  PIXBUF_INLINE_ICON_ORIGINAL,          "gq-icon-original" },
+	{  PIXBUF_INLINE_ICON_PANORAMA,          "gq-icon-panorama" },
+	{  PIXBUF_INLINE_ICON_PDF,               "gq-icon-pdf" },
+	{  PIXBUF_INLINE_ICON_RENAME,            "gq-icon-rename" },
+	{  PIXBUF_INLINE_ICON_SELECT_ALL,        "gq-icon-select-all" },
+	{  PIXBUF_INLINE_ICON_SELECT_INVERT,     "gq-icon-select-invert" },
+	{  PIXBUF_INLINE_ICON_SELECT_NONE,       "gq-icon-select-none" },
+	{  PIXBUF_INLINE_ICON_SELECT_RECTANGLE,  "gq-icon-select-rectangle" },
+	{  PIXBUF_INLINE_ICON_SORT,              "gq-icon-sort" },
+	{  PIXBUF_INLINE_ICON_THUMB,             "gq-icon-thumb" },
+	{  PIXBUF_INLINE_ICON_TOOLS,             "gq-icon-tools" },
+	{  PIXBUF_INLINE_ICON_VIEW,              "gq-icon-view" },
+	{  PIXBUF_INLINE_ICON_ZOOMFILLHOR,       "gq-icon-zoomfillhor" },
+	{  PIXBUF_INLINE_ICON_ZOOMFILLVERT,      "gq-icon-zoomfillvert" },
+	{  PIXBUF_INLINE_LOGO,                   "geeqie-logo" },
+	{  PIXBUF_INLINE_METADATA,               "gq-icon-metadata" },
+	{  PIXBUF_INLINE_SCROLLER,               "gq-scroller" },
+	{  PIXBUF_INLINE_SPLIT_PANE_SYNC,        "gq-icon-split-pane-sync" },
+	{  PIXBUF_INLINE_UNKNOWN,                "gq-icon-unknown" },
+	{  PIXBUF_INLINE_VIDEO,                  "gq-icon-video" },
+	{  nullptr,                              nullptr }
 };
 
 GdkPixbuf *pixbuf_inline(const gchar *key)
 {
+	gboolean dark = FALSE;
+	gchar *file_name = nullptr;
+	gchar *path;
+	gchar *theme_name;
+	GdkPixbuf *icon_pixbuf;
 	GError *error = nullptr;
 	GInputStream *in_stream;
-	GdkPixbuf *icon_pixbuf;
-	gchar *path;
 	gint i;
+	GtkSettings *settings;
 
 	if (!key) return nullptr;
+
+	settings = gtk_settings_get_default();
+	g_object_get(settings, "gtk-theme-name", &theme_name, nullptr);
+	dark = g_str_has_suffix(theme_name, "dark");
+	g_free(theme_name);
 
 	i = 0;
 	while (inline_pixbuf_data[i].key)
 		{
 		if (strcmp(inline_pixbuf_data[i].key, key) == 0)
 			{
-			path = g_build_filename(GQ_RESOURCE_PATH_ICONS, inline_pixbuf_data[i].data, NULL);
+			file_name = g_strconcat(inline_pixbuf_data[i].data, dark ? "-dark" : "", ".png", nullptr);
+			path = g_build_filename(GQ_RESOURCE_PATH_ICONS, file_name, nullptr);
+			g_free(file_name);
 
 			in_stream = g_resources_open_stream(path, G_RESOURCE_LOOKUP_FLAGS_NONE, &error);
 			g_free(path);
+
+			if (error)
+				{
+				g_error_free(error);
+				error = nullptr;
+
+				file_name = g_strconcat(inline_pixbuf_data[i].data, ".png", nullptr);
+				path = g_build_filename(GQ_RESOURCE_PATH_ICONS, file_name, nullptr);
+				g_free(file_name);
+
+				in_stream = g_resources_open_stream(path, G_RESOURCE_LOOKUP_FLAGS_NONE, &error);
+				g_free(path);
+				}
 
 			if (error)
 				{

@@ -4097,6 +4097,8 @@ void show_about_window(LayoutWindow *lw)
 		}
 	g_free(timezone_path);
 
+	copyright = g_string_append(copyright, "\n\nSome icons by https://www.flaticon.com");
+
 	in_stream_authors = g_resources_open_stream(GQ_RESOURCE_PATH_CREDITS "/authors", G_RESOURCE_LOOKUP_FLAGS_NONE, nullptr);
 
 	data_stream = g_data_input_stream_new(in_stream_authors);
