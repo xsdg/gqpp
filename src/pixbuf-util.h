@@ -54,6 +54,7 @@ gboolean pixbuf_scale_aspect(gint req_w, gint req_h, gint old_w, gint old_h, gin
 #define PIXBUF_INLINE_ICON_ORIGINAL         "gq-icon-original"
 #define PIXBUF_INLINE_ICON_PANORAMA         "gq-icon-panorama"
 #define PIXBUF_INLINE_ICON_PDF              "gq-icon-pdf"
+#define PIXBUF_INLINE_ICON_PROPERTIES       "gq-icon-properties"
 #define PIXBUF_INLINE_ICON_RENAME           "gq-icon-rename"
 #define PIXBUF_INLINE_ICON_SELECT_ALL       "gq-icon-select-all"
 #define PIXBUF_INLINE_ICON_SELECT_INVERT    "gq-icon-select-invert"

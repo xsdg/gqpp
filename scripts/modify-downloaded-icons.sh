@@ -27,14 +27,12 @@
 ##
 ##
 
-
 input_array="
 arrows.png  gq-icon-zoomfillhor https://www.flaticon.com/free-icon/arrows_9847398
 black-and-white.png gq-icon-grayscale https://www.flaticon.com/free-icon/black-and-white_3099713
 bookmark.png gq-icon-marks https://www.flaticon.com/free-icon/bookmark_2099170
 checkbox.png gq-icon-select-invert https://www.flaticon.com/free-icon/checkbox_6948194
-database-management.png gq-icon-maintenance https://www.flaticon.com/free-icon/database-management_9292424
-data-synchronization.png gq-icon-split-pane-sync https://www.flaticon.com/free-icon/data-synchronization_4882652
+database.png gq-icon-maintenance https://www.flaticon.com/free-icon/replace_10337081
 double-arrow-vertical-symbol.png  gq-icon-zoomfillvert https://www.flaticon.com/free-icon/double-arrow-vertical-symbol_54668
 edit.png gq-icon-rename https://www.flaticon.com/free-icon/edit_1159633
 error.png  gq-icon-broken https://www.flaticon.com/free-icon/error_3152157
@@ -42,11 +40,14 @@ exif.png gq-icon-exif https://www.flaticon.com/free-icon/exif_6393981
 exposure.png gq-icon-exposure https://www.flaticon.com/free-icon/exposure_2214025
 frame.png gq-icon-select-rectangle https://www.flaticon.com/free-icon/frame_4864813
 heic.png gq-icon-heic https://www.flaticon.com/free-icon/heic_6393991
+letter-i.png gq-icon-properties https://www.flaticon.com/free-icon/letter-i_9003911
+letter-s.png gq-icon-sort https://www.flaticon.com/free-icon/letter-s_5697524
 move-right.png gq-icon-move https://www.flaticon.com/free-icon/move-right_10515829
 panorama.png gq-icon-panorama https://www.flaticon.com/free-icon/panorama_8207268
 paper-pin.png gq-icon-float https://www.flaticon.com/free-icon/paper-pin_3378283
 paper.png gq-icon-hidetools https://www.flaticon.com/free-icon/paper_11028332
 pdf.png gq-icon-pdf https://www.flaticon.com/free-icon/pdf_201153
+replace.png gq-icon-split-pane-sync https://www.flaticon.com/free-icon/replace_10337081
 restore-down.png gq-icon-select-none https://www.flaticon.com/free-icon/restore-down_4903563
 rotate.png gq-icon-original https://www.flaticon.com/free-icon/rotate_764623
 select.png  gq-icon-select-all https://www.flaticon.com/free-icon/select_7043937
@@ -56,7 +57,6 @@ transform.png gq-icon-draw-rectangle https://www.flaticon.com/free-icon/rectangl
 two-clockwise-circular-rotating-arrows-circle.png gq-icon-rotate-180 https://www.flaticon.com/free-icon/two-clockwise-circular-rotating-arrows-circle_54529
 unknown.png gq-icon-unknown https://www.flaticon.com/free-icon/unknown_9166172
 video.png gq-icon-video https://www.flaticon.com/free-icon/video_10260807
-workflow.png gq-icon-sort https://www.flaticon.com/free-icon/workflow_3748469
 xmp.png gq-icon-metadata https://www.flaticon.com/free-icon/xmp_10260892
 zip.png gq-icon-archive-file https://www.flaticon.com/free-icon/zip_201199
 "

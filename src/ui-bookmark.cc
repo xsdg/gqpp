@@ -26,14 +26,13 @@
 #include "ui-bookmark.h"
 
 #include "history-list.h"
+#include "pixbuf-util.h"
 #include "ui-fileops.h"
 #include "ui-menu.h"
 #include "ui-misc.h"
-#include "ui-utildlg.h"
 #include "ui-tabcomp.h"
+#include "ui-utildlg.h"
 #include "uri-utils.h"
-
-
 
 /*
  *-----------------------------------------------------------------------------
@@ -385,7 +384,7 @@ static void bookmark_menu_popup(BookMarkData *bm, GtkWidget *button, gint, guint
 	bm->active_button = b;
 
 	menu = popup_menu_short_lived();
-	menu_item_add_icon_sensitive(menu, _("_Properties..."), GQ_ICON_PROPERTIES, bm->editable,
+	menu_item_add_icon_sensitive(menu, _("_Properties..."), PIXBUF_INLINE_ICON_PROPERTIES, bm->editable,
 		      G_CALLBACK(bookmark_menu_prop_cb), bm);
 	menu_item_add_icon_sensitive(menu, _("Move _up"), GQ_ICON_GO_UP, bm->editable,
 		      G_CALLBACK(bookmark_menu_up_cb), bm);

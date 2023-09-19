@@ -219,7 +219,6 @@
 #define GQ_ICON_SELECT_COLOR "color-select"
 #define GQ_ICON_COLOR_MANAGEMENT "preferences-color" // breeze has nicer "color-management" icon, missing in others
 
-#define GQ_ICON_PROPERTIES "document-properties"
 // not done... plus many more
 #define GQ_ICON_COLLECTION GTK_STOCK_INDEX
 #define GQ_ICON_DND GTK_STOCK_DND_MULTIPLE

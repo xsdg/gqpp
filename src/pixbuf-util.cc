@@ -124,6 +124,7 @@ static PixbufInline inline_pixbuf_data[] = {
 	{  PIXBUF_INLINE_ICON_ORIGINAL,          "gq-icon-original" },
 	{  PIXBUF_INLINE_ICON_PANORAMA,          "gq-icon-panorama" },
 	{  PIXBUF_INLINE_ICON_PDF,               "gq-icon-pdf" },
+	{  PIXBUF_INLINE_ICON_PROPERTIES,        "gq-icon-properties" },
 	{  PIXBUF_INLINE_ICON_RENAME,            "gq-icon-rename" },
 	{  PIXBUF_INLINE_ICON_SELECT_ALL,        "gq-icon-select-all" },
 	{  PIXBUF_INLINE_ICON_SELECT_INVERT,     "gq-icon-select-invert" },
