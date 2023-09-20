@@ -278,14 +278,14 @@ static GtkWidget *bar_pane_comment_new(const gchar *id, const gchar *title, cons
 	pcd->key = g_strdup(key);
 	pcd->height = height;
 
-	scrolled = gtk_scrolled_window_new(nullptr, nullptr);
+	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
 
 	pcd->widget = scrolled;
 	g_object_set_data(G_OBJECT(pcd->widget), "pane_data", pcd);
 	g_signal_connect(G_OBJECT(pcd->widget), "destroy",
 			 G_CALLBACK(bar_pane_comment_destroy), pcd);
 
-	gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
+	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 				       GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 

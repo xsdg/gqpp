@@ -594,8 +594,8 @@ static EditorVerboseData *editor_verbose_window(EditorData *ed, const gchar *tex
 						    editor_verbose_window_close, TRUE);
 	gtk_widget_set_sensitive(vd->button_close, FALSE);
 
-	scrolled = gtk_scrolled_window_new(nullptr, nullptr);
-	gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
+	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
+	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 				       GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_box_pack_start(GTK_BOX(vd->gd->vbox), scrolled, TRUE, TRUE, 5);

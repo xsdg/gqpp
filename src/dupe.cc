@@ -4633,8 +4633,8 @@ DupeWindow *dupe_window_new()
 	gtk_box_pack_start(GTK_BOX(vbox), dw->table, TRUE, TRUE, 0);
 	gtk_widget_show(dw->table);
 
-	scrolled = gtk_scrolled_window_new(nullptr, nullptr);
-	gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
+	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
+	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_table_attach_defaults(GTK_TABLE(dw->table), scrolled, 0, 2, 0, 1);
 	gtk_widget_show(scrolled);
@@ -4690,8 +4690,8 @@ DupeWindow *dupe_window_new()
 		gtk_table_set_col_spacings(GTK_TABLE(dw->table), 0);
 		}
 
-	scrolled = gtk_scrolled_window_new(nullptr, nullptr);
-	gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
+	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
+	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_box_pack_start(GTK_BOX(dw->second_vbox), scrolled, TRUE, TRUE, 0);
 	gtk_widget_show(scrolled);

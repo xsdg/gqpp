@@ -800,7 +800,7 @@ GtkWidget *bookmark_list_new(const gchar *key,
 	bm->editable = TRUE;
 	bm->only_directories = FALSE;
 
-	scrolled = gtk_scrolled_window_new(nullptr, nullptr);
+	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
 
 	PangoLayout *layout;
 	gint width, height;

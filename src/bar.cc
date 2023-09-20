@@ -768,7 +768,7 @@ GtkWidget *bar_new(LayoutWindow *lw)
 	gtk_box_pack_start(GTK_BOX(bd->widget), box, FALSE, FALSE, 0);
 	gtk_widget_show(box);
 
-	scrolled = gtk_scrolled_window_new(nullptr, nullptr);
+	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
 	DEBUG_NAME(scrolled);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 		GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
@@ -792,7 +792,7 @@ GtkWidget *bar_new(LayoutWindow *lw)
 	g_signal_connect(G_OBJECT(gtk_bin_get_child(GTK_BIN(scrolled))), "unrealize", G_CALLBACK(bar_unrealize_clutter_fix_cb), NULL);
 #endif
 
-	gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_NONE);
+	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_NONE);
 	gtk_widget_show(bd->vbox);
 	return bd->widget;
 }

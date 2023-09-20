@@ -1051,8 +1051,8 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 
 	dd->bookmark_list = scrolled;
 
-	scrolled = gtk_scrolled_window_new(nullptr, nullptr);
-	gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
+	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
+	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 				       GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
 	gtk_box_pack_start(GTK_BOX(hbox2), scrolled, TRUE, TRUE, 0);
@@ -1122,8 +1122,8 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 		gtk_box_pack_start(GTK_BOX(hbox2), dd->filter_combo, TRUE, TRUE, 0);
 		gtk_widget_show(dd->filter_combo);
 
-		scrolled = gtk_scrolled_window_new(nullptr, nullptr);
-		gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
+		scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
+		gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 					       GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
 		if (paned)

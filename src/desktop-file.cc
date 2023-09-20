@@ -238,8 +238,8 @@ static void editor_window_new(const gchar *src_path, const gchar *desktop_name)
 		}
 
 
-	scrolled = gtk_scrolled_window_new(nullptr, nullptr);
-	gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
+	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
+	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 				       GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_box_pack_start(GTK_BOX(win_vbox), scrolled, TRUE, TRUE, 5);
@@ -593,8 +593,8 @@ static void editor_list_window_create()
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_show(button);
 
-	scrolled = gtk_scrolled_window_new(nullptr, nullptr);
-	gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
+	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
+	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 				       GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gtk_box_pack_start(GTK_BOX(win_vbox), scrolled, TRUE, TRUE, 5);

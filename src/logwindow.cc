@@ -420,10 +420,10 @@ static LogWindow *log_window_create(LayoutWindow *lw)
 			 G_CALLBACK(hide_cb), logwin);
 	gtk_widget_realize(window);
 
-	scrolledwin = gtk_scrolled_window_new(nullptr, nullptr);
+	scrolledwin = gq_gtk_scrolled_window_new(nullptr, nullptr);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolledwin),
 				       GTK_POLICY_NEVER, GTK_POLICY_ALWAYS);
-	gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolledwin),
+	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolledwin),
 					    GTK_SHADOW_IN);
 
 	gtk_box_pack_start(GTK_BOX(win_vbox), scrolledwin, TRUE, TRUE, 0);

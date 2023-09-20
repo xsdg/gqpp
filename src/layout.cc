@@ -335,7 +335,7 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 		menu_bar = layout_actions_menu_bar(lw);
 
 		toolbar = layout_actions_toolbar(lw, TOOLBAR_MAIN);
-		scroll_window = gtk_scrolled_window_new(nullptr, nullptr);
+		scroll_window = gq_gtk_scrolled_window_new(nullptr, nullptr);
 		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroll_window), GTK_POLICY_AUTOMATIC,GTK_POLICY_NEVER);
 		gtk_container_add(GTK_CONTAINER(scroll_window), menu_bar);
 

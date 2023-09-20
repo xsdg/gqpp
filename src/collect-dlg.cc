@@ -161,7 +161,7 @@ static void collection_save_or_append_dialog(gint type, CollectionData *cd)
 		existing_collections = gtk_label_new(out_string->str);
 		g_string_free(out_string, TRUE);
 
-		scrolled = gtk_scrolled_window_new(nullptr, nullptr);
+		scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
 		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 		gtk_widget_show(scrolled);
 
