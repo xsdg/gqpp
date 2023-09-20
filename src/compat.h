@@ -35,6 +35,7 @@
 	#define gq_gtk_frame_set_shadow_type(frame, type) ;
 	#define gq_gtk_scrolled_window_new(hadjustment, vadjustment) gtk_scrolled_window_new()
 	#define gq_gtk_scrolled_window_set_shadow_type(scrolled_window, type) gtk_scrolled_window_set_has_frame(scrolled_window, TRUE)
+	#define gq_gtk_widget_queue_draw_area(widget, x, y, width, height) gtk_widget_queue_draw(widget);
 	#define gq_gtk_widget_show_all(widget) ;
 #else
 	#define gq_gtk_box_pack_end(box, child, expand, fill, padding) gtk_box_pack_end(box, child, expand, fill, padding)
@@ -42,6 +43,7 @@
 	#define gq_gtk_frame_set_shadow_type(frame, type) gtk_frame_set_shadow_type(frame, type)
 	#define gq_gtk_scrolled_window_new(hadjustment, vadjustment) gtk_scrolled_window_new(hadjustment, vadjustment)
 	#define gq_gtk_scrolled_window_set_shadow_type(scrolled_window, type) gtk_scrolled_window_set_shadow_type(scrolled_window, type)
+	#define gq_gtk_widget_queue_draw_area(widget, x, y, width, height) gtk_widget_queue_draw_area(widget, x, y, width, height);
 	#define gq_gtk_widget_show_all(widget) gtk_widget_show_all(widget)
 #endif
 
