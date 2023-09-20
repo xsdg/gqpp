@@ -988,7 +988,7 @@ GtkWidget *bar_pane_gps_new(const gchar *id, const gchar *title, const gchar *ma
 	g_object_set_data(G_OBJECT(pgd->widget), "pane_data", pgd);
 	g_signal_connect(G_OBJECT(pgd->widget), "destroy", G_CALLBACK(bar_pane_gps_destroy), pgd);
 
-	gtk_frame_set_shadow_type(GTK_FRAME(frame), GTK_SHADOW_IN);
+	gq_gtk_frame_set_shadow_type(GTK_FRAME(frame), GTK_SHADOW_IN);
 
 	gtk_widget_set_size_request(pgd->widget, -1, height);
 

@@ -1379,7 +1379,7 @@ CollectWindow *collection_window_new(const gchar *path)
 
 	frame = gtk_frame_new(nullptr);
 	DEBUG_NAME(frame);
-	gtk_frame_set_shadow_type(GTK_FRAME(frame), GTK_SHADOW_IN);
+	gq_gtk_frame_set_shadow_type(GTK_FRAME(frame), GTK_SHADOW_IN);
 	gq_gtk_box_pack_start(GTK_BOX(cw->status_box), frame, TRUE, TRUE, 0);
 	gtk_widget_show(frame);
 
