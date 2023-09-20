@@ -1313,7 +1313,7 @@ GtkWidget *pref_color_button_new(GtkWidget *parent_box,
 		gq_gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
 		gq_gtk_box_pack_start(GTK_BOX(hbox), button, TRUE, TRUE, 0);
 
-		gtk_widget_show_all(hbox);
+		gq_gtk_widget_show_all(hbox);
 		}
 	else
 		{

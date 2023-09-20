@@ -449,7 +449,7 @@ static void bar_expander_cb(GObject *object, GParamSpec *, gpointer)
 
 	if (gtk_expander_get_expanded(expander))
 		{
-		gtk_widget_show_all(child);
+		gq_gtk_widget_show_all(child);
 		}
 	else
 		{

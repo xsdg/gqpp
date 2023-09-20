@@ -1235,7 +1235,7 @@ static GtkWidget *vf_file_filter_init(ViewFile *vf)
 	gtk_menu_item_set_submenu(GTK_MENU_ITEM(menuitem), class_filter_menu(vf));
 	gtk_menu_shell_append(GTK_MENU_SHELL(menubar), menuitem);
 	gtk_container_add(GTK_CONTAINER(menuitem), box);
-	gtk_widget_show_all(menuitem);
+	gq_gtk_widget_show_all(menuitem);
 
 	return frame;
 }

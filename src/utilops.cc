@@ -3352,7 +3352,7 @@ gchar *new_folder(GtkWindow *window , gchar *path)
 	gq_gtk_box_pack_start(GTK_BOX(vbox), folder_name_entry, FALSE, FALSE, PREF_PAD_SPACE);
 	g_signal_connect(G_OBJECT(folder_name_entry), "activate", G_CALLBACK(new_folder_entry_activate_cb), dialog);
 
-	gtk_widget_show_all(dialog);
+	gq_gtk_widget_show_all(dialog);
 
 	while (ok_or_cancel == FALSE)
 		{
