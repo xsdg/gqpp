@@ -172,17 +172,17 @@ static void collection_save_or_append_dialog(gint type, CollectionData *cd)
 		gtk_widget_show(existing_collections);
 		gtk_container_add(GTK_CONTAINER(scrolled), viewport);
 
-		gtk_box_pack_start(GTK_BOX(gdlg->vbox), scrolled, TRUE,TRUE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(gdlg->vbox), scrolled, TRUE,TRUE, 0);
 
 		save_as_label = gtk_label_new("Save collection as:");
-		gtk_box_pack_start(GTK_BOX(gdlg->vbox), save_as_label, FALSE,FALSE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(gdlg->vbox), save_as_label, FALSE,FALSE, 0);
 		gtk_label_set_xalign(GTK_LABEL(save_as_label), 0.0);
 		gtk_widget_show(save_as_label);
 
 		cd->dialog_name_entry = gtk_entry_new();
 		gtk_widget_show(cd->dialog_name_entry);
 
-		gtk_box_pack_start(GTK_BOX(gdlg->vbox), cd->dialog_name_entry, FALSE, FALSE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(gdlg->vbox), cd->dialog_name_entry, FALSE, FALSE, 0);
 
 		gtk_entry_set_text(GTK_ENTRY(cd->dialog_name_entry), cd->name);
 		gtk_widget_grab_focus(cd->dialog_name_entry);
@@ -222,7 +222,7 @@ static void collection_save_or_append_dialog(gint type, CollectionData *cd)
 
 		gtk_widget_show(collection_append_combo);
 
-		gtk_box_pack_start(GTK_BOX(gdlg->vbox), collection_append_combo, TRUE,TRUE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(gdlg->vbox), collection_append_combo, TRUE,TRUE, 0);
 		gtk_widget_show(GENERIC_DIALOG(gdlg)->dialog);
 		}
 }

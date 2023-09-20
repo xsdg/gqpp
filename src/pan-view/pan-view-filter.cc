@@ -69,22 +69,22 @@ PanViewFilterUi *pan_filter_ui_new(PanWindow *pw)
 	pref_spacer(ui->filter_box, 0);
 	pref_label_new(ui->filter_box, _("Keyword Filter:"));
 
-	gtk_box_pack_start(GTK_BOX(ui->filter_box), ui->filter_mode_combo, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(ui->filter_box), ui->filter_mode_combo, FALSE, FALSE, 0);
 	gtk_widget_show(ui->filter_mode_combo);
 
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
-	gtk_box_pack_start(GTK_BOX(ui->filter_box), hbox, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(ui->filter_box), hbox, TRUE, TRUE, 0);
 	gtk_widget_show(hbox);
 
 	combo = tab_completion_new_with_history(&ui->filter_entry, "", "pan_view_filter", -1,
 						pan_filter_activate_cb, pw);
-	gtk_box_pack_start(GTK_BOX(hbox), combo, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), combo, TRUE, TRUE, 0);
 	gtk_widget_show(combo);
 
 	ui->filter_label = gtk_label_new("");/** @todo (xsdg): Figure out whether it's useful to keep this label around. */
 
 	ui->filter_kw_hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
-	gtk_box_pack_start(GTK_BOX(hbox), ui->filter_kw_hbox, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), ui->filter_kw_hbox, TRUE, TRUE, 0);
 	gtk_widget_show(ui->filter_kw_hbox);
 
 	// Build the spin-button to show/hide the filter UI.
@@ -95,7 +95,7 @@ PanViewFilterUi *pan_filter_ui_new(PanWindow *pw)
 	gtk_container_add(GTK_CONTAINER(ui->filter_button), hbox);
 	gtk_widget_show(hbox);
 	ui->filter_button_arrow = gtk_image_new_from_icon_name(GQ_ICON_PAN_UP, GTK_ICON_SIZE_BUTTON);
-	gtk_box_pack_start(GTK_BOX(hbox), ui->filter_button_arrow, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), ui->filter_button_arrow, FALSE, FALSE, 0);
 	gtk_widget_show(ui->filter_button_arrow);
 	pref_label_new(hbox, _("Filter"));
 
@@ -106,7 +106,7 @@ PanViewFilterUi *pan_filter_ui_new(PanWindow *pw)
 	for (i = 0; i < FILE_FORMAT_CLASSES; i++)
 	{
 		ui->filter_check_buttons[i] = gtk_check_button_new_with_label(_(format_class_list[i]));
-		gtk_box_pack_start(GTK_BOX(ui->filter_box), ui->filter_check_buttons[i], FALSE, FALSE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(ui->filter_box), ui->filter_check_buttons[i], FALSE, FALSE, 0);
 		gtk_widget_show(ui->filter_check_buttons[i]);
 	}
 
@@ -185,7 +185,7 @@ void pan_filter_activate_cb(const gchar *text, gpointer data)
 	kw_button = gtk_button_new_with_label(label);
 	g_clear_pointer(&label, g_free);
 
-	gtk_box_pack_start(GTK_BOX(ui->filter_kw_hbox), kw_button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(ui->filter_kw_hbox), kw_button, FALSE, FALSE, 0);
 	gtk_widget_show(kw_button);
 
 	auto cb_state = g_new0(PanFilterCallbackState, 1);
@@ -229,7 +229,7 @@ void pan_filter_toggle_cb(GtkWidget *button, gpointer data)
 		gtk_widget_destroy(ui->filter_button_arrow);
 		ui->filter_button_arrow = gtk_image_new_from_icon_name(GQ_ICON_PAN_UP, GTK_ICON_SIZE_BUTTON);
 
-		gtk_box_pack_start(GTK_BOX(parent), ui->filter_button_arrow, FALSE, FALSE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(parent), ui->filter_button_arrow, FALSE, FALSE, 0);
 		gtk_box_reorder_child(GTK_BOX(parent), ui->filter_button_arrow, 0);
 
 		gtk_widget_show(ui->filter_button_arrow);
@@ -243,7 +243,7 @@ void pan_filter_toggle_cb(GtkWidget *button, gpointer data)
 		gtk_widget_destroy(ui->filter_button_arrow);
 		ui->filter_button_arrow = gtk_image_new_from_icon_name(GQ_ICON_PAN_DOWN, GTK_ICON_SIZE_BUTTON);
 
-		gtk_box_pack_start(GTK_BOX(parent), ui->filter_button_arrow, FALSE, FALSE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(parent), ui->filter_button_arrow, FALSE, FALSE, 0);
 		gtk_box_reorder_child(GTK_BOX(parent), ui->filter_button_arrow, 0);
 
 		gtk_widget_show(ui->filter_button_arrow);

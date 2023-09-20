@@ -1023,7 +1023,7 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 	dd->hidden_button = gtk_check_button_new_with_label(_("Show hidden"));
 	g_signal_connect(G_OBJECT(dd->hidden_button), "clicked",
 			 G_CALLBACK(dest_show_hidden_cb), dd);
-	gtk_box_pack_end(GTK_BOX(hbox2), dd->hidden_button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(hbox2), dd->hidden_button, FALSE, FALSE, 0);
 	gtk_widget_show(dd->hidden_button);
 
 	hbox2 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
@@ -1046,7 +1046,7 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 
 	/* bookmarks */
 	scrolled = bookmark_list_new(nullptr, dest_bookmark_select_cb, dd);
-	gtk_box_pack_start(GTK_BOX(hbox2), scrolled, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox2), scrolled, FALSE, FALSE, 0);
 	gtk_widget_show(scrolled);
 
 	dd->bookmark_list = scrolled;
@@ -1055,7 +1055,7 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 				       GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
-	gtk_box_pack_start(GTK_BOX(hbox2), scrolled, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox2), scrolled, TRUE, TRUE, 0);
 	gtk_widget_show(scrolled);
 
 	store = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_STRING);
@@ -1119,7 +1119,7 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 		gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(dd->filter_combo), renderer, TRUE);
 		gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(dd->filter_combo), renderer,
 					       "text", FILTER_COLUMN_NAME, NULL);
-		gtk_box_pack_start(GTK_BOX(hbox2), dd->filter_combo, TRUE, TRUE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(hbox2), dd->filter_combo, TRUE, TRUE, 0);
 		gtk_widget_show(dd->filter_combo);
 
 		scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);

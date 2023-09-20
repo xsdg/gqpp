@@ -1479,7 +1479,7 @@ static GtkWidget *bar_pane_keywords_new(const gchar *id, const gchar *title, con
 
 	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
-	gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vbox), hbox, TRUE, TRUE, 0);
 
 	pkd->widget = vbox;
 	g_object_set_data(G_OBJECT(pkd->widget), "pane_data", pkd);
@@ -1492,7 +1492,7 @@ static GtkWidget *bar_pane_keywords_new(const gchar *id, const gchar *title, con
 	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 				       GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_box_pack_start(GTK_BOX(hbox), scrolled, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), scrolled, TRUE, TRUE, 0);
 	gtk_widget_show(scrolled);
 
 	pkd->keyword_view = gtk_text_view_new();
@@ -1511,12 +1511,12 @@ static GtkWidget *bar_pane_keywords_new(const gchar *id, const gchar *title, con
 		gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 						GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-		gtk_box_pack_start(GTK_BOX(hbox), scrolled, TRUE, TRUE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(hbox), scrolled, TRUE, TRUE, 0);
 		gtk_widget_show(scrolled);
 		}
 
 	pkd->autocomplete = gtk_entry_new();
-	gtk_box_pack_end(GTK_BOX(vbox), pkd->autocomplete, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(vbox), pkd->autocomplete, FALSE, FALSE, 0);
 	gtk_widget_show(pkd->autocomplete);
 	gtk_widget_show(vbox);
 	gtk_widget_set_tooltip_text(pkd->autocomplete, "Keyword autocomplete");

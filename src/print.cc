@@ -352,7 +352,7 @@ static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 	pref_checkbox_link_sensitivity(image_text_button, subgroup);
 
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_box_pack_start(GTK_BOX(subgroup), hbox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(subgroup), hbox, FALSE, FALSE, 0);
 
 	/* order is important */
 	button1 = pref_radiobutton_new(hbox, nullptr,  "Header 1",
@@ -373,7 +373,7 @@ static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 	image_text_template_view = gtk_text_view_new();
 
 	scrolled_pre_formatted = osd_new(PRE_FORMATTED_COLUMNS, image_text_template_view);
-	gtk_box_pack_start(GTK_BOX(subgroup), scrolled_pre_formatted, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(subgroup), scrolled_pre_formatted, FALSE, FALSE, 0);
 	gtk_widget_show(scrolled_pre_formatted);
 	gtk_widget_show(subgroup);
 
@@ -385,7 +385,7 @@ static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 									GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_box_pack_start(GTK_BOX(subgroup), scrolled, TRUE, TRUE, 5);
+	gq_gtk_box_pack_start(GTK_BOX(subgroup), scrolled, TRUE, TRUE, 5);
 	gtk_widget_show(scrolled);
 
 	gtk_container_add(GTK_CONTAINER(scrolled), image_text_template_view);
@@ -401,7 +401,7 @@ static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 	button = pref_button_new(nullptr, GQ_ICON_SELECT_FONT, _("Font"),
 				 G_CALLBACK(print_set_font_cb), const_cast<char *>("Image text font"));
 
-	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
 	pref_spacer(group, PREF_PAD_GAP);
@@ -415,7 +415,7 @@ static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 	pref_checkbox_link_sensitivity(page_text_button, subgroup);
 
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_box_pack_start(GTK_BOX(subgroup), hbox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(subgroup), hbox, FALSE, FALSE, 0);
 
 	/* order is important */
 	button2 = pref_radiobutton_new(hbox, nullptr, "Header 1",
@@ -438,7 +438,7 @@ static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 				       GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_box_pack_start(GTK_BOX(subgroup), scrolled, TRUE, TRUE, 5);
+	gq_gtk_box_pack_start(GTK_BOX(subgroup), scrolled, TRUE, TRUE, 5);
 	gtk_widget_show(scrolled);
 
 	page_text_view = gtk_text_view_new();
@@ -455,7 +455,7 @@ static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 	button = pref_button_new(nullptr, GQ_ICON_SELECT_FONT, _("Font"),
 				 G_CALLBACK(print_set_font_cb), const_cast<char *>("Page text font"));
 
-	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 }
 

@@ -117,7 +117,7 @@ static void shortcuts_add_cb(GtkWidget *button, gpointer data)
 	pref_label_new(hbox, _("Name:"));
 
 	scd->dialog_name_entry = gtk_entry_new();
-	gtk_box_pack_start(GTK_BOX(hbox), scd->dialog_name_entry, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), scd->dialog_name_entry, TRUE, TRUE, 0);
 	generic_dialog_attach_default(GENERIC_DIALOG(scd->dialog), scd->dialog_name_entry);
 	gtk_widget_show(scd->dialog_name_entry);
 
@@ -150,7 +150,7 @@ static GtkWidget *shortcuts_new(LayoutWindow *lw)
 			G_CALLBACK(shortcuts_destroy), scd);
 
 	scd->bookmarks = bookmark_list_new(SHORTCUTS, shortcuts_bookmark_select, scd);
-	gtk_box_pack_start(GTK_BOX(scd->vbox), scd->bookmarks, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(scd->vbox), scd->bookmarks, TRUE, TRUE, 0);
 	gtk_widget_show(scd->bookmarks);
 
 	tbar = pref_toolbar_new(scd->vbox, GTK_TOOLBAR_ICONS);

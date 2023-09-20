@@ -40,16 +40,16 @@ PanViewSearchUi *pan_search_ui_new(PanWindow *pw)
 	pref_label_new(ui->search_box, _("Find:"));
 
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
-	gtk_box_pack_start(GTK_BOX(ui->search_box), hbox, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(ui->search_box), hbox, TRUE, TRUE, 0);
 	gtk_widget_show(hbox);
 
 	combo = tab_completion_new_with_history(&ui->search_entry, "", "pan_view_search", -1,
 						pan_search_activate_cb, pw);
-	gtk_box_pack_start(GTK_BOX(hbox), combo, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), combo, TRUE, TRUE, 0);
 	gtk_widget_show(combo);
 
 	ui->search_label = gtk_label_new("");
-	gtk_box_pack_start(GTK_BOX(hbox), ui->search_label, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), ui->search_label, TRUE, TRUE, 0);
 	gtk_widget_show(ui->search_label);
 
 	// Build the spin-button to show/hide the search UI.
@@ -60,7 +60,7 @@ PanViewSearchUi *pan_search_ui_new(PanWindow *pw)
 	gtk_container_add(GTK_CONTAINER(ui->search_button), hbox);
 	gtk_widget_show(hbox);
 	ui->search_button_arrow = gtk_image_new_from_icon_name(GQ_ICON_PAN_UP, GTK_ICON_SIZE_BUTTON);
-	gtk_box_pack_start(GTK_BOX(hbox), ui->search_button_arrow, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), ui->search_button_arrow, FALSE, FALSE, 0);
 	gtk_widget_show(ui->search_button_arrow);
 	pref_label_new(hbox, _("Find"));
 
@@ -434,7 +434,7 @@ void pan_search_toggle_cb(GtkWidget *button, gpointer data)
 		gtk_widget_destroy(ui->search_button_arrow);
 		ui->search_button_arrow = gtk_image_new_from_icon_name(GQ_ICON_PAN_UP, GTK_ICON_SIZE_BUTTON);
 
-		gtk_box_pack_start(GTK_BOX(parent), ui->search_button_arrow, FALSE, FALSE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(parent), ui->search_button_arrow, FALSE, FALSE, 0);
 		gtk_box_reorder_child(GTK_BOX(parent), ui->search_button_arrow, 0);
 
 		gtk_widget_show(ui->search_button_arrow);
@@ -448,7 +448,7 @@ void pan_search_toggle_cb(GtkWidget *button, gpointer data)
 		gtk_widget_destroy(ui->search_button_arrow);
 		ui->search_button_arrow = gtk_image_new_from_icon_name(GQ_ICON_PAN_DOWN, GTK_ICON_SIZE_BUTTON);
 
-		gtk_box_pack_start(GTK_BOX(parent), ui->search_button_arrow, FALSE, FALSE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(parent), ui->search_button_arrow, FALSE, FALSE, 0);
 		gtk_box_reorder_child(GTK_BOX(parent), ui->search_button_arrow, 0);
 
 		gtk_widget_show(ui->search_button_arrow);

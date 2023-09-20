@@ -161,18 +161,18 @@ static GtkWidget *bar_pane_rating_new(const gchar *id, const gchar *title, gbool
 	g_signal_connect(G_OBJECT(prd->widget), "destroy", G_CALLBACK(bar_pane_rating_destroy), prd);
 
 	row_1 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
-	gtk_box_pack_start(GTK_BOX(prd->widget), row_1, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(prd->widget), row_1, FALSE, FALSE, 0);
 
 	radio_rejected = gtk_radio_button_new_with_label(nullptr, _("Rejected"));
-	gtk_box_pack_start(GTK_BOX(row_1), radio_rejected, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(row_1), radio_rejected, FALSE, FALSE, 0);
 	g_signal_connect(radio_rejected, "released", G_CALLBACK(bar_pane_rating_selected_cb), prd);
 
 	radio_unrated = gtk_radio_button_new_with_label_from_widget(GTK_RADIO_BUTTON(radio_rejected), _("Unrated"));
-	gtk_box_pack_start(GTK_BOX(row_1), radio_unrated, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(row_1), radio_unrated, FALSE, FALSE, 0);
 	g_signal_connect(radio_unrated, "released", G_CALLBACK(bar_pane_rating_selected_cb), prd);
 
 	row_2 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
-	gtk_box_pack_start(GTK_BOX(prd->widget), row_2, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(prd->widget), row_2, FALSE, FALSE, 0);
 
 	i = 1;
 	while (i <= 5)
@@ -182,7 +182,7 @@ static GtkWidget *bar_pane_rating_new(const gchar *id, const gchar *title, gbool
 		radio_rating = gtk_radio_button_new_with_label_from_widget(GTK_RADIO_BUTTON(radio_rejected), i_str);
 		g_signal_connect(radio_rating, "released", G_CALLBACK(bar_pane_rating_selected_cb), prd);
 
-		gtk_box_pack_start(GTK_BOX(row_2), radio_rating, FALSE, FALSE, 1);
+		gq_gtk_box_pack_start(GTK_BOX(row_2), radio_rating, FALSE, FALSE, 1);
 
 		g_free(i_str);
 		i++;

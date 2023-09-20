@@ -1851,7 +1851,7 @@ static void pan_window_new_real(FileData *dir_fd)
 	pref_label_new(box, _("Location:"));
 	combo = tab_completion_new_with_history(&pw->path_entry, dir_fd->path, "pan_view_path", -1,
 						pan_window_entry_activate_cb, pw);
-	gtk_box_pack_start(GTK_BOX(box), combo, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box), combo, TRUE, TRUE, 0);
 	gtk_widget_show(combo);
 
 	combo = gtk_combo_box_text_new();
@@ -1864,7 +1864,7 @@ static void pan_window_new_real(FileData *dir_fd)
 	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), pw->layout);
 	g_signal_connect(G_OBJECT(combo), "changed",
 			 G_CALLBACK(pan_window_layout_change_cb), pw);
-	gtk_box_pack_start(GTK_BOX(box), combo, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box), combo, FALSE, FALSE, 0);
 	gtk_widget_show(combo);
 
 	combo = gtk_combo_box_text_new();
@@ -1882,7 +1882,7 @@ static void pan_window_new_real(FileData *dir_fd)
 	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), pw->size);
 	g_signal_connect(G_OBJECT(combo), "changed",
 			 G_CALLBACK(pan_window_layout_size_cb), pw);
-	gtk_box_pack_start(GTK_BOX(box), combo, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box), combo, FALSE, FALSE, 0);
 	gtk_widget_show(combo);
 
 	table = pref_table_new(vbox, 2, 2, FALSE, TRUE);
@@ -1922,11 +1922,11 @@ static void pan_window_new_real(FileData *dir_fd)
 	/* find bar */
 
 	pw->search_ui = pan_search_ui_new(pw);
-	gtk_box_pack_start(GTK_BOX(vbox), pw->search_ui->search_box, FALSE, FALSE, 2);
+	gq_gtk_box_pack_start(GTK_BOX(vbox), pw->search_ui->search_box, FALSE, FALSE, 2);
 
     /* filter bar */
     pw->filter_ui = pan_filter_ui_new(pw);
-    gtk_box_pack_start(GTK_BOX(vbox), pw->filter_ui->filter_box, FALSE, FALSE, 2);
+    gq_gtk_box_pack_start(GTK_BOX(vbox), pw->filter_ui->filter_box, FALSE, FALSE, 2);
 
 	/* status bar */
 
@@ -1936,7 +1936,7 @@ static void pan_window_new_real(FileData *dir_fd)
 	DEBUG_NAME(frame);
 	gtk_frame_set_shadow_type(GTK_FRAME(frame), GTK_SHADOW_IN);
 	gtk_widget_set_size_request(frame, ZOOM_LABEL_WIDTH, -1);
-	gtk_box_pack_start(GTK_BOX(box), frame, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box), frame, TRUE, TRUE, 0);
 	gtk_widget_show(frame);
 
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
@@ -1950,7 +1950,7 @@ static void pan_window_new_real(FileData *dir_fd)
 	DEBUG_NAME(frame);
 	gtk_frame_set_shadow_type(GTK_FRAME(frame), GTK_SHADOW_IN);
 	gtk_widget_set_size_request(frame, ZOOM_LABEL_WIDTH, -1);
-	gtk_box_pack_end(GTK_BOX(box), frame, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(box), frame, FALSE, FALSE, 0);
 	gtk_widget_show(frame);
 
 	pw->label_zoom = gtk_label_new("");
@@ -1958,11 +1958,11 @@ static void pan_window_new_real(FileData *dir_fd)
 	gtk_widget_show(pw->label_zoom);
 
 	// Add the "Find" button to the status bar area.
-	gtk_box_pack_end(GTK_BOX(box), pw->search_ui->search_button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(box), pw->search_ui->search_button, FALSE, FALSE, 0);
 	gtk_widget_show(pw->search_ui->search_button);
 
 	// Add the "Filter" button to the status bar area.
-	gtk_box_pack_end(GTK_BOX(box), pw->filter_ui->filter_button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(box), pw->filter_ui->filter_button, FALSE, FALSE, 0);
 	gtk_widget_show(pw->filter_ui->filter_button);
 
 	g_signal_connect(G_OBJECT(pw->window), "delete_event",

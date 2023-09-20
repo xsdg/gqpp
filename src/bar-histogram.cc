@@ -290,7 +290,7 @@ static GtkWidget *bar_pane_histogram_new(const gchar *id, const gchar *title, gi
 	g_signal_connect(G_OBJECT(phd->drawing_area), "draw",
 			 G_CALLBACK(bar_pane_histogram_draw_cb), phd);
 
-	gtk_box_pack_start(GTK_BOX(phd->widget), phd->drawing_area, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(phd->widget), phd->drawing_area, TRUE, TRUE, 0);
 	gtk_widget_show(phd->drawing_area);
 	gtk_widget_add_events(phd->drawing_area, GDK_BUTTON_PRESS_MASK);
 

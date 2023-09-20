@@ -629,13 +629,13 @@ GtkWidget *tab_completion_new_with_history(GtkWidget **entry, const gchar *text,
 	box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 
 	combo = gtk_combo_box_text_new_with_entry();
-	gtk_box_pack_start(GTK_BOX(box), combo, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box), combo, TRUE, TRUE, 0);
 	gtk_widget_show(combo);
 
 	combo_entry = gtk_bin_get_child(GTK_BIN(combo));
 
 	button = tab_completion_create_complete_button(combo_entry, combo);
-	gtk_box_pack_start(GTK_BOX(box), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
 	tab_completion_add_to_entry(combo_entry, enter_func, nullptr, nullptr, data);
@@ -731,11 +731,11 @@ GtkWidget *tab_completion_new(GtkWidget **entry, const gchar *text,
 
 	newentry = gtk_entry_new();
 	if (text) gtk_entry_set_text(GTK_ENTRY(newentry), text);
-	gtk_box_pack_start(GTK_BOX(hbox), newentry, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), newentry, TRUE, TRUE, 0);
 	gtk_widget_show(newentry);
 
 	button = tab_completion_create_complete_button(newentry, newentry);
-	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
 	tab_completion_add_to_entry(newentry, enter_func, filter, filter_desc, data);
@@ -906,7 +906,7 @@ void tab_completion_add_select_button(GtkWidget *entry, const gchar *title, gboo
 	g_signal_connect(G_OBJECT(td->fd_button), "clicked",
 			 G_CALLBACK(tab_completion_select_pressed), td);
 
-	gtk_box_pack_start(GTK_BOX(hbox), td->fd_button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), td->fd_button, FALSE, FALSE, 0);
 
 	gtk_widget_show(td->fd_button);
 }

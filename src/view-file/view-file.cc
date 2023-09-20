@@ -1025,7 +1025,7 @@ static GtkWidget *vf_marks_filter_init(ViewFile *vf)
 	for (i = 0; i < FILEDATA_MARKS_SIZE ; i++)
 		{
 		GtkWidget *check = gtk_check_button_new();
-		gtk_box_pack_start(GTK_BOX(hbox), check, FALSE, FALSE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(hbox), check, FALSE, FALSE, 0);
 		g_signal_connect(G_OBJECT(check), "toggled",
 			 G_CALLBACK(vf_marks_filter_toggle_cb), vf);
 		g_signal_connect(G_OBJECT(check), "button_press_event",
@@ -1207,27 +1207,27 @@ static GtkWidget *vf_file_filter_init(ViewFile *vf)
 	g_signal_connect(G_OBJECT(combo_entry), "button_press_event",
 			 G_CALLBACK(vf_file_filter_press_cb), vf);
 
-	gtk_box_pack_start(GTK_BOX(hbox), vf->file_filter.combo, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), vf->file_filter.combo, FALSE, FALSE, 0);
 	gtk_widget_show(vf->file_filter.combo);
 	gtk_container_add(GTK_CONTAINER(frame), hbox);
 	gtk_widget_show(hbox);
 
 	case_sensitive = gtk_check_button_new_with_label(_("Case"));
-	gtk_box_pack_start(GTK_BOX(hbox), case_sensitive, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), case_sensitive, FALSE, FALSE, 0);
 	gtk_widget_set_tooltip_text(GTK_WIDGET(case_sensitive), _("Case sensitive"));
 	g_signal_connect(G_OBJECT(case_sensitive), "clicked", G_CALLBACK(case_sensitive_cb), vf);
 	gtk_widget_show(case_sensitive);
 
 	menubar = gtk_menu_bar_new();
-	gtk_box_pack_start(GTK_BOX(hbox), menubar, FALSE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), menubar, FALSE, TRUE, 0);
 	gtk_widget_show(menubar);
 
 	box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 	icon = gtk_image_new_from_icon_name(GQ_ICON_PAN_DOWN, GTK_ICON_SIZE_MENU);
 	label = gtk_label_new(_("Class"));
 
-	gtk_box_pack_start(GTK_BOX(box), label, FALSE, FALSE, 0);
-	gtk_box_pack_end(GTK_BOX(box), icon, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box), label, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(box), icon, FALSE, FALSE, 0);
 
 	menuitem = gtk_menu_item_new();
 
@@ -1267,9 +1267,9 @@ ViewFile *vf_new(FileViewType type, FileData *dir_fd)
 	vf->file_filter.frame = vf_file_filter_init(vf);
 
 	vf->widget = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-	gtk_box_pack_start(GTK_BOX(vf->widget), vf->filter, FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(vf->widget), vf->file_filter.frame, FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(vf->widget), vf->scrolled, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vf->widget), vf->filter, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vf->widget), vf->file_filter.frame, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vf->widget), vf->scrolled, TRUE, TRUE, 0);
 	gtk_widget_show(vf->scrolled);
 
 	g_signal_connect(G_OBJECT(vf->widget), "destroy",

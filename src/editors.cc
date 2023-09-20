@@ -598,7 +598,7 @@ static EditorVerboseData *editor_verbose_window(EditorData *ed, const gchar *tex
 	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 				       GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_box_pack_start(GTK_BOX(vd->gd->vbox), scrolled, TRUE, TRUE, 5);
+	gq_gtk_box_pack_start(GTK_BOX(vd->gd->vbox), scrolled, TRUE, TRUE, 5);
 	gtk_widget_show(scrolled);
 
 	vd->text = gtk_text_view_new();
@@ -608,19 +608,19 @@ static EditorVerboseData *editor_verbose_window(EditorData *ed, const gchar *tex
 	gtk_widget_show(vd->text);
 
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_box_pack_start(GTK_BOX(vd->gd->vbox), hbox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vd->gd->vbox), hbox, FALSE, FALSE, 0);
 	gtk_widget_show(hbox);
 
 	vd->progress = gtk_progress_bar_new();
 	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(vd->progress), 0.0);
-	gtk_box_pack_start(GTK_BOX(hbox), vd->progress, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), vd->progress, TRUE, TRUE, 0);
 	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(vd->progress), "");
 	gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(vd->progress), TRUE);
 	gtk_widget_show(vd->progress);
 
 	vd->spinner = gtk_spinner_new();
 	gtk_spinner_start(GTK_SPINNER(vd->spinner));
-	gtk_box_pack_start(GTK_BOX(hbox), vd->spinner, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), vd->spinner, FALSE, FALSE, 0);
 	gtk_widget_show(vd->spinner);
 
 	gtk_widget_show(vd->gd->dialog);

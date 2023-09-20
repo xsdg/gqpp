@@ -587,7 +587,7 @@ static void bar_sort_add_cb(GtkWidget *button, gpointer data)
 	pref_label_new(hbox, _("Name:"));
 
 	sd->dialog_name_entry = gtk_entry_new();
-	gtk_box_pack_start(GTK_BOX(hbox), sd->dialog_name_entry, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), sd->dialog_name_entry, TRUE, TRUE, 0);
 	generic_dialog_attach_default(GENERIC_DIALOG(sd->dialog), sd->dialog_name_entry);
 	gtk_widget_show(sd->dialog_name_entry);
 
@@ -666,11 +666,11 @@ static GtkWidget *bar_sort_new(LayoutWindow *lw, SortActionType action,
 
 	label = gtk_label_new(_("Sort Manager"));
 	pref_label_bold(label, TRUE, FALSE);
-	gtk_box_pack_start(GTK_BOX(sd->vbox), label, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(sd->vbox), label, FALSE, FALSE, 0);
 	gtk_widget_show(label);
 
 	combo = gtk_combo_box_text_new();
-	gtk_box_pack_start(GTK_BOX(sd->vbox), combo, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(sd->vbox), combo, FALSE, FALSE, 0);
 	gtk_widget_show(combo);
 
 	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("Folders"));
@@ -737,7 +737,7 @@ static GtkWidget *bar_sort_new(LayoutWindow *lw, SortActionType action,
 
 	sd->bookmarks = bookmark_list_new(SORT_KEY_FOLDERS, bar_sort_bookmark_select, sd);
 	DEBUG_NAME(sd->bookmarks);
-	gtk_box_pack_start(GTK_BOX(sd->vbox), sd->bookmarks, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(sd->vbox), sd->bookmarks, TRUE, TRUE, 0);
 	gtk_widget_show(sd->bookmarks);
 
 	tbar = pref_toolbar_new(sd->vbox, GTK_TOOLBAR_ICONS);

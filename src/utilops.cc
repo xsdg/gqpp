@@ -95,15 +95,15 @@ static void generic_dialog_add_image(GenericDialog *gd, GtkWidget *box,
 		{
 		GtkWidget *sep;
 
-		gtk_box_pack_start(GTK_BOX(preview_box), vbox, FALSE, TRUE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(preview_box), vbox, FALSE, TRUE, 0);
 
 		sep = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
-		gtk_box_pack_start(GTK_BOX(preview_box), sep, FALSE, FALSE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(preview_box), sep, FALSE, FALSE, 0);
 		gtk_widget_show(sep);
 		}
 	else
 		{
-		gtk_box_pack_start(GTK_BOX(box), vbox, FALSE, TRUE, PREF_PAD_GAP);
+		gq_gtk_box_pack_start(GTK_BOX(box), vbox, FALSE, TRUE, PREF_PAD_GAP);
 		}
 	gtk_widget_show(vbox);
 
@@ -120,7 +120,7 @@ static void generic_dialog_add_image(GenericDialog *gd, GtkWidget *box,
 	imd = image_new(FALSE);
 	g_object_set(G_OBJECT(imd->pr), "zoom_expand", FALSE, NULL);
 	gtk_widget_set_size_request(imd->widget, DIALOG_DEF_IMAGE_DIM_X, DIALOG_DEF_IMAGE_DIM_Y);
-	gtk_box_pack_start(GTK_BOX(vbox), imd->widget, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vbox), imd->widget, TRUE, TRUE, 0);
 	image_change_fd(imd, fd1, 0.0);
 	gtk_widget_show(imd->widget);
 
@@ -153,7 +153,7 @@ static void generic_dialog_add_image(GenericDialog *gd, GtkWidget *box,
 		imd = image_new(FALSE);
 		g_object_set(G_OBJECT(imd->pr), "zoom_expand", FALSE, NULL);
 		gtk_widget_set_size_request(imd->widget, DIALOG_DEF_IMAGE_DIM_X, DIALOG_DEF_IMAGE_DIM_Y);
-		gtk_box_pack_start(GTK_BOX(vbox), imd->widget, TRUE, TRUE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(vbox), imd->widget, TRUE, TRUE, 0);
 		if (fd2) image_change_fd(imd, fd2, 0.0);
 		gtk_widget_show(imd->widget);
 
@@ -519,7 +519,7 @@ static GtkWidget *file_util_dialog_add_list(GtkWidget *box, GList *list, gboolea
 	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 				       GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_box_pack_start(GTK_BOX(box), scrolled, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box), scrolled, TRUE, TRUE, 0);
 	gtk_widget_show(scrolled);
 
 	store = gtk_list_store_new(UTILITY_COLUMN_COUNT, G_TYPE_POINTER, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
@@ -1659,11 +1659,11 @@ static GtkWidget *furm_simple_vlabel(GtkWidget *box, const gchar *text, gboolean
 	GtkWidget *label;
 
 	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-	gtk_box_pack_start(GTK_BOX(box), vbox, expand, expand, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box), vbox, expand, expand, 0);
 	gtk_widget_show(vbox);
 
 	label = gtk_label_new(text);
-	gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0);
 	gtk_widget_show(label);
 
 	return vbox;
@@ -1734,7 +1734,7 @@ static void file_util_dialog_init_source_dest(UtilityData *ud, gboolean second_i
 
 	ud->notebook = gtk_notebook_new();
 
-	gtk_box_pack_start(GTK_BOX(ud->gd->vbox), ud->notebook, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(ud->gd->vbox), ud->notebook, FALSE, FALSE, 0);
 	gtk_widget_show(ud->notebook);
 
 
@@ -1771,7 +1771,7 @@ static void file_util_dialog_init_source_dest(UtilityData *ud, gboolean second_i
 	combo = history_combo_new(&ud->auto_entry_front, "", "numerical_rename_prefix", -1);
 	g_signal_connect(G_OBJECT(ud->auto_entry_front), "changed",
 			 G_CALLBACK(file_util_rename_preview_entry_cb), ud);
-	gtk_box_pack_start(GTK_BOX(box2), combo, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box2), combo, TRUE, TRUE, 0);
 	gtk_widget_show(combo);
 
 	box2 = furm_simple_vlabel(hbox, _("Start #"), FALSE);
@@ -1785,7 +1785,7 @@ static void file_util_dialog_init_source_dest(UtilityData *ud, gboolean second_i
 	combo = history_combo_new(&ud->auto_entry_end, options->cp_mv_rn.auto_end, "numerical_rename_suffix", -1);
 	g_signal_connect(G_OBJECT(ud->auto_entry_end), "changed",
 			 G_CALLBACK(file_util_rename_preview_entry_cb), ud);
-	gtk_box_pack_start(GTK_BOX(box2), combo, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box2), combo, TRUE, TRUE, 0);
 	gtk_widget_show(combo);
 
 	ud->auto_spin_pad = pref_spin_new(page, _("Padding:"), nullptr,
@@ -1803,7 +1803,7 @@ static void file_util_dialog_init_source_dest(UtilityData *ud, gboolean second_i
 	combo = history_combo_new(&ud->format_entry, "", "auto_rename_format", -1);
 	g_signal_connect(G_OBJECT(ud->format_entry), "changed",
 			 G_CALLBACK(file_util_rename_preview_entry_cb), ud);
-	gtk_box_pack_start(GTK_BOX(box2), combo, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box2), combo, TRUE, TRUE, 0);
 	gtk_widget_show(combo);
 
 	box2 = furm_simple_vlabel(hbox, _("Start #"), FALSE);
@@ -3337,19 +3337,19 @@ gchar *new_folder(GtkWindow *window , gchar *path)
 
 	content_area = gtk_dialog_get_content_area(GTK_DIALOG(dialog));
 	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
-	gtk_box_pack_start(GTK_BOX(content_area), vbox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(content_area), vbox, FALSE, FALSE, 0);
 
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 	gtk_container_set_border_width(GTK_CONTAINER(hbox), PREF_PAD_GAP);
-	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 	image = gtk_image_new_from_icon_name(GQ_ICON_DIALOG_QUESTION, GTK_ICON_SIZE_DIALOG);
-	gtk_box_pack_start(GTK_BOX(hbox), image, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), image, FALSE, FALSE, 0);
 	label = gtk_label_new(_("Create new folder"));
-	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 
 	folder_name_entry = gtk_entry_new();
 	gtk_entry_set_text(GTK_ENTRY(folder_name_entry), folder_name);
-	gtk_box_pack_start(GTK_BOX(vbox), folder_name_entry, FALSE, FALSE, PREF_PAD_SPACE);
+	gq_gtk_box_pack_start(GTK_BOX(vbox), folder_name_entry, FALSE, FALSE, PREF_PAD_SPACE);
 	g_signal_connect(G_OBJECT(folder_name_entry), "activate", G_CALLBACK(new_folder_entry_activate_cb), dialog);
 
 	gtk_widget_show_all(dialog);

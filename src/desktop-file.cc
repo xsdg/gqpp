@@ -198,11 +198,11 @@ static void editor_window_new(const gchar *src_path, const gchar *desktop_name)
 	gtk_widget_show(win_vbox);
 
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
-	gtk_box_pack_end(GTK_BOX(win_vbox), hbox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(win_vbox), hbox, FALSE, FALSE, 0);
 	gtk_widget_show(hbox);
 
 	ew->entry = gtk_entry_new();
-	gtk_box_pack_start(GTK_BOX(hbox), ew->entry, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), ew->entry, TRUE, TRUE, 0);
 	ew->desktop_name = nullptr;
 	if (desktop_name)
 		{
@@ -215,7 +215,7 @@ static void editor_window_new(const gchar *src_path, const gchar *desktop_name)
 	button_hbox = gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL);
 	gtk_button_box_set_layout(GTK_BUTTON_BOX(button_hbox), GTK_BUTTONBOX_END);
 	gtk_box_set_spacing(GTK_BOX(button_hbox), PREF_PAD_BUTTON_GAP);
-	gtk_box_pack_end(GTK_BOX(hbox), button_hbox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(hbox), button_hbox, FALSE, FALSE, 0);
 	gtk_widget_show(button_hbox);
 
 	ew->save_button = pref_button_new(nullptr, GQ_ICON_SAVE, _("Save"),
@@ -242,7 +242,7 @@ static void editor_window_new(const gchar *src_path, const gchar *desktop_name)
 	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 				       GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_box_pack_start(GTK_BOX(win_vbox), scrolled, TRUE, TRUE, 5);
+	gq_gtk_box_pack_start(GTK_BOX(win_vbox), scrolled, TRUE, TRUE, 5);
 	gtk_widget_show(scrolled);
 
 	text_view = gtk_text_view_new();
@@ -556,7 +556,7 @@ static void editor_list_window_create()
 	hbox = gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL);
 	gtk_button_box_set_layout(GTK_BUTTON_BOX(hbox), GTK_BUTTONBOX_END);
 	gtk_box_set_spacing(GTK_BOX(hbox), PREF_PAD_BUTTON_GAP);
-	gtk_box_pack_end(GTK_BOX(win_vbox), hbox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(win_vbox), hbox, FALSE, FALSE, 0);
 	gtk_widget_show(hbox);
 
 	button = pref_button_new(nullptr, GQ_ICON_HELP, _("Help"),
@@ -597,7 +597,7 @@ static void editor_list_window_create()
 	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 				       GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_box_pack_start(GTK_BOX(win_vbox), scrolled, TRUE, TRUE, 5);
+	gq_gtk_box_pack_start(GTK_BOX(win_vbox), scrolled, TRUE, TRUE, 5);
 	gtk_widget_show(scrolled);
 
 	ewl->view = gtk_tree_view_new_with_model(GTK_TREE_MODEL(desktop_file_list));

@@ -251,7 +251,7 @@ static GtkWidget *layout_config_widget(GtkWidget *group, GtkWidget *box, gint st
 	g_object_set_data(G_OBJECT(group), "layout_config", lc);
 	g_signal_connect(G_OBJECT(group), "clicked",
 			 G_CALLBACK(layout_config_widget_click_cb), GINT_TO_POINTER(style));
-	gtk_box_pack_start(GTK_BOX(box), group, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box), group, FALSE, FALSE, 0);
 
 	table = gtk_table_new(2, 2, TRUE);
 
@@ -303,7 +303,7 @@ GtkWidget *layout_config_new()
 			 G_CALLBACK(layout_config_destroy), lc);
 
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
-	gtk_box_pack_start(GTK_BOX(lc->box), hbox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(lc->box), hbox, FALSE, FALSE, 0);
 	for (i = 0; i < layout_config_style_count; i++)
 		{
 		group = layout_config_widget(group, hbox, i, lc);
@@ -315,7 +315,7 @@ GtkWidget *layout_config_new()
 	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 				       GTK_POLICY_NEVER, GTK_POLICY_NEVER);
-	gtk_box_pack_start(GTK_BOX(lc->box), scrolled, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(lc->box), scrolled, FALSE, FALSE, 0);
 	gtk_widget_show(scrolled);
 
 	store = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_INT);

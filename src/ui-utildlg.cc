@@ -269,7 +269,7 @@ GtkWidget *generic_dialog_add_button(GenericDialog *gd, const gchar *icon_name, 
  * @param icon_stock_id
  * @param heading
  * @param text
- * @param expand Used as the "expand" and "fill" parameters in the eventual call to gtk_box_pack_start()
+ * @param expand Used as the "expand" and "fill" parameters in the eventual call to gq_gtk_box_pack_start()
  * @returns
  *
  *
@@ -289,7 +289,7 @@ GtkWidget *generic_dialog_add_message(GenericDialog *gd, const gchar *icon_name,
 		image = gtk_image_new_from_icon_name(icon_name, GTK_ICON_SIZE_DIALOG);
 		gtk_widget_set_halign(GTK_WIDGET(image), GTK_ALIGN_CENTER);
 		gtk_widget_set_valign(GTK_WIDGET(image), GTK_ALIGN_START);
-		gtk_box_pack_start(GTK_BOX(hbox), image, FALSE, FALSE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(hbox), image, FALSE, FALSE, 0);
 		gtk_widget_show(image);
 		}
 
@@ -442,13 +442,13 @@ static void generic_dialog_setup(GenericDialog *gd,
 	gtk_widget_show(vbox);
 
 	gd->vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
-	gtk_box_pack_start(GTK_BOX(vbox), gd->vbox, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vbox), gd->vbox, TRUE, TRUE, 0);
 	gtk_widget_show(gd->vbox);
 
 	gd->hbox = gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL);
 	gtk_button_box_set_layout(GTK_BUTTON_BOX(gd->hbox), GTK_BUTTONBOX_END);
 	gtk_box_set_spacing(GTK_BOX(gd->hbox), PREF_PAD_BUTTON_GAP);
-	gtk_box_pack_start(GTK_BOX(vbox), gd->hbox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vbox), gd->hbox, FALSE, FALSE, 0);
 	gtk_widget_show(gd->hbox);
 
 	if (gd->cancel_cb)
@@ -714,7 +714,7 @@ void file_dialog_add_path_widgets(FileDialog *fdlg, const gchar *default_path, c
 
 	tabcomp = tab_completion_new_with_history(&fdlg->entry, nullptr,
 		  history_key, -1, file_dialog_entry_enter_cb, fdlg);
-	gtk_box_pack_end(GTK_BOX(GENERIC_DIALOG(fdlg)->vbox), tabcomp, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(GENERIC_DIALOG(fdlg)->vbox), tabcomp, FALSE, FALSE, 0);
 	generic_dialog_attach_default(GENERIC_DIALOG(fdlg), fdlg->entry);
 	gtk_widget_show(tabcomp);
 
@@ -743,7 +743,7 @@ void file_dialog_add_path_widgets(FileDialog *fdlg, const gchar *default_path, c
 
 	list = path_selection_new_with_files(fdlg->entry, fdlg->dest_path, filter, filter_desc);
 	path_selection_add_select_func(fdlg->entry, file_dialog_entry_enter_cb, fdlg);
-	gtk_box_pack_end(GTK_BOX(GENERIC_DIALOG(fdlg)->vbox), list, TRUE, TRUE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(GENERIC_DIALOG(fdlg)->vbox), list, TRUE, TRUE, 0);
 	gtk_widget_show(list);
 
 	gtk_widget_grab_focus(fdlg->entry);

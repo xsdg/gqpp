@@ -394,18 +394,18 @@ void cache_maintain_home(gboolean metadata, gboolean clear, GtkWidget *parent)
 	gtk_window_set_default_size(GTK_WINDOW(cm->gd->dialog), PURGE_DIALOG_WIDTH, -1);
 
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_box_pack_start(GTK_BOX(cm->gd->vbox), hbox, FALSE, FALSE, 5);
+	gq_gtk_box_pack_start(GTK_BOX(cm->gd->vbox), hbox, FALSE, FALSE, 5);
 	gtk_widget_show(hbox);
 
 	cm->entry = gtk_entry_new();
 	gtk_widget_set_can_focus(cm->entry, FALSE);
 	gtk_editable_set_editable(GTK_EDITABLE(cm->entry), FALSE);
-	gtk_box_pack_start(GTK_BOX(hbox), cm->entry, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), cm->entry, TRUE, TRUE, 0);
 	gtk_widget_show(cm->entry);
 
 	cm->spinner = gtk_spinner_new();
 	gtk_spinner_start(GTK_SPINNER(cm->spinner));
-	gtk_box_pack_start(GTK_BOX(hbox), cm->spinner, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), cm->spinner, FALSE, FALSE, 0);
 	gtk_widget_show(cm->spinner);
 
 	gtk_widget_show(cm->gd->dialog);
@@ -904,7 +904,7 @@ static void cache_manager_render_dialog(GtkWidget *widget, const gchar *path)
 
 	label = tab_completion_new(&cd->entry, path, nullptr, nullptr, nullptr, nullptr);
 	tab_completion_add_select_button(cd->entry,_("Select folder") , TRUE);
-	gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
 	gtk_widget_show(label);
 
 	pref_checkbox_new_int(cd->group, _("Include subfolders"), FALSE, &cd->recurse);
@@ -918,15 +918,15 @@ static void cache_manager_render_dialog(GtkWidget *widget, const gchar *path)
 	gtk_widget_set_can_focus(cd->progress, FALSE);
 	gtk_editable_set_editable(GTK_EDITABLE(cd->progress), FALSE);
 	gtk_entry_set_text(GTK_ENTRY(cd->progress), _("click start to begin"));
-	gtk_box_pack_start(GTK_BOX(hbox), cd->progress, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), cd->progress, TRUE, TRUE, 0);
 	gtk_widget_show(cd->progress);
 
 	cd->progress_bar = gtk_progress_bar_new();
-	gtk_box_pack_start(GTK_BOX(cd->gd->vbox), cd->progress_bar, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(cd->gd->vbox), cd->progress_bar, TRUE, TRUE, 0);
 	gtk_widget_show(cd->progress_bar);
 
 	cd->spinner = gtk_spinner_new();
-	gtk_box_pack_start(GTK_BOX(hbox), cd->spinner, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), cd->spinner, FALSE, FALSE, 0);
 	gtk_widget_show(cd->spinner);
 
 	cd->list = nullptr;
@@ -1171,7 +1171,7 @@ static void cache_manager_standard_process(GtkWidget *widget, gboolean clear)
 	cd->progress = gtk_progress_bar_new();
 	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(cd->progress), _("click start to begin"));
 	gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(cd->progress), TRUE);
-	gtk_box_pack_start(GTK_BOX(cd->gd->vbox), cd->progress, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(cd->gd->vbox), cd->progress, FALSE, FALSE, 0);
 	gtk_widget_show(cd->progress);
 
 	cd->days = 30;
@@ -1546,7 +1546,7 @@ static void cache_manager_sim_load_dialog(GtkWidget *widget, const gchar *path)
 
 	label = tab_completion_new(&cd->entry, path, nullptr, nullptr, nullptr, nullptr);
 	tab_completion_add_select_button(cd->entry,_("Select folder") , TRUE);
-	gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
 	gtk_widget_show(label);
 
 	pref_line(cd->gd->vbox, PREF_PAD_SPACE);
@@ -1556,15 +1556,15 @@ static void cache_manager_sim_load_dialog(GtkWidget *widget, const gchar *path)
 	gtk_widget_set_can_focus(cd->progress, FALSE);
 	gtk_editable_set_editable(GTK_EDITABLE(cd->progress), FALSE);
 	gtk_entry_set_text(GTK_ENTRY(cd->progress), _("click start to begin"));
-	gtk_box_pack_start(GTK_BOX(hbox), cd->progress, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), cd->progress, TRUE, TRUE, 0);
 	gtk_widget_show(cd->progress);
 
 	cd->progress_bar = gtk_progress_bar_new();
-	gtk_box_pack_start(GTK_BOX(cd->gd->vbox), cd->progress_bar, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(cd->gd->vbox), cd->progress_bar, TRUE, TRUE, 0);
 	gtk_widget_show(cd->progress_bar);
 
 	cd->spinner = gtk_spinner_new();
-	gtk_box_pack_start(GTK_BOX(hbox), cd->spinner, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), cd->spinner, FALSE, FALSE, 0);
 	gtk_widget_show(cd->spinner);
 
 	cd->list = nullptr;
@@ -1662,7 +1662,7 @@ static void cache_manager_cache_maintenance_load_dialog(GtkWidget *widget, const
 
 	label = tab_completion_new(&cd->entry, path, nullptr, nullptr, nullptr, nullptr);
 	tab_completion_add_select_button(cd->entry,_("Select folder") , TRUE);
-	gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
 	gtk_widget_show(label);
 
 	cd->list = nullptr;

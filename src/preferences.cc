@@ -1393,7 +1393,7 @@ static void safe_delete_clear_cb(GtkWidget *widget, gpointer)
 	gtk_widget_set_can_focus(entry, FALSE);
 	gtk_editable_set_editable(GTK_EDITABLE(entry), FALSE);
 	if (options->file_ops.safe_delete_path) gtk_entry_set_text(GTK_ENTRY(entry), options->file_ops.safe_delete_path);
-	gtk_box_pack_start(GTK_BOX(gd->vbox), entry, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(gd->vbox), entry, FALSE, FALSE, 0);
 	gtk_widget_show(entry);
 	gtk_widget_show(gd->dialog);
 }
@@ -1963,13 +1963,13 @@ static void config_tab_general(GtkWidget *notebook)
 	rating_symbol = g_strdup_printf("U+%X", options->star_rating.star);
 	star_rating_entry = gtk_entry_new();
 	gtk_entry_set_text(GTK_ENTRY(star_rating_entry), rating_symbol);
-	gtk_box_pack_start(GTK_BOX(hbox), star_rating_entry, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), star_rating_entry, FALSE, FALSE, 0);
 	gtk_entry_set_width_chars(GTK_ENTRY(star_rating_entry), 15);
 	gtk_widget_show(star_rating_entry);
 	button = pref_button_new(nullptr, nullptr, _("Set"),
 					G_CALLBACK(star_rating_star_test_cb), hbox);
 	gtk_widget_set_tooltip_text(button, _("Display selected character"));
-	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 	gtk_widget_set_tooltip_text(star_rating_entry, _("Hexadecimal representation of a Unicode character. A list of all Unicode characters may be found on the Internet."));
 	gtk_entry_set_icon_from_icon_name(GTK_ENTRY(star_rating_entry),
@@ -1995,13 +1995,13 @@ static void config_tab_general(GtkWidget *notebook)
 	rating_symbol = g_strdup_printf("U+%X", options->star_rating.rejected);
 	star_rating_entry = gtk_entry_new();
 	gtk_entry_set_text(GTK_ENTRY(star_rating_entry), rating_symbol);
-	gtk_box_pack_start(GTK_BOX(hbox), star_rating_entry, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), star_rating_entry, FALSE, FALSE, 0);
 	gtk_entry_set_width_chars(GTK_ENTRY(star_rating_entry), 15);
 	gtk_widget_show(star_rating_entry);
 	button = pref_button_new(nullptr, nullptr, _("Set"),
 					G_CALLBACK(star_rating_rejected_test_cb), hbox);
 	gtk_widget_set_tooltip_text(button, _("Display selected character"));
-	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 	gtk_widget_set_tooltip_text(star_rating_entry, _("Hexadecimal representation of a Unicode character. A list of all Unicode characters may be found on the Internet."));
 	gtk_entry_set_icon_from_icon_name(GTK_ENTRY(star_rating_entry),
@@ -2152,7 +2152,7 @@ static void config_tab_general(GtkWidget *notebook)
 
 	help_search_engine_entry = gtk_entry_new();
 	gtk_entry_set_text(GTK_ENTRY(help_search_engine_entry), options->help_search_engine);
-	gtk_box_pack_start(GTK_BOX(group), help_search_engine_entry, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(group), help_search_engine_entry, FALSE, FALSE, 0);
 	gtk_widget_show(help_search_engine_entry);
 
 	gtk_widget_set_tooltip_text(help_search_engine_entry, _("The format varies between search engines, e.g the format may be:\nhttps://www.search_engine.com/search?q=site:geeqie.org/help\nhttps://www.search_engine.com/?q=site:geeqie.org/help"));
@@ -2364,7 +2364,7 @@ static void config_tab_windows(GtkWidget *notebook)
 	c_options->fullscreen.screen = options->fullscreen.screen;
 	c_options->fullscreen.above = options->fullscreen.above;
 	hbox = fullscreen_prefs_selection_new(_("Location:"), &c_options->fullscreen.screen, &c_options->fullscreen.above);
-	gtk_box_pack_start(GTK_BOX(group), hbox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(group), hbox, FALSE, FALSE, 0);
 	gtk_widget_show(hbox);
 
 	pref_checkbox_new_int(group, _("Smooth image flip"),
@@ -2397,7 +2397,7 @@ static void config_tab_osd(GtkWidget *notebook)
 
 	scrolled_pre_formatted = osd_new(PRE_FORMATTED_COLUMNS, image_overlay_template_view);
 	gtk_widget_set_size_request(scrolled_pre_formatted, 200, 150);
-	gtk_box_pack_start(GTK_BOX(subgroup), scrolled_pre_formatted, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(subgroup), scrolled_pre_formatted, FALSE, FALSE, 0);
 	gtk_widget_show(scrolled_pre_formatted);
 	gtk_widget_show(subgroup);
 
@@ -2410,7 +2410,7 @@ static void config_tab_osd(GtkWidget *notebook)
 	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 									GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_box_pack_start(GTK_BOX(group), scrolled, TRUE, TRUE, 5);
+	gq_gtk_box_pack_start(GTK_BOX(group), scrolled, TRUE, TRUE, 5);
 	gtk_widget_show(scrolled);
 
 	gtk_widget_set_tooltip_markup(image_overlay_template_view,
@@ -2424,28 +2424,28 @@ static void config_tab_osd(GtkWidget *notebook)
 	button = pref_button_new(nullptr, GQ_ICON_SELECT_FONT, _("Font"),
 				 G_CALLBACK(image_overlay_set_font_cb), notebook);
 
-	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
 	button = pref_button_new(nullptr, GQ_ICON_SELECT_COLOR, _("Text"),
 				 G_CALLBACK(image_overlay_set_text_colour_cb), nullptr);
-	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
 	button = pref_button_new(nullptr, GQ_ICON_SELECT_COLOR, _("Background"),
 				 G_CALLBACK(image_overlay_set_background_colour_cb), nullptr);
-	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 	image_overlay_set_text_colours();
 
 	button = pref_button_new(nullptr, nullptr, _("Defaults"),
 				 G_CALLBACK(image_overlay_default_template_cb), image_overlay_template_view);
-	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
 	button = pref_button_new(nullptr, GQ_ICON_HELP, _("Help"),
 				 G_CALLBACK(image_overlay_help_cb), nullptr);
-	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
 	buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(image_overlay_template_view));
@@ -2457,46 +2457,46 @@ static void config_tab_osd(GtkWidget *notebook)
 
 	group = pref_group_new(vbox, FALSE, _("Exif, XMP or IPTC tags"), GTK_ORIENTATION_VERTICAL);
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_box_pack_start(GTK_BOX(group), hbox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(group), hbox, FALSE, FALSE, 0);
 	gtk_widget_show(hbox);
 	label = gtk_label_new(_("%Exif.Image.Orientation%"));
-	gtk_box_pack_start(GTK_BOX(hbox),label, FALSE,FALSE,0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox),label, FALSE,FALSE,0);
 	gtk_widget_show(label);
 	pref_spacer(group,TRUE);
 
 	group = pref_group_new(vbox, FALSE, _("Field separators"), GTK_ORIENTATION_VERTICAL);
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_box_pack_start(GTK_BOX(group), hbox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(group), hbox, FALSE, FALSE, 0);
 	gtk_widget_show(hbox);
 	label = gtk_label_new(_("Separator shown only if both fields are non-null:\n%formatted.ShutterSpeed%|%formatted.ISOSpeedRating%"));
-	gtk_box_pack_start(GTK_BOX(hbox),label, FALSE,FALSE,0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox),label, FALSE,FALSE,0);
 	gtk_widget_show(label);
 	pref_spacer(group,TRUE);
 
 	group = pref_group_new(vbox, FALSE, _("Field maximum length"), GTK_ORIENTATION_VERTICAL);
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_box_pack_start(GTK_BOX(group), hbox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(group), hbox, FALSE, FALSE, 0);
 	gtk_widget_show(hbox);
 	label = gtk_label_new(_("%path:39%"));
-	gtk_box_pack_start(GTK_BOX(hbox),label, FALSE,FALSE,0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox),label, FALSE,FALSE,0);
 	gtk_widget_show(label);
 	pref_spacer(group,TRUE);
 
 	group = pref_group_new(vbox, FALSE, _("Pre- and post- text"), GTK_ORIENTATION_VERTICAL);
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_box_pack_start(GTK_BOX(group), hbox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(group), hbox, FALSE, FALSE, 0);
 	gtk_widget_show(hbox);
 	label = gtk_label_new(_("Text shown only if the field is non-null:\n%formatted.Aperture:F no. * setting%\n %formatted.Aperture:10:F no. * setting%"));
-	gtk_box_pack_start(GTK_BOX(hbox),label, FALSE,FALSE,0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox),label, FALSE,FALSE,0);
 	gtk_widget_show(label);
 	pref_spacer(group,TRUE);
 
 	group = pref_group_new(vbox, FALSE, _("Pango markup"), GTK_ORIENTATION_VERTICAL);
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_box_pack_start(GTK_BOX(group), hbox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(group), hbox, FALSE, FALSE, 0);
 	gtk_widget_show(hbox);
 	label = gtk_label_new(_("<b>bold</b>\n<u>underline</u>\n<i>italic</i>\n<s>strikethrough</s>"));
-	gtk_box_pack_start(GTK_BOX(hbox),label, FALSE,FALSE,0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox),label, FALSE,FALSE,0);
 	gtk_widget_show(label);
 }
 
@@ -2616,7 +2616,7 @@ static void config_tab_files(GtkWidget *notebook)
 
 	sidecar_ext_entry = gtk_entry_new();
 	gtk_entry_set_text(GTK_ENTRY(sidecar_ext_entry), options->sidecar.ext);
-	gtk_box_pack_start(GTK_BOX(group), sidecar_ext_entry, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(group), sidecar_ext_entry, FALSE, FALSE, 0);
 	gtk_widget_show(sidecar_ext_entry);
 
 	group = pref_group_new(vbox, TRUE, _("File types"), GTK_ORIENTATION_VERTICAL);
@@ -2629,7 +2629,7 @@ static void config_tab_files(GtkWidget *notebook)
 	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
 	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled), GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
-	gtk_box_pack_start(GTK_BOX(group), scrolled, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(group), scrolled, TRUE, TRUE, 0);
 	gtk_widget_show(scrolled);
 
 	filter_store = gtk_list_store_new(1, G_TYPE_POINTER);
@@ -2743,17 +2743,17 @@ static void config_tab_files(GtkWidget *notebook)
 
 	button = pref_button_new(nullptr, nullptr, _("Defaults"),
 				 G_CALLBACK(filter_default_cb), filter_view);
-	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
 	button = pref_button_new(nullptr, GQ_ICON_REMOVE, _("Remove"),
 				 G_CALLBACK(filter_remove_cb), filter_view);
-	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
 	button = pref_button_new(nullptr, GQ_ICON_ADD, _("Add"),
 				 G_CALLBACK(filter_add_cb), filter_view);
-	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 }
 
@@ -3098,7 +3098,7 @@ static void keywords_find_dialog(GtkWidget *widget, const gchar *path)
 
 	label = tab_completion_new(&kfd->entry, path, nullptr, nullptr, nullptr, nullptr);
 	tab_completion_add_select_button(kfd->entry,_("Select folder") , TRUE);
-	gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
 	gtk_widget_show(label);
 
 	pref_checkbox_new_int(kfd->group, _("Include subfolders"), FALSE, &kfd->recurse);
@@ -3110,11 +3110,11 @@ static void keywords_find_dialog(GtkWidget *widget, const gchar *path)
 	gtk_widget_set_can_focus(kfd->progress, FALSE);
 	gtk_editable_set_editable(GTK_EDITABLE(kfd->progress), FALSE);
 	gtk_entry_set_text(GTK_ENTRY(kfd->progress), _("click start to begin"));
-	gtk_box_pack_start(GTK_BOX(hbox), kfd->progress, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), kfd->progress, TRUE, TRUE, 0);
 	gtk_widget_show(kfd->progress);
 
 	kfd->spinner = gtk_spinner_new();
-	gtk_box_pack_start(GTK_BOX(hbox), kfd->spinner, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), kfd->spinner, FALSE, FALSE, 0);
 	gtk_widget_show(kfd->spinner);
 
 	kfd->list = nullptr;
@@ -3200,7 +3200,7 @@ static void config_tab_keywords(GtkWidget *notebook)
 	keyword_text = gtk_text_view_new();
 	gtk_widget_set_size_request(keyword_text, 20, 20);
 	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
-	gtk_box_pack_start(GTK_BOX(group), scrolled, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(group), scrolled, TRUE, TRUE, 0);
 	gtk_widget_show(scrolled);
 
 #ifdef HAVE_SPELL
@@ -3447,7 +3447,7 @@ static void config_tab_behavior(GtkWidget *notebook)
 
 	tabcomp = tab_completion_new(&safe_delete_path_entry, options->file_ops.safe_delete_path, nullptr, nullptr, nullptr, nullptr);
 	tab_completion_add_select_button(safe_delete_path_entry, nullptr, TRUE);
-	gtk_box_pack_start(GTK_BOX(hbox), tabcomp, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), tabcomp, TRUE, TRUE, 0);
 	gtk_widget_show(tabcomp);
 
 	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
@@ -3459,12 +3459,12 @@ static void config_tab_behavior(GtkWidget *notebook)
 	gtk_widget_set_tooltip_markup(spin, _("Set to 0 for unlimited size"));
 	button = pref_button_new(nullptr, nullptr, _("View"),
 				 G_CALLBACK(safe_delete_view_cb), nullptr);
-	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
 	button = pref_button_new(nullptr, GQ_ICON_CLEAR, nullptr,
 				 G_CALLBACK(safe_delete_clear_cb), nullptr);
-	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 
 	c_options->file_ops.no_trash = options->file_ops.no_trash;
 	c_options->file_ops.use_system_trash = options->file_ops.use_system_trash;
@@ -3636,7 +3636,7 @@ static void config_tab_accelerators(GtkWidget *notebook)
 	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
 	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled), GTK_POLICY_AUTOMATIC, GTK_POLICY_ALWAYS);
-	gtk_box_pack_start(GTK_BOX(group), scrolled, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(group), scrolled, TRUE, TRUE, 0);
 	gtk_widget_show(scrolled);
 
 	accel_store = gtk_tree_store_new(4, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
@@ -3718,18 +3718,18 @@ static void config_tab_accelerators(GtkWidget *notebook)
 
 	button = pref_button_new(nullptr, nullptr, _("Defaults"),
 				 G_CALLBACK(accel_default_cb), accel_view);
-	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
 	button = pref_button_new(nullptr, nullptr, _("Reset selected"),
 				 G_CALLBACK(accel_reset_cb), accel_view);
 	gtk_widget_set_tooltip_text(button, _("Will only reset changes made before the settings are saved"));
-	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
 	button = pref_button_new(nullptr, nullptr, _("Clear selected"),
 				 G_CALLBACK(accel_clear_cb), accel_view);
-	gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 }
 
@@ -3745,7 +3745,7 @@ static void config_tab_toolbar_main(GtkWidget *notebook)
 	vbox = scrolled_notebook_page(notebook, _("Toolbar Main"));
 
 	toolbardata = toolbar_select_new(lw, TOOLBAR_MAIN);
-	gtk_box_pack_start(GTK_BOX(vbox), toolbardata, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vbox), toolbardata, TRUE, TRUE, 0);
 	gtk_widget_show(vbox);
 }
 
@@ -3761,7 +3761,7 @@ static void config_tab_toolbar_status(GtkWidget *notebook)
 	vbox = scrolled_notebook_page(notebook, _("Toolbar Status"));
 
 	toolbardata = toolbar_select_new(lw, TOOLBAR_STATUS);
-	gtk_box_pack_start(GTK_BOX(vbox), toolbardata, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vbox), toolbardata, TRUE, TRUE, 0);
 	gtk_widget_show(vbox);
 }
 
@@ -3836,14 +3836,14 @@ static void config_tab_advanced(GtkWidget *notebook)
 	external_preview_select_entry = gtk_entry_new();
 	tabcomp = tab_completion_new(&external_preview_select_entry, options->external_preview.select, nullptr, nullptr, nullptr, nullptr);
 	tab_completion_add_select_button(external_preview_select_entry, _("Select file identification tool"), FALSE);
-	gtk_box_pack_start(GTK_BOX(group), tabcomp, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(group), tabcomp, TRUE, TRUE, 0);
 	gtk_widget_show(tabcomp);
 
 	group = pref_group_new(vbox, FALSE, _("Preview extraction tool"), GTK_ORIENTATION_VERTICAL);
 	external_preview_extract_entry = gtk_entry_new();
 	tabcomp = tab_completion_new(&external_preview_extract_entry, options->external_preview.extract, nullptr, nullptr, nullptr, nullptr);
 	tab_completion_add_select_button(external_preview_extract_entry, _("Select preview extraction tool"), FALSE);
-	gtk_box_pack_start(GTK_BOX(group), tabcomp, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(group), tabcomp, TRUE, TRUE, 0);
 	gtk_widget_show(tabcomp);
 
 	gtk_widget_show(vbox);
@@ -3978,7 +3978,7 @@ static void config_window_create(LayoutWindow *lw)
 	notebook = gtk_notebook_new();
 	gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook), GTK_POS_LEFT);
 	gtk_notebook_set_scrollable(GTK_NOTEBOOK(notebook), TRUE);
-	gtk_box_pack_start(GTK_BOX(win_vbox), notebook, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(win_vbox), notebook, TRUE, TRUE, 0);
 
 	config_tab_general(notebook);
 	config_tab_image(notebook);
@@ -4000,7 +4000,7 @@ static void config_window_create(LayoutWindow *lw)
 	hbox = gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL);
 	gtk_button_box_set_layout(GTK_BUTTON_BOX(hbox), GTK_BUTTONBOX_END);
 	gtk_box_set_spacing(GTK_BOX(hbox), PREF_PAD_BUTTON_GAP);
-	gtk_box_pack_end(GTK_BOX(win_vbox), hbox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(win_vbox), hbox, FALSE, FALSE, 0);
 	gtk_widget_show(hbox);
 
 	button = pref_button_new(nullptr, GQ_ICON_HELP, _("Help"),
@@ -4282,7 +4282,7 @@ static void timezone_database_install_cb(GtkWidget *widget, gpointer data)
 		generic_dialog_add_message(tz->gd, GQ_ICON_DIALOG_INFO, _("Downloading timezone database"), nullptr, FALSE);
 
 		tz->progress = gtk_progress_bar_new();
-		gtk_box_pack_start(GTK_BOX(tz->gd->vbox), tz->progress, FALSE, FALSE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(tz->gd->vbox), tz->progress, FALSE, FALSE, 0);
 		gtk_widget_show(tz->progress);
 
 		gtk_widget_show(tz->gd->dialog);

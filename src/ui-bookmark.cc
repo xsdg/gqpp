@@ -605,7 +605,7 @@ static void bookmark_populate(BookMarkData *bm)
 
 			b->button = gtk_button_new();
 			gtk_button_set_relief(GTK_BUTTON(b->button), GTK_RELIEF_NONE);
-			gtk_box_pack_start(GTK_BOX(bm->box), b->button, FALSE, FALSE, 0);
+			gq_gtk_box_pack_start(GTK_BOX(bm->box), b->button, FALSE, FALSE, 0);
 			gtk_widget_show(b->button);
 
 			g_object_set_data_full(G_OBJECT(b->button), "bookbuttondata",
@@ -661,11 +661,11 @@ static void bookmark_populate(BookMarkData *bm)
 				{
 				b->image = gtk_image_new_from_icon_name(GQ_ICON_DIRECTORY, GTK_ICON_SIZE_BUTTON);
 				}
-			gtk_box_pack_start(GTK_BOX(box), b->image, FALSE, FALSE, 0);
+			gq_gtk_box_pack_start(GTK_BOX(box), b->image, FALSE, FALSE, 0);
 			gtk_widget_show(b->image);
 
 			b->label = gtk_label_new(b->name);
-			gtk_box_pack_start(GTK_BOX(box), b->label, FALSE, FALSE, 0);
+			gq_gtk_box_pack_start(GTK_BOX(box), b->label, FALSE, FALSE, 0);
 			gtk_widget_show(b->label);
 
 			g_signal_connect(G_OBJECT(b->button), "clicked",

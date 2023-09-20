@@ -2164,7 +2164,7 @@ void image_set_frame(ImageWindow *imd, gboolean frame)
 		g_signal_connect(G_OBJECT(imd->frame), "focus_in_event",
 				 G_CALLBACK(image_focus_in_cb), imd);
 
-        	gtk_box_pack_start(GTK_BOX(imd->widget), imd->frame, TRUE, TRUE, 0);
+        	gq_gtk_box_pack_start(GTK_BOX(imd->widget), imd->frame, TRUE, TRUE, 0);
         	gtk_widget_show(imd->frame);
 		}
 	else
@@ -2176,7 +2176,7 @@ void image_set_frame(ImageWindow *imd, gboolean frame)
 			gtk_widget_destroy(imd->frame);
 			imd->frame = nullptr;
 			}
-        	gtk_box_pack_start(GTK_BOX(imd->widget), imd->pr, TRUE, TRUE, 0);
+        	gq_gtk_box_pack_start(GTK_BOX(imd->widget), imd->pr, TRUE, TRUE, 0);
 
 		g_object_unref(imd->pr);
 		}

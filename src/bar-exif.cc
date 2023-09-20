@@ -128,7 +128,7 @@ static void bar_pane_exif_setup_entry_box(PaneExifData *ped, ExifEntry *ee)
 	gtk_label_set_xalign(GTK_LABEL(ee->title_label), horizontal ? 1.0 : 0.0);
 	gtk_label_set_yalign(GTK_LABEL(ee->title_label), 0.5);
 	gtk_size_group_add_widget(ped->size_group, ee->title_label);
-	gtk_box_pack_start(GTK_BOX(ee->box), ee->title_label, FALSE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(ee->box), ee->title_label, FALSE, TRUE, 0);
 	gtk_widget_show(ee->title_label);
 
 	if (editable)
@@ -146,7 +146,7 @@ static void bar_pane_exif_setup_entry_box(PaneExifData *ped, ExifEntry *ee)
 		gtk_label_set_yalign(GTK_LABEL(ee->value_widget), 0.5);
 		}
 
-	gtk_box_pack_start(GTK_BOX(ee->box), ee->value_widget, TRUE, TRUE, 1);
+	gq_gtk_box_pack_start(GTK_BOX(ee->box), ee->value_widget, TRUE, TRUE, 1);
 	gtk_widget_show(ee->value_widget);
 }
 
@@ -175,7 +175,7 @@ static GtkWidget *bar_pane_exif_add_entry(PaneExifData *ped, const gchar *key, c
 	g_signal_connect_after(G_OBJECT(ee->ebox), "destroy",
 			       G_CALLBACK(bar_pane_exif_entry_destroy), ee);
 
-	gtk_box_pack_start(GTK_BOX(ped->vbox), ee->ebox, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(ped->vbox), ee->ebox, FALSE, FALSE, 0);
 
 	bar_pane_exif_entry_dnd_init(ee->ebox);
 	g_signal_connect(ee->ebox, "button_release_event", G_CALLBACK(bar_pane_exif_menu_cb), ped);
@@ -206,7 +206,7 @@ static void bar_pane_exif_reparent_entry(GtkWidget *entry, GtkWidget *pane)
 
 	ee->ped = ped;
 	gtk_size_group_add_widget(ped->size_group, ee->title_label);
-	gtk_box_pack_start(GTK_BOX(ped->vbox), entry, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(ped->vbox), entry, FALSE, FALSE, 0);
 }
 
 static void bar_pane_exif_entry_update_title(ExifEntry *ee)

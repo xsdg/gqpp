@@ -201,7 +201,7 @@ static void toolbarlist_add_button(const gchar *name, const gchar *label,
 	toolbar_entry = g_new(ToolbarButtonData,1);
 	toolbar_entry->button = gtk_button_new();
 	gtk_button_set_relief(GTK_BUTTON(toolbar_entry->button), GTK_RELIEF_NONE);
-	gtk_box_pack_start(GTK_BOX(box), toolbar_entry->button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box), toolbar_entry->button, FALSE, FALSE, 0);
 	gtk_widget_show(toolbar_entry->button);
 
 	g_object_set_data_full(G_OBJECT(toolbar_entry->button), "toolbarbuttondata",
@@ -257,9 +257,9 @@ static void toolbarlist_add_button(const gchar *name, const gchar *label,
 		toolbar_entry->image = gtk_image_new_from_icon_name(GQ_ICON_GO_JUMP,
 														GTK_ICON_SIZE_BUTTON);
 		}
-	gtk_box_pack_start(GTK_BOX(hbox), toolbar_entry->image, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), toolbar_entry->image, FALSE, FALSE, 0);
 	gtk_widget_show(toolbar_entry->image);
-	gtk_box_pack_start(GTK_BOX(hbox), toolbar_entry->button_label, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), toolbar_entry->button_label, FALSE, FALSE, 0);
 	gtk_widget_show(toolbar_entry->button_label);
 }
 
@@ -426,7 +426,7 @@ GtkWidget *toolbar_select_new(LayoutWindow *lw, ToolbarType bar)
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 							GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
 	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_NONE);
-	gtk_box_pack_start(GTK_BOX(toolbarlist[bar]->widget), scrolled, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(toolbarlist[bar]->widget), scrolled, TRUE, TRUE, 0);
 	gtk_widget_show(scrolled);
 
 	toolbarlist[bar]->vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
@@ -437,7 +437,7 @@ GtkWidget *toolbar_select_new(LayoutWindow *lw, ToolbarType bar)
 
 	add_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show(add_box);
-	gtk_box_pack_end(GTK_BOX(toolbarlist[bar]->widget), add_box, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(toolbarlist[bar]->widget), add_box, FALSE, FALSE, 0);
 	tbar = pref_toolbar_new(add_box, GTK_TOOLBAR_ICONS);
 	toolbarlist[bar]->add_button = pref_toolbar_button(tbar, GQ_ICON_ADD, _("Add"), FALSE,
 											_("Add Toolbar Item"),

@@ -675,7 +675,7 @@ GtkWidget *fullscreen_prefs_selection_new(const gchar *text, gint *screen_value,
 
 	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), current);
 
-	gtk_box_pack_start(GTK_BOX(hbox), combo, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), combo, FALSE, FALSE, 0);
 	gtk_widget_show(combo);
 
 	g_signal_connect(G_OBJECT(combo), "changed",

@@ -2481,7 +2481,7 @@ static void layout_menu_window_rename_cb(GtkWidget *, gpointer data)
 	gtk_widget_set_can_focus(rw->window_name_entry, TRUE);
 	gtk_editable_set_editable(GTK_EDITABLE(rw->window_name_entry), TRUE);
 	gtk_entry_set_text(GTK_ENTRY(rw->window_name_entry), lw->options.id);
-	gtk_box_pack_start(GTK_BOX(hbox), rw->window_name_entry, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), rw->window_name_entry, TRUE, TRUE, 0);
 	gtk_widget_grab_focus(GTK_WIDGET(rw->window_name_entry));
 	gtk_widget_show(rw->window_name_entry);
 	g_signal_connect(rw->window_name_entry, "activate", G_CALLBACK(window_rename_entry_activate_cb), rw);
@@ -3483,8 +3483,8 @@ GtkWidget *layout_actions_menu_tool_bar(LayoutWindow *lw)
 	DEBUG_NAME(toolbar);
 	lw->menu_tool_bar = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 
-	gtk_box_pack_start(GTK_BOX(lw->menu_tool_bar), menu_bar, FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(lw->menu_tool_bar), toolbar, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(lw->menu_tool_bar), menu_bar, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(lw->menu_tool_bar), toolbar, FALSE, FALSE, 0);
 
 	g_object_ref(lw->menu_tool_bar);
 	return lw->menu_tool_bar;
@@ -4131,7 +4131,7 @@ void layout_bar_sort_set(LayoutWindow *lw, GtkWidget *bar)
 	g_signal_connect(G_OBJECT(lw->bar_sort), "destroy",
 			 G_CALLBACK(layout_bar_sort_destroyed), lw);
 
-	gtk_box_pack_end(GTK_BOX(lw->utility_box), lw->bar_sort, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(lw->utility_box), lw->bar_sort, FALSE, FALSE, 0);
 }
 
 void layout_bar_sort_toggle(LayoutWindow *lw)
@@ -4217,7 +4217,7 @@ GtkWidget *layout_bars_prepare(LayoutWindow *lw, GtkWidget *image)
 	lw->utility_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 	lw->utility_paned = gtk_paned_new(GTK_ORIENTATION_HORIZONTAL);
 	DEBUG_NAME(lw->utility_paned);
-	gtk_box_pack_start(GTK_BOX(lw->utility_box), lw->utility_paned, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(lw->utility_box), lw->utility_paned, TRUE, TRUE, 0);
 
 	gtk_paned_pack1(GTK_PANED(lw->utility_paned), image, TRUE, FALSE);
 	gtk_widget_show(lw->utility_paned);

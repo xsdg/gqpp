@@ -647,7 +647,7 @@ void bar_add(GtkWidget *bar, GtkWidget *pane)
 		gtk_widget_show(pd->title);
 		}
 
-	gtk_box_pack_start(GTK_BOX(bd->vbox), expander, FALSE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(bd->vbox), expander, FALSE, TRUE, 0);
 
 	g_signal_connect(expander, "button_release_event", G_CALLBACK(bar_menu_cb), bd);
 	g_signal_connect(expander, "notify::expanded", G_CALLBACK(bar_expander_cb), pd);
@@ -762,17 +762,17 @@ GtkWidget *bar_new(LayoutWindow *lw)
 	gtk_label_set_xalign(GTK_LABEL(bd->label_file_name), 0.5);
 	gtk_label_set_yalign(GTK_LABEL(bd->label_file_name), 0.5);
 
-	gtk_box_pack_start(GTK_BOX(box), bd->label_file_name, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box), bd->label_file_name, TRUE, TRUE, 0);
 	gtk_widget_show(bd->label_file_name);
 
-	gtk_box_pack_start(GTK_BOX(bd->widget), box, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(bd->widget), box, FALSE, FALSE, 0);
 	gtk_widget_show(box);
 
 	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
 	DEBUG_NAME(scrolled);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 		GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-	gtk_box_pack_start(GTK_BOX(bd->widget), scrolled, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(bd->widget), scrolled, TRUE, TRUE, 0);
 	gtk_widget_show(scrolled);
 
 
@@ -782,7 +782,7 @@ GtkWidget *bar_new(LayoutWindow *lw)
 
 	add_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	DEBUG_NAME(add_box);
-	gtk_box_pack_end(GTK_BOX(bd->widget), add_box, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(bd->widget), add_box, FALSE, FALSE, 0);
 	tbar = pref_toolbar_new(add_box, GTK_TOOLBAR_ICONS);
 	bd->add_button = pref_toolbar_button(tbar, GQ_ICON_ADD, _("Add"), FALSE,
 					     _("Add Pane"), G_CALLBACK(bar_menu_add_cb), bd);

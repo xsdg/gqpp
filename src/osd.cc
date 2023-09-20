@@ -164,7 +164,7 @@ GtkWidget *osd_new(gint max_cols, GtkWidget *template_view)
 	pref_label_new(vbox, _("To include predefined tags in the template, click a button or drag-and-drop"));
 
 	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
-	gtk_box_pack_start(GTK_BOX(vbox), scrolled, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vbox), scrolled, FALSE, FALSE, 0);
 	gtk_container_set_border_width(GTK_CONTAINER(scrolled), PREF_PAD_BORDER);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
 				       GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);

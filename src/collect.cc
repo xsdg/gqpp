@@ -1370,17 +1370,17 @@ CollectWindow *collection_window_new(const gchar *path)
 	gtk_widget_show(vbox);
 
 	cw->table = collection_table_new(cw->cd);
-	gtk_box_pack_start(GTK_BOX(vbox), cw->table->scrolled, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vbox), cw->table->scrolled, TRUE, TRUE, 0);
 	gtk_widget_show(cw->table->scrolled);
 
 	cw->status_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_box_pack_start(GTK_BOX(vbox), cw->status_box, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vbox), cw->status_box, FALSE, FALSE, 0);
 	gtk_widget_show(cw->status_box);
 
 	frame = gtk_frame_new(nullptr);
 	DEBUG_NAME(frame);
 	gtk_frame_set_shadow_type(GTK_FRAME(frame), GTK_SHADOW_IN);
-	gtk_box_pack_start(GTK_BOX(cw->status_box), frame, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(cw->status_box), frame, TRUE, TRUE, 0);
 	gtk_widget_show(frame);
 
 	status_label = gtk_label_new("");
@@ -1392,7 +1392,7 @@ CollectWindow *collection_window_new(const gchar *path)
 	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(extra_label), "");
 	gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(extra_label), TRUE);
 
-	gtk_box_pack_start(GTK_BOX(cw->status_box), extra_label, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(cw->status_box), extra_label, TRUE, TRUE, 0);
 	gtk_widget_show(extra_label);
 
 	collection_table_set_labels(cw->table, status_label, extra_label);
