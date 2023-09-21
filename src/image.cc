@@ -2113,28 +2113,17 @@ gboolean selectable_frame_draw_cb(GtkWidget *widget, cairo_t *cr, gpointer)
 {
 	GtkAllocation allocation;
 	gtk_widget_get_allocation(widget, &allocation);
-	gtk_paint_flat_box(gtk_widget_get_style(widget),
-			   cr,
-			   gtk_widget_get_state(widget),
-			   gtk_frame_get_shadow_type(GTK_FRAME(widget)),
-			   widget,
-			   nullptr,
-			   allocation.x + 3, allocation.y + 3,
-			   allocation.width - 6, allocation.height - 6);
+
+	gtk_render_frame(gtk_widget_get_style_context(widget), cr, allocation.x + 3, allocation.y + 3, allocation.width - 6, allocation.height - 6);
+	gtk_render_background(gtk_widget_get_style_context(widget), cr, allocation.x + 3, allocation.y + 3, allocation.width - 6, allocation.height - 6);
 
 	if (gtk_widget_has_focus(widget))
 		{
-		gtk_paint_focus(gtk_widget_get_style(widget), cr, GTK_STATE_ACTIVE,
-				widget, "image_window",
-				allocation.x, allocation.y,
-				allocation.width - 1, allocation.height - 1);
+		gtk_render_focus(gtk_widget_get_style_context(widget), cr, allocation.x, allocation.y, allocation.width - 1, allocation.height - 1);
 		}
 	else
 		{
-		gtk_paint_shadow(gtk_widget_get_style(widget), cr, GTK_STATE_NORMAL, GTK_SHADOW_IN,
-				 widget, "image_window",
-				 allocation.x, allocation.y,
-				 allocation.width - 1, allocation.height - 1);
+		gtk_render_frame(gtk_widget_get_style_context(widget), cr, allocation.x, allocation.y, allocation.width - 1, allocation.height - 1);
 		}
 	return FALSE;
 }
