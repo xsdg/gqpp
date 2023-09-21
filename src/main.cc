@@ -564,7 +564,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 			dialog_warning = gtk_message_dialog_new(nullptr, GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "%s", "Invalid parameter(s):");
 			gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog_warning), "%s", command_line_errors->str);
 			gtk_window_set_title(GTK_WINDOW(dialog_warning), GQ_APPNAME);
-			gtk_window_set_keep_above(GTK_WINDOW(dialog_warning), TRUE);
+			gq_gtk_window_set_keep_above(GTK_WINDOW(dialog_warning), TRUE);
 			gtk_dialog_run(GTK_DIALOG(dialog_warning));
 			gtk_widget_destroy(dialog_warning);
 			g_string_free(command_line_errors, TRUE);
@@ -625,7 +625,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 			dialog_warning = gtk_message_dialog_new(nullptr, GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "%s", "Invalid parameter(s):");
 			gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog_warning), "%s", command_line_errors->str);
 			gtk_window_set_title(GTK_WINDOW(dialog_warning), GQ_APPNAME);
-			gtk_window_set_keep_above(GTK_WINDOW(dialog_warning), TRUE);
+			gq_gtk_window_set_keep_above(GTK_WINDOW(dialog_warning), TRUE);
 			gtk_dialog_run(GTK_DIALOG(dialog_warning));
 			gtk_widget_destroy(dialog_warning);
 			g_string_free(command_line_errors, TRUE);

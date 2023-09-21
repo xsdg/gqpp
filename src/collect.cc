@@ -1342,7 +1342,7 @@ CollectWindow *collection_window_new(const gchar *path)
 
 	if (options->collections_on_top)
 		{
-		gtk_window_set_keep_above(GTK_WINDOW(cw->window), TRUE);
+		gq_gtk_window_set_keep_above(GTK_WINDOW(cw->window), TRUE);
 		}
 
 	if (options->save_window_positions && path && collection_load_only_geometry(cw->cd, path))

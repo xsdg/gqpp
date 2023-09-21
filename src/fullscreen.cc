@@ -254,7 +254,7 @@ FullScreenData *fullscreen_start(GtkWidget *window, ImageWindow *imd,
 
 	/* keep window above others, if requested */
 	if (options->fullscreen.above) {
-		gtk_window_set_keep_above(GTK_WINDOW(fs->window), TRUE);
+		gq_gtk_window_set_keep_above(GTK_WINDOW(fs->window), TRUE);
 	}
 
 	/* set default size and position, so the window appears where it was before */

@@ -304,7 +304,7 @@ static void bar_expander_height_cb(GtkWidget *, gpointer data)
 	window = gtk_window_new(GTK_WINDOW_POPUP);
 
 	gtk_window_set_modal(GTK_WINDOW(window), TRUE);
-	gtk_window_set_keep_above(GTK_WINDOW(window), TRUE);
+	gq_gtk_window_set_keep_above(GTK_WINDOW(window), TRUE);
 	gtk_window_set_default_size(GTK_WINDOW(window), 50, 30); //** @FIXME set these values in a more sensible way */
 
 	gtk_window_move(GTK_WINDOW(window), x, y);
