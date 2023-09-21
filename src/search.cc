@@ -2651,10 +2651,11 @@ static void search_start(SearchData *sd)
 static void search_start_cb(GtkWidget *, gpointer data)
 {
 	auto sd = static_cast<SearchData *>(data);
-	GtkTreeViewColumn *column;
-	gchar *path;
-	gchar *entry_text;
 	gchar *collection;
+	gchar *entry_text;
+	gchar *path;
+	GDateTime *date;
+	GtkTreeViewColumn *column;
 
 	if (sd->search_folder_list)
 		{
@@ -2714,8 +2715,17 @@ static void search_start_cb(GtkWidget *, gpointer data)
 	g_list_free_full(sd->search_keyword_list, g_free);
 	sd->search_keyword_list = keyword_list_pull(sd->entry_keywords);
 
-	date_selection_get(sd->date_sel, &sd->search_date_d, &sd->search_date_m, &sd->search_date_y);
-	date_selection_get(sd->date_sel_end, &sd->search_date_end_d, &sd->search_date_end_m, &sd->search_date_end_y);
+	date = date_selection_get(sd->date_sel);
+	sd->search_date_d = g_date_time_get_day_of_month(date);
+	sd->search_date_m = g_date_time_get_month(date);
+	sd->search_date_y = g_date_time_get_year(date);
+	g_date_time_unref(date);
+
+	date = date_selection_get(sd->date_sel_end);
+	sd->search_date_end_d = g_date_time_get_day_of_month(date);
+	sd->search_date_end_m = g_date_time_get_month(date);
+	sd->search_date_end_y = g_date_time_get_year(date);
+	g_date_time_unref(date);
 
 	column = gtk_tree_view_get_column(GTK_TREE_VIEW(sd->result_view), SEARCH_COLUMN_DIMENSIONS - 1);
 	gtk_tree_view_column_set_visible(column, sd->match_dimensions_enable);

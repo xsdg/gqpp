@@ -192,7 +192,7 @@ GtkWidget *pref_toolbar_spacer(GtkWidget *toolbar);
 GtkWidget *date_selection_new();
 
 void date_selection_set(GtkWidget *widget, gint day, gint month, gint year);
-void date_selection_get(GtkWidget *widget, gint *day, gint *month, gint *year);
+GDateTime *date_selection_get(GtkWidget *widget);
 
 void date_selection_time_set(GtkWidget *widget, time_t t);
 time_t date_selection_time_get(GtkWidget *widget);

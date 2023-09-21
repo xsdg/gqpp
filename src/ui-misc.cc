@@ -835,10 +835,23 @@ static gboolean date_selection_popup_press_cb(GtkWidget *, GdkEventButton *event
 
 static void date_selection_popup_sync(DateSelection *ds)
 {
-	guint day, month, year;
+	guint day;
+	guint month;
+	guint year;
 
+#if HAVE_GTK4
+	GDateTime *date_selected;
+
+	date_selected = gtk_calendar_get_date(GTK_CALENDAR(ds->calendar));
+	g_date_time_get_ymd(date_selected, static_cast<guint>(&year), static_cast<guint>(&month), static_cast<guint>(&day));
+
+	g_date_time_unref(date_selected);
+#else
 	gtk_calendar_get_date(GTK_CALENDAR(ds->calendar), &year, &month, &day);
-	date_selection_set(ds->box, day, month + 1, year);
+	/* month is range 0 to 11 */
+	month = month + 1;
+#endif
+	date_selection_set(ds->box, day, month, year);
 }
 
 static gboolean date_selection_popup_keypress_cb(GtkWidget *, GdkEventKey *event, gpointer data)
@@ -880,9 +893,9 @@ static void date_selection_doubleclick_cb(GtkWidget *, gpointer data)
 
 static void date_selection_popup(DateSelection *ds)
 {
-	gint x, y;
+	GDateTime *date;
 	gint wx, wy;
-	gint day, month, year;
+	gint x, y;
 	GtkAllocation button_allocation;
 	GtkAllocation window_allocation;
 
@@ -899,9 +912,14 @@ static void date_selection_popup(DateSelection *ds)
 	gtk_container_add(GTK_CONTAINER(ds->window), ds->calendar);
 	gtk_widget_show(ds->calendar);
 
-	date_selection_get(ds->box, &day, &month, &year);
-	gtk_calendar_select_month(GTK_CALENDAR(ds->calendar), month - 1, year);
-	gtk_calendar_select_day(GTK_CALENDAR(ds->calendar), day);
+	date = date_selection_get(ds->box);
+#ifdef HAVE_GTK4
+	gtk_calendar_select_day(GTK_CALENDAR(ds->calendar), date);
+#else
+	gtk_calendar_select_month(GTK_CALENDAR(ds->calendar), g_date_time_get_month(date), g_date_time_get_year(date));
+	gtk_calendar_select_day(GTK_CALENDAR(ds->calendar), g_date_time_get_day_of_month(date));
+#endif
+	g_date_time_unref(date);
 
 	g_signal_connect(G_OBJECT(ds->calendar), "day_selected",
 			 G_CALLBACK(date_selection_day_cb), ds);
@@ -1060,17 +1078,34 @@ void date_selection_set(GtkWidget *widget, gint day, gint month, gint year)
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(ds->spin_y), static_cast<gdouble>(year));
 }
 
-
-void date_selection_get(GtkWidget *widget, gint *day, gint *month, gint *year)
+/**
+ * @brief Returns date structure set to value of spin buttons
+ * @param widget #DateSelection
+ * @returns
+ *
+ * Free returned structure with g_date_time_unref();
+ */
+GDateTime *date_selection_get(GtkWidget *widget)
 {
 	DateSelection *ds;
+	gint day;
+	gint month;
+	gint year;
+	GDateTime *date;
 
 	ds = static_cast<DateSelection *>(g_object_get_data(G_OBJECT(widget), DATE_SELECION_KEY));
-	if (!ds) return;
+	if (!ds)
+		{
+		return nullptr;
+		}
 
-	if (day) *day = gtk_spin_button_get_value(GTK_SPIN_BUTTON(ds->spin_d));
-	if (month) *month = gtk_spin_button_get_value(GTK_SPIN_BUTTON(ds->spin_m));
-	if (year) *year = gtk_spin_button_get_value(GTK_SPIN_BUTTON(ds->spin_y));
+	day = gtk_spin_button_get_value(GTK_SPIN_BUTTON(ds->spin_d));
+	month = gtk_spin_button_get_value(GTK_SPIN_BUTTON(ds->spin_m));
+	year = gtk_spin_button_get_value(GTK_SPIN_BUTTON(ds->spin_y));
+
+	date = g_date_time_new_local(year, month, day, 0, 0, 0);
+
+	return date;
 }
 
 void date_selection_time_set(GtkWidget *widget, time_t t)
@@ -1092,7 +1127,7 @@ time_t date_selection_time_get_unused(GtkWidget *widget)
 	gint month = 0;
 	gint year = 0;
 
-	date_selection_get(widget, &day, &month ,&year);
+	date_selection_get(widget);
 
 	lt.tm_sec = 0;
 	lt.tm_min = 0;
