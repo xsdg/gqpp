@@ -120,9 +120,34 @@ static gboolean print_job_render_image(PrintWindow *pw)
 	return TRUE;
 }
 
+static void font_activated_cb(GtkFontChooser *widget, gchar *fontname, gpointer option)
+{
+	option = g_strdup(fontname);
+
+	g_free(fontname);
+
+	gtk_widget_destroy(GTK_WIDGET(widget));
+}
+
+static void font_response_cb(GtkDialog *dialog, int response_id, gpointer option)
+{
+	gchar *font;
+
+	if (response_id == GTK_RESPONSE_OK)
+		{
+		font = gtk_font_chooser_get_font(GTK_FONT_CHOOSER(dialog));
+		g_free(option);
+		option = g_strdup(font);
+		g_free(font);
+		}
+
+	gtk_widget_destroy(GTK_WIDGET(dialog));
+}
+
 static void print_set_font_cb(GtkWidget *widget, gpointer data)
 {
 	gpointer option;
+	GtkWidget *dialog;
 
 	if (g_strcmp0(static_cast<const gchar *>(data), "Image text font") == 0)
 		{
@@ -133,23 +158,14 @@ static void print_set_font_cb(GtkWidget *widget, gpointer data)
 		option = options->printer.page_font;
 		}
 
-	GtkWidget *dialog;
-	char *font;
-	PangoFontDescription *font_desc;
-
 	dialog = gtk_font_chooser_dialog_new(static_cast<const gchar *>(data), GTK_WINDOW(gtk_widget_get_toplevel(widget)));
+	gtk_window_set_modal(GTK_WINDOW(dialog), TRUE);
 	gtk_font_chooser_set_font(GTK_FONT_CHOOSER(dialog), static_cast<const gchar *>(option));
 
-	if (gtk_dialog_run(GTK_DIALOG(dialog)) != GTK_RESPONSE_CANCEL)
-		{
-		font_desc = gtk_font_chooser_get_font_desc(GTK_FONT_CHOOSER(dialog));
-		font = pango_font_description_to_string(font_desc);
-		g_free(option);
-		option = g_strdup(font);
-		g_free(font);
-		}
+	g_signal_connect(dialog, "font-activated", G_CALLBACK(font_activated_cb), option);
+	g_signal_connect(dialog, "response", G_CALLBACK(font_response_cb), option);
 
-	gtk_widget_destroy(dialog);
+	gtk_widget_show(dialog);
 }
 
 static gint set_toggle(GSList *list, TextPosition pos)

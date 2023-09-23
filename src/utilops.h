@@ -51,7 +51,7 @@ void file_util_copy(FileData *source_fd, GList *source_list, const gchar *dest_p
 void file_util_rename(FileData *source_fd, GList *source_list, GtkWidget *parent);
 void file_util_write_metadata(FileData *source_fd, GList *source_list, GtkWidget *parent, gboolean force_dialog, FileUtilDoneFunc done_func, gpointer done_data);
 
-void file_util_create_dir(FileData *dir_fd, GtkWidget *parent, FileUtilDoneFunc done_func, gpointer done_data);
+void file_util_create_dir(const gchar *path, GtkWidget *parent, FileUtilDoneFunc done_func, gpointer done_data);
 
 void file_util_rename_dir(FileData *source_fd, const gchar *new_path, GtkWidget *parent, FileUtilDoneFunc done_func, gpointer done_data);
 

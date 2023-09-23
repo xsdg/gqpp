@@ -702,7 +702,7 @@ static void vd_pop_menu_new_cb(GtkWidget *, gpointer data)
 			break;
 		}
 
-	file_util_create_dir(dir_fd, vd->layout->window, vd_pop_menu_new_folder_cb, vd);
+	file_util_create_dir(dir_fd->path, vd->layout->window, vd_pop_menu_new_folder_cb, vd);
 }
 
 static void vd_pop_menu_rename_cb(GtkWidget *, gpointer data)
@@ -874,7 +874,7 @@ GtkWidget *vd_pop_menu(ViewDir *vd, FileData *fd)
 
 void vd_new_folder(ViewDir *vd, FileData *dir_fd)
 {
-	file_util_create_dir(dir_fd, vd->layout->window, vd_pop_menu_new_folder_cb, vd);
+	file_util_create_dir(dir_fd->path, vd->layout->window, vd_pop_menu_new_folder_cb, vd);
 }
 
 /*
