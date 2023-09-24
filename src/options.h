@@ -177,9 +177,9 @@ struct ConfOptions
 
 		gboolean use_custom_border_color_in_fullscreen;
 		gboolean use_custom_border_color;
-		GdkColor border_color;
-		GdkColor alpha_color_1;
-		GdkColor alpha_color_2;
+		GdkRGBA border_color;
+		GdkRGBA alpha_color_1;
+		GdkRGBA alpha_color_2;
 
 		gint tile_size;
 	} image;

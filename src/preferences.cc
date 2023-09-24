@@ -352,7 +352,7 @@ static void config_window_apply()
 
 	if (options->image.use_custom_border_color != c_options->image.use_custom_border_color
 	    || options->image.use_custom_border_color_in_fullscreen != c_options->image.use_custom_border_color_in_fullscreen
-	    || !gdk_color_equal(&options->image.border_color, &c_options->image.border_color))
+	    || !gdk_rgba_equal(&options->image.border_color, &c_options->image.border_color))
 		{
 		options->image.use_custom_border_color_in_fullscreen = c_options->image.use_custom_border_color_in_fullscreen;
 		options->image.use_custom_border_color = c_options->image.use_custom_border_color;
@@ -1564,7 +1564,6 @@ static void bg_color_response_cb(GtkDialog *dialog, gint response_id, gpointer)
 		c_options->image_overlay.background_blue = color.blue * 255;
 		c_options->image_overlay.background_alpha = color.alpha * 255;
 		}
-
 	gtk_widget_destroy(GTK_WIDGET(dialog));
 }
 

@@ -92,13 +92,16 @@ ConfOptions *init_options(ConfOptions *options)
 	memset(&options->image.border_color, 0, sizeof(options->image.border_color));
 	memset(&options->image.alpha_color_1, 0, sizeof(options->image.alpha_color_1));
 	memset(&options->image.alpha_color_2, 0, sizeof(options->image.alpha_color_2));
+	options->image.border_color.red = static_cast<gdouble>(0x009999) / 65535;
+	options->image.border_color.green = static_cast<gdouble>(0x009999) / 65535;
+	options->image.border_color.blue = static_cast<gdouble>(0x009999) / 65535;
 /* alpha channel checkerboard background (same as gimp) */
-	options->image.alpha_color_1.red = 0x009999;
-	options->image.alpha_color_1.green = 0x009999;
-	options->image.alpha_color_1.blue = 0x009999;
-	options->image.alpha_color_2.red = 0x006666;
-	options->image.alpha_color_2.green = 0x006666;
-	options->image.alpha_color_2.blue = 0x006666;
+	options->image.alpha_color_1.red = static_cast<gdouble>(0x009999) / 65535;
+	options->image.alpha_color_1.green = static_cast<gdouble>(0x009999) / 65535;
+	options->image.alpha_color_1.blue = static_cast<gdouble>(0x009999) / 65535;
+	options->image.alpha_color_2.red = static_cast<gdouble>(0x006666) / 65535;
+	options->image.alpha_color_2.green = static_cast<gdouble>(0x006666) / 65535;
+	options->image.alpha_color_2.blue = static_cast<gdouble>(0x006666) / 65535;
 	options->image.enable_read_ahead = TRUE;
 	options->image.exif_rotate_enable = TRUE;
 	options->image.fit_window_to_image = FALSE;

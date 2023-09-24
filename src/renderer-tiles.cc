@@ -204,7 +204,7 @@ static void rt_border_draw(RendererTiles *rt, gint x, gint y, gint w, gint h)
 				   pr->viewport_width, pr->viewport_height,
 				   &rx, &ry, &rw, &rh))
 			{
-			cairo_set_source_rgb(cr, static_cast<double>(pr->color.red)/65535, static_cast<double>(pr->color.green)/65535, static_cast<double>(pr->color.blue)/65535);
+			cairo_set_source_rgb(cr, static_cast<double>(pr->color.red), static_cast<double>(pr->color.green), static_cast<double>(pr->color.blue));
 			cairo_rectangle(cr, rx + rt->stereo_off_x, ry + rt->stereo_off_y, rw, rh);
 			cairo_fill(cr);
 			rt_overlay_draw(rt, rx, ry, rw, rh, nullptr);
@@ -221,7 +221,7 @@ static void rt_border_draw(RendererTiles *rt, gint x, gint y, gint w, gint h)
 				   pr->x_offset, pr->viewport_height,
 				   &rx, &ry, &rw, &rh))
 			{
-			cairo_set_source_rgb(cr, static_cast<double>(pr->color.red)/65535, static_cast<double>(pr->color.green)/65535, static_cast<double>(pr->color.blue)/65535);
+			cairo_set_source_rgb(cr, static_cast<double>(pr->color.red), static_cast<double>(pr->color.green), static_cast<double>(pr->color.blue));
 			cairo_rectangle(cr, rx + rt->stereo_off_x, ry + rt->stereo_off_y, rw, rh);
 			cairo_fill(cr);
 			rt_overlay_draw(rt, rx, ry, rw, rh, nullptr);
@@ -232,7 +232,7 @@ static void rt_border_draw(RendererTiles *rt, gint x, gint y, gint w, gint h)
 				   pr->viewport_width - pr->vis_width - pr->x_offset, pr->viewport_height,
 				   &rx, &ry, &rw, &rh))
 			{
-			cairo_set_source_rgb(cr, static_cast<double>(pr->color.red)/65535, static_cast<double>(pr->color.green)/65535, static_cast<double>(pr->color.blue)/65535);
+			cairo_set_source_rgb(cr, static_cast<double>(pr->color.red), static_cast<double>(pr->color.green), static_cast<double>(pr->color.blue));
 			cairo_rectangle(cr, rx + rt->stereo_off_x, ry + rt->stereo_off_y, rw, rh);
 			cairo_fill(cr);
 			rt_overlay_draw(rt, rx, ry, rw, rh, nullptr);
@@ -246,7 +246,7 @@ static void rt_border_draw(RendererTiles *rt, gint x, gint y, gint w, gint h)
 				   pr->vis_width, pr->y_offset,
 				   &rx, &ry, &rw, &rh))
 			{
-			cairo_set_source_rgb(cr, static_cast<double>(pr->color.red)/65535, static_cast<double>(pr->color.green)/65535, static_cast<double>(pr->color.blue)/65535);
+			cairo_set_source_rgb(cr, static_cast<double>(pr->color.red), static_cast<double>(pr->color.green), static_cast<double>(pr->color.blue));
 			cairo_rectangle(cr, rx + rt->stereo_off_x, ry + rt->stereo_off_y, rw, rh);
 			cairo_fill(cr);
 			rt_overlay_draw(rt, rx, ry, rw, rh, nullptr);
@@ -257,7 +257,7 @@ static void rt_border_draw(RendererTiles *rt, gint x, gint y, gint w, gint h)
 				   pr->vis_width, pr->viewport_height - pr->vis_height - pr->y_offset,
 				   &rx, &ry, &rw, &rh))
 			{
-			cairo_set_source_rgb(cr, static_cast<double>(pr->color.red)/65535, static_cast<double>(pr->color.green)/65535, static_cast<double>(pr->color.blue)/65535);
+			cairo_set_source_rgb(cr, static_cast<double>(pr->color.red), static_cast<double>(pr->color.green), static_cast<double>(pr->color.blue));
 			cairo_rectangle(cr, rx + rt->stereo_off_x, ry + rt->stereo_off_y, rw, rh);
 			cairo_fill(cr);
 			rt_overlay_draw(rt, rx, ry, rw, rh, nullptr);
@@ -1239,6 +1239,14 @@ static void rt_tile_get_region(gboolean has_alpha, gboolean ignore_alpha,
 	gint c;
 	guchar *psrc;
 	guchar *pdst;
+	guint32 red_1;
+	guint32 green_1;
+	guint32 blue_1;
+	guint32 red_2;
+	guint32 green_2;
+	guint32 blue_2;
+	guint32 alpha_1;
+	guint32 alpha_2;
 
 	if (!has_alpha)
 		{
@@ -1282,6 +1290,15 @@ static void rt_tile_get_region(gboolean has_alpha, gboolean ignore_alpha,
 		}
 	else
 		{
+		red_1=static_cast<guint32>(options->image.alpha_color_1.red * 255) << 16 & 0x00FF0000;
+		green_1=static_cast<guint32>(options->image.alpha_color_1.green * 255) << 8 & 0x0000FF00;
+		blue_1=static_cast<guint32>(options->image.alpha_color_1.blue * 255) & 0x000000FF;
+		red_2=static_cast<guint32>(options->image.alpha_color_2.red * 255) << 16 & 0x00FF0000;
+		green_2=static_cast<guint32>(options->image.alpha_color_2.green * 255) << 8 & 0x0000FF00;
+		blue_2=static_cast<guint32>(options->image.alpha_color_2.blue * 255) & 0x000000FF;
+		alpha_1 = red_1 + green_1 + blue_1;
+		alpha_2 = red_2 + green_2 + blue_2;
+
 		if (ignore_alpha)
 			{
 			tmppixbuf = gdk_pixbuf_add_alpha(src, FALSE, 0, 0, 0);
@@ -1296,12 +1313,8 @@ static void rt_tile_get_region(gboolean has_alpha, gboolean ignore_alpha,
 					(scale_x == 1.0 && scale_y == 1.0) ? GDK_INTERP_NEAREST : interp_type,
 					255, check_x, check_y,
 					PR_ALPHA_CHECK_SIZE,
-					((options->image.alpha_color_1.red << 8 & 0x00FF0000) +
-					(options->image.alpha_color_1.green & 0x00FF00) +
-					(options->image.alpha_color_1.blue >> 8 & 0x00FF)),
-					((options->image.alpha_color_2.red << 8 & 0x00FF0000) +
-					(options->image.alpha_color_2.green & 0x00FF00) +
-					(options->image.alpha_color_2.blue >> 8 & 0x00FF)));
+					alpha_1,
+					alpha_2);
 			g_object_unref(tmppixbuf);
 			}
 		else
@@ -1314,12 +1327,8 @@ static void rt_tile_get_region(gboolean has_alpha, gboolean ignore_alpha,
 					(scale_x == 1.0 && scale_y == 1.0) ? GDK_INTERP_NEAREST : interp_type,
 					255, check_x, check_y,
 					PR_ALPHA_CHECK_SIZE,
-					((options->image.alpha_color_1.red << 8 & 0x00FF0000) +
-					(options->image.alpha_color_1.green & 0x00FF00) +
-					(options->image.alpha_color_1.blue >> 8 & 0x00FF)),
-					((options->image.alpha_color_2.red << 8 & 0x00FF0000) +
-					(options->image.alpha_color_2.green & 0x00FF00) +
-					(options->image.alpha_color_2.blue >> 8 & 0x00FF)));
+					alpha_1,
+					alpha_2);
 			}
 		}
 }
@@ -2125,7 +2134,7 @@ static gboolean rt_realize_cb(GtkWidget *widget, gpointer data)
 		rt->surface = gdk_window_create_similar_surface(gtk_widget_get_window(widget), CAIRO_CONTENT_COLOR, gtk_widget_get_allocated_width(widget), gtk_widget_get_allocated_height(widget));
 
 		cr = cairo_create(rt->surface);
-		cairo_set_source_rgb(cr, static_cast<gdouble>(rt->pr->color.red) / 65535, static_cast<gdouble>(rt->pr->color.green) / 65535, static_cast<gdouble>(rt->pr->color.blue) / 65535);
+		cairo_set_source_rgb(cr, static_cast<gdouble>(rt->pr->color.red), static_cast<gdouble>(rt->pr->color.green), static_cast<gdouble>(rt->pr->color.blue));
 		cairo_paint(cr);
 		cairo_destroy(cr);
 		}
@@ -2146,7 +2155,7 @@ static gboolean rt_size_allocate_cb(GtkWidget *widget,  GdkRectangle *allocation
 
 		cr = cairo_create(rt->surface);
 
-		cairo_set_source_rgb(cr, static_cast<gdouble>(options->image.border_color.red) / 65535, static_cast<gdouble>(options->image.border_color.green) / 65535, static_cast<gdouble>(options->image.border_color.blue) / 65535);
+		cairo_set_source_rgb(cr, static_cast<gdouble>(options->image.border_color.red), static_cast<gdouble>(options->image.border_color.green), static_cast<gdouble>(options->image.border_color.blue));
 		cairo_paint(cr);
 		cairo_set_source_surface(cr, old_surface, 0, 0);
 		cairo_paint(cr);
@@ -2168,7 +2177,7 @@ static gboolean rt_draw_cb(GtkWidget *, cairo_t *cr, gpointer data)
 	if (rt->stereo_mode & (PR_STEREO_HORIZ | PR_STEREO_VERT))
 		{
 		cairo_push_group(cr);
-		cairo_set_source_rgb(cr, static_cast<double>(rt->pr->color.red) / 65535, static_cast<double>(rt->pr->color.green) / 65535, static_cast<double>(rt->pr->color.blue) / 65535);
+		cairo_set_source_rgb(cr, static_cast<double>(rt->pr->color.red), static_cast<double>(rt->pr->color.green), static_cast<double>(rt->pr->color.blue));
 
 		if (rt->stereo_mode & PR_STEREO_HORIZ)
 			{

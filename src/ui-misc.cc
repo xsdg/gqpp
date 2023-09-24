@@ -1312,20 +1312,18 @@ gboolean pref_list_string_get_unused(const gchar *group, const gchar *key, const
 
 void pref_color_button_set_cb(GtkWidget *widget, gpointer data)
 {
-	auto color = static_cast<GdkColor *>(data);
+	auto color = static_cast<GdkRGBA *>(data);
 
-	gtk_color_button_get_color(GTK_COLOR_BUTTON(widget), color);
+	gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(widget), color);
 }
 
-GtkWidget *pref_color_button_new(GtkWidget *parent_box,
-				 const gchar *title, const GdkColor *color,
-				 GCallback func, gpointer data)
+GtkWidget *pref_color_button_new(GtkWidget *parent_box, const gchar *title, GdkRGBA *color, GCallback func, gpointer data)
 {
 	GtkWidget *button;
 
 	if (color)
 		{
-		button = gtk_color_button_new_with_color(color);
+ 		button = gtk_color_button_new_with_rgba(color);
 		}
 	else
 		{

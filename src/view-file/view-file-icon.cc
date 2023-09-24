@@ -2057,11 +2057,11 @@ struct ColumnData
 static void vficon_cell_data_cb(GtkTreeViewColumn *, GtkCellRenderer *cell,
 				GtkTreeModel *tree_model, GtkTreeIter *iter, gpointer data)
 {
-	GList *list;
-	FileData *fd;
 	auto cd = static_cast<ColumnData *>(data);
-	ViewFile *vf = cd->vf;
+	FileData *fd;
 	gchar *star_rating;
+	GList *list;
+	ViewFile *vf = cd->vf;
 
 	if (!GQV_IS_CELL_RENDERER_ICON(cell)) return;
 
@@ -2071,12 +2071,14 @@ static void vficon_cell_data_cb(GtkTreeViewColumn *, GtkCellRenderer *cell,
 
 	if (fd)
 		{
-		GdkColor color_fg;
-		GdkColor color_bg;
-		GtkStyle *style;
-		gchar *name_sidecars = nullptr;
 		const gchar *link;
+		gchar *name_sidecars = nullptr;
+		GdkRGBA color_bg;
+		GdkRGBA color_fg;
+		GdkRGBA color_bg_style;
+		GdkRGBA color_fg_style;
 		GtkStateType state = GTK_STATE_NORMAL;
+		GtkStyle *style;
 
 		g_assert(fd->magick == FD_MAGICK);
 
@@ -2131,19 +2133,22 @@ static void vficon_cell_data_cb(GtkTreeViewColumn *, GtkCellRenderer *cell,
 			state = GTK_STATE_SELECTED;
 			}
 
-		memcpy(&color_fg, &style->text[state], sizeof(color_fg));
-		memcpy(&color_bg, &style->base[state], sizeof(color_bg));
+		convert_gdkcolor_to_gdkrgba(&style->text[state], &color_fg_style);
+		convert_gdkcolor_to_gdkrgba(&style->base[state], &color_bg_style);
+
+		memcpy(&color_fg, &color_fg_style, sizeof(color_fg));
+		memcpy(&color_bg, &color_bg_style, sizeof(color_bg));
 
 		if (fd->selected & SELECTION_PRELIGHT)
 			{
 			shift_color(&color_bg, -1, 0);
 			}
 
-		g_object_set(cell,	"pixbuf", fd->thumb_pixbuf,
+		g_object_set(cell, "pixbuf", fd->thumb_pixbuf,
 					"text", name_sidecars,
 					"marks", file_data_get_marks(fd),
 					"show_marks", vf->marks_enabled,
-					"cell-background-gdk", &color_bg,
+					"cell-background-rgba", &color_bg,
 					"cell-background-set", TRUE,
 					"foreground-gdk", &color_fg,
 					"foreground-set", TRUE,

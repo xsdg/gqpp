@@ -171,16 +171,16 @@ gqv_cell_renderer_icon_class_init(GQvCellRendererIconClass *icon_class)
 					PROP_BACKGROUND_GDK,
 					g_param_spec_boxed("background_gdk",
 							"Background color",
-							"Background color as a GdkColor",
-							GDK_TYPE_COLOR,
+							"Background color as a GdkRGBA",
+							GDK_TYPE_RGBA,
 							G_PARAM_READWRITE));
 
 	g_object_class_install_property(object_class,
 					PROP_FOREGROUND_GDK,
 					g_param_spec_boxed("foreground_gdk",
 							"Foreground color",
-							"Foreground color as a GdkColor",
-							GDK_TYPE_COLOR,
+							"Foreground color as a GdkRGBA",
+							GDK_TYPE_RGBA,
 							G_PARAM_READWRITE));
 
 	g_object_class_install_property(object_class,
@@ -309,22 +309,22 @@ gqv_cell_renderer_icon_get_property(GObject	*object,
 		break;
 	case PROP_BACKGROUND_GDK:
 		{
-		GdkColor color;
+		GdkRGBA color;
 
-		color.red = cellicon->background.red;
-		color.green = cellicon->background.green;
-		color.blue = cellicon->background.blue;
+		color.red = cellicon->background.red / 65535;
+		color.green = cellicon->background.green / 65535;
+		color.blue = cellicon->background.blue / 65535;
 
 		g_value_set_boxed(value, &color);
 		}
 		break;
 	case PROP_FOREGROUND_GDK:
 		{
-		GdkColor color;
+		GdkRGBA color;
 
-		color.red = cellicon->foreground.red;
-		color.green = cellicon->foreground.green;
-		color.blue = cellicon->foreground.blue;
+		color.red = cellicon->foreground.red / 65535;
+		color.green = cellicon->foreground.green / 65535;
+		color.blue = cellicon->foreground.blue / 65535;
 
 		g_value_set_boxed(value, &color);
 		}
@@ -365,9 +365,7 @@ gqv_cell_renderer_icon_get_property(GObject	*object,
 	}
 }
 
-static void
-set_bg_color(GQvCellRendererIcon *cellicon,
-	     GdkColor		  *color)
+static void set_bg_color(GQvCellRendererIcon *cellicon, GdkRGBA *color)
 {
 	if (color)
 		{
@@ -377,9 +375,9 @@ set_bg_color(GQvCellRendererIcon *cellicon,
 			g_object_notify(G_OBJECT(cellicon), "background_set");
 			}
 
-		cellicon->background.red = color->red;
-		cellicon->background.green = color->green;
-		cellicon->background.blue = color->blue;
+		cellicon->background.red = color->red * 65535;
+		cellicon->background.green = color->green * 65535;
+		cellicon->background.blue = color->blue * 65535;
 		}
 	else
 		{
@@ -391,8 +389,7 @@ set_bg_color(GQvCellRendererIcon *cellicon,
 		}
 }
 
-static void set_fg_color(GQvCellRendererIcon *cellicon,
-			 GdkColor	      *color)
+static void set_fg_color(GQvCellRendererIcon *cellicon, GdkRGBA *color)
 {
 	if (color)
 		{
@@ -401,10 +398,9 @@ static void set_fg_color(GQvCellRendererIcon *cellicon,
 			cellicon->foreground_set = TRUE;
 			g_object_notify(G_OBJECT(cellicon), "foreground_set");
 			}
-
-		cellicon->foreground.red = color->red;
-		cellicon->foreground.green = color->green;
-		cellicon->foreground.blue = color->blue;
+		cellicon->foreground.red = color->red * 65535;
+		cellicon->foreground.green = color->green * 65535;
+		cellicon->foreground.blue = color->blue * 65535;
 		}
 	else
 		{
@@ -448,10 +444,10 @@ gqv_cell_renderer_icon_set_property(GObject		*object,
 		}
 		break;
 	case PROP_BACKGROUND_GDK:
-		set_bg_color(cellicon, static_cast<GdkColor *>(g_value_get_boxed(value)));
+		set_bg_color(cellicon, static_cast<GdkRGBA *>(g_value_get_boxed(value)));
 		break;
 	case PROP_FOREGROUND_GDK:
-		set_fg_color(cellicon, static_cast<GdkColor *>(g_value_get_boxed(value)));
+		set_fg_color(cellicon, static_cast<GdkRGBA *>(g_value_get_boxed(value)));
 		break;
 	case PROP_FOCUSED:
 		cellicon->focused = g_value_get_boolean(value);

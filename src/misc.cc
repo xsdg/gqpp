@@ -378,6 +378,23 @@ gint get_cpu_cores()
     return sysconf(_SC_NPROCESSORS_ONLN);
 }
 
+#ifdef HAVE_GTK4
+void convert_gdkcolor_to_gdkrgba(gpointer data, GdkRGBA *gdk_rgba)
+{
+/* @FIXME GTK4 stub */
+}
+#else
+void convert_gdkcolor_to_gdkrgba(gpointer data, GdkRGBA *gdk_rgba)
+{
+	auto gdk_color = static_cast<GdkColor *>(data);
+
+	gdk_rgba->red = CLAMP((double)gdk_color->red / 65535.0, 0.0, 1.0);
+	gdk_rgba->green = CLAMP((double)gdk_color->green / 65535.0, 0.0, 1.0);
+	gdk_rgba->blue = CLAMP((double)gdk_color->blue / 65535.0, 0.0, 1.0);
+	gdk_rgba->alpha = 1.0;
+}
+#endif
+
 /* Copied from the libarchive .repo. examples */
 
 #ifndef HAVE_ARCHIVE

@@ -33,6 +33,7 @@
 #include "layout-image.h"
 #include "menu.h"
 #include "metadata.h"
+#include "misc.h"
 #include "pixbuf-util.h"
 #include "print.h"
 #include "utilops.h"
@@ -2480,14 +2481,16 @@ static void collection_table_cell_data_cb(GtkTreeViewColumn *, GtkCellRenderer *
 					  GtkTreeModel *tree_model, GtkTreeIter *iter, gpointer data)
 {
 	auto cd = static_cast<ColumnData *>(data);
-	CollectTable *ct;
-	GtkStyle *style;
-	GList *list;
 	CollectInfo *info;
-	GdkColor color_fg;
-	GdkColor color_bg;
-	gchar *star_rating = nullptr;
+	CollectTable *ct;
 	gchar *display_text = nullptr;
+	gchar *star_rating = nullptr;
+	GdkRGBA color_bg;
+	GdkRGBA color_bg_style;
+	GdkRGBA color_fg;
+	GdkRGBA color_fg_style;
+	GList *list;
+	GtkStyle *style;
 
 	ct = cd->ct;
 
@@ -2505,13 +2508,22 @@ static void collection_table_cell_data_cb(GtkTreeViewColumn *, GtkCellRenderer *
 	style = gtk_widget_get_style(ct->listview);
 	if (info && (info->flag_mask & SELECTION_SELECTED) )
 		{
-		memcpy(&color_fg, &style->text[GTK_STATE_SELECTED], sizeof(color_fg));
-		memcpy(&color_bg, &style->base[GTK_STATE_SELECTED], sizeof(color_bg));
+		convert_gdkcolor_to_gdkrgba(&style->text[GTK_STATE_SELECTED], &color_fg_style);
+		convert_gdkcolor_to_gdkrgba(&style->base[GTK_STATE_SELECTED], &color_bg_style);
+
+		memcpy(&color_fg, &color_fg_style, sizeof(color_fg));
+		memcpy(&color_bg, &color_bg_style, sizeof(color_bg));
 		}
 	else
 		{
-		memcpy(&color_fg, &style->text[GTK_STATE_NORMAL], sizeof(color_fg));
-		memcpy(&color_bg, &style->base[GTK_STATE_NORMAL], sizeof(color_bg));
+		convert_gdkcolor_to_gdkrgba(&style->text[GTK_STATE_NORMAL], &color_fg_style);
+		convert_gdkcolor_to_gdkrgba(&style->base[GTK_STATE_NORMAL], &color_bg_style);
+
+		memcpy(&color_fg, &color_fg_style, sizeof(color_fg));
+		memcpy(&color_bg, &color_bg_style, sizeof(color_bg));
+
+		memcpy(&color_fg, &color_fg_style, sizeof(color_fg));
+		memcpy(&color_bg, &color_bg_style, sizeof(color_bg));
 		}
 
 	if (info && (info->flag_mask & SELECTION_PRELIGHT))

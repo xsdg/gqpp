@@ -1217,7 +1217,7 @@ static void setup_sig_handler()
 static void set_theme_bg_color()
 {
 	GdkRGBA bg_color;
-	GdkColor theme_color;
+	GdkRGBA theme_color;
 	GtkStyleContext *style_context;
 	GList *work;
 	LayoutWindow *lw;
@@ -1230,9 +1230,9 @@ static void set_theme_bg_color()
 		style_context = gtk_widget_get_style_context(lw->window);
 		gtk_style_context_get_background_color(style_context, GTK_STATE_FLAG_NORMAL, &bg_color);
 
-		theme_color.red = bg_color.red * 65535;
-		theme_color.green = bg_color.green * 65535;
-		theme_color.blue = bg_color.blue * 65535;
+		theme_color.red = bg_color.red  ;
+		theme_color.green = bg_color.green  ;
+		theme_color.blue = bg_color.blue ;
 
 		while (work)
 			{

@@ -918,7 +918,7 @@ static void pr_scroller_stop(PixbufRenderer *pr)
  *-------------------------------------------------------------------
  */
 
-void pixbuf_renderer_set_color(PixbufRenderer *pr, GdkColor *color)
+void pixbuf_renderer_set_color(PixbufRenderer *pr, GdkRGBA *color)
 {
 	g_return_if_fail(IS_PIXBUF_RENDERER(pr));
 

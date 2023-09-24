@@ -99,18 +99,11 @@ gboolean read_char_option(const gchar *option, const gchar *label, const gchar *
 	return TRUE;
 }
 
-/* Since gdk_color_to_string() is only available since gtk 2.12
- * here is an equivalent stub function. */
-static gchar *color_to_string(GdkColor *color)
-{
-	return g_strdup_printf("#%04X%04X%04X", color->red, color->green, color->blue);
-}
-
-void write_color_option(GString *str, gint indent, const gchar *label, GdkColor *color)
+void write_color_option(GString *str, gint indent, const gchar *label, GdkRGBA *color)
 {
 	if (color)
 		{
-		gchar *colorstring = color_to_string(color);
+		gchar *colorstring = gdk_rgba_to_string(color);
 
 		write_char_option(str, indent, label, colorstring);
 		g_free(colorstring);
@@ -119,13 +112,41 @@ void write_color_option(GString *str, gint indent, const gchar *label, GdkColor 
 		write_char_option(str, indent, label, "");
 }
 
-gboolean read_color_option(const gchar *option, const gchar *label, const gchar *value, GdkColor *color)
+/**
+ * @brief Read color option
+ * @param option
+ * @param label
+ * @param value
+ * @param color Returned RGBA value
+ * @returns
+ *
+ * The change from GdkColor to GdkRGBA requires a color format change.
+ * If the value string starts with #, it is a value stored as GdkColor,
+ * which is "#666666666666".
+ * The GdkRGBA style is "rgba(192,97,203,0)"
+ */
+gboolean read_color_option(const gchar *option, const gchar *label, const gchar *value, GdkRGBA *color)
 {
+	guint64 color_from_hex_string;
+
 	if (g_ascii_strcasecmp(option, label) != 0) return FALSE;
 	if (!color) return FALSE;
 
 	if (!*value) return FALSE;
-	gdk_color_parse(value, color);
+
+	/* Convert from GTK3 compatible GdkColor to GTK4 compatible GdkRGBA */
+	if (g_str_has_prefix(value, "#"))
+		{
+		color_from_hex_string = g_ascii_strtoll(value + 1, nullptr, 16);
+		color->red = (gdouble)((color_from_hex_string & 0xffff00000000) >> 32) / 65535;
+		color->green = (gdouble)((color_from_hex_string & 0x0000ffff0000) >> 16) / 65535;
+		color->blue = (gdouble)(color_from_hex_string & 0x00000000ffff) / 65535;
+		}
+	else
+		{
+		gdk_rgba_parse(color, value);
+		}
+
 	return TRUE;
 }
 

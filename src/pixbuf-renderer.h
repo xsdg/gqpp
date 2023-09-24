@@ -172,7 +172,7 @@ struct PixbufRenderer
 	gint autofit_limit_size;
 	gint enlargement_limit_size;
 
-	GdkColor color;
+	GdkRGBA color;
 
 	/*< private >*/
 	gboolean in_drag;
@@ -335,7 +335,7 @@ gboolean pixbuf_renderer_get_visible_rect(PixbufRenderer *pr, GdkRectangle *rect
  * @headerfile pixbuf_renderer_set_color
  *  background color
  */
-void pixbuf_renderer_set_color(PixbufRenderer *pr, GdkColor *color);
+void pixbuf_renderer_set_color(PixbufRenderer *pr, GdkRGBA *color);
 
 /* overlay */
 

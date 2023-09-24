@@ -481,9 +481,9 @@ gint tree_path_to_row_unused(GtkTreePath *tpath)
  *-------------------------------------------------------------------
  */
 
-void shift_color(GdkColor *src, gshort val, gint direction)
+void shift_color(GdkRGBA *src, gshort val, gint direction)
 {
-	gshort cs;
+	gdouble cs;
 
 	if (val == -1)
 		{
@@ -493,11 +493,11 @@ void shift_color(GdkColor *src, gshort val, gint direction)
 		{
 		val = CLAMP(val, 1, 100);
 		}
-	cs = 0xffff / 100 * val;
+
+	cs = 1.0 / 100 * val;
 
 	/* up or down ? */
-	if (direction < 0 ||
-	    (direction == 0 &&(static_cast<gint>(src->red) + static_cast<gint>(src->green) + static_cast<gint>(src->blue)) / 3 > 0xffff / 2))
+	if (direction < 0 || (direction == 0 &&(static_cast<gdouble>(src->red) + static_cast<gdouble>(src->green) + static_cast<gdouble>(src->blue)) / 3 > 1.0 / 2))
 		{
 		src->red = MAX(0 , src->red - cs);
 		src->green = MAX(0 , src->green - cs);
@@ -505,25 +505,11 @@ void shift_color(GdkColor *src, gshort val, gint direction)
 		}
 	else
 		{
-		src->red = MIN(0xffff, src->red + cs);
-		src->green = MIN(0xffff, src->green + cs);
-		src->blue = MIN(0xffff, src->blue + cs);
+		src->red = MIN(1.0, src->red + cs);
+		src->green = MIN(1.0, src->green + cs);
+		src->blue = MIN(1.0, src->blue + cs);
 		}
 }
-
-/* darkens or lightens a style's color for given state
- * esp. useful for alternating dark/light in (c)lists
- */
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-function"
-void style_shift_color_unused(GtkStyle *style, GtkStateType type, gshort shift_value, gint direction)
-{
-	if (!style) return;
-
-	shift_color(&style->base[type], shift_value, direction);
-	shift_color(&style->bg[type], shift_value, direction);
-}
-#pragma GCC diagnostic pop
 
 /*
  *-------------------------------------------------------------------

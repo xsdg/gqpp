@@ -1198,20 +1198,28 @@ void vd_activate_cb(GtkTreeView *tview, GtkTreePath *tpath, GtkTreeViewColumn *,
 	vd_select_row(vd, fd);
 }
 
-static GdkColor *vd_color_shifted(GtkWidget *widget)
+static GdkRGBA *vd_color_shifted(GtkWidget *widget)
 {
-	static GdkColor color;
+	static GdkRGBA color;
+	static GdkRGBA color_style;
 	static GtkWidget *done = nullptr;
 
+#ifdef HAVE_GTK4
+/* @FIXME GTK4 no background color */
+#else
 	if (done != widget)
 		{
-		GtkStyle *style;
+		GtkStyleContext *style_context;
 
-		style = gtk_widget_get_style(widget);
-		memcpy(&color, &style->base[GTK_STATE_NORMAL], sizeof(color));
+		style_context = gtk_widget_get_style_context(widget);
+		gtk_style_context_get_background_color(style_context, GTK_STATE_FLAG_NORMAL, &color_style);
+
+		memcpy(&color, &color_style, sizeof(color_style));
+
 		shift_color(&color, -1, 0);
 		done = widget;
 		}
+#endif
 
 	return &color;
 }

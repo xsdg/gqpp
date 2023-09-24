@@ -222,7 +222,7 @@ gboolean pref_list_string_get(const gchar *group, const gchar *key, const gchar 
 
 void pref_color_button_set_cb(GtkWidget *widget, gpointer data);
 GtkWidget *pref_color_button_new(GtkWidget *parent_box,
-				 const gchar *title, const GdkColor *color,
+				 const gchar *title, GdkRGBA *color,
 				 GCallback func, gpointer data);
 
 gchar *text_widget_text_pull(GtkWidget *text_widget);

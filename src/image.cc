@@ -1882,15 +1882,15 @@ void image_top_window_set_sync(ImageWindow *imd, gboolean allow_sync)
 	g_object_set(G_OBJECT(imd->pr), "window_fit", allow_sync, NULL);
 }
 
-void image_background_set_color(ImageWindow *imd, GdkColor *color)
+void image_background_set_color(ImageWindow *imd, GdkRGBA *color)
 {
 	pixbuf_renderer_set_color(reinterpret_cast<PixbufRenderer *>(imd->pr), color);
 }
 
 void image_background_set_color_from_options(ImageWindow *imd, gboolean fullscreen)
 {
-	GdkColor *color = nullptr;
-	GdkColor theme_color;
+	GdkRGBA *color = nullptr;
+	GdkRGBA theme_color;
 	GdkRGBA bg_color;
 	GtkStyleContext *style_context;
 	LayoutWindow *lw = nullptr;
@@ -1908,9 +1908,9 @@ void image_background_set_color_from_options(ImageWindow *imd, gboolean fullscre
 		style_context = gtk_widget_get_style_context(lw->window);
 		gtk_style_context_get_background_color(style_context, GTK_STATE_FLAG_NORMAL, &bg_color);
 
-		theme_color.red = bg_color.red * 65535;
-		theme_color.green = bg_color.green * 65535;
-		theme_color.blue = bg_color.blue * 65535;
+		theme_color.red = bg_color.red * 1;
+		theme_color.green = bg_color.green * 1;
+		theme_color.blue = bg_color.blue * 1;
 
 		color = &theme_color;
 		}

@@ -85,11 +85,11 @@ gboolean tree_view_move_cursor_away(GtkTreeView *widget, GtkTreeIter *iter, gboo
 
 /**
  * @headerfile shift_color
- * shifts a GdkColor values lighter or darker \n
+ * shifts a GdkRGBA values lighter or darker \n
  * val is percent from 1 to 100, or -1 for default (usually 10%) \n
  * direction is -1 darker, 0 auto, 1 lighter
  */
-void shift_color(GdkColor *src, gshort val, gint direction);
+void shift_color(GdkRGBA *src, gshort val, gint direction);
 
 /**
  * @def STYLE_SHIFT_STANDARD

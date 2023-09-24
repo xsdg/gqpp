@@ -230,7 +230,7 @@ void image_auto_refresh_enable(ImageWindow *imd, gboolean enable);
 void image_top_window_set_sync(ImageWindow *imd, gboolean allow_sync);
 
 /* background of image */
-void image_background_set_color(ImageWindow *imd, GdkColor *color);
+void image_background_set_color(ImageWindow *imd, GdkRGBA *color);
 void image_background_set_color_from_options(ImageWindow *imd, gboolean fullscreen);
 
 /* color profiles */

@@ -34,6 +34,13 @@ gchar *date_get_abbreviated_day_name(gint day);
 gchar *convert_rating_to_stars(gint rating);
 gchar *get_symbolic_link(const gchar *path_utf8);
 gint get_cpu_cores();
+
+#ifdef HAVE_GTK4
+void convert_gdkcolor_to_gdkrgba(gpointer gdk_color, GdkRGBA *gdk_rgba);
+#else
+void convert_gdkcolor_to_gdkrgba(gpointer gdk_color, GdkRGBA *gdk_rgba);
+#endif
+
 gchar *open_archive(FileData *fd);
 #endif /* MISC_H */
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */
