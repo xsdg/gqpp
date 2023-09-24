@@ -1289,13 +1289,15 @@ static void create_application_paths()
 
 gint main(gint argc, gchar *argv[])
 {
-	CollectionData *first_collection = nullptr;
-	gchar *buf;
 	CollectionData *cd = nullptr;
+	CollectionData *first_collection = nullptr;
 	gboolean disable_clutter = FALSE;
 	gboolean single_dir = TRUE;
-	LayoutWindow *lw;
+	gchar *buf;
+	GdkScreen *screen;
+	GtkCssProvider *provider;
 	GtkSettings *default_settings;
+	LayoutWindow *lw;
 
 	gdk_set_allowed_backends("x11,*");
 
@@ -1402,6 +1404,11 @@ gint main(gint argc, gchar *argv[])
 	mkdir_if_not_exists(get_window_layouts_dir());
 
 	setup_env_path();
+
+	screen = gdk_screen_get_default();
+	provider = gtk_css_provider_new();
+	gtk_css_provider_load_from_resource(provider, GQ_RESOURCE_PATH_UI "/custom.css");
+	gtk_style_context_add_provider_for_screen(screen, GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
 	if (parse_command_line_for_cache_maintenance_option(argc, argv))
 		{

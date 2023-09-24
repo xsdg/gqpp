@@ -765,18 +765,6 @@ static void gqv_cell_renderer_icon_render(GtkCellRenderer *cell,
 				gtk_style_context_add_class(context, GTK_STYLE_CLASS_CHECK);
 
 				gtk_style_context_add_class(context, "marks");
-				GtkStyleProvider *provider;
-				provider = reinterpret_cast<GtkStyleProvider *>(gtk_css_provider_new());
-				gtk_css_provider_load_from_data(GTK_CSS_PROVIDER(provider),
-						".marks {\n"
-						"border-color: #808080;\n"
-						"border-style: solid;\n"
-						"border-width: 1px;\n"
-						"border-radius: 0px;\n"
-						"}\n"
-						,-1, nullptr);
-				gtk_style_context_add_provider(context, provider,
-							GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
 				if (state & GTK_STATE_FLAG_CHECKED)
 					{
@@ -798,8 +786,6 @@ static void gqv_cell_renderer_icon_render(GtkCellRenderer *cell,
 					}
 				gtk_style_context_restore(context);
 				cairo_restore(cr);
-				gtk_style_context_remove_provider(context, provider);
-				g_object_unref(provider);
 				}
 			}
 		}
