@@ -521,7 +521,7 @@ static void bookmark_populate(BookMarkData *bm)
 		{
 		GtkWidget *widget = GTK_WIDGET(work->data);
 		work = work->next;
-		gtk_widget_destroy(widget);
+		g_object_unref(widget);
 		}
 
 	if (!bm->no_defaults && !history_list_get_by_key(bm->key))

@@ -118,7 +118,7 @@ static void bar_pane_exif_setup_entry_box(PaneExifData *ped, ExifEntry *ee)
 	gboolean horizontal = !ee->editable;
 	gboolean editable = ee->editable;
 
-	if (ee->box) gtk_widget_destroy(ee->box);
+	if (ee->box) g_object_unref(ee->box);
 
 	ee->box = horizontal ? gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0) : gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	gtk_container_add(GTK_CONTAINER(ee->ebox), ee->box);
@@ -599,7 +599,7 @@ static void bar_pane_exif_conf_dialog_cb(GtkWidget *, gpointer data)
 static void bar_pane_exif_delete_entry_cb(GtkWidget *, gpointer data)
 {
 	auto entry = static_cast<GtkWidget *>(data);
-	gtk_widget_destroy(entry);
+	g_object_unref(entry);
 }
 
 static void bar_pane_exif_copy_entry_cb(GtkWidget *, gpointer data)
@@ -774,7 +774,7 @@ void bar_pane_exif_close_unused(GtkWidget *widget)
 	ped = static_cast<PaneExifData *>(g_object_get_data(G_OBJECT(widget), "pane_data"));
 	if (!ped) return;
 
-	gtk_widget_destroy(ped->vbox);
+	g_object_unref(ped->vbox);
 }
 #pragma GCC diagnostic pop
 

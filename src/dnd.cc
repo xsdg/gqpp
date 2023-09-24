@@ -175,7 +175,7 @@ static void dnd_set_drag_label_end_cb(GtkWidget *widget, GdkDragContext *, gpoin
 {
 	auto window = static_cast<GtkWidget *>(data);
 	g_signal_handlers_disconnect_by_func(widget, (gpointer)dnd_set_drag_label_end_cb, data);
-	gtk_widget_destroy(window);
+	g_object_unref(window);
 }
 
 void dnd_set_drag_label(GtkWidget *widget, GdkDragContext *context, const gchar *text)

@@ -36,7 +36,7 @@ static void tree_edit_close(TreeEditData *ted)
 	gdk_keyboard_ungrab(GDK_CURRENT_TIME);
 	gdk_pointer_ungrab(GDK_CURRENT_TIME);
 
-	gtk_widget_destroy(ted->window);
+	g_object_unref(ted->window);
 
 	g_free(ted->old_name);
 	g_free(ted->new_name);

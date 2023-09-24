@@ -1423,7 +1423,7 @@ void bar_pane_keywords_close_unused(GtkWidget *bar)
 	if (!pkd) return;
 
 	g_free(pkd->pane.id);
-	gtk_widget_destroy(pkd->widget);
+	g_object_unref(pkd->widget);
 }
 #pragma GCC diagnostic pop
 

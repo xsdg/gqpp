@@ -275,7 +275,7 @@ static void height_spin_key_press_cb(GtkEventControllerKey *, gint keyval, guint
 {
 	if ((keyval == GDK_KEY_Return || keyval == GDK_KEY_Escape))
 		{
-		gtk_widget_destroy(GTK_WIDGET(data));
+		g_object_unref(GTK_WIDGET(data));
 		}
 }
 
@@ -328,7 +328,7 @@ static void bar_expander_height_cb(GtkWidget *, gpointer data)
 static void bar_expander_delete_cb(GtkWidget *, gpointer data)
 {
 	auto expander = static_cast<GtkWidget *>(data);
-	gtk_widget_destroy(expander);
+	g_object_unref(expander);
 }
 
 static void bar_expander_add_cb(GtkWidget *widget, gpointer)
@@ -574,7 +574,7 @@ void bar_clear(GtkWidget *bar)
 
 	list = gtk_container_get_children(GTK_CONTAINER(bd->vbox));
 
-	g_list_free_full(list, reinterpret_cast<GDestroyNotify>(gtk_widget_destroy));
+	g_list_free_full(list, reinterpret_cast<GDestroyNotify>(g_object_unref));
 }
 
 void bar_write_config(GtkWidget *bar, GString *outstr, gint indent)
@@ -702,7 +702,8 @@ void bar_close(GtkWidget *bar)
 	bd = static_cast<BarData *>(g_object_get_data(G_OBJECT(bar), "bar_data"));
 	if (!bd) return;
 
-	gtk_widget_destroy(bd->widget);
+	/* @FIXME This causes a g_object_unref failed error on exit */
+	gq_gtk_widget_destroy(bd->widget);
 }
 
 static void bar_destroy(GtkWidget *, gpointer data)

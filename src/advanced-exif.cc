@@ -270,7 +270,7 @@ void advanced_exif_close(ExifWin *ew)
 	advanced_exif_window_get_geometry(ew);
 	file_data_unref(ew->fd);
 
-	gtk_widget_destroy(ew->window);
+	gq_gtk_widget_destroy(ew->window);
 
 	g_free(ew);
 }

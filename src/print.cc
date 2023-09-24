@@ -127,7 +127,7 @@ static void font_activated_cb(GtkFontChooser *widget, gchar *fontname, gpointer 
 
 	g_free(fontname);
 
-	gtk_widget_destroy(GTK_WIDGET(widget));
+	gq_gtk_widget_destroy(GTK_WIDGET(widget));
 }
 #pragma GCC diagnostic pop
 
@@ -143,7 +143,7 @@ static void font_response_cb(GtkDialog *dialog, int response_id, gpointer option
 		g_free(font);
 		}
 
-	gtk_widget_destroy(GTK_WIDGET(dialog));
+	gq_gtk_widget_destroy(GTK_WIDGET(dialog));
 }
 
 static void print_set_font_cb(GtkWidget *widget, gpointer data)
@@ -849,6 +849,11 @@ static void end_print_cb(GtkPrintOperation *operation, GtkPrintContext *, gpoint
 	g_free(pw);
 }
 
+static void print_response_cb(GtkDialog *dialog, gint, gpointer)
+{
+	gq_gtk_widget_destroy(GTK_WIDGET(dialog));
+}
+
 void print_window_new(FileData *, GList *selection, GList *, GtkWidget *parent)
 {
 	GtkWidget *vbox;
@@ -950,7 +955,7 @@ void print_window_new(FileData *, GList *selection, GList *, GtkWidget *parent)
 								"%s", error->message);
 		g_error_free (error);
 
-		g_signal_connect(dialog, "response", G_CALLBACK(gtk_widget_destroy), NULL);
+		g_signal_connect(dialog, "response", G_CALLBACK(print_response_cb), NULL);
 
 		gtk_widget_show (dialog);
 		}

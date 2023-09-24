@@ -566,7 +566,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 			gtk_window_set_title(GTK_WINDOW(dialog_warning), GQ_APPNAME);
 			gq_gtk_window_set_keep_above(GTK_WINDOW(dialog_warning), TRUE);
 			gtk_dialog_run(GTK_DIALOG(dialog_warning));
-			gtk_widget_destroy(dialog_warning);
+			g_object_unref(dialog_warning);
 			g_string_free(command_line_errors, TRUE);
 
 			exit(EXIT_FAILURE);
@@ -627,7 +627,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 			gtk_window_set_title(GTK_WINDOW(dialog_warning), GQ_APPNAME);
 			gq_gtk_window_set_keep_above(GTK_WINDOW(dialog_warning), TRUE);
 			gtk_dialog_run(GTK_DIALOG(dialog_warning));
-			gtk_widget_destroy(dialog_warning);
+			g_object_unref(dialog_warning);
 			g_string_free(command_line_errors, TRUE);
 
 			exit(EXIT_FAILURE);

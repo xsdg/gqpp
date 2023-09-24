@@ -598,7 +598,7 @@ static void tip_show(CollectTable *ct)
 
 static void tip_hide(CollectTable *ct)
 {
-	if (ct->tip_window) gtk_widget_destroy(ct->tip_window);
+	if (ct->tip_window) g_object_unref(ct->tip_window);
 	ct->tip_window = nullptr;
 }
 
@@ -2642,7 +2642,7 @@ static void collection_table_destroy(GtkWidget *, gpointer data)
 		{
 		g_signal_handlers_disconnect_matched(G_OBJECT(ct->popup), G_SIGNAL_MATCH_DATA,
 						     0, 0, nullptr, nullptr, ct);
-		gtk_widget_destroy(ct->popup);
+		g_object_unref(ct->popup);
 		}
 
 	if (ct->sync_idle_id) g_source_remove(ct->sync_idle_id);

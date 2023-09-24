@@ -1972,7 +1972,7 @@ static void file_util_warn_op_in_progress(const gchar *title)
 
 static void file_util_details_dialog_close_cb(GtkWidget *, gpointer data)
 {
-	gtk_widget_destroy(GTK_WIDGET(data));
+	g_object_unref(GTK_WIDGET(data));
 
 }
 

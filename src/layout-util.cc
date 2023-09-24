@@ -2170,7 +2170,7 @@ static void layout_menu_new_window_update(LayoutWindow *lw)
 		{
 		if (i >= 4) // separator, default, from current, separator
 			{
-			gtk_widget_destroy(GTK_WIDGET(iter->data));
+			g_object_unref(GTK_WIDGET(iter->data));
 			}
 		}
 	g_list_free(children);

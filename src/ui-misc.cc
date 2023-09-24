@@ -792,7 +792,7 @@ static void date_selection_popup_hide(DateSelection *ds)
 
 	gtk_widget_hide(ds->window);
 
-	gtk_widget_destroy(ds->window);
+	g_object_unref(ds->window);
 	ds->window = nullptr;
 	ds->calendar = nullptr;
 

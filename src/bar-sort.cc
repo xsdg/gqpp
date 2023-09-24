@@ -606,7 +606,7 @@ void bar_sort_close(GtkWidget *bar)
 	sd = static_cast<SortData *>(g_object_get_data(G_OBJECT(bar), "bar_sort_data"));
 	if (!sd) return;
 
-	gtk_widget_destroy(sd->vbox);
+	gq_gtk_widget_destroy(sd->vbox);
 }
 
 static void bar_sort_destroy(GtkWidget *, gpointer data)

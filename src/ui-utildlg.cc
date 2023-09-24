@@ -123,7 +123,7 @@ void generic_dialog_close(GenericDialog *gd)
 
 	generic_dialog_save_window(actual_title, gtk_window_get_role(GTK_WINDOW(gd->dialog)), x, y, w, h);
 
-	gtk_widget_destroy(gd->dialog);
+	gq_gtk_widget_destroy(gd->dialog);
 	g_free(gd);
 	g_free(ident_string);
 	g_free(full_title);
@@ -534,7 +534,7 @@ static gboolean appimage_notification_close_cb(gpointer data)
 
 	if (appimage_data->window)
 		{
-		gtk_widget_destroy(appimage_data->window);
+		g_object_unref(appimage_data->window);
 		}
 
 	g_thread_pool_free(appimage_data->thread_pool, TRUE, TRUE);

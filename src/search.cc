@@ -3177,7 +3177,7 @@ static void search_window_close(SearchData *sd)
 
 	search_window_get_geometry(sd);
 
-	gtk_widget_destroy(sd->window);
+	gq_gtk_widget_destroy(sd->window);
 }
 
 static void search_window_close_cb(GtkWidget *, gpointer data)

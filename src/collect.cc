@@ -1171,7 +1171,7 @@ static void collection_window_close_final(CollectWindow *cw)
 	collection_window_list = g_list_remove(collection_window_list, cw);
 	collection_window_get_geometry(cw);
 
-	gtk_widget_destroy(cw->window);
+	gq_gtk_widget_destroy(cw->window);
 
 	collection_set_update_info_func(cw->cd, nullptr, nullptr);
 	collection_unref(cw->cd);

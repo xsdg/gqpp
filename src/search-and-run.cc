@@ -176,7 +176,7 @@ static gboolean search_and_run_destroy(gpointer data)
 	sar->lw->sar_window = nullptr;
 	g_object_unref(gtk_builder_get_object(sar->builder, "completion"));
 	g_object_unref(gtk_builder_get_object(sar->builder, "command_store"));
-	gtk_widget_destroy(sar->window);
+	g_object_unref(sar->window);
 	g_free(sar);
 
 	return G_SOURCE_REMOVE;

@@ -1776,7 +1776,7 @@ static void pan_window_close(PanWindow *pw)
 	pan_fullscreen_toggle(pw, TRUE);
 	pan_search_ui_destroy(&pw->search_ui);
 	pan_filter_ui_destroy(&pw->filter_ui);
-	gtk_widget_destroy(pw->window);
+	gq_gtk_widget_destroy(pw->window);
 
 	pan_window_items_free(pw);
 	pan_cache_free(pw);

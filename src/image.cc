@@ -2162,7 +2162,7 @@ void image_set_frame(ImageWindow *imd, gboolean frame)
 		if (imd->frame)
 			{
 			gtk_container_remove(GTK_CONTAINER(imd->frame), imd->pr);
-			gtk_widget_destroy(imd->frame);
+			g_object_unref(imd->frame);
 			imd->frame = nullptr;
 			}
         	gq_gtk_box_pack_start(GTK_BOX(imd->widget), imd->pr, TRUE, TRUE, 0);

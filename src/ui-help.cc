@@ -145,14 +145,14 @@ static void help_window_load_text(GtkWidget *text, const gchar *path)
 
 static gboolean help_window_delete_cb(GtkWidget *widget, GdkEventAny *, gpointer)
 {
-	gtk_widget_destroy(widget);
+	gq_gtk_widget_destroy(widget);
 	return TRUE;
 }
 
 static void help_window_close(GtkWidget *, gpointer data)
 {
 	auto window = static_cast<GtkWidget *>(data);
-	gtk_widget_destroy(window);
+	gq_gtk_widget_destroy(window);
 }
 
 void help_window_set_key(GtkWidget *window, const gchar *key)

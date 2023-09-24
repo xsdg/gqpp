@@ -513,7 +513,7 @@ static void config_window_apply()
 
 static void config_window_close_cb(GtkWidget *, gpointer)
 {
-	gtk_widget_destroy(configwindow);
+	gq_gtk_widget_destroy(configwindow);
 	configwindow = nullptr;
 	filter_store = nullptr;
 }
@@ -1452,7 +1452,7 @@ static void font_activated_cb(GtkFontChooser *widget, gchar *fontname, gpointer)
 	c_options->image_overlay.font = g_strdup(fontname);
 	g_free(fontname);
 
-	gtk_widget_destroy(GTK_WIDGET(widget));
+	gq_gtk_widget_destroy(GTK_WIDGET(widget));
 }
 
 static void font_response_cb(GtkDialog *dialog, gint response_id, gpointer)
@@ -1470,7 +1470,7 @@ static void font_response_cb(GtkDialog *dialog, gint response_id, gpointer)
 		g_free(font);
 		}
 
-	gtk_widget_destroy(GTK_WIDGET(dialog));
+	g_object_unref(dialog);
 }
 
 static void image_overlay_set_font_cb(GtkWidget *widget, gpointer)
@@ -1494,7 +1494,7 @@ static void text_color_activated_cb(GtkColorChooser *chooser, GdkRGBA *color, gp
 	c_options->image_overlay.text_blue = color->blue * 255;
 	c_options->image_overlay.text_alpha = color->alpha * 255;
 
-	gtk_widget_destroy(GTK_WIDGET(chooser));
+	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
 }
 
 static void text_color_response_cb(GtkDialog *dialog, gint response_id, gpointer)
@@ -1515,7 +1515,7 @@ static void text_color_response_cb(GtkDialog *dialog, gint response_id, gpointer
 		c_options->image_overlay.text_alpha = color.alpha * 255;
 		}
 
-	gtk_widget_destroy(GTK_WIDGET(dialog));
+	g_object_unref(dialog);
 }
 
 static void image_overlay_set_text_color_cb(GtkWidget *widget, gpointer)
@@ -1544,7 +1544,7 @@ static void bg_color_activated_cb(GtkColorChooser *chooser, GdkRGBA *color, gpoi
 	c_options->image_overlay.background_blue = color->blue * 255;
 	c_options->image_overlay.background_alpha = color->alpha * 255;
 
-	gtk_widget_destroy(GTK_WIDGET(chooser));
+	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
 }
 
 static void bg_color_response_cb(GtkDialog *dialog, gint response_id, gpointer)
@@ -1564,7 +1564,7 @@ static void bg_color_response_cb(GtkDialog *dialog, gint response_id, gpointer)
 		c_options->image_overlay.background_blue = color.blue * 255;
 		c_options->image_overlay.background_alpha = color.alpha * 255;
 		}
-	gtk_widget_destroy(GTK_WIDGET(dialog));
+	gq_gtk_widget_destroy(GTK_WIDGET(dialog));
 }
 
 static void image_overlay_set_background_color_cb(GtkWidget *widget, gpointer)

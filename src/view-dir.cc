@@ -161,7 +161,7 @@ static void vd_destroy_cb(GtkWidget *widget, gpointer data)
 		{
 		g_signal_handlers_disconnect_matched(G_OBJECT(vd->popup), G_SIGNAL_MATCH_DATA,
 						     0, 0, nullptr, nullptr, vd);
-		gtk_widget_destroy(vd->popup);
+		g_object_unref(vd->popup);
 		}
 
 	switch (vd->type)

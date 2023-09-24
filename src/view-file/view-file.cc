@@ -828,7 +828,7 @@ static void vf_destroy_cb(GtkWidget *widget, gpointer data)
 		{
 		g_signal_handlers_disconnect_matched(G_OBJECT(vf->popup), G_SIGNAL_MATCH_DATA,
 						     0, 0, nullptr, nullptr, vf);
-		gtk_widget_destroy(vf->popup);
+		g_object_unref(vf->popup);
 		}
 
 	if (vf->read_metadata_in_idle_id)

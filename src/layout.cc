@@ -1641,7 +1641,7 @@ static void layout_tools_setup(LayoutWindow *lw, GtkWidget *tools, GtkWidget *fi
 		{
 		layout_tools_geometry_sync(lw);
 		/* dump the contents */
-		gtk_widget_destroy(gtk_bin_get_child(GTK_BIN(lw->tools)));
+		gq_gtk_widget_destroy(gtk_bin_get_child(GTK_BIN(lw->tools)));
 		}
 
 	layout_actions_add_window(lw, lw->tools);
@@ -1840,7 +1840,7 @@ static void layout_grid_setup(LayoutWindow *lw)
 	else if (lw->tools)
 		{
 		layout_tools_geometry_sync(lw);
-		gtk_widget_destroy(lw->tools);
+		gq_gtk_widget_destroy(lw->tools);
 		lw->tools = nullptr;
 		lw->tools_pane = nullptr;
 		}
@@ -2220,7 +2220,7 @@ static void layout_config_close_cb(GtkWidget *, gpointer data)
 {
 	auto lc = static_cast<LayoutConfig *>(data);
 
-	gtk_widget_destroy(lc->configwindow);
+	gq_gtk_widget_destroy(lc->configwindow);
 	free_layout_options_content(&lc->options);
 	g_free(lc);
 }
@@ -2546,7 +2546,7 @@ void layout_free(LayoutWindow *lw)
 		if (lw->toolbar[i]) g_object_unref(lw->toolbar[i]);
 		}
 
-	gtk_widget_destroy(lw->window);
+	gq_gtk_widget_destroy(lw->window);
 
 	if (lw->split_image_sizegroup) g_object_unref(lw->split_image_sizegroup);
 

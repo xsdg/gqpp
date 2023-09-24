@@ -143,7 +143,7 @@ static void pan_filter_kw_button_cb(GtkButton *widget, gpointer data)
 
 	/** @todo (xsdg): Fix filter element pointed object memory leak. */
 	ui->filter_elements = g_list_delete_link(ui->filter_elements, cb_state->filter_element);
-	gtk_widget_destroy(GTK_WIDGET(widget));
+	g_object_unref(GTK_WIDGET(widget));
 	g_free(cb_state);
 
 	pan_filter_status(pw, _("Removed keyword…"));
@@ -226,7 +226,7 @@ void pan_filter_toggle_cb(GtkWidget *button, gpointer data)
 
 		parent = gtk_widget_get_parent(ui->filter_button_arrow);
 
-		gtk_widget_destroy(ui->filter_button_arrow);
+		g_object_unref(ui->filter_button_arrow);
 		ui->filter_button_arrow = gtk_image_new_from_icon_name(GQ_ICON_PAN_UP, GTK_ICON_SIZE_BUTTON);
 
 		gq_gtk_box_pack_start(GTK_BOX(parent), ui->filter_button_arrow, FALSE, FALSE, 0);
@@ -240,7 +240,7 @@ void pan_filter_toggle_cb(GtkWidget *button, gpointer data)
 
 		parent = gtk_widget_get_parent(ui->filter_button_arrow);
 
-		gtk_widget_destroy(ui->filter_button_arrow);
+		g_object_unref(ui->filter_button_arrow);
 		ui->filter_button_arrow = gtk_image_new_from_icon_name(GQ_ICON_PAN_DOWN, GTK_ICON_SIZE_BUTTON);
 
 		gq_gtk_box_pack_start(GTK_BOX(parent), ui->filter_button_arrow, FALSE, FALSE, 0);

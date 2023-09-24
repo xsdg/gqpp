@@ -4422,7 +4422,7 @@ void dupe_window_close(DupeWindow *dw)
 	dupe_window_get_geometry(dw);
 
 	dupe_window_list = g_list_remove(dupe_window_list, dw);
-	gtk_widget_destroy(dw->window);
+	gq_gtk_widget_destroy(dw->window);
 
 	g_list_free(dw->dupes);
 	g_list_free_full(dw->list, reinterpret_cast<GDestroyNotify>(dupe_item_free));
