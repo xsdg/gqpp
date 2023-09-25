@@ -1790,11 +1790,11 @@ static GtkWidget *scrolled_notebook_page(GtkWidget *notebook, const gchar *title
 
 	viewport = gtk_viewport_new(nullptr, nullptr);
 	gtk_viewport_set_shadow_type(GTK_VIEWPORT(viewport), GTK_SHADOW_NONE);
-	gtk_container_add(GTK_CONTAINER(scrolled), viewport);
+	gq_gtk_container_add(GTK_WIDGET(scrolled), viewport);
 	gtk_widget_show(viewport);
 
 	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-	gtk_container_add(GTK_CONTAINER(viewport), vbox);
+	gq_gtk_container_add(GTK_WIDGET(viewport), vbox);
 	gtk_widget_show(vbox);
 
 	return vbox;
@@ -2366,7 +2366,7 @@ static GtkWidget *create_popover(GtkWidget *parent, GtkWidget *child, GtkPositio
 
 	popover = gtk_popover_new(parent);
 	gtk_popover_set_position(GTK_POPOVER (popover), pos);
-	gtk_container_add (GTK_CONTAINER(popover), child);
+	gq_gtk_container_add(GTK_WIDGET(popover), child);
 	gtk_container_set_border_width(GTK_CONTAINER (popover), 6);
 	gtk_widget_show (child);
 
@@ -2487,7 +2487,7 @@ static void config_tab_osd(GtkWidget *notebook)
 	gtk_widget_set_tooltip_markup(image_overlay_template_view,
 					_("Extensive formatting options are shown in the Help file"));
 
-	gtk_container_add(GTK_CONTAINER(scrolled), image_overlay_template_view);
+	gq_gtk_container_add(GTK_WIDGET(scrolled), image_overlay_template_view);
 	gtk_widget_show(image_overlay_template_view);
 
 	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
@@ -2805,7 +2805,7 @@ static void config_tab_files(GtkWidget *notebook)
 	gtk_tree_view_column_set_sort_column_id(column, FILETYPES_COLUMN_SIDECAR);
 
 	filter_store_populate();
-	gtk_container_add(GTK_CONTAINER(scrolled), filter_view);
+	gq_gtk_container_add(GTK_WIDGET(scrolled), filter_view);
 	gtk_widget_show(filter_view);
 
 	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
@@ -3280,7 +3280,7 @@ static void config_tab_keywords(GtkWidget *notebook)
 		}
 #endif
 
-	gtk_container_add(GTK_CONTAINER(scrolled), keyword_text);
+	gq_gtk_container_add(GTK_WIDGET(scrolled), keyword_text);
 	gtk_widget_show(keyword_text);
 
 	gtk_text_view_set_editable(GTK_TEXT_VIEW(keyword_text), TRUE);
@@ -3780,7 +3780,7 @@ static void config_tab_accelerators(GtkWidget *notebook)
 	gtk_tree_view_set_search_equal_func(GTK_TREE_VIEW(accel_view), accel_search_function_cb, nullptr, nullptr);
 
 	accel_store_populate();
-	gtk_container_add(GTK_CONTAINER(scrolled), accel_view);
+	gq_gtk_container_add(GTK_WIDGET(scrolled), accel_view);
 	gtk_widget_show(accel_view);
 
 	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
@@ -4041,7 +4041,7 @@ static void config_window_create(LayoutWindow *lw)
 	gtk_container_set_border_width(GTK_CONTAINER(configwindow), PREF_PAD_BORDER);
 
 	win_vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_SPACE);
-	gtk_container_add(GTK_CONTAINER(configwindow), win_vbox);
+	gq_gtk_container_add(GTK_WIDGET(configwindow), win_vbox);
 	gtk_widget_show(win_vbox);
 
 	notebook = gtk_notebook_new();
@@ -4074,13 +4074,13 @@ static void config_window_create(LayoutWindow *lw)
 
 	button = pref_button_new(nullptr, GQ_ICON_HELP, _("Help"),
 				 G_CALLBACK(config_window_help_cb), notebook);
-	gtk_container_add(GTK_CONTAINER(hbox), button);
+	gq_gtk_container_add(GTK_WIDGET(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_show(button);
 
 	button = pref_button_new(nullptr, GQ_ICON_OK, "OK",
 				 G_CALLBACK(config_window_ok_cb), notebook);
-	gtk_container_add(GTK_CONTAINER(hbox), button);
+	gq_gtk_container_add(GTK_WIDGET(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_grab_default(button);
 	gtk_widget_show(button);
@@ -4089,7 +4089,7 @@ static void config_window_create(LayoutWindow *lw)
 
 	button = pref_button_new(nullptr, GQ_ICON_CANCEL, _("Cancel"),
 				 G_CALLBACK(config_window_close_cb), nullptr);
-	gtk_container_add(GTK_CONTAINER(hbox), button);
+	gq_gtk_container_add(GTK_WIDGET(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_show(button);
 

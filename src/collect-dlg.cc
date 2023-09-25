@@ -167,10 +167,10 @@ static void collection_save_or_append_dialog(gint type, CollectionData *cd)
 
 		viewport = gtk_viewport_new(nullptr, nullptr);
 		gtk_viewport_set_shadow_type(GTK_VIEWPORT(viewport), GTK_SHADOW_NONE);
-		gtk_container_add(GTK_CONTAINER(viewport), existing_collections);
+		gq_gtk_container_add(GTK_WIDGET(viewport), existing_collections);
 		gtk_widget_show(viewport);
 		gtk_widget_show(existing_collections);
-		gtk_container_add(GTK_CONTAINER(scrolled), viewport);
+		gq_gtk_container_add(GTK_WIDGET(scrolled), viewport);
 
 		gq_gtk_box_pack_start(GTK_BOX(gdlg->vbox), scrolled, TRUE,TRUE, 0);
 

@@ -337,7 +337,7 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 		toolbar = layout_actions_toolbar(lw, TOOLBAR_MAIN);
 		scroll_window = gq_gtk_scrolled_window_new(nullptr, nullptr);
 		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroll_window), GTK_POLICY_AUTOMATIC,GTK_POLICY_NEVER);
-		gtk_container_add(GTK_CONTAINER(scroll_window), menu_bar);
+		gq_gtk_container_add(GTK_WIDGET(scroll_window), menu_bar);
 
 		gtk_widget_show(scroll_window);
 		gtk_widget_show(menu_bar);
@@ -487,7 +487,8 @@ static GtkWidget *layout_sort_button(LayoutWindow *lw, GtkWidget *box)
 	gtk_button_set_relief(GTK_BUTTON(button), GTK_RELIEF_NONE);
 	gtk_button_set_image_position(GTK_BUTTON(button), GTK_POS_RIGHT);
 
-	gtk_container_add(GTK_CONTAINER(frame), button);
+	gq_gtk_container_add(GTK_WIDGET(frame), button);
+
 	gtk_widget_show(button);
 
 	return button;
@@ -585,7 +586,7 @@ static GtkWidget *layout_zoom_button(LayoutWindow *lw, GtkWidget *box, gint size
 	gtk_button_set_relief(GTK_BUTTON(button), GTK_RELIEF_NONE);
 	gtk_button_set_image_position(GTK_BUTTON(button), GTK_POS_RIGHT);
 
-	gtk_container_add(GTK_CONTAINER(frame), button);
+	gq_gtk_container_add(GTK_WIDGET(frame), button);
 	gtk_widget_show(button);
 
 	return button;
@@ -812,7 +813,7 @@ static GtkWidget *layout_status_label(gchar *text, GtkWidget *box, gboolean star
 
 	label = gtk_label_new(text ? text : "");
 	gtk_label_set_ellipsize(GTK_LABEL(label), PANGO_ELLIPSIZE_END);
-	gtk_container_add(GTK_CONTAINER(frame), label);
+	gq_gtk_container_add(GTK_WIDGET(frame), label);
 	gtk_widget_show(label);
 
 	return label;
@@ -883,7 +884,7 @@ static void layout_status_setup(LayoutWindow *lw, GtkWidget *box, gboolean small
 	toolbar_frame = gtk_frame_new(nullptr);
 	DEBUG_NAME(toolbar_frame);
 	gq_gtk_frame_set_shadow_type(GTK_FRAME(toolbar_frame), GTK_SHADOW_IN);
-	gtk_container_add(GTK_CONTAINER(toolbar_frame), toolbar);
+	gq_gtk_container_add(GTK_WIDGET(toolbar_frame), toolbar);
 	gtk_widget_show(toolbar_frame);
 	gtk_widget_show(toolbar);
 	gq_gtk_box_pack_end(GTK_BOX(hbox), toolbar_frame, FALSE, FALSE, 0);
@@ -1648,7 +1649,7 @@ static void layout_tools_setup(LayoutWindow *lw, GtkWidget *tools, GtkWidget *fi
 
 	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	DEBUG_NAME(vbox);
-	gtk_container_add(GTK_CONTAINER(lw->tools), vbox);
+	gq_gtk_container_add(GTK_WIDGET(lw->tools), vbox);
 	if (options->expand_menu_toolbar) gq_gtk_box_pack_start(GTK_BOX(vbox), GTK_WIDGET(lw->menu_tool_bar), FALSE, FALSE, 0);
 	gtk_widget_show(vbox);
 
@@ -2330,7 +2331,7 @@ void layout_show_config_window(LayoutWindow *lw)
 
 	win_vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_SPACE);
 	DEBUG_NAME(win_vbox);
-	gtk_container_add(GTK_CONTAINER(lc->configwindow), win_vbox);
+	gq_gtk_container_add(GTK_WIDGET(lc->configwindow), win_vbox);
 	gtk_widget_show(win_vbox);
 
 	hbox = gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL);
@@ -2341,7 +2342,7 @@ void layout_show_config_window(LayoutWindow *lw)
 
 	button = pref_button_new(nullptr, GQ_ICON_OK, "OK",
 				 G_CALLBACK(layout_config_ok_cb), lc);
-	gtk_container_add(GTK_CONTAINER(hbox), button);
+	gq_gtk_container_add(GTK_WIDGET(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_grab_default(button);
 	gtk_widget_show(button);
@@ -2350,25 +2351,25 @@ void layout_show_config_window(LayoutWindow *lw)
 /*
 	button = pref_button_new(NULL, GQ_ICON_SAVE, _("Save"), FALSE,
 				 G_CALLBACK(layout_config_save_cb), NULL);
-	gtk_container_add(GTK_CONTAINER(hbox), button);
+	gq_gtk_container_add(GTK_WIDGET(hbox), button);
 	GTK_WIDGET_SET_FLAGS(button, GTK_CAN_DEFAULT);
 	gtk_widget_show(button);
 */
 	button = pref_button_new(nullptr, GQ_ICON_HELP, _("Help"),
 				 G_CALLBACK(layout_config_help_cb), lc);
-	gtk_container_add(GTK_CONTAINER(hbox), button);
+	gq_gtk_container_add(GTK_WIDGET(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_show(button);
 
 	button = pref_button_new(nullptr, GQ_ICON_APPLY, _("Apply"),
 				 G_CALLBACK(layout_config_apply_cb), lc);
-	gtk_container_add(GTK_CONTAINER(hbox), button);
+	gq_gtk_container_add(GTK_WIDGET(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_show(button);
 
 	button = pref_button_new(nullptr, GQ_ICON_CANCEL, _("Cancel"),
 				 G_CALLBACK(layout_config_close_cb), lc);
-	gtk_container_add(GTK_CONTAINER(hbox), button);
+	gq_gtk_container_add(GTK_WIDGET(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_show(button);
 
@@ -2382,7 +2383,7 @@ void layout_show_config_window(LayoutWindow *lw)
 
 	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_SPACE);
 	DEBUG_NAME(vbox);
-	gtk_container_add(GTK_CONTAINER(frame), vbox);
+	gq_gtk_container_add(GTK_WIDGET(frame), vbox);
 	gtk_widget_show(vbox);
 
 
@@ -2685,7 +2686,7 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 
 	lw->main_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	DEBUG_NAME(lw->main_box);
-	gtk_container_add(GTK_CONTAINER(lw->window), lw->main_box);
+	gq_gtk_container_add(GTK_WIDGET(lw->window), lw->main_box);
 	gtk_widget_show(lw->main_box);
 
 	layout_grid_setup(lw);

@@ -4629,7 +4629,7 @@ DupeWindow *dupe_window_new()
 			 G_CALLBACK(dupe_window_keypress_cb), dw);
 
 	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-	gtk_container_add(GTK_CONTAINER(dw->window), vbox);
+	gq_gtk_container_add(GTK_WIDGET(dw->window), vbox);
 	gtk_widget_show(vbox);
 
 	dw->table = gtk_table_new(1, 3, FALSE);
@@ -4678,7 +4678,7 @@ DupeWindow *dupe_window_new()
 	g_signal_connect(gtk_tree_view_get_column(GTK_TREE_VIEW(dw->listview), DUPE_COLUMN_DIMENSIONS - 1), "clicked", (GCallback)column_clicked_cb, dw);
 	g_signal_connect(gtk_tree_view_get_column(GTK_TREE_VIEW(dw->listview), DUPE_COLUMN_PATH - 1), "clicked", (GCallback)column_clicked_cb, dw);
 
-	gtk_container_add(GTK_CONTAINER(scrolled), dw->listview);
+	gq_gtk_container_add(GTK_WIDGET(scrolled), dw->listview);
 	gtk_widget_show(dw->listview);
 
 	dw->second_vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
@@ -4710,7 +4710,7 @@ DupeWindow *dupe_window_new()
 
 	dupe_listview_add_column(dw, dw->second_listview, 1, _("Compare to:"), FALSE, FALSE);
 
-	gtk_container_add(GTK_CONTAINER(scrolled), dw->second_listview);
+	gq_gtk_container_add(GTK_WIDGET(scrolled), dw->second_listview);
 	gtk_widget_show(dw->second_listview);
 
 	dw->second_status_label = gtk_label_new("");
@@ -4730,7 +4730,7 @@ DupeWindow *dupe_window_new()
 	gtk_widget_show(frame);
 
 	dw->status_label = gtk_label_new("");
-	gtk_container_add(GTK_CONTAINER(frame), dw->status_label);
+	gq_gtk_container_add(GTK_WIDGET(frame), dw->status_label);
 	gtk_widget_show(dw->status_label);
 
 	dw->extra_label = gtk_progress_bar_new();
@@ -4804,18 +4804,18 @@ DupeWindow *dupe_window_new()
 
 	button = pref_button_new(nullptr, GQ_ICON_HELP, _("Help"), G_CALLBACK(dupe_help_cb), nullptr);
 	gtk_widget_set_tooltip_text(GTK_WIDGET(button), "F1");
-	gtk_container_add(GTK_CONTAINER(hbox), button);
+	gq_gtk_container_add(GTK_WIDGET(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_show(button);
 
 	button = pref_button_new(nullptr, GQ_ICON_STOP, _("Stop"), G_CALLBACK(dupe_check_stop_cb), dw);
-	gtk_container_add(GTK_CONTAINER(hbox), button);
+	gq_gtk_container_add(GTK_WIDGET(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_show(button);
 
 	button = pref_button_new(nullptr, GQ_ICON_CLOSE, _("Close"), G_CALLBACK(dupe_window_close_cb), dw);
 	gtk_widget_set_tooltip_text(GTK_WIDGET(button), "Ctrl-W");
-	gtk_container_add(GTK_CONTAINER(hbox), button);
+	gq_gtk_container_add(GTK_WIDGET(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_grab_default(button);
 	gtk_widget_show(button);

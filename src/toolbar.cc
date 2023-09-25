@@ -208,7 +208,7 @@ static void toolbarlist_add_button(const gchar *name, const gchar *label,
 	toolbar_entry, reinterpret_cast<GDestroyNotify>(toolbar_item_free));
 
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
-	gtk_container_add(GTK_CONTAINER(toolbar_entry->button), hbox);
+	gq_gtk_container_add(GTK_WIDGET(toolbar_entry->button), hbox);
 	gtk_widget_show(hbox);
 
 	toolbar_entry->button_label = gtk_label_new(label);
@@ -431,7 +431,7 @@ GtkWidget *toolbar_select_new(LayoutWindow *lw, ToolbarType bar)
 
 	toolbarlist[bar]->vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show(toolbarlist[bar]->vbox);
-	gtk_container_add(GTK_CONTAINER(scrolled), toolbarlist[bar]->vbox);
+	gq_gtk_container_add(GTK_WIDGET(scrolled), toolbarlist[bar]->vbox);
 	gtk_viewport_set_shadow_type(GTK_VIEWPORT(gtk_bin_get_child(GTK_BIN(scrolled))),
 																GTK_SHADOW_NONE);
 

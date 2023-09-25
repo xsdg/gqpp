@@ -553,7 +553,7 @@ static GtkWidget *file_util_dialog_add_list(GtkWidget *box, GList *list, gboolea
 		}
 
 	gtk_widget_set_size_request(view, UTILITY_LIST_MIN_WIDTH, UTILITY_LIST_MIN_HEIGHT);
-	gtk_container_add(GTK_CONTAINER(scrolled), view);
+	gq_gtk_container_add(GTK_WIDGET(scrolled), view);
 	gtk_widget_show(view);
 
 	while (list)

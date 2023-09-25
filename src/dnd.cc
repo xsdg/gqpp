@@ -187,7 +187,7 @@ void dnd_set_drag_label(GtkWidget *widget, GdkDragContext *context, const gchar 
 	gtk_widget_realize (window);
 
 	label = gtk_label_new(text);
-	gtk_container_add(GTK_CONTAINER (window), label);
+	gq_gtk_container_add(GTK_WIDGET (window), label);
 	gtk_widget_show(label);
 	gtk_drag_set_icon_widget(context, window, -15, 10);
 	g_signal_connect(G_OBJECT(widget), "drag_end",

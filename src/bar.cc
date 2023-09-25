@@ -318,7 +318,7 @@ static void bar_expander_height_cb(GtkWidget *, gpointer data)
 	g_signal_connect(controller, "key-pressed", G_CALLBACK(height_spin_key_press_cb), window);
 
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin), h);
-	gtk_container_add(GTK_CONTAINER(window), spin);
+	gq_gtk_container_add(GTK_WIDGET(window), spin);
 	gtk_widget_show(spin);
 	gtk_widget_grab_focus(GTK_WIDGET(spin));
 
@@ -652,7 +652,7 @@ void bar_add(GtkWidget *bar, GtkWidget *pane)
 	g_signal_connect(expander, "button_release_event", G_CALLBACK(bar_menu_cb), bd);
 	g_signal_connect(expander, "notify::expanded", G_CALLBACK(bar_expander_cb), pd);
 
-	gtk_container_add(GTK_CONTAINER(expander), pane);
+	gq_gtk_container_add(GTK_WIDGET(expander), pane);
 
 	gtk_expander_set_expanded(GTK_EXPANDER(expander), pd->expanded);
 
@@ -778,7 +778,7 @@ GtkWidget *bar_new(LayoutWindow *lw)
 
 
 	bd->vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-	gtk_container_add(GTK_CONTAINER(scrolled), bd->vbox);
+	gq_gtk_container_add(GTK_WIDGET(scrolled), bd->vbox);
 	gtk_viewport_set_shadow_type(GTK_VIEWPORT(gtk_bin_get_child(GTK_BIN(scrolled))), GTK_SHADOW_NONE);
 
 	add_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);

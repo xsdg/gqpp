@@ -1496,7 +1496,7 @@ static GtkWidget *bar_pane_keywords_new(const gchar *id, const gchar *title, con
 	gtk_widget_show(scrolled);
 
 	pkd->keyword_view = gtk_text_view_new();
-	gtk_container_add(GTK_CONTAINER(scrolled), pkd->keyword_view);
+	gq_gtk_container_add(GTK_WIDGET(scrolled), pkd->keyword_view);
 	g_signal_connect(G_OBJECT(pkd->keyword_view), "populate-popup",
 			 G_CALLBACK(bar_pane_keywords_populate_popup_cb), pkd);
 	gtk_widget_show(pkd->keyword_view);
@@ -1617,7 +1617,7 @@ static GtkWidget *bar_pane_keywords_new(const gchar *id, const gchar *title, con
 
 	if (options->show_predefined_keyword_tree)
 		{
-		gtk_container_add(GTK_CONTAINER(scrolled), pkd->keyword_treeview);
+		gq_gtk_container_add(GTK_WIDGET(scrolled), pkd->keyword_treeview);
 		gtk_widget_show(pkd->keyword_treeview);
 		}
 

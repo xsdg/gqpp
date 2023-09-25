@@ -931,7 +931,7 @@ static ViewWindow *real_view_window_new(FileData *fd, GList *list, CollectionDat
 	image_auto_refresh_enable(vw->imd, TRUE);
 	image_top_window_set_sync(vw->imd, TRUE);
 
-	gtk_container_add(GTK_CONTAINER(vw->window), vw->imd->widget);
+	gq_gtk_container_add(GTK_WIDGET(vw->window), vw->imd->widget);
 	gtk_widget_show(vw->imd->widget);
 
 	view_window_dnd_init(vw);

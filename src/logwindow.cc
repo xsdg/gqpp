@@ -405,7 +405,7 @@ static LogWindow *log_window_create(LayoutWindow *lw)
 	window = window_new(GTK_WINDOW_TOPLEVEL, "log", nullptr, nullptr, _("Log"));
 	DEBUG_NAME(window);
 	win_vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_SPACE);
-	gtk_container_add(GTK_CONTAINER(window), win_vbox);
+	gq_gtk_container_add(GTK_WIDGET(window), win_vbox);
 	gtk_widget_show(win_vbox);
 
 	gtk_window_resize(GTK_WINDOW(window), lw->options.log_window.w,
@@ -442,7 +442,7 @@ static LogWindow *log_window_create(LayoutWindow *lw)
 	buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text));
 	gtk_text_buffer_get_start_iter(buffer, &iter);
 	gtk_text_buffer_create_mark(buffer, "end", &iter, FALSE);
-	gtk_container_add(GTK_CONTAINER(scrolledwin), text);
+	gq_gtk_container_add(GTK_WIDGET(scrolledwin), text);
 	gtk_widget_show(text);
 
 #ifdef DEBUG
@@ -458,7 +458,7 @@ static LogWindow *log_window_create(LayoutWindow *lw)
 	logwin->pause = gtk_toggle_button_new();
 	label = gtk_label_new("Pause");
 	gtk_widget_set_tooltip_text(GTK_WIDGET(logwin->pause), _("Pause scrolling"));
-	gtk_container_add(GTK_CONTAINER(logwin->pause), label) ;
+	gq_gtk_container_add(GTK_WIDGET(logwin->pause), label) ;
 	gq_gtk_box_pack_start(GTK_BOX(hbox),logwin->pause, FALSE, FALSE, 0) ;
 	g_signal_connect(logwin->pause, "toggled", G_CALLBACK(log_window_pause_cb), logwin);
 	gtk_widget_show_all(logwin->pause);
@@ -466,7 +466,7 @@ static LogWindow *log_window_create(LayoutWindow *lw)
 	logwin->wrap = gtk_toggle_button_new();
 	label = gtk_label_new("Wrap");
 	gtk_widget_set_tooltip_text(GTK_WIDGET(logwin->wrap), _("Enable line wrap"));
-	gtk_container_add(GTK_CONTAINER(logwin->wrap), label) ;
+	gq_gtk_container_add(GTK_WIDGET(logwin->wrap), label) ;
 	gq_gtk_box_pack_start(GTK_BOX(hbox),logwin->wrap, FALSE, FALSE, 0) ;
 	g_signal_connect(logwin->wrap, "toggled", G_CALLBACK(log_window_line_wrap_cb), logwin);
 	gtk_widget_show_all(logwin->wrap);
@@ -474,7 +474,7 @@ static LogWindow *log_window_create(LayoutWindow *lw)
 	logwin->timer_data = gtk_toggle_button_new();
 	label = gtk_label_new("Timer");
 	gtk_widget_set_tooltip_text(GTK_WIDGET(logwin->timer_data), _("Enable timer data"));
-	gtk_container_add(GTK_CONTAINER(logwin->timer_data), label) ;
+	gq_gtk_container_add(GTK_WIDGET(logwin->timer_data), label) ;
 	gq_gtk_box_pack_start(GTK_BOX(hbox),logwin->timer_data, FALSE, FALSE, 0) ;
 	if (options->log_window.timer_data)
 		{
@@ -484,7 +484,7 @@ static LogWindow *log_window_create(LayoutWindow *lw)
 	gtk_widget_show_all(logwin->timer_data);
 
 	search_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_container_add(GTK_CONTAINER(hbox), search_box);
+	gq_gtk_container_add(GTK_WIDGET(hbox), search_box);
 	gtk_widget_show(search_box);
 
 	logwin->search_entry_box = gtk_entry_new();

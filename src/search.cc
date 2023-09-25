@@ -3368,7 +3368,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 
 	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 	gtk_container_set_border_width(GTK_CONTAINER(vbox), PREF_PAD_GAP);
-	gtk_container_add(GTK_CONTAINER(sd->window), vbox);
+	gq_gtk_container_add(GTK_WIDGET(sd->window), vbox);
 	gtk_widget_show(vbox);
 
 	sd->box_search = pref_box_new(vbox, FALSE, GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
@@ -3654,7 +3654,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 
 	sd->result_view = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
 	g_object_unref(store);
-	gtk_container_add(GTK_CONTAINER(scrolled), sd->result_view);
+	gq_gtk_container_add(GTK_WIDGET(scrolled), sd->result_view);
 	gtk_widget_show(sd->result_view);
 
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(sd->result_view));
@@ -3695,7 +3695,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 
 	sd->label_status = gtk_label_new("");
 	gtk_widget_set_size_request(sd->label_status, 50, -1);
-	gtk_container_add(GTK_CONTAINER(frame), sd->label_status);
+	gq_gtk_container_add(GTK_WIDGET(frame), sd->label_status);
 	gtk_widget_show(sd->label_status);
 
 	sd->label_progress = gtk_progress_bar_new();

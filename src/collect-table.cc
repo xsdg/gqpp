@@ -583,7 +583,7 @@ static void tip_show(CollectTable *ct)
 	label = gtk_label_new(ct->show_text ? ct->tip_info->fd->path : ct->tip_info->fd->name);
 
 	g_object_set_data(G_OBJECT(ct->tip_window), "tip_label", label);
-	gtk_container_add(GTK_CONTAINER(ct->tip_window), label);
+	gq_gtk_container_add(GTK_WIDGET(ct->tip_window), label);
 	gtk_widget_show(label);
 
 	display = gdk_display_get_default();
@@ -2705,7 +2705,7 @@ CollectTable *collection_table_new(CollectionData *cd)
 	g_signal_connect(G_OBJECT(ct->listview), "key_press_event",
 			 G_CALLBACK(collection_table_press_key_cb), ct);
 
-	gtk_container_add(GTK_CONTAINER(ct->scrolled), ct->listview);
+	gq_gtk_container_add(GTK_WIDGET(ct->scrolled), ct->listview);
 	gtk_widget_show(ct->listview);
 
 	collection_table_dnd_init(ct);

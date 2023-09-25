@@ -234,7 +234,7 @@ gboolean tree_edit_by_path(GtkTreeView *tree, GtkTreePath *tpath, gint column, c
 	ted->entry = gtk_entry_new();
 	gtk_entry_set_text(GTK_ENTRY(ted->entry), ted->old_name);
 	gtk_editable_select_region(GTK_EDITABLE(ted->entry), 0, strlen(ted->old_name));
-	gtk_container_add(GTK_CONTAINER(ted->window), ted->entry);
+	gq_gtk_container_add(GTK_WIDGET(ted->window), ted->entry);
 	gtk_widget_show(ted->entry);
 
 	/* due to the fact that gtktreeview scrolls in an idle loop, we cannot

@@ -1081,7 +1081,7 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 #endif
 
 	gtk_widget_set_size_request(dd->d_view, DEST_WIDTH, DEST_HEIGHT);
-	gtk_container_add(GTK_CONTAINER(scrolled), dd->d_view);
+	gq_gtk_container_add(GTK_WIDGET(scrolled), dd->d_view);
 	gtk_widget_show(dd->d_view);
 
 	g_signal_connect(G_OBJECT(dd->d_view), "button_press_event",
@@ -1150,7 +1150,7 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 		gtk_tree_view_append_column(GTK_TREE_VIEW(dd->f_view), column);
 
 		gtk_widget_set_size_request(dd->f_view, DEST_WIDTH, DEST_HEIGHT);
-		gtk_container_add(GTK_CONTAINER(scrolled), dd->f_view);
+		gq_gtk_container_add(GTK_WIDGET(scrolled), dd->f_view);
 		gtk_widget_show(dd->f_view);
 
 		g_signal_connect(G_OBJECT(dd->f_view), "button_press_event",

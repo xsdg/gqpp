@@ -1035,7 +1035,7 @@ static GtkWidget *vf_marks_filter_init(ViewFile *vf)
 		gtk_widget_show(check);
 		vf->filter_check[i] = check;
 		}
-	gtk_container_add(GTK_CONTAINER(frame), hbox);
+	gq_gtk_container_add(GTK_WIDGET(frame), hbox);
 	gtk_widget_show(hbox);
 	return frame;
 }
@@ -1209,7 +1209,7 @@ static GtkWidget *vf_file_filter_init(ViewFile *vf)
 
 	gq_gtk_box_pack_start(GTK_BOX(hbox), vf->file_filter.combo, FALSE, FALSE, 0);
 	gtk_widget_show(vf->file_filter.combo);
-	gtk_container_add(GTK_CONTAINER(frame), hbox);
+	gq_gtk_container_add(GTK_WIDGET(frame), hbox);
 	gtk_widget_show(hbox);
 
 	case_sensitive = gtk_check_button_new_with_label(_("Case"));
@@ -1234,7 +1234,7 @@ static GtkWidget *vf_file_filter_init(ViewFile *vf)
 	gtk_widget_set_tooltip_text(GTK_WIDGET(menuitem), _("Select Class filter"));
 	gtk_menu_item_set_submenu(GTK_MENU_ITEM(menuitem), class_filter_menu(vf));
 	gtk_menu_shell_append(GTK_MENU_SHELL(menubar), menuitem);
-	gtk_container_add(GTK_CONTAINER(menuitem), box);
+	gq_gtk_container_add(GTK_WIDGET(menuitem), box);
 	gq_gtk_widget_show_all(menuitem);
 
 	return frame;
@@ -1290,7 +1290,7 @@ ViewFile *vf_new(FileViewType type, FileData *dir_fd)
 	g_signal_connect(G_OBJECT(vf->listview), "button_release_event",
 			 G_CALLBACK(vf_release_cb), vf);
 
-	gtk_container_add(GTK_CONTAINER(vf->scrolled), vf->listview);
+	gq_gtk_container_add(GTK_WIDGET(vf->scrolled), vf->listview);
 	gtk_widget_show(vf->listview);
 
 	if (dir_fd) vf_set_fd(vf, dir_fd);

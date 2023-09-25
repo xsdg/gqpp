@@ -1366,7 +1366,7 @@ CollectWindow *collection_window_new(const gchar *path)
 			 G_CALLBACK(collection_window_keypress), cw);
 
 	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-	gtk_container_add(GTK_CONTAINER(cw->window), vbox);
+	gq_gtk_container_add(GTK_WIDGET(cw->window), vbox);
 	gtk_widget_show(vbox);
 
 	cw->table = collection_table_new(cw->cd);
@@ -1384,7 +1384,7 @@ CollectWindow *collection_window_new(const gchar *path)
 	gtk_widget_show(frame);
 
 	status_label = gtk_label_new("");
-	gtk_container_add(GTK_CONTAINER(frame), status_label);
+	gq_gtk_container_add(GTK_WIDGET(frame), status_label);
 	gtk_widget_show(status_label);
 
 	extra_label = gtk_progress_bar_new();

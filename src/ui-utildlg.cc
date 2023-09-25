@@ -241,7 +241,7 @@ GtkWidget *generic_dialog_add_button(GenericDialog *gd, const gchar *icon_name, 
 	gtk_widget_set_can_default(button, TRUE);
 	g_object_set_data(G_OBJECT(button), "dialog_function", reinterpret_cast<void *>(func_cb));
 
-	gtk_container_add(GTK_CONTAINER(gd->hbox), button);
+	gq_gtk_container_add(GTK_WIDGET(gd->hbox), button);
 
 	alternative_order = generic_dialog_get_alternative_button_order(gd->hbox);
 
@@ -435,8 +435,8 @@ static void generic_dialog_setup(GenericDialog *gd,
 	gtk_scrolled_window_set_propagate_natural_height(GTK_SCROLLED_WINDOW(scrolled), TRUE);
 	gtk_scrolled_window_set_propagate_natural_width(GTK_SCROLLED_WINDOW(scrolled), TRUE);
 	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_BUTTON_SPACE);
-	gtk_container_add(GTK_CONTAINER(scrolled), vbox);
-	gtk_container_add(GTK_CONTAINER(gd->dialog), scrolled);
+	gq_gtk_container_add(GTK_WIDGET(scrolled), vbox);
+	gq_gtk_container_add(GTK_WIDGET(gd->dialog), scrolled);
 	gtk_widget_show(scrolled);
 
 	gtk_widget_show(vbox);

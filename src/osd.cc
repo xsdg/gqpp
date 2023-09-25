@@ -173,7 +173,7 @@ GtkWidget *osd_new(gint max_cols, GtkWidget *template_view)
 
 	viewport = gtk_viewport_new(nullptr, nullptr);
 	gtk_viewport_set_shadow_type(GTK_VIEWPORT(viewport), GTK_SHADOW_NONE);
-	gtk_container_add(GTK_CONTAINER(scrolled), viewport);
+	gq_gtk_container_add(GTK_WIDGET(scrolled), viewport);
 	gtk_widget_show(viewport);
 
 	entries = (sizeof(predefined_tags) / sizeof(predefined_tags[0])) - 1;
@@ -181,7 +181,7 @@ GtkWidget *osd_new(gint max_cols, GtkWidget *template_view)
 
 	GtkTable *table;
 	table = GTK_TABLE(gtk_table_new(max_rows, max_cols, FALSE));
-	gtk_container_add(GTK_CONTAINER(viewport), GTK_WIDGET(table));
+	gq_gtk_container_add(GTK_WIDGET(viewport), GTK_WIDGET(table));
 	gtk_widget_show(GTK_WIDGET(table));
 
 	for (rows = 0; rows < max_rows; rows++)

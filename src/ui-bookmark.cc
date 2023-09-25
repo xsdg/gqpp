@@ -612,7 +612,7 @@ static void bookmark_populate(BookMarkData *bm)
 					       b, reinterpret_cast<GDestroyNotify>(bookmark_free));
 
 			box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
-			gtk_container_add(GTK_CONTAINER(b->button), box);
+			gq_gtk_container_add(GTK_WIDGET(b->button), box);
 			gtk_widget_show(box);
 
 			if (b->icon)
@@ -813,7 +813,7 @@ GtkWidget *bookmark_list_new(const gchar *key,
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
 	bm->box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-	gtk_container_add(GTK_CONTAINER(scrolled), bm->box);
+	gq_gtk_container_add(GTK_WIDGET(scrolled), bm->box);
 	gtk_widget_show(bm->box);
 
 	bookmark_populate(bm);
