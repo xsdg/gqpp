@@ -3143,6 +3143,12 @@ void file_util_rename_dir(FileData *source_fd, const gchar *new_path, GtkWidget 
  *
  *
  */
+#ifdef HAVE_GTK4
+static void clipboard_get_func(GtkClipboard *clipboard, GtkSelectionData *selection_data, guint info, gpointer data)
+{
+/* @FIXME GTK4 stub */
+}
+#else
 static void clipboard_get_func(GtkClipboard *clipboard, GtkSelectionData *selection_data, guint info, gpointer data)
 {
 	auto cbd = static_cast<ClipboardData *>(data);
@@ -3199,6 +3205,7 @@ static void clipboard_get_func(GtkClipboard *clipboard, GtkSelectionData *select
 
 	g_string_free(path_list_str, TRUE);
 }
+#endif
 
 /**
  * @brief

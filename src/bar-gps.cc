@@ -852,6 +852,13 @@ static void bar_pane_gps_map_centreing(PaneGPSData *pgd)
 	g_string_free(message, TRUE);
 }
 
+#ifdef HAVE_GTK4
+static gboolean bar_pane_gps_map_keypress_cb(GtkWidget *, GdkEventButton *bevent, gpointer data)
+{
+/* @FIXME GTK4 stub */
+	return FALSE;
+}
+#else
 static gboolean bar_pane_gps_map_keypress_cb(GtkWidget *, GdkEventButton *bevent, gpointer data)
 {
 	auto pgd = static_cast<PaneGPSData *>(data);
@@ -889,6 +896,7 @@ static gboolean bar_pane_gps_map_keypress_cb(GtkWidget *, GdkEventButton *bevent
 		return FALSE;
 		}
 }
+#endif
 
 static void bar_pane_gps_destroy(GtkWidget *, gpointer data)
 {

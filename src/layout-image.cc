@@ -595,6 +595,12 @@ static void li_pop_menu_copy_path_unquoted_cb(GtkWidget *, gpointer data)
 	file_util_copy_path_to_clipboard(layout_image_get_fd(lw), FALSE);
 }
 
+#ifdef HAVE_GTK4
+static void li_pop_menu_copy_image_cb(GtkWidget *, gpointer data)
+{
+/* @FIXME GTK4 stub */
+}
+#else
 static void li_pop_menu_copy_image_cb(GtkWidget *, gpointer data)
 {
 	auto lw = static_cast<LayoutWindow *>(data);
@@ -605,6 +611,7 @@ static void li_pop_menu_copy_image_cb(GtkWidget *, gpointer data)
 	if (!pixbuf) return;
 	gtk_clipboard_set_image(gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), pixbuf);
 }
+#endif
 
 static void li_pop_menu_move_cb(GtkWidget *widget, gpointer data)
 {

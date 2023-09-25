@@ -602,6 +602,12 @@ static void bar_pane_exif_delete_entry_cb(GtkWidget *, gpointer data)
 	g_object_unref(entry);
 }
 
+#ifdef HAVE_GTK4
+static void bar_pane_exif_copy_entry_cb(GtkWidget *, gpointer data)
+{
+/* @FIXME GTK4 stub */
+}
+#else
 static void bar_pane_exif_copy_entry_cb(GtkWidget *, gpointer data)
 {
 	auto widget = static_cast<GtkWidget *>(data);
@@ -614,6 +620,7 @@ static void bar_pane_exif_copy_entry_cb(GtkWidget *, gpointer data)
 	clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
 	gtk_clipboard_set_text(clipboard, value, -1);
 }
+#endif
 
 static void bar_pane_exif_toggle_show_all_cb(GtkWidget *, gpointer data)
 {
@@ -665,6 +672,13 @@ static gboolean bar_pane_exif_menu_cb(GtkWidget *widget, GdkEventButton *bevent,
 	return FALSE;
 }
 
+#ifdef HAVE_GTK4
+static gboolean bar_pane_exif_copy_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer)
+{
+/* @FIXME GTK4 stub */
+	return FALSE;
+}
+#else
 static gboolean bar_pane_exif_copy_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer)
 {
 	const gchar *value;
@@ -683,8 +697,7 @@ static gboolean bar_pane_exif_copy_cb(GtkWidget *widget, GdkEventButton *bevent,
 
 	return FALSE;
 }
-
-
+#endif
 
 static void bar_pane_exif_entry_write_config(GtkWidget *entry, GString *outstr, gint indent)
 {

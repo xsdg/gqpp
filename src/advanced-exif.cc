@@ -330,6 +330,13 @@ static gint advanced_exif_sort_cb(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIt
 	return ret;
 }
 
+#ifdef HAVE_GTK4
+static gboolean advanced_exif_mouseclick(GtkWidget *, GdkEventButton *, gpointer data)
+{
+/* @FIXME GTK4 stub */
+	return TRUE;
+}
+#else
 static gboolean advanced_exif_mouseclick(GtkWidget *, GdkEventButton *, gpointer data)
 {
 	auto ew = static_cast<ExifWin *>(data);
@@ -363,6 +370,7 @@ static gboolean advanced_exif_mouseclick(GtkWidget *, GdkEventButton *, gpointer
 
 	return TRUE;
 }
+#endif
 
 static gboolean advanced_exif_keypress(GtkWidget *, GdkEventKey *event, gpointer data)
 {
