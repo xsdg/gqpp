@@ -279,6 +279,11 @@ static void height_spin_key_press_cb(GtkEventControllerKey *, gint keyval, guint
 		}
 }
 
+static void expander_height_cb(GtkWindow *widget, GdkEvent *, gpointer)
+{
+	gq_gtk_widget_destroy(GTK_WIDGET(widget));
+}
+
 static void bar_expander_height_cb(GtkWidget *, gpointer data)
 {
 	auto expander = static_cast<GtkWidget *>(data);
@@ -301,11 +306,17 @@ static void bar_expander_height_cb(GtkWidget *, gpointer data)
 	list = gtk_container_get_children(GTK_CONTAINER(expander));
 	data_box = static_cast<GtkWidget *>(list->data);
 
-	window = gtk_window_new(GTK_WINDOW_POPUP);
+#ifdef HAVE_GTK4
+	window = gtk_window_new();
+#else
+	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+#endif
 
 	gtk_window_set_modal(GTK_WINDOW(window), TRUE);
+	gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
 	gq_gtk_window_set_keep_above(GTK_WINDOW(window), TRUE);
 	gtk_window_set_default_size(GTK_WINDOW(window), 50, 30); //** @FIXME set these values in a more sensible way */
+	g_signal_connect(window, "key-press-event", G_CALLBACK(expander_height_cb), nullptr);
 
 	gtk_window_move(GTK_WINDOW(window), x, y);
 	gtk_widget_show(window);

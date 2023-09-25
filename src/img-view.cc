@@ -908,7 +908,7 @@ static ViewWindow *real_view_window_new(FileData *fd, GList *list, CollectionDat
 
 	vw = g_new0(ViewWindow, 1);
 
-	vw->window = window_new(GTK_WINDOW_TOPLEVEL, "view", PIXBUF_INLINE_ICON_VIEW, nullptr, nullptr);
+	vw->window = window_new("view", PIXBUF_INLINE_ICON_VIEW, nullptr, nullptr);
 	DEBUG_NAME(vw->window);
 
 	geometry.min_width = DEFAULT_MINIMAL_WINDOW_SIZE;

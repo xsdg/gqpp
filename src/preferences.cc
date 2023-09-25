@@ -4023,7 +4023,7 @@ static void config_window_create(LayoutWindow *lw)
 
 	if (!c_options) c_options = init_options(nullptr);
 
-	configwindow = window_new(GTK_WINDOW_TOPLEVEL, "preferences", PIXBUF_INLINE_ICON_CONFIG, nullptr, _("Preferences"));
+	configwindow = window_new("preferences", PIXBUF_INLINE_ICON_CONFIG, nullptr, _("Preferences"));
 	DEBUG_NAME(configwindow);
 	gtk_window_set_type_hint(GTK_WINDOW(configwindow), GDK_WINDOW_TYPE_HINT_DIALOG);
 	g_signal_connect(G_OBJECT(configwindow), "delete_event",

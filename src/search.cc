@@ -3336,7 +3336,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 		sd->search_similarity_path = g_strdup(example_file->path);
 		}
 
-	sd->window = window_new(GTK_WINDOW_TOPLEVEL, "search", nullptr, nullptr, _("Image search"));
+	sd->window = window_new("search", nullptr, nullptr, _("Image search"));
 	DEBUG_NAME(sd->window);
 
 	gtk_window_set_resizable(GTK_WINDOW(sd->window), TRUE);

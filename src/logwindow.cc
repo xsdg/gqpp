@@ -402,7 +402,7 @@ static LogWindow *log_window_create(LayoutWindow *lw)
 
 	logwin = g_new0(LogWindow, 1);
 
-	window = window_new(GTK_WINDOW_TOPLEVEL, "log", nullptr, nullptr, _("Log"));
+	window = window_new("log", nullptr, nullptr, _("Log"));
 	DEBUG_NAME(window);
 	win_vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_SPACE);
 	gq_gtk_container_add(GTK_WIDGET(window), win_vbox);

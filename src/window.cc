@@ -28,13 +28,16 @@
 #include "ui-misc.h"
 #include "ui-utildlg.h"
 
-GtkWidget *window_new(GtkWindowType type, const gchar *role, const gchar *icon,
-		      const gchar *icon_file, const gchar *subtitle)
+GtkWidget *window_new(const gchar *role, const gchar *icon, const gchar *icon_file, const gchar *subtitle)
 {
 	gchar *title;
 	GtkWidget *window;
 
-	window = gtk_window_new(type);
+#ifdef HAVE_GTK4
+	window = gtk_window_new();
+#else
+	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+#endif
 	if (!window) return nullptr;
 
 	if (subtitle)

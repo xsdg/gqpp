@@ -242,7 +242,7 @@ FullScreenData *fullscreen_start(GtkWidget *window, ImageWindow *imd,
 	fullscreen_prefs_get_geometry(options->fullscreen.screen, window, &x, &y, &w, &h,
 				      &screen, &fs->same_region);
 
-	fs->window = window_new(GTK_WINDOW_TOPLEVEL, "fullscreen", nullptr, nullptr, _("Full screen"));
+	fs->window = window_new("fullscreen", nullptr, nullptr, _("Full screen"));
 	DEBUG_NAME(fs->window);
 
 	g_signal_connect(G_OBJECT(fs->window), "delete_event",

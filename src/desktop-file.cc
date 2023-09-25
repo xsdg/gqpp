@@ -182,7 +182,7 @@ static void editor_window_new(const gchar *src_path, const gchar *desktop_name)
 	ew = g_new0(EditorWindow, 1);
 
 
-	ew->window = window_new(GTK_WINDOW_TOPLEVEL, "Desktop", PIXBUF_INLINE_ICON_CONFIG, nullptr, _("Desktop file"));
+	ew->window = window_new("Desktop", PIXBUF_INLINE_ICON_CONFIG, nullptr, _("Desktop file"));
 	DEBUG_NAME(ew->window);
 	gtk_window_set_type_hint(GTK_WINDOW(ew->window), GDK_WINDOW_TYPE_HINT_DIALOG);
 
@@ -540,7 +540,7 @@ static void editor_list_window_create()
 
 	editor_list_window = ewl = g_new0(EditorListWindow, 1);
 
-	ewl->window = window_new(GTK_WINDOW_TOPLEVEL, "editors", PIXBUF_INLINE_ICON_CONFIG, nullptr, _("Plugins"));
+	ewl->window = window_new("editors", PIXBUF_INLINE_ICON_CONFIG, nullptr, _("Plugins"));
 	DEBUG_NAME(ewl->window);
 	gtk_window_set_type_hint(GTK_WINDOW(ewl->window), GDK_WINDOW_TYPE_HINT_DIALOG);
 	g_signal_connect(G_OBJECT(ewl->window), "delete_event",
