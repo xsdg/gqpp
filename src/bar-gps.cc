@@ -953,7 +953,11 @@ GtkWidget *bar_pane_gps_new(const gchar *id, const gchar *title, const gchar *ma
 	gtk_container_add(GTK_CONTAINER(frame), vbox);
 
 	status = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,0);
+#ifdef HAVE_GTK4
+	slider = gtk_scale_button_new(1, 17, 1, slider_icons);
+#else
 	slider = gtk_scale_button_new(GTK_ICON_SIZE_SMALL_TOOLBAR, 1, 17, 1, slider_icons);
+#endif
 	gtk_widget_set_tooltip_text(slider, _("Zoom"));
 	gtk_scale_button_set_value(GTK_SCALE_BUTTON(slider), static_cast<gdouble>(zoom));
 
