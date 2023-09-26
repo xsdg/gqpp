@@ -153,7 +153,7 @@ static GtkWidget *shortcuts_new(LayoutWindow *lw)
 	gq_gtk_box_pack_start(GTK_BOX(scd->vbox), scd->bookmarks, TRUE, TRUE, 0);
 	gtk_widget_show(scd->bookmarks);
 
-	tbar = pref_toolbar_new(scd->vbox, GTK_TOOLBAR_ICONS);
+	tbar = pref_toolbar_new(scd->vbox);
 
 	scd->add_button = pref_toolbar_button(tbar, GQ_ICON_ADD, _("Add"), FALSE,
 					_("Add Shortcut"),

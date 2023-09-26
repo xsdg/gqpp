@@ -438,7 +438,7 @@ GtkWidget *toolbar_select_new(LayoutWindow *lw, ToolbarType bar)
 	add_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show(add_box);
 	gq_gtk_box_pack_end(GTK_BOX(toolbarlist[bar]->widget), add_box, FALSE, FALSE, 0);
-	tbar = pref_toolbar_new(add_box, GTK_TOOLBAR_ICONS);
+	tbar = pref_toolbar_new(add_box);
 	toolbarlist[bar]->add_button = pref_toolbar_button(tbar, GQ_ICON_ADD, _("Add"), FALSE,
 											_("Add Toolbar Item"),
 											G_CALLBACK(toolbar_menu_add_cb), toolbarlist[bar]);

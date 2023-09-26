@@ -180,7 +180,7 @@ GtkWidget *pref_table_spin_new_int(GtkWidget *table, gint column, gint row,
 				   gint value, gint *value_var);
 
 
-GtkWidget *pref_toolbar_new(GtkWidget *parent_box, GtkToolbarStyle style);
+GtkWidget *pref_toolbar_new(GtkWidget *parent_box);
 GtkWidget *pref_toolbar_button(GtkWidget *toolbar,
 			       const gchar *icon_name, const gchar *label, gboolean toggle,
 			       const gchar *description,

@@ -795,7 +795,7 @@ GtkWidget *bar_new(LayoutWindow *lw)
 	add_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	DEBUG_NAME(add_box);
 	gq_gtk_box_pack_end(GTK_BOX(bd->widget), add_box, FALSE, FALSE, 0);
-	tbar = pref_toolbar_new(add_box, GTK_TOOLBAR_ICONS);
+	tbar = pref_toolbar_new(add_box);
 	bd->add_button = pref_toolbar_button(tbar, GQ_ICON_ADD, _("Add"), FALSE,
 					     _("Add Pane"), G_CALLBACK(bar_menu_add_cb), bd);
 	gtk_widget_show(add_box);

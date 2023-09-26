@@ -740,7 +740,7 @@ static GtkWidget *bar_sort_new(LayoutWindow *lw, SortActionType action,
 	gq_gtk_box_pack_start(GTK_BOX(sd->vbox), sd->bookmarks, TRUE, TRUE, 0);
 	gtk_widget_show(sd->bookmarks);
 
-	tbar = pref_toolbar_new(sd->vbox, GTK_TOOLBAR_ICONS);
+	tbar = pref_toolbar_new(sd->vbox);
 	DEBUG_NAME(tbar);
 
 	sd->add_button = pref_toolbar_button(tbar, GQ_ICON_ADD, _("Add"), FALSE,

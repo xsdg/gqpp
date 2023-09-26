@@ -694,12 +694,11 @@ GtkWidget *pref_table_spin_new_int(GtkWidget *table, gint column, gint row,
 }
 
 
-GtkWidget *pref_toolbar_new(GtkWidget *parent_box, GtkToolbarStyle style)
+GtkWidget *pref_toolbar_new(GtkWidget *parent_box)
 {
 	GtkWidget *tbar;
 
-	tbar = gtk_toolbar_new();
-	gtk_toolbar_set_style(GTK_TOOLBAR(tbar), style);
+	tbar = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 
 	if (parent_box)
 		{
