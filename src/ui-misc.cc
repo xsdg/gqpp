@@ -354,11 +354,19 @@ static GtkWidget *real_pref_radiobutton_new(GtkWidget *parent_box, GtkWidget *si
 					    GCallback func, gpointer data)
 {
 	GtkWidget *button;
+#ifdef HAVE_GTK4
+	GtkToggleButton *group;;
+#else
 	GSList *group;
+#endif
 
 	if (sibling)
 		{
+#ifdef HAVE_GTK4
+		group = sibling;
+#else
 		group = gtk_radio_button_get_group(GTK_RADIO_BUTTON(sibling));
+#endif
 		}
 	else
 		{
@@ -367,11 +375,21 @@ static GtkWidget *real_pref_radiobutton_new(GtkWidget *parent_box, GtkWidget *si
 
 	if (mnemonic_text)
 		{
+#ifdef HAVE_GTK4
+		button = gtk_toggle_button_new_with_mnemonic(text);
+		gtk_toggle_button_set_group(button, group);
+#else
 		button = gtk_radio_button_new_with_mnemonic(group, text);
+#endif
 		}
 	else
 		{
+#ifdef HAVE_GTK4
+		button = gtk_toggle_button_new_with_label(text);
+		gtk_toggle_button_set_group(button, group);
+#else
 		button = gtk_radio_button_new_with_label(group, text);
+#endif
 		}
 
 	if (active) gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), active);

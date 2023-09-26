@@ -43,18 +43,16 @@ struct PaneRatingData
 	GtkWidget *widget;
 	GtkWidget *radio_button_first;
 	FileData *fd;
+	GtkCheckButton *rating_buttons[7];
 };
 
 static void bar_pane_rating_update(PaneRatingData *prd)
 {
 	guint64 rating;
-	GSList *list;
 
-	rating = metadata_read_int(prd->fd, RATING_KEY, 0);
+	rating = metadata_read_int(prd->fd, RATING_KEY, 0) + 1;
 
-	list = gtk_radio_button_get_group(GTK_RADIO_BUTTON(prd->radio_button_first));
-
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(g_slist_nth_data(list, 5 - rating)), TRUE);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(prd->rating_buttons[rating]), TRUE);
 }
 
 static void bar_pane_rating_set_fd(GtkWidget *pane, FileData *fd)
@@ -106,32 +104,52 @@ static void bar_pane_rating_destroy(GtkWidget *, gpointer data)
 	g_free(prd);
 }
 
-static void bar_pane_rating_selected_cb(GtkToggleButton *togglebutton, gpointer data)
+static void bar_pane_rating_selected_cb(GtkCheckButton *checkbutton, gpointer data)
 {
 	auto prd = static_cast<PaneRatingData *>(data);
-	GSList *list;
-	gint i;
 	gchar *rating;
 
-	if (gtk_toggle_button_get_active(togglebutton))
-		{
-		list = gtk_radio_button_get_group(GTK_RADIO_BUTTON(togglebutton));
-		i = 0;
+#ifdef HAVE_GTK4
+	const gchar *rating_label;
 
-		while (list)
+	rating_label = gtk_check_button_get_label(checkbutton);
+
+	if (g_strcmp0(rating_label, "Rejected") == 0)
+		{
+		rating = g_strdup("-1");
+		}
+	else if (g_strcmp0(rating_label, "Unrated") == 0)
+		{
+		rating = g_strdup("0");
+		}
+	else
+		{
+		rating = g_strdup(rating_label);
+		}
+
+	metadata_write_string(prd->fd, RATING_KEY, rating);
+
+	g_free(rating);
+#else
+	gint i;
+
+	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(checkbutton)))
+		{
+		i = 0;
+		while (i < 7)
 			{
-			if (list->data == togglebutton)
+			if (prd->rating_buttons[i] == checkbutton)
 				{
-				rating = g_strdup_printf("%d", 5 - i);
+				rating = g_strdup_printf("%d",   i - 1 );
 				metadata_write_string(prd->fd, RATING_KEY, rating);
 				g_free(rating);
 				break;
 				}
 
 			i++;
-			list = list->next;
 			}
 		}
+#endif
 }
 
 static GtkWidget *bar_pane_rating_new(const gchar *id, const gchar *title, gboolean expanded)
@@ -163,26 +181,43 @@ static GtkWidget *bar_pane_rating_new(const gchar *id, const gchar *title, gbool
 	row_1 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 	gq_gtk_box_pack_start(GTK_BOX(prd->widget), row_1, FALSE, FALSE, 0);
 
+#ifdef HAVE_GTK4
+	radio_rejected = gtk_check_button_new_with_label(_("Rejected"));
+#else
 	radio_rejected = gtk_radio_button_new_with_label(nullptr, _("Rejected"));
+#endif
 	gq_gtk_box_pack_start(GTK_BOX(row_1), radio_rejected, FALSE, FALSE, 0);
 	g_signal_connect(radio_rejected, "released", G_CALLBACK(bar_pane_rating_selected_cb), prd);
+	prd->rating_buttons[0] = GTK_CHECK_BUTTON(radio_rejected);
 
+#ifdef HAVE_GTK4
+	radio_unrated = gtk_check_button_new_with_label(_("Unrated"));
+	gtk_check_button_set_group(GTK_CHECK_BUTTON(radio_unrated), GTK_CHECK_BUTTON(radio_rejected));
+#else
 	radio_unrated = gtk_radio_button_new_with_label_from_widget(GTK_RADIO_BUTTON(radio_rejected), _("Unrated"));
+#endif
 	gq_gtk_box_pack_start(GTK_BOX(row_1), radio_unrated, FALSE, FALSE, 0);
 	g_signal_connect(radio_unrated, "released", G_CALLBACK(bar_pane_rating_selected_cb), prd);
+	prd->rating_buttons[1] = GTK_CHECK_BUTTON(radio_unrated);
 
 	row_2 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 	gq_gtk_box_pack_start(GTK_BOX(prd->widget), row_2, FALSE, FALSE, 0);
 
-	i = 1;
-	while (i <= 5)
+	i = 2;
+	while (i <= 6)
 		{
-		i_str = g_strdup_printf("%d", i);
+		i_str = g_strdup_printf("%d", i - 1);
 
+#ifdef HAVE_GTK4
+		radio_rating = gtk_check_button_new_with_label(i_str);
+		gtk_check_button_set_group(GTK_CHECK_BUTTON(radio_rating), GTK_CHECK_BUTTON(radio_rejected));
+#else
 		radio_rating = gtk_radio_button_new_with_label_from_widget(GTK_RADIO_BUTTON(radio_rejected), i_str);
+#endif
 		g_signal_connect(radio_rating, "released", G_CALLBACK(bar_pane_rating_selected_cb), prd);
 
 		gq_gtk_box_pack_start(GTK_BOX(row_2), radio_rating, FALSE, FALSE, 1);
+		prd->rating_buttons[i ] = GTK_CHECK_BUTTON(radio_rating);
 
 		g_free(i_str);
 		i++;
