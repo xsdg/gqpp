@@ -22,11 +22,12 @@
 #include "pan-view-search.h"
 
 #include "image.h"
+#include "misc.h"
 #include "pan-calendar.h"
 #include "pan-util.h"
 #include "pan-view.h"
-#include "ui-tabcomp.h"
 #include "ui-misc.h"
+#include "ui-tabcomp.h"
 
 PanViewSearchUi *pan_search_ui_new(PanWindow *pw)
 {
@@ -410,7 +411,7 @@ void pan_search_activate(PanWindow *pw)
 {
 	gchar *text;
 
-	text = g_strdup(gtk_entry_get_text(GTK_ENTRY(pw->search_ui->search_entry)));
+	text = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(pw->search_ui->search_entry)));
 	pan_search_activate_cb(text, pw);
 	g_free(text);
 }

@@ -25,6 +25,7 @@
 #include "cache-loader.h"
 #include "filedata.h"
 #include "layout.h"
+#include "misc.h"
 #include "pixbuf-util.h"
 #include "thumb.h"
 #include "thumb-standard.h"
@@ -178,7 +179,7 @@ static void cache_maintain_home_stop(CMData *cm)
 
 	if (!cm->remote)
 		{
-		gtk_entry_set_text(GTK_ENTRY(cm->entry), _("done"));
+		gq_gtk_entry_set_text(GTK_ENTRY(cm->entry), _("done"));
 		gtk_spinner_stop(GTK_SPINNER(cm->spinner));
 
 		gtk_widget_set_sensitive(cm->button_stop, FALSE);
@@ -309,7 +310,7 @@ static gboolean cache_maintain_home_cb(gpointer data)
 			{
 			buf = "...";
 			}
-		gtk_entry_set_text(GTK_ENTRY(cm->entry), buf);
+		gq_gtk_entry_set_text(GTK_ENTRY(cm->entry), buf);
 		}
 
 	return G_SOURCE_CONTINUE;
@@ -677,7 +678,7 @@ static void cache_manager_render_finish(CacheOpsData *cd)
 	cache_manager_render_reset(cd);
 	if (!cd->remote)
 		{
-		gtk_entry_set_text(GTK_ENTRY(cd->progress), _("done"));
+		gq_gtk_entry_set_text(GTK_ENTRY(cd->progress), _("done"));
 		gtk_spinner_stop(GTK_SPINNER(cd->spinner));
 
 		gtk_widget_set_sensitive(cd->group, TRUE);
@@ -691,7 +692,7 @@ static void cache_manager_render_stop_cb(GenericDialog *, gpointer data)
 {
 	auto cd = static_cast<CacheOpsData *>(data);
 
-	gtk_entry_set_text(GTK_ENTRY(cd->progress), _("stopped"));
+	gq_gtk_entry_set_text(GTK_ENTRY(cd->progress), _("stopped"));
 	cache_manager_render_finish(cd);
 }
 
@@ -749,7 +750,7 @@ static gboolean cache_manager_render_file(CacheOpsData *cd)
 			{
 			if (!cd->remote)
 				{
-				gtk_entry_set_text(GTK_ENTRY(cd->progress), fd->path);
+				gq_gtk_entry_set_text(GTK_ENTRY(cd->progress), fd->path);
 				cd->count_done = cd->count_done + 1;
 				gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(cd->progress_bar), static_cast<gdouble>(cd->count_done) / cd->count_total);
 				}
@@ -780,7 +781,7 @@ static gboolean cache_manager_render_file(CacheOpsData *cd)
 
 	if (!cd->remote)
 		{
-		gtk_entry_set_text(GTK_ENTRY(cd->progress), _("done"));
+		gq_gtk_entry_set_text(GTK_ENTRY(cd->progress), _("done"));
 		}
 	cache_manager_render_finish(cd);
 
@@ -803,7 +804,7 @@ static void cache_manager_render_start_cb(GenericDialog *, gpointer data)
 		if (cd->list || !gtk_widget_get_sensitive(cd->button_start)) return;
 		}
 
-	path = remove_trailing_slash((gtk_entry_get_text(GTK_ENTRY(cd->entry))));
+	path = remove_trailing_slash((gq_gtk_entry_get_text(GTK_ENTRY(cd->entry))));
 	parse_out_relatives(path);
 
 	if (!isdir(path))
@@ -917,7 +918,7 @@ static void cache_manager_render_dialog(GtkWidget *widget, const gchar *path)
 	cd->progress = gtk_entry_new();
 	gtk_widget_set_can_focus(cd->progress, FALSE);
 	gtk_editable_set_editable(GTK_EDITABLE(cd->progress), FALSE);
-	gtk_entry_set_text(GTK_ENTRY(cd->progress), _("click start to begin"));
+	gq_gtk_entry_set_text(GTK_ENTRY(cd->progress), _("click start to begin"));
 	gq_gtk_box_pack_start(GTK_BOX(hbox), cd->progress, TRUE, TRUE, 0);
 	gtk_widget_show(cd->progress);
 
@@ -1327,7 +1328,7 @@ static void cache_manager_sim_stop_cb(GenericDialog *, gpointer data)
 {
 	auto cd = static_cast<CacheOpsData *>(data);
 
-	gtk_entry_set_text(GTK_ENTRY(cd->progress), _("stopped"));
+	gq_gtk_entry_set_text(GTK_ENTRY(cd->progress), _("stopped"));
 	cache_manager_sim_finish(cd);
 }
 
@@ -1421,7 +1422,7 @@ static gboolean cache_manager_sim_file(CacheOpsData *cd)
 
 		if (!cd->remote)
 			{
-			gtk_entry_set_text(GTK_ENTRY(cd->progress), fd->path);
+			gq_gtk_entry_set_text(GTK_ENTRY(cd->progress), fd->path);
 			}
 
 		file_data_unref(fd);
@@ -1448,7 +1449,7 @@ static gboolean cache_manager_sim_file(CacheOpsData *cd)
 
 		if (!cd->remote)
 			{
-			gtk_entry_set_text(GTK_ENTRY(cd->progress), _("done"));
+			gq_gtk_entry_set_text(GTK_ENTRY(cd->progress), _("done"));
 			}
 
 	cache_manager_sim_finish(cd);
@@ -1472,7 +1473,7 @@ static void cache_manager_sim_start_cb(GenericDialog *, gpointer data)
 		if (cd->list || !gtk_widget_get_sensitive(cd->button_start)) return;
 		}
 
-	path = remove_trailing_slash((gtk_entry_get_text(GTK_ENTRY(cd->entry))));
+	path = remove_trailing_slash((gq_gtk_entry_get_text(GTK_ENTRY(cd->entry))));
 	parse_out_relatives(path);
 
 	if (!isdir(path))
@@ -1555,7 +1556,7 @@ static void cache_manager_sim_load_dialog(GtkWidget *widget, const gchar *path)
 	cd->progress = gtk_entry_new();
 	gtk_widget_set_can_focus(cd->progress, FALSE);
 	gtk_editable_set_editable(GTK_EDITABLE(cd->progress), FALSE);
-	gtk_entry_set_text(GTK_ENTRY(cd->progress), _("click start to begin"));
+	gq_gtk_entry_set_text(GTK_ENTRY(cd->progress), _("click start to begin"));
 	gq_gtk_box_pack_start(GTK_BOX(hbox), cd->progress, TRUE, TRUE, 0);
 	gtk_widget_show(cd->progress);
 
@@ -1602,7 +1603,7 @@ static void cache_manager_cache_maintenance_start_cb(GenericDialog *, gpointer d
 		if (cd->list || !gtk_widget_get_sensitive(cd->button_start)) return;
 		}
 
-	path = remove_trailing_slash((gtk_entry_get_text(GTK_ENTRY(cd->entry))));
+	path = remove_trailing_slash((gq_gtk_entry_get_text(GTK_ENTRY(cd->entry))));
 	parse_out_relatives(path);
 
 	if (!isdir(path))

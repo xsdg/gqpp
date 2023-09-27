@@ -22,6 +22,8 @@
 #include <cstring>
 
 #include "main.h"
+
+#include "misc.h"
 #include "ui-tree-edit.h"
 
 /*
@@ -47,7 +49,7 @@ static void tree_edit_close(TreeEditData *ted)
 
 static void tree_edit_do(TreeEditData *ted)
 {
-	ted->new_name = g_strdup(gtk_entry_get_text(GTK_ENTRY(ted->entry)));
+	ted->new_name = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(ted->entry)));
 
 	if (strcmp(ted->new_name, ted->old_name) != 0)
 		{
@@ -232,7 +234,7 @@ gboolean tree_edit_by_path(GtkTreeView *tree, GtkTreePath *tpath, gint column, c
 			 G_CALLBACK(tree_edit_key_press_cb), ted);
 
 	ted->entry = gtk_entry_new();
-	gtk_entry_set_text(GTK_ENTRY(ted->entry), ted->old_name);
+	gq_gtk_entry_set_text(GTK_ENTRY(ted->entry), ted->old_name);
 	gtk_editable_select_region(GTK_EDITABLE(ted->entry), 0, strlen(ted->old_name));
 	gq_gtk_container_add(GTK_WIDGET(ted->window), ted->entry);
 	gtk_widget_show(ted->entry);

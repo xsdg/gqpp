@@ -26,6 +26,7 @@
 #include "ui-bookmark.h"
 
 #include "history-list.h"
+#include "misc.h"
 #include "pixbuf-util.h"
 #include "ui-fileops.h"
 #include "ui-menu.h"
@@ -225,9 +226,9 @@ static void bookmark_edit_ok_cb(GenericDialog *, gpointer data)
 	const gchar *icon;
 	gchar *new_string;
 
-	name = gtk_entry_get_text(GTK_ENTRY(p->name_entry));
-	path = remove_trailing_slash(gtk_entry_get_text(GTK_ENTRY(p->path_entry)));
-	icon = gtk_entry_get_text(GTK_ENTRY(p->icon_entry));
+	name = gq_gtk_entry_get_text(GTK_ENTRY(p->name_entry));
+	path = remove_trailing_slash(gq_gtk_entry_get_text(GTK_ENTRY(p->path_entry)));
+	icon = gq_gtk_entry_get_text(GTK_ENTRY(p->icon_entry));
 
 	new_string = bookmark_string(name, path, icon);
 
@@ -282,7 +283,7 @@ static void bookmark_edit(const gchar *key, const gchar *text, GtkWidget *parent
 
 	p->name_entry = gtk_entry_new();
 	gtk_widget_set_size_request(p->name_entry, 300, -1);
-	if (p->bb->name) gtk_entry_set_text(GTK_ENTRY(p->name_entry), p->bb->name);
+	if (p->bb->name) gq_gtk_entry_set_text(GTK_ENTRY(p->name_entry), p->bb->name);
 	gtk_table_attach_defaults(GTK_TABLE(table), p->name_entry, 1, 2, 0, 1);
 	generic_dialog_attach_default(gd, p->name_entry);
 	gtk_widget_show(p->name_entry);
@@ -976,7 +977,7 @@ GtkWidget *history_combo_new(GtkWidget **entry, const gchar *text,
 
 	if (text)
 		{
-		gtk_entry_set_text(GTK_ENTRY(hc->entry), text);
+		gq_gtk_entry_set_text(GTK_ENTRY(hc->entry), text);
 		}
 	else if (n > 0)
 		{
@@ -1008,7 +1009,7 @@ void history_combo_append_history(GtkWidget *widget, const gchar *text)
 		}
 	else
 		{
-		new_text = g_strdup(gtk_entry_get_text(GTK_ENTRY(hc->entry)));
+		new_text = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(hc->entry)));
 		}
 
 	if (new_text && strlen(new_text) > 0)

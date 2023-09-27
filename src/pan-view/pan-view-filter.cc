@@ -23,10 +23,11 @@
 
 #include "image.h"
 #include "metadata.h"
+#include "misc.h"
 #include "pan-view.h"
 #include "ui-fileops.h"
-#include "ui-tabcomp.h"
 #include "ui-misc.h"
+#include "ui-tabcomp.h"
 
 PanViewFilterUi *pan_filter_ui_new(PanWindow *pw)
 {
@@ -161,7 +162,7 @@ void pan_filter_activate_cb(const gchar *text, gpointer data)
 
 	// Get all relevant state and reset UI.
 	gtk_combo_box_get_active_iter(GTK_COMBO_BOX(ui->filter_mode_combo), &iter);
-	gtk_entry_set_text(GTK_ENTRY(ui->filter_entry), "");
+	gq_gtk_entry_set_text(GTK_ENTRY(ui->filter_entry), "");
 	tab_completion_append_to_history(ui->filter_entry, text);
 
 	// Add new filter element.
@@ -204,7 +205,7 @@ void pan_filter_activate_unused(PanWindow *pw)
 {
 	gchar *text;
 
-	text = g_strdup(gtk_entry_get_text(GTK_ENTRY(pw->filter_ui->filter_entry)));
+	text = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(pw->filter_ui->filter_entry)));
 	pan_filter_activate_cb(text, pw);
 	g_free(text);
 }

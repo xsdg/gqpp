@@ -336,7 +336,7 @@ static void help_search_window_show_icon_press(GtkEntry *, GtkEntryIconPosition,
 
 	g_free(hsd->text_entry);
 	hsd->text_entry = g_strdup("");
-	gtk_entry_set_text(GTK_ENTRY(hsd->edit_widget), hsd->text_entry);
+	gq_gtk_entry_set_text(GTK_ENTRY(hsd->edit_widget), hsd->text_entry);
 }
 
 static void help_search_window_ok_cb(GenericDialog *, gpointer data)
@@ -345,7 +345,7 @@ static void help_search_window_ok_cb(GenericDialog *, gpointer data)
 	gchar *search_command;
 
 	search_command = g_strconcat(options->help_search_engine,
-						gtk_entry_get_text(GTK_ENTRY(hsd->edit_widget)),
+						gq_gtk_entry_get_text(GTK_ENTRY(hsd->edit_widget)),
 						NULL);
 	help_browser_run(search_command);
 	g_free(search_command);

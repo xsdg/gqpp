@@ -28,6 +28,7 @@
 #include "main.h"
 #include "ui-pathsel.h"
 
+#include "misc.h"
 #include "ui-bookmark.h"
 #include "ui-fileops.h"
 #include "ui-menu.h"
@@ -276,7 +277,7 @@ static void dest_change_dir(Dest_Data *dd, const gchar *path, gboolean retain_na
 
 	if (retain_name)
 		{
-		const gchar *buf = gtk_entry_get_text(GTK_ENTRY(dd->entry));
+		const gchar *buf = gq_gtk_entry_get_text(GTK_ENTRY(dd->entry));
 
 		if (!isdir(buf)) old_name = filename_from_path(buf);
 		}
@@ -287,7 +288,7 @@ static void dest_change_dir(Dest_Data *dd, const gchar *path, gboolean retain_na
 	else
 		new_directory = g_strdup(full_path);
 
-	gtk_entry_set_text(GTK_ENTRY(dd->entry), full_path);
+	gq_gtk_entry_set_text(GTK_ENTRY(dd->entry), full_path);
 
 	dest_populate(dd, new_directory);
 	g_free(new_directory);
@@ -431,10 +432,10 @@ static gint dest_view_rename_cb(TreeEditData *ted, const gchar *old_name, const 
 
 		gtk_list_store_set(GTK_LIST_STORE(model), &iter, 0, new_name, 1, new_path, -1);
 
-		text = gtk_entry_get_text(GTK_ENTRY(dd->entry));
+		text = gq_gtk_entry_get_text(GTK_ENTRY(dd->entry));
 		if (text && old_path && strcmp(text, old_path) == 0)
 			{
-			gtk_entry_set_text(GTK_ENTRY(dd->entry), new_path);
+			gq_gtk_entry_set_text(GTK_ENTRY(dd->entry), new_path);
 			}
 		}
 
@@ -731,7 +732,7 @@ static void file_util_create_dir_cb(gboolean success, const gchar *new_path, gpo
 		}
 	dd->right_click_path = gtk_tree_model_get_path(GTK_TREE_MODEL(store), &iter);
 
-	gtk_entry_set_text(GTK_ENTRY(dd->entry), new_path);
+	gq_gtk_entry_set_text(GTK_ENTRY(dd->entry), new_path);
 
 	gtk_widget_grab_focus(GTK_WIDGET(dd->entry));
 }
@@ -745,7 +746,7 @@ static void dest_new_dir_cb(GtkWidget *widget, gpointer data)
  * window rather than the file dialog window. gtk_window_present() does not seem to
  * function unless the window was previously minimized.
  */
-	file_util_create_dir(gtk_entry_get_text(GTK_ENTRY(dd->entry)), widget, file_util_create_dir_cb, data);
+	file_util_create_dir(gq_gtk_entry_get_text(GTK_ENTRY(dd->entry)), widget, file_util_create_dir_cb, data);
 }
 
 /*
@@ -774,7 +775,7 @@ static void dest_select_cb(GtkTreeSelection *selection, gpointer data)
 		}
 	else
 		{
-		gtk_entry_set_text(GTK_ENTRY(dd->entry), path);
+		gq_gtk_entry_set_text(GTK_ENTRY(dd->entry), path);
 		}
 
 	g_free(path);
@@ -831,7 +832,7 @@ static void dest_entry_changed_cb(GtkEditable *, gpointer data)
 	const gchar *path;
 	gchar *buf;
 
-	path = gtk_entry_get_text(GTK_ENTRY(dd->entry));
+	path = gq_gtk_entry_get_text(GTK_ENTRY(dd->entry));
 	if (dd->path && strcmp(path, dd->path) == 0) return;
 
 	buf = remove_level_from_path(path);
@@ -863,7 +864,7 @@ static void dest_filter_list_sync(Dest_Data *dd)
 	if (!dd->filter_list || !dd->filter_combo) return;
 
 	entry = gtk_bin_get_child(GTK_BIN(dd->filter_combo));
-	old_text = g_strdup(gtk_entry_get_text(GTK_ENTRY(entry)));
+	old_text = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(entry)));
 
 	store = GTK_LIST_STORE(gtk_combo_box_get_model(GTK_COMBO_BOX(dd->filter_combo)));
 	gtk_list_store_clear(store);
@@ -929,7 +930,7 @@ static void dest_filter_add(Dest_Data *dd, const gchar *filter, const gchar *des
 		}
 	dd->filter_text_list = uig_list_insert_link(dd->filter_text_list, g_list_last(dd->filter_text_list), buf);
 
-	if (set) gtk_entry_set_text(GTK_ENTRY(gtk_bin_get_child(GTK_BIN(dd->filter_combo))), filter);
+	if (set) gq_gtk_entry_set_text(GTK_ENTRY(gtk_bin_get_child(GTK_BIN(dd->filter_combo))), filter);
 	dest_filter_list_sync(dd);
 }
 
@@ -952,7 +953,7 @@ static void dest_filter_changed_cb(GtkEditable *, gpointer data)
 	gchar *path;
 
 	entry = gtk_bin_get_child(GTK_BIN(dd->filter_combo));
-	buf = gtk_entry_get_text(GTK_ENTRY(entry));
+	buf = gq_gtk_entry_get_text(GTK_ENTRY(entry));
 
 	g_free(dd->filter);
 	dd->filter = nullptr;
@@ -973,7 +974,7 @@ static void dest_bookmark_select_cb(const gchar *path, gpointer data)
 		}
 	else if (isfile(path) && dd->f_view)
 		{
-		gtk_entry_set_text(GTK_ENTRY(dd->entry), path);
+		gq_gtk_entry_set_text(GTK_ENTRY(dd->entry), path);
 		}
 }
 
@@ -1165,7 +1166,7 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 		dest_filter_clear(dd);
 		dest_filter_add(dd, filter, filter_desc, TRUE);
 
-		dd->filter = g_strdup(gtk_entry_get_text(GTK_ENTRY(gtk_bin_get_child(GTK_BIN(dd->filter_combo)))));
+		dd->filter = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(gtk_bin_get_child(GTK_BIN(dd->filter_combo)))));
 		}
 
 	if (path && path[0] == G_DIR_SEPARATOR && isdir(path))
@@ -1217,7 +1218,7 @@ void path_selection_sync_to_entry_unused(GtkWidget *entry)
 
 	if (!dd) return;
 
-	path = gtk_entry_get_text(GTK_ENTRY(entry));
+	path = gq_gtk_entry_get_text(GTK_ENTRY(entry));
 
 	if (isdir(path) && (!dd->path || strcmp(path, dd->path) != 0))
 		{

@@ -867,7 +867,7 @@ static void vf_marks_tooltip_ok_cb(GenericDialog *gd, gpointer data)
 	auto mte = static_cast<MarksTextEntry *>(data);
 
 	g_free(options->marks_tooltips[mte->mark_no]);
-	options->marks_tooltips[mte->mark_no] = g_strdup(gtk_entry_get_text(GTK_ENTRY(mte->edit_widget)));
+	options->marks_tooltips[mte->mark_no] = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(mte->edit_widget)));
 
 	gtk_widget_set_tooltip_text(mte->parent, options->marks_tooltips[mte->mark_no]);
 
@@ -881,7 +881,7 @@ void vf_marks_filter_on_icon_press(GtkEntry *, GtkEntryIconPosition, GdkEvent *,
 
 	g_free(mte->text_entry);
 	mte->text_entry = g_strdup("");
-	gtk_entry_set_text(GTK_ENTRY(mte->edit_widget), "");
+	gq_gtk_entry_set_text(GTK_ENTRY(mte->edit_widget), "");
 }
 
 static void vf_marks_tooltip_help_cb(GenericDialog *, gpointer)
@@ -920,7 +920,7 @@ static gboolean vf_marks_tooltip_cb(GtkWidget *widget,
 	gtk_widget_set_size_request(mte->edit_widget, 300, -1);
 	if (mte->text_entry)
 		{
-		gtk_entry_set_text(GTK_ENTRY(mte->edit_widget), mte->text_entry);
+		gq_gtk_entry_set_text(GTK_ENTRY(mte->edit_widget), mte->text_entry);
 		}
 	gtk_table_attach_defaults(GTK_TABLE(table), mte->edit_widget, 1, 2, 0, 1);
 	generic_dialog_attach_default(mte->gd, mte->edit_widget);
@@ -948,7 +948,7 @@ static void vf_file_filter_save_cb(GtkWidget *, gpointer data)
 	gboolean text_found = FALSE;
 	gint i;
 
-	entry_text = g_strdup(gtk_entry_get_text(GTK_ENTRY(gtk_bin_get_child(GTK_BIN(vf->file_filter.combo)))));
+	entry_text = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(gtk_bin_get_child(GTK_BIN(vf->file_filter.combo)))));
 
 	if (entry_text[0] == '\0' && vf->file_filter.last_selected >= 0)
 		{
@@ -960,7 +960,7 @@ static void vf_file_filter_save_cb(GtkWidget *, gpointer data)
 
 		gtk_combo_box_set_active(GTK_COMBO_BOX(vf->file_filter.combo), -1);
 		vf->file_filter.last_selected = - 1;
-		gtk_entry_set_text(GTK_ENTRY(gtk_bin_get_child(GTK_BIN(vf->file_filter.combo))), "");
+		gq_gtk_entry_set_text(GTK_ENTRY(gtk_bin_get_child(GTK_BIN(vf->file_filter.combo))), "");
 		vf->file_filter.count--;
 		}
 	else
@@ -1159,7 +1159,7 @@ static void file_filter_clear_cb(GtkEntry *, GtkEntryIconPosition pos, GdkEvent 
 {
 	if (pos == GTK_ENTRY_ICON_SECONDARY)
 		{
-		gtk_entry_set_text(GTK_ENTRY(userdata), "");
+		gq_gtk_entry_set_text(GTK_ENTRY(userdata), "");
 		gtk_widget_grab_focus(GTK_WIDGET(userdata));
 		}
 }

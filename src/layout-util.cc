@@ -109,7 +109,7 @@ gboolean layout_key_press_cb(GtkWidget *widget, GdkEventKey *event, gpointer dat
 		{
 		if (event->keyval == GDK_KEY_Escape && lw->dir_fd)
 			{
-			gtk_entry_set_text(GTK_ENTRY(lw->path_entry), lw->dir_fd->path);
+			gq_gtk_entry_set_text(GTK_ENTRY(lw->path_entry), lw->dir_fd->path);
 			}
 
 		/* the gtkaccelgroup of the window is stealing presses before they get to the entry (and more),
@@ -2208,7 +2208,7 @@ static void window_rename_ok(GenericDialog *, gpointer data)
 	gchar *xml_name;
 	gchar *new_id;
 
-	new_id = g_strdup(gtk_entry_get_text(GTK_ENTRY(rw->window_name_entry)));
+	new_id = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(rw->window_name_entry)));
 
 	list = layout_window_menu_list(list);
 	while (list)
@@ -2480,7 +2480,7 @@ static void layout_menu_window_rename_cb(GtkWidget *, gpointer data)
 	rw->window_name_entry = gtk_entry_new();
 	gtk_widget_set_can_focus(rw->window_name_entry, TRUE);
 	gtk_editable_set_editable(GTK_EDITABLE(rw->window_name_entry), TRUE);
-	gtk_entry_set_text(GTK_ENTRY(rw->window_name_entry), lw->options.id);
+	gq_gtk_entry_set_text(GTK_ENTRY(rw->window_name_entry), lw->options.id);
 	gq_gtk_box_pack_start(GTK_BOX(hbox), rw->window_name_entry, TRUE, TRUE, 0);
 	gtk_widget_grab_focus(GTK_WIDGET(rw->window_name_entry));
 	gtk_widget_show(rw->window_name_entry);

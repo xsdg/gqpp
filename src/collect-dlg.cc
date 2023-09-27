@@ -26,8 +26,9 @@
 #include "collect-dlg.h"
 
 #include "collect-io.h"
-#include "utilops.h"
+#include "misc.h"
 #include "ui-fileops.h"
+#include "utilops.h"
 
 enum {
 	DIALOG_SAVE,
@@ -83,7 +84,7 @@ static void collection_save_cb(GenericDialog *gd, gpointer data)
 {
 	auto cd = static_cast<CollectionData *>(data);
 
-	cd->collection_path = g_strconcat(get_collections_dir(), G_DIR_SEPARATOR_S, gtk_entry_get_text(GTK_ENTRY(cd->dialog_name_entry)), GQ_COLLECTION_EXT, nullptr);
+	cd->collection_path = g_strconcat(get_collections_dir(), G_DIR_SEPARATOR_S, gq_gtk_entry_get_text(GTK_ENTRY(cd->dialog_name_entry)), GQ_COLLECTION_EXT, nullptr);
 
 	collection_save_confirmed(gd, FALSE, cd);
 }
@@ -184,7 +185,7 @@ static void collection_save_or_append_dialog(gint type, CollectionData *cd)
 
 		gq_gtk_box_pack_start(GTK_BOX(gdlg->vbox), cd->dialog_name_entry, FALSE, FALSE, 0);
 
-		gtk_entry_set_text(GTK_ENTRY(cd->dialog_name_entry), cd->name);
+		gq_gtk_entry_set_text(GTK_ENTRY(cd->dialog_name_entry), cd->name);
 		gtk_widget_grab_focus(cd->dialog_name_entry);
 		gtk_widget_show(GENERIC_DIALOG(gdlg)->dialog);
 		}

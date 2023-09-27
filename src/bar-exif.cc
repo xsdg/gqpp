@@ -22,16 +22,17 @@
 #include "main.h"
 #include "bar-exif.h"
 
-#include "exif.h"
-#include "metadata.h"
-#include "filedata.h"
-#include "ui-misc.h"
-#include "ui-menu.h"
 #include "bar.h"
-#include "rcfile.h"
 #include "dnd.h"
-#include "ui-utildlg.h"
+#include "exif.h"
+#include "filedata.h"
 #include "layout.h"
+#include "metadata.h"
+#include "misc.h"
+#include "rcfile.h"
+#include "ui-menu.h"
+#include "ui-misc.h"
+#include "ui-utildlg.h"
 
 #define MIN_HEIGHT 25
 /*
@@ -245,7 +246,7 @@ static void bar_pane_exif_update_entry(PaneExifData *ped, GtkWidget *entry, gboo
 		if (ee->editable)
 			{
 			g_signal_handlers_block_by_func(ee->value_widget, (gpointer *)bar_pane_exif_entry_changed, ee);
-			gtk_entry_set_text(GTK_ENTRY(ee->value_widget), text ? text : "");
+			gq_gtk_entry_set_text(GTK_ENTRY(ee->value_widget), text ? text : "");
 			g_signal_handlers_unblock_by_func(ee->value_widget, (gpointer)bar_pane_exif_entry_changed, ee);
 			gtk_widget_set_tooltip_text(ee->box, nullptr);
 			}
@@ -487,8 +488,8 @@ static void bar_pane_exif_edit_ok_cb(GenericDialog *, gpointer data)
 	if (ped)
 		{
 		bar_pane_exif_add_entry(ped,
-					gtk_entry_get_text(GTK_ENTRY(cdd->key_entry)),
-					gtk_entry_get_text(GTK_ENTRY(cdd->title_entry)),
+					gq_gtk_entry_get_text(GTK_ENTRY(cdd->key_entry)),
+					gq_gtk_entry_get_text(GTK_ENTRY(cdd->title_entry)),
 					cdd->if_set, cdd->editable);
 		}
 
@@ -507,8 +508,8 @@ static void bar_pane_exif_edit_ok_cb(GenericDialog *, gpointer data)
 		if (!pane) return;
 
 		g_free(ee->key);
-		ee->key = g_strdup(gtk_entry_get_text(GTK_ENTRY(cdd->key_entry)));
-		title = gtk_entry_get_text(GTK_ENTRY(cdd->title_entry));
+		ee->key = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(cdd->key_entry)));
+		title = gq_gtk_entry_get_text(GTK_ENTRY(cdd->title_entry));
 		if (!title || strlen(title) == 0)
 			{
 			g_free(ee->title);
@@ -570,7 +571,7 @@ static void bar_pane_exif_conf_dialog(GtkWidget *widget)
 
 	cdd->key_entry = gtk_entry_new();
 	gtk_widget_set_size_request(cdd->key_entry, 300, -1);
-	if (ee) gtk_entry_set_text(GTK_ENTRY(cdd->key_entry), ee->key);
+	if (ee) gq_gtk_entry_set_text(GTK_ENTRY(cdd->key_entry), ee->key);
 	gtk_table_attach_defaults(GTK_TABLE(table), cdd->key_entry, 1, 2, 0, 1);
 	generic_dialog_attach_default(gd, cdd->key_entry);
 	gtk_widget_show(cdd->key_entry);
@@ -579,7 +580,7 @@ static void bar_pane_exif_conf_dialog(GtkWidget *widget)
 
 	cdd->title_entry = gtk_entry_new();
 	gtk_widget_set_size_request(cdd->title_entry, 300, -1);
-	if (ee) gtk_entry_set_text(GTK_ENTRY(cdd->title_entry), ee->title);
+	if (ee) gq_gtk_entry_set_text(GTK_ENTRY(cdd->title_entry), ee->title);
 	gtk_table_attach_defaults(GTK_TABLE(table), cdd->title_entry, 1, 2, 1, 2);
 	generic_dialog_attach_default(gd, cdd->title_entry);
 	gtk_widget_show(cdd->title_entry);

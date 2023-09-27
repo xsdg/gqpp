@@ -23,8 +23,10 @@
 #include <cstring>
 
 #include "main.h"
+
 #include "history-list.h"
 #include "layout.h"
+#include "misc.h"
 #include "ui-misc.h"
 #include "utilops.h"
 
@@ -1393,7 +1395,7 @@ gchar *text_widget_text_pull(GtkWidget *text_widget)
 		}
 	else if (GTK_IS_ENTRY(text_widget))
 		{
-		return g_strdup(gtk_entry_get_text(GTK_ENTRY(text_widget)));
+		return g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(text_widget)));
 		}
 	else
 		{
@@ -1422,7 +1424,7 @@ gchar *text_widget_text_pull_selected(GtkWidget *text_widget)
 		}
 	else if (GTK_IS_ENTRY(text_widget))
 		{
-		return g_strdup(gtk_entry_get_text(GTK_ENTRY(text_widget)));
+		return g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(text_widget)));
 		}
 	else
 		{

@@ -22,6 +22,8 @@
 #include "main.h"
 #include "layout.h"
 
+#include "bar.h"
+#include "bar-sort.h"
 #include "filedata.h"
 #include "histogram.h"
 #include "history-list.h"
@@ -32,21 +34,21 @@
 #include "layout-util.h"
 #include "logwindow.h"
 #include "menu.h"
+#include "metadata.h"
+#include "misc.h"
 #include "pixbuf-util.h"
-#include "utilops.h"
-#include "view-dir.h"
-#include "view-file.h"
+#include "preferences.h"
+#include "rcfile.h"
+#include "shortcuts.h"
 #include "ui-fileops.h"
 #include "ui-menu.h"
 #include "ui-misc.h"
 #include "ui-tabcomp.h"
+#include "utilops.h"
+#include "view-dir.h"
+#include "view-file.h"
 #include "window.h"
-#include "metadata.h"
-#include "rcfile.h"
-#include "bar.h"
-#include "bar-sort.h"
-#include "preferences.h"
-#include "shortcuts.h"
+
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
 #endif
@@ -222,7 +224,7 @@ static void layout_path_entry_changed_cb(GtkWidget *widget, gpointer data)
 
 	if (gtk_combo_box_get_active(GTK_COMBO_BOX(widget)) < 0) return;
 
-	buf = g_strdup(gtk_entry_get_text(GTK_ENTRY(lw->path_entry)));
+	buf = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(lw->path_entry)));
 	if (!lw->dir_fd || strcmp(buf, lw->dir_fd->path) != 0)
 		{
 		layout_set_path(lw, buf);
@@ -248,7 +250,7 @@ static void layout_path_entry_tab_cb(const gchar *path, gpointer data)
 			/* put the G_DIR_SEPARATOR back, if we are in tab completion for a dir and result was path change */
 			gtk_editable_insert_text(GTK_EDITABLE(lw->path_entry), G_DIR_SEPARATOR_S, -1, &pos);
 			gtk_editable_set_position(GTK_EDITABLE(lw->path_entry),
-						  strlen(gtk_entry_get_text(GTK_ENTRY(lw->path_entry))));
+						  strlen(gq_gtk_entry_get_text(GTK_ENTRY(lw->path_entry))));
 			}
 		}
 	else if (lw->dir_fd)
@@ -1128,7 +1130,7 @@ static void layout_sync_path(LayoutWindow *lw)
 {
 	if (!lw->dir_fd) return;
 
-	if (lw->path_entry) gtk_entry_set_text(GTK_ENTRY(lw->path_entry), lw->dir_fd->path);
+	if (lw->path_entry) gq_gtk_entry_set_text(GTK_ENTRY(lw->path_entry), lw->dir_fd->path);
 
 	if (lw->vd) vd_set_fd(lw->vd, lw->dir_fd);
 	if (lw->vf) vf_set_fd(lw->vf, lw->dir_fd);
@@ -2259,7 +2261,7 @@ static void layout_config_ok_cb(GtkWidget *widget, gpointer data)
 static void home_path_set_current_cb(GtkWidget *, gpointer data)
 {
 	auto lc = static_cast<LayoutConfig *>(data);
-	gtk_entry_set_text(GTK_ENTRY(lc->home_path_entry), layout_get_path(lc->lw));
+	gq_gtk_entry_set_text(GTK_ENTRY(lc->home_path_entry), layout_get_path(lc->lw));
 }
 
 static void startup_path_set_current_cb(GtkWidget *widget, gpointer data)

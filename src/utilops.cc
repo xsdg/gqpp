@@ -29,6 +29,7 @@
 #include "filefilter.h"
 #include "image.h"
 #include "metadata.h"
+#include "misc.h"
 #include "thumb-standard.h"
 #include "trash.h"
 #include "ui-bookmark.h"
@@ -1162,7 +1163,7 @@ static void file_util_fdlg_cancel_cb(FileDialog *fdlg, gpointer data)
 static void file_util_dest_folder_update_path(UtilityData *ud)
 {
 	g_free(ud->dest_path);
-	ud->dest_path = g_strdup(gtk_entry_get_text(GTK_ENTRY(ud->fdlg->entry)));
+	ud->dest_path = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(ud->fdlg->entry)));
 
 	switch (ud->type)
 		{
@@ -1331,7 +1332,7 @@ static void file_util_rename_preview_update(UtilityData *ud)
 		if (gtk_tree_selection_get_selected(selection, &store, &iter))
 			{
 			FileData *fd;
-			const gchar *dest = gtk_entry_get_text(GTK_ENTRY(ud->rename_entry));
+			const gchar *dest = gq_gtk_entry_get_text(GTK_ENTRY(ud->rename_entry));
 
 			gtk_tree_model_get(store, &iter, UTILITY_COLUMN_FD, &fd, -1);
 			g_assert(ud->with_sidecars); /* sidecars must be renamed too, it would break the pairing otherwise */
@@ -1361,11 +1362,11 @@ static void file_util_rename_preview_update(UtilityData *ud)
 		}
 	else
 		{
-		front = gtk_entry_get_text(GTK_ENTRY(ud->auto_entry_front));
-		end = gtk_entry_get_text(GTK_ENTRY(ud->auto_entry_end));
+		front = gq_gtk_entry_get_text(GTK_ENTRY(ud->auto_entry_front));
+		end = gq_gtk_entry_get_text(GTK_ENTRY(ud->auto_entry_end));
 		padding = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(ud->auto_spin_pad));
 
-		format = gtk_entry_get_text(GTK_ENTRY(ud->format_entry));
+		format = gq_gtk_entry_get_text(GTK_ENTRY(ud->format_entry));
 
 		g_free(options->cp_mv_rn.auto_end);
 		options->cp_mv_rn.auto_end = g_strdup(end);
@@ -1516,7 +1517,7 @@ static gboolean file_util_preview_cb(GtkTreeSelection *, GtkTreeModel *store,
 		gtk_widget_grab_focus(ud->rename_entry);
 		gtk_label_set_text(GTK_LABEL(ud->rename_label), fd->name);
 		g_signal_handlers_block_by_func(ud->rename_entry, (gpointer)(file_util_rename_preview_entry_cb), ud);
-		gtk_entry_set_text(GTK_ENTRY(ud->rename_entry), name);
+		gq_gtk_entry_set_text(GTK_ENTRY(ud->rename_entry), name);
 		gtk_editable_select_region(GTK_EDITABLE(ud->rename_entry), 0, filename_base_length(name));
 		g_signal_handlers_unblock_by_func(ud->rename_entry, (gpointer)file_util_rename_preview_entry_cb, ud);
 		}

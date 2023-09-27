@@ -22,17 +22,18 @@
 #include "main.h"
 #include "bar-keywords.h"
 
+#include "bar.h"
+#include "dnd.h"
 #include "filedata.h"
+#include "layout.h"
 #include "metadata.h"
+#include "misc.h"
+#include "rcfile.h"
+#include "secure-save.h"
 #include "ui-fileops.h"
+#include "ui-menu.h"
 #include "ui-misc.h"
 #include "ui-utildlg.h"
-#include "bar.h"
-#include "ui-menu.h"
-#include "rcfile.h"
-#include "layout.h"
-#include "dnd.h"
-#include "secure-save.h"
 
 static void bar_pane_keywords_changed(GtkTextBuffer *buffer, gpointer data);
 
@@ -963,7 +964,7 @@ static void bar_pane_keywords_edit_dialog(PaneKeywordsData *pkd, gboolean edit_e
 	pref_table_label(table, 0, 0, _("Keyword:"), GTK_ALIGN_END);
 	cdd->edit_widget = gtk_entry_new();
 	gtk_widget_set_size_request(cdd->edit_widget, 300, -1);
-	if (name) gtk_entry_set_text(GTK_ENTRY(cdd->edit_widget), name);
+	if (name) gq_gtk_entry_set_text(GTK_ENTRY(cdd->edit_widget), name);
 	gtk_table_attach_defaults(GTK_TABLE(table), cdd->edit_widget, 1, 2, 0, 1);
 	/* here could eventually be a text view instead of entry */
 	generic_dialog_attach_default(gd, cdd->edit_widget);
@@ -1739,7 +1740,7 @@ static gboolean autocomplete_activate_cb(GtkWidget *, gpointer data)
 	gboolean found = FALSE;
 	gchar *string;
 
-	entry_text = g_strdup(gtk_entry_get_text(GTK_ENTRY(pkd->autocomplete)));
+	entry_text = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(pkd->autocomplete)));
 	buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(pkd->keyword_view));
 
 	kw_split = strtok(entry_text, ",");
@@ -1755,9 +1756,9 @@ static gboolean autocomplete_activate_cb(GtkWidget *, gpointer data)
 		}
 
 	g_free(entry_text);
-	entry_text = g_strdup(gtk_entry_get_text(GTK_ENTRY(pkd->autocomplete)));
+	entry_text = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(pkd->autocomplete)));
 
-	gtk_entry_set_text(GTK_ENTRY(pkd->autocomplete), "");
+	gq_gtk_entry_set_text(GTK_ENTRY(pkd->autocomplete), "");
 
 	valid = gtk_tree_model_get_iter_first(GTK_TREE_MODEL(keyword_store), &iter_t);
 	while (valid)

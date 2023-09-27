@@ -1562,19 +1562,19 @@ static void search_gps_dnd_received_cb(GtkWidget *, GdkDragContext *,
 			longitude = metadata_read_GPS_coord(fd, "Xmp.exif.GPSLongitude", 1000);
 			if (latitude != 1000 && longitude != 1000)
 				{
-				gtk_entry_set_text(GTK_ENTRY(sd->entry_gps_coord),
+				gq_gtk_entry_set_text(GTK_ENTRY(sd->entry_gps_coord),
 							g_strdup_printf("%lf %lf", latitude, longitude));
 				}
 			else
 				{
-				gtk_entry_set_text(GTK_ENTRY(sd->entry_gps_coord), "Image is not geocoded");
+				gq_gtk_entry_set_text(GTK_ENTRY(sd->entry_gps_coord), "Image is not geocoded");
 				}
 			}
 		}
 
 	if (info == TARGET_TEXT_PLAIN)
 		{
-		gtk_entry_set_text(GTK_ENTRY(sd->entry_gps_coord),"");
+		gq_gtk_entry_set_text(GTK_ENTRY(sd->entry_gps_coord),"");
 		}
 }
 
@@ -1595,7 +1595,7 @@ static void search_path_entry_dnd_received_cb(GtkWidget *, GdkDragContext *,
 		if (list != nullptr)
 			{
 			fd = static_cast<FileData *>(list->data);
-			gtk_entry_set_text(GTK_ENTRY(sd->path_entry),
+			gq_gtk_entry_set_text(GTK_ENTRY(sd->path_entry),
 						g_strdup_printf("%s", fd->path));
 			gtk_widget_set_tooltip_text(GTK_WIDGET(sd->path_entry),g_strdup_printf("%s", fd->path));
 			}
@@ -1603,7 +1603,7 @@ static void search_path_entry_dnd_received_cb(GtkWidget *, GdkDragContext *,
 
 	if (info == TARGET_TEXT_PLAIN)
 		{
-		gtk_entry_set_text(GTK_ENTRY(sd->path_entry),"");
+		gq_gtk_entry_set_text(GTK_ENTRY(sd->path_entry),"");
 		}
 }
 
@@ -1624,7 +1624,7 @@ static void search_image_content_dnd_received_cb(GtkWidget *, GdkDragContext *,
 		if (list != nullptr)
 			{
 			fd = static_cast<FileData *>(list->data);
-			gtk_entry_set_text(GTK_ENTRY(sd->entry_similarity),
+			gq_gtk_entry_set_text(GTK_ENTRY(sd->entry_similarity),
 						g_strdup_printf("%s", fd->path));
 			gtk_widget_set_tooltip_text(GTK_WIDGET(sd->entry_similarity),g_strdup_printf("%s", fd->path));
 			}
@@ -1632,7 +1632,7 @@ static void search_image_content_dnd_received_cb(GtkWidget *, GdkDragContext *,
 
 	if (info == TARGET_TEXT_PLAIN)
 		{
-		gtk_entry_set_text(GTK_ENTRY(sd->entry_similarity),"");
+		gq_gtk_entry_set_text(GTK_ENTRY(sd->entry_similarity),"");
 		}
 }
 
@@ -2666,14 +2666,14 @@ static void search_start_cb(GtkWidget *, gpointer data)
 
 	if (sd->match_name_enable) history_combo_append_history(sd->entry_name, nullptr);
 	g_free(sd->search_name);
-	sd->search_name = g_strdup(gtk_entry_get_text(GTK_ENTRY(sd->entry_name)));
+	sd->search_name = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(sd->entry_name)));
 
 	/* XXX */
 	g_free(sd->search_comment);
-	sd->search_comment = g_strdup(gtk_entry_get_text(GTK_ENTRY(sd->entry_comment)));
+	sd->search_comment = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(sd->entry_comment)));
 
 	g_free(sd->search_similarity_path);
-	sd->search_similarity_path = g_strdup(gtk_entry_get_text(GTK_ENTRY(sd->entry_similarity)));
+	sd->search_similarity_path = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(sd->entry_similarity)));
 	if (sd->match_similarity_enable)
 		{
 		if (!isfile(sd->search_similarity_path))
@@ -2693,7 +2693,7 @@ static void search_start_cb(GtkWidget *, gpointer data)
 		{
 		if (sd->match_gps != SEARCH_MATCH_NONE)
 			{
-			entry_text = decode_geo_parameters(gtk_entry_get_text(
+			entry_text = decode_geo_parameters(gq_gtk_entry_get_text(
 										GTK_ENTRY(sd->entry_gps_coord)));
 
 			sd->search_lat = 1000;
@@ -2750,7 +2750,7 @@ static void search_start_cb(GtkWidget *, gpointer data)
 		{
 		/* search path */
 
-		path = remove_trailing_slash(gtk_entry_get_text(GTK_ENTRY(sd->path_entry)));
+		path = remove_trailing_slash(gq_gtk_entry_get_text(GTK_ENTRY(sd->path_entry)));
 		if (isdir(path))
 			{
 			file_data_unref(sd->search_dir_fd);
@@ -2792,7 +2792,7 @@ static void search_start_cb(GtkWidget *, gpointer data)
 		}
 	else if (sd->search_type == SEARCH_MATCH_COLLECTION)
 		{
-		collection = g_strdup(gtk_entry_get_text(GTK_ENTRY(sd->collection_entry)));
+		collection = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(sd->collection_entry)));
 
 		if (is_collection(collection))
 			{
@@ -3246,11 +3246,11 @@ static void select_collection_dialog_ok_cb(FileDialog *fdlg, gpointer data)
 	gchar *path_noext;
 	gchar *collection;
 
-	path = g_strdup(gtk_entry_get_text(GTK_ENTRY(fdlg->entry)));
+	path = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(fdlg->entry)));
 	path_noext = remove_extension_from_path(path);
 	collection = g_path_get_basename(path_noext);
 
-	gtk_entry_set_text(GTK_ENTRY(sd->collection_entry), collection);
+	gq_gtk_entry_set_text(GTK_ENTRY(sd->collection_entry), collection);
 	file_dialog_close(fdlg);
 
 	g_free(path);
@@ -3394,7 +3394,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 
 	sd->collection = pref_box_new(hbox, TRUE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 	sd->collection_entry = gtk_entry_new();
-	gtk_entry_set_text(GTK_ENTRY(sd->collection_entry), "");
+	gq_gtk_entry_set_text(GTK_ENTRY(sd->collection_entry), "");
 	gq_gtk_box_pack_start(GTK_BOX(sd->collection), sd->collection_entry, TRUE, TRUE, 0);
 	gtk_widget_show(sd->collection_entry);
 

@@ -223,7 +223,7 @@ void config_entry_to_option(GtkWidget *entry, gchar **option, gchar *(*func)(con
 
 	g_free(*option);
 	*option = nullptr;
-	buf = gtk_entry_get_text(GTK_ENTRY(entry));
+	buf = gq_gtk_entry_get_text(GTK_ENTRY(entry));
 	if (buf && strlen(buf) > 0)
 		{
 		if (func)
@@ -1372,7 +1372,7 @@ static void filter_disable_cb(GtkWidget *widget, gpointer data)
 
 static void safe_delete_view_cb(GtkWidget *, gpointer)
 {
-	layout_set_path(nullptr, gtk_entry_get_text(GTK_ENTRY(safe_delete_path_entry)));
+	layout_set_path(nullptr, gq_gtk_entry_get_text(GTK_ENTRY(safe_delete_path_entry)));
 }
 
 static void safe_delete_clear_ok_cb(GenericDialog *, gpointer)
@@ -1393,7 +1393,7 @@ static void safe_delete_clear_cb(GtkWidget *widget, gpointer)
 	entry = gtk_entry_new();
 	gtk_widget_set_can_focus(entry, FALSE);
 	gtk_editable_set_editable(GTK_EDITABLE(entry), FALSE);
-	if (options->file_ops.safe_delete_path) gtk_entry_set_text(GTK_ENTRY(entry), options->file_ops.safe_delete_path);
+	if (options->file_ops.safe_delete_path) gq_gtk_entry_set_text(GTK_ENTRY(entry), options->file_ops.safe_delete_path);
 	gq_gtk_box_pack_start(GTK_BOX(gd->vbox), entry, FALSE, FALSE, 0);
 	gtk_widget_show(entry);
 	gtk_widget_show(gd->dialog);
@@ -1831,11 +1831,11 @@ static void help_search_engine_entry_icon_cb(GtkEntry *, GtkEntryIconPosition po
 {
 	if (pos == GTK_ENTRY_ICON_PRIMARY)
 		{
-		gtk_entry_set_text(GTK_ENTRY(userdata), HELP_SEARCH_ENGINE);
+		gq_gtk_entry_set_text(GTK_ENTRY(userdata), HELP_SEARCH_ENGINE);
 		}
 	else
 		{
-		gtk_entry_set_text(GTK_ENTRY(userdata), "");
+		gq_gtk_entry_set_text(GTK_ENTRY(userdata), "");
 		}
 }
 
@@ -1846,12 +1846,12 @@ static void star_rating_star_icon_cb(GtkEntry *, GtkEntryIconPosition pos, GdkEv
 	if (pos == GTK_ENTRY_ICON_PRIMARY)
 		{
 		rating_symbol = g_strdup_printf("U+%X", STAR_RATING_STAR);
-		gtk_entry_set_text(GTK_ENTRY(userdata), rating_symbol);
+		gq_gtk_entry_set_text(GTK_ENTRY(userdata), rating_symbol);
 		g_free(rating_symbol);
 		}
 	else
 		{
-		gtk_entry_set_text(GTK_ENTRY(userdata), "U+");
+		gq_gtk_entry_set_text(GTK_ENTRY(userdata), "U+");
 		gtk_widget_grab_focus(GTK_WIDGET(userdata));
 		gtk_editable_select_region(GTK_EDITABLE(userdata), 2, 2);
 		}
@@ -1864,12 +1864,12 @@ static void star_rating_rejected_icon_cb(GtkEntry *, GtkEntryIconPosition pos, G
 	if (pos == GTK_ENTRY_ICON_PRIMARY)
 		{
 		rating_symbol = g_strdup_printf("U+%X", STAR_RATING_REJECTED);
-		gtk_entry_set_text(GTK_ENTRY(userdata), rating_symbol);
+		gq_gtk_entry_set_text(GTK_ENTRY(userdata), rating_symbol);
 		g_free(rating_symbol);
 		}
 	else
 		{
-		gtk_entry_set_text(GTK_ENTRY(userdata), "U+");
+		gq_gtk_entry_set_text(GTK_ENTRY(userdata), "U+");
 		gtk_widget_grab_focus(GTK_WIDGET(userdata));
 		gtk_editable_select_region(GTK_EDITABLE(userdata), 2, 2);
 		}
@@ -1888,7 +1888,7 @@ static guint star_rating_symbol_test(GtkWidget *, gpointer data)
 	list = gtk_container_get_children(hbox);
 
 	hex_code_entry = static_cast<GtkEntry *>(g_list_nth_data(list, 2));
-	hex_code_full = g_strdup(gtk_entry_get_text(hex_code_entry));
+	hex_code_full = g_strdup(gq_gtk_entry_get_text(hex_code_entry));
 
 	hex_code = g_strsplit(hex_code_full, "+", 2);
 	if (hex_code[0] && hex_code[1])
@@ -2033,7 +2033,7 @@ static void config_tab_general(GtkWidget *notebook)
 	pref_label_new(hbox, g_strdup(str->str));
 	rating_symbol = g_strdup_printf("U+%X", options->star_rating.star);
 	star_rating_entry = gtk_entry_new();
-	gtk_entry_set_text(GTK_ENTRY(star_rating_entry), rating_symbol);
+	gq_gtk_entry_set_text(GTK_ENTRY(star_rating_entry), rating_symbol);
 	gq_gtk_box_pack_start(GTK_BOX(hbox), star_rating_entry, FALSE, FALSE, 0);
 	gtk_entry_set_width_chars(GTK_ENTRY(star_rating_entry), 15);
 	gtk_widget_show(star_rating_entry);
@@ -2065,7 +2065,7 @@ static void config_tab_general(GtkWidget *notebook)
 	pref_label_new(hbox, g_strdup(str->str));
 	rating_symbol = g_strdup_printf("U+%X", options->star_rating.rejected);
 	star_rating_entry = gtk_entry_new();
-	gtk_entry_set_text(GTK_ENTRY(star_rating_entry), rating_symbol);
+	gq_gtk_entry_set_text(GTK_ENTRY(star_rating_entry), rating_symbol);
 	gq_gtk_box_pack_start(GTK_BOX(hbox), star_rating_entry, FALSE, FALSE, 0);
 	gtk_entry_set_width_chars(GTK_ENTRY(star_rating_entry), 15);
 	gtk_widget_show(star_rating_entry);
@@ -2222,7 +2222,7 @@ static void config_tab_general(GtkWidget *notebook)
 	group = pref_group_new(vbox, FALSE, _("On-line help search engine"), GTK_ORIENTATION_VERTICAL);
 
 	help_search_engine_entry = gtk_entry_new();
-	gtk_entry_set_text(GTK_ENTRY(help_search_engine_entry), options->help_search_engine);
+	gq_gtk_entry_set_text(GTK_ENTRY(help_search_engine_entry), options->help_search_engine);
 	gq_gtk_box_pack_start(GTK_BOX(group), help_search_engine_entry, FALSE, FALSE, 0);
 	gtk_widget_show(help_search_engine_entry);
 
@@ -2684,7 +2684,7 @@ static void config_tab_files(GtkWidget *notebook)
 	group = pref_group_new(vbox, FALSE, _("Grouping sidecar extensions"), GTK_ORIENTATION_VERTICAL);
 
 	sidecar_ext_entry = gtk_entry_new();
-	gtk_entry_set_text(GTK_ENTRY(sidecar_ext_entry), options->sidecar.ext);
+	gq_gtk_entry_set_text(GTK_ENTRY(sidecar_ext_entry), options->sidecar.ext);
 	gq_gtk_box_pack_start(GTK_BOX(group), sidecar_ext_entry, FALSE, FALSE, 0);
 	gtk_widget_show(sidecar_ext_entry);
 
@@ -3029,7 +3029,7 @@ static void keywords_find_finish(KeywordFindData *kfd)
 {
 	keywords_find_reset(kfd);
 
-	gtk_entry_set_text(GTK_ENTRY(kfd->progress), _("done"));
+	gq_gtk_entry_set_text(GTK_ENTRY(kfd->progress), _("done"));
 	gtk_spinner_stop(GTK_SPINNER(kfd->spinner));
 
 	gtk_widget_set_sensitive(kfd->group, TRUE);
@@ -3074,7 +3074,7 @@ static gboolean keywords_find_file(gpointer data)
 			keywords = keywords->next;
 			}
 
-		gtk_entry_set_text(GTK_ENTRY(kfd->progress), fd->path);
+		gq_gtk_entry_set_text(GTK_ENTRY(kfd->progress), fd->path);
 		file_data_unref(fd);
 		g_list_free_full(keywords, g_free);
 
@@ -3106,7 +3106,7 @@ static void keywords_find_start_cb(GenericDialog *, gpointer data)
 
 	if (kfd->list || !gtk_widget_get_sensitive(kfd->button_start)) return;
 
-	path = remove_trailing_slash((gtk_entry_get_text(GTK_ENTRY(kfd->entry))));
+	path = remove_trailing_slash((gq_gtk_entry_get_text(GTK_ENTRY(kfd->entry))));
 	parse_out_relatives(path);
 
 	if (!isdir(path))
@@ -3178,7 +3178,7 @@ static void keywords_find_dialog(GtkWidget *widget, const gchar *path)
 	kfd->progress = gtk_entry_new();
 	gtk_widget_set_can_focus(kfd->progress, FALSE);
 	gtk_editable_set_editable(GTK_EDITABLE(kfd->progress), FALSE);
-	gtk_entry_set_text(GTK_ENTRY(kfd->progress), _("click start to begin"));
+	gq_gtk_entry_set_text(GTK_ENTRY(kfd->progress), _("click start to begin"));
 	gq_gtk_box_pack_start(GTK_BOX(hbox), kfd->progress, TRUE, TRUE, 0);
 	gtk_widget_show(kfd->progress);
 
@@ -3410,7 +3410,7 @@ static void config_tab_color(GtkWidget *notebook)
 		gtk_entry_set_max_length(GTK_ENTRY(entry), EDITOR_NAME_MAX_LENGTH);
 		if (options->color_profile.input_name[i])
 			{
-			gtk_entry_set_text(GTK_ENTRY(entry), options->color_profile.input_name[i]);
+			gq_gtk_entry_set_text(GTK_ENTRY(entry), options->color_profile.input_name[i]);
 			}
 		gtk_table_attach(GTK_TABLE(table), entry, 1, 2, i + 1, i + 2,
 				 static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), static_cast<GtkAttachOptions>(0), 0, 0);

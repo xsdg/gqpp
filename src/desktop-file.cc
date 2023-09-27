@@ -23,12 +23,13 @@
 #include "desktop-file.h"
 
 #include "editors.h"
-#include "ui-misc.h"
-#include "ui-fileops.h"
-#include "pixbuf-util.h"
-#include "window.h"
-#include "utilops.h"
 #include "layout-util.h"
+#include "misc.h"
+#include "pixbuf-util.h"
+#include "ui-fileops.h"
+#include "ui-misc.h"
+#include "utilops.h"
+#include "window.h"
 
 #define CONFIG_WINDOW_DEF_WIDTH		700
 #define CONFIG_WINDOW_DEF_HEIGHT	400
@@ -70,7 +71,7 @@ static gboolean editor_window_save(EditorWindow *ew)
 	GtkTextIter start, end;
 	GError *error = nullptr;
 	gboolean ret = TRUE;
-	const gchar *name = gtk_entry_get_text(GTK_ENTRY(ew->entry));
+	const gchar *name = gq_gtk_entry_get_text(GTK_ENTRY(ew->entry));
 
 	if (!name || !name[0])
 		{
@@ -149,7 +150,7 @@ static void editor_window_text_modified_cb(GtkWidget *, gpointer data)
 static void editor_window_entry_changed_cb(GtkWidget *, gpointer data)
 {
 	auto ew = static_cast<EditorWindow *>(data);
-	const gchar *content = gtk_entry_get_text(GTK_ENTRY(ew->entry));
+	const gchar *content = gq_gtk_entry_get_text(GTK_ENTRY(ew->entry));
 	gboolean modified = ew->modified;
 
 	if (!modified)
@@ -206,7 +207,7 @@ static void editor_window_new(const gchar *src_path, const gchar *desktop_name)
 	ew->desktop_name = nullptr;
 	if (desktop_name)
 		{
-		gtk_entry_set_text(GTK_ENTRY(ew->entry), desktop_name);
+		gq_gtk_entry_set_text(GTK_ENTRY(ew->entry), desktop_name);
 		ew->desktop_name = g_strdup(desktop_name);
 		}
 	gtk_widget_show(ew->entry);

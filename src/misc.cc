@@ -395,6 +395,22 @@ void convert_gdkcolor_to_gdkrgba(gpointer data, GdkRGBA *gdk_rgba)
 }
 #endif
 
+void gq_gtk_entry_set_text(GtkEntry *entry, const gchar *text)
+{
+	GtkEntryBuffer *buffer;
+
+	buffer = gtk_entry_get_buffer(entry);
+	gtk_entry_buffer_set_text(buffer, text, static_cast<gint>(g_utf8_strlen(text, -1)));
+}
+
+const gchar *gq_gtk_entry_get_text(GtkEntry *entry)
+{
+	GtkEntryBuffer *buffer;
+
+	buffer = gtk_entry_get_buffer(entry);
+	return gtk_entry_buffer_get_text(buffer);
+}
+
 /* Copied from the libarchive .repo. examples */
 
 #ifndef HAVE_ARCHIVE

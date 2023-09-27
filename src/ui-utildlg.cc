@@ -695,7 +695,7 @@ static void file_dialog_entry_cb(GtkWidget *, gpointer data)
 {
 	auto fdlg = static_cast<FileDialog *>(data);
 	g_free(fdlg->dest_path);
-	fdlg->dest_path = remove_trailing_slash(gtk_entry_get_text(GTK_ENTRY(fdlg->entry)));
+	fdlg->dest_path = remove_trailing_slash(gq_gtk_entry_get_text(GTK_ENTRY(fdlg->entry)));
 }
 
 static void file_dialog_entry_enter_cb(const gchar *, gpointer data)
@@ -752,7 +752,7 @@ void file_dialog_add_path_widgets(FileDialog *fdlg, const gchar *default_path, c
 	gtk_widget_grab_focus(fdlg->entry);
 	if (fdlg->dest_path)
 		{
-		gtk_entry_set_text(GTK_ENTRY(fdlg->entry), fdlg->dest_path);
+		gq_gtk_entry_set_text(GTK_ENTRY(fdlg->entry), fdlg->dest_path);
 		gtk_editable_set_position(GTK_EDITABLE(fdlg->entry), strlen(fdlg->dest_path));
 		}
 

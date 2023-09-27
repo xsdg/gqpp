@@ -24,16 +24,17 @@
 
 #include "collect.h"
 #include "collect-io.h"
+#include "editors.h"
 #include "filedata.h"
 #include "history-list.h"
 #include "layout.h"
 #include "layout-image.h"
-#include "utilops.h"
-#include "editors.h"
+#include "misc.h"
+#include "rcfile.h"
 #include "ui-bookmark.h"
 #include "ui-fileops.h"
 #include "ui-misc.h"
-#include "rcfile.h"
+#include "utilops.h"
 #include "window.h"
 
 
@@ -482,10 +483,10 @@ static void bar_sort_add_close(SortData *sd)
 static void bar_sort_add_ok_cb(FileDialog *fd, gpointer data)
 {
 	auto sd = static_cast<SortData *>(data);
-	const gchar *name = gtk_entry_get_text(GTK_ENTRY(sd->dialog_name_entry));
+	const gchar *name = gq_gtk_entry_get_text(GTK_ENTRY(sd->dialog_name_entry));
 	gboolean empty_name = (name[0] == '\0');
 
-	name = gtk_entry_get_text(GTK_ENTRY(sd->dialog_name_entry));
+	name = gq_gtk_entry_get_text(GTK_ENTRY(sd->dialog_name_entry));
 	if (sd->mode == BAR_SORT_MODE_FOLDER)
 		{
 		if (empty_name)
