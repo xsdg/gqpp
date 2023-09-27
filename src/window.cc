@@ -390,7 +390,7 @@ void help_search_window_show()
 	pref_table_label(table, 0, 0, _("Search terms:"), GTK_ALIGN_END);
 	hsd->edit_widget = gtk_entry_new();
 	gtk_widget_set_size_request(hsd->edit_widget, 300, -1);
-	gtk_table_attach_defaults(GTK_TABLE(table), hsd->edit_widget, 1, 2, 0, 1);
+	gq_gtk_grid_attach_default(GTK_GRID(table), hsd->edit_widget, 1, 2, 0, 1);
 	generic_dialog_attach_default(gd, hsd->edit_widget);
 	gtk_widget_show(hsd->edit_widget);
 

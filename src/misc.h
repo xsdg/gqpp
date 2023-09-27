@@ -36,6 +36,8 @@ gint get_cpu_cores();
 gint utf8_compare(const gchar *s1, const gchar *s2, gboolean case_sensitive);
 int runcmd(const gchar *cmd);
 void gq_gtk_entry_set_text(GtkEntry *entry, const gchar *text);
+void gq_gtk_grid_attach_default(GtkGrid *grid, GtkWidget *child, guint left_attach, guint right_attach, guint top_attach, guint bottom_attach);
+void gq_gtk_grid_attach(GtkGrid *grid, GtkWidget *child, guint left_attach, guint right_attach, guint top_attach, guint bottom_attach, GtkAttachOptions, GtkAttachOptions, guint, guint);
 
 #ifdef HAVE_GTK4
 void convert_gdkcolor_to_gdkrgba(gpointer gdk_color, GdkRGBA *gdk_rgba);

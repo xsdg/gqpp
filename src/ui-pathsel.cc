@@ -987,54 +987,54 @@ static void dest_bookmark_select_cb(const gchar *path, gpointer data)
 GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 					 const gchar *filter, const gchar *filter_desc)
 {
-	GtkWidget *hbox2;
 	Dest_Data *dd;
-	GtkWidget *scrolled;
-	GtkWidget *table;
-	GtkWidget *paned;
+	GtkCellRenderer *renderer;
 	GtkListStore *store;
 	GtkTreeSelection *selection;
 	GtkTreeViewColumn *column;
-	GtkCellRenderer *renderer;
+	GtkWidget *hbox1; // home, new folder, hidden, filter
+	GtkWidget *hbox2; // files paned
+	GtkWidget *hbox3; // filter
+	GtkWidget *paned;
+	GtkWidget *scrolled;
+	GtkWidget *table; // main box
 
 	dd = g_new0(Dest_Data, 1);
 
-	table = gtk_table_new(4, (filter != nullptr) ? 3 : 1, FALSE);
-	gtk_table_set_col_spacings(GTK_TABLE(table), PREF_PAD_GAP);
-	gtk_table_set_row_spacing(GTK_TABLE(table), 0, PREF_PAD_GAP);
-	gtk_widget_show(table);
+	table = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 
 	dd->entry = entry;
 	g_object_set_data(G_OBJECT(dd->entry), "destination_data", dd);
 
-	hbox2 = pref_table_box(table, 0, 0, GTK_ORIENTATION_HORIZONTAL, nullptr);
-	gtk_box_set_spacing(GTK_BOX(hbox2), PREF_PAD_BUTTON_GAP);
-	pref_button_new(hbox2, nullptr, _("Home"),
+	hbox1 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
+	gtk_box_set_spacing(GTK_BOX(hbox1), PREF_PAD_BUTTON_GAP);
+	pref_button_new(hbox1, nullptr, _("Home"),
 			G_CALLBACK(dest_home_cb), dd);
-	pref_button_new(hbox2, nullptr, _("New folder"),
+	pref_button_new(hbox1, nullptr, _("New folder"),
 			G_CALLBACK(dest_new_dir_cb), dd);
 
 	dd->hidden_button = gtk_check_button_new_with_label(_("Show hidden"));
 	g_signal_connect(G_OBJECT(dd->hidden_button), "clicked",
 			 G_CALLBACK(dest_show_hidden_cb), dd);
-	gq_gtk_box_pack_end(GTK_BOX(hbox2), dd->hidden_button, FALSE, FALSE, 0);
+	gq_gtk_box_pack_end(GTK_BOX(hbox1), dd->hidden_button, FALSE, FALSE, 0);
 	gtk_widget_show(dd->hidden_button);
+
+	gq_gtk_box_pack_start(GTK_BOX(table), hbox1, FALSE, FALSE, 0);
+	gtk_widget_show_all(hbox1);
 
 	hbox2 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 	if (filter)
 		{
 		paned = gtk_paned_new(GTK_ORIENTATION_HORIZONTAL);
 		DEBUG_NAME(paned);
-		gtk_table_attach(GTK_TABLE(table), paned, 0, 3, 1, 2,
-				 static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), 0, 0);
+		gq_gtk_box_pack_end(GTK_BOX(table), paned, TRUE , TRUE, 0);
 		gtk_widget_show(paned);
 		gtk_paned_add1(GTK_PANED(paned), hbox2);
 		}
 	else
 		{
 		paned = nullptr;
-		gtk_table_attach(GTK_TABLE(table), hbox2, 0, 1, 1, 2,
-				 static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), 0, 0);
+		gq_gtk_box_pack_end(GTK_BOX(table), hbox2, TRUE, TRUE, 0);
 		}
 	gtk_widget_show(hbox2);
 
@@ -1098,8 +1098,8 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 		{
 		GtkListStore *store;
 
-		hbox2 = pref_table_box(table, 2, 0, GTK_ORIENTATION_HORIZONTAL, nullptr);
-		pref_label_new(hbox2, _("Filter:"));
+		hbox3 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+		pref_label_new(hbox3, _("Filter:"));
 
 		store = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_STRING);
 
@@ -1111,10 +1111,12 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 		gtk_cell_layout_clear(GTK_CELL_LAYOUT(dd->filter_combo));
 		renderer = gtk_cell_renderer_text_new();
 		gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(dd->filter_combo), renderer, TRUE);
-		gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(dd->filter_combo), renderer,
-					       "text", FILTER_COLUMN_NAME, NULL);
-		gq_gtk_box_pack_start(GTK_BOX(hbox2), dd->filter_combo, TRUE, TRUE, 0);
+		gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(dd->filter_combo), renderer, "text", FILTER_COLUMN_NAME, NULL);
+		gq_gtk_box_pack_start(GTK_BOX(hbox3), dd->filter_combo, TRUE, TRUE, 0);
 		gtk_widget_show(dd->filter_combo);
+
+		gq_gtk_box_pack_end(GTK_BOX(hbox1), hbox3, FALSE, FALSE, 0);
+		gtk_widget_show(hbox3);
 
 		scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
 		gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
@@ -1126,8 +1128,7 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 			}
 		else
 			{
-			gtk_table_attach(GTK_TABLE(table), scrolled, 2, 3, 1, 2,
-				 static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), 0, 0);
+			gq_gtk_box_pack_end(GTK_BOX(table), paned, FALSE, FALSE, 0);
 			}
 		gtk_widget_show(scrolled);
 

@@ -284,7 +284,7 @@ static void bookmark_edit(const gchar *key, const gchar *text, GtkWidget *parent
 	p->name_entry = gtk_entry_new();
 	gtk_widget_set_size_request(p->name_entry, 300, -1);
 	if (p->bb->name) gq_gtk_entry_set_text(GTK_ENTRY(p->name_entry), p->bb->name);
-	gtk_table_attach_defaults(GTK_TABLE(table), p->name_entry, 1, 2, 0, 1);
+	gq_gtk_grid_attach_default(GTK_GRID(table), p->name_entry, 1, 2, 0, 1);
 	generic_dialog_attach_default(gd, p->name_entry);
 	gtk_widget_show(p->name_entry);
 
@@ -293,7 +293,7 @@ static void bookmark_edit(const gchar *key, const gchar *text, GtkWidget *parent
 	label = tab_completion_new_with_history(&p->path_entry, p->bb->path,
 						"bookmark_path", -1, nullptr, nullptr);
 	tab_completion_add_select_button(p->path_entry, nullptr, TRUE);
-	gtk_table_attach_defaults(GTK_TABLE(table), label, 1, 2, 1, 2);
+	gq_gtk_grid_attach_default(GTK_GRID(table), label, 1, 2, 1, 2);
 	generic_dialog_attach_default(gd, p->path_entry);
 	gtk_widget_show(label);
 
@@ -304,7 +304,7 @@ static void bookmark_edit(const gchar *key, const gchar *text, GtkWidget *parent
 	label = tab_completion_new_with_history(&p->icon_entry, icon,
 						"bookmark_icons", -1, nullptr, nullptr);
 	tab_completion_add_select_button(p->icon_entry, _("Select icon"), FALSE);
-	gtk_table_attach_defaults(GTK_TABLE(table), label, 1, 2, 2, 3);
+	gq_gtk_grid_attach_default(GTK_GRID(table), label, 1, 2, 2, 3);
 	generic_dialog_attach_default(gd, p->icon_entry);
 	gtk_widget_show(label);
 

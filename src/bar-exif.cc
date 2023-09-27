@@ -572,7 +572,7 @@ static void bar_pane_exif_conf_dialog(GtkWidget *widget)
 	cdd->key_entry = gtk_entry_new();
 	gtk_widget_set_size_request(cdd->key_entry, 300, -1);
 	if (ee) gq_gtk_entry_set_text(GTK_ENTRY(cdd->key_entry), ee->key);
-	gtk_table_attach_defaults(GTK_TABLE(table), cdd->key_entry, 1, 2, 0, 1);
+	gq_gtk_grid_attach_default(GTK_GRID(table), cdd->key_entry, 1, 2, 0, 1);
 	generic_dialog_attach_default(gd, cdd->key_entry);
 	gtk_widget_show(cdd->key_entry);
 
@@ -581,7 +581,7 @@ static void bar_pane_exif_conf_dialog(GtkWidget *widget)
 	cdd->title_entry = gtk_entry_new();
 	gtk_widget_set_size_request(cdd->title_entry, 300, -1);
 	if (ee) gq_gtk_entry_set_text(GTK_ENTRY(cdd->title_entry), ee->title);
-	gtk_table_attach_defaults(GTK_TABLE(table), cdd->title_entry, 1, 2, 1, 2);
+	gq_gtk_grid_attach_default(GTK_GRID(table), cdd->title_entry, 1, 2, 1, 2);
 	generic_dialog_attach_default(gd, cdd->title_entry);
 	gtk_widget_show(cdd->title_entry);
 

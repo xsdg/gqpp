@@ -1770,7 +1770,7 @@ static void file_util_dialog_init_source_dest(UtilityData *ud, gboolean second_i
 	pref_table_label(table, 0, 1, _("New name:"), GTK_ALIGN_END);
 
 	ud->rename_entry = gtk_entry_new();
-	gtk_table_attach(GTK_TABLE(table), ud->rename_entry, 1, 2, 1, 2, static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), static_cast<GtkAttachOptions>(0), 0, 0);
+	gq_gtk_grid_attach(GTK_GRID(table), ud->rename_entry, 1, 2, 1, 2, static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), static_cast<GtkAttachOptions>(0), 0, 0);
 	generic_dialog_attach_default(GENERIC_DIALOG(ud->gd), ud->rename_entry);
 	gtk_widget_grab_focus(ud->rename_entry);
 
@@ -2161,10 +2161,7 @@ static void file_util_write_metadata_details_dialog(UtilityData *ud, FileData *f
 		gtk_label_set_yalign(GTK_LABEL(label), 0.0);
 
 		pref_label_bold(label, TRUE, FALSE);
-		gtk_table_attach(GTK_TABLE(table), label,
-				 0, 1, i, i + 1,
-				 GTK_FILL, GTK_FILL,
-				 2, 2);
+		gq_gtk_grid_attach(GTK_GRID(table), label, 0, 1, i, i + 1,  GTK_FILL, GTK_FILL,  2, 2);
 		gtk_widget_show(label);
 
 		label = gtk_label_new(value);
@@ -2173,10 +2170,7 @@ static void file_util_write_metadata_details_dialog(UtilityData *ud, FileData *f
 		gtk_label_set_yalign(GTK_LABEL(label), 0.0);
 
 		gtk_label_set_line_wrap(GTK_LABEL(label), TRUE);
-		gtk_table_attach(GTK_TABLE(table), label,
-				 1, 2, i, i + 1,
-				 GTK_FILL, GTK_FILL,
-				 2, 2);
+		gq_gtk_grid_attach(GTK_GRID(table), label,  1, 2, i, i + 1, GTK_FILL, GTK_FILL,  2, 2);
 		gtk_widget_show(label);
 
 		g_free(title);

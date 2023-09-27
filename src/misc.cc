@@ -411,6 +411,16 @@ const gchar *gq_gtk_entry_get_text(GtkEntry *entry)
 	return gtk_entry_buffer_get_text(buffer);
 }
 
+void gq_gtk_grid_attach(GtkGrid *grid, GtkWidget *child, guint left_attach, guint right_attach, guint top_attach, guint bottom_attach, GtkAttachOptions, GtkAttachOptions, guint, guint)
+{
+	gtk_grid_attach(grid, child, left_attach, top_attach, right_attach - left_attach, bottom_attach - top_attach);
+}
+
+void gq_gtk_grid_attach_default(GtkGrid *grid, GtkWidget *child, guint left_attach, guint right_attach, guint top_attach, guint bottom_attach )
+{
+	gtk_grid_attach(grid, child, left_attach, top_attach, right_attach - left_attach, bottom_attach - top_attach);
+}
+
 /* Copied from the libarchive .repo. examples */
 
 #ifndef HAVE_ARCHIVE

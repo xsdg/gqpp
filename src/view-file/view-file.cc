@@ -922,7 +922,7 @@ static gboolean vf_marks_tooltip_cb(GtkWidget *widget,
 		{
 		gq_gtk_entry_set_text(GTK_ENTRY(mte->edit_widget), mte->text_entry);
 		}
-	gtk_table_attach_defaults(GTK_TABLE(table), mte->edit_widget, 1, 2, 0, 1);
+	gq_gtk_grid_attach_default(GTK_GRID(table), mte->edit_widget, 1, 2, 0, 1);
 	generic_dialog_attach_default(mte->gd, mte->edit_widget);
 
 	gtk_entry_set_icon_from_icon_name(GTK_ENTRY(mte->edit_widget),

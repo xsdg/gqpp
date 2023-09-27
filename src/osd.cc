@@ -123,7 +123,7 @@ static void osd_btn_destroy_cb(GtkWidget *btn, GdkDragContext *, GtkSelectionDat
 	g_free(td->title);
 }
 
-static void set_osd_button(GtkTable *table, const gint rows, const gint cols, const gchar *key, const gchar *title, GtkWidget *template_view)
+static void set_osd_button(GtkGrid *grid, const gint rows, const gint cols, const gchar *key, const gchar *title, GtkWidget *template_view)
 {
 	GtkWidget *new_button;
 	TagData *td;
@@ -144,7 +144,7 @@ static void set_osd_button(GtkTable *table, const gint rows, const gint cols, co
 	g_signal_connect(G_OBJECT(new_button), "destroy",
 							G_CALLBACK(osd_btn_destroy_cb), new_button);
 
-	gtk_table_attach_defaults(table, new_button, cols, cols+1, rows, rows+1);
+	gtk_grid_attach(grid, new_button, cols, rows, 1, 1);
 
 }
 
@@ -179,10 +179,10 @@ GtkWidget *osd_new(gint max_cols, GtkWidget *template_view)
 	entries = (sizeof(predefined_tags) / sizeof(predefined_tags[0])) - 1;
 	max_rows = ceil(entries / max_cols);
 
-	GtkTable *table;
-	table = GTK_TABLE(gtk_table_new(max_rows, max_cols, FALSE));
-	gq_gtk_container_add(GTK_WIDGET(viewport), GTK_WIDGET(table));
-	gtk_widget_show(GTK_WIDGET(table));
+	GtkGrid *grid;
+	grid = GTK_GRID(gtk_grid_new());
+	gq_gtk_container_add(GTK_WIDGET(viewport), GTK_WIDGET(grid));
+	gtk_widget_show(GTK_WIDGET(grid));
 
 	for (rows = 0; rows < max_rows; rows++)
 		{
@@ -190,7 +190,7 @@ GtkWidget *osd_new(gint max_cols, GtkWidget *template_view)
 
 		while (cols < max_cols && predefined_tags[i][0])
 			{
-			set_osd_button(table, rows, cols, predefined_tags[i][0], predefined_tags[i][1], template_view);
+			set_osd_button(grid, rows, cols, predefined_tags[i][0], predefined_tags[i][1], template_view);
 			i = i + 1;
 			cols++;
 			}

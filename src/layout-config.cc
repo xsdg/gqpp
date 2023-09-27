@@ -227,7 +227,7 @@ static void layout_config_table_button(GtkWidget *table, LayoutLocation l, const
 	button = gtk_button_new_with_label(text);
 	gtk_widget_set_sensitive(button, FALSE);
 	gtk_widget_set_can_focus(button, FALSE);
-	gtk_table_attach_defaults(GTK_TABLE(table), button, x1, x2, y1, y2);
+	gtk_grid_attach(GTK_GRID(table), button, x1, y1, x2 - x1, y2 - y1);
 	gtk_widget_show(button);
 }
 
@@ -262,7 +262,7 @@ static GtkWidget *layout_config_widget(GtkWidget *group, GtkWidget *box, gint st
 			 G_CALLBACK(layout_config_widget_click_cb), GINT_TO_POINTER(style));
 	gq_gtk_box_pack_start(GTK_BOX(box), group, FALSE, FALSE, 0);
 
-	table = gtk_table_new(2, 2, TRUE);
+	table = gtk_grid_new();
 
 	layout_config_table_button(table, ls.a, "1");
 	layout_config_table_button(table, ls.b, "2");

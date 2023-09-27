@@ -3868,12 +3868,12 @@ static void dupe_second_set_toggle_cb(GtkWidget *widget, gpointer data)
 	if (dw->second_set)
 		{
 		dupe_second_update_status(dw);
-		gtk_table_set_col_spacings(GTK_TABLE(dw->table), PREF_PAD_GAP);
+		gtk_grid_set_column_spacing(GTK_GRID(dw->table), PREF_PAD_GAP);
 		gtk_widget_show(dw->second_vbox);
 		}
 	else
 		{
-		gtk_table_set_col_spacings(GTK_TABLE(dw->table), 0);
+		gtk_grid_set_column_spacing(GTK_GRID(dw->table), 0);
 		gtk_widget_hide(dw->second_vbox);
 		dupe_second_clear(dw);
 		}
@@ -4632,14 +4632,16 @@ DupeWindow *dupe_window_new()
 	gq_gtk_container_add(GTK_WIDGET(dw->window), vbox);
 	gtk_widget_show(vbox);
 
-	dw->table = gtk_table_new(1, 3, FALSE);
+	dw->table = gtk_grid_new();
 	gq_gtk_box_pack_start(GTK_BOX(vbox), dw->table, TRUE, TRUE, 0);
+	gtk_grid_set_row_homogeneous(GTK_GRID(dw->table), TRUE);
+	gtk_grid_set_column_homogeneous(GTK_GRID(dw->table), TRUE);
 	gtk_widget_show(dw->table);
 
 	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
 	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_table_attach_defaults(GTK_TABLE(dw->table), scrolled, 0, 2, 0, 1);
+	gtk_grid_attach(GTK_GRID(dw->table), scrolled, 0, 0, 2, 1);
 	gtk_widget_show(scrolled);
 
 	store = gtk_list_store_new(DUPE_COLUMN_COUNT, G_TYPE_POINTER, G_TYPE_STRING, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_INT, G_TYPE_INT);
@@ -4682,15 +4684,15 @@ DupeWindow *dupe_window_new()
 	gtk_widget_show(dw->listview);
 
 	dw->second_vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-	gtk_table_attach_defaults(GTK_TABLE(dw->table), dw->second_vbox, 2, 3, 0, 1);
+	gtk_grid_attach(GTK_GRID(dw->table), dw->second_vbox, 2, 0, 3, 1);
 	if (dw->second_set)
 		{
-		gtk_table_set_col_spacings(GTK_TABLE(dw->table), PREF_PAD_GAP);
+		gtk_grid_set_column_spacing(GTK_GRID(dw->table), PREF_PAD_GAP);
 		gtk_widget_show(dw->second_vbox);
 		}
 	else
 		{
-		gtk_table_set_col_spacings(GTK_TABLE(dw->table), 0);
+		gtk_grid_set_column_spacing(GTK_GRID(dw->table), 0);
 		}
 
 	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);

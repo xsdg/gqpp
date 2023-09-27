@@ -557,14 +557,13 @@ void pref_signal_unblock_data(GtkWidget *widget, gpointer data)
 					  0, 0, nullptr, nullptr, data);
 }
 
-GtkWidget *pref_table_new(GtkWidget *parent_box, gint columns, gint rows,
-			  gboolean homogeneous, gboolean fill)
+GtkWidget *pref_table_new(GtkWidget *parent_box, gint, gint, gboolean, gboolean fill)
 {
 	GtkWidget *table;
 
-	table = gtk_table_new(rows, columns, homogeneous);
-	gtk_table_set_row_spacings(GTK_TABLE(table), PREF_PAD_GAP);
-	gtk_table_set_col_spacings(GTK_TABLE(table), PREF_PAD_SPACE);
+	table = gtk_grid_new();
+	gtk_grid_set_row_spacing(GTK_GRID(table), PREF_PAD_GAP);
+	gtk_grid_set_column_spacing(GTK_GRID(table), PREF_PAD_SPACE);
 
 	if (parent_box)
 		{
@@ -599,8 +598,7 @@ GtkWidget *pref_table_box(GtkWidget *table, gint column, gint row,
 		shell = box;
 		}
 
-	gtk_table_attach(GTK_TABLE(table), shell, column, column + 1, row, row + 1,
-			 static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), static_cast<GtkAttachOptions>(0), 0, 0);
+	gq_gtk_grid_attach(GTK_GRID(table), shell, column, column + 1, row, row + 1, static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), static_cast<GtkAttachOptions>(0), 0, 0);
 
 	gtk_widget_show(shell);
 
@@ -615,8 +613,7 @@ GtkWidget *pref_table_label(GtkWidget *table, gint column, gint row,
 	label = gtk_label_new(text);
 	gtk_widget_set_halign(label, alignment);
 	gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
-	gtk_table_attach(GTK_TABLE(table), label, column, column + 1, row, row + 1,
-			 GTK_FILL, static_cast<GtkAttachOptions>(0), 0, 0);
+	gq_gtk_grid_attach(GTK_GRID(table), label, column, column + 1, row, row + 1,  GTK_FILL, static_cast<GtkAttachOptions>(0), 0, 0);
 	gtk_widget_show(label);
 
 	return label;
@@ -629,8 +626,7 @@ GtkWidget *pref_table_button(GtkWidget *table, gint column, gint row,
 	GtkWidget *button;
 
 	button = pref_button_new(nullptr, stock_id, text, func, data);
-	gtk_table_attach(GTK_TABLE(table), button, column, column + 1, row, row + 1,
-			 GTK_FILL, static_cast<GtkAttachOptions>(0), 0, 0);
+	gq_gtk_grid_attach(GTK_GRID(table), button, column, column + 1, row, row + 1,  GTK_FILL, static_cast<GtkAttachOptions>(0), 0, 0);
 	gtk_widget_show(button);
 
 	return button;
@@ -675,8 +671,7 @@ GtkWidget *pref_table_spin(GtkWidget *table, gint column, gint row,
 		box = spin;
 		}
 
-	gtk_table_attach(GTK_TABLE(table), box, column, column + 1, row, row + 1,
-			 static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), 0, 0);
+	gq_gtk_grid_attach(GTK_GRID(table), box, column, column + 1, row, row + 1, static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), static_cast<GtkAttachOptions>(GTK_EXPAND | GTK_FILL), 0, 0);
 	gtk_widget_show(box);
 
 	return spin;

@@ -31,6 +31,7 @@
 #include "layout-util.h"
 #include "menu.h"
 #include "metadata.h"
+#include "misc.h"
 #include "pan-calendar.h"
 #include "pan-folder.h"
 #include "pan-grid.h"
@@ -1886,8 +1887,8 @@ static void pan_window_new_real(FileData *dir_fd)
 	gtk_widget_show(combo);
 
 	table = pref_table_new(vbox, 2, 2, FALSE, TRUE);
-	gtk_table_set_row_spacings(GTK_TABLE(table), 2);
-	gtk_table_set_col_spacings(GTK_TABLE(table), 2);
+	gtk_grid_set_row_spacing(GTK_GRID(table), 2);
+	gtk_grid_set_column_spacing(GTK_GRID(table), 2);
 
 	pw->imd = image_new(TRUE);
 	pw->imd_normal = pw->imd;
@@ -1897,8 +1898,7 @@ static void pan_window_new_real(FileData *dir_fd)
 	g_signal_connect(G_OBJECT(pw->imd->pr), "scroll_notify",
 			 G_CALLBACK(pan_window_image_scroll_notify_cb), pw);
 
-	gtk_table_attach(GTK_TABLE(table), pw->imd->widget, 0, 1, 0, 1,
-			 static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), 0, 0);
+	gq_gtk_grid_attach(GTK_GRID(table), pw->imd->widget, 0, 1, 0, 1, static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), 0, 0);
 	gtk_widget_show(GTK_WIDGET(pw->imd->widget));
 
 	pan_window_dnd_init(pw);
@@ -1908,15 +1908,13 @@ static void pan_window_new_real(FileData *dir_fd)
 	pw->scrollbar_h = gtk_scrollbar_new(GTK_ORIENTATION_HORIZONTAL, nullptr);
 	g_signal_connect(G_OBJECT(pw->scrollbar_h), "value_changed",
 			 G_CALLBACK(pan_window_scrollbar_h_value_cb), pw);
-	gtk_table_attach(GTK_TABLE(table), pw->scrollbar_h, 0, 1, 1, 2,
-			 static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), static_cast<GtkAttachOptions>(0), 0, 0);
+	gq_gtk_grid_attach(GTK_GRID(table), pw->scrollbar_h, 0, 1, 1, 2,  static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), static_cast<GtkAttachOptions>(0), 0, 0);
 	gtk_widget_show(pw->scrollbar_h);
 
 	pw->scrollbar_v = gtk_scrollbar_new(GTK_ORIENTATION_VERTICAL, nullptr);
 	g_signal_connect(G_OBJECT(pw->scrollbar_v), "value_changed",
 			 G_CALLBACK(pan_window_scrollbar_v_value_cb), pw);
-	gtk_table_attach(GTK_TABLE(table), pw->scrollbar_v, 1, 2, 0, 1,
-			 static_cast<GtkAttachOptions>(0), static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), 0, 0);
+	gq_gtk_grid_attach(GTK_GRID(table), pw->scrollbar_v, 1, 2, 0, 1,  static_cast<GtkAttachOptions>(0), static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), 0, 0);
 	gtk_widget_show(pw->scrollbar_v);
 
 	/* find bar */
