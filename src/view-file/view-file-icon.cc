@@ -362,7 +362,7 @@ static void tip_show(ViewFile *vf)
 	gdk_device_get_position(device, nullptr, &x, &y);
 
 	if (!gtk_widget_get_realized(VFICON(vf)->tip_window)) gtk_widget_realize(VFICON(vf)->tip_window);
-	gtk_window_move(GTK_WINDOW(VFICON(vf)->tip_window), x + 16, y + 16);
+	gq_gtk_window_move(GTK_WINDOW(VFICON(vf)->tip_window), x + 16, y + 16);
 	gtk_widget_show(VFICON(vf)->tip_window);
 }
 
@@ -430,7 +430,7 @@ static void tip_update(ViewFile *vf, FileData *fd)
 
 		gdk_device_get_position(device, nullptr, &x, &y);
 
-		gtk_window_move(GTK_WINDOW(VFICON(vf)->tip_window), x + 16, y + 16);
+		gq_gtk_window_move(GTK_WINDOW(VFICON(vf)->tip_window), x + 16, y + 16);
 
 		if (fd != VFICON(vf)->tip_fd)
 			{

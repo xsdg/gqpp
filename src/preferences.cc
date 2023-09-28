@@ -4027,7 +4027,7 @@ static void config_window_create(LayoutWindow *lw)
 	if (options->save_dialog_window_positions)
 		{
 		gtk_window_resize(GTK_WINDOW(configwindow), lw->options.preferences_window.w, lw->options.preferences_window.h);
-		gtk_window_move(GTK_WINDOW(configwindow), lw->options.preferences_window.x, lw->options.preferences_window.y);
+		gq_gtk_window_move(GTK_WINDOW(configwindow), lw->options.preferences_window.x, lw->options.preferences_window.y);
 		}
 	else
 		{

@@ -259,7 +259,7 @@ FullScreenData *fullscreen_start(GtkWidget *window, ImageWindow *imd,
 
 	/* set default size and position, so the window appears where it was before */
 	gtk_window_set_default_size(GTK_WINDOW(fs->window), w, h);
-	gtk_window_move(GTK_WINDOW(fs->window), x, y);
+	gq_gtk_window_move(GTK_WINDOW(fs->window), x, y);
 
 	/* By setting USER_POS and USER_SIZE, most window managers will
 	 * not request positioning of the full screen window (for example twm).

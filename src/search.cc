@@ -3351,7 +3351,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	if (lw && options->save_window_positions)
 		{
 		gtk_window_set_default_size(GTK_WINDOW(sd->window), lw->options.search_window.w, lw->options.search_window.h);
-		gtk_window_move(GTK_WINDOW(sd->window), lw->options.search_window.x, lw->options.search_window.y);
+		gq_gtk_window_move(GTK_WINDOW(sd->window), lw->options.search_window.x, lw->options.search_window.y);
 		}
 	else
 		{

@@ -957,7 +957,7 @@ static void date_selection_popup(DateSelection *ds)
 	if (x < 0) x = 0;
 	if (y < 0) y = 0;
 
-	gtk_window_move(GTK_WINDOW(ds->window), x, y);
+	gq_gtk_window_move(GTK_WINDOW(ds->window), x, y);
 	gtk_widget_show(ds->window);
 
 	gtk_widget_grab_focus(ds->calendar);

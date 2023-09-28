@@ -318,7 +318,7 @@ static void bar_expander_height_cb(GtkWidget *, gpointer data)
 	gtk_window_set_default_size(GTK_WINDOW(window), 50, 30); //** @FIXME set these values in a more sensible way */
 	g_signal_connect(window, "key-press-event", G_CALLBACK(expander_height_cb), nullptr);
 
-	gtk_window_move(GTK_WINDOW(window), x, y);
+	gq_gtk_window_move(GTK_WINDOW(window), x, y);
 	gtk_widget_show(window);
 
 	gtk_widget_get_size_request(GTK_WIDGET(data_box), &w, &h);

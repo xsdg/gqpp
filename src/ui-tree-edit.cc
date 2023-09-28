@@ -159,7 +159,7 @@ static gboolean tree_edit_by_path_idle_cb(gpointer data)
 	/* now show it */
 	gtk_widget_set_size_request(ted->window, w, h);
 	gtk_widget_realize(ted->window);
-	gtk_window_move(GTK_WINDOW(ted->window), x, y);
+	gq_gtk_window_move(GTK_WINDOW(ted->window), x, y);
 	gtk_window_resize(GTK_WINDOW(ted->window), w, h);
 	gtk_widget_show(ted->window);
 

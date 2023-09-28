@@ -400,7 +400,7 @@ static void generic_dialog_setup(GenericDialog *gd,
 		if (generic_dialog_find_window(title, role, &x, &y, &w, &h))
 			{
 			gtk_window_set_default_size(GTK_WINDOW(gd->dialog), w, h);
-			gtk_window_move(GTK_WINDOW(gd->dialog), x, y);
+			gq_gtk_window_move(GTK_WINDOW(gd->dialog), x, y);
 			}
 		}
 
@@ -579,7 +579,7 @@ static void show_notification_message(AppImageData *appimage_data)
 	GdkRectangle workarea;
 	gdk_monitor_get_workarea(gdk_display_get_primary_monitor(gdk_display_get_default()),
                              &workarea);
-	gtk_window_move(GTK_WINDOW(appimage_data->window), workarea.width * 0.8, workarea.height / 20);
+	gq_gtk_window_move(GTK_WINDOW(appimage_data->window), workarea.width * 0.8, workarea.height / 20);
 	g_signal_connect(appimage_data->window, "focus-in-event", G_CALLBACK(user_close_cb), appimage_data);
 	appimage_data->id = g_timeout_add(100, appimage_notification_fade_cb, appimage_data);
 

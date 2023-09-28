@@ -1348,7 +1348,7 @@ CollectWindow *collection_window_new(const gchar *path)
 	if (options->save_window_positions && path && collection_load_only_geometry(cw->cd, path))
 		{
 		gtk_window_set_default_size(GTK_WINDOW(cw->window), cw->cd->window_w, cw->cd->window_h);
-		gtk_window_move(GTK_WINDOW(cw->window), cw->cd->window_x, cw->cd->window_y);
+		gq_gtk_window_move(GTK_WINDOW(cw->window), cw->cd->window_x, cw->cd->window_y);
 		}
 	else
 		{

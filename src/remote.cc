@@ -1177,7 +1177,7 @@ static gboolean wait_cb(gpointer data)
 	gint x = position >> 16;
 	gint y = position - (x << 16);
 
-	gtk_window_move(GTK_WINDOW(lw_id->window), x, y);
+	gq_gtk_window_move(GTK_WINDOW(lw_id->window), x, y);
 
 	return G_SOURCE_REMOVE;
 }
@@ -1196,7 +1196,7 @@ static void gr_geometry(const gchar *text, GIOChannel *, gpointer)
 		geometry = g_strsplit_set(text, "+", 3);
 		if (geometry[1] != nullptr && geometry[2] != nullptr )
 			{
-			gtk_window_move(GTK_WINDOW(lw_id->window), atoi(geometry[1]), atoi(geometry[2]));
+			gq_gtk_window_move(GTK_WINDOW(lw_id->window), atoi(geometry[1]), atoi(geometry[2]));
 			}
 		}
 	else

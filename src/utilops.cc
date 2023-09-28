@@ -195,7 +195,7 @@ GenericDialog *file_util_gen_dlg(const gchar *title,
 	gd = generic_dialog_new(title, role, parent, auto_close, cancel_cb, data);
 	if (options->place_dialogs_under_mouse)
 		{
-		gtk_window_set_position(GTK_WINDOW(gd->dialog), GTK_WIN_POS_MOUSE);
+		gq_gtk_window_set_position(GTK_WINDOW(gd->dialog), GTK_WIN_POS_MOUSE);
 		}
 
 	return gd;
@@ -222,7 +222,7 @@ FileDialog *file_util_file_dlg(const gchar *title,
 	fdlg = file_dialog_new(title, role, parent, cancel_cb, data);
 	if (options->place_dialogs_under_mouse)
 		{
-		gtk_window_set_position(GTK_WINDOW(GENERIC_DIALOG(fdlg)->dialog), GTK_WIN_POS_MOUSE);
+		gq_gtk_window_set_position(GTK_WINDOW(GENERIC_DIALOG(fdlg)->dialog), GTK_WIN_POS_MOUSE);
 		}
 
 	gtk_window_set_modal(GTK_WINDOW(fdlg->gd.dialog), TRUE);
@@ -249,7 +249,7 @@ GenericDialog *file_util_warning_dialog(const gchar *heading, const gchar *messa
 	generic_dialog_add_button(gd, GQ_ICON_OK, "OK", file_util_warning_dialog_ok_cb, TRUE);
 	if (options->place_dialogs_under_mouse)
 		{
-		gtk_window_set_position(GTK_WINDOW(gd->dialog), GTK_WIN_POS_MOUSE);
+		gq_gtk_window_set_position(GTK_WINDOW(gd->dialog), GTK_WIN_POS_MOUSE);
 		}
 	gtk_widget_show(gd->dialog);
 

@@ -4613,7 +4613,7 @@ DupeWindow *dupe_window_new()
 	if (lw && options->save_window_positions)
 		{
 		gtk_window_set_default_size(GTK_WINDOW(dw->window), lw->options.dupe_window.w, lw->options.dupe_window.h);
-		gtk_window_move(GTK_WINDOW(dw->window), lw->options.dupe_window.x, lw->options.dupe_window.y);
+		gq_gtk_window_move(GTK_WINDOW(dw->window), lw->options.dupe_window.x, lw->options.dupe_window.y);
 		}
 	else
 		{

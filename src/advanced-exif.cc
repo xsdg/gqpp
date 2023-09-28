@@ -443,7 +443,7 @@ GtkWidget *advanced_exif_new(LayoutWindow *lw)
 	gtk_window_resize(GTK_WINDOW(ew->window), lw->options.advanced_exif_window.w, lw->options.advanced_exif_window.h);
 	if (lw->options.advanced_exif_window.x != 0 && lw->options.advanced_exif_window.y != 0)
 		{
-		gtk_window_move(GTK_WINDOW(ew->window), lw->options.advanced_exif_window.x, lw->options.advanced_exif_window.y);
+		gq_gtk_window_move(GTK_WINDOW(ew->window), lw->options.advanced_exif_window.x, lw->options.advanced_exif_window.y);
 		}
 
 	g_object_set_data(G_OBJECT(ew->window), "advanced_exif_data", ew);

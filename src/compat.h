@@ -38,7 +38,9 @@
 	#define gq_gtk_widget_destroy(widget) gtk_window_destroy(widget)
 	#define gq_gtk_widget_queue_draw_area(widget, x, y, width, height) gtk_widget_queue_draw(widget);
 	#define gq_gtk_widget_show_all(widget) ;
+	#define gq_gtk_window_move(window, x, y) ;
 	#define gq_gtk_window_set_keep_above(window, setting) ;
+	#define gq_gtk_window_set_position(window, position) ;
 
 	void gq_gtk_container_add(GtkWidget *container, GtkWidget *widget);
 #else
@@ -50,7 +52,9 @@
 	#define gq_gtk_widget_destroy(widget) gtk_widget_destroy(widget)
 	#define gq_gtk_widget_queue_draw_area(widget, x, y, width, height) gtk_widget_queue_draw_area(widget, x, y, width, height);
 	#define gq_gtk_widget_show_all(widget) gtk_widget_show_all(widget)
+	#define gq_gtk_window_move(window, x, y) gtk_window_move(window, x, y)
 	#define gq_gtk_window_set_keep_above(window, setting) gtk_window_set_keep_above(window, setting)
+	#define gq_gtk_window_set_position(window, position) gtk_window_set_position(window, position)
 
 	void gq_gtk_container_add(GtkWidget *container, GtkWidget *widget);
 #endif

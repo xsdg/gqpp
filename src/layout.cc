@@ -1673,7 +1673,7 @@ static void layout_tools_setup(LayoutWindow *lw, GtkWidget *tools, GtkWidget *fi
 		if (options->save_window_positions)
 			{
 			gtk_window_set_default_size(GTK_WINDOW(lw->tools), lw->options.float_window.w, lw->options.float_window.h);
-			gtk_window_move(GTK_WINDOW(lw->tools), lw->options.float_window.x, lw->options.float_window.y);
+			gq_gtk_window_move(GTK_WINDOW(lw->tools), lw->options.float_window.x, lw->options.float_window.y);
 			}
 		else
 			{
@@ -2667,7 +2667,7 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 	if (options->save_window_positions || isfile(default_path))
 		{
 		gtk_window_set_default_size(GTK_WINDOW(lw->window), lw->options.main_window.w, lw->options.main_window.h);
-		gtk_window_move(GTK_WINDOW(lw->window), lw->options.main_window.x, lw->options.main_window.y);
+		gq_gtk_window_move(GTK_WINDOW(lw->window), lw->options.main_window.x, lw->options.main_window.y);
 		if (lw->options.main_window.maximized) gtk_window_maximize(GTK_WINDOW(lw->window));
 
 		g_idle_add(move_window_to_workspace_cb, lw);
