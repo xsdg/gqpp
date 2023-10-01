@@ -598,7 +598,7 @@ static void tip_show(CollectTable *ct)
 
 static void tip_hide(CollectTable *ct)
 {
-	if (ct->tip_window) g_object_unref(ct->tip_window);
+	if (ct->tip_window) gq_gtk_widget_destroy(ct->tip_window);
 	ct->tip_window = nullptr;
 }
 
