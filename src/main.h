@@ -119,7 +119,7 @@
 				"%formatted.Camera:40%|%formatted.Flash%\n"            \
 				"%formatted.star_rating%"
 
-#define GQ_LINK_STR "↗"
+#define GQ_LINK_STR "↩"
 #include "typedefs.h"
 #include "debug.h"
 #include "options.h"
