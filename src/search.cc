@@ -163,6 +163,7 @@ struct SearchData
 	gchar *search_name;
 	GRegex *search_name_regex;
 	gboolean   search_name_match_case;
+	gboolean   search_name_symbolic_link;
 	gint64 search_size;
 	gint64 search_size_end;
 	gint   search_date_y;
@@ -1958,38 +1959,41 @@ static gboolean search_file_next(SearchData *sd)
 		tested = TRUE;
 		match = FALSE;
 
-		if (sd->match_name == SEARCH_MATCH_NAME_EQUAL)
+		if (!sd->search_name_symbolic_link || (sd->search_name_symbolic_link && islink(fd->path)))
 			{
-			if (sd->search_name_match_case)
+			if (sd->match_name == SEARCH_MATCH_NAME_EQUAL)
 				{
-				match = (strcmp(fd->name, sd->search_name) == 0);
+				if (sd->search_name_match_case)
+					{
+					match = (strcmp(fd->name, sd->search_name) == 0);
+					}
+				else
+					{
+					match = (g_ascii_strcasecmp(fd->name, sd->search_name) == 0);
+					}
 				}
-			else
+			else if (sd->match_name == SEARCH_MATCH_NAME_CONTAINS || sd->match_name == SEARCH_MATCH_PATH_CONTAINS)
 				{
-				match = (g_ascii_strcasecmp(fd->name, sd->search_name) == 0);
-				}
-			}
-		else if (sd->match_name == SEARCH_MATCH_NAME_CONTAINS || sd->match_name == SEARCH_MATCH_PATH_CONTAINS)
-			{
-			const gchar *fd_name_or_path;
-			if (sd->match_name == SEARCH_MATCH_NAME_CONTAINS)
-				{
-				fd_name_or_path = fd->name;
-				}
-			else
-				{
-				fd_name_or_path = fd->path;
-				}
-			if (sd->search_name_match_case)
-				{
-				match = g_regex_match(sd->search_name_regex, fd_name_or_path, static_cast<GRegexMatchFlags>(0), nullptr);
-				}
-			else
-				{
-				/* sd->search_name is converted in search_start() */
-				gchar *haystack = g_utf8_strdown(fd_name_or_path, -1);
-				match = g_regex_match(sd->search_name_regex, haystack, static_cast<GRegexMatchFlags>(0), nullptr);
-				g_free(haystack);
+				const gchar *fd_name_or_path;
+				if (sd->match_name == SEARCH_MATCH_NAME_CONTAINS)
+					{
+					fd_name_or_path = fd->name;
+					}
+				else
+					{
+					fd_name_or_path = fd->path;
+					}
+				if (sd->search_name_match_case)
+					{
+					match = g_regex_match(sd->search_name_regex, fd_name_or_path, static_cast<GRegexMatchFlags>(0), nullptr);
+					}
+				else
+					{
+					/* sd->search_name is converted in search_start() */
+					gchar *haystack = g_utf8_strdown(fd_name_or_path, -1);
+					match = g_regex_match(sd->search_name_regex, haystack, static_cast<GRegexMatchFlags>(0), nullptr);
+					g_free(haystack);
+					}
 				}
 			}
 		}
@@ -3415,6 +3419,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	gtk_widget_show(combo);
 	pref_checkbox_new_int(hbox, _("Match case"),
 			      sd->search_name_match_case, &sd->search_name_match_case);
+	pref_checkbox_new_int(hbox, _("Symbolic link"), sd->search_name_symbolic_link, &sd->search_name_symbolic_link);
 	gtk_widget_set_tooltip_text(GTK_WIDGET(combo), "When set to \"contains\" or \"path contains\", this field uses Perl Compatible Regular Expressions.\ne.g. use \n.*\\.jpg\n and not \n*.jpg\n\nSee the Help file.");
 
 	/* Search for file size */

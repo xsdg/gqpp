@@ -83,7 +83,9 @@
           <guilabel>File</guilabel>
         </term>
         <listitem>
-          If "name is" is selected, the search will match if the text exactly matches the file name. If "name contains" or "path contains" is selected, the search will match if the entered text appears within the file name or path.<para/>The text comparison can be made to be case sensitive by enabling the Match case checkbox.
+          If "name is" is selected, the search will match if the text exactly matches the file name. If "name contains" or "path contains" is selected, the search will match if the entered text appears within the file name or path.
+          <para/>The text comparison can be made to be case sensitive by enabling the Match case checkbox.
+          <para/>The search can be restricted to symbolic links by enabling the Symbolic Link checkbox.
           <para />
           If "contains" or "path contains" is selected,
           <link linkend="GuideReferencePCRE">Perl Compatible Regular Expressions</link>
