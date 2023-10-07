@@ -17,7 +17,7 @@ jobs:
         directory: build
         setup-options: -Darchive=disabled -Dcms=disabled -Ddevel=disabled -Ddoxygen=disabled -Ddjvu=disabled -Devince=disabled -Dexecinfo=disabled -Dexiv2=disabled -Dgit=disabled -Dgps-map=disabled -Dheif=disabled -Dj2k=disabled -Djpeg=disabled -Djpegxl=disabled -Dlibraw=disabled -Dlua=disabled -Dpandoc=disabled -Dpdf=disabled -Dspell=disabled -Dtiff=disabled -Dvideothumbnailer=disabled -Dyelp-build=disabled
         options: --verbose
-        meson-version: 0.56.2
+        meson-version: 1.0.0
     - name: Upload logs
       uses: actions/upload-artifact@v2
       if: always()

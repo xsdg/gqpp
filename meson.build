@@ -44,7 +44,7 @@ project(
     'cpp',
     version : run_command('./version.sh', check : true).stdout().strip(),
     license : ['GPL-2.0-or-later'],
-    meson_version : '>=1.0.1',
+    meson_version : '>=1.0.0',
     default_options : ['cpp_std=c++14', 'warning_level=3', 'buildtype=debugoptimized', 'cpp_link_args=-rdynamic']
 )
 
