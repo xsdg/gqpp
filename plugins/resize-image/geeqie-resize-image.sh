@@ -1,0 +1,1 @@
+geeqie-resize-image

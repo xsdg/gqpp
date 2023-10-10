@@ -100,4 +100,76 @@
       menu.
     </para>
   </section>
+  <section id="downsize">
+    <title>Resize image</title>
+    <para>Reduce the size of an image.</para>
+    <table frame="all">
+      <tgroup cols="2" rowsep="1" colsep="1">
+        <thead>
+          <row>
+            <entry>Option</entry>
+            <entry>Meaning</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry>Required size kB</entry>
+            <entry>desired output file size in kilobytes</entry>
+          </row>
+          <row>
+            <entry>Tolerance %</entry>
+            <entry>tolerance or allowed size of result greater than desired size expressed as percent of desired</entry>
+          </row>
+          <row>
+            <entry>Max. iterations</entry>
+            <entry>maximum number of iterations to stop</entry>
+          </row>
+          <row>
+            <entry>Copy if unchanged</entry>
+            <entry>
+              copy to output when not downsizing and no image
+              format change
+            </entry>
+          </row>
+          <row>
+            <entry>Strip metadata</entry>
+            <entry>strip all meta data</entry>
+          </row>
+          <row>
+            <entry>Show computation</entry>
+            <entry>show the values of each iteration</entry>
+          </row>
+          <row>
+            <entry>Open output file in Geeqie</entry>
+            <entry>on successful conversion set Geeqie focus to the file</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <para>
+      This plugin uses the Downsize script. The original may be found
+      <ulink url="http://www.fmwconcepts.com/imagemagick/downsize/index.php">here.</ulink>
+      It is subject to the following copyright:
+    </para>
+    <programlisting>
+      Copyright © Fred Weinhaus
+
+      My scripts are available free of charge for non-commercial (non-profit) use, ONLY.
+
+      For use of my scripts in commercial (for-profit) environments or non-free applications,
+      please contact me (Fred Weinhaus) for licensing arrangements. My email address is fmw at
+      alink dot net.
+
+      If you:
+      1) redistribute,
+      2) incorporate any of these scripts into other free applications or
+      3) reprogram them in another scripting language, then you must contact me for permission,
+      especially if the result might be used in a commercial or for-profit environment.
+
+      Usage, whether stated or not in the script, is restricted to the above licensing
+      arrangements. It is also subject, in a subordinate manner, to the ImageMagick license, which
+      can be found at: http://www.imagemagick.org/script/license.php
+    </programlisting>
+    <para />
+  </section>
 </section>

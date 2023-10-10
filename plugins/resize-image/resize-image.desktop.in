@@ -1,0 +1,16 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Resize image
+Comment=Downsize an image
+
+Exec=geeqie-resize-image %f
+
+# Desktop files that are usable only in Geeqie should be marked like this:
+Categories=X-Geeqie;
+OnlyShowIn=X-Geeqie;
+
+# It can be made verbose
+#X-Geeqie-Verbose=true
+
+Icon=geeqie
