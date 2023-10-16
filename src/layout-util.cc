@@ -3219,13 +3219,21 @@ void layout_toolbar_clear(LayoutWindow *lw, ToolbarType type)
 	lw->toolbar_merge_id[type] = gtk_ui_manager_new_merge_id(lw->ui_manager);
 }
 
+/* Used to create a unique name for toolbar separators */
+static gint i = 0;
+
 void layout_toolbar_add(LayoutWindow *lw, ToolbarType type, const gchar *action)
 {
 	const gchar *path = nullptr;
+	gchar *separator_name;
 
 	if (!action || !lw->ui_manager) return;
 
-	if (g_list_find_custom(lw->toolbar_actions[type], action, reinterpret_cast<GCompareFunc>(strcmp))) return;
+	/* There can be multiple separators, but only a single of others */
+	if (g_strcmp0(action, "Separator") != 0)
+		{
+		if (g_list_find_custom(lw->toolbar_actions[type], action, reinterpret_cast<GCompareFunc>(strcmp))) return;
+		}
 
 	switch (type)
 		{
@@ -3261,7 +3269,22 @@ void layout_toolbar_add(LayoutWindow *lw, ToolbarType type, const gchar *action)
 			gtk_action_group_add_actions(lw->action_group_editors, &entry, 1, lw);
 			}
 		}
-	gtk_ui_manager_add_ui(lw->ui_manager, lw->toolbar_merge_id[type], path, action, action, GTK_UI_MANAGER_TOOLITEM, FALSE);
+
+	if (g_strcmp0(action, "Separator") == 0)
+		{
+		/* gtk_ui_manager requires items to have unique names */
+		i++;
+		separator_name = g_strdup_printf("separator_%i",i);
+
+		gtk_ui_manager_add_ui(lw->ui_manager, lw->toolbar_merge_id[type], path, separator_name, NULL, GTK_UI_MANAGER_SEPARATOR, FALSE);
+
+		g_free(separator_name);
+		}
+	else
+		{
+		gtk_ui_manager_add_ui(lw->ui_manager, lw->toolbar_merge_id[type], path, action, action, GTK_UI_MANAGER_TOOLITEM, FALSE);
+		}
+
 	lw->toolbar_actions[type] = g_list_append(lw->toolbar_actions[type], g_strdup(action));
 }
 

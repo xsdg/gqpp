@@ -308,6 +308,12 @@ static void toolbar_menu_add_popup(GtkWidget *, gpointer data)
 
 	menu = popup_menu_short_lived();
 
+	item = menu_item_add_stock(menu, "Separator", "Separator", G_CALLBACK(toolbarlist_add_cb), toolbarlist);
+	g_object_set_data(G_OBJECT(item), "toolbar_add_name", g_strdup("Separator"));
+	g_object_set_data(G_OBJECT(item), "toolbar_add_label", g_strdup("Separator"));
+	g_object_set_data(G_OBJECT(item), "toolbar_add_stock_id", g_strdup("no-icon"));
+	g_signal_connect(G_OBJECT(item), "destroy", G_CALLBACK(toolbar_button_free), item);
+
 	list = get_action_items();
 
 	work = list;
@@ -401,7 +407,15 @@ static void toolbarlist_populate(LayoutWindow *lw, GtkBox *box, ToolbarType bar)
 			{
 			get_toolbar_item(name, &label, &icon);
 			}
-		toolbarlist_add_button(name, label, icon, box);
+
+		if (g_strcmp0(name, "Separator") != 0)
+			{
+			toolbarlist_add_button(name, label, icon, box);
+			}
+		else
+			{
+			toolbarlist_add_button(name, name, "no-icon", box);
+			}
 		}
 }
 
