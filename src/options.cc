@@ -24,6 +24,7 @@
 #include "image-overlay.h" /* OSD_SHOW_NOTHING */
 #include "layout.h"
 #include "layout-image.h"
+#include "misc.h"
 #include "rcfile.h"
 #include "ui-bookmark.h"
 #include "ui-fileops.h"
@@ -216,7 +217,7 @@ ConfOptions *init_options(ConfOptions *options)
 	options->printer.image_text_position = 1;
 	options->printer.page_text_position = 3;
 
-	options->threads.duplicates = -1;
+	options->threads.duplicates = get_cpu_cores() - 1;
 
 	options->disabled_plugins = nullptr;
 
