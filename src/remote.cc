@@ -1809,10 +1809,11 @@ void remote_help()
 			{
 			s_opt_param = g_strdup(remote_commands[i].opt_s  ? remote_commands[i].opt_s : "" );
 			l_opt_param = g_strconcat(remote_commands[i].opt_l, remote_commands[i].parameter, NULL);
-			printf_term(FALSE, "  %-4s %-40s%-s\n",
-					s_opt_param,
-					l_opt_param,
-					_(remote_commands[i].description));
+
+			if (g_str_has_prefix(l_opt_param, "--"))
+				{
+				printf_term(FALSE, "  %-4s %-40s%-s\n", s_opt_param, l_opt_param, _(remote_commands[i].description));
+				}
 			g_free(s_opt_param);
 			g_free(l_opt_param);
 			}

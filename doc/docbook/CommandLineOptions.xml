@@ -7,8 +7,8 @@
 <refmeta>
 <refentrytitle>GEEQIE</refentrytitle>
 <manvolnum>1</manvolnum>
-<refmiscinfo class='source'>August 2023</refmiscinfo>
-<refmiscinfo class='manual'>Geeqie 2.1+git20230810-c41eb43c GTK3</refmiscinfo>
+<refmiscinfo class='source'>October 2023</refmiscinfo>
+<refmiscinfo class='manual'>Geeqie 2.1+git20231016-1a72d946 GTK3</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>Geeqie</refname>
@@ -30,7 +30,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
 
 <para>Generated for version:</para>
 
-<para>Geeqie 2.1+git20230810-c41eb43c</para>
+<para>Geeqie 2.1+git20231016-1a72d946</para>
 
 <refsect2 id='valid_options'><title>Valid options:</title>
 <variablelist remap='TP'>
@@ -242,19 +242,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term>file:&lt;FILE&gt;|&lt;URL&gt;</term>
-  <listitem>
-<para>open FILE or URL, bring Geeqie window to the top</para>
-  </listitem>
-  </varlistentry>
-  <varlistentry>
   <term><emphasis role='strong' remap='B'>--File</emphasis>:&lt;FILE&gt;|&lt;URL&gt;</term>
-  <listitem>
-<para>open FILE or URL, do not bring Geeqie window to the top</para>
-  </listitem>
-  </varlistentry>
-  <varlistentry>
-  <term>File:&lt;FILE&gt;|&lt;URL&gt;</term>
   <listitem>
 <para>open FILE or URL, do not bring Geeqie window to the top</para>
   </listitem>
@@ -410,12 +398,6 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term>raise</term>
-  <listitem>
-<para>bring the Geeqie window to the top</para>
-  </listitem>
-  </varlistentry>
-  <varlistentry>
   <term><emphasis role='strong' remap='B'>--selection-add</emphasis>:[&lt;FILE&gt;]</term>
   <listitem>
 <para>adds the current file (or the specified file) to the current selection</para>
@@ -477,12 +459,6 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   </varlistentry>
   <varlistentry>
   <term><emphasis role='strong' remap='B'>--view</emphasis>:&lt;FILE&gt;</term>
-  <listitem>
-<para>open FILE in new window</para>
-  </listitem>
-  </varlistentry>
-  <varlistentry>
-  <term>view:&lt;FILE&gt;</term>
   <listitem>
 <para>open FILE in new window</para>
 
