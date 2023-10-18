@@ -559,6 +559,11 @@ static void write_global_attributes(GString *outstr, gint indent)
 	/* GPU - see main.cc */
 	WRITE_NL(); WRITE_BOOL(*options, override_disable_gpu);
 	WRITE_SEPARATOR();
+
+	/* Alternate similarity algorithm */
+	WRITE_NL(); WRITE_BOOL(*options, alternate_similarity_algorithm.enabled);
+	WRITE_NL(); WRITE_BOOL(*options, alternate_similarity_algorithm.grayscale);
+	WRITE_SEPARATOR();
 }
 
 static void write_color_profile(GString *outstr, gint indent)
@@ -1049,6 +1054,10 @@ static gboolean load_global_params(const gchar **attribute_names, const gchar **
 
 		/* GPU - see main.cc */
 		if (READ_BOOL(*options, override_disable_gpu)) continue;
+
+		/* Alternative similarity algorithm */
+		if (READ_BOOL(*options, alternate_similarity_algorithm.enabled)) continue;
+		if (READ_BOOL(*options, alternate_similarity_algorithm.grayscale)) continue;
 
 		/* Dummy options */
 		if (READ_DUMMY(*options, image.dither_quality, "deprecated since 2012-08-13")) continue;

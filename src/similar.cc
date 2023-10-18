@@ -49,26 +49,6 @@
  * find images that have been re-saved to other formats, dimensions, or compression.
  */
 
-/*
- * The experimental (alternate) algorithm is only for testing of new techniques to
- * improve the result, and hopes to reduce false positives.
- */
-
-static gboolean alternate_enabled = FALSE;
-
-void image_sim_alternate_set(gboolean enable)
-{
-	alternate_enabled = enable;
-}
-
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-function"
-gboolean image_sim_alternate_enabled_unused(void)
-{
-	return alternate_enabled;
-}
-#pragma GCC diagnostic pop
-
 ImageSimilarityData *image_sim_new()
 {
 	auto sd = g_new0(ImageSimilarityData, 1);
@@ -146,22 +126,17 @@ static void image_sim_channel_norm(guint8 *pix, gint len)
 }
 
 /*
- * define these to enable various components of the experimental compare functions
- *
- * Convert the thumbprint to greyscale (ignore all color information when comparing)
- *  #define ALTERNATE_USES_GREYSCALE 1
- *
- * Take into account the difference in change from one pixel to the next
- *  #define ALTERNATE_INCLUDE_COMPARE_CHANGE 1
+ * The Alternate algorithm is only for testing of new techniques to
+ * improve the result, and hopes to reduce false positives.
  */
-
 void image_sim_alternate_processing(ImageSimilarityData *sd)
 {
-#ifdef ALTERNATE_USES_GREYSCALE
 	gint i;
-#endif
 
-	if (!alternate_enabled) return;
+	if (!options->alternate_similarity_algorithm.enabled)
+		{
+		return;
+		}
 
 	image_sim_channel_norm(sd->avg_r, sizeof(sd->avg_r));
 	image_sim_channel_norm(sd->avg_g, sizeof(sd->avg_g));
@@ -171,15 +146,16 @@ void image_sim_alternate_processing(ImageSimilarityData *sd)
 	image_sim_channel_equal(sd->avg_g, sizeof(sd->avg_g));
 	image_sim_channel_equal(sd->avg_b, sizeof(sd->avg_b));
 
-#ifdef ALTERNATE_USES_GREYSCALE
-	for (i = 0; i < sizeof(sd->avg_r); i++)
+	if (options->alternate_similarity_algorithm.grayscale)
 		{
-		guint8 n;
+		for (i = 0; i < (gint)sizeof(sd->avg_r); i++)
+			{
+			guint8 n;
 
-		n = (guint8)((gint)(sd->avg_r[i] + sd->avg_g[i] + sd->avg_b[i]) / 3);
-		sd->avg_r[i] = sd->avg_g[i] = sd->avg_b[i] = n;
+			n = (guint8)((gint)(sd->avg_r[i] + sd->avg_g[i] + sd->avg_b[i]) / 3);
+			sd->avg_r[i] = sd->avg_g[i] = sd->avg_b[i] = n;
+			}
 		}
-#endif
 }
 
 gint mround(gdouble x)
@@ -296,7 +272,6 @@ ImageSimilarityData *image_sim_new_from_pixbuf(GdkPixbuf *pixbuf)
 	return sd;
 }
 
-#ifdef ALTERNATE_INCLUDE_COMPARE_CHANGE
 static gdouble alternate_image_sim_compare_fast(ImageSimilarityData *a, ImageSimilarityData *b, gdouble min)
 {
 	gint sim;
@@ -331,7 +306,6 @@ static gdouble alternate_image_sim_compare_fast(ImageSimilarityData *a, ImageSim
 
 	return (1.0 - ((gdouble)sim / (255.0 * 1024.0 * 4.0)) );
 }
-#endif
 
 gdouble image_sim_compare_transfo(ImageSimilarityData *a, ImageSimilarityData *b, gchar transfo)
 {
@@ -387,9 +361,10 @@ gdouble image_sim_compare_fast_transfo(ImageSimilarityData *a, ImageSimilarityDa
 	gint i1, i2, *i;
 	gint j1, j2, *j;
 
-#ifdef ALTERNATE_INCLUDE_COMPARE_CHANGE
-	if (alternate_enabled) return alternate_image_sim_compare_fast(a, b, min);
-#endif
+	if (options->alternate_similarity_algorithm.enabled)
+		{
+		return alternate_image_sim_compare_fast(a, b, min);
+		}
 
 	if (!a || !b || !a->filled || !b->filled) return 0.0;
 

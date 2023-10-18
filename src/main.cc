@@ -503,12 +503,6 @@ static void parse_command_line(gint argc, gchar *argv[])
 				printf_term(FALSE, "%s %s GTK%d\n", GQ_APPNAME, VERSION, gtk_major_version);
 				exit(0);
 				}
-			else if (strcmp(cmd_line, "--alternate") == 0)
-				{
-				/* enable faster experimental algorithm */
-				log_printf("Alternate similarity algorithm enabled\n");
-				image_sim_alternate_set(TRUE);
-				}
 			else if (strcmp(cmd_line, "-h") == 0 ||
 				 strcmp(cmd_line, "--help") == 0)
 				{
@@ -523,7 +517,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 				print_term(FALSE, _("  -h, --help                       show this message\n"));
 				print_term(FALSE, _("  -l, --list [files] [collections] open collection window for command line\n"));
 				print_term(FALSE, _("  -n, --new-instance               open a new instance of Geeqie\n"));
-				print_term(FALSE, _("  -o:, --log-file:<file>     save log data to file\n"));
+				print_term(FALSE, _("  -o:, --log-file:<file>           save log data to file\n"));
 				print_term(FALSE, _("  -r, --remote                     send following commands to open window\n"));
 				print_term(FALSE, _("  -rh, --remote-help               print remote command list\n"));
 				print_term(FALSE, _("  -s, --slideshow                  start in slideshow mode\n"));
@@ -533,14 +527,9 @@ static void parse_command_line(gint argc, gchar *argv[])
 				print_term(FALSE, _("  +w, --show-log-window            show log window\n"));
 #ifdef DEBUG
 				print_term(FALSE, _("      --debug[=level]              turn on debug output\n"));
-				print_term(FALSE, _("  -g:, --grep:<regexp>     filter debug output\n"));
+				print_term(FALSE, _("  -g:, --grep:<regexp>             filter debug output\n"));
 #endif
 
-#if 0
-				/* these options are not officially supported!
-				 * only for testing new features, no need to translate them */
-				print_term(FALSE, "  --alternate                use alternate similarity algorithm\n");
-#endif
 				print_term(FALSE, "\n");
 
 				remote_help();

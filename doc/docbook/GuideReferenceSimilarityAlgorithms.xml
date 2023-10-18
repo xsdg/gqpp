@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<section id="GuideReferenceSimilarityAlgorithms">
+  <title id="titleGuideReferenceSimilarityAlgorithms">Similarity Algorithms</title>
+  <para>
+    This function is intended to find images with similar color content. For example when an image was saved at different compression levels or dimensions (scaled down/up) the contents are similar, but these files do not match by file size, dimensions, or checksum.
+    <para />
+    A 32 x 32 array is created for each image. Imagine the image cut into 1024 rectangles, 32 across and 32 down.
+    <para />
+    For each array element, the average value of all the red and the green and the blue pixels is computed and stored in the array. Therefore the array represents the average color of each corresponding part of the image.
+    <para />
+    This data is stored in a file with the same name is the image and with the extension .sim. It is stored in the same location as thumbnails. If many images are to be compered, run-time is reduced by having these .sim files already created. This can be done via Edit/Cache Maintenance or by the command line instruction:
+    <code>geeqie --cache-maintenance &lt;path&gt;</code>
+  </para>
+  <section id="standard">
+    <title>Standard Algorithm</title>
+    <para>
+      To compare two images, each array element of each image is compared in turn. The computed value is the percent match of all elements of the two images. For this, simple comparisons are used - basically the value is an average of the corresponding array differences.
+      <para />
+      The value computed is in the range 0% to 100%.
+      <literallayout>
+        100% for exact matches (an image is compared to itself)
+        0% for exact opposite images (compare an all black to an all white image)
+      </literallayout>
+      Generally only a match of >85% is significant at all, and >95% is useful to find images that have been re-saved to other formats, dimensions, or compression.
+    </para>
+    <para>If the Ignore Orientation checkbox on the Duplicates window is selected, images are also checked for 90°, 180°, 270°, rotations and mirror and flip. This will increase run-time.</para>
+  </section>
+  <section id="alternate">
+    <title>Alternate Algorithm</title>
+    <para>
+      The alternate algorithm can be enabled on the Advanced tab of Preferences.
+      <para />
+      It does not check for rotations, mirror or flip.
+      <para />
+      After comparing two array elements of two images, the difference from the preceding element comparison is included in the computation.
+      <para />
+      There is an additional option to reduce the fingerprint to grayscale before comparisons are made.
+    </para>
+  </section>
+</section>

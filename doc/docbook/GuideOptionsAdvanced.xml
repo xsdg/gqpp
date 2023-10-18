@@ -92,4 +92,8 @@
     <title>Thread Pools</title>
     <para>This option will limit the number of threads (cores) that are used when performing a duplicate image search. A value of <code>0</code> means use all available threads. This will give the fastest processing time, but will slow other processes including user input response time.</para> 
 </section>
+<section id="AlternateAlgorithm">
+    <title>Alternate Algorithm</title>
+    <para><link linkend="GuideReferenceSimilarityAlgorithms">Alternate Similarity Algorithm</link></para>
+</section>
 </section>

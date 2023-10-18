@@ -465,6 +465,9 @@ static void config_window_apply()
 
 	options->threads.duplicates = c_options->threads.duplicates > 0 ? c_options->threads.duplicates : -1;
 
+	options->alternate_similarity_algorithm.enabled = c_options->alternate_similarity_algorithm.enabled;
+	options->alternate_similarity_algorithm.grayscale = c_options->alternate_similarity_algorithm.grayscale;
+
 #ifdef DEBUG
 	set_debug_level(debug_c);
 #endif
@@ -3838,18 +3841,20 @@ static gint extension_sort_cb(gconstpointer a, gconstpointer b)
 
 static void config_tab_advanced(GtkWidget *notebook)
 {
-	GtkWidget *vbox;
-	GtkWidget *group;
-	GSList *formats_list;
-	GList *extensions_list = nullptr;
 	gchar **extensions;
-	GtkWidget *tabcomp;
 	GdkPixbufFormat *fm;
 	gint i;
+	GList *extensions_list = nullptr;
+	GSList *formats_list;
 	GString *types_string = g_string_new(nullptr);
-	GtkWidget *types_string_label;
-	GtkWidget *threads_string_label;
+	GtkWidget *alternate_checkbox;
 	GtkWidget *dupes_threads_spin;
+	GtkWidget *group;
+	GtkWidget *subgroup;
+	GtkWidget *tabcomp;
+	GtkWidget *threads_string_label;
+	GtkWidget *types_string_label;
+	GtkWidget *vbox;
 
 	vbox = scrolled_notebook_page(notebook, _("Advanced"));
 	group = pref_group_new(vbox, FALSE, _("External preview extraction"), GTK_ORIENTATION_VERTICAL);
@@ -3929,6 +3934,20 @@ static void config_tab_advanced(GtkWidget *notebook)
 
 	dupes_threads_spin = pref_spin_new_int(vbox, _("Duplicate check:"), _("max. threads"), 0, get_cpu_cores(), 1, options->threads.duplicates, &c_options->threads.duplicates);
 	gtk_widget_set_tooltip_markup(dupes_threads_spin, _("Set to 0 for unlimited"));
+
+	pref_spacer(group, PREF_PAD_GROUP);
+
+	pref_line(vbox, PREF_PAD_SPACE);
+
+	group = pref_group_new(vbox, FALSE, _("Alternate similarity alogorithm"), GTK_ORIENTATION_VERTICAL);
+
+	alternate_checkbox = pref_checkbox_new_int(group, _("Enable alternate similarity algorithm"), options->alternate_similarity_algorithm.enabled, &c_options->alternate_similarity_algorithm.enabled);
+
+	subgroup = pref_box_new(group, FALSE, GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
+	pref_checkbox_link_sensitivity(alternate_checkbox, subgroup);
+
+	alternate_checkbox = pref_checkbox_new_int(subgroup, _("Use grayscale"), options->alternate_similarity_algorithm.grayscale, &c_options->alternate_similarity_algorithm.grayscale);
+	gtk_widget_set_tooltip_text(alternate_checkbox, _("Reduce fingerprint to grayscale"));
 }
 
 /* stereo tab */
