@@ -2408,6 +2408,7 @@ static gboolean dupe_check_cb(gpointer data)
 {
 	auto dw = static_cast<DupeWindow *>(data);
 	DupeSearchMatch *search_match_list_item;
+	gchar *progress_text;
 
 	if (!dw->idle_id)
 		{
@@ -2503,7 +2504,11 @@ static gboolean dupe_check_cb(gpointer data)
 			{
 			if( dw->thread_count < dw->queue_count)
 				{
-				dupe_window_update_progress(dw, _("Comparing..."), 0.0, FALSE);
+				progress_text = g_strdup_printf("%s %d%s%d", _("Comparing"), dw->thread_count, "/", dw->queue_count);
+
+				dupe_window_update_progress(dw, progress_text, (gdouble)dw->thread_count / dw->queue_count, TRUE);
+
+				g_free(progress_text);
 
 				return G_SOURCE_CONTINUE;
 				}
