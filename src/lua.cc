@@ -361,8 +361,7 @@ gchar *lua_callvalue(FileData *fd, const gchar *file, const gchar *function)
 	std::unique_ptr<gchar, decltype(&g_free)> path{g_build_filename(get_rc_dir(), "lua", file, NULL), g_free};
 	if (access(path.get(), R_OK) == -1)
 		{
-		/** @FIXME what is the correct way to find the scripts folder? */
-		path.reset(g_build_filename("/usr/local/lib", GQ_APPNAME_LC, file, NULL));
+		path.reset(g_build_filename(gq_bindir, file, NULL));
 		if (access(path.get(), R_OK) == -1)
 			{
 			return g_strdup("");
