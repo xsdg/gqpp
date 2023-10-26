@@ -1,5 +1,5 @@
-geeqie.desktop.in
 org.geeqie.Geeqie.appdata.xml.in
+org.geeqie.Geeqie.desktop.in
 plugins/camera-import/camera-import.desktop.in
 plugins/export-jpeg/export-jpeg.desktop.in
 plugins/image-crop/image-crop.desktop.in

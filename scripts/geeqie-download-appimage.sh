@@ -201,7 +201,7 @@ fi
 
 if [ "$desktop" -eq 1 ]
 then
-	if [ -f "$HOME/Desktop/geeqie.desktop" ]
+	if [ -f "$HOME/Desktop/org.geeqie.Geeqie.desktop" ]
 	then
 		printf "Desktop file already exists\n"
 
@@ -220,11 +220,11 @@ then
 	cd "$tmp_dir" || exit 1
 
 	app=$(find "$HOME/bin/" -name "Geeqie*latest*\.AppImage" -print | sort --reverse | head -1)
-	$app --appimage-extract "usr/local/share/applications/geeqie.desktop" > /dev/null
+	$app --appimage-extract "usr/local/share/applications/org.geeqie.Geeqie.desktop" > /dev/null
 	$app --appimage-extract "usr/local/share/pixmaps/geeqie.png" > /dev/null
-	xdg-desktop-icon install --novendor "squashfs-root/usr/local/share/applications/geeqie.desktop"
+	xdg-desktop-icon install --novendor "squashfs-root/usr/local/share/applications/org.geeqie.Geeqie.desktop"
 	xdg-icon-resource install --novendor --size 48 "squashfs-root/usr/local/share/pixmaps/geeqie.png"
-	xdg-desktop-menu install --novendor "squashfs-root/usr/local/share/applications/geeqie.desktop"
+	xdg-desktop-menu install --novendor "squashfs-root/usr/local/share/applications/org.geeqie.Geeqie.desktop"
 	rm --recursive --force "$tmp_dir"
 
 	exit 0

@@ -50,7 +50,7 @@ meson compile geeqie-update-po
 ./scripts/web-help.sh
 ```
 
-* Copy `geeqie.desktop` to `<location of local geeqie.github.io>/`
+* Copy `org.geeqie.Geeqie.desktop` to `<location of local geeqie.github.io>/`
 * Copy `org.geeqie.Geeqie.appdata.xml` to `<location of local geeqie.github.io>/`
 * Push changes to `geeqie.github.io`
 

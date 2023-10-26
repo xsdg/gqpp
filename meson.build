@@ -25,7 +25,7 @@
 # bindir        /usr/local/bin                          geeqie executable
 # gq_bindir     /usr/local/lib/geeqie               *   plugins scripts
 # datadir       /usr/local/share/
-#               /usr/local/share/applications           geeqie.desktop
+#               /usr/local/share/applications           org.geeqie.Geeqie.desktop
 # [gq_]appdir   /usr/local/share/geeqie/            *   template.desktop
 # desktopdir    /usr/local/share/geeqie/applications    plugin desktop files
 # appdatadir    /usr/local/share/metainfo               org.geeqie.Geeqie.appdata.xml
@@ -615,8 +615,8 @@ install_data('geeqie.png', install_dir : icondir)
 install_data('geeqie.1', install_dir : mandir1)
 
 i18n.merge_file(
-    input : 'geeqie.desktop.in',
-    output : 'geeqie.desktop',
+    input : 'org.geeqie.Geeqie.desktop.in',
+    output : 'org.geeqie.Geeqie.desktop',
     type : 'desktop',
     po_dir : podir,
     install : true,

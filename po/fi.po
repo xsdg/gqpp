@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-20 12:31+0100\n"
-"PO-Revision-Date: 2006-10-14 02:26+0300\n"
-"Last-Translator: Lauri Nurmi <lanurmi@iki.fi>\n"
+"POT-Creation-Date: 2023-10-26 10:17+0100\n"
+"PO-Revision-Date: 2023-10-25 17:13+0100\n"
+"Last-Translator: Colin Clark <cclark@TallTrees>\n"
 "Language-Team: Finnish <laatu@lokalisointi.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -17,22 +17,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 # src/main.cc:129
-#: geeqie.desktop.in:3 org.geeqie.Geeqie.appdata.xml.in:7
+#: org.geeqie.Geeqie.appdata.xml.in:7 org.geeqie.Geeqie.desktop.in:3
 #, fuzzy
 msgid "Geeqie"
 msgstr "Geeqie’n lopetus"
-
-# src/preferences.cc:676
-#: geeqie.desktop.in:4
-#, fuzzy
-msgid "Image Viewer"
-msgstr "Kuvatiedosto"
-
-# src/preferences.cc:660
-#: geeqie.desktop.in:5
-#, fuzzy
-msgid "View and manage images"
-msgstr "Lataa seuraava kuva etukäteen"
 
 #: org.geeqie.Geeqie.appdata.xml.in:8
 msgid "A lightweight image viewer"
@@ -65,6 +53,18 @@ msgstr ""
 #: org.geeqie.Geeqie.appdata.xml.in:32
 msgid "graphics"
 msgstr ""
+
+# src/preferences.cc:676
+#: org.geeqie.Geeqie.desktop.in:4
+#, fuzzy
+msgid "Image Viewer"
+msgstr "Kuvatiedosto"
+
+# src/preferences.cc:660
+#: org.geeqie.Geeqie.desktop.in:5
+#, fuzzy
+msgid "View and manage images"
+msgstr "Lataa seuraava kuva etukäteen"
 
 #: plugins/camera-import/camera-import.desktop.in:5
 #, fuzzy

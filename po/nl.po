@@ -9,27 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-2.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-20 12:31+0100\n"
-"PO-Revision-Date: 2023-03-27 11:15+0200\n"
-"Last-Translator: Marcel Pol <marcel@timelord.nl>\n"
+"POT-Creation-Date: 2023-10-26 10:17+0100\n"
+"PO-Revision-Date: 2023-10-25 17:13+0100\n"
+"Last-Translator: Colin Clark <cclark@TallTrees>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Geany / PoHelper 1.38\n"
 
-#: geeqie.desktop.in:3 org.geeqie.Geeqie.appdata.xml.in:7
+#: org.geeqie.Geeqie.appdata.xml.in:7 org.geeqie.Geeqie.desktop.in:3
 msgid "Geeqie"
 msgstr "Geeqie"
-
-#: geeqie.desktop.in:4
-msgid "Image Viewer"
-msgstr "Afbeeldingen-viewer"
-
-#: geeqie.desktop.in:5
-msgid "View and manage images"
-msgstr "Bekijk en beheer afbeeldingen"
 
 #: org.geeqie.Geeqie.appdata.xml.in:8
 msgid "A lightweight image viewer"
@@ -67,6 +59,14 @@ msgstr ""
 #: org.geeqie.Geeqie.appdata.xml.in:32
 msgid "graphics"
 msgstr ""
+
+#: org.geeqie.Geeqie.desktop.in:4
+msgid "Image Viewer"
+msgstr "Afbeeldingen-viewer"
+
+#: org.geeqie.Geeqie.desktop.in:5
+msgid "View and manage images"
+msgstr "Bekijk en beheer afbeeldingen"
 
 #: plugins/camera-import/camera-import.desktop.in:5
 msgid "Camera import"

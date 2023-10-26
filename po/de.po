@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-20 12:31+0100\n"
-"PO-Revision-Date: 2021-01-22 15:31+0100\n"
-"Last-Translator: Klaus Ethgen <Klaus@Ethgen.de>\n"
+"POT-Creation-Date: 2023-10-26 10:17+0100\n"
+"PO-Revision-Date: 2023-10-25 17:13+0100\n"
+"Last-Translator: Colin Clark <cclark@TallTrees>\n"
 "Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -21,19 +21,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Geany / PoHelper 1.38\n"
 
-#: geeqie.desktop.in:3 org.geeqie.Geeqie.appdata.xml.in:7
+#: org.geeqie.Geeqie.appdata.xml.in:7 org.geeqie.Geeqie.desktop.in:3
 msgid "Geeqie"
 msgstr "Geeqie"
-
-#: geeqie.desktop.in:4
-msgid "Image Viewer"
-msgstr "Bildbetrachter"
-
-#: geeqie.desktop.in:5
-msgid "View and manage images"
-msgstr "Betrachte und manage Bilder"
 
 #: org.geeqie.Geeqie.appdata.xml.in:8
 msgid "A lightweight image viewer"
@@ -69,6 +61,14 @@ msgstr ""
 #: org.geeqie.Geeqie.appdata.xml.in:32
 msgid "graphics"
 msgstr ""
+
+#: org.geeqie.Geeqie.desktop.in:4
+msgid "Image Viewer"
+msgstr "Bildbetrachter"
+
+#: org.geeqie.Geeqie.desktop.in:5
+msgid "View and manage images"
+msgstr "Betrachte und manage Bilder"
 
 #: plugins/camera-import/camera-import.desktop.in:5
 msgid "Camera import"

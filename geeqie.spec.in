@@ -92,7 +92,7 @@ make install DESTDIR=%{buildroot}
 %{_bindir}/geeqie*
 %{_datadir}/geeqie
 %{_datadir}/locale/*/LC_MESSAGES/*.mo
-%{_datadir}/applications/geeqie.desktop
+%{_datadir}/applications/org.geeqie.Geeqie.desktop
 %{_datadir}/pixmaps/geeqie.png
 %{_mandir}/man1/geeqie*
 %{_prefix}/lib/geeqie
