@@ -135,6 +135,8 @@ With this option the loading and run time is the same as for a packaged release.
 
 There are also options to install desktop icons, menu items, and to revert to earlier downloaded versions.
 
+AppImages have a "portable mode" which is described [here](https://docs.appimage.org/user-guide/portable-mode.html).
+
 ### Installation scripts
 
 Geeqie is stable and you may compile the latest version from sources.
