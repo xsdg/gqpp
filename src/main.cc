@@ -516,7 +516,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 				print_term(FALSE, _("      --geometry=WxH+XOFF+YOFF     set main window location\n"));
 				print_term(FALSE, _("  -h, --help                       show this message\n"));
 				print_term(FALSE, _("  -l, --list [files] [collections] open collection window for command line\n"));
-				print_term(FALSE, _("  -n, --new-instance               open a new instance of Geeqie\n"));
+				print_term(FALSE, _("  -n, --new-instance               open a new instance of Geeqie *\n"));
 				print_term(FALSE, _("  -o:, --log-file:<file>           save log data to file\n"));
 				print_term(FALSE, _("  -r, --remote                     send following commands to open window\n"));
 				print_term(FALSE, _("  -rh, --remote-help               print remote command list\n"));
@@ -531,6 +531,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 #endif
 
 				print_term(FALSE, "\n");
+				print_term(FALSE, "* Normally a single set of configuration files is used for all instances.\nHowever, the environment variables XDG_CONFIG_HOME, XDG_CACHE_HOME, XDG_DATA_HOME\ncan be used to modify this behavior on an individual basis e.g.\n\nXDG_CONFIG_HOME=/tmp/a XDG_CACHE_HOME=/tmp/b geeqie\n\n");
 
 				remote_help();
 

@@ -8,7 +8,7 @@
 <refentrytitle>GEEQIE</refentrytitle>
 <manvolnum>1</manvolnum>
 <refmiscinfo class='source'>October 2023</refmiscinfo>
-<refmiscinfo class='manual'>Geeqie 2.1+git20231016-1a72d946 GTK3</refmiscinfo>
+<refmiscinfo class='manual'>Geeqie 2.1+git20231026-2338cf60 GTK3</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>Geeqie</refname>
@@ -30,7 +30,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
 
 <para>Generated for version:</para>
 
-<para>Geeqie 2.1+git20231016-1a72d946</para>
+<para>Geeqie 2.1+git20231026-2338cf60</para>
 
 <refsect2 id='valid_options'><title>Valid options:</title>
 <variablelist remap='TP'>
@@ -77,7 +77,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   <varlistentry>
   <term><emphasis role='strong' remap='B'>-n</emphasis>, <emphasis role='strong' remap='B'>--new-instance</emphasis></term>
   <listitem>
-<para>open a new instance of Geeqie</para>
+<para>open a new instance of Geeqie *</para>
   </listitem>
   </varlistentry>
   <varlistentry>
@@ -141,6 +141,12 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   </listitem>
   </varlistentry>
 </variablelist>
+
+<para>* Normally a single set of configuration files is used for all instances.
+However, the environment variables XDG_CONFIG_HOME, XDG_CACHE_HOME, XDG_DATA_HOME
+can be used to modify this behavior on an individual basis e.g.</para>
+
+<para>XDG_CONFIG_HOME=/tmp/a XDG_CACHE_HOME=/tmp/b geeqie</para>
 </refsect2>
 
 <refsect2 id='remote_command_list'><title>Remote command list:</title>
