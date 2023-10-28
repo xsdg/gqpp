@@ -14,8 +14,8 @@
 install_data('geeqie-rotate', install_dir : gq_bindir)
 
 i18n.merge_file(
-    input : 'rotate.desktop.in',
-    output : 'rotate.desktop',
+    input : 'org.geeqie.rotate.desktop.in',
+    output : 'org.geeqie.rotate.desktop',
     type : 'desktop',
     po_dir : podir,
     install : true,

@@ -14,8 +14,8 @@
 install_data('geeqie-camera-import', 'geeqie-camera-import-hook-script', install_dir : gq_bindir)
 
 i18n.merge_file(
-    input : 'camera-import.desktop.in',
-    output : 'camera-import.desktop',
+    input : 'org.geeqie.camera-import.desktop.in',
+    output : 'org.geeqie.camera-import.desktop',
     type : 'desktop',
     po_dir : podir,
     install : true,

@@ -24,8 +24,8 @@ subdir('tethered-photography')
 subdir('video-player')
 
 i18n.merge_file(
-    input : 'template.desktop.in',
-    output : 'template.desktop',
+    input : 'org.geeqie.template.desktop.in',
+    output : 'org.geeqie.template.desktop',
     type : 'desktop',
     po_dir : podir,
     install : true,

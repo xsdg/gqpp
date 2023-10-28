@@ -14,8 +14,8 @@
 install_data('geeqie-random-image', install_dir : gq_bindir)
 
 i18n.merge_file(
-    input : 'random-image.desktop.in',
-    output : 'random-image.desktop',
+    input : 'org.geeqie.random-image.desktop.in',
+    output : 'org.geeqie.random-image.desktop',
     type : 'desktop',
     po_dir : podir,
     install : true,

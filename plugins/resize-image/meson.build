@@ -14,8 +14,8 @@
 install_data('geeqie-resize-image', 'downsize', 'resize-help.sh', install_dir : gq_bindir)
 
 i18n.merge_file(
-    input : 'resize-image.desktop.in',
-    output : 'resize-image.desktop',
+    input : 'org.geeqie.resize-image.desktop.in',
+    output : 'org.geeqie.resize-image.desktop',
     type : 'desktop',
     po_dir : podir,
     install : true,

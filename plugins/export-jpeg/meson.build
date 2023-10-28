@@ -14,8 +14,8 @@
 install_data('geeqie-export-jpeg', install_dir : gq_bindir)
 
 i18n.merge_file(
-    input : 'export-jpeg.desktop.in',
-    output : 'export-jpeg.desktop',
+    input : 'org.geeqie.export-jpeg.desktop.in',
+    output : 'org.geeqie.export-jpeg.desktop',
     type : 'desktop',
     po_dir : podir,
     install : true,

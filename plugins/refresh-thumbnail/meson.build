@@ -11,14 +11,12 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #
 
-install_data('geeqie-image-crop', install_dir : gq_bindir)
+install_data('geeqie-refresh-thumbnail', install_dir : gq_bindir)
 
 i18n.merge_file(
-    input : 'org.geeqie.image-crop.desktop.in',
-    output : 'org.geeqie.image-crop.desktop',
+    input : 'org.geeqie.refresh-thumbnail.desktop.in',
+    output : 'org.geeqie.refresh-thumbnail.desktop',
     type : 'desktop',
     po_dir : podir,
     install : true,
     install_dir : desktopdir)
-
-script_sources += files('geeqie-image-crop')
