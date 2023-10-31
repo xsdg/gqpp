@@ -1320,36 +1320,39 @@ gboolean vficon_press_cb(GtkWidget *, GdkEventButton *bevent, gpointer data)
 
 	fd = vficon_find_data_by_coord(vf, static_cast<gint>(bevent->x), static_cast<gint>(bevent->y), &iter);
 
-	VFICON(vf)->click_fd = fd;
-	vficon_selection_add(vf, VFICON(vf)->click_fd, SELECTION_PRELIGHT, &iter);
-
-	switch (bevent->button)
+	if (fd)
 		{
-		case MOUSE_BUTTON_LEFT:
-			if (!gtk_widget_has_focus(vf->listview))
-				{
-				gtk_widget_grab_focus(vf->listview);
-				}
+		VFICON(vf)->click_fd = fd;
+		vficon_selection_add(vf, VFICON(vf)->click_fd, SELECTION_PRELIGHT, &iter);
 
-			if (bevent->type == GDK_2BUTTON_PRESS && vf->layout)
-				{
-				if (VFICON(vf)->click_fd->format_class == FORMAT_CLASS_COLLECTION)
+		switch (bevent->button)
+			{
+			case MOUSE_BUTTON_LEFT:
+				if (!gtk_widget_has_focus(vf->listview))
 					{
-					collection_window_new(VFICON(vf)->click_fd->path);
+					gtk_widget_grab_focus(vf->listview);
 					}
-				else
+
+				if (bevent->type == GDK_2BUTTON_PRESS && vf->layout)
 					{
-					vficon_selection_remove(vf, VFICON(vf)->click_fd, SELECTION_PRELIGHT, &iter);
-					layout_image_full_screen_start(vf->layout);
+					if (VFICON(vf)->click_fd->format_class == FORMAT_CLASS_COLLECTION)
+						{
+						collection_window_new(VFICON(vf)->click_fd->path);
+						}
+					else
+						{
+						vficon_selection_remove(vf, VFICON(vf)->click_fd, SELECTION_PRELIGHT, &iter);
+						layout_image_full_screen_start(vf->layout);
+						}
 					}
-				}
-			break;
-		case MOUSE_BUTTON_RIGHT:
-			vf->popup = vf_pop_menu(vf);
-			gtk_menu_popup_at_pointer(GTK_MENU(vf->popup), nullptr);
-			break;
-		default:
-			break;
+				break;
+			case MOUSE_BUTTON_RIGHT:
+				vf->popup = vf_pop_menu(vf);
+				gtk_menu_popup_at_pointer(GTK_MENU(vf->popup), nullptr);
+				break;
+			default:
+				break;
+			}
 		}
 
 	return FALSE;
