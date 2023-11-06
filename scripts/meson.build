@@ -25,8 +25,10 @@ script_sources += files('authors.sh',
 'lua-test.sh',
 'modify-downloaded-icons.sh',
 'new-release.sh',
+'patch-loaders-cache.sh',
 'template-desktop.sh',
 'translators.sh',
 'untranslated-text.sh',
+'update-pixbuf-loaders-cache.sh',
 'web-help.sh')
 

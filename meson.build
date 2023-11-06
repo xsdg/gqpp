@@ -768,3 +768,7 @@ if not option.disabled()
 else
     summary({'lua' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
 endif
+
+if conf_data.has('HAVE_WEBP')
+    meson.add_install_script('./scripts/update-pixbuf-loaders-cache.sh')
+endif

@@ -124,8 +124,6 @@ main_sources = files('advanced-exif.cc',
 'image-load-svgz.h',
 'image-load-tiff.cc',
 'image-load-tiff.h',
-'image-load-webp.cc',
-'image-load-webp.h',
 'image-load-zxscr.cc',
 'image-load-zxscr.h',
 'image-overlay.cc',
@@ -264,6 +262,10 @@ if conf_data.has('HAVE_LCMS')
                         command : [xxd_sh, '@INPUT@', '@OUTPUT@'])
 
     project_sources += ClayRGB1998_icc_h
+endif
+
+if conf_data.has('HAVE_WEBP')
+    webp_pixbuf_loader_proj = subproject('webp-pixbuf-loader')
 endif
 
 geeqie_exe = executable('geeqie', project_sources,

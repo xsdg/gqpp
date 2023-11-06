@@ -6,6 +6,8 @@ script:
   - which mksquashfs || apt install squashfs-tools
 
 AppDir:
+  after_runtime: |
+    ./scripts/patch-loaders-cache.sh
   path: /home/runner/work/geeqie/geeqie/AppDir/
   app_info:
     id: geeqie
