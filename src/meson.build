@@ -264,10 +264,6 @@ if conf_data.has('HAVE_LCMS')
     project_sources += ClayRGB1998_icc_h
 endif
 
-if conf_data.has('HAVE_WEBP')
-    webp_pixbuf_loader_proj = subproject('webp-pixbuf-loader')
-endif
-
 geeqie_exe = executable('geeqie', project_sources,
 dependencies : [
 gtk_dep,
@@ -290,7 +286,6 @@ libjxl_dep,
 libopenjp2_dep,
 libraw_dep,
 libunwind_dep,
-libwebp_dep,
 lua_dep,
 poppler_glib_dep,
 thread_dep,

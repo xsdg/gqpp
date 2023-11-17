@@ -26,12 +26,15 @@
 ## is run only when an AppImage is being created
 ##
 
-loader=$(find ./AppDir -name libpixbufloader-webp.so)
-loaders_cache=$(find ./AppDir -name loaders.cache)
-dest=$(dirname "$loaders_cache" | sed s/local//)
-loaders_cache_dest=$(echo "$loaders_cache" | sed s/local//)
+loader=$(find ./AppDir/usr/local -name libpixbufloader-webp.so)
 
-cat << EOF >> "$loaders_cache"
+if [ -f "$loader" ]
+then
+	loaders_cache=$(find ./AppDir/usr/local/lib -name loaders.cache)
+	loaders_src=$(dirname "$loader" | sed s/local//)
+	loaders_dest=$(dirname "$loader")
+
+	cat << EOF >> "$loaders_cache"
 "libpixbufloader-webp.so"
 "webp" 5 "gdk-pixbuf" "The WebP image format" "LGPL"
 "image/webp" "audio/x-riff" ""
@@ -40,5 +43,5 @@ cat << EOF >> "$loaders_cache"
 
 EOF
 
-cp -n "$loaders_cache" "$loaders_cache_dest"
-cp -n "$loader" "$dest""/loaders"
+	cp -r "$loaders_src/." "$loaders_dest"
+fi

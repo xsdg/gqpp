@@ -474,6 +474,14 @@ else
     summary({'spell' : ['disabled - spelling checks enabled', false]}, section : 'Configuration', bool_yn : true)
 endif
 
+# Check for subproject handling
+option = get_option('subprojects')
+if option
+    summary({'subprojects' : ['subprojects enabled:', true]}, section : 'Configuration', bool_yn : true)
+else
+    summary({'subprojects' : ['subprojects enabled:', false]}, section : 'Configuration', bool_yn : true)
+endif
+
 tiff_dep = []
 option = get_option('tiff')
 if not option.disabled()
@@ -528,19 +536,53 @@ else
     summary({'videothumbnailer' : ['disabled -thumbnails of video files supported', false]}, section : 'Configuration', bool_yn : true)
 endif
 
-libwebp_dep = []
-req_version = '>=0.6.1'
-option = get_option('webp')
+webp_pixbuf_loader_version = '0.0'
+webp_pixbuf_loader_subproject = 'disabled'
+option = get_option('webp-pixbuf-loader')
 if not option.disabled()
-    libwebp_dep = dependency('libwebp', version : req_version, required : get_option('webp'))
-    if libwebp_dep.found()
-        conf_data.set('HAVE_WEBP', 1)
-        summary({'webp' : ['webp files supported:', true]}, section : 'Configuration', bool_yn : true)
+    cmd = find_program('dpkg-query', required: false)
+    if cmd.found()
+        dpkg_res = run_command(cmd, '--show', 'webp-pixbuf-loader', check: false)
+
+        if dpkg_res.returncode() == 0
+            dpkg_list = dpkg_res.stdout().split()
+            webp_pixbuf_loader_version = dpkg_list.get(1)
+        endif
+
+        # Loader version 0.2.1 is OK. Versions 0.2.2 to 0.2.4 need patching via a subproject
+        # In that case if subprojects are disabled the loader is indicated as failing
+        # Anything later than 0.2.4 is assumed to be OK
+        if webp_pixbuf_loader_version.version_compare('==0.0')
+            summary({'webp_pixbuf_loader' : ['webp-pixbuf-loader not found - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
+        else
+            message('webp-pixbuf-loader found: ' + webp_pixbuf_loader_version)
+            if webp_pixbuf_loader_version.version_compare('<0.2.2')
+                summary({'webp_pixbuf_loader' : ['webp files supported:', true]}, section : 'Configuration', bool_yn : true)
+                conf_data.set('HAVE_WEBP', 1)
+            elif webp_pixbuf_loader_version.version_compare('<=0.2.4')
+                if get_option('subprojects')
+                        webp_pixbuf_loader_proj = subproject('webp-pixbuf-loader')
+
+                        if webp_pixbuf_loader_proj.found()
+                            meson.add_install_script('./scripts/update-pixbuf-loaders-cache.sh')
+                            summary({'webp_pixbuf_loader' : ['webp files supported as subproject:', true]}, section : 'Configuration', bool_yn : true)
+                            conf_data.set('HAVE_WEBP', 1)
+                        else
+                            summary({'webp_pixbuf_loader' : ['webp subproject failed - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
+                        endif
+                else
+                    summary({'webp_pixbuf_loader' : ['webp files supported:', false]}, section : 'Configuration', bool_yn : true)
+                endif
+            else
+                summary({'webp_pixbuf_loader' : ['webp files supported:', true]}, section : 'Configuration', bool_yn : true)
+                conf_data.set('HAVE_WEBP', 1)
+            endif
+        endif
     else
-        summary({'webp' : ['libwebp ' + req_version + ' not found - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
+        summary({'webp_pixbuf_loader' : ['dpkg not found - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
-    summary({'webp' : ['disabled - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
+    summary({'webp_pixbuf_loader' : ['disabled - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
 # Check for nl_langinfo and _NL_TIME_FIRST_WEEKDAY
@@ -767,8 +809,4 @@ if not option.disabled()
     endif
 else
     summary({'lua' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
-endif
-
-if conf_data.has('HAVE_WEBP')
-    meson.add_install_script('./scripts/update-pixbuf-loaders-cache.sh')
 endif

@@ -42,6 +42,7 @@ AppDir:
     - librsvg2-common
     - libtiff5
     - libwebp7
+    - webp-pixbuf-loader
 
   files:
     include: []
