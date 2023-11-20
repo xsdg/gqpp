@@ -1106,6 +1106,7 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 		dd->filter_combo = gtk_combo_box_new_with_model_and_entry(GTK_TREE_MODEL(store));
 		gtk_combo_box_set_entry_text_column(GTK_COMBO_BOX(dd->filter_combo),
 														FILTER_COLUMN_FILTER);
+		gtk_widget_set_tooltip_text(dd->filter_combo, _("File extension.\nAll files: *\nOr, e.g. png;jpg\nOr, e.g. png; jpg"));
 
 		g_object_unref(store);
 		gtk_cell_layout_clear(GTK_CELL_LAYOUT(dd->filter_combo));
