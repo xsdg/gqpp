@@ -26,34 +26,40 @@
 
 if ! { [ -d ".git" ] && [ -d "src" ] && [ -f "geeqie.1" ] && [ -f "doxygen.conf" ]; }
 then
-	printf "This is not the project root directory\n"
+    printf "This is not the project root directory\n"
     exit 1
 fi
 
 if ! zenity --title="Install files for Geeqie development" --question --text "This script will install:\n
-default-jre			# for doxygen diagrams
-libdw-dev			# for devel=enabled
-libdwarf-dev		# for devel=enabled
-libunwind-dev		# for devel=enabled
-shellcheck			# for meson tests
-texlive-font-utils	# for doxygen diagrams
-xvfb				# for meson tests
+<tt>
+curl                # for this script
+default-jre         # for doxygen diagrams
+libdw-dev           # for devel=enabled
+libdwarf-dev        # for devel=enabled
+libunwind-dev       # for devel=enabled
+shellcheck          # for meson tests
+texlive-font-utils  # for doxygen diagrams
+xvfb                # for meson tests
+</tt>
 
-Will download to $HOME/bin/ and make executable:\n
-https://github.com/plantuml/plantuml/releases/download/v1.2023.8/plantuml-1.2023.8.jar	# for doxygen diagrams
-https://raw.githubusercontent.com/Anvil/bash-doxygen/master/doxygen-bash.sed			# for documenting script files\n
+The following will be downloaded to $HOME/bin/ and made executable:\n
+<tt>
+https://github.com/plantuml/plantuml/releases/download/<i>latest</i>/plantuml-<i>latest</i>.jar  # for doxygen diagrams
+https://raw.githubusercontent.com/Anvil/bash-doxygen/master/doxygen-bash.sed       # for documenting script files\n
+</tt>
 
 Continue?" --width=300
 then
-	exit 0
+    exit 0
 fi
 
 if ! mkdir -p "$HOME"/bin
 then
-	printf "Cannot create %s\n" "$HOME"/bin
-	exit 1
+    printf "Cannot create %s\n" "$HOME"/bin
+    exit 1
 fi
 
+sudo apt install curl
 sudo apt install default-jre
 sudo apt install libdw-dev
 sudo apt install libdwarf-dev
@@ -66,16 +72,17 @@ cd "$HOME"/bin || exit 1
 
 if ! [ -f doxygen-bash.sed ]
 then
-	wget https://raw.githubusercontent.com/Anvil/bash-doxygen/master/doxygen-bash.sed
-	chmod +x doxygen-bash.sed
+    wget https://raw.githubusercontent.com/Anvil/bash-doxygen/master/doxygen-bash.sed
+    chmod +x doxygen-bash.sed
 fi
 
-## @FIXME Get latest version
-if ! [ -f plantuml.jar ]
+latest_plantuml=$(curl --silent -qI https://github.com/plantuml/plantuml/releases/latest | awk -F '/' '/^location/ {print  substr($NF, 1, length($NF)-1)}')
+
+if ! [ -f "plantuml-${latest_plantuml#v}.jar" ]
 then
-	wget https://github.com/plantuml/plantuml/releases/download/v1.2023.8/plantuml-1.2023.8.jar
-	ln --symbolic --force plantuml-1.2023.8.jar plantuml.jar
-	chmod +x plantuml.jar
+    wget "https://github.com/plantuml/plantuml/releases/download/$latest_plantuml/plantuml-${latest_plantuml#v}.jar"
+    ln --symbolic --force "plantuml-${latest_plantuml#v}.jar" plantuml.jar
+    chmod +x plantuml.jar
 fi
 
 
