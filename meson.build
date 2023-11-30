@@ -26,7 +26,7 @@
 # gq_bindir     /usr/local/lib/geeqie               *   plugins scripts
 # datadir       /usr/local/share/
 #               /usr/local/share/applications           org.geeqie.Geeqie.desktop
-# [gq_]appdir   /usr/local/share/geeqie/            *   template.desktop
+# [gq_]appdir   /usr/local/share/geeqie/            *   org,geeqie.template.desktop
 # desktopdir    /usr/local/share/geeqie/applications    plugin desktop files
 # appdatadir    /usr/local/share/metainfo               org.geeqie.Geeqie.appdata.xml
 # icondir       /usr/local/share/pixmaps                geeqie.png icon

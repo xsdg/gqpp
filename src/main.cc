@@ -1271,7 +1271,7 @@ static void create_application_paths()
 	gq_htmldir = g_build_filename(gq_prefix, GQ_HTMLDIR, NULL);
 	gq_appdir = g_build_filename(gq_prefix, GQ_APPDIR, NULL);
 	gq_bindir = g_build_filename(gq_prefix, GQ_BINDIR, NULL);
-	desktop_file_template = g_build_filename(gq_appdir, "template.desktop", NULL);
+	desktop_file_template = g_build_filename(gq_appdir, "org.geeqie.template.desktop", NULL);
 
 	g_free(dirname);
 	g_free(path);

@@ -10,7 +10,7 @@
 tmp_file=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 path=$(dirname "$(realpath "$0")")
 srcpath=$(dirname "$path")/src/layout-util.cc
-templatepath=$(dirname "$path")/plugins/template.desktop.in
+templatepath=$(dirname "$path")/plugins/org.geeqie.template.desktop.in
 
 awk -v src_path="$srcpath" 'BEGIN {
 menu_flag = 0
@@ -81,7 +81,7 @@ function get_menus()
 cat "$tmp_file"
 printf '%s\n' "$PWD"
 
-if diff --unified=0 "./plugins/template.desktop.in" "$tmp_file" | zenity --title="Plugin template update" --text-info --width=700 --height=400
+if diff --unified=0 "./plugins/org.geeqie.template.desktop.in" "$tmp_file" | zenity --title="Plugin template update" --text-info --width=700 --height=400
 then
 	mv "$tmp_file" "$templatepath"
 else
