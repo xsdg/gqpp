@@ -161,9 +161,7 @@ chmod +x geeqie-install-debian.sh
 
 If you wish to compile the sources yourself you may download the latest version (if you have installed git) from here:
 
-Either: `git clone git://git.geeqie.org/geeqie.git`
-
-Or: `git clone http://git.geeqie.org/git/geeqie.git`
+`git clone http://git.geeqie.org/git/geeqie.git`
 
 ### Compiling and Installing
 

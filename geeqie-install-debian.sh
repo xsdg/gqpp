@@ -488,7 +488,7 @@ printf '%b\n' "#Getting new sources from server..." > "$zen_pipe"
 
 if [ "$mode" = "install" ]
 then
-	if ! git clone git://geeqie.org/geeqie.git >> "$install_log" 2>&1
+	if ! git clone http://git.geeqie.org/git/geeqie.git >> "$install_log" 2>&1
 	then
 		git_error=$(tail -n5 "$install_log" 2>&1)
 		zenity --title="$title" --width=370 --height=400 --error --text="Git error:\n\n$git_error" 2> /dev/null
