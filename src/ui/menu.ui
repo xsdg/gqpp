@@ -17,6 +17,7 @@
       <menuitem action="Copy"/>
       <menuitem action="Move"/>
       <menuitem action="Rename"/>
+      <menuitem action="OpenWith"/>
       <separator/>
       <menuitem action="Delete"/>
       <menuitem action="PermanentDelete"/>

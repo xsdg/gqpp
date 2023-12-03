@@ -904,6 +904,95 @@ static void layout_menu_view_in_new_window_cb(GtkAction *, gpointer data)
 	view_window_new(layout_image_get_fd(lw));
 }
 
+struct OpenWithData
+{
+	GAppInfo *application;
+	GList *g_file_list;
+	GtkWidget *app_chooser_dialog;
+};
+
+void open_with_response_cb(GtkDialog *, gint response_id, gpointer data)
+{
+	GError *error = NULL;
+	auto open_with_data = static_cast<OpenWithData *>(data);
+
+	if (response_id == GTK_RESPONSE_OK)
+		{
+		g_app_info_launch(open_with_data->application, open_with_data->g_file_list, nullptr, &error);
+
+		if (error)
+			{
+			log_printf("Error launching app: %s\n", error->message);
+			g_error_free(error);
+			}
+		}
+
+	g_object_unref(open_with_data->application);
+	g_object_unref(g_list_first(open_with_data->g_file_list)->data);
+	g_list_free(open_with_data->g_file_list);
+	gtk_widget_destroy(GTK_WIDGET(open_with_data->app_chooser_dialog));
+	g_free(open_with_data);
+}
+
+static void open_with_application_selected_cb(GtkAppChooserWidget *, GAppInfo *application, gpointer data)
+{
+	auto open_with_data = static_cast<OpenWithData *>(data);
+
+	g_object_unref(open_with_data->application);
+
+	open_with_data->application = g_app_info_dup(application);
+}
+
+static void open_with_application_activated_cb(GtkAppChooserWidget *, GAppInfo *application, gpointer data)
+{
+	GError *error = NULL;
+	auto open_with_data = static_cast<OpenWithData *>(data);
+
+	g_app_info_launch(application, open_with_data->g_file_list, nullptr, &error);
+
+	if (error)
+		{
+		log_printf("Error launching app.: %s\n", error->message);
+		g_error_free(error);
+		}
+
+	g_object_unref(open_with_data->application);
+	g_object_unref(g_list_first(open_with_data->g_file_list)->data);
+	g_list_free(open_with_data->g_file_list);
+	gtk_widget_destroy(GTK_WIDGET(open_with_data->app_chooser_dialog));
+	g_free(open_with_data);
+}
+
+static void layout_menu_open_with_cb(GtkAction *, gpointer data)
+{
+	auto lw = static_cast<LayoutWindow *>(data);
+	FileData *fd;
+	GtkWidget *widget;
+	OpenWithData *open_with_data;
+
+	if (layout_selection_list(lw))
+		{
+		open_with_data = g_new(OpenWithData, 1);
+
+		fd = static_cast<FileData *>(g_list_first(layout_selection_list(lw))->data);
+
+		open_with_data->g_file_list = g_list_append(nullptr, g_file_new_for_path(fd->path));
+
+		open_with_data->app_chooser_dialog = gtk_app_chooser_dialog_new(nullptr, GTK_DIALOG_DESTROY_WITH_PARENT, G_FILE(g_list_first(open_with_data->g_file_list)->data));
+
+		widget = gtk_app_chooser_dialog_get_widget(GTK_APP_CHOOSER_DIALOG(open_with_data->app_chooser_dialog));
+
+		open_with_data->application = gtk_app_chooser_get_app_info(GTK_APP_CHOOSER(open_with_data->app_chooser_dialog));
+
+		g_signal_connect(G_OBJECT(widget), "application-selected", G_CALLBACK(open_with_application_selected_cb), open_with_data);
+		g_signal_connect(G_OBJECT(widget), "application-activated", G_CALLBACK(open_with_application_activated_cb), open_with_data);
+		g_signal_connect(G_OBJECT(open_with_data->app_chooser_dialog), "response", G_CALLBACK(open_with_response_cb), open_with_data);
+		g_signal_connect(G_OBJECT(open_with_data->app_chooser_dialog), "close", G_CALLBACK(open_with_response_cb), open_with_data);
+
+		gtk_widget_show(open_with_data->app_chooser_dialog);
+		}
+}
+
 static void layout_menu_open_archive_cb(GtkAction *, gpointer data)
 {
 	auto lw = static_cast<LayoutWindow *>(data);
@@ -2608,6 +2697,7 @@ static GtkActionEntry menu_entries[] = {
   { "OpenArchive",           GQ_ICON_OPEN,                      N_("Open archive"),                                     nullptr,               N_("Open archive"),                                    CB(layout_menu_open_archive_cb) },
   { "OpenCollection",        GQ_ICON_OPEN,                      N_("_Open collection..."),                              "O",                   N_("Open collection..."),                              nullptr },
   { "OpenRecent",            nullptr,                           N_("Open recen_t"),                                     nullptr,               N_("Open recent collection"),                          nullptr },
+  { "OpenWith",              GQ_ICON_OPEN_WITH,                 N_("Open With..."),                                     nullptr,               N_("Open With..."),                                    CB(layout_menu_open_with_cb) },
   { "OrientationMenu",       nullptr,                           N_("_Orientation"),                                     nullptr,               nullptr,                                               nullptr },
   { "OverlayMenu",           nullptr,                           N_("Image _Overlay"),                                   nullptr,               nullptr,                                               nullptr },
   { "PanView",               PIXBUF_INLINE_ICON_PANORAMA,       N_("Pa_n view"),                                        "<control>J",          N_("Pan view"),                                        CB(layout_menu_pan_cb) },
