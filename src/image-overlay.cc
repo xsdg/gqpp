@@ -449,6 +449,23 @@ static GdkPixbuf *image_osd_info_render(OverlayStateData *osd)
 	return pixbuf;
 }
 
+/**
+ * @brief Create non-standard icons for the OSD
+ * @param flag
+ * @returns
+ *
+ * IMAGE_OSD_COLOR
+ * \image html image-osd-color.png
+ * IMAGE_OSD_FIRST
+ * \image html image-osd-first.png
+ * IMAGE_OSD_ICON
+ * \image html image-osd-icon.png
+ * IMAGE_OSD_LAST
+ * \image html image-osd-last.png
+ * IMAGE_OSD_ROTATE_AUTO
+ * \image html image-osd-rotate-auto.png
+ *
+ */
 static GdkPixbuf *image_osd_icon_pixbuf(ImageOSDFlag flag)
 {
 	static GdkPixbuf **icons = nullptr;

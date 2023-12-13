@@ -43,9 +43,10 @@ else
 	DOCDIR="$PWD"/../doxygen
 fi
 
-if ! mkdir -p "$DOCDIR"/doxygen
+if ! mkdir -p "$DOCDIR"/
 then
 	printf "Cannot create %s\n" "$DOCDIR"
+	exit 1
 fi
 
 export DOCDIR
