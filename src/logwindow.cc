@@ -59,22 +59,6 @@ static void hide_cb(GtkWidget *, LogWindow *)
 {
 }
 
-static gboolean iter_char_search_cb(gunichar ch, gpointer data)
-{
-	gboolean ret;
-
-	if (ch == GPOINTER_TO_UINT(data))
-		{
-		ret = TRUE;
-		}
-	else
-		{
-		ret = FALSE;
-		}
-
-	return ret;
-}
-
 /**
  * @brief Handle escape and F1 keys
  * @param UNUSED
@@ -83,23 +67,23 @@ static gboolean iter_char_search_cb(gunichar ch, gpointer data)
  * @returns
  *
  * If escape key pressed, hide log window. \n
- * If no text selected, form a selection bounded by space characters or
- * start and end of line. \n
+ * If no text selected, select the entire line. \n
  * If F1 pressed, execute command line program: \n
  * <options->log_window.action> <selected text>
  *
 */
 static gboolean key_pressed(GtkWidget *, GdkEventKey *event, LogWindow *logwin)
 {
+	gchar *cmd_line;
+	gchar *sel_text;
 	GtkTextBuffer *buffer;
 	GtkTextIter chr_end;
+	GtkTextIter chr_marker;
 	GtkTextIter chr_start;
 	GtkTextIter cursor_iter;
 	GtkTextIter line_end;
 	GtkTextIter line_start;
 	GtkTextMark *cursor_mark;
-	gchar *cmd_line;
-	gchar *sel_text;
 
 	if (event && event->keyval == GDK_KEY_Escape)
 		gtk_widget_hide(logwin->window);
@@ -119,21 +103,15 @@ static gboolean key_pressed(GtkWidget *, GdkEventKey *event, LogWindow *logwin)
 				gtk_text_iter_set_line_offset(&line_start, 0);
 				line_end = cursor_iter;
 				gtk_text_iter_forward_to_line_end(&line_end);
-
-				chr_start = cursor_iter;
-				gtk_text_iter_backward_find_char(&chr_start, static_cast<GtkTextCharPredicate>(iter_char_search_cb), GUINT_TO_POINTER(' '), &line_start);
-
-				chr_end = cursor_iter;
-				gtk_text_iter_forward_find_char(&chr_end, static_cast<GtkTextCharPredicate>(iter_char_search_cb), GUINT_TO_POINTER(' '), &line_end);
-
-				gtk_text_buffer_select_range(buffer, &chr_start, &chr_end);
+				chr_marker = line_end;
+				gtk_text_buffer_select_range(buffer, &line_start, &line_end);
 				}
 
 			if (gtk_text_buffer_get_selection_bounds(gtk_text_view_get_buffer(GTK_TEXT_VIEW(logwin->text)), &chr_start, &chr_end))
 				{
 				sel_text = gtk_text_buffer_get_text( gtk_text_view_get_buffer(GTK_TEXT_VIEW(logwin->text)), &chr_start, &chr_end, FALSE);
 
-				cmd_line = g_strconcat(options->log_window.action, " ", sel_text, NULL);
+				cmd_line = g_strconcat(options->log_window.action, " \"", sel_text, "\"", NULL);
 
 				runcmd(cmd_line);
 

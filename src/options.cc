@@ -204,7 +204,7 @@ ConfOptions *init_options(ConfOptions *options)
 	options->log_window.line_wrap = FALSE;
 	options->log_window.paused = FALSE;
 	options->log_window.timer_data = FALSE;
-	options->log_window.action = g_strdup("");
+	options->log_window.action = g_strdup("echo");
 
 	options->read_metadata_in_idle = FALSE;
 	options->star_rating.star = STAR_RATING_STAR;

@@ -152,6 +152,8 @@ static GtkWidget *external_preview_extract_entry;
 static GtkWidget *sidecar_ext_entry;
 static GtkWidget *help_search_engine_entry;
 
+static GtkWidget *log_window_f1_entry;
+
 
 #define CONFIG_WINDOW_DEF_WIDTH		700
 #define CONFIG_WINDOW_DEF_HEIGHT	600
@@ -470,6 +472,7 @@ static void config_window_apply()
 
 #ifdef DEBUG
 	set_debug_level(debug_c);
+	config_entry_to_option(log_window_f1_entry, &options->log_window.action, nullptr);
 #endif
 
 #ifdef HAVE_LCMS
@@ -3644,6 +3647,14 @@ static void config_tab_behavior(GtkWidget *notebook)
 
 	pref_spin_new_int(group, _("Log Window max. lines:"), nullptr,
 			  1, 99999, 1, options->log_window_lines, &options->log_window_lines);
+
+	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
+	pref_label_new(hbox, _("Log Window F1 command: "));
+	log_window_f1_entry = gtk_entry_new();
+	gq_gtk_entry_set_text(GTK_ENTRY(log_window_f1_entry), options->log_window.action);
+	gq_gtk_box_pack_start(GTK_BOX(hbox), log_window_f1_entry, FALSE, FALSE, 0);
+	gtk_entry_set_width_chars(GTK_ENTRY(log_window_f1_entry), 15);
+	gtk_widget_show(log_window_f1_entry);
 #endif
 }
 

@@ -117,8 +117,7 @@ void log_domain_print_message(const gchar *domain, gchar *buf)
 	g_free(buf);
 }
 
-void log_domain_print_debug(const gchar *domain, const gchar *file_name, const gchar *function_name,
-									int line_number, const gchar *format, ...)
+void log_domain_print_debug(const gchar *domain, const gchar *file_name, int line_number, const gchar *function_name, const gchar *format, ...)
 {
 	va_list ap;
 	gchar *message;
@@ -131,12 +130,11 @@ void log_domain_print_debug(const gchar *domain, const gchar *file_name, const g
 
 	if (options && options->log_window.timer_data)
 		{
-		location = g_strdup_printf("%s:%s:%s:%d:", get_exec_time(), file_name,
-												function_name, line_number);
+		location = g_strdup_printf("%s:%s:%d:%s:", get_exec_time(), file_name, line_number, function_name);
 		}
 	else
 		{
-		location = g_strdup_printf("%s:%s:%d:", file_name, function_name, line_number);
+		location = g_strdup_printf("%s:%d:%s:", file_name, line_number, function_name);
 		}
 
 	buf = g_strconcat(location, message, NULL);
@@ -268,10 +266,10 @@ gchar *get_regexp()
  * Format printed is: \n
  * <full path to source file>:<line number>
  *
- * The log window F1 command and options->log_window.action may be used
- * to open an editor at a backtrace location.
+ * The log window F1 command and Edit/Preferences/Behavior/Log Window F1
+ * Command may be used to open an editor at a backtrace location.
  */
-void log_print_backtrace(const gchar *file, const gchar *function, gint line)
+void log_print_backtrace(const gchar *file, gint line, const gchar *function)
 {
 	FILE *fp;
 	char **bt_syms;
@@ -345,7 +343,7 @@ void log_print_backtrace(const gchar *file, const gchar *function, gint line)
 		}
 }
 #else
-void log_print_backtrace(const gchar *, const gchar *, gint)
+void log_print_backtrace(const gchar *, gint, const gchar *)
 {
 }
 #endif

@@ -27,10 +27,9 @@
 #define DOMAIN_INFO  "info"
 
 void log_domain_printf(const gchar *domain, const gchar *format, ...) G_GNUC_PRINTF(2, 3);
-void log_domain_print_debug(const gchar *domain, const gchar *file_name, const gchar *function_name,
-							int line_number, const gchar *format, ...) G_GNUC_PRINTF(5, 6);
-void log_print_file_data_dump(const gchar *file, const gchar *function_name, gint line_number);
-void log_print_backtrace(const gchar *file, const gchar *function_name, gint line_number);
+void log_domain_print_debug(const gchar *domain, const gchar *file_name, int line_number, const gchar *function_name, const gchar *format, ...) G_GNUC_PRINTF(5, 6);
+void log_print_file_data_dump(const gchar *file, gint line_number, const gchar *function_name);
+void log_print_backtrace(const gchar *file, gint line_number, const gchar *function_name);
 
 #define log_printf(...) log_domain_printf(DOMAIN_INFO, __VA_ARGS__)
 
@@ -55,7 +54,7 @@ void init_exec_time();
 					{ 		\
 					if (debug_level != 1) \
 						{ \
-						log_domain_print_debug(DOMAIN_DEBUG, __FILE__, __func__, __LINE__, __VA_ARGS__); \
+						log_domain_print_debug(DOMAIN_DEBUG, __FILE__, __LINE__, __func__, __VA_ARGS__);\
 						} \
 					else \
 						{ \
@@ -78,12 +77,12 @@ void init_exec_time();
 
 #define DEBUG_BT() do \
 				{ \
-				log_print_backtrace(__FILE__, __func__, __LINE__); \
+				log_print_backtrace(__FILE__, __LINE__, __func__);     \
 				} while(0)
 
 #define DEBUG_FD() do \
 				{ \
-				log_print_file_data_dump(__FILE__, __func__, __LINE__); \
+				log_print_file_data_dump(__FILE__, __LINE__, __func__);\
 				} while(0)
 #else /* DEBUG */
 

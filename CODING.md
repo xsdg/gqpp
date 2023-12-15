@@ -47,18 +47,16 @@ Sample command line call:
 Prints a backtrace.
 Use only for temporary debugging i.e. not in code in the repository
 
-```text
-When the LogWindow has focus, the F1 key executes the following action as a command line program:
-<options->log_window.action> <selected text>
-The log_window.action value must be set by editing the geeqierc.xml file manually.
-If no text is selected when the F1 key is pressed, the text either side of the cursor delimited by a space character or the beginning or end of the line is selected.
-This feature may be used to open an editor at a file location listed in the backtrace.
-```
-
 ### DEBUG_FD()
 
 Prints a dump of the FileData hash list as a ref. count followed by the full path of the item.
 Use only for temporary debugging i.e. not in code in the repository
+
+### Log Window
+
+When the Log Window has focus, the F1 key executes the action specified in `Edit/Preferences/Behavior/Log Window F1 Command` with the selected text as a parameter.
+If no text is selected, the entire line is passed to the command.
+This feature may be used to open an editor at a file location in the text string.
 
 ---
 
