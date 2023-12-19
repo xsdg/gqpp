@@ -64,7 +64,7 @@
           <para>Add XMP keywords to images, and recall those images with the search function</para>
         </listitem>
         <listitem>
-          <link linkend="GuideOptions" endterm="titleGuideOptions" />
+          <link linkend="GuideOptionsMain" endterm="titleGuideOptionsMain" />
           <para>Geeqie is a very configurable application</para>
         </listitem>
       </itemizedlist>
