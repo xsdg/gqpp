@@ -537,16 +537,26 @@ else
 endif
 
 webp_pixbuf_loader_version = '0.0'
-webp_pixbuf_loader_subproject = 'disabled'
 option = get_option('webp-pixbuf-loader')
 if not option.disabled()
     cmd = find_program('dpkg-query', required: false)
     if cmd.found()
-        dpkg_res = run_command(cmd, '--show', 'webp-pixbuf-loader', check: false)
+        pkg_res = run_command(cmd, '--show', 'webp-pixbuf-loader', check: false)
+    endif
 
-        if dpkg_res.returncode() == 0
-            dpkg_list = dpkg_res.stdout().split()
-            webp_pixbuf_loader_version = dpkg_list.get(1)
+    if not cmd.found()
+		cmd = find_program('pacman', required: false)
+        if cmd.found()
+            pkg_res = run_command(cmd, '-Q', 'webp-pixbuf-loader', check: false)
+        endif
+    endif
+
+	if cmd.found()
+        if pkg_res.returncode() == 0
+            pkg_list = pkg_res.stdout().split()
+            px = pkg_list.get(1)
+            pkg_list2 = px.split('-')
+            webp_pixbuf_loader_version= pkg_list.get(1).split('-').get(0)
         endif
 
         # Loader version 0.2.1 is OK. Versions 0.2.2 to 0.2.4 need patching via a subproject
@@ -579,7 +589,7 @@ if not option.disabled()
             endif
         endif
     else
-        summary({'webp_pixbuf_loader' : ['dpkg not found - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
+        summary({'webp_pixbuf_loader' : ['dpkg or pacman not found - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
     endif
 else
     summary({'webp_pixbuf_loader' : ['disabled - webp files supported:', false]}, section : 'Configuration', bool_yn : true)
