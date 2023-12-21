@@ -20,7 +20,7 @@ jobs:
         base_image: ${{ matrix.base_image }}
         cpu: ${{ matrix.cpu }}
         cpu_info: ${{ matrix.cpu_info }}
-        image_additional_mb: 1000
+        image_additional_mb: 8000
         bind_mount_repository: false
         import_github_env: true
         export_github_env: true
@@ -34,9 +34,10 @@ jobs:
             yes | sudo apt-get install meson
             yes | sudo apt-get install pandoc
             yes | sudo apt-get install gettext
+            yes | sudo apt-get install yelp-tools
             mkdir -p $GITHUB_WORKSPACE/AppDir
             mkdir -p $GITHUB_WORKSPACE/AppDir/usr
-            meson setup -Darchive=disabled -Dcms=disabled -Ddevel=disabled -Ddoxygen=disabled -Ddjvu=disabled -Devince=disabled -Dexecinfo=disabled -Dexiv2=disabled -Dgps-map=disabled -Dheif=disabled -Dj2k=disabled -Djpeg=disabled -Djpegxl=disabled -Dlibraw=disabled -Dlua=disabled -Dpdf=disabled -Dspell=disabled -Dsubprojects=false  -Dtiff=disabled -Dvideothumbnailer=disabled -Dwebp-pixbuf-loader=disabled -Dyelp-build=disabled -Dprefix=$GITHUB_WORKSPACE/AppDir/usr build
+            meson setup -Darchive=disabled -Dcms=disabled -Ddevel=disabled -Ddoxygen=disabled -Ddjvu=disabled -Devince=disabled -Dexecinfo=disabled -Dexiv2=disabled -Dgps-map=disabled -Dheif=disabled -Dj2k=disabled -Djpeg=disabled -Djpegxl=disabled -Dlibraw=disabled -Dlua=disabled -Dpdf=disabled -Dspell=disabled -Dsubprojects=false  -Dtiff=disabled -Dvideothumbnailer=disabled -Dwebp-pixbuf-loader=disabled -Dprefix=$GITHUB_WORKSPACE/AppDir/usr build
             ninja -C build install
             tar -czvf geeqie.gz $GITHUB_WORKSPACE/
 

@@ -9,6 +9,7 @@ jobs:
     - run: sudo apt-get install build-essential libgtk-3-dev libgtk-3-bin
     - run: sudo apt-get install pandoc
     - run: sudo apt-get install gettext
+    - run: sudo apt-get install yelp-tools
 
     - uses: actions/checkout@v3
     - run: git fetch --tags --force
@@ -18,7 +19,7 @@ jobs:
       with:
         action: build
         directory: build
-        setup-options: -Darchive=disabled -Dcms=disabled -Ddevel=disabled -Ddoxygen=disabled -Ddjvu=disabled -Devince=disabled -Dexecinfo=disabled -Dexiv2=disabled -Dgps-map=disabled -Dheif=disabled -Dj2k=disabled -Djpeg=disabled -Djpegxl=disabled -Dlibraw=disabled -Dlua=disabled -Dpdf=disabled -Dspell=disabled -Dsubprojects=false -Dtiff=disabled -Dvideothumbnailer=disabled -Dwebp-pixbuf-loader=disabled -Dyelp-build=disabled
+        setup-options: -Darchive=disabled -Dcms=disabled -Ddevel=disabled -Ddoxygen=disabled -Ddjvu=disabled -Devince=disabled -Dexecinfo=disabled -Dexiv2=disabled -Dgps-map=disabled -Dheif=disabled -Dj2k=disabled -Djpeg=disabled -Djpegxl=disabled -Dlibraw=disabled -Dlua=disabled -Dpdf=disabled -Dspell=disabled -Dsubprojects=false -Dtiff=disabled -Dvideothumbnailer=disabled -Dwebp-pixbuf-loader=disabled
         options: --verbose
         meson-version: 1.0.1
 
