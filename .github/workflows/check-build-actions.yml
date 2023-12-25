@@ -2,6 +2,13 @@ name: Geeqie check build
 run-name: ${{ github.actor }} is running Geeqie check build
 on: [push, pull_request]
 jobs:
+  Check-Markdown:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run Markdown Lint
+      uses: actionshub/markdownlint@main
+
   Check-Build-No-Options:
     runs-on: ubuntu-22.04
     steps:

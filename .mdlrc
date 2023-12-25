@@ -1,0 +1,3 @@
+# markdownlint (mdl) configuration file
+
+style '.mdl.rb'

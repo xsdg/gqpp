@@ -633,6 +633,9 @@ configure_file(input : 'config.h.in',
 script_sources = []
 subdir('scripts')
 
+# For markdownlint on .md files
+mdl_sources = []
+
 # For gtk builder checks on .ui files
 ui_sources = []
 
@@ -719,6 +722,31 @@ if option.disabled()
     endif
 else
     summary({'shellcheck' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+endif
+
+# Markdownlint
+option = get_option('archive')
+if option.disabled()
+    mdl_exe = find_program('mdl', required : false)
+
+    if mdl_exe.found()
+        mdl_sources += files('CHECKLIST.md',
+        'CODING.md',
+        'DEVELOPER-NOTES.md',
+        'README.md',
+        join_paths(meson.project_source_root(), '.github', 'ISSUE_TEMPLATE.md'))
+
+        style = join_paths(meson.project_source_root(), '.mdl.rb')
+        foreach md_file : mdl_sources
+            md_path = '@0@'.format(md_file)
+            test('Mdl_check_ ' + md_path, mdl_exe, args: ['--style', style, md_file], timeout: 100)
+        endforeach
+        summary({'markdownlint' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+    else
+        summary({'markdownlint' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+    endif
+else
+    summary({'markdownlint' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
 endif
 
 # GtkBuilder .ui check

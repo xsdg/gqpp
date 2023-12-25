@@ -1,21 +1,25 @@
 # Additional Information for Developers
 
-
 ## Non-standard icons
 
-#### Collection drag-drop icon
+### Collection drag-drop icon
 
 #### ![][image_ref_gq_marker_png]
+
 Used when dropping images onto a Collection.
 Defined in `./src/icons/gq-marker.xpm`.
 
-#### Overlay Screen Display icons
+### Overlay Screen Display icons
 
-##### ![][image_ref_image_osd_color_png] IMAGE_OSD_COLOR
-##### ![][image_ref_image_osd_first_png] IMAGE_OSD_FIRST
-##### ![][image_ref_image_osd_icon_png] IMAGE_OSD_ICON
-##### ![][image_ref_image_osd_last_png] IMAGE_OSD_LAST
-##### ![][image_ref_image_osd_rotate_auto_png] IMAGE_OSD_ROTATE_AUTO
+#### ![][image_ref_image_osd_color_png] IMAGE_OSD_COLOR
+
+#### ![][image_ref_image_osd_first_png] IMAGE_OSD_FIRST
+
+#### ![][image_ref_image_osd_icon_png] IMAGE_OSD_ICON
+
+#### ![][image_ref_image_osd_last_png] IMAGE_OSD_LAST
+
+#### ![][image_ref_image_osd_rotate_auto_png] IMAGE_OSD_ROTATE_AUTO
 
 Shown in the Overlay Screen Display. Defined in `./src/image-overlay.cc image_osd_icon_pixbuf()`.
 
@@ -24,6 +28,7 @@ Shown in the Overlay Screen Display. Defined in `./src/image-overlay.cc image_os
 Menu processing is in `./src/layout-util.cc menu_entries[]`.
 
 ## Doxygen Documentation
+
 Complete code documentation in html format can be generated via the script `./scripts/doxygen.sh`.
 
 [image_ref_image_osd_color_png]:

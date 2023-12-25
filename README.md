@@ -10,7 +10,6 @@ Package Status:
 Geeqie website status:  
 [![Links Status](https://github.com/geeqie/geeqie.github.io/actions/workflows/links.yml/badge.svg)]()
 
-
 ## ![][image_ref_geeqie_png] Geeqie - an image viewer
 
 This is Geeqie, a successor of GQview.
