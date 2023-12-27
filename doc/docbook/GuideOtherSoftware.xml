@@ -20,8 +20,8 @@
   <section id="Unison">
     <title>Unison</title>
     <para>
-       Unison allows two replicas of a collection of files and directories to be stored on different hosts (or different disks on the same host), modified separately, and then brought up to date by propagating the changes in each replica to the other (n.b. there is a GTK GUI .deb package):
-      <ulink url="https://www.cis.upenn.edu/~bcpierce/unison/">https://www.cis.upenn.edu/~bcpierce/unison/</ulink>
+       Unison allows two replicas of a collection of files and directories to be stored on different hosts (or different disks on the same host), modified separately, and then brought up to date by propagating the changes in each replica to the other. It is available in some distributions. This is the project site:
+      <ulink url="https://github.com/bcpierce00/unison/">https://github.com/bcpierce00/unison/</ulink>
     </para>
   </section>
   <section id="GeeqieCacheMaintenance">
