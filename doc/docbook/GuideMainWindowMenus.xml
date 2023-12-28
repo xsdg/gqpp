@@ -176,6 +176,14 @@
       </varlistentry>
       <varlistentry>
         <term>
+          <guimenu>Open With...</guimenu>
+        </term>
+        <listitem>
+          <para>Calls the standard GTK application chooser for a single file.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
           <menuchoice>
             <shortcut>
               <keycombo>
@@ -1488,7 +1496,7 @@
             </shortcut>
             <guimenu>Hide Bars and Files</guimenu>
           </menuchoice>
-         </term>
+        </term>
         <listitem>
           <para>This item is intended to be used by its shortcut key. When pressed, the info sidebar, sort manager, file list, menu and status bars will be hidden (if displayed). Pressing the shortcut key again will revert the display to its previous layout.</para>
         </listitem>

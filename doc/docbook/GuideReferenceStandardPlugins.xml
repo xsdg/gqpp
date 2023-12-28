@@ -2,15 +2,6 @@
 <section id="GuideReferenceStandardPlugins">
   <title id="titleGuideReferenceStandardPlugins">Standard Plugins</title>
   <para>The following plugins are supplied as standard with Geeqie.</para>
-  <section id="Symlink">
-    <title>Symlink</title>
-    <para>Creates a symbolic link on the selected files. If a file has sidecars, they will also be symlinked.</para>
-    <para>
-      This item is displayed in the
-      <emphasis role="strong">File</emphasis>
-      menu.
-    </para>
-  </section>
   <section id="Applytheorientationtoimagecontent">
     <title>Apply the orientation to image content</title>
     <para>This command affects only jpeg, tiff and png files. The image file on disk is rotated to the orientation as specified by its Exif Orientation tag.</para>
@@ -71,29 +62,18 @@
       menu.
     </para>
   </section>
-  <section id="Randomimage">
-    <title>Random image</title>
-    <para>Selects and displays a random image from a list of all images in Collections and the currently displayed folder.</para>
+  <section id="OpenWith">
+    <title>Open With</title>
+    <para>Call the standard GTK application chooser for a single file.</para>
     <para>
-      This item is displayed in the
-      <emphasis role="strong">Plugins</emphasis>
+      This item is also displayed in the
+      <emphasis role="strong">File</emphasis>
       menu.
     </para>
   </section>
-  <section id="Tetheredphotography">
-    <title>Tethered photography</title>
-    <para>
-      If a camera is connected to the computer via USB, photos taken are immediately downloaded to the current folder and displayed on the computer.
-      <para />
-      If a file already exists with the same name, it is not overwritten but the download will not take place.
-      <para />
-      Auto-rename can be achieved with the --filename option of gphoto2.
-      <para />
-      In file
-      <code>$HOME/.config/gphoto2/settings</code>
-      , set the option:
-      <code>gphoto2=filename=&lt;see the gphoto2 manual&gt;</code>
-    </para>
+  <section id="Randomimage">
+    <title>Random image</title>
+    <para>Selects and displays a random image from a list of all images in Collections and the currently displayed folder.</para>
     <para>
       This item is displayed in the
       <emphasis role="strong">Plugins</emphasis>
@@ -171,5 +151,34 @@
       can be found at: http://www.imagemagick.org/script/license.php
     </programlisting>
     <para />
+  </section>
+  <section id="Symlink">
+    <title>Symlink</title>
+    <para>Creates a symbolic link on the selected files. If a file has sidecars, they will also be symlinked.</para>
+    <para>
+      This item is displayed in the
+      <emphasis role="strong">File</emphasis>
+      menu.
+    </para>
+  </section>
+  <section id="Tetheredphotography">
+    <title>Tethered photography</title>
+    <para>
+      If a camera is connected to the computer via USB, photos taken are immediately downloaded to the current folder and displayed on the computer.
+      <para />
+      If a file already exists with the same name, it is not overwritten but the download will not take place.
+      <para />
+      Auto-rename can be achieved with the --filename option of gphoto2.
+      <para />
+      In file
+      <code>$HOME/.config/gphoto2/settings</code>
+      , set the option:
+      <code>gphoto2=filename=&lt;see the gphoto2 manual&gt;</code>
+    </para>
+    <para>
+      This item is displayed in the
+      <emphasis role="strong">Plugins</emphasis>
+      menu.
+    </para>
   </section>
 </section>
