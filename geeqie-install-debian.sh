@@ -8,7 +8,7 @@
 ## Dialogs allow the user to install additional features.
 ##
 
-version="2023-06-11"
+version="2023-12-29"
 description='
 Geeqie is an image viewer.
 This script will download, compile, and install Geeqie on Debian-based systems.
@@ -560,10 +560,10 @@ then
 	ninja -C build install
 else
 	meson setup build
-	meson configure build
+	meson configure --no-pager build
 	printf '%b\n' "90 " > "$zen_pipe"
 	printf '%b\n' "#Installing Geeqie..." > "$zen_pipe"
-	ninja -C build install
+	sudo --askpass meson install -C build
 fi
 
 rm "$install_pass_script"
