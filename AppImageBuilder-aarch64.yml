@@ -31,6 +31,8 @@ AppDir:
     - libchamplain-0.12
     - libchamplain-gtk-0.12-0
     - libdjvulibre21
+    - libdw1
+    - libdwarf1
     - libgexiv2-2
     - libgspell-1-2
     - libheif1
@@ -41,6 +43,7 @@ AppDir:
     - libraw20
     - librsvg2-common
     - libtiff5
+    - libunwind8
     - libwebp7
     - webp-pixbuf-loader
 

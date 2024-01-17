@@ -33,6 +33,8 @@ jobs:
             yes | sudo apt-get install evince
             yes | sudo apt-get install libarchive-dev
             yes | sudo apt-get install libchamplain-0.12-dev libchamplain-gtk-0.12-dev
+            yes | sudo apt-get install libdw-dev
+            yes | sudo apt-get install libdwarf-dev
             yes | sudo apt-get install libffmpegthumbnailer-dev
             yes | sudo apt-get install libgexiv2-dev
             yes | sudo apt-get install libgspell-1-dev
@@ -40,6 +42,7 @@ jobs:
             yes | sudo apt-get install liblua5.3-dev
             yes | sudo apt-get install libpoppler-glib-dev
             yes | sudo apt-get install libraw-dev libomp-dev
+            yes | sudo apt-get install libunwind-dev
             yes | sudo apt-get install libwebp-dev
             yes | sudo apt-get install webp-pixbuf-loader
             yes | sudo apt-get install gettext
@@ -50,7 +53,7 @@ jobs:
             yes | sudo apt-get install yelp-tools
             mkdir -p $GITHUB_WORKSPACE/AppDir
             mkdir -p $GITHUB_WORKSPACE/AppDir/usr
-            meson setup -Ddevel=disabled -Ddoxygen=disabled -Dyelp-build=disabled -Dprefix=$GITHUB_WORKSPACE/AppDir/usr build
+            meson setup -Ddevel=enabled -Ddoxygen=disabled -Dyelp-build=disabled -Dprefix=$GITHUB_WORKSPACE/AppDir/usr build
             ninja -C build install
             tar -czvf geeqie.gz $GITHUB_WORKSPACE/
 
