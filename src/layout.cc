@@ -323,12 +323,11 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 {
 	GtkWidget *box;
 	GtkWidget *box_folders;
-	GtkWidget *scd;
-	GtkWidget *menu_tool_bar;
-	GtkWidget *tabcomp;
 	GtkWidget *menu_bar;
+	GtkWidget *menu_tool_bar;
+	GtkWidget *scd;
+	GtkWidget *tabcomp;
 	GtkWidget *toolbar;
-	GtkWidget *scroll_window;
 
 	box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 
@@ -337,14 +336,9 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 		menu_bar = layout_actions_menu_bar(lw);
 
 		toolbar = layout_actions_toolbar(lw, TOOLBAR_MAIN);
-		scroll_window = gq_gtk_scrolled_window_new(nullptr, nullptr);
-		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroll_window), GTK_POLICY_AUTOMATIC,GTK_POLICY_NEVER);
-		gq_gtk_container_add(GTK_WIDGET(scroll_window), menu_bar);
-
-		gtk_widget_show(scroll_window);
 		gtk_widget_show(menu_bar);
 
-		gq_gtk_box_pack_start(GTK_BOX(box), scroll_window, FALSE, FALSE, 0);
+		gq_gtk_box_pack_start(GTK_BOX(box), menu_bar, FALSE, FALSE, 0);
 		gq_gtk_box_pack_start(GTK_BOX(box), toolbar, FALSE, FALSE, 0);
 		}
 	else

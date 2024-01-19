@@ -3258,20 +3258,10 @@ GtkWidget *layout_actions_menu_bar(LayoutWindow *lw)
 GtkWidget *layout_actions_toolbar(LayoutWindow *lw, ToolbarType type)
 {
 	if (lw->toolbar[type]) return lw->toolbar[type];
-	switch (type)
-		{
-		case TOOLBAR_MAIN:
-			lw->toolbar[type] = gtk_ui_manager_get_widget(lw->ui_manager, "/ToolBar");
-			gtk_toolbar_set_style(GTK_TOOLBAR(lw->toolbar[type]), GTK_TOOLBAR_ICONS);
-			break;
-		case TOOLBAR_STATUS:
-			lw->toolbar[type] = gtk_ui_manager_get_widget(lw->ui_manager, "/StatusBar");
-			gtk_toolbar_set_style(GTK_TOOLBAR(lw->toolbar[type]), GTK_TOOLBAR_ICONS);
-			gtk_toolbar_set_show_arrow(GTK_TOOLBAR(lw->toolbar[type]), FALSE);
-			break;
-		default:
-			break;
-		}
+
+	lw->toolbar[type] = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+
+	gtk_widget_show(lw->toolbar[type]);
 	g_object_ref(lw->toolbar[type]);
 	return lw->toolbar[type];
 }
@@ -3296,6 +3286,21 @@ GtkWidget *layout_actions_menu_tool_bar(LayoutWindow *lw)
 	return lw->menu_tool_bar;
 }
 
+void toolbar_clear_cb(GtkWidget *widget, gpointer)
+{
+	GtkAction *action;
+
+	if (GTK_IS_BUTTON(widget))
+		{
+		action = static_cast<GtkAction *>(g_object_get_data(G_OBJECT(widget), "action"));
+		if (g_object_get_data(G_OBJECT(widget), "id") )
+			{
+			g_signal_handler_disconnect(action, GPOINTER_TO_UINT(g_object_get_data(G_OBJECT(widget), "id")));
+			}
+		}
+	gtk_widget_destroy(widget);
+}
+
 void layout_toolbar_clear(LayoutWindow *lw, ToolbarType type)
 {
 	if (lw->toolbar_merge_id[type])
@@ -3307,22 +3312,58 @@ void layout_toolbar_clear(LayoutWindow *lw, ToolbarType type)
 	lw->toolbar_actions[type] = nullptr;
 
 	lw->toolbar_merge_id[type] = gtk_ui_manager_new_merge_id(lw->ui_manager);
+
+	if (lw->toolbar[type])
+		{
+		gtk_container_foreach(GTK_CONTAINER(lw->toolbar[type]), (GtkCallback)G_CALLBACK(toolbar_clear_cb), nullptr);
+		}
 }
 
-/* Used to create a unique name for toolbar separators */
-static gint i = 0;
+void action_radio_changed_cb(GtkAction *action, GtkAction *current, gpointer data)
+{
+	auto button = static_cast<GtkToggleButton *>(data);
 
-void layout_toolbar_add(LayoutWindow *lw, ToolbarType type, const gchar *action)
+	if (action == current )
+		{
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), TRUE);
+		}
+	else
+		{
+		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), FALSE);
+		}
+}
+
+void action_toggle_activate_cb(GtkAction* self, gpointer data)
+{
+	auto button = static_cast<GtkToggleButton *>(data);
+
+	if (gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(self)) != gtk_toggle_button_get_active(button))
+		{
+		gtk_toggle_button_set_active(button, gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(self)));
+		}
+}
+
+gboolean toolbar_button_press_event_cb(GtkWidget *, GdkEvent *, gpointer data)
+{
+	gtk_action_activate(GTK_ACTION(data));
+
+	return TRUE;
+}
+
+void layout_toolbar_add(LayoutWindow *lw, ToolbarType type, const gchar *action_name)
 {
 	const gchar *path = nullptr;
-	gchar *separator_name;
+	const gchar *tooltip_text = nullptr;
+	GtkAction *action;
+	GtkWidget *action_icon = nullptr;
+	GtkWidget *button;
+	gulong id;
 
-	if (!action || !lw->ui_manager) return;
+	if (!action_name || !lw->ui_manager) return;
 
-	/* There can be multiple separators, but only a single of others */
-	if (g_strcmp0(action, "Separator") != 0)
+	if (!lw->toolbar[type])
 		{
-		if (g_list_find_custom(lw->toolbar_actions[type], action, reinterpret_cast<GCompareFunc>(strcmp))) return;
+		return;
 		}
 
 	switch (type)
@@ -3337,8 +3378,7 @@ void layout_toolbar_add(LayoutWindow *lw, ToolbarType type, const gchar *action)
 			break;
 		}
 
-
-	if (g_str_has_suffix(action, ".desktop"))
+	if (g_str_has_suffix(action_name, ".desktop"))
 		{
 		/* this may be called before the external editors are read
 		   create a dummy action for now */
@@ -3347,37 +3387,79 @@ void layout_toolbar_add(LayoutWindow *lw, ToolbarType type, const gchar *action)
 			lw->action_group_editors = gtk_action_group_new("MenuActionsExternal");
 			gtk_ui_manager_insert_action_group(lw->ui_manager, lw->action_group_editors, 1);
 			}
-		if (!gtk_action_group_get_action(lw->action_group_editors, action))
+		if (!gtk_action_group_get_action(lw->action_group_editors, action_name))
 			{
-			GtkActionEntry entry = { action,
+			GtkActionEntry entry = { action_name,
 			                         GQ_ICON_MISSING_IMAGE,
-			                         action,
+			                         action_name,
 			                         nullptr,
 			                         nullptr,
-			                         nullptr };
-			DEBUG_1("Creating temporary action %s", action);
+			                         nullptr
+			                       };
+			DEBUG_1("Creating temporary action %s", action_name);
 			gtk_action_group_add_actions(lw->action_group_editors, &entry, 1, lw);
 			}
 		}
 
-	if (g_strcmp0(action, "Separator") == 0)
+	if (g_strcmp0(action_name, "Separator") == 0)
 		{
-		/* gtk_ui_manager requires items to have unique names */
-		i++;
-		separator_name = g_strdup_printf("separator_%i",i);
-
-		gtk_ui_manager_add_ui(lw->ui_manager, lw->toolbar_merge_id[type], path, separator_name, NULL, GTK_UI_MANAGER_SEPARATOR, FALSE);
-
-		g_free(separator_name);
+		button = gtk_separator_new(GTK_ORIENTATION_VERTICAL);
 		}
 	else
 		{
-		gtk_ui_manager_add_ui(lw->ui_manager, lw->toolbar_merge_id[type], path, action, action, GTK_UI_MANAGER_TOOLITEM, FALSE);
+		action = gtk_action_group_get_action(lw->action_group, action_name);
+
+		action_icon = gtk_action_create_icon(action, GTK_ICON_SIZE_SMALL_TOOLBAR);
+		tooltip_text = gtk_action_get_tooltip(action);
+
+		gtk_ui_manager_add_ui(lw->ui_manager, lw->toolbar_merge_id[type], path, action_name, action_name, GTK_UI_MANAGER_TOOLITEM, FALSE);
+
+		if (GTK_IS_RADIO_ACTION(action) || GTK_IS_TOGGLE_ACTION(action))
+			{
+			button = gtk_toggle_button_new();
+			}
+		else
+			{
+			button = gtk_button_new();
+			}
+
+		if (GTK_IS_TOGGLE_ACTION(action) || GTK_IS_RADIO_ACTION(action))
+			{
+			gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), gtk_toggle_action_get_active(GTK_TOGGLE_ACTION(action)));
+			}
+
+		if (action_icon)
+			{
+			gtk_button_set_image(GTK_BUTTON(button), action_icon);
+			}
+		else
+			{
+			gtk_button_set_label(GTK_BUTTON(button), action_name);
+			}
+
+		gtk_button_set_relief(GTK_BUTTON(button), GTK_RELIEF_NONE);
+		gtk_widget_set_tooltip_text(button, tooltip_text);
+
+		if (GTK_IS_RADIO_ACTION(action))
+			{
+			id = g_signal_connect(G_OBJECT(action), "changed", G_CALLBACK(action_radio_changed_cb), button);
+			g_object_set_data(G_OBJECT(button), "id", GUINT_TO_POINTER(id));
+			}
+		else if (GTK_IS_TOGGLE_ACTION(action))
+			{
+			id = g_signal_connect(G_OBJECT(action), "activate", G_CALLBACK(action_toggle_activate_cb), button);
+			g_object_set_data(G_OBJECT(button), "id", GUINT_TO_POINTER(id));
+			}
+
+		g_signal_connect(G_OBJECT(button), "button_press_event", G_CALLBACK(toolbar_button_press_event_cb), action);
+		g_object_set_data(G_OBJECT(button), "action", action);
 		}
 
-	lw->toolbar_actions[type] = g_list_append(lw->toolbar_actions[type], g_strdup(action));
-}
+	gq_gtk_container_add(GTK_WIDGET(lw->toolbar[type]), GTK_WIDGET(button));
+	gtk_widget_show(GTK_WIDGET(button));
 
+	lw->toolbar_actions[type] = g_list_append(lw->toolbar_actions[type], g_strdup(action_name));
+}
 
 void layout_toolbar_add_default(LayoutWindow *lw, ToolbarType type)
 {
