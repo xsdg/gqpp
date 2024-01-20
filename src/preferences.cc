@@ -2143,11 +2143,11 @@ static void config_tab_general(GtkWidget *notebook)
 
 	pref_spacer(group, PREF_PAD_GROUP);
 
-	group = pref_group_new(vbox, FALSE, _("Expand menu and toolbar"), GTK_ORIENTATION_VERTICAL);
+	group = pref_group_new(vbox, FALSE, _("Expand toolbar"), GTK_ORIENTATION_VERTICAL);
 
-	pref_checkbox_new_int(group, _("Expand menu and toolbar (NOTE! Geeqie must be restarted for change to take effect)"),
+	pref_checkbox_new_int(group, _("Expand toolbar (NOTE! Geeqie must be restarted for change to take effect)"),
 				options->expand_menu_toolbar, &c_options->expand_menu_toolbar);
-	gtk_widget_set_tooltip_text(group, _("Expand the menu and toolbar to the full width of the window"));
+	gtk_widget_set_tooltip_text(group, _("Expand the toolbar to the full width of the window"));
 
 	pref_spacer(group, PREF_PAD_GROUP);
 

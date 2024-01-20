@@ -239,9 +239,9 @@
       </varlistentry>
     </variablelist>
   </section>
-  <section id="ExpandMenuToolbar">
-    <title>Expand menu and toolbar</title>
-    <para>Expand the menu and toolbar to the full width of the window.</para>
+  <section id="ExpandToolbar">
+    <title>Expand toolbar</title>
+    <para>Expand the toolbar to the full width of the window.</para>
     <note>
       <para>Geeqie must be restarted for changes to take effect.</para>
     </note>

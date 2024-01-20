@@ -323,8 +323,9 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 {
 	GtkWidget *box;
 	GtkWidget *box_folders;
-	GtkWidget *menu_bar;
+	GtkWidget *box_menu_tabcomp;
 	GtkWidget *menu_tool_bar;
+	GtkWidget *open_menu;
 	GtkWidget *scd;
 	GtkWidget *tabcomp;
 	GtkWidget *toolbar;
@@ -333,12 +334,7 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 
 	if (!options->expand_menu_toolbar)
 		{
-		menu_bar = layout_actions_menu_bar(lw);
-
 		toolbar = layout_actions_toolbar(lw, TOOLBAR_MAIN);
-		gtk_widget_show(menu_bar);
-
-		gq_gtk_box_pack_start(GTK_BOX(box), menu_bar, FALSE, FALSE, 0);
 		gq_gtk_box_pack_start(GTK_BOX(box), toolbar, FALSE, FALSE, 0);
 		}
 	else
@@ -349,18 +345,24 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 		gq_gtk_box_pack_start(GTK_BOX(lw->main_box), lw->menu_tool_bar, FALSE, FALSE, 0);
 		}
 
-	tabcomp = tab_completion_new_with_history(&lw->path_entry, nullptr, "path_list", -1,
-						  layout_path_entry_cb, lw);
+	box_menu_tabcomp = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+	gtk_widget_show(box_menu_tabcomp);
+
+	open_menu = layout_actions_menu_bar(lw);
+	gtk_widget_set_tooltip_text(open_menu, "Open application menu");
+
+	tabcomp = tab_completion_new_with_history(&lw->path_entry, nullptr, "path_list", -1, layout_path_entry_cb, lw);
 	DEBUG_NAME(tabcomp);
 	tab_completion_add_tab_func(lw->path_entry, layout_path_entry_tab_cb, lw);
 	tab_completion_add_append_func(lw->path_entry, layout_path_entry_tab_append_cb, lw);
-	gq_gtk_box_pack_start(GTK_BOX(box), tabcomp, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box_menu_tabcomp), open_menu, FALSE, FALSE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box_menu_tabcomp), tabcomp, TRUE, TRUE, 0);
+	gq_gtk_box_pack_start(GTK_BOX(box), box_menu_tabcomp, FALSE, FALSE, 0);
 	gtk_widget_show(tabcomp);
 	gtk_widget_set_has_tooltip(GTK_WIDGET(tabcomp), TRUE);
 	g_signal_connect(G_OBJECT(tabcomp), "query_tooltip", G_CALLBACK(path_entry_tooltip_cb), lw);
 
-	g_signal_connect(G_OBJECT(gtk_widget_get_parent(gtk_widget_get_parent(lw->path_entry))), "changed",
-			 G_CALLBACK(layout_path_entry_changed_cb), lw);
+	g_signal_connect(G_OBJECT(gtk_widget_get_parent(gtk_widget_get_parent(lw->path_entry))), "changed", G_CALLBACK(layout_path_entry_changed_cb), lw);
 
 	box_folders = GTK_WIDGET(gtk_paned_new(GTK_ORIENTATION_HORIZONTAL));
 	DEBUG_NAME(box_folders);
@@ -382,8 +384,7 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 
 	gtk_widget_show(box_folders);
 
-	g_signal_connect(G_OBJECT(box_folders), "notify::position",
-			 G_CALLBACK(layout_box_folders_changed_cb), lw);
+	g_signal_connect(G_OBJECT(box_folders), "notify::position", G_CALLBACK(layout_box_folders_changed_cb), lw);
 
 	gtk_widget_show(box);
 
