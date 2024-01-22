@@ -1,6 +1,0 @@
-[wrap-git]
-url = https://github.com/aruiz/webp-pixbuf-loader.git
-revision = head
-depth = 1
-directory = webp-pixbuf-loader
-diff_files = webp-pixbuf-loader/pull-73.diff, webp-pixbuf-loader/meson-build.diff
