@@ -2036,7 +2036,7 @@ static void layout_menu_collection_recent_update(LayoutWindow *lw)
 		menu_item_add(menu, _("Empty"), nullptr, nullptr);
 		}
 
-	recent = gtk_ui_manager_get_widget(lw->ui_manager, "/MainMenu/OpenMenu/FileMenu/OpenRecent");
+	recent = gtk_ui_manager_get_widget(lw->ui_manager, options->hamburger_menu ? "/MainMenu/OpenMenu/FileMenu/OpenRecent" : "/MainMenu/FileMenu/OpenRecent");
 	gtk_menu_item_set_submenu(GTK_MENU_ITEM(recent), menu);
 	gtk_widget_set_sensitive(recent, (n != 0));
 }
@@ -2092,7 +2092,7 @@ static void layout_menu_collection_open_update(LayoutWindow *lw)
 		menu_item_add(menu, _("Empty"), nullptr, nullptr);
 		}
 
-	recent = gtk_ui_manager_get_widget(lw->ui_manager, "/MainMenu/OpenMenu/FileMenu/OpenCollection");
+	recent = gtk_ui_manager_get_widget(lw->ui_manager, options->hamburger_menu ? "/MainMenu/OpenMenu/FileMenu/OpenCollection" : "/MainMenu/FileMenu/OpenCollection");
 	gtk_menu_item_set_submenu(GTK_MENU_ITEM(recent), menu);
 	gtk_widget_set_sensitive(recent, (n != 0));
 }
@@ -2251,7 +2251,7 @@ static void layout_menu_new_window_update(LayoutWindow *lw)
 
 	list = layout_window_menu_list(list);
 
-	menu = gtk_ui_manager_get_widget(lw->ui_manager, "/MainMenu/OpenMenu/WindowsMenu/NewWindow");
+	menu = gtk_ui_manager_get_widget(lw->ui_manager, options->hamburger_menu ? "/MainMenu/OpenMenu/WindowsMenu/NewWindow" : "/MainMenu/WindowsMenu/NewWindow");
 	sub_menu = gtk_menu_item_get_submenu(GTK_MENU_ITEM(menu));
 
 	children = gtk_container_get_children(GTK_CONTAINER(sub_menu));
@@ -2396,7 +2396,8 @@ static void layout_menu_windows_menu_cb(GtkWidget *, gpointer data)
 	GList *children, *iter;
 	gint i;
 
-	menu = gtk_ui_manager_get_widget(lw->ui_manager, "/MainMenu/OpenMenu/WindowsMenu/");
+	menu = gtk_ui_manager_get_widget(lw->ui_manager, options->hamburger_menu ? "/MainMenu/OpenMenu/WindowsMenu/" : "/MainMenu/WindowsMenu/");
+
 	sub_menu = gtk_menu_item_get_submenu(GTK_MENU_ITEM(menu));
 
 	/* disable Delete for temporary windows */
@@ -2427,7 +2428,7 @@ static void layout_menu_view_menu_cb(GtkWidget *, gpointer data)
 	gint i;
 	FileData *fd;
 
-	menu = gtk_ui_manager_get_widget(lw->ui_manager, "/MainMenu/OpenMenu/ViewMenu/");
+	menu = gtk_ui_manager_get_widget(lw->ui_manager, options->hamburger_menu ? "/MainMenu/OpenMenu/ViewMenu/" : "/MainMenu/ViewMenu/");
 	sub_menu = gtk_menu_item_get_submenu(GTK_MENU_ITEM(menu));
 
 	fd = layout_image_get_fd(lw);
@@ -2881,9 +2882,13 @@ static void layout_actions_setup_marks(LayoutWindow *lw)
 	GError *error;
 	GString *desc = g_string_new(
 				"<ui>"
-				"  <menubar name='MainMenu'>"
-				"    <menu action='OpenMenu'>"
-				"      <menu action='SelectMenu'>");
+				"  <menubar name='MainMenu'>");
+
+	if (options->hamburger_menu)
+		{
+		g_string_append(desc, "    <menu action='OpenMenu'>");
+		}
+	g_string_append(desc, "      <menu action='SelectMenu'>");
 
 	for (mark = 1; mark <= FILEDATA_MARKS_SIZE; mark++)
 		{
@@ -2918,9 +2923,13 @@ static void layout_actions_setup_marks(LayoutWindow *lw)
 		}
 
 	g_string_append(desc,
-				"      </menu>"
-				"    </menu>"
-				"  </menubar>");
+				"      </menu>");
+	if (options->hamburger_menu)
+		{
+		g_string_append(desc, "    </menu>");
+		}
+	g_string_append(desc, "  </menubar>");
+
 	for (mark = 1; mark <= FILEDATA_MARKS_SIZE; mark++)
 		{
 		gint i = (mark < 10 ? mark : 0);
@@ -3048,8 +3057,12 @@ static void layout_actions_setup_editors(LayoutWindow *lw)
 	/* lw->action_group_editors contains translated entries, no translate func is required */
 	desc = g_string_new(
 				"<ui>"
-				"  <menubar name='MainMenu'>"
-				"    <menu action='OpenMenu'>");
+				"  <menubar name='MainMenu'>");
+
+	if (options->hamburger_menu)
+		{
+		g_string_append(desc, "    <menu action='OpenMenu'>");
+		}
 
 	editors_list = editor_list_get();
 
@@ -3083,8 +3096,12 @@ static void layout_actions_setup_editors(LayoutWindow *lw)
 	layout_actions_editor_add(desc, nullptr, old_path);
 	g_list_free_full(old_path, g_free);
 
-	g_string_append(desc,   "</menu>"
-				"  </menubar>"
+	if (options->hamburger_menu)
+		{
+		g_string_append(desc, "</menu>");
+		}
+
+	g_string_append(desc,"  </menubar>"
 				"</ui>" );
 
 	error = nullptr;
@@ -3144,7 +3161,8 @@ void layout_actions_setup(LayoutWindow *lw)
 
 	DEBUG_1("%s layout_actions_setup: add menu", get_exec_time());
 	error = nullptr;
-	if (!gtk_ui_manager_add_ui_from_resource(lw->ui_manager, GQ_RESOURCE_PATH_UI "/menu.ui", &error))
+
+	if (!gtk_ui_manager_add_ui_from_resource(lw->ui_manager, options->hamburger_menu ? GQ_RESOURCE_PATH_UI "/menu-hamburger.ui" : GQ_RESOURCE_PATH_UI "/menu-classic.ui" , &error))
 		{
 		g_message("building menus failed: %s", error->message);
 		g_error_free(error);
@@ -3273,6 +3291,7 @@ GtkWidget *layout_actions_toolbar(LayoutWindow *lw, ToolbarType type)
 
 GtkWidget *layout_actions_menu_tool_bar(LayoutWindow *lw)
 {
+	GtkWidget *menu_bar;
 	GtkWidget *toolbar;
 
 	if (lw->menu_tool_bar) return lw->menu_tool_bar;
@@ -3280,6 +3299,13 @@ GtkWidget *layout_actions_menu_tool_bar(LayoutWindow *lw)
 	toolbar = layout_actions_toolbar(lw, TOOLBAR_MAIN);
 	DEBUG_NAME(toolbar);
 	lw->menu_tool_bar = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+
+	if (!options->hamburger_menu)
+		{
+		menu_bar = layout_actions_menu_bar(lw);
+		DEBUG_NAME(menu_bar);
+		gq_gtk_box_pack_start(GTK_BOX(lw->menu_tool_bar), menu_bar, FALSE, FALSE, 0);
+		}
 
 	gq_gtk_box_pack_start(GTK_BOX(lw->menu_tool_bar), toolbar, FALSE, FALSE, 0);
 

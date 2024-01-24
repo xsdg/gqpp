@@ -444,6 +444,7 @@ static void config_window_apply()
 
 	options->show_predefined_keyword_tree = c_options->show_predefined_keyword_tree;
 	options->expand_menu_toolbar = c_options->expand_menu_toolbar;
+	options->hamburger_menu = c_options->hamburger_menu;
 
 	options->selectable_bars.menu_bar = c_options->selectable_bars.menu_bar;
 	options->selectable_bars.tool_bar = c_options->selectable_bars.tool_bar;
@@ -2143,11 +2144,19 @@ static void config_tab_general(GtkWidget *notebook)
 
 	pref_spacer(group, PREF_PAD_GROUP);
 
+	group = pref_group_new(vbox, FALSE, _("Menu style"), GTK_ORIENTATION_VERTICAL);
+
+	pref_checkbox_new_int(group, _("☰ style menu button (NOTE! Geeqie must be restarted for change to take effect)"),
+				options->hamburger_menu, &c_options->hamburger_menu);
+	gtk_widget_set_tooltip_text(group, _("Use a ☰ style menu button instead of the classic style across the top of the frame"));
+
+	pref_spacer(group, PREF_PAD_GROUP);
+
 	group = pref_group_new(vbox, FALSE, _("Expand toolbar"), GTK_ORIENTATION_VERTICAL);
 
-	pref_checkbox_new_int(group, _("Expand toolbar (NOTE! Geeqie must be restarted for change to take effect)"),
+	pref_checkbox_new_int(group, _("Expand menu/toolbar (NOTE! Geeqie must be restarted for change to take effect)"),
 				options->expand_menu_toolbar, &c_options->expand_menu_toolbar);
-	gtk_widget_set_tooltip_text(group, _("Expand the toolbar to the full width of the window"));
+	gtk_widget_set_tooltip_text(group, _("Expand the menu/toolbar to the full width of the window"));
 
 	pref_spacer(group, PREF_PAD_GROUP);
 

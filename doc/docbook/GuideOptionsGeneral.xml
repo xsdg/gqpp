@@ -239,9 +239,16 @@
       </varlistentry>
     </variablelist>
   </section>
+  <section id="MenuStyle">
+    <title>Menu style</title>
+    <para>Use a ☰ "hamburger" style menu button instead of the standard menu across the top of the frame.</para>
+    <note>
+      <para>Geeqie must be restarted for changes to take effect.</para>
+    </note>
+  </section>
   <section id="ExpandToolbar">
-    <title>Expand toolbar</title>
-    <para>Expand the toolbar to the full width of the window.</para>
+    <title>Expand menu/toolbar</title>
+    <para>Expand the menu/toolbar to the full width of the window.</para>
     <note>
       <para>Geeqie must be restarted for changes to take effect.</para>
     </note>

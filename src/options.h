@@ -55,6 +55,7 @@ struct ConfOptions
 	gboolean show_predefined_keyword_tree;
 	gboolean overunderexposed;
 	gboolean expand_menu_toolbar;
+	gboolean hamburger_menu;
 
 	/* various */
 	gboolean tree_descend_subdirs;
