@@ -3049,7 +3049,14 @@ static gboolean file_util_write_metadata_first(UtilityType type, UtilityPhase ph
 
 void file_util_delete(FileData *source_fd, GList *source_list, GtkWidget *parent)
 {
-	file_util_delete_full(source_fd, source_list, parent, options->file_ops.confirm_delete ? UTILITY_PHASE_START : UTILITY_PHASE_ENTERING, nullptr, nullptr);
+	if (options->file_ops.safe_delete_enable == FALSE)
+		{
+		file_util_delete_full(source_fd, source_list, parent, options->file_ops.confirm_delete ? UTILITY_PHASE_START : UTILITY_PHASE_ENTERING, nullptr, nullptr);
+		}
+	else
+		{
+		file_util_delete_full(source_fd, source_list, parent, options->file_ops.confirm_move_to_trash ? UTILITY_PHASE_START : UTILITY_PHASE_ENTERING, nullptr, nullptr);
+		}
 }
 
 void file_util_delete_notify_done(FileData *source_fd, GList *source_list, GtkWidget *parent, FileUtilDoneFunc done_func, gpointer done_data)
