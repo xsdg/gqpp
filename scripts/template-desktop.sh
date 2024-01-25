@@ -9,7 +9,7 @@
 
 tmp_file=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 path=$(dirname "$(realpath "$0")")
-srcpath=$(dirname "$path")/src/layout-util.cc
+srcpath=$(dirname "$path")/src/ui/menu-classic.ui
 templatepath=$(dirname "$path")/plugins/org.geeqie.template.desktop.in
 
 awk -v src_path="$srcpath" 'BEGIN {
@@ -22,11 +22,11 @@ function get_menus()
 {
 	{while ((getline line < src_path) > 0 )
 		{
-		if (line == "\"<ui>\"")
+		if (line == "<ui>")
 			{
 			menu_flag = 1
 			}
-		if (line == "\"<\057ui>\";")
+		if (line == "<\047ui>")
 			{
 			menu_flag = 0
 			}
@@ -65,6 +65,10 @@ function get_menus()
 				}
 			gsub(" ", "", line)
 			if (line == "menu")
+				{
+				i = i - 1
+				}
+			if (lineArr[2] == "PluginsMenu")
 				{
 				i = i - 1
 				}
