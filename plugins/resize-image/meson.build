@@ -22,3 +22,5 @@ i18n.merge_file(
     install_dir : desktopdir)
 
 script_sources += files('geeqie-resize-image')
+
+desktop_sources += files('org.geeqie.resize-image.desktop.in')

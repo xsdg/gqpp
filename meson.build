@@ -587,6 +587,9 @@ mdl_sources = []
 # For gtk builder checks on .ui files
 ui_sources = []
 
+# For checks on .desktop files
+desktop_sources = []
+
 # Process subdirs before the sources
 subdir('po')
 subdir('plugins')
@@ -795,4 +798,24 @@ if not option.disabled()
     endif
 else
     summary({'lua' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+endif
+
+# Desktop files test
+option = get_option('desktop')
+if not option.disabled()
+    desktop_exe = find_program('desktop-file-validate', required : false)
+    if desktop_exe.found()
+        desktop_sh = find_program('desktop-file-validate.sh', dirs : scriptsdir, required : true)
+        test_desktop_dir = join_paths(meson.current_build_dir(), 'test-desktop-files.p')
+        foreach desktop_file : desktop_sources
+            desktop_path = '@0@'.format(desktop_file)
+            test('Desktop_check_ ' + desktop_path, desktop_sh, args: [test_desktop_dir, desktop_file], timeout: 100)
+        endforeach
+
+        summary({'Desktop files' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+    else
+        summary({'Desktop files' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+    endif
+else
+    summary({'Desktop files' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
 endif

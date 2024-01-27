@@ -12,6 +12,7 @@
 # GNU General Public License for more details.
 
 script_sources += files('authors.sh',
+'desktop-file-validate.sh',
 'devel-install.sh',
 'doxygen-help.sh',
 'doxygen.sh',

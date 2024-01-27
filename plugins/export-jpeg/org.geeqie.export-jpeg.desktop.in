@@ -11,7 +11,7 @@ Exec=geeqie-export-jpeg %f
 #TryExec=jpgicc
 
 # Desktop files that are usable only in Geeqie should be marked like this:
-Categories=X-Geeqie;
+Categories=Graphics;
 OnlyShowIn=X-Geeqie;
 
 # It can be made verbose

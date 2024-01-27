@@ -2,9 +2,8 @@
 Version=1.0
 Type=Application
 
-# The Desktop file MUST contain one or both of the following:
+# The Desktop file MUST contain the following:
 Categories=Graphics;
-Categories=X-Geeqie;
 
 # The name which appears in the menu:
 Name=Template
@@ -13,7 +12,7 @@ Name=Template
 #Name[de]=Vorlage
 
 # Replace "command" with the actual command or script:
-Exec=command <param>
+Exec=command param
 
 # Where <param> may be:
 # omitted	If no parameter is given the command will be executed in the

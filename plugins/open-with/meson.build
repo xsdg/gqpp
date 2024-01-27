@@ -19,3 +19,5 @@ i18n.merge_file(
     install : true,
     install_dir : desktopdir)
 
+
+desktop_sources += files('org.geeqie.open-with.desktop.in')

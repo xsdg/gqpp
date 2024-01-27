@@ -23,3 +23,5 @@ i18n.merge_file(
 
 script_sources += files('geeqie-camera-import',
 'geeqie-camera-import-hook-script')
+
+desktop_sources += files('org.geeqie.camera-import.desktop.in')

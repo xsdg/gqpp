@@ -22,3 +22,5 @@ i18n.merge_file(
     install_dir : desktopdir)
 
 script_sources += files('geeqie-symlink')
+
+desktop_sources += files('org.geeqie.symlink.desktop.in')

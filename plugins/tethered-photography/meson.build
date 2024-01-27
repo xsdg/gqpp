@@ -23,3 +23,5 @@ i18n.merge_file(
 
 script_sources += files('geeqie-tethered-photography',
 'geeqie-tethered-photography-hook-script')
+
+desktop_sources += files('org.geeqie.tethered-photography.desktop.in')
