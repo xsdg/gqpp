@@ -36,7 +36,6 @@
 #include "slideshow.h"
 #include "ui-fileops.h"
 #include "layout-util.h"
-#include "bar.h"
 #include "metadata.h"
 #include "bar-gps.h"
 #include "dupe.h"
