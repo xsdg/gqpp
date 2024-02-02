@@ -40,7 +40,6 @@ Checks: >
   -misc-const-correctness,
   -misc-no-recursion,
   -misc-non-private-member-variables-in-classes,
-  -misc-redundant-expression,
   -misc-use-anonymous-namespace,
   -modernize-avoid-c-arrays,
   -modernize-macro-to-enum,
