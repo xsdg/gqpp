@@ -3119,7 +3119,7 @@ void file_util_start_editor_from_filelist(const gchar *key, GList *list, const g
 #pragma GCC diagnostic ignored "-Wunused-function"
 void file_util_start_filter_from_file_unused(const gchar *key, FileData *fd, const gchar *dest_path, GtkWidget *parent)
 {
-	file_util_start_editor_full(key, fd, NULL, dest_path, NULL, parent, UTILITY_PHASE_ENTERING);
+	file_util_start_editor_full(key, fd, nullptr, dest_path, nullptr, parent, UTILITY_PHASE_ENTERING);
 }
 #pragma GCC diagnostic pop
 

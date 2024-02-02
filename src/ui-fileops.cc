@@ -790,16 +790,16 @@ gchar *unique_filename_simple_unused(const gchar *path)
 	const gchar *name;
 	const gchar *ext;
 
-	if (!path) return NULL;
+	if (!path) return nullptr;
 
 	name = filename_from_path(path);
-	if (!name) return NULL;
+	if (!name) return nullptr;
 
 	ext = registered_extension_from_path(name);
 
 	if (!ext)
 		{
-		unique = unique_filename(path, NULL, "_", TRUE);
+		unique = unique_filename(path, nullptr, "_", TRUE);
 		}
 	else
 		{

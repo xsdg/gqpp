@@ -481,7 +481,7 @@ static DupeItem *dupe_item_find_fd_by_list_unused(FileData *fd, GList *work)
 		work = work->next;
 		}
 
-	return NULL;
+	return nullptr;
 }
 
 static DupeItem *dupe_item_find_fd_unused(DupeWindow *dw, FileData *fd)
@@ -505,7 +505,7 @@ static DupeItem *dupe_item_find_path_by_list_unused(const gchar *path, GList *wo
 		work = work->next;
 		}
 
-	return NULL;
+	return nullptr;
 }
 
 static DupeItem *dupe_item_find_path_unused(DupeWindow *dw, const gchar *path)

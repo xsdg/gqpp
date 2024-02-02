@@ -64,7 +64,7 @@ gboolean pixbuf_to_file_as_png(GdkPixbuf *pixbuf, const gchar *filename)
 #pragma GCC diagnostic ignored "-Wunused-function"
 gboolean pixbuf_to_file_as_jpg_unused(GdkPixbuf *pixbuf, const gchar *filename, gint quality)
 {
-	GError *error = NULL;
+	GError *error = nullptr;
 	gchar *qbuf;
 	gboolean ret;
 

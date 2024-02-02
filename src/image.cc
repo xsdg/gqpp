@@ -198,7 +198,7 @@ static void image_release_cb(PixbufRenderer *, GdkEventButton *event, gpointer d
 		layout_valid(&lw);
 		}
 
-	defined_mouse_buttons(NULL, event, lw);
+	defined_mouse_buttons(nullptr, event, lw);
 }
 
 static void image_drag_cb(PixbufRenderer *pr, GdkEventMotion *event, gpointer data)

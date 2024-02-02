@@ -435,7 +435,7 @@ static void bar_filter_help_dialog()
 	generic_dialog_add_message(gd, GQ_ICON_DIALOG_INFO,
 				"Sort Manager Operations", _("Additional operations utilising plugins\nmay be included by setting:\n\nX-Geeqie-Filter=true\n\nin the plugin file."), TRUE);
 	generic_dialog_add_button(gd, GQ_ICON_HELP, _("Help"), bar_filter_help_cb, TRUE);
-	generic_dialog_add_button(gd, GQ_ICON_OK, "OK", NULL, TRUE);
+	generic_dialog_add_button(gd, GQ_ICON_OK, "OK", nullptr, TRUE);
 
 	gtk_widget_show(gd->dialog);
 }

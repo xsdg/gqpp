@@ -2965,7 +2965,7 @@ gboolean pixbuf_renderer_get_visible_rect(PixbufRenderer *pr, GdkRectangle *rect
 gboolean pixbuf_renderer_get_virtual_rect_unused(PixbufRenderer *pr, GdkRectangle *rect)
 {
 	g_return_val_if_fail(IS_PIXBUF_RENDERER(pr), FALSE);
-	g_return_val_if_fail(rect != NULL, FALSE);
+	g_return_val_if_fail(rect != nullptr, FALSE);
 
 	if ((!pr->pixbuf && !pr->source_tiles_enabled))
 		{

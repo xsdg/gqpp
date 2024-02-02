@@ -1210,7 +1210,7 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 #pragma GCC diagnostic ignored "-Wunused-function"
 GtkWidget *path_selection_new_unused(const gchar *path, GtkWidget *entry)
 {
-	return path_selection_new_with_files(entry, path, NULL, NULL);
+	return path_selection_new_with_files(entry, path, nullptr, nullptr);
 }
 
 void path_selection_sync_to_entry_unused(GtkWidget *entry)

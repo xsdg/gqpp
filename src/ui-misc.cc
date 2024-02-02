@@ -1305,7 +1305,7 @@ gboolean pref_list_double_get_unused(const gchar *group, const gchar *key, gdoub
 
 	if (pref_list_get(group, key, PREF_LIST_MARKER_DOUBLE, &text) && text)
 		{
-		*result = g_ascii_strtod(text, NULL);
+		*result = g_ascii_strtod(text, nullptr);
 		return TRUE;
 		}
 

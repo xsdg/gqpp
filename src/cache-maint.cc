@@ -1167,7 +1167,7 @@ static void cache_manager_standard_process(GtkWidget *widget, gboolean clear)
 						    cache_manager_standard_clean_stop_cb, FALSE);
 	gtk_widget_set_sensitive(cd->button_stop, FALSE);
 
-	generic_dialog_add_message(cd->gd, icon_name, msg, NULL, FALSE);
+	generic_dialog_add_message(cd->gd, icon_name, msg, nullptr, FALSE);
 
 	cd->progress = gtk_progress_bar_new();
 	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(cd->progress), _("click start to begin"));

@@ -1426,7 +1426,7 @@ const gchar *layout_image_get_path(LayoutWindow *lw)
 #pragma GCC diagnostic ignored "-Wunused-function"
 const gchar *layout_image_get_name_unused(LayoutWindow *lw)
 {
-	if (!layout_valid(&lw)) return NULL;
+	if (!layout_valid(&lw)) return nullptr;
 
 	return image_get_name(lw->image);
 }

@@ -236,7 +236,7 @@ void vd_refresh(ViewDir *vd)
 #pragma GCC diagnostic ignored "-Wunused-function"
 const gchar *vd_row_get_path_unused(ViewDir *vd, gint row)
 {
-	const gchar *ret = NULL;
+	const gchar *ret = nullptr;
 
 	switch (vd->type)
 	{

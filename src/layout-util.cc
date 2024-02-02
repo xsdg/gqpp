@@ -913,7 +913,7 @@ struct OpenWithData
 
 void open_with_response_cb(GtkDialog *, gint response_id, gpointer data)
 {
-	GError *error = NULL;
+	GError *error = nullptr;
 	auto open_with_data = static_cast<OpenWithData *>(data);
 
 	if (response_id == GTK_RESPONSE_OK)
@@ -945,7 +945,7 @@ static void open_with_application_selected_cb(GtkAppChooserWidget *, GAppInfo *a
 
 static void open_with_application_activated_cb(GtkAppChooserWidget *, GAppInfo *application, gpointer data)
 {
-	GError *error = NULL;
+	GError *error = nullptr;
 	auto open_with_data = static_cast<OpenWithData *>(data);
 
 	g_app_info_launch(application, open_with_data->g_file_list, nullptr, &error);

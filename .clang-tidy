@@ -49,7 +49,6 @@ Checks: >
   -modernize-raw-string-literal,
   -modernize-redundant-void-arg,
   -modernize-use-auto,
-  -modernize-use-nullptr,
   -modernize-use-trailing-return-type,
   -modernize-use-using,
   -performance-no-int-to-ptr,

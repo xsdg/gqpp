@@ -75,7 +75,7 @@ static gboolean image_loader_webp_load(gpointer loader, const guchar *buf, gsize
 		data = WebPDecodeRGB(buf, count, &width, &height);
 		}
 
-	ld->pixbuf = gdk_pixbuf_new_from_data(data, GDK_COLORSPACE_RGB, features.has_alpha, 8, width, height, width * (features.has_alpha ? 4 : 3), free_buffer, NULL);
+	ld->pixbuf = gdk_pixbuf_new_from_data(data, GDK_COLORSPACE_RGB, features.has_alpha, 8, width, height, width * (features.has_alpha ? 4 : 3), free_buffer, nullptr);
 
 	ld->area_updated_cb(loader, 0, 0, width, height, ld->data);
 
@@ -141,7 +141,7 @@ DEBUG_0("        "     );
 	funcs->loader_new = image_loader_webp_new;
 	funcs->set_size = image_loader_webp_set_size;
 	funcs->load = image_loader_webp_load;
-	funcs->write = NULL;
+	funcs->write = nullptr;
 	funcs->get_pixbuf = image_loader_webp_get_pixbuf;
 	funcs->close = image_loader_webp_close;
 	funcs->abort = image_loader_webp_abort;

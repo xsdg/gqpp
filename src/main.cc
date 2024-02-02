@@ -1100,7 +1100,7 @@ static gint exit_confirm_dlg()
 	g_free(msg);
 	msg = g_strdup_printf(_("Quit %s"), GQ_APPNAME);
 
-	message = g_string_new(NULL);
+	message = g_string_new(nullptr);
 
 	if (collection_window_modified_exists())
 		{
@@ -1182,7 +1182,7 @@ static void setup_sigbus_handler_unused(void)
 	sigbus_action.sa_sigaction = sigbus_handler_cb_unused;
 	sigbus_action.sa_flags = SA_SIGINFO;
 
-	sigaction(SIGBUS, &sigbus_action, NULL);
+	sigaction(SIGBUS, &sigbus_action, nullptr);
 #endif
 }
 #pragma GCC diagnostic pop

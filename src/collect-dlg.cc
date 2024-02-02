@@ -142,7 +142,7 @@ static void collection_save_or_append_dialog(gint type, CollectionData *cd)
 
 		title = _("Save collection");
 
-		gdlg = file_util_gen_dlg(title, "dlg_collection_save", NULL, FALSE, collection_save_or_load_dialog_close_cb, cd);
+		gdlg = file_util_gen_dlg(title, "dlg_collection_save", nullptr, FALSE, collection_save_or_load_dialog_close_cb, cd);
 
 		generic_dialog_add_message(GENERIC_DIALOG(gdlg), nullptr, title, _("Existing collections:"), FALSE);
 		generic_dialog_add_button(gdlg, GQ_ICON_SAVE, _("Save"), collection_save_cb, TRUE);
