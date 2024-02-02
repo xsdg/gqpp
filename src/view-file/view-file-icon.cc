@@ -808,7 +808,7 @@ static void vficon_select_region_util(ViewFile *vf, FileData *start, FileData *e
 #pragma GCC diagnostic ignored "-Wunused-function"
 gboolean vficon_index_is_selected_unused(ViewFile *vf, gint row)
 {
-	FileData *fd = static_cast<FileData *>(g_list_nth_data(vf->list, row));
+	auto *fd = static_cast<FileData *>(g_list_nth_data(vf->list, row));
 
 	if (!fd) return FALSE;
 

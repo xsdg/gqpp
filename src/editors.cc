@@ -1439,7 +1439,7 @@ const gchar *editor_get_error_str(EditorFlags flags)
 #pragma GCC diagnostic ignored "-Wunused-function"
 const gchar *editor_get_name_unused(const gchar *key)
 {
-	EditorDescription *editor = static_cast<EditorDescription *>(g_hash_table_lookup(editors, key));
+	auto *editor = static_cast<EditorDescription *>(g_hash_table_lookup(editors, key));
 
 	if (!editor) return nullptr;
 

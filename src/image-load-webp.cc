@@ -45,7 +45,7 @@ static void free_buffer(guchar *pixels, gpointer)
 
 static gboolean image_loader_webp_load(gpointer loader, const guchar *buf, gsize count, GError **)
 {
-	ImageLoaderWEBP *ld = (ImageLoaderWEBP *) loader;
+	auto *ld = (ImageLoaderWEBP *) loader;
 	guint8* data;
 	gint width, height;
 	gboolean res_info;
@@ -84,7 +84,7 @@ static gboolean image_loader_webp_load(gpointer loader, const guchar *buf, gsize
 
 static gpointer image_loader_webp_new(ImageLoaderBackendCbAreaUpdated area_updated_cb, ImageLoaderBackendCbSize size_cb, ImageLoaderBackendCbAreaPrepared area_prepared_cb, gpointer data)
 {
-	ImageLoaderWEBP *loader = g_new0(ImageLoaderWEBP, 1);
+	auto *loader = g_new0(ImageLoaderWEBP, 1);
 	loader->area_updated_cb = area_updated_cb;
 	loader->size_cb = size_cb;
 	loader->area_prepared_cb = area_prepared_cb;
@@ -95,14 +95,14 @@ static gpointer image_loader_webp_new(ImageLoaderBackendCbAreaUpdated area_updat
 
 static void image_loader_webp_set_size(gpointer loader, int width, int height)
 {
-	ImageLoaderWEBP *ld = (ImageLoaderWEBP *) loader;
+	auto *ld = (ImageLoaderWEBP *) loader;
 	ld->requested_width = width;
 	ld->requested_height = height;
 }
 
 static GdkPixbuf* image_loader_webp_get_pixbuf(gpointer loader)
 {
-	ImageLoaderWEBP *ld = (ImageLoaderWEBP *) loader;
+	auto *ld = (ImageLoaderWEBP *) loader;
 	return ld->pixbuf;
 }
 
@@ -124,13 +124,13 @@ static gboolean image_loader_webp_close(gpointer, GError **)
 
 static void image_loader_webp_abort(gpointer loader)
 {
-	ImageLoaderWEBP *ld = (ImageLoaderWEBP *) loader;
+	auto *ld = (ImageLoaderWEBP *) loader;
 	ld->abort = TRUE;
 }
 
 static void image_loader_webp_free(gpointer loader)
 {
-	ImageLoaderWEBP *ld = (ImageLoaderWEBP *) loader;
+	auto *ld = (ImageLoaderWEBP *) loader;
 	if (ld->pixbuf) g_object_unref(ld->pixbuf);
 	g_free(ld);
 }

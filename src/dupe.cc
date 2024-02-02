@@ -474,7 +474,7 @@ static DupeItem *dupe_item_find_fd_by_list_unused(FileData *fd, GList *work)
 {
 	while (work)
 		{
-		DupeItem *di = static_cast<DupeItem *>(work->data);
+		auto *di = static_cast<DupeItem *>(work->data);
 
 		if (di->fd == fd) return di;
 
@@ -498,7 +498,7 @@ static DupeItem *dupe_item_find_path_by_list_unused(const gchar *path, GList *wo
 {
 	while (work)
 		{
-		DupeItem *di = static_cast<DupeItem *>(work->data);
+		auto *di = static_cast<DupeItem *>(work->data);
 
 		if (strcmp(di->fd->path, path) == 0) return di;
 

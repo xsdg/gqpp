@@ -586,7 +586,7 @@ void set_exif_time_data_unused(GList *files)
 
 	while (files)
 		{
-		FileData *file = static_cast<FileData *>(files->data);
+		auto *file = static_cast<FileData *>(files->data);
 
 		read_exif_time_data(file);
 		files = files->next;
@@ -599,7 +599,7 @@ void set_exif_time_digitized_data_unused(GList *files)
 
 	while (files)
 		{
-		FileData *file = static_cast<FileData *>(files->data);
+		auto *file = static_cast<FileData *>(files->data);
 
 		read_exif_time_digitized_data(file);
 		files = files->next;
@@ -613,7 +613,7 @@ void set_rating_data_unused(GList *files)
 
 	while (files)
 		{
-		FileData *file = static_cast<FileData *>(files->data);
+		auto *file = static_cast<FileData *>(files->data);
 		rating_str = metadata_read_string(file, RATING_KEY, METADATA_PLAIN);
 		if (rating_str )
 			{
@@ -3236,12 +3236,12 @@ gboolean file_data_unregister_notify_func(FileDataNotifyFunc func, gpointer data
 #pragma GCC diagnostic ignored "-Wunused-function"
 gboolean file_data_send_notification_idle_cb_unused(gpointer data)
 {
-	NotifyIdleData *nid = (NotifyIdleData *)data;
+	auto *nid = (NotifyIdleData *)data;
 	GList *work = notify_func_list;
 
 	while (work)
 		{
-		NotifyData *nd = (NotifyData *)work->data;
+		auto *nd = (NotifyData *)work->data;
 
 		nd->func(nid->fd, nid->type, nd->data);
 		work = work->next;

@@ -1143,7 +1143,7 @@ void vd_dnd_init(ViewDir *vd)
 #pragma GCC diagnostic ignored "-Wunused-function"
 void vd_menu_position_cb_unused(GtkMenu *menu, gint *x, gint *y, gboolean *, gpointer data)
 {
-	ViewDir *vd = static_cast<ViewDir *>(data);
+	auto *vd = static_cast<ViewDir *>(data);
 	GtkTreeModel *store;
 	GtkTreeIter iter;
 	GtkTreePath *tpath;

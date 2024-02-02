@@ -343,7 +343,7 @@ void color_man_correct_region(ColorMan *cm, GdkPixbuf *pixbuf, gint x, gint y, g
 #pragma GCC diagnostic ignored "-Wunused-function"
 static gboolean color_man_idle_cb_unused(gpointer data)
 {
-	ColorMan *cm = static_cast<ColorMan *>(data);
+	auto *cm = static_cast<ColorMan *>(data);
 	gint width, height;
 	gint rh;
 

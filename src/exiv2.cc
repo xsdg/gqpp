@@ -1222,7 +1222,7 @@ guchar *exif_get_preview(ExifData *exif, guint *data_len, gint requested_width, 
 			// Let's not touch data_len until we finish copy.
 			// Just in case we run into OOM.
 			size_t img_sz = image.size();
-			Exiv2::byte* b = new Exiv2::byte[img_sz];
+			auto* b = new Exiv2::byte[img_sz];
 			std::copy_n(image.pData(), img_sz, b);
 			*data_len = img_sz;
 			return b;

@@ -235,7 +235,7 @@ gboolean metadata_write_queue_remove_list_unused(GList *list)
 	work = list;
 	while (work)
 		{
-		FileData *fd = static_cast<FileData *>(work->data);
+		auto *fd = static_cast<FileData *>(work->data);
 		work = work->next;
 		ret = ret && metadata_write_queue_remove(fd);
 		}

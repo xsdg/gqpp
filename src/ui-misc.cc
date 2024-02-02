@@ -337,7 +337,7 @@ void pref_checkbox_link_sensitivity(GtkWidget *button, GtkWidget *widget)
 #pragma GCC diagnostic ignored "-Wunused-function"
 static void pref_checkbox_link_sensitivity_swap_cb_unused(GtkWidget *button, gpointer data)
 {
-	GtkWidget *widget = static_cast<GtkWidget *>(data);
+	auto *widget = static_cast<GtkWidget *>(data);
 
 	gtk_widget_set_sensitive(widget, !gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(button)));
 }
@@ -423,7 +423,7 @@ GtkWidget *pref_radiobutton_new_mnemonic_unused(GtkWidget *parent_box, GtkWidget
 
 static void pref_radiobutton_int_cb_unused(GtkWidget *widget, gpointer data)
 {
-	gboolean *result = static_cast<gboolean *>(data);
+	auto *result = static_cast<gboolean *>(data);
 
 	if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)))
 		{

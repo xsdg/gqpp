@@ -43,7 +43,6 @@ Checks: >
   -modernize-avoid-c-arrays,
   -modernize-macro-to-enum,
   -modernize-raw-string-literal,
-  -modernize-use-auto,
   -modernize-use-trailing-return-type,
   -performance-no-int-to-ptr,
   -readability-braces-around-statements,

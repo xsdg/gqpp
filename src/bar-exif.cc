@@ -807,7 +807,7 @@ static void bar_pane_exif_destroy(GtkWidget *, gpointer data)
 #pragma GCC diagnostic ignored "-Wunused-function"
 static void bar_pane_exif_size_request_unused(GtkWidget *, GtkRequisition *requisition, gpointer data)
 {
-	PaneExifData *ped = static_cast<PaneExifData *>(data);
+	auto *ped = static_cast<PaneExifData *>(data);
 	if (requisition->height < ped->min_height)
 		{
 		requisition->height = ped->min_height;

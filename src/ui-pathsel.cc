@@ -1215,7 +1215,7 @@ GtkWidget *path_selection_new_unused(const gchar *path, GtkWidget *entry)
 
 void path_selection_sync_to_entry_unused(GtkWidget *entry)
 {
-	Dest_Data *dd = static_cast<Dest_Data *>(g_object_get_data(G_OBJECT(entry), "destination_data"));
+	auto *dd = static_cast<Dest_Data *>(g_object_get_data(G_OBJECT(entry), "destination_data"));
 	const gchar *path;
 
 	if (!dd) return;
