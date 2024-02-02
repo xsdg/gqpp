@@ -29,8 +29,15 @@
 
 xvfb-run --auto-servernum "$1" "$2" &
 
+if [ -z "$XDG_CONFIG_HOME" ]
+then
+	config_home="$HOME/.config"
+else
+	config_home="$XDG_CONFIG_HOME"
+fi
+
 # Wait for remote to initialize
-while [ ! -e "$HOME/.config/geeqie/.command" ] ;
+while [ ! -e "$config_home/geeqie/.command" ] ;
 do
 	sleep 1
 done
@@ -40,7 +47,7 @@ sleep 2
 # Check if Geeqie crashed
 if ! pgrep geeqie
 then
-	rm "$HOME/.config/geeqie/.command"
+	rm "$config_home/geeqie/.command"
 	exit 1
 fi
 

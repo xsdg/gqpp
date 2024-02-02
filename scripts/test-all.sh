@@ -32,6 +32,13 @@ then
 	exit 1
 fi
 
+XDG_CONFIG_HOME=$(mktemp -d "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
+XDG_CACHE_HOME=$(mktemp -d "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
+XDG_DATA_HOME=$(mktemp -d "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
+export XDG_CONFIG_HOME
+export XDG_CACHE_HOME
+export XDG_DATA_HOME
+
 rm --recursive --force build
 
 # Check with all options disabled
@@ -74,3 +81,7 @@ meson setup -Ddevel=enabled build
 meson test -C build
 
 cp ./build/meson-logs/testlog.txt "$tmpdir/testlog-options-enabled.txt"
+
+rm -r "XDG_CONFIG_HOME"
+rm -r "XDG_CACHE_HOME"
+rm -r "XDG_DATA_HOME"
