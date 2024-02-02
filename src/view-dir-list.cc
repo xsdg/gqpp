@@ -33,7 +33,7 @@ struct ViewDirInfoList
 	GList *list;
 };
 
-#define VDLIST(_vd_) ((ViewDirInfoList *)(_vd_->info))
+#define VDLIST(_vd_) ((ViewDirInfoList *)((_vd_)->info))
 
 
 /*

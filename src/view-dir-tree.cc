@@ -34,7 +34,7 @@ struct ViewDirInfoTree
 	gint busy_ref;
 };
 
-#define VDTREE(_vd_) ((ViewDirInfoTree *)(_vd_->info))
+#define VDTREE(_vd_) ((ViewDirInfoTree *)((_vd_)->info))
 
 
 struct PathData

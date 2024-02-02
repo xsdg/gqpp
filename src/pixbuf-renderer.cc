@@ -54,7 +54,7 @@ enum ExifOrientationType {
 
 
 /* default min and max zoom */
-#define PR_ZOOM_MIN -32.0
+#define PR_ZOOM_MIN (-32.0)
 #define PR_ZOOM_MAX 32.0
 
 /* distance to drag mouse to disable image flip */

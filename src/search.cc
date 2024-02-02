@@ -1678,7 +1678,7 @@ static void search_dnd_init(SearchData *sd)
  *-------------------------------------------------------------------
  */
 
-#define MATCH_IS_BETWEEN(val, a, b)  (b > a ? (val >= a && val <= b) : (val >= b && val <= a))
+#define MATCH_IS_BETWEEN(val, a, b)  ((b) > (a) ? ((val) >= (a) && (val) <= (b)) : ((val) >= (b) && (val) <= (a)))
 
 static gboolean search_step_cb(gpointer data);
 

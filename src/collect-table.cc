@@ -59,7 +59,7 @@ enum {
 	CTABLE_COLUMN_COUNT
 };
 
-#define INFO_SELECTED(x) (x->flag_mask & SELECTION_SELECTED)
+#define INFO_SELECTED(x) ((x)->flag_mask & SELECTION_SELECTED)
 
 
 static void collection_table_populate_at_new_size(CollectTable *ct, gint w, gint h, gboolean force);

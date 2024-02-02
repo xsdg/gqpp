@@ -153,14 +153,14 @@ static void rt_hierarchy_changed_cb(GtkWidget *widget, GtkWidget *previous_tople
 static gint rt_queue_draw_idle_cb(gpointer data);
 
 #define GET_RIGHT_PIXBUF_OFFSET(rt) \
-        (( (rt->stereo_mode & PR_STEREO_RIGHT) && !(rt->stereo_mode & PR_STEREO_SWAP)) || \
-         (!(rt->stereo_mode & PR_STEREO_RIGHT) &&  (rt->stereo_mode & PR_STEREO_SWAP)) ?  \
-          rt->pr->stereo_pixbuf_offset_right : rt->pr->stereo_pixbuf_offset_left )
+        (( ((rt)->stereo_mode & PR_STEREO_RIGHT) && !((rt)->stereo_mode & PR_STEREO_SWAP)) || \
+         (!((rt)->stereo_mode & PR_STEREO_RIGHT) &&  ((rt)->stereo_mode & PR_STEREO_SWAP)) ?  \
+          (rt)->pr->stereo_pixbuf_offset_right : (rt)->pr->stereo_pixbuf_offset_left )
 
 #define GET_LEFT_PIXBUF_OFFSET(rt) \
-        ((!(rt->stereo_mode & PR_STEREO_RIGHT) && !(rt->stereo_mode & PR_STEREO_SWAP)) || \
-         ( (rt->stereo_mode & PR_STEREO_RIGHT) &&  (rt->stereo_mode & PR_STEREO_SWAP)) ?  \
-          rt->pr->stereo_pixbuf_offset_right : rt->pr->stereo_pixbuf_offset_left )
+        ((!((rt)->stereo_mode & PR_STEREO_RIGHT) && !((rt)->stereo_mode & PR_STEREO_SWAP)) || \
+         ( ((rt)->stereo_mode & PR_STEREO_RIGHT) &&  ((rt)->stereo_mode & PR_STEREO_SWAP)) ?  \
+          (rt)->pr->stereo_pixbuf_offset_right : (rt)->pr->stereo_pixbuf_offset_left )
 
 
 static void rt_sync_scroll(RendererTiles *rt)
