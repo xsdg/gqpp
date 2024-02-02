@@ -208,7 +208,7 @@ void tab_completion_iter_menu_items(GtkWidget *widget, gpointer data)
 		const gchar *prefix = filename_from_path(entry_text);
 		guint prefix_len = strlen(prefix);
 
-		if (strlen(text) < prefix_len || strncmp(text, prefix, prefix_len))
+		if (strlen(text) < prefix_len || strncmp(text, prefix, prefix_len) != 0)
 			{
 			/* Hide menu items not matching */
 			gtk_widget_hide(widget);

@@ -265,7 +265,7 @@ static int ZDParseHeader(ZoneDetect *library)
 #if defined(_MSC_VER)
     __try {
 #endif
-        if(memcmp(library->mapping, "PLB", 3)) {
+        if(memcmp(library->mapping, "PLB", 3) != 0) {
             return -1;
         }
 
