@@ -1174,7 +1174,7 @@ static void sigbus_handler_cb_unused(int, siginfo_t *info, void *)
 }
 #endif
 
-static void setup_sigbus_handler_unused(void)
+static void setup_sigbus_handler_unused()
 {
 #if defined(SIGBUS) && defined(SA_SIGINFO)
 	struct sigaction sigbus_action;
