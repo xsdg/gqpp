@@ -31,5 +31,3 @@ i18n.merge_file(
     po_dir : podir,
     install : true,
     install_dir : appdir)
-
-desktop_sources += files('org.geeqie.template.desktop.in')

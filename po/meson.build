@@ -70,6 +70,3 @@ translator_resources = custom_target('translator_resources',
                 command : [translators_sh, '@PRIVATE_DIR@', po_source_list, meson.current_build_dir() , '@INPUT0@', '@INPUT1@'])
 
 project_sources += translator_resources
-
-script_sources += files('gen_translations_stats.sh',
-'regen_potfiles.sh')

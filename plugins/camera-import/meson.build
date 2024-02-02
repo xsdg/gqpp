@@ -20,8 +20,3 @@ i18n.merge_file(
     po_dir : podir,
     install : true,
     install_dir : desktopdir)
-
-script_sources += files('geeqie-camera-import',
-'geeqie-camera-import-hook-script')
-
-desktop_sources += files('org.geeqie.camera-import.desktop.in')

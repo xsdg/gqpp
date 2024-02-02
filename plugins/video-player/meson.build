@@ -18,5 +18,3 @@ i18n.merge_file(
     po_dir : podir,
     install : true,
     install_dir : desktopdir)
-
-desktop_sources += files('org.geeqie.video-player.desktop.in')

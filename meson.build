@@ -577,18 +577,8 @@ configure_file(input : 'config.h.in',
                encoding : 'UTF-8',
                configuration : conf_data)
 
-# For shellcheck on scripts
-script_sources = []
-subdir('scripts')
-
-# For markdownlint on .md files
-mdl_sources = []
-
 # For gtk builder checks on .ui files
 ui_sources = []
-
-# For checks on .desktop files
-desktop_sources = []
 
 # Process subdirs before the sources
 subdir('po')
@@ -649,77 +639,8 @@ else
 endif
 
 # The tests are run on GitHub with all options disabled, and then
-# with all or most options enabled. Shellcheck and GtkBuilder need only
-# be run once when options are disabled. Use option archive as a flag.
 # Image tests use option devel as a flag so that normal users do not
 # download the test image database.
-
-# Shellcheck
-option = get_option('archive')
-if option.disabled()
-    shellcheck_exe = find_program('shellcheck', required : false)
-    script_sources += files('gen_changelog.sh',
-    'geeqie-install-debian.sh',
-    'version.sh')
-
-    if shellcheck_exe.found()
-        foreach script : script_sources
-            script_path = '@0@'.format(script)
-            test('Shellcheck_ ' + script_path, shellcheck_exe, args: ['--norc', '--shell=sh', '--enable=add-default-case,avoid-nullary-conditions,check-unassigned-uppercase,deprecate-which,quote-safe-variables', script], timeout: 100)
-        endforeach
-        summary({'shellcheck' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
-    else
-        summary({'shellcheck' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
-    endif
-else
-    summary({'shellcheck' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
-endif
-
-# Markdownlint
-option = get_option('archive')
-if option.disabled()
-    mdl_exe = find_program('mdl', required : false)
-
-    if mdl_exe.found()
-        mdl_sources += files('CHECKLIST.md',
-        'CODING.md',
-        'DEVELOPER-NOTES.md',
-        'README.md',
-        join_paths(meson.project_source_root(), '.github', 'ISSUE_TEMPLATE.md'))
-
-        style = join_paths(meson.project_source_root(), '.mdl.rb')
-        foreach md_file : mdl_sources
-            md_path = '@0@'.format(md_file)
-            test('Mdl_check_ ' + md_path, mdl_exe, args: ['--style', style, md_file], timeout: 100)
-        endforeach
-        summary({'markdownlint' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
-    else
-        summary({'markdownlint' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
-    endif
-else
-    summary({'markdownlint' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
-endif
-
-# GtkBuilder .ui check
-option = get_option('archive')
-if option.disabled()
-    if xvfb.found()
-        gtk_builder_tool = find_program('gtk-builder-tool', required : false)
-        if gtk_builder_tool.found()
-            foreach ui_file : ui_sources
-                ui_path = '@0@'.format(ui_file)
-                test('UI Build_ ' + ui_path, xvfb, args: ['--auto-servernum', gtk_builder_tool.full_path(), 'validate', ui_file], timeout: 100)
-            endforeach
-            summary({'gtk-builder-tool' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
-        else
-            summary({'gtk-builder-tool' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
-        endif
-    else
-        summary({'gtk-builder-tool xvfb' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
-    endif
-else
-    summary({'gtk-builder-tool xvfb' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
-endif
 
 # Image checks
 option = get_option('devel')
@@ -800,22 +721,8 @@ else
     summary({'lua' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
 endif
 
-# Desktop files test
-option = get_option('desktop')
-if not option.disabled()
-    desktop_exe = find_program('desktop-file-validate', required : false)
-    if desktop_exe.found()
-        desktop_sh = find_program('desktop-file-validate.sh', dirs : scriptsdir, required : true)
-        test_desktop_dir = join_paths(meson.current_build_dir(), 'test-desktop-files.p')
-        foreach desktop_file : desktop_sources
-            desktop_path = '@0@'.format(desktop_file)
-            test('Desktop_check_ ' + desktop_path, desktop_sh, args: [test_desktop_dir, desktop_file], timeout: 100)
-        endforeach
+# Ancillary files test
+test_ancillary_files_sh = find_program('test-ancillary-files.sh', dirs : scriptsdir, required : true)
+test('Ancillary files', test_ancillary_files_sh, args: [meson.current_source_dir()], timeout: 100)
 
-        summary({'Desktop files' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
-    else
-        summary({'Desktop files' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
-    endif
-else
-    summary({'Desktop files' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
-endif
+summary({'Ancillary files' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
