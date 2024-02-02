@@ -45,7 +45,6 @@ Checks: >
   -modernize-raw-string-literal,
   -modernize-use-auto,
   -modernize-use-trailing-return-type,
-  -modernize-use-using,
   -performance-no-int-to-ptr,
   -readability-braces-around-statements,
   -readability-duplicate-include,

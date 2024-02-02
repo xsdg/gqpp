@@ -26,7 +26,7 @@
 #ifdef HAVE_WEBP
 #include <webp/decode.h>
 
-typedef struct _ImageLoaderWEBP ImageLoaderWEBP;
+using ImageLoaderWEBP = struct _ImageLoaderWEBP;
 struct _ImageLoaderWEBP {
 	ImageLoaderBackendCbAreaUpdated area_updated_cb;
 	ImageLoaderBackendCbSize size_cb;
