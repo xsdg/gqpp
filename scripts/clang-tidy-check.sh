@@ -49,5 +49,5 @@ do
 
 	printf 'Remaining: %dm:%ds\n' $((estimated%3600/60)) $((estimated%60))
 done << EOF
-$(find src -name "*.cc")
+$(find src -name "*.cc" | sort)
 EOF

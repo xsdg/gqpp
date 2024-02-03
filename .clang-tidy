@@ -61,4 +61,5 @@ Checks: >
   -readability-suspicious-call-argument,
   -readability-uppercase-literal-suffix
 
+ExtraArgs: [-Wno-unknown-warning-option, -Wno-unused-lambda-capture, -Wno-unused-but-set-variable]
 WarningsAsErrors: "*"
