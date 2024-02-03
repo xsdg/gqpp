@@ -60,3 +60,5 @@ Checks: >
   -readability-simplify-boolean-expr,
   -readability-suspicious-call-argument,
   -readability-uppercase-literal-suffix
+
+WarningsAsErrors: "*"

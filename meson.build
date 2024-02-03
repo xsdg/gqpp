@@ -689,8 +689,9 @@ if running_from_git
                 path_array = modified_file_path.split('/')
                 modified_file_name = path_array[path_array.length() - 1]
                 modified_file_full_path = join_paths(meson.project_source_root(), modified_file)
+                config_file = join_paths(meson.project_source_root(), '.clang-tidy')
 
-                test('Code Correctness_ ' + modified_file_name, clang_tidy_exe, args : ['-p', './build', '-quiet', modified_file_full_path], timeout : 100)
+                test('Code Correctness_ ' + modified_file_name, clang_tidy_exe, args : ['-p', './build', '-quiet', '--config-file', config_file,  modified_file_full_path], timeout : 100)
             endif
         endforeach
 

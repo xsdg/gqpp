@@ -82,6 +82,6 @@ meson test -C build
 
 cp ./build/meson-logs/testlog.txt "$tmpdir/testlog-options-enabled.txt"
 
-rm -r "XDG_CONFIG_HOME"
-rm -r "XDG_CACHE_HOME"
-rm -r "XDG_DATA_HOME"
+rm -r "$XDG_CONFIG_HOME"
+rm -r "$XDG_CACHE_HOME"
+rm -r "$XDG_DATA_HOME"
