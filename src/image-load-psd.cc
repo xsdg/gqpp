@@ -213,16 +213,18 @@ skip_block (PsdContext* context, const guchar** data, guint* size)
 			return FALSE;
 		}
 	}
-	if (*size < context->bytes_to_skip) {
+
+	if (*size < context->bytes_to_skip)
+		{
 		*data += *size;
 		context->bytes_to_skip -= *size;
 		*size = 0;
 		return FALSE;
-	} else {
-		*size -= context->bytes_to_skip;
-		*data += context->bytes_to_skip;
-		return TRUE;
-	}
+		}
+
+	*size -= context->bytes_to_skip;
+	*data += context->bytes_to_skip;
+	return TRUE;
 }
 
 /*
@@ -233,33 +235,42 @@ decompress_line(const guchar* src, guint line_length, guchar* dest)
 {
 	guint16 bytes_read = 0;
 	int k;
-	while (bytes_read < line_length) {
+	while (bytes_read < line_length)
+		{
 		gchar byte = src[bytes_read];
 		++bytes_read;
 
-		if (byte == -128) {
+		if (byte == -128)
+			{
 			continue;
-		} else if (byte > -1) {
+			}
+
+		if (byte > -1)
+			{
 			gint count = byte + 1;
 
 			/* copy next count bytes */
-			for (k = 0; k < count; ++k) {
+			for (k = 0; k < count; ++k)
+				{
 				*dest = src[bytes_read];
 				++dest;
 				++bytes_read;
+				}
 			}
-		} else {
+		else
+			{
 			gint count = -byte + 1;
 
 			/* copy next byte count times */
 			guchar next_byte = src[bytes_read];
 			++bytes_read;
-			for (k = 0; k < count; ++k) {
+			for (k = 0; k < count; ++k)
+				{
 				*dest = next_byte;
 				++dest;
+				}
 			}
 		}
-	}
 }
 
 static void

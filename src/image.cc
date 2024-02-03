@@ -985,7 +985,7 @@ static gboolean image_read_ahead_check(ImageWindow *imd)
 		imd->read_ahead_fd = nullptr;
 		return TRUE;
 		}
-	else if (imd->read_ahead_fd->pixbuf)
+	if (imd->read_ahead_fd->pixbuf)
 		{
 		image_change_pixbuf(imd, imd->read_ahead_fd->pixbuf, image_zoom_get(imd), FALSE);
 
@@ -1216,11 +1216,9 @@ static gboolean image_scroll_cb(GtkWidget *, GdkEventScroll *event, gpointer dat
 				}
 			return TRUE;
 			}
-		else
-			{
-			imd->func_scroll(imd, event, imd->data_scroll);
-			return TRUE;
-			}
+
+		imd->func_scroll(imd, event, imd->data_scroll);
+		return TRUE;
 		}
 
 	return FALSE;

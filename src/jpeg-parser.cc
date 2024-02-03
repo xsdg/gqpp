@@ -81,8 +81,8 @@ guint16 tiff_byte_get_int16(const guchar *f, TiffByteOrder bo)
 
 	if (bo == TIFF_BYTE_ORDER_INTEL)
 		return GUINT16_FROM_LE(align_buf);
-	else
-		return GUINT16_FROM_BE(align_buf);
+
+	return GUINT16_FROM_BE(align_buf);
 }
 
 guint32 tiff_byte_get_int32(const guchar *f, TiffByteOrder bo)
@@ -93,8 +93,8 @@ guint32 tiff_byte_get_int32(const guchar *f, TiffByteOrder bo)
 
 	if (bo == TIFF_BYTE_ORDER_INTEL)
 		return GUINT32_FROM_LE(align_buf);
-	else
-		return GUINT32_FROM_BE(align_buf);
+
+	return GUINT32_FROM_BE(align_buf);
 }
 
 #pragma GCC diagnostic push

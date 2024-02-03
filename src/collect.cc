@@ -180,8 +180,8 @@ static gint collection_list_sort_cb(gconstpointer a, gconstpointer b)
 
 	if (options->file_sort.case_sensitive)
 		return strcmp(cia->fd->collate_key_name, cib->fd->collate_key_name);
-	else
-		return strcmp(cia->fd->collate_key_name_nocase, cib->fd->collate_key_name_nocase);
+
+	return strcmp(cia->fd->collate_key_name_nocase, cib->fd->collate_key_name_nocase);
 }
 
 GList *collection_list_sort(GList *list, SortType method)
@@ -575,8 +575,8 @@ CollectionData *collection_from_dnd_data(const gchar *data, GList **list, GList 
 		while (*ptr != '\n' && *ptr != '\0') ptr++;
 		if (*ptr == '\0')
 			break;
-		else
-			while (*ptr == '\n') ptr++;
+
+		while (*ptr == '\n') ptr++;
 
 		info = static_cast<CollectInfo *>(g_list_nth_data(cd->list, item_number));
 		if (!info) continue;
@@ -1191,7 +1191,8 @@ static void collection_close_save_cb(GenericDialog *gd, gpointer data)
 		collection_dialog_save_close(cw->cd);
 		return;
 		}
-	else if (!collection_save(cw->cd, cw->cd->path))
+
+	if (!collection_save(cw->cd, cw->cd->path))
 		{
 		gchar *buf;
 		buf = g_strdup_printf(_("Failed to save the collection:\n%s"), cw->cd->path);

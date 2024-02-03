@@ -178,8 +178,8 @@ gboolean slideshow_should_continue(SlideShowData *ss)
 		{
 		if (g_list_length(ss->cd->list) == ss->slide_count)
 			return TRUE;
-		else
-			return FALSE;
+
+		return FALSE;
 		}
 
 	dir_fd = ss->lw->dir_fd;

@@ -1841,11 +1841,9 @@ static gboolean search_file_do_extra(SearchData *sd, FileData *fd, gint *match,
 				{
 				return TRUE;
 				}
-			else
-				{
-				image_loader_free(sd->img_loader);
-				sd->img_loader = nullptr;
-				}
+
+			image_loader_free(sd->img_loader);
+			sd->img_loader = nullptr;
 			}
 		}
 

@@ -1085,10 +1085,8 @@ static gboolean vd_dnd_drop_motion(GtkWidget *, GdkDragContext *context, gint x,
 		gdk_drag_status(context, GDK_ACTION_DEFAULT, time);
 		return TRUE;
 		}
-	else
-		{
-		gdk_drag_status(context, gdk_drag_context_get_suggested_action(context), time);
-		}
+
+	gdk_drag_status(context, gdk_drag_context_get_suggested_action(context), time);
 
 	vd_dnd_drop_update(vd, x, y);
 

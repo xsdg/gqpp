@@ -26,7 +26,7 @@
 ##
 ## Create a basic image and run all lua built-in functions on it.
 ## The image file and the Lua test file are created within this script.
-set -x
+
 if [ -z "$XDG_CONFIG_HOME" ]
 then
 	config_home="$HOME/.config"

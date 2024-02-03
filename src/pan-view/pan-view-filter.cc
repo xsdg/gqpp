@@ -319,13 +319,11 @@ static gboolean pan_view_list_contains_kw_pattern(GList *haystack, PanViewFilter
 			}
 		return FALSE;
 		}
-	else
-		{
-		// regex compile failed; fall back to exact string match.
-		GList *found_elem = g_list_find_custom(haystack, filter->keyword, reinterpret_cast<GCompareFunc>(g_strcmp0));
-		if (found_elem && found_kw) *found_kw = static_cast<gchar *>(found_elem->data);
-		return !!found_elem;
-		}
+
+	// regex compile failed; fall back to exact string match.
+	GList *found_elem = g_list_find_custom(haystack, filter->keyword, reinterpret_cast<GCompareFunc>(g_strcmp0));
+	if (found_elem && found_kw) *found_kw = static_cast<gchar *>(found_elem->data);
+	return !!found_elem;
 }
 
 gboolean pan_filter_fd_list(GList **fd_list, GList *filter_elements, gint filter_classes)

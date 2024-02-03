@@ -3095,7 +3095,8 @@ static gboolean keywords_find_file(gpointer data)
 
 		return (G_SOURCE_CONTINUE);
 		}
-	else if (kfd->list_dir)
+
+	if (kfd->list_dir)
 		{
 		FileData *fd;
 

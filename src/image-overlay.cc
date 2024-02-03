@@ -210,16 +210,14 @@ void image_osd_toggle(ImageWindow *imd)
 		image_osd_set(imd, static_cast<OsdShowFlags>(OSD_SHOW_INFO | OSD_SHOW_STATUS));
 		return;
 		}
+
+	if (show & OSD_SHOW_HISTOGRAM)
+		{
+		image_osd_set(imd, OSD_SHOW_NOTHING);
+		}
 	else
 		{
-		if (show & OSD_SHOW_HISTOGRAM)
-			{
-			image_osd_set(imd, OSD_SHOW_NOTHING);
-			}
-		else
-			{
-			image_osd_set(imd, static_cast<OsdShowFlags>(show | OSD_SHOW_HISTOGRAM));
-			}
+		image_osd_set(imd, static_cast<OsdShowFlags>(show | OSD_SHOW_HISTOGRAM));
 		}
 }
 

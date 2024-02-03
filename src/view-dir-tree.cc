@@ -997,28 +997,23 @@ static gint vdtree_sort_cb(GtkTreeModel *store, GtkTreeIter *a, GtkTreeIter *b, 
 			{
 			return strcmp(nda->fd->collate_key_name_natural, ndb->fd->collate_key_name_natural);
 			}
-		else
-			{
-			return strcmp(nda->fd->collate_key_name_nocase_natural, ndb->fd->collate_key_name_nocase_natural);
-			}
+
+		return strcmp(nda->fd->collate_key_name_nocase_natural, ndb->fd->collate_key_name_nocase_natural);
 		}
-	else if (vd->layout->options.dir_view_list_sort.method == SORT_TIME)
+
+	if (vd->layout->options.dir_view_list_sort.method == SORT_TIME)
 		{
 		if (nda->fd->date < ndb->fd->date) return -1;
 		if (nda->fd->date > ndb->fd->date) return 1;
 		return 0;
 		}
-	else
+
+	if (vd->layout->options.dir_view_list_sort.case_sensitive == TRUE)
 		{
-		if (vd->layout->options.dir_view_list_sort.case_sensitive == TRUE)
-			{
-			return strcmp(nda->fd->collate_key_name, ndb->fd->collate_key_name);
-			}
-		else
-			{
-			return strcmp(nda->fd->collate_key_name_nocase, ndb->fd->collate_key_name_nocase);
-			}
+		return strcmp(nda->fd->collate_key_name, ndb->fd->collate_key_name);
 		}
+
+	return strcmp(nda->fd->collate_key_name_nocase, ndb->fd->collate_key_name_nocase);
 }
 
 /*

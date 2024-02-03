@@ -1388,14 +1388,14 @@ gchar *text_widget_text_pull(GtkWidget *text_widget)
 
 		return gtk_text_buffer_get_text(buffer, &start, &end, FALSE);
 		}
-	else if (GTK_IS_ENTRY(text_widget))
+
+	if (GTK_IS_ENTRY(text_widget))
 		{
 		return g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(text_widget)));
 		}
-	else
-		{
-		return nullptr;
-		}
+
+	return nullptr;
+	
 
 }
 
@@ -1417,14 +1417,14 @@ gchar *text_widget_text_pull_selected(GtkWidget *text_widget)
 
 		return gtk_text_buffer_get_text(buffer, &start, &end, FALSE);
 		}
-	else if (GTK_IS_ENTRY(text_widget))
+
+	if (GTK_IS_ENTRY(text_widget))
 		{
 		return g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(text_widget)));
 		}
-	else
-		{
-		return nullptr;
-		}
+
+	return nullptr;
+	
 }
 
 static gint simple_sort_cb(gconstpointer a, gconstpointer b)

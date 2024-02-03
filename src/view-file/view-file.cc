@@ -1563,12 +1563,10 @@ gboolean vf_stars_cb(gpointer data)
 			{
 			return G_SOURCE_CONTINUE;
 			}
-		else
-			{
-			vf->stars_filedata = nullptr;
-			vf->stars_id = 0;
-			return G_SOURCE_REMOVE;
-			}
+
+		vf->stars_filedata = nullptr;
+		vf->stars_id = 0;
+		return G_SOURCE_REMOVE;
 		}
 
 	return G_SOURCE_REMOVE;

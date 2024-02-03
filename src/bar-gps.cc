@@ -872,12 +872,14 @@ static gboolean bar_pane_gps_map_keypress_cb(GtkWidget *, GdkEventButton *bevent
 		gtk_menu_popup_at_pointer(GTK_MENU(menu), nullptr);
 		return TRUE;
 		}
-	else if (bevent->button == MOUSE_BUTTON_MIDDLE)
+
+	if (bevent->button == MOUSE_BUTTON_MIDDLE)
 		{
 		bar_pane_gps_map_centreing(pgd);
 		return TRUE;
 		}
-	else if (bevent->button == MOUSE_BUTTON_LEFT)
+
+	if (bevent->button == MOUSE_BUTTON_LEFT)
 		{
 		clipboard = gtk_clipboard_get(GDK_SELECTION_PRIMARY);
 		geo_coords = g_strdup_printf("%lf %lf",
@@ -891,10 +893,8 @@ static gboolean bar_pane_gps_map_keypress_cb(GtkWidget *, GdkEventButton *bevent
 
 		return TRUE;
 		}
-	else
-		{
-		return FALSE;
-		}
+
+	return FALSE;
 }
 #endif
 

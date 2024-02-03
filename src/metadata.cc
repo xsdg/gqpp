@@ -845,14 +845,12 @@ gboolean metadata_append_string(FileData *fd, const gchar *key, const char *valu
 		{
 		return metadata_write_string(fd, key, value);
 		}
-	else
-		{
-		gchar *new_string = g_strconcat(str, value, NULL);
-		gboolean ret = metadata_write_string(fd, key, new_string);
-		g_free(str);
-		g_free(new_string);
-		return ret;
-		}
+
+	gchar *new_string = g_strconcat(str, value, NULL);
+	gboolean ret = metadata_write_string(fd, key, new_string);
+	g_free(str);
+	g_free(new_string);
+	return ret;
 }
 
 gboolean metadata_write_GPS_coord(FileData *fd, const gchar *key, gdouble value)
@@ -916,16 +914,14 @@ gboolean metadata_append_list(FileData *fd, const gchar *key, const GList *value
 		{
 		return metadata_write_list(fd, key, values);
 		}
-	else
-		{
-		gboolean ret;
-		list = g_list_concat(list, string_list_copy(values));
-		list = remove_duplicate_strings_from_list(list);
 
-		ret = metadata_write_list(fd, key, list);
-		g_list_free_full(list, g_free);
-		return ret;
-		}
+	gboolean ret;
+	list = g_list_concat(list, string_list_copy(values));
+	list = remove_duplicate_strings_from_list(list);
+
+	ret = metadata_write_list(fd, key, list);
+	g_list_free_full(list, g_free);
+	return ret;
 }
 
 /**
@@ -997,8 +993,8 @@ gchar *find_string_in_list(GList *list, const gchar *string)
 {
 	if (options->metadata.keywords_case_sensitive)
 		return find_string_in_list_utf8case(list, string);
-	else
-		return find_string_in_list_utf8nocase(list, string);
+
+	return find_string_in_list_utf8nocase(list, string);
 }
 
 #define KEYWORDS_SEPARATOR(c) ((c) == ',' || (c) == ';' || (c) == '\n' || (c) == '\r' || (c) == '\b')
@@ -1205,10 +1201,8 @@ gboolean keyword_same_parent(GtkTreeModel *keyword_tree, GtkTreeIter *a, GtkTree
 		{
 		return keyword_compare(keyword_tree, &parent_a, &parent_b) == 0;
 		}
-	else
-		{
-		return (!valid_pa && !valid_pb); /* both are toplevel */
-		}
+
+	return (!valid_pa && !valid_pb); /* both are toplevel */
 }
 
 gboolean keyword_exists(GtkTreeModel *keyword_tree, GtkTreeIter *parent_ptr, GtkTreeIter *sibling, const gchar *name, gboolean exclude_sibling, GtkTreeIter *result)

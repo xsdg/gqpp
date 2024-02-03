@@ -46,7 +46,6 @@ Checks: >
   -modernize-use-trailing-return-type,
   -performance-no-int-to-ptr,
   -readability-braces-around-statements,
-  -readability-else-after-return,
   -readability-function-cognitive-complexity,
   -readability-identifier-length,
   -readability-implicit-bool-conversion,

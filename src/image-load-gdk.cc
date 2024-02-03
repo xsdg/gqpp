@@ -35,11 +35,10 @@ static gchar* image_loader_gdk_get_format_name(gpointer loader)
 		{
 		return gdk_pixbuf_format_get_name(format);
 		}
-	else
-		{
-		return nullptr;
-		}
+
+	return nullptr;
 }
+
 static gchar** image_loader_gdk_get_format_mime_types(gpointer loader)
 {
 	return gdk_pixbuf_format_get_mime_types(gdk_pixbuf_loader_get_format(GDK_PIXBUF_LOADER(loader)));

@@ -351,7 +351,8 @@ static void dupe_window_update_progress(DupeWindow *dw, const gchar *status, gdo
 
 			return;
 			}
-		else if (force ||
+
+		if (force ||
 			 value == 0.0 ||
 			 dw->setup_count == 0 ||
 			 dw->setup_time_count == 0 ||
@@ -1509,15 +1510,10 @@ static gboolean dupe_match(DupeItem *a, DupeItem *b, DupeMatchType mask, gdouble
 				{
 				return TRUE;
 				}
-			else
-				{
-				return FALSE;
-				}
-			}
-		else
-			{
+
 			return FALSE;
 			}
+		return FALSE;
 		}
 	if (mask & DUPE_MATCH_NAME_CI_CONTENT)
 		{
@@ -1531,15 +1527,11 @@ static gboolean dupe_match(DupeItem *a, DupeItem *b, DupeMatchType mask, gdouble
 				{
 				return TRUE;
 				}
-			else
-				{
-				return FALSE;
-				}
-			}
-		else
-			{
+
 			return FALSE;
 			}
+		return FALSE;
+		
 		}
 	if (mask & DUPE_MATCH_SIZE)
 		{
@@ -1817,10 +1809,8 @@ static gint dupe_match_sort_cb(gconstpointer a, gconstpointer b, gpointer data)
 		    {
 			return -1;
 			}
-		else
-			{
-			return strcmp(di1->md5sum, di2->md5sum);
-			}
+
+		return strcmp(di1->md5sum, di2->md5sum);
 		}
 	if (mask & DUPE_MATCH_DIM)
 		{
@@ -2813,14 +2803,12 @@ static gboolean dupe_files_add_queue_cb(gpointer data)
 		{
 		return TRUE;
 		}
-	else
-		{
-		dw->add_files_queue_id = 0;
-		dupe_destroy_list_cache(dw);
-		g_idle_add(dupe_check_start_cb, dw);
-		gtk_widget_set_sensitive(dw->controls_box, TRUE);
-		return FALSE;
-		}
+
+	dw->add_files_queue_id = 0;
+	dupe_destroy_list_cache(dw);
+	g_idle_add(dupe_check_start_cb, dw);
+	gtk_widget_set_sensitive(dw->controls_box, TRUE);
+	return FALSE;
 }
 
 static void dupe_files_add(DupeWindow *dw, CollectionData *, CollectInfo *info,
@@ -2881,10 +2869,8 @@ static void dupe_files_add(DupeWindow *dw, CollectionData *, CollectInfo *info,
 			{
 			return;
 			}
-		else
-			{
-			work = work->next;
-			}
+
+		work = work->next;
 		}
 
 	if (dw->second_list)
@@ -2897,10 +2883,8 @@ static void dupe_files_add(DupeWindow *dw, CollectionData *, CollectInfo *info,
 				{
 				return;
 				}
-			else
-				{
-				work = work->next;
-				}
+
+			work = work->next;
 			}
 		}
 

@@ -765,7 +765,7 @@ static gboolean cache_manager_render_file(CacheOpsData *cd)
 
 		return (!success);
 		}
-	else if (cd->list_dir)
+	if (cd->list_dir)
 		{
 		FileData *fd;
 
@@ -1434,7 +1434,7 @@ static gboolean cache_manager_sim_file(CacheOpsData *cd)
 
 		return FALSE;
 		}
-	else if (cd->list_dir)
+	if (cd->list_dir)
 		{
 		FileData *fd;
 

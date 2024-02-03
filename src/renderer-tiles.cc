@@ -1928,8 +1928,7 @@ static void rt_scroll(void *renderer, gint x_off, gint y_off)
 		rt_queue(rt, 0, 0, pr->width, pr->height, TRUE, TILE_RENDER_ALL, FALSE, FALSE);
 		return;
 		}
-	else
-		{
+
 		gint x1, y1;
 		gint x2, y2;
 		cairo_t *cr;
@@ -1991,7 +1990,6 @@ static void rt_scroll(void *renderer, gint x_off, gint y_off)
 				    rt->x_scroll, y_off > 0 ? rt->y_scroll + (pr->vis_height - h) : rt->y_scroll,
 				    pr->vis_width, h, TRUE, TILE_RENDER_ALL, FALSE, FALSE);
 			}
-		}
 }
 
 static void renderer_area_changed(void *renderer, gint src_x, gint src_y, gint src_w, gint src_h)

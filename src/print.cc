@@ -485,10 +485,8 @@ static gboolean paginate_cb(GtkPrintOperation *, GtkPrintContext *, gpointer dat
 		{
 		return TRUE;
 		}
-	else
-		{
-		return FALSE;
-		}
+
+	return FALSE;
 }
 
 gchar *form_image_text(const gchar *template_string, FileData *fd, PrintWindow *pw, gint page_nr, gint total)

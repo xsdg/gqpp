@@ -618,7 +618,7 @@ static ZDLookupResult ZDPointInPolygon(const ZoneDetect *library, uint32_t polyg
         int result = ZDReaderGetPoint(&reader, &pointLat, &pointLon);
         if(result < 0) {
             return ZD_LOOKUP_PARSE_ERROR;
-        } else if(result == 0) {
+        } if(result == 0) {
             break;
         }
 
@@ -740,9 +740,9 @@ static ZDLookupResult ZDPointInPolygon(const ZoneDetect *library, uint32_t polyg
 
     if(winding == -4) {
         return ZD_LOOKUP_IN_ZONE;
-    } else if(winding == 4) {
+    } if(winding == 4) {
         return ZD_LOOKUP_IN_EXCLUDED_ZONE;
-    } else if(winding == 0) {
+    } if(winding == 0) {
         return ZD_LOOKUP_NOT_IN_ZONE;
     }
 
@@ -921,7 +921,7 @@ ZoneDetectResult *ZDLookup(const ZoneDetect *library, float lat, float lon, floa
                 const ZDLookupResult lookupResult = ZDPointInPolygon(library, library->dataOffset + polygonIndex, latFixedPoint, lonFixedPoint, (safezone) ? &distanceSqrMin : nullptr);
                 if(lookupResult == ZD_LOOKUP_PARSE_ERROR) {
                     break;
-                } else if(lookupResult != ZD_LOOKUP_NOT_IN_ZONE) {
+                } if(lookupResult != ZD_LOOKUP_NOT_IN_ZONE) {
                     auto newResults = static_cast<ZoneDetectResult *>(realloc(results, sizeof(ZoneDetectResult) * (numResults + 2)));
 
                     if(newResults) {

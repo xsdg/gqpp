@@ -194,12 +194,10 @@ static gboolean collection_load_private(CollectionData *cd, const gchar *path, C
 				g_string_append(extended_filename_buffer, buf);
 				continue;
 				}
-			else
-				{
-				/* end of extended filename found */
-				g_string_append_len(extended_filename_buffer, buf, p - buf);
-				reading_extended_filename = FALSE;
-				}
+
+			/* end of extended filename found */
+			g_string_append_len(extended_filename_buffer, buf, p - buf);
+			reading_extended_filename = FALSE;
 			}
 
 		if (extended_filename_buffer->len > 0)

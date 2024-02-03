@@ -163,14 +163,12 @@ static gboolean image_loader_tiff_load (gpointer loader, const guchar *buf, gsiz
 		DEBUG_1("Failed to open TIFF image");
 		return FALSE;
 		}
-	else
-		{
-		do
-			{
-			dircount++;
-			} while (TIFFReadDirectory(tiff));
-		lt->page_total = dircount;
-		}
+
+	do	{
+		dircount++;
+		} while (TIFFReadDirectory(tiff));
+
+	lt->page_total = dircount;
 
     if (!TIFFSetDirectory(tiff, lt->page_num))
 		{

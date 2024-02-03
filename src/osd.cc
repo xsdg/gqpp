@@ -459,10 +459,8 @@ void osd_template_insert(GHashTable *vars, const gchar *keyword, const gchar *va
 		g_hash_table_insert(vars, const_cast<gchar *>(keyword), const_cast<gchar *>(value));
 		return;
 		}
-	else
-		{
-		g_hash_table_insert(vars, const_cast<gchar *>(keyword), g_strdup(value));
-		}
+
+	g_hash_table_insert(vars, const_cast<gchar *>(keyword), g_strdup(value));
 
 	if (flags & OSDT_FREE) g_free(const_cast<gchar *>(value));
 }

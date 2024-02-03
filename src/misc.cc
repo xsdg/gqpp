@@ -126,8 +126,8 @@ gchar *expand_tilde(const gchar *filename)
 
 	if (slash)
 		return g_build_filename(home, G_DIR_SEPARATOR_S, slash + 1, NULL);
-	else
-		return g_build_filename(home, G_DIR_SEPARATOR_S, NULL);
+
+	return g_build_filename(home, G_DIR_SEPARATOR_S, NULL);
 #endif
 }
 

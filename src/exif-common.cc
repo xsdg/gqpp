@@ -1213,10 +1213,8 @@ gchar *metadata_file_info(FileData *fd, const gchar *key, MetadataFormat)
 			page_n_of_m = g_strdup_printf("[%d/%d]", fd->page_num + 1, fd->page_total);
 			return page_n_of_m;
 			}
-		else
-			{
-			return nullptr;
-			}
+
+		return nullptr;
 		}
 	return g_strdup("");
 }

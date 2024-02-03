@@ -1755,7 +1755,8 @@ static RemoteCommandEntry *remote_command_find(const gchar *text, const gchar **
 				if (offset) *offset = text + strlen(remote_commands[i].opt_s);
 				return &remote_commands[i];
 				}
-			else if (remote_commands[i].opt_l &&
+
+			if (remote_commands[i].opt_l &&
 				 strncmp(remote_commands[i].opt_l, text, strlen(remote_commands[i].opt_l)) == 0)
 				{
 				if (offset) *offset = text + strlen(remote_commands[i].opt_l);

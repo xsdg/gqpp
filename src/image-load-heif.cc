@@ -66,44 +66,42 @@ static gboolean image_loader_heif_load(gpointer loader, const guchar *buf, gsize
 		heif_context_free(ctx);
 		return FALSE;
 		}
-	else
+
+	page_total = heif_context_get_number_of_top_level_images(ctx);
+	ld->page_total = page_total;
+
+	std::vector<heif_item_id> IDs(page_total);
+
+	/* get list of all (top level) image IDs */
+	heif_context_get_list_of_top_level_image_IDs(ctx, IDs.data(), page_total);
+
+	error_code = heif_context_get_image_handle(ctx, IDs[ld->page_num], &handle);
+	if (error_code.code)
 		{
-		page_total = heif_context_get_number_of_top_level_images(ctx);
-		ld->page_total = page_total;
-
-		std::vector<heif_item_id> IDs(page_total);
-
-		/* get list of all (top level) image IDs */
-		heif_context_get_list_of_top_level_image_IDs(ctx, IDs.data(), page_total);
-
-		error_code = heif_context_get_image_handle(ctx, IDs[ld->page_num], &handle);
-		if (error_code.code)
-			{
-			log_printf("warning:  heif reader error: %s\n", error_code.message);
-			heif_context_free(ctx);
-			return FALSE;
-			}
-
-		// decode the image and convert colorspace to RGB, saved as 24bit interleaved
-		error_code = heif_decode_image(handle, &img, heif_colorspace_RGB, heif_chroma_interleaved_24bit, nullptr);
-		if (error_code.code)
-			{
-			log_printf("warning: heif reader error: %s\n", error_code.message);
-			heif_context_free(ctx);
-			return FALSE;
-			}
-
-		data = heif_image_get_plane(img, heif_channel_interleaved, &stride);
-
-		height = heif_image_get_height(img,heif_channel_interleaved);
-		width = heif_image_get_width(img,heif_channel_interleaved);
-		alpha = heif_image_handle_has_alpha_channel(handle);
-		heif_image_handle_release(handle);
-
-		ld->pixbuf = gdk_pixbuf_new_from_data(data, GDK_COLORSPACE_RGB, alpha, 8, width, height, stride, free_buffer, img);
-
-		ld->area_updated_cb(loader, 0, 0, width, height, ld->data);
+		log_printf("warning:  heif reader error: %s\n", error_code.message);
+		heif_context_free(ctx);
+		return FALSE;
 		}
+
+	// decode the image and convert colorspace to RGB, saved as 24bit interleaved
+	error_code = heif_decode_image(handle, &img, heif_colorspace_RGB, heif_chroma_interleaved_24bit, nullptr);
+	if (error_code.code)
+		{
+		log_printf("warning: heif reader error: %s\n", error_code.message);
+		heif_context_free(ctx);
+		return FALSE;
+		}
+
+	data = heif_image_get_plane(img, heif_channel_interleaved, &stride);
+
+	height = heif_image_get_height(img,heif_channel_interleaved);
+	width = heif_image_get_width(img,heif_channel_interleaved);
+	alpha = heif_image_handle_has_alpha_channel(handle);
+	heif_image_handle_release(handle);
+
+	ld->pixbuf = gdk_pixbuf_new_from_data(data, GDK_COLORSPACE_RGB, alpha, 8, width, height, stride, free_buffer, img);
+
+	ld->area_updated_cb(loader, 0, 0, width, height, ld->data);
 
 	heif_context_free(ctx);
 

@@ -1860,7 +1860,8 @@ static void layout_grid_setup(LayoutWindow *lw)
 
 		return;
 		}
-	else if (lw->tools)
+
+	if (lw->tools)
 		{
 		layout_tools_geometry_sync(lw);
 		gq_gtk_widget_destroy(lw->tools);

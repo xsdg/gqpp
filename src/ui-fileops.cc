@@ -887,7 +887,8 @@ void parse_out_relatives(gchar *path)
 				s = p;
 				continue;
 				}
-			else if (path[p] == '.' && (path[p+1] == G_DIR_SEPARATOR || path[p+1] == '\0'))
+
+			if (path[p] == '.' && (path[p+1] == G_DIR_SEPARATOR || path[p+1] == '\0'))
 				{
 				/* /../ or /.., remove previous part, ie. /a/b/../ becomes /a/ */
 				s = p + 1;
