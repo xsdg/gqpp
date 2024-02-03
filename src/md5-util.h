@@ -63,7 +63,7 @@ gchar *md5_get_string_from_file(const gchar *path);
  * @headerfile md5_digest_to_text
  * convert digest to a NULL terminated text string, in ascii encoding
  */
-gchar *md5_digest_to_text(guchar digest[16]);
+gchar *md5_digest_to_text(const guchar digest[16]);
 
 /**
  * @headerfile md5_digest_from_text

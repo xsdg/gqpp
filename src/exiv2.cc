@@ -1235,7 +1235,7 @@ guchar *exif_get_preview(ExifData *exif, guint *data_len, gint requested_width, 
 	}
 }
 
-void exif_free_preview(guchar *buf)
+void exif_free_preview(const guchar *buf)
 {
 	delete[] static_cast<Exiv2::byte*>(buf);
 }

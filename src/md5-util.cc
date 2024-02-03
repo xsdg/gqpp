@@ -136,7 +136,7 @@ gchar *md5_get_string_from_file(const gchar *path)
  * and assumes a NULL terminated string.
  */
 
-gchar *md5_digest_to_text(guchar digest[16])
+gchar *md5_digest_to_text(const guchar digest[16])
 {
 	static gchar hex_digits[] = "0123456789abcdef";
 	gchar *result;

@@ -47,7 +47,7 @@ struct UnmapData
 
 static GList *libraw_unmap_list = nullptr;
 
-void libraw_free_preview(guchar *buf)
+void libraw_free_preview(const guchar *buf)
 {
 	GList *work = libraw_unmap_list;
 

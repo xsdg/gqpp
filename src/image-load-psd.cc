@@ -138,13 +138,13 @@ struct PsdContext
 
 
 static guint16
-read_uint16 (guchar* buf)
+read_uint16 (const guchar* buf)
 {
 	return (buf[0] << 8) | buf[1];
 }
 
 static guint32
-read_uint32 (guchar* buf)
+read_uint32 (const guchar* buf)
 {
 	return (buf[0] << 24) | (buf[1] << 16) | (buf[2] << 8) | buf[3];
 }

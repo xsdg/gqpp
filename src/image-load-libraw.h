@@ -22,7 +22,7 @@
 #define IMAGE_LOAD_RAW_H
 
 guchar *libraw_get_preview(ImageLoader *il, guint *data_len);
-void libraw_free_preview(guchar *buf);
+void libraw_free_preview(const guchar *buf);
 
 #endif
 

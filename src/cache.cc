@@ -200,7 +200,7 @@ static gboolean cache_sim_read_skipline(FILE *f, gint s)
 	return FALSE;
 }
 
-static gboolean cache_sim_read_comment(FILE *f, gchar *buf, gint s, CacheData *cd)
+static gboolean cache_sim_read_comment(FILE *f, const gchar *buf, gint s, CacheData *cd)
 {
 	if (!f || !buf || !cd) return FALSE;
 
@@ -494,7 +494,7 @@ void cache_sim_data_set_date_unused(CacheData *cd, time_t date)
 }
 #pragma GCC diagnostic pop
 
-void cache_sim_data_set_md5sum(CacheData *cd, guchar digest[16])
+void cache_sim_data_set_md5sum(CacheData *cd, const guchar digest[16])
 {
 	gint i;
 

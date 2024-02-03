@@ -815,7 +815,7 @@ void layout_status_update_all(LayoutWindow *lw)
 	layout_util_status_update_write(lw);
 }
 
-static GtkWidget *layout_status_label(gchar *text, GtkWidget *box, gboolean start, gint size, gboolean expand)
+static GtkWidget *layout_status_label(const gchar *text, GtkWidget *box, gboolean start, gint size, gboolean expand)
 {
 	GtkWidget *label;
 	GtkWidget *frame;
