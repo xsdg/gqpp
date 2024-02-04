@@ -135,7 +135,7 @@ guchar *libraw_get_preview(ImageLoader *il, guint *data_len)
 
 #else /* !define HAVE_RAW */
 
-void libraw_free_preview(guchar *)
+void libraw_free_preview(const guchar *)
 {
 }
 
