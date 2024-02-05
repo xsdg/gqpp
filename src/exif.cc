@@ -1674,7 +1674,7 @@ guchar *exif_get_preview(ExifData *exif, guint *data_len, gint, gint)
 
 }
 
-void exif_free_preview(guchar *buf)
+void exif_free_preview(const guchar *buf)
 {
 	GList *work = exif_unmap_list;
 
