@@ -2007,7 +2007,7 @@ static gboolean pan_warning(FileData *dir_fd)
 	GenericDialog *gd;
 	GtkWidget *box;
 	GtkWidget *group;
-	GtkWidget *button;
+	GtkWidget *checkbox;
 	GtkWidget *ct_button;
 	gboolean hide_dlg;
 
@@ -2039,9 +2039,9 @@ static gboolean pan_warning(FileData *dir_fd)
 
 	ct_button = pref_checkbox_new_int(group, _("Cache thumbnails"),
 					  options->thumbnails.enable_caching, &options->thumbnails.enable_caching);
-	button = pref_checkbox_new_int(group, _("Use shared thumbnail cache"),
+	checkbox = pref_checkbox_new_int(group, _("Use shared thumbnail cache"),
 				       options->thumbnails.spec_standard, &options->thumbnails.spec_standard);
-	pref_checkbox_link_sensitivity(ct_button, button);
+	pref_checkbox_link_sensitivity(ct_button, checkbox);
 
 	pref_line(box, 0);
 

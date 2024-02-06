@@ -2395,6 +2395,7 @@ static void config_tab_windows(GtkWidget *notebook)
 	GtkWidget *group;
 	GtkWidget *subgroup;
 	GtkWidget *button;
+	GtkWidget *checkbox;
 	GtkWidget *ct_button;
 	GtkWidget *spin;
 
@@ -2405,13 +2406,13 @@ static void config_tab_windows(GtkWidget *notebook)
 	ct_button = pref_checkbox_new_int(group, _("Remember session"),
 					  options->save_window_positions, &c_options->save_window_positions);
 
-	button = pref_checkbox_new_int(group, _("Use saved window positions also for new windows"),
+	checkbox = pref_checkbox_new_int(group, _("Use saved window positions also for new windows"),
 				       options->use_saved_window_positions_for_new_windows, &c_options->use_saved_window_positions_for_new_windows);
-	pref_checkbox_link_sensitivity(ct_button, button);
+	pref_checkbox_link_sensitivity(ct_button, checkbox);
 
-	button = pref_checkbox_new_int(group, _("Remember window workspace"),
+	checkbox = pref_checkbox_new_int(group, _("Remember window workspace"),
 			      options->save_window_workspace, &c_options->save_window_workspace);
-	pref_checkbox_link_sensitivity(ct_button, button);
+	pref_checkbox_link_sensitivity(ct_button, checkbox);
 
 	pref_checkbox_new_int(group, _("Remember tool state (float/hidden)"),
 			      options->tools_restore_state, &c_options->tools_restore_state);
