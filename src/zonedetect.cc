@@ -122,7 +122,7 @@ static unsigned int ZDDecodeVariableLengthUnsigned(const ZoneDetect *library, ui
         unsigned int shift = 0;
         while(true) {
             value |= (((static_cast<uint64_t>(buffer[i])) & UINT8_C(0x7F)) << shift);
-            shift += 7u;
+            shift += 7U;
 
             if(!(buffer[i] & UINT8_C(0x80))) {
                 break;
@@ -341,12 +341,12 @@ static int ZDPointInBox(int32_t xl, int32_t x, int32_t xr, int32_t yl, int32_t y
 
 static uint32_t ZDUnshuffle(uint64_t w)
 {
-    w &=                  0x5555555555555555llu;
-    w = (w | (w >> 1))  & 0x3333333333333333llu;
-    w = (w | (w >> 2))  & 0x0F0F0F0F0F0F0F0Fllu;
-    w = (w | (w >> 4))  & 0x00FF00FF00FF00FFllu;
-    w = (w | (w >> 8))  & 0x0000FFFF0000FFFFllu;
-    w = (w | (w >> 16)) & 0x00000000FFFFFFFFllu;
+    w &=                  0x5555555555555555LLU;
+    w = (w | (w >> 1))  & 0x3333333333333333LLU;
+    w = (w | (w >> 2))  & 0x0F0F0F0F0F0F0F0FLLU;
+    w = (w | (w >> 4))  & 0x00FF00FF00FF00FFLLU;
+    w = (w | (w >> 8))  & 0x0000FFFF0000FFFFLLU;
+    w = (w | (w >> 16)) & 0x00000000FFFFFFFFLLU;
     return static_cast<uint32_t>(w);
 }
 

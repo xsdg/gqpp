@@ -511,7 +511,7 @@ static cmsToneCurve* colorspaces_create_transfer(int32_t size, double (*fct)(dou
 	for(int32_t i = 0; i < size; ++i)
 		{
 		const double x = static_cast<float>(i) / (size - 1);
-		const double y = MIN(fct(x), 1.0f);
+		const double y = MIN(fct(x), 1.0F);
 		values.push_back(static_cast<float>(y));
 		}
 
@@ -605,19 +605,19 @@ static guchar *nclx_to_lcms_profile(const struct heif_color_profile_nclx *nclx, 
 
 	whitepoint.x = nclx->color_primary_white_x;
 	whitepoint.y = nclx->color_primary_white_y;
-	whitepoint.Y = 1.0f;
+	whitepoint.Y = 1.0F;
 
 	primaries.Red.x = nclx->color_primary_red_x;
 	primaries.Red.y = nclx->color_primary_red_y;
-	primaries.Red.Y = 1.0f;
+	primaries.Red.Y = 1.0F;
 
 	primaries.Green.x = nclx->color_primary_green_x;
 	primaries.Green.y = nclx->color_primary_green_y;
-	primaries.Green.Y = 1.0f;
+	primaries.Green.Y = 1.0F;
 
 	primaries.Blue.x = nclx->color_primary_blue_x;
 	primaries.Blue.y = nclx->color_primary_blue_y;
-	primaries.Blue.Y = 1.0f;
+	primaries.Blue.Y = 1.0F;
 
 	switch (nclx->color_primaries)
 		{
@@ -671,19 +671,19 @@ static guchar *nclx_to_lcms_profile(const struct heif_color_profile_nclx *nclx, 
 			trc_name = "Rec709 RGB";
 			break;
 		case heif_transfer_characteristic_ITU_R_BT_470_6_System_M:
-			curve[0] = curve[1] = curve[2] = cmsBuildGamma (nullptr, 2.2f);
+			curve[0] = curve[1] = curve[2] = cmsBuildGamma (nullptr, 2.2F);
 			profile = static_cast<cmsHPROFILE *>(cmsCreateRGBProfile(&whitepoint, &primaries, curve));
 			cmsFreeToneCurve(curve[0]);
 			trc_name = "Gamma2.2 RGB";
 			break;
 		case heif_transfer_characteristic_ITU_R_BT_470_6_System_B_G:
-			curve[0] = curve[1] = curve[2] = cmsBuildGamma (nullptr, 2.8f);
+			curve[0] = curve[1] = curve[2] = cmsBuildGamma (nullptr, 2.8F);
 			profile = static_cast<cmsHPROFILE *>(cmsCreateRGBProfile(&whitepoint, &primaries, curve));
 			cmsFreeToneCurve(curve[0]);
 			trc_name = "Gamma2.8 RGB";
 			break;
 		case heif_transfer_characteristic_linear:
-			curve[0] = curve[1] = curve[2] = cmsBuildGamma (nullptr, 1.0f);
+			curve[0] = curve[1] = curve[2] = cmsBuildGamma (nullptr, 1.0F);
 			profile = static_cast<cmsHPROFILE *>(cmsCreateRGBProfile(&whitepoint, &primaries, curve));
 			cmsFreeToneCurve(curve[0]);
 			trc_name = "linear RGB";
