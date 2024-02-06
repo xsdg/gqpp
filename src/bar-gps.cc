@@ -1108,13 +1108,13 @@ void bar_pane_gps_update_from_config(GtkWidget *pane, const gchar **attribute_na
 			}
 		if (READ_INT_CLAMP_FULL("longitude", int_longitude, -90000000, +90000000))
 			{
-			longitude = int_longitude / 1000000;
+			longitude = int_longitude / 1000000.0;
 			g_object_set(G_OBJECT(CHAMPLAIN_VIEW(pgd->gps_view)), "longitude", longitude, NULL);
 			continue;
 			}
 		if (READ_INT_CLAMP_FULL("latitude", int_latitude, -90000000, +90000000))
 			{
-			latitude = int_latitude / 1000000;
+			latitude = int_latitude / 1000000.0;
 			g_object_set(G_OBJECT(CHAMPLAIN_VIEW(pgd->gps_view)), "latitude", latitude, NULL);
 			continue;
 			}

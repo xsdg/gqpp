@@ -1782,13 +1782,13 @@ static void pr_zoom_sync(PixbufRenderer *pr, gdouble zoom,
 			{
 			case PR_SCROLL_RESET_NOCHANGE:
 				/* maintain old scroll position */
-				pr->x_scroll = (static_cast<gdouble>(pr->image_width) * old_center_x * pr->scale) - pr->vis_width / 2;
-				pr->y_scroll = (static_cast<gdouble>(pr->image_height) * old_center_y * pr->scale * pr->aspect_ratio) - pr->vis_height / 2;
+				pr->x_scroll = (static_cast<gdouble>(pr->image_width) * old_center_x * pr->scale) - pr->vis_width / 2.0;
+				pr->y_scroll = (static_cast<gdouble>(pr->image_height) * old_center_y * pr->scale * pr->aspect_ratio) - pr->vis_height / 2.0;
 				break;
 			case PR_SCROLL_RESET_CENTER:
 				/* center new image */
-				pr->x_scroll = (static_cast<gdouble>(pr->image_width) / 2.0 * pr->scale) - pr->vis_width / 2;
-				pr->y_scroll = (static_cast<gdouble>(pr->image_height) / 2.0 * pr->scale * pr->aspect_ratio) - pr->vis_height / 2;
+				pr->x_scroll = (static_cast<gdouble>(pr->image_width) / 2.0 * pr->scale) - pr->vis_width / 2.0;
+				pr->y_scroll = (static_cast<gdouble>(pr->image_height) / 2.0 * pr->scale * pr->aspect_ratio) - pr->vis_height / 2.0;
 				break;
 			case PR_SCROLL_RESET_TOPLEFT:
 			default:
@@ -1808,8 +1808,8 @@ static void pr_zoom_sync(PixbufRenderer *pr, gdouble zoom,
 			}
 		else
 			{
-			pr->x_scroll = old_cx / old_scale * pr->scale - (pr->vis_width / 2);
-			pr->y_scroll = old_cy / old_scale * pr->scale * pr->aspect_ratio - (pr->vis_height / 2);
+			pr->x_scroll = old_cx / old_scale * pr->scale - (pr->vis_width / 2.0);
+			pr->y_scroll = old_cy / old_scale * pr->scale * pr->aspect_ratio - (pr->vis_height / 2.0);
 			}
 		}
 
@@ -1987,8 +1987,8 @@ void pixbuf_renderer_set_scroll_center(PixbufRenderer *pr, gdouble x, gdouble y)
 {
 	gdouble dst_x, dst_y;
 
-	dst_x = x * pr->width  - pr->vis_width  / 2 - pr->x_scroll + CLAMP(pr->subpixel_x_scroll, -1.0, 1.0);
-	dst_y = y * pr->height - pr->vis_height / 2 - pr->y_scroll + CLAMP(pr->subpixel_y_scroll, -1.0, 1.0);
+	dst_x = x * pr->width  - pr->vis_width  / 2.0 - pr->x_scroll + CLAMP(pr->subpixel_x_scroll, -1.0, 1.0);
+	dst_y = y * pr->height - pr->vis_height / 2.0 - pr->y_scroll + CLAMP(pr->subpixel_y_scroll, -1.0, 1.0);
 
 	pr->subpixel_x_scroll = dst_x - static_cast<gint>(dst_x);
 	pr->subpixel_y_scroll = dst_y - static_cast<gint>(dst_y);

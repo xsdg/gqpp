@@ -176,7 +176,7 @@ GtkWidget *osd_new(gint max_cols, GtkWidget *template_view)
 	gq_gtk_container_add(GTK_WIDGET(scrolled), viewport);
 	gtk_widget_show(viewport);
 
-	entries = (sizeof(predefined_tags) / sizeof(predefined_tags[0])) - 1;
+	entries = ((gdouble)sizeof(predefined_tags) / sizeof(predefined_tags[0])) - 1;
 	max_rows = ceil(entries / max_cols);
 
 	GtkGrid *grid;

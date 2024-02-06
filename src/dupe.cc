@@ -341,7 +341,7 @@ static void dupe_window_update_progress(DupeWindow *dw, const gchar *status, gdo
 				d = dw->setup_count - dw->setup_n;
 				}
 
-			rem = (t - d) ? (static_cast<gdouble>(dw->setup_time_count / 1000000) / (t - d)) * d : 0;
+			rem = (t - d) ? (static_cast<gdouble>(dw->setup_time_count / 1000000.0) / (t - d)) * d : 0;
 
 			gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(dw->extra_label), value);
 
