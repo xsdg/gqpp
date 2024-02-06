@@ -922,13 +922,13 @@ static void bar_pane_keywords_edit_dialog(PaneKeywordsData *pkd, gboolean edit_e
 	gboolean is_keyword = TRUE;
 
 
-        if (edit_existing && pkd->click_tpath)
+	if (edit_existing && pkd->click_tpath)
 		{
 		GtkTreeModel *model;
 		GtkTreeIter iter;
 		model = gtk_tree_view_get_model(GTK_TREE_VIEW(pkd->keyword_treeview));
 
-	        if (gtk_tree_model_get_iter(model, &iter, pkd->click_tpath))
+		if (gtk_tree_model_get_iter(model, &iter, pkd->click_tpath))
 			{
 			gtk_tree_model_get(model, &iter, FILTER_KEYWORD_COLUMN_NAME, &name,
 							 FILTER_KEYWORD_COLUMN_IS_KEYWORD, &is_keyword, -1);

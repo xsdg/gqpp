@@ -51,12 +51,12 @@ Checks: >
   -readability-implicit-bool-conversion,
   -readability-isolate-declaration,
   -readability-magic-numbers,
-  -readability-misleading-indentation,
   -readability-named-parameter,
   -readability-qualified-auto,
   -readability-simplify-boolean-expr,
   -readability-suspicious-call-argument,
   -readability-uppercase-literal-suffix
+
 
 ExtraArgs: [-Wno-unknown-warning-option, -Wno-unused-lambda-capture, -Wno-unused-but-set-variable]
 WarningsAsErrors: "*"

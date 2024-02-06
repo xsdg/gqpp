@@ -327,7 +327,7 @@ static gboolean bar_pane_gps_marker_keypress_cb(GtkWidget *widget, ClutterButton
 			 * If not, call the thumb_loader to generate a thumbnail and update the marker later in the
 			 * thumb_loader callback
 			 */
-			 if (fd->thumb_pixbuf != nullptr)
+			if (fd->thumb_pixbuf != nullptr)
 				{
 				actor = gtk_clutter_texture_new();
 				gtk_clutter_texture_set_from_pixbuf(GTK_CLUTTER_TEXTURE(actor), fd->thumb_pixbuf, nullptr);
@@ -501,7 +501,7 @@ static gboolean bar_pane_gps_create_markers_cb(gpointer data)
 		 	champlain_bounding_box_get_center(pgd->bbox, &latitude, &longitude);
 		 	champlain_view_go_to(CHAMPLAIN_VIEW(pgd->gps_view), latitude, longitude);
 		 	}
-		 else if (pgd->num_added > 1)
+		else if (pgd->num_added > 1)
 		 	{
 			champlain_view_ensure_visible(CHAMPLAIN_VIEW(pgd->gps_view), pgd->bbox, TRUE);
 			}

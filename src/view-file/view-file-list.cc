@@ -1895,12 +1895,12 @@ gboolean vflist_refresh(ViewFile *vf)
 		ret = filelist_read(vf->dir_fd, &vf->list, nullptr);
 
 		if (vf->marks_enabled)
-		        {
-		        // When marks are enabled, lock FileDatas so that we don't end up re-parsing XML
-		        // each time a mark is changed.
-		        file_data_lock_list(vf->list);
-		        }
-	        else
+			{
+			// When marks are enabled, lock FileDatas so that we don't end up re-parsing XML
+			// each time a mark is changed.
+			file_data_lock_list(vf->list);
+			}
+		else
 			{
 			/** @FIXME only do this when needed (aka when we just switched from */
 			/** @FIXME marks-enabled to marks-disabled) */

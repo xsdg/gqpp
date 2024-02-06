@@ -656,145 +656,146 @@ static void image_loader_setup_loader(ImageLoader *il)
 		image_loader_backend_set_external(&il->backend);
 		}
 	else
-
-#ifdef HAVE_FFMPEGTHUMBNAILER
-	if (il->fd->format_class == FORMAT_CLASS_VIDEO)
 		{
-		DEBUG_1("Using custom ffmpegthumbnailer loader");
-		image_loader_backend_set_ft(&il->backend);
-		}
-	else
+#ifdef HAVE_FFMPEGTHUMBNAILER
+		if (il->fd->format_class == FORMAT_CLASS_VIDEO)
+			{
+			DEBUG_1("Using custom ffmpegthumbnailer loader");
+			image_loader_backend_set_ft(&il->backend);
+			}
+		else
 #endif
 #ifdef HAVE_PDF
-	if (il->bytes_total >= 4 &&
-	    (memcmp(il->mapped_file + 0, "%PDF", 4) == 0))
-		{
-		DEBUG_1("Using custom pdf loader");
-		image_loader_backend_set_pdf(&il->backend);
-		}
-	else
+		if (il->bytes_total >= 4 &&
+		    (memcmp(il->mapped_file + 0, "%PDF", 4) == 0))
+			{
+			DEBUG_1("Using custom pdf loader");
+			image_loader_backend_set_pdf(&il->backend);
+			}
+		else
 #endif
 #ifdef HAVE_HEIF
-	if (il->bytes_total >= 12 &&
-		((memcmp(il->mapped_file + 4, "ftypheic", 8) == 0) ||
-		(memcmp(il->mapped_file + 4, "ftypheix", 8) == 0) ||
-		(memcmp(il->mapped_file + 4, "ftypmsf1", 8) == 0) ||
-		(memcmp(il->mapped_file + 4, "ftypmif1", 8) == 0) ||
-		(memcmp(il->mapped_file + 4, "ftypavif", 8) == 0)))
-		{
-		DEBUG_1("Using custom heif loader");
-		image_loader_backend_set_heif(&il->backend);
-		}
-	else
-#endif
-#ifdef HAVE_WEBP
-	if (il->bytes_total >= 12 &&
-		(memcmp(il->mapped_file, "RIFF", 4) == 0) &&
-		(memcmp(il->mapped_file + 8, "WEBP", 4) == 0))
-		{
-		DEBUG_1("Using custom webp loader");
-		image_loader_backend_set_webp(&il->backend);
-		}
-	else
+		if (il->bytes_total >= 12 &&
+			((memcmp(il->mapped_file + 4, "ftypheic", 8) == 0) ||
+			(memcmp(il->mapped_file + 4, "ftypheix", 8) == 0) ||
+			(memcmp(il->mapped_file + 4, "ftypmsf1", 8) == 0) ||
+			(memcmp(il->mapped_file + 4, "ftypmif1", 8) == 0) ||
+			(memcmp(il->mapped_file + 4, "ftypavif", 8) == 0)))
+			{
+			DEBUG_1("Using custom heif loader");
+			image_loader_backend_set_heif(&il->backend);
+			}
+		else
+	#endif
+	#ifdef HAVE_WEBP
+		if (il->bytes_total >= 12 &&
+			(memcmp(il->mapped_file, "RIFF", 4) == 0) &&
+			(memcmp(il->mapped_file + 8, "WEBP", 4) == 0))
+			{
+			DEBUG_1("Using custom webp loader");
+			image_loader_backend_set_webp(&il->backend);
+			}
+		else
 #endif
 #ifdef HAVE_DJVU
-	if (il->bytes_total >= 16 &&
-		(memcmp(il->mapped_file, "AT&TFORM", 8) == 0) &&
-		(memcmp(il->mapped_file + 12, "DJV", 3) == 0))
-		{
-		DEBUG_1("Using custom djvu loader");
-		image_loader_backend_set_djvu(&il->backend);
-		}
-	else
+		if (il->bytes_total >= 16 &&
+			(memcmp(il->mapped_file, "AT&TFORM", 8) == 0) &&
+			(memcmp(il->mapped_file + 12, "DJV", 3) == 0))
+			{
+			DEBUG_1("Using custom djvu loader");
+			image_loader_backend_set_djvu(&il->backend);
+			}
+		else
 #endif
 #ifdef HAVE_JPEG
-	if (il->bytes_total >= 2 && il->mapped_file[0] == 0xff && il->mapped_file[1] == 0xd8)
-		{
-		DEBUG_1("Using custom jpeg loader");
-		image_loader_backend_set_jpeg(&il->backend);
-		}
+		if (il->bytes_total >= 2 && il->mapped_file[0] == 0xff && il->mapped_file[1] == 0xd8)
+			{
+			DEBUG_1("Using custom jpeg loader");
+			image_loader_backend_set_jpeg(&il->backend);
+			}
 #ifndef HAVE_RAW
-	else
-	if (il->bytes_total >= 11 &&
-		(memcmp(il->mapped_file + 4, "ftypcrx", 7) == 0) &&
-		(memcmp(il->mapped_file + 64, "CanonCR3", 8) == 0))
-		{
-		DEBUG_1("Using custom cr3 loader");
-		image_loader_backend_set_cr3(&il->backend);
-		}
+		else
+		if (il->bytes_total >= 11 &&
+			(memcmp(il->mapped_file + 4, "ftypcrx", 7) == 0) &&
+			(memcmp(il->mapped_file + 64, "CanonCR3", 8) == 0))
+			{
+			DEBUG_1("Using custom cr3 loader");
+			image_loader_backend_set_cr3(&il->backend);
+			}
 #endif
-	else
+		else
 #endif
 #ifdef HAVE_TIFF
-	if (il->bytes_total >= 10 &&
-	    (memcmp(il->mapped_file, "MM\0*", 4) == 0 ||
-	     memcmp(il->mapped_file, "MM\0+\0\x08\0\0", 8) == 0 ||
-	     memcmp(il->mapped_file, "II+\0\x08\0\0\0", 8) == 0 ||
-	     memcmp(il->mapped_file, "II*\0", 4) == 0))
-	     	{
-		DEBUG_1("Using custom tiff loader");
-		image_loader_backend_set_tiff(&il->backend);
-		}
-	else
+		if (il->bytes_total >= 10 &&
+		    (memcmp(il->mapped_file, "MM\0*", 4) == 0 ||
+		     memcmp(il->mapped_file, "MM\0+\0\x08\0\0", 8) == 0 ||
+		     memcmp(il->mapped_file, "II+\0\x08\0\0\0", 8) == 0 ||
+		     memcmp(il->mapped_file, "II*\0", 4) == 0))
+		     	{
+			DEBUG_1("Using custom tiff loader");
+			image_loader_backend_set_tiff(&il->backend);
+			}
+		else
 #endif
-	if (il->bytes_total >= 3 && il->mapped_file[0] == 0x44 && il->mapped_file[1] == 0x44 && il->mapped_file[2] == 0x53)
-		{
-		DEBUG_1("Using dds loader");
-		image_loader_backend_set_dds(&il->backend);
-		}
-	else
-	if (il->bytes_total >= 6 &&
-		(memcmp(il->mapped_file, "8BPS\0\x01", 6) == 0))
-		{
-		DEBUG_1("Using custom psd loader");
-		image_loader_backend_set_psd(&il->backend);
-		}
-	else
+		if (il->bytes_total >= 3 && il->mapped_file[0] == 0x44 && il->mapped_file[1] == 0x44 && il->mapped_file[2] == 0x53)
+			{
+			DEBUG_1("Using dds loader");
+			image_loader_backend_set_dds(&il->backend);
+			}
+		else
+		if (il->bytes_total >= 6 &&
+			(memcmp(il->mapped_file, "8BPS\0\x01", 6) == 0))
+			{
+			DEBUG_1("Using custom psd loader");
+			image_loader_backend_set_psd(&il->backend);
+			}
+		else
 #ifdef HAVE_J2K
-	if (il->bytes_total >= 12 &&
-		(memcmp(il->mapped_file, "\0\0\0\x0CjP\x20\x20\x0D\x0A\x87\x0A", 12) == 0))
-		{
-		DEBUG_1("Using custom j2k loader");
-		image_loader_backend_set_j2k(&il->backend);
-		}
-	else
+		if (il->bytes_total >= 12 &&
+			(memcmp(il->mapped_file, "\0\0\0\x0CjP\x20\x20\x0D\x0A\x87\x0A", 12) == 0))
+			{
+			DEBUG_1("Using custom j2k loader");
+			image_loader_backend_set_j2k(&il->backend);
+			}
+		else
 #endif
 #ifdef HAVE_JPEGXL
-	if (il->bytes_total >= 12 &&
-		(memcmp(il->mapped_file, "\0\0\0\x0C\x4A\x58\x4C\x20\x0D\x0A\x87\x0A", 12) == 0))
-		{
-		DEBUG_1("Using custom jpeg xl loader");
-		image_loader_backend_set_jpegxl(&il->backend);
-		}
-	else
-	if (il->bytes_total >= 2 &&
-		(memcmp(il->mapped_file, "\xFF\x0A", 2) == 0))
-		{
-		DEBUG_1("Using custom jpeg xl loader");
-		image_loader_backend_set_jpegxl(&il->backend);
-		}
-	else
+		if (il->bytes_total >= 12 &&
+			(memcmp(il->mapped_file, "\0\0\0\x0C\x4A\x58\x4C\x20\x0D\x0A\x87\x0A", 12) == 0))
+			{
+			DEBUG_1("Using custom jpeg xl loader");
+			image_loader_backend_set_jpegxl(&il->backend);
+			}
+		else
+		if (il->bytes_total >= 2 &&
+			(memcmp(il->mapped_file, "\xFF\x0A", 2) == 0))
+			{
+			DEBUG_1("Using custom jpeg xl loader");
+			image_loader_backend_set_jpegxl(&il->backend);
+			}
+		else
 #endif
-	if ((il->bytes_total == 6144 || il->bytes_total == 6912) &&
-		(file_extension_match(il->fd->path, ".scr")))
-		{
-		DEBUG_1("Using custom zxscr loader");
-		image_loader_backend_set_zxscr(&il->backend);
+		if ((il->bytes_total == 6144 || il->bytes_total == 6912) &&
+			(file_extension_match(il->fd->path, ".scr")))
+			{
+			DEBUG_1("Using custom zxscr loader");
+			image_loader_backend_set_zxscr(&il->backend);
+			}
+		else
+		if (il->fd->format_class == FORMAT_CLASS_COLLECTION)
+			{
+			DEBUG_1("Using custom collection loader");
+			image_loader_backend_set_collection(&il->backend);
+			}
+		else
+		if (g_strcmp0(strrchr(il->fd->path, '.'), ".svgz") == 0)
+			{
+			DEBUG_1("Using custom svgz loader");
+			image_loader_backend_set_svgz(&il->backend);
+			}
+		else
+			image_loader_backend_set_default(&il->backend);
 		}
-	else
-	if (il->fd->format_class == FORMAT_CLASS_COLLECTION)
-		{
-		DEBUG_1("Using custom collection loader");
-		image_loader_backend_set_collection(&il->backend);
-		}
-	else
-	if (g_strcmp0(strrchr(il->fd->path, '.'), ".svgz") == 0)
-		{
-		DEBUG_1("Using custom svgz loader");
-		image_loader_backend_set_svgz(&il->backend);
-		}
-	else
-		image_loader_backend_set_default(&il->backend);
 
 	il->loader = static_cast<void **>(il->backend.loader_new(image_loader_area_updated_cb, image_loader_size_cb, image_loader_area_prepared_cb, il));
 
