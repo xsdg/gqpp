@@ -27,9 +27,24 @@ Shown in the Overlay Screen Display. Defined in `./src/image-overlay.cc image_os
 
 Menu processing is in `./src/layout-util.cc menu_entries[]`.
 
+## File operation overrides
+
+The standard copy, move, rename, delete and folder create functions can
+be overridden by special plugins. The following defines are in `typedefs.h`:
+
+```c
+#define CMD_COPY     "geeqie-copy-command.desktop"
+#define CMD_MOVE     "geeqie-move-command.desktop"
+#define CMD_RENAME   "geeqie-rename-command.desktop"
+#define CMD_DELETE   "geeqie-delete-command.desktop"
+#define CMD_FOLDER   "geeqie-folder-command.desktop"
+```
+
 ## Doxygen Documentation
 
 Complete code documentation in html format can be generated via the script `./scripts/doxygen.sh`.
+
+From the top level generated documentation, `Files / File List / scripts` provides a summary of files that may be useful.
 
 [image_ref_image_osd_color_png]:
 data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC8AAAA4CAMAAABaKlG9AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAaVBMVEUAAAAMDAwlJSUyMjJwcHCWlpbIyMjIu7vIoqLIlpbIV1fIMjLIAAC7opaiVzKWMgCiu5ZXojIylgCWyJYyyDIAyACWu6IyolcAljKWorsyV6IAMpaWlsgyMsgAAMiioshXV8i7u8j///+Wu6iCAAAAAWJLR0QiXWVcrAAAAAd0SU1FB+cMCxA4MY8D9CsAAAAQY2FOdgAAAGAAAABNAAAAEgAAAAaBW3h1AAAAiUlEQVRIx+3WwRaCIBSE4StIgqRpmqZB6Pu/ZMu7a8Ad5/Ct//0MUe4qIaOJikjUKlotiKS6RVPyWt9oA+mGe91aqNXcG3uHrCl9rn3XP6C+434Yn9A4cD/NL2ieSp9rv6xvaF243/YPtG/cO/+FvCt9rn04PHQE7s/goHBe39OUPvUPpP6N4p8ff3aBez1VWm4AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMTItMTFUMTY6NTY6MzcrMDA6MDAHcncUAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTEyLTExVDE2OjQ2OjEzKzAwOjAwAcszBgAAAABJRU5ErkJggg==
