@@ -357,7 +357,8 @@ GdkPixbuf *pixbuf_fallback(FileData *fd, gint requested_width, gint requested_he
 
 		if (w > requested_width || h > requested_height)
 			{
-			gint nw, nh;
+			gint nw;
+			gint nh;
 
 			if (pixbuf_scale_aspect(requested_width, requested_height,
 							  w, h, &nw, &nh))
@@ -411,7 +412,8 @@ static void pixbuf_copy_block_rotate(guchar *src, gint src_row_stride, gint x, g
 				     guchar *dest, gint dest_row_stride, gint w, gint h,
 				     gint bytes_per_pixel, gboolean counter_clockwise)
 {
-	gint i, j;
+	gint i;
+	gint j;
 	guchar *sp;
 	guchar *dp;
 
@@ -465,16 +467,22 @@ GdkPixbuf *pixbuf_copy_rotate_90(GdkPixbuf *src, gboolean counter_clockwise)
 {
 	GdkPixbuf *dest;
 	gboolean has_alpha;
-	gint sw, sh, srs;
-	gint dw, dh, drs;
+	gint sw;
+	gint sh;
+	gint srs;
+	gint dw;
+	gint dh;
+	gint drs;
 	guchar *s_pix;
 	guchar *d_pix;
-	gint i, j;
+	gint i;
+	gint j;
 	gint a;
 	GdkPixbuf *buffer;
 	guchar *b_pix;
 	gint brs;
-	gint w, h;
+	gint w;
+	gint h;
 
 	if (!src) return nullptr;
 
@@ -502,7 +510,8 @@ GdkPixbuf *pixbuf_copy_rotate_90(GdkPixbuf *src, gboolean counter_clockwise)
 		w = MIN(ROTATE_BUFFER_WIDTH, (sh - i));
 		for (j = 0; j < sw; j += ROTATE_BUFFER_HEIGHT)
 			{
-			gint x, y;
+			gint x;
+			gint y;
 
 			h = MIN(ROTATE_BUFFER_HEIGHT, (sw - j));
 			pixbuf_copy_block_rotate(s_pix, srs, j, i,
@@ -563,13 +572,16 @@ GdkPixbuf *pixbuf_copy_mirror(GdkPixbuf *src, gboolean mirror, gboolean flip)
 {
 	GdkPixbuf *dest;
 	gboolean has_alpha;
-	gint w, h, srs;
+	gint w;
+	gint h;
+	gint srs;
 	gint drs;
 	guchar *s_pix;
 	guchar *d_pix;
 	guchar *sp;
 	guchar *dp;
-	gint i, j;
+	gint i;
+	gint j;
 	gint a;
 
 	if (!src) return nullptr;
@@ -688,10 +700,13 @@ void pixbuf_draw_rect_fill(GdkPixbuf *pb,
 			   gint r, gint g, gint b, gint a)
 {
 	gboolean has_alpha;
-	gint pw, ph, prs;
+	gint pw;
+	gint ph;
+	gint prs;
 	guchar *p_pix;
 	guchar *pp;
-	gint i, j;
+	gint i;
+	gint j;
 
 	if (!pb) return;
 
@@ -744,10 +759,13 @@ void pixbuf_set_rect_fill(GdkPixbuf *pb,
 			  gint r, gint g, gint b, gint a)
 {
 	gboolean has_alpha;
-	gint pw, ph, prs;
+	gint pw;
+	gint ph;
+	gint prs;
 	guchar *p_pix;
 	guchar *pp;
-	gint i, j;
+	gint i;
+	gint j;
 
 	if (!pb) return;
 
@@ -822,18 +840,23 @@ static void pixbuf_copy_font(GdkPixbuf *src, gint sx, gint sy,
 			     gint w, gint h,
 			     guint8 r, guint8 g, guint8 b, guint8 a)
 {
-	gint sw, sh, srs;
+	gint sw;
+	gint sh;
+	gint srs;
 	gboolean s_alpha;
 	gint s_step;
 	guchar *s_pix;
-	gint dw, dh, drs;
+	gint dw;
+	gint dh;
+	gint drs;
 	gboolean d_alpha;
 	gint d_step;
 	guchar *d_pix;
 
 	guchar *sp;
 	guchar *dp;
-	gint i, j;
+	gint i;
+	gint j;
 
 	if (!src || !dest) return;
 
@@ -900,9 +923,12 @@ void pixbuf_draw_layout(GdkPixbuf *pixbuf, PangoLayout *layout, GtkWidget *,
 			guint8 r, guint8 g, guint8 b, guint8 a)
 {
 	GdkPixbuf *buffer;
-	gint w, h;
-	gint sx, sy;
-	gint dw, dh;
+	gint w;
+	gint h;
+	gint sx;
+	gint sy;
+	gint dw;
+	gint dh;
 	cairo_surface_t *source;
 	cairo_t *cr;
 
@@ -968,7 +994,10 @@ void pixbuf_draw_layout(GdkPixbuf *pixbuf, PangoLayout *layout, GtkWidget *,
 void util_clip_triangle(gint x1, gint y1, gint x2, gint y2, gint x3, gint y3,
 			gint *rx, gint *ry, gint *rw, gint *rh)
 {
-	gint tx, ty, tw, th;
+	gint tx;
+	gint ty;
+	gint tw;
+	gint th;
 
 	tx = MIN(x1, x2);
 	tx = MIN(tx, x3);
@@ -991,17 +1020,30 @@ void pixbuf_draw_triangle(GdkPixbuf *pb,
 			  guint8 r, guint8 g, guint8 b, guint8 a)
 {
 	gboolean has_alpha;
-	gint pw, ph, prs;
-	gint rx, ry, rw, rh;
-	gint tx, ty, tw, th;
-	gint fx1, fy1;
-	gint fx2, fy2;
-	gint fw, fh;
+	gint pw;
+	gint ph;
+	gint prs;
+	gint rx;
+	gint ry;
+	gint rw;
+	gint rh;
+	gint tx;
+	gint ty;
+	gint tw;
+	gint th;
+	gint fx1;
+	gint fy1;
+	gint fx2;
+	gint fy2;
+	gint fw;
+	gint fh;
 	guchar *p_pix;
 	guchar *pp;
 	gint p_step;
-	gdouble slope1, slope2;
-	gint slope1_x, slope1_y;
+	gdouble slope1;
+	gdouble slope2;
+	gint slope1_x;
+	gint slope1_y;
 	gint y;
 	gint t;
 	gboolean middle = FALSE;
@@ -1055,7 +1097,8 @@ void pixbuf_draw_triangle(GdkPixbuf *pb,
 
 	for (y = fy1; y < fy2; y++)
 		{
-		gint xa, xb;
+		gint xa;
+		gint xb;
 
 		if (!middle && y > y2)
 			{
@@ -1203,16 +1246,29 @@ void pixbuf_draw_line(GdkPixbuf *pb,
 		      guint8 r, guint8 g, guint8 b, guint8 a)
 {
 	gboolean has_alpha;
-	gint pw, ph, prs;
-	gint rx, ry, rw, rh;
-	gdouble rx1, ry1, rx2, ry2;
+	gint pw;
+	gint ph;
+	gint prs;
+	gint rx;
+	gint ry;
+	gint rw;
+	gint rh;
+	gdouble rx1;
+	gdouble ry1;
+	gdouble rx2;
+	gdouble ry2;
 	guchar *p_pix;
 	guchar *pp;
 	gint p_step;
 	gdouble slope;
-	gdouble x, y;
-	gint px, py;
-	gint cx1, cy1, cx2, cy2;
+	gdouble x;
+	gdouble y;
+	gint px;
+	gint py;
+	gint cx1;
+	gint cy1;
+	gint cx2;
+	gint cy2;
 
 	if (!pb) return;
 
@@ -1307,7 +1363,8 @@ static void pixbuf_draw_fade_linear(guchar *p_pix, gint prs, gboolean has_alpha,
 	guchar *pp;
 	gint p_step;
 	guint8 n = a;
-	gint i, j;
+	gint i;
+	gint j;
 
 	p_step = (has_alpha) ? 4 : 3;
 	for (j = y1; j < y2; j++)
@@ -1335,7 +1392,8 @@ static void pixbuf_draw_fade_radius(guchar *p_pix, gint prs, gboolean has_alpha,
 {
 	guchar *pp;
 	gint p_step;
-	gint i, j;
+	gint i;
+	gint j;
 
 	p_step = (has_alpha) ? 4 : 3;
 	for (j = y1; j < y2; j++)
@@ -1365,9 +1423,17 @@ void pixbuf_draw_shadow(GdkPixbuf *pb,
 			guint8 r, guint8 g, guint8 b, guint8 a)
 {
 	gint has_alpha;
-	gint pw, ph, prs;
-	gint rx, ry, rw, rh;
-	gint fx, fy, fw, fh;
+	gint pw;
+	gint ph;
+	gint prs;
+	gint rx;
+	gint ry;
+	gint rw;
+	gint rh;
+	gint fx;
+	gint fy;
+	gint fw;
+	gint fh;
 	guchar *p_pix;
 
 	if (!pb) return;
@@ -1477,10 +1543,13 @@ void pixbuf_desaturate_rect(GdkPixbuf *pb,
 			    gint x, gint y, gint w, gint h)
 {
 	gboolean has_alpha;
-	gint pw, ph, prs;
+	gint pw;
+	gint ph;
+	gint prs;
 	guchar *p_pix;
 	guchar *pp;
-	gint i, j;
+	gint i;
+	gint j;
 
 	if (!pb) return;
 
@@ -1520,10 +1589,13 @@ void pixbuf_desaturate_rect(GdkPixbuf *pb,
 void pixbuf_highlight_overunderexposed(GdkPixbuf *pb, gint x, gint y, gint w, gint h)
 {
 	gboolean has_alpha;
-	gint pw, ph, prs;
+	gint pw;
+	gint ph;
+	gint prs;
 	guchar *p_pix;
 	guchar *pp;
-	gint i, j;
+	gint i;
+	gint j;
 
 	if (!pb) return;
 
@@ -1570,10 +1642,13 @@ void pixbuf_ignore_alpha_rect(GdkPixbuf *pb,
                  gint x, gint y, gint w, gint h)
 {
    gboolean has_alpha;
-   gint pw, ph, prs;
+   gint pw;
+   gint ph;
+   gint prs;
    guchar *p_pix;
    guchar *pp;
-   gint i, j;
+   gint i;
+   gint j;
 
    if (!pb) return;
 

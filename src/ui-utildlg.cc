@@ -108,7 +108,10 @@ void generic_dialog_close(GenericDialog *gd)
 	gchar *ident_string;
 	gchar *full_title;
 	gchar *actual_title;
-	gint x, y, h, w;
+	gint x;
+	gint y;
+	gint h;
+	gint w;
 
 	gdk_window_get_root_origin(gtk_widget_get_window (gd->dialog), &x, &y);
 	w = gdk_window_get_width(gtk_widget_get_window (gd->dialog));
@@ -384,7 +387,10 @@ static void generic_dialog_setup(GenericDialog *gd,
 				 void (*cancel_cb)(GenericDialog *, gpointer), gpointer data)
 {
 	GtkWidget *vbox;
-	gint x, y, w, h;
+	gint x;
+	gint y;
+	gint w;
+	gint h;
 	GtkWidget *scrolled;
 
 	gd->auto_close = auto_close;
@@ -598,7 +604,9 @@ void appimage_notification_func(gpointer data, gpointer)
 	GSocketConnectable *geeqie_github;
 	struct tm current_version_date;
 	int64_t file_github_date;
-	unsigned int year, month, day;
+	unsigned int year;
+	unsigned int month;
+	unsigned int day;
 
 	/* If this is a release version, do not check for updates */
 	if (g_strrstr(VERSION, "git"))

@@ -178,7 +178,8 @@ static gint bar_pane_comment_event(GtkWidget *bar, GdkEvent *event)
 static void bar_pane_comment_write_config(GtkWidget *pane, GString *outstr, gint indent)
 {
 	PaneCommentData *pcd;
-	gint w, h;
+	gint w;
+	gint h;
 
 	pcd = static_cast<PaneCommentData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!pcd) return;

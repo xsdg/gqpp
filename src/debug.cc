@@ -84,7 +84,8 @@ void log_domain_print_message(const gchar *domain, gchar *buf)
 {
 	gchar *buf_nl;
 	regex_t regex;
-	gint ret_comp, ret_exec;
+	gint ret_comp;
+	gint ret_exec;
 
 	buf_nl = g_strconcat(buf, "\n", NULL);
 

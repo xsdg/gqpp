@@ -234,7 +234,8 @@ static void toolbarlist_add_button(const gchar *name, const gchar *label,
 		if (pixbuf)
 			{
 			GdkPixbuf *scaled;
-			gint w, h;
+			gint w;
+			gint h;
 
 			w = h = 16;
 			gtk_icon_size_lookup(GTK_ICON_SIZE_BUTTON, &w, &h);

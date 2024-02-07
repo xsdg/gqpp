@@ -194,7 +194,8 @@ void filter_add_defaults()
 	filter_add_if_missing("apng", "Animated Portable Network Graphic", ".apng", FORMAT_CLASS_IMAGE, FALSE, FALSE, TRUE);
 
 	/* formats supported by gdk-pixbuf */
-	GSList *list, *work;
+	GSList *list;
+	GSList *work;
 
 	list = gdk_pixbuf_get_formats();
 	work = list;

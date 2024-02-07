@@ -132,10 +132,14 @@ static void bar_pane_gps_close_save_cb(GenericDialog *, gpointer data)
 {
 	PaneGPSData *pgd;
 	GenericDialog *gd;
-	FileData *fd, *fd_found;
-	GList *work, *list;
-	gint count, geocoded_count;
-	gdouble latitude, longitude;
+	FileData *fd;
+	FileData *fd_found;
+	GList *work;
+	GList *list;
+	gint count;
+	gint geocoded_count;
+	gdouble latitude;
+	gdouble longitude;
 	GString *message;
 	gchar *location;
 	gchar **latlong;
@@ -289,15 +293,18 @@ static void bar_pane_gps_thumb_error_cb(ThumbLoader *tl, gpointer)
 static gboolean bar_pane_gps_marker_keypress_cb(GtkWidget *widget, ClutterButtonEvent *bevent, gpointer)
 {
 	FileData *fd;
-	ClutterActor *label_marker, *parent_marker;
+	ClutterActor *label_marker;
+	ClutterActor *parent_marker;
 	ClutterColor marker_colour = { MARKER_COLOUR };
 	ClutterColor text_colour = { TEXT_COLOUR };
 	ClutterColor thumb_colour = { THUMB_COLOUR };
 	gchar *current_text;
-	ClutterActor *actor, *direction;
+	ClutterActor *actor;
+	ClutterActor *direction;
 	ClutterActor *current_image;
 	GString *text;
-	gint height, width;
+	gint height;
+	gint width;
 	GdkPixbufRotation rotate;
 	gchar *altitude = nullptr;
 	ThumbLoader *tl;
@@ -425,7 +432,8 @@ static gboolean bar_pane_gps_create_markers_cb(gpointer data)
 	gdouble longitude;
 	gdouble compass;
 	FileData *fd;
-	ClutterActor *parent_marker, *label_marker;
+	ClutterActor *parent_marker;
+	ClutterActor *label_marker;
 	ClutterActor *direction;
 	ClutterColor marker_colour = { MARKER_COLOUR };
 	ClutterColor thumb_colour = { THUMB_COLOUR };
@@ -664,7 +672,8 @@ static void bar_pane_gps_write_config(GtkWidget *pane, GString *outstr, gint ind
 	const gchar *map_id;
 	gdouble position;
 	gint int_position;
-	gint w, h;
+	gint w;
+	gint h;
 
 	pgd = static_cast<PaneGPSData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!pgd) return;
@@ -922,9 +931,13 @@ GtkWidget *bar_pane_gps_new(const gchar *id, const gchar *title, const gchar *ma
             				gboolean expanded, gint height)
 {
 	PaneGPSData *pgd;
-	GtkWidget *vbox, *frame;
+	GtkWidget *vbox;
+	GtkWidget *frame;
 	GtkWidget *gpswidget;
-	GtkWidget *status, *state, *progress, *slider;
+	GtkWidget *status;
+	GtkWidget *state;
+	GtkWidget *progress;
+	GtkWidget *slider;
 	ChamplainMarkerLayer *layer;
 	ChamplainView *view;
 	const gchar *slider_list[] = {GQ_ICON_ZOOM_IN, GQ_ICON_ZOOM_OUT, nullptr};
@@ -1077,8 +1090,10 @@ void bar_pane_gps_update_from_config(GtkWidget *pane, const gchar **attribute_na
 {
 	PaneGPSData *pgd;
 	gint zoom;
-	gint int_longitude, int_latitude;
-	gdouble longitude, latitude;
+	gint int_longitude;
+	gint int_latitude;
+	gdouble longitude;
+	gdouble latitude;
 
 	pgd = static_cast<PaneGPSData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!pgd)

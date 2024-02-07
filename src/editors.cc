@@ -176,7 +176,9 @@ gboolean editor_read_desktop_file(const gchar *path)
 	gchar *extensions;
 	gchar *type;
 	const gchar *key = filename_from_path(path);
-	gchar **categories, **only_show_in, **not_show_in;
+	gchar **categories;
+	gchar **only_show_in;
+	gchar **not_show_in;
 	gchar *try_exec;
 	GtkTreeIter iter;
 	gboolean category_geeqie = FALSE;

@@ -51,7 +51,10 @@ namespace
 
 gboolean scan_geometry(gchar *buffer, GdkRectangle &window)
 {
-	gint nx, ny, nw, nh;
+	gint nx;
+	gint ny;
+	gint nw;
+	gint nh;
 
 	if (sscanf(buffer, "%d %d %d %d", &nx, &ny, &nw, &nh) != 4) return FALSE;
 

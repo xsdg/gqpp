@@ -99,8 +99,12 @@ static gdouble get_crop_factor(ExifData *exif)
 	gdouble xres = exif_get_rational_as_double(exif, "Exif.Photo.FocalPlaneXResolution");
 	gdouble yres = exif_get_rational_as_double(exif, "Exif.Photo.FocalPlaneYResolution");
 	gint res_unit;
-	gint w, h;
-	gdouble xsize, ysize, size, ratio;
+	gint w;
+	gint h;
+	gdouble xsize;
+	gdouble ysize;
+	gdouble size;
+	gdouble ratio;
 
 	if (xres == 0.0 || yres == 0.0) return 0.0;
 
@@ -160,7 +164,8 @@ static gchar *exif_build_formatted_Camera(ExifData *exif)
 
 	if (software)
 		{
-		gint i, j;
+		gint i;
+		gint j;
 
 		g_strstrip(software);
 
@@ -352,7 +357,8 @@ static gchar *exif_build_formatted_FocalLength(ExifData *exif)
 static gchar *exif_build_formatted_FocalLength35mmFilm(ExifData *exif)
 {
 	gint n;
-	gdouble f, c;
+	gdouble f;
+	gdouble c;
 
 	if (exif_get_integer(exif, "Exif.Photo.FocalLengthIn35mmFilm", &n) && n != 0)
 		{
@@ -446,7 +452,8 @@ static gchar *exif_build_formatted_Flash(ExifData *exif)
 
 static gchar *exif_build_formatted_Resolution(ExifData *exif)
 {
-	ExifRational *rx, *ry;
+	ExifRational *rx;
+	ExifRational *ry;
 	gchar *units;
 	gchar *text;
 
@@ -531,8 +538,10 @@ static gchar *exif_build_formatted_GPSPosition(ExifData *exif)
 	ExifRational *value;
 	ExifItem *item;
 	guint i;
-	gdouble p, p3;
-	gulong p1, p2;
+	gdouble p;
+	gdouble p3;
+	gulong p1;
+	gulong p2;
 
 	string = g_string_new("");
 
@@ -1135,7 +1144,10 @@ gboolean exif_jpeg_parse_color(ExifData *exif, guchar *data, guint size)
 
 static gchar *mode_number(mode_t m)
 {
-	gint mb, mu, mg, mo;
+	gint mb;
+	gint mu;
+	gint mg;
+	gint mo;
 	gchar pbuf[12];
 
 	mb = mu = mg = mo = 0;

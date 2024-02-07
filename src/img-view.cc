@@ -902,7 +902,8 @@ static ViewWindow *real_view_window_new(FileData *fd, GList *list, CollectionDat
 	ViewWindow *vw;
 	GtkAllocation req_size;
 	GdkGeometry geometry;
-	gint w, h;
+	gint w;
+	gint h;
 
 	if (!fd && !list && (!cd || !info)) return nullptr;
 

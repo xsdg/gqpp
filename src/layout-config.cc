@@ -104,7 +104,9 @@ static void layout_config_from_data(gint style, gint oa, gint ob, gint oc,
 void layout_config_parse(gint style, const gchar *order,
 			 LayoutLocation *a, LayoutLocation *b, LayoutLocation *c)
 {
-	gint na, nb, nc;
+	gint na;
+	gint nb;
+	gint nc;
 
 	layout_config_order_from_text(order, &na, &nb, &nc);
 	layout_config_from_data(style, na, nb, nc, a, b, c);
@@ -161,7 +163,9 @@ void layout_config_set(GtkWidget *widget, gint style, const gchar *order)
 {
 	LayoutConfig *lc;
 	GtkWidget *button;
-	gint a, b, c;
+	gint a;
+	gint b;
+	gint c;
 
 	lc = static_cast<LayoutConfig *>(g_object_get_data(G_OBJECT(widget), "layout_config"));
 
@@ -211,8 +215,10 @@ static void layout_config_table_button(GtkWidget *table, LayoutLocation l, const
 {
 	GtkWidget *button;
 
-	gint x1, y1;
-	gint x2, y2;
+	gint x1;
+	gint y1;
+	gint x2;
+	gint y2;
 
 	x1 = 0;
 	y1 = 0;

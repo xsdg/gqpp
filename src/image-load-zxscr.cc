@@ -65,9 +65,17 @@ static gboolean image_loader_zxscr_load(gpointer loader, const guchar *buf, gsiz
 {
 	auto ld = static_cast<ImageLoaderZXSCR *>(loader);
 	guint8 *pixels;
-	gint width, height;
-	gint row, col, mrow, pxs, i;
-	guint8 attr, bright, ink, paper;
+	gint width;
+	gint height;
+	gint row;
+	gint col;
+	gint mrow;
+	gint pxs;
+	gint i;
+	guint8 attr;
+	guint8 bright;
+	guint8 ink;
+	guint8 paper;
 	guint8 *ptr;
 
 	if (count != 6144 && count != 6912)

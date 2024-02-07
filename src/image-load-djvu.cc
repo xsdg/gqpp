@@ -55,7 +55,8 @@ static gboolean image_loader_djvu_load(gpointer loader, const guchar *buf, gsize
 	ddjvu_rect_t rrect;
 	ddjvu_rect_t prect;
 	ddjvu_format_t *fmt;
-	gint width, height;
+	gint width;
+	gint height;
 	gint stride;
 	gboolean alpha = FALSE;
 	cairo_surface_t *surface;

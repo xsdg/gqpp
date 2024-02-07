@@ -298,7 +298,10 @@ static gboolean image_loader_emit_area_ready_cb(gpointer data)
 {
 	auto par = static_cast<ImageLoaderAreaParam *>(data);
 	ImageLoader *il = par->il;
-	guint x, y, w, h;
+	guint x;
+	guint y;
+	guint w;
+	guint h;
 	g_mutex_lock(il->data_mutex);
 	il->area_param_list = g_list_remove(il->area_param_list, par);
 	x = par->x;
@@ -336,7 +339,8 @@ static gboolean image_loader_emit_percent_cb(gpointer data)
 
 static gboolean image_loader_emit_size_cb(gpointer data)
 {
-	gint width, height;
+	gint width;
+	gint height;
 	auto il = static_cast<ImageLoader *>(data);
 	g_mutex_lock(il->data_mutex);
 	width = il->actual_width;
@@ -518,7 +522,8 @@ static void image_loader_area_prepared_cb(gpointer loader, gpointer data)
 	auto il = static_cast<ImageLoader *>(data);
 	GdkPixbuf *pb;
 	guchar *pix;
-	size_t h, rs;
+	size_t h;
+	size_t rs;
 
 	/* a workaround for
 	   https://bugzilla.gnome.org/show_bug.cgi?id=547669
@@ -584,7 +589,8 @@ static void image_loader_size_cb(gpointer loader,
 
 	g_mutex_lock(il->data_mutex);
 
-	gint nw, nh;
+	gint nw;
+	gint nh;
 	if (width > il->requested_width || height > il->requested_height)
 		{
 
@@ -1156,7 +1162,8 @@ void image_loader_delay_area_ready(ImageLoader *il, gboolean enable)
 	if (!enable)
 		{
 		/* send delayed */
-		GList *list, *work;
+		GList *list;
+		GList *work;
 		list = g_list_reverse(il->area_param_delayed_list);
 		il->area_param_delayed_list = nullptr;
 		g_mutex_unlock(il->data_mutex);

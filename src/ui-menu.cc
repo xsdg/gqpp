@@ -429,8 +429,10 @@ GtkWidget *popup_menu_short_lived()
 gboolean popup_menu_position_clamp(GtkMenu *menu, gint *x, gint *y, gint height)
 {
 	gboolean adjusted = FALSE;
-	gint w, h;
-	gint xw, xh;
+	gint w;
+	gint h;
+	gint xw;
+	gint xh;
 	GtkRequisition requisition;
 
 	gtk_widget_get_requisition(GTK_WIDGET(menu), &requisition);

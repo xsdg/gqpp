@@ -419,7 +419,8 @@ void vflist_pop_menu_thumbs_cb(GtkWidget *, gpointer data)
 
 void vflist_star_rating_set(ViewFile *vf, gboolean enable)
 {
-	GList *columns, *work;
+	GList *columns;
+	GList *work;
 
 	columns = gtk_tree_view_get_columns(GTK_TREE_VIEW(vf->listview));
 
@@ -1355,7 +1356,8 @@ FileData *vflist_star_next_fd(ViewFile *vf)
 gint vflist_index_by_fd(ViewFile *vf, FileData *fd)
 {
 	gint p = 0;
-	GList *work, *work2;
+	GList *work;
+	GList *work2;
 
 	work = vf->list;
 	while (work)
@@ -1693,7 +1695,8 @@ void vflist_mark_to_selection(ViewFile *vf, gint mark, MarkToSelectionMode mode)
 	while (valid)
 		{
 		FileData *fd;
-		gboolean mark_val, selected;
+		gboolean mark_val;
+		gboolean selected;
 		gtk_tree_model_get(GTK_TREE_MODEL(store), &iter, FILE_COLUMN_POINTER, &fd, -1);
 
 		mark_val = file_data_get_mark(fd, n);
@@ -2227,7 +2230,8 @@ void vflist_thumb_set(ViewFile *vf, gboolean enable)
 
 void vflist_marks_set(ViewFile *vf, gboolean enable)
 {
-	GList *columns, *work;
+	GList *columns;
+	GList *work;
 
 	columns = gtk_tree_view_get_columns(GTK_TREE_VIEW(vf->listview));
 

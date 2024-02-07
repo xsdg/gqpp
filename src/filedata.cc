@@ -60,9 +60,13 @@ static gboolean filelist_sort_case = TRUE;
 
 gchar *text_from_size(gint64 size)
 {
-	gchar *a, *b;
-	gchar *s, *d;
-	gint l, n, i;
+	gchar *a;
+	gchar *b;
+	gchar *s;
+	gchar *d;
+	gint l;
+	gint n;
+	gint i;
 
 	/* what I would like to use is printf("%'d", size)
 	 * BUT: not supported on every libc :(
@@ -508,7 +512,12 @@ void read_exif_time_data(FileData *file)
 		if (tmp)
 			{
 			struct tm time_str;
-			uint year, month, day, hour, min, sec;
+			uint year;
+			uint month;
+			uint day;
+			uint hour;
+			uint min;
+			uint sec;
 
 			sscanf(tmp, "%4u:%2u:%2u %2u:%2u:%2u", &year, &month, &day, &hour, &min, &sec);
 			time_str.tm_year  = year - 1900;
@@ -546,7 +555,12 @@ void read_exif_time_digitized_data(FileData *file)
 		if (tmp)
 			{
 			struct tm time_str;
-			uint year, month, day, hour, min, sec;
+			uint year;
+			uint month;
+			uint day;
+			uint hour;
+			uint min;
+			uint sec;
 
 			sscanf(tmp, "%4u:%2u:%2u %2u:%2u:%2u", &year, &month, &day, &hour, &min, &sec);
 			time_str.tm_year  = year - 1900;
@@ -942,7 +956,8 @@ static void file_data_check_sidecars(const GList *basename_list)
 	/* all files in the list have ref count > 0 */
 
 	const GList *work;
-	GList *s_work, *new_sidecars;
+	GList *s_work;
+	GList *new_sidecars;
 	FileData *parent_fd;
 
 	if (!basename_list) return;

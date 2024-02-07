@@ -236,11 +236,16 @@ static gchar *keywords_to_string(FileData *fd)
 
 gchar *image_osd_mkinfo(const gchar *str, FileData *fd, GHashTable *vars)
 {
-	gchar delim = '%', imp = '|', sep[] = " - ";
-	gchar *start, *end;
-	guint pos, prev;
+	gchar delim = '%';
+	gchar imp = '|';
+	gchar sep[] = " - ";
+	gchar *start;
+	gchar *end;
+	guint pos;
+	guint prev;
 	gboolean want_separator = FALSE;
-	gchar *name, *data;
+	gchar *name;
+	gchar *data;
 	GString *osd_info;
 	gchar *ret;
 

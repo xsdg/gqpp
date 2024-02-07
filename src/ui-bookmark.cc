@@ -484,7 +484,8 @@ static void bookmark_drag_begin(GtkWidget *button, GdkDragContext *context, gpoi
 {
 	GdkPixbuf *pixbuf;
 	GdkModifierType mask;
-	gint x, y;
+	gint x;
+	gint y;
 	GtkAllocation allocation;
 	GdkSeat *seat;
 	GdkDevice *device;
@@ -634,7 +635,8 @@ static void bookmark_populate(BookMarkData *bm)
 					}
 				else
 					{
-					gint w, h;
+					gint w;
+					gint h;
 
 					w = h = 16;
 					gtk_icon_size_lookup(GTK_ICON_SIZE_BUTTON, &w, &h);
@@ -646,7 +648,8 @@ static void bookmark_populate(BookMarkData *bm)
 				if (pixbuf)
 					{
 					GdkPixbuf *scaled;
-					gint w, h;
+					gint w;
+					gint h;
 
 					w = h = 16;
 					gtk_icon_size_lookup(GTK_ICON_SIZE_BUTTON, &w, &h);
@@ -808,7 +811,8 @@ GtkWidget *bookmark_list_new(const gchar *key,
 	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
 
 	PangoLayout *layout;
-	gint width, height;
+	gint width;
+	gint height;
 
 	layout = gtk_widget_create_pango_layout(GTK_WIDGET(scrolled), "reasonable width");
 	pango_layout_get_pixel_size(layout, &width, &height);

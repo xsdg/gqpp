@@ -1042,8 +1042,10 @@ static gboolean vd_auto_scroll_idle_cb(gpointer data)
 	if (vd->drop_fd)
 		{
 		GdkWindow *window;
-		gint x, y;
-		gint w, h;
+		gint x;
+		gint y;
+		gint w;
+		gint h;
 
 		window = gtk_widget_get_window(vd->view);
 		seat = gdk_display_get_default_seat(gdk_window_get_display(window));
@@ -1145,7 +1147,8 @@ void vd_menu_position_cb_unused(GtkMenu *menu, gint *x, gint *y, gboolean *, gpo
 	GtkTreeModel *store;
 	GtkTreeIter iter;
 	GtkTreePath *tpath;
-	gint cw, ch;
+	gint cw;
+	gint ch;
 
 	if (!vd_find_row(vd, vd->click_fd, &iter)) return;
 	store = gtk_tree_view_get_model(GTK_TREE_VIEW(vd->view));

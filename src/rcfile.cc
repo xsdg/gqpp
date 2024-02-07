@@ -250,7 +250,8 @@ gboolean read_int_option_clamp(const gchar *option, const gchar *label, const gc
 
 void write_int_unit_option(GString *str, gint, const gchar *label, gint n, gint subunits)
 {
-	gint l, r;
+	gint l;
+	gint r;
 
 	if (subunits > 0)
 		{
@@ -268,8 +269,10 @@ void write_int_unit_option(GString *str, gint, const gchar *label, gint n, gint 
 
 gboolean read_int_unit_option(const gchar *option, const gchar *label, const gchar *value, gint *n, gint subunits)
 {
-	gint l, r;
-	gchar *ptr, *buf;
+	gint l;
+	gint r;
+	gchar *ptr;
+	gchar *buf;
 
 	if (g_ascii_strcasecmp(option, label) != 0) return FALSE;
 	if (!n) return FALSE;

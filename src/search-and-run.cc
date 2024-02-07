@@ -44,7 +44,8 @@ struct SarData
 static gint sort_iter_compare_func (GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, gpointer)
 {
 	gint ret = 0;
-	gchar *label1, *label2;
+	gchar *label1;
+	gchar *label2;
 
 	gtk_tree_model_get(model, a, SAR_LABEL, &label1, -1);
 	gtk_tree_model_get(model, b, SAR_LABEL, &label2, -1);
@@ -73,14 +74,17 @@ static gint sort_iter_compare_func (GtkTreeModel *model, GtkTreeIter *a, GtkTree
 
 static void command_store_populate(SarData* sar)
 {
-	GList *groups, *actions;
+	GList *groups;
+	GList *actions;
 	GtkAction *action;
 	const gchar *accel_path;
 	GtkAccelKey key;
 	GtkTreeIter iter;
 	GtkTreeSortable *sortable;
-	gchar *label, *tooltip;
-	gchar *label2, *tooltip2;
+	gchar *label;
+	gchar *tooltip;
+	gchar *label2;
+	gchar *tooltip2;
 	GString *new_command;
 	gchar *existing_command;
 	gboolean iter_found;

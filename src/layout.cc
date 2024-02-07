@@ -789,7 +789,8 @@ void layout_status_update_image(LayoutWindow *lw)
 			}
 		else
 			{
-			gint width, height;
+			gint width;
+			gint height;
 			fd = image_get_fd(lw->image);
 			page_total = fd->page_total;
 			page_num = fd->page_num + 1;
@@ -1624,7 +1625,8 @@ static gboolean layout_tools_delete_cb(GtkWidget *, GdkEventAny *, gpointer data
 static void layout_tools_setup(LayoutWindow *lw, GtkWidget *tools, GtkWidget *files)
 {
 	GtkWidget *vbox;
-	GtkWidget *w1, *w2;
+	GtkWidget *w1;
+	GtkWidget *w2;
 	gboolean vertical;
 	gboolean new_window = FALSE;
 
@@ -1815,7 +1817,9 @@ static void layout_grid_setup(LayoutWindow *lw)
 	gint priority_location;
 	GtkWidget *h;
 	GtkWidget *v;
-	GtkWidget *w1, *w2, *w3;
+	GtkWidget *w1;
+	GtkWidget *w2;
+	GtkWidget *w3;
 
 	GtkWidget *image_sb; /* image together with sidebars in utility box */
 	GtkWidget *tools;
@@ -1946,7 +1950,9 @@ void layout_style_set(LayoutWindow *lw, gint style, const gchar *order)
 
 	if (style != -1)
 		{
-		LayoutLocation d, f, i;
+		LayoutLocation d;
+		LayoutLocation f;
+		LayoutLocation i;
 
 		layout_config_parse(style, order, &d,  &f, &i);
 

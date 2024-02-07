@@ -291,8 +291,10 @@ static void bar_expander_height_cb(GtkWidget *, gpointer data)
 	GtkWidget *window;
 	GtkWidget *data_box;
 	GList *list;
-	gint x, y;
-	gint w, h;
+	gint x;
+	gint y;
+	gint w;
+	gint h;
 	GdkDisplay *display;
 	GdkSeat *seat;
 	GdkDevice *device;
@@ -518,7 +520,8 @@ void bar_notify_selection(GtkWidget *bar, gint count)
 gboolean bar_event(GtkWidget *bar, GdkEvent *event)
 {
 	BarData *bd;
-	GList *list, *work;
+	GList *list;
+	GList *work;
 	gboolean ret = FALSE;
 
 	bd = static_cast<BarData *>(g_object_get_data(G_OBJECT(bar), "bar_data"));
@@ -547,7 +550,8 @@ gboolean bar_event(GtkWidget *bar, GdkEvent *event)
 GtkWidget *bar_find_pane_by_id(GtkWidget *bar, PaneType type, const gchar *id)
 {
 	BarData *bd;
-	GList *list, *work;
+	GList *list;
+	GList *work;
 	GtkWidget *ret = nullptr;
 
 	if (!id || !id[0]) return nullptr;
@@ -591,7 +595,8 @@ void bar_clear(GtkWidget *bar)
 void bar_write_config(GtkWidget *bar, GString *outstr, gint indent)
 {
 	BarData *bd;
-	GList *list, *work;
+	GList *list;
+	GList *work;
 
 	if (!bar) return;
 

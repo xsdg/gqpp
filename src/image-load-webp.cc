@@ -47,7 +47,8 @@ static gboolean image_loader_webp_load(gpointer loader, const guchar *buf, gsize
 {
 	auto *ld = (ImageLoaderWEBP *) loader;
 	guint8* data;
-	gint width, height;
+	gint width;
+	gint height;
 	gboolean res_info;
 	WebPBitstreamFeatures features;
 	VP8StatusCode status_code;

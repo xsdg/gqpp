@@ -167,7 +167,8 @@ static gchar *thumb_std_cache_path(const gchar *path, const gchar *uri, gboolean
 static gchar *thumb_loader_std_cache_path(ThumbLoaderStd *tl, gboolean local, GdkPixbuf *pixbuf, gboolean fail)
 {
 	const gchar *folder;
-	gint w, h;
+	gint w;
+	gint h;
 
 	if (!tl->fd || !tl->thumb_uri) return nullptr;
 
@@ -251,7 +252,8 @@ static gboolean thumb_loader_std_validate(ThumbLoaderStd *tl, GdkPixbuf *pixbuf)
 	const gchar *uri;
 	const gchar *mtime_str;
 	time_t mtime;
-	gint w, h;
+	gint w;
+	gint h;
 
 	if (!pixbuf) return FALSE;
 
@@ -391,7 +393,8 @@ void thumb_loader_std_calibrate_pixbuf(FileData *fd, GdkPixbuf *pixbuf) {
 	const gchar *input_file = nullptr;
 	guchar *profile = nullptr;
 	guint profile_len;
-	gint sw, sh;
+	gint sw;
+	gint sh;
 
 	if (!options->thumbnails.use_color_management)
 		{
@@ -493,7 +496,8 @@ static GdkPixbuf *thumb_loader_std_finish(ThumbLoaderStd *tl, GdkPixbuf *pixbuf,
 	GdkPixbuf *pixbuf_thumb = nullptr;
 	GdkPixbuf *result;
 	GdkPixbuf *rotated = nullptr;
-	gint sw, sh;
+	gint sw;
+	gint sh;
 
 
 	if (!tl->cache_hit && options->image.exif_rotate_enable)
@@ -524,7 +528,8 @@ static GdkPixbuf *thumb_loader_std_finish(ThumbLoaderStd *tl, GdkPixbuf *pixbuf,
 		{
 		if (!tl->cache_hit)
 			{
-			gint cache_w, cache_h;
+			gint cache_w;
+			gint cache_h;
 
 			if (tl->requested_width > THUMB_SIZE_NORMAL || tl->requested_height > THUMB_SIZE_NORMAL)
 				{
@@ -537,7 +542,8 @@ static GdkPixbuf *thumb_loader_std_finish(ThumbLoaderStd *tl, GdkPixbuf *pixbuf,
 
 			if (sw > cache_w || sh > cache_h || shrunk)
 				{
-				gint thumb_w, thumb_h;
+				gint thumb_w;
+				gint thumb_h;
 				struct stat st;
 
 				if (pixbuf_scale_aspect(cache_w, cache_h, sw, sh,
@@ -586,7 +592,8 @@ static GdkPixbuf *thumb_loader_std_finish(ThumbLoaderStd *tl, GdkPixbuf *pixbuf,
 		}
 	else
 		{
-		gint thumb_w, thumb_h;
+		gint thumb_w;
+		gint thumb_h;
 
 		if (pixbuf_thumb)
 			{

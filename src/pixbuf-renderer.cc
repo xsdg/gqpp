@@ -688,7 +688,8 @@ static gboolean pr_parent_window_resize(PixbufRenderer *pr, gint w, gint h)
 {
 	GtkWidget *widget;
 	GtkWidget *parent;
-	gint ww, wh;
+	gint ww;
+	gint wh;
 	GtkAllocation widget_allocation;
 	GtkAllocation parent_allocation;
 
@@ -783,8 +784,10 @@ void pixbuf_renderer_overlay_remove(PixbufRenderer *pr, gint id)
 static gboolean pr_scroller_update_cb(gpointer data)
 {
 	auto pr = static_cast<PixbufRenderer *>(data);
-	gint x, y;
-	gint xinc, yinc;
+	gint x;
+	gint y;
+	gint xinc;
+	gint yinc;
 
 	/* this was a simple scroll by difference between scroller and mouse position,
 	 * but all this math results in a smoother result and accounts for a dead zone.
@@ -887,7 +890,8 @@ static void pr_scroller_start(PixbufRenderer *pr, gint x, gint y)
 	if (pr->scroller_overlay == -1)
 		{
 		GdkPixbuf *pixbuf;
-		gint w, h;
+		gint w;
+		gint h;
 
 #ifdef GQ_BUILD
 		pixbuf = gdk_pixbuf_new_from_resource(GQ_RESOURCE_PATH_ICONS "/" PIXBUF_INLINE_SCROLLER ".png", nullptr);
@@ -975,7 +979,10 @@ static void pr_source_tile_unset(PixbufRenderer *pr)
 
 static gboolean pr_source_tile_visible(PixbufRenderer *pr, SourceTile *st)
 {
-	gint x1, y1, x2, y2;
+	gint x1;
+	gint y1;
+	gint x2;
+	gint y2;
 
 	if (!st) return FALSE;
 
@@ -1102,9 +1109,11 @@ static SourceTile *pr_source_tile_find(PixbufRenderer *pr, gint x, gint y)
 
 GList *pr_source_tile_compute_region(PixbufRenderer *pr, gint x, gint y, gint w, gint h, gboolean request)
 {
-	gint x1, y1;
+	gint x1;
+	gint y1;
 	GList *list = nullptr;
-	gint sx, sy;
+	gint sx;
+	gint sy;
 
 	if (x < 0) x = 0;
 	if (y < 0) y = 0;
@@ -1140,7 +1149,10 @@ static void pr_source_tile_changed(PixbufRenderer *pr, gint x, gint y, gint widt
 	while (work)
 		{
 		SourceTile *st;
-		gint rx, ry, rw, rh;
+		gint rx;
+		gint ry;
+		gint rw;
+		gint rh;
 
 		st = static_cast<SourceTile *>(work->data);
 		work = work->next;
@@ -1545,7 +1557,8 @@ void pr_coords_map_orientation_reverse(gint orientation,
 
 static void pixbuf_renderer_sync_scroll_center(PixbufRenderer *pr)
 {
-	gint src_x, src_y;
+	gint src_x;
+	gint src_y;
 	if (!pr->width || !pr->height) return;
 
 	/*
@@ -1609,7 +1622,8 @@ static gboolean pr_scroll_clamp(PixbufRenderer *pr)
 
 static gboolean pr_size_clamp(PixbufRenderer *pr)
 {
-	gint old_vw, old_vh;
+	gint old_vw;
+	gint old_vh;
 
 	old_vw = pr->vis_width;
 	old_vh = pr->vis_height;
@@ -1644,7 +1658,8 @@ static gboolean pr_size_clamp(PixbufRenderer *pr)
 static gboolean pr_zoom_clamp(PixbufRenderer *pr, gdouble zoom,
 			      PrZoomFlags flags)
 {
-	gint w, h;
+	gint w;
+	gint h;
 	gdouble scale;
 	gboolean force = !!(flags & PR_ZOOM_FORCE);
 	gboolean new_z = !!(flags & PR_ZOOM_NEW);
@@ -1754,7 +1769,8 @@ static void pr_zoom_sync(PixbufRenderer *pr, gdouble zoom,
 			 PrZoomFlags flags, gint px, gint py)
 {
 	gdouble old_scale;
-	gint old_cx, old_cy;
+	gint old_cx;
+	gint old_cy;
 	gboolean center_point = !!(flags & PR_ZOOM_CENTER);
 	gboolean force = !!(flags & PR_ZOOM_FORCE);
 	gboolean new_z = !!(flags & PR_ZOOM_NEW);
@@ -1907,7 +1923,8 @@ static void pr_size_sync(PixbufRenderer *pr, gint new_width, gint new_height)
 
 			if (pixbuf_renderer_overlay_get(pr, pr->scroller_overlay, &pixbuf, nullptr, nullptr))
 				{
-				gint w, h;
+				gint w;
+				gint h;
 
 				w = gdk_pixbuf_get_width(pixbuf);
 				h = gdk_pixbuf_get_height(pixbuf);
@@ -1937,8 +1954,10 @@ static void pr_size_cb(GtkWidget *, GtkAllocation *allocation, gpointer data)
 
 void pixbuf_renderer_scroll(PixbufRenderer *pr, gint x, gint y)
 {
-	gint old_x, old_y;
-	gint x_off, y_off;
+	gint old_x;
+	gint old_y;
+	gint x_off;
+	gint y_off;
 
 	g_return_if_fail(IS_PIXBUF_RENDERER(pr));
 
@@ -1968,8 +1987,10 @@ void pixbuf_renderer_scroll(PixbufRenderer *pr, gint x, gint y)
 void pixbuf_renderer_scroll_to_point(PixbufRenderer *pr, gint x, gint y,
 				     gdouble x_align, gdouble y_align)
 {
-	gint px, py;
-	gint ax, ay;
+	gint px;
+	gint py;
+	gint ax;
+	gint ay;
 
 	x_align = CLAMP(x_align, 0.0, 1.0);
 	y_align = CLAMP(y_align, 0.0, 1.0);
@@ -1993,7 +2014,8 @@ void pixbuf_renderer_get_scroll_center(PixbufRenderer *pr, gdouble *x, gdouble *
 
 void pixbuf_renderer_set_scroll_center(PixbufRenderer *pr, gdouble x, gdouble y)
 {
-	gdouble dst_x, dst_y;
+	gdouble dst_x;
+	gdouble dst_y;
 
 	dst_x = x * pr->width  - pr->vis_width  / 2.0 - pr->x_scroll + CLAMP(pr->subpixel_x_scroll, -1.0, 1.0);
 	dst_y = y * pr->height - pr->vis_height / 2.0 - pr->y_scroll + CLAMP(pr->subpixel_y_scroll, -1.0, 1.0);
@@ -2019,7 +2041,8 @@ static gboolean pr_mouse_motion_cb(GtkWidget *widget, GdkEventMotion *event, gpo
 
 	/* This is a hack, but work far the best, at least for single pointer systems.
 	 * See https://bugzilla.gnome.org/show_bug.cgi?id=587714 for more. */
-	gint x, y;
+	gint x;
+	gint y;
 	seat = gdk_display_get_default_seat(gdk_window_get_display(event->window));
 	device = gdk_seat_get_pointer(seat);
 
@@ -2230,11 +2253,16 @@ enum {
 
 static void pr_create_anaglyph_color(GdkPixbuf *pixbuf, GdkPixbuf *right, gint x, gint y, gint w, gint h, guint mode)
 {
-	gint srs, drs;
-	guchar *s_pix, *d_pix;
-	guchar *sp, *dp;
-	guchar *spi, *dpi;
-	gint i, j;
+	gint srs;
+	gint drs;
+	guchar *s_pix;
+	guchar *d_pix;
+	guchar *sp;
+	guchar *dp;
+	guchar *spi;
+	guchar *dpi;
+	gint i;
+	gint j;
 
 	srs = gdk_pixbuf_get_rowstride(right);
 	s_pix = gdk_pixbuf_get_pixels(right);
@@ -2271,11 +2299,16 @@ static void pr_create_anaglyph_color(GdkPixbuf *pixbuf, GdkPixbuf *right, gint x
 
 static void pr_create_anaglyph_gray(GdkPixbuf *pixbuf, GdkPixbuf *right, gint x, gint y, gint w, gint h, guint mode)
 {
-	gint srs, drs;
-	guchar *s_pix, *d_pix;
-	guchar *sp, *dp;
-	guchar *spi, *dpi;
-	gint i, j;
+	gint srs;
+	gint drs;
+	guchar *s_pix;
+	guchar *d_pix;
+	guchar *sp;
+	guchar *dp;
+	guchar *spi;
+	guchar *dpi;
+	gint i;
+	gint j;
 	const double gc[3] = {0.299, 0.587, 0.114};
 
 	srs = gdk_pixbuf_get_rowstride(right);
@@ -2320,11 +2353,17 @@ static void pr_create_anaglyph_gray(GdkPixbuf *pixbuf, GdkPixbuf *right, gint x,
 
 static void pr_create_anaglyph_dubois(GdkPixbuf *pixbuf, GdkPixbuf *right, gint x, gint y, gint w, gint h, guint mode)
 {
-	gint srs, drs;
-	guchar *s_pix, *d_pix;
-	guchar *sp, *dp;
-	guchar *spi, *dpi;
-	gint i, j, k;
+	gint srs;
+	gint drs;
+	guchar *s_pix;
+	guchar *d_pix;
+	guchar *sp;
+	guchar *dp;
+	guchar *spi;
+	guchar *dpi;
+	gint i;
+	gint j;
+	gint k;
 	double pr_dubois_matrix[3][6];
 	static const double pr_dubois_matrix_RC[3][6] = {
 		{ 0.456,  0.500,  0.176, -0.043, -0.088, -0.002},
@@ -2834,10 +2873,16 @@ gboolean pixbuf_renderer_get_pixel_colors(PixbufRenderer *pr, gint x_pixel, gint
                                           gint *r_mouse, gint *g_mouse, gint *b_mouse)
 {
 	GdkPixbuf *pb = pr->pixbuf;
-	gint p_alpha, prs;
-	guchar *p_pix, *pp;
-	gint map_x, map_y, map_w, map_h;
-	size_t xoff, yoff;
+	gint p_alpha;
+	gint prs;
+	guchar *p_pix;
+	guchar *pp;
+	gint map_x;
+	gint map_y;
+	gint map_w;
+	gint map_h;
+	size_t xoff;
+	size_t yoff;
 
 	g_return_val_if_fail(IS_PIXBUF_RENDERER(pr), FALSE);
 	g_return_val_if_fail(r_mouse != nullptr && g_mouse != nullptr && b_mouse != nullptr, FALSE);
@@ -2880,7 +2925,10 @@ gboolean pixbuf_renderer_get_pixel_colors(PixbufRenderer *pr, gint x_pixel, gint
 
 gboolean pixbuf_renderer_get_mouse_position(PixbufRenderer *pr, gint *x_pixel_return, gint *y_pixel_return)
 {
-	gint x_pixel, y_pixel, x_pixel_clamped, y_pixel_clamped;
+	gint x_pixel;
+	gint y_pixel;
+	gint x_pixel_clamped;
+	gint y_pixel_clamped;
 
 	g_return_val_if_fail(IS_PIXBUF_RENDERER(pr), FALSE);
 	g_return_val_if_fail(x_pixel_return != nullptr && y_pixel_return != nullptr, FALSE);

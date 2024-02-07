@@ -141,7 +141,8 @@ static void image_press_cb(PixbufRenderer *pr, GdkEventButton *event, gpointer d
 {
 	auto imd = static_cast<ImageWindow *>(data);
 	LayoutWindow *lw;
-	gint x_pixel, y_pixel;
+	gint x_pixel;
+	gint y_pixel;
 
 	if(options->draw_rectangle)
 		{
@@ -204,12 +205,15 @@ static void image_release_cb(PixbufRenderer *, GdkEventButton *event, gpointer d
 static void image_drag_cb(PixbufRenderer *pr, GdkEventMotion *event, gpointer data)
 {
 	auto imd = static_cast<ImageWindow *>(data);
-	gint width, height;
+	gint width;
+	gint height;
 	gint rect_width;
 	gint rect_height;
 	GdkPixbuf *rect_pixbuf;
-	gint x_pixel, y_pixel;
-	gint image_x_pixel, image_y_pixel;
+	gint x_pixel;
+	gint y_pixel;
+	gint image_x_pixel;
+	gint image_y_pixel;
 
 	if (options->draw_rectangle)
 		{
@@ -1692,7 +1696,8 @@ void image_zoom_set_fill_geometry(ImageWindow *imd, gboolean vertical)
 {
 	PixbufRenderer *pr;
 	gdouble zoom;
-	gint width, height;
+	gint width;
+	gint height;
 
 	pr = reinterpret_cast<PixbufRenderer *>(imd->pr);
 

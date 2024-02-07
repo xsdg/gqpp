@@ -382,7 +382,8 @@ static void ZDReaderInit(struct Reader *reader, const ZoneDetect *library, uint3
 
 static int ZDReaderGetPoint(struct Reader *reader, int32_t *pointLat, int32_t *pointLon)
 {
-    int32_t diffLat = 0, diffLon = 0;
+    int32_t diffLat = 0;
+    int32_t diffLon = 0;
 
     while(true) {
         if(reader->done > 1) {
@@ -506,7 +507,8 @@ static int ZDFindPolygon(const ZoneDetect *library, uint32_t wantedId, uint32_t*
     uint32_t polygonId = 0;
     uint32_t bboxIndex = library->bboxOffset;
 
-    uint32_t metadataIndex = 0, polygonIndex = 0;
+    uint32_t metadataIndex = 0;
+    uint32_t polygonIndex = 0;
 
     while(bboxIndex < library->metadataOffset) {
         uint64_t polygonIndexDelta;
@@ -550,7 +552,8 @@ static std::vector<int32_t> ZDPolygonToListInternal(const ZoneDetect *library, u
     list.reserve(listLength);
 
     while(true) {
-        int32_t pointLat, pointLon;
+        int32_t pointLat;
+        int32_t pointLon;
         int result = ZDReaderGetPoint(&reader, &pointLat, &pointLon);
         if(result < 0) {
             return {};
@@ -606,8 +609,12 @@ float* ZDPolygonToList(const ZoneDetect *library, uint32_t polygonId, size_t* le
 
 static ZDLookupResult ZDPointInPolygon(const ZoneDetect *library, uint32_t polygonIndex, int32_t latFixedPoint, int32_t lonFixedPoint, uint64_t *distanceSqrMin)
 {
-    int32_t pointLat, pointLon, prevLat = 0, prevLon = 0;
-    int prevQuadrant = 0, winding = 0;
+    int32_t pointLat;
+    int32_t pointLon;
+    int32_t prevLat = 0;
+    int32_t prevLon = 0;
+    int prevQuadrant = 0;
+    int winding = 0;
 
     uint8_t first = 1;
 
@@ -645,8 +652,10 @@ static ZDLookupResult ZDPointInPolygon(const ZoneDetect *library, uint32_t polyg
         }
 
         if(!first) {
-            int windingNeedCompare = 0, lineIsStraight = 0;
-            float a = 0, b = 0;
+            int windingNeedCompare = 0;
+            int lineIsStraight = 0;
+            float a = 0;
+            float b = 0;
 
             /* Calculate winding number */
             if(quadrant == prevQuadrant) {
@@ -696,7 +705,8 @@ static ZDLookupResult ZDPointInPolygon(const ZoneDetect *library, uint32_t polyg
 
             /* Calculate closest point on line (if needed) */
             if(distanceSqrMin) {
-                float closestLon, closestLat;
+                float closestLon;
+                float closestLat;
                 if(!lineIsStraight) {
                     closestLon = (static_cast<float>(lonFixedPoint) + a * static_cast<float>(latFixedPoint) - a * b) / (a * a + 1);
                     closestLat = (a * (static_cast<float>(lonFixedPoint) + a * static_cast<float>(latFixedPoint)) + b) / (a * a + 1);
@@ -712,7 +722,8 @@ static ZDLookupResult ZDPointInPolygon(const ZoneDetect *library, uint32_t polyg
 
                 const int closestInBox = ZDPointInBox(pointLon, static_cast<int32_t>(closestLon), prevLon, pointLat, static_cast<int32_t>(closestLat), prevLat);
 
-                int64_t diffLat, diffLon;
+                int64_t diffLat;
+                int64_t diffLon;
                 if(closestInBox) {
                     /* Calculate squared distance to segment. */
                     diffLat = static_cast<int64_t>(closestLat - static_cast<float>(latFixedPoint));
@@ -901,7 +912,11 @@ ZoneDetectResult *ZDLookup(const ZoneDetect *library, float lat, float lon, floa
     uint32_t polygonId = 0;
 
     while(bboxIndex < library->metadataOffset) {
-        int32_t minLat, minLon, maxLat, maxLon, metadataIndexDelta;
+        int32_t minLat;
+        int32_t minLon;
+        int32_t maxLat;
+        int32_t maxLon;
+        int32_t metadataIndexDelta;
         uint64_t polygonIndexDelta;
         if(!ZDDecodeVariableLengthSigned(library, &bboxIndex, &minLat)) break;
         if(!ZDDecodeVariableLengthSigned(library, &bboxIndex, &minLon)) break;

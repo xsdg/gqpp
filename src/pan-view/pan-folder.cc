@@ -30,7 +30,10 @@
 static void pan_flower_size(PanWindow *pw, gint *width, gint *height)
 {
 	GList *work;
-	gint x1, y1, x2, y2;
+	gint x1;
+	gint y1;
+	gint x2;
+	gint y2;
 
 	x1 = 0;
 	y1 = 0;
@@ -123,7 +126,8 @@ static void pan_flower_move(FlowerGroup *group, gint x, gint y)
 static void pan_flower_position(FlowerGroup *group, FlowerGroup *parent,
 							     gint *result_x, gint *result_y)
 {
-	gint x, y;
+	gint x;
+	gint y;
 	gint radius;
 	gdouble a;
 
@@ -153,7 +157,8 @@ static void pan_flower_position(FlowerGroup *group, FlowerGroup *parent,
 static void pan_flower_build(PanWindow *pw, FlowerGroup *group, FlowerGroup *parent)
 {
 	GList *work;
-	gint x, y;
+	gint x;
+	gint y;
 
 	if (!group) return;
 
@@ -172,8 +177,14 @@ static void pan_flower_build(PanWindow *pw, FlowerGroup *group, FlowerGroup *par
 	if (parent)
 		{
 		PanItem *pi;
-		gint px, py, gx, gy;
-		gint x1, y1, x2, y2;
+		gint px;
+		gint py;
+		gint gx;
+		gint gy;
+		gint x1;
+		gint y1;
+		gint x2;
+		gint y2;
 
 		px = parent->x + parent->width / 2;
 		py = parent->y + parent->height / 2;
@@ -454,9 +465,11 @@ static void pan_folder_tree_path(PanWindow *pw, FileData *dir_fd,
 
 void pan_folder_tree_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *height)
 {
-	gint x, y;
+	gint x;
+	gint y;
 	gint level;
-	gint w, h;
+	gint w;
+	gint h;
 
 	level = 0;
 	x = PAN_BOX_BORDER;

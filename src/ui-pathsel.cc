@@ -644,7 +644,8 @@ static gboolean dest_press_cb(GtkWidget *view, GdkEventButton *event, gpointer d
 	auto dd = static_cast<Dest_Data *>(data);
 	GtkTreePath *tpath;
 	GtkTreeViewColumn *column;
-	gint cell_x, cell_y;
+	gint cell_x;
+	gint cell_y;
 	GtkTreeModel *model;
 	GtkTreeIter iter;
 	GtkTreeSelection *selection;

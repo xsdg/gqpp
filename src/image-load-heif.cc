@@ -52,7 +52,8 @@ static gboolean image_loader_heif_load(gpointer loader, const guchar *buf, gsize
 	struct heif_error error_code;
 	struct heif_image_handle* handle;
 	guint8* data;
-	gint width, height;
+	gint width;
+	gint height;
 	gint stride;
 	gboolean alpha;
 	gint page_total;

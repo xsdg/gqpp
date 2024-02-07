@@ -79,7 +79,8 @@ static GList *keyword_list_pull_selected(GtkWidget *text_widget)
 static void keyword_list_push(GtkWidget *textview, GList *list)
 {
 	GtkTextBuffer *buffer;
-	GtkTextIter start, end;
+	GtkTextIter start;
+	GtkTextIter end;
 
 	buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textview));
 	gtk_text_buffer_get_bounds(buffer, &start, &end);
@@ -221,7 +222,8 @@ static void bar_pane_keywords_update(PaneKeywordsData *pkd)
 {
 	GList *keywords = nullptr;
 	GList *orig_keywords = nullptr;
-	GList *work1, *work2;
+	GList *work1;
+	GList *work2;
 	GtkTextBuffer *keyword_buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(pkd->keyword_view));
 
 	keywords = metadata_read_list(pkd->fd, KEYWORD_KEY, METADATA_PLAIN);
@@ -295,7 +297,8 @@ static void bar_pane_keywords_write_config(GtkWidget *pane, GString *outstr, gin
 {
 	PaneKeywordsData *pkd;
 	GList *path_expanded = nullptr;
-	gint w, h;
+	gint w;
+	gint h;
 
 	pkd = static_cast<PaneKeywordsData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!pkd) return;
@@ -1236,7 +1239,8 @@ static void bar_pane_keywords_add_to_selected_cb(GtkWidget *, gpointer data)
 	GtkTreeIter child_iter;
 	GtkTreeModel *model;
 	GtkTreeModel *keyword_tree;
-	GList *list, *work;
+	GList *list;
+	GList *work;
 	GList *keywords = nullptr;
 
 	GtkTextBuffer *keyword_buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(pkd->keyword_view));
@@ -1451,7 +1455,8 @@ static void bar_pane_keywords_destroy(GtkWidget *, gpointer data)
 static GtkWidget *bar_pane_keywords_new(const gchar *id, const gchar *title, const gchar *key, gboolean expanded, gint height)
 {
 	PaneKeywordsData *pkd;
-	GtkWidget *hbox, *vbox;
+	GtkWidget *hbox;
+	GtkWidget *vbox;
 	GtkWidget *scrolled;
 	GtkTextBuffer *buffer;
 	GtkTreeModel *store;
@@ -1788,7 +1793,8 @@ static gint autocomplete_sort_iter_compare_func (GtkTreeModel *model,
 									gpointer)
 {
 	gint ret = 0;
-	gchar *name1, *name2;
+	gchar *name1;
+	gchar *name2;
 
 	gtk_tree_model_get(model, a, 0, &name1, -1);
 	gtk_tree_model_get(model, b, 0, &name2, -1);

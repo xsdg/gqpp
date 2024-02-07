@@ -238,7 +238,8 @@ static gboolean vficon_find_position(ViewFile *vf, FileData *fd, gint *row, gint
 static gboolean vficon_find_iter(ViewFile *vf, FileData *fd, GtkTreeIter *iter, gint *column)
 {
 	GtkTreeModel *store;
-	gint row, col;
+	gint row;
+	gint col;
 
 	store = gtk_tree_view_get_model(GTK_TREE_VIEW(vf->listview));
 	if (!vficon_find_position(vf, fd, &row, &col)) return FALSE;
@@ -337,7 +338,8 @@ static void vficon_mark_toggled_cb(GtkCellRendererToggle *cell, gchar *path_str,
 static void tip_show(ViewFile *vf)
 {
 	GtkWidget *label;
-	gint x, y;
+	gint x;
+	gint y;
 	GdkDisplay *display;
 	GdkSeat *seat;
 	GdkDevice *device;
@@ -432,7 +434,8 @@ static void tip_update(ViewFile *vf, FileData *fd)
 
 	if (VFICON(vf)->tip_window)
 		{
-		gint x, y;
+		gint x;
+		gint y;
 
 		gdk_device_get_position(device, nullptr, &x, &y);
 
@@ -749,10 +752,13 @@ static void vficon_select_util(ViewFile *vf, FileData *fd, gboolean select)
 
 static void vficon_select_region_util(ViewFile *vf, FileData *start, FileData *end, gboolean select)
 {
-	gint row1, col1;
-	gint row2, col2;
+	gint row1;
+	gint col1;
+	gint row2;
+	gint col2;
 	gint t;
-	gint i, j;
+	gint i;
+	gint j;
 
 	if (!vficon_find_position(vf, start, &row1, &col1) ||
 	    !vficon_find_position(vf, end, &row2, &col2) ) return;
@@ -921,7 +927,8 @@ void vficon_mark_to_selection(ViewFile *vf, gint mark, MarkToSelectionMode mode)
 	while (work)
 		{
 		auto fd = static_cast<FileData *>(work->data);
-		gboolean mark_val, selected;
+		gboolean mark_val;
+		gboolean selected;
 
 		g_assert(fd->magick == FD_MAGICK);
 
@@ -1094,7 +1101,8 @@ static void vficon_move_focus(ViewFile *vf, gint row, gint col, gboolean relativ
 static void vficon_set_focus(ViewFile *vf, FileData *fd)
 {
 	GtkTreeIter iter;
-	gint row, col;
+	gint row;
+	gint col;
 
 	if (g_list_find(vf->list, VFICON(vf)->focus_fd))
 		{
@@ -1504,7 +1512,8 @@ static void vficon_populate(ViewFile *vf, gboolean resize, gboolean keep_positio
 	GtkTreePath *tpath;
 	GList *work;
 	FileData *visible_fd = nullptr;
-	gint r, c;
+	gint r;
+	gint c;
 	gboolean valid;
 	GtkTreeIter iter;
 
@@ -1892,7 +1901,8 @@ gint vficon_index_by_fd(ViewFile *vf, FileData *in_fd)
 static gboolean vficon_refresh_real(ViewFile *vf, gboolean keep_position)
 {
 	gboolean ret = TRUE;
-	GList *work, *new_work;
+	GList *work;
+	GList *new_work;
 	FileData *first_selected = nullptr;
 	GList *new_filelist = nullptr;
 	GList *new_fd_list = nullptr;

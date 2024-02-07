@@ -228,7 +228,8 @@ void image_osd_toggle(ImageWindow *imd)
 static GdkPixbuf *image_osd_info_render(OverlayStateData *osd)
 {
 	GdkPixbuf *pixbuf = nullptr;
-	gint width, height;
+	gint width;
+	gint height;
 	PangoLayout *layout;
 	const gchar *name;
 	gchar *text;
@@ -243,7 +244,8 @@ static GdkPixbuf *image_osd_info_render(OverlayStateData *osd)
 	name = image_get_name(imd);
 	if (name)
 		{
-		gint n, t;
+		gint n;
+		gint t;
 		CollectionData *cd;
 		CollectInfo *info;
 		GHashTable *vars;
@@ -310,7 +312,8 @@ static GdkPixbuf *image_osd_info_render(OverlayStateData *osd)
 
 		if (!imd->unknown)
 			{
-			gint w, h;
+			gint w;
+			gint h;
 			GdkPixbuf *load_pixbuf = image_loader_get_pixbuf(imd->il);
 
 			if (imd->delay_flip &&
@@ -868,7 +871,8 @@ Histogram *image_osd_get_histogram(ImageWindow *imd)
 
 void image_osd_copy_status(ImageWindow *src, ImageWindow *dest)
 {
-	Histogram *h_src, *h_dest;
+	Histogram *h_src;
+	Histogram *h_dest;
 	image_osd_set(dest, image_osd_get(src));
 
 	h_src = image_osd_get_histogram(src);

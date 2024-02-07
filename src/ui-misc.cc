@@ -824,9 +824,12 @@ static gboolean date_selection_popup_release_cb(GtkWidget *, GdkEventButton *, g
 static gboolean date_selection_popup_press_cb(GtkWidget *, GdkEventButton *event, gpointer data)
 {
 	auto ds = static_cast<DateSelection *>(data);
-	gint x, y;
-	gint w, h;
-	gint xr, yr;
+	gint x;
+	gint y;
+	gint w;
+	gint h;
+	gint xr;
+	gint yr;
 	GdkWindow *window;
 
 	xr = static_cast<gint>(event->x_root);
@@ -908,8 +911,10 @@ static void date_selection_doubleclick_cb(GtkWidget *, gpointer data)
 static void date_selection_popup(DateSelection *ds)
 {
 	GDateTime *date;
-	gint wx, wy;
-	gint x, y;
+	gint wx;
+	gint wy;
+	gint x;
+	gint y;
 	GtkAllocation button_allocation;
 	GtkAllocation window_allocation;
 
@@ -1381,7 +1386,8 @@ gchar *text_widget_text_pull(GtkWidget *text_widget)
 	if (GTK_IS_TEXT_VIEW(text_widget))
 		{
 		GtkTextBuffer *buffer;
-		GtkTextIter start, end;
+		GtkTextIter start;
+		GtkTextIter end;
 
 		buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text_widget));
 		gtk_text_buffer_get_bounds(buffer, &start, &end);
@@ -1404,7 +1410,8 @@ gchar *text_widget_text_pull_selected(GtkWidget *text_widget)
 	if (GTK_IS_TEXT_VIEW(text_widget))
 		{
 		GtkTextBuffer *buffer;
-		GtkTextIter start, end;
+		GtkTextIter start;
+		GtkTextIter end;
 
 		buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(text_widget));
 		gtk_text_buffer_get_bounds(buffer, &start, &end);

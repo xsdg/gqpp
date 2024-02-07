@@ -79,7 +79,8 @@ static OPJ_SIZE_T opj_write_to_buffer (void* p_buffer, OPJ_SIZE_T p_nb_bytes,
     if (0 == len)
         len = 1;
 
-    OPJ_SIZE_T dist = static_cast<guchar *>(pcur) - static_cast<guchar *>(pbuf), n = len - dist;
+    OPJ_SIZE_T dist = static_cast<guchar *>(pcur) - static_cast<guchar *>(pbuf);
+    OPJ_SIZE_T n = len - dist;
     g_assert (dist <= len);
 
     while (n < p_nb_bytes) {
@@ -176,7 +177,9 @@ static gboolean image_loader_j2k_load(gpointer loader, const guchar *buf, gsize 
 	gint width;
 	gint height;
 	gint num_components;
-	gint i, j, k;
+	gint i;
+	gint j;
+	gint k;
 	guchar *pixels;
 	gint  bytes_per_pixel;
 	opj_buffer_info_t *decode_buffer;

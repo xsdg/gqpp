@@ -1359,10 +1359,14 @@ static void layout_menu_foreach_func(
 					GdkModifierType accel_mods,
 					gboolean)
 {
-	gchar *path, *name;
-	gchar *key_name, *menu_name;
-	gchar **subset_lt_arr, **subset_gt_arr;
-	gchar *subset_lt, *converted_name;
+	gchar *path;
+	gchar *name;
+	gchar *key_name;
+	gchar *menu_name;
+	gchar **subset_lt_arr;
+	gchar **subset_gt_arr;
+	gchar *subset_lt;
+	gchar *converted_name;
 	auto array = static_cast<GPtrArray *>(data);
 
 	path = g_strescape(accel_path, nullptr);
@@ -1400,7 +1404,8 @@ static void layout_menu_kbd_map_cb(GtkAction *, gpointer)
 	char * tmp_file;
 	GError *error = nullptr;
 	GIOChannel *channel;
-	char **pre_key, **post_key;
+	char **pre_key;
+	char **post_key;
 	const char *key_name;
 	char *converted_line;
 	int keymap_index;
@@ -2243,7 +2248,8 @@ static void layout_menu_new_window_update(LayoutWindow *lw)
 	GtkWidget *menu;
 	GtkWidget *sub_menu;
 	GtkWidget *item;
-	GList *children, *iter;
+	GList *children;
+	GList *iter;
 	gint n;
 	GList *list = nullptr;
 	gint i = 0;
@@ -2395,7 +2401,8 @@ static void layout_menu_windows_menu_cb(GtkWidget *, gpointer data)
 	GtkWidget *menu;
 	GtkWidget *sub_menu;
 	gchar *menu_label;
-	GList *children, *iter;
+	GList *children;
+	GList *iter;
 	gint i;
 
 	menu = gtk_ui_manager_get_widget(lw->ui_manager, options->hamburger_menu ? "/MainMenu/OpenMenu/WindowsMenu/" : "/MainMenu/WindowsMenu/");
@@ -2426,7 +2433,8 @@ static void layout_menu_view_menu_cb(GtkWidget *, gpointer data)
 	GtkWidget *menu;
 	GtkWidget *sub_menu;
 	gchar *menu_label;
-	GList *children, *iter;
+	GList *children;
+	GList *iter;
 	gint i;
 	FileData *fd;
 
@@ -2980,7 +2988,9 @@ static GList *layout_actions_editor_menu_path(EditorDescription *editor)
 
 static void layout_actions_editor_add(GString *desc, GList *path, GList *old_path)
 {
-	gint to_open, to_close, i;
+	gint to_open;
+	gint to_close;
+	gint i;
 	while (path && old_path && strcmp(static_cast<gchar *>(path->data), static_cast<gchar *>(old_path->data)) == 0)
 		{
 		path = path->next;

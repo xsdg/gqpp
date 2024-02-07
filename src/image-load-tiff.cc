@@ -142,7 +142,9 @@ static gboolean image_loader_tiff_load (gpointer loader, const guchar *buf, gsiz
 
 	TIFF *tiff;
 	guchar *pixels = nullptr;
-	gint width, height, rowstride;
+	gint width;
+	gint height;
+	gint rowstride;
 	size_t bytes;
 	guint32 rowsperstrip;
 	gint dircount = 0;
@@ -249,7 +251,8 @@ static gboolean image_loader_tiff_load (gpointer loader, const guchar *buf, gsiz
 
 		for (row = 0; row < height; row += rowsperstrip)
 			{
-			int rows_to_write, i_row;
+			int rows_to_write;
+			int i_row;
 
 			if (lt->abort) {
 				break;
@@ -274,7 +277,8 @@ static gboolean image_loader_tiff_load (gpointer loader, const guchar *buf, gsiz
 			 */
 			for (i_row = 0; i_row < rows_to_write / 2; i_row++)
 				{
-				guchar *top_line, *bottom_line;
+				guchar *top_line;
+				guchar *bottom_line;
 
 				top_line = pixels + (row + i_row) * rowstride;
 				bottom_line = pixels + (row + rows_to_write - i_row - 1) * rowstride;

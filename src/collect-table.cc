@@ -129,7 +129,8 @@ static gboolean collection_table_find_position(CollectTable *ct, CollectInfo *in
 static gboolean collection_table_find_iter(CollectTable *ct, CollectInfo *info, GtkTreeIter *iter, gint *column)
 {
 	GtkTreeModel *store;
-	gint row, col;
+	gint row;
+	gint col;
 
 	store = gtk_tree_view_get_model(GTK_TREE_VIEW(ct->listview));
 	if (!collection_table_find_position(ct, info, &row, &col)) return FALSE;
@@ -486,10 +487,13 @@ static void collection_table_select_util(CollectTable *ct, CollectInfo *info, gb
 
 static void collection_table_select_region_util(CollectTable *ct, CollectInfo *start, CollectInfo *end, gboolean select)
 {
-	gint row1, col1;
-	gint row2, col2;
+	gint row1;
+	gint col1;
+	gint row2;
+	gint col2;
 	gint t;
-	gint i, j;
+	gint i;
+	gint j;
 
 	if (!collection_table_find_position(ct, start, &row1, &col1) ||
 	    !collection_table_find_position(ct, end, &row2, &col2) ) return;
@@ -566,7 +570,8 @@ static GList *collection_table_get_list(CollectTable *ct)
 static void tip_show(CollectTable *ct)
 {
 	GtkWidget *label;
-	gint x, y;
+	gint x;
+	gint y;
 	GdkDisplay *display;
 	GdkSeat *seat;
 	GdkDevice *device;
@@ -653,7 +658,8 @@ static void tip_update(CollectTable *ct, CollectInfo *info)
 
 	if (ct->tip_window)
 		{
-		gint x, y;
+		gint x;
+		gint y;
 		gdk_device_get_position(device, nullptr, &x, &y);
 
 		gq_gtk_window_move(GTK_WINDOW(ct->tip_window), x + 16, y + 16);
@@ -1076,7 +1082,8 @@ static GtkWidget *collection_table_popup_menu(CollectTable *ct, gboolean over_ic
 void collection_table_set_focus(CollectTable *ct, CollectInfo *info)
 {
 	GtkTreeIter iter;
-	gint row, col;
+	gint row;
+	gint col;
 
 	if (g_list_find(ct->cd->list, ct->focus_info))
 		{
@@ -1484,7 +1491,8 @@ static void collection_table_insert_marker(CollectTable *ct, CollectInfo *info, 
 	gboolean after = FALSE;
 	GdkRectangle cell;
 	GdkWindow *parent;
-	gint x_parent, y_parent;
+	gint x_parent;
+	gint y_parent;
 	GError *error = nullptr;
 	GInputStream *in_stream;
 	GdkPixbuf *pb;
@@ -1555,8 +1563,10 @@ static void collection_table_insert_marker(CollectTable *ct, CollectInfo *info, 
 
 	if (info)
 		{
-		gint x, y;
-		gint w, h;
+		gint x;
+		gint y;
+		gint w;
+		gint h;
 
 		w = gdk_window_get_width(ct->marker_window);
 		h = gdk_window_get_height(ct->marker_window);
@@ -1612,8 +1622,10 @@ static gboolean collection_table_auto_scroll_idle_cb(gpointer data)
 {
 	auto ct = static_cast<CollectTable *>(data);
 	GdkWindow *window;
-	gint x, y;
-	gint w, h;
+	gint x;
+	gint y;
+	gint w;
+	gint h;
 	GdkSeat *seat;
 	GdkDevice *device;
 
@@ -1918,7 +1930,8 @@ static void collection_table_sync(CollectTable *ct)
 	GtkTreeModel *store;
 	GtkTreeIter iter;
 	GList *work;
-	gint r, c;
+	gint r;
+	gint c;
 
 	store = gtk_tree_view_get_model(GTK_TREE_VIEW(ct->listview));
 
@@ -2099,7 +2112,8 @@ static void collection_table_move_by_info_list(CollectTable *ct, GList *info_lis
 void collection_table_file_update(CollectTable *ct, CollectInfo *info)
 {
 	GtkTreeIter iter;
-	gint row, col;
+	gint row;
+	gint col;
 	gdouble value;
 
 	if (!info)

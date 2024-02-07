@@ -484,7 +484,8 @@ gboolean rmdir_utf8(const gchar *s)
 gboolean copy_file_attributes(const gchar *s, const gchar *t, gint perms, gint mtime)
 {
 	struct stat st;
-	gchar *sl, *tl;
+	gchar *sl;
+	gchar *tl;
 	gboolean ret = FALSE;
 
 	if (!s || !t) return FALSE;
@@ -669,7 +670,8 @@ gboolean copy_file(const gchar *s, const gchar *t)
 
 gboolean move_file(const gchar *s, const gchar *t)
 {
-	gchar *sl, *tl;
+	gchar *sl;
+	gchar *tl;
 	gboolean ret = TRUE;
 
 	if (!s || !t) return FALSE;
@@ -701,7 +703,8 @@ gboolean move_file(const gchar *s, const gchar *t)
 
 gboolean rename_file(const gchar *s, const gchar *t)
 {
-	gchar *sl, *tl;
+	gchar *sl;
+	gchar *tl;
 	gboolean ret;
 
 	if (!s || !t) return FALSE;
@@ -868,7 +871,8 @@ gchar *remove_extension_from_path(const gchar *path)
 
 void parse_out_relatives(gchar *path)
 {
-	gint s, t;
+	gint s;
+	gint t;
 
 	if (!path) return;
 
@@ -912,7 +916,8 @@ gboolean file_in_path(const gchar *name)
 {
 	gchar *path;
 	gchar *namel;
-	gint p, l;
+	gint p;
+	gint l;
 	gboolean ret = FALSE;
 
 	if (!name) return FALSE;

@@ -228,7 +228,8 @@ static void vdtree_dnd_drop_expand(ViewDir *vd)
 static GList *parts_list(const gchar *path)
 {
 	GList *list = nullptr;
-	const gchar *strb, *strp;
+	const gchar *strb;
+	const gchar *strp;
 	gint l;
 
 	strp = path;
@@ -737,7 +738,8 @@ gboolean vdtree_set_fd(ViewDir *vd, FileData *dir_fd)
 	if (vd_find_row(vd, fd, &iter))
 		{
 		GtkTreeModel *store;
-		GtkTreePath *tpath, *old_tpath;
+		GtkTreePath *tpath;
+		GtkTreePath *old_tpath;
 		GtkTreeSelection *selection;
 
 		store = gtk_tree_view_get_model(GTK_TREE_VIEW(vd->view));

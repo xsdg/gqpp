@@ -78,10 +78,13 @@ static gboolean tree_edit_click_cb(GtkWidget *, GdkEventButton *event, gpointer 
 	auto ted = static_cast<TreeEditData *>(data);
 	GdkWindow *window = gtk_widget_get_window(ted->window);
 
-	gint x, y;
-	gint w, h;
+	gint x;
+	gint y;
+	gint w;
+	gint h;
 
-	gint xr, yr;
+	gint xr;
+	gint yr;
 
 	xr = static_cast<gint>(event->x_root);
 	yr = static_cast<gint>(event->y_root);
@@ -134,9 +137,14 @@ static gboolean tree_edit_by_path_idle_cb(gpointer data)
 {
 	auto ted = static_cast<TreeEditData *>(data);
 	GdkRectangle rect;
-	gint x, y, w, h;	/* geometry of cell within tree */
-	gint wx, wy;		/* geometry of tree from root window */
-	gint sx, sw;
+	gint x;
+	gint y;
+	gint w;
+	gint h;	/* geometry of cell within tree */
+	gint wx;
+	gint wy;		/* geometry of tree from root window */
+	gint sx;
+	gint sw;
 
 	gtk_tree_view_get_cell_area(ted->tree, ted->path, ted->column, &rect);
 
@@ -256,8 +264,10 @@ gboolean tree_edit_by_path(GtkTreeView *tree, GtkTreePath *tpath, gint column, c
 gboolean tree_view_get_cell_origin(GtkTreeView *widget, GtkTreePath *tpath, gint column, gboolean text_cell_only,
 			           gint *x, gint *y, gint *width, gint *height)
 {
-	gint x_origin, y_origin;
-	gint x_offset, y_offset;
+	gint x_origin;
+	gint y_origin;
+	gint x_offset;
+	gint y_offset;
 	gint header_size;
 	GtkTreeViewColumn *tv_column;
 	GdkRectangle rect;
@@ -324,7 +334,10 @@ gboolean tree_view_get_cell_origin(GtkTreeView *widget, GtkTreePath *tpath, gint
 void tree_view_get_cell_clamped(GtkTreeView *widget, GtkTreePath *tpath, gint column, gboolean text_cell_only,
 				gint *x, gint *y, gint *width, gint *height)
 {
-	gint wx, wy, ww, wh;
+	gint wx;
+	gint wy;
+	gint ww;
+	gint wh;
 	GdkWindow *window;
 
 	window = gtk_widget_get_window(GTK_WIDGET(widget));
@@ -352,7 +365,9 @@ void tree_view_get_cell_clamped(GtkTreeView *widget, GtkTreePath *tpath, gint co
 gint tree_view_row_get_visibility(GtkTreeView *widget, GtkTreeIter *iter, gboolean fully_visible)
 {
 	GtkTreeModel *store;
-	GtkTreePath *tpath, *start_path, *end_path;
+	GtkTreePath *tpath;
+	GtkTreePath *start_path;
+	GtkTreePath *end_path;
 	gint ret = 0;
 
 	if (!gtk_tree_view_get_visible_range(widget, &start_path, &end_path)) return -1; /* we will most probably scroll down, needed for tree_view_row_make_visible */
@@ -552,8 +567,10 @@ static gboolean widget_auto_scroll_cb(gpointer data)
 {
 	auto sd = static_cast<AutoScrollData *>(data);
 	GdkWindow *window;
-	gint x, y;
-	gint w, h;
+	gint x;
+	gint y;
+	gint w;
+	gint h;
 	gint amt = 0;
 	GdkSeat *seat;
 	GdkDevice *device;

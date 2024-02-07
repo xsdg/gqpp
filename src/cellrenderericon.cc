@@ -554,8 +554,10 @@ static void gqv_cell_renderer_icon_get_size(GtkCellRenderer    *cell,
 	auto cellicon = reinterpret_cast<GQvCellRendererIcon *>(cell);
 	gint calc_width;
 	gint calc_height;
-	gint xpad, ypad;
-	gfloat xalign, yalign;
+	gint xpad;
+	gint ypad;
+	gfloat xalign;
+	gfloat yalign;
 
 	gtk_cell_renderer_get_padding(cell, &xpad, &ypad);
 	gtk_cell_renderer_get_alignment(cell, &xalign, &yalign);
@@ -635,7 +637,8 @@ static void gqv_cell_renderer_icon_render(GtkCellRenderer *cell,
 	const gchar *text;
 	GdkRectangle cell_rect;
 	GtkStateFlags state;
-	gint xpad, ypad;
+	gint xpad;
+	gint ypad;
 
 
 	pixbuf = cellicon->pixbuf;
@@ -808,7 +811,8 @@ static gboolean gqv_cell_renderer_icon_activate(GtkCellRenderer      *cell,
 		GdkRectangle rect;
 		GdkRectangle cell_rect;
 		gint i;
-		gint xpad, ypad;
+		gint xpad;
+		gint ypad;
 
 		gtk_cell_renderer_get_padding(cell, &xpad, &ypad);
 

@@ -49,7 +49,8 @@ static void help_window_scroll(GtkWidget *text, const gchar *key)
 	gchar *needle;
 	GtkTextBuffer *buffer;
 	GtkTextIter iter;
-	GtkTextIter start, end;
+	GtkTextIter start;
+	GtkTextIter end;
 
 	if (!text || !key) return;
 
@@ -93,7 +94,8 @@ static void help_window_load_text(GtkWidget *text, const gchar *path)
 	gchar s_buf[1024];
 	GtkTextBuffer *buffer;
 	GtkTextIter iter;
-	GtkTextIter start, end;
+	GtkTextIter start;
+	GtkTextIter end;
 
 	if (!text || !path) return;
 

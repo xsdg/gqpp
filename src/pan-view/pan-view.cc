@@ -340,7 +340,10 @@ static gboolean pan_window_request_tile_cb(PixbufRenderer *pr, gint x, gint y,
 
 	for (i = (x / PAN_GRID_SIZE) * PAN_GRID_SIZE; i < x + width; i += PAN_GRID_SIZE)
 		{
-		gint rx, ry, rw, rh;
+		gint rx;
+		gint ry;
+		gint rw;
+		gint rh;
 
 		if (util_clip_region(x, y, width, height,
 				     i, y, 1, height,
@@ -353,7 +356,10 @@ static gboolean pan_window_request_tile_cb(PixbufRenderer *pr, gint x, gint y,
 		}
 	for (i = (y / PAN_GRID_SIZE) * PAN_GRID_SIZE; i < y + height; i += PAN_GRID_SIZE)
 		{
-		gint rx, ry, rw, rh;
+		gint rx;
+		gint ry;
+		gint rw;
+		gint rh;
 
 		if (util_clip_region(x, y, width, height,
 				     x, i, width, 1,
@@ -724,10 +730,13 @@ static void pan_grid_clear(PanWindow *pw)
 static void pan_grid_build(PanWindow *pw, gint width, gint height, gint grid_size)
 {
 	GList *work;
-	gint col, row;
-	gint cw, ch;
+	gint col;
+	gint row;
+	gint cw;
+	gint ch;
 	gint l;
-	gint i, j;
+	gint i;
+	gint j;
 
 	pan_grid_clear(pw);
 
@@ -781,7 +790,10 @@ static void pan_grid_build(PanWindow *pw, gint width, gint height, gint grid_siz
 		while (grid)
 			{
 			PanGrid *pg;
-			gint rx, ry, rw, rh;
+			gint rx;
+			gint ry;
+			gint rw;
+			gint rh;
 
 			pg = static_cast<PanGrid *>(grid->data);
 			grid = grid->next;
@@ -935,7 +947,10 @@ static GList *pan_layout_intersect_l(GList *list, GList *item_list,
 	while (work)
 		{
 		PanItem *pi;
-		gint rx, ry, rw, rh;
+		gint rx;
+		gint ry;
+		gint rw;
+		gint rh;
 
 		pi = static_cast<PanItem *>(work->data);
 		work = work->next;
@@ -1393,8 +1408,16 @@ void pan_info_update(PanWindow *pw, PanItem *pi)
 	PanItem *pbox;
 	PanItem *p;
 	gchar *buf;
-	gint x1, y1, x2, y2, x3, y3;
-	gint x, y, w, h;
+	gint x1;
+	gint y1;
+	gint x2;
+	gint y2;
+	gint x3;
+	gint y3;
+	gint x;
+	gint y;
+	gint w;
+	gint h;
 
 	if (pw->click_pi == pi) return;
 	if (pi && !pi->fd) pi = nullptr;
@@ -1464,7 +1487,8 @@ void pan_info_update(PanWindow *pw, PanItem *pi)
 
 	if (pw->info_image_size > PAN_IMAGE_SIZE_THUMB_NONE)
 		{
-		gint iw, ih;
+		gint iw;
+		gint ih;
 		if (image_load_dimensions(pi->fd, &iw, &ih))
 			{
 			gint scale = 25;
@@ -1522,7 +1546,8 @@ static void button_cb(PixbufRenderer *pr, GdkEventButton *event, gpointer data)
 	auto pw = static_cast<PanWindow *>(data);
 	PanItem *pi = nullptr;
 	GtkWidget *menu;
-	gint rx, ry;
+	gint rx;
+	gint ry;
 
 	rx = ry = 0;
 	if (pr->scale)
@@ -1566,7 +1591,8 @@ static void button_cb(PixbufRenderer *pr, GdkEventButton *event, gpointer data)
 
 static void scroll_cb(PixbufRenderer *pr, GdkEventScroll *event, gpointer)
 {
-	gint w, h;
+	gint w;
+	gint h;
 
 	w = pr->vis_width;
 	h = pr->vis_height;
@@ -1665,7 +1691,8 @@ static void pan_window_image_scroll_notify_cb(PixbufRenderer *pr, gpointer data)
 	auto pw = static_cast<PanWindow *>(data);
 	GtkAdjustment *adj;
 	GdkRectangle rect;
-	gint width, height;
+	gint width;
+	gint height;
 
 	if (pr->scale == 0.0) return;
 
@@ -2309,7 +2336,8 @@ static GtkWidget *pan_popup_menu(PanWindow *pw)
 	GtkWidget *menu;
 	GtkWidget *submenu;
 	GtkWidget *item;
-	gboolean active, video;
+	gboolean active;
+	gboolean video;
 	GList *editmenu_fd_list;
 	GtkAccelGroup *accel_group;
 

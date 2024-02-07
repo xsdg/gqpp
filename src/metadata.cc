@@ -773,7 +773,9 @@ gdouble metadata_read_GPS_coord(FileData *fd, const gchar *key, gdouble fallback
 {
 	gdouble coord;
 	gchar *endptr;
-	gdouble deg, min, sec;
+	gdouble deg;
+	gdouble min;
+	gdouble sec;
 	gboolean ok = FALSE;
 	gchar *string = metadata_read_string(fd, key, METADATA_PLAIN);
 	if (!string) return fallback;
@@ -861,7 +863,8 @@ gboolean metadata_write_GPS_coord(FileData *fd, const gchar *key, gdouble value)
 	char *coordinate;
 	const char *ref;
 	gboolean ok = TRUE;
-	char *old_locale, *saved_locale;
+	char *old_locale;
+	char *saved_locale;
 
 	param = value;
 	if (param < 0)
@@ -1263,7 +1266,9 @@ gboolean keyword_exists(GtkTreeModel *keyword_tree, GtkTreeIter *parent_ptr, Gtk
 void keyword_copy(GtkTreeStore *keyword_tree, GtkTreeIter *to, GtkTreeIter *from)
 {
 
-	gchar *mark, *name, *casefold;
+	gchar *mark;
+	gchar *name;
+	gchar *casefold;
 	gboolean is_keyword;
 
 	/* do not copy KEYWORD_COLUMN_HIDE_IN, it fully shows the new subtree */
@@ -1722,7 +1727,8 @@ static GtkTreeIter keyword_tree_default_append(GtkTreeStore *keyword_tree, GtkTr
 
 void keyword_tree_new_default()
 {
-	GtkTreeIter i1, i2;
+	GtkTreeIter i1;
+	GtkTreeIter i2;
 
 	if (!keyword_tree) keyword_tree_new();
 

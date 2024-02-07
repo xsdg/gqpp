@@ -31,7 +31,8 @@ void pan_grid_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *height
 {
 	GList *list;
 	GList *work;
-	gint x, y;
+	gint x;
+	gint y;
 	gint grid_size;
 	gint next_y;
 

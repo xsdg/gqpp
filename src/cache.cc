@@ -115,7 +115,8 @@ static gboolean cache_sim_write_md5sum(SecureSaveInfo *ssi, CacheData *cd)
 
 static gboolean cache_sim_write_similarity(SecureSaveInfo *ssi, CacheData *cd)
 {
-	guint x, y;
+	guint x;
+	guint y;
 	guint8 buf[3 * 32];
 
 	if (!cd || !cd->similarity || !cd->sim || !cd->sim->filled) return FALSE;
@@ -220,7 +221,8 @@ static gboolean cache_sim_read_dimensions(FILE *f, gchar *buf, gint s, CacheData
 		gchar b;
 		gchar buf[1024];
 		gsize p = 0;
-		gint w, h;
+		gint w;
+		gint h;
 
 		b = 'X';
 		while (b != '[')
@@ -342,7 +344,8 @@ static gboolean cache_sim_read_similarity(FILE *f, gchar *buf, gint s, CacheData
 		gchar b;
 		guint8 pixel_buf[3];
 		ImageSimilarityData *sd;
-		gint x, y;
+		gint x;
+		gint y;
 
 		b = 'X';
 		while (b != '=')

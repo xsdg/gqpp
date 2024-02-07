@@ -131,7 +131,8 @@ static void thumb_loader_done_cb(ImageLoader *il, gpointer data)
 {
 	auto tl = static_cast<ThumbLoader *>(data);
 	GdkPixbuf *pixbuf;
-	gint pw, ph;
+	gint pw;
+	gint ph;
 	gint save;
 	GdkPixbuf *rotated = nullptr;
 
@@ -200,7 +201,8 @@ static void thumb_loader_done_cb(ImageLoader *il, gpointer data)
 
 	if (pw > tl->max_w || ph > tl->max_h)
 		{
-		gint w, h;
+		gint w;
+		gint h;
 
 		if ((static_cast<gdouble>(tl->max_w) / pw) < (static_cast<gdouble>(tl->max_h) / ph))
 			{
@@ -538,7 +540,9 @@ static guchar *load_xv_thumbnail(gchar *filename, gint *widthp, gint *heightp)
 	if (fgets(buffer, XV_BUFFER, file) != nullptr
 	    && strncmp(buffer, "P7 332", 6) == 0)
 		{
-		gint width, height, depth;
+		gint width;
+		gint height;
+		gint depth;
 
 		while (fgets(buffer, XV_BUFFER, file) && buffer[0] == '#') /* do_nothing() */;
 
@@ -567,7 +571,8 @@ static void free_rgb_buffer(guchar *pixels, gpointer)
 
 static GdkPixbuf *get_xv_thumbnail(gchar *thumb_filename, gint max_w, gint max_h)
 {
-	gint width, height;
+	gint width;
+	gint height;
 	gchar *thumb_name;
 	gchar *path;
 	gchar *directory;

@@ -634,7 +634,8 @@ void log_window_append(const gchar *str, LogType type)
 
 	if (options->log_window_lines > 0 && logwindow->lines >= options->log_window_lines)
 		{
-		GtkTextIter start, end;
+		GtkTextIter start;
+		GtkTextIter end;
 
 		gtk_text_buffer_get_start_iter(buffer, &start);
 		end = start;

@@ -309,7 +309,8 @@ void color_man_correct_region(ColorMan *cm, GdkPixbuf *pixbuf, gint x, gint y, g
 	guchar *pix;
 	gint rs;
 	gint i;
-	gint pixbuf_width, pixbuf_height;
+	gint pixbuf_width;
+	gint pixbuf_height;
 
 
 	pixbuf_width = gdk_pixbuf_get_width(pixbuf);
@@ -344,7 +345,8 @@ void color_man_correct_region(ColorMan *cm, GdkPixbuf *pixbuf, gint x, gint y, g
 static gboolean color_man_idle_cb_unused(gpointer data)
 {
 	auto *cm = static_cast<ColorMan *>(data);
-	gint width, height;
+	gint width;
+	gint height;
 	gint rh;
 
 	if (!cm->pixbuf) return FALSE;

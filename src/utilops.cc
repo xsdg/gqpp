@@ -1326,8 +1326,10 @@ static void file_util_rename_preview_update(UtilityData *ud)
 {
 	GtkTreeModel *store;
 	GtkTreeSelection *selection;
-	GtkTreeIter iter, iter_selected;
-	GtkTreePath *path_iter, *path_selected;
+	GtkTreeIter iter;
+	GtkTreeIter iter_selected;
+	GtkTreePath *path_iter;
+	GtkTreePath *path_selected;
 	const gchar *front;
 	const gchar *end;
 	const gchar *format;

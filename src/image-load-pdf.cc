@@ -45,7 +45,8 @@ static gboolean image_loader_pdf_load(gpointer loader, const guchar *buf, gsize 
 	GError *poppler_error = nullptr;
 	PopplerPage *page;
 	PopplerDocument *document;
-	gdouble width, height;
+	gdouble width;
+	gdouble height;
 	cairo_surface_t *surface;
 	cairo_t *cr;
 	gboolean ret = FALSE;

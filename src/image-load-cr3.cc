@@ -64,7 +64,8 @@ static void
 explode_gray_into_buf (struct jpeg_decompress_struct *cinfo,
 		       guchar **lines)
 {
-	gint i, j;
+	gint i;
+	gint j;
 	guint w;
 
 	g_return_if_fail (cinfo != nullptr);
@@ -76,7 +77,8 @@ explode_gray_into_buf (struct jpeg_decompress_struct *cinfo,
 	 */
 	w = cinfo->output_width;
 	for (i = cinfo->rec_outbuf_height - 1; i >= 0; i--) {
-		guchar *from, *to;
+		guchar *from;
+		guchar *to;
 
 		from = lines[i] + w - 1;
 		to = lines[i] + (w - 1) * 3;
@@ -107,7 +109,10 @@ convert_cmyk_to_rgb (struct jpeg_decompress_struct *cinfo,
 
 		p = lines[i];
 		for (j = 0; j < cinfo->output_width; j++) {
-			int c, m, y, k;
+			int c;
+			int m;
+			int y;
+			int k;
 			c = p[0];
 			m = p[1];
 			y = p[2];
@@ -258,7 +263,8 @@ static gboolean image_loader_cr3_load (gpointer loader, const guchar *buf, gsize
 	auto lj = static_cast<ImageLoaderJpeg *>(loader);
 	struct jpeg_decompress_struct cinfo;
 	struct jpeg_decompress_struct cinfo2;
-	guchar *dptr, *dptr2;
+	guchar *dptr;
+	guchar *dptr2;
 	guint rowstride;
 	guchar *stereo_buf2 = nullptr;
 	guint stereo_length = 0;
@@ -314,7 +320,8 @@ static gboolean image_loader_cr3_load (gpointer loader, const guchar *buf, gsize
 	if (mpo && mpo->num_images > 1)
 		{
 		guint i;
-		gint idx1 = -1, idx2 = -1;
+		gint idx1 = -1;
+		gint idx2 = -1;
 		guint num2 = 1;
 
 		for (i = 0; i < mpo->num_images; i++)

@@ -81,8 +81,16 @@ void pan_calendar_update(PanWindow *pw, PanItem *pi_day)
 	PanItem *pi;
 	GList *list;
 	GList *work;
-	gint x1, y1, x2, y2, x3, y3;
-	gint x, y, w, h;
+	gint x1;
+	gint y1;
+	gint x2;
+	gint y2;
+	gint x3;
+	gint y3;
+	gint x;
+	gint y;
+	gint w;
+	gint h;
 	gint grid;
 	gint column;
 
@@ -203,7 +211,8 @@ void pan_calendar_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *he
 {
 	GList *list;
 	GList *work;
-	gint x, y;
+	gint x;
+	gint y;
 	time_t tc;
 	gint count;
 	gint day_max;
@@ -335,7 +344,8 @@ void pan_calendar_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *he
 			{
 			FileData *fd;
 			PanItem *pi_day;
-			gint dx, dy;
+			gint dx;
+			gint dy;
 			gint n = 0;
 			gchar fake_path[20];
 

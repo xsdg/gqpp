@@ -175,7 +175,8 @@ static void zoom_increment_cb(GtkWidget *spin, gpointer)
 
 static void slideshow_delay_hours_cb(GtkWidget *spin, gpointer)
 {
-	gint mins_secs_tenths, delay;
+	gint mins_secs_tenths;
+	gint delay;
 
 	mins_secs_tenths = c_options->slideshow.delay %
 						(3600 * SLIDESHOW_SUBSECOND_PRECISION);
@@ -190,7 +191,9 @@ static void slideshow_delay_hours_cb(GtkWidget *spin, gpointer)
 
 static void slideshow_delay_minutes_cb(GtkWidget *spin, gpointer)
 {
-	gint hours, secs_tenths, delay;
+	gint hours;
+	gint secs_tenths;
+	gint delay;
 
 	hours = c_options->slideshow.delay / (3600 * SLIDESHOW_SUBSECOND_PRECISION);
 	secs_tenths = c_options->slideshow.delay % (60 * SLIDESHOW_SUBSECOND_PRECISION);
@@ -205,7 +208,8 @@ static void slideshow_delay_minutes_cb(GtkWidget *spin, gpointer)
 
 static void slideshow_delay_seconds_cb(GtkWidget *spin, gpointer)
 {
-	gint hours_mins, delay;
+	gint hours_mins;
+	gint delay;
 
 	hours_mins = c_options->slideshow.delay / (60 * SLIDESHOW_SUBSECOND_PRECISION);
 
@@ -242,7 +246,8 @@ void config_entry_to_option(GtkWidget *entry, gchar **option, gchar *(*func)(con
 
 static gboolean accel_apply_cb(GtkTreeModel *model, GtkTreePath *, GtkTreeIter *iter, gpointer)
 {
-	gchar *accel_path, *accel;
+	gchar *accel_path;
+	gchar *accel;
 
 	gtk_tree_model_get(model, iter, AE_ACCEL, &accel_path, AE_KEY, &accel, -1);
 
@@ -884,7 +889,8 @@ static void add_thumb_size_menu(GtkWidget *table, gint column, gint row, gchar *
 	current = -1;
 	for (i = 0; static_cast<guint>(i) < sizeof(thumb_size_list) / sizeof(ThumbSize); i++)
 		{
-		gint w, h;
+		gint w;
+		gint h;
 		gchar *buf;
 
 		w = thumb_size_list[i].w;
@@ -1600,7 +1606,8 @@ static void image_overlay_set_background_color_cb(GtkWidget *widget, gpointer)
 static void accel_store_populate()
 {
 	LayoutWindow *lw;
-	GList *groups, *actions;
+	GList *groups;
+	GList *actions;
 	GtkAction *action;
 	const gchar *accel_path;
 	GtkAccelKey key;
@@ -1622,7 +1629,10 @@ static void accel_store_populate()
 			accel_path = gtk_action_get_accel_path(action);
 			if (accel_path && gtk_accel_map_lookup_entry(accel_path, &key))
 				{
-				gchar *label, *label2, *tooltip, *accel;
+				gchar *label;
+				gchar *label2;
+				gchar *tooltip;
+				gchar *accel;
 				g_object_get(action,
 					     "tooltip", &tooltip,
 					     "label", &label,
@@ -1693,7 +1703,8 @@ static void accel_store_edited_cb(GtkCellRendererAccel *, gchar *path_string, gu
 	GtkTreeIter iter;
 	gchar *acc;
 	gchar *accel_path;
-	GtkAccelKey old_key, key;
+	GtkAccelKey old_key;
+	GtkAccelKey key;
 	GtkTreePath *path = gtk_tree_path_new_from_string(path_string);
 
 	gtk_tree_model_get_iter(model, &iter, path);
@@ -1751,7 +1762,8 @@ void accel_clear_selection(GtkTreeModel *, GtkTreePath *, GtkTreeIter *iter, gpo
 void accel_reset_selection(GtkTreeModel *model, GtkTreePath *, GtkTreeIter *iter, gpointer)
 {
 	GtkAccelKey key;
-	gchar *accel_path, *accel;
+	gchar *accel_path;
+	gchar *accel;
 
 	gtk_tree_model_get(model, iter, AE_ACCEL, &accel_path, -1);
 	gtk_accel_map_lookup_entry(accel_path, &key);
@@ -1960,7 +1972,9 @@ static void config_tab_general(GtkWidget *notebook)
 	GtkWidget *ct_button;
 	GtkWidget *table;
 	GtkWidget *spin;
-	gint hours, minutes, remainder;
+	gint hours;
+	gint minutes;
+	gint remainder;
 	gdouble seconds;
 	GtkWidget *star_rating_entry;
 	GString *str;
@@ -3226,7 +3240,8 @@ static void keywords_find_cb(GtkWidget *widget, gpointer)
 
 static void config_tab_keywords_save()
 {
-	GtkTextIter start, end;
+	GtkTextIter start;
+	GtkTextIter end;
 	GtkTextBuffer *buffer;
 	GList *kw_list = nullptr;
 	GList *work;

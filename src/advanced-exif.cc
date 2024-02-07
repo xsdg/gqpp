@@ -305,7 +305,8 @@ static gint advanced_exif_sort_cb(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIt
 		case EXIF_ADVCOL_FORMAT:
 		case EXIF_ADVCOL_ELEMENTS:
 			{
-			gchar *s1, *s2;
+			gchar *s1;
+			gchar *s2;
 
 			gtk_tree_model_get(model, a, n, &s1, -1);
 			gtk_tree_model_get(model, b, n, &s2, -1);

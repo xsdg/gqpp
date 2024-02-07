@@ -268,7 +268,8 @@ static void bar_pane_exif_update_entry(PaneExifData *ped, GtkWidget *entry, gboo
 
 static void bar_pane_exif_update(PaneExifData *ped)
 {
-	GList *list, *work;
+	GList *list;
+	GList *work;
 
 	ped->all_hidden = TRUE;
 
@@ -303,7 +304,8 @@ static gint bar_pane_exif_event(GtkWidget *bar, GdkEvent *event)
 {
 	PaneExifData *ped;
 	gboolean ret = FALSE;
-	GList *list, *work;
+	GList *list;
+	GList *work;
 
 	ped = static_cast<PaneExifData *>(g_object_get_data(G_OBJECT(bar), "pane_data"));
 	if (!ped) return FALSE;
@@ -379,7 +381,8 @@ static void bar_pane_exif_dnd_receive(GtkWidget *pane, GdkDragContext *,
 					  guint, gpointer)
 {
 	PaneExifData *ped;
-	GList *work, *list;
+	GList *work;
+	GList *list;
 	gint pos;
 	GtkWidget *new_entry = nullptr;
 
@@ -405,7 +408,8 @@ static void bar_pane_exif_dnd_receive(GtkWidget *pane, GdkDragContext *,
 	pos = 0;
 	while (work)
 		{
-		gint nx, ny;
+		gint nx;
+		gint ny;
 		auto entry = static_cast<GtkWidget *>(work->data);
 		GtkAllocation allocation;
 		work = work->next;
@@ -718,7 +722,8 @@ static void bar_pane_exif_entry_write_config(GtkWidget *entry, GString *outstr, 
 static void bar_pane_exif_write_config(GtkWidget *pane, GString *outstr, gint indent)
 {
 	PaneExifData *ped;
-	GList *work, *list;
+	GList *work;
+	GList *list;
 
 	ped = static_cast<PaneExifData *>(g_object_get_data(G_OBJECT(pane), "pane_data"));
 	if (!ped) return;

@@ -30,7 +30,8 @@ void pan_timeline_compute(PanWindow *pw, FileData *dir_fd, gint *width, gint *he
 {
 	GList *list;
 	GList *work;
-	gint x, y;
+	gint x;
+	gint y;
 	time_t group_start_date;
 	gint total;
 	gint count;

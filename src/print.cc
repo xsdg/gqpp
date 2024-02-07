@@ -531,7 +531,8 @@ gchar *form_image_text(const gchar *template_string, FileData *fd, PrintWindow *
 
 	if (fd->pixbuf)
 		{
-		gint w, h;
+		gint w;
+		gint h;
 		w = gdk_pixbuf_get_width(fd->pixbuf);
 		h = gdk_pixbuf_get_height(fd->pixbuf);
 
@@ -559,8 +560,10 @@ static void draw_page(GtkPrintOperation *, GtkPrintContext *context, gint page_n
 	auto pw = static_cast<PrintWindow *>(data);
 	FileData *fd;
 	cairo_t *cr;
-	gdouble context_width, context_height;
-	gdouble pixbuf_image_width, pixbuf_image_height;
+	gdouble context_width;
+	gdouble context_height;
+	gdouble pixbuf_image_width;
+	gdouble pixbuf_image_height;
 	gdouble width_offset;
 	gdouble height_offset;
 	GdkPixbuf *pixbuf;
@@ -570,15 +573,22 @@ static void draw_page(GtkPrintOperation *, GtkPrintContext *context, gint page_n
 	PangoFontDescription *desc;
 	GString *image_text = g_string_new(nullptr);
 	GString *page_text = g_string_new(nullptr);
-	PangoRectangle ink_rect, logical_rect;
-	gdouble w, h, scale;
-	gdouble image_text_width, image_text_height, page_text_width, page_text_height;
+	PangoRectangle ink_rect;
+	PangoRectangle logical_rect;
+	gdouble w;
+	gdouble h;
+	gdouble scale;
+	gdouble image_text_width;
+	gdouble image_text_height;
+	gdouble page_text_width;
+	gdouble page_text_height;
 	gint image_y;
 	gint incr_y;
 	gdouble pango_height;
 	gdouble pango_image_height;
 	gdouble pango_page_height;
-	GtkTextIter start, end;
+	GtkTextIter start;
+	GtkTextIter end;
 	gchar *tmp;
 	gint total;
 
@@ -787,7 +797,8 @@ GObject *option_tab_cb(GtkPrintOperation *, gpointer user_data)
 static void print_pref_store(PrintWindow *pw)
 {
 	gchar *tmp;
-	GtkTextIter start, end;
+	GtkTextIter start;
+	GtkTextIter end;
 
 	gtk_text_buffer_get_bounds(GTK_TEXT_BUFFER(pw->page_text), &start, &end);
 	tmp = gtk_text_buffer_get_text(GTK_TEXT_BUFFER(pw->page_text), &start, &end, FALSE);

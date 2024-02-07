@@ -637,7 +637,8 @@ static GtkWidget *bar_sort_new(LayoutWindow *lw, SortActionType action,
 	GtkWidget *label;
 	GtkWidget *tbar;
 	GtkWidget *combo;
-	GList *editors_list, *work;
+	GList *editors_list;
+	GList *work;
 	gboolean have_filter;
 	GtkWidget *button;
 

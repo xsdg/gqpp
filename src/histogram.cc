@@ -154,7 +154,14 @@ void histmap_free(HistMap *histmap)
 
 static gboolean histmap_read(HistMap *histmap, gboolean whole)
 {
-	gint w, h, i, j, srs, has_alpha, step, end_line;
+	gint w;
+	gint h;
+	gint i;
+	gint j;
+	gint srs;
+	gint has_alpha;
+	gint step;
+	gint end_line;
 	guchar *s_pix;
 	GdkPixbuf *imgpixbuf = histmap->pixbuf;
 

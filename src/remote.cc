@@ -349,7 +349,8 @@ static void sighandler_sigpipe(gint)
 
 static gboolean remote_client_send(RemoteConnection *rc, const gchar *text)
 {
-	struct sigaction new_action, old_action;
+	struct sigaction new_action;
+	struct sigaction old_action;
 	gboolean ret = FALSE;
 	GError *error = nullptr;
 	GIOChannel *channel;
@@ -618,7 +619,10 @@ static void gr_slideshow_stop(const gchar *, GIOChannel *, gpointer)
 
 static void gr_slideshow_delay(const gchar *text, GIOChannel *, gpointer)
 {
-	gdouble t1, t2, t3, n;
+	gdouble t1;
+	gdouble t2;
+	gdouble t3;
+	gdouble n;
 	gint res;
 
 	res = sscanf(text, "%lf:%lf:%lf", &t1, &t2, &t3);
@@ -745,9 +749,13 @@ static void gr_file_load(const gchar *text, GIOChannel *channel, gpointer data)
 static void gr_pixel_info(const gchar *, GIOChannel *channel, gpointer)
 {
 	gchar *pixel_info;
-	gint x_pixel, y_pixel;
-	gint width, height;
-	gint r_mouse, g_mouse, b_mouse;
+	gint x_pixel;
+	gint y_pixel;
+	gint width;
+	gint height;
+	gint r_mouse;
+	gint g_mouse;
+	gint b_mouse;
 	PixbufRenderer *pr;
 
 	if (!layout_valid(&lw_id)) return;
@@ -790,7 +798,10 @@ static void gr_rectangle(const gchar *, GIOChannel *channel, gpointer)
 {
 	gchar *rectangle_info;
 	PixbufRenderer *pr;
-	gint x1, y1, x2, y2;
+	gint x1;
+	gint y1;
+	gint x2;
+	gint y2;
 
 	if (!options->draw_rectangle) return;
 	if (!layout_valid(&lw_id)) return;

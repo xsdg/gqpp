@@ -2756,7 +2756,8 @@ static gboolean dupe_files_add_queue_cb(gpointer data)
 			}
 		else if (isdir(fd->path))
 			{
-			GList *f, *d;
+			GList *f;
+			GList *d;
 			dw->add_files_queue = g_list_remove(dw->add_files_queue, g_list_first(dw->add_files_queue)->data);
 
 			if (filelist_read(fd, &f, &d))
@@ -2830,7 +2831,8 @@ static void dupe_files_add(DupeWindow *dw, CollectionData *, CollectInfo *info,
 			}
 		else if (isdir(fd->path) && recurse)
 			{
-			GList *f, *d;
+			GList *f;
+			GList *d;
 			if (filelist_read(fd, &f, &d))
 				{
 				GList *work;
@@ -2970,7 +2972,8 @@ void dupe_window_add_files(DupeWindow *dw, GList *list, gboolean recurse)
 		work = work->next;
 		if (isdir(fd->path) && !recurse)
 			{
-			GList *f, *d;
+			GList *f;
+			GList *d;
 
 			if (filelist_read(fd, &f, &d))
 				{
@@ -3129,7 +3132,8 @@ static void dupe_display_stats(DupeWindow *dw, DupeItem *di)
 		{
 		GtkWidget *image;
 		GdkPixbuf *pixbuf;
-		gint x, y;
+		gint x;
+		gint y;
 		guchar *d_pix;
 		guchar *dp;
 		gint rs;
@@ -4460,7 +4464,8 @@ static gint column_sort_cb(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, 
 {
 	auto sortable = static_cast<GtkTreeSortable *>(data);
 	gint ret = 0;
-	gchar *rank_str_a, *rank_str_b;
+	gchar *rank_str_a;
+	gchar *rank_str_b;
 	gint rank_int_a;
 	gint rank_int_b;
 	gint group_a;

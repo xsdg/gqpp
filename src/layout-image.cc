@@ -2011,7 +2011,8 @@ static void layout_image_drag_cb(ImageWindow *imd, GdkEventMotion *event, gdoubl
 {
 	gint i;
 	auto lw = static_cast<LayoutWindow *>(data);
-	gdouble sx, sy;
+	gdouble sx;
+	gdouble sy;
 
 	if (lw->full_screen && lw->image != lw->full_screen->imd &&
 	    imd != lw->full_screen->imd)
@@ -2121,8 +2122,10 @@ static gint num_length(gint num)
 void layout_status_update_pixel_cb(PixbufRenderer *pr, gpointer data)
 {
 	auto lw = static_cast<LayoutWindow *>(data);
-	gint x_pixel, y_pixel;
-	gint width, height;
+	gint x_pixel;
+	gint y_pixel;
+	gint width;
+	gint height;
 	gchar *text;
 	PangoAttrList *attrs;
 
@@ -2136,7 +2139,9 @@ void layout_status_update_pixel_cb(PixbufRenderer *pr, gpointer data)
 
 	if(x_pixel >= 0 && y_pixel >= 0)
 		{
-		gint r_mouse, g_mouse, b_mouse;
+		gint r_mouse;
+		gint g_mouse;
+		gint b_mouse;
 
 		pixbuf_renderer_get_pixel_colors(pr, x_pixel, y_pixel,
 						 &r_mouse, &g_mouse, &b_mouse);
@@ -2307,7 +2312,8 @@ static void layout_image_setup_split_common(LayoutWindow *lw, gint n)
 
 			if (img_fd)
 				{
-				gdouble sx, sy;
+				gdouble sx;
+				gdouble sy;
 				image_change_fd(lw->split_images[i], img_fd, zoom);
 				image_get_scroll_center(lw->image, &sx, &sy);
 				image_set_scroll_center(lw->split_images[i], sx, sy);

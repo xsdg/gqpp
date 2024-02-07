@@ -49,8 +49,10 @@ gchar *utf8_validate_or_convert(const gchar *text)
 
 gint utf8_compare(const gchar *s1, const gchar *s2, gboolean case_sensitive)
 {
-	gchar *s1_key, *s2_key;
-	gchar *s1_t, *s2_t;
+	gchar *s1_key;
+	gchar *s2_key;
+	gchar *s1_t;
+	gchar *s2_t;
 	gint ret;
 
 	g_assert(g_utf8_validate(s1, -1, nullptr));

@@ -159,9 +159,13 @@ void pan_item_box_shadow(PanItem *pi, gint offset, gint fade)
 gint pan_item_box_draw(PanWindow *, PanItem *pi, GdkPixbuf *pixbuf, PixbufRenderer *,
 		       gint x, gint y, gint width, gint height)
 {
-	gint bw, bh;
+	gint bw;
+	gint bh;
 	gint *shadow;
-	gint rx, ry, rw, rh;
+	gint rx;
+	gint ry;
+	gint rw;
+	gint rh;
 
 	bw = pi->width;
 	bh = pi->height;
@@ -301,7 +305,10 @@ void pan_item_tri_border(PanItem *pi, gint borders,
 
 gint pan_item_tri_draw(PanWindow *, PanItem *pi, GdkPixbuf *pixbuf, PixbufRenderer *, gint x, gint y, gint width, gint height)
 {
-	gint rx, ry, rw, rh;
+	gint rx;
+	gint ry;
+	gint rw;
+	gint rh;
 
 	if (util_clip_region(x, y, width, height,
 			     pi->x, pi->y, pi->width, pi->height,
@@ -473,8 +480,14 @@ PanItem *pan_item_thumb_new(PanWindow *pw, FileData *fd, gint x, gint y)
 
 gint pan_item_thumb_draw(PanWindow *pw, PanItem *pi, GdkPixbuf *pixbuf, PixbufRenderer *, gint x, gint y, gint width, gint height)
 {
-	gint tx, ty, tw, th;
-	gint rx, ry, rw, rh;
+	gint tx;
+	gint ty;
+	gint tw;
+	gint th;
+	gint rx;
+	gint ry;
+	gint rw;
+	gint rh;
 
 	if (pi->pixbuf)
 		{
@@ -657,7 +670,10 @@ PanItem *pan_item_image_new(PanWindow *pw, FileData *fd, gint x, gint y, gint w,
 
 gint pan_item_image_draw(PanWindow *, PanItem *pi, GdkPixbuf *pixbuf, PixbufRenderer *, gint x, gint y, gint width, gint height)
 {
-	gint rx, ry, rw, rh;
+	gint rx;
+	gint ry;
+	gint rw;
+	gint rh;
 
 	if (util_clip_region(x, y, width, height,
 			     pi->x, pi->y, pi->width, pi->height,
@@ -904,8 +920,10 @@ PanItem *pan_text_alignment_add(PanTextAlignment *ta, const gchar *label, const 
 
 void pan_text_alignment_calc(PanTextAlignment *ta, PanItem *box)
 {
-	gint cw1, cw2;
-	gint x, y;
+	gint cw1;
+	gint cw2;
+	gint x;
+	gint y;
 	GList *work1;
 	GList *work2;
 

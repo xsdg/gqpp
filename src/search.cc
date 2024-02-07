@@ -1551,7 +1551,8 @@ static void search_gps_dnd_received_cb(GtkWidget *, GdkDragContext *,
 {
 	auto sd = static_cast<SearchData *>(data);
 	GList *list;
-	gdouble latitude, longitude;
+	gdouble latitude;
+	gdouble longitude;
 	FileData *fd;
 
 	if (info == TARGET_URI_LIST)
@@ -2355,7 +2356,10 @@ static gboolean search_file_next(SearchData *sd)
 		#define MILES_EARTH_RADIUS 3959
 		#define NAUTICAL_MILES_EARTH_RADIUS 3440
 
-		gdouble latitude, longitude, range, conversion;
+		gdouble latitude;
+		gdouble longitude;
+		gdouble range;
+		gdouble conversion;
 
 		if (g_strcmp0(gtk_combo_box_text_get_active_text(
 						GTK_COMBO_BOX_TEXT(sd->units_gps)), _("km")) == 0)

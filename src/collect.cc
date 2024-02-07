@@ -197,9 +197,12 @@ GList *collection_list_sort(GList *list, SortType method)
 
 GList *collection_list_randomize(GList *list)
 {
-	guint random, length, i;
+	guint random;
+	guint length;
+	guint i;
 	gpointer tmp;
-	GList *nlist, *olist;
+	GList *nlist;
+	GList *olist;
 
 	length = g_list_length(list);
 	if (!length) return nullptr;

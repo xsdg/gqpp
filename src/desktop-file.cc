@@ -70,7 +70,8 @@ static gboolean editor_window_save(EditorWindow *ew)
 	gchar *dir;
 	gchar *path;
 	gchar *text;
-	GtkTextIter start, end;
+	GtkTextIter start;
+	GtkTextIter end;
 	GError *error = nullptr;
 	gboolean ret = TRUE;
 	const gchar *name = gq_gtk_entry_get_text(GTK_ENTRY(ew->entry));
@@ -412,7 +413,8 @@ static gint editor_list_window_sort_cb(GtkTreeModel *model, GtkTreeIter *a, GtkT
 {
 	gint n = GPOINTER_TO_INT(data);
 	gint ret = 0;
-	gboolean bool1, bool2;
+	gboolean bool1;
+	gboolean bool2;
 
 	switch (n)
 		{
@@ -421,7 +423,8 @@ static gint editor_list_window_sort_cb(GtkTreeModel *model, GtkTreeIter *a, GtkT
 		case DESKTOP_FILE_COLUMN_PATH:
 		case DESKTOP_FILE_COLUMN_HIDDEN:
 			{
-			gchar *s1, *s2;
+			gchar *s1;
+			gchar *s2;
 
 			gtk_tree_model_get(model, a, n, &s1, -1);
 			gtk_tree_model_get(model, b, n, &s2, -1);

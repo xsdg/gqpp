@@ -263,10 +263,12 @@ int WAI_PREFIX(getModulePath)(char* out, int capacity, int* dirname_length)
     for (;;)
     {
       char buffer[PATH_MAX < 1024 ? 1024 : PATH_MAX];
-      uint64_t low, high;
+      uint64_t low;
+      uint64_t high;
       char perms[5];
       uint64_t offset;
-      uint32_t major, minor;
+      uint32_t major;
+      uint32_t minor;
       char path[PATH_MAX];
       uint32_t inode;
 

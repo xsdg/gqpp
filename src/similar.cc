@@ -104,7 +104,9 @@ static void image_sim_channel_equal(guint8 *pix, gint len)
 
 static void image_sim_channel_norm(guint8 *pix, gint len)
 {
-	guint8 l, h, delta;
+	guint8 l;
+	guint8 h;
+	guint8 delta;
 	gint i;
 	gdouble scale;
 
@@ -167,7 +169,8 @@ gint mround(gdouble x)
 
 void image_sim_fill_data(ImageSimilarityData *sd, GdkPixbuf *pixbuf)
 {
-	gint w, h;
+	gint w;
+	gint h;
 	gint rs;
 	guchar *pix;
 	gboolean has_alpha;
@@ -176,9 +179,13 @@ void image_sim_fill_data(ImageSimilarityData *sd, GdkPixbuf *pixbuf)
 	guchar *p;
 	gint i;
 	gint j;
-	gint x_inc, y_inc, xy_inc;
-	gint xs, ys;
-	gint w_left, h_left;
+	gint x_inc;
+	gint y_inc;
+	gint xy_inc;
+	gint xs;
+	gint ys;
+	gint w_left;
+	gint h_left;
 
 	gboolean x_small = FALSE;	/* if less than 32 w or h, set TRUE */
 	gboolean y_small = FALSE;
@@ -219,8 +226,11 @@ void image_sim_fill_data(ImageSimilarityData *sd, GdkPixbuf *pixbuf)
 		w_left = w;
 		for (xs = 0; xs < 32; xs++)
 			{
-			gint x, y;
-			gint r, g, b;
+			gint x;
+			gint y;
+			gint r;
+			gint g;
+			gint b;
 			gint t;
 			guchar *xpos;
 
@@ -289,7 +299,9 @@ static gdouble alternate_image_sim_compare_fast(ImageSimilarityData *a, ImageSim
 		{
 		for (i = j; i < j + 32; i++)
 			{
-			gint cr, cg, cb;
+			gint cr;
+			gint cg;
+			gint cb;
 			gint cd;
 
 			cr = abs(a->avg_r[i] - b->avg_r[i]);
@@ -310,8 +322,12 @@ static gdouble alternate_image_sim_compare_fast(ImageSimilarityData *a, ImageSim
 gdouble image_sim_compare_transfo(ImageSimilarityData *a, ImageSimilarityData *b, gchar transfo)
 {
 	gint sim;
-	gint i1, i2, *i;
-	gint j1, j2, *j;
+	gint i1;
+	gint i2;
+	gint *i;
+	gint j1;
+	gint j2;
+	gint *j;
 
 	if (!a || !b || !a->filled || !b->filled) return 0.0;
 
@@ -338,7 +354,8 @@ gdouble image_sim_compare(ImageSimilarityData *a, ImageSimilarityData *b)
 	gint max_t = (options->rot_invariant_sim ? 8 : 1);
 
 	gint t;
-	gdouble score, max_score = 0;
+	gdouble score;
+	gdouble max_score = 0;
 
 	for(t = 0; t < max_t; t++)
 	{
@@ -358,8 +375,12 @@ generate all possible isometric transformations
 gdouble image_sim_compare_fast_transfo(ImageSimilarityData *a, ImageSimilarityData *b, gdouble min, gchar transfo)
 {
 	gint sim;
-	gint i1, i2, *i;
-	gint j1, j2, *j;
+	gint i1;
+	gint i2;
+	gint *i;
+	gint j1;
+	gint j2;
+	gint *j;
 
 	if (options->alternate_similarity_algorithm.enabled)
 		{
@@ -397,7 +418,8 @@ gdouble image_sim_compare_fast(ImageSimilarityData *a, ImageSimilarityData *b, g
 	gint max_t = (options->rot_invariant_sim ? 8 : 1);
 
 	gint t;
-	gdouble score, max_score = 0;
+	gdouble score;
+	gdouble max_score = 0;
 
 	for(t = 0; t < max_t; t++)
 	{

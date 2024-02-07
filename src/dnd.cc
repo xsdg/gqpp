@@ -86,7 +86,8 @@ static void pixbuf_draw_rect_unused(GdkPixbuf *pixbuf, gint x, gint y, gint w, g
 	gint rs;
 	guchar *pix;
 	guchar *p;
-	gint i, j;
+	gint i;
+	gint j;
 
 	alpha = gdk_pixbuf_get_has_alpha(pixbuf);
 	rs = gdk_pixbuf_get_rowstride(pixbuf);
@@ -109,10 +110,13 @@ static void pixbuf_draw_rect_unused(GdkPixbuf *pixbuf, gint x, gint y, gint w, g
 void dnd_set_drag_icon(GtkWidget *widget, GdkDragContext *context, GdkPixbuf *pixbuf, gint items)
 {
 	GdkPixbuf *dest;
-	gint w, h;
-	gint sw, sh;
+	gint w;
+	gint h;
+	gint sw;
+	gint sh;
 	PangoLayout *layout = nullptr;
-	gint x, y;
+	gint x;
+	gint y;
 
 	x = y = 0;
 
@@ -141,7 +145,8 @@ void dnd_set_drag_icon(GtkWidget *widget, GdkDragContext *context, GdkPixbuf *pi
 	if (items > 1)
 		{
 		gchar *buf;
-		gint lw,lh;
+		gint lw;
+		gint lh;
 
 		layout = gtk_widget_create_pango_layout(widget, nullptr);
 		buf = g_strdup_printf("<small> %d </small>", items);
