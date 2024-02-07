@@ -89,21 +89,23 @@ uint ddsGetAlphaMask(unsigned const char * buffer) {
 }
 
 // Image Type
-#define DXT1 (0x44585431)
-#define DXT2 (0x44585432)
-#define DXT3 (0x44585433)
-#define DXT4 (0x44585434)
-#define DXT5 (0x44585435)
-#define A1R5G5B5 ((1 << 16) | 2)
-#define X1R5G5B5 ((2 << 16) | 2)
-#define A4R4G4B4 ((3 << 16) | 2)
-#define X4R4G4B4 ((4 << 16) | 2)
-#define R5G6B5 ((5 << 16) | 2)
-#define R8G8B8 ((1 << 16) | 3)
-#define A8B8G8R8 ((1 << 16) | 4)
-#define X8B8G8R8 ((2 << 16) | 4)
-#define A8R8G8B8 ((3 << 16) | 4)
-#define X8R8G8B8 ((4 << 16) | 4)
+enum {
+	DXT1 = (0x44585431),
+	DXT2 = (0x44585432),
+	DXT3 = (0x44585433),
+	DXT4 = (0x44585434),
+	DXT5 = (0x44585435),
+	A1R5G5B5 = ((1 << 16) | 2),
+	X1R5G5B5 = ((2 << 16) | 2),
+	A4R4G4B4 = ((3 << 16) | 2),
+	X4R4G4B4 = ((4 << 16) | 2),
+	R5G6B5 = ((5 << 16) | 2),
+	R8G8B8 = ((1 << 16) | 3),
+	A8B8G8R8 = ((1 << 16) | 4),
+	X8B8G8R8 = ((2 << 16) | 4),
+	A8R8G8B8 = ((3 << 16) | 4),
+	X8R8G8B8 = ((4 << 16) | 4)
+};
 
 // RGBA Masks
 static const uint A1R5G5B5_MASKS[] = { 0x7C00, 0x03E0, 0x001F, 0x8000 };

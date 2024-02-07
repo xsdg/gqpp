@@ -51,7 +51,9 @@ struct CMData
 	gboolean remote;
 };
 
-#define PURGE_DIALOG_WIDTH 400
+enum {
+	PURGE_DIALOG_WIDTH = 400
+};
 
 /*
  *-----------------------------------------------------------------------------

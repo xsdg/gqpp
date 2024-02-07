@@ -31,8 +31,10 @@
 #include "utilops.h"
 #include "window.h"
 
-#define CONFIG_WINDOW_DEF_WIDTH		700
-#define CONFIG_WINDOW_DEF_HEIGHT	400
+enum {
+	CONFIG_WINDOW_DEF_WIDTH =		700,
+	CONFIG_WINDOW_DEF_HEIGHT =	400
+};
 
 
 

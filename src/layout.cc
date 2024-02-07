@@ -53,19 +53,27 @@
 #include <gdk/gdkx.h>
 #endif
 
-#define MAINWINDOW_DEF_WIDTH 700
-#define MAINWINDOW_DEF_HEIGHT 500
+enum {
+	MAINWINDOW_DEF_WIDTH = 700,
+	MAINWINDOW_DEF_HEIGHT = 500
+};
 
 #define MAIN_WINDOW_DIV_HPOS (MAINWINDOW_DEF_WIDTH / 2)
 #define MAIN_WINDOW_DIV_VPOS (MAINWINDOW_DEF_HEIGHT / 2)
 
-#define TOOLWINDOW_DEF_WIDTH 260
-#define TOOLWINDOW_DEF_HEIGHT 450
+enum {
+	TOOLWINDOW_DEF_WIDTH = 260,
+	TOOLWINDOW_DEF_HEIGHT = 450
+};
 
-#define PROGRESS_WIDTH 150
-#define ZOOM_LABEL_WIDTH 120
+enum {
+	PROGRESS_WIDTH = 150,
+	ZOOM_LABEL_WIDTH = 120
+};
 
-#define PANE_DIVIDER_SIZE 10
+enum {
+	PANE_DIVIDER_SIZE = 10
+};
 
 
 GList *layout_window_list = nullptr;
@@ -2224,8 +2232,10 @@ void layout_info_pixel_set(LayoutWindow *lw, gboolean show)
  *-----------------------------------------------------------------------------
  */
 
-#define CONFIG_WINDOW_DEF_WIDTH		600
-#define CONFIG_WINDOW_DEF_HEIGHT	400
+enum {
+	CONFIG_WINDOW_DEF_WIDTH =		600,
+	CONFIG_WINDOW_DEF_HEIGHT =	400
+};
 
 struct LayoutConfig
 {

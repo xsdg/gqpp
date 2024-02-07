@@ -60,8 +60,10 @@
 #include <gspell/gspell.h>
 #endif
 
-#define EDITOR_NAME_MAX_LENGTH 32
-#define EDITOR_COMMAND_MAX_LENGTH 1024
+enum {
+	EDITOR_NAME_MAX_LENGTH = 32,
+	EDITOR_COMMAND_MAX_LENGTH = 1024
+};
 
 static void image_overlay_set_text_colors();
 
@@ -155,8 +157,10 @@ static GtkWidget *help_search_engine_entry;
 static GtkWidget *log_window_f1_entry;
 
 
-#define CONFIG_WINDOW_DEF_WIDTH		700
-#define CONFIG_WINDOW_DEF_HEIGHT	600
+enum {
+	CONFIG_WINDOW_DEF_WIDTH =		700,
+	CONFIG_WINDOW_DEF_HEIGHT =	600
+};
 
 /*
  *-----------------------------------------------------------------------------
@@ -2460,7 +2464,9 @@ static void config_tab_windows(GtkWidget *notebook)
 			      options->fullscreen.disable_saver, &c_options->fullscreen.disable_saver);
 }
 
-#define PRE_FORMATTED_COLUMNS 5
+enum {
+	PRE_FORMATTED_COLUMNS = 5
+};
 static void config_tab_osd(GtkWidget *notebook)
 {
 	GtkWidget *hbox;
@@ -2998,7 +3004,9 @@ struct KeywordFindData
 	guint idle_id; /* event source id */
 };
 
-#define KEYWORD_DIALOG_WIDTH 400
+enum {
+	KEYWORD_DIALOG_WIDTH = 400
+};
 
 static void keywords_find_folder(KeywordFindData *kfd, FileData *dir_fd)
 {

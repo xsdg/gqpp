@@ -34,7 +34,9 @@
 #include "ui-misc.h"
 #include "ui-utildlg.h"
 
-#define MIN_HEIGHT 25
+enum {
+	MIN_HEIGHT = 25
+};
 /*
  *-------------------------------------------------------------------
  * EXIF widget

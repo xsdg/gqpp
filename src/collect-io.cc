@@ -31,9 +31,11 @@
 
 #define GQ_COLLECTION_MARKER "#" GQ_APPNAME
 
-#define GQ_COLLECTION_FAIL_MIN     300
-#define GQ_COLLECTION_FAIL_PERCENT 98
-#define GQ_COLLECTION_READ_BUFSIZE 4096
+enum {
+	GQ_COLLECTION_FAIL_MIN =     300,
+	GQ_COLLECTION_FAIL_PERCENT = 98,
+	GQ_COLLECTION_READ_BUFSIZE = 4096
+};
 
 struct CollectManagerEntry;
 
@@ -475,8 +477,10 @@ gboolean collection_load_only_geometry(CollectionData *cd, const gchar *path)
  *-------------------------------------------------------------------
  */
 
-#define COLLECT_MANAGER_ACTIONS_PER_IDLE 1000
-#define COLLECT_MANAGER_FLUSH_DELAY      10000
+enum {
+	COLLECT_MANAGER_ACTIONS_PER_IDLE = 1000,
+	COLLECT_MANAGER_FLUSH_DELAY =      10000
+};
 
 struct CollectManagerEntry
 {

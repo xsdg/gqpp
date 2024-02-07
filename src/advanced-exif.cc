@@ -31,7 +31,9 @@
 #include "window.h"
 #include "dnd.h"
 
-#define ADVANCED_EXIF_DATA_COLUMN_WIDTH 200
+enum {
+	ADVANCED_EXIF_DATA_COLUMN_WIDTH = 200
+};
 
 /*
  *-------------------------------------------------------------------

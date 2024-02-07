@@ -45,7 +45,9 @@
 #include "utilops.h"
 #include "view-file.h"
 
-#define FILE_COLUMN_POINTER 0
+enum {
+	FILE_COLUMN_POINTER = 0
+};
 
 static GtkWidget *layout_image_pop_menu(LayoutWindow *lw);
 static void layout_image_set_buttons(LayoutWindow *lw);

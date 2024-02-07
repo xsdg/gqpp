@@ -44,15 +44,20 @@
 #include "view-file.h"
 
 /* between these, the icon width is increased by thumb_max_width / 2 */
-#define THUMB_MIN_ICON_WIDTH 128
-#define THUMB_MAX_ICON_WIDTH 150
+enum {
+	THUMB_MIN_ICON_WIDTH = 128,
+	THUMB_MAX_ICON_WIDTH = 150
+};
 
-#define COLLECT_TABLE_MAX_COLUMNS 32
-#define THUMB_BORDER_PADDING 2
+enum {
+	COLLECT_TABLE_MAX_COLUMNS = 32,
+	THUMB_BORDER_PADDING = 2
+};
 
-#define COLLECT_TABLE_TIP_DELAY 500
-#define COLLECT_TABLE_TIP_DELAY_PATH (COLLECT_TABLE_TIP_DELAY * 1.7)
-
+enum {
+	COLLECT_TABLE_TIP_DELAY = 500,
+	COLLECT_TABLE_TIP_DELAY_PATH = 850
+};
 
 enum {
 	CTABLE_COLUMN_POINTER = 0,

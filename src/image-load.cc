@@ -66,8 +66,10 @@
 #include <fcntl.h>
 #include <sys/mman.h>
 
-#define IMAGE_LOADER_READ_BUFFER_SIZE_DEFAULT 	4096
-#define IMAGE_LOADER_IDLE_READ_LOOP_COUNT_DEFAULT 	1
+enum {
+	IMAGE_LOADER_READ_BUFFER_SIZE_DEFAULT = 	4096,
+	IMAGE_LOADER_IDLE_READ_LOOP_COUNT_DEFAULT = 	1
+};
 
 /* image loader class */
 

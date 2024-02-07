@@ -32,7 +32,9 @@
  *----------------------------------------------------------------------------
  */
 
-#define HISTMAP_SIZE 256
+enum {
+	HISTMAP_SIZE = 256
+};
 
 struct HistMap {
 	gulong r[HISTMAP_SIZE];

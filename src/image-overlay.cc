@@ -86,10 +86,14 @@ static OSDIcon osd_icons[] = {
 
 #define OSD_DATA "overlay-data"
 
-#define IMAGE_OSD_DEFAULT_DURATION 30
+enum {
+	IMAGE_OSD_DEFAULT_DURATION = 30
+};
 
-#define HISTOGRAM_HEIGHT 140
-#define HISTOGRAM_WIDTH  256
+enum {
+	HISTOGRAM_HEIGHT = 140,
+	HISTOGRAM_WIDTH =  256
+};
 
 static void image_osd_timer_schedule(OverlayStateData *osd);
 

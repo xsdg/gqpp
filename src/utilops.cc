@@ -81,7 +81,9 @@ GdkPixbuf *file_util_get_error_icon(FileData *fd, GList *list, GtkWidget *widget
 
 }
 
-#define DIALOG_WIDTH 750
+enum {
+	DIALOG_WIDTH = 750
+};
 
 enum ClipboardDestination {
 	CLIPBOARD_TEXT_PLAIN	= 0,
@@ -111,8 +113,10 @@ struct ClipboardData
  *--------------------------------------------------------------------------
  */
 
-#define DIALOG_DEF_IMAGE_DIM_X 150
-#define DIALOG_DEF_IMAGE_DIM_Y 100
+enum {
+	DIALOG_DEF_IMAGE_DIM_X = 150,
+	DIALOG_DEF_IMAGE_DIM_Y = 100
+};
 
 static void generic_dialog_add_image(GenericDialog *gd, GtkWidget *box,
 				     FileData *fd1, const gchar *header1,
@@ -477,11 +481,15 @@ static void generic_dialog_image_set(UtilityData *ud, FileData *fd)
 
 static gboolean file_util_write_metadata_first(UtilityType type, UtilityPhase phase, GList *flist, const gchar *dest_path, const gchar *editor_key, GtkWidget *parent);
 
-#define UTILITY_LIST_MIN_WIDTH  250
-#define UTILITY_LIST_MIN_HEIGHT 150
+enum {
+	UTILITY_LIST_MIN_WIDTH =  250,
+	UTILITY_LIST_MIN_HEIGHT = 150
+};
 
 /* thumbnail spec has a max depth of 4 (.thumb??/fail/appname/??.png) */
-#define UTILITY_DELETE_MAX_DEPTH 5
+enum {
+	UTILITY_DELETE_MAX_DEPTH = 5
+};
 
 static UtilityData *file_util_data_new(UtilityType type)
 {

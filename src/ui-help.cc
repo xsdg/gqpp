@@ -30,8 +30,10 @@
 #include "window.h"
 
 
-#define HELP_WINDOW_WIDTH 650
-#define HELP_WINDOW_HEIGHT 350
+enum {
+	HELP_WINDOW_WIDTH = 650,
+	HELP_WINDOW_HEIGHT = 350
+};
 
 
 /*

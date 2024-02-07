@@ -343,7 +343,9 @@ static void image_text_template_view_changed_cb(GtkWidget *, gpointer data)
 					  gtk_text_buffer_get_text(pTextBuffer, &iStart, &iEnd, TRUE));
 }
 
-#define PRE_FORMATTED_COLUMNS 4
+enum {
+	PRE_FORMATTED_COLUMNS = 4
+};
 static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 {
 	GtkWidget *group;

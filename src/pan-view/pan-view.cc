@@ -52,13 +52,19 @@
 #include <cmath>
 
 
-#define PAN_WINDOW_DEFAULT_WIDTH 720
-#define PAN_WINDOW_DEFAULT_HEIGHT 500
+enum {
+	PAN_WINDOW_DEFAULT_WIDTH = 720,
+	PAN_WINDOW_DEFAULT_HEIGHT = 500
+};
 
-#define PAN_TILE_SIZE 512
+enum {
+	PAN_TILE_SIZE = 512
+};
 
 #define ZOOM_INCREMENT 1.0
-#define ZOOM_LABEL_WIDTH 64
+enum {
+	ZOOM_LABEL_WIDTH = 64
+};
 
 
 #define PAN_PREF_GROUP		"pan_view_options"

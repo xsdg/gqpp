@@ -63,8 +63,10 @@
 #include <sys/wait.h>
 #include "keymap-template.h"
 
-#define MENU_EDIT_ACTION_OFFSET 16
-#define FILE_COLUMN_POINTER 0
+enum {
+	MENU_EDIT_ACTION_OFFSET = 16,
+	FILE_COLUMN_POINTER = 0
+};
 
 static gboolean layout_bar_enabled(LayoutWindow *lw);
 static gboolean layout_bar_sort_enabled(LayoutWindow *lw);

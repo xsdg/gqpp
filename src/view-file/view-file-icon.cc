@@ -37,14 +37,20 @@
 #include "view-file.h"
 
 /* between these, the icon width is increased by thumb_max_width / 2 */
-#define THUMB_MIN_ICON_WIDTH 128
-#define THUMB_MAX_ICON_WIDTH 160
+enum {
+	THUMB_MIN_ICON_WIDTH = 128,
+	THUMB_MAX_ICON_WIDTH = 160
+};
 #define THUMB_MIN_ICON_WIDTH_WITH_MARKS TOGGLE_SPACING * FILEDATA_MARKS_SIZE
 
-#define VFICON_MAX_COLUMNS 32
-#define THUMB_BORDER_PADDING 2
+enum {
+	VFICON_MAX_COLUMNS = 32,
+	THUMB_BORDER_PADDING = 2
+};
 
-#define VFICON_TIP_DELAY 500
+enum {
+	VFICON_TIP_DELAY = 500
+};
 
 enum {
 	FILE_COLUMN_POINTER = 0,

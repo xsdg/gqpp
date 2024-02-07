@@ -28,8 +28,10 @@
 #include "ui-fileops.h"
 #include "utilops.h"
 
-#define EDITOR_WINDOW_WIDTH 500
-#define EDITOR_WINDOW_HEIGHT 300
+enum {
+	EDITOR_WINDOW_WIDTH = 500,
+	EDITOR_WINDOW_HEIGHT = 300
+};
 
 
 

@@ -519,8 +519,10 @@ void shift_color(GdkRGBA *src, gshort val, gint direction)
  *-------------------------------------------------------------------
  */
 
-#define AUTO_SCROLL_DEFAULT_SPEED 100
-#define AUTO_SCROLL_DEFAULT_REGION 20
+enum {
+	AUTO_SCROLL_DEFAULT_SPEED = 100,
+	AUTO_SCROLL_DEFAULT_REGION = 20
+};
 
 struct AutoScrollData
 {

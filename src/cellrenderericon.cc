@@ -20,7 +20,9 @@
 #include "main.h"
 #include "cellrenderericon.h"
 
-#define FIXED_ICON_SIZE_MAX 512
+enum {
+	FIXED_ICON_SIZE_MAX = 512
+};
 
 
 static void gqv_cell_renderer_icon_get_property(GObject		*object,

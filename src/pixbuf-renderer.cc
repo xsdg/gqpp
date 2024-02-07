@@ -58,19 +58,27 @@ enum ExifOrientationType {
 #define PR_ZOOM_MAX 32.0
 
 /* distance to drag mouse to disable image flip */
-#define PR_DRAG_SCROLL_THRESHHOLD 4
+enum {
+	PR_DRAG_SCROLL_THRESHHOLD = 4
+};
 
 /* increase pan rate when holding down shift */
-#define PR_PAN_SHIFT_MULTIPLIER 6
+enum {
+	PR_PAN_SHIFT_MULTIPLIER = 6
+};
 
 /* scroller config */
-#define PR_SCROLLER_UPDATES_PER_SEC 30
-#define PR_SCROLLER_DEAD_ZONE 6
+enum {
+	PR_SCROLLER_UPDATES_PER_SEC = 30,
+	PR_SCROLLER_DEAD_ZONE = 6
+};
 
 /* when scaling image to below this size, use nearest pixel for scaling
  * (below about 4, the other scale types become slow generating their conversion tables)
  */
-#define PR_MIN_SCALE_SIZE 8
+//~ enum {
+//~ PR_MIN_SCALE_SIZE = 8
+//~ };
 
 enum {
 	SIGNAL_ZOOM = 0,
@@ -2213,10 +2221,12 @@ static void pr_signals_connect(PixbufRenderer *pr)
  *-------------------------------------------------------------------
  */
 
-#define COLOR_BYTES 3   /* rgb */
-#define RC 0            /* Red-Cyan */
-#define GM 1            /* Green-Magenta */
-#define YB 2            /* Yellow-Blue */
+enum {
+	COLOR_BYTES = 3,   /* rgb */
+	RC = 0,            /* Red-Cyan */
+	GM = 1,            /* Green-Magenta */
+	YB = 2            /* Yellow-Blue */
+};
 
 static void pr_create_anaglyph_color(GdkPixbuf *pixbuf, GdkPixbuf *right, gint x, gint y, gint w, gint h, guint mode)
 {

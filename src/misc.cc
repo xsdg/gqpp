@@ -135,7 +135,9 @@ gchar *expand_tilde(const gchar *filename)
  */
 
 #define GEOCODE_NAME "geocode-parameters.awk"
-#define BUFSIZE 128
+enum {
+	BUFSIZE = 128
+};
 
 gchar *decode_geo_script(const gchar *path_dir, const gchar *input_text)
 {

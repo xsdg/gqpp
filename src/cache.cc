@@ -393,7 +393,9 @@ static gboolean cache_sim_read_similarity(FILE *f, gchar *buf, gint s, CacheData
 	return FALSE;
 }
 
-#define CACHE_LOAD_LINE_NOISE 8
+enum {
+	CACHE_LOAD_LINE_NOISE = 8
+};
 
 CacheData *cache_sim_data_load(const gchar *path)
 {

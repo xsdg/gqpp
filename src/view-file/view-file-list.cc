@@ -1936,7 +1936,9 @@ gboolean vflist_refresh(ViewFile *vf)
 
 /* this overrides the low default of a GtkCellRenderer from 100 to CELL_HEIGHT_OVERRIDE, something sane for our purposes */
 
-#define CELL_HEIGHT_OVERRIDE 512
+enum {
+	CELL_HEIGHT_OVERRIDE = 512
+};
 
 static void cell_renderer_height_override(GtkCellRenderer *renderer)
 {

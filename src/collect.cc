@@ -37,8 +37,10 @@
 #include "utilops.h"
 #include "window.h"
 
-#define COLLECT_DEF_WIDTH 440
-#define COLLECT_DEF_HEIGHT 450
+enum {
+	COLLECT_DEF_WIDTH = 440,
+	COLLECT_DEF_HEIGHT = 450
+};
 
 /**
  *  list of paths to collections */

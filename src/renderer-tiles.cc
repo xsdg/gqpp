@@ -852,7 +852,9 @@ static GdkPixbuf *rt_get_spare_tile(RendererTiles *rt)
 	return rt->spare_tile;
 }
 
-#define COLOR_BYTES 3	/* rgb */
+enum {
+	COLOR_BYTES = 3	/* rgb */
+};
 
 static void rt_tile_rotate_90_clockwise(RendererTiles *rt, GdkPixbuf **tile, gint x, gint y, gint w, gint h)
 {

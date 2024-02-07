@@ -50,8 +50,10 @@
 #include <cmath>
 
 
-#define DUPE_DEF_WIDTH 800
-#define DUPE_DEF_HEIGHT 400
+enum {
+	DUPE_DEF_WIDTH = 800,
+	DUPE_DEF_HEIGHT = 400
+};
 #define DUPE_PROGRESS_PULSE_STEP 0.0001
 
 /** column assignment order (simply change them here)
@@ -3967,7 +3969,9 @@ static void dupe_menu_setup(DupeWindow *dw)
 
 /* this overrides the low default of a GtkCellRenderer from 100 to CELL_HEIGHT_OVERRIDE, something sane for our purposes */
 
-#define CELL_HEIGHT_OVERRIDE 512
+enum {
+	CELL_HEIGHT_OVERRIDE = 512
+};
 
 void cell_renderer_height_override(GtkCellRenderer *renderer)
 {

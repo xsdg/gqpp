@@ -47,9 +47,13 @@
 
 #include "glua.h"
 
-#define SERVER_MAX_CLIENTS 8
+enum {
+	SERVER_MAX_CLIENTS = 8
+};
 
-#define REMOTE_SERVER_BACKLOG 4
+enum {
+	REMOTE_SERVER_BACKLOG = 4
+};
 
 
 #ifndef UNIX_PATH_MAX

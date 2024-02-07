@@ -53,8 +53,10 @@
  */
 
 
-#define THUMB_SIZE_NORMAL 128
-#define THUMB_SIZE_LARGE  256
+enum {
+	THUMB_SIZE_NORMAL = 128,
+	THUMB_SIZE_LARGE =  256
+};
 
 #define THUMB_MARKER_URI    "tEXt::Thumb::URI"
 #define THUMB_MARKER_MTIME  "tEXt::Thumb::MTime"
@@ -62,11 +64,6 @@
 #define THUMB_MARKER_WIDTH  "tEXt::Thumb::Image::Width"
 #define THUMB_MARKER_HEIGHT "tEXt::Thumb::Image::Height"
 #define THUMB_MARKER_APP    "tEXt::Software"
-
-#define THUMB_PERMS_FOLDER 0700
-#define THUMB_PERMS_THUMB  0600
-
-
 
 /*
  *-----------------------------------------------------------------------------
@@ -328,7 +325,7 @@ static void thumb_loader_std_save(ThumbLoaderStd *tl, GdkPixbuf *pixbuf)
 		}
 	else
 		{
-		recursive_mkdir_if_not_exists(base_path, THUMB_PERMS_FOLDER);
+		recursive_mkdir_if_not_exists(base_path, S_IRWXU);
 		}
 	g_free(base_path);
 
@@ -357,7 +354,7 @@ static void thumb_loader_std_save(ThumbLoaderStd *tl, GdkPixbuf *pixbuf)
 					  NULL);
 		if (success)
 			{
-			chmod(pathl, (tl->cache_local) ? tl->source_mode : THUMB_PERMS_THUMB);
+			chmod(pathl, (tl->cache_local) ? tl->source_mode : S_IRUSR & S_IWUSR);
 			success = rename_file(tmp_path, tl->thumb_path);
 			}
 

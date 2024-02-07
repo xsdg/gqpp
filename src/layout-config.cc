@@ -231,7 +231,9 @@ static void layout_config_table_button(GtkWidget *table, LayoutLocation l, const
 	gtk_widget_show(button);
 }
 
-#define LAYOUT_STYLE_SIZE 48
+enum {
+	LAYOUT_STYLE_SIZE = 48
+};
 
 static GtkWidget *layout_config_widget(GtkWidget *group, GtkWidget *box, gint style, LayoutConfig *lc)
 {
