@@ -179,7 +179,7 @@ static void collection_save_or_append_dialog(gint type, CollectionData *cd)
 
 		gq_gtk_box_pack_start(GTK_BOX(gdlg->vbox), scrolled, TRUE,TRUE, 0);
 
-		save_as_label = gtk_label_new("Save collection as:");
+		save_as_label = gtk_label_new(_("Save collection as:"));
 		gq_gtk_box_pack_start(GTK_BOX(gdlg->vbox), save_as_label, FALSE,FALSE, 0);
 		gtk_label_set_xalign(GTK_LABEL(save_as_label), 0.0);
 		gtk_widget_show(save_as_label);
