@@ -115,12 +115,12 @@ then
 $(find src -name "*.cc" | sort)
 EOF
 else
-	total_files=$(git diff --name-only ./src/*.cc | wc --lines)
+	total_files=$(git diff --name-only ./src/*.cc ./src/pan-view/*.cc ./src/view-file/*.cc | wc --lines)
 
 	while read -r file
 	do
 		process_file
 	done << EOF
-$(git diff --name-only ./src/*.cc | sort)
+$(git diff --name-only ./src/*.cc ./src/pan-view/*.cc ./src/view-file/*.cc | sort)
 EOF
 fi
