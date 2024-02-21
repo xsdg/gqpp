@@ -170,7 +170,7 @@
   <section id="CacheMaintenance">
     <title>Command line program</title>
     <para>
-      Geeqie can be run as a command line program: <code>geeqie --cache-maintenance &lt;path&gt;</code>. It will recursively remove orphaned thumbnails and .sim files, and create thumbnails and similarity data for all images found.
+      Geeqie can be run as a command line program: <code>geeqie --cache-maintenance &lt;path to images&gt;</code>. It will recursively remove orphaned thumbnails and .sim files, and create thumbnails and similarity data for all images found.
     <para/>
       It may also be called from <code>cron</code> or <code>anacron</code> thus enabling automatic updating of the cached data for all your images.
     </para>
