@@ -100,6 +100,8 @@ jobs:
     #~ - run: sudo apt-get install libjxl-dev
     #~ - run: sudo apt-get install yelp-tools
     - uses: actions/checkout@v3
+      with:
+        fetch-depth: '0'
     - uses: actions/setup-python@v4
     - run: sudo apt-get install xvfb
     - uses: BSFishy/meson-build@v1.0.3
