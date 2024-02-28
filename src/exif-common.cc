@@ -51,10 +51,9 @@
 #include "jpeg-parser.h"
 #include "main-defines.h"
 #include "misc.h"
+#include "third-party/zonedetect.h"
 #include "typedefs.h"
 #include "ui-fileops.h"
-#include "zonedetect.h"
-
 struct ExifData;
 struct ExifItem;
 struct FileCacheData;

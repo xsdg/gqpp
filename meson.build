@@ -706,7 +706,7 @@ if running_from_git
     clang_tidy_exe = find_program('clang-tidy', required : false)
     if clang_tidy_exe.found()
         git_exe = find_program('git', required : true)
-        modified_file_list = run_command(git_exe, 'diff', 'origin/master', '--name-only', './src/*.cc', './src/pan-view/*.cc', './src/view-file/*.cc', check: true)
+        modified_file_list = run_command(git_exe, 'diff', 'origin/master', '--name-only', '--diff-filter=d', './src/*.cc', './src/pan-view/*.cc', './src/view-file/*.cc', check: true)
         modified_files = modified_file_list.stdout().strip().split('\n')
 
         foreach modified_file : modified_files

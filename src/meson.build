@@ -13,7 +13,6 @@
 
 main_sources = files('advanced-exif.cc',
 'advanced-exif.h',
-'backward.h',
 'bar.cc',
 'bar-comment.cc',
 'bar-comment.h',
@@ -228,18 +227,15 @@ main_sources = files('advanced-exif.cc',
 'view-dir-tree.cc',
 'view-dir-tree.h',
 'view-file.h',
-'whereami.cc',
-'whereami.h',
 'window.cc',
-'window.h',
-'zonedetect.cc',
-'zonedetect.h')
+'window.h')
 
 project_sources += main_sources
 
 subdir('authors')
 subdir('icons')
 subdir('pan-view')
+subdir('third-party')
 subdir('ui')
 subdir('view-file')
 

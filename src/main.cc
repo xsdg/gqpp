@@ -48,7 +48,7 @@
 #endif
 
 #if HAVE_DEVELOPER
-#include "backward.h"
+#include "third-party/backward.h"
 #endif
 
 #include "cache-maint.h"
@@ -77,10 +77,10 @@
 #include "rcfile.h"
 #include "remote.h"
 #include "secure-save.h"
+#include "third-party/whereami.h"
 #include "thumb.h"
 #include "ui-fileops.h"
 #include "ui-utildlg.h"
-#include "whereami.h"
 
 gboolean thumb_format_changed = FALSE;
 static RemoteConnection *remote_connection = nullptr;

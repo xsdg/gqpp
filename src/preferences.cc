@@ -69,6 +69,7 @@
 #include "pixbuf-util.h"
 #include "rcfile.h"
 #include "slideshow.h"
+#include "third-party/zonedetect.h"
 #include "toolbar.h"
 #include "trash.h"
 #include "typedefs.h"
@@ -78,7 +79,6 @@
 #include "ui-utildlg.h"
 #include "utilops.h"
 #include "window.h"
-#include "zonedetect.h"
 
 struct ZoneDetect;
 

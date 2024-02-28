@@ -9,7 +9,7 @@
 
 // in case you want to #include "whereami.cc" in a larger compilation unit
 #if !defined(WHEREAMI_H)
-#include <whereami.h>
+#include <third-party/whereami.h>
 #endif
 
 #ifdef __cplusplus
