@@ -1852,13 +1852,14 @@ static gboolean pan_window_delete_cb(GtkWidget *, GdkEventAny *, gpointer data)
 static void pan_window_new_real(FileData *dir_fd)
 {
 	PanWindow *pw;
-	GtkWidget *vbox;
+	GdkGeometry geometry;
 	GtkWidget *box;
 	GtkWidget *combo;
-	GtkWidget *hbox;
 	GtkWidget *frame;
-	GtkWidget *table;
-	GdkGeometry geometry;
+	GtkWidget *hbox;
+	GtkWidget *hbox_imd_widget;
+	GtkWidget *vbox;
+	GtkWidget *vbox_imd_widget;
 
 	pw = g_new0(PanWindow, 1);
 
@@ -1904,8 +1905,7 @@ static void pan_window_new_real(FileData *dir_fd)
 
 	pref_spacer(box, 0);
 	pref_label_new(box, _("Location:"));
-	combo = tab_completion_new_with_history(&pw->path_entry, dir_fd->path, "pan_view_path", -1,
-						pan_window_entry_activate_cb, pw);
+	combo = tab_completion_new_with_history(&pw->path_entry, dir_fd->path, "pan_view_path", -1, pan_window_entry_activate_cb, pw);
 	gq_gtk_box_pack_start(GTK_BOX(box), combo, TRUE, TRUE, 0);
 	gtk_widget_show(combo);
 
@@ -1917,8 +1917,7 @@ static void pan_window_new_real(FileData *dir_fd)
 	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("Grid"));
 
 	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), pw->layout);
-	g_signal_connect(G_OBJECT(combo), "changed",
-			 G_CALLBACK(pan_window_layout_change_cb), pw);
+	g_signal_connect(G_OBJECT(combo), "changed", G_CALLBACK(pan_window_layout_change_cb), pw);
 	gq_gtk_box_pack_start(GTK_BOX(box), combo, FALSE, FALSE, 0);
 	gtk_widget_show(combo);
 
@@ -1935,50 +1934,52 @@ static void pan_window_new_real(FileData *dir_fd)
 	gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), _("1:1 (100%)"));
 
 	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), pw->size);
-	g_signal_connect(G_OBJECT(combo), "changed",
-			 G_CALLBACK(pan_window_layout_size_cb), pw);
+	g_signal_connect(G_OBJECT(combo), "changed", G_CALLBACK(pan_window_layout_size_cb), pw);
 	gq_gtk_box_pack_start(GTK_BOX(box), combo, FALSE, FALSE, 0);
 	gtk_widget_show(combo);
-
-	table = pref_table_new(vbox, 2, 2, FALSE, TRUE);
-	gtk_grid_set_row_spacing(GTK_GRID(table), 2);
-	gtk_grid_set_column_spacing(GTK_GRID(table), 2);
 
 	pw->imd = image_new(TRUE);
 	pw->imd_normal = pw->imd;
 
-	g_signal_connect(G_OBJECT(pw->imd->pr), "zoom",
-			 G_CALLBACK(pan_window_image_zoom_cb), pw);
-	g_signal_connect(G_OBJECT(pw->imd->pr), "scroll_notify",
-			 G_CALLBACK(pan_window_image_scroll_notify_cb), pw);
+	g_signal_connect(G_OBJECT(pw->imd->pr), "zoom", G_CALLBACK(pan_window_image_zoom_cb), pw);
+	g_signal_connect(G_OBJECT(pw->imd->pr), "scroll_notify", G_CALLBACK(pan_window_image_scroll_notify_cb), pw);
 
-	gq_gtk_grid_attach(GTK_GRID(table), pw->imd->widget, 0, 1, 0, 1, static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), 0, 0);
+	vbox_imd_widget = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+	hbox_imd_widget = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+
+	gtk_box_pack_start(GTK_BOX(vbox_imd_widget), pw->imd->widget, true, true, 0);
+
+	pw->scrollbar_h = gtk_scrollbar_new(GTK_ORIENTATION_HORIZONTAL, nullptr);
+	g_signal_connect(G_OBJECT(pw->scrollbar_h), "value_changed",  G_CALLBACK(pan_window_scrollbar_h_value_cb), pw);
+	gtk_box_pack_start(GTK_BOX(vbox_imd_widget), pw->scrollbar_h, false, false, 0);
+
+	gtk_box_pack_start(GTK_BOX(hbox_imd_widget), vbox_imd_widget, true, true, 0);
+
+	pw->scrollbar_v = gtk_scrollbar_new(GTK_ORIENTATION_VERTICAL, nullptr);
+	g_signal_connect(G_OBJECT(pw->scrollbar_v), "value_changed", G_CALLBACK(pan_window_scrollbar_v_value_cb), pw);
+	gtk_box_pack_start(GTK_BOX(hbox_imd_widget), pw->scrollbar_v, false, false, 0);
+
+	gtk_box_pack_start(GTK_BOX(vbox), hbox_imd_widget, true, true, 0);
+
+	gtk_widget_show(GTK_WIDGET(hbox_imd_widget));
 	gtk_widget_show(GTK_WIDGET(pw->imd->widget));
+	gtk_widget_show(GTK_WIDGET(vbox));
+	gtk_widget_show(GTK_WIDGET(vbox_imd_widget));
+	gtk_widget_show(pw->scrollbar_h);
+	gtk_widget_show(pw->scrollbar_v);
 
 	pan_window_dnd_init(pw);
 
 	pan_image_set_buttons(pw, pw->imd);
-
-	pw->scrollbar_h = gtk_scrollbar_new(GTK_ORIENTATION_HORIZONTAL, nullptr);
-	g_signal_connect(G_OBJECT(pw->scrollbar_h), "value_changed",
-			 G_CALLBACK(pan_window_scrollbar_h_value_cb), pw);
-	gq_gtk_grid_attach(GTK_GRID(table), pw->scrollbar_h, 0, 1, 1, 2,  static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), static_cast<GtkAttachOptions>(0), 0, 0);
-	gtk_widget_show(pw->scrollbar_h);
-
-	pw->scrollbar_v = gtk_scrollbar_new(GTK_ORIENTATION_VERTICAL, nullptr);
-	g_signal_connect(G_OBJECT(pw->scrollbar_v), "value_changed",
-			 G_CALLBACK(pan_window_scrollbar_v_value_cb), pw);
-	gq_gtk_grid_attach(GTK_GRID(table), pw->scrollbar_v, 1, 2, 0, 1,  static_cast<GtkAttachOptions>(0), static_cast<GtkAttachOptions>(GTK_FILL | GTK_EXPAND), 0, 0);
-	gtk_widget_show(pw->scrollbar_v);
 
 	/* find bar */
 
 	pw->search_ui = pan_search_ui_new(pw);
 	gq_gtk_box_pack_start(GTK_BOX(vbox), pw->search_ui->search_box, FALSE, FALSE, 2);
 
-    /* filter bar */
-    pw->filter_ui = pan_filter_ui_new(pw);
-    gq_gtk_box_pack_start(GTK_BOX(vbox), pw->filter_ui->filter_box, FALSE, FALSE, 2);
+	/* filter bar */
+	pw->filter_ui = pan_filter_ui_new(pw);
+	gq_gtk_box_pack_start(GTK_BOX(vbox), pw->filter_ui->filter_box, FALSE, FALSE, 2);
 
 	/* status bar */
 
@@ -2017,10 +2018,8 @@ static void pan_window_new_real(FileData *dir_fd)
 	gq_gtk_box_pack_end(GTK_BOX(box), pw->filter_ui->filter_button, FALSE, FALSE, 0);
 	gtk_widget_show(pw->filter_ui->filter_button);
 
-	g_signal_connect(G_OBJECT(pw->window), "delete_event",
-			 G_CALLBACK(pan_window_delete_cb), pw);
-	g_signal_connect(G_OBJECT(pw->window), "key_press_event",
-			 G_CALLBACK(pan_window_key_press_cb), pw);
+	g_signal_connect(G_OBJECT(pw->window), "delete_event", G_CALLBACK(pan_window_delete_cb), pw);
+	g_signal_connect(G_OBJECT(pw->window), "key_press_event", G_CALLBACK(pan_window_key_press_cb), pw);
 
 	gtk_window_set_default_size(GTK_WINDOW(pw->window), PAN_WINDOW_DEFAULT_WIDTH, PAN_WINDOW_DEFAULT_HEIGHT);
 
