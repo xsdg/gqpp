@@ -706,18 +706,13 @@ if running_from_git
     clang_tidy_exe = find_program('clang-tidy', required : false)
     if clang_tidy_exe.found()
         git_exe = find_program('git', required : true)
-        modified_file_list = run_command(git_exe, 'diff', 'origin/master', '--name-only', '--diff-filter=d', './src/*.cc', './src/pan-view/*.cc', './src/view-file/*.cc', check: true)
-        modified_files = modified_file_list.stdout().strip().split('\n')
 
-        foreach modified_file : modified_files
-            if modified_file.endswith('.cc')
-                modified_file_path = '@0@'.format(modified_file)
-                path_array = modified_file_path.split('/')
-                modified_file_name = path_array[path_array.length() - 1]
-                modified_file_full_path = join_paths(meson.project_source_root(), modified_file)
+        foreach source_file : main_sources + pan_view_sources + view_file_sources
+            if fs.name(source_file).endswith('.cc')
+                source_file_name = fs.name(source_file)
                 config_file = join_paths(meson.project_source_root(), '.clang-tidy')
 
-                test('Code Correctness_ ' + modified_file_name, clang_tidy_exe, args : ['-p', './build', '-quiet', '--config-file', config_file,  modified_file_full_path], timeout : 100)
+                test('Code Correctness_ ' + source_file_name, clang_tidy_exe, args : ['-p', './build', '-quiet', '--config-file', config_file,  source_file], timeout : 100)
             endif
         endforeach
 

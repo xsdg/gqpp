@@ -99,7 +99,7 @@ guint32 tiff_byte_get_int32(const guchar *f, TiffByteOrder bo)
 	if (bo == TIFF_BYTE_ORDER_INTEL)
 		return GUINT32_FROM_LE(align_buf);
 
-	return GUINT32_FROM_BE(align_buf);
+	return GUINT32_FROM_BE(align_buf); // NOLINT
 }
 
 #pragma GCC diagnostic push
@@ -130,7 +130,7 @@ void tiff_byte_put_int32_unused(guchar *f, guint32 n, TiffByteOrder bo)
 		}
 	else
 		{
-		align_buf = GUINT32_TO_BE(n);
+		align_buf = GUINT32_TO_BE(n); // NOLINT
 		}
 
 	memcpy(f, &align_buf, sizeof(guint32));
