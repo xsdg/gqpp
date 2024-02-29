@@ -40,6 +40,17 @@
 #include "ui-menu.h"
 #include "ui-misc.h"
 
+
+namespace
+{
+
+void remove_child_from_parent(gpointer data)
+{
+	gtk_container_remove(GTK_CONTAINER(gtk_widget_get_parent(GTK_WIDGET(data))), GTK_WIDGET(data));
+}
+
+}
+
 struct KnownPanes
 {
 	PaneType type;
@@ -285,7 +296,7 @@ static void height_spin_key_press_cb(GtkEventControllerKey *, gint keyval, guint
 {
 	if ((keyval == GDK_KEY_Return || keyval == GDK_KEY_Escape))
 		{
-		g_object_unref(GTK_WIDGET(data));
+		gq_gtk_widget_destroy(GTK_WIDGET(data));
 		}
 }
 
@@ -351,7 +362,7 @@ static void bar_expander_height_cb(GtkWidget *, gpointer data)
 static void bar_expander_delete_cb(GtkWidget *, gpointer data)
 {
 	auto expander = static_cast<GtkWidget *>(data);
-	g_object_unref(expander);
+	gtk_container_remove(GTK_CONTAINER(gtk_widget_get_parent(expander)), expander);
 }
 
 static void bar_expander_add_cb(GtkWidget *widget, gpointer)
@@ -599,7 +610,7 @@ void bar_clear(GtkWidget *bar)
 
 	list = gtk_container_get_children(GTK_CONTAINER(bd->vbox));
 
-	g_list_free_full(list, reinterpret_cast<GDestroyNotify>(g_object_unref));
+	g_list_free_full(list, reinterpret_cast<GDestroyNotify>(remove_child_from_parent));
 }
 
 void bar_write_config(GtkWidget *bar, GString *outstr, gint indent)

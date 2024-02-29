@@ -257,7 +257,7 @@ static void bar_pane_comment_destroy(GtkWidget *, gpointer data)
 
 	file_data_unregister_notify_func(bar_pane_comment_notify_cb, pcd);
 #if HAVE_SPELL
-	g_object_unref(pcd->gspell_view);
+	gtk_container_remove(GTK_CONTAINER(gtk_widget_get_parent(pcd->comment_view)), pcd->comment_view);
 #endif
 	file_data_unref(pcd->fd);
 	g_free(pcd->key);

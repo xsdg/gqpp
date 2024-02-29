@@ -1509,7 +1509,7 @@ static void font_response_cb(GtkDialog *dialog, gint response_id, gpointer)
 		g_free(font);
 		}
 
-	g_object_unref(dialog);
+	gq_gtk_widget_destroy(GTK_WIDGET(dialog));
 }
 
 static void image_overlay_set_font_cb(GtkWidget *widget, gpointer)
@@ -1554,7 +1554,7 @@ static void text_color_response_cb(GtkDialog *dialog, gint response_id, gpointer
 		c_options->image_overlay.text_alpha = color.alpha * 255;
 		}
 
-	g_object_unref(dialog);
+	gq_gtk_widget_destroy(GTK_WIDGET(dialog));
 }
 
 static void image_overlay_set_text_color_cb(GtkWidget *widget, gpointer)

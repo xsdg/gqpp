@@ -553,7 +553,7 @@ static gboolean appimage_notification_close_cb(gpointer data)
 
 	if (appimage_data->window)
 		{
-		g_object_unref(appimage_data->window);
+		gq_gtk_widget_destroy(appimage_data->window);
 		}
 
 	g_thread_pool_free(appimage_data->thread_pool, TRUE, TRUE);

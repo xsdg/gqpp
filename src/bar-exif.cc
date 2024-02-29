@@ -133,7 +133,10 @@ static void bar_pane_exif_setup_entry_box(PaneExifData *ped, ExifEntry *ee)
 	gboolean horizontal = !ee->editable;
 	gboolean editable = ee->editable;
 
-	if (ee->box) g_object_unref(ee->box);
+	if (ee->box)
+		{
+		gtk_container_remove(GTK_CONTAINER(gtk_widget_get_parent(ee->box)), ee->box);
+		}
 
 	ee->box = horizontal ? gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0) : gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	gq_gtk_container_add(GTK_WIDGET(ee->ebox), ee->box);
@@ -618,7 +621,7 @@ static void bar_pane_exif_conf_dialog_cb(GtkWidget *, gpointer data)
 static void bar_pane_exif_delete_entry_cb(GtkWidget *, gpointer data)
 {
 	auto entry = static_cast<GtkWidget *>(data);
-	g_object_unref(entry);
+	gtk_container_remove(GTK_CONTAINER(gtk_widget_get_parent(entry)), entry);
 }
 
 #if HAVE_GTK4

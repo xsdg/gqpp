@@ -385,7 +385,7 @@ static void tip_show(ViewFile *vf)
 
 static void tip_hide(ViewFile *vf)
 {
-	if (VFICON(vf)->tip_window) g_object_unref(VFICON(vf)->tip_window);
+	if (VFICON(vf)->tip_window) gq_gtk_widget_destroy(VFICON(vf)->tip_window);
 	VFICON(vf)->tip_window = nullptr;
 }
 
