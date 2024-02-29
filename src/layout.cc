@@ -395,7 +395,7 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 		gtk_widget_show(box_menu_tabcomp);
 
 		open_menu = layout_actions_menu_bar(lw);
-		gtk_widget_set_tooltip_text(open_menu, "Open application menu");
+		gtk_widget_set_tooltip_text(open_menu, _("Open application menu"));
 		gq_gtk_box_pack_start(GTK_BOX(box_menu_tabcomp), open_menu, FALSE, FALSE, 0);
 		gq_gtk_box_pack_start(GTK_BOX(box_menu_tabcomp), tabcomp, TRUE, TRUE, 0);
 		gq_gtk_box_pack_start(GTK_BOX(box), box_menu_tabcomp, FALSE, FALSE, 0);
@@ -2757,7 +2757,7 @@ LayoutWindow *layout_new_with_geometry(FileData *dir_fd, LayoutOptions *lop,
 		pixbuf = pixbuf_inline(PIXBUF_INLINE_LOGO);
 
 		/** @FIXME the zoom value set here is the value, which is then copied again and again
-		   in "Leave Zoom at previous setting" mode. This is not ideal.  */
+		   in 'Leave Zoom at previous setting' mode. This is not ideal.  */
 		image_change_pixbuf(lw->image, pixbuf, 0.0, FALSE);
 		g_object_unref(pixbuf);
 		}

@@ -461,7 +461,7 @@ static LogWindow *log_window_create(LayoutWindow *lw)
 	gtk_widget_show_all(logwin->wrap);
 
 	logwin->timer_data = gtk_toggle_button_new();
-	label = gtk_label_new("Timer");
+	label = gtk_label_new(_("Timer"));
 	gtk_widget_set_tooltip_text(GTK_WIDGET(logwin->timer_data), _("Enable timer data"));
 	gq_gtk_container_add(GTK_WIDGET(logwin->timer_data), label) ;
 	gq_gtk_box_pack_start(GTK_BOX(hbox),logwin->timer_data, FALSE, FALSE, 0) ;

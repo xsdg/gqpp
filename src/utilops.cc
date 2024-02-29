@@ -245,7 +245,7 @@ static void generic_dialog_add_image(GenericDialog *gd, GtkWidget *box,
  * @param data
  * @returns
  *
- * \image html file_util_gen_dlg.png "Typical implementation" width=200
+ * \image html file_util_gen_dlg.png 'Typical implementation' width=200
  */
 GenericDialog *file_util_gen_dlg(const gchar *title,
 				 const gchar *role,
@@ -272,7 +272,7 @@ GenericDialog *file_util_gen_dlg(const gchar *title,
  * @param data
  * @returns
  *
- * \image html file_util_file_dlg.png "Typical implementation including optional filter, buttons and path widgets" width=300
+ * \image html file_util_file_dlg.png 'Typical implementation including optional filter, buttons and path widgets' width=300
  */
 FileDialog *file_util_file_dlg(const gchar *title,
 			       const gchar *role,
@@ -1774,7 +1774,7 @@ static void file_util_dialog_init_source_dest(UtilityData *ud, gboolean second_i
 
 	if (second_image)
 		{
-		generic_dialog_add_image(ud->gd, box, nullptr, "Source", TRUE, nullptr, "Destination", TRUE);
+		generic_dialog_add_image(ud->gd, box, nullptr, _("Source"), TRUE, nullptr, _("Destination"), TRUE);
 		}
 	else
 		{
@@ -2729,8 +2729,7 @@ static void file_util_delete_dir_full(FileData *fd, GtkWidget *parent, UtilityPh
 		ud->messages.title = _("Delete folder");
 		ud->messages.question = _("Delete symbolic link?");
 		ud->messages.desc_flist = "";
-		ud->messages.desc_source_fd = _("This will delete the symbolic link.\n"
-						"The folder this link points to will not be deleted.");
+		ud->messages.desc_source_fd = _("This will delete the symbolic link.\nThe folder this link points to will not be deleted.");
 		ud->messages.fail = _("Link deletion failed");
 
 		file_util_dialog_run(ud);
@@ -2741,8 +2740,7 @@ static void file_util_delete_dir_full(FileData *fd, GtkWidget *parent, UtilityPh
 		{
 		gchar *text;
 
-		text = g_strdup_printf(_("Unable to remove folder %s\n"
-					 "Permissions do not allow writing to the folder."), fd->path);
+		text = g_strdup_printf(_("Unable to remove folder %s\nPermissions do not allow writing to the folder."), fd->path);
 		file_util_warning_dialog(_("Delete failed"), text, GQ_ICON_DIALOG_ERROR, parent);
 		g_free(text);
 
@@ -2771,8 +2769,7 @@ static void file_util_delete_dir_full(FileData *fd, GtkWidget *parent, UtilityPh
 					parent, TRUE, nullptr, nullptr);
 		generic_dialog_add_button(gd, GQ_ICON_CLOSE, _("Close"), nullptr, TRUE);
 
-		text = g_strdup_printf(_("Unable to delete the folder:\n\n%s\n\n"
-					 "This folder contains subfolders which must be moved before it can be deleted."),
+		text = g_strdup_printf(_("Unable to delete the folder:\n\n%s\n\nThis folder contains subfolders which must be moved before it can be deleted."),
 					fd->path);
 		box = generic_dialog_add_message(gd, GQ_ICON_DIALOG_WARNING,
 						 _("Folder contains subfolders"),
@@ -2802,8 +2799,7 @@ static void file_util_delete_dir_full(FileData *fd, GtkWidget *parent, UtilityPh
 		ud->messages.title = _("Delete folder");
 		ud->messages.question = _("Delete folder?");
 		ud->messages.desc_flist = _("The folder contains these files:");
-		ud->messages.desc_source_fd = _("This will delete the folder.\n"
-						"The contents of this folder will also be deleted.");
+		ud->messages.desc_source_fd = _("This will delete the folder.\nThe contents of this folder will also be deleted.");
 		ud->messages.fail = _("File deletion failed");
 
 		if (!file_util_delete_dir_prepare(ud, flist, dlist))

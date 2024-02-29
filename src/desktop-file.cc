@@ -360,7 +360,7 @@ static void editor_list_window_delete_cb(GtkWidget *, gpointer data)
 					    nullptr, TRUE,
 					    editor_list_window_delete_dlg_cancel, ewdl);
 
-		generic_dialog_add_button(ewl->gd, GQ_ICON_DELETE, "Delete", editor_list_window_delete_dlg_ok_cb, TRUE);
+		generic_dialog_add_button(ewl->gd, GQ_ICON_DELETE, _("Delete"), editor_list_window_delete_dlg_ok_cb, TRUE);
 
 		text = g_strdup_printf(_("About to delete the file:\n %s"), path);
 		generic_dialog_add_message(ewl->gd, GQ_ICON_DIALOG_QUESTION,
@@ -600,7 +600,7 @@ static void editor_list_window_create()
 	gtk_widget_show(button);
 	ewl->edit_button = button;
 
-	button = pref_button_new(nullptr, GQ_ICON_DELETE, "Delete",
+	button = pref_button_new(nullptr, GQ_ICON_DELETE, _("Delete"),
 				 G_CALLBACK(editor_list_window_delete_cb), ewl);
 	gq_gtk_container_add(GTK_WIDGET(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);

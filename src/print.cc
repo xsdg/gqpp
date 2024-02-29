@@ -388,16 +388,16 @@ static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 	gq_gtk_box_pack_start(GTK_BOX(subgroup), hbox, FALSE, FALSE, 0);
 
 	/* order is important */
-	button1 = pref_radiobutton_new(hbox, nullptr,  "Header 1",
+	button1 = pref_radiobutton_new(hbox, nullptr,  _("Header 1"),
 							options->printer.image_text_position == HEADER_1,
 							G_CALLBACK(image_text_position_h1_cb), pw);
-	button1 = pref_radiobutton_new(hbox, button1,  "Header 2",
+	button1 = pref_radiobutton_new(hbox, button1,  _("Header 2"),
 							options->printer.image_text_position == HEADER_2,
 							G_CALLBACK(image_text_position_h2_cb), pw);
-	button1 = pref_radiobutton_new(hbox, button1, "Footer 1",
+	button1 = pref_radiobutton_new(hbox, button1, _("Footer 1"),
 							options->printer.image_text_position == FOOTER_1,
 							G_CALLBACK(image_text_position_f1_cb), pw);
-	button1 = pref_radiobutton_new(hbox, button1, "Footer 2",
+	button1 = pref_radiobutton_new(hbox, button1, _("Footer 2"),
 							options->printer.image_text_position == FOOTER_2,
 							G_CALLBACK(image_text_position_f2_cb), pw);
 	gtk_widget_show(hbox);
@@ -451,16 +451,16 @@ static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 	gq_gtk_box_pack_start(GTK_BOX(subgroup), hbox, FALSE, FALSE, 0);
 
 	/* order is important */
-	button2 = pref_radiobutton_new(hbox, nullptr, "Header 1",
+	button2 = pref_radiobutton_new(hbox, nullptr, _("Header 1"),
 							options->printer.page_text_position == HEADER_1,
 							G_CALLBACK(page_text_position_h1_cb), pw);
-	button2 = pref_radiobutton_new(hbox, button2,  "Header 2",
+	button2 = pref_radiobutton_new(hbox, button2,  _("Header 2"),
 							options->printer.page_text_position == HEADER_2,
 							G_CALLBACK(page_text_position_h2_cb), pw);
-	button2 = pref_radiobutton_new(hbox, button2, "Footer 1",
+	button2 = pref_radiobutton_new(hbox, button2, _("Footer 1"),
 							options->printer.page_text_position == FOOTER_1,
 							G_CALLBACK(page_text_position_f1_cb), pw);
-	button2 = pref_radiobutton_new(hbox, button2, "Footer 2",
+	button2 = pref_radiobutton_new(hbox, button2, _("Footer 2"),
 							options->printer.page_text_position == FOOTER_2,
 							G_CALLBACK(page_text_position_f2_cb), pw);
 	gtk_widget_show(hbox);
@@ -914,7 +914,7 @@ void print_window_new(FileData *, GList *selection, GList *, GtkWidget *parent)
 	operation = gtk_print_operation_new();
 	settings = gtk_print_settings_new();
 
-	gtk_print_operation_set_custom_tab_label(operation, "Options");
+	gtk_print_operation_set_custom_tab_label(operation, _("Options"));
 	gtk_print_operation_set_use_full_page(operation, TRUE);
 	gtk_print_operation_set_unit(operation, GTK_UNIT_POINTS);
 	gtk_print_operation_set_embed_page_setup(operation, TRUE);

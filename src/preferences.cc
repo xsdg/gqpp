@@ -1516,7 +1516,7 @@ static void image_overlay_set_font_cb(GtkWidget *widget, gpointer)
 {
 	GtkWidget *dialog;
 
-	dialog = gtk_font_chooser_dialog_new("Image Overlay Font", GTK_WINDOW(gtk_widget_get_toplevel(widget)));
+	dialog = gtk_font_chooser_dialog_new(_("Image Overlay Font"), GTK_WINDOW(gtk_widget_get_toplevel(widget)));
 	gtk_window_set_modal(GTK_WINDOW(dialog), TRUE);
 	gtk_font_chooser_set_font(GTK_FONT_CHOOSER(dialog), options->image_overlay.font);
 
@@ -3325,7 +3325,7 @@ static void config_tab_keywords(GtkWidget *notebook)
 
 	button = pref_button_new(hbox, GQ_ICON_RUN, _("Search"),
 				   G_CALLBACK(keywords_find_cb), keyword_text);
-	gtk_widget_set_tooltip_text(button, "Search for existing keywords");
+	gtk_widget_set_tooltip_text(button, _("Search for existing keywords"));
 
 
 	keyword_text = gtk_text_view_new();
@@ -3421,7 +3421,7 @@ static void add_intent_menu(GtkWidget *table, gint column, gint row, const gchar
 
 	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), current);
 
-	gtk_widget_set_tooltip_text(combo,"Refer to the lcms documentation for the defaults used when the selected Intent is not available");
+	gtk_widget_set_tooltip_text(combo,_("Refer to the lcms documentation for the defaults used when the selected Intent is not available"));
 
 	g_signal_connect(G_OBJECT(combo), "changed",
 			 G_CALLBACK(intent_menu_cb), option_c);
@@ -3624,7 +3624,7 @@ static void config_tab_behavior(GtkWidget *notebook)
 
 	marks = pref_checkbox_new_int(group, _("Save marks on exit"),
 				options->marks_save, &c_options->marks_save);
-	gtk_widget_set_tooltip_text(marks,"Note that marks linked to a keyword will be saved irrespective of this setting");
+	gtk_widget_set_tooltip_text(marks,_("Note that marks linked to a keyword will be saved irrespective of this setting"));
 
 	with_rename = pref_checkbox_new_int(group, _("Use \"With Rename\" as default for Copy/Move dialogs"),
 				options->with_rename, &c_options->with_rename);
@@ -3632,11 +3632,11 @@ static void config_tab_behavior(GtkWidget *notebook)
 
 	collections_on_top = pref_checkbox_new_int(group, _("Permit duplicates in Collections"),
 				options->collections_duplicates, &c_options->collections_duplicates);
-	gtk_widget_set_tooltip_text(collections_on_top,"Allow the same image to be in a Collection more than once");
+	gtk_widget_set_tooltip_text(collections_on_top, _("Allow the same image to be in a Collection more than once"));
 
 	collections_on_top = pref_checkbox_new_int(group, _("Open collections on top"),
 				options->collections_on_top, &c_options->collections_on_top);
-	gtk_widget_set_tooltip_text(collections_on_top,"Open collections window on top");
+	gtk_widget_set_tooltip_text(collections_on_top, _("Open collections window on top"));
 
 	hide_window_in_fullscreen = pref_checkbox_new_int(group, _("Hide window in fullscreen"),
 				options->hide_window_in_fullscreen, &c_options->hide_window_in_fullscreen);
@@ -3688,7 +3688,7 @@ static void config_tab_behavior(GtkWidget *notebook)
 
 	checkbox = pref_checkbox_new_int(group, _("Override disable GPU"),
 				options->override_disable_gpu, &c_options->override_disable_gpu);
-	gtk_widget_set_tooltip_text(checkbox, "Contact the developers for usage");
+	gtk_widget_set_tooltip_text(checkbox, _("Contact the developers for usage"));
 
 #ifdef DEBUG
 	pref_spacer(group, PREF_PAD_GROUP);
@@ -3994,7 +3994,7 @@ static void config_tab_advanced(GtkWidget *notebook)
 	pref_line(vbox, PREF_PAD_SPACE);
 	group = pref_group_new(vbox, FALSE, _("Thread pool limits"), GTK_ORIENTATION_VERTICAL);
 
-	threads_string_label = pref_label_new(group, "This option limits the number of threads (or cpu cores) that Geeqie will use when running duplicate checks.\nThe value 0 means all available cores will be used.");
+	threads_string_label = pref_label_new(group, _("This option limits the number of threads (or cpu cores) that Geeqie will use when running duplicate checks.\nThe value 0 means all available cores will be used."));
 	gtk_label_set_line_wrap(GTK_LABEL(threads_string_label), TRUE);
 
 	pref_spacer(vbox, PREF_PAD_GROUP);
@@ -4230,7 +4230,7 @@ void show_about_window(LayoutWindow *lw)
 	gsize size;
 	guint32 flags;
 
-	copyright = g_string_new("This program comes with absolutely no warranty.\nGNU General Public License, version 2 or later.\nSee https://www.gnu.org/licenses/old-licenses/gpl-2.0.html\n\n");
+	copyright = g_string_new(_("This program comes with absolutely no warranty.\nGNU General Public License, version 2 or later.\nSee https://www.gnu.org/licenses/old-licenses/gpl-2.0.html\n\n"));
 
 	timezone_path = g_build_filename(get_rc_dir(), TIMEZONE_DATABASE_FILE, NULL);
 	if (g_file_test(timezone_path, G_FILE_TEST_EXISTS))
@@ -4248,7 +4248,7 @@ void show_about_window(LayoutWindow *lw)
 		}
 	g_free(timezone_path);
 
-	copyright = g_string_append(copyright, "\n\nSome icons by https://www.flaticon.com");
+	copyright = g_string_append(copyright, _("\n\nSome icons by https://www.flaticon.com"));
 
 	in_stream_authors = g_resources_open_stream(GQ_RESOURCE_PATH_CREDITS "/authors", G_RESOURCE_LOOKUP_FLAGS_NONE, nullptr);
 
@@ -4274,7 +4274,7 @@ void show_about_window(LayoutWindow *lw)
 	g_input_stream_read_all(in_stream_translators, translators, size, &bytes_read, nullptr, nullptr);
 	g_input_stream_close(in_stream_translators, nullptr, nullptr);
 
-	comment = g_strconcat("Project created by John Ellis\nGQview 1998\nGeeqie 2007\n\n\nDevelopment and bug reports:\n", GQ_EMAIL_ADDRESS, "\nhttps://github.com/BestImageViewer/geeqie/issues",NULL);
+	comment = g_strconcat(N_("Project created by John Ellis\nGQview 1998\nGeeqie 2007\n\n\nDevelopment and bug reports:\n"), GQ_EMAIL_ADDRESS, N_("\nhttps://github.com/BestImageViewer/geeqie/issues"), NULL);
 
 	artists[0] = g_strdup("Néstor Díaz Valencia <nestor@estudionexos.com>");
 	artists[1] = nullptr;
@@ -4289,7 +4289,7 @@ void show_about_window(LayoutWindow *lw)
 		"logo", pixbuf_logo,
 		"icon", pixbuf_icon,
 		"website", GQ_WEBSITE,
-		"website-label", "Website",
+		"website-label", _("Website"),
 		"comments", comment,
 		"artists", artists,
 		"authors", authors,

@@ -1592,7 +1592,7 @@ static void search_gps_dnd_received_cb(GtkWidget *, GdkDragContext *,
 				}
 			else
 				{
-				gq_gtk_entry_set_text(GTK_ENTRY(sd->entry_gps_coord), "Image is not geocoded");
+				gq_gtk_entry_set_text(GTK_ENTRY(sd->entry_gps_coord), _("Image is not geocoded"));
 				}
 			}
 		}

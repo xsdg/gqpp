@@ -373,10 +373,10 @@ gchar *image_osd_mkinfo(const gchar *str, FileData *fd, GHashTable *vars)
 				 * Examples:
 				 * "<i>*</i>\n" -> data is displayed in italics ended with a newline
 				 * "\n" 	-> ended with newline
-				 * "ISO *"	-> prefix data with "ISO " (ie. "ISO 100")
+				 * 'ISO *'	-> prefix data with 'ISO ' (ie. 'ISO 100')
 				 * "\**\*"	-> prefix data with a star, and append a star (ie. "*100*")
 				 * "\\*"	-> prefix data with an anti slash (ie "\100")
-				 * "Collection <b>*</b>\n" -> display data in bold prefixed by "Collection " and a newline is appended
+				 * 'Collection <b>*</b>\n' -> display data in bold prefixed by 'Collection ' and a newline is appended
 				 */
 				/** @FIXME using background / foreground colors lead to weird results.
 				 */

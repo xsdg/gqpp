@@ -865,8 +865,7 @@ static void bar_pane_gps_map_centreing(PaneGPSData *pgd)
 
 	gd = generic_dialog_new(_("Map centering"),
 				"map_centering", nullptr, TRUE, nullptr, pgd);
-	generic_dialog_add_message(gd, GQ_ICON_DIALOG_INFO,
-				"Map Centering", message->str, TRUE);
+	generic_dialog_add_message(gd, GQ_ICON_DIALOG_INFO, _("Map Centering"), message->str, TRUE);
 	generic_dialog_add_button(gd, GQ_ICON_OK, "OK", nullptr, TRUE);
 
 	gtk_widget_show(gd->dialog);

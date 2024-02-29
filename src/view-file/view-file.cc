@@ -937,7 +937,7 @@ static gboolean vf_marks_tooltip_cb(GtkWidget *widget,
 	gtk_entry_set_icon_from_icon_name(GTK_ENTRY(mte->edit_widget),
 				      GTK_ENTRY_ICON_SECONDARY, GQ_ICON_CLEAR);
 	gtk_entry_set_icon_tooltip_text(GTK_ENTRY(mte->edit_widget),
-					GTK_ENTRY_ICON_SECONDARY, "Clear");
+					GTK_ENTRY_ICON_SECONDARY, _("Clear"));
 	g_signal_connect(GTK_ENTRY(mte->edit_widget), "icon-press",
 			 G_CALLBACK(vf_marks_filter_on_icon_press), mte);
 
@@ -1833,7 +1833,7 @@ static void vf_read_metadata_in_idle_finished_cb(gpointer data)
 {
 	auto vf = static_cast<ViewFile *>(data);
 
-	vf_thumb_status(vf, 0.0, "Loading meta...");
+	vf_thumb_status(vf, 0.0, _("Loading meta..."));
 	vf->read_metadata_in_idle_id = 0;
 }
 

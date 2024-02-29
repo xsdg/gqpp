@@ -3127,7 +3127,7 @@ static void dupe_display_stats(DupeWindow *dw, DupeItem *di)
 
 	if (!di) return;
 
-	gd = file_util_gen_dlg("Image thumbprint debug info", "thumbprint",
+	gd = file_util_gen_dlg(_("Image thumbprint debug info"), "thumbprint",
 			       dw->window, TRUE,
 			       nullptr, nullptr);
 	generic_dialog_add_button(gd, GQ_ICON_CLOSE, _("Close"), nullptr, TRUE);
@@ -4784,14 +4784,14 @@ DupeWindow *dupe_window_new()
 	gtk_widget_show(dw->custom_threshold);
 
 	button = gtk_check_button_new_with_label(_("Sort"));
-	gtk_widget_set_tooltip_text(GTK_WIDGET(button), "Sort by group totals");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(button), _("Sort by group totals"));
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), options->sort_totals);
 	g_signal_connect(G_OBJECT(button), "toggled", G_CALLBACK(dupe_sort_totals_toggle_cb), dw);
 	gq_gtk_box_pack_start(GTK_BOX(controls_box), button, FALSE, FALSE, PREF_PAD_SPACE);
 	gtk_widget_show(button);
 
 	dw->button_rotation_invariant = gtk_check_button_new_with_label(_("Ignore Orientation"));
-	gtk_widget_set_tooltip_text(GTK_WIDGET(dw->button_rotation_invariant), "Ignore image orientation");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(dw->button_rotation_invariant), _("Ignore image orientation"));
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dw->button_rotation_invariant), options->rot_invariant_sim);
 	g_signal_connect(G_OBJECT(dw->button_rotation_invariant), "toggled",
 			 G_CALLBACK(dupe_window_rotation_invariant_cb), dw);
@@ -5358,7 +5358,7 @@ static void pop_menu_export(GList *, gpointer dupe_window, gpointer data)
 {
 	const gint index = GPOINTER_TO_INT(data);
 	auto dw = static_cast<DupeWindow *>(dupe_window);
-	const gchar *title = "Export duplicates data";
+	const gchar *title = _("Export duplicates data");
 	const gchar *default_path = "/tmp/";
 	gchar *file_extension;
 	ExportDupesData *edd;

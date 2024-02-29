@@ -158,11 +158,11 @@ gboolean format_canon_raw_crw(guchar *data, const guint len,
 
 	/* CRW header starts with 2 bytes for byte order (always "II", little endian),
 	 * 4 bytes for start of root block,
-	 * and 8 bytes of magic for file type and format "HEAPCCDR"
+	 * and 8 bytes of magic for file type and format 'HEAPCCDR'
 	 * (also 4 bytes for file version, and 8 bytes reserved)
 	 *
 	 * CIFF specification in pdf format is available on some websites,
-	 * search for "CIFFspecV1R03.pdf" or "CIFFspecV1R04.pdf"
+	 * search for 'CIFFspecV1R03.pdf' or 'CIFFspecV1R04.pdf'
 	 */
 	if (len < CRW_HEADER_SIZE ||
 	    memcmp(data, "II", 2) != 0 ||

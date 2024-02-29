@@ -539,7 +539,7 @@ static void dest_view_delete(Dest_Data *dd, GtkTreeView *view)
 				    dd->entry, TRUE,
 				    dest_view_delete_dlg_cancel, dl);
 
-	generic_dialog_add_button(dd->gd, GQ_ICON_DELETE, "Delete", dest_view_delete_dlg_ok_cb, TRUE);
+	generic_dialog_add_button(dd->gd, GQ_ICON_DELETE, _("Delete"), dest_view_delete_dlg_ok_cb, TRUE);
 
 	text = g_strdup_printf(_("About to delete the file:\n %s"), path);
 	generic_dialog_add_message(dd->gd, GQ_ICON_DIALOG_QUESTION,

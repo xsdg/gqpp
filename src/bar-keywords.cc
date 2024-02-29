@@ -1065,7 +1065,7 @@ static void bar_pane_keywords_disconnect_marks_cb(GtkWidget *menu_widget, gpoint
 	gd = generic_dialog_new(_("Marks Keywords"),
 				"marks_keywords", menu_widget, TRUE, dummy_cancel_cb, pkd);
 	generic_dialog_add_message(gd, GQ_ICON_DIALOG_WARNING,
-				"Disconnect all Marks Keywords connections?", _("This will disconnect all Marks Keywords connections"), TRUE);
+				_("Disconnect all Marks Keywords connections?"), _("This will disconnect all Marks Keywords connections"), TRUE);
 	generic_dialog_add_button(gd, GQ_ICON_OK, "OK", bar_pane_keywords_disconnect_marks_ok_cb, TRUE);
 
 	gtk_widget_show(gd->dialog);
@@ -1536,7 +1536,7 @@ static GtkWidget *bar_pane_keywords_new(const gchar *id, const gchar *title, con
 	gq_gtk_box_pack_end(GTK_BOX(vbox), pkd->autocomplete, FALSE, FALSE, 0);
 	gtk_widget_show(pkd->autocomplete);
 	gtk_widget_show(vbox);
-	gtk_widget_set_tooltip_text(pkd->autocomplete, "Keyword autocomplete");
+	gtk_widget_set_tooltip_text(pkd->autocomplete, _("Keyword autocomplete"));
 
 	path = g_build_filename(get_rc_dir(), "keywords", NULL);
 	autocomplete_keywords_list_load(path);

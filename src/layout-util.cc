@@ -260,9 +260,7 @@ static void layout_menu_clear_marks_cb(GtkAction *, gpointer)
 
 	gd = generic_dialog_new(_("Clear Marks"),
 				"marks_clear", nullptr, FALSE, clear_marks_cancel_cb, nullptr);
-	generic_dialog_add_message(gd, GQ_ICON_DIALOG_QUESTION, "Clear all marks?",
-				"This will clear all marks for all images,\nincluding those linked to keywords",
-				TRUE);
+	generic_dialog_add_message(gd, GQ_ICON_DIALOG_QUESTION, _("Clear all marks?"), _("This will clear all marks for all images,\nincluding those linked to keywords"), TRUE);
 	generic_dialog_add_button(gd, GQ_ICON_OK, "OK", layout_menu_clear_marks_ok_cb, TRUE);
 	generic_dialog_add_button(gd, GQ_ICON_HELP, _("Help"),
 				clear_marks_help_cb, FALSE);
@@ -638,10 +636,8 @@ static void layout_menu_write_rotate(GtkToggleAction *, gpointer data, gboolean 
 
 			message = g_string_append(message, fd_n->name);
 
-			gd = generic_dialog_new(_("Image orientation"),
-			"Image orientation", nullptr, TRUE, nullptr, nullptr);
-			generic_dialog_add_message(gd, GQ_ICON_DIALOG_ERROR,
-			"Image orientation", message->str, TRUE);
+			gd = generic_dialog_new(_("Image orientation"), "image_orientation", nullptr, TRUE, nullptr, nullptr);
+			generic_dialog_add_message(gd, GQ_ICON_DIALOG_ERROR, _("Image orientation"), message->str, TRUE);
 			generic_dialog_add_button(gd, GQ_ICON_OK, "OK", nullptr, TRUE);
 
 			gtk_widget_show(gd->dialog);
