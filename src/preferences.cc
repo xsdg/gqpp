@@ -4274,7 +4274,7 @@ void show_about_window(LayoutWindow *lw)
 	g_input_stream_read_all(in_stream_translators, translators, size, &bytes_read, nullptr, nullptr);
 	g_input_stream_close(in_stream_translators, nullptr, nullptr);
 
-	comment = g_strconcat(N_("Project created by John Ellis\nGQview 1998\nGeeqie 2007\n\n\nDevelopment and bug reports:\n"), GQ_EMAIL_ADDRESS, N_("\nhttps://github.com/BestImageViewer/geeqie/issues"), NULL);
+	comment = g_strconcat(_("Project created by John Ellis\nGQview 1998\nGeeqie 2007\n\n\nDevelopment and bug reports:\n"), GQ_EMAIL_ADDRESS, _("\nhttps://github.com/BestImageViewer/geeqie/issues"), NULL);
 
 	artists[0] = g_strdup("Néstor Díaz Valencia <nestor@estudionexos.com>");
 	artists[1] = nullptr;
