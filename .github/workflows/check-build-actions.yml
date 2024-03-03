@@ -18,6 +18,14 @@ jobs:
       with:
         ignore_names: downsize
 
+  Check-Code-Correctness:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run Clang Tidy
+      uses: "muxee/clang-tidy-action@master"
+      secrets: ["GITHUB_TOKEN"]
+
   Check-Build-No-Options:
     runs-on: ubuntu-22.04
     steps:
