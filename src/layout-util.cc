@@ -3139,10 +3139,21 @@ static void layout_actions_setup_editors(LayoutWindow *lw)
 	g_list_free(editors_list);
 }
 
+void create_toolbars(LayoutWindow *lw)
+{
+	gint i;
+
+	for (i = 0; i < TOOLBAR_COUNT; i++)
+		{
+		layout_actions_toolbar(lw, static_cast<ToolbarType>(i));
+		layout_toolbar_clear(lw, static_cast<ToolbarType>(i));
+		layout_toolbar_add_default(lw, static_cast<ToolbarType>(i));
+		}
+}
+
 void layout_actions_setup(LayoutWindow *lw)
 {
 	GError *error;
-	gint i;
 
 	DEBUG_1("%s layout_actions_setup: start", get_exec_time());
 	if (lw->ui_manager) return;
@@ -3189,13 +3200,6 @@ void layout_actions_setup(LayoutWindow *lw)
 		g_message("building menus failed: %s", error->message);
 		g_error_free(error);
 		exit(EXIT_FAILURE);
-		}
-
-	DEBUG_1("%s layout_actions_setup: add toolbar", get_exec_time());
-	for (i = 0; i < TOOLBAR_COUNT; i++)
-		{
-		layout_toolbar_clear(lw, static_cast<ToolbarType>(i));
-		layout_toolbar_add_default(lw, static_cast<ToolbarType>(i));
 		}
 
 	DEBUG_1("%s layout_actions_setup: marks", get_exec_time());

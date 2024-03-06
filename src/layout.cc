@@ -1847,6 +1847,7 @@ static void layout_grid_setup(LayoutWindow *lw)
 	GtkWidget *files;
 
 	layout_actions_setup(lw);
+	create_toolbars(lw);
 
 	lw->group_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	DEBUG_NAME(lw->group_box);

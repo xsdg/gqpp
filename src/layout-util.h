@@ -78,5 +78,8 @@ void layout_exif_window_new(LayoutWindow *lw);
 gboolean is_help_key(GdkEventKey *event);
 void layout_menu_close_cb(GtkAction *action, gpointer data);
 GtkWidget *layout_actions_menu_tool_bar(LayoutWindow *lw);
+
+void create_toolbars(LayoutWindow *lw);
+
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */
