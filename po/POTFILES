@@ -12,6 +12,7 @@ plugins/symlink/org.geeqie.symlink.desktop.in
 plugins/tethered-photography/org.geeqie.tethered-photography.desktop.in
 plugins/video-player/org.geeqie.video-player.desktop.in
 src/advanced-exif.cc
+src/archives.cc
 src/bar.cc
 src/bar-comment.cc
 src/bar-exif.cc
@@ -108,6 +109,8 @@ src/secure-save.cc
 src/shortcuts.cc
 src/similar.cc
 src/slideshow.cc
+src/third-party/whereami.cc
+src/third-party/zonedetect.cc
 src/thumb.cc
 src/thumb-standard.cc
 src/toolbar.cc
@@ -117,6 +120,8 @@ src/ui-bookmark.cc
 src/ui-fileops.cc
 src/ui-help.cc
 src/ui-menu.cc
+src/ui/menu-classic.ui
+src/ui/menu-hamburger.ui
 src/ui-misc.cc
 src/ui-pathsel.cc
 src/ui/search-and-run.ui
@@ -131,6 +136,4 @@ src/view-dir-tree.cc
 src/view-file/view-file.cc
 src/view-file/view-file-icon.cc
 src/view-file/view-file-list.cc
-src/third-party/whereami.cc
 src/window.cc
-src/third-party/zonedetect.cc
