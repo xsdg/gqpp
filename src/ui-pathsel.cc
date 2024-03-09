@@ -46,14 +46,16 @@
 #include "uri-utils.h"
 #include "utilops.h"
 
+namespace
+{
+
+constexpr gint dest_drag_types_n = 2;
+
+} // namespace
 
 enum {
 	DEST_WIDTH = 250,
 	DEST_HEIGHT = 210
-};
-
-enum {
-	RENAME_PRESS_DELAY = 333	/* 1/3 second, to allow double clicks */
 };
 
 #define PATH_SEL_USE_HEADINGS FALSE
@@ -331,10 +333,6 @@ static GtkTargetEntry dest_drag_types[] = {
 	{ const_cast<gchar *>("text/uri-list"), 0, TARGET_URI_LIST },
 	{ const_cast<gchar *>("text/plain"),    0, TARGET_TEXT_PLAIN }
 };
-enum {
-	dest_drag_types_n = 2
-};
-
 
 static void dest_dnd_set_data(GtkWidget *view, GdkDragContext *,
 				  GtkSelectionData *selection_data,

@@ -36,6 +36,13 @@
 #include "pixbuf-util.h"
 #include "typedefs.h"
 
+namespace
+{
+
+constexpr guint8 PAN_CAL_DOT_ALPHA = 128;
+
+} // namespace
+
 #define PAN_CAL_POPUP_COLOR 220, 220, 220
 enum {
 	PAN_CAL_POPUP_ALPHA = 255,
@@ -70,9 +77,6 @@ enum {
 	PAN_CAL_DOT_GAP = 2
 };
 #define PAN_CAL_DOT_COLOR 128, 128, 128
-enum {
-	PAN_CAL_DOT_ALPHA = 128
-};
 
 #define PAN_CAL_DAY_OF_WEEK_COLOR 128, 128, 128
 

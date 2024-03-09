@@ -63,6 +63,12 @@
  * Currently SimilarityGrid is always assumed to be 32 x 32 RGB. \n
  */
 
+namespace
+{
+
+constexpr gint CACHE_LOAD_LINE_NOISE = 8;
+
+} // namespace
 
 /*
  *-------------------------------------------------------------------
@@ -408,10 +414,6 @@ static gboolean cache_sim_read_similarity(FILE *f, gchar *buf, gint s, CacheData
 
 	return FALSE;
 }
-
-enum {
-	CACHE_LOAD_LINE_NOISE = 8
-};
 
 CacheData *cache_sim_data_load(const gchar *path)
 {

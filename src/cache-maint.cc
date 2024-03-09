@@ -49,6 +49,12 @@
 #include "ui-utildlg.h"
 #include "window.h"
 
+namespace
+{
+
+constexpr gint PURGE_DIALOG_WIDTH = 400;
+
+} // namespace
 
 struct CMData
 {
@@ -63,10 +69,6 @@ struct CMData
 	gboolean clear;
 	gboolean metadata;
 	gboolean remote;
-};
-
-enum {
-	PURGE_DIALOG_WIDTH = 400
 };
 
 /*

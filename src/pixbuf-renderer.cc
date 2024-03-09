@@ -53,20 +53,20 @@ enum ExifOrientationType {
 };
 #endif
 
+namespace
+{
+
+/* distance to drag mouse to disable image flip */
+constexpr gint PR_DRAG_SCROLL_THRESHHOLD = 4;
+
+/* increase pan rate when holding down shift */
+constexpr gint PR_PAN_SHIFT_MULTIPLIER = 6;
+
+} // namespace
 
 /* default min and max zoom */
 #define PR_ZOOM_MIN (-32.0)
 #define PR_ZOOM_MAX 32.0
-
-/* distance to drag mouse to disable image flip */
-enum {
-	PR_DRAG_SCROLL_THRESHHOLD = 4
-};
-
-/* increase pan rate when holding down shift */
-enum {
-	PR_PAN_SHIFT_MULTIPLIER = 6
-};
 
 /* scroller config */
 enum {

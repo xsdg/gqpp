@@ -44,12 +44,15 @@
 #include "ui-misc.h"
 #include "window.h"
 
+namespace
+{
+
+constexpr gint ADVANCED_EXIF_DATA_COLUMN_WIDTH = 200;
+
+} // namespace
+
 struct ExifData;
 struct ExifItem;
-
-enum {
-	ADVANCED_EXIF_DATA_COLUMN_WIDTH = 200
-};
 
 /*
  *-------------------------------------------------------------------

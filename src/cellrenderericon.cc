@@ -24,10 +24,12 @@
 #include <cairo.h>
 #include <gdk/gdk.h>
 
-enum {
-	FIXED_ICON_SIZE_MAX = 512
-};
+namespace
+{
 
+constexpr gint FIXED_ICON_SIZE_MAX = 512;
+
+} // namespace
 
 static void gqv_cell_renderer_icon_get_property(GObject		*object,
 						guint		param_id,

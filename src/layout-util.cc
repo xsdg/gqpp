@@ -81,10 +81,6 @@
 #include "view-file.h"
 #include "window.h"
 
-enum {
-	MENU_EDIT_ACTION_OFFSET = 16,
-};
-
 static gboolean layout_bar_enabled(LayoutWindow *lw);
 static gboolean layout_bar_sort_enabled(LayoutWindow *lw);
 static void layout_bars_hide_toggle(LayoutWindow *lw);

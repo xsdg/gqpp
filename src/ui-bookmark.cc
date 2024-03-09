@@ -55,6 +55,14 @@
 #define MARKER_PATH "[path]"
 #define MARKER_ICON "[icon]"
 
+namespace
+{
+
+constexpr gint bookmark_drop_types_n = 3;
+constexpr gint bookmark_drag_types_n = 2;
+
+} // namespace
+
 struct BookButtonData;
 
 struct BookMarkData
@@ -106,18 +114,11 @@ static GtkTargetEntry bookmark_drop_types[] = {
 	{ const_cast<gchar *>("x-url/http"),    0, TARGET_X_URL },
 	{ const_cast<gchar *>("_NETSCAPE_URL"), 0, TARGET_X_URL }
 };
-enum {
-	bookmark_drop_types_n = 3
-};
 
 static GtkTargetEntry bookmark_drag_types[] = {
 	{ const_cast<gchar *>("text/uri-list"), 0, TARGET_URI_LIST },
 	{ const_cast<gchar *>("text/plain"),    0, TARGET_TEXT_PLAIN }
 };
-enum {
-	bookmark_drag_types_n = 2
-};
-
 
 static GList *bookmark_widget_list = nullptr;
 static GList *bookmark_default_list = nullptr;

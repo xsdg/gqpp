@@ -35,9 +35,12 @@
  *----------------------------------------------------------------------------
  */
 
-enum {
-	HISTMAP_SIZE = 256
-};
+namespace
+{
+
+constexpr gint HISTMAP_SIZE = 256;
+
+} // namespace
 
 struct HistMap {
 	gulong r[HISTMAP_SIZE];

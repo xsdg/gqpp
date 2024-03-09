@@ -54,6 +54,11 @@
 namespace
 {
 
+constexpr gint DIALOG_WIDTH = 750;
+
+/* thumbnail spec has a max depth of 4 (.thumb??/fail/appname/??.png) */
+constexpr gint UTILITY_DELETE_MAX_DEPTH = 5;
+
 struct PixmapErrors
 {
 	GdkPixbuf *error;
@@ -94,11 +99,7 @@ GdkPixbuf *file_util_get_error_icon(FileData *fd, GList *list, GtkWidget *)
 	return pe.apply;
 }
 
-}
-
-enum {
-	DIALOG_WIDTH = 750
-};
+} // namespace
 
 enum ClipboardDestination {
 	CLIPBOARD_TEXT_PLAIN	= 0,
@@ -499,11 +500,6 @@ static gboolean file_util_write_metadata_first(UtilityType type, UtilityPhase ph
 enum {
 	UTILITY_LIST_MIN_WIDTH =  250,
 	UTILITY_LIST_MIN_HEIGHT = 150
-};
-
-/* thumbnail spec has a max depth of 4 (.thumb??/fail/appname/??.png) */
-enum {
-	UTILITY_DELETE_MAX_DEPTH = 5
 };
 
 static UtilityData *file_util_data_new(UtilityType type)

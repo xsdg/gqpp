@@ -60,6 +60,13 @@ enum ExifOrientationType {
 };
 #endif
 
+namespace
+{
+
+constexpr size_t COLOR_BYTES = 3; /* rgb */
+
+} // namespace
+
 struct QueueData;
 
 struct ImageTile
@@ -886,10 +893,6 @@ static GdkPixbuf *rt_get_spare_tile(RendererTiles *rt)
 	if (!rt->spare_tile) rt->spare_tile = gdk_pixbuf_new(GDK_COLORSPACE_RGB, FALSE, 8, rt->tile_width * rt->hidpi_scale, rt->tile_height * rt->hidpi_scale);
 	return rt->spare_tile;
 }
-
-enum {
-	COLOR_BYTES = 3	/* rgb */
-};
 
 static void rt_tile_rotate_90_clockwise(RendererTiles *rt, GdkPixbuf **tile, gint x, gint y, gint w, gint h)
 {

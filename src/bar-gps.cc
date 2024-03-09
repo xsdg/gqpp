@@ -51,12 +51,17 @@
 #include "ui-utildlg.h"
 #include "uri-utils.h"
 
+namespace
+{
+
+constexpr gint THUMB_SIZE = 100;
+constexpr int DIRECTION_SIZE = 300;
+
+} // namespace
+
 #define MARKER_COLOUR 0x00, 0x00, 0xff, 0xff
 #define TEXT_COLOUR 0x00, 0x00, 0x00, 0xff
 #define THUMB_COLOUR 0xff, 0xff, 0xff, 0xff
-#define THUMB_SIZE 100
-
-#define DIRECTION_SIZE 300
 
 /*
  *-------------------------------------------------------------------

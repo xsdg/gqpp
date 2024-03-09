@@ -64,19 +64,17 @@
 #include "utilops.h"
 #include "view-file.h"
 
-enum {
-	SERVER_MAX_CLIENTS = 8
-};
-
-enum {
-	REMOTE_SERVER_BACKLOG = 4
-};
-
-
 #ifndef UNIX_PATH_MAX
 #define UNIX_PATH_MAX 108
 #endif
 
+namespace
+{
+
+constexpr guint SERVER_MAX_CLIENTS = 8;
+constexpr int REMOTE_SERVER_BACKLOG = 4;
+
+} // namespace
 
 static RemoteConnection *remote_client_open(const gchar *path);
 static gint remote_client_send(RemoteConnection *rc, const gchar *text);

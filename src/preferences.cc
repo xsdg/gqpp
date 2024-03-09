@@ -81,6 +81,14 @@
 #include "utilops.h"
 #include "window.h"
 
+namespace
+{
+
+constexpr gint PRE_FORMATTED_COLUMNS = 5;
+constexpr gint KEYWORD_DIALOG_WIDTH = 400;
+
+} // namespace
+
 struct ZoneDetect;
 
 enum {
@@ -2501,9 +2509,6 @@ static void config_tab_windows(GtkWidget *notebook)
 			      options->fullscreen.disable_saver, &c_options->fullscreen.disable_saver);
 }
 
-enum {
-	PRE_FORMATTED_COLUMNS = 5
-};
 static void config_tab_osd(GtkWidget *notebook)
 {
 	GtkWidget *hbox;
@@ -3039,10 +3044,6 @@ struct KeywordFindData
 	gboolean recurse;
 
 	guint idle_id; /* event source id */
-};
-
-enum {
-	KEYWORD_DIALOG_WIDTH = 400
 };
 
 static void keywords_find_folder(KeywordFindData *kfd, FileData *dir_fd)

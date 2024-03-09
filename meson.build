@@ -724,6 +724,19 @@ else
     summary({'Code Correctness' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
 endif
 
+# Single value enum checks
+enum_check_sh = find_program('enum-check.sh', dirs : scriptsdir, required : true)
+if enum_check_sh.found()
+    foreach source_file : main_sources + pan_view_sources + view_file_sources
+        source_file_name = fs.name(source_file)
+        test('Single Value enum_ ' + source_file_name, enum_check_sh, args : [source_file], timeout : 100)
+    endforeach
+
+    summary({'Single Value enum' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+else
+    summary({'Single Value enum' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+endif
+
 # Lua test
 option = get_option('lua')
 if not option.disabled()

@@ -92,9 +92,7 @@ struct PsdHeader
 	guint16 color_mode;    /* color mode as defined below */
 };
 
-enum {
-	PSD_HEADER_SIZE = 26
-};
+constexpr guint PSD_HEADER_SIZE = 26;
 
 enum PsdColorMode
 {

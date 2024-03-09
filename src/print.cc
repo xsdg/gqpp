@@ -51,6 +51,13 @@
 /* method to use when scaling down image data */
 #define PRINT_MAX_INTERP GDK_INTERP_BILINEAR
 
+namespace
+{
+
+constexpr gint PRE_FORMATTED_COLUMNS = 4;
+
+} // namespace
+
 /* reverse order is important */
 enum TextPosition {
 	FOOTER_2,
@@ -356,9 +363,6 @@ static void image_text_template_view_changed_cb(GtkWidget *, gpointer data)
 					  gtk_text_buffer_get_text(pTextBuffer, &iStart, &iEnd, TRUE));
 }
 
-enum {
-	PRE_FORMATTED_COLUMNS = 4
-};
 static void print_text_menu(GtkWidget *box, PrintWindow *pw)
 {
 	GtkWidget *group;

@@ -46,6 +46,13 @@
 #include "typedefs.h"
 #include "ui-fileops.h"
 
+namespace
+{
+
+constexpr gint IMAGE_OSD_DEFAULT_DURATION = 30;
+
+} // namespace
+
 struct HistMap;
 
 /*
@@ -98,10 +105,6 @@ static OSDIcon osd_icons[] = {
 };
 
 #define OSD_DATA "overlay-data"
-
-enum {
-	IMAGE_OSD_DEFAULT_DURATION = 30
-};
 
 enum {
 	HISTOGRAM_HEIGHT = 140,

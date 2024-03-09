@@ -71,21 +71,20 @@
 #include "utilops.h"
 #include "window.h"
 
+namespace
+{
+
+constexpr gint PAN_TILE_SIZE = 512;
+constexpr gint ZOOM_LABEL_WIDTH = 64;
+
+} // namespace
 
 enum {
 	PAN_WINDOW_DEFAULT_WIDTH = 720,
 	PAN_WINDOW_DEFAULT_HEIGHT = 500
 };
 
-enum {
-	PAN_TILE_SIZE = 512
-};
-
 #define ZOOM_INCREMENT 1.0
-enum {
-	ZOOM_LABEL_WIDTH = 64
-};
-
 
 #define PAN_PREF_GROUP		"pan_view_options"
 #define PAN_PREF_HIDE_WARNING	"hide_performance_warning"
