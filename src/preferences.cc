@@ -138,7 +138,8 @@ enum {
 	AE_ACTION,
 	AE_KEY,
 	AE_TOOLTIP,
-	AE_ACCEL
+	AE_ACCEL,
+	AE_ICON
 };
 
 enum {
@@ -1641,6 +1642,7 @@ static void accel_store_populate()
 	GList *actions;
 	GtkAction *action;
 	const gchar *accel_path;
+	const gchar *icon_name;
 	GtkAccelKey key;
 	GtkTreeIter iter;
 
@@ -1676,6 +1678,7 @@ static void accel_store_populate()
 					}
 
 				accel = gtk_accelerator_name(key.accel_key, key.accel_mods);
+				icon_name = gtk_action_get_icon_name(action);
 
 				if (tooltip)
 					{
@@ -1685,6 +1688,7 @@ static void accel_store_populate()
 							   AE_KEY, accel,
 							   AE_TOOLTIP, tooltip ? tooltip : "",
 							   AE_ACCEL, accel_path,
+							   AE_ICON, icon_name,
 							   -1);
 					}
 
@@ -3776,7 +3780,7 @@ static void config_tab_accelerators(GtkWidget *notebook)
 	gq_gtk_box_pack_start(GTK_BOX(group), scrolled, TRUE, TRUE, 0);
 	gtk_widget_show(scrolled);
 
-	accel_store = gtk_tree_store_new(4, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+	accel_store = gtk_tree_store_new(5, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 
 	accel_view = gtk_tree_view_new_with_model(GTK_TREE_MODEL(accel_store));
 	g_object_unref(accel_store);
@@ -3837,6 +3841,15 @@ static void config_tab_accelerators(GtkWidget *notebook)
 							  NULL);
 
 	gtk_tree_view_column_set_sort_column_id(column, AE_ACCEL);
+	gtk_tree_view_column_set_resizable(column, TRUE);
+	gtk_tree_view_append_column(GTK_TREE_VIEW(accel_view), column);
+
+	column = gtk_tree_view_column_new_with_attributes("Icon",
+							  renderer,
+							  "text", AE_ICON,
+							  NULL);
+
+	gtk_tree_view_column_set_sort_column_id(column, AE_ICON);
 	gtk_tree_view_column_set_resizable(column, TRUE);
 	gtk_tree_view_append_column(GTK_TREE_VIEW(accel_view), column);
 
