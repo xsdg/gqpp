@@ -1,0 +1,32 @@
+name: Geeqie check compile FreeBSD
+run-name: ${{ github.actor }} is running Geeqie check compile FreeBSD
+on: [push, pull_request]
+jobs:
+  Check-Compile-FreeBSD:
+    runs-on: ubuntu-latest
+    env:
+      CXXFLAGS: "-Wno-deprecated-declarations -Wno-deprecated -g3"
+    steps:
+    - uses: actions/checkout@v4
+    - name: Check compile on FreeBSD
+      uses: vmactions/freebsd-vm@v1
+      with:
+        envs: 'CXXFLAGS'
+        usesh: true
+        prepare: |
+          pkg install -y meson pkgconf evdev-proto libgudev libxml++ bash libevdev
+          pkg install -y desktop-file-utils gettext-tools gnome libarchive
+          pkg install -y curl
+          pkg install -y at-spi2-core
+          pkg install -y gettext
+          pkg install -y gtk3
+        run: |
+          meson setup build
+          meson compile -C build --verbose > ./build/meson-logs/meson-log-compile.txt
+    - name: Upload logs
+      uses: actions/upload-artifact@v2
+      if: always()
+      with:
+        name: logs-compile-freebsd
+        path: ${{ github.workspace }}/build/meson-logs/*.txt
+        retention-days: 5
