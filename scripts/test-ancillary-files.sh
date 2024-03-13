@@ -25,6 +25,7 @@
 ## $1 Root of project sources
 ##
 ## Perform validity checks on project ancillary files:
+## appdata
 ## desktop
 ## scripts
 ## ui
@@ -207,6 +208,30 @@ else
 	done << EOF
 $(find . -name "*.desktop.in")
 EOF
+fi
+
+# Appdata lint
+if [ -z "$(command -v appstreamcli)" ]
+then
+	printf "ERROR: appstreamcli is not installed"
+	exit_status=1
+else
+	if ! result=$(appstreamcli validate org.geeqie.Geeqie.appdata.xml.in --pedantic --explain)
+	then
+		exit_status=1
+		status="Error"
+	else
+		line_count=$(echo "$result" | wc --lines)
+
+		if [ "$line_count" -gt 1 ]
+		then
+			status="Warning"
+		else
+			status="Passed"
+		fi
+	fi
+
+	printf "%s: appstreamcli in org.geeqie.Geeqie.appdata.xml.in: \n%s\n" "$status" "$result"
 fi
 
 exit "$exit_status"
