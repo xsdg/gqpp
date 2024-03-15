@@ -1426,6 +1426,18 @@ static void gr_config_load(const gchar *text, GIOChannel *, gpointer)
 	g_free(filename);
 }
 
+static void gr_window_list(const gchar *, GIOChannel *channel, gpointer)
+{
+	GString *window_list;
+
+	window_list = layout_get_window_list();
+
+	g_io_channel_write_chars(channel, window_list->str, -1, nullptr, nullptr);
+	g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, nullptr, nullptr);
+
+	g_string_free(window_list, TRUE);
+}
+
 static void gr_get_sidecars(const gchar *text, GIOChannel *channel, gpointer)
 {
 	gchar *filename = expand_tilde(text);
@@ -1739,6 +1751,7 @@ static RemoteCommandEntry remote_commands[] = {
 	{ nullptr, "--get-render-intent",  gr_render_intent,       FALSE, FALSE, nullptr, N_("get render intent") },
 	{ nullptr, "--get-selection",      gr_get_selection,       FALSE, FALSE, nullptr, N_("get list of selected files") },
 	{ nullptr, "--get-sidecars:",      gr_get_sidecars,        TRUE,  FALSE, N_("<FILE>"), N_("get list of sidecars of FILE") },
+	{ nullptr, "--get-window-list",    gr_window_list,         FALSE, FALSE, nullptr, N_("get window list") },
 	{ nullptr, "--id:",                gr_lw_id,               TRUE, FALSE, N_("<ID>"), N_("window id for following commands") },
 	{ nullptr, "--last",               gr_image_last,          FALSE, FALSE, nullptr, N_("last image") },
 	{ nullptr, "--list-add:",          gr_list_add,            TRUE,  FALSE, N_("<FILE>"), N_("add FILE to command line collection list") },
