@@ -3,6 +3,14 @@
 -- Requires lua and extftool
 -- Runs rather slow
 
+commandfile=io.popen("command -v exiftool" )
+command = commandfile:read("*a")
+commandfile:close()
+if command == ""
+then
+	return ("lensID - Exiftool is not installed")
+end
+
 n = 0
 m = 0
 lensID = ""
