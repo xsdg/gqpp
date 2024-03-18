@@ -31,6 +31,7 @@ AppDir:
     - libdjvulibre21
     - libdw1
     - libdwarf1
+    - libffmpegthumbnailer4v5
     - libgexiv2-2
     - libgspell-1-2
     - libheif1
