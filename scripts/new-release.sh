@@ -198,6 +198,10 @@ tar --create --xz --file="$tmp_dir/geeqie-$revision.tar.xz" --exclude="AppImage*
 
 gpg --armor --detach-sign --output "$tmp_dir/geeqie-$revision.tar.xz.asc" "$tmp_dir/geeqie-$revision.tar.xz"
 
+cd "geeqie-$revision"
+
+git checkout master
+
 git checkout stable/"$version" NEWS
 git checkout stable/"$version" geeqie.1
 git checkout stable/"$version" doc/docbook/CommandLineOptions.xml
