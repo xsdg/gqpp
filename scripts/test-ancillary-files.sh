@@ -33,7 +33,7 @@
 
 cd "$1" || exit 1
 
-if [ ! -d ".git" ] || [ ! -d "src" ] || [ ! -f "geeqie.1" ]
+if [ ! -d "src" ] || [ ! -f "geeqie.1" ]
 then
 	printf '%s\n' "This is not a Geeqie project folder"
 	exit 1
@@ -82,21 +82,25 @@ done << EOF
 $(awk 'BEGIN {FS="\047"} /option/ { if (substr($2,0,2) != "gq") { print $2 } }' meson_options.txt)
 EOF
 
-# Check if all options are in the disabled checks
-while read -r line
-do
-	if [ -n "$line" ]
-	then
-		res=$(grep "\-D$line=disabled" "$1/.github/workflows/check-build-actions.yml")
-		if [ -z "$res" ]
+# Check if all options are in the disabled checks in a GitHub run
+# Directory .github is not in the source tar
+if [ -d ".github" ]
+then
+	while read -r line
+	do
+		if [ -n "$line" ]
 		then
-			printf "ERROR; Option no disabled check in .github/workflows/check-build-actions.yml: %s\n" "$line"
-			exit_status=1
+			res=$(grep "\-D$line=disabled" "$1/.github/workflows/check-build-actions.yml")
+			if [ -z "$res" ]
+			then
+				printf "ERROR; Option no disabled check in .github/workflows/check-build-actions.yml: %s\n" "$line"
+				exit_status=1
+			fi
 		fi
-	fi
-done << EOF
+	done << EOF
 $(awk 'BEGIN {FS="\047"} /option/ { if (substr($2,0,2) != "gq") { print $2 } }' meson_options.txt)
 EOF
+fi
 
 # Markdown lint
 # Runs as a GitHub Action

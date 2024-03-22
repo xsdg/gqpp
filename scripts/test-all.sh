@@ -26,7 +26,7 @@
 ## and then with -Ddevel=enabled and other
 ## options as auto
 
-if [ ! -d ".git" ] || [ ! -d "src" ] || [ ! -f "geeqie.1" ]
+if [ ! -d "src" ] || [ ! -f "geeqie.1" ]
 then
 	printf '%s\n' "This is not a Geeqie project folder"
 	exit 1
