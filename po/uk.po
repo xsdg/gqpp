@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geeqie-1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-06 15:49+0000\n"
+"POT-Creation-Date: 2024-03-23 11:12+0000\n"
 "PO-Revision-Date: 2023-10-25 17:13+0100\n"
 "Last-Translator: Colin Clark <cclark@TallTrees>\n"
 "Language-Team:  <linux@linux.org.ua>\n"
@@ -53,20 +53,20 @@ msgid ""
 "to a folder containing images, and your data will be displayed."
 msgstr ""
 
-#: org.geeqie.Geeqie.appdata.xml.in:27
+#: org.geeqie.Geeqie.appdata.xml.in:32
 #, fuzzy
 msgid "image"
 msgstr "Зображення"
 
-#: org.geeqie.Geeqie.appdata.xml.in:28
+#: org.geeqie.Geeqie.appdata.xml.in:33
 msgid "photography"
 msgstr ""
 
-#: org.geeqie.Geeqie.appdata.xml.in:29
+#: org.geeqie.Geeqie.appdata.xml.in:34
 msgid "fast"
 msgstr ""
 
-#: org.geeqie.Geeqie.appdata.xml.in:30
+#: org.geeqie.Geeqie.appdata.xml.in:35
 msgid "graphics"
 msgstr ""
 
@@ -163,35 +163,35 @@ msgstr ""
 msgid "Display videos in Geeqie"
 msgstr "Видалити файли"
 
-#: src/advanced-exif.cc:453 src/cache-maint.cc:1786 src/preferences.cc:150
-#: src/preferences.cc:2900 src/search.cc:2275 src/search.cc:3620
+#: src/advanced-exif.cc:456 src/cache-maint.cc:1788 src/preferences.cc:159
+#: src/preferences.cc:2909 src/search.cc:2274 src/search.cc:3619
 msgid "Metadata"
 msgstr ""
 
-#: src/advanced-exif.cc:508 src/preferences.cc:2805
+#: src/advanced-exif.cc:511 src/preferences.cc:2814
 msgid "Description"
 msgstr ""
 
-#: src/advanced-exif.cc:509
+#: src/advanced-exif.cc:512
 msgid "Value"
 msgstr ""
 
-#: src/advanced-exif.cc:510 src/desktop-file.cc:645 src/dupe.cc:3964
-#: src/dupe.cc:4680 src/dupe.cc:5262 src/osd.cc:46 src/search.cc:3705
-#: src/utilops.cc:619 src/view-file/view-file-list.cc:2196
+#: src/advanced-exif.cc:513 src/desktop-file.cc:645 src/dupe.cc:3964
+#: src/dupe.cc:4660 src/dupe.cc:5242 src/osd.cc:46 src/search.cc:3704
+#: src/utilops.cc:615 src/view-file/view-file-list.cc:2175
 msgid "Name"
 msgstr "Назва"
 
-#: src/advanced-exif.cc:511
+#: src/advanced-exif.cc:514
 msgid "Tag"
 msgstr ""
 
-#: src/advanced-exif.cc:512
+#: src/advanced-exif.cc:515
 #, fuzzy
 msgid "Format"
 msgstr "Звичайний"
 
-#: src/advanced-exif.cc:513
+#: src/advanced-exif.cc:516
 msgid "Elements"
 msgstr ""
 
@@ -223,16 +223,16 @@ msgstr ""
 msgid "Title"
 msgstr "Без імені"
 
-#: src/bar.cc:210 src/osd.cc:56 src/preferences.cc:3321 src/search.cc:3539
+#: src/bar.cc:210 src/osd.cc:56 src/preferences.cc:3326 src/search.cc:3538
 msgid "Keywords"
 msgstr ""
 
-#: src/bar.cc:211 src/osd.cc:55 src/search.cc:3551
+#: src/bar.cc:211 src/osd.cc:55 src/search.cc:3550
 #, fuzzy
 msgid "Comment"
 msgstr "Порівняти з:"
 
-#: src/bar.cc:212 src/preferences.cc:2072
+#: src/bar.cc:212 src/preferences.cc:2084
 #, fuzzy
 msgid "Star Rating"
 msgstr "Фільтр:"
@@ -262,7 +262,7 @@ msgstr "Колекції"
 msgid "Copyright"
 msgstr "Копіювати"
 
-#: src/bar.cc:220 src/bar-gps.cc:1047
+#: src/bar.cc:220 src/bar-gps.cc:1054
 msgid "GPS Map"
 msgstr ""
 
@@ -271,12 +271,12 @@ msgstr ""
 msgid "Move to _top"
 msgstr "Перенести"
 
-#: src/bar.cc:422 src/toolbar.cc:141 src/ui-bookmark.cc:404
+#: src/bar.cc:422 src/toolbar.cc:141 src/ui-bookmark.cc:405
 #, fuzzy
 msgid "Move _up"
 msgstr "Перенести"
 
-#: src/bar.cc:423 src/toolbar.cc:142 src/ui-bookmark.cc:406
+#: src/bar.cc:423 src/toolbar.cc:142 src/ui-bookmark.cc:407
 #, fuzzy
 msgid "Move _down"
 msgstr "Перенести"
@@ -290,12 +290,12 @@ msgstr ""
 msgid "Height..."
 msgstr "Невірна ціль"
 
-#: src/bar.cc:433 src/collect-table.cc:106 src/dupe.cc:165
-#: src/preferences.cc:2877 src/search.cc:375 src/toolbar.cc:145
+#: src/bar.cc:433 src/collect-table.cc:107 src/dupe.cc:165
+#: src/preferences.cc:2886 src/search.cc:374 src/toolbar.cc:145
 msgid "Remove"
 msgstr "Стерти"
 
-#: src/bar.cc:821 src/bar-sort.cc:759 src/preferences.cc:2882
+#: src/bar.cc:821 src/bar-sort.cc:759 src/preferences.cc:2891
 #: src/shortcuts.cc:164 src/toolbar.cc:467
 msgid "Add"
 msgstr ""
@@ -366,40 +366,40 @@ msgstr "Копіювати"
 msgid "Show hidden entries"
 msgstr "Показати приховані"
 
-#: src/bar-gps.cc:199
+#: src/bar-gps.cc:206
 #, c-format
 msgid ""
 "\n"
 "Do you want to geocode image %s?"
 msgstr ""
 
-#: src/bar-gps.cc:204
+#: src/bar-gps.cc:211
 #, c-format
 msgid ""
 "\n"
 "Do you want to geocode %i images?"
 msgstr ""
 
-#: src/bar-gps.cc:209
+#: src/bar-gps.cc:216
 msgid ""
 "\n"
 "This image is already geocoded!"
 msgstr ""
 
-#: src/bar-gps.cc:214
+#: src/bar-gps.cc:221
 msgid ""
 "\n"
 "One image is already geocoded!"
 msgstr ""
 
-#: src/bar-gps.cc:219
+#: src/bar-gps.cc:226
 #, c-format
 msgid ""
 "\n"
 "%i Images are already geocoded!"
 msgstr ""
 
-#: src/bar-gps.cc:222
+#: src/bar-gps.cc:229
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -407,96 +407,96 @@ msgid ""
 "Position: %lf %lf \n"
 msgstr "Колекції"
 
-#: src/bar-gps.cc:224
+#: src/bar-gps.cc:231
 #, fuzzy
 msgid "Geocode images"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/bar-gps.cc:228
+#: src/bar-gps.cc:235
 msgid "Write lat/long to meta-data?"
 msgstr ""
 
-#: src/bar-gps.cc:231 src/collect.cc:1261 src/collect-dlg.cc:153
-#: src/desktop-file.cc:240 src/dupe.cc:5385
+#: src/bar-gps.cc:238 src/collect.cc:1259 src/collect-dlg.cc:153
+#: src/desktop-file.cc:240 src/dupe.cc:5365
 msgid "Save"
 msgstr "Записати"
 
-#: src/bar-gps.cc:743
+#: src/bar-gps.cc:750
 #, fuzzy, c-format
 msgid "Zoom %i"
 msgstr "Збільшити"
 
-#: src/bar-gps.cc:759
+#: src/bar-gps.cc:766
 #, fuzzy, c-format
 msgid "Zoom level %i"
 msgstr "Збільшити"
 
-#: src/bar-gps.cc:764
+#: src/bar-gps.cc:771
 #, fuzzy
 msgid "Loading map"
 msgstr "Завантаження піктограм..."
 
-#: src/bar-gps.cc:830
+#: src/bar-gps.cc:837
 msgid "Enable markers"
 msgstr ""
 
-#: src/bar-gps.cc:832
+#: src/bar-gps.cc:839
 msgid "Centre map on marker"
 msgstr ""
 
-#: src/bar-gps.cc:854
+#: src/bar-gps.cc:861
 msgid ""
 "Move map centre to marker\n"
 " is disabled"
 msgstr ""
 
-#: src/bar-gps.cc:859
+#: src/bar-gps.cc:866
 msgid ""
 "Move map centre to marker\n"
 " is enabled"
 msgstr ""
 
-#: src/bar-gps.cc:863
+#: src/bar-gps.cc:870
 #, fuzzy
 msgid "Map centering"
 msgstr "Метод імітування напівкольорів:"
 
-#: src/bar-gps.cc:865
+#: src/bar-gps.cc:872
 #, fuzzy
 msgid "Map Centering"
 msgstr "Метод імітування напівкольорів:"
 
-#: src/bar-gps.cc:983 src/menu.cc:325 src/osd.cc:50 src/preferences.cc:2313
+#: src/bar-gps.cc:990 src/menu.cc:325 src/osd.cc:50 src/preferences.cc:2325
 #, fuzzy
 msgid "Zoom"
 msgstr "Збільшити"
 
-#: src/bar-gps.cc:993
+#: src/bar-gps.cc:1000
 #, fuzzy
 msgid "Zoom level"
 msgstr "Збільшити"
 
-#: src/bar-histogram.cc:243 src/layout-util.cc:2849
+#: src/bar-histogram.cc:243 src/layout-util.cc:2845
 msgid "Histogram on _Red"
 msgstr ""
 
-#: src/bar-histogram.cc:244 src/layout-util.cc:2847
+#: src/bar-histogram.cc:244 src/layout-util.cc:2843
 msgid "Histogram on _Green"
 msgstr ""
 
-#: src/bar-histogram.cc:245 src/layout-util.cc:2846
+#: src/bar-histogram.cc:245 src/layout-util.cc:2842
 msgid "Histogram on _Blue"
 msgstr ""
 
-#: src/bar-histogram.cc:246 src/layout-util.cc:2848
+#: src/bar-histogram.cc:246 src/layout-util.cc:2844
 msgid "_Histogram on RGB"
 msgstr ""
 
-#: src/bar-histogram.cc:247 src/layout-util.cc:2850
+#: src/bar-histogram.cc:247 src/layout-util.cc:2846
 msgid "Histogram on _Value"
 msgstr ""
 
-#: src/bar-histogram.cc:251 src/layout-util.cc:2854
+#: src/bar-histogram.cc:251 src/layout-util.cc:2850
 msgid "Li_near Histogram"
 msgstr ""
 
@@ -631,7 +631,7 @@ msgstr ""
 msgid "On any change"
 msgstr ""
 
-#: src/bar-keywords.cc:1512 src/layout-util.cc:2701
+#: src/bar-keywords.cc:1512 src/layout-util.cc:2697
 #, fuzzy
 msgid "Keyword autocomplete"
 msgstr "Не сортувати"
@@ -665,10 +665,10 @@ msgid ""
 "in the plugin file."
 msgstr ""
 
-#: src/bar-sort.cc:448 src/bar-sort.cc:765 src/cache-maint.cc:1724
-#: src/desktop-file.cc:583 src/dupe.cc:4818 src/layout.cc:2403
-#: src/layout-util.cc:266 src/preferences.cc:2574 src/preferences.cc:4158
-#: src/search.cc:3750 src/trash.cc:207 src/view-file/view-file.cc:924
+#: src/bar-sort.cc:448 src/bar-sort.cc:765 src/cache-maint.cc:1726
+#: src/desktop-file.cc:583 src/dupe.cc:4798 src/layout.cc:2435
+#: src/layout-util.cc:262 src/preferences.cc:2583 src/preferences.cc:4172
+#: src/search.cc:3749 src/trash.cc:207 src/view-file/view-file.cc:924
 #: src/window.cc:303 src/window.cc:324
 #, fuzzy
 msgid "Help"
@@ -690,7 +690,7 @@ msgstr ""
 msgid "Collection exists"
 msgstr "Колекція порожня"
 
-#: src/bar-sort.cc:542 src/collect.cc:1217 src/collect-dlg.cc:79
+#: src/bar-sort.cc:542 src/collect.cc:1215 src/collect-dlg.cc:79
 #, c-format
 msgid ""
 "Failed to save the collection:\n"
@@ -699,7 +699,7 @@ msgstr ""
 "Невдалося записати колекцію:\n"
 "%s"
 
-#: src/bar-sort.cc:543 src/collect.cc:1218 src/collect-dlg.cc:80
+#: src/bar-sort.cc:543 src/collect.cc:1216 src/collect-dlg.cc:80
 msgid "Save Failed"
 msgstr "Невдалося зберегти"
 
@@ -712,7 +712,7 @@ msgstr ""
 msgid "Add Collection"
 msgstr "Колекції"
 
-#: src/bar-sort.cc:599 src/shortcuts.cc:123 src/ui-bookmark.cc:296
+#: src/bar-sort.cc:599 src/shortcuts.cc:123 src/ui-bookmark.cc:297
 #, fuzzy
 msgid "Name:"
 msgstr "Назва"
@@ -722,7 +722,7 @@ msgstr "Назва"
 msgid "Sort Manager"
 msgstr "Сотрувати за назвою"
 
-#: src/bar-sort.cc:689 src/pan-view/pan-view.cc:1914 src/ui-pathsel.cc:1080
+#: src/bar-sort.cc:689 src/pan-view/pan-view.cc:1919 src/ui-pathsel.cc:1078
 #, fuzzy
 msgid "Folders"
 msgstr "Файли"
@@ -735,15 +735,15 @@ msgstr "Колекції"
 msgid "See the Help file for additional functions"
 msgstr ""
 
-#: src/bar-sort.cc:700 src/collect-table.cc:101 src/dupe.cc:160
-#: src/img-view.cc:98 src/pan-view/pan-view.cc:118 src/preferences.cc:728
-#: src/search.cc:370 src/utilops.cc:2422
+#: src/bar-sort.cc:700 src/collect-table.cc:102 src/dupe.cc:160
+#: src/img-view.cc:98 src/pan-view/pan-view.cc:127 src/preferences.cc:737
+#: src/search.cc:369 src/utilops.cc:2418
 msgid "Copy"
 msgstr "Копіювати"
 
-#: src/bar-sort.cc:704 src/collect-table.cc:102 src/dupe.cc:161
-#: src/img-view.cc:99 src/pan-view/pan-view.cc:119 src/preferences.cc:730
-#: src/search.cc:371 src/utilops.cc:2372
+#: src/bar-sort.cc:704 src/collect-table.cc:103 src/dupe.cc:161
+#: src/img-view.cc:99 src/pan-view/pan-view.cc:128 src/preferences.cc:739
+#: src/search.cc:370 src/utilops.cc:2368
 msgid "Move"
 msgstr "Перенести"
 
@@ -769,143 +769,143 @@ msgstr ""
 msgid "Functions additional to Copy and Move"
 msgstr ""
 
-#: src/cache.cc:186
+#: src/cache.cc:192
 #, fuzzy, c-format
 msgid ""
 "error saving sim cache data: %s\n"
 "error: %s\n"
 msgstr "помилка при зберіганні конфігураційного файлу: %s\n"
 
-#: src/cache-maint.cc:86
+#: src/cache-maint.cc:88
 #, fuzzy
 msgid "Geeqie: Creating sim data..."
 msgstr "Читання даних про схожість..."
 
-#: src/cache-maint.cc:92
+#: src/cache-maint.cc:94
 #, fuzzy
 msgid "Geeqie: Creating thumbs..."
 msgstr "Знищення піктограм..."
 
-#: src/cache-maint.cc:108
+#: src/cache-maint.cc:110
 #, fuzzy
 msgid "Exit Geeqie Cache Maintenance"
 msgstr "Допомога - Geeqie"
 
-#: src/cache-maint.cc:125
+#: src/cache-maint.cc:127
 #, fuzzy
 msgid "Geeqie: Cleaning thumbs..."
 msgstr "Знищення піктограм..."
 
-#: src/cache-maint.cc:198 src/cache-maint.cc:697 src/cache-maint.cc:800
-#: src/cache-maint.cc:997 src/cache-maint.cc:1468 src/editors.cc:1269
-#: src/preferences.cc:3093
+#: src/cache-maint.cc:200 src/cache-maint.cc:699 src/cache-maint.cc:802
+#: src/cache-maint.cc:999 src/cache-maint.cc:1470 src/editors.cc:1269
+#: src/preferences.cc:3098
 #, fuzzy
 msgid "done"
 msgstr "Нічого"
 
-#: src/cache-maint.cc:388
+#: src/cache-maint.cc:390
 #, fuzzy
 msgid "Removing old metadata..."
 msgstr "Читання даних про схожість..."
 
-#: src/cache-maint.cc:392
+#: src/cache-maint.cc:394
 #, fuzzy
 msgid "Clearing cached thumbnails..."
 msgstr "Знищення піктограм..."
 
-#: src/cache-maint.cc:396 src/cache-maint.cc:1170
+#: src/cache-maint.cc:398 src/cache-maint.cc:1172
 #, fuzzy
 msgid "Removing old thumbnails..."
 msgstr "Витирання старих піктограм..."
 
-#: src/cache-maint.cc:399 src/cache-maint.cc:1173
+#: src/cache-maint.cc:401 src/cache-maint.cc:1175
 msgid "Maintenance"
 msgstr ""
 
-#: src/cache-maint.cc:404 src/cache-maint.cc:905 src/cache-maint.cc:1178
-#: src/cache-maint.cc:1547 src/cache-maint.cc:1666 src/cache-maint.cc:1722
+#: src/cache-maint.cc:406 src/cache-maint.cc:907 src/cache-maint.cc:1180
+#: src/cache-maint.cc:1549 src/cache-maint.cc:1668 src/cache-maint.cc:1724
 #: src/desktop-file.cc:248 src/desktop-file.cc:611 src/dupe.cc:3133
-#: src/dupe.cc:4829 src/editors.cc:612 src/preferences.cc:3213
-#: src/search.cc:3763 src/ui-fileops.cc:118 src/utilops.cc:2101
-#: src/utilops.cc:2148 src/utilops.cc:2770
+#: src/dupe.cc:4809 src/editors.cc:612 src/preferences.cc:3218
+#: src/search.cc:3762 src/ui-fileops.cc:118 src/utilops.cc:2097
+#: src/utilops.cc:2144 src/utilops.cc:2766
 #, fuzzy
 msgid "Close"
 msgstr "Закрити"
 
-#: src/cache-maint.cc:407 src/cache-maint.cc:909 src/cache-maint.cc:1182
-#: src/cache-maint.cc:1551 src/dupe.cc:4824 src/preferences.cc:3217
-#: src/search.cc:3758
+#: src/cache-maint.cc:409 src/cache-maint.cc:911 src/cache-maint.cc:1184
+#: src/cache-maint.cc:1553 src/dupe.cc:4804 src/preferences.cc:3222
+#: src/search.cc:3757
 msgid "Stop"
 msgstr ""
 
-#: src/cache-maint.cc:711 src/cache-maint.cc:1347
+#: src/cache-maint.cc:713 src/cache-maint.cc:1349
 #, fuzzy
 msgid "stopped"
 msgstr "Сотрувати за числом"
 
-#: src/cache-maint.cc:830 src/cache-maint.cc:1499 src/cache-maint.cc:1629
-#: src/preferences.cc:3176
+#: src/cache-maint.cc:832 src/cache-maint.cc:1501 src/cache-maint.cc:1631
+#: src/preferences.cc:3181
 #, fuzzy
 msgid "Invalid folder"
 msgstr "Невірне ім'я файлу"
 
-#: src/cache-maint.cc:831 src/cache-maint.cc:1500 src/cache-maint.cc:1630
-#: src/preferences.cc:3177
+#: src/cache-maint.cc:833 src/cache-maint.cc:1502 src/cache-maint.cc:1632
+#: src/preferences.cc:3182
 msgid "The specified folder can not be found."
 msgstr ""
 
-#: src/cache-maint.cc:899 src/cache-maint.cc:913 src/cache-maint.cc:1766
+#: src/cache-maint.cc:901 src/cache-maint.cc:915 src/cache-maint.cc:1768
 #, fuzzy
 msgid "Create thumbnails"
 msgstr "Кешувати піктограми"
 
-#: src/cache-maint.cc:907 src/cache-maint.cc:1180 src/cache-maint.cc:1549
-#: src/cache-maint.cc:1668 src/preferences.cc:3215
+#: src/cache-maint.cc:909 src/cache-maint.cc:1182 src/cache-maint.cc:1551
+#: src/cache-maint.cc:1670 src/preferences.cc:3220
 #, fuzzy
 msgid "S_tart"
 msgstr "Дата"
 
-#: src/cache-maint.cc:920 src/cache-maint.cc:1562 src/cache-maint.cc:1678
-#: src/preferences.cc:3228 src/preferences.cc:3574
+#: src/cache-maint.cc:922 src/cache-maint.cc:1564 src/cache-maint.cc:1680
+#: src/preferences.cc:3233 src/preferences.cc:3579
 #, fuzzy
 msgid "Folder:"
 msgstr "Файли"
 
-#: src/cache-maint.cc:923 src/cache-maint.cc:1565 src/cache-maint.cc:1681
-#: src/preferences.cc:3231
+#: src/cache-maint.cc:925 src/cache-maint.cc:1567 src/cache-maint.cc:1683
+#: src/preferences.cc:3236
 #, fuzzy
 msgid "Select folder"
 msgstr "Зняти виділення"
 
-#: src/cache-maint.cc:927 src/preferences.cc:3235
+#: src/cache-maint.cc:929 src/preferences.cc:3240
 #, fuzzy
 msgid "Include subfolders"
 msgstr "Невірне ім'я файлу"
 
-#: src/cache-maint.cc:928
+#: src/cache-maint.cc:930
 msgid "Store thumbnails local to source images"
 msgstr ""
 
-#: src/cache-maint.cc:937 src/cache-maint.cc:1189 src/cache-maint.cc:1575
-#: src/preferences.cc:3243
+#: src/cache-maint.cc:939 src/cache-maint.cc:1191 src/cache-maint.cc:1577
+#: src/preferences.cc:3248
 msgid "click start to begin"
 msgstr ""
 
-#: src/cache-maint.cc:1109 src/editors.cc:1195
+#: src/cache-maint.cc:1111 src/editors.cc:1195
 #, fuzzy
 msgid "running..."
 msgstr "Порівняння..."
 
-#: src/cache-maint.cc:1165
+#: src/cache-maint.cc:1167
 msgid "Clearing thumbnails..."
 msgstr "Знищення піктограм..."
 
-#: src/cache-maint.cc:1246 src/cache-maint.cc:1249 src/cache-maint.cc:1742
-#: src/cache-maint.cc:1761
+#: src/cache-maint.cc:1248 src/cache-maint.cc:1251 src/cache-maint.cc:1744
+#: src/cache-maint.cc:1763
 msgid "Clear cache"
 msgstr "Очистити кеш"
 
-#: src/cache-maint.cc:1250
+#: src/cache-maint.cc:1252
 #, fuzzy
 msgid ""
 "This will remove all thumbnails and sim. files\n"
@@ -914,131 +914,131 @@ msgstr ""
 "Це видалить всі піктограми які були\n"
 "збережені на диску, продовжити?"
 
-#: src/cache-maint.cc:1295
+#: src/cache-maint.cc:1297
 #, fuzzy, c-format
 msgid "Location: %s"
 msgstr "Колекції"
 
-#: src/cache-maint.cc:1544
+#: src/cache-maint.cc:1546
 #, fuzzy
 msgid "Create sim. files"
 msgstr "Не можу створити каталог"
 
-#: src/cache-maint.cc:1555
+#: src/cache-maint.cc:1557
 #, fuzzy
 msgid "Create sim. files recursively"
 msgstr "Показувати піктограми"
 
-#: src/cache-maint.cc:1663 src/cache-maint.cc:1797
+#: src/cache-maint.cc:1665 src/cache-maint.cc:1799
 #, fuzzy
 msgid "Background cache maintenance"
 msgstr "Допомога - Geeqie"
 
-#: src/cache-maint.cc:1671
+#: src/cache-maint.cc:1673
 msgid ""
 "Recursively delete orphaned thumbnails\n"
 "and .sim files, and create new\n"
 "thumbnails and .sim files"
 msgstr ""
 
-#: src/cache-maint.cc:1715
+#: src/cache-maint.cc:1717
 #, fuzzy
 msgid "Cache Maintenance"
 msgstr "Допомога - Geeqie"
 
-#: src/cache-maint.cc:1727
+#: src/cache-maint.cc:1729
 msgid "Cache and Data Maintenance"
 msgstr ""
 
-#: src/cache-maint.cc:1731
+#: src/cache-maint.cc:1733
 #, fuzzy
 msgid "Geeqie thumbnail and sim. cache"
 msgstr "Показувати піктограми"
 
-#: src/cache-maint.cc:1737 src/cache-maint.cc:1756 src/cache-maint.cc:1792
+#: src/cache-maint.cc:1739 src/cache-maint.cc:1758 src/cache-maint.cc:1794
 #, fuzzy
 msgid "Clean up"
 msgstr "Очистити"
 
-#: src/cache-maint.cc:1740
+#: src/cache-maint.cc:1742
 msgid "Remove orphaned or outdated thumbnails and sim. files."
 msgstr ""
 
-#: src/cache-maint.cc:1745
+#: src/cache-maint.cc:1747
 #, fuzzy
 msgid "Delete all cached data."
 msgstr "Кешувати піктограми"
 
-#: src/cache-maint.cc:1748
+#: src/cache-maint.cc:1750
 #, fuzzy
 msgid "Shared thumbnail cache"
 msgstr "Показувати піктограми"
 
-#: src/cache-maint.cc:1759
+#: src/cache-maint.cc:1761
 msgid "Remove orphaned or outdated thumbnails."
 msgstr ""
 
-#: src/cache-maint.cc:1764
+#: src/cache-maint.cc:1766
 #, fuzzy
 msgid "Delete all cached thumbnails."
 msgstr "Кешувати піктограми"
 
-#: src/cache-maint.cc:1770
+#: src/cache-maint.cc:1772
 #, fuzzy
 msgid "Render"
 msgstr "Перейменувати"
 
-#: src/cache-maint.cc:1773
+#: src/cache-maint.cc:1775
 msgid "Render thumbnails for a specific folder."
 msgstr ""
 
-#: src/cache-maint.cc:1776
+#: src/cache-maint.cc:1778
 #, fuzzy
 msgid "File similarity cache"
 msgstr "Очистити кеш"
 
-#: src/cache-maint.cc:1780
+#: src/cache-maint.cc:1782
 msgid "Create"
 msgstr "Створити"
 
-#: src/cache-maint.cc:1783
+#: src/cache-maint.cc:1785
 #, fuzzy
 msgid "Create sim. files recursively."
 msgstr "Показувати піктограми"
 
-#: src/cache-maint.cc:1795
+#: src/cache-maint.cc:1797
 msgid "Remove orphaned keywords and comments."
 msgstr ""
 
-#: src/cache-maint.cc:1801
+#: src/cache-maint.cc:1803
 #, fuzzy
 msgid "Select"
 msgstr "Зняти виділення"
 
-#: src/cache-maint.cc:1804
+#: src/cache-maint.cc:1806
 msgid "Run cache maintenance as a background job."
 msgstr ""
 
-#: src/collect.cc:491 src/image.cc:377 src/image-overlay.cc:282
-#: src/image-overlay.cc:361
+#: src/collect.cc:489 src/image.cc:377 src/image-overlay.cc:285
+#: src/image-overlay.cc:364
 msgid "Untitled"
 msgstr "Без імені"
 
-#: src/collect.cc:495
+#: src/collect.cc:493
 #, c-format
 msgid "Untitled (%d)"
 msgstr "Без імені (%d)"
 
-#: src/collect.cc:1141
+#: src/collect.cc:1139
 #, fuzzy, c-format
 msgid "%s - Collection - %s"
 msgstr "%s - колекція Geeqie"
 
-#: src/collect.cc:1254 src/collect.cc:1258
+#: src/collect.cc:1252 src/collect.cc:1256
 msgid "Close collection"
 msgstr "Закрити колекцію"
 
-#: src/collect.cc:1259
+#: src/collect.cc:1257
 msgid ""
 "Collection has been modified.\n"
 "Save first?"
@@ -1046,7 +1046,7 @@ msgstr ""
 "Колекція була змінена.\n"
 "Зберегти спочатку?"
 
-#: src/collect.cc:1262
+#: src/collect.cc:1260
 msgid "_Discard"
 msgstr ""
 
@@ -1067,7 +1067,7 @@ msgstr "Переписати файл"
 msgid "Overwrite"
 msgstr "Переписати"
 
-#: src/collect-dlg.cc:148 src/collect-table.cc:116
+#: src/collect-dlg.cc:148 src/collect-table.cc:117
 msgid "Save collection"
 msgstr "Зберегти колекцію"
 
@@ -1090,8 +1090,8 @@ msgstr "Приєднати колекцію"
 msgid "Select from existing collections:"
 msgstr "Зберегти колекцію"
 
-#: src/collect-dlg.cc:211 src/collect-table.cc:2275 src/dupe.cc:4949
-#: src/img-view.cc:1617 src/layout.cc:2415 src/preferences.cc:4173
+#: src/collect-dlg.cc:211 src/collect-table.cc:2271 src/dupe.cc:4929
+#: src/img-view.cc:1617 src/layout.cc:2447 src/preferences.cc:4187
 #: src/ui-utildlg.cc:475 src/view-dir.cc:491
 msgid "Cancel"
 msgstr "Відмінити"
@@ -1115,296 +1115,296 @@ msgid ""
 "error: %s\n"
 msgstr "помилка при зберіганні конфігураційного файлу: %s\n"
 
-#: src/collect-table.cc:103 src/dupe.cc:162 src/img-view.cc:100
-#: src/pan-view/pan-view.cc:120 src/search.cc:372 src/utilops.cc:2468
-#: src/utilops.cc:2930
+#: src/collect-table.cc:104 src/dupe.cc:162 src/img-view.cc:100
+#: src/pan-view/pan-view.cc:129 src/search.cc:371 src/utilops.cc:2464
+#: src/utilops.cc:2926
 msgid "Rename"
 msgstr "Перейменувати"
 
-#: src/collect-table.cc:104 src/collect-table.cc:1064 src/dupe.cc:163
+#: src/collect-table.cc:105 src/collect-table.cc:1060 src/dupe.cc:163
 #: src/dupe.cc:3559 src/img-view.cc:101 src/img-view.cc:102
-#: src/img-view.cc:1447 src/layout-image.cc:860 src/pan-view/pan-view.cc:121
-#: src/pan-view/pan-view.cc:2412 src/search.cc:373 src/search.cc:1202
+#: src/img-view.cc:1447 src/layout-image.cc:856 src/pan-view/pan-view.cc:130
+#: src/pan-view/pan-view.cc:2417 src/search.cc:372 src/search.cc:1201
 #: src/view-file/view-file.cc:730
 #, fuzzy
 msgid "Move to Trash"
 msgstr "Перенести"
 
-#: src/collect-table.cc:105 src/dupe.cc:170 src/img-view.cc:104
-#: src/img-view.cc:142 src/layout-util.cc:2644 src/pan-view/pan-view.cc:122
-#: src/search.cc:380
+#: src/collect-table.cc:106 src/dupe.cc:170 src/img-view.cc:104
+#: src/img-view.cc:142 src/layout-util.cc:2640 src/pan-view/pan-view.cc:131
+#: src/search.cc:379
 #, fuzzy
 msgid "Close window"
 msgstr "Закрити вікно"
 
-#: src/collect-table.cc:107 src/dupe.cc:171 src/preferences.cc:3588
-#: src/search.cc:381
+#: src/collect-table.cc:108 src/dupe.cc:171 src/preferences.cc:3593
+#: src/search.cc:380
 msgid "View"
 msgstr "Переглянути"
 
-#: src/collect-table.cc:108 src/dupe.cc:172 src/layout-util.cc:2769
-#: src/search.cc:382
+#: src/collect-table.cc:109 src/dupe.cc:172 src/layout-util.cc:2765
+#: src/search.cc:381
 #, fuzzy
 msgid "View in new window"
 msgstr "Переглянути в новому вікні"
 
-#: src/collect-table.cc:109 src/collect-table.cc:1032 src/dupe.cc:167
-#: src/dupe.cc:3518 src/dupe.cc:3856 src/layout-util.cc:2754 src/search.cc:376
-#: src/search.cc:1169 src/view-file/view-file.cc:1097
+#: src/collect-table.cc:110 src/collect-table.cc:1028 src/dupe.cc:167
+#: src/dupe.cc:3518 src/dupe.cc:3856 src/layout-util.cc:2750 src/search.cc:375
+#: src/search.cc:1168 src/view-file/view-file.cc:1097
 #: src/view-file/view-file.cc:1147
 msgid "Select all"
 msgstr "Виділити все"
 
-#: src/collect-table.cc:110 src/collect-table.cc:1034 src/dupe.cc:168
-#: src/dupe.cc:175 src/dupe.cc:3520 src/dupe.cc:3858 src/layout-util.cc:2757
-#: src/search.cc:377 src/search.cc:1171 src/view-file/view-file.cc:1152
+#: src/collect-table.cc:111 src/collect-table.cc:1030 src/dupe.cc:168
+#: src/dupe.cc:175 src/dupe.cc:3520 src/dupe.cc:3858 src/layout-util.cc:2753
+#: src/search.cc:376 src/search.cc:1170 src/view-file/view-file.cc:1152
 msgid "Select none"
 msgstr "Зняти виділення"
 
-#: src/collect-table.cc:111 src/collect-table.cc:1038
+#: src/collect-table.cc:112 src/collect-table.cc:1034
 #, fuzzy
 msgid "Rectangular selection"
 msgstr "Прямокутне виділення"
 
-#: src/collect-table.cc:112
+#: src/collect-table.cc:113
 #, fuzzy
 msgid "Select single file"
 msgstr "Зняти виділення"
 
-#: src/collect-table.cc:113
+#: src/collect-table.cc:114
 #, fuzzy
 msgid "Toggle select image"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/collect-table.cc:114 src/collect-table.cc:1024
+#: src/collect-table.cc:115 src/collect-table.cc:1020
 #, fuzzy
 msgid "Append from file selection"
 msgstr "Додати зі списку файлів"
 
-#: src/collect-table.cc:115
+#: src/collect-table.cc:116
 #, fuzzy
 msgid "Append from collection"
 msgstr "Додати з колекції..."
 
-#: src/collect-table.cc:117
+#: src/collect-table.cc:118
 #, fuzzy
 msgid "Save collection as"
 msgstr "Зберегти колекцію"
 
-#: src/collect-table.cc:118
+#: src/collect-table.cc:119
 #, fuzzy
 msgid "Show filename text"
 msgstr "Показати приховані"
 
-#: src/collect-table.cc:119 src/menu.cc:172
+#: src/collect-table.cc:120 src/menu.cc:172
 #, fuzzy
 msgid "Sort by name"
 msgstr "Сотрувати за назвою"
 
-#: src/collect-table.cc:120 src/menu.cc:144
+#: src/collect-table.cc:121 src/menu.cc:144
 #, fuzzy
 msgid "Sort by date"
 msgstr "Сортувати за датою"
 
-#: src/collect-table.cc:121 src/menu.cc:141
+#: src/collect-table.cc:122 src/menu.cc:141
 #, fuzzy
 msgid "Sort by size"
 msgstr "Сортувати за розміром"
 
-#: src/collect-table.cc:122 src/menu.cc:159
+#: src/collect-table.cc:123 src/menu.cc:159
 #, fuzzy
 msgid "Sort by path"
 msgstr "Сортувати за шляхом"
 
-#: src/collect-table.cc:123 src/img-view.cc:144
+#: src/collect-table.cc:124 src/img-view.cc:144
 #, fuzzy
 msgid "Print"
 msgstr "Фільтр:"
 
-#: src/collect-table.cc:124
+#: src/collect-table.cc:125
 #, fuzzy
 msgid "Append (Append collection dialog)"
 msgstr "Приєднати колекцію"
 
-#: src/collect-table.cc:125
+#: src/collect-table.cc:126
 msgid "Discard (Close modified collection dialog)"
 msgstr ""
 
-#: src/collect-table.cc:270
+#: src/collect-table.cc:271
 #, fuzzy, c-format
 msgid "%s, %d images (%s, %d)"
 msgstr "%s, %d файлів (%s, %d)%s"
 
-#: src/collect-table.cc:277
+#: src/collect-table.cc:278
 #, fuzzy, c-format
 msgid "%s, %d images"
 msgstr "%d зображень"
 
-#: src/collect-table.cc:282 src/layout-util.cc:2053 src/layout-util.cc:2109
-#: src/layout-util.cc:3697
+#: src/collect-table.cc:283 src/layout-util.cc:2049 src/layout-util.cc:2105
+#: src/layout-util.cc:3693
 msgid "Empty"
 msgstr "Порожньо"
 
-#: src/collect-table.cc:296 src/dupe.cc:2155 src/search.cc:451
+#: src/collect-table.cc:297 src/dupe.cc:2155 src/search.cc:450
 #: src/view-file/view-file.cc:1386 src/view-file/view-file.cc:1495
 msgid "Loading thumbs..."
 msgstr "Завантаження піктограм..."
 
-#: src/collect-table.cc:1014 src/dupe.cc:3513 src/dupe.cc:3851
-#: src/layout-util.cc:2770 src/search.cc:1164
+#: src/collect-table.cc:1010 src/dupe.cc:3513 src/dupe.cc:3851
+#: src/layout-util.cc:2766 src/search.cc:1163
 #, fuzzy
 msgid "_View"
 msgstr "/Вигляд"
 
-#: src/collect-table.cc:1016 src/dupe.cc:3515 src/dupe.cc:3853
-#: src/img-view.cc:1434 src/layout-image.cc:832 src/pan-view/pan-view.cc:2392
-#: src/search.cc:1166 src/view-file/view-file.cc:711
+#: src/collect-table.cc:1012 src/dupe.cc:3515 src/dupe.cc:3853
+#: src/img-view.cc:1434 src/layout-image.cc:828 src/pan-view/pan-view.cc:2397
+#: src/search.cc:1165 src/view-file/view-file.cc:711
 #, fuzzy
 msgid "View in _new window"
 msgstr "Переглянути в новому вікні"
 
-#: src/collect-table.cc:1018 src/pan-view/pan-view.cc:2394
+#: src/collect-table.cc:1014 src/pan-view/pan-view.cc:2399
 #, fuzzy
 msgid "Go to original"
 msgstr "Масштабувати до оригінального розміру"
 
-#: src/collect-table.cc:1021 src/dupe.cc:3567 src/dupe.cc:3861
+#: src/collect-table.cc:1017 src/dupe.cc:3567 src/dupe.cc:3861
 #, fuzzy
 msgid "Rem_ove"
 msgstr "Стерти"
 
-#: src/collect-table.cc:1026
+#: src/collect-table.cc:1022
 msgid "Append from collection..."
 msgstr "Додати з колекції..."
 
-#: src/collect-table.cc:1030
+#: src/collect-table.cc:1026
 #, fuzzy
 msgid "_Selection"
 msgstr "Зняти виділення"
 
-#: src/collect-table.cc:1036
+#: src/collect-table.cc:1032
 #, fuzzy
 msgid "Invert selection"
 msgstr "Зняти виділення"
 
-#: src/collect-table.cc:1050 src/dupe.cc:3545 src/img-view.cc:1438
-#: src/layout-image.cc:846 src/layout-util.cc:2663
-#: src/pan-view/pan-view.cc:2398 src/search.cc:1188
+#: src/collect-table.cc:1046 src/dupe.cc:3545 src/img-view.cc:1438
+#: src/layout-image.cc:842 src/layout-util.cc:2659
+#: src/pan-view/pan-view.cc:2403 src/search.cc:1187
 #: src/view-file/view-file.cc:717
 #, fuzzy
 msgid "_Copy..."
 msgstr "Копіювати..."
 
-#: src/collect-table.cc:1052 src/dupe.cc:3547 src/img-view.cc:1439
-#: src/layout-image.cc:848 src/layout-util.cc:2708
-#: src/pan-view/pan-view.cc:2400 src/search.cc:1190
+#: src/collect-table.cc:1048 src/dupe.cc:3547 src/img-view.cc:1439
+#: src/layout-image.cc:844 src/layout-util.cc:2704
+#: src/pan-view/pan-view.cc:2405 src/search.cc:1189
 #: src/view-file/view-file.cc:719
 #, fuzzy
 msgid "_Move..."
 msgstr "Перенести..."
 
-#: src/collect-table.cc:1054 src/dupe.cc:3549 src/img-view.cc:1440
-#: src/layout-image.cc:850 src/layout-util.cc:2746
-#: src/pan-view/pan-view.cc:2402 src/search.cc:1192 src/view-dir.cc:810
+#: src/collect-table.cc:1050 src/dupe.cc:3549 src/img-view.cc:1440
+#: src/layout-image.cc:846 src/layout-util.cc:2742
+#: src/pan-view/pan-view.cc:2407 src/search.cc:1191 src/view-dir.cc:810
 #: src/view-file/view-file.cc:721
 #, fuzzy
 msgid "_Rename..."
 msgstr "Переіменувати..."
 
-#: src/collect-table.cc:1056 src/dupe.cc:3551 src/img-view.cc:1441
-#: src/search.cc:1194 src/view-dir.cc:813
+#: src/collect-table.cc:1052 src/dupe.cc:3551 src/img-view.cc:1441
+#: src/search.cc:1193 src/view-dir.cc:813
 #, fuzzy
 msgid "_Copy path"
 msgstr "Копіювати"
 
-#: src/collect-table.cc:1058 src/dupe.cc:3553 src/img-view.cc:1442
-#: src/search.cc:1196 src/view-dir.cc:816
+#: src/collect-table.cc:1054 src/dupe.cc:3553 src/img-view.cc:1442
+#: src/search.cc:1195 src/view-dir.cc:816
 #, fuzzy
 msgid "_Copy path unquoted"
 msgstr "Копіювати"
 
-#: src/collect-table.cc:1063 src/dupe.cc:3558 src/img-view.cc:1446
-#: src/layout-image.cc:859 src/layout-util.cc:2666 src/layout-util.cc:2667
-#: src/layout-util.cc:2668 src/pan-view/pan-view.cc:2411 src/search.cc:1201
+#: src/collect-table.cc:1059 src/dupe.cc:3558 src/img-view.cc:1446
+#: src/layout-image.cc:855 src/layout-util.cc:2662 src/layout-util.cc:2663
+#: src/layout-util.cc:2664 src/pan-view/pan-view.cc:2416 src/search.cc:1200
 #: src/view-file/view-file.cc:729
 #, fuzzy
 msgid "Move to Trash..."
 msgstr "Перенести..."
 
-#: src/collect-table.cc:1067 src/dupe.cc:3562 src/img-view.cc:1450
-#: src/layout-image.cc:864 src/pan-view/pan-view.cc:2415 src/search.cc:1205
+#: src/collect-table.cc:1063 src/dupe.cc:3562 src/img-view.cc:1450
+#: src/layout-image.cc:860 src/pan-view/pan-view.cc:2420 src/search.cc:1204
 #: src/view-dir.cc:819 src/view-file/view-file.cc:733
 #, fuzzy
 msgid "_Delete..."
 msgstr "Видалити..."
 
-#: src/collect-table.cc:1068 src/dupe.cc:3563 src/img-view.cc:1451
-#: src/layout-image.cc:865 src/pan-view/pan-view.cc:2416 src/search.cc:1206
-#: src/ui-pathsel.cc:630 src/view-file/view-file.cc:734
+#: src/collect-table.cc:1064 src/dupe.cc:3563 src/img-view.cc:1451
+#: src/layout-image.cc:861 src/pan-view/pan-view.cc:2421 src/search.cc:1205
+#: src/ui-pathsel.cc:628 src/view-file/view-file.cc:734
 #, fuzzy
 msgid "_Delete"
 msgstr "Видалити"
 
-#: src/collect-table.cc:1074
+#: src/collect-table.cc:1070
 #, fuzzy
 msgid "Randomize"
 msgstr "Довільно"
 
-#: src/collect-table.cc:1076 src/view-dir.cc:835 src/view-dir.cc:842
+#: src/collect-table.cc:1072 src/view-dir.cc:835 src/view-dir.cc:842
 #: src/view-file/view-file.cc:761
 #, fuzzy
 msgid "_Sort"
 msgstr "Сортувати"
 
-#: src/collect-table.cc:1079 src/view-file/view-file.cc:777
+#: src/collect-table.cc:1075 src/view-file/view-file.cc:777
 #, fuzzy
 msgid "Show filename _text"
 msgstr "Показати приховані"
 
-#: src/collect-table.cc:1081 src/view-file/view-file.cc:785
+#: src/collect-table.cc:1077 src/view-file/view-file.cc:785
 #: src/view-file/view-file.cc:789
 #, fuzzy
 msgid "Show star rating"
 msgstr "Сортувати за датою"
 
-#: src/collect-table.cc:1084
+#: src/collect-table.cc:1080
 #, fuzzy
 msgid "_Save collection"
 msgstr "Зберегти колекцію"
 
-#: src/collect-table.cc:1086
+#: src/collect-table.cc:1082
 #, fuzzy
 msgid "Save collection _as..."
 msgstr "Зберегти колекцію як..."
 
-#: src/collect-table.cc:1089 src/layout-util.cc:2678
+#: src/collect-table.cc:1085 src/layout-util.cc:2674
 #: src/view-file/view-file.cc:744
 #, fuzzy
 msgid "_Find duplicates..."
 msgstr "Знайти дублікати..."
 
-#: src/collect-table.cc:1091 src/dupe.cc:3542 src/layout-util.cc:2735
-#: src/search.cc:1185
+#: src/collect-table.cc:1087 src/dupe.cc:3542 src/layout-util.cc:2731
+#: src/search.cc:1184
 #, fuzzy
 msgid "Print..."
 msgstr "/Файл/Перейменувати..."
 
-#: src/collect-table.cc:2266 src/dupe.cc:4943 src/img-view.cc:1611
+#: src/collect-table.cc:2262 src/dupe.cc:4923 src/img-view.cc:1611
 #, fuzzy
 msgid "Dropped list includes folders."
 msgstr "Список відкинутих включає каталоги."
 
-#: src/collect-table.cc:2268 src/dupe.cc:4945 src/img-view.cc:1613
+#: src/collect-table.cc:2264 src/dupe.cc:4925 src/img-view.cc:1613
 #, fuzzy
 msgid "_Add contents"
 msgstr "Додати вміст"
 
-#: src/collect-table.cc:2270 src/dupe.cc:4946 src/img-view.cc:1614
+#: src/collect-table.cc:2266 src/dupe.cc:4926 src/img-view.cc:1614
 #, fuzzy
 msgid "Add contents _recursive"
 msgstr "Рекурсивно додати вміст"
 
-#: src/collect-table.cc:2272 src/dupe.cc:4947 src/img-view.cc:1615
+#: src/collect-table.cc:2268 src/dupe.cc:4927 src/img-view.cc:1615
 #, fuzzy
 msgid "_Skip folders"
 msgstr "Пропустити каталоги"
@@ -1449,7 +1449,7 @@ msgstr "Не можу створити каталог"
 msgid "Desktop file"
 msgstr "в:"
 
-#: src/desktop-file.cc:314 src/ui-pathsel.cc:495
+#: src/desktop-file.cc:314 src/ui-pathsel.cc:493
 #, c-format
 msgid ""
 "Unable to delete file:\n"
@@ -1458,23 +1458,23 @@ msgstr ""
 "Не можу видалити файл:\n"
 "%s"
 
-#: src/desktop-file.cc:315 src/ui-pathsel.cc:496 src/utilops.cc:2249
-#: src/utilops.cc:2285 src/utilops.cc:2803
+#: src/desktop-file.cc:315 src/ui-pathsel.cc:494 src/utilops.cc:2245
+#: src/utilops.cc:2281 src/utilops.cc:2799
 msgid "File deletion failed"
 msgstr "Видалення фала не вдалося"
 
-#: src/desktop-file.cc:359 src/desktop-file.cc:367 src/ui-pathsel.cc:538
-#: src/ui-pathsel.cc:546
+#: src/desktop-file.cc:359 src/desktop-file.cc:367 src/ui-pathsel.cc:536
+#: src/ui-pathsel.cc:544
 msgid "Delete file"
 msgstr "Видалити файл"
 
 #: src/desktop-file.cc:363 src/desktop-file.cc:603 src/dupe.cc:164
-#: src/img-view.cc:103 src/preferences.cc:3558 src/search.cc:374
-#: src/ui-pathsel.cc:542 src/utilops.cc:1600 src/utilops.cc:2281
+#: src/img-view.cc:103 src/preferences.cc:3563 src/search.cc:373
+#: src/ui-pathsel.cc:540 src/utilops.cc:1596 src/utilops.cc:2277
 msgid "Delete"
 msgstr "Видалити"
 
-#: src/desktop-file.cc:365 src/ui-pathsel.cc:544
+#: src/desktop-file.cc:365 src/ui-pathsel.cc:542
 #, c-format
 msgid ""
 "About to delete the file:\n"
@@ -1509,24 +1509,24 @@ msgstr ""
 msgid "Hidden"
 msgstr ""
 
-#: src/desktop-file.cc:673 src/dupe.cc:3970 src/dupe.cc:4684 src/osd.cc:47
-#: src/search.cc:3709 src/ui-pathsel.cc:1092 src/utilops.cc:615
+#: src/desktop-file.cc:673 src/dupe.cc:3970 src/dupe.cc:4664 src/osd.cc:47
+#: src/search.cc:3708 src/ui-pathsel.cc:1090 src/utilops.cc:611
 msgid "Path"
 msgstr "Шлях"
 
-#: src/dupe.cc:166 src/preferences.cc:2097 src/preferences.cc:2129
-#: src/preferences.cc:2290 src/search.cc:378 src/view-file/view-file.cc:941
+#: src/dupe.cc:166 src/preferences.cc:2109 src/preferences.cc:2141
+#: src/preferences.cc:2302 src/search.cc:377 src/view-file/view-file.cc:941
 #: src/view-file/view-file.cc:1198 src/window.cc:413
 #, fuzzy
 msgid "Clear"
 msgstr "Очистити"
 
-#: src/dupe.cc:169 src/search.cc:379
+#: src/dupe.cc:169 src/search.cc:378
 #, fuzzy
 msgid "Toggle thumbs"
 msgstr "Завантаження піктограм..."
 
-#: src/dupe.cc:173 src/search.cc:383
+#: src/dupe.cc:173 src/search.cc:382
 #, fuzzy
 msgid "Collection from selection"
 msgstr "Додати зі списку файлів"
@@ -1583,7 +1583,7 @@ msgstr "Порівняння..."
 msgid "Comparing"
 msgstr "Порівняння..."
 
-#: src/dupe.cc:2532 src/dupe.cc:2558 src/pan-view/pan-view.cc:1088
+#: src/dupe.cc:2532 src/dupe.cc:2558 src/pan-view/pan-view.cc:1097
 #, fuzzy
 msgid "Sorting..."
 msgstr "Порівняння..."
@@ -1629,19 +1629,19 @@ msgstr "%d файлів%s"
 msgid "Name case-insensitive"
 msgstr ""
 
-#: src/dupe.cc:3966 src/dupe.cc:4681 src/dupe.cc:5262 src/osd.cc:49
-#: src/preferences.cc:2477 src/search.cc:3706
-#: src/view-file/view-file-list.cc:2208
+#: src/dupe.cc:3966 src/dupe.cc:4661 src/dupe.cc:5242 src/osd.cc:49
+#: src/preferences.cc:2489 src/search.cc:3705
+#: src/view-file/view-file-list.cc:2187
 msgid "Size"
 msgstr "Розмір"
 
-#: src/dupe.cc:3967 src/dupe.cc:4682 src/dupe.cc:5262 src/exif.cc:331
-#: src/exif-common.cc:919 src/osd.cc:48 src/search.cc:3707
-#: src/view-file/view-file-list.cc:2212
+#: src/dupe.cc:3967 src/dupe.cc:4662 src/dupe.cc:5242 src/exif.cc:331
+#: src/exif-common.cc:919 src/osd.cc:48 src/search.cc:3706
+#: src/view-file/view-file-list.cc:2191
 msgid "Date"
 msgstr "Дата"
 
-#: src/dupe.cc:3968 src/dupe.cc:4683 src/osd.cc:51 src/search.cc:3708
+#: src/dupe.cc:3968 src/dupe.cc:4663 src/osd.cc:51 src/search.cc:3707
 msgid "Dimensions"
 msgstr "Розміри"
 
@@ -1678,123 +1678,123 @@ msgstr "Додати вміст"
 msgid "Name case-insensitive ≠ content"
 msgstr ""
 
-#: src/dupe.cc:4614 src/dupe.cc:5005 src/search.cc:385
+#: src/dupe.cc:4594 src/dupe.cc:4985 src/search.cc:384
 #, fuzzy
 msgid "Find duplicates"
 msgstr "Знайти дублікати..."
 
-#: src/dupe.cc:4678 src/search.cc:3703
+#: src/dupe.cc:4658 src/search.cc:3702
 #, fuzzy
 msgid "Rank"
 msgstr "Довільно"
 
-#: src/dupe.cc:4679 src/search.cc:3704
+#: src/dupe.cc:4659 src/search.cc:3703
 #, fuzzy
 msgid "Thumb"
 msgstr "Піктограми"
 
-#: src/dupe.cc:4685 src/dupe.cc:5262 src/preferences.cc:2088
-#: src/preferences.cc:2120 src/preferences.cc:2469
+#: src/dupe.cc:4665 src/dupe.cc:5242 src/preferences.cc:2100
+#: src/preferences.cc:2132 src/preferences.cc:2481
 #, fuzzy
 msgid "Set"
 msgstr "Порівняння..."
 
-#: src/dupe.cc:4724
+#: src/dupe.cc:4704
 msgid "Compare to:"
 msgstr "Порівняти з:"
 
-#: src/dupe.cc:4759 src/preferences.cc:2015 src/search.cc:3722
+#: src/dupe.cc:4739 src/preferences.cc:2027 src/search.cc:3721
 msgid "Thumbnails"
 msgstr "Піктограми"
 
-#: src/dupe.cc:4768
+#: src/dupe.cc:4748
 msgid "Compare by:"
 msgstr "Порівняти за допомогою:"
 
-#: src/dupe.cc:4776
+#: src/dupe.cc:4756
 #, fuzzy
 msgid "Custom Threshold"
 msgstr "Додаткові типи фалів:"
 
-#: src/dupe.cc:4786 src/menu.cc:225 src/menu.cc:252
+#: src/dupe.cc:4766 src/menu.cc:225 src/menu.cc:252
 msgid "Sort"
 msgstr "Сортувати"
 
-#: src/dupe.cc:4787
+#: src/dupe.cc:4767
 #, fuzzy
 msgid "Sort by group totals"
 msgstr "Сортувати за шляхом"
 
-#: src/dupe.cc:4793
+#: src/dupe.cc:4773
 #, fuzzy
 msgid "Ignore Orientation"
 msgstr "Розміри"
 
-#: src/dupe.cc:4794
+#: src/dupe.cc:4774
 #, fuzzy
 msgid "Ignore image orientation"
 msgstr "Розміри"
 
-#: src/dupe.cc:4801
+#: src/dupe.cc:4781
 msgid "Compare two file sets"
 msgstr "Порівняти два набори файлів"
 
-#: src/dupe.cc:5005
+#: src/dupe.cc:4985
 msgid "Please wait for the current file selection to be loaded."
 msgstr ""
 
-#: src/dupe.cc:5256
+#: src/dupe.cc:5236
 #, fuzzy, c-format
 msgid "Error creating Export duplicates data file: Error: %s\n"
 msgstr "помилка при зберіганні конфігураційного файлу: %s\n"
 
-#: src/dupe.cc:5262
+#: src/dupe.cc:5242
 msgid "Match"
 msgstr ""
 
-#: src/dupe.cc:5262 src/pan-view/pan-view-filter.cc:65
+#: src/dupe.cc:5242 src/pan-view/pan-view-filter.cc:65
 msgid "Group"
 msgstr ""
 
-#: src/dupe.cc:5262
+#: src/dupe.cc:5242
 msgid "Similarity"
 msgstr "Схожість"
 
-#: src/dupe.cc:5262
+#: src/dupe.cc:5242
 #, fuzzy
 msgid "Thumbnail"
 msgstr "Піктограми"
 
-#: src/dupe.cc:5262 src/exif.cc:370 src/preferences.cc:4083
+#: src/dupe.cc:5242 src/exif.cc:370 src/preferences.cc:4097
 msgid "Width"
 msgstr ""
 
-#: src/dupe.cc:5262 src/exif.cc:371 src/preferences.cc:4085
+#: src/dupe.cc:5242 src/exif.cc:371 src/preferences.cc:4099
 msgid "Height"
 msgstr ""
 
-#: src/dupe.cc:5262
+#: src/dupe.cc:5242
 #, fuzzy
 msgid "Path\n"
 msgstr "Шлях"
 
-#: src/dupe.cc:5361
+#: src/dupe.cc:5341
 msgid "Export duplicates data"
 msgstr ""
 
-#: src/dupe.cc:5389
+#: src/dupe.cc:5369
 msgid "Export Files"
 msgstr ""
 
-#: src/dupe.cc:5415
+#: src/dupe.cc:5395
 msgid "_Export"
 msgstr ""
 
-#: src/dupe.cc:5420
+#: src/dupe.cc:5400
 msgid "Export to csv"
 msgstr ""
 
-#: src/dupe.cc:5422
+#: src/dupe.cc:5402
 msgid "Export to tab-delimited"
 msgstr ""
 
@@ -2509,7 +2509,7 @@ msgstr "Плаваючі контроли"
 msgid "Contrast"
 msgstr "Продовжити"
 
-#: src/exif.cc:394 src/preferences.cc:3418
+#: src/exif.cc:394 src/preferences.cc:3423
 msgid "Saturation"
 msgstr ""
 
@@ -2694,156 +2694,156 @@ msgstr "Фільтр:"
 msgid "Lens"
 msgstr ""
 
-#: src/filedata.cc:133
+#: src/filedata.cc:134
 #, c-format
 msgid "%d bytes"
 msgstr "байтів: %d"
 
-#: src/filedata.cc:137
+#: src/filedata.cc:138
 #, fuzzy, c-format
 msgid "%.1f KiB"
 msgstr "%.1f K"
 
-#: src/filedata.cc:141
+#: src/filedata.cc:142
 #, fuzzy, c-format
 msgid "%.1f MiB"
 msgstr "%.1f Mб"
 
-#: src/filedata.cc:146
+#: src/filedata.cc:147
 #, fuzzy, c-format
 msgid "%.1f GiB"
 msgstr "%.1f Mб"
 
-#: src/filedata.cc:2827
+#: src/filedata.cc:2826
 msgid "file or directory does not exist"
 msgstr ""
 
-#: src/filedata.cc:2833
+#: src/filedata.cc:2832
 #, fuzzy
 msgid "destination already exists"
 msgstr "Файл з назвою %s вже існує."
 
-#: src/filedata.cc:2839
+#: src/filedata.cc:2838
 msgid "destination can't be overwritten"
 msgstr ""
 
-#: src/filedata.cc:2845
+#: src/filedata.cc:2844
 msgid "destination directory is not writable"
 msgstr ""
 
-#: src/filedata.cc:2851
+#: src/filedata.cc:2850
 msgid "destination directory does not exist"
 msgstr ""
 
-#: src/filedata.cc:2857
+#: src/filedata.cc:2856
 msgid "source directory is not writable"
 msgstr ""
 
-#: src/filedata.cc:2863
+#: src/filedata.cc:2862
 msgid "no read permission"
 msgstr ""
 
-#: src/filedata.cc:2869
+#: src/filedata.cc:2868
 msgid "file is readonly"
 msgstr ""
 
-#: src/filedata.cc:2875
+#: src/filedata.cc:2874
 msgid "destination already exists and will be overwritten"
 msgstr ""
 
-#: src/filedata.cc:2881
+#: src/filedata.cc:2880
 #, fuzzy
 msgid "source and destination are the same"
 msgstr "Джерело і ціль це одне і те ж, операція припинена."
 
-#: src/filedata.cc:2887
+#: src/filedata.cc:2886
 #, fuzzy
 msgid "source and destination have different extension"
 msgstr "Джерело і ціль це одне і те ж, операція припинена."
 
-#: src/filedata.cc:2893
+#: src/filedata.cc:2892
 msgid "there are unsaved metadata changes for the file"
 msgstr ""
 
-#: src/filedata.cc:2899
+#: src/filedata.cc:2898
 msgid "another destination file has the same filename"
 msgstr ""
 
-#: src/filedata.cc:3461
+#: src/filedata.cc:3460
 #, fuzzy, c-format
 msgid "Error: Unable to write marks lists to: %s\n"
 msgstr "Не можу записати файл історії в: %s\n"
 
-#: src/fullscreen.cc:290
+#: src/fullscreen.cc:288
 #, fuzzy
 msgid "Full size"
 msgstr "Файли"
 
-#: src/fullscreen.cc:299
+#: src/fullscreen.cc:297
 msgid "Monitor"
 msgstr ""
 
-#: src/fullscreen.cc:305
+#: src/fullscreen.cc:303
 msgid "Screen"
 msgstr ""
 
-#: src/fullscreen.cc:471 src/img-view.cc:137 src/layout-util.cc:2683
-#: src/layout-util.cc:2684 src/layout-util.cc:2685 src/pan-view/pan-view.cc:139
-#: src/pan-view/pan-view.cc:140 src/pan-view/pan-view.cc:141
-#: src/preferences.cc:2490
+#: src/fullscreen.cc:470 src/img-view.cc:137 src/layout-util.cc:2679
+#: src/layout-util.cc:2680 src/layout-util.cc:2681 src/pan-view/pan-view.cc:148
+#: src/pan-view/pan-view.cc:149 src/pan-view/pan-view.cc:150
+#: src/preferences.cc:2502
 #, fuzzy
 msgid "Full screen"
 msgstr "На повний екран"
 
-#: src/fullscreen.cc:648
+#: src/fullscreen.cc:647
 msgid "Determined by Window Manager"
 msgstr ""
 
-#: src/fullscreen.cc:649
+#: src/fullscreen.cc:648
 msgid "Active screen"
 msgstr ""
 
-#: src/fullscreen.cc:651
+#: src/fullscreen.cc:650
 msgid "Active monitor"
 msgstr ""
 
-#: src/histogram.cc:126
+#: src/histogram.cc:129
 msgid "Log Histogram on Red"
 msgstr ""
 
-#: src/histogram.cc:127
+#: src/histogram.cc:130
 msgid "Log Histogram on Green"
 msgstr ""
 
-#: src/histogram.cc:128
+#: src/histogram.cc:131
 msgid "Log Histogram on Blue"
 msgstr ""
 
-#: src/histogram.cc:129
+#: src/histogram.cc:132
 msgid "Log Histogram on RGB"
 msgstr ""
 
-#: src/histogram.cc:130
+#: src/histogram.cc:133
 msgid "Log Histogram on value"
 msgstr ""
 
-#: src/histogram.cc:135
+#: src/histogram.cc:138
 msgid "Linear Histogram on Red"
 msgstr ""
 
-#: src/histogram.cc:136
+#: src/histogram.cc:139
 msgid "Linear Histogram on Green"
 msgstr ""
 
-#: src/histogram.cc:137
+#: src/histogram.cc:140
 msgid "Linear Histogram on Blue"
 msgstr ""
 
-#: src/histogram.cc:138
+#: src/histogram.cc:141
 msgid "Linear Histogram on RGB"
 msgstr ""
 
-#: src/histogram.cc:139
+#: src/histogram.cc:142
 msgid "Linear Histogram on value"
 msgstr ""
 
@@ -2927,59 +2927,59 @@ msgstr "%d зображень"
 msgid "Next"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/img-view.cc:118 src/img-view.cc:119 src/layout-util.cc:2787
-#: src/layout-util.cc:2788 src/pan-view/pan-view.cc:127
-#: src/pan-view/pan-view.cc:128
+#: src/img-view.cc:118 src/img-view.cc:119 src/layout-util.cc:2783
+#: src/layout-util.cc:2784 src/pan-view/pan-view.cc:136
+#: src/pan-view/pan-view.cc:137
 msgid "Zoom in"
 msgstr "Збільшити"
 
-#: src/img-view.cc:120 src/layout-util.cc:2790 src/layout-util.cc:2791
-#: src/pan-view/pan-view.cc:129
+#: src/img-view.cc:120 src/layout-util.cc:2786 src/layout-util.cc:2787
+#: src/pan-view/pan-view.cc:138
 msgid "Zoom out"
 msgstr "Зменшити"
 
 #: src/img-view.cc:121 src/img-view.cc:122 src/img-view.cc:1423
-#: src/layout-image.cc:821 src/layout-util.cc:2785 src/layout-util.cc:2786
+#: src/layout-image.cc:817 src/layout-util.cc:2781 src/layout-util.cc:2782
 #, fuzzy
 msgid "Zoom to fit"
 msgstr "/Вигляд/До розміру вікна"
 
 #: src/img-view.cc:123 src/img-view.cc:124 src/img-view.cc:125
-#: src/layout-util.cc:2775 src/layout-util.cc:2776 src/pan-view/pan-view.cc:130
-#: src/pan-view/pan-view.cc:131 src/pan-view/pan-view.cc:132
+#: src/layout-util.cc:2771 src/layout-util.cc:2772 src/pan-view/pan-view.cc:139
+#: src/pan-view/pan-view.cc:140 src/pan-view/pan-view.cc:141
 #, fuzzy
 msgid "Zoom 1:1"
 msgstr "Оригінальний розмір"
 
-#: src/img-view.cc:126 src/layout-util.cc:2777 src/pan-view/pan-view.cc:133
+#: src/img-view.cc:126 src/layout-util.cc:2773 src/pan-view/pan-view.cc:142
 #, fuzzy
 msgid "Zoom 2:1"
 msgstr "Оригінальний розмір"
 
-#: src/img-view.cc:127 src/layout-util.cc:2779 src/pan-view/pan-view.cc:134
+#: src/img-view.cc:127 src/layout-util.cc:2775 src/pan-view/pan-view.cc:143
 #, fuzzy
 msgid "Zoom 3:1"
 msgstr "Оригінальний розмір"
 
-#: src/img-view.cc:128 src/layout-util.cc:2781 src/pan-view/pan-view.cc:135
+#: src/img-view.cc:128 src/layout-util.cc:2777 src/pan-view/pan-view.cc:144
 #, fuzzy
 msgid "Zoom 4:1"
 msgstr "Оригінальний розмір"
 
-#: src/img-view.cc:129 src/layout-util.cc:2649 src/layout-util.cc:2778
-#: src/pan-view/pan-view.cc:136
+#: src/img-view.cc:129 src/layout-util.cc:2645 src/layout-util.cc:2774
+#: src/pan-view/pan-view.cc:145
 #, fuzzy
 msgid "Zoom 1:4"
 msgstr "Оригінальний розмір"
 
-#: src/img-view.cc:130 src/layout-util.cc:2651 src/layout-util.cc:2780
-#: src/pan-view/pan-view.cc:137
+#: src/img-view.cc:130 src/layout-util.cc:2647 src/layout-util.cc:2776
+#: src/pan-view/pan-view.cc:146
 #, fuzzy
 msgid "Zoom 1:3"
 msgstr "Оригінальний розмір"
 
-#: src/img-view.cc:131 src/layout-util.cc:2653 src/layout-util.cc:2782
-#: src/pan-view/pan-view.cc:138
+#: src/img-view.cc:131 src/layout-util.cc:2649 src/layout-util.cc:2778
+#: src/pan-view/pan-view.cc:147
 #, fuzzy
 msgid "Zoom 1:2"
 msgstr "Оригінальний розмір"
@@ -2994,12 +2994,12 @@ msgstr "/Вигляд/До розміру вікна"
 msgid "Zoom fit window height"
 msgstr "/Вигляд/До розміру вікна"
 
-#: src/img-view.cc:134 src/layout-util.cc:2812
+#: src/img-view.cc:134 src/layout-util.cc:2808
 #, fuzzy
 msgid "Toggle slideshow"
 msgstr "Зупинити показ слайдів"
 
-#: src/img-view.cc:135 src/layout-util.cc:2759
+#: src/img-view.cc:135 src/layout-util.cc:2755
 #, fuzzy
 msgid "Pause slideshow"
 msgstr "Призупинити показ слайдів"
@@ -3019,7 +3019,7 @@ msgstr "На повний екран"
 msgid "Image overlay"
 msgstr "Зображення"
 
-#: src/img-view.cc:141 src/pan-view/pan-view.cc:125
+#: src/img-view.cc:141 src/pan-view/pan-view.cc:134
 #, fuzzy
 msgid "Exit fullscreen"
 msgstr "Вийти з повноекранного режиму"
@@ -3029,237 +3029,237 @@ msgstr "Вийти з повноекранного режиму"
 msgid "Desaturate"
 msgstr "Дата"
 
-#: src/img-view.cc:684 src/layout-image.cc:737 src/layout-image.cc:1934
-#: src/layout-util.cc:1033 src/view-file/view-file.cc:395
+#: src/img-view.cc:684 src/layout-image.cc:733 src/layout-image.cc:1930
+#: src/layout-util.cc:1029 src/view-file/view-file.cc:395
 #, fuzzy
 msgid "Cannot open archive file"
 msgstr "Не можу створити каталог"
 
-#: src/img-view.cc:684 src/layout-image.cc:737 src/layout-image.cc:1934
-#: src/layout-util.cc:1033 src/preferences.cc:4366 src/preferences.cc:4374
+#: src/img-view.cc:684 src/layout-image.cc:733 src/layout-image.cc:1930
+#: src/layout-util.cc:1029 src/preferences.cc:4380 src/preferences.cc:4388
 #: src/view-file/view-file.cc:395
 #, fuzzy
 msgid "See the Log Window"
 msgstr "Вікна"
 
-#: src/img-view.cc:1420 src/layout-image.cc:818 src/layout-util.cc:2658
-#: src/layout-util.cc:2659 src/layout-util.cc:2787 src/layout-util.cc:2788
-#: src/pan-view/pan-view.cc:2377
+#: src/img-view.cc:1420 src/layout-image.cc:814 src/layout-util.cc:2654
+#: src/layout-util.cc:2655 src/layout-util.cc:2783 src/layout-util.cc:2784
+#: src/pan-view/pan-view.cc:2382
 #, fuzzy
 msgid "Zoom _in"
 msgstr "Збільшити"
 
-#: src/img-view.cc:1421 src/layout-image.cc:819 src/layout-util.cc:2661
-#: src/layout-util.cc:2662 src/layout-util.cc:2790 src/layout-util.cc:2791
-#: src/pan-view/pan-view.cc:2379
+#: src/img-view.cc:1421 src/layout-image.cc:815 src/layout-util.cc:2657
+#: src/layout-util.cc:2658 src/layout-util.cc:2786 src/layout-util.cc:2787
+#: src/pan-view/pan-view.cc:2384
 #, fuzzy
 msgid "Zoom _out"
 msgstr "Зменшити"
 
-#: src/img-view.cc:1422 src/layout-image.cc:820 src/layout-util.cc:2646
-#: src/layout-util.cc:2647 src/layout-util.cc:2775 src/layout-util.cc:2776
-#: src/pan-view/pan-view.cc:2381
+#: src/img-view.cc:1422 src/layout-image.cc:816 src/layout-util.cc:2642
+#: src/layout-util.cc:2643 src/layout-util.cc:2771 src/layout-util.cc:2772
+#: src/pan-view/pan-view.cc:2386
 #, fuzzy
 msgid "Zoom _1:1"
 msgstr "Оригінальний розмір"
 
-#: src/img-view.cc:1435 src/layout-image.cc:835
+#: src/img-view.cc:1435 src/layout-image.cc:831
 msgid "_Go to directory view"
 msgstr ""
 
-#: src/img-view.cc:1463 src/img-view.cc:1477 src/layout-image.cc:877
-#: src/layout-image.cc:891 src/layout-util.cc:2812
+#: src/img-view.cc:1463 src/img-view.cc:1477 src/layout-image.cc:873
+#: src/layout-image.cc:887 src/layout-util.cc:2808
 #, fuzzy
 msgid "Toggle _slideshow"
 msgstr "Зупинити показ слайдів"
 
-#: src/img-view.cc:1466 src/layout-image.cc:880
+#: src/img-view.cc:1466 src/layout-image.cc:876
 #, fuzzy
 msgid "Continue slides_how"
 msgstr "Продовжити показ слайдів"
 
-#: src/img-view.cc:1471 src/img-view.cc:1479 src/layout-image.cc:885
-#: src/layout-image.cc:892
+#: src/img-view.cc:1471 src/img-view.cc:1479 src/layout-image.cc:881
+#: src/layout-image.cc:888
 #, fuzzy
 msgid "Pause slides_how"
 msgstr "Призупинити показ слайдів"
 
-#: src/img-view.cc:1485 src/layout-image.cc:902 src/pan-view/pan-view.cc:2469
+#: src/img-view.cc:1485 src/layout-image.cc:898 src/pan-view/pan-view.cc:2474
 #, fuzzy
 msgid "Exit _full screen"
 msgstr "Вийти з повноекранного режиму"
 
-#: src/img-view.cc:1489 src/layout-image.cc:898 src/pan-view/pan-view.cc:2473
+#: src/img-view.cc:1489 src/layout-image.cc:894 src/pan-view/pan-view.cc:2478
 #, fuzzy
 msgid "_Full screen"
 msgstr "На повний екран"
 
-#: src/img-view.cc:1493 src/layout-util.cc:2644 src/pan-view/pan-view.cc:2477
+#: src/img-view.cc:1493 src/layout-util.cc:2640 src/pan-view/pan-view.cc:2482
 #, fuzzy
 msgid "C_lose window"
 msgstr "Закрити вікно"
 
-#: src/layout.cc:406
+#: src/layout.cc:442
 #, fuzzy
 msgid "Open application menu"
 msgstr "Відкрити колекцію з:"
 
-#: src/layout.cc:513 src/view-dir.cc:833 src/view-file/view-file.cc:756
+#: src/layout.cc:549 src/view-dir.cc:833 src/view-file/view-file.cc:756
 msgid "Ascending"
 msgstr "Наростаючий"
 
-#: src/layout.cc:514 src/view-dir.cc:834 src/view-file/view-file.cc:758
+#: src/layout.cc:550 src/view-dir.cc:834 src/view-file/view-file.cc:758
 #: src/view-file/view-file.cc:1225
 msgid "Case"
 msgstr ""
 
-#: src/layout.cc:596
+#: src/layout.cc:632
 msgid "Scroll to top left corner"
 msgstr ""
 
-#: src/layout.cc:601
+#: src/layout.cc:637
 msgid "Scroll to image center"
 msgstr ""
 
-#: src/layout.cc:606
+#: src/layout.cc:642
 msgid "Keep the region from previous image"
 msgstr ""
 
-#: src/layout.cc:708
+#: src/layout.cc:744
 #, fuzzy
 msgid " Slideshow ["
 msgstr " Показ слайдів"
 
-#: src/layout.cc:712
+#: src/layout.cc:748
 #, fuzzy
 msgid " Paused ["
 msgstr " Призупинено"
 
-#: src/layout.cc:743
+#: src/layout.cc:779
 #, c-format
 msgid "%s, %d files (%s, %d)%s"
 msgstr "%s, %d файлів (%s, %d)%s"
 
-#: src/layout.cc:751
+#: src/layout.cc:787
 #, c-format
 msgid "%s, %d files%s"
 msgstr "%s, %d файлів%s"
 
-#: src/layout.cc:757
+#: src/layout.cc:793
 #, c-format
 msgid "%d files%s"
 msgstr "%d файлів%s"
 
-#: src/layout.cc:804
+#: src/layout.cc:840
 #, c-format
 msgid "(no read permission) %s bytes"
 msgstr ""
 
-#: src/layout.cc:808
+#: src/layout.cc:844
 #, c-format
 msgid "( ? x ? ) %s bytes"
 msgstr "( ? x ? ) %s байт"
 
-#: src/layout.cc:822
+#: src/layout.cc:858
 #, fuzzy, c-format
 msgid "( %d x %d ) %s bytes %s%d%s%d%s"
 msgstr "( %d x %d ) %s байт"
 
-#: src/layout.cc:826
+#: src/layout.cc:862
 #, c-format
 msgid "( %d x %d ) %s bytes"
 msgstr "( %d x %d ) %s байт"
 
-#: src/layout.cc:918
+#: src/layout.cc:954
 #, fuzzy
 msgid "Select sort order"
 msgstr "Зняти виділення"
 
-#: src/layout.cc:923
+#: src/layout.cc:959
 #, fuzzy
 msgid ""
 "Folder contents (files selected)\n"
 "Slideshow [time interval]"
 msgstr "Невірне ім'я файлу"
 
-#: src/layout.cc:934
+#: src/layout.cc:970
 #, fuzzy
 msgid "(Image dimensions) Image size [page n of m]"
 msgstr "Невірна ціль"
 
-#: src/layout.cc:945
+#: src/layout.cc:981
 #, fuzzy
 msgid "Select zoom and scroll mode"
 msgstr "Зняти виділення"
 
-#: src/layout.cc:957
+#: src/layout.cc:993
 msgid "[Pixel x,y coord]: (Pixel R,G,B value)"
 msgstr ""
 
-#: src/layout.cc:1665 src/layout-config.cc:72
+#: src/layout.cc:1701 src/layout-config.cc:72
 msgid "Tools"
 msgstr "Панель"
 
-#: src/layout.cc:2366
+#: src/layout.cc:2398
 msgid "Window options and layout"
 msgstr ""
 
-#: src/layout.cc:2409
+#: src/layout.cc:2441
 msgid "Apply"
 msgstr "Застосувати"
 
-#: src/layout.cc:2435
+#: src/layout.cc:2467
 #, fuzzy
 msgid "General options"
 msgstr "Загальне"
 
-#: src/layout.cc:2437
+#: src/layout.cc:2469
 msgid "Home path (empty to use your home directory)"
 msgstr ""
 
-#: src/layout.cc:2445
+#: src/layout.cc:2477
 msgid "Use current"
 msgstr "Вжити поточний "
 
-#: src/layout.cc:2448
+#: src/layout.cc:2480
 #, fuzzy
 msgid "Show date in directories list view"
 msgstr "Новий каталог"
 
-#: src/layout.cc:2451
+#: src/layout.cc:2483
 #, fuzzy
 msgid "Start-up directory:"
 msgstr "Початковий каталог"
 
-#: src/layout.cc:2453
+#: src/layout.cc:2485
 msgid "No change"
 msgstr ""
 
-#: src/layout.cc:2456
+#: src/layout.cc:2488
 #, fuzzy
 msgid "Restore last path"
 msgstr "Виділити все"
 
-#: src/layout.cc:2459
+#: src/layout.cc:2491
 #, fuzzy
 msgid "Home path"
 msgstr "Копіювати"
 
-#: src/layout.cc:2463
+#: src/layout.cc:2495
 msgid "Layout"
 msgstr "Розташувння"
 
-#: src/layout.cc:2762
+#: src/layout.cc:2794
 #, fuzzy
 msgid "Invalid geometry\n"
 msgstr "Невірне ім'я файлу"
 
-#: src/layout-config.cc:72 src/ui-pathsel.cc:1161
+#: src/layout-config.cc:72 src/ui-pathsel.cc:1159
 msgid "Files"
 msgstr "Файли"
 
-#: src/layout-config.cc:72 src/preferences.cc:148 src/preferences.cc:2311
-#: src/search.cc:2255 src/search.cc:3616
+#: src/layout-config.cc:72 src/preferences.cc:157 src/preferences.cc:2323
+#: src/search.cc:2254 src/search.cc:3615
 msgid "Image"
 msgstr "Зображення"
 
@@ -3267,1534 +3267,1534 @@ msgstr "Зображення"
 msgid "(drag to change order)"
 msgstr "(перетяніть щоб змінити порядок)"
 
-#: src/layout-image.cc:838 src/layout-util.cc:2461 src/layout-util.cc:2718
+#: src/layout-image.cc:834 src/layout-util.cc:2457 src/layout-util.cc:2714
 #: src/view-file/view-file.cc:714
 #, fuzzy
 msgid "Open archive"
 msgstr "/Файл/Відкрити недавній"
 
-#: src/layout-image.cc:852 src/layout-util.cc:2664
-#: src/pan-view/pan-view.cc:2404 src/view-file/view-file.cc:723
+#: src/layout-image.cc:848 src/layout-util.cc:2660
+#: src/pan-view/pan-view.cc:2409 src/view-file/view-file.cc:723
 #, fuzzy
 msgid "_Copy path to clipboard"
 msgstr "Копіювати"
 
-#: src/layout-image.cc:853 src/layout-util.cc:2665
-#: src/pan-view/pan-view.cc:2406 src/view-file/view-file.cc:725
+#: src/layout-image.cc:849 src/layout-util.cc:2661
+#: src/pan-view/pan-view.cc:2411 src/view-file/view-file.cc:725
 #, fuzzy
 msgid "_Copy path unquoted to clipboard"
 msgstr "Копіювати"
 
-#: src/layout-image.cc:854
+#: src/layout-image.cc:850
 #, fuzzy
 msgid "Copy _image to clipboard"
 msgstr "Копіювати"
 
-#: src/layout-image.cc:905
+#: src/layout-image.cc:901
 msgid "GIF _animation"
 msgstr ""
 
-#: src/layout-image.cc:909
+#: src/layout-image.cc:905
 #, fuzzy
 msgid "Hide file _list"
 msgstr "(Показати)Приховати список файлів"
 
-#: src/layout-image.cc:912 src/layout-util.cc:2801 src/preferences.cc:2204
+#: src/layout-image.cc:908 src/layout-util.cc:2797 src/preferences.cc:2216
 #, fuzzy
 msgid "Hide Selectable Bars"
 msgstr "/Вигляд/tear1"
 
-#: src/layout-image.cc:2164
+#: src/layout-image.cc:2160
 #, c-format
 msgid "[%*d,%*d]: RGB(%3d,%3d,%3d)"
 msgstr ""
 
-#: src/layout-image.cc:2172
+#: src/layout-image.cc:2168
 #, c-format
 msgid "[%*s,%*s]: RGB(---,---,---)"
 msgstr ""
 
-#: src/layout-util.cc:262 src/layout-util.cc:2643
+#: src/layout-util.cc:258 src/layout-util.cc:2639
 #, fuzzy
 msgid "Clear Marks"
 msgstr "Очистити кеш"
 
-#: src/layout-util.cc:264
+#: src/layout-util.cc:260
 #, fuzzy
 msgid "Clear all marks?"
 msgstr "Очистити кеш"
 
-#: src/layout-util.cc:264
+#: src/layout-util.cc:260
 msgid ""
 "This will clear all marks for all images,\n"
 "including those linked to keywords"
 msgstr ""
 
-#: src/layout-util.cc:623
+#: src/layout-util.cc:619
 #, fuzzy
 msgid "Operation failed:\n"
 msgstr "Видалення фала не вдалося"
 
-#: src/layout-util.cc:626
+#: src/layout-util.cc:622
 #, fuzzy
 msgid "No file extension\n"
 msgstr "Заборонити фільтрування файлів"
 
-#: src/layout-util.cc:628
+#: src/layout-util.cc:624
 #, fuzzy
 msgid "Cannot create tmp file\n"
 msgstr "Не можу створити каталог"
 
-#: src/layout-util.cc:630
+#: src/layout-util.cc:626
 msgid "Operation not supported for filetype\n"
 msgstr ""
 
-#: src/layout-util.cc:632
+#: src/layout-util.cc:628
 msgid "File is not writable\n"
 msgstr ""
 
-#: src/layout-util.cc:634
+#: src/layout-util.cc:630
 #, fuzzy
 msgid "Exiftran error\n"
 msgstr "Фільтр:"
 
-#: src/layout-util.cc:636
+#: src/layout-util.cc:632
 #, fuzzy
 msgid "Mogrify error\n"
 msgstr "Відзеркалити"
 
-#: src/layout-util.cc:640 src/layout-util.cc:641
+#: src/layout-util.cc:636 src/layout-util.cc:637
 #, fuzzy
 msgid "Image orientation"
 msgstr "Розміри"
 
-#: src/layout-util.cc:2252
+#: src/layout-util.cc:2248
 #, c-format
 msgid "Error: window layout name: %s does not exist\n"
 msgstr ""
 
-#: src/layout-util.cc:2327
+#: src/layout-util.cc:2323
 #, fuzzy, c-format
 msgid "Window layout name \"%s\" already exists."
 msgstr "Файл з назвою %s вже існує."
 
-#: src/layout-util.cc:2328 src/layout-util.cc:2580 src/layout-util.cc:2747
+#: src/layout-util.cc:2324 src/layout-util.cc:2576 src/layout-util.cc:2743
 #, fuzzy
 msgid "Rename window"
 msgstr "/Файл/Нова колекція"
 
-#: src/layout-util.cc:2430 src/layout-util.cc:2611 src/layout-util.cc:2669
+#: src/layout-util.cc:2426 src/layout-util.cc:2607 src/layout-util.cc:2665
 #, fuzzy
 msgid "Delete window"
 msgstr "Закрити вікно"
 
-#: src/layout-util.cc:2581 src/layout-util.cc:2612
+#: src/layout-util.cc:2577 src/layout-util.cc:2608
 msgid "OK"
 msgstr ""
 
-#: src/layout-util.cc:2583
+#: src/layout-util.cc:2579
 #, fuzzy
 msgid "rename window"
 msgstr "/Файл/Нова колекція"
 
-#: src/layout-util.cc:2614
+#: src/layout-util.cc:2610
 msgid "Delete window layout"
 msgstr ""
 
-#: src/layout-util.cc:2640
+#: src/layout-util.cc:2636
 #, fuzzy
 msgid "_About"
 msgstr "/Довідка/Про"
 
-#: src/layout-util.cc:2640
+#: src/layout-util.cc:2636
 #, fuzzy
 msgid "About"
 msgstr "/Довідка/Про"
 
-#: src/layout-util.cc:2641
+#: src/layout-util.cc:2637
 #, fuzzy
 msgid "_Original state"
 msgstr "Перейменувати:"
 
-#: src/layout-util.cc:2641
+#: src/layout-util.cc:2637
 #, fuzzy
 msgid "Image rotate Original state"
 msgstr "Перейменувати:"
 
-#: src/layout-util.cc:2642
+#: src/layout-util.cc:2638
 msgid "_Back"
 msgstr ""
 
-#: src/layout-util.cc:2642
+#: src/layout-util.cc:2638
 msgid "Back in folder history"
 msgstr ""
 
-#: src/layout-util.cc:2643
+#: src/layout-util.cc:2639
 #, fuzzy
 msgid "Clear Marks..."
 msgstr "Очистити кеш"
 
-#: src/layout-util.cc:2645
+#: src/layout-util.cc:2641
 #, fuzzy
 msgid "_Color Management"
 msgstr "Сотрувати за назвою"
 
-#: src/layout-util.cc:2646 src/layout-util.cc:2647
+#: src/layout-util.cc:2642 src/layout-util.cc:2643
 #, fuzzy
 msgid "Connected Zoom 1:1"
 msgstr "Встановити оригінальний розмір"
 
-#: src/layout-util.cc:2648 src/layout-util.cc:2777
+#: src/layout-util.cc:2644 src/layout-util.cc:2773
 #, fuzzy
 msgid "Zoom _2:1"
 msgstr "Оригінальний розмір"
 
-#: src/layout-util.cc:2648
+#: src/layout-util.cc:2644
 #, fuzzy
 msgid "Connected Zoom 2:1"
 msgstr "Встановити оригінальний розмір"
 
-#: src/layout-util.cc:2649
+#: src/layout-util.cc:2645
 #, fuzzy
 msgid "Connected Zoom 1:4"
 msgstr "Оригінальний розмір"
 
-#: src/layout-util.cc:2650 src/layout-util.cc:2779
+#: src/layout-util.cc:2646 src/layout-util.cc:2775
 #, fuzzy
 msgid "Zoom _3:1"
 msgstr "Оригінальний розмір"
 
-#: src/layout-util.cc:2650
+#: src/layout-util.cc:2646
 #, fuzzy
 msgid "Connected Zoom 3:1"
 msgstr "Встановити оригінальний розмір"
 
-#: src/layout-util.cc:2651
+#: src/layout-util.cc:2647
 #, fuzzy
 msgid "Connected Zoom 1:3"
 msgstr "Оригінальний розмір"
 
-#: src/layout-util.cc:2652 src/layout-util.cc:2781
+#: src/layout-util.cc:2648 src/layout-util.cc:2777
 #, fuzzy
 msgid "Zoom _4:1"
 msgstr "Оригінальний розмір"
 
-#: src/layout-util.cc:2652
+#: src/layout-util.cc:2648
 #, fuzzy
 msgid "Connected Zoom 4:1"
 msgstr "Встановити оригінальний розмір"
 
-#: src/layout-util.cc:2653
+#: src/layout-util.cc:2649
 #, fuzzy
 msgid "Connected Zoom 1:2"
 msgstr "Оригінальний розмір"
 
-#: src/layout-util.cc:2654 src/layout-util.cc:2783
+#: src/layout-util.cc:2650 src/layout-util.cc:2779
 msgid "Fit _Horizontally"
 msgstr ""
 
-#: src/layout-util.cc:2654
+#: src/layout-util.cc:2650
 msgid "Connected Fit Horizontally"
 msgstr ""
 
-#: src/layout-util.cc:2655 src/layout-util.cc:2784
+#: src/layout-util.cc:2651 src/layout-util.cc:2780
 msgid "Fit _Vertically"
 msgstr ""
 
-#: src/layout-util.cc:2655
+#: src/layout-util.cc:2651
 msgid "Connected Fit Vertically"
 msgstr ""
 
-#: src/layout-util.cc:2656 src/layout-util.cc:2657 src/layout-util.cc:2785
-#: src/layout-util.cc:2786
+#: src/layout-util.cc:2652 src/layout-util.cc:2653 src/layout-util.cc:2781
+#: src/layout-util.cc:2782
 #, fuzzy
 msgid "_Zoom to fit"
 msgstr "/Вигляд/До розміру вікна"
 
-#: src/layout-util.cc:2656 src/layout-util.cc:2657
+#: src/layout-util.cc:2652 src/layout-util.cc:2653
 #, fuzzy
 msgid "Connected Zoom to fit"
 msgstr "/Вигляд/До розміру вікна"
 
-#: src/layout-util.cc:2658 src/layout-util.cc:2659
+#: src/layout-util.cc:2654 src/layout-util.cc:2655
 #, fuzzy
 msgid "Connected Zoom in"
 msgstr "Зменшити"
 
-#: src/layout-util.cc:2660
+#: src/layout-util.cc:2656
 #, fuzzy
 msgid "_Connected Zoom"
 msgstr "Зменшити"
 
-#: src/layout-util.cc:2661 src/layout-util.cc:2662
+#: src/layout-util.cc:2657 src/layout-util.cc:2658
 #, fuzzy
 msgid "Connected Zoom out"
 msgstr "Зменшити"
 
-#: src/layout-util.cc:2663
+#: src/layout-util.cc:2659
 #, fuzzy
 msgid "Copy..."
 msgstr "Копіювати..."
 
-#: src/layout-util.cc:2664
+#: src/layout-util.cc:2660
 #, fuzzy
 msgid "Copy path to clipboard"
 msgstr "Копіювати"
 
-#: src/layout-util.cc:2665
+#: src/layout-util.cc:2661
 #, fuzzy
 msgid "Copy path unquoted to clipboard"
 msgstr "Копіювати"
 
-#: src/layout-util.cc:2670 src/view-file/view-file.cc:740
+#: src/layout-util.cc:2666 src/view-file/view-file.cc:740
 #, fuzzy
 msgid "Disable file groupi_ng"
 msgstr "Заборонити фільтрування файлів"
 
-#: src/layout-util.cc:2670
+#: src/layout-util.cc:2666
 #, fuzzy
 msgid "Disable file grouping"
 msgstr "Заборонити фільтрування файлів"
 
-#: src/layout-util.cc:2671
+#: src/layout-util.cc:2667
 #, fuzzy
 msgid "_Edit"
 msgstr "/Редагування"
 
-#: src/layout-util.cc:2672 src/view-file/view-file.cc:738
+#: src/layout-util.cc:2668 src/view-file/view-file.cc:738
 #, fuzzy
 msgid "Enable file _grouping"
 msgstr "Заборонити фільтрування файлів"
 
-#: src/layout-util.cc:2672
+#: src/layout-util.cc:2668
 #, fuzzy
 msgid "Enable file grouping"
 msgstr "Заборонити фільтрування файлів"
 
-#: src/layout-util.cc:2673 src/layout-util.cc:2674
+#: src/layout-util.cc:2669 src/layout-util.cc:2670
 #, fuzzy
 msgid "_Leave full screen"
 msgstr "Geeqie у повний екран"
 
-#: src/layout-util.cc:2673 src/layout-util.cc:2674
+#: src/layout-util.cc:2669 src/layout-util.cc:2670
 #, fuzzy
 msgid "Leave full screen"
 msgstr "Geeqie у повний екран"
 
-#: src/layout-util.cc:2675
+#: src/layout-util.cc:2671
 #, fuzzy
 msgid "_Exif window"
 msgstr "Закрити вікно"
 
-#: src/layout-util.cc:2675
+#: src/layout-util.cc:2671
 #, fuzzy
 msgid "Exif window"
 msgstr "/Файл/Нова колекція"
 
-#: src/layout-util.cc:2676
+#: src/layout-util.cc:2672
 #, fuzzy
 msgid "_Files and Folders"
 msgstr "Показати приховані"
 
-#: src/layout-util.cc:2677
+#: src/layout-util.cc:2673
 #, fuzzy
 msgid "_File"
 msgstr "/Файл"
 
-#: src/layout-util.cc:2678
+#: src/layout-util.cc:2674
 #, fuzzy
 msgid "Find duplicates..."
 msgstr "Знайти дублікати..."
 
-#: src/layout-util.cc:2679
+#: src/layout-util.cc:2675
 #, fuzzy
 msgid "_First Image"
 msgstr "%d зображень"
 
-#: src/layout-util.cc:2679
+#: src/layout-util.cc:2675
 #, fuzzy
 msgid "First Image"
 msgstr "%d зображень"
 
-#: src/layout-util.cc:2680
+#: src/layout-util.cc:2676
 #, fuzzy
 msgid "_First Page"
 msgstr "%d зображень"
 
-#: src/layout-util.cc:2680
+#: src/layout-util.cc:2676
 msgid "First Page of multi-page image"
 msgstr ""
 
-#: src/layout-util.cc:2681
+#: src/layout-util.cc:2677
 #, fuzzy
 msgid "_Flip"
 msgstr "Перевернути"
 
-#: src/layout-util.cc:2681
+#: src/layout-util.cc:2677
 #, fuzzy
 msgid "Image Flip"
 msgstr "Зображення"
 
-#: src/layout-util.cc:2682
+#: src/layout-util.cc:2678
 #, fuzzy
 msgid "_Forward"
 msgstr "Зображення"
 
-#: src/layout-util.cc:2682
+#: src/layout-util.cc:2678
 msgid "Forward in folder history"
 msgstr ""
 
-#: src/layout-util.cc:2683 src/layout-util.cc:2684 src/layout-util.cc:2685
+#: src/layout-util.cc:2679 src/layout-util.cc:2680 src/layout-util.cc:2681
 #, fuzzy
 msgid "F_ull screen"
 msgstr "На повний екран"
 
-#: src/layout-util.cc:2686
+#: src/layout-util.cc:2682
 msgid "_Go"
 msgstr ""
 
-#: src/layout-util.cc:2687
+#: src/layout-util.cc:2683
 #, fuzzy
 msgid "_ChangeLog"
 msgstr "Змінити на домашній каталог"
 
-#: src/layout-util.cc:2687
+#: src/layout-util.cc:2683
 #, fuzzy
 msgid "ChangeLog notes"
 msgstr "Змінити на домашній каталог"
 
-#: src/layout-util.cc:2688
+#: src/layout-util.cc:2684
 msgid "_Help manual"
 msgstr ""
 
-#: src/layout-util.cc:2688
+#: src/layout-util.cc:2684
 msgid "Help manual"
 msgstr ""
 
-#: src/layout-util.cc:2689
+#: src/layout-util.cc:2685
 #, fuzzy
 msgid "_Keyboard map"
 msgstr "/Довідка/Гарячі клавіші"
 
-#: src/layout-util.cc:2689
+#: src/layout-util.cc:2685
 #, fuzzy
 msgid "Keyboard map"
 msgstr "Завантаження піктограм..."
 
-#: src/layout-util.cc:2690
+#: src/layout-util.cc:2686
 #, fuzzy
 msgid "_Help"
 msgstr "/Довідка"
 
-#: src/layout-util.cc:2691
+#: src/layout-util.cc:2687
 msgid "_Readme"
 msgstr ""
 
-#: src/layout-util.cc:2691
+#: src/layout-util.cc:2687
 msgid "Readme"
 msgstr ""
 
-#: src/layout-util.cc:2692 src/window.cc:384
+#: src/layout-util.cc:2688 src/window.cc:384
 msgid "On-line help search"
 msgstr ""
 
-#: src/layout-util.cc:2693
+#: src/layout-util.cc:2689
 #, fuzzy
 msgid "_Keyboard shortcuts"
 msgstr "/Довідка/Гарячі клавіші"
 
-#: src/layout-util.cc:2693
+#: src/layout-util.cc:2689
 #, fuzzy
 msgid "Keyboard shortcuts"
 msgstr "/Довідка/Гарячі клавіші"
 
-#: src/layout-util.cc:2694
+#: src/layout-util.cc:2690
 #, fuzzy
 msgid "_Hide file list"
 msgstr "(Показати)Приховати список файлів"
 
-#: src/layout-util.cc:2694
+#: src/layout-util.cc:2690
 #, fuzzy
 msgid "Hide file list"
 msgstr "(Показати)Приховати список файлів"
 
-#: src/layout-util.cc:2695
+#: src/layout-util.cc:2691
 msgid "Cycle through histogram ch_annels"
 msgstr ""
 
-#: src/layout-util.cc:2695
+#: src/layout-util.cc:2691
 msgid "Cycle through histogram channels"
 msgstr ""
 
-#: src/layout-util.cc:2696
+#: src/layout-util.cc:2692
 msgid "Cycle through histogram mo_des"
 msgstr ""
 
-#: src/layout-util.cc:2696
+#: src/layout-util.cc:2692
 msgid "Cycle through histogram modes"
 msgstr ""
 
-#: src/layout-util.cc:2697
+#: src/layout-util.cc:2693
 #, fuzzy
 msgid "_Home"
 msgstr "Домівка"
 
-#: src/layout-util.cc:2697 src/options.cc:250 src/ui-bookmark.cc:550
-#: src/ui-pathsel.cc:1026
+#: src/layout-util.cc:2693 src/options.cc:250 src/ui-bookmark.cc:551
+#: src/ui-pathsel.cc:1024
 msgid "Home"
 msgstr "Домівка"
 
-#: src/layout-util.cc:2698
+#: src/layout-util.cc:2694
 #, fuzzy
 msgid "Image Back"
 msgstr "Зображення"
 
-#: src/layout-util.cc:2698
+#: src/layout-util.cc:2694
 msgid "Back in image history"
 msgstr ""
 
-#: src/layout-util.cc:2699
+#: src/layout-util.cc:2695
 #, fuzzy
 msgid "Image Forward"
 msgstr "Зображення"
 
-#: src/layout-util.cc:2699
+#: src/layout-util.cc:2695
 msgid "Forward in image history"
 msgstr ""
 
-#: src/layout-util.cc:2700
+#: src/layout-util.cc:2696
 msgid "_Cycle through overlay modes"
 msgstr ""
 
-#: src/layout-util.cc:2700
+#: src/layout-util.cc:2696
 msgid "Cycle through Overlay modes"
 msgstr ""
 
-#: src/layout-util.cc:2701
+#: src/layout-util.cc:2697
 #, fuzzy
 msgid "Keyword Autocomplete"
 msgstr "Не сортувати"
 
-#: src/layout-util.cc:2702
+#: src/layout-util.cc:2698
 #, fuzzy
 msgid "_Last Image"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/layout-util.cc:2702
+#: src/layout-util.cc:2698
 #, fuzzy
 msgid "Last Image"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/layout-util.cc:2703
+#: src/layout-util.cc:2699
 #, fuzzy
 msgid "_Last Page"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/layout-util.cc:2703
+#: src/layout-util.cc:2699
 msgid "Last Page of multi-page image"
 msgstr ""
 
-#: src/layout-util.cc:2704
+#: src/layout-util.cc:2700
 #, fuzzy
 msgid "_Configure this window..."
 msgstr "Зконфігурувати опції"
 
-#: src/layout-util.cc:2704
+#: src/layout-util.cc:2700
 #, fuzzy
 msgid "Configure this window..."
 msgstr "Зконфігурувати опції"
 
-#: src/layout-util.cc:2705
+#: src/layout-util.cc:2701
 #, fuzzy
 msgid "_Log Window"
 msgstr "Вікна"
 
-#: src/layout-util.cc:2705
+#: src/layout-util.cc:2701
 #, fuzzy
 msgid "Log Window"
 msgstr "Вікна"
 
-#: src/layout-util.cc:2706
+#: src/layout-util.cc:2702
 #, fuzzy
 msgid "_Cache maintenance..."
 msgstr "Допомога - Geeqie"
 
-#: src/layout-util.cc:2706
+#: src/layout-util.cc:2702
 #, fuzzy
 msgid "Cache maintenance..."
 msgstr "Допомога - Geeqie"
 
-#: src/layout-util.cc:2707
+#: src/layout-util.cc:2703
 #, fuzzy
 msgid "_Mirror"
 msgstr "Відзеркалити"
 
-#: src/layout-util.cc:2707
+#: src/layout-util.cc:2703
 #, fuzzy
 msgid "Image Mirror"
 msgstr "Зображення"
 
-#: src/layout-util.cc:2708
+#: src/layout-util.cc:2704
 #, fuzzy
 msgid "Move..."
 msgstr "Перенести..."
 
-#: src/layout-util.cc:2709
+#: src/layout-util.cc:2705
 #, fuzzy
 msgid "_New collection"
 msgstr "Зберегти колекцію"
 
-#: src/layout-util.cc:2709 src/menu.cc:462
+#: src/layout-util.cc:2705 src/menu.cc:462
 #, fuzzy
 msgid "New collection"
 msgstr "Зберегти колекцію"
 
-#: src/layout-util.cc:2710
+#: src/layout-util.cc:2706
 #, fuzzy
 msgid "N_ew folder..."
 msgstr "Новий каталог..."
 
-#: src/layout-util.cc:2710
+#: src/layout-util.cc:2706
 #, fuzzy
 msgid "New folder..."
 msgstr "Новий каталог..."
 
-#: src/layout-util.cc:2711
+#: src/layout-util.cc:2707
 msgid "default"
 msgstr ""
 
-#: src/layout-util.cc:2711
+#: src/layout-util.cc:2707
 #, fuzzy
 msgid "New window (default)"
 msgstr "/Файл/Нова колекція"
 
-#: src/layout-util.cc:2712
+#: src/layout-util.cc:2708
 #, fuzzy
 msgid "from current"
 msgstr "Вжити поточний "
 
-#: src/layout-util.cc:2713
+#: src/layout-util.cc:2709
 #, fuzzy
 msgid "New window"
 msgstr "/Файл/Нова колекція"
 
-#: src/layout-util.cc:2714 src/layout-util.cc:2715 src/layout-util.cc:2716
+#: src/layout-util.cc:2710 src/layout-util.cc:2711 src/layout-util.cc:2712
 #, fuzzy
 msgid "_Next Image"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/layout-util.cc:2714 src/layout-util.cc:2715 src/layout-util.cc:2716
+#: src/layout-util.cc:2710 src/layout-util.cc:2711 src/layout-util.cc:2712
 #, fuzzy
 msgid "Next Image"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/layout-util.cc:2717
+#: src/layout-util.cc:2713
 #, fuzzy
 msgid "_Next Page"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/layout-util.cc:2717
+#: src/layout-util.cc:2713
 msgid "Next Page of multi-page image"
 msgstr ""
 
-#: src/layout-util.cc:2719
+#: src/layout-util.cc:2715
 #, fuzzy
 msgid "_Open collection..."
 msgstr "Відкрити колекцію"
 
-#: src/layout-util.cc:2719
+#: src/layout-util.cc:2715
 #, fuzzy
 msgid "Open collection..."
 msgstr "Відкрити колекцію"
 
-#: src/layout-util.cc:2720
+#: src/layout-util.cc:2716
 msgid "☰"
 msgstr ""
 
-#: src/layout-util.cc:2721
+#: src/layout-util.cc:2717
 #, fuzzy
 msgid "Open recen_t"
 msgstr "/Файл/Відкрити недавній"
 
-#: src/layout-util.cc:2721
+#: src/layout-util.cc:2717
 #, fuzzy
 msgid "Open recent collection"
 msgstr "Відкрити колекцію"
 
-#: src/layout-util.cc:2722
+#: src/layout-util.cc:2718
 #, fuzzy
 msgid "Open With..."
 msgstr "Відкрити колекцію"
 
-#: src/layout-util.cc:2723 src/menu.cc:402
+#: src/layout-util.cc:2719 src/menu.cc:402
 #, fuzzy
 msgid "_Orientation"
 msgstr "Розміри"
 
-#: src/layout-util.cc:2724 src/layout-util.cc:2804
+#: src/layout-util.cc:2720 src/layout-util.cc:2800
 #, fuzzy
 msgid "Image _Overlay"
 msgstr "Зображення"
 
-#: src/layout-util.cc:2725
+#: src/layout-util.cc:2721
 #, fuzzy
 msgid "Pa_n view"
 msgstr "Допомога - Geeqie"
 
-#: src/layout-util.cc:2725
+#: src/layout-util.cc:2721
 #, fuzzy
 msgid "Pan view"
 msgstr "Допомога - Geeqie"
 
-#: src/layout-util.cc:2726
+#: src/layout-util.cc:2722
 #, fuzzy
 msgid "Delete..."
 msgstr "Видалити..."
 
-#: src/layout-util.cc:2727
+#: src/layout-util.cc:2723
 #, fuzzy
 msgid "Configure _Plugins..."
 msgstr "Зконфігурувати опції"
 
-#: src/layout-util.cc:2727
+#: src/layout-util.cc:2723
 #, fuzzy
 msgid "Configure Plugins..."
 msgstr "Зконфігурувати опції"
 
-#: src/layout-util.cc:2728 src/menu.cc:114
+#: src/layout-util.cc:2724 src/menu.cc:114
 msgid "_Plugins"
 msgstr ""
 
-#: src/layout-util.cc:2729
+#: src/layout-util.cc:2725
 #, fuzzy
 msgid "P_references..."
 msgstr "/Редагування/Опції..."
 
-#: src/layout-util.cc:2729
+#: src/layout-util.cc:2725
 #, fuzzy
 msgid "Preferences..."
 msgstr "/Редагування/Опції..."
 
-#: src/layout-util.cc:2730
+#: src/layout-util.cc:2726
 #, fuzzy
 msgid "P_references"
 msgstr "/Редагування/Опції..."
 
-#: src/layout-util.cc:2731 src/layout-util.cc:2732 src/layout-util.cc:2733
+#: src/layout-util.cc:2727 src/layout-util.cc:2728 src/layout-util.cc:2729
 #, fuzzy
 msgid "_Previous Image"
 msgstr "%d зображень"
 
-#: src/layout-util.cc:2731 src/layout-util.cc:2732 src/layout-util.cc:2733
+#: src/layout-util.cc:2727 src/layout-util.cc:2728 src/layout-util.cc:2729
 #, fuzzy
 msgid "Previous Image"
 msgstr "%d зображень"
 
-#: src/layout-util.cc:2734
+#: src/layout-util.cc:2730
 #, fuzzy
 msgid "_Previous Page"
 msgstr "%d зображень"
 
-#: src/layout-util.cc:2734
+#: src/layout-util.cc:2730
 msgid "Previous Page of multi-page image"
 msgstr ""
 
-#: src/layout-util.cc:2735
+#: src/layout-util.cc:2731
 #, fuzzy
 msgid "_Print..."
 msgstr "/Файл/Перейменувати..."
 
-#: src/layout-util.cc:2736
+#: src/layout-util.cc:2732
 #, fuzzy
 msgid "_Quit"
 msgstr "Якість"
 
-#: src/layout-util.cc:2736 src/main.cc:1140
+#: src/layout-util.cc:2732 src/main.cc:1140
 #, fuzzy
 msgid "Quit"
 msgstr "Якість"
 
-#: src/layout-util.cc:2737
+#: src/layout-util.cc:2733
 #, fuzzy
 msgid "_Rating 0"
 msgstr "Фільтр:"
 
-#: src/layout-util.cc:2737
+#: src/layout-util.cc:2733
 #, fuzzy
 msgid "Rating 0"
 msgstr "Фільтр:"
 
-#: src/layout-util.cc:2738
+#: src/layout-util.cc:2734
 #, fuzzy
 msgid "_Rating 1"
 msgstr "Фільтр:"
 
-#: src/layout-util.cc:2738
+#: src/layout-util.cc:2734
 #, fuzzy
 msgid "Rating 1"
 msgstr "Фільтр:"
 
-#: src/layout-util.cc:2739
+#: src/layout-util.cc:2735
 #, fuzzy
 msgid "_Rating 2"
 msgstr "Фільтр:"
 
-#: src/layout-util.cc:2739
+#: src/layout-util.cc:2735
 #, fuzzy
 msgid "Rating 2"
 msgstr "Фільтр:"
 
-#: src/layout-util.cc:2740
+#: src/layout-util.cc:2736
 #, fuzzy
 msgid "_Rating 3"
 msgstr "Фільтр:"
 
-#: src/layout-util.cc:2740
+#: src/layout-util.cc:2736
 #, fuzzy
 msgid "Rating 3"
 msgstr "Фільтр:"
 
-#: src/layout-util.cc:2741
+#: src/layout-util.cc:2737
 #, fuzzy
 msgid "_Rating 4"
 msgstr "Фільтр:"
 
-#: src/layout-util.cc:2741
+#: src/layout-util.cc:2737
 #, fuzzy
 msgid "Rating 4"
 msgstr "Фільтр:"
 
-#: src/layout-util.cc:2742
+#: src/layout-util.cc:2738
 #, fuzzy
 msgid "_Rating 5"
 msgstr "Фільтр:"
 
-#: src/layout-util.cc:2742
+#: src/layout-util.cc:2738
 #, fuzzy
 msgid "Rating 5"
 msgstr "Фільтр:"
 
-#: src/layout-util.cc:2743
+#: src/layout-util.cc:2739
 #, fuzzy
 msgid "_Rating -1"
 msgstr "Фільтр:"
 
-#: src/layout-util.cc:2743
+#: src/layout-util.cc:2739
 #, fuzzy
 msgid "Rating -1"
 msgstr "Фільтр:"
 
-#: src/layout-util.cc:2744
+#: src/layout-util.cc:2740
 #, fuzzy
 msgid "_Rating"
 msgstr "Фільтр:"
 
-#: src/layout-util.cc:2745
+#: src/layout-util.cc:2741
 #, fuzzy
 msgid "_Refresh"
 msgstr "Оновити"
 
-#: src/layout-util.cc:2745
+#: src/layout-util.cc:2741
 #, fuzzy
 msgid "Refresh"
 msgstr "Оновити"
 
-#: src/layout-util.cc:2746
+#: src/layout-util.cc:2742
 #, fuzzy
 msgid "Rename..."
 msgstr "Переіменувати..."
 
-#: src/layout-util.cc:2748
+#: src/layout-util.cc:2744
 #, fuzzy
 msgid "Rotate 1_80°"
 msgstr "Повернути на 180"
 
-#: src/layout-util.cc:2748
+#: src/layout-util.cc:2744
 #, fuzzy
 msgid "Image Rotate 180°"
 msgstr "Повернути на 180"
 
-#: src/layout-util.cc:2749
+#: src/layout-util.cc:2745
 #, fuzzy
 msgid "Rotate _counterclockwise 90°"
 msgstr "Повернути проти годинникової стрілки"
 
-#: src/layout-util.cc:2749 src/menu.cc:347
+#: src/layout-util.cc:2745 src/menu.cc:347
 #, fuzzy
 msgid "Rotate counterclockwise 90°"
 msgstr "Повернути проти годинникової стрілки"
 
-#: src/layout-util.cc:2750
+#: src/layout-util.cc:2746
 #, fuzzy
 msgid "_Rotate clockwise 90°"
 msgstr "Повернути за годинниковою стрілкою"
 
-#: src/layout-util.cc:2750
+#: src/layout-util.cc:2746
 #, fuzzy
 msgid "Image Rotate clockwise 90°"
 msgstr "Повернути за годинниковою стрілкою"
 
-#: src/layout-util.cc:2751
+#: src/layout-util.cc:2747
 #, fuzzy
 msgid "_Save metadata"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/layout-util.cc:2751
+#: src/layout-util.cc:2747
 #, fuzzy
 msgid "Save metadata"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/layout-util.cc:2752
+#: src/layout-util.cc:2748
 msgid "Search and Run command"
 msgstr ""
 
-#: src/layout-util.cc:2752
+#: src/layout-util.cc:2748
 msgid "Search commands by keyword and run them"
 msgstr ""
 
-#: src/layout-util.cc:2753
+#: src/layout-util.cc:2749
 #, fuzzy
 msgid "_Search..."
 msgstr "Порівняння..."
 
-#: src/layout-util.cc:2753
+#: src/layout-util.cc:2749
 #, fuzzy
 msgid "Search..."
 msgstr "Порівняння..."
 
-#: src/layout-util.cc:2754
+#: src/layout-util.cc:2750
 #, fuzzy
 msgid "Select _all"
 msgstr "Виділити все"
 
-#: src/layout-util.cc:2755
+#: src/layout-util.cc:2751
 #, fuzzy
 msgid "_Invert Selection"
 msgstr "Зняти виділення"
 
-#: src/layout-util.cc:2755
+#: src/layout-util.cc:2751
 #, fuzzy
 msgid "Invert Selection"
 msgstr "Зняти виділення"
 
-#: src/layout-util.cc:2756
+#: src/layout-util.cc:2752
 #, fuzzy
 msgid "_Select"
 msgstr "Зняти виділення"
 
-#: src/layout-util.cc:2757
+#: src/layout-util.cc:2753
 #, fuzzy
 msgid "Select _none"
 msgstr "Зняти виділення"
 
-#: src/layout-util.cc:2758
+#: src/layout-util.cc:2754
 msgid "Faster"
 msgstr ""
 
-#: src/layout-util.cc:2758
+#: src/layout-util.cc:2754
 #, fuzzy
 msgid "Slideshow Faster"
 msgstr " Показ слайдів"
 
-#: src/layout-util.cc:2759
+#: src/layout-util.cc:2755
 #, fuzzy
 msgid "_Pause slideshow"
 msgstr "Призупинити показ слайдів"
 
-#: src/layout-util.cc:2760
+#: src/layout-util.cc:2756
 msgid "Slower"
 msgstr ""
 
-#: src/layout-util.cc:2760
+#: src/layout-util.cc:2756
 #, fuzzy
 msgid "Slideshow Slower"
 msgstr " Показ слайдів"
 
-#: src/layout-util.cc:2761
+#: src/layout-util.cc:2757
 #, fuzzy
 msgid "_Down Pane"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/layout-util.cc:2761
+#: src/layout-util.cc:2757
 #, fuzzy
 msgid "Down Split Pane"
 msgstr "Розмір"
 
-#: src/layout-util.cc:2762
+#: src/layout-util.cc:2758
 msgid "Spli_t"
 msgstr ""
 
-#: src/layout-util.cc:2763
+#: src/layout-util.cc:2759
 #, fuzzy
 msgid "_Next Pane"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/layout-util.cc:2763
+#: src/layout-util.cc:2759
 #, fuzzy
 msgid "Next Split Pane"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/layout-util.cc:2764
+#: src/layout-util.cc:2760
 #, fuzzy
 msgid "_Previous Pane"
 msgstr "%d зображень"
 
-#: src/layout-util.cc:2764
+#: src/layout-util.cc:2760
 #, fuzzy
 msgid "Previous Split Pane"
 msgstr "%d зображень"
 
-#: src/layout-util.cc:2765
+#: src/layout-util.cc:2761
 #, fuzzy
 msgid "_Up Pane"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/layout-util.cc:2765
+#: src/layout-util.cc:2761
 #, fuzzy
 msgid "Up Split Pane"
 msgstr "Розмір"
 
-#: src/layout-util.cc:2766
+#: src/layout-util.cc:2762
 msgid "_Cycle through stereo modes"
 msgstr ""
 
-#: src/layout-util.cc:2766
+#: src/layout-util.cc:2762
 msgid "Cycle through stereo modes"
 msgstr ""
 
-#: src/layout-util.cc:2767
+#: src/layout-util.cc:2763
 msgid "Stere_o"
 msgstr ""
 
-#: src/layout-util.cc:2768
+#: src/layout-util.cc:2764
 msgid "_Up"
 msgstr ""
 
-#: src/layout-util.cc:2768
+#: src/layout-util.cc:2764
 #, fuzzy
 msgid "Up one folder"
 msgstr "Новий каталог..."
 
-#: src/layout-util.cc:2769
+#: src/layout-util.cc:2765
 #, fuzzy
 msgid "_View in new window"
 msgstr "Переглянути в новому вікні"
 
-#: src/layout-util.cc:2771
+#: src/layout-util.cc:2767
 #, fuzzy
 msgid "Set as _wallpaper"
 msgstr "Встановити як тло"
 
-#: src/layout-util.cc:2771
+#: src/layout-util.cc:2767
 #, fuzzy
 msgid "Set as wallpaper"
 msgstr "Встановити як тло"
 
-#: src/layout-util.cc:2772
+#: src/layout-util.cc:2768
 #, fuzzy
 msgid "_Windows"
 msgstr "Вікна"
 
-#: src/layout-util.cc:2773
+#: src/layout-util.cc:2769
 #, fuzzy
 msgid "_Write orientation to file (preserve timestamp)"
 msgstr "Переписати файл"
 
-#: src/layout-util.cc:2773
+#: src/layout-util.cc:2769
 #, fuzzy
 msgid "Write orientation to file (preserve timestamp)"
 msgstr "Переписати файл"
 
-#: src/layout-util.cc:2774
+#: src/layout-util.cc:2770
 #, fuzzy
 msgid "_Write orientation to file"
 msgstr "Переписати файл"
 
-#: src/layout-util.cc:2774
+#: src/layout-util.cc:2770
 #, fuzzy
 msgid "Write orientation to file"
 msgstr "Переписати файл"
 
-#: src/layout-util.cc:2783
+#: src/layout-util.cc:2779
 msgid "Fit Horizontally"
 msgstr ""
 
-#: src/layout-util.cc:2784
+#: src/layout-util.cc:2780
 msgid "Fit Vertically"
 msgstr ""
 
-#: src/layout-util.cc:2789
+#: src/layout-util.cc:2785
 #, fuzzy
 msgid "_Zoom"
 msgstr "Збільшити"
 
-#: src/layout-util.cc:2795
+#: src/layout-util.cc:2791
 #, fuzzy
 msgid "_Animation"
 msgstr "Розміри"
 
-#: src/layout-util.cc:2795
+#: src/layout-util.cc:2791
 #, fuzzy
 msgid "Toggle animation"
 msgstr "Виділити все"
 
-#: src/layout-util.cc:2796
+#: src/layout-util.cc:2792
 #, fuzzy
 msgid "Draw Rectangle"
 msgstr "Виділити все"
 
-#: src/layout-util.cc:2797
+#: src/layout-util.cc:2793
 #, fuzzy
 msgid "_Exif rotate"
 msgstr "/Вигляд/Оновити список"
 
-#: src/layout-util.cc:2797
+#: src/layout-util.cc:2793
 #, fuzzy
 msgid "Toggle Exif rotate"
 msgstr "/Вигляд/Оновити список"
 
-#: src/layout-util.cc:2798
+#: src/layout-util.cc:2794
 #, fuzzy
 msgid "_Float file list"
 msgstr "/Вигляд/(При-)Відчепити список файлів"
 
-#: src/layout-util.cc:2798
+#: src/layout-util.cc:2794
 #, fuzzy
 msgid "Float file list"
 msgstr "/Вигляд/(При-)Відчепити список файлів"
 
-#: src/layout-util.cc:2799
+#: src/layout-util.cc:2795
 #, fuzzy
 msgid "Toggle _grayscale"
 msgstr "Зупинити показ слайдів"
 
-#: src/layout-util.cc:2799
+#: src/layout-util.cc:2795
 #, fuzzy
 msgid "Toggle grayscale"
 msgstr "Зупинити показ слайдів"
 
-#: src/layout-util.cc:2800
+#: src/layout-util.cc:2796
 #, fuzzy
 msgid "Hide Bars and Files"
 msgstr "Показати приховані"
 
-#: src/layout-util.cc:2802
+#: src/layout-util.cc:2798
 #, fuzzy
 msgid "Hide _alpha"
 msgstr "/Вигляд/tear1"
 
-#: src/layout-util.cc:2802
+#: src/layout-util.cc:2798
 #, fuzzy
 msgid "Hide alpha channel"
 msgstr "/Вигляд/tear1"
 
-#: src/layout-util.cc:2803
+#: src/layout-util.cc:2799
 msgid "_Show Histogram"
 msgstr ""
 
-#: src/layout-util.cc:2803
+#: src/layout-util.cc:2799
 #, fuzzy
 msgid "Show Histogram"
 msgstr "Сортувати за датою"
 
-#: src/layout-util.cc:2804
+#: src/layout-util.cc:2800
 #, fuzzy
 msgid "Image Overlay"
 msgstr "Зображення"
 
-#: src/layout-util.cc:2805
+#: src/layout-util.cc:2801
 msgid "Over/Under Exposed"
 msgstr ""
 
-#: src/layout-util.cc:2805
+#: src/layout-util.cc:2801
 msgid "Highlight over/under exposed"
 msgstr ""
 
-#: src/layout-util.cc:2806
+#: src/layout-util.cc:2802
 #, fuzzy
 msgid "Rectangular Selection"
 msgstr "Прямокутне виділення"
 
-#: src/layout-util.cc:2807
+#: src/layout-util.cc:2803
 msgid "_Info sidebar"
 msgstr ""
 
-#: src/layout-util.cc:2807
+#: src/layout-util.cc:2803
 msgid "Info sidebar"
 msgstr ""
 
-#: src/layout-util.cc:2808
+#: src/layout-util.cc:2804
 #, fuzzy
 msgid "Sort _manager"
 msgstr "Сотрувати за назвою"
 
-#: src/layout-util.cc:2808
+#: src/layout-util.cc:2804
 #, fuzzy
 msgid "Sort manager"
 msgstr "Сотрувати за назвою"
 
-#: src/layout-util.cc:2809
+#: src/layout-util.cc:2805
 #, fuzzy
 msgid "Show File Filter"
 msgstr "Показати приховані"
 
-#: src/layout-util.cc:2810
+#: src/layout-util.cc:2806
 #, fuzzy
 msgid "Pi_xel Info"
 msgstr "Фільтр:"
 
-#: src/layout-util.cc:2810
+#: src/layout-util.cc:2806
 #, fuzzy
 msgid "Show Pixel Info"
 msgstr "Показати приховані"
 
-#: src/layout-util.cc:2811
+#: src/layout-util.cc:2807
 #, fuzzy
 msgid "Show _Marks"
 msgstr "Показати приховані"
 
-#: src/layout-util.cc:2811
+#: src/layout-util.cc:2807
 #, fuzzy
 msgid "Show Marks"
 msgstr "Показати приховані"
 
-#: src/layout-util.cc:2813
+#: src/layout-util.cc:2809
 #, fuzzy
 msgid "Split Pane Sync"
 msgstr "Розмір"
 
-#: src/layout-util.cc:2814
+#: src/layout-util.cc:2810
 #, fuzzy
 msgid "Show _Thumbnails"
 msgstr "Показувати піктограми"
 
-#: src/layout-util.cc:2814
+#: src/layout-util.cc:2810
 #, fuzzy
 msgid "Show Thumbnails"
 msgstr "Показувати піктограми"
 
-#: src/layout-util.cc:2815
+#: src/layout-util.cc:2811
 #, fuzzy
 msgid "Use _color profiles"
 msgstr "Всі файли"
 
-#: src/layout-util.cc:2815
+#: src/layout-util.cc:2811
 #, fuzzy
 msgid "Use color profiles"
 msgstr "Всі файли"
 
-#: src/layout-util.cc:2816
+#: src/layout-util.cc:2812
 msgid "Use profile from _image"
 msgstr ""
 
-#: src/layout-util.cc:2816
+#: src/layout-util.cc:2812
 msgid "Use profile from image"
 msgstr ""
 
-#: src/layout-util.cc:2820
+#: src/layout-util.cc:2816
 #, fuzzy
 msgid "Images as I_cons"
 msgstr "Як піктограми"
 
-#: src/layout-util.cc:2820
+#: src/layout-util.cc:2816
 #, fuzzy
 msgid "View Images as Icons"
 msgstr "Як піктограми"
 
-#: src/layout-util.cc:2821
+#: src/layout-util.cc:2817
 #, fuzzy
 msgid "Images as _List"
 msgstr "Зображення"
 
-#: src/layout-util.cc:2821
+#: src/layout-util.cc:2817
 #, fuzzy
 msgid "View Images as List"
 msgstr "/Вигляд/Перемкнути показ слайдів"
 
-#: src/layout-util.cc:2825
+#: src/layout-util.cc:2821
 #, fuzzy
 msgid "T_oggle Folder View"
 msgstr "Зупинити показ слайдів"
 
-#: src/layout-util.cc:2825
+#: src/layout-util.cc:2821
 #, fuzzy
 msgid "Toggle Folders View"
 msgstr "Зупинити показ слайдів"
 
-#: src/layout-util.cc:2829
+#: src/layout-util.cc:2825
 msgid "_Horizontal"
 msgstr ""
 
-#: src/layout-util.cc:2829
+#: src/layout-util.cc:2825
 #, fuzzy
 msgid "Split panes horizontal."
 msgstr "Розмір"
 
-#: src/layout-util.cc:2830
+#: src/layout-util.cc:2826
 msgid "_Quad"
 msgstr ""
 
-#: src/layout-util.cc:2830
+#: src/layout-util.cc:2826
 #, fuzzy
 msgid "Split panes quad"
 msgstr "Розмір"
 
-#: src/layout-util.cc:2831
+#: src/layout-util.cc:2827
 #, fuzzy
 msgid "_Single"
 msgstr "Розмір"
 
-#: src/layout-util.cc:2831
+#: src/layout-util.cc:2827
 #, fuzzy
 msgid "Single pane"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/layout-util.cc:2832
+#: src/layout-util.cc:2828
 msgid "_Triple"
 msgstr ""
 
-#: src/layout-util.cc:2832
+#: src/layout-util.cc:2828
 #, fuzzy
 msgid "Split panes triple"
 msgstr "Розмір"
 
-#: src/layout-util.cc:2833
+#: src/layout-util.cc:2829
 msgid "_Vertical"
 msgstr ""
 
-#: src/layout-util.cc:2833
+#: src/layout-util.cc:2829
 #, fuzzy
 msgid "Split panes vertical"
 msgstr "Розмір"
 
-#: src/layout-util.cc:2837
+#: src/layout-util.cc:2833
 msgid "Input _0: sRGB"
 msgstr ""
 
-#: src/layout-util.cc:2837
+#: src/layout-util.cc:2833
 msgid "Input 0: sRGB"
 msgstr ""
 
-#: src/layout-util.cc:2838
+#: src/layout-util.cc:2834
 msgid "Input _1: AdobeRGB compatible"
 msgstr ""
 
-#: src/layout-util.cc:2838
+#: src/layout-util.cc:2834
 msgid "Input 1: AdobeRGB compatible"
 msgstr ""
 
-#: src/layout-util.cc:2839
+#: src/layout-util.cc:2835
 msgid "Input _2"
 msgstr ""
 
-#: src/layout-util.cc:2839
+#: src/layout-util.cc:2835
 msgid "Input 2"
 msgstr ""
 
-#: src/layout-util.cc:2840
+#: src/layout-util.cc:2836
 msgid "Input _3"
 msgstr ""
 
-#: src/layout-util.cc:2840
+#: src/layout-util.cc:2836
 msgid "Input 3"
 msgstr ""
 
-#: src/layout-util.cc:2841
+#: src/layout-util.cc:2837
 msgid "Input _4"
 msgstr ""
 
-#: src/layout-util.cc:2841
+#: src/layout-util.cc:2837
 msgid "Input 4"
 msgstr ""
 
-#: src/layout-util.cc:2842
+#: src/layout-util.cc:2838
 msgid "Input _5"
 msgstr ""
 
-#: src/layout-util.cc:2842
+#: src/layout-util.cc:2838
 msgid "Input 5"
 msgstr ""
 
-#: src/layout-util.cc:2846
+#: src/layout-util.cc:2842
 msgid "Histogram on Blue"
 msgstr ""
 
-#: src/layout-util.cc:2847
+#: src/layout-util.cc:2843
 msgid "Histogram on Green"
 msgstr ""
 
-#: src/layout-util.cc:2848
+#: src/layout-util.cc:2844
 msgid "Histogram on RGB"
 msgstr ""
 
-#: src/layout-util.cc:2849
+#: src/layout-util.cc:2845
 msgid "Histogram on Red"
 msgstr ""
 
-#: src/layout-util.cc:2850
+#: src/layout-util.cc:2846
 msgid "Histogram on Value"
 msgstr ""
 
-#: src/layout-util.cc:2854
+#: src/layout-util.cc:2850
 msgid "Linear Histogram"
 msgstr ""
 
-#: src/layout-util.cc:2855
+#: src/layout-util.cc:2851
 msgid "_Log Histogram"
 msgstr ""
 
-#: src/layout-util.cc:2855
+#: src/layout-util.cc:2851
 msgid "Log Histogram"
 msgstr ""
 
-#: src/layout-util.cc:2859
+#: src/layout-util.cc:2855
 msgid "_Auto"
 msgstr ""
 
-#: src/layout-util.cc:2859
+#: src/layout-util.cc:2855
 msgid "Stereo Auto"
 msgstr ""
 
-#: src/layout-util.cc:2860
+#: src/layout-util.cc:2856
 msgid "_Cross"
 msgstr ""
 
-#: src/layout-util.cc:2860
+#: src/layout-util.cc:2856
 msgid "Stereo Cross"
 msgstr ""
 
-#: src/layout-util.cc:2861
+#: src/layout-util.cc:2857
 msgid "_Off"
 msgstr ""
 
-#: src/layout-util.cc:2861
+#: src/layout-util.cc:2857
 msgid "Stereo Off"
 msgstr ""
 
-#: src/layout-util.cc:2862
+#: src/layout-util.cc:2858
 msgid "_Side by Side"
 msgstr ""
 
-#: src/layout-util.cc:2862
+#: src/layout-util.cc:2858
 msgid "Stereo Side by Side"
 msgstr ""
 
-#: src/layout-util.cc:2917
+#: src/layout-util.cc:2913
 #, c-format
 msgid "Mark _%d"
 msgstr ""
 
-#: src/layout-util.cc:2918 src/view-file/view-file.cc:663
+#: src/layout-util.cc:2914 src/view-file/view-file.cc:663
 #, c-format
 msgid "_Set mark %d"
 msgstr ""
 
-#: src/layout-util.cc:2918
+#: src/layout-util.cc:2914
 #, fuzzy, c-format
 msgid "Set mark %d"
 msgstr "Виділити все"
 
-#: src/layout-util.cc:2919 src/view-file/view-file.cc:664
+#: src/layout-util.cc:2915 src/view-file/view-file.cc:664
 #, c-format
 msgid "_Reset mark %d"
 msgstr ""
 
-#: src/layout-util.cc:2919
+#: src/layout-util.cc:2915
 #, fuzzy, c-format
 msgid "Reset mark %d"
 msgstr "Виділити все"
 
-#: src/layout-util.cc:2920 src/layout-util.cc:2921
+#: src/layout-util.cc:2916 src/layout-util.cc:2917
 #: src/view-file/view-file.cc:665
 #, c-format
 msgid "_Toggle mark %d"
 msgstr ""
 
-#: src/layout-util.cc:2920 src/layout-util.cc:2921
+#: src/layout-util.cc:2916 src/layout-util.cc:2917
 #, fuzzy, c-format
 msgid "Toggle mark %d"
 msgstr "Виділити все"
 
-#: src/layout-util.cc:2922
+#: src/layout-util.cc:2918
 #, fuzzy, c-format
 msgid "Se_lect mark %d"
 msgstr "Виділити все"
 
-#: src/layout-util.cc:2922 src/layout-util.cc:2923
+#: src/layout-util.cc:2918 src/layout-util.cc:2919
 #, fuzzy, c-format
 msgid "Select mark %d"
 msgstr "Виділити все"
 
-#: src/layout-util.cc:2923 src/view-file/view-file.cc:666
+#: src/layout-util.cc:2919 src/view-file/view-file.cc:666
 #, fuzzy, c-format
 msgid "_Select mark %d"
 msgstr "Виділити все"
 
-#: src/layout-util.cc:2924 src/view-file/view-file.cc:667
+#: src/layout-util.cc:2920 src/view-file/view-file.cc:667
 #, fuzzy, c-format
 msgid "_Add mark %d"
 msgstr "Редактори"
 
-#: src/layout-util.cc:2924
+#: src/layout-util.cc:2920
 #, fuzzy, c-format
 msgid "Add mark %d"
 msgstr "Редактори"
 
-#: src/layout-util.cc:2925 src/view-file/view-file.cc:668
+#: src/layout-util.cc:2921 src/view-file/view-file.cc:668
 #, c-format
 msgid "_Intersection with mark %d"
 msgstr ""
 
-#: src/layout-util.cc:2925
+#: src/layout-util.cc:2921
 #, fuzzy, c-format
 msgid "Intersection with mark %d"
 msgstr "Виділити все"
 
-#: src/layout-util.cc:2926 src/view-file/view-file.cc:669
+#: src/layout-util.cc:2922 src/view-file/view-file.cc:669
 #, c-format
 msgid "_Unselect mark %d"
 msgstr ""
 
-#: src/layout-util.cc:2926
+#: src/layout-util.cc:2922
 #, fuzzy, c-format
 msgid "Unselect mark %d"
 msgstr "Виділити все"
 
-#: src/layout-util.cc:2927
+#: src/layout-util.cc:2923
 #, fuzzy, c-format
 msgid "_Filter mark %d"
 msgstr "Виділити все"
 
-#: src/layout-util.cc:2927
+#: src/layout-util.cc:2923
 #, fuzzy, c-format
 msgid "Filter mark %d"
 msgstr "Виділити все"
 
-#: src/layout-util.cc:3671
+#: src/layout-util.cc:3667
 #, c-format
 msgid "Number of files with unsaved metadata: %d"
 msgstr ""
 
-#: src/layout-util.cc:3677
+#: src/layout-util.cc:3673
 msgid "No unsaved metadata"
 msgstr ""
 
-#: src/layout-util.cc:3725
+#: src/layout-util.cc:3721
 #, c-format
 msgid ""
 "Image profile: %s\n"
 "Screen profile: %s"
 msgstr ""
 
-#: src/layout-util.cc:3733
+#: src/layout-util.cc:3729
 msgid "Click to enable color management"
 msgstr ""
 
-#: src/layout-util.cc:3738
+#: src/layout-util.cc:3734
 msgid "Color profiles not supported"
 msgstr ""
 
-#: src/layout-util.cc:3760
+#: src/layout-util.cc:3756
 #, c-format
 msgid "Input _%d: %s"
 msgstr ""
@@ -4803,7 +4803,7 @@ msgstr ""
 msgid "Log"
 msgstr ""
 
-#: src/logwindow.cc:444 src/preferences.cc:3699
+#: src/logwindow.cc:444 src/preferences.cc:3704
 msgid "Debug level:"
 msgstr ""
 
@@ -5070,7 +5070,7 @@ msgstr "Сортувати за розміром"
 msgid "Zoom to original size"
 msgstr "Масштабувати до оригінального розміру"
 
-#: src/menu.cc:268 src/preferences.cc:2331
+#: src/menu.cc:268 src/preferences.cc:2343
 msgid "Fit image to window"
 msgstr "Масштабувати до розміру вікна"
 
@@ -5103,262 +5103,262 @@ msgstr "Перейменувати:"
 msgid "_Add to Collection"
 msgstr "Колекції"
 
-#: src/metadata.cc:1749
+#: src/metadata.cc:1752
 msgid "People"
 msgstr ""
 
-#: src/metadata.cc:1750
+#: src/metadata.cc:1753
 msgid "Family"
 msgstr ""
 
-#: src/metadata.cc:1751
+#: src/metadata.cc:1754
 msgid "Free time"
 msgstr ""
 
-#: src/metadata.cc:1752
+#: src/metadata.cc:1755
 msgid "Children"
 msgstr ""
 
-#: src/metadata.cc:1753
+#: src/metadata.cc:1756
 msgid "Sport"
 msgstr ""
 
-#: src/metadata.cc:1754
+#: src/metadata.cc:1757
 #, fuzzy
 msgid "Culture"
 msgstr "Дата"
 
-#: src/metadata.cc:1755
+#: src/metadata.cc:1758
 msgid "Festival"
 msgstr ""
 
-#: src/metadata.cc:1756
+#: src/metadata.cc:1759
 #, fuzzy
 msgid "Nature"
 msgstr "Дата"
 
-#: src/metadata.cc:1757
+#: src/metadata.cc:1760
 msgid "Animal"
 msgstr ""
 
-#: src/metadata.cc:1758
+#: src/metadata.cc:1761
 msgid "Bird"
 msgstr ""
 
-#: src/metadata.cc:1759
+#: src/metadata.cc:1762
 msgid "Insect"
 msgstr ""
 
-#: src/metadata.cc:1760
+#: src/metadata.cc:1763
 msgid "Pets"
 msgstr ""
 
-#: src/metadata.cc:1761
+#: src/metadata.cc:1764
 msgid "Wildlife"
 msgstr ""
 
-#: src/metadata.cc:1762
+#: src/metadata.cc:1765
 #, fuzzy
 msgid "Zoo"
 msgstr "Збільшити"
 
-#: src/metadata.cc:1763
+#: src/metadata.cc:1766
 msgid "Plant"
 msgstr ""
 
-#: src/metadata.cc:1764
+#: src/metadata.cc:1767
 #, fuzzy
 msgid "Tree"
 msgstr "/Вигляд/sep3"
 
-#: src/metadata.cc:1765
+#: src/metadata.cc:1768
 msgid "Flower"
 msgstr ""
 
-#: src/metadata.cc:1766
+#: src/metadata.cc:1769
 msgid "Water"
 msgstr ""
 
-#: src/metadata.cc:1767
+#: src/metadata.cc:1770
 msgid "River"
 msgstr ""
 
-#: src/metadata.cc:1768
-msgid "Lake"
-msgstr ""
-
-#: src/metadata.cc:1769
-#, fuzzy
-msgid "Sea"
-msgstr "Порівняння..."
-
-#: src/metadata.cc:1770
-msgid "Landscape"
-msgstr ""
-
 #: src/metadata.cc:1771
-msgid "Art"
+msgid "Lake"
 msgstr ""
 
 #: src/metadata.cc:1772
 #, fuzzy
+msgid "Sea"
+msgstr "Порівняння..."
+
+#: src/metadata.cc:1773
+msgid "Landscape"
+msgstr ""
+
+#: src/metadata.cc:1774
+msgid "Art"
+msgstr ""
+
+#: src/metadata.cc:1775
+#, fuzzy
 msgid "Statue"
 msgstr "Дата"
 
-#: src/metadata.cc:1773
+#: src/metadata.cc:1776
 #, fuzzy
 msgid "Painting"
 msgstr "Фільтр:"
 
-#: src/metadata.cc:1774 src/metadata.cc:1788
+#: src/metadata.cc:1777 src/metadata.cc:1791
 msgid "Historic"
 msgstr ""
 
-#: src/metadata.cc:1775 src/metadata.cc:1789
+#: src/metadata.cc:1778 src/metadata.cc:1792
 msgid "Modern"
 msgstr ""
 
-#: src/metadata.cc:1776
+#: src/metadata.cc:1779
 msgid "City"
 msgstr ""
 
-#: src/metadata.cc:1777
+#: src/metadata.cc:1780
 msgid "Park"
 msgstr ""
 
-#: src/metadata.cc:1778
+#: src/metadata.cc:1781
 msgid "Street"
 msgstr ""
 
-#: src/metadata.cc:1779
+#: src/metadata.cc:1782
 msgid "Square"
 msgstr ""
 
-#: src/metadata.cc:1780
+#: src/metadata.cc:1783
 msgid "Architecture"
 msgstr ""
 
-#: src/metadata.cc:1781
+#: src/metadata.cc:1784
 msgid "Buildings"
 msgstr ""
 
-#: src/metadata.cc:1782
+#: src/metadata.cc:1785
 msgid "House"
 msgstr ""
 
-#: src/metadata.cc:1783
+#: src/metadata.cc:1786
 msgid "Cathedral"
 msgstr ""
 
-#: src/metadata.cc:1784
+#: src/metadata.cc:1787
 msgid "Palace"
 msgstr ""
 
-#: src/metadata.cc:1785
+#: src/metadata.cc:1788
 msgid "Castle"
 msgstr ""
 
-#: src/metadata.cc:1786
+#: src/metadata.cc:1789
 msgid "Bridge"
 msgstr ""
 
-#: src/metadata.cc:1787
+#: src/metadata.cc:1790
 msgid "Interior"
 msgstr ""
 
-#: src/metadata.cc:1790
-msgid "Places"
-msgstr ""
-
-#: src/metadata.cc:1791
-#, fuzzy
-msgid "Conditions"
-msgstr "Колекції"
-
-#: src/metadata.cc:1792
-msgid "Night"
-msgstr ""
-
 #: src/metadata.cc:1793
-msgid "Lights"
+msgid "Places"
 msgstr ""
 
 #: src/metadata.cc:1794
 #, fuzzy
-msgid "Reflections"
-msgstr "Зняти виділення"
+msgid "Conditions"
+msgstr "Колекції"
 
 #: src/metadata.cc:1795
-msgid "Sun"
+msgid "Night"
 msgstr ""
 
 #: src/metadata.cc:1796
-msgid "Weather"
+msgid "Lights"
 msgstr ""
 
 #: src/metadata.cc:1797
-msgid "Fog"
-msgstr ""
+#, fuzzy
+msgid "Reflections"
+msgstr "Зняти виділення"
 
 #: src/metadata.cc:1798
-msgid "Rain"
+msgid "Sun"
 msgstr ""
 
 #: src/metadata.cc:1799
-msgid "Clouds"
+msgid "Weather"
 msgstr ""
 
 #: src/metadata.cc:1800
-msgid "Snow"
+msgid "Fog"
 msgstr ""
 
 #: src/metadata.cc:1801
-msgid "Sunny weather"
+msgid "Rain"
 msgstr ""
 
 #: src/metadata.cc:1802
-msgid "Photo"
+msgid "Clouds"
 msgstr ""
 
 #: src/metadata.cc:1803
+msgid "Snow"
+msgstr ""
+
+#: src/metadata.cc:1804
+msgid "Sunny weather"
+msgstr ""
+
+#: src/metadata.cc:1805
+msgid "Photo"
+msgstr ""
+
+#: src/metadata.cc:1806
 #, fuzzy
 msgid "Edited"
 msgstr "Редагувати"
 
-#: src/metadata.cc:1804
+#: src/metadata.cc:1807
 #, fuzzy
 msgid "Detail"
 msgstr "Видалити файли"
 
-#: src/metadata.cc:1805
+#: src/metadata.cc:1808
 msgid "Macro"
 msgstr ""
 
-#: src/metadata.cc:1806
+#: src/metadata.cc:1809
 msgid "Portrait"
 msgstr ""
 
-#: src/metadata.cc:1807
+#: src/metadata.cc:1810
 msgid "Black and White"
 msgstr ""
 
-#: src/metadata.cc:1808
+#: src/metadata.cc:1811
 #, fuzzy
 msgid "Perspective"
 msgstr "Створити"
 
-#: src/options.cc:252 src/ui-bookmark.cc:564
+#: src/options.cc:252 src/ui-bookmark.cc:565
 #, fuzzy
 msgid "Desktop"
 msgstr "в:"
 
-#: src/options.cc:273 src/search.cc:2337 src/search.cc:2341 src/search.cc:3638
-#: src/search.cc:3642 src/view-file/view-file.cc:928
+#: src/options.cc:273 src/search.cc:2336 src/search.cc:2340 src/search.cc:3637
+#: src/search.cc:3641 src/view-file/view-file.cc:928
 #, fuzzy
 msgid "Mark "
 msgstr "Редактори"
 
-#: src/osd.cc:52 src/preferences.cc:152
+#: src/osd.cc:52 src/preferences.cc:161
 #, fuzzy
 msgid "Collection"
 msgstr "Колекції"
@@ -5431,205 +5431,205 @@ msgid ""
 "To include predefined tags in the template, click a button or drag-and-drop"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:123 src/pan-view/pan-view.cc:142
+#: src/pan-view/pan-view.cc:132 src/pan-view/pan-view.cc:151
 msgid "Display Find search bar"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:124
+#: src/pan-view/pan-view.cc:133
 #, fuzzy
 msgid "Start search"
 msgstr "Зображення"
 
-#: src/pan-view/pan-view.cc:126
+#: src/pan-view/pan-view.cc:135
 msgid "Hide Find search bar"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:143
+#: src/pan-view/pan-view.cc:152
 #, fuzzy
 msgid "Scroll left"
 msgstr "Видалити"
 
-#: src/pan-view/pan-view.cc:144
+#: src/pan-view/pan-view.cc:153
 #, fuzzy
 msgid "Scroll right"
 msgstr "Видалити"
 
-#: src/pan-view/pan-view.cc:145
+#: src/pan-view/pan-view.cc:154
 #, fuzzy
 msgid "Scroll up"
 msgstr "Видалити"
 
-#: src/pan-view/pan-view.cc:146
+#: src/pan-view/pan-view.cc:155
 #, fuzzy
 msgid "Scroll down"
 msgstr " Показ слайдів"
 
-#: src/pan-view/pan-view.cc:147
+#: src/pan-view/pan-view.cc:156
 #, fuzzy
 msgid "Scroll left faster"
 msgstr " Показ слайдів"
 
-#: src/pan-view/pan-view.cc:148
+#: src/pan-view/pan-view.cc:157
 #, fuzzy
 msgid "Scroll right faster"
 msgstr " Показ слайдів"
 
-#: src/pan-view/pan-view.cc:149
+#: src/pan-view/pan-view.cc:158
 #, fuzzy
 msgid "Scroll up faster"
 msgstr " Показ слайдів"
 
-#: src/pan-view/pan-view.cc:150
+#: src/pan-view/pan-view.cc:159
 #, fuzzy
 msgid "Scroll down faster"
 msgstr " Показ слайдів"
 
-#: src/pan-view/pan-view.cc:151
+#: src/pan-view/pan-view.cc:160
 msgid "Scroll display half screen up"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:152
+#: src/pan-view/pan-view.cc:161
 msgid "Scroll display half screen down"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:153
+#: src/pan-view/pan-view.cc:162
 msgid "Scroll display half screen left"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:154
+#: src/pan-view/pan-view.cc:163
 msgid "Scroll display half screen right"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:535
+#: src/pan-view/pan-view.cc:544
 #, fuzzy, c-format
 msgid "%d images, %s"
 msgstr "%d зображень"
 
-#: src/pan-view/pan-view.cc:545
+#: src/pan-view/pan-view.cc:554
 #, c-format
 msgid "The pan view does not support the folder \"%s\"."
 msgstr ""
 
-#: src/pan-view/pan-view.cc:546
+#: src/pan-view/pan-view.cc:555
 msgid "Folder not supported"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:1078 src/pan-view/pan-view.cc:1094
+#: src/pan-view/pan-view.cc:1087 src/pan-view/pan-view.cc:1103
 #, fuzzy
 msgid "Reading image data..."
 msgstr "Читання даних про схожість..."
 
-#: src/pan-view/pan-view.cc:1153
+#: src/pan-view/pan-view.cc:1162
 #, fuzzy
 msgid "Sorting images..."
 msgstr "Порівняння..."
 
-#: src/pan-view/pan-view.cc:1488
+#: src/pan-view/pan-view.cc:1495
 #, fuzzy
 msgid "Filename:"
 msgstr "Перейменувати:"
 
-#: src/pan-view/pan-view.cc:1490 src/pan-view/pan-view.cc:1906
-#: src/preferences.cc:2494
+#: src/pan-view/pan-view.cc:1497 src/pan-view/pan-view.cc:1911
+#: src/preferences.cc:2506
 #, fuzzy
 msgid "Location:"
 msgstr "Колекції"
 
-#: src/pan-view/pan-view.cc:1492 src/pan-view/pan-view-search.cc:389
+#: src/pan-view/pan-view.cc:1499 src/pan-view/pan-view-search.cc:389
 #, fuzzy
 msgid "Date:"
 msgstr "Дата"
 
-#: src/pan-view/pan-view.cc:1494 src/preferences.cc:2018
+#: src/pan-view/pan-view.cc:1501 src/preferences.cc:2030
 msgid "Size:"
 msgstr "Розмір:"
 
-#: src/pan-view/pan-view.cc:1801 src/search.cc:2799
+#: src/pan-view/pan-view.cc:1806 src/search.cc:2798
 msgid "Folder not found"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:1802
+#: src/pan-view/pan-view.cc:1807
 msgid "The entered path is not a folder"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:1888
+#: src/pan-view/pan-view.cc:1893
 #, fuzzy
 msgid "Pan View"
 msgstr "Допомога - Geeqie"
 
-#: src/pan-view/pan-view.cc:1912
+#: src/pan-view/pan-view.cc:1917
 #, fuzzy
 msgid "Timeline"
 msgstr "Білінійний"
 
-#: src/pan-view/pan-view.cc:1913
+#: src/pan-view/pan-view.cc:1918
 #, fuzzy
 msgid "Calendar"
 msgstr "Очистити"
 
-#: src/pan-view/pan-view.cc:1915
+#: src/pan-view/pan-view.cc:1920
 #, fuzzy
 msgid "Folders (flower)"
 msgstr "Файли"
 
-#: src/pan-view/pan-view.cc:1916
+#: src/pan-view/pan-view.cc:1921
 msgid "Grid"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:1924
+#: src/pan-view/pan-view.cc:1929
 #, fuzzy
 msgid "Dots"
 msgstr "Xpaint"
 
-#: src/pan-view/pan-view.cc:1925
+#: src/pan-view/pan-view.cc:1930
 #, fuzzy
 msgid "No Images"
 msgstr "Зображення"
 
-#: src/pan-view/pan-view.cc:1926
+#: src/pan-view/pan-view.cc:1931
 #, fuzzy
 msgid "Small Thumbnails"
 msgstr "Піктограми"
 
-#: src/pan-view/pan-view.cc:1927
+#: src/pan-view/pan-view.cc:1932
 #, fuzzy
 msgid "Normal Thumbnails"
 msgstr "Піктограми"
 
-#: src/pan-view/pan-view.cc:1928
+#: src/pan-view/pan-view.cc:1933
 #, fuzzy
 msgid "Large Thumbnails"
 msgstr "Витерти піктограми"
 
-#: src/pan-view/pan-view.cc:1929 src/pan-view/pan-view.cc:2459
+#: src/pan-view/pan-view.cc:1934 src/pan-view/pan-view.cc:2464
 msgid "1:10 (10%)"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:1930 src/pan-view/pan-view.cc:2455
+#: src/pan-view/pan-view.cc:1935 src/pan-view/pan-view.cc:2460
 msgid "1:4 (25%)"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:1931 src/pan-view/pan-view.cc:2451
+#: src/pan-view/pan-view.cc:1936 src/pan-view/pan-view.cc:2456
 msgid "1:3 (33%)"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:1932 src/pan-view/pan-view.cc:2447
+#: src/pan-view/pan-view.cc:1937 src/pan-view/pan-view.cc:2452
 msgid "1:2 (50%)"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:1933
+#: src/pan-view/pan-view.cc:1938
 msgid "1:1 (100%)"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:2078
+#: src/pan-view/pan-view.cc:2083
 msgid "Pan View Performance"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:2085
+#: src/pan-view/pan-view.cc:2090
 msgid "Pan view performance may be poor."
 msgstr ""
 
-#: src/pan-view/pan-view.cc:2086
+#: src/pan-view/pan-view.cc:2091
 msgid ""
 "To improve the performance of thumbnails in\n"
 "pan view the following options can be enabled.\n"
@@ -5638,42 +5638,42 @@ msgid ""
 "notice a change in performance."
 msgstr ""
 
-#: src/pan-view/pan-view.cc:2092
+#: src/pan-view/pan-view.cc:2097
 msgid "Cache thumbnails"
 msgstr "Кешувати піктограми"
 
-#: src/pan-view/pan-view.cc:2094
+#: src/pan-view/pan-view.cc:2099
 msgid "Use shared thumbnail cache"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:2100
+#: src/pan-view/pan-view.cc:2105
 msgid "Do not show this dialog again"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:2373 src/search.cc:1160
+#: src/pan-view/pan-view.cc:2378 src/search.cc:1159
 msgid "_Play"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:2427
+#: src/pan-view/pan-view.cc:2432
 #, fuzzy
 msgid "Sort by E_xif date"
 msgstr "Сортувати за датою"
 
-#: src/pan-view/pan-view.cc:2433
+#: src/pan-view/pan-view.cc:2438
 msgid "_Show Exif information"
 msgstr ""
 
-#: src/pan-view/pan-view.cc:2435
+#: src/pan-view/pan-view.cc:2440
 #, fuzzy
 msgid "Show im_age"
 msgstr "Показати приховані"
 
-#: src/pan-view/pan-view.cc:2439
+#: src/pan-view/pan-view.cc:2444
 #, fuzzy
 msgid "_None"
 msgstr "Нічого"
 
-#: src/pan-view/pan-view.cc:2443
+#: src/pan-view/pan-view.cc:2448
 #, fuzzy
 msgid "_Full size"
 msgstr "Файли"
@@ -5712,7 +5712,7 @@ msgstr ""
 msgid "Keyword Filter:"
 msgstr "Не сортувати"
 
-#: src/pan-view/pan-view-filter.cc:109 src/preferences.cc:2786
+#: src/pan-view/pan-view-filter.cc:109 src/preferences.cc:2795
 #, fuzzy
 msgid "Filter"
 msgstr "Фільтр:"
@@ -5727,7 +5727,7 @@ msgstr "Як піктограми"
 msgid "Find:"
 msgstr "Фільтр:"
 
-#: src/pan-view/pan-view-search.cc:78 src/search.cc:3754
+#: src/pan-view/pan-view-search.cc:78 src/search.cc:3753
 msgid "Find"
 msgstr ""
 
@@ -5748,423 +5748,423 @@ msgstr ""
 msgid "no match"
 msgstr ""
 
-#: src/preferences.cc:147 src/search.cc:2285 src/search.cc:3622
+#: src/preferences.cc:156 src/search.cc:2284 src/search.cc:3621
 #, fuzzy
 msgid "Unknown"
 msgstr "в (невідомо)..."
 
-#: src/preferences.cc:149
+#: src/preferences.cc:158
 #, fuzzy
 msgid "RAW Image"
 msgstr "Зображення"
 
-#: src/preferences.cc:151 src/search.cc:2265 src/search.cc:3618
+#: src/preferences.cc:160 src/search.cc:2264 src/search.cc:3617
 msgid "Video"
 msgstr ""
 
-#: src/preferences.cc:153 src/search.cc:2270 src/search.cc:3619
+#: src/preferences.cc:162 src/search.cc:2269 src/search.cc:3618
 #, fuzzy
 msgid "Document"
 msgstr "Порівняти з:"
 
-#: src/preferences.cc:154 src/search.cc:2280 src/search.cc:3621
+#: src/preferences.cc:163 src/search.cc:2279 src/search.cc:3620
 #, fuzzy
 msgid "Archive"
 msgstr "/Файл/Відкрити недавній"
 
-#: src/preferences.cc:699
+#: src/preferences.cc:708
 msgid "Nearest (worst, but fastest)"
 msgstr "Найближчий (страшний, але найшвидший)"
 
-#: src/preferences.cc:701
+#: src/preferences.cc:710
 msgid "Tiles"
 msgstr "Кафелем"
 
-#: src/preferences.cc:703
+#: src/preferences.cc:712
 #, fuzzy
 msgid "Bilinear (best, but slowest)"
 msgstr "Гіпер (найкращий і найповільніший)"
 
-#: src/preferences.cc:726
+#: src/preferences.cc:735
 msgid "Ask"
 msgstr ""
 
-#: src/preferences.cc:754
+#: src/preferences.cc:763
 msgid "Primary"
 msgstr ""
 
-#: src/preferences.cc:756
+#: src/preferences.cc:765
 msgid "Clipboard"
 msgstr ""
 
-#: src/preferences.cc:758
+#: src/preferences.cc:767
 msgid "Both"
 msgstr ""
 
-#: src/preferences.cc:798
+#: src/preferences.cc:807
 msgid "Geometric"
 msgstr ""
 
-#: src/preferences.cc:800
+#: src/preferences.cc:809
 msgid "Arithmetic"
 msgstr ""
 
-#: src/preferences.cc:933
+#: src/preferences.cc:942
 msgid "Custom"
 msgstr ""
 
-#: src/preferences.cc:1015
+#: src/preferences.cc:1024
 #, fuzzy
 msgid "Single image"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/preferences.cc:1017
+#: src/preferences.cc:1026
 msgid "Anaglyph Red-Cyan"
 msgstr ""
 
-#: src/preferences.cc:1019
+#: src/preferences.cc:1028
 msgid "Anaglyph Green-Magenta"
 msgstr ""
 
-#: src/preferences.cc:1021
+#: src/preferences.cc:1030
 msgid "Anaglyph Yellow-Blue"
 msgstr ""
 
-#: src/preferences.cc:1023
+#: src/preferences.cc:1032
 msgid "Anaglyph Gray Red-Cyan"
 msgstr ""
 
-#: src/preferences.cc:1025
+#: src/preferences.cc:1034
 msgid "Anaglyph Gray Green-Magenta"
 msgstr ""
 
-#: src/preferences.cc:1027
+#: src/preferences.cc:1036
 msgid "Anaglyph Gray Yellow-Blue"
 msgstr ""
 
-#: src/preferences.cc:1029
+#: src/preferences.cc:1038
 msgid "Anaglyph Dubois Red-Cyan"
 msgstr ""
 
-#: src/preferences.cc:1031
+#: src/preferences.cc:1040
 msgid "Anaglyph Dubois Green-Magenta"
 msgstr ""
 
-#: src/preferences.cc:1033
+#: src/preferences.cc:1042
 msgid "Anaglyph Dubois Yellow-Blue"
 msgstr ""
 
-#: src/preferences.cc:1036
+#: src/preferences.cc:1045
 msgid "Side by Side"
 msgstr ""
 
-#: src/preferences.cc:1037
+#: src/preferences.cc:1046
 msgid "Side by Side Half size"
 msgstr ""
 
-#: src/preferences.cc:1044
+#: src/preferences.cc:1053
 #, fuzzy
 msgid "Top - Bottom"
 msgstr "в:"
 
-#: src/preferences.cc:1045
+#: src/preferences.cc:1054
 msgid "Top - Bottom Half size"
 msgstr ""
 
-#: src/preferences.cc:1054 src/preferences.cc:4081
+#: src/preferences.cc:1063 src/preferences.cc:4095
 msgid "Fixed position"
 msgstr ""
 
-#: src/preferences.cc:1396 src/preferences.cc:1399
+#: src/preferences.cc:1405 src/preferences.cc:1408
 #, fuzzy
 msgid "Reset filters"
 msgstr "Видалити файли"
 
-#: src/preferences.cc:1400
+#: src/preferences.cc:1409
 msgid ""
 "This will reset the file filters to the defaults.\n"
 "Continue?"
 msgstr ""
 
-#: src/preferences.cc:1427 src/preferences.cc:1430
+#: src/preferences.cc:1436 src/preferences.cc:1439
 #, fuzzy
 msgid "Clear trash"
 msgstr "Очистити кеш"
 
-#: src/preferences.cc:1431
+#: src/preferences.cc:1440
 msgid "This will remove the trash contents."
 msgstr ""
 
-#: src/preferences.cc:1475 src/preferences.cc:1478
+#: src/preferences.cc:1484 src/preferences.cc:1487
 msgid "Reset image overlay template string"
 msgstr ""
 
-#: src/preferences.cc:1479
+#: src/preferences.cc:1488
 msgid ""
 "This will reset the image overlay template string to the default.\n"
 "Continue?"
 msgstr ""
 
-#: src/preferences.cc:1520
+#: src/preferences.cc:1529
 #, fuzzy
 msgid "Image Overlay Font"
 msgstr "Зображення"
 
-#: src/preferences.cc:1566
+#: src/preferences.cc:1575
 #, fuzzy
 msgid "Image Overlay Text Color"
 msgstr "Зображення"
 
-#: src/preferences.cc:1615
+#: src/preferences.cc:1624
 #, fuzzy
 msgid "Image Overlay Background Color"
 msgstr "Зображення"
 
-#: src/preferences.cc:2013
+#: src/preferences.cc:2025
 msgid "General"
 msgstr "Загальне"
 
-#: src/preferences.cc:2019 src/preferences.cc:2316
+#: src/preferences.cc:2031 src/preferences.cc:2328
 msgid "Quality:"
 msgstr "Якість:"
 
-#: src/preferences.cc:2022
+#: src/preferences.cc:2034
 #, fuzzy
 msgid "Custom size: "
 msgstr "Додаткові типи фалів:"
 
-#: src/preferences.cc:2023
+#: src/preferences.cc:2035
 msgid "Width:"
 msgstr ""
 
-#: src/preferences.cc:2024
+#: src/preferences.cc:2036
 #, fuzzy
 msgid "Height:"
 msgstr "Невірна ціль"
 
-#: src/preferences.cc:2026
+#: src/preferences.cc:2038
 #, fuzzy
 msgid "Cache thumbnails and sim. files"
 msgstr "Кешувати піктограми в .thumbnails"
 
-#: src/preferences.cc:2034
+#: src/preferences.cc:2046
 msgid "Use Geeqie thumbnail style and cache"
 msgstr ""
 
-#: src/preferences.cc:2041
+#: src/preferences.cc:2053
 msgid "Store thumbnails local to image folder (non-standard)"
 msgstr ""
 
-#: src/preferences.cc:2048
+#: src/preferences.cc:2060
 msgid "Use standard thumbnail style and cache, shared with other applications"
 msgstr ""
 
-#: src/preferences.cc:2054
+#: src/preferences.cc:2066
 msgid "Use EXIF thumbnails when available (EXIF thumbnails may be outdated)"
 msgstr ""
 
-#: src/preferences.cc:2057
+#: src/preferences.cc:2069
 #, fuzzy
 msgid "Thumbnail color management"
 msgstr "Сотрувати за назвою"
 
-#: src/preferences.cc:2060
+#: src/preferences.cc:2072
 #, fuzzy
 msgid "Collection preview:"
 msgstr "Файли колекції"
 
-#: src/preferences.cc:2063
+#: src/preferences.cc:2075
 msgid "The maximum number of thumbnails shown in a Collection preview montage"
 msgstr ""
 
-#: src/preferences.cc:2066
+#: src/preferences.cc:2078
 msgid "Use embedded metadata in video files as thumbnails when available"
 msgstr ""
 
-#: src/preferences.cc:2079
+#: src/preferences.cc:2091
 msgid "Star character: "
 msgstr ""
 
-#: src/preferences.cc:2090 src/preferences.cc:2122
+#: src/preferences.cc:2102 src/preferences.cc:2134
 msgid "Display selected character"
 msgstr ""
 
-#: src/preferences.cc:2093 src/preferences.cc:2125
+#: src/preferences.cc:2105 src/preferences.cc:2137
 msgid ""
 "Hexadecimal representation of a Unicode character. A list of all Unicode "
 "characters may be found on the Internet."
 msgstr ""
 
-#: src/preferences.cc:2101 src/preferences.cc:2133 src/preferences.cc:2294
+#: src/preferences.cc:2113 src/preferences.cc:2145 src/preferences.cc:2306
 msgid "Default"
 msgstr ""
 
-#: src/preferences.cc:2111
+#: src/preferences.cc:2123
 msgid "Rejected character: "
 msgstr ""
 
-#: src/preferences.cc:2143
+#: src/preferences.cc:2155
 msgid "Slide show"
 msgstr "Показ слайдів"
 
-#: src/preferences.cc:2154
+#: src/preferences.cc:2166
 #, fuzzy
 msgid "Delay between image change hrs:mins:secs.dec"
 msgstr "Затримка між зміною зображень (секунд):"
 
-#: src/preferences.cc:2170
+#: src/preferences.cc:2182
 msgid "Random"
 msgstr "Довільно"
 
-#: src/preferences.cc:2171
+#: src/preferences.cc:2183
 msgid "Repeat"
 msgstr "Повтор"
 
-#: src/preferences.cc:2175
+#: src/preferences.cc:2187
 msgid "Image loading and caching"
 msgstr ""
 
-#: src/preferences.cc:2177
+#: src/preferences.cc:2189
 #, fuzzy
 msgid "Decoded image cache size (MiB):"
 msgstr "Розмір позаекранного буферу (Мб на зображення):"
 
-#: src/preferences.cc:2179
+#: src/preferences.cc:2191
 msgid "Preload next image"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/preferences.cc:2182
+#: src/preferences.cc:2194
 #, fuzzy
 msgid "Refresh on file change"
 msgstr "Оновити список файлів"
 
-#: src/preferences.cc:2188
+#: src/preferences.cc:2200
 #, fuzzy
 msgid "Menu style"
 msgstr "Назва меню"
 
-#: src/preferences.cc:2190
+#: src/preferences.cc:2202
 msgid ""
 "☰ style menu button (NOTE! Geeqie must be restarted for change to take "
 "effect)"
 msgstr ""
 
-#: src/preferences.cc:2192
+#: src/preferences.cc:2204
 msgid ""
 "Use a ☰ style menu button instead of the classic style across the top of the "
 "frame"
 msgstr ""
 
-#: src/preferences.cc:2196
+#: src/preferences.cc:2208
 #, fuzzy
 msgid "Expand toolbar"
 msgstr "/Вигляд/tear1"
 
-#: src/preferences.cc:2198
+#: src/preferences.cc:2210
 msgid ""
 "Expand menu/toolbar (NOTE! Geeqie must be restarted for change to take "
 "effect)"
 msgstr ""
 
-#: src/preferences.cc:2200
+#: src/preferences.cc:2212
 msgid "Expand the menu/toolbar to the full width of the window"
 msgstr ""
 
-#: src/preferences.cc:2206
+#: src/preferences.cc:2218
 #, fuzzy
 msgid "Menu bar"
 msgstr "Назва меню"
 
-#: src/preferences.cc:2209
+#: src/preferences.cc:2221
 #, fuzzy
 msgid "Tool bar"
 msgstr "Панель"
 
-#: src/preferences.cc:2212
+#: src/preferences.cc:2224
 #, fuzzy
 msgid "Status bar"
 msgstr "Дата"
 
-#: src/preferences.cc:2214
+#: src/preferences.cc:2226
 msgid ""
 "The Hide Selectable Bars menu item (default keystroke is control-backtick) "
 "will toggle the display of the bars selected here"
 msgstr ""
 
-#: src/preferences.cc:2220
+#: src/preferences.cc:2232
 msgid "AppImage updates notifications"
 msgstr ""
 
-#: src/preferences.cc:2222
+#: src/preferences.cc:2234
 msgid "Enable"
 msgstr ""
 
-#: src/preferences.cc:2223
+#: src/preferences.cc:2235
 msgid ""
 "Show a notification on start-up if the server has a newer version than the "
 "current. Requires an Internet connection"
 msgstr ""
 
-#: src/preferences.cc:2237 src/preferences.cc:4432
+#: src/preferences.cc:2249 src/preferences.cc:4446
 #, fuzzy
 msgid "Timezone database"
 msgstr "Фільтр:"
 
-#: src/preferences.cc:2255 src/preferences.cc:4444
+#: src/preferences.cc:2267 src/preferences.cc:4458
 msgid "Update"
 msgstr ""
 
-#: src/preferences.cc:2259
+#: src/preferences.cc:2271
 msgid "Install"
 msgstr ""
 
-#: src/preferences.cc:2262
+#: src/preferences.cc:2274
 msgid "Download database from: "
 msgstr ""
 
-#: src/preferences.cc:2268
+#: src/preferences.cc:2280
 msgid ""
 "No Internet connection!\n"
 "The timezone database is used to display exif time and date\n"
 "corrected for UTC offset and Daylight Saving Time"
 msgstr ""
 
-#: src/preferences.cc:2272
+#: src/preferences.cc:2284
 msgid ""
 "The timezone database is used to display exif time and date\n"
 "corrected for UTC offset and Daylight Saving Time"
 msgstr ""
 
-#: src/preferences.cc:2278
+#: src/preferences.cc:2290
 msgid "On-line help search engine"
 msgstr ""
 
-#: src/preferences.cc:2285
+#: src/preferences.cc:2297
 msgid ""
 "The format varies between search engines, e.g the format may be:\n"
 "https://www.search_engine.com/search?q=site:geeqie.org/help\n"
 "https://www.search_engine.com/?q=site:geeqie.org/help"
 msgstr ""
 
-#: src/preferences.cc:2318
+#: src/preferences.cc:2330
 msgid "Two pass rendering (apply HQ zoom and color correction in second pass)"
 msgstr ""
 
-#: src/preferences.cc:2322
+#: src/preferences.cc:2334
 msgid "Zoom increment:"
 msgstr "Приріст масштабування:"
 
-#: src/preferences.cc:2329
+#: src/preferences.cc:2341
 #, fuzzy
 msgid "Zoom style:"
 msgstr "Зменшити"
 
-#: src/preferences.cc:2334
+#: src/preferences.cc:2346
 #, fuzzy
 msgid "Allow enlargement of image (max. size in %)"
 msgstr "Збільшувати зображення до розмірів вікна"
 
-#: src/preferences.cc:2340
+#: src/preferences.cc:2352
 #, c-format
 msgid ""
 "Enable this to allow Geeqie to increase the image size for images that are "
@@ -6173,12 +6173,12 @@ msgid ""
 "100% is full-size."
 msgstr ""
 
-#: src/preferences.cc:2343
+#: src/preferences.cc:2355
 #, c-format
 msgid "Virtual window size (%% of actual window):"
 msgstr ""
 
-#: src/preferences.cc:2349
+#: src/preferences.cc:2361
 msgid ""
 "This value will set the virtual size of the window when \"Fit image to "
 "window\" is set. Instead of using the actual size of the window, the "
@@ -6187,21 +6187,21 @@ msgid ""
 "(values greater than 100%). It affects fullscreen mode too."
 msgstr ""
 
-#: src/preferences.cc:2351
+#: src/preferences.cc:2363
 #, fuzzy
 msgid "Tile size"
 msgstr "Файли"
 
-#: src/preferences.cc:2354
+#: src/preferences.cc:2366
 #, fuzzy
 msgid "Pixels"
 msgstr "Фільтр:"
 
-#: src/preferences.cc:2354
+#: src/preferences.cc:2366
 msgid "(Requires restart)"
 msgstr ""
 
-#: src/preferences.cc:2357
+#: src/preferences.cc:2369
 msgid ""
 "This value changes the size of the tiles large images are split into. "
 "Increasing the size of the tiles will reduce the tiling effect seen on image "
@@ -6209,173 +6209,173 @@ msgid ""
 "a large image is seen."
 msgstr ""
 
-#: src/preferences.cc:2359
+#: src/preferences.cc:2371
 #, fuzzy
 msgid "Appearance"
 msgstr "Приєднати"
 
-#: src/preferences.cc:2361
+#: src/preferences.cc:2373
 #, fuzzy
 msgid "Use custom border color in window mode"
 msgstr "Додаткові типи фалів:"
 
-#: src/preferences.cc:2364
+#: src/preferences.cc:2376
 msgid "Use custom border color in fullscreen mode"
 msgstr ""
 
-#: src/preferences.cc:2367
+#: src/preferences.cc:2379
 msgid "Border color"
 msgstr ""
 
-#: src/preferences.cc:2372
+#: src/preferences.cc:2384
 msgid "Alpha channel color 1"
 msgstr ""
 
-#: src/preferences.cc:2375
+#: src/preferences.cc:2387
 msgid "Alpha channel color 2"
 msgstr ""
 
-#: src/preferences.cc:2443
+#: src/preferences.cc:2455
 msgid "Windows"
 msgstr "Вікна"
 
-#: src/preferences.cc:2445
+#: src/preferences.cc:2457
 #, fuzzy
 msgid "State"
 msgstr "Дата"
 
-#: src/preferences.cc:2447
+#: src/preferences.cc:2459
 #, fuzzy
 msgid "Remember session"
 msgstr "Запам'ятовувати позицію вікна"
 
-#: src/preferences.cc:2450
+#: src/preferences.cc:2462
 msgid "Use saved window positions also for new windows"
 msgstr ""
 
-#: src/preferences.cc:2454
+#: src/preferences.cc:2466
 #, fuzzy
 msgid "Remember window workspace"
 msgstr "Запам'ятовувати позицію вікна"
 
-#: src/preferences.cc:2458
+#: src/preferences.cc:2470
 msgid "Remember tool state (float/hidden)"
 msgstr "Запам'ятовувати стан панелі інструментів"
 
-#: src/preferences.cc:2461
+#: src/preferences.cc:2473
 #, fuzzy
 msgid "Remember dialog window positions"
 msgstr "Запам'ятовувати позицію вікна"
 
-#: src/preferences.cc:2464
+#: src/preferences.cc:2476
 #, fuzzy
 msgid "Show window IDs"
 msgstr "/Файл/Нова колекція"
 
-#: src/preferences.cc:2468
+#: src/preferences.cc:2480
 msgid "Use current layout for default: "
 msgstr ""
 
-#: src/preferences.cc:2473
+#: src/preferences.cc:2485
 msgid ""
 "Current window layout\n"
 "has been set as default"
 msgstr ""
 
-#: src/preferences.cc:2479
+#: src/preferences.cc:2491
 msgid "Fit window to image when tools are hidden/floating"
 msgstr "Розмір вікна відповідає зображенню коли інструменти приховані/плаваючі"
 
-#: src/preferences.cc:2483
+#: src/preferences.cc:2495
 msgid "Limit size when auto-sizing window (%):"
 msgstr "Обмежити розмір для автозміни розміру вікна (%):"
 
-#: src/preferences.cc:2498
+#: src/preferences.cc:2510
 #, fuzzy
 msgid "Smooth image flip"
 msgstr "Зображення"
 
-#: src/preferences.cc:2500
+#: src/preferences.cc:2512
 msgid "Disable screen saver"
 msgstr ""
 
-#: src/preferences.cc:2520
+#: src/preferences.cc:2529
 msgid "OSD"
 msgstr ""
 
-#: src/preferences.cc:2524
+#: src/preferences.cc:2533
 msgid "Overlay Screen Display"
 msgstr ""
 
-#: src/preferences.cc:2536
+#: src/preferences.cc:2545
 msgid "Image overlay template"
 msgstr ""
 
-#: src/preferences.cc:2547 src/print.cc:414
+#: src/preferences.cc:2556 src/print.cc:418
 msgid "Extensive formatting options are shown in the Help file"
 msgstr ""
 
-#: src/preferences.cc:2554 src/print.cc:434 src/print.cc:488
+#: src/preferences.cc:2563 src/print.cc:438 src/print.cc:492
 #, fuzzy
 msgid "Font"
 msgstr "Нічого"
 
-#: src/preferences.cc:2560
+#: src/preferences.cc:2569
 msgid "Text"
 msgstr ""
 
-#: src/preferences.cc:2564
+#: src/preferences.cc:2573
 msgid "Background"
 msgstr ""
 
-#: src/preferences.cc:2569 src/preferences.cc:2872 src/preferences.cc:3855
+#: src/preferences.cc:2578 src/preferences.cc:2881 src/preferences.cc:3869
 msgid "Defaults"
 msgstr ""
 
-#: src/preferences.cc:2586
+#: src/preferences.cc:2595
 msgid "Exif, XMP or IPTC tags"
 msgstr ""
 
-#: src/preferences.cc:2590
+#: src/preferences.cc:2599
 #, fuzzy
 msgid "%Exif.Image.Orientation%"
 msgstr "Розміри"
 
-#: src/preferences.cc:2595
+#: src/preferences.cc:2604
 msgid "Field separators"
 msgstr ""
 
-#: src/preferences.cc:2599
+#: src/preferences.cc:2608
 msgid ""
 "Separator shown only if both fields are non-null:\n"
 "%formatted.ShutterSpeed%|%formatted.ISOSpeedRating%"
 msgstr ""
 
-#: src/preferences.cc:2604
+#: src/preferences.cc:2613
 msgid "Field maximum length"
 msgstr ""
 
-#: src/preferences.cc:2608
+#: src/preferences.cc:2617
 #, fuzzy
 msgid "%path:39%"
 msgstr "Шлях"
 
-#: src/preferences.cc:2613
+#: src/preferences.cc:2622
 msgid "Pre- and post- text"
 msgstr ""
 
-#: src/preferences.cc:2617
+#: src/preferences.cc:2626
 msgid ""
 "Text shown only if the field is non-null:\n"
 "%formatted.Aperture:F no. * setting%\n"
 " %formatted.Aperture:10:F no. * setting%"
 msgstr ""
 
-#: src/preferences.cc:2622
+#: src/preferences.cc:2631
 msgid "Pango markup"
 msgstr ""
 
-#: src/preferences.cc:2626
+#: src/preferences.cc:2635
 msgid ""
 "<b>bold</b>\n"
 "<u>underline</u>\n"
@@ -6383,191 +6383,191 @@ msgid ""
 "<s>strikethrough</s>"
 msgstr ""
 
-#: src/preferences.cc:2727
+#: src/preferences.cc:2736
 #, fuzzy
 msgid "File Filters"
 msgstr "Показати приховані"
 
-#: src/preferences.cc:2731
+#: src/preferences.cc:2740
 msgid "Show hidden files or folders"
 msgstr ""
 
-#: src/preferences.cc:2733
+#: src/preferences.cc:2742
 msgid "Show parent folder (..)"
 msgstr ""
 
-#: src/preferences.cc:2735
+#: src/preferences.cc:2744
 msgid "Case sensitive sort (Search and Collection windows, and tab completion)"
 msgstr ""
 
-#: src/preferences.cc:2736
+#: src/preferences.cc:2745
 #, fuzzy
 msgid "Disable file extension checks"
 msgstr "Заборонити фільтрування файлів"
 
-#: src/preferences.cc:2739
+#: src/preferences.cc:2748
 msgid "Disable File Filtering"
 msgstr "Заборонити фільтрування файлів"
 
-#: src/preferences.cc:2743
+#: src/preferences.cc:2752
 msgid "Grouping sidecar extensions"
 msgstr ""
 
-#: src/preferences.cc:2750
+#: src/preferences.cc:2759
 #, fuzzy
 msgid "File types"
 msgstr "Фільтр:"
 
-#: src/preferences.cc:2772
+#: src/preferences.cc:2781
 msgid "Enabled"
 msgstr ""
 
-#: src/preferences.cc:2822 src/view-file/view-file.cc:1237
+#: src/preferences.cc:2831 src/view-file/view-file.cc:1237
 msgid "Class"
 msgstr ""
 
-#: src/preferences.cc:2841 src/preferences.cc:2918
+#: src/preferences.cc:2850 src/preferences.cc:2927
 msgid "Writable"
 msgstr ""
 
-#: src/preferences.cc:2854
+#: src/preferences.cc:2863
 msgid "Sidecar is allowed"
 msgstr ""
 
-#: src/preferences.cc:2903
+#: src/preferences.cc:2912
 msgid "Metadata writing sequence"
 msgstr ""
 
-#: src/preferences.cc:2905
+#: src/preferences.cc:2914
 msgid "Warning: Geeqie is built without Exiv2. Some options are disabled."
 msgstr ""
 
-#: src/preferences.cc:2907
+#: src/preferences.cc:2916
 msgid ""
 "When writing metadata, Geeqie will follow these steps, if selected. This "
 "process will stop when the first successful write occurs."
 msgstr ""
 
-#: src/preferences.cc:2911
+#: src/preferences.cc:2920
 msgid "A flowchart of the sequence is shown in the Help file"
 msgstr ""
 
-#: src/preferences.cc:2915
+#: src/preferences.cc:2924
 msgid "Step 1"
 msgstr ""
 
-#: src/preferences.cc:2915
+#: src/preferences.cc:2924
 msgid ""
 ") Save metadata in either the image file or the sidecar file, according to "
 "the XMP standard"
 msgstr ""
 
-#: src/preferences.cc:2918
+#: src/preferences.cc:2927
 msgid "The destination is dependent on the settings in the "
 msgstr ""
 
-#: src/preferences.cc:2918
+#: src/preferences.cc:2927
 msgid " and "
 msgstr ""
 
-#: src/preferences.cc:2918
+#: src/preferences.cc:2927
 msgid "Sidecar Is Allowed"
 msgstr ""
 
-#: src/preferences.cc:2918
+#: src/preferences.cc:2927
 msgid " columns of the File Filters tab)"
 msgstr ""
 
-#: src/preferences.cc:2928
+#: src/preferences.cc:2937
 msgid "Step 2"
 msgstr ""
 
-#: src/preferences.cc:2928
+#: src/preferences.cc:2937
 msgid ") Save metadata in the folder "
 msgstr ""
 
-#: src/preferences.cc:2928
+#: src/preferences.cc:2937
 msgid " local to the image folder (non-standard)"
 msgstr ""
 
-#: src/preferences.cc:2933
+#: src/preferences.cc:2942
 msgid "Step 3"
 msgstr ""
 
-#: src/preferences.cc:2933
+#: src/preferences.cc:2942
 msgid ") Save metadata in Geeqie private directory "
 msgstr ""
 
-#: src/preferences.cc:2942
+#: src/preferences.cc:2951
 msgid "Step 1 Options:"
 msgstr ""
 
-#: src/preferences.cc:2950
+#: src/preferences.cc:2959
 msgid ""
 "Store metadata also in IPTC tags (converted according to the IPTC4XMP "
 "standard)"
 msgstr ""
 
-#: src/preferences.cc:2951
+#: src/preferences.cc:2960
 msgid "A simplified conversion list is in the Help file"
 msgstr ""
 
-#: src/preferences.cc:2953
+#: src/preferences.cc:2962
 msgid "Warn if the image or sidecar file is not writable"
 msgstr ""
 
-#: src/preferences.cc:2955
+#: src/preferences.cc:2964
 msgid "Ask before writing to image files"
 msgstr ""
 
-#: src/preferences.cc:2958
+#: src/preferences.cc:2967
 msgid "This file naming convention is used by Darktable"
 msgstr ""
 
-#: src/preferences.cc:2960
+#: src/preferences.cc:2969
 #, fuzzy
 msgid "Create sidecar files named "
 msgstr "Не можу створити каталог"
 
-#: src/preferences.cc:2960
+#: src/preferences.cc:2969
 msgid " (as opposed to the normal "
 msgstr ""
 
-#: src/preferences.cc:2966
+#: src/preferences.cc:2975
 msgid "Steps 2 and 3 Option:"
 msgstr ""
 
-#: src/preferences.cc:2971
+#: src/preferences.cc:2980
 msgid ""
 "Use GQview legacy metadata format instead of XMP (supports only Keywords and "
 "Comments)"
 msgstr ""
 
-#: src/preferences.cc:2975
+#: src/preferences.cc:2984
 msgid "Miscellaneous"
 msgstr ""
 
-#: src/preferences.cc:2976
+#: src/preferences.cc:2985
 msgid "Write the same description tags to all grouped sidecars"
 msgstr ""
 
-#: src/preferences.cc:2977
+#: src/preferences.cc:2986
 msgid "See the Help file for a list of the tags used"
 msgstr ""
 
-#: src/preferences.cc:2979
+#: src/preferences.cc:2988
 msgid "Permit Keywords to be case-sensitive"
 msgstr ""
 
-#: src/preferences.cc:2980
+#: src/preferences.cc:2989
 msgid "When selected, \"Place\" and \"place\" are two different keywords"
 msgstr ""
 
-#: src/preferences.cc:2982
+#: src/preferences.cc:2991
 msgid "Write altered image orientation to the metadata"
 msgstr ""
 
-#: src/preferences.cc:2983
+#: src/preferences.cc:2992
 msgid ""
 "If checked, the results of orientation commands (Rotate, Mirror and Flip) "
 "issued on an image will be written to metadata\n"
@@ -6575,527 +6575,527 @@ msgid ""
 "will be lost when Geeqie closes"
 msgstr ""
 
-#: src/preferences.cc:2991
+#: src/preferences.cc:3000
 msgid "Auto-save options"
 msgstr ""
 
-#: src/preferences.cc:2993
+#: src/preferences.cc:3002
 msgid "Write metadata after timeout"
 msgstr ""
 
-#: src/preferences.cc:2998
+#: src/preferences.cc:3007
 msgid "Timeout (seconds):"
 msgstr ""
 
-#: src/preferences.cc:3000
+#: src/preferences.cc:3009
 #, fuzzy
 msgid "Write metadata on image change"
 msgstr "Затримка між зміною зображень (секунд):"
 
-#: src/preferences.cc:3002
+#: src/preferences.cc:3011
 msgid "Write metadata on directory change"
 msgstr ""
 
-#: src/preferences.cc:3007
+#: src/preferences.cc:3016
 #, fuzzy
 msgid "Spelling checks"
 msgstr "Читання контрольних сум..."
 
-#: src/preferences.cc:3009
+#: src/preferences.cc:3018
 msgid "Check spelling - Requires restart"
 msgstr ""
 
-#: src/preferences.cc:3010
+#: src/preferences.cc:3019
 msgid ""
 "Spelling checks are performed on info sidebar panes Comment, Headline and "
 "Title"
 msgstr ""
 
-#: src/preferences.cc:3015
+#: src/preferences.cc:3024
 #, fuzzy
 msgid "Pre-load metadata"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/preferences.cc:3017
+#: src/preferences.cc:3026
 msgid "Read metadata in background"
 msgstr ""
 
-#: src/preferences.cc:3207 src/preferences.cc:3221
+#: src/preferences.cc:3212 src/preferences.cc:3226
 #, fuzzy
 msgid "Search for keywords"
 msgstr "Як піктограми"
 
-#: src/preferences.cc:3323
+#: src/preferences.cc:3328
 msgid "Edit keywords autocompletion list"
 msgstr ""
 
-#: src/preferences.cc:3327
+#: src/preferences.cc:3332
 #, fuzzy
 msgid "Search"
 msgstr "Порівняння..."
 
-#: src/preferences.cc:3329
+#: src/preferences.cc:3334
 #, fuzzy
 msgid "Search for existing keywords"
 msgstr "Як піктограми"
 
-#: src/preferences.cc:3414
+#: src/preferences.cc:3419
 msgid "Perceptual"
 msgstr ""
 
-#: src/preferences.cc:3416
+#: src/preferences.cc:3421
 msgid "Relative Colorimetric"
 msgstr ""
 
-#: src/preferences.cc:3420
+#: src/preferences.cc:3425
 msgid "Absolute Colorimetric"
 msgstr ""
 
-#: src/preferences.cc:3425
+#: src/preferences.cc:3430
 msgid ""
 "Refer to the lcms documentation for the defaults used when the selected "
 "Intent is not available"
 msgstr ""
 
-#: src/preferences.cc:3444
+#: src/preferences.cc:3449
 #, fuzzy
 msgid "Color management"
 msgstr "Сотрувати за назвою"
 
-#: src/preferences.cc:3446
+#: src/preferences.cc:3451
 #, fuzzy
 msgid "Input profiles"
 msgstr "Всі файли"
 
-#: src/preferences.cc:3454
+#: src/preferences.cc:3459
 msgid "Type"
 msgstr ""
 
-#: src/preferences.cc:3457
+#: src/preferences.cc:3462
 msgid "Menu name"
 msgstr "Назва меню"
 
-#: src/preferences.cc:3460 src/search.cc:3444
+#: src/preferences.cc:3465 src/search.cc:3443
 #, fuzzy
 msgid "File"
 msgstr "Фільтр:"
 
-#: src/preferences.cc:3468
+#: src/preferences.cc:3473
 #, c-format
 msgid "Input %d:"
 msgstr ""
 
-#: src/preferences.cc:3483 src/preferences.cc:3502
+#: src/preferences.cc:3488 src/preferences.cc:3507
 #, fuzzy
 msgid "Select color profile"
 msgstr "Зняти виділення"
 
-#: src/preferences.cc:3490
+#: src/preferences.cc:3495
 #, fuzzy
 msgid "Screen profile"
 msgstr "Всі файли"
 
-#: src/preferences.cc:3494
+#: src/preferences.cc:3499
 msgid "Use system screen profile if available"
 msgstr ""
 
-#: src/preferences.cc:3499
+#: src/preferences.cc:3504
 msgid "Screen:"
 msgstr ""
 
-#: src/preferences.cc:3505
+#: src/preferences.cc:3510
 #, fuzzy
 msgid "Render Intent:"
 msgstr "Перейменувати"
 
-#: src/preferences.cc:3556 src/preferences.cc:3611
+#: src/preferences.cc:3561 src/preferences.cc:3616
 msgid "Behavior"
 msgstr ""
 
-#: src/preferences.cc:3560
+#: src/preferences.cc:3565
 #, fuzzy
 msgid "Confirm permanent file delete"
 msgstr "Підтверджувати видалення файла"
 
-#: src/preferences.cc:3562
+#: src/preferences.cc:3567
 #, fuzzy
 msgid "Confirm move file to Trash"
 msgstr "Підтверджувати видалення файла"
 
-#: src/preferences.cc:3564
+#: src/preferences.cc:3569
 msgid "Enable Delete key"
 msgstr "Дозволити клавішу Delete"
 
-#: src/preferences.cc:3567
+#: src/preferences.cc:3572
 msgid "Use Geeqie trash location"
 msgstr ""
 
-#: src/preferences.cc:3585
+#: src/preferences.cc:3590
 #, fuzzy
 msgid "Maximum size:"
 msgstr "Файли"
 
-#: src/preferences.cc:3585
+#: src/preferences.cc:3590
 msgid "MiB"
 msgstr ""
 
-#: src/preferences.cc:3587
+#: src/preferences.cc:3592
 msgid "Set to 0 for unlimited size"
 msgstr ""
 
-#: src/preferences.cc:3600
+#: src/preferences.cc:3605
 msgid "Use system Trash bin"
 msgstr ""
 
-#: src/preferences.cc:3603
+#: src/preferences.cc:3608
 msgid "Use no trash at all"
 msgstr ""
 
-#: src/preferences.cc:3613
+#: src/preferences.cc:3618
 msgid "Descend folders in tree view"
 msgstr "Теки під файами при перегляді дерева"
 
-#: src/preferences.cc:3616
+#: src/preferences.cc:3621
 msgid "In place renaming"
 msgstr "Перейменування на місці"
 
-#: src/preferences.cc:3619
+#: src/preferences.cc:3624
 msgid "List directory view uses single click to enter"
 msgstr ""
 
-#: src/preferences.cc:3622
+#: src/preferences.cc:3627
 #, fuzzy
 msgid "Circular selection lists"
 msgstr "Колекція порожня"
 
-#: src/preferences.cc:3624
+#: src/preferences.cc:3629
 msgid "Traverse selection lists in a circular manner"
 msgstr ""
 
-#: src/preferences.cc:3626
+#: src/preferences.cc:3631
 msgid "Save marks on exit"
 msgstr ""
 
-#: src/preferences.cc:3628
+#: src/preferences.cc:3633
 msgid ""
 "Note that marks linked to a keyword will be saved irrespective of this "
 "setting"
 msgstr ""
 
-#: src/preferences.cc:3630
+#: src/preferences.cc:3635
 msgid "Use \"With Rename\" as default for Copy/Move dialogs"
 msgstr ""
 
-#: src/preferences.cc:3634
+#: src/preferences.cc:3639
 msgid "Permit duplicates in Collections"
 msgstr ""
 
-#: src/preferences.cc:3636
+#: src/preferences.cc:3641
 msgid "Allow the same image to be in a Collection more than once"
 msgstr ""
 
-#: src/preferences.cc:3638
+#: src/preferences.cc:3643
 #, fuzzy
 msgid "Open collections on top"
 msgstr "Відкрити колекцію"
 
-#: src/preferences.cc:3640
+#: src/preferences.cc:3645
 #, fuzzy
 msgid "Open collections window on top"
 msgstr "Відкрити колекцію"
 
-#: src/preferences.cc:3642
+#: src/preferences.cc:3647
 msgid "Hide window in fullscreen"
 msgstr ""
 
-#: src/preferences.cc:3646
+#: src/preferences.cc:3651
 msgid "Recent folder list maximum size"
 msgstr ""
 
-#: src/preferences.cc:3649
+#: src/preferences.cc:3654
 msgid "Recent folder-image list maximum size"
 msgstr ""
 
-#: src/preferences.cc:3650
+#: src/preferences.cc:3655
 msgid ""
 "List of the last image viewed in each recent folder.\n"
 "Re-opening a folder will set focus to the last image viewed."
 msgstr ""
 
-#: src/preferences.cc:3652
+#: src/preferences.cc:3657
 msgid "Drag'n drop icon size"
 msgstr ""
 
-#: src/preferences.cc:3656
+#: src/preferences.cc:3661
 msgid "Drag`n drop default action:"
 msgstr ""
 
-#: src/preferences.cc:3659
+#: src/preferences.cc:3664
 #, fuzzy
 msgid "Copy path clipboard selection:"
 msgstr "Копіювати"
 
-#: src/preferences.cc:3663
+#: src/preferences.cc:3668
 msgid "Navigation"
 msgstr ""
 
-#: src/preferences.cc:3665
+#: src/preferences.cc:3670
 msgid "Progressive keyboard scrolling"
 msgstr "Прискорення скролювання з клавіатури"
 
-#: src/preferences.cc:3667
+#: src/preferences.cc:3672
 msgid "Keyboard scrolling step multiplier:"
 msgstr ""
 
-#: src/preferences.cc:3669
+#: src/preferences.cc:3674
 msgid "Mouse wheel scrolls image"
 msgstr "Колесико миші скролює зображення"
 
-#: src/preferences.cc:3671
+#: src/preferences.cc:3676
 msgid "Navigation by left or middle click on image"
 msgstr ""
 
-#: src/preferences.cc:3673
+#: src/preferences.cc:3678
 msgid "Open archive by left click on image"
 msgstr ""
 
-#: src/preferences.cc:3675
+#: src/preferences.cc:3680
 msgid "Play video by left click on image"
 msgstr ""
 
-#: src/preferences.cc:3678
+#: src/preferences.cc:3683
 msgid "Play with:"
 msgstr ""
 
-#: src/preferences.cc:3682
+#: src/preferences.cc:3687
 msgid "Mouse button Back:"
 msgstr ""
 
-#: src/preferences.cc:3684
+#: src/preferences.cc:3689
 msgid "Mouse button Forward:"
 msgstr ""
 
-#: src/preferences.cc:3688
+#: src/preferences.cc:3693
 msgid "GPU"
 msgstr ""
 
-#: src/preferences.cc:3690
+#: src/preferences.cc:3695
 #, fuzzy
 msgid "Override disable GPU"
 msgstr "Переписати файл"
 
-#: src/preferences.cc:3692
+#: src/preferences.cc:3697
 msgid "Contact the developers for usage"
 msgstr ""
 
-#: src/preferences.cc:3697
+#: src/preferences.cc:3702
 msgid "Debugging"
 msgstr ""
 
-#: src/preferences.cc:3702
+#: src/preferences.cc:3707
 #, fuzzy
 msgid "Timer data"
 msgstr "Фільтр:"
 
-#: src/preferences.cc:3705
+#: src/preferences.cc:3710
 #, fuzzy
 msgid "Log Window max. lines:"
 msgstr "Вікна"
 
-#: src/preferences.cc:3709
+#: src/preferences.cc:3714
 #, fuzzy
 msgid "Log Window F1 command: "
 msgstr "Вікна"
 
-#: src/preferences.cc:3768
+#: src/preferences.cc:3773
 msgid "Keyboard"
 msgstr ""
 
-#: src/preferences.cc:3770
+#: src/preferences.cc:3775
 msgid "Accelerators"
 msgstr ""
 
-#: src/preferences.cc:3789
+#: src/preferences.cc:3794
 #, fuzzy
 msgid "Action"
 msgstr "Колекції"
 
-#: src/preferences.cc:3811
+#: src/preferences.cc:3816
 msgid "KEY"
 msgstr ""
 
-#: src/preferences.cc:3822
+#: src/preferences.cc:3827
 #, fuzzy
 msgid "Tooltip"
 msgstr "Панель"
 
-#: src/preferences.cc:3860
+#: src/preferences.cc:3874
 #, fuzzy
 msgid "Reset selected"
 msgstr "Видалити файли"
 
-#: src/preferences.cc:3862
+#: src/preferences.cc:3876
 msgid "Will only reset changes made before the settings are saved"
 msgstr ""
 
-#: src/preferences.cc:3866
+#: src/preferences.cc:3880
 #, fuzzy
 msgid "Clear selected"
 msgstr "Видалити файли"
 
-#: src/preferences.cc:3881
+#: src/preferences.cc:3895
 #, fuzzy
 msgid "Toolbar Main"
 msgstr "Панель"
 
-#: src/preferences.cc:3897
+#: src/preferences.cc:3911
 #, fuzzy
 msgid "Toolbar Status"
 msgstr "Панель"
 
-#: src/preferences.cc:3927
+#: src/preferences.cc:3941
 msgid "Advanced"
 msgstr ""
 
-#: src/preferences.cc:3928
+#: src/preferences.cc:3942
 msgid "External preview extraction"
 msgstr ""
 
-#: src/preferences.cc:3930
+#: src/preferences.cc:3944
 msgid "Use external preview extraction -  Requires restart"
 msgstr ""
 
-#: src/preferences.cc:3967
+#: src/preferences.cc:3981
 #, fuzzy
 msgid "Usable file types:\n"
 msgstr "Включати фали типу:"
 
-#: src/preferences.cc:3973
+#: src/preferences.cc:3987
 #, fuzzy
 msgid "File identification tool"
 msgstr "Переписати файл"
 
-#: src/preferences.cc:3976
+#: src/preferences.cc:3990
 msgid "Select file identification tool"
 msgstr ""
 
-#: src/preferences.cc:3980
+#: src/preferences.cc:3994
 #, fuzzy
 msgid "Preview extraction tool"
 msgstr "Переписати файл"
 
-#: src/preferences.cc:3983
+#: src/preferences.cc:3997
 msgid "Select preview extraction tool"
 msgstr ""
 
-#: src/preferences.cc:3996
+#: src/preferences.cc:4010
 msgid "Thread pool limits"
 msgstr ""
 
-#: src/preferences.cc:3998
+#: src/preferences.cc:4012
 msgid ""
 "This option limits the number of threads (or cpu cores) that Geeqie will use "
 "when running duplicate checks.\n"
 "The value 0 means all available cores will be used."
 msgstr ""
 
-#: src/preferences.cc:4003
+#: src/preferences.cc:4017
 msgid "Duplicate check:"
 msgstr ""
 
-#: src/preferences.cc:4003
+#: src/preferences.cc:4017
 msgid "max. threads"
 msgstr ""
 
-#: src/preferences.cc:4004
+#: src/preferences.cc:4018
 msgid "Set to 0 for unlimited"
 msgstr ""
 
-#: src/preferences.cc:4010
+#: src/preferences.cc:4024
 #, fuzzy
 msgid "Alternate similarity alogorithm"
 msgstr "Очистити кеш"
 
-#: src/preferences.cc:4012
+#: src/preferences.cc:4026
 msgid "Enable alternate similarity algorithm"
 msgstr ""
 
-#: src/preferences.cc:4017
+#: src/preferences.cc:4031
 #, fuzzy
 msgid "Use grayscale"
 msgstr "Зупинити показ слайдів"
 
-#: src/preferences.cc:4018
+#: src/preferences.cc:4032
 msgid "Reduce fingerprint to grayscale"
 msgstr ""
 
-#: src/preferences.cc:4031
+#: src/preferences.cc:4045
 msgid "Stereo"
 msgstr ""
 
-#: src/preferences.cc:4033 src/preferences.cc:4036
+#: src/preferences.cc:4047 src/preferences.cc:4050
 msgid "Windowed stereo mode"
 msgstr ""
 
-#: src/preferences.cc:4040 src/preferences.cc:4065
+#: src/preferences.cc:4054 src/preferences.cc:4079
 #, fuzzy
 msgid "Mirror left image"
 msgstr "%d зображень"
 
-#: src/preferences.cc:4043 src/preferences.cc:4068
+#: src/preferences.cc:4057 src/preferences.cc:4082
 #, fuzzy
 msgid "Flip left image"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/preferences.cc:4046 src/preferences.cc:4071
+#: src/preferences.cc:4060 src/preferences.cc:4085
 #, fuzzy
 msgid "Mirror right image"
 msgstr "%d зображень"
 
-#: src/preferences.cc:4049 src/preferences.cc:4074
+#: src/preferences.cc:4063 src/preferences.cc:4088
 #, fuzzy
 msgid "Flip right image"
 msgstr "%d зображень"
 
-#: src/preferences.cc:4051 src/preferences.cc:4076
+#: src/preferences.cc:4065 src/preferences.cc:4090
 msgid "Swap left and right images"
 msgstr ""
 
-#: src/preferences.cc:4053 src/preferences.cc:4078
+#: src/preferences.cc:4067 src/preferences.cc:4092
 msgid "Disable stereo mode on single image source"
 msgstr ""
 
-#: src/preferences.cc:4056 src/preferences.cc:4062
+#: src/preferences.cc:4070 src/preferences.cc:4076
 #, fuzzy
 msgid "Fullscreen stereo mode"
 msgstr "На повний екран"
 
-#: src/preferences.cc:4057
+#: src/preferences.cc:4071
 msgid "Use different settings for fullscreen"
 msgstr ""
 
-#: src/preferences.cc:4087
+#: src/preferences.cc:4101
 msgid "Left X"
 msgstr ""
 
-#: src/preferences.cc:4089
+#: src/preferences.cc:4103
 msgid "Left Y"
 msgstr ""
 
-#: src/preferences.cc:4091
+#: src/preferences.cc:4105
 msgid "Right X"
 msgstr ""
 
-#: src/preferences.cc:4093
+#: src/preferences.cc:4107
 msgid "Right Y"
 msgstr ""
 
-#: src/preferences.cc:4109
+#: src/preferences.cc:4123
 #, fuzzy
 msgid "Preferences"
 msgstr "/Редагування/Опції..."
 
-#: src/preferences.cc:4234
+#: src/preferences.cc:4248
 msgid ""
 "This program comes with absolutely no warranty.\n"
 "GNU General Public License, version 2 or later.\n"
@@ -7103,14 +7103,14 @@ msgid ""
 "\n"
 msgstr ""
 
-#: src/preferences.cc:4252
+#: src/preferences.cc:4266
 msgid ""
 "\n"
 "\n"
 "Some icons by https://www.flaticon.com"
 msgstr ""
 
-#: src/preferences.cc:4278
+#: src/preferences.cc:4292
 msgid ""
 "Project created by John Ellis\n"
 "GQview 1998\n"
@@ -7120,79 +7120,79 @@ msgid ""
 "Development and bug reports:\n"
 msgstr ""
 
-#: src/preferences.cc:4278
+#: src/preferences.cc:4292
 msgid ""
 "\n"
 "https://github.com/BestImageViewer/geeqie/issues"
 msgstr ""
 
-#: src/preferences.cc:4286
+#: src/preferences.cc:4300
 #, fuzzy
 msgid "About Geeqie"
 msgstr "Допомога - Geeqie"
 
-#: src/preferences.cc:4293
+#: src/preferences.cc:4307
 msgid "Website"
 msgstr ""
 
-#: src/preferences.cc:4366 src/preferences.cc:4374
+#: src/preferences.cc:4380 src/preferences.cc:4388
 msgid "Warning: Cannot open timezone database file"
 msgstr ""
 
-#: src/preferences.cc:4381
+#: src/preferences.cc:4395
 msgid "Error: Timezone database download failed"
 msgstr ""
 
-#: src/preferences.cc:4423
+#: src/preferences.cc:4437
 msgid "Timezone database download failed"
 msgstr ""
 
-#: src/preferences.cc:4434
+#: src/preferences.cc:4448
 msgid "Downloading timezone database"
 msgstr ""
 
-#: src/print.cc:378
+#: src/print.cc:382
 #, fuzzy
 msgid "Image text"
 msgstr "Невірна ціль"
 
-#: src/print.cc:380
+#: src/print.cc:384
 #, fuzzy
 msgid "Show image text"
 msgstr "Показати приховані"
 
-#: src/print.cc:391 src/print.cc:454
+#: src/print.cc:395 src/print.cc:458
 #, fuzzy
 msgid "Header 1"
 msgstr "Білінійний"
 
-#: src/print.cc:394 src/print.cc:457
+#: src/print.cc:398 src/print.cc:461
 #, fuzzy
 msgid "Header 2"
 msgstr "Білінійний"
 
-#: src/print.cc:397 src/print.cc:460
+#: src/print.cc:401 src/print.cc:464
 msgid "Footer 1"
 msgstr ""
 
-#: src/print.cc:400 src/print.cc:463
+#: src/print.cc:404 src/print.cc:467
 msgid "Footer 2"
 msgstr ""
 
-#: src/print.cc:442
+#: src/print.cc:446
 msgid "Page text"
 msgstr ""
 
-#: src/print.cc:444
+#: src/print.cc:448
 #, fuzzy
 msgid "Show page text"
 msgstr "Показати приховані"
 
-#: src/print.cc:482
+#: src/print.cc:486
 msgid "Text shown on each page of a single or multi-page print job"
 msgstr ""
 
-#: src/print.cc:917
+#: src/print.cc:921
 #, fuzzy
 msgid "Options"
 msgstr "Колекції"
@@ -7219,373 +7219,378 @@ msgstr "помилка при зберіганні конфігураційно�
 msgid "error saving default layout file: %s\n"
 msgstr "помилка при зберіганні конфігураційного файлу: %s\n"
 
-#: src/remote.cc:794
+#: src/remote.cc:792
 #, c-format
 msgid "[%d,%d]: RGB(%3d,%3d,%3d)"
 msgstr ""
 
-#: src/remote.cc:831
+#: src/remote.cc:829
 #, c-format
 msgid "%dx%d+%d+%d"
 msgstr ""
 
-#: src/remote.cc:1319
+#: src/remote.cc:1317
 #, c-format
 msgid "Class: %s\n"
 msgstr ""
 
-#: src/remote.cc:1323
+#: src/remote.cc:1321
 #, c-format
 msgid "Page no: %d/%d\n"
 msgstr ""
 
-#: src/remote.cc:1331
+#: src/remote.cc:1329
 #, c-format
 msgid "Country name: %s\n"
 msgstr ""
 
-#: src/remote.cc:1338
+#: src/remote.cc:1336
 #, c-format
 msgid "Country code: %s\n"
 msgstr ""
 
-#: src/remote.cc:1345
+#: src/remote.cc:1343
 #, c-format
 msgid "Timezone: %s\n"
 msgstr ""
 
-#: src/remote.cc:1685 src/remote.cc:1690
+#: src/remote.cc:1695 src/remote.cc:1700
 msgid "lua error: no data"
 msgstr ""
 
-#: src/remote.cc:1712
+#: src/remote.cc:1722
 msgid "<ACTION>"
 msgstr ""
 
-#: src/remote.cc:1712
+#: src/remote.cc:1722
 msgid "execute keyboard action (See Help/Reference/Remote Keyboard Actions)"
 msgstr ""
 
-#: src/remote.cc:1713
+#: src/remote.cc:1723
 msgid "list available keyboard actions (some are redundant)"
 msgstr ""
 
-#: src/remote.cc:1714
+#: src/remote.cc:1724
 #, fuzzy
 msgid "previous image"
 msgstr "%d зображень"
 
-#: src/remote.cc:1715
+#: src/remote.cc:1725
 #, fuzzy
 msgid "close window"
 msgstr "Закрити вікно"
 
-#: src/remote.cc:1716
+#: src/remote.cc:1726
 msgid "<FILE>|layout ID"
 msgstr ""
 
-#: src/remote.cc:1716
+#: src/remote.cc:1726
 msgid "load configuration from FILE"
 msgstr ""
 
-#: src/remote.cc:1717
+#: src/remote.cc:1727
 msgid "clean the metadata cache"
 msgstr ""
 
-#: src/remote.cc:1718
+#: src/remote.cc:1728
 #, fuzzy
 msgid "<folder>  "
 msgstr "Файли"
 
-#: src/remote.cc:1718
+#: src/remote.cc:1728
 #, fuzzy
 msgid " render thumbnails"
 msgstr "Кешувати піктограми"
 
-#: src/remote.cc:1719 src/remote.cc:1720
+#: src/remote.cc:1729 src/remote.cc:1730
 #, fuzzy
 msgid "<folder> "
 msgstr "Файли"
 
-#: src/remote.cc:1719
+#: src/remote.cc:1729
 #, fuzzy
 msgid "render thumbnails recursively"
 msgstr "Показувати піктограми"
 
-#: src/remote.cc:1720
+#: src/remote.cc:1730
 #, fuzzy
 msgid " render thumbnails (see Help)"
 msgstr "Кешувати піктограми"
 
-#: src/remote.cc:1721
+#: src/remote.cc:1731
 #, fuzzy
 msgid "<folder>"
 msgstr "Файли"
 
-#: src/remote.cc:1721
+#: src/remote.cc:1731
 #, fuzzy
 msgid " render thumbnails recursively (see Help)"
 msgstr "Показувати піктограми"
 
-#: src/remote.cc:1722 src/remote.cc:1723
+#: src/remote.cc:1732 src/remote.cc:1733
 msgid "clear|clean"
 msgstr ""
 
-#: src/remote.cc:1722
+#: src/remote.cc:1732
 #, fuzzy
 msgid "clear or clean shared thumbnail cache"
 msgstr "Показувати піктограми"
 
-#: src/remote.cc:1723
+#: src/remote.cc:1733
 #, fuzzy
 msgid "clear or clean thumbnail cache"
 msgstr "Показувати піктограми"
 
-#: src/remote.cc:1724
+#: src/remote.cc:1734
 msgid "<[H:][M:][N][.M]>"
 msgstr ""
 
-#: src/remote.cc:1724
+#: src/remote.cc:1734
 msgid "set slide show delay to Hrs Mins N.M seconds"
 msgstr ""
 
-#: src/remote.cc:1725
+#: src/remote.cc:1735
 #, fuzzy
 msgid "first image"
 msgstr "%d зображень"
 
-#: src/remote.cc:1726
+#: src/remote.cc:1736
 #, fuzzy
 msgid "toggle full screen"
 msgstr "Вийти з повноекранного режиму"
 
-#: src/remote.cc:1727 src/remote.cc:1728 src/remote.cc:1729 src/remote.cc:1730
+#: src/remote.cc:1737 src/remote.cc:1738 src/remote.cc:1739 src/remote.cc:1740
 msgid "<FILE>|<URL>"
 msgstr ""
 
-#: src/remote.cc:1727 src/remote.cc:1728
+#: src/remote.cc:1737 src/remote.cc:1738
 #, fuzzy
 msgid "open FILE or URL, bring Geeqie window to the top"
 msgstr "Переглянути в новому вікні"
 
-#: src/remote.cc:1729 src/remote.cc:1730
+#: src/remote.cc:1739 src/remote.cc:1740
 #, fuzzy
 msgid "open FILE or URL, do not bring Geeqie window to the top"
 msgstr "Переглянути в новому вікні"
 
-#: src/remote.cc:1731
+#: src/remote.cc:1741
 #, fuzzy
 msgid "start full screen"
 msgstr "Вийти з повноекранного режиму"
 
-#: src/remote.cc:1732
+#: src/remote.cc:1742
 #, fuzzy
 msgid "stop full screen"
 msgstr "Вийти з повноекранного режиму"
 
-#: src/remote.cc:1733
+#: src/remote.cc:1743
 msgid "<GEOMETRY>"
 msgstr ""
 
-#: src/remote.cc:1733
+#: src/remote.cc:1743
 #, fuzzy
 msgid "set window geometry"
 msgstr "Невірне ім'я файлу"
 
-#: src/remote.cc:1734
+#: src/remote.cc:1744
 msgid "<COLLECTION>"
 msgstr ""
 
-#: src/remote.cc:1734
+#: src/remote.cc:1744
 #, fuzzy
 msgid "get collection content"
 msgstr "Зберегти колекцію"
 
-#: src/remote.cc:1735
+#: src/remote.cc:1745
 #, fuzzy
 msgid "get collection list"
 msgstr "Зберегти колекцію як:"
 
-#: src/remote.cc:1736 src/remote.cc:1743 src/remote.cc:1746 src/remote.cc:1769
-#: src/remote.cc:1770
+#: src/remote.cc:1746 src/remote.cc:1753 src/remote.cc:1757 src/remote.cc:1780
+#: src/remote.cc:1781
 msgid "<FILE>"
 msgstr ""
 
-#: src/remote.cc:1736
+#: src/remote.cc:1746
 msgid "get destination path of FILE (See Plugins Configuration)"
 msgstr ""
 
-#: src/remote.cc:1737
+#: src/remote.cc:1747
 #, fuzzy
 msgid "get file info"
 msgstr "Фільтр:"
 
-#: src/remote.cc:1738 src/remote.cc:1739
+#: src/remote.cc:1748 src/remote.cc:1749
 msgid "[<FOLDER>]"
 msgstr ""
 
-#: src/remote.cc:1738
+#: src/remote.cc:1748
 msgid "get list of files and class"
 msgstr ""
 
-#: src/remote.cc:1739
+#: src/remote.cc:1749
 #, fuzzy
 msgid "get list of files and class recursive"
 msgstr "Показувати піктограми"
 
-#: src/remote.cc:1740
+#: src/remote.cc:1750
 #, fuzzy
 msgid "get rectangle co-ordinates"
 msgstr "Перейменувати"
 
-#: src/remote.cc:1741
+#: src/remote.cc:1751
 #, fuzzy
 msgid "get render intent"
 msgstr "Перейменувати"
 
-#: src/remote.cc:1742
+#: src/remote.cc:1752
 #, fuzzy
 msgid "get list of selected files"
 msgstr ""
 "Про видалення файла:\n"
 " %s"
 
-#: src/remote.cc:1743
+#: src/remote.cc:1753
 msgid "get list of sidecars of FILE"
 msgstr ""
 
-#: src/remote.cc:1744
+#: src/remote.cc:1754
+#, fuzzy
+msgid "get window list"
+msgstr "Невірне ім'я файлу"
+
+#: src/remote.cc:1755
 msgid "<ID>"
 msgstr ""
 
-#: src/remote.cc:1744
+#: src/remote.cc:1755
 msgid "window id for following commands"
 msgstr ""
 
-#: src/remote.cc:1745
+#: src/remote.cc:1756
 #, fuzzy
 msgid "last image"
 msgstr "Завантажувати наперед наступне зображення"
 
-#: src/remote.cc:1746
+#: src/remote.cc:1757
 #, fuzzy
 msgid "add FILE to command line collection list"
 msgstr "Додати до нової колекції"
 
-#: src/remote.cc:1747
+#: src/remote.cc:1758
 #, fuzzy
 msgid "clear command line collection list"
 msgstr "Додати до нової колекції"
 
-#: src/remote.cc:1749
+#: src/remote.cc:1760
 msgid "<FILE>,<lua script>"
 msgstr ""
 
-#: src/remote.cc:1749
-msgid "run lua script on FILE"
-msgstr ""
-
-#: src/remote.cc:1751
-#, fuzzy
-msgid "new window"
-msgstr "/Файл/Нова колекція"
-
-#: src/remote.cc:1752
-#, fuzzy
-msgid "next image"
-msgstr "Завантажувати наперед наступне зображення"
-
-#: src/remote.cc:1753
-msgid "print pixel info of mouse pointer on current image"
-msgstr ""
-
-#: src/remote.cc:1754
-msgid "terminate returned data with null character instead of newline"
-msgstr ""
-
-#: src/remote.cc:1755
-msgid "<PWD>"
-msgstr ""
-
-#: src/remote.cc:1755
-msgid "use PWD as working directory for following commands"
-msgstr ""
-
-#: src/remote.cc:1756
-msgid "quit"
-msgstr ""
-
-#: src/remote.cc:1757 src/remote.cc:1758
-#, fuzzy
-msgid "bring the Geeqie window to the top"
-msgstr "Переглянути в новому вікні"
-
-#: src/remote.cc:1759 src/remote.cc:1761
-msgid "[<FILE>]"
-msgstr ""
-
-#: src/remote.cc:1759
-msgid "adds the current file (or the specified file) to the current selection"
-msgstr ""
-
 #: src/remote.cc:1760
-#, fuzzy
-msgid "clears the current selection"
-msgstr "Відкрити колекцію"
-
-#: src/remote.cc:1761
-msgid ""
-"removes the current file (or the specified file) from the current selection"
+msgid "run lua script on FILE"
 msgstr ""
 
 #: src/remote.cc:1762
 #, fuzzy
+msgid "new window"
+msgstr "/Файл/Нова колекція"
+
+#: src/remote.cc:1763
+#, fuzzy
+msgid "next image"
+msgstr "Завантажувати наперед наступне зображення"
+
+#: src/remote.cc:1764
+msgid "print pixel info of mouse pointer on current image"
+msgstr ""
+
+#: src/remote.cc:1765
+msgid "terminate returned data with null character instead of newline"
+msgstr ""
+
+#: src/remote.cc:1766
+msgid "<PWD>"
+msgstr ""
+
+#: src/remote.cc:1766
+msgid "use PWD as working directory for following commands"
+msgstr ""
+
+#: src/remote.cc:1767
+msgid "quit"
+msgstr ""
+
+#: src/remote.cc:1768 src/remote.cc:1769
+#, fuzzy
+msgid "bring the Geeqie window to the top"
+msgstr "Переглянути в новому вікні"
+
+#: src/remote.cc:1770 src/remote.cc:1772
+msgid "[<FILE>]"
+msgstr ""
+
+#: src/remote.cc:1770
+msgid "adds the current file (or the specified file) to the current selection"
+msgstr ""
+
+#: src/remote.cc:1771
+#, fuzzy
+msgid "clears the current selection"
+msgstr "Відкрити колекцію"
+
+#: src/remote.cc:1772
+msgid ""
+"removes the current file (or the specified file) from the current selection"
+msgstr ""
+
+#: src/remote.cc:1773
+#, fuzzy
 msgid "toggle slide show"
 msgstr "Зупинити показ слайдів"
 
-#: src/remote.cc:1763
+#: src/remote.cc:1774
 msgid "<FOLDER>"
 msgstr ""
 
-#: src/remote.cc:1763
+#: src/remote.cc:1774
 #, fuzzy
 msgid "start recursive slide show in FOLDER"
 msgstr "Почати показ слайдів"
 
-#: src/remote.cc:1764
+#: src/remote.cc:1775
 #, fuzzy
 msgid "start slide show"
 msgstr "Почати показ слайдів"
 
-#: src/remote.cc:1765
+#: src/remote.cc:1776
 #, fuzzy
 msgid "stop slide show"
 msgstr "Зупинити показ слайдів"
 
-#: src/remote.cc:1766
+#: src/remote.cc:1777
 msgid "print filename [and Collection] of current image"
 msgstr ""
 
-#: src/remote.cc:1767
+#: src/remote.cc:1778
 #, fuzzy
 msgid "show tools"
 msgstr "Geeqie - копіювання"
 
-#: src/remote.cc:1768
+#: src/remote.cc:1779
 #, fuzzy
 msgid "hide tools"
 msgstr "Geeqie - копіювання"
 
-#: src/remote.cc:1769 src/remote.cc:1770
+#: src/remote.cc:1780 src/remote.cc:1781
 #, fuzzy
 msgid "open FILE in new window"
 msgstr "Переглянути в новому вікні"
 
-#: src/remote.cc:1836
+#: src/remote.cc:1847
 msgid "Remote command list:\n"
 msgstr ""
 
-#: src/remote.cc:1855
+#: src/remote.cc:1866
 msgid ""
 "\n"
 "\n"
@@ -7595,40 +7600,40 @@ msgid ""
 "may be used.\n"
 msgstr ""
 
-#: src/remote.cc:1905
+#: src/remote.cc:1916
 #, c-format
 msgid "Remote %s not running, starting..."
 msgstr ""
 
-#: src/remote.cc:2043
+#: src/remote.cc:2054
 msgid "Remote not available\n"
 msgstr ""
 
-#: src/search.cc:286
+#: src/search.cc:285
 #, fuzzy
 msgid "folder"
 msgstr "Файли"
 
-#: src/search.cc:287
+#: src/search.cc:286
 #, fuzzy
 msgid "comments"
 msgstr "Додати вміст"
 
-#: src/search.cc:288
+#: src/search.cc:287
 msgid "results"
 msgstr ""
 
-#: src/search.cc:289
+#: src/search.cc:288
 #, fuzzy
 msgid "collection"
 msgstr "Колекції"
 
-#: src/search.cc:293
+#: src/search.cc:292
 #, fuzzy
 msgid "name contains"
 msgstr "Продовжити"
 
-#: src/search.cc:294
+#: src/search.cc:293
 #, fuzzy
 msgid "name is"
 msgstr ""
@@ -7636,254 +7641,254 @@ msgstr ""
 "%s\n"
 "в:"
 
-#: src/search.cc:295
+#: src/search.cc:294
 #, fuzzy
 msgid "path contains"
 msgstr "Продовжити"
 
-#: src/search.cc:299 src/search.cc:306 src/search.cc:325
+#: src/search.cc:298 src/search.cc:305 src/search.cc:324
 msgid "equal to"
 msgstr ""
 
-#: src/search.cc:300 src/search.cc:326 src/search.cc:333
+#: src/search.cc:299 src/search.cc:325 src/search.cc:332
 msgid "less than"
 msgstr ""
 
-#: src/search.cc:301 src/search.cc:327 src/search.cc:334
+#: src/search.cc:300 src/search.cc:326 src/search.cc:333
 #, fuzzy
 msgid "greater than"
 msgstr "Кешувати піктограми"
 
-#: src/search.cc:302 src/search.cc:309 src/search.cc:328
+#: src/search.cc:301 src/search.cc:308 src/search.cc:327
 msgid "between"
 msgstr ""
 
-#: src/search.cc:307
+#: src/search.cc:306
 msgid "before"
 msgstr ""
 
-#: src/search.cc:308
+#: src/search.cc:307
 #, fuzzy
 msgid "after"
 msgstr "Фільтр:"
 
-#: src/search.cc:313
+#: src/search.cc:312
 msgid "match all"
 msgstr ""
 
-#: src/search.cc:314
+#: src/search.cc:313
 msgid "match any"
 msgstr ""
 
-#: src/search.cc:315
+#: src/search.cc:314
 #, fuzzy
 msgid "exclude"
 msgstr "Видалити файл"
 
-#: src/search.cc:319
+#: src/search.cc:318
 #, fuzzy
 msgid "contains"
 msgstr "Продовжити"
 
-#: src/search.cc:320
+#: src/search.cc:319
 msgid "miss"
 msgstr ""
 
-#: src/search.cc:332
+#: src/search.cc:331
 msgid "not geocoded"
 msgstr ""
 
-#: src/search.cc:338 src/search.cc:343
+#: src/search.cc:337 src/search.cc:342
 #, fuzzy
 msgid "is"
 msgstr "/Вигляд/Оновити список"
 
-#: src/search.cc:339 src/search.cc:344
+#: src/search.cc:338 src/search.cc:343
 msgid "is not"
 msgstr ""
 
-#: src/search.cc:384
+#: src/search.cc:383
 #, fuzzy
 msgid "Start/stop search"
 msgstr "Зображення"
 
-#: src/search.cc:426
+#: src/search.cc:425
 #, fuzzy, c-format
 msgid "%s, %d files (%s, %d)"
 msgstr "%s, %d файлів (%s, %d)%s"
 
-#: src/search.cc:431
+#: src/search.cc:430
 #, fuzzy, c-format
 msgid "%s, %d files"
 msgstr "%s, %d файлів%s"
 
-#: src/search.cc:449
+#: src/search.cc:448
 #, fuzzy
 msgid "Searching..."
 msgstr "Порівняння..."
 
-#: src/search.cc:1595
+#: src/search.cc:1594
 #, fuzzy
 msgid "Image is not geocoded"
 msgstr "Зображення"
 
-#: src/search.cc:2052
+#: src/search.cc:2051
 msgid "Changed"
 msgstr ""
 
-#: src/search.cc:2057 src/search.cc:3490
+#: src/search.cc:2056 src/search.cc:3489
 #, fuzzy
 msgid "Original"
 msgstr "Перейменувати:"
 
-#: src/search.cc:2063 src/search.cc:3491
+#: src/search.cc:2062 src/search.cc:3490
 msgid "Digitized"
 msgstr ""
 
-#: src/search.cc:2260 src/search.cc:3617
+#: src/search.cc:2259 src/search.cc:3616
 #, fuzzy
 msgid "Raw Image"
 msgstr "Зображення"
 
-#: src/search.cc:2329 src/search.cc:3635
+#: src/search.cc:2328 src/search.cc:3634
 #, fuzzy
 msgid "Any mark"
 msgstr "Редактори"
 
-#: src/search.cc:2389 src/search.cc:3590
+#: src/search.cc:2388 src/search.cc:3589
 msgid "km"
 msgstr ""
 
-#: src/search.cc:2394 src/search.cc:3591
+#: src/search.cc:2393 src/search.cc:3590
 #, fuzzy
 msgid "miles"
 msgstr "Файли"
 
-#: src/search.cc:2715
+#: src/search.cc:2714
 msgid "File not found"
 msgstr ""
 
-#: src/search.cc:2716
+#: src/search.cc:2715
 #, fuzzy
 msgid "Please enter an existing file for image content."
 msgstr "Виберіть існуючий каталог"
 
-#: src/search.cc:2741
+#: src/search.cc:2740
 msgid "Entry does not contain a valid lat/long value"
 msgstr ""
 
-#: src/search.cc:2800
+#: src/search.cc:2799
 #, fuzzy
 msgid "Please enter an existing folder to search."
 msgstr "Виберіть існуючий каталог"
 
-#: src/search.cc:2846
+#: src/search.cc:2845
 #, fuzzy
 msgid "Collection not found"
 msgstr "Колекція порожня"
 
-#: src/search.cc:2846
+#: src/search.cc:2845
 #, fuzzy
 msgid "Please enter an existing collection name."
 msgstr "Виберіть існуючий каталог"
 
-#: src/search.cc:3304
+#: src/search.cc:3303
 #, fuzzy
 msgid "Select collection"
 msgstr "Зберегти колекцію"
 
-#: src/search.cc:3314
+#: src/search.cc:3313
 msgid "Collection Files"
 msgstr "Файли колекції"
 
-#: src/search.cc:3373
+#: src/search.cc:3372
 #, fuzzy
 msgid "Image search"
 msgstr "Зображення"
 
-#: src/search.cc:3412
+#: src/search.cc:3411
 #, fuzzy
 msgid "Search:"
 msgstr "Порівняння..."
 
-#: src/search.cc:3426
+#: src/search.cc:3425
 msgid "Recurse"
 msgstr ""
 
-#: src/search.cc:3450 src/search.cc:3560
+#: src/search.cc:3449 src/search.cc:3559
 msgid "Match case"
 msgstr ""
 
-#: src/search.cc:3452
+#: src/search.cc:3451
 #, fuzzy
 msgid "Symbolic link"
 msgstr ""
 "Не можу створити каталог:\n"
 "%s"
 
-#: src/search.cc:3457
+#: src/search.cc:3456
 #, fuzzy
 msgid "File size is"
 msgstr "Файли"
 
-#: src/search.cc:3464 src/search.cc:3481 src/search.cc:3510 src/search.cc:3573
+#: src/search.cc:3463 src/search.cc:3480 src/search.cc:3509 src/search.cc:3572
 #, fuzzy
 msgid "and"
 msgstr "Довільно"
 
-#: src/search.cc:3470
+#: src/search.cc:3469
 #, fuzzy
 msgid "File date is"
 msgstr "Фільтр:"
 
-#: src/search.cc:3488
+#: src/search.cc:3487
 msgid "Modified"
 msgstr ""
 
-#: src/search.cc:3489
+#: src/search.cc:3488
 #, fuzzy
 msgid "Status Changed"
 msgstr "Дата"
 
-#: src/search.cc:3499
+#: src/search.cc:3498
 #, fuzzy
 msgid "Image dimensions are"
 msgstr "Невірна ціль"
 
-#: src/search.cc:3520
+#: src/search.cc:3519
 #, fuzzy
 msgid "Image content is"
 msgstr "Додати вміст"
 
-#: src/search.cc:3526
+#: src/search.cc:3525
 #, fuzzy, no-c-format
 msgid "% similar to"
 msgstr "Схожість"
 
-#: src/search.cc:3534
+#: src/search.cc:3533
 #, fuzzy
 msgid "Ignore rotation"
 msgstr "Розміри"
 
-#: src/search.cc:3566
+#: src/search.cc:3565
 #, fuzzy
 msgid "Image rating is"
 msgstr "Додати вміст"
 
-#: src/search.cc:3580
+#: src/search.cc:3579
 #, fuzzy
 msgid "Image is"
 msgstr "Зображення"
 
-#: src/search.cc:3592
+#: src/search.cc:3591
 msgid "n.m."
 msgstr ""
 
-#: src/search.cc:3598
+#: src/search.cc:3597
 msgid "from"
 msgstr ""
 
-#: src/search.cc:3603
+#: src/search.cc:3602
 msgid ""
 "Enter a coordinate in the form:\n"
 "89.123 179.456\n"
@@ -7894,16 +7899,16 @@ msgid ""
 "See the Help file"
 msgstr ""
 
-#: src/search.cc:3611
+#: src/search.cc:3610
 #, fuzzy
 msgid "Image class"
 msgstr "Зображення"
 
-#: src/search.cc:3623
+#: src/search.cc:3622
 msgid "Broken"
 msgstr ""
 
-#: src/search.cc:3630
+#: src/search.cc:3629
 #, fuzzy
 msgid "Marks"
 msgstr "Показати приховані"
@@ -7961,8 +7966,8 @@ msgstr "Не можу завантажити піктограму з кеша, �
 msgid "Add Toolbar Item"
 msgstr ""
 
-#: src/trash.cc:98 src/trash.cc:149 src/utilops.cc:2744 src/utilops.cc:2755
-#: src/utilops.cc:2810
+#: src/trash.cc:98 src/trash.cc:149 src/utilops.cc:2740 src/utilops.cc:2751
+#: src/utilops.cc:2806
 msgid "Delete failed"
 msgstr "Видалення не вдалося"
 
@@ -8036,35 +8041,35 @@ msgstr ""
 msgid "A new Geeqie AppImage is available"
 msgstr ""
 
-#: src/ui-bookmark.cc:139 src/ui-bookmark.cc:202
+#: src/ui-bookmark.cc:140 src/ui-bookmark.cc:203
 msgid "New Bookmark"
 msgstr ""
 
-#: src/ui-bookmark.cc:284 src/ui-bookmark.cc:290
+#: src/ui-bookmark.cc:285 src/ui-bookmark.cc:291
 #, fuzzy
 msgid "Edit Bookmark"
 msgstr "Редактори"
 
-#: src/ui-bookmark.cc:305
+#: src/ui-bookmark.cc:306
 #, fuzzy
 msgid "Path:"
 msgstr "Шлях"
 
-#: src/ui-bookmark.cc:314
+#: src/ui-bookmark.cc:315
 msgid "Icon:"
 msgstr ""
 
-#: src/ui-bookmark.cc:320
+#: src/ui-bookmark.cc:321
 #, fuzzy
 msgid "Select icon"
 msgstr "Зняти виділення"
 
-#: src/ui-bookmark.cc:402
+#: src/ui-bookmark.cc:403
 #, fuzzy
 msgid "_Properties..."
 msgstr "/Редагування/Опції..."
 
-#: src/ui-bookmark.cc:408
+#: src/ui-bookmark.cc:409
 #, fuzzy
 msgid "_Remove"
 msgstr "Стерти"
@@ -8149,13 +8154,13 @@ msgstr ""
 "Не можу завантажити:\n"
 "%s"
 
-#: src/ui-pathsel.cc:433
+#: src/ui-pathsel.cc:431
 #, fuzzy, c-format
 msgid "A file with name %s already exists."
 msgstr "Файл з назвою %s вже існує."
 
-#: src/ui-pathsel.cc:434 src/ui-pathsel.cc:440 src/utilops.cc:2445
-#: src/utilops.cc:2472 src/utilops.cc:2934
+#: src/ui-pathsel.cc:432 src/ui-pathsel.cc:438 src/utilops.cc:2441
+#: src/utilops.cc:2468 src/utilops.cc:2930
 #, fuzzy
 msgid "Rename failed"
 msgstr ""
@@ -8163,39 +8168,39 @@ msgstr ""
 "%s\n"
 "в:"
 
-#: src/ui-pathsel.cc:439
+#: src/ui-pathsel.cc:437
 #, c-format
 msgid "Failed to rename %s to %s."
 msgstr "Не вдалося перйменувати %s на %s."
 
-#: src/ui-pathsel.cc:620 src/ui-pathsel.cc:628
+#: src/ui-pathsel.cc:618 src/ui-pathsel.cc:626
 #, fuzzy
 msgid "_Rename"
 msgstr "Перейменувати"
 
-#: src/ui-pathsel.cc:622 src/ui-pathsel.cc:632
+#: src/ui-pathsel.cc:620 src/ui-pathsel.cc:630
 #, fuzzy
 msgid "Add _Bookmark"
 msgstr "Редактори"
 
-#: src/ui-pathsel.cc:960
+#: src/ui-pathsel.cc:958
 msgid "All Files"
 msgstr "Всі файли"
 
-#: src/ui-pathsel.cc:1028 src/utilops.cc:2967
+#: src/ui-pathsel.cc:1026 src/utilops.cc:2963
 #, fuzzy
 msgid "New folder"
 msgstr "Новий каталог..."
 
-#: src/ui-pathsel.cc:1031
+#: src/ui-pathsel.cc:1029
 msgid "Show hidden"
 msgstr "Показати приховані"
 
-#: src/ui-pathsel.cc:1117
+#: src/ui-pathsel.cc:1115
 msgid "Filter:"
 msgstr "Фільтр:"
 
-#: src/ui-pathsel.cc:1124
+#: src/ui-pathsel.cc:1122
 msgid ""
 "File extension.\n"
 "All files: *\n"
@@ -8225,7 +8230,7 @@ msgstr "Всі файли"
 msgid "Drag and Drop failed"
 msgstr ""
 
-#: src/utilops.cc:704
+#: src/utilops.cc:700
 #, fuzzy
 msgid ""
 "\n"
@@ -8235,12 +8240,12 @@ msgstr ""
 " %s\n"
 " Продовжити видалення файлів?"
 
-#: src/utilops.cc:711 src/utilops.cc:1123
+#: src/utilops.cc:707 src/utilops.cc:1119
 #, fuzzy
 msgid "Co_ntinue"
 msgstr "Продовжити"
 
-#: src/utilops.cc:888
+#: src/utilops.cc:884
 #, c-format
 msgid ""
 "Removal of folder contents failed at this file:\n"
@@ -8248,7 +8253,7 @@ msgid ""
 "%s"
 msgstr ""
 
-#: src/utilops.cc:1032
+#: src/utilops.cc:1028
 #, fuzzy, c-format
 msgid ""
 "%s\n"
@@ -8257,195 +8262,195 @@ msgstr ""
 "Не можу видалити файл:\n"
 "%s"
 
-#: src/utilops.cc:1080 src/utilops.cc:1244
+#: src/utilops.cc:1076 src/utilops.cc:1240
 #, fuzzy, c-format
 msgid "%s is not a directory"
 msgstr "Початковий каталог"
 
-#: src/utilops.cc:1100
+#: src/utilops.cc:1096
 #, fuzzy, c-format
 msgid "%s already exists"
 msgstr "Файл з назвою %s вже існує."
 
-#: src/utilops.cc:1121
+#: src/utilops.cc:1117
 msgid "Really continue?"
 msgstr ""
 
-#: src/utilops.cc:1135 src/utilops.cc:1249
+#: src/utilops.cc:1131 src/utilops.cc:1245
 msgid "This operation can't continue:"
 msgstr ""
 
-#: src/utilops.cc:1610 src/utilops.cc:1742 src/utilops.cc:2150
+#: src/utilops.cc:1606 src/utilops.cc:1738 src/utilops.cc:2146
 msgid "Discard changes"
 msgstr ""
 
-#: src/utilops.cc:1611 src/utilops.cc:1743 src/utilops.cc:2100
-#: src/utilops.cc:2116
+#: src/utilops.cc:1607 src/utilops.cc:1739 src/utilops.cc:2096
+#: src/utilops.cc:2112
 #, fuzzy
 msgid "File details"
 msgstr "Фільтр:"
 
-#: src/utilops.cc:1633 src/utilops.cc:1760
+#: src/utilops.cc:1629 src/utilops.cc:1756
 msgid "Sidecars"
 msgstr ""
 
-#: src/utilops.cc:1635
+#: src/utilops.cc:1631
 #, fuzzy
 msgid "Write to file"
 msgstr "Переписати файл"
 
-#: src/utilops.cc:1675
+#: src/utilops.cc:1671
 #, fuzzy
 msgid "Choose the destination folder."
 msgstr "Джерело і ціль співпадають"
 
-#: src/utilops.cc:1686 src/utilops.cc:1690
+#: src/utilops.cc:1682 src/utilops.cc:1686
 #, fuzzy
 msgid "With Rename"
 msgstr "Перейменувати"
 
-#: src/utilops.cc:1762
+#: src/utilops.cc:1758
 #, fuzzy
 msgid "New name"
 msgstr "Перейменувати:"
 
-#: src/utilops.cc:1777
+#: src/utilops.cc:1773
 #, fuzzy
 msgid "Source"
 msgstr "Сортувати"
 
-#: src/utilops.cc:1777
+#: src/utilops.cc:1773
 #, fuzzy
 msgid "Destination"
 msgstr "Невірна ціль"
 
-#: src/utilops.cc:1794
+#: src/utilops.cc:1790
 #, fuzzy
 msgid "Manual rename"
 msgstr "Назва меню"
 
-#: src/utilops.cc:1799
+#: src/utilops.cc:1795
 #, fuzzy
 msgid "Original name:"
 msgstr "Перейменувати:"
 
-#: src/utilops.cc:1802
+#: src/utilops.cc:1798
 #, fuzzy
 msgid "New name:"
 msgstr "Перейменувати:"
 
-#: src/utilops.cc:1815
+#: src/utilops.cc:1811
 #, fuzzy
 msgid "Auto rename"
 msgstr "Назва меню"
 
-#: src/utilops.cc:1821
+#: src/utilops.cc:1817
 msgid "Begin text"
 msgstr ""
 
-#: src/utilops.cc:1829 src/utilops.cc:1861
+#: src/utilops.cc:1825 src/utilops.cc:1857
 msgid "Start #"
 msgstr ""
 
-#: src/utilops.cc:1835
+#: src/utilops.cc:1831
 msgid "End text"
 msgstr ""
 
-#: src/utilops.cc:1843
+#: src/utilops.cc:1839
 msgid "Padding:"
 msgstr ""
 
-#: src/utilops.cc:1848
+#: src/utilops.cc:1844
 msgid "Formatted rename"
 msgstr ""
 
-#: src/utilops.cc:1853
+#: src/utilops.cc:1849
 msgid "Format (* = original name, ## = numbers)"
 msgstr ""
 
-#: src/utilops.cc:2003
+#: src/utilops.cc:1999
 msgid "Another operation in progress.\n"
 msgstr ""
 
-#: src/utilops.cc:2058
+#: src/utilops.cc:2054
 #, fuzzy, c-format
 msgid "File: '%s'\n"
 msgstr "Фільтр:"
 
-#: src/utilops.cc:2063
+#: src/utilops.cc:2059
 msgid "with sidecar files:\n"
 msgstr ""
 
-#: src/utilops.cc:2069
+#: src/utilops.cc:2065
 #, c-format
 msgid " '%s'\n"
 msgstr ""
 
-#: src/utilops.cc:2073
+#: src/utilops.cc:2069
 msgid ""
 "\n"
 "Status: "
 msgstr ""
 
-#: src/utilops.cc:2086
+#: src/utilops.cc:2082
 msgid "no problem detected"
 msgstr ""
 
-#: src/utilops.cc:2102 src/utilops.cc:2149
+#: src/utilops.cc:2098 src/utilops.cc:2145
 #, fuzzy
 msgid "Exclude file"
 msgstr "Видалити файл"
 
-#: src/utilops.cc:2147 src/utilops.cc:2172
+#: src/utilops.cc:2143 src/utilops.cc:2168
 msgid "Overview of changed metadata"
 msgstr ""
 
-#: src/utilops.cc:2165
+#: src/utilops.cc:2161
 #, c-format
 msgid ""
 "The following metadata tags will be written to\n"
 "'%s'."
 msgstr ""
 
-#: src/utilops.cc:2169
+#: src/utilops.cc:2165
 msgid "The following metadata tags will be written to the image file itself."
 msgstr ""
 
-#: src/utilops.cc:2275
+#: src/utilops.cc:2271
 msgid "This will move the following files to the Trash bin"
 msgstr ""
 
-#: src/utilops.cc:2279
+#: src/utilops.cc:2275
 #, fuzzy
 msgid "This will permanently delete the following files"
 msgstr "Невірне ім'я файлу"
 
-#: src/utilops.cc:2282
+#: src/utilops.cc:2278
 #, fuzzy
 msgid "Delete files?"
 msgstr "Видалити файл"
 
-#: src/utilops.cc:2302
+#: src/utilops.cc:2298
 msgid "Can't write metadata"
 msgstr ""
 
-#: src/utilops.cc:2325
+#: src/utilops.cc:2321
 msgid "Write metadata"
 msgstr ""
 
-#: src/utilops.cc:2326
+#: src/utilops.cc:2322
 msgid "Write metadata?"
 msgstr ""
 
-#: src/utilops.cc:2327
+#: src/utilops.cc:2323
 msgid "This will write the changed metadata into the following files"
 msgstr ""
 
-#: src/utilops.cc:2329
+#: src/utilops.cc:2325
 msgid "Metadata writing failed"
 msgstr ""
 
-#: src/utilops.cc:2348 src/utilops.cc:2376
+#: src/utilops.cc:2344 src/utilops.cc:2372
 #, fuzzy
 msgid "Move failed"
 msgstr ""
@@ -8453,7 +8458,7 @@ msgstr ""
 "%s\n"
 "в:"
 
-#: src/utilops.cc:2373
+#: src/utilops.cc:2369
 #, fuzzy
 msgid "Move files?"
 msgstr ""
@@ -8461,11 +8466,11 @@ msgstr ""
 "%s\n"
 "в:"
 
-#: src/utilops.cc:2374
+#: src/utilops.cc:2370
 msgid "This will move the following files"
 msgstr ""
 
-#: src/utilops.cc:2398 src/utilops.cc:2426
+#: src/utilops.cc:2394 src/utilops.cc:2422
 #, fuzzy
 msgid "Copy failed"
 msgstr ""
@@ -8473,7 +8478,7 @@ msgstr ""
 "%s\n"
 "в:"
 
-#: src/utilops.cc:2423
+#: src/utilops.cc:2419
 #, fuzzy
 msgid "Copy files?"
 msgstr ""
@@ -8481,11 +8486,11 @@ msgstr ""
 "%s\n"
 "в:"
 
-#: src/utilops.cc:2424 src/utilops.cc:2558
+#: src/utilops.cc:2420 src/utilops.cc:2554
 msgid "This will copy the following files"
 msgstr ""
 
-#: src/utilops.cc:2469
+#: src/utilops.cc:2465
 #, fuzzy
 msgid "Rename files?"
 msgstr ""
@@ -8493,53 +8498,53 @@ msgstr ""
 "%s\n"
 "в:"
 
-#: src/utilops.cc:2470
+#: src/utilops.cc:2466
 msgid "This will rename the following files"
 msgstr ""
 
-#: src/utilops.cc:2522
+#: src/utilops.cc:2518
 msgid "Can't run external editor"
 msgstr ""
 
-#: src/utilops.cc:2556
+#: src/utilops.cc:2552
 #, fuzzy
 msgid "Editor"
 msgstr "Редактори"
 
-#: src/utilops.cc:2557
+#: src/utilops.cc:2553
 #, fuzzy
 msgid "Run editor?"
 msgstr "Видалити файли"
 
-#: src/utilops.cc:2560
+#: src/utilops.cc:2556
 #, fuzzy
 msgid "External command failed"
 msgstr "Дозволити клавішу Delete"
 
-#: src/utilops.cc:2729 src/utilops.cc:2799
+#: src/utilops.cc:2725 src/utilops.cc:2795
 #, fuzzy
 msgid "Delete folder"
 msgstr "Зняти виділення"
 
-#: src/utilops.cc:2730
+#: src/utilops.cc:2726
 #, fuzzy
 msgid "Delete symbolic link?"
 msgstr ""
 "Не можу створити каталог:\n"
 "%s"
 
-#: src/utilops.cc:2732
+#: src/utilops.cc:2728
 msgid ""
 "This will delete the symbolic link.\n"
 "The folder this link points to will not be deleted."
 msgstr ""
 
-#: src/utilops.cc:2733
+#: src/utilops.cc:2729
 #, fuzzy
 msgid "Link deletion failed"
 msgstr "Видалення фала не вдалося"
 
-#: src/utilops.cc:2743
+#: src/utilops.cc:2739
 #, fuzzy, c-format
 msgid ""
 "Unable to remove folder %s\n"
@@ -8549,19 +8554,19 @@ msgstr ""
 "%s\n"
 "в самого себе."
 
-#: src/utilops.cc:2754 src/utilops.cc:2809
+#: src/utilops.cc:2750 src/utilops.cc:2805
 #, fuzzy, c-format
 msgid "Unable to list contents of folder %s"
 msgstr ""
 "Не можу створити каталог:\n"
 "%s"
 
-#: src/utilops.cc:2768 src/utilops.cc:2775
+#: src/utilops.cc:2764 src/utilops.cc:2771
 #, fuzzy
 msgid "Folder contains subfolders"
 msgstr "Невірне ім'я файлу"
 
-#: src/utilops.cc:2772
+#: src/utilops.cc:2768
 #, c-format
 msgid ""
 "Unable to delete the folder:\n"
@@ -8571,28 +8576,28 @@ msgid ""
 "This folder contains subfolders which must be moved before it can be deleted."
 msgstr ""
 
-#: src/utilops.cc:2779
+#: src/utilops.cc:2775
 #, fuzzy
 msgid "Subfolders:"
 msgstr "Файли"
 
-#: src/utilops.cc:2800
+#: src/utilops.cc:2796
 #, fuzzy
 msgid "Delete folder?"
 msgstr "Видалити файл"
 
-#: src/utilops.cc:2801
+#: src/utilops.cc:2797
 #, fuzzy
 msgid "The folder contains these files:"
 msgstr "Невірне ім'я файлу"
 
-#: src/utilops.cc:2802
+#: src/utilops.cc:2798
 msgid ""
 "This will delete the folder.\n"
 "The contents of this folder will also be deleted."
 msgstr ""
 
-#: src/utilops.cc:2931
+#: src/utilops.cc:2927
 #, fuzzy
 msgid "Rename folder?"
 msgstr ""
@@ -8600,22 +8605,22 @@ msgstr ""
 "%s\n"
 "в:"
 
-#: src/utilops.cc:2932
+#: src/utilops.cc:2928
 #, fuzzy
 msgid "The folder contains the following files"
 msgstr "Невірне ім'я файлу"
 
-#: src/utilops.cc:2975
+#: src/utilops.cc:2971
 #, fuzzy
 msgid "Create Folder"
 msgstr "Зняти виділення"
 
-#: src/utilops.cc:2976
+#: src/utilops.cc:2972
 #, fuzzy
 msgid "Create folder?"
 msgstr "Видалити файл"
 
-#: src/utilops.cc:2979
+#: src/utilops.cc:2975
 #, fuzzy
 msgid "Can't create folder"
 msgstr "Не можу створити каталог"
@@ -8724,7 +8729,7 @@ msgstr "Зняти виділення"
 msgid "Loading meta..."
 msgstr "Завантаження піктограм..."
 
-#: src/view-file/view-file-icon.cc:2137 src/view-file/view-file-list.cc:908
+#: src/view-file/view-file-icon.cc:2131 src/view-file/view-file-list.cc:908
 msgid " [NO GROUPING]"
 msgstr ""
 
@@ -8741,12 +8746,12 @@ msgstr ""
 msgid "Error renaming file"
 msgstr "Помилка при перейменуванні файла"
 
-#: src/view-file/view-file-list.cc:2200
+#: src/view-file/view-file-list.cc:2179
 #, fuzzy
 msgid "NameStars"
 msgstr "Назва"
 
-#: src/view-file/view-file-list.cc:2204
+#: src/view-file/view-file-list.cc:2183
 msgid "Stars"
 msgstr ""
 
