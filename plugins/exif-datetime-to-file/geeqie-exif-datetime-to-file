@@ -1,0 +1,59 @@
+#!/bin/sh
+
+## @file
+## @brief Sets file mtime to the Exif.Image.DateTime of the file
+##
+## $@ List of files to be processed
+##
+## Requires exiv2 or exiftool
+##
+
+if [ -z "$(command -v exiv2)" ]
+then
+	if [ -z "$(command -v exiftool)" ]
+	then
+		zenity --title="Geeqie exif datetime to file" --info --width=200 --text="Neither exiv2 nor exiftran is installed" --window-icon=/usr/local/share/pixmaps/geeqie.png 2> /dev/null
+		exit 1
+	else
+		use_exiv2=false
+	fi
+else
+	use_exiv2=true
+fi
+
+if ! zenity --title="Geeqie - exif datetime to file" --question --text "Set file datetime (mtime) to  Exif.Image.DateTime\n\nContinue?" --width=300 --window-icon=/usr/local/share/pixmaps/geeqie.png
+then
+	exit 0
+fi
+
+# exiv2 should be faster
+if [ "$use_exiv2" = "true" ]
+then
+	while [ $# -gt 0 ]
+	do
+		if date_time=$(exiv2 -g Exif.Image.DateTime -Pv "$1")
+		then
+			y_m_d_h_m_s=$(echo "$date_time" | tr ' ' ':')
+			y_m_d_h_m=$(echo "$y_m_d_h_m_s" | cut --delimiter ':' --fields '1 2 3 4 5' | tr --delete ':')
+			s=$(echo "$y_m_d_h_m_s" | cut --delimiter ':' --fields '6')
+			touch -m -t "$y_m_d_h_m.$s" "$1"
+		else
+			printf "Geeqie plugin exif-datetime-to-file -\nFile: %s does not have Exif.Image.DateTime\n" "$1"
+		fi
+		shift
+	done
+else
+	while [ $# -gt 0 ]
+	do
+		if date_time=$(exiftool -t -createdate "$1")
+		then
+			y_m_d_h_m_s=$(echo "$date_time" | cut --characters '13-31' | tr ' ' ':')
+			y_m_d_h_m=$(echo "$y_m_d_h_m_s" | cut --delimiter ':' --fields '1 2 3 4 5' | tr --delete ':')
+			s=$(echo "$y_m_d_h_m_s" | cut --delimiter ':' --fields '6')
+			touch -m -t "$y_m_d_h_m.$s" "$1"
+		else
+			printf "Geeqie plugin exif-datetime-to-file -\nFile: %s does not have Exif.Image.DateTime\n" "$1"
+		fi
+		shift
+	done
+fi

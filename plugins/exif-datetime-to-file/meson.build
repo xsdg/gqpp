@@ -11,24 +11,12 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #
 
-subdir('camera-import')
-subdir('exif-datetime-to-file')
-subdir('export-jpeg')
-subdir('geocode-parameters')
-subdir('image-crop')
-subdir('lens')
-subdir('open-with')
-subdir('random-image')
-subdir('resize-image')
-subdir('rotate')
-subdir('symlink')
-subdir('tethered-photography')
-subdir('video-player')
+install_data('geeqie-exif-datetime-to-file', install_dir : gq_bindir)
 
 i18n.merge_file(
-    input : 'org.geeqie.template.desktop.in',
-    output : 'org.geeqie.template.desktop',
+    input : 'org.geeqie.exif-datetime-to-file.desktop.in',
+    output : 'org.geeqie.exif-datetime-to-file.desktop',
     type : 'desktop',
     po_dir : podir,
     install : true,
-    install_dir : appdir)
+    install_dir : desktopdir)

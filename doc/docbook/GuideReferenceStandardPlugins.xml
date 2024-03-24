@@ -30,6 +30,19 @@
       menu.
     </para>
   </section>
+  <section id="Exifdatetimetofile">
+    <title>Exif datetime to file</title>
+    <para>
+      Sets the file datetime (mtime) to the Exif.Image.DateTimeOriginal value. If the exif tag does not exist, no action is taken.
+      <para />
+      This may be useful if you wish to sort on Exif.Image.DateTimeOriginal. This requires that the metadata for all files in the folder must be read each time. This is time consuming. If this operation is carried out when images are imported from the camera, future sorting can utilize file datetime which will be much faster.
+    </para>
+    <para>
+      This item is displayed in the
+      <emphasis role="strong">Plugins</emphasis>
+      menu.
+    </para>
+  </section>
   <section id="Exportjpeg">
     <title>Export jpeg</title>
     <para>
