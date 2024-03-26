@@ -1333,8 +1333,7 @@ static LayoutWindow *view_new_layout_with_fd(FileData *fd)
 {
 	LayoutWindow *nw;
 
-	nw = layout_new(nullptr, nullptr);
-	layout_sort_set_files(nw, nw->options.file_view_list_sort.method, nw->options.file_view_list_sort.ascend, nw->options.file_view_list_sort.case_sensitive);
+	nw = layout_new_from_default();
 	layout_set_fd(nw, fd);
 	return nw;
 }
@@ -1352,9 +1351,15 @@ static void view_set_layout_path_cb(GtkWidget *, gpointer data)
 
 	lw = layout_find_by_image_fd(imd);
 	if (lw)
+		{
 		layout_set_fd(lw, imd->image_fd);
+		gtk_window_present(GTK_WINDOW(lw->window));
+		}
 	else
+		{
 		view_new_layout_with_fd(imd->image_fd);
+		}
+
 	view_window_close(vw);
 }
 
