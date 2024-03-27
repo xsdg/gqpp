@@ -63,7 +63,7 @@ enum MetadataKey {
 /**
  *  @brief Tags that will be written to all files in a group - selected by: options->metadata.sync_grouped_files, Preferences/Metadata/Write The Same Description Tags To All Grouped Sidecars
  */
-constexpr std::array<const gchar *, 21> group_keys{
+constexpr std::array<const gchar *, 22> group_keys{
 	"Xmp.dc.title",
 	"Xmp.photoshop.Urgency",
 	"Xmp.photoshop.Category",
@@ -85,6 +85,7 @@ constexpr std::array<const gchar *, 21> group_keys{
 	"Xmp.dc.rights",
 	"Xmp.dc.description",
 	"Xmp.photoshop.CaptionWriter",
+	"Xmp.xmp.Rating",
 };
 
 inline gboolean is_keywords_separator(gchar c)
