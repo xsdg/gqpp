@@ -1630,7 +1630,16 @@ static void options_parse_layout(GQParserData *parser_data, GMarkupParseContext 
 		}
 	else if (g_ascii_strcasecmp(element_name, "bar_sort") == 0)
 		{
-		bar_sort_cold_start(lw, attribute_names, attribute_values);
+		if (g_list_length(layout_window_list) == 1)
+			{
+			bar_sort_cold_start(lw, attribute_names, attribute_values);
+			}
+		else
+			{
+			GtkWidget *bar = bar_sort_new_from_config(lw, attribute_names, attribute_values);
+			layout_bar_sort_set(lw, bar);
+			gtk_widget_show(lw->bar_sort);
+			}
 		options_parse_func_push(parser_data, options_parse_leaf, nullptr, nullptr);
 		}
 	else if (g_ascii_strcasecmp(element_name, "toolbar") == 0)
