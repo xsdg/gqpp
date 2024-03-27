@@ -235,6 +235,7 @@
         echo $GEEQIE_DESTINATION
         done
       </programlisting>
+      <note>A restart of Geeqie is required for this plugin to be registered</note>
     </para>
     <para>
       If you want to run a plugin in full-screen mode and wish full-screen to be maintained, include the following entry in the desktop file:

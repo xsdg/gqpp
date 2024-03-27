@@ -54,6 +54,7 @@ OnlyShowIn=X-Geeqie;
 # This is a filter - see symlink.desktop and geeqie-symlink for an example
 # of how to use this feature, or see the Additional Preferences/Plugins
 # section of the Help file.
+# A restart of Geeqie is required for this plugin to be registered.
 #X-Geeqie-Filter=true
 
 # Terminal output from the plugin command can be displayed:
