@@ -126,7 +126,6 @@ ImageLoaderWEBP::~ImageLoaderWEBP()
 
 std::unique_ptr<ImageLoaderBackend> get_image_loader_backend_webp()
 {
-	DEBUG_0("        "     );
 	return std::make_unique<ImageLoaderWEBP>();
 }
 

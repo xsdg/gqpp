@@ -724,7 +724,7 @@ FileData *file_data_ref(FileData *fd)
  * Print image ref. count and full path name of all images in
  * the file_data_pool.
  *
- * Used only by DEBUG_FD()
+ * Used only by debug_fd()
  */
 void file_data_dump()
 {
