@@ -25,6 +25,8 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 
+#include "image-overlay.h"
+
 struct ImageWindow;
 
 struct FullScreenData
@@ -39,6 +41,7 @@ struct FullScreenData
 	guint busy_mouse_id; /**< event source id */
 
 	gint cursor_state;
+OsdShowFlags osd_flags;
 
 	guint saver_block_id; /**< event source id */
 

@@ -105,6 +105,7 @@ struct ConfOptions
 	gboolean collections_duplicates;
 	gboolean collections_on_top;
 	gboolean hide_window_in_fullscreen;
+	gboolean hide_osd_in_fullscreen;
 
 	gchar *help_search_engine;
 

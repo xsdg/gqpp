@@ -400,6 +400,7 @@ static void write_global_attributes(GString *outstr, gint indent)
 	WRITE_NL(); WRITE_BOOL(*options, collections_duplicates);
 	WRITE_NL(); WRITE_BOOL(*options, collections_on_top);
 	WRITE_NL(); WRITE_BOOL(*options, hide_window_in_fullscreen);
+	WRITE_NL(); WRITE_BOOL(*options, hide_osd_in_fullscreen);
 
 	WRITE_NL(); WRITE_BOOL(*options, selectable_bars.menu_bar);
 	WRITE_NL(); WRITE_BOOL(*options, selectable_bars.status_bar);
@@ -905,6 +906,7 @@ static gboolean load_global_params(const gchar **attribute_names, const gchar **
 		if (READ_BOOL(*options, collections_duplicates)) continue;
 		if (READ_BOOL(*options, collections_on_top)) continue;
 		if (READ_BOOL(*options, hide_window_in_fullscreen)) continue;
+		if (READ_BOOL(*options, hide_osd_in_fullscreen)) continue;
 
 		if (READ_BOOL(*options, selectable_bars.menu_bar)) continue;
 		if (READ_BOOL(*options, selectable_bars.status_bar)) continue;

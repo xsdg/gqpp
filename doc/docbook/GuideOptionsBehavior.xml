@@ -182,6 +182,22 @@
       </varlistentry>
       <varlistentry>
         <term>
+          <guilabel>Hide window in fullscreen</guilabel>
+        </term>
+        <listitem>
+          <para>When alt-tabbing, prevent Geeqie window showing twice.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <guilabel>Hide OSD in fullscreen</guilabel>
+        </term>
+        <listitem>
+          <para>Hide Overlay Screen Display in fullscreen mode.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
           <guilabel>Recent folder list maximum size</guilabel>
         </term>
         <listitem>

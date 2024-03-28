@@ -458,6 +458,12 @@ FullScreenData *fullscreen_start(GtkWidget *window, ImageWindow *imd,
 
 	fs->cursor_state = FULLSCREEN_CURSOR_HIDDEN;
 
+	fs->osd_flags = image_osd_get(imd);
+	if (options->hide_osd_in_fullscreen)
+		{
+		image_osd_set(imd, OSD_SHOW_NOTHING);
+		}
+
 	fs->normal_window = window;
 	fs->normal_imd = imd;
 
@@ -581,6 +587,11 @@ FullScreenData *fullscreen_start(GtkWidget *window, ImageWindow *imd,
 void fullscreen_stop(FullScreenData *fs)
 {
 	if (!fs) return;
+
+	if (options->hide_osd_in_fullscreen)
+		{
+		image_osd_set(fs->normal_imd, fs->osd_flags);
+		}
 
 	if (fs->saver_block_id) g_source_remove(fs->saver_block_id);
 

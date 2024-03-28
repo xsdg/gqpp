@@ -95,6 +95,7 @@ ConfOptions *init_options(ConfOptions *options)
 	options->collections_duplicates = FALSE;
 	options->collections_on_top = FALSE;
 	options->hide_window_in_fullscreen = TRUE;
+	options->hide_osd_in_fullscreen = FALSE;
 
 	memset(&options->image.border_color, 0, sizeof(options->image.border_color));
 	memset(&options->image.alpha_color_1, 0, sizeof(options->image.alpha_color_1));

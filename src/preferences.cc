@@ -496,6 +496,7 @@ static void config_window_apply()
 	options->collections_duplicates = c_options->collections_duplicates;
 	options->collections_on_top = c_options->collections_on_top;
 	options->hide_window_in_fullscreen = c_options->hide_window_in_fullscreen;
+	options->hide_osd_in_fullscreen = c_options->hide_osd_in_fullscreen;
 	config_entry_to_option(help_search_engine_entry, &options->help_search_engine, nullptr);
 
 	options->external_preview.enable = c_options->external_preview.enable;
@@ -3555,6 +3556,7 @@ static void config_tab_behavior(GtkWidget *notebook)
 	GtkWidget *with_rename;
 	GtkWidget *collections_on_top;
 	GtkWidget *hide_window_in_fullscreen;
+	GtkWidget *hide_osd_in_fullscreen;
 	GtkWidget *checkbox;
 	GtkWidget *tmp;
 
@@ -3647,6 +3649,10 @@ static void config_tab_behavior(GtkWidget *notebook)
 	hide_window_in_fullscreen = pref_checkbox_new_int(group, _("Hide window in fullscreen"),
 				options->hide_window_in_fullscreen, &c_options->hide_window_in_fullscreen);
 	gtk_widget_set_tooltip_text(hide_window_in_fullscreen,"When alt-tabbing, prevent Geeqie window showing twice");
+
+	hide_osd_in_fullscreen = pref_checkbox_new_int(group, _("Hide OSD in fullscreen"),
+				options->hide_osd_in_fullscreen, &c_options->hide_osd_in_fullscreen);
+	gtk_widget_set_tooltip_text(hide_osd_in_fullscreen,"Hide Overlay Screen Display in fullscreen mode");
 
 	pref_spin_new_int(group, _("Recent folder list maximum size"), nullptr,
 			  1, 50, 1, options->open_recent_list_maxsize, &c_options->open_recent_list_maxsize);
