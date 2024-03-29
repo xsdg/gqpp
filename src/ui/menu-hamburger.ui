@@ -57,6 +57,7 @@
         <separator/>
         <menuitem action="CopyPath"/>
         <menuitem action="CopyPathUnquoted"/>
+        <menuitem action="CutPath"/>
         <placeholder name="ClipboardSection"/>
         <separator/>
         <menuitem action="ShowMarks"/>

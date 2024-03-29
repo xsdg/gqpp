@@ -496,7 +496,7 @@
       <varlistentry>
         <term>
           <menuchoice>
-            <guimenu>Copy path</guimenu>
+            <guimenu>Copy to clipboard</guimenu>
           </menuchoice>
         </term>
         <listitem>
@@ -513,11 +513,27 @@
       <varlistentry>
         <term>
           <menuchoice>
-            <guimenu>Copy path unquoted</guimenu>
+            <guimenu>Copy to clipboard (unquoted)</guimenu>
           </menuchoice>
         </term>
         <listitem>
           <para>Copy selected item-path(s) to clipboard. The data will not be enclosed in quotes.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo>
+                <keycap>Ctrl</keycap>
+                <keycap>X</keycap>
+              </keycombo>
+            </shortcut>
+            <guimenu>Cut to clipboard</guimenu>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Perform a standard control-X operation.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

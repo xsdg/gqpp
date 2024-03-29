@@ -791,14 +791,14 @@ static void collection_table_popup_copy_path_cb(GtkWidget *, gpointer data)
 {
 	auto ct = static_cast<CollectTable *>(data);
 
-	file_util_copy_path_list_to_clipboard(collection_table_popup_file_list(ct), TRUE);
+	file_util_path_list_to_clipboard(collection_table_popup_file_list(ct), TRUE, TRUE);
 }
 
 static void collection_table_popup_copy_path_unquoted_cb(GtkWidget *, gpointer data)
 {
 	auto ct = static_cast<CollectTable *>(data);
 
-	file_util_copy_path_list_to_clipboard(collection_table_popup_file_list(ct), FALSE);
+	file_util_path_list_to_clipboard(collection_table_popup_file_list(ct), FALSE, TRUE);
 }
 
 static void collection_table_popup_sort_cb(GtkWidget *widget, gpointer data)

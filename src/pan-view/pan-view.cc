@@ -2262,7 +2262,7 @@ static void pan_copy_path_cb(GtkWidget *, gpointer data)
 	FileData *fd;
 
 	fd = pan_menu_click_fd(pw);
-	if (fd) file_util_copy_path_to_clipboard(fd, TRUE);
+	if (fd) file_util_copy_path_to_clipboard(fd, TRUE, TRUE);
 }
 
 static void pan_copy_path_unquoted_cb(GtkWidget *, gpointer data)
@@ -2271,7 +2271,7 @@ static void pan_copy_path_unquoted_cb(GtkWidget *, gpointer data)
 	FileData *fd;
 
 	fd = pan_menu_click_fd(pw);
-	if (fd) file_util_copy_path_to_clipboard(fd, FALSE);
+	if (fd) file_util_copy_path_to_clipboard(fd, FALSE, TRUE);
 }
 
 static void pan_exif_date_toggle_cb(GtkWidget *widget, gpointer data)
@@ -2406,9 +2406,9 @@ static GtkWidget *pan_popup_menu(PanWindow *pw)
 				G_CALLBACK(pan_move_cb), pw);
 	menu_item_add_sensitive(menu, _("_Rename..."), active,
 				G_CALLBACK(pan_rename_cb), pw);
-	menu_item_add_sensitive(menu, _("_Copy path to clipboard"), active,
+	menu_item_add_sensitive(menu, _("_Copy to clipboard"), active,
 				G_CALLBACK(pan_copy_path_cb), pw);
-	menu_item_add_sensitive(menu, _("_Copy path unquoted to clipboard"), active,
+	menu_item_add_sensitive(menu, _("_Copy to clipboard (unquoted)"), active,
 				G_CALLBACK(pan_copy_path_unquoted_cb), pw);
 
 	menu_item_add_divider(menu);

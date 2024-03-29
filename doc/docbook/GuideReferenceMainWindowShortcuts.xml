@@ -36,6 +36,7 @@ keyboard shortcuts
 <row> <entry> <code> <keycap> Shift + KP_Subtract </keycap> </code> </entry> <entry> Connected Zoom out </entry> </row>
 <row> <entry> <code> <keycap> underscore </keycap> </code> </entry> <entry> Connected Zoom out </entry> </row>
 <row> <entry> <code> <keycap> Ctrl + C </keycap> </code> </entry> <entry> Copy </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + X </keycap> </code> </entry> <entry> Cut to clipboard </entry> </row>
 <row> <entry> <code> <keycap> Delete </keycap> </code> </entry> <entry> Move to Trash </entry> </row>
 <row> <entry> <code> <keycap> KP_Delete </keycap> </code> </entry> <entry> Move to Trash </entry> </row>
 <row> <entry> <code> <keycap> Ctrl + D </keycap> </code> </entry> <entry> Move to Trash </entry> </row>

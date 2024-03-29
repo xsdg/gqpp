@@ -121,6 +121,7 @@ struct ClipboardData
 {
 	GList *path_list; /**< g_strdup(fd->path) */
 	gboolean quoted;
+	gboolean action_copy;
 };
 
 /*
@@ -3188,7 +3189,7 @@ static void clipboard_get_func(GtkClipboard *clipboard, GtkSelectionData *select
 
 	if (clipboard == gtk_clipboard_get(GDK_SELECTION_CLIPBOARD) && info == CLIPBOARD_X_SPECIAL_GNOME_COPIED_FILES)
 		{
-		g_string_append(path_list_str, "copy");
+		g_string_append(path_list_str, cbd->action_copy ? "copy" : "cut");
 
 		while (work)
 			{
@@ -3247,7 +3248,15 @@ static void clipboard_clear_func(GtkClipboard *, gpointer data)
 	g_free(cbd);
 }
 
-void file_util_copy_path_to_clipboard(FileData *fd, gboolean quoted)
+/**
+ * @brief
+ * @param fd
+ * @param quoted
+ * @param action_copy True: action is "copy". False: action is "cut"
+ *
+ *
+ */
+void file_util_copy_path_to_clipboard(FileData *fd, gboolean quoted, gboolean action_copy)
 {
 	ClipboardData *cbd;
 
@@ -3259,6 +3268,7 @@ void file_util_copy_path_to_clipboard(FileData *fd, gboolean quoted)
 		cbd = g_new0(ClipboardData, 1);
 		cbd->path_list = nullptr;
 		cbd->quoted = quoted;
+		cbd->action_copy = action_copy;
 		cbd->path_list = g_list_append(cbd->path_list, g_strdup(fd->path));
 
 		gtk_clipboard_set_with_data(gtk_clipboard_get(GDK_SELECTION_PRIMARY), target_types, target_types_n, clipboard_get_func, clipboard_clear_func, cbd);
@@ -3269,6 +3279,7 @@ void file_util_copy_path_to_clipboard(FileData *fd, gboolean quoted)
 		cbd = g_new0(ClipboardData, 1);
 		cbd->path_list = nullptr;
 		cbd->quoted = quoted;
+		cbd->action_copy = action_copy;
 		cbd->path_list = g_list_append(cbd->path_list, g_strdup(fd->path));
 
 		gtk_clipboard_set_with_data(gtk_clipboard_get(GDK_SELECTION_CLIPBOARD), target_types, target_types_n, clipboard_get_func, clipboard_clear_func, cbd);
@@ -3279,10 +3290,11 @@ void file_util_copy_path_to_clipboard(FileData *fd, gboolean quoted)
  * @brief
  * @param fd_list List of fd
  * @param quoted
+ * @param action_copy True: action is "copy". False: action is "cut"
  *
  *
  */
-void file_util_copy_path_list_to_clipboard(GList *fd_list, gboolean quoted)
+void file_util_path_list_to_clipboard(GList *fd_list, gboolean quoted, gboolean action_copy)
 {
 	ClipboardData *cbd;
 	FileData *fd;
@@ -3293,6 +3305,7 @@ void file_util_copy_path_list_to_clipboard(GList *fd_list, gboolean quoted)
 		cbd = g_new0(ClipboardData, 1);
 		cbd->path_list = nullptr;
 		cbd->quoted = quoted;
+		cbd->action_copy = action_copy;
 		work = fd_list;
 
 		while (work)
@@ -3313,6 +3326,7 @@ void file_util_copy_path_list_to_clipboard(GList *fd_list, gboolean quoted)
 		cbd = g_new0(ClipboardData, 1);
 		cbd->path_list = nullptr;
 		cbd->quoted = quoted;
+		cbd->action_copy = action_copy;
 		work = fd_list;
 
 		while (work)

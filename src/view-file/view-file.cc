@@ -441,14 +441,21 @@ static void vf_pop_menu_copy_path_cb(GtkWidget *, gpointer data)
 {
 	auto vf = static_cast<ViewFile *>(data);
 
-	file_util_copy_path_list_to_clipboard(vf_pop_menu_file_list(vf), TRUE);
+	file_util_path_list_to_clipboard(vf_pop_menu_file_list(vf), TRUE, TRUE);
 }
 
 static void vf_pop_menu_copy_path_unquoted_cb(GtkWidget *, gpointer data)
 {
 	auto vf = static_cast<ViewFile *>(data);
 
-	file_util_copy_path_list_to_clipboard(vf_pop_menu_file_list(vf), FALSE);
+	file_util_path_list_to_clipboard(vf_pop_menu_file_list(vf), FALSE, TRUE);
+}
+
+static void vf_pop_menu_cut_path_cb(GtkWidget *, gpointer data)
+{
+	auto vf = static_cast<ViewFile *>(data);
+
+	file_util_path_list_to_clipboard(vf_pop_menu_file_list(vf), FALSE, FALSE);
 }
 
 static void vf_pop_menu_enable_grouping_cb(GtkWidget *, gpointer data)
@@ -720,10 +727,12 @@ GtkWidget *vf_pop_menu(ViewFile *vf)
 				G_CALLBACK(vf_pop_menu_move_cb), vf);
 	menu_item_add_sensitive(menu, _("_Rename..."), active,
 				G_CALLBACK(vf_pop_menu_rename_cb), vf);
-	menu_item_add_sensitive(menu, _("_Copy path to clipboard"), active,
+	menu_item_add_sensitive(menu, _("_Copy to clipboard"), active,
 				G_CALLBACK(vf_pop_menu_copy_path_cb), vf);
-	menu_item_add_sensitive(menu, _("_Copy path unquoted to clipboard"), active,
+	menu_item_add_sensitive(menu, _("_Copy to clipboard (unquoted)"), active,
 				G_CALLBACK(vf_pop_menu_copy_path_unquoted_cb), vf);
+	menu_item_add_sensitive(menu, _("_Cut to clipboard"), active,
+				G_CALLBACK(vf_pop_menu_cut_path_cb), vf);
 	menu_item_add_divider(menu);
 	menu_item_add_icon_sensitive(menu,
 				options->file_ops.confirm_move_to_trash ? _("Move to Trash...") :

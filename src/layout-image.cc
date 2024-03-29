@@ -598,14 +598,21 @@ static void li_pop_menu_copy_path_cb(GtkWidget *, gpointer data)
 {
 	auto lw = static_cast<LayoutWindow *>(data);
 
-	file_util_copy_path_to_clipboard(layout_image_get_fd(lw), TRUE);
+	file_util_copy_path_to_clipboard(layout_image_get_fd(lw), TRUE, TRUE);
 }
 
 static void li_pop_menu_copy_path_unquoted_cb(GtkWidget *, gpointer data)
 {
 	auto lw = static_cast<LayoutWindow *>(data);
 
-	file_util_copy_path_to_clipboard(layout_image_get_fd(lw), FALSE);
+	file_util_copy_path_to_clipboard(layout_image_get_fd(lw), FALSE, TRUE);
+}
+
+static void li_pop_menu_cut_path_cb(GtkWidget *, gpointer data)
+{
+	auto lw = static_cast<LayoutWindow *>(data);
+
+	file_util_copy_path_to_clipboard(layout_image_get_fd(lw), FALSE, FALSE);
 }
 
 #if HAVE_GTK4
@@ -845,9 +852,10 @@ static GtkWidget *layout_image_pop_menu(LayoutWindow *lw)
 	if (!path) gtk_widget_set_sensitive(item, FALSE);
 	item = menu_item_add(menu, _("_Rename..."), G_CALLBACK(li_pop_menu_rename_cb), lw);
 	if (!path) gtk_widget_set_sensitive(item, FALSE);
-	item = menu_item_add(menu, _("_Copy path to clipboard"), G_CALLBACK(li_pop_menu_copy_path_cb), lw);
-	item = menu_item_add(menu, _("_Copy path unquoted to clipboard"), G_CALLBACK(li_pop_menu_copy_path_unquoted_cb), lw);
+	item = menu_item_add(menu, _("_Copy to clipboard"), G_CALLBACK(li_pop_menu_copy_path_cb), lw);
+	item = menu_item_add(menu, _("_Copy to clipboard (unquoted)"), G_CALLBACK(li_pop_menu_copy_path_unquoted_cb), lw);
 	item = menu_item_add(menu, _("Copy _image to clipboard"), G_CALLBACK(li_pop_menu_copy_image_cb), lw);
+	item = menu_item_add(menu, _("Cut to clipboard"), G_CALLBACK(li_pop_menu_cut_path_cb), lw);
 	if (!path) gtk_widget_set_sensitive(item, FALSE);
 	menu_item_add_divider(menu);
 

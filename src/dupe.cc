@@ -3419,14 +3419,14 @@ static void dupe_menu_copy_path_cb(GtkWidget *, gpointer data)
 {
 	auto dw = static_cast<DupeWindow *>(data);
 
-	file_util_copy_path_list_to_clipboard(dupe_listview_get_selection(dw, dw->listview), TRUE);
+	file_util_path_list_to_clipboard(dupe_listview_get_selection(dw, dw->listview), TRUE, TRUE);
 }
 
 static void dupe_menu_copy_path_unquoted_cb(GtkWidget *, gpointer data)
 {
 	auto dw = static_cast<DupeWindow *>(data);
 
-	file_util_copy_path_list_to_clipboard(dupe_listview_get_selection(dw, dw->listview), FALSE);
+	file_util_path_list_to_clipboard(dupe_listview_get_selection(dw, dw->listview), FALSE, TRUE);
 }
 
 static void dupe_menu_remove_cb(GtkWidget *, gpointer data)

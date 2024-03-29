@@ -593,7 +593,7 @@ static void vd_pop_menu_copy_path_cb(GtkWidget *, gpointer data)
 
 	if (!vd->click_fd) return;
 
-	file_util_copy_path_to_clipboard(vd->click_fd, TRUE);
+	file_util_copy_path_to_clipboard(vd->click_fd, TRUE, TRUE);
 }
 
 static void vd_pop_menu_copy_path_unquoted_cb(GtkWidget *, gpointer data)
@@ -602,7 +602,16 @@ static void vd_pop_menu_copy_path_unquoted_cb(GtkWidget *, gpointer data)
 
 	if (!vd->click_fd) return;
 
-	file_util_copy_path_to_clipboard(vd->click_fd, FALSE);
+	file_util_copy_path_to_clipboard(vd->click_fd, FALSE, TRUE);
+}
+
+static void vd_pop_menu_cut_path_cb(GtkWidget *, gpointer data)
+{
+	auto vd = static_cast<ViewDir *>(data);
+
+	if (!vd->click_fd) return;
+
+	file_util_copy_path_to_clipboard(vd->click_fd, FALSE, FALSE);
 }
 
 static void vd_pop_submenu_dir_view_as_cb(GtkWidget *widget, gpointer data)
@@ -810,11 +819,14 @@ GtkWidget *vd_pop_menu(ViewDir *vd, FileData *fd)
 	menu_item_add_sensitive(menu, _("_Rename..."), rename_delete_active,
 				G_CALLBACK(vd_pop_menu_rename_cb), vd);
 
-	menu_item_add(menu, _("_Copy path"),
+	menu_item_add(menu, _("_Copy to clipboard"),
 		      G_CALLBACK(vd_pop_menu_copy_path_cb), vd);
 
-	menu_item_add(menu, _("_Copy path unquoted"),
+	menu_item_add(menu, _("_Copy to clipboard (unquoted)"),
 		      G_CALLBACK(vd_pop_menu_copy_path_unquoted_cb), vd);
+
+	menu_item_add(menu, _("_Cut to clipboard"),
+		      G_CALLBACK(vd_pop_menu_cut_path_cb), vd);
 
 	menu_item_add_icon_sensitive(menu, _("_Delete..."), GQ_ICON_DELETE, rename_delete_active,
 				      G_CALLBACK(vd_pop_menu_delete_cb), vd);

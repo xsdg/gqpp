@@ -147,6 +147,12 @@
           <para>Controls the pause state of an active slide show, the text of the menu will change to reflect the action that will be performed.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>Copy image to clipboard</term>
+        <listitem>
+          <para>Copy the pixbuf to the clipboard. This may be used by programs such as Gimp.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para />
   </section>
