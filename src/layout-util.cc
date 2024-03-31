@@ -66,6 +66,7 @@
 #include "misc.h"
 #include "options.h"
 #include "pan-view.h"
+#include "pixbuf-renderer.h"
 #include "pixbuf-util.h"
 #include "preferences.h"
 #include "print.h"
@@ -871,6 +872,42 @@ static void layout_menu_connect_zoom_1_4_cb(GtkAction *, gpointer data)
 	layout_image_zoom_set(lw, -4.0, TRUE);
 }
 
+static void layout_menu_zoom_to_rectangle_cb(GtkAction *, gpointer data)
+{
+	auto lw = static_cast<LayoutWindow *>(data);
+	PixbufRenderer *pr;
+	gdouble zoom_height;
+	gdouble zoom_width;
+	gint center_x;
+	gint center_y;
+	gint height;
+	gint vis_height;
+	gint vis_width;
+	gint width;
+	gint x1;
+	gint x2;
+	gint x;
+	gint y1;
+	gint y2;
+	gint y;
+
+	image_get_rectangle(&x1, &y1, &x2, &y2);
+
+	pr = reinterpret_cast<PixbufRenderer *>(lw->image->pr);
+
+	vis_width = pr->vis_width;
+	vis_height = pr->vis_height;
+	zoom_width = (gdouble(vis_width) / (x2 - x1));
+	zoom_height = (gdouble(vis_height) / (y2 - y1));
+
+	pr_coords_map_orientation_reverse(pr->orientation, x1, y1, pr->image_width, pr->image_height, x2 - x1, y2 - y1, &x, &y, &width, &height);
+
+	center_x = (width / 2) + x;
+	center_y = (height / 2) + y;
+
+	layout_image_zoom_set(lw, zoom_width > zoom_height ? zoom_height : zoom_width, FALSE);
+	image_scroll_to_point(lw->image, center_x, center_y, 0.5, 0.5);
+}
 
 static void layout_menu_split_cb(GtkRadioAction *action, GtkRadioAction *, gpointer data)
 {
@@ -2792,6 +2829,7 @@ static GtkActionEntry menu_entries[] = {
   { "ZoomIn",                GQ_ICON_ZOOM_IN,                   N_("Zoom _in"),                                         "equal",               N_("Zoom in"),                                         CB(layout_menu_zoom_in_cb) },
   { "ZoomMenu",              nullptr,                           N_("_Zoom"),                                            nullptr,               nullptr,                                               nullptr },
   { "ZoomOutAlt1",           GQ_ICON_ZOOM_OUT,                  N_("Zoom _out"),                                        "KP_Subtract",         N_("Zoom out"),                                        CB(layout_menu_zoom_out_cb) },
+  { "ZoomToRectangle",       nullptr,                           N_("Zoom to rectangle"),                                nullptr,               N_("Zoom to rectangle"),                               CB(layout_menu_zoom_to_rectangle_cb) },
   { "ZoomOut",               GQ_ICON_ZOOM_OUT,                  N_("Zoom _out"),                                        "minus",               N_("Zoom out"),                                        CB(layout_menu_zoom_out_cb) }
 };
 

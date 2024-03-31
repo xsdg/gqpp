@@ -154,6 +154,7 @@
           <menuitem action="Zoom50"/>
           <menuitem action="Zoom33"/>
           <menuitem action="Zoom25"/>
+          <menuitem action="ZoomToRectangle"/>
         </menu>
         <menu action="SplitMenu">
           <menuitem action="SplitHorizontal"/>
