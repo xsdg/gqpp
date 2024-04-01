@@ -1,0 +1,20 @@
+#!/bin/bash
+
+_geeqie()
+{
+    local cur
+    _init_completion -s || return
+
+    if [[ $cur == -* ]]
+    then
+        # shellcheck disable=SC2207
+        # shellcheck disable=SC2016
+        COMPREPLY=($(compgen -W '$(_parse_help "$1")' -- "$cur"))
+        [[ ${COMPREPLY-} == *= ]] && compopt -o nospace
+        return
+    fi
+
+} &&
+    complete -F _geeqie geeqie
+
+# ex: filetype=sh

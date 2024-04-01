@@ -34,6 +34,7 @@
 # [gq_]htmldir  /usr/local/share/doc/geeqie/html    *   help files
 # gq_localedir  /usr/locale/share/locale
 # mandir1       /usr/local/share/man/man1               man page
+# completionsdir /usr/local/share/bash-completion/completions bash command line completions
 # podir         project_root/po
 
 # * See meson_options.txt file
@@ -134,7 +135,7 @@ helpdir = join_paths(prefix, gq_helpdir)
 htmldir = join_paths(prefix, gq_htmldir)
 icondir = join_paths(datadir, 'pixmaps')
 mandir1 = join_paths(datadir, 'man', 'man1')
-
+completionsdir = join_paths(datadir, 'bash-completion', 'completions')
 podir = join_paths(meson.project_source_root(), 'po')
 scriptsdir = join_paths(meson.project_source_root(), 'scripts')
 
@@ -615,6 +616,9 @@ subdir('src')
 
 # Generate the help files
 subdir('doc')
+
+# Generate the command line auto-complete file
+subdir('auto-complete')
 
 # Install other project files
 if running_from_git
