@@ -137,6 +137,17 @@ There are also options to install desktop icons, menu items, and to revert to ea
 
 AppImages have a "portable mode" which is described [here](https://docs.appimage.org/user-guide/portable-mode.html).
 
+**Note:**
+
+Command line auto-completion does not work with AppImages. If you are using the AppImage `--extract` option, this is a work-around.
+
+Assuming you have extracted the AppImage to `$HOME/bin/Geeqie-latest-x86_64-AppImage/`, create a symbolic link as follows:
+
+```sh
+mkdir --parents $HOME/.local/share/bash-completion/completions/
+ln --symbolic $HOME/bin/Geeqie-latest-x86_64-AppImage/squashfs-root/usr/local/share/bash-completion/completions/geeqie $HOME/.local/share/bash-completion/completions/geeqie
+```
+
 ### Installation scripts
 
 Geeqie is stable and you may compile the latest version from sources.

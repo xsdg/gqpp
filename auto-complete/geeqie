@@ -1,4 +1,4 @@
-#!/bin/bash
+# bash completion for geeqie                              -*- shell-script -*-
 
 _geeqie()
 {
@@ -7,8 +7,6 @@ _geeqie()
 
     if [[ $cur == -* ]]
     then
-        # shellcheck disable=SC2207
-        # shellcheck disable=SC2016
         COMPREPLY=($(compgen -W '$(_parse_help "$1")' -- "$cur"))
         [[ ${COMPREPLY-} == *= ]] && compopt -o nospace
         return
