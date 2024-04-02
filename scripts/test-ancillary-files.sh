@@ -29,6 +29,7 @@
 ## desktop
 ## scripts
 ## ui
+## xml
 ##
 
 cd "$1" || exit 1
@@ -236,6 +237,27 @@ else
 	fi
 
 	printf "%s: appstreamcli in org.geeqie.Geeqie.appdata.xml.in: \n%s\n" "$status" "$result"
+fi
+
+# xml files lint
+if [ -z "$(command -v xmllint)" ]
+then
+	printf "ERROR: xmllint is not installed"
+	exit_status=1
+else
+	while read -r line
+	do
+		if [ -n "$line" ]
+		then
+			if ! xmllint --quiet --nowarning "$line" > /dev/null
+			then
+				printf "ERROR: xmllint error in: %s\n" "$line"
+				exit_status=1
+			fi
+		fi
+	done << EOF
+$(find ./doc/docbook -name "*.xml")
+EOF
 fi
 
 exit "$exit_status"

@@ -28,6 +28,7 @@ jobs:
     - run: sudo apt-get install desktop-file-utils
     - run: sudo apt-get install gettext
     - run: sudo apt-get install libgtk-3-bin
+    - run: sudo apt-get install libxml2-utils
     - run: sudo apt-get install shellcheck
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
@@ -96,6 +97,7 @@ jobs:
     - run: sudo apt-get install libunwind-dev
     - run: sudo apt-get install libwebp-dev
     - run: sudo apt-get install libwebp7
+    - run: sudo apt-get install libxml2-utils
     - run: sudo apt-get install pandoc
     - run: sudo apt-get install shellcheck
     #~ - run: sudo apt-get install libffmpegthumbnailer-dev
