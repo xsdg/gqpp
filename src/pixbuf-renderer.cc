@@ -74,13 +74,6 @@ enum {
 	PR_SCROLLER_DEAD_ZONE = 6
 };
 
-/* when scaling image to below this size, use nearest pixel for scaling
- * (below about 4, the other scale types become slow generating their conversion tables)
- */
-//~ enum {
-//~ PR_MIN_SCALE_SIZE = 8
-//~ };
-
 enum {
 	SIGNAL_ZOOM = 0,
 	SIGNAL_CLICKED,

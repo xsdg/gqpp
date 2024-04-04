@@ -756,6 +756,21 @@ else
     summary({'Debug Statements' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
 endif
 
+# Temporary comments checks
+tmp_comments_check_sh = find_program('temporary-comments-check.sh', dirs : scriptsdir, required : true)
+if tmp_comments_check_sh.found()
+    foreach source_file : main_sources + pan_view_sources + view_file_sources
+        source_file_name = fs.name(source_file)
+        if (source_file_name != 'debug.h')
+            test('Temporary Comments_ ' + source_file_name, tmp_comments_check_sh, args : [source_file], timeout : 100)
+        endif
+    endforeach
+
+    summary({'Temporary Comments' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+else
+    summary({'Temporary Comments' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+endif
+
 # Lua test
 option = get_option('lua')
 if not option.disabled()

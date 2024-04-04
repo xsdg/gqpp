@@ -27,7 +27,6 @@ struct CollectionData;
 void collection_dialog_save_as(CollectionData *cd);
 void collection_dialog_save_close(CollectionData *cd);
 
-//~ void collection_dialog_load(gchar *path);
 void collection_dialog_append(CollectionData *cd);
 
 
