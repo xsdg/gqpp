@@ -436,12 +436,12 @@ static void parse_command_line(gint argc, gchar *argv[])
 				{
 				/* do nothing but do not produce warnings */
 				}
-			else if (strcmp(cmd_line, "+t") == 0 ||
+			else if (strcmp(cmd_line, "-T") == 0 ||
 				 strcmp(cmd_line, "--with-tools") == 0)
 				{
 				command_line->tools_show = TRUE;
 
-				remote_list = g_list_append(remote_list, g_strdup("+t"));
+				remote_list = g_list_append(remote_list, g_strdup("-T"));
 				}
 			else if (strcmp(cmd_line, "-t") == 0 ||
 				 strcmp(cmd_line, "--without-tools") == 0)
@@ -478,7 +478,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 					remote_list = remote_build_list(remote_list, argc - i, &argv[i], &remote_errors);
 					}
 				}
-			else if ((strcmp(cmd_line, "+w") == 0) ||
+			else if ((strcmp(cmd_line, "-w") == 0) ||
 						strcmp(cmd_line, "--show-log-window") == 0)
 				{
 				command_line->log_window_show = TRUE;
@@ -541,10 +541,10 @@ static void parse_command_line(gint argc, gchar *argv[])
 				print_term(FALSE, _("  -r, --remote                     send following commands to open window\n"));
 				print_term(FALSE, _("  -rh, --remote-help               print remote command list\n"));
 				print_term(FALSE, _("  -s, --slideshow                  start in slideshow mode\n"));
-				print_term(FALSE, _("  +t, --with-tools                 force show of tools\n"));
+				print_term(FALSE, _("  -T, --with-tools                 force show of tools\n"));
 				print_term(FALSE, _("  -t, --without-tools              force hide of tools\n"));
 				print_term(FALSE, _("  -v, --version                    print version info\n"));
-				print_term(FALSE, _("  +w, --show-log-window            show log window\n"));
+				print_term(FALSE, _("  -w, --show-log-window            show log window\n"));
 #ifdef DEBUG
 				print_term(FALSE, _("      --debug[=level]              turn on debug output\n"));
 				print_term(FALSE, _("  -g:, --grep:<regexp>             filter debug output\n"));
@@ -560,8 +560,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 				}
 			else if (!remote_do)
 				{
-				command_line_errors = g_string_append(command_line_errors, cmd_line);
-				command_line_errors = g_string_append(command_line_errors, "\n");
+				g_string_append_printf(command_line_errors, is_remote_command(cmd_line) ? _("%s\n\nThis is a --remote command option\n") : _("%s\n\nThis option is unknown\n"), cmd_line);
 				}
 
 			g_free(cmd_all);

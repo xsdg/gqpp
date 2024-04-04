@@ -1,16 +1,56 @@
 # bash completion for geeqie                              -*- shell-script -*-
 
+file_types='@(3fr|ani|arw|avif|bmp|cr2|cr3|crw|cur|dds|djvu|dng|erf|gif|heic|heif|ico|jp2|jpe[g]||jpegxl|jps|kdc|mef|mos|mpo|mrw|nef|orf|pbm|pdf|pgm|pnm|ppm|pef|png|psd|qif|qtif|raf|raw|rw2|scr|sr2|srf|svg[z]|tga|targa|tif[f]|webp|xbm|xpm|gqv|xml|xmp)'
+
 _geeqie()
 {
-    local cur
-    _init_completion -s || return
+	local cur prev
+	_init_completion -s || return
 
-    if [[ $cur == -* ]]
-    then
-        COMPREPLY=($(compgen -W '$(_parse_help "$1")' -- "$cur"))
-        [[ ${COMPREPLY-} == *= ]] && compopt -o nospace
-        return
-    fi
+	case $prev in
+		:)
+			case ${COMP_WORDS[1]} in
+				--cache-render | --cache-render-recurse | --cache-render-shared-recurse | --get-filelist | --get-filelist-recurse | --slideshow-recurse)
+					compopt -o nospace
+					_filedir -d
+					return
+					;;
+				--config-load)
+					compopt -o nospace
+					_filedir xml
+					return
+					;;
+				--file | --File | --get-destination | --get-sidecars | --list-add | --selection-add | --selection-remove | --view)
+					compopt -o nospace
+					_filedir $file_types
+					return
+					;;
+				--get-collection)
+					compopt -o nospace
+					_filedir gqv
+					return
+					;;
+				--lua)
+					compopt -o nospace
+					_filedir lua
+					return
+					;;
+			esac
+			;;
+		--cache-maintenance)
+			_filedir -d
+			return
+			;;
+	esac
+
+	if [[ $cur == -* ]]
+	then
+		COMPREPLY=($(compgen -W '$(_parse_help "$1")' -- "$cur"))
+		[[ ${COMPREPLY-} == *[=:] ]] && compopt -o nospace
+		return
+	fi
+
+_filedir $file_types
 
 } &&
     complete -F _geeqie geeqie

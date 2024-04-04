@@ -1729,8 +1729,8 @@ static RemoteCommandEntry remote_commands[] = {
 	{ "-crr:", "--cache-render-recurse:", gr_cache_render_recurse, TRUE, FALSE, N_("<folder> "), N_("render thumbnails recursively") },
 	{ "-crs:", "--cache-render-shared:", gr_cache_render_standard, TRUE, FALSE, N_("<folder> "), N_(" render thumbnails (see Help)") },
 	{ "-crsr:", "--cache-render-shared-recurse:", gr_cache_render_standard_recurse, TRUE, FALSE, N_("<folder>"), N_(" render thumbnails recursively (see Help)") },
-	{ "-cs:", "--cache-shared:",    gr_cache_shared,        TRUE, FALSE, N_("clear|clean"), N_("clear or clean shared thumbnail cache") },
-	{ "-ct:", "--cache-thumbs:",    gr_cache_thumb,         TRUE, FALSE, N_("clear|clean"), N_("clear or clean thumbnail cache") },
+	{ "-cs:", "--cache-shared:",    gr_cache_shared,        TRUE, FALSE, N_("clean|clear"), N_("clean or clear shared thumbnail cache") },
+	{ "-ct:", "--cache-thumbs:",    gr_cache_thumb,         TRUE, FALSE, N_("clean|clear"), N_("clean or clear thumbnail cache") },
 	{ "-d", "--delay=",             gr_slideshow_delay,     TRUE,  FALSE, N_("<[H:][M:][N][.M]>"), N_("set slide show delay to Hrs Mins N.M seconds") },
 	{ nullptr, "--first",              gr_image_first,         FALSE, FALSE, nullptr, N_("first image") },
 	{ "-f", "--fullscreen",         gr_fullscreen_toggle,   FALSE, TRUE,  nullptr, N_("toggle full screen") },
@@ -1775,7 +1775,7 @@ static RemoteCommandEntry remote_commands[] = {
 	{ "-ss","--slideshow-start",    gr_slideshow_start,     FALSE, FALSE, nullptr, N_("start slide show") },
 	{ "-sS","--slideshow-stop",     gr_slideshow_stop,      FALSE, FALSE, nullptr, N_("stop slide show") },
 	{ nullptr, "--tell",               gr_file_tell,           FALSE, FALSE, nullptr, N_("print filename [and Collection] of current image") },
-	{ "+t", "--tools-show",         gr_tools_show,          FALSE, TRUE,  nullptr, N_("show tools") },
+	{ "-T", "--tools-show",         gr_tools_show,          FALSE, TRUE,  nullptr, N_("show tools") },
 	{ "-t", "--tools-hide",	        gr_tools_hide,          FALSE, TRUE,  nullptr, N_("hide tools") },
 	{ nullptr, "--view:",              gr_file_view,           TRUE,  FALSE, N_("<FILE>"), N_("open FILE in new window") },
 	{ nullptr, "view:",                gr_file_view,           TRUE,  FALSE, N_("<FILE>"), N_("open FILE in new window") },
@@ -1820,6 +1820,15 @@ static RemoteCommandEntry *remote_command_find(const gchar *text, const gchar **
 		}
 
 	return nullptr;
+}
+
+gboolean is_remote_command(const gchar *text)
+{
+	RemoteCommandEntry *entry = nullptr;
+
+	entry = remote_command_find(text, nullptr);
+
+	return entry ? TRUE : FALSE;
 }
 
 static void remote_cb(RemoteConnection *, const gchar *text, GIOChannel *channel, gpointer data)

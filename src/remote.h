@@ -49,7 +49,7 @@ void remote_control(const gchar *arg_exec, GList *remote_list, const gchar *path
 
 RemoteConnection *remote_server_init(gchar *path, CollectionData *command_collection);
 gboolean remote_server_exists(const gchar *path);
-
+gboolean is_remote_command(const gchar *text);
 
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */
