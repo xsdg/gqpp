@@ -2644,6 +2644,8 @@ static void collection_table_destroy(GtkWidget *, gpointer data)
 
 	/* If there is no unsaved data, save the window geometry
 	 */
+	/** @FIXME  This code interferes with the code detecting files on unmounted drives. See collection_load_private() in collect-io,cc. If the user wants to save the geometry of an unchanged Collection, just slightly move one of the thumbnails. */
+/*
 	if (!ct->cd->changed)
 		{
 		if (!collection_save(ct->cd, ct->cd->path))
@@ -2651,6 +2653,7 @@ static void collection_table_destroy(GtkWidget *, gpointer data)
 			log_printf("failed saving to collection path: %s\n", ct->cd->path);
 			}
 		}
+*/
 
 	if (ct->popup)
 		{

@@ -27,6 +27,7 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gdk/gdk.h>
 #include <glib-object.h>
+#include <mntent.h>
 
 #include <config.h>
 
@@ -40,6 +41,7 @@
 #include "secure-save.h"
 #include "thumb.h"
 #include "ui-fileops.h"
+#include "ui-utildlg.h"
 
 #define GQ_COLLECTION_MARKER "#" GQ_APPNAME
 
@@ -123,8 +125,7 @@ static gboolean collection_load_private(CollectionData *cd, const gchar *path, C
 
 	pathl = path_from_utf8(path);
 
-	DEBUG_1("collection load: append=%d flush=%d only_geometry=%d path=%s",
-			  append, flush, only_geometry, pathl);
+	DEBUG_1("collection load: append=%d flush=%d only_geometry=%d path=%s", append, flush, only_geometry, pathl);
 
 	/* load it */
 	f = fopen(pathl, "r");
@@ -161,8 +162,7 @@ static gboolean collection_load_private(CollectionData *cd, const gchar *path, C
 					has_official_header = TRUE;
 					limit_failures = FALSE;
 					}
-				else if (strncmp(p, "#geometry:", 10 ) == 0 &&
-					 scan_geometry(p + 10, cd->window))
+				else if (strncmp(p, "#geometry:", 10 ) == 0 && scan_geometry(p + 10, cd->window))
 					{
 					has_geometry_header = TRUE;
 					cd->window_read = TRUE;
@@ -236,15 +236,64 @@ static gboolean collection_load_private(CollectionData *cd, const gchar *path, C
 				changed |= collect_manager_process_action(entry, &buffer2);
 
 			valid = (buffer2[0] == G_DIR_SEPARATOR && collection_add_check(cd, file_data_new_simple(buffer2), FALSE, TRUE));
-			if (!valid) DEBUG_1("collection invalid file: %s", buffer2);
+			if (!valid)
+				{
+				log_printf("Warning: Collection: %s Invalid file: %s", cd->name, buffer2);
+				DEBUG_1("collection invalid file: %s", buffer2);
+				}
 
 			total++;
 			if (!valid)
 				{
+				/* If the file path has the prefix home, tmp or usr it was on the local file system and has been deleted. Ignore it. */
+				if (!g_str_has_prefix(buffer2, "/home") && !g_str_has_prefix(buffer2, "/tmp") && !g_str_has_prefix(buffer2, "/usr"))
+					{
+					/* The file was on a mounted drive and either has been deleted or the drive is not mounted */
+					struct mntent *mount_entry;
+					FILE *mount_entries;
+					gboolean found = FALSE;
+
+					mount_entries = setmntent("/proc/mounts", "r");
+					if (mount_entries == nullptr)
+						{
+						/* It is assumed this will never fail */
+						perror("setmntent");
+						exit(1);
+						}
+
+					while (nullptr != (mount_entry = getmntent(mount_entries)))
+						{
+						if (g_strcmp0(mount_entry->mnt_dir, G_DIR_SEPARATOR_S) != 0)
+							{
+							if (g_str_has_prefix(buffer2, mount_entry->mnt_dir))
+								{
+								log_printf("%s was a file on a mounted filesystem but has been deleted: %s", buffer2, cd->name);
+								found = TRUE;
+								break;
+								}
+							}
+						}
+					endmntent(mount_entries);
+
+					if (!found)
+						{
+						log_printf("%s is a file on an unmounted filesystem: %s", buffer2, cd->path);
+						gchar *text = g_strdup_printf(_("This Collection cannot be opened because it contains a link to a file on a drive which is not yet mounted.\n\nCollection: %s\nFile: %s\n"), cd->path, buffer2);
+						warning_dialog(_("Cannot open Collection"), text, GQ_ICON_DIALOG_WARNING, nullptr);
+						g_free(text);
+
+						collection_window_close_by_collection(cd);
+						success = FALSE;
+						break;
+						}
+					}
+				else
+					{
+					log_printf("%s was a file on local filesystem but has been deleted: %s", buffer2, cd->name);
+					}
+
 				fail++;
-				if (limit_failures &&
-				    fail > GQ_COLLECTION_FAIL_MIN &&
-				    fail * 100 / total > GQ_COLLECTION_FAIL_PERCENT)
+				if (limit_failures && fail > GQ_COLLECTION_FAIL_MIN && fail * 100 / total > GQ_COLLECTION_FAIL_PERCENT)
 					{
 					log_printf("%d invalid filenames in unofficial collection file, closing: %s\n", fail, path);
 					success = FALSE;
@@ -257,8 +306,7 @@ static gboolean collection_load_private(CollectionData *cd, const gchar *path, C
 
 	g_string_free(extended_filename_buffer, TRUE);
 
-	DEBUG_1("collection files: total = %d fail = %d official=%d gqview=%d geometry=%d",
-			  total, fail, has_official_header, has_gqview_header, has_geometry_header);
+	DEBUG_1("collection files: total = %d fail = %d official=%d gqview=%d geometry=%d", total, fail, has_official_header, has_gqview_header, has_geometry_header);
 
 	fclose(f);
 	if (only_geometry) return has_geometry_header;
