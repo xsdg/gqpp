@@ -29,7 +29,7 @@
 ## Downloads will not be made unless the server version is newer than the local file.
 ##
 
-version="2023-09-09"
+version="2024-04-11"
 backups=3
 
 show_help()
@@ -80,6 +80,24 @@ packaged release.
 show_version()
 {
 	printf "Version: %s\n" "$version"
+}
+
+spinner()
+{
+	message="$1"
+	character_count=$((${#message} + 4))
+	pid=$!
+	delay=0.75
+	spinstr='\|/-'
+
+	while kill -0 "$pid" 2> /dev/null
+	do
+		temp=${spinstr#?}
+		printf "$message [%c]" "$spinstr"
+		spinstr=$temp${spinstr%"$temp"}
+		sleep "$delay"
+		printf "%$character_count""s" | tr " " "\b"
+	done
 }
 
 architecture=$(arch)
@@ -262,8 +280,8 @@ then
 		mkdir "Geeqie$minimal-latest-$architecture-AppImage"
 		cd "Geeqie$minimal-latest-$architecture-AppImage" || exit 1
 
-		printf "Extracting AppImage\n"
-		../"Geeqie$minimal-latest-$architecture.AppImage$revert" --appimage-extract | cut --characters 1-50 | tr '\n' '\r'
+		(../Geeqie-latest-x86_64.AppImage --appimage-extract > /dev/null) & spinner "Extracting Geeqie AppImage..."
+
 		printf "\nExtraction complete\n"
 
 		cd ..
@@ -293,8 +311,8 @@ then
 		mkdir "Geeqie$minimal-latest-$architecture-AppImage"
 		cd "Geeqie$minimal-latest-$architecture-AppImage" || exit 1
 
-		printf "Extracting AppImage\n"
-		../"Geeqie$minimal-latest-$architecture.AppImage" --appimage-extract | cut --characters 1-50 | tr '\n' '\r'
+		(../Geeqie-latest-x86_64.AppImage --appimage-extract > /dev/null) & spinner "Extracting Geeqie AppImage..."
+
 		printf "\nExtraction complete\n"
 
 		cd ..
