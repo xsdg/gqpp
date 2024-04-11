@@ -27,7 +27,12 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gdk/gdk.h>
 #include <glib-object.h>
+
+#if defined(__linux__)
 #include <mntent.h>
+#else
+#include <sys/mount.h>
+#endif
 
 #include <config.h>
 
@@ -231,6 +236,7 @@ static gboolean collection_load_private(CollectionData *cd, const gchar *path, C
 		if (*buffer2)
 			{
 			gboolean valid;
+			gboolean found = FALSE;
 
 			if (!flush)
 				changed |= collect_manager_process_action(entry, &buffer2);
@@ -249,9 +255,9 @@ static gboolean collection_load_private(CollectionData *cd, const gchar *path, C
 				if (!g_str_has_prefix(buffer2, "/home") && !g_str_has_prefix(buffer2, "/tmp") && !g_str_has_prefix(buffer2, "/usr"))
 					{
 					/* The file was on a mounted drive and either has been deleted or the drive is not mounted */
+#if defined(__linux__)
 					struct mntent *mount_entry;
 					FILE *mount_entries;
-					gboolean found = FALSE;
 
 					mount_entries = setmntent("/proc/mounts", "r");
 					if (mount_entries == nullptr)
@@ -274,6 +280,30 @@ static gboolean collection_load_private(CollectionData *cd, const gchar *path, C
 							}
 						}
 					endmntent(mount_entries);
+#else
+					struct statfs* mounts;
+					int num_mounts = getmntinfo(&mounts, MNT_NOWAIT);
+
+					if (num_mounts < 0)
+						{
+						/* It is assumed this will never fail */
+						perror("setmntent");
+						exit(1);
+						}
+
+					for (int i = 0; i < num_mounts; i++)
+						{
+						if (g_strcmp0(mounts[i].f_mntonname, G_DIR_SEPARATOR_S) != 0)
+							{
+							if (g_str_has_prefix(buffer2, mounts[i].f_mntonname))
+								{
+								log_printf("%s was a file on a mounted filesystem but has been deleted: %s", buffer2, cd->name);
+								found = TRUE;
+								break;
+								}
+							}
+						}
+#endif
 
 					if (!found)
 						{
