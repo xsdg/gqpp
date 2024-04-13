@@ -438,21 +438,21 @@ static void parse_command_line(gint argc, gchar *argv[])
 				{
 				command_line->log_window_show = TRUE;
 				}
-			else if (strncmp(cmd_line, "-o:", 3) == 0)
+			else if (strncmp(cmd_line, "-o", 2) == 0)
 				{
-				command_line->log_file = g_strdup(cmd_line + 3);
+				command_line->log_file = g_strdup(cmd_line + 2);
 				}
-			else if (strncmp(cmd_line, "--log-file:", 11) == 0)
+			else if (strncmp(cmd_line, "--log-file=", 11) == 0)
 				{
 				command_line->log_file = g_strdup(cmd_line + 11);
 				}
-			else if (strncmp(cmd_line, "-g:", 3) == 0)
+			else if (strncmp(cmd_line, "-g", 2) == 0)
 				{
-				set_regexp(g_strdup(cmd_line+3));
+				set_regexp(g_strdup(cmd_line + 2));
 				}
-			else if (strncmp(cmd_line, "-grep:", 6) == 0)
+			else if (strncmp(cmd_line, "--grep=", 7) == 0)
 				{
-				set_regexp(g_strdup(cmd_line+3));
+				set_regexp(g_strdup(cmd_line + 7));
 				}
 			else if (strncmp(cmd_line, "-n", 2) == 0)
 				{
@@ -462,8 +462,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 				{
 				command_line->new_instance = TRUE;
 				}
-			else if (strcmp(cmd_line, "-rh") == 0 ||
-				 strcmp(cmd_line, "--remote-help") == 0)
+			else if (strcmp(cmd_line, "--remote-help") == 0)
 				{
 				remote_help();
 				exit(0);
@@ -492,9 +491,9 @@ static void parse_command_line(gint argc, gchar *argv[])
 				print_term(FALSE, _("  -h, --help                       show this message\n"));
 				print_term(FALSE, _("  -l, --list [files] [collections] open collection window for command line\n"));
 				print_term(FALSE, _("  -n, --new-instance               open a new instance of Geeqie *\n"));
-				print_term(FALSE, _("  -o:, --log-file:<file>           save log data to file\n"));
+				print_term(FALSE, _("  -o, --log-file=<file>            save log data to file\n"));
 				print_term(FALSE, _("  -r, --remote                     send following commands to open window\n"));
-				print_term(FALSE, _("  -rh, --remote-help               print remote command list\n"));
+				print_term(FALSE, _("      --remote-help                print remote command list\n"));
 				print_term(FALSE, _("  -s, --slideshow                  start in slideshow mode\n"));
 				print_term(FALSE, _("  -T, --with-tools                 force show of tools\n"));
 				print_term(FALSE, _("  -t, --without-tools              force hide of tools\n"));
@@ -502,7 +501,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 				print_term(FALSE, _("  -w, --show-log-window            show log window\n"));
 #ifdef DEBUG
 				print_term(FALSE, _("      --debug[=level]              turn on debug output\n"));
-				print_term(FALSE, _("  -g:, --grep:<regexp>             filter debug output\n"));
+				print_term(FALSE, _("  -g, --grep=<regexp>              filter debug output\n"));
 #endif
 
 				print_term(FALSE, "\n");

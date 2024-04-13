@@ -69,7 +69,7 @@ done
 sleep 2
 
 base_lua=$(basename "$lua_test_file")
-result=$(xvfb-run --auto-servernum "$1" --remote --lua:"$lua_test_image","$base_lua")
+result=$(xvfb-run --auto-servernum "$1" --remote --lua="$lua_test_image","$base_lua")
 xvfb-run --auto-servernum "$1" --remote --quit
 
 ## @FIXME Running on GitHub gives additional dbind-WARNINGs. The data required is the last n lines.

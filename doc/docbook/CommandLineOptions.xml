@@ -8,7 +8,7 @@
 <refentrytitle>GEEQIE</refentrytitle>
 <manvolnum>1</manvolnum>
 <refmiscinfo class='source'>April 2024</refmiscinfo>
-<refmiscinfo class='manual'>Geeqie 2.4+git20240402-d802d5f5 GTK3</refmiscinfo>
+<refmiscinfo class='manual'>Geeqie 2.4+git20240413-2a5c2a89 GTK3</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>Geeqie</refname>
@@ -30,7 +30,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
 
 <para>Generated for version:</para>
 
-<para>Geeqie 2.4+git20240402-d802d5f5</para>
+<para>Geeqie 2.4+git20240413-2a5c2a89</para>
 
 <refsect2 id='valid_options'><title>Valid options:</title>
 <variablelist remap='TP'>
@@ -81,7 +81,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>-o</emphasis>:, <emphasis role='strong' remap='B'>--log-file</emphasis>:&lt;file&gt;</term>
+  <term><emphasis role='strong' remap='B'>-o</emphasis>, <emphasis role='strong' remap='B'>--log-file=</emphasis>&lt;file&gt;</term>
   <listitem>
 <para>save log data to file</para>
   </listitem>
@@ -93,7 +93,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>-rh</emphasis>, <emphasis role='strong' remap='B'>--remote-help</emphasis></term>
+  <term><emphasis role='strong' remap='B'>--remote-help</emphasis></term>
   <listitem>
 <para>print remote command list</para>
   </listitem>
@@ -135,7 +135,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>-g</emphasis>:, <emphasis role='strong' remap='B'>--grep</emphasis>:&lt;regexp&gt;</term>
+  <term><emphasis role='strong' remap='B'>-g</emphasis>, <emphasis role='strong' remap='B'>--grep=</emphasis>&lt;regexp&gt;</term>
   <listitem>
 <para>filter debug output</para>
   </listitem>
@@ -152,7 +152,7 @@ can be used to modify this behavior on an individual basis e.g.</para>
 <refsect2 id='remote_command_list'><title>Remote command list:</title>
 <variablelist remap='TP'>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--action</emphasis>:&lt;ACTION&gt;</term>
+  <term><emphasis role='strong' remap='B'>--action=</emphasis>&lt;ACTION&gt;</term>
   <listitem>
 <para>execute keyboard action (See Help/Reference/Remote Keyboard Actions)</para>
   </listitem>
@@ -176,55 +176,55 @@ can be used to modify this behavior on an individual basis e.g.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--config-load</emphasis>:&lt;FILE&gt;|layout ID</term>
+  <term><emphasis role='strong' remap='B'>--config-load=</emphasis>&lt;FILE&gt;|layout ID</term>
   <listitem>
 <para>load configuration from FILE</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>-cm</emphasis> <emphasis role='strong' remap='B'>--cache-metadata</emphasis></term>
+  <term><emphasis role='strong' remap='B'>--cache-metadata</emphasis></term>
   <listitem>
 <para>clean the metadata cache</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>-cr</emphasis>: <emphasis role='strong' remap='B'>--cache-render</emphasis>:&lt;folder&gt;</term>
+  <term><emphasis role='strong' remap='B'>--cache-render=</emphasis>&lt;folder&gt;</term>
   <listitem>
 <para>render thumbnails</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>-crr</emphasis>: <emphasis role='strong' remap='B'>--cache-render-recurse</emphasis>:&lt;folder&gt;</term>
+  <term><emphasis role='strong' remap='B'>--cache-render-recurse=</emphasis>&lt;folder&gt;</term>
   <listitem>
 <para>render thumbnails recursively</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>-crs</emphasis>: <emphasis role='strong' remap='B'>--cache-render-shared</emphasis>:&lt;folder&gt;</term>
+  <term><emphasis role='strong' remap='B'>--cache-render-shared=</emphasis>&lt;folder&gt;</term>
   <listitem>
 <para>render thumbnails (see Help)</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>-crsr</emphasis>: <emphasis role='strong' remap='B'>--cache-render-shared-recurse</emphasis>:&lt;folder&gt;</term>
+  <term><emphasis role='strong' remap='B'>--cache-render-shared-recurse=</emphasis>&lt;folder&gt;</term>
   <listitem>
 <para>render thumbnails recursively (see Help)</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>-cs</emphasis>: <emphasis role='strong' remap='B'>--cache-shared</emphasis>:clean|clear</term>
+  <term><emphasis role='strong' remap='B'>--cache-shared</emphasis>=<emphasis remap='I'>clean</emphasis>|clear</term>
   <listitem>
 <para>clean or clear shared thumbnail cache</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>-ct</emphasis>: <emphasis role='strong' remap='B'>--cache-thumbs</emphasis>:clean|clear</term>
+  <term><emphasis role='strong' remap='B'>--cache-thumbs</emphasis>=<emphasis remap='I'>clean</emphasis>|clear</term>
   <listitem>
 <para>clean or clear thumbnail cache</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>-d</emphasis> <emphasis role='strong' remap='B'>--delay=</emphasis>&lt;[H:][M:][N][.M]&gt;</term>
+  <term><emphasis role='strong' remap='B'>-d</emphasis> <emphasis role='strong' remap='B'>--delay=</emphasis>&lt;[H=][M=][N][.M]&gt;</term>
   <listitem>
 <para>set slide show delay to Hrs Mins N.M seconds</para>
   </listitem>
@@ -242,25 +242,25 @@ can be used to modify this behavior on an individual basis e.g.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--file</emphasis>:&lt;FILE&gt;|&lt;URL&gt;</term>
+  <term><emphasis role='strong' remap='B'>--file=</emphasis>&lt;FILE&gt;|&lt;URL&gt;</term>
   <listitem>
 <para>open FILE or URL, bring Geeqie window to the top</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--File</emphasis>:&lt;FILE&gt;|&lt;URL&gt;</term>
+  <term><emphasis role='strong' remap='B'>--File=</emphasis>&lt;FILE&gt;|&lt;URL&gt;</term>
   <listitem>
 <para>open FILE or URL, do not bring Geeqie window to the top</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>-fs</emphasis> <emphasis role='strong' remap='B'>--fullscreen-start</emphasis></term>
+  <term><emphasis role='strong' remap='B'>--fullscreen-start</emphasis></term>
   <listitem>
 <para>start full screen</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>-fS</emphasis> <emphasis role='strong' remap='B'>--fullscreen-stop</emphasis></term>
+  <term><emphasis role='strong' remap='B'>--fullscreen-stop</emphasis></term>
   <listitem>
 <para>stop full screen</para>
   </listitem>
@@ -272,7 +272,7 @@ can be used to modify this behavior on an individual basis e.g.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--get-collection</emphasis>:&lt;COLLECTION&gt;</term>
+  <term><emphasis role='strong' remap='B'>--get-collection=</emphasis>&lt;COLLECTION&gt;</term>
   <listitem>
 <para>get collection content</para>
   </listitem>
@@ -284,7 +284,7 @@ can be used to modify this behavior on an individual basis e.g.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--get-destination</emphasis>:&lt;FILE&gt;</term>
+  <term><emphasis role='strong' remap='B'>--get-destination=</emphasis>&lt;FILE&gt;</term>
   <listitem>
 <para>get destination path of FILE (See Plugins Configuration)</para>
   </listitem>
@@ -296,13 +296,13 @@ can be used to modify this behavior on an individual basis e.g.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--get-filelist</emphasis>:[&lt;FOLDER&gt;]</term>
+  <term><emphasis role='strong' remap='B'>--get-filelist</emphasis>=<emphasis remap='I'>[</emphasis>&lt;FOLDER&gt;]</term>
   <listitem>
 <para>get list of files and class</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--get-filelist-recurse</emphasis>:[&lt;FOLDER&gt;]</term>
+  <term><emphasis role='strong' remap='B'>--get-filelist-recurse</emphasis>=<emphasis remap='I'>[</emphasis>&lt;FOLDER&gt;]</term>
   <listitem>
 <para>get list of files and class recursive</para>
   </listitem>
@@ -326,7 +326,7 @@ can be used to modify this behavior on an individual basis e.g.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--get-sidecars</emphasis>:&lt;FILE&gt;</term>
+  <term><emphasis role='strong' remap='B'>--get-sidecars=</emphasis>&lt;FILE&gt;</term>
   <listitem>
 <para>get list of sidecars of FILE</para>
   </listitem>
@@ -338,7 +338,7 @@ can be used to modify this behavior on an individual basis e.g.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--id</emphasis>:&lt;ID&gt;</term>
+  <term><emphasis role='strong' remap='B'>--id=</emphasis>&lt;ID&gt;</term>
   <listitem>
 <para>window id for following commands</para>
   </listitem>
@@ -350,7 +350,7 @@ can be used to modify this behavior on an individual basis e.g.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--list-add</emphasis>:&lt;FILE&gt;</term>
+  <term><emphasis role='strong' remap='B'>--list-add=</emphasis>&lt;FILE&gt;</term>
   <listitem>
 <para>add FILE to command line collection list</para>
   </listitem>
@@ -362,7 +362,7 @@ can be used to modify this behavior on an individual basis e.g.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--lua</emphasis>:&lt;FILE&gt;,&lt;lua script&gt;</term>
+  <term><emphasis role='strong' remap='B'>--lua=</emphasis>&lt;FILE&gt;,&lt;lua script&gt;</term>
   <listitem>
 <para>run lua script on FILE</para>
   </listitem>
@@ -392,7 +392,7 @@ can be used to modify this behavior on an individual basis e.g.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--PWD</emphasis>:&lt;PWD&gt;</term>
+  <term><emphasis role='strong' remap='B'>--PWD=</emphasis>&lt;PWD&gt;</term>
   <listitem>
 <para>use PWD as working directory for following commands</para>
   </listitem>
@@ -410,7 +410,7 @@ can be used to modify this behavior on an individual basis e.g.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--selection-add</emphasis>:[&lt;FILE&gt;]</term>
+  <term><emphasis role='strong' remap='B'>--selection-add</emphasis>=<emphasis remap='I'>[</emphasis>&lt;FILE&gt;]</term>
   <listitem>
 <para>adds the current file (or the specified file) to the current selection</para>
   </listitem>
@@ -422,7 +422,7 @@ can be used to modify this behavior on an individual basis e.g.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--selection-remove</emphasis>:[&lt;FILE&gt;]</term>
+  <term><emphasis role='strong' remap='B'>--selection-remove</emphasis>=<emphasis remap='I'>[</emphasis>&lt;FILE&gt;]</term>
   <listitem>
 <para>removes the current file (or the specified file) from the current selection</para>
   </listitem>
@@ -434,19 +434,19 @@ can be used to modify this behavior on an individual basis e.g.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--slideshow-recurse</emphasis>:&lt;FOLDER&gt;</term>
+  <term><emphasis role='strong' remap='B'>--slideshow-recurse=</emphasis>&lt;FOLDER&gt;</term>
   <listitem>
 <para>start recursive slide show in FOLDER</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>-ss</emphasis> <emphasis role='strong' remap='B'>--slideshow-start</emphasis></term>
+  <term><emphasis role='strong' remap='B'>--slideshow-start</emphasis></term>
   <listitem>
 <para>start slide show</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>-sS</emphasis> <emphasis role='strong' remap='B'>--slideshow-stop</emphasis></term>
+  <term><emphasis role='strong' remap='B'>--slideshow-stop</emphasis></term>
   <listitem>
 <para>stop slide show</para>
   </listitem>
@@ -470,7 +470,7 @@ can be used to modify this behavior on an individual basis e.g.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--view</emphasis>:&lt;FILE&gt;</term>
+  <term><emphasis role='strong' remap='B'>--view=</emphasis>&lt;FILE&gt;</term>
   <listitem>
 <para>open FILE in new window</para>
 
