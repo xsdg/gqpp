@@ -484,7 +484,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 				printf_term(FALSE, _("Usage: %s [options] [path]\n\n"), GQ_APPNAME_LC);
 				print_term(FALSE, _("Valid options:\n"));
 				print_term(FALSE, _("      --blank                      start with blank file list\n"));
-				print_term(FALSE, _("      --cache-maintenance <path>   run cache maintenance in non-GUI mode\n"));
+				print_term(FALSE, _("      --cache-maintenance=<path>   run cache maintenance in non-GUI mode\n"));
 				print_term(FALSE, _("      --disable-clutter            disable use of Clutter library (i.e. GPU accel.)\n"));
 				print_term(FALSE, _("  -f, --fullscreen                 start in full screen mode\n"));
 				print_term(FALSE, _("      --geometry=WxH+XOFF+YOFF     set main window location\n"));
@@ -696,7 +696,7 @@ static gboolean parse_command_line_for_clutter_option(gint argc, gchar *argv[])
 
 static gboolean parse_command_line_for_cache_maintenance_option(gint argc, gchar *argv[])
 {
-	const gchar *cache_maintenance_option = "--cache-maintenance";
+	const gchar *cache_maintenance_option = "--cache-maintenance=";
 	gint len = strlen(cache_maintenance_option);
 	gboolean ret = FALSE;
 
@@ -721,9 +721,12 @@ static void process_command_line_for_cache_maintenance_option(gint argc, gchar *
 	gchar *buf_config_file;
 	gint diff_count;
 
-	if (argc >= 3)
+	const gchar *cache_maintenance_option = "--cache-maintenance=";
+	gint len = strlen(cache_maintenance_option);
+
+	if (argc >= 2)
 		{
-		folder_path = expand_tilde(argv[2]);
+		folder_path = expand_tilde(argv[1] + len);
 
 		if (isdir(folder_path))
 			{
@@ -771,7 +774,7 @@ static void process_command_line_for_cache_maintenance_option(gint argc, gchar *
 			}
 		else
 			{
-			print_term(TRUE, g_strconcat(argv[2], _(" is not a folder\n"), NULL));
+			print_term(TRUE, g_strconcat(argv[1] + len, _(" is not a folder\n"), NULL));
 			exit(EXIT_FAILURE);
 			}
 		g_free(folder_path);
