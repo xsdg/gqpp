@@ -1731,7 +1731,7 @@ static RemoteCommandEntry remote_commands[] = {
 	{ nullptr, "--cache-render-shared-recurse=", gr_cache_render_standard_recurse, TRUE, FALSE, N_("<folder>"), N_(" render thumbnails recursively (see Help)") },
 	{ nullptr, "--cache-shared=",         gr_cache_shared,         TRUE,  FALSE, N_("clean|clear"),       N_("clean or clear shared thumbnail cache") },
 	{ nullptr, "--cache-thumbs=",         gr_cache_thumb,          TRUE,  FALSE, N_("clean|clear"),       N_("clean or clear thumbnail cache") },
-	{ "-d",    "--delay=",                gr_slideshow_delay,      TRUE,  FALSE, N_("<[H=][M=][N][.M]>"), N_("set slide show delay to Hrs Mins N.M seconds") },
+	{ "-d",    "--delay=",                gr_slideshow_delay,      TRUE,  FALSE, N_("<[H:][M:][N][.M]>"), N_("set slide show delay to Hrs Mins N.M seconds") },
 	{ nullptr, "--first",                 gr_image_first,          FALSE, FALSE, nullptr,                 N_("first image") },
 	{ "-f",    "--fullscreen",            gr_fullscreen_toggle,    FALSE, TRUE,  nullptr,                 N_("toggle full screen") },
 	{ nullptr, "--file=",                 gr_file_load,            TRUE,  FALSE, N_("<FILE>|<URL>"),      N_("open FILE or URL, bring Geeqie window to the top") },
@@ -1949,7 +1949,7 @@ void remote_control(const gchar *arg_exec, GList *remote_list, const gchar *path
 					g_string_append(command, " ");
 					g_string_append(command, text);
 					}
-				if (entry->opt_l && strcmp(entry->opt_l, "file:") == 0)
+				if (entry->opt_l && strcmp(entry->opt_l, "file=") == 0)
 					{
 					blank = TRUE;
 					}
@@ -1996,7 +1996,7 @@ void remote_control(const gchar *arg_exec, GList *remote_list, const gchar *path
 			entry = remote_command_find(text, nullptr);
 			if (entry &&
 			    entry->opt_l &&
-			    strcmp(entry->opt_l, "file:") == 0) use_path = FALSE;
+			    strcmp(entry->opt_l, "file=") == 0) use_path = FALSE;
 
 			remote_client_send(rc, text);
 
@@ -2005,12 +2005,12 @@ void remote_control(const gchar *arg_exec, GList *remote_list, const gchar *path
 
 		if (cmd_list && cmd_list->next)
 			{
-			prefix = "--list-add:";
+			prefix = "--list-add=";
 			remote_client_send(rc, "--list-clear");
 			}
 		else
 			{
-			prefix = "file:";
+			prefix = "file=";
 			}
 
 		work = cmd_list;
@@ -2030,7 +2030,7 @@ void remote_control(const gchar *arg_exec, GList *remote_list, const gchar *path
 			{
 			gchar *text;
 
-			text = g_strdup_printf("file:%s", path);
+			text = g_strdup_printf("file=%s", path);
 			remote_client_send(rc, text);
 			g_free(text);
 
@@ -2046,7 +2046,7 @@ void remote_control(const gchar *arg_exec, GList *remote_list, const gchar *path
 			name = static_cast<const gchar *>(work->data);
 			work = work->next;
 
-			text = g_strdup_printf("file:%s", name);
+			text = g_strdup_printf("file=%s", name);
 			remote_client_send(rc, text);
 			g_free(text);
 

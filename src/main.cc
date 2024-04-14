@@ -600,7 +600,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 		 * for use by any remote command that needs it
 		 */
 		current_dir = g_get_current_dir();
-		pwd = g_strconcat("--PWD:", current_dir, NULL);
+		pwd = g_strconcat("--PWD=", current_dir, NULL);
 		remote_list = g_list_prepend(remote_list, pwd);
 
 		remote_control(argv[0], remote_list, command_line->path, list, command_line->collection_list);
