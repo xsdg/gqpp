@@ -29,7 +29,7 @@
 ## Downloads will not be made unless the server version is newer than the local file.
 ##
 
-version="2024-04-11"
+version="2024-04-14"
 backups=3
 
 show_help()
@@ -74,6 +74,10 @@ extracted executable.
 This will take up some disk space, but the
 extracted executable will run as fast as a
 packaged release.
+
+If the extract option is selected, a symbolic link from
+\$HOME/.local/share/bash-completion/completions/geeqie
+to the extracted executable will be set to enable command line completion.
 \n\n"
 }
 
@@ -314,6 +318,12 @@ then
 		(../Geeqie-latest-x86_64.AppImage --appimage-extract > /dev/null) & spinner "Extracting Geeqie AppImage..."
 
 		printf "\nExtraction complete\n"
+
+		if [ ! -f "$HOME/.local/share/bash-completion/completions/geeqie" ]
+		then
+			mkdir --parents "$HOME/.local/share/bash-completion/completions/"
+			ln --symbolic "$HOME/bin/Geeqie-latest-x86_64-AppImage/squashfs-root/usr/local/share/bash-completion/completions/geeqie" "$HOME/.local/share/bash-completion/completions/geeqie"
+		fi
 
 		cd ..
 		ln --symbolic --force "./Geeqie$minimal-latest-$architecture-AppImage/squashfs-root/AppRun" geeqie
