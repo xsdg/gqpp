@@ -1578,7 +1578,7 @@ gint main(gint argc, gchar *argv[])
 			{
 			appimage_notification();
 			}
-		else if (g_strstr_len(gq_executable_path, -1, "AppRun"))
+		else if (g_strstr_len(gq_executable_path, -1, "squashfs-root"))
 			{
 			/* Probably running an extracted AppImage */
 			appimage_notification();
