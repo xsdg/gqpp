@@ -10,10 +10,10 @@
 for file in "$@" ; do
     # we got only one file for each group, typically the main one
     # get the sidecars:
-    geeqie -r --get-sidecars:"$file" |while read -r sidecar ; do
+    geeqie -r --get-sidecars="$file" |while read -r sidecar ; do
 	# the main file is included in the sidecar file list, no special handling is required
 	# get destination path for each sidecar file:
-        geeqie -r --get-destination:"$sidecar" | if read -r destination ; then
+        geeqie -r --get-destination="$sidecar" | if read -r destination ; then
             ln -s "$sidecar" "$destination"
         fi
     done

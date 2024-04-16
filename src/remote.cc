@@ -1119,11 +1119,11 @@ static void gr_selection_remove(const gchar *text, GIOChannel *, gpointer)
 		{
 		if (fd_to_deselect)
 			{
-			log_printf("remote sent \"--selection-remove:\" but current image is not selected");
+			log_printf("remote sent \"--selection-remove=\" but current image is not selected");
 			}
 		else
 			{
-			log_printf("remote sent \"--selection-remove:%s\" but that filename is not selected",
+			log_printf("remote sent \"--selection-remove=%s\" but that filename is not selected",
 				   filename);
 			}
 		}

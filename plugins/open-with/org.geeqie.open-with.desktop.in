@@ -4,7 +4,7 @@ Type=Application
 Name=Open With
 Comment=Call the gtk application chooser dialog
 
-Exec=geeqie --remote --action:OpenWith %f
+Exec=geeqie --remote --action=OpenWith %f
 
 # Desktop files that are usable only in Geeqie should be marked like this:
 Categories=Graphics;
