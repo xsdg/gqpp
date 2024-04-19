@@ -46,6 +46,12 @@
 #include "ui-tabcomp.h"
 #include "window.h"
 
+namespace
+{
+
+constexpr gint max_buffer_size = 16384;
+} // namespace
+
 /*
  *-----------------------------------------------------------------------------
  * generic dialog
@@ -608,18 +614,21 @@ static void show_notification_message(AppImageData *appimage_data)
 
 void appimage_notification_func(gpointer data, gpointer)
 {
-	auto appimage_data = static_cast<AppImageData *>(data);
-	gboolean internet_available = FALSE;
-	gchar **version_split;
-	GFile *file_github;
-	GFileInfo *file_info;
+	FILE *pipe;
 	GNetworkMonitor *net_mon;
 	GSocketConnectable *geeqie_github;
+	auto appimage_data = static_cast<AppImageData *>(data);
+	char buffer[max_buffer_size];
+	char result[max_buffer_size];
+	gboolean internet_available = FALSE;
+	gchar **github_split;
+	gchar **version_split;
+	gchar *start_date;
 	struct tm current_version_date;
-	int64_t file_github_date;
-	unsigned int year;
-	unsigned int month;
+	struct tm github_version_date;
 	unsigned int day;
+	unsigned int month;
+	unsigned int year;
 
 	/* If this is a release version, do not check for updates */
 	if (g_strrstr(VERSION, "git"))
@@ -638,11 +647,6 @@ void appimage_notification_func(gpointer data, gpointer)
 			/* VERSION looks like: 2.0.1+git20220116-c791cbee */
 			version_split = g_strsplit_set(VERSION, "+-", -1);
 
-			file_github = g_file_new_for_uri("https://github.com/BestImageViewer/geeqie/releases/download/continuous/Geeqie-latest-x86_64.AppImage");
-			file_info = g_file_query_info(file_github, "time::modified", G_FILE_QUERY_INFO_NONE, nullptr, nullptr);
-
-			file_github_date = g_file_info_get_attribute_uint64(file_info, "time::modified");
-
 			sscanf(version_split[1] + 3, "%4u%2u%2u", &year, &month, &day);
 			current_version_date.tm_year  = year - 1900;
 			current_version_date.tm_mon   = month - 1;
@@ -652,13 +656,45 @@ void appimage_notification_func(gpointer data, gpointer)
 			current_version_date.tm_sec   = 0;
 			current_version_date.tm_isdst = 0;
 
-			if (file_github_date > mktime(&current_version_date))
-				{
-				show_notification_message(appimage_data);
-				}
+			pipe = popen("curl --max-time 2 --silent https://api.github.com/repos/BestImageViewer/geeqie/releases/tags/continuous", "r");
 
-			g_object_unref(file_github);
-			g_object_unref(file_info);
+			if (pipe == nullptr)
+				{
+				log_printf("Failed to get date from GitHub");
+				}
+			else
+				{
+				while (fgets(buffer, max_buffer_size, pipe) != nullptr)
+					{
+					strcat(result, buffer);
+					}
+				pclose(pipe);
+
+				/* GitHub date looks like: "published_at": "2024-04-17T08:50:08Z" */
+				start_date = g_strstr_len(result, -1, "published");
+				start_date[26] = '\0';
+
+				github_split = g_strsplit_set(start_date, "\"-", -1);
+
+				sscanf(github_split[2], "%4u", &year);
+				sscanf(github_split[3], "%2u", &month);
+				sscanf(github_split[4], "%2u", &day);
+
+				github_version_date.tm_year  = year - 1900;
+				github_version_date.tm_mon   = month - 1;
+				github_version_date.tm_mday  = day;
+				github_version_date.tm_hour  = 0;
+				github_version_date.tm_min   = 0;
+				github_version_date.tm_sec   = 0;
+				github_version_date.tm_isdst = 0;
+
+				if (mktime(&github_version_date) > mktime(&current_version_date))
+					{
+					show_notification_message(appimage_data);
+					}
+
+				g_strfreev(github_split);
+				}
 			g_strfreev(version_split);
 			}
 		}
