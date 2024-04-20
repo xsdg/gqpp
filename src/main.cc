@@ -462,11 +462,6 @@ static void parse_command_line(gint argc, gchar *argv[])
 				{
 				command_line->new_instance = TRUE;
 				}
-			else if (strcmp(cmd_line, "--remote-help") == 0)
-				{
-				remote_help();
-				exit(0);
-				}
 			else if (strcmp(cmd_line, "--blank") == 0)
 				{
 				command_line->startup_blank = TRUE;
@@ -493,7 +488,6 @@ static void parse_command_line(gint argc, gchar *argv[])
 				print_term(FALSE, _("  -n, --new-instance               open a new instance of Geeqie *\n"));
 				print_term(FALSE, _("  -o, --log-file=<file>            save log data to file\n"));
 				print_term(FALSE, _("  -r, --remote                     send following commands to open window\n"));
-				print_term(FALSE, _("      --remote-help                print remote command list\n"));
 				print_term(FALSE, _("  -s, --slideshow                  start in slideshow mode\n"));
 				print_term(FALSE, _("  -T, --with-tools                 force show of tools\n"));
 				print_term(FALSE, _("  -t, --without-tools              force hide of tools\n"));
