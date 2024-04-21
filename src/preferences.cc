@@ -324,6 +324,7 @@ static void config_window_apply()
 	options->use_saved_window_positions_for_new_windows = c_options->use_saved_window_positions_for_new_windows;
 	options->save_window_workspace = c_options->save_window_workspace;
 	options->save_dialog_window_positions = c_options->save_dialog_window_positions;
+	options->hide_window_decorations = c_options->hide_window_decorations;
 	options->show_window_ids = c_options->show_window_ids;
 	options->image.scroll_reset_method = c_options->image.scroll_reset_method;
 	options->image.zoom_2pass = c_options->image.zoom_2pass;
@@ -2452,6 +2453,7 @@ static void config_tab_windows(GtkWidget *notebook)
 	GtkWidget *checkbox;
 	GtkWidget *ct_button;
 	GtkWidget *spin;
+	GtkWidget *widget;
 
 	vbox = scrolled_notebook_page(notebook, _("Windows"));
 
@@ -2473,6 +2475,10 @@ static void config_tab_windows(GtkWidget *notebook)
 
 	pref_checkbox_new_int(group, _("Remember dialog window positions"),
 			      options->save_dialog_window_positions, &c_options->save_dialog_window_positions);
+
+	widget = pref_checkbox_new_int(group, _("Hide window decorations"),
+			      options->hide_window_decorations, &c_options->hide_window_decorations);
+	gtk_widget_set_tooltip_text(widget, "Remove borders and title bar from windows. A restart of Geeqie is required for this feature to take effect on the main layout window");
 
 	pref_checkbox_new_int(group, _("Show window IDs"),
 			      options->show_window_ids, &c_options->show_window_ids);

@@ -136,6 +136,11 @@ GtkWidget *window_new(const gchar *role, const gchar *icon, const gchar *icon_fi
 	window_set_icon(window, icon, icon_file);
 	gtk_window_set_role(GTK_WINDOW(window), role);
 
+	if (options->hide_window_decorations)
+		{
+		gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
+		}
+
 	return window;
 }
 

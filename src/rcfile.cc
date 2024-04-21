@@ -380,6 +380,7 @@ static void write_global_attributes(GString *outstr, gint indent)
 	WRITE_NL(); WRITE_BOOL(*options, save_window_workspace);
 	WRITE_NL(); WRITE_BOOL(*options, tools_restore_state);
 	WRITE_NL(); WRITE_BOOL(*options, save_dialog_window_positions);
+	WRITE_NL(); WRITE_BOOL(*options, hide_window_decorations);
 	WRITE_NL(); WRITE_BOOL(*options, show_window_ids);
 	WRITE_NL(); WRITE_BOOL(*options, expand_menu_toolbar);
 	WRITE_NL(); WRITE_BOOL(*options, hamburger_menu);
@@ -887,6 +888,7 @@ static gboolean load_global_params(const gchar **attribute_names, const gchar **
 		if (READ_BOOL(*options, save_window_workspace)) continue;
 		if (READ_BOOL(*options, tools_restore_state)) continue;
 		if (READ_BOOL(*options, save_dialog_window_positions)) continue;
+		if (READ_BOOL(*options, hide_window_decorations)) continue;
 		if (READ_BOOL(*options, show_window_ids)) continue;
 		if (READ_BOOL(*options, expand_menu_toolbar)) continue;
 		if (READ_BOOL(*options, hamburger_menu)) continue;

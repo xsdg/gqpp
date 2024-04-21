@@ -78,6 +78,7 @@ ConfOptions *init_options(ConfOptions *options)
 	options->save_window_workspace = FALSE;
 	options->tools_restore_state = TRUE;
 	options->save_dialog_window_positions = FALSE;
+	options->hide_window_decorations = FALSE;
 	options->show_window_ids = FALSE;
 
 	options->file_ops.confirm_delete = TRUE;
