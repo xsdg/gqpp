@@ -20,8 +20,8 @@ AppDir:
     allow_unauthenticated: true
     sources:
     - sourceline: deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports jammy main restricted
-    - sourceline: deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports jammy-updates main restricted
     - sourceline: deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports jammy universe
+    - sourceline: deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports jammy-updates main restricted
     - sourceline: deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports jammy-updates universe
     include:
     - libtiff5
@@ -29,14 +29,14 @@ AppDir:
   files:
     include: []
     exclude:
-    - usr/share/man
-    - usr/share/doc/*/README.*
-    - usr/share/doc/*/changelog.*
-    - usr/share/doc/*/NEWS.*
-    - usr/share/doc/*/TODO.*
-    - usr/lib/libuim-scm.so.0
     - usr/lib/gtk-3.0/3.0.0/immodules/im-uim.so
     - usr/lib/im-uim.so
+    - usr/lib/libuim-scm.so.0
     - usr/lib/libuim.so.8
+    - usr/share/doc/*/NEWS.*
+    - usr/share/doc/*/README.*
+    - usr/share/doc/*/TODO.*
+    - usr/share/doc/*/changelog.*
+    - usr/share/man
 AppImage:
   arch: aarch64
