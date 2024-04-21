@@ -398,18 +398,24 @@ gboolean util_clip_region(gint x, gint y, gint w, gint h,
 			  gint clip_x, gint clip_y, gint clip_w, gint clip_h,
 			  gint *rx, gint *ry, gint *rw, gint *rh)
 {
-	if (clip_x + clip_w <= x ||
-	    clip_x >= x + w ||
-	    clip_y + clip_h <= y ||
-	    clip_y >= y + h)
+	// Ensures that clip region and main region have some overlap (they aren't
+	// completely disjoint).
+	if (clip_x + clip_w <= x ||  /* assert(x < clip_right) && */
+	    clip_x >= x + w ||       /* assert(clip_x < right) && */
+	    clip_y + clip_h <= y ||  /* assert(y < clip_bottom && */
+	    clip_y >= y + h)         /* assert(bottom < clip_y) */
 		{
 		return FALSE;
 		}
 
+	// We choose the right-most x coordinate.
 	*rx = MAX(x, clip_x);
+	// And the narrowest width.
 	*rw = MIN((x + w), (clip_x + clip_w)) - *rx;
 
+	// We choose the bottom-most y coordinate.
 	*ry = MAX(y, clip_y);
+	// And the shortest height.
 	*rh = MIN((y + h), (clip_y + clip_h)) - *ry;
 
 	return TRUE;
@@ -743,6 +749,8 @@ void pixbuf_draw_rect_fill(GdkPixbuf *pb,
 			pp[0] = (r * a + pp[0] * (256-a)) >> 8;
 			pp[1] = (g * a + pp[1] * (256-a)) >> 8;
 			pp[2] = (b * a + pp[2] * (256-a)) >> 8;
+                        // TODO(xsdg): Should we do anything about a potential
+                        // existing alpha value here?
 			pp += p_step;
 			}
 		}
@@ -809,15 +817,22 @@ void pixbuf_set_rect_fill(GdkPixbuf *pb,
 void pixbuf_set_rect(GdkPixbuf *pb,
 		     gint x, gint y, gint w, gint h,
 		     gint r, gint g, gint b, gint a,
-		     gint left, gint right, gint top, gint bottom)
+		     gint left_width, gint right_width, gint top_width, gint bottom_width)
 {
-	pixbuf_set_rect_fill(pb, x + left, y, w - left - right, top,
+	// TODO(xsdg): This function has multiple off-by-one errors.  Would be
+	// much easier to read (and implement correctly) with temporaries to
+	// translate from (x, y, w, h) coordinates to (x1, y1, x2, y2).
+	pixbuf_set_rect_fill(pb,
+			     x + left_width, y, w - left_width - right_width, top_width,
 			     r, g, b ,a);
-	pixbuf_set_rect_fill(pb, x + w - right, y, right, h,
+	pixbuf_set_rect_fill(pb,
+			     x + w - right_width, y, right_width, h,
 			     r, g, b ,a);
-	pixbuf_set_rect_fill(pb, x + left, y + h - bottom, w - left - right, bottom,
+	pixbuf_set_rect_fill(pb,
+			     x + left_width, y + h - bottom_width, w - left_width - right_width, bottom_width,
 			     r, g, b ,a);
-	pixbuf_set_rect_fill(pb, x, y, left, h,
+	pixbuf_set_rect_fill(pb,
+			     x, y, left_width, h,
 			     r, g, b ,a);
 }
 
@@ -1052,13 +1067,17 @@ void pixbuf_draw_triangle(GdkPixbuf *pb,
 	pw = gdk_pixbuf_get_width(pb);
 	ph = gdk_pixbuf_get_height(pb);
 
+	// Intersects the clip region with the pixbuf. r{x,y,w,h} is that
+	// intersecting region.
 	if (!util_clip_region(0, 0, pw, ph,
 			      clip_x, clip_y, clip_w, clip_h,
 			      &rx, &ry, &rw, &rh)) return;
 
+	// Determine the bounding box for the triangle.
 	util_clip_triangle(x1, y1, x2, y2, x3, y3,
 	                   tx, ty, tw, th);
 
+	// And now clip the triangle bounding box to the pixbuf clipping region.
 	if (!util_clip_region(rx, ry, rw, rh,
 			      tx, ty, tw, th,
 			      &fx1, &fy1, &fw, &fh)) return;
@@ -1071,6 +1090,7 @@ void pixbuf_draw_triangle(GdkPixbuf *pb,
 
 	p_step = (has_alpha) ? 4 : 3;
 
+	// Ensure that points are ordered by increasing y coordinate.
 	if (y1 > y2)
 		{
 		std::swap(x1, x2);
@@ -1087,6 +1107,8 @@ void pixbuf_draw_triangle(GdkPixbuf *pb,
 		std::swap(y1, y2);
 		}
 
+	// TODO(xsdg): Drop these explicit casts.  Int will always promote to
+	// double without issue.
 	slope1 = static_cast<gdouble>(y2 - y1);
 	if (slope1) slope1 = static_cast<gdouble>(x2 - x1) / slope1;
 	slope1_x = x1;
@@ -1140,6 +1162,17 @@ void pixbuf_draw_triangle(GdkPixbuf *pb,
  *-----------------------------------------------------------------------------
  */
 
+/**
+ * @brief Clips the specified line segment to the specified clipping region.
+ * @param[in] clip_x,clip_y Coordinates of the top-left corner of the clipping region.
+ * @param[in] clip_w,clip_h Extent of the clipping region.
+ * @param[in] x1,y1 Coordinates of the first point of the line segment.
+ * @param[in] x2,y2 Coordinates of the second point of the line segment.
+ * @param[out] rx1,ry1 Computed coordinates of the first point of the clipped line segment.
+ * @param[out] rx2,ry2 Computed coordinates of the second point of the clipped line segment.
+ * @retval FALSE The line segment lies outside of the clipping region.
+ * @retval TRUE The clip operation was performed, and the output params were set.
+ */
 static gboolean util_clip_line(gdouble clip_x, gdouble clip_y, gdouble clip_w, gdouble clip_h,
 			       gdouble x1, gdouble y1, gdouble x2, gdouble y2,
 			       gdouble *rx1, gdouble *ry1, gdouble *rx2, gdouble *ry2)
@@ -1147,6 +1180,7 @@ static gboolean util_clip_line(gdouble clip_x, gdouble clip_y, gdouble clip_w, g
 	gboolean flip = FALSE;
 	gdouble d;
 
+	// Normalize: Line endpoint 1 must be farther left.
 	if (x1 > x2)
 		{
 		std::swap(x1, x2);
@@ -1154,8 +1188,13 @@ static gboolean util_clip_line(gdouble clip_x, gdouble clip_y, gdouble clip_w, g
 		flip = TRUE;
 		}
 
+	// Ensure the line horizontally overlaps with the clip region.
 	if (x2 < clip_x || x1 > clip_x + clip_w) return FALSE;
 
+	// Ensure the line vertically overlaps with the clip region.
+	// Note that a line can both horizontally and vertically overlap with
+	// clipping region, while still being outside of the clipping region.  That
+	// case is detected further below.
 	if (y1 < y2)
 		{
 		if (y2 < clip_y || y1 > clip_y + clip_h) return FALSE;
@@ -1166,16 +1205,21 @@ static gboolean util_clip_line(gdouble clip_x, gdouble clip_y, gdouble clip_w, g
 		}
 
 	d = x2 - x1;
+	// TODO(xsdg): Either use ints here, or define a reasonable epsilon to do the
+	// right thing if -epsilon < d < 0.  We already guaranteed above that x2 >= x1.
 	if (d > 0.0)
 		{
 		gdouble slope;
 
 		slope = (y2 - y1) / d;
+		// If needed, project (x1, y1) to be horizontally within the clip
+		// region, while maintaining the line's slope and y-offset.
 		if (x1 < clip_x)
 			{
 			y1 = y1 + slope * (clip_x - x1);
 			x1 = clip_x;
 			}
+		// Likewise with (x2, y2).
 		if (x2 > clip_x + clip_w)
 			{
 			y2 = y2 + slope * (clip_x + clip_w - x2);
@@ -1183,6 +1227,8 @@ static gboolean util_clip_line(gdouble clip_x, gdouble clip_y, gdouble clip_w, g
 			}
 		}
 
+	// Check that any horizontal projections didn't cause the line segment to
+	// no longer vertically overlap with the clip region.
 	if (y1 < y2)
 		{
 		if (y2 < clip_y || y1 > clip_y + clip_h) return FALSE;
@@ -1191,6 +1237,7 @@ static gboolean util_clip_line(gdouble clip_x, gdouble clip_y, gdouble clip_w, g
 		{
 		if (y1 < clip_y || y2 > clip_y + clip_h) return FALSE;
 
+		// Re-normalize: line endpoint 1 must be farther up.
 		std::swap(x1, x2);
 		std::swap(y1, y2);
 		flip = !flip;
@@ -1202,11 +1249,14 @@ static gboolean util_clip_line(gdouble clip_x, gdouble clip_y, gdouble clip_w, g
 		gdouble slope;
 
 		slope = (x2 - x1) / d;
+		// If needed, project (x1, y1) to be vertically within the clip
+		// region, while maintaining the line's slope and x-offset.
 		if (y1 < clip_y)
 			{
 			x1 = x1 + slope * (clip_y - y1);
 			y1 = clip_y;
 			}
+		// Likewise with (x2, y2).
 		if (y2 > clip_y + clip_h)
 			{
 			x2 = x2 + slope * (clip_y + clip_h - y2);
@@ -1214,6 +1264,8 @@ static gboolean util_clip_line(gdouble clip_x, gdouble clip_y, gdouble clip_w, g
 			}
 		}
 
+	// Set the output params, accounting for any flips that might have
+	// happened during normalization.
 	if (flip)
 		{
 		*rx1 = x2;
@@ -1267,9 +1319,13 @@ void pixbuf_draw_line(GdkPixbuf *pb,
 	pw = gdk_pixbuf_get_width(pb);
 	ph = gdk_pixbuf_get_height(pb);
 
+	// Intersects the clip region with the pixbuf. r{x,y,w,h} is that
+	// intersecting region.
 	if (!util_clip_region(0, 0, pw, ph,
 			      clip_x, clip_y, clip_w, clip_h,
 			      &rx, &ry, &rw, &rh)) return;
+	// TODO(xsdg): These explicit casts are unnecessary and harm readability.
+	// Clips the specified line segment to the intersecting region from above.
 	if (!util_clip_line(static_cast<gdouble>(rx), static_cast<gdouble>(ry), static_cast<gdouble>(rw), static_cast<gdouble>(rh),
 			    static_cast<gdouble>(x1), static_cast<gdouble>(y1), static_cast<gdouble>(x2), static_cast<gdouble>(y2),
 			    &rx1, &ry1, &rx2, &ry2)) return;
@@ -1285,6 +1341,10 @@ void pixbuf_draw_line(GdkPixbuf *pb,
 
 	p_step = (has_alpha) ? 4 : 3;
 
+	// We draw the clipped line segment along the longer axis first, and
+	// allow the shorter axis to follow.  This is because our raster line segment
+	// will contain max(rx2-rx1, ry2-ry1) pixels, and the pixels along the
+	// shorter axis may not advance for each cycle (the line is not anti-aliased).
 	if (fabs(rx2 - rx1) > fabs(ry2 - ry1))
 		{
 		if (rx1 > rx2)
@@ -1345,6 +1405,27 @@ void pixbuf_draw_line(GdkPixbuf *pb,
  *-----------------------------------------------------------------------------
  */
 
+/**
+ * @brief Composites a horizontal or vertical linear gradient into the rectangular
+ *        region defined by corners `(x1, y1)` and `(x2, y2)`.  Note that the
+ *        current implementation breaks if the max distance between `s` and
+ *        `x1/x2/y1/y2` is greater than `border`.
+ * @param p_pix The pixel buffer to paint into.
+ * @param prs The pixel row stride (how many pixels per row of the buffer).
+ * @param has_alpha TRUE if the p_pix representation is rgba.  FALSE if just rgb.
+ * @param s The "center" of the gradient, along the axis defined by `vertical`.
+ *          Note that if the center is not along an edge, the gradient will be
+ *          symmetric about the center.
+ * @param vertical When `TRUE`, the gradient color will vary vertically.  When `FALSE`,
+ *                 horizontally.
+ * @param border The maximum extent of the gradient, in pixels.
+ * @param x1,y1 Coordinates of the first corner of the region.
+ * @param x2,y2 Coordinates of the second corner of the region.
+ * @param r,g,b Base color of the gradient.
+ * @param a The peak alpha value when compositing the gradient.  The alpha varies
+ *          from this value down to 0 (fully transparent).  Note that any alpha
+ *          value associated with the original pixel is unmodified.
+ */
 static void pixbuf_draw_fade_linear(guchar *p_pix, gint prs, gboolean has_alpha,
 				    gint s, gboolean vertical, gint border,
 				    gint x1, gint y1, gint x2, gint y2,
@@ -1372,11 +1453,30 @@ static void pixbuf_draw_fade_linear(guchar *p_pix, gint prs, gboolean has_alpha,
 		}
 }
 
+/**
+ * @brief Composites a radial gradient into the rectangular region defined by
+ *        corners `(x1, y1)` and `(x2, y2)`.
+ * @param p_pix The pixel buffer to paint into.
+ * @param prs The pixel row stride (how many pixels per row of the buffer).
+ * @param has_alpha TRUE if the p_pix representation is rgba.  FALSE if just rgb.
+ * @param sx,sy The coordinates of the center of the gradient.
+ * @param border The max radius, in pixels, of the gradient.  Pixels farther away
+ *               from the center than this will be unaffected.
+ * @param x1,y1 Coordinates of the first corner of the region.
+ * @param x2,y2 Coordinates of the second corner of the region.
+ * @param r,g,b Base color of the gradient.
+ * @param a The peak alpha value when compositing the gradient.  The alpha varies
+ *          from this value down to 0 (fully transparent).  Note that any alpha
+ *          value associated with the original pixel is unmodified.
+ */
 static void pixbuf_draw_fade_radius(guchar *p_pix, gint prs, gboolean has_alpha,
 				    gint sx, gint sy, gint border,
 				    gint x1, gint y1, gint x2, gint y2,
 				    guint8, guint8 g, guint8 b, guint8 a)
 {
+	// TODO(xsdg): r (red) was shadowed by r (radius), and was removed from
+	// the params list by an automated cleanup.  Fix this and distinguish the
+	// red param from the radius temporary variable.
 	guchar *pp;
 	gint p_step;
 	gint i;
@@ -1425,6 +1525,8 @@ void pixbuf_draw_shadow(GdkPixbuf *pb,
 	pw = gdk_pixbuf_get_width(pb);
 	ph = gdk_pixbuf_get_height(pb);
 
+	// Intersects the clip region with the pixbuf. r{x,y,w,h} is that
+	// intersecting region.
 	if (!util_clip_region(0, 0, pw, ph,
 			      clip_x, clip_y, clip_w, clip_h,
 			      &rx, &ry, &rw, &rh)) return;
@@ -1433,6 +1535,9 @@ void pixbuf_draw_shadow(GdkPixbuf *pb,
 	prs = gdk_pixbuf_get_rowstride(pb);
 	p_pix = gdk_pixbuf_get_pixels(pb);
 
+	// Composites the specified color into the rectangle specified by x, y, w, h,
+	// as contracted by `border` pixels, with a composition fraction that's defined
+	// by the supplied `a` parameter.
 	if (util_clip_region(x + border, y + border, w - border * 2, h - border * 2,
 			     rx, ry, rw, rh,
 			     &fx, &fy, &fw, &fh))
@@ -1442,6 +1547,7 @@ void pixbuf_draw_shadow(GdkPixbuf *pb,
 
 	if (border < 1) return;
 
+	// Draws linear gradients along each of the 4 edges.
 	if (util_clip_region(x, y + border, border, h - border * 2,
 			     rx, ry, rw, rh,
 			     &fx, &fy, &fw, &fh))
@@ -1478,6 +1584,7 @@ void pixbuf_draw_shadow(GdkPixbuf *pb,
 					fx, fy, fx + fw, fy + fh,
 					r, g, b, a);
 		}
+	// Draws radial gradients at each of the 4 corners.
 	if (util_clip_region(x, y, border, border,
 			     rx, ry, rw, rh,
 			     &fx, &fy, &fw, &fh))
@@ -1567,7 +1674,8 @@ void pixbuf_desaturate_rect(GdkPixbuf *pb,
 
 /*
  *-----------------------------------------------------------------------------
- * pixbuf highlight under/over exposure *-----------------------------------------------------------------------------
+ * pixbuf highlight under/over exposure
+ *-----------------------------------------------------------------------------
  */
 void pixbuf_highlight_overunderexposed(GdkPixbuf *pb, gint x, gint y, gint w, gint h)
 {
@@ -1616,7 +1724,7 @@ void pixbuf_highlight_overunderexposed(GdkPixbuf *pb, gint x, gint y, gint w, gi
  *-----------------------------------------------------------------------------
 */
 void pixbuf_ignore_alpha_rect(GdkPixbuf *pb,
-                 gint x, gint y, gint w, gint h)
+			      gint x, gint y, gint w, gint h)
 {
    gboolean has_alpha;
    gint pw;
