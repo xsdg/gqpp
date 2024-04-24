@@ -229,5 +229,5 @@ then
 		fi
 	fi
 
-	geeqie --remote view:"$tmpdir/"
+	geeqie --remote --view="$tmpdir/"
 fi

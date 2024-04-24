@@ -13,7 +13,7 @@ collection_list=$(geeqie --remote --get-collection-list)
 
 for collection_name in $collection_list
 do
-	collection_file_list=$(geeqie --remote --get-collection:"$collection_name")
+	collection_file_list=$(geeqie --remote --get-collection="$collection_name")
 	for collection_file in $collection_file_list
 		do
 		list="${list:+${list}}\n${collection_file}"
@@ -21,7 +21,7 @@ do
 done
 
 # get list of images in current folder
-file_list=$(geeqie --remote --get-filelist:)
+file_list=$(geeqie --remote --get-filelist=)
 
 for file_name in $file_list
 do
@@ -61,4 +61,4 @@ then
 	display_image=$(printf '%b' "$files_no_spaces" | sort --uniq | shuf -n 1)
 fi
 
-geeqie --remote file:"$display_image"
+geeqie --remote file="$display_image"
