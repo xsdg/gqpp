@@ -771,6 +771,21 @@ else
     summary({'Temporary Comments' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
 endif
 
+# Untranslated text checks
+untranslated_text_sh = find_program('untranslated-text.sh', dirs : scriptsdir, required : true)
+if untranslated_text_sh.found()
+	 foreach source_file : main_sources + pan_view_sources + view_file_sources
+		if fs.name(source_file).endswith('.cc')
+			source_file_name = fs.name(source_file)
+			test('Untranslated Text_ ' + source_file_name, untranslated_text_sh, args : [source_file], timeout : 200)
+		endif
+	endforeach
+
+	summary({'Untranslated Text' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+else
+	summary({'Untranslated Text' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+endif
+
 # Lua test
 option = get_option('lua')
 if not option.disabled()

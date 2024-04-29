@@ -4737,7 +4737,7 @@ DupeWindow *dupe_window_new()
 	dw->controls_box = controls_box;
 
 	dw->button_thumbs = gtk_check_button_new_with_label(_("Thumbnails"));
-	gtk_widget_set_tooltip_text(GTK_WIDGET(dw->button_thumbs), "Ctrl-T");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(dw->button_thumbs), _("Ctrl-T"));
 	dw->show_thumbs = options->duplicates_thumbnails;
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dw->button_thumbs), dw->show_thumbs);
 	g_signal_connect(G_OBJECT(dw->button_thumbs), "toggled",
@@ -4757,7 +4757,7 @@ DupeWindow *dupe_window_new()
 	gq_gtk_box_pack_start(GTK_BOX(controls_box), label, FALSE, FALSE, PREF_PAD_SPACE);
 	gtk_widget_show(label);
 	dw->custom_threshold = gtk_spin_button_new_with_range(1, 100, 1);
-	gtk_widget_set_tooltip_text(GTK_WIDGET(dw->custom_threshold), "Custom similarity threshold\n(Use tab key to set value)");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(dw->custom_threshold), _("Custom similarity threshold\n(Use tab key to set value)"));
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(dw->custom_threshold), options->duplicates_similarity_threshold);
 	g_signal_connect(G_OBJECT(dw->custom_threshold), "value_changed", G_CALLBACK(dupe_window_custom_threshold_cb), dw);
 	gq_gtk_box_pack_start(GTK_BOX(controls_box), dw->custom_threshold, FALSE, FALSE, PREF_PAD_SPACE);
@@ -4807,7 +4807,7 @@ DupeWindow *dupe_window_new()
 	gtk_widget_show(button);
 
 	button = pref_button_new(nullptr, GQ_ICON_CLOSE, _("Close"), G_CALLBACK(dupe_window_close_cb), dw);
-	gtk_widget_set_tooltip_text(GTK_WIDGET(button), "Ctrl-W");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(button), _("Ctrl-W"));
 	gq_gtk_container_add(GTK_WIDGET(hbox), button);
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_widget_grab_default(button);

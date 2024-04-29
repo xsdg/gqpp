@@ -202,7 +202,7 @@ gboolean file_util_safe_unlink(const gchar *path)
 
 		if (!g_file_trash(tmp, FALSE, &error) )
 			{
-			message = g_strconcat("See the Help file for a possible workaround.\n\n", error->message, NULL);
+			message = g_strconcat(_("See the Help file for a possible workaround.\n\n"), error->message, NULL);
 			gd = warning_dialog(_("Move to trash failed\n\n"), message, GQ_ICON_DIALOG_ERROR, nullptr);
 			generic_dialog_add_button(gd, GQ_ICON_HELP, _("Help"), move_to_trash_failed_cb, FALSE);
 

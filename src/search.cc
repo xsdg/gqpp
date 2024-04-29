@@ -2736,9 +2736,7 @@ static void search_start_cb(GtkWidget *, gpointer data)
 						sd->search_lat < -90 || sd->search_lat > 90 ||
 						sd->search_lon < -180 || sd->search_lon > 180)
 				{
-				file_util_warning_dialog(_(
-						"Entry does not contain a valid lat/long value"),
-							entry_text, GQ_ICON_DIALOG_WARNING, sd->window);
+				file_util_warning_dialog(_("Entry does not contain a valid lat/long value"), entry_text, GQ_ICON_DIALOG_WARNING, sd->window);
 				return;
 				}
 			g_free(entry_text);
@@ -3449,7 +3447,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	pref_checkbox_new_int(hbox, _("Match case"),
 			      sd->search_name_match_case, &sd->search_name_match_case);
 	pref_checkbox_new_int(hbox, _("Symbolic link"), sd->search_name_symbolic_link, &sd->search_name_symbolic_link);
-	gtk_widget_set_tooltip_text(GTK_WIDGET(combo), "When set to \"contains\" or \"path contains\", this field uses Perl Compatible Regular Expressions.\ne.g. use \n.*\\.jpg\n and not \n*.jpg\n\nSee the Help file.");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(combo), _("When set to 'contains' or 'path contains', this field uses Perl Compatible Regular Expressions.\ne.g. use \n.*\\.jpg\n and not \n*.jpg\n\nSee the Help file."));
 
 	/* Search for file size */
 	hbox = menu_choice(sd->box_search, &sd->check_size, &sd->menu_size,
@@ -3558,7 +3556,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	gtk_widget_show(sd->entry_comment);
 	pref_checkbox_new_int(hbox, _("Match case"),
 			      sd->search_comment_match_case, &sd->search_comment_match_case);
-	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->entry_comment), "This field uses Perl Compatible Regular Expressions.\ne.g. use \nabc.*ghk\n and not \nabc*ghk\n\nSee the Help file.");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->entry_comment), _("This field uses Perl Compatible Regular Expressions.\ne.g. use \nabc.*ghk\n and not \nabc*ghk\n\nSee the Help file."));
 
 	/* Search for image rating */
 	hbox = menu_choice(sd->box_search, &sd->check_rating, &sd->menu_rating,
@@ -3720,7 +3718,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 
 	sd->button_thumbs = pref_checkbox_new(hbox, _("Thumbnails"), FALSE,
 					      G_CALLBACK(search_thumb_toggle_cb), sd);
-	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_thumbs), "Ctrl-T");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_thumbs), _("Ctrl-T"));
 
 	frame = gtk_frame_new(nullptr);
 	DEBUG_NAME(frame);
@@ -3752,15 +3750,15 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	pref_spacer(hbox, PREF_PAD_BUTTON_GAP);
 	sd->button_start = pref_button_new(hbox, GQ_ICON_FIND, _("Find"),
 					   G_CALLBACK(search_start_cb), sd);
-	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_start), "Ctrl-Return");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_start), _("Ctrl-Return"));
 	pref_spacer(hbox, PREF_PAD_BUTTON_GAP);
 	sd->button_stop = pref_button_new(hbox, GQ_ICON_STOP, _("Stop"),
 					  G_CALLBACK(search_start_cb), sd);
-	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_stop), "Ctrl-Return");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_stop), _("Ctrl-Return"));
 	gtk_widget_set_sensitive(sd->button_stop, FALSE);
 	pref_spacer(hbox, PREF_PAD_BUTTON_GAP);
 	sd->button_close = pref_button_new(hbox, GQ_ICON_CLOSE, _("Close"), G_CALLBACK(search_window_close_cb), sd);
-	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_close), "Ctrl-W");
+	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->button_close), _("Ctrl-W"));
 	gtk_widget_set_sensitive(sd->button_close, TRUE);
 
 	search_result_thumb_enable(sd, TRUE);

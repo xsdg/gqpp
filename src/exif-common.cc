@@ -836,7 +836,7 @@ static gchar *exif_build_formatted_localtime(ExifData *exif)
 /**
  * @brief Gets timezone from GPS lat/long
  * @param[in] exif
- * @returns Timezone string in the form "Europe/London"
+ * @returns Timezone string in the form Europe/London
  *
  *
  */

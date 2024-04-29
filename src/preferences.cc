@@ -2351,7 +2351,7 @@ static void config_tab_image(GtkWidget *notebook)
 				 100, 999, 1,
 				 options->image.max_enlargement_size, &c_options->image.max_enlargement_size);
 	pref_checkbox_link_sensitivity(enlargement_button, spin);
-	gtk_widget_set_tooltip_text(GTK_WIDGET(hbox), _("Enable this to allow Geeqie to increase the image size for images that are smaller than the current view area when the zoom is set to \"Fit image to window\". This value sets the maximum expansion permitted in percent i.e. 100% is full-size."));
+	gtk_widget_set_tooltip_text(GTK_WIDGET(hbox), _("Enable this to allow Geeqie to increase the image size for images that are smaller than the current view area when the zoom is set to 'Fit image to window'. This value sets the maximum expansion permitted in percent i.e. 100% is full-size."));
 
 	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 	ct_button = pref_checkbox_new_int(hbox, _("Virtual window size (%% of actual window):"),
@@ -2360,7 +2360,7 @@ static void config_tab_image(GtkWidget *notebook)
 				 10, 150, 1,
 				 options->image.max_autofit_size, &c_options->image.max_autofit_size);
 	pref_checkbox_link_sensitivity(ct_button, spin);
-	gtk_widget_set_tooltip_text(GTK_WIDGET(hbox), _("This value will set the virtual size of the window when \"Fit image to window\" is set. Instead of using the actual size of the window, the specified percentage of the window will be used. It allows one to keep a border around the image (values lower than 100%) or to auto zoom the image (values greater than 100%). It affects fullscreen mode too."));
+	gtk_widget_set_tooltip_text(GTK_WIDGET(hbox), _("This value will set the virtual size of the window when 'Fit image to window' is set. Instead of using the actual size of the window, the specified percentage of the window will be used. It allows one to keep a border around the image (values lower than 100%) or to auto zoom the image (values greater than 100%). It affects fullscreen mode too."));
 
 	group = pref_group_new(vbox, FALSE, _("Tile size"), GTK_ORIENTATION_VERTICAL);
 
@@ -2478,7 +2478,7 @@ static void config_tab_windows(GtkWidget *notebook)
 
 	widget = pref_checkbox_new_int(group, _("Hide window decorations"),
 			      options->hide_window_decorations, &c_options->hide_window_decorations);
-	gtk_widget_set_tooltip_text(widget, "Remove borders and title bar from windows. A restart of Geeqie is required for this feature to take effect on the main layout window");
+	gtk_widget_set_tooltip_text(widget, _("Remove borders and title bar from windows. A restart of Geeqie is required for this feature to take effect on the main layout window"));
 
 	pref_checkbox_new_int(group, _("Show window IDs"),
 			      options->show_window_ids, &c_options->show_window_ids);
@@ -2993,7 +2993,7 @@ static void config_tab_metadata(GtkWidget *notebook)
 	gtk_widget_set_tooltip_text(tmp_widget, _("See the Help file for a list of the tags used"));
 
 	tmp_widget = pref_checkbox_new_int(group, _("Permit Keywords to be case-sensitive"), options->metadata.keywords_case_sensitive, &c_options->metadata.keywords_case_sensitive);
-	gtk_widget_set_tooltip_text(tmp_widget, _("When selected, \"Place\" and \"place\" are two different keywords"));
+	gtk_widget_set_tooltip_text(tmp_widget, _("When selected, 'Place' and 'place' are two different keywords"));
 
 	ct_button = pref_checkbox_new_int(group, _("Write altered image orientation to the metadata"), options->metadata.write_orientation, &c_options->metadata.write_orientation);
 	gtk_widget_set_tooltip_text(ct_button, _("If checked, the results of orientation commands (Rotate, Mirror and Flip) issued on an image will be written to metadata\nNote: If this option is not checked, the results of orientation commands will be lost when Geeqie closes"));
@@ -3031,7 +3031,7 @@ static void config_tab_metadata(GtkWidget *notebook)
 	group = pref_group_new(vbox, FALSE, _("Pre-load metadata"), GTK_ORIENTATION_VERTICAL);
 
 	ct_button = pref_checkbox_new_int(group, _("Read metadata in background"), options->read_metadata_in_idle, &c_options->read_metadata_in_idle);
-	gtk_widget_set_tooltip_text(ct_button,"On folder change, read DateTimeOriginal, DateTimeDigitized and Star Rating in the idle loop.\nIf this is not selected, initial loading of the folder will be faster but sorting on these items will be slower");
+	gtk_widget_set_tooltip_text(ct_button,_("On folder change, read DateTimeOriginal, DateTimeDigitized and Star Rating in the idle loop.\nIf this is not selected, initial loading of the folder will be faster but sorting on these items will be slower"));
 }
 
 /* keywords tab */
@@ -3640,9 +3640,9 @@ static void config_tab_behavior(GtkWidget *notebook)
 				options->marks_save, &c_options->marks_save);
 	gtk_widget_set_tooltip_text(marks,_("Note that marks linked to a keyword will be saved irrespective of this setting"));
 
-	with_rename = pref_checkbox_new_int(group, _("Use \"With Rename\" as default for Copy/Move dialogs"),
+	with_rename = pref_checkbox_new_int(group, _("Use 'With Rename' as default for Copy/Move dialogs"),
 				options->with_rename, &c_options->with_rename);
-	gtk_widget_set_tooltip_text(with_rename,"Change the default button for Copy/Move dialogs");
+	gtk_widget_set_tooltip_text(with_rename,_("Change the default button for Copy/Move dialogs"));
 
 	collections_on_top = pref_checkbox_new_int(group, _("Permit duplicates in Collections"),
 				options->collections_duplicates, &c_options->collections_duplicates);
@@ -3654,11 +3654,11 @@ static void config_tab_behavior(GtkWidget *notebook)
 
 	hide_window_in_fullscreen = pref_checkbox_new_int(group, _("Hide window in fullscreen"),
 				options->hide_window_in_fullscreen, &c_options->hide_window_in_fullscreen);
-	gtk_widget_set_tooltip_text(hide_window_in_fullscreen,"When alt-tabbing, prevent Geeqie window showing twice");
+	gtk_widget_set_tooltip_text(hide_window_in_fullscreen, _("When alt-tabbing, prevent Geeqie window showing twice"));
 
 	hide_osd_in_fullscreen = pref_checkbox_new_int(group, _("Hide OSD in fullscreen"),
 				options->hide_osd_in_fullscreen, &c_options->hide_osd_in_fullscreen);
-	gtk_widget_set_tooltip_text(hide_osd_in_fullscreen,"Hide Overlay Screen Display in fullscreen mode");
+	gtk_widget_set_tooltip_text(hide_osd_in_fullscreen, _("Hide Overlay Screen Display in fullscreen mode"));
 
 	pref_spin_new_int(group, _("Recent folder list maximum size"), nullptr,
 			  1, 50, 1, options->open_recent_list_maxsize, &c_options->open_recent_list_maxsize);
