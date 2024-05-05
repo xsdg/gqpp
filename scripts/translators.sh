@@ -37,7 +37,7 @@
 ## \# translator2_name <translator2 email> \n
 ## \#
 
-mkdir --parents "$1"
+mkdir -p "$1"
 private_dir="$1"
 shift
 source_dir="$1"
