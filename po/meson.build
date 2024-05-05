@@ -57,16 +57,11 @@ po_sources = files([
   'zh_TW.po'
 ])
 
-po_source_list = ''
-foreach name : po_sources
-  po_source_list = po_source_list + meson.project_source_root() + '/' + '@0@'.format(name) + '\n'
-endforeach
-
 translators_sh = join_paths(scriptsdir, 'translators.sh')
 
 translator_resources = custom_target('translator_resources',
                 input : ['locales.txt', 'translators.gresource.xml'],
                 output : ['translators.h', 'translators.c'],
-                command : [translators_sh, '@PRIVATE_DIR@', po_source_list, meson.current_build_dir() , '@INPUT0@', '@INPUT1@'])
+                command : [translators_sh, '@PRIVATE_DIR@', meson.current_source_dir(), meson.current_build_dir() , '@INPUT0@', '@INPUT1@', po_sources])
 
 project_sources += translator_resources

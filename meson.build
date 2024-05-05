@@ -687,8 +687,7 @@ if option.enabled()
         sources = sources_list.stdout().strip().split('\n')
 
         foreach image : sources
-            image_path = '@0@'.format(image)
-            path_array = image_path.split('/')
+            path_array = image.split('/')
             image_name = path_array[path_array.length() - 1]
 
             if image_name.startswith('fail')

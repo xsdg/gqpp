@@ -25,10 +25,11 @@
 ## The lists will be displayed in the About - Credits dialog.
 ##
 ## $1 Meson PRIVATE_DIR \n
-## $2 po source list \n
+## $2 Meson current_source_dir \n
 ## $3 Meson current_build_dir \n
 ## $4 locales.txt \n
 ## $5 gresource.xml \n
+## $6...$n po source list - space separated list \n
 ##
 ## It is expected that the .po files have a list of translators in the form: \n
 ## \# Translators: \n
@@ -36,15 +37,26 @@
 ## \# translator2_name <translator2 email> \n
 ## \#
 
-mkdir -p "$1"
+mkdir --parents "$1"
+private_dir="$1"
+shift
+source_dir="$1"
+shift
+build_dir="$1"
+shift
+locales="$1"
+shift
+resource_xml="$1"
+shift
 
-printf %s "$2" | while read -r file
+while [ -n "$1" ]
 do
-	base=$(basename "$file")
+	base=$(basename "$1")
+	full_file_path="$source_dir/$1"
 	locale=${base%.po}
 
 	printf "\n"
-	awk '$1 == "'"$locale"'" {print $0}' "$4"
+	awk '$1 == "'"$locale"'" {print $0}' "$locales"
 	awk '$0 ~/Translators:/ {
 		while (1) {
 			getline $0
@@ -56,10 +68,11 @@ do
 			}
 		}
 		print $0
-	}' "$file"
+	}' "$full_file_path"
 
-done > "$1"/translators
-printf "\n\0" >> "$1"/translators
+shift
+done > "$private_dir"/translators
+printf "\n\0" >> "$private_dir"/translators
 
-glib-compile-resources --generate-header --sourcedir="$1" --target="$3"/translators.h "$5"
-glib-compile-resources --generate-source --sourcedir="$1" --target="$3"/translators.c "$5"
+glib-compile-resources --generate-header --sourcedir="$private_dir" --target="$build_dir"/translators.h "$resource_xml"
+glib-compile-resources --generate-source --sourcedir="$private_dir" --target="$build_dir"/translators.c "$resource_xml"
