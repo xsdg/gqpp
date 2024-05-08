@@ -11,10 +11,12 @@ jobs:
     - run: sudo apt-get install pandoc
     - run: sudo apt-get install yelp-tools
 
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - run: git fetch --tags --force
     - run: git fetch --depth=1000000
-    - uses: actions/setup-python@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
     - uses: BSFishy/meson-build@v1.0.3
       with:
         action: build
@@ -64,7 +66,7 @@ jobs:
          artifacts: "Geeqie-minimal-latest-x86_64.AppImage"
 
     - name: Upload logs
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: logs-all-build-appimage

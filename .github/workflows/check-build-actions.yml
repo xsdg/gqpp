@@ -5,16 +5,16 @@ jobs:
   Check-Markdown:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Run Markdown Lint
       uses: actionshub/markdownlint@main
 
   Check-Shellcheck:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Run Shellcheck Lint
-      uses: ludeeus/action-shellcheck@2.0.0
+      uses: ludeeus/action-shellcheck@master
       with:
         ignore_names: downsize
 
@@ -30,8 +30,10 @@ jobs:
     - run: sudo apt-get install libgtk-3-bin
     - run: sudo apt-get install libxml2-utils
     - run: sudo apt-get install shellcheck
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
     - run: sudo apt-get install xvfb
     - uses: BSFishy/meson-build@v1.0.3
       with:
@@ -65,7 +67,7 @@ jobs:
         options: --verbose
         meson-version: 1.0.0
     - name: Upload logs
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: logs-all-no-options
@@ -103,10 +105,12 @@ jobs:
     #~ - run: sudo apt-get install libffmpegthumbnailer-dev
     #~ - run: sudo apt-get install libjxl-dev
     #~ - run: sudo apt-get install yelp-tools
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: '0'
-    - uses: actions/setup-python@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
     - run: sudo apt-get install xvfb
     - uses: BSFishy/meson-build@v1.0.3
       with:
@@ -116,7 +120,7 @@ jobs:
         options: --verbose
         meson-version: 1.0.0
     - name: Upload logs
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: logs-all-most-options
