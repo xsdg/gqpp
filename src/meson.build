@@ -193,7 +193,10 @@ main_sources = files('advanced-exif.cc',
 'view-dir-tree.h',
 'view-file.h',
 'window.cc',
-'window.h')
+'window.h',  # DO NOT MERGE
+'prototype_unit_test.cc',
+'prototype_unit_test.h',
+)
 
 if conf_data.get('HAVE_DJVU', 0) == 1
     main_sources += files(

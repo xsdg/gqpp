@@ -84,6 +84,8 @@
 #include "ui-fileops.h"
 #include "ui-utildlg.h"
 
+#include "prototype_unit_test.h"
+
 gboolean thumb_format_changed = FALSE;
 static RemoteConnection *remote_connection = nullptr;
 
@@ -1248,7 +1250,23 @@ static void create_application_paths()
 	g_free(path);
 }
 
-gint main(gint argc, gchar *argv[])
+// TODO(xsdg): This define should actually be done conditionally in the build system.
+#define UNIT_TEST_MODE
+
+#ifdef UNIT_TEST_MODE
+	#define MAIN_TEST main
+	#define MAIN_APP _disabled_app_main
+#else
+	#define MAIN_TEST _disabled_test_main
+	#define MAIN_APP main
+#endif
+
+gint MAIN_TEST(gint argc, gchar *argv[])
+{
+	return run_tests();
+}
+
+gint MAIN_APP(gint argc, gchar *argv[])
 {
 	CollectionData *cd = nullptr;
 	CollectionData *first_collection = nullptr;
