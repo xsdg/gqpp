@@ -676,7 +676,7 @@ configure_file(input: 'geeqie.spec.in', output: 'geeqie.spec', configuration: co
 # is_parallel false is to avoid problems with images tests
 xvfb = find_program('xvfb-run', required : false)
 if xvfb.found()
-    test('Basic test', xvfb, args: ['--auto-servernum', geeqie_exe, '--version'], is_parallel : false, timeout: 100)
+    test('Basic test', xvfb, args: ['--auto-servernum', geeqie_exe, '--version'], is_parallel : false, timeout: 100, suite: 'functional')
     summary({'xvfb' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
 else
     summary({'xvfb' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
@@ -705,9 +705,9 @@ if option.enabled()
             image_name = path_array[path_array.length() - 1]
 
             if image_name.startswith('fail')
-                test('Image_ ' + image_name, image_test_sh, args: [geeqie_exe, image], is_parallel : false, should_fail : true, timeout: 100)
+                test('Image_ ' + image_name, image_test_sh, args: [geeqie_exe, image], is_parallel : false, should_fail : true, timeout: 100, suite: 'functional')
             else
-                test('Image_ ' + image_name, image_test_sh, args: [geeqie_exe, image], is_parallel : false, timeout: 100)
+                test('Image_ ' + image_name, image_test_sh, args: [geeqie_exe, image], is_parallel : false, timeout: 100, suite: 'functional')
             endif
         endforeach
         summary({'Image tests' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
@@ -729,7 +729,7 @@ if running_from_git
                 source_file_name = fs.name(source_file)
                 config_file = join_paths(meson.project_source_root(), '.clang-tidy')
 
-                test('Code Correctness_ ' + source_file_name, clang_tidy_exe, args : ['-p', './build', '-quiet', '--config-file', config_file,  source_file], timeout : 100)
+                test('Code Correctness_ ' + source_file_name, clang_tidy_exe, args : ['-p', './build', '-quiet', '--config-file', config_file,  source_file], timeout : 100, suite : 'analysis')
             endif
         endforeach
 
@@ -746,7 +746,7 @@ enum_check_sh = find_program('enum-check.sh', dirs : scriptsdir, required : true
 if enum_check_sh.found()
     foreach source_file : main_sources + pan_view_sources + view_file_sources
         source_file_name = fs.name(source_file)
-        test('Single Value enum_ ' + source_file_name, enum_check_sh, args : [source_file], timeout : 100)
+        test('Single Value enum_ ' + source_file_name, enum_check_sh, args : [source_file], timeout : 100, suite : 'analysis')
     endforeach
 
     summary({'Single Value enum' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
@@ -760,7 +760,7 @@ if debug_check_sh.found()
     foreach source_file : main_sources + pan_view_sources + view_file_sources
         source_file_name = fs.name(source_file)
         if (source_file_name != 'debug.h')
-            test('Debug Statements_ ' + source_file_name, debug_check_sh, args : [source_file], timeout : 100)
+            test('Debug Statements_ ' + source_file_name, debug_check_sh, args : [source_file], timeout : 100, suite : 'analysis')
         endif
     endforeach
 
@@ -775,7 +775,7 @@ if tmp_comments_check_sh.found()
     foreach source_file : main_sources + pan_view_sources + view_file_sources
         source_file_name = fs.name(source_file)
         if (source_file_name != 'debug.h')
-            test('Temporary Comments_ ' + source_file_name, tmp_comments_check_sh, args : [source_file], timeout : 100)
+            test('Temporary Comments_ ' + source_file_name, tmp_comments_check_sh, args : [source_file], timeout : 100, suite : 'analysis')
         endif
     endforeach
 
@@ -790,7 +790,7 @@ if untranslated_text_sh.found()
 	 foreach source_file : main_sources + pan_view_sources + view_file_sources
 		if fs.name(source_file).endswith('.cc')
 			source_file_name = fs.name(source_file)
-			test('Untranslated Text_ ' + source_file_name, untranslated_text_sh, args : [source_file], timeout : 200)
+			test('Untranslated Text_ ' + source_file_name, untranslated_text_sh, args : [source_file], timeout : 200, suite : 'analysis')
 		endif
 	endforeach
 
@@ -805,7 +805,7 @@ if not option.disabled()
     if lua_dep.found()
         if xvfb.found()
             lua_test_sh = find_program('lua-test.sh', dirs : scriptsdir, required : true)
-            test('Lua test', lua_test_sh, args: [geeqie_exe], is_parallel : false, timeout: 100)
+            test('Lua test', lua_test_sh, args: [geeqie_exe], is_parallel : false, timeout: 100, suite : 'analysis')
 
             summary({'lua' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
         else
@@ -820,13 +820,13 @@ endif
 
 # Ancillary files test
 test_ancillary_files_sh = find_program('test-ancillary-files.sh', dirs : scriptsdir, required : true)
-test('Ancillary files', test_ancillary_files_sh, args: [meson.current_source_dir()], timeout: 100)
+test('Ancillary files', test_ancillary_files_sh, args: [meson.current_source_dir()], timeout: 100, suite : 'analysis')
 
 summary({'Ancillary files' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
 
 # Unit tests
 if conf_data.get('ENABLE_UNIT_TESTS', 0) == 1
-    test('Unit tests', geeqie_exe, args: ['--run-unit-tests'])
+    test('Unit tests', geeqie_exe, args: ['--run-unit-tests'], suite : 'unit')
     summary({'unit_tests' : ['Tests run:', true]}, section : 'Testing', bool_yn : true)
 else
     summary({'unit_tests' : ['Tests run:', false]}, section : 'Testing', bool_yn : true)
