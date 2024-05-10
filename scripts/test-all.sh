@@ -64,6 +64,7 @@ meson setup \
 -Dpdf=disabled \
 -Dspell=disabled \
 -Dtiff=disabled \
+-Dunit_tests=disabled \
 -Dvideothumbnailer=disabled \
 -Dwebp=disabled \
 -Dyelp-build=disabled \

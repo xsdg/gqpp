@@ -200,6 +200,13 @@ else
     summary({'execinfo' : ['stacktrace supported:', false]}, section : 'Debugging', bool_yn : true)
 endif
 
+conf_data.set('ENABLE_UNIT_TESTS', 0)
+option = get_option('unit_tests')
+if not option.disabled()
+    conf_data.set('ENABLE_UNIT_TESTS', 1)
+    # Summary is handled below, where the test() itself is defined.
+endif
+
 conf_data.set('HAVE_ARCHIVE', 0)
 libarchive_dep = []
 req_version = '>=3.4.0'
@@ -610,6 +617,13 @@ ui_sources = []
 # Process subdirs before the sources
 subdir('po')
 subdir('plugins')
+
+conditional_unit_test_deps = []
+if conf_data.get('ENABLE_UNIT_TESTS', 0) == 1
+    gtest_proj = subproject('gtest')
+    conditional_unit_test_deps += gtest_proj.get_variable('gtest_dep')
+    conditional_unit_test_deps += gtest_proj.get_variable('gmock_dep')
+endif
 
 # Generate the executable
 subdir('src')
