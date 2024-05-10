@@ -84,6 +84,10 @@
 #include "ui-fileops.h"
 #include "ui-utildlg.h"
 
+#if ENABLE_UNIT_TESTS
+#  include "gtest/gtest.h"
+#endif
+
 gboolean thumb_format_changed = FALSE;
 static RemoteConnection *remote_connection = nullptr;
 
@@ -1254,6 +1258,19 @@ static void create_application_paths()
 
 gint main(gint argc, gchar *argv[])
 {
+	// We handle unit tests here because it takes the place of running the
+	// rest of the app.
+	if (search_command_line_for_unit_test_option(argc, argv))
+	{
+#if ENABLE_UNIT_TESTS
+		testing::InitGoogleTest(&argc, argv);
+		return RUN_ALL_TESTS();
+#else
+		fprintf(stderr, "Unit tests are not enabled in this build.\n");
+		return 1;
+#endif
+	}
+
 	CollectionData *cd = nullptr;
 	CollectionData *first_collection = nullptr;
 	gboolean disable_clutter = FALSE;

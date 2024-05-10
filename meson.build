@@ -823,3 +823,11 @@ test_ancillary_files_sh = find_program('test-ancillary-files.sh', dirs : scripts
 test('Ancillary files', test_ancillary_files_sh, args: [meson.current_source_dir()], timeout: 100)
 
 summary({'Ancillary files' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+
+# Unit tests
+if conf_data.get('ENABLE_UNIT_TESTS', 0) == 1
+    test('Unit tests', geeqie_exe, args: ['--run-unit-tests'])
+    summary({'unit_tests' : ['Tests run:', true]}, section : 'Testing', bool_yn : true)
+else
+    summary({'unit_tests' : ['Tests run:', false]}, section : 'Testing', bool_yn : true)
+endif
