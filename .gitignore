@@ -57,6 +57,10 @@ Makefile.in
 /src/view_file/.deps
 /src/view_file/.dirstamp
 
+# /subprojects
+/subprojects/packagecache
+/subprojects/googletest-release-*
+
 /build
 /build-stamp
 /debian/geeqie*
