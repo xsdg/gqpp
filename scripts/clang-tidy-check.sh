@@ -97,7 +97,12 @@ done
 
 if [ ! -d "build" ]
 then
-	meson setup build
+	meson setup -Ddevel=enabled build
+else
+	if [ ! -d "build/test-images.p" ]
+		then
+			printf 'Warning: Probably all options are not enabled\n\n'
+		fi
 fi
 ninja -C build
 
