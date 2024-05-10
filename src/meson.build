@@ -360,5 +360,5 @@ lua_dep,
 poppler_glib_dep,
 thread_dep,
 tiff_dep
-],
+] + conditional_unit_test_deps,
 include_directories : [configuration_inc], install : true)

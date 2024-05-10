@@ -226,4 +226,9 @@
 /* Do not use */
 #mesondefine HAVE_GTK4
 
+/* Whether to enable a mode of Geeqie that executes unit tests instead of
+   running the actual app.  Actually executing the unit tests _also_ requires
+   a command-line argument to be supplied. */
+#mesondefine ENABLE_UNIT_TESTS
+
 #endif
