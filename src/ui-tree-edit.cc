@@ -516,7 +516,7 @@ void shift_color(GdkRGBA *src, gshort val, gint direction)
 	cs = 1.0 / 100 * val;
 
 	/* up or down ? */
-	if (direction < 0 || (direction == 0 &&(static_cast<gdouble>(src->red) + static_cast<gdouble>(src->green) + static_cast<gdouble>(src->blue)) / 3 > 1.0 / 2))
+	if (direction < 0 || (direction == 0 &&(src->red + src->green + src->blue) / 3 > 1.0 / 2))
 		{
 		src->red = MAX(0 , src->red - cs);
 		src->green = MAX(0 , src->green - cs);

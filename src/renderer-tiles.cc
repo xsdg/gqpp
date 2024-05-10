@@ -2201,7 +2201,7 @@ static gboolean rt_realize_cb(GtkWidget *widget, gpointer data)
 		rt->surface = gdk_window_create_similar_surface(gtk_widget_get_window(widget), CAIRO_CONTENT_COLOR, gtk_widget_get_allocated_width(widget), gtk_widget_get_allocated_height(widget));
 
 		cr = cairo_create(rt->surface);
-		cairo_set_source_rgb(cr, static_cast<gdouble>(rt->pr->color.red), static_cast<gdouble>(rt->pr->color.green), static_cast<gdouble>(rt->pr->color.blue));
+		cairo_set_source_rgb(cr, rt->pr->color.red, rt->pr->color.green, rt->pr->color.blue);
 		cairo_paint(cr);
 		cairo_destroy(cr);
 		}
@@ -2222,7 +2222,7 @@ static gboolean rt_size_allocate_cb(GtkWidget *widget,  GdkRectangle *allocation
 
 		cr = cairo_create(rt->surface);
 
-		cairo_set_source_rgb(cr, static_cast<gdouble>(options->image.border_color.red), static_cast<gdouble>(options->image.border_color.green), static_cast<gdouble>(options->image.border_color.blue));
+		cairo_set_source_rgb(cr, options->image.border_color.red, options->image.border_color.green, options->image.border_color.blue);
 		cairo_paint(cr);
 		cairo_set_source_surface(cr, old_surface, 0, 0);
 		cairo_paint(cr);

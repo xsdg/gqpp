@@ -1527,7 +1527,7 @@ static void cache_manager_sim_start_cb(GenericDialog *, gpointer data)
 		g_list_free(list_total);
 		cd->count_done = 0;
 
-		while (cache_manager_sim_file(static_cast<CacheOpsData *>(cd)));
+		while (cache_manager_sim_file(cd));
 		}
 
 	g_free(path);

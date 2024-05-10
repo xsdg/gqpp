@@ -63,7 +63,6 @@ Checks: >
   -readability-magic-numbers,
   -readability-named-parameter,
   -readability-qualified-auto,
-  -readability-redundant-casting,
 
 ExtraArgs: [-Wno-unknown-warning-option, -Wno-unused-lambda-capture, -Wno-unused-but-set-variable]
 WarningsAsErrors: "*"

@@ -189,7 +189,7 @@ static void toolbar_item_free(ToolbarButtonData *tbbd)
 	if (!tbbd) return;
 
 	g_free(const_cast<gchar *>(tbbd->name));
-	g_free(const_cast<ToolbarButtonData *>(tbbd));
+	g_free(tbbd);
 }
 
 static void toolbar_button_free(GtkWidget *widget)
