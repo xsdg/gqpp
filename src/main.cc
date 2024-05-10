@@ -633,28 +633,24 @@ static void parse_command_line_for_debug_option(gint argc, gchar *argv[])
 {
 #ifdef DEBUG
 	const gchar *debug_option = "--debug";
-	gint len = strlen(debug_option);
+	const gint len = strlen(debug_option);
 
-	if (argc > 1)
+	for (gint i = 1; i < argc; i++)
 		{
-		gint i;
-
-		for (i = 1; i < argc; i++)
+		// TODO(xsdg): Replace this with a regex match.  Simpler and less error-prone.
+		const gchar *cmd_line = argv[i];
+		if (strncmp(cmd_line, debug_option, len) == 0)
 			{
-			const gchar *cmd_line = argv[i];
-			if (strncmp(cmd_line, debug_option, len) == 0)
-				{
-				gint cmd_line_len = strlen(cmd_line);
+			const gint cmd_line_len = strlen(cmd_line);
 
-				/* we now increment the debug state for verbosity */
-				if (cmd_line_len == len)
-					debug_level_add(1);
-				else if (cmd_line[len] == '=' && g_ascii_isdigit(cmd_line[len+1]))
-					{
-					gint n = atoi(cmd_line + len + 1);
-					if (n < 0) n = 1;
-					debug_level_add(n);
-					}
+			/* we now increment the debug state for verbosity */
+			if (cmd_line_len == len)
+				debug_level_add(1);
+			else if (cmd_line[len] == '=' && g_ascii_isdigit(cmd_line[len+1]))
+				{
+				gint n = atoi(cmd_line + len + 1);
+				if (n < 0) n = 1;
+				debug_level_add(n);
 				}
 			}
 		}
@@ -663,47 +659,55 @@ static void parse_command_line_for_debug_option(gint argc, gchar *argv[])
 #endif
 }
 
-#if HAVE_CLUTTER
-static gboolean parse_command_line_for_clutter_option(gint argc, gchar *argv[])
+static gboolean search_command_line_for_option(const gint argc, const gchar* const argv[], const gchar* option_name)
 {
-	const gchar *clutter_option = "--disable-clutter";
-	gint len = strlen(clutter_option);
-	gboolean ret = FALSE;
+	const gint name_len = strlen(option_name);
 
-	if (argc > 1)
+	for (gint i = 1; i < argc; i++)
 		{
-		gint i;
-
-		for (i = 1; i < argc; i++)
+		const gchar *current_arg = argv[i];
+		// TODO(xsdg): This actually only checks prefixes.  We should
+		// probably replace this with strcmp, since strlen already has
+		// the shortcomings of strcmp (as compared to strncmp).
+		//
+		// That said, people may be unknowingly relying on the lenience
+		// of this parsing strategy, so that's also something to consider.
+		if (strncmp(current_arg, option_name, name_len) == 0)
 			{
-			const gchar *cmd_line = argv[i];
-			if (strncmp(cmd_line, clutter_option, len) == 0)
-				{
-				ret = TRUE;
-				}
+			return TRUE;
 			}
 		}
 
-	return ret;
+	return FALSE;
+}
+
+static gboolean search_command_line_for_unit_test_option(gint argc, gchar *argv[])
+{
+	return search_command_line_for_option(argc, argv, "--run-unit-tests");
+}
+
+#if HAVE_CLUTTER
+static gboolean search_command_line_for_clutter_option(gint argc, gchar *argv[])
+{
+	return search_command_line_for_option(argc, argv, "--disable-clutter");
 }
 #endif
 
 static gboolean parse_command_line_for_cache_maintenance_option(gint argc, gchar *argv[])
 {
 	const gchar *cache_maintenance_option = "--cache-maintenance=";
-	gint len = strlen(cache_maintenance_option);
-	gboolean ret = FALSE;
+	const gint len = strlen(cache_maintenance_option);
 
 	if (argc >= 2)
 		{
 		const gchar *cmd_line = argv[1];
 		if (strncmp(cmd_line, cache_maintenance_option, len) == 0)
 			{
-			ret = TRUE;
+			return TRUE;
 			}
 		}
 
-	return ret;
+	return FALSE;
 }
 
 static void process_command_line_for_cache_maintenance_option(gint argc, gchar *argv[])
@@ -1313,7 +1317,7 @@ gint main(gint argc, gchar *argv[])
 	parse_command_line_for_debug_option(argc, argv);
 	DEBUG_1("%s main: gtk_init", get_exec_time());
 #if HAVE_CLUTTER
-	if (parse_command_line_for_clutter_option(argc, argv))
+	if (search_command_line_for_clutter_option(argc, argv))
 		{
 		disable_clutter	= TRUE;
 		gtk_init(&argc, &argv);
