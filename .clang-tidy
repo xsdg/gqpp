@@ -38,7 +38,6 @@ Checks: >
   -bugprone-non-zero-enum-to-bool-conversion,
   -bugprone-reserved-identifier,
   -bugprone-sizeof-expression,
-  -bugprone-suspicious-missing-comma,
   -llvm-header-guard,
   -llvm-namespace-comment,
   -llvm-qualified-auto,
