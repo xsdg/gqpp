@@ -243,6 +243,8 @@ uint ddsGetDXTColor(uint c0, uint c1, uint a, uint t) {
 	case 1: return ddsGetDXTColor1(c1, a);
 	case 2: return (c0 > c1) ? ddsGetDXTColor2_1(c0, c1, a) : ddsGetDXTColor1_1(c0, c1, a);
 	case 3: return (c0 > c1) ? ddsGetDXTColor2_1(c1, c0, a) : 0;
+	default:
+		break;
 	}
 	return 0;
 }
@@ -330,6 +332,8 @@ int ddsGetDXT5Alpha(uint a0, uint a1, uint t) {
 	case 5: return (3 * a0 + 4 * a1) / 7;
 	case 6: return (2 * a0 + 5 * a1) / 7;
 	case 7: return (a0 + 6 * a1) / 7;
+	default:
+		break;
 	}
 	else switch (t) {
 	case 0: return a0;
@@ -340,6 +344,8 @@ int ddsGetDXT5Alpha(uint a0, uint a1, uint t) {
 	case 5: return (a0 + 4 * a1) / 5;
 	case 6: return 0;
 	case 7: return 255;
+	default:
+		break;
 	}
 	return 0;
 }
@@ -569,6 +575,8 @@ gboolean ImageLoaderDDS::write(const guchar *buf, gsize &chunk_size, gsize count
 		case X8B8G8R8: pixels = ddsReadX8B8G8R8(width, height, buf); break;
 		case A8R8G8B8: pixels = ddsReadA8R8G8B8(width, height, buf); break;
 		case X8R8G8B8: pixels = ddsReadX8R8G8B8(width, height, buf); break;
+		default:
+			break;
 		}
 		pixbuf = gdk_pixbuf_new_from_data (pixels, GDK_COLORSPACE_RGB, TRUE, 8, width, height, rowstride, free_buffer, nullptr);
 		area_updated_cb(nullptr, 0, 0, width, height, data);

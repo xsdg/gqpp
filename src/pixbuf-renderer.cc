@@ -2284,6 +2284,8 @@ static void pr_create_anaglyph_color(GdkPixbuf *pixbuf, GdkPixbuf *right, gint x
 					dp[0] = sp[0];
 					dp[1] = sp[1];
 					break;
+				default:
+					break;
 				}
 			sp += COLOR_BYTES;
 			dp += COLOR_BYTES;
@@ -2338,6 +2340,8 @@ static void pr_create_anaglyph_gray(GdkPixbuf *pixbuf, GdkPixbuf *right, gint x,
 					dp[1] = g2;
 					dp[2] = g1;
 					break;
+				default:
+					break;
 				}
 			sp += COLOR_BYTES;
 			dp += COLOR_BYTES;
@@ -2382,6 +2386,8 @@ static void pr_create_anaglyph_dubois(GdkPixbuf *pixbuf, GdkPixbuf *right, gint 
 			break;
 		case YB:
 			memcpy(pr_dubois_matrix, pr_dubois_matrix_YB, sizeof pr_dubois_matrix);
+			break;
+		default:
 			break;
 		}
 

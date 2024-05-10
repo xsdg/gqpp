@@ -4529,6 +4529,8 @@ static gint column_sort_cb(GtkTreeModel *model, GtkTreeIter *a, GtkTreeIter *b, 
 			case DUPE_COLUMN_PATH:
 				ret = utf8_compare(di_a->fd->path, di_b->fd->path, TRUE);
 				break;
+			default:
+				break;
 			}
 		}
 	else if (group_a < group_b)

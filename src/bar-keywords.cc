@@ -420,6 +420,8 @@ void bar_pane_keywords_filter_modify(GtkTreeModel *model, GtkTreeIter *iter, GVa
 		case FILTER_KEYWORD_COLUMN_IS_KEYWORD:
 			gtk_tree_model_get_value(keyword_tree, &child_iter, KEYWORD_COLUMN_IS_KEYWORD, value);
 			break;
+		default:
+			break;
 		}
 }
 

@@ -914,6 +914,8 @@ static void vd_dnd_get(GtkWidget *, GdkDragContext *,
 			uri_selection_data_set_uris_from_filelist(selection_data, list);
 			g_list_free(list);
 			break;
+		default:
+			break;
 		}
 }
 

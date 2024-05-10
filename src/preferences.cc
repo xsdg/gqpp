@@ -1290,6 +1290,8 @@ static void filter_set_func(GtkTreeViewColumn *, GtkCellRenderer *cell,
 			g_object_set(GTK_CELL_RENDERER(cell),
 				     "active", fe->allow_sidecar, NULL);
 			break;
+		default:
+			break;
 		}
 }
 

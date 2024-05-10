@@ -1253,6 +1253,8 @@ static EditorFlags editor_command_next_finish(EditorData *ed, gint status)
 		return static_cast<EditorFlags>(editor_errors(ed->flags));
 		case EDITOR_CB_SKIP:
 			return editor_command_done(ed);
+		default:
+			break;
 		}
 
 	return editor_command_next_start(ed);

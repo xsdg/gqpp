@@ -262,6 +262,8 @@ gchar num_to_text_char(gint n)
 		case 2:
 			return '3';
 			break;
+		default:
+			break;
 		}
 	return '1';
 }

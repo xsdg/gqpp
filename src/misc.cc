@@ -335,6 +335,8 @@ gchar *date_get_abbreviated_day_name(gint day)
 		case 7:
 		abday = g_strdup(nl_langinfo(ABDAY_7));
 		break;
+		default:
+			break;
 		}
 
 	return abday;

@@ -446,6 +446,8 @@ static gchar *exif_build_formatted_Flash(ExifData *exif)
 		case 3:
 			string = g_string_append(string, _("auto"));
 			break;
+		default:
+			break;
 		}
 
 	/* return light (bits 1, 2) */

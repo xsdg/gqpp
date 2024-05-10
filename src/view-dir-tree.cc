@@ -848,6 +848,8 @@ gboolean vdtree_press_key_cb(GtkWidget *widget, GdkEventKey *event, gpointer dat
 					}
 				}
 			break;
+		default:
+			break;
 		}
 
 	return FALSE;

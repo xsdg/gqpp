@@ -710,6 +710,8 @@ static gboolean dest_keypress_cb(GtkWidget *view, GdkEventKey *event, gpointer d
 				return TRUE;
 				}
 			break;
+		default:
+			break;
 		}
 
 	return FALSE;

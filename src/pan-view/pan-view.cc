@@ -1379,6 +1379,8 @@ static gboolean pan_window_key_press_cb(GtkWidget *widget, GdkEventKey *event, g
 					break;
 					stop_signal = FALSE;
 					break;
+				default:
+					break;
 				}
 			}
 		}
@@ -1532,6 +1534,8 @@ void pan_info_update(PanWindow *pw, PanItem *pi)
 					break;
 				case PAN_IMAGE_SIZE_100:
 					scale = 100;
+					break;
+				default:
 					break;
 				}
 

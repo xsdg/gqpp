@@ -39,7 +39,6 @@ Checks: >
   -bugprone-reserved-identifier,
   -bugprone-sizeof-expression,
   -bugprone-suspicious-missing-comma,
-  -bugprone-switch-missing-default-case,
   -llvm-header-guard,
   -llvm-namespace-comment,
   -llvm-qualified-auto,

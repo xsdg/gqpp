@@ -457,6 +457,8 @@ static gboolean bookmark_keypress_cb(GtkWidget *button, GdkEventKey *event, gpoi
 				return TRUE;
 				}
 			break;
+		default:
+			break;
 		}
 
 	return FALSE;

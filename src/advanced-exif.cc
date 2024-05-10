@@ -407,6 +407,8 @@ static gboolean advanced_exif_keypress(GtkWidget *, GdkEventKey *event, gpointer
 				advanced_exif_close(ew);
 				stop_signal = TRUE;
 				break;
+			default:
+				break;
 			}
 		} // if (event->state & GDK_CONTROL...
 	if (!stop_signal && is_help_key(event))

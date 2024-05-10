@@ -132,6 +132,8 @@ const gchar *histogram_label(Histogram *histogram)
 			case HCHAN_B:   t1 = _("Log Histogram on Blue"); break;
 			case HCHAN_RGB: t1 = _("Log Histogram on RGB"); break;
 			case HCHAN_MAX: t1 = _("Log Histogram on value"); break;
+			default:
+				break;
 			}
 	else
 		switch (histogram->histogram_channel)
@@ -141,6 +143,8 @@ const gchar *histogram_label(Histogram *histogram)
 			case HCHAN_B:   t1 = _("Linear Histogram on Blue"); break;
 			case HCHAN_RGB: t1 = _("Linear Histogram on RGB"); break;
 			case HCHAN_MAX: t1 = _("Linear Histogram on value"); break;
+			default:
+				break;
 			}
 	return t1;
 }
@@ -361,6 +365,8 @@ gboolean histogram_draw(Histogram *histogram, const HistMap *histmap, GdkPixbuf 
 					case HCHAN_R: rplus = r = 255; break;
 					case HCHAN_G: gplus = g = 255; break;
 					case HCHAN_B: bplus = b = 255; break;
+					default:
+						break;
 					}
 
 				switch (histogram->histogram_channel)
@@ -375,6 +381,8 @@ gboolean histogram_draw(Histogram *histogram, const HistMap *histmap, GdkPixbuf 
 					case HCHAN_G:   r = 0; 	b = 0;		break;
 					case HCHAN_B:   r = 0;		g = 0; 	break;
 					case HCHAN_MAX: r = 0; 	b = 0; 	g = 0; 	break;
+					default:
+						break;
 					}
 
 				if (v[chanmax] == 0)
