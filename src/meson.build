@@ -309,6 +309,10 @@ subdir('third-party')
 subdir('ui')
 subdir('view-file')
 
+if conf_data.get('ENABLE_UNIT_TESTS', 0) == 1
+    subdir('tests')
+endif
+
 gq_marshal = gnome.genmarshal('gq-marshal', prefix : 'gq_marshal', sources : 'gq-marshal.list')
 
 project_sources += gq_marshal[1]
