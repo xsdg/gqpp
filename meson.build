@@ -620,9 +620,17 @@ subdir('plugins')
 
 conditional_unit_test_deps = []
 if conf_data.get('ENABLE_UNIT_TESTS', 0) == 1
-    gtest_proj = subproject('gtest')
-    conditional_unit_test_deps += gtest_proj.get_variable('gtest_dep')
-    conditional_unit_test_deps += gtest_proj.get_variable('gmock_dep')
+    system_gtest_dep = dependency('gtest', main : false, required : false)
+    system_gmock_dep = dependency('gmock', required : false)
+    if system_gtest_dep.found() and system_gmock_dep.found()
+        conditional_unit_test_deps += system_gtest_dep
+        conditional_unit_test_deps += system_gmock_dep
+    else
+        # Use the subproject gtest as a fallback.
+        gtest_subproj = subproject('gtest')
+        conditional_unit_test_deps += gtest_subproj.get_variable('gtest_dep')
+        conditional_unit_test_deps += gtest_subproj.get_variable('gmock_dep')
+    endif
 endif
 
 # Generate the executable
