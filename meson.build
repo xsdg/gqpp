@@ -680,11 +680,13 @@ i18n.merge_file(
 
 configure_file(input: 'geeqie.spec.in', output: 'geeqie.spec', configuration: conf_data)
 
+isolate_test_sh = find_program('isolate-test.sh', dirs : scriptsdir, required : true)
+
 # Basic test of the executable
-# is_parallel false is to avoid problems with images tests
 xvfb = find_program('xvfb-run', required : false)
 if xvfb.found()
-    test('Basic test', xvfb, args: ['--auto-servernum', geeqie_exe, '--version'], is_parallel : false, timeout: 100, suite: 'functional')
+    test_cmd = [xvfb.full_path(), '--auto-servernum', geeqie_exe.full_path(), '--version']
+    test('Basic test', isolate_test_sh, args: test_cmd, timeout: 100, suite: 'functional')
     summary({'xvfb' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
 else
     summary({'xvfb' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
@@ -712,11 +714,9 @@ if option.enabled()
             path_array = image.split('/')
             image_name = path_array[path_array.length() - 1]
 
-            if image_name.startswith('fail')
-                test('Image_ ' + image_name, image_test_sh, args: [geeqie_exe, image], is_parallel : false, should_fail : true, timeout: 100, suite: 'functional')
-            else
-                test('Image_ ' + image_name, image_test_sh, args: [geeqie_exe, image], is_parallel : false, timeout: 100, suite: 'functional')
-            endif
+            should_fail = image_name.startswith('fail')
+            test_cmd = [image_test_sh.full_path(), geeqie_exe.full_path(), image]
+            test('Image_ ' + image_name, isolate_test_sh, args: test_cmd, should_fail : should_fail, timeout: 100, suite: ['functional', 'image'])
         endforeach
         summary({'Image tests' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
     else
@@ -813,7 +813,7 @@ if not option.disabled()
     if lua_dep.found()
         if xvfb.found()
             lua_test_sh = find_program('lua-test.sh', dirs : scriptsdir, required : true)
-            test('Lua test', lua_test_sh, args: [geeqie_exe], is_parallel : false, timeout: 100, suite : 'analysis')
+            test('Lua test', isolate_test_sh, args: [lua_test_sh.full_path(), geeqie_exe.full_path()], timeout: 100, suite : 'analysis')
 
             summary({'lua' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
         else
@@ -834,7 +834,7 @@ summary({'Ancillary files' : ['Test runs:', true]}, section : 'Testing', bool_yn
 
 # Unit tests
 if conf_data.get('ENABLE_UNIT_TESTS', 0) == 1
-    test('Unit tests', geeqie_exe, args: ['--run-unit-tests'], suite : 'unit')
+    test('Unit tests', isolate_test_sh, args: [geeqie_exe.full_path(), '--run-unit-tests'], suite : 'unit')
     summary({'unit_tests' : ['Tests run:', true]}, section : 'Testing', bool_yn : true)
 else
     summary({'unit_tests' : ['Tests run:', false]}, section : 'Testing', bool_yn : true)
