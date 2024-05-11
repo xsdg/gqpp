@@ -27,32 +27,55 @@
 ##
 ##
 
-xvfb-run --auto-servernum "$1" "$2" &
+geeqie_exe="$1"
+test_image="$2"
+
+xvfb-run --auto-servernum "$geeqie_exe" "$test_image" &
+
+xvfb_pid="$!"
 
 if [ -z "$XDG_CONFIG_HOME" ]
 then
-	config_home="$HOME/.config"
+	config_home="${HOME}/.config"
 else
 	config_home="$XDG_CONFIG_HOME"
 fi
+command_fifo="${config_home}/geeqie/.command"
 
 # Wait for remote to initialize
-while [ ! -e "$config_home/geeqie/.command" ] ;
+while [ ! -e "$command_fifo" ] ;
 do
 	sleep 1
 done
 
+# We make sure Geeqie can stay alive for 2 seconds after initialization.
 sleep 2
 
-# Check if Geeqie crashed
-if ! pgrep geeqie
+# Check if Geeqie crashed (which would cause xvfb-run to terminate)
+if ! ps "$xvfb_pid" >/dev/null 2>&1
 then
-	rm "$config_home/geeqie/.command"
 	exit 1
 fi
 
-result=$(xvfb-run --auto-servernum "$1" --remote --get-file-info)
-xvfb-run --auto-servernum "$1" --remote --quit
+result=$(xvfb-run --auto-servernum "$geeqie_exe" --remote --get-file-info)
+
+## Teardown: various increasingly-forceful attempts to kill the running geeqie process.
+xvfb-run --auto-servernum "$geeqie_exe" --remote --quit
+
+sleep 1
+
+if ps "$xvfb_pid" >/dev/null 2>&1
+then
+    echo "Quit command for xvfb geeqie failed for pid ${xvfb_pid}; sending sigterm" >&2
+    kill -TERM "$xvfb_pid"
+
+    sleep 1
+    if ps "$xvfb_pid" >/dev/null 2>&1
+    then
+        echo "kill -TERM failed to stop pid ${xvfb_pid}; sending sigkill" >&2
+        kill -KILL "$xvfb_pid"
+    fi
+fi
 
 if echo "$result" | grep -q "Class: Unknown"
 then
@@ -60,4 +83,3 @@ then
 else
 	exit 0
 fi
-
