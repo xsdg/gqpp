@@ -149,7 +149,7 @@ then
 				fi
 			fi
 		done << EOF
-$(find . -name "*.sh")
+$(find . -name "*.sh" -not -path "./subprojects/*")
 EOF
 	fi
 fi
