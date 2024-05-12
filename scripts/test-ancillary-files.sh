@@ -42,11 +42,28 @@ fi
 
 exit_status=0
 
+# All script files must be POSIX
+# downsize is a third-party file and is excluded
+while read -r file
+do
+	result=$(file "$file" | grep "shell script")
+
+	if [ -n "$result" ]
+	then
+		if [ "${result#*"POSIX"}" = "$result" ]
+		then
+			printf "ERROR; Executable script is not POSIX: %s\n" "$file"
+			exit_status=1
+		fi
+	fi
+done << EOF
+$(find "$1/plugins" "$1/src" "$1/scripts" -type f -not -name downsize -executable)
+EOF
+
 # Script files must have the file extension .sh  or
 # be symlinked as so - for doxygen
 while read -r file
 do
-	#~ check_sh
 	result=$(file "$file" | grep "POSIX shell script")
 
 	if [ -n "$result" ]
