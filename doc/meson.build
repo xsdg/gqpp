@@ -32,8 +32,6 @@ else
     summary({'help' : ['disabled - Help files created:', false]}, section : 'Documentation', bool_yn : true)
 endif
 
-install_subdir(destdir, install_dir : helpdir, exclude_directories : 'lua-api/latex')
-
 if running_from_git
     option = get_option('doxygen')
     if not option.disabled()
