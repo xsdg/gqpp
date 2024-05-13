@@ -4280,6 +4280,12 @@ public:
     printer.address = true;
     printer.print(st, stderr);
 
+	/** @FIXME This is probably not the correct way to do this */
+    FILE *fp;
+    fp = fopen("/tmp/geeqie-crash.log", "a");
+    printer.print(st, fp);
+    fclose(fp);
+
 #if (defined(_XOPEN_SOURCE) && _XOPEN_SOURCE >= 700) || \
     (defined(_POSIX_C_SOURCE) && _POSIX_C_SOURCE >= 200809L)
     psiginfo(info, nullptr);
