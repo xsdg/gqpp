@@ -140,7 +140,7 @@ then
 				fi
 			fi
 		done << EOF
-$(find . -not -path "*/.*" -name "*.md" -exec mdl --no-verbose --config .mdlrc {} \;)
+$(find . -not -path "*/.*" -not -path "*/subprojects/*" -name "*.md" -exec mdl --no-verbose --config .mdlrc {} \;)
 EOF
 	fi
 fi
