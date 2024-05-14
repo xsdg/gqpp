@@ -117,7 +117,9 @@ jobs:
       with:
         action: test
         directory: build
-        setup-options: -Ddevel=enabled
+        setup-options: >
+          -Ddevel=enabled
+          -Dunit_tests=enabled
         options: --verbose
         meson-version: 1.0.0
     - name: Upload logs
