@@ -10,7 +10,7 @@ GQ_METADATA_DIR="$HOME/.local/share/geeqie/metadata"
 
 gq_exiftran()
 {
-	if ! [ -x "$(command -v exiftranx)" ]
+	if ! [ -x "$(command -v exiftran)" ]
 	then
 		zenity --title="Geeqie rotate" --info --width=200 --text="Exiftran is not installed" --window-icon=/usr/local/share/pixmaps/geeqie.png 2> /dev/null
 		exit 0
@@ -21,7 +21,7 @@ gq_exiftran()
 
 gq_exiv2()
 {
-	if ! [ -x "$(command -v exiv2x)" ]
+	if ! [ -x "$(command -v exiv2)" ]
 	then
 		zenity --title="Geeqie rotate" --info --width=200 --text="Exiv2 is not installed" --window-icon=/usr/local/share/pixmaps/geeqie.png 2> /dev/null
 		exit 0
@@ -32,7 +32,7 @@ gq_exiv2()
 
 gq_mogrify()
 {
-	if ! [ -x "$(command -v mogrifyx)" ]
+	if ! [ -x "$(command -v mogrify)" ]
 	then
 		zenity --title="Geeqie rotate" --info --width=200 --text="ImageMagick is not installed" --window-icon=/usr/local/share/pixmaps/geeqie.png 2> /dev/null
 		exit 0
