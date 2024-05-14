@@ -77,7 +77,7 @@ cp ./build/meson-logs/testlog.txt "$tmpdir/testlog-options-disabled.txt"
 
 rm --recursive --force build
 
-meson setup -Ddevel=enabled build
+meson setup -Ddevel=enabled -Dunit_tests=enabled build
 
 meson test -C build
 
