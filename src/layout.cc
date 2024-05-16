@@ -414,7 +414,7 @@ static GtkWidget *layout_tool_setup(LayoutWindow *lw)
 		gq_gtk_container_add(GTK_WIDGET(scroll_window), menu_toolbar_box);
 		gq_gtk_box_pack_start(GTK_BOX(box), scroll_window, FALSE, FALSE, 0);
 
-		gtk_widget_show_all(scroll_window);
+		gq_gtk_widget_show_all(scroll_window);
 		}
 	else
 		{

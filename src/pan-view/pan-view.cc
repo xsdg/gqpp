@@ -1902,7 +1902,7 @@ static void pan_window_new_real(FileData *dir_fd)
 
 	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	DEBUG_NAME(vbox);
-	gtk_container_add(GTK_CONTAINER(pw->window), vbox);
+	gq_gtk_container_add(GTK_WIDGET(pw->window), vbox);
 	gtk_widget_show(vbox);
 
 	box = pref_box_new(vbox, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
@@ -1951,19 +1951,19 @@ static void pan_window_new_real(FileData *dir_fd)
 	vbox_imd_widget = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	hbox_imd_widget = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 
-	gtk_box_pack_start(GTK_BOX(vbox_imd_widget), pw->imd->widget, true, true, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vbox_imd_widget), pw->imd->widget, true, true, 0);
 
 	pw->scrollbar_h = gtk_scrollbar_new(GTK_ORIENTATION_HORIZONTAL, nullptr);
 	g_signal_connect(G_OBJECT(pw->scrollbar_h), "value_changed",  G_CALLBACK(pan_window_scrollbar_h_value_cb), pw);
-	gtk_box_pack_start(GTK_BOX(vbox_imd_widget), pw->scrollbar_h, false, false, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vbox_imd_widget), pw->scrollbar_h, false, false, 0);
 
-	gtk_box_pack_start(GTK_BOX(hbox_imd_widget), vbox_imd_widget, true, true, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox_imd_widget), vbox_imd_widget, true, true, 0);
 
 	pw->scrollbar_v = gtk_scrollbar_new(GTK_ORIENTATION_VERTICAL, nullptr);
 	g_signal_connect(G_OBJECT(pw->scrollbar_v), "value_changed", G_CALLBACK(pan_window_scrollbar_v_value_cb), pw);
-	gtk_box_pack_start(GTK_BOX(hbox_imd_widget), pw->scrollbar_v, false, false, 0);
+	gq_gtk_box_pack_start(GTK_BOX(hbox_imd_widget), pw->scrollbar_v, false, false, 0);
 
-	gtk_box_pack_start(GTK_BOX(vbox), hbox_imd_widget, true, true, 0);
+	gq_gtk_box_pack_start(GTK_BOX(vbox), hbox_imd_widget, true, true, 0);
 
 	gtk_widget_show(GTK_WIDGET(hbox_imd_widget));
 	gtk_widget_show(GTK_WIDGET(pw->imd->widget));
@@ -1997,7 +1997,7 @@ static void pan_window_new_real(FileData *dir_fd)
 	gtk_widget_show(frame);
 
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
-	gtk_container_add(GTK_CONTAINER(frame), hbox);
+	gq_gtk_container_add(GTK_WIDGET(frame), hbox);
 	gtk_widget_show(hbox);
 
 	pref_spacer(hbox, 0);
@@ -2011,7 +2011,7 @@ static void pan_window_new_real(FileData *dir_fd)
 	gtk_widget_show(frame);
 
 	pw->label_zoom = gtk_label_new("");
-	gtk_container_add(GTK_CONTAINER(frame), pw->label_zoom);
+	gq_gtk_container_add(GTK_WIDGET(frame), pw->label_zoom);
 	gtk_widget_show(pw->label_zoom);
 
 	// Add the "Find" button to the status bar area.

@@ -1035,7 +1035,7 @@ GtkWidget *path_selection_new_with_files(GtkWidget *entry, const gchar *path,
 	gtk_widget_show(dd->hidden_button);
 
 	gq_gtk_box_pack_start(GTK_BOX(table), hbox1, FALSE, FALSE, 0);
-	gtk_widget_show_all(hbox1);
+	gq_gtk_widget_show_all(hbox1);
 
 	hbox2 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 	if (filter)

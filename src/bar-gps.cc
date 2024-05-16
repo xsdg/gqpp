@@ -979,7 +979,7 @@ GtkWidget *bar_pane_gps_new(const gchar *id, const gchar *title, const gchar *ma
 	view = gtk_champlain_embed_get_view(GTK_CHAMPLAIN_EMBED(gpswidget));
 
 	gq_gtk_box_pack_start(GTK_BOX(vbox), gpswidget, TRUE, TRUE, 0);
-	gtk_container_add(GTK_CONTAINER(frame), vbox);
+	gq_gtk_container_add(GTK_WIDGET(frame), vbox);
 
 	status = gtk_box_new(GTK_ORIENTATION_HORIZONTAL,0);
 #if HAVE_GTK4

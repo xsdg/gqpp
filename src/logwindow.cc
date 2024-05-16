@@ -450,7 +450,7 @@ static LogWindow *log_window_create(LayoutWindow *lw)
 	gq_gtk_container_add(GTK_WIDGET(logwin->pause), label) ;
 	gq_gtk_box_pack_start(GTK_BOX(hbox),logwin->pause, FALSE, FALSE, 0) ;
 	g_signal_connect(logwin->pause, "toggled", G_CALLBACK(log_window_pause_cb), logwin);
-	gtk_widget_show_all(logwin->pause);
+	gq_gtk_widget_show_all(logwin->pause);
 
 	logwin->wrap = gtk_toggle_button_new();
 	label = gtk_label_new("Wrap");
@@ -458,7 +458,7 @@ static LogWindow *log_window_create(LayoutWindow *lw)
 	gq_gtk_container_add(GTK_WIDGET(logwin->wrap), label) ;
 	gq_gtk_box_pack_start(GTK_BOX(hbox),logwin->wrap, FALSE, FALSE, 0) ;
 	g_signal_connect(logwin->wrap, "toggled", G_CALLBACK(log_window_line_wrap_cb), logwin);
-	gtk_widget_show_all(logwin->wrap);
+	gq_gtk_widget_show_all(logwin->wrap);
 
 	logwin->timer_data = gtk_toggle_button_new();
 	label = gtk_label_new(_("Timer"));
@@ -470,7 +470,7 @@ static LogWindow *log_window_create(LayoutWindow *lw)
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(logwin->timer_data), TRUE);
 		}
 	g_signal_connect(logwin->timer_data, "toggled", G_CALLBACK(log_window_timer_data_cb), logwin);
-	gtk_widget_show_all(logwin->timer_data);
+	gq_gtk_widget_show_all(logwin->timer_data);
 
 	search_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	gq_gtk_container_add(GTK_WIDGET(hbox), search_box);
@@ -514,7 +514,7 @@ static LogWindow *log_window_create(LayoutWindow *lw)
 	gtk_widget_set_tooltip_text(GTK_WIDGET(all_button), _("Highlight all"));
 	gq_gtk_box_pack_start(GTK_BOX(search_box), all_button, FALSE, FALSE, 0) ;
 	g_signal_connect(all_button, "toggled", G_CALLBACK(all_keypress_event_cb), logwin);
-	gtk_widget_show_all(all_button);
+	gq_gtk_widget_show_all(all_button);
 	g_object_unref(pixbuf);
 
 	pref_label_new(hbox, _("Filter regexp"));

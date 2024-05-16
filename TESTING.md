@@ -121,6 +121,13 @@ Checks for comments starting with `//~` in the source tree.
 
 See `scripts/temporary-comments-check.sh` for more details.
 
+### GTK4 migration regression checks
+
+Checks that gtk functions for which there is a Geeqie GTK4 compatibility
+function have a `gq_` prefix.
+
+See `scripts/gtk4-migration-regression-check.sh` for more details.
+
 ### Untranslated text checks
 
 Checks for strings that haven't been marked for translation (starting with `_(`)

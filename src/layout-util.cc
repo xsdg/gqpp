@@ -989,7 +989,7 @@ void open_with_response_cb(GtkDialog *, gint response_id, gpointer data)
 	g_object_unref(open_with_data->application);
 	g_object_unref(g_list_first(open_with_data->g_file_list)->data);
 	g_list_free(open_with_data->g_file_list);
-	gtk_widget_destroy(GTK_WIDGET(open_with_data->app_chooser_dialog));
+	gq_gtk_widget_destroy(GTK_WIDGET(open_with_data->app_chooser_dialog));
 	g_free(open_with_data);
 }
 
@@ -1018,7 +1018,7 @@ static void open_with_application_activated_cb(GtkAppChooserWidget *, GAppInfo *
 	g_object_unref(open_with_data->application);
 	g_object_unref(g_list_first(open_with_data->g_file_list)->data);
 	g_list_free(open_with_data->g_file_list);
-	gtk_widget_destroy(GTK_WIDGET(open_with_data->app_chooser_dialog));
+	gq_gtk_widget_destroy(GTK_WIDGET(open_with_data->app_chooser_dialog));
 	g_free(open_with_data);
 }
 
@@ -3374,7 +3374,7 @@ void toolbar_clear_cb(GtkWidget *widget, gpointer)
 			g_signal_handler_disconnect(action, GPOINTER_TO_UINT(g_object_get_data(G_OBJECT(widget), "id")));
 			}
 		}
-	gtk_widget_destroy(widget);
+	gq_gtk_widget_destroy(widget);
 }
 
 void layout_toolbar_clear(LayoutWindow *lw, ToolbarType type)
