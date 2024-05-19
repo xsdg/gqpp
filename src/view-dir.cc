@@ -53,41 +53,33 @@
 namespace
 {
 
-/** @FIXME Emblems should be attached to icons via e.g.:
- * GIcon *....
- * icon = g_themed_icon_new("folder");
- * emblem_icon = g_themed_icon_new("emblem_symbolic_link");
- * emblem = g_emblem_new(emblem_icon);
- * emblemed = g_emblemed_icon_new(icon, emblem);
- * gtk_icon_info_load_icon(icon_info, NULL)
- * But there does not seem to be a way to get GtkIconInfo from a GIcon
- */
 GdkPixbuf *create_folder_icon_with_emblem(GtkIconTheme *icon_theme, const gchar *emblem, const gchar *fallback_icon, gint size)
 {
-	if (!gtk_icon_theme_has_icon(icon_theme, emblem))
+	GdkPixbuf *pixbuf = nullptr;
+	GtkIconInfo *info;
+
+	GIcon *icon_folder = g_themed_icon_new(GQ_ICON_DIRECTORY);
+	GIcon *icon_emblem = g_themed_icon_new(emblem);
+	GEmblem *emblem_new = g_emblem_new(icon_emblem);
+	GIcon *emblemed_icon = g_emblemed_icon_new(icon_folder, emblem_new);
+
+	info = gtk_icon_theme_lookup_by_gicon(icon_theme, emblemed_icon, size, GTK_ICON_LOOKUP_USE_BUILTIN);
+
+	if (info)
 		{
-		return gq_gtk_icon_theme_load_icon_copy(icon_theme, fallback_icon, size, GTK_ICON_LOOKUP_USE_BUILTIN);
+		pixbuf = gtk_icon_info_load_icon(info, nullptr);
 		}
 
-	GError *error = nullptr;
-	GdkPixbuf *icon = gtk_icon_theme_load_icon(icon_theme, emblem, size, GTK_ICON_LOOKUP_USE_BUILTIN, &error);
-	GdkPixbuf *pixbuf;
-	if (error)
+	if (pixbuf == nullptr)
 		{
-		log_printf("Error: %s\n", error->message);
-		g_error_free(error);
 		pixbuf = gq_gtk_icon_theme_load_icon_copy(icon_theme, fallback_icon, size, GTK_ICON_LOOKUP_USE_BUILTIN);
 		}
-	else
-		{
-		GdkPixbuf *directory_pixbuf = gtk_icon_theme_load_icon(icon_theme, GQ_ICON_DIRECTORY, size, GTK_ICON_LOOKUP_USE_BUILTIN, nullptr);
-		pixbuf = gdk_pixbuf_copy(directory_pixbuf);
-		g_object_unref(directory_pixbuf);
-		
-		gint scale = gdk_pixbuf_get_width(icon) / 2;
-		gdk_pixbuf_composite(icon, pixbuf, scale, scale, scale, scale, scale, scale, 0.5, 0.5, GDK_INTERP_HYPER, 255);
-		}
-	g_object_unref(icon);
+
+	g_object_unref(emblem_new);
+	g_object_unref(emblemed_icon);
+	g_object_unref(icon_emblem);
+	g_object_unref(icon_folder);
+	g_object_unref(info);
 
 	return pixbuf;
 }
