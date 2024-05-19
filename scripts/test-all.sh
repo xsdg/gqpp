@@ -40,17 +40,18 @@ export XDG_CACHE_HOME
 export XDG_DATA_HOME
 
 rm --recursive --force build
+tmpdir=$(mktemp -d "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 
 # Check with all options disabled
 meson setup \
 -Darchive=disabled \
 -Dcms=disabled \
--Ddevel=disabled \
 -Ddoxygen=disabled \
 -Ddjvu=disabled \
 -Devince=disabled \
 -Dexecinfo=disabled \
 -Dexiv2=disabled \
+-Dextended_stacktrace=disabled \
 -Dgit=disabled \
 -Dgps-map=disabled \
 -Dgtk4=disabled \
@@ -72,17 +73,20 @@ build
 
 meson test -C build
 
-tmpdir=$(mktemp -d "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
-cp ./build/meson-logs/testlog.txt "$tmpdir/testlog-options-disabled.txt"
+cp ./build/meson-logs/meson-log.txt "$tmpdir/testlog-options-disabled.txt"
+cat ./build/meson-logs/testlog.txt >> "$tmpdir/testlog-options-disabled.txt"
 
 rm --recursive --force build
-
-meson setup -Ddevel=enabled -Dunit_tests=enabled build
-
+meson setup -Dunit_tests=enabled build
 meson test -C build
 
-cp ./build/meson-logs/testlog.txt "$tmpdir/testlog-options-enabled.txt"
+cp ./build/meson-logs/meson-log.txt "$tmpdir/testlog-options-enabled.txt"
+cat ./build/meson-logs/testlog.txt >> "$tmpdir/testlog-options-enabled.txt"
 
 rm -r "$XDG_CONFIG_HOME"
 rm -r "$XDG_CACHE_HOME"
 rm -r "$XDG_DATA_HOME"
+
+printf "\n%s" "$tmpdir/testlog-options-disabled.txt"
+printf "\n%s\n" "$tmpdir/testlog-options-enabled.txt"
+

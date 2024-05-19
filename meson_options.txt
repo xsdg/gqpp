@@ -25,12 +25,12 @@ option('gq_localedir', type : 'string', value : '', description : 'Location wher
 
 option('archive', type : 'feature', value : 'auto', description : 'archive files e.g. zip, gz')
 option('cms', type : 'feature', value : 'auto', description : 'color management system')
-option('devel', type : 'feature', value : 'disabled', description : 'developer mode')
 option('doxygen', type : 'feature', value : 'auto', description : 'lua api help file')
 option('djvu', type : 'feature', value : 'auto', description : 'djvu')
 option('evince', type : 'feature', value : 'auto', description : 'print preview')
 option('execinfo', type : 'feature', value : 'auto', description : 'execinfo.h')
 option('exiv2', type : 'feature', value : 'auto', description : 'exiv2')
+option('extended_stacktrace', type : 'feature', value : 'auto', description : 'extended stacktrace')
 option('git', type : 'feature', value : 'auto', description : 'lua-api and changelog.html')
 option('gps-map', type : 'feature', value : 'auto', description : 'gps map')
 option('gtk4', type : 'feature', value : 'disabled', description : 'gtk4 - do not use')

@@ -24,7 +24,6 @@ jobs:
         setup-options: >
           -Darchive=disabled
           -Dcms=disabled
-          -Ddevel=disabled
           -Ddjvu=disabled
           -Ddoxygen=disabled
           -Devince=disabled

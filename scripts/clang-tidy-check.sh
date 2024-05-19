@@ -97,7 +97,7 @@ done
 
 if [ ! -d "build" ]
 then
-	meson setup -Ddevel=enabled build
+	meson setup build
 else
 	if [ ! -d "build/test-images.p" ]
 		then

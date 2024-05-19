@@ -36,7 +36,7 @@ jobs:
             yes | sudo apt-get install yelp-tools
             mkdir -p $GITHUB_WORKSPACE/AppDir
             mkdir -p $GITHUB_WORKSPACE/AppDir/usr
-            meson setup -Darchive=disabled -Dcms=disabled -Ddevel=disabled -Ddoxygen=disabled -Ddjvu=disabled -Devince=disabled -Dexecinfo=disabled -Dexiv2=disabled -Dgps-map=disabled -Dheif=disabled -Dj2k=disabled -Djpeg=disabled -Djpegxl=disabled -Dlibraw=disabled -Dlua=disabled -Dpdf=disabled -Dspell=disabled -Dtiff=disabled -Dvideothumbnailer=disabled -Dwebp=disabled -Dprefix=$GITHUB_WORKSPACE/AppDir/usr build
+            meson setup -Darchive=disabled -Dcms=disabled -Ddoxygen=disabled -Ddjvu=disabled -Devince=disabled -Dexecinfo=disabled -Dexiv2=disabled -Dgps-map=disabled -Dheif=disabled -Dj2k=disabled -Djpeg=disabled -Djpegxl=disabled -Dlibraw=disabled -Dlua=disabled -Dpdf=disabled -Dspell=disabled -Dtiff=disabled -Dvideothumbnailer=disabled -Dwebp=disabled -Dprefix=$GITHUB_WORKSPACE/AppDir/usr build
             ninja -C build install
             tar -czvf geeqie.gz $GITHUB_WORKSPACE/
 

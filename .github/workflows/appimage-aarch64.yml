@@ -52,7 +52,7 @@ jobs:
             yes | sudo apt-get install yelp-tools
             mkdir -p $GITHUB_WORKSPACE/AppDir
             mkdir -p $GITHUB_WORKSPACE/AppDir/usr
-            meson setup -Ddevel=enabled -Ddoxygen=disabled -Dyelp-build=disabled -Dprefix=$GITHUB_WORKSPACE/AppDir/usr build
+            meson setup -Ddoxygen=disabled -Dyelp-build=disabled -Dprefix=$GITHUB_WORKSPACE/AppDir/usr build
             ninja -C build install
             tar -czvf geeqie.gz $GITHUB_WORKSPACE/
 

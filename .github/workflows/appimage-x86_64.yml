@@ -36,7 +36,6 @@ jobs:
       with:
         action: build
         directory: build
-        setup-options: -Ddevel=enabled
         options: --verbose
         meson-version: 1.0.1
 

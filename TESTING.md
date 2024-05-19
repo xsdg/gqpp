@@ -74,10 +74,10 @@ Geeqie from staying running.
 
 ### Image tests
 
-The image tests are only enabled in developer mode.  You can set that with:
+The image tests are only enabled in unit_test mode.  You can set that with:
 
 ```text
-meson setup -C build -D devel=enabled
+meson setup -C build -D unit_test=enabled
 ```
 
 This tests that Geeqie can successfully open and provide metadata info about a

@@ -42,12 +42,12 @@ jobs:
         setup-options: >
           -Darchive=disabled
           -Dcms=disabled
-          -Ddevel=disabled
           -Ddjvu=disabled
           -Ddoxygen=disabled
           -Devince=disabled
           -Dexecinfo=disabled
           -Dexiv2=disabled
+          -Dextended_stacktrace=disabled
           -Dgit=disabled
           -Dgps-map=disabled
           -Dgtk4=disabled
@@ -118,7 +118,6 @@ jobs:
         action: test
         directory: build
         setup-options: >
-          -Ddevel=enabled
           -Dunit_tests=enabled
         options: --verbose
         meson-version: 1.0.0

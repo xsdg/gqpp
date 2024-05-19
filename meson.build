@@ -64,14 +64,6 @@ i18n = import('i18n')
 fs = import('fs')
 configuration_inc = include_directories('.')
 
-# Extended stack trace using backward-app
-option = get_option('devel')
-if option.enabled()
-    if cc.has_link_argument('-ldwarf')
-        add_project_link_arguments('-ldwarf', language: 'cpp')
-    endif
-endif
-
 # External programs
 glib_compile_resources = find_program('glib-compile-resources', required : true)
 glib_genmarshal = find_program('glib-genmarshal', required : true)
@@ -164,14 +156,19 @@ glib_dep = dependency('glib-2.0', version : '>=2.52', required: true)
 conf_data.set('HAVE_DEVELOPER', 0)
 libdw_dep = []
 libunwind_dep = []
-option = get_option('devel')
-if option.enabled()
+option = get_option('extended_stacktrace')
+if not option.disabled()
     libdw_dep = dependency('libdw', required : true)
     if libdw_dep.found()
         libunwind_dep = dependency('libunwind', required : true)
         if libunwind_dep.found()
-            conf_data.set('HAVE_DEVELOPER', 1)
-            summary({'developer mode' : ['extended stacktrace:', true]}, section : 'Debugging', bool_yn : true)
+            if cc.has_link_argument('-ldwarf')
+                add_project_link_arguments('-ldwarf', language: 'cpp')
+                conf_data.set('HAVE_DEVELOPER', 1)
+                summary({'developer mode' : ['extended stacktrace:', true]}, section : 'Debugging', bool_yn : true)
+            else
+                summary({'developer mode' : ['link argument -ldwarf not found. extended stacktrace:', false]}, section : 'Debugging', bool_yn : true)
+            endif
         else
             summary({'developer mode' : ['libunwind not found. extended stacktrace:', false]}, section : 'Debugging', bool_yn : true)
         endif
@@ -693,11 +690,11 @@ else
 endif
 
 # The tests are run on GitHub with all options disabled, and then
-# Image tests use option devel as a flag so that normal users do not
+# Image tests use option unit_tests as a flag so that normal users do not
 # download the test image database.
 
 # Image checks
-option = get_option('devel')
+option = get_option('unit_tests')
 if option.enabled()
     if xvfb.found()
         get_test_images_sh = find_program('get-test-images.sh', dirs : scriptsdir, required : true)
@@ -812,16 +809,16 @@ endif
 # Untranslated text checks
 untranslated_text_sh = find_program('untranslated-text.sh', dirs : scriptsdir, required : true)
 if untranslated_text_sh.found()
-	 foreach source_file : main_sources + pan_view_sources + view_file_sources
-		if fs.name(source_file).endswith('.cc')
-			source_file_name = fs.name(source_file)
-			test('Untranslated Text_ ' + source_file_name, untranslated_text_sh, args : [source_file], timeout : 200, suite : 'analysis')
-		endif
-	endforeach
+     foreach source_file : main_sources + pan_view_sources + view_file_sources
+        if fs.name(source_file).endswith('.cc')
+            source_file_name = fs.name(source_file)
+            test('Untranslated Text_ ' + source_file_name, untranslated_text_sh, args : [source_file], timeout : 200, suite : 'analysis')
+        endif
+    endforeach
 
-	summary({'Untranslated Text' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+    summary({'Untranslated Text' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
 else
-	summary({'Untranslated Text' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+    summary({'Untranslated Text' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
 endif
 
 # Lua test
