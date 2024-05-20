@@ -158,9 +158,9 @@ libdw_dep = []
 libunwind_dep = []
 option = get_option('extended_stacktrace')
 if not option.disabled()
-    libdw_dep = dependency('libdw', required : true)
+    libdw_dep = dependency('libdw', required : false)
     if libdw_dep.found()
-        libunwind_dep = dependency('libunwind', required : true)
+        libunwind_dep = dependency('libunwind', required : false)
         if libunwind_dep.found()
             if cc.has_link_argument('-ldwarf')
                 add_project_link_arguments('-ldwarf', language: 'cpp')
