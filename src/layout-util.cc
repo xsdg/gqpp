@@ -3590,7 +3590,7 @@ void layout_toolbar_add_default(LayoutWindow *lw, ToolbarType type)
 			if (layout_window_list)
 				{
 				lw_first = static_cast<LayoutWindow *>(layout_window_list->data);
-				if (lw_first->toolbar_actions[TOOLBAR_MAIN])
+				if (lw_first->toolbar_actions[TOOLBAR_STATUS])
 					{
 					work_action = lw_first->toolbar_actions[type];
 					while (work_action)
