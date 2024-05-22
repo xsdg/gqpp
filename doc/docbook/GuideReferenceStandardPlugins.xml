@@ -72,7 +72,9 @@
     <para>
       This item is displayed in the
       <emphasis role="strong">Plugins</emphasis>
-      menu.
+      and
+      <emphasis role="strong">Edit</emphasis>
+      menus.
     </para>
   </section>
   <section id="OpenWith">

@@ -217,6 +217,7 @@ static void image_release_cb(PixbufRenderer *, GdkEventButton *event, gpointer d
 static void image_drag_cb(PixbufRenderer *pr, GdkEventMotion *event, gpointer data)
 {
 	auto imd = static_cast<ImageWindow *>(data);
+	gdouble aspect_ratio = 0.0;
 	gint width;
 	gint height;
 	gint rect_width;
@@ -250,7 +251,41 @@ static void image_drag_cb(PixbufRenderer *pr, GdkEventMotion *event, gpointer da
 			image_y_pixel = y_pixel;
 			}
 
+		if (options->rectangle_draw_aspect_ratio != RECTANGLE_DRAW_ASPECT_RATIO_NONE)
+			{
+			switch (options->rectangle_draw_aspect_ratio)
+				{
+				case RECTANGLE_DRAW_ASPECT_RATIO_ONE_ONE:
+					aspect_ratio = 1.0;
+					break;
+				case RECTANGLE_DRAW_ASPECT_RATIO_FOUR_THREE:
+					aspect_ratio = gdouble(4) / 3;
+					break;
+				case RECTANGLE_DRAW_ASPECT_RATIO_THREE_TWO:
+					aspect_ratio = gdouble(3) / 2;
+					break;
+				case RECTANGLE_DRAW_ASPECT_RATIO_SIXTEEN_NINE:
+					aspect_ratio = gdouble(16) / 9;
+					break;
+				default:
+					aspect_ratio = 1.0;
+				}
+			}
+
+		if (options->rectangle_draw_aspect_ratio != RECTANGLE_DRAW_ASPECT_RATIO_NONE)
+			{
+			if (gdouble(image_x_pixel - image_start_x) / (image_y_pixel - image_start_y) < aspect_ratio)
+				{
+				image_x_pixel = image_start_x + ((image_y_pixel - image_start_y) * aspect_ratio);
+				}
+			else
+				{
+				image_y_pixel = image_start_y + ((image_x_pixel - image_start_x) / aspect_ratio);
+				}
+			}
+
 		switch_coords_orientation(imd, image_x_pixel, image_y_pixel, width, height);
+
 		if (rect_id)
 			{
 			pixbuf_renderer_overlay_remove(reinterpret_cast<PixbufRenderer *>(imd->pr), rect_id);
@@ -267,10 +302,22 @@ static void image_drag_cb(PixbufRenderer *pr, GdkEventMotion *event, gpointer da
 			rect_height = 1;
 			}
 
+		if (options->rectangle_draw_aspect_ratio != RECTANGLE_DRAW_ASPECT_RATIO_NONE)
+			{
+			if (gdouble(rect_width) / rect_height < aspect_ratio)
+				{
+				rect_width = gdouble(rect_height) * aspect_ratio;
+				}
+			else
+				{
+				rect_height = rect_width / aspect_ratio;
+				}
+			}
+
 		rect_pixbuf = gdk_pixbuf_new(GDK_COLORSPACE_RGB, TRUE, 8, rect_width, rect_height);
 		pixbuf_set_rect_fill(rect_pixbuf, 0, 0, rect_width, rect_height, 255, 255, 255, 0);
 		pixbuf_set_rect(rect_pixbuf, 1, 1, rect_width-2, rect_height - 2, 0, 0, 0, 255, 1, 1, 1, 1);
-		pixbuf_set_rect(rect_pixbuf, 2, 2, rect_width-4, rect_height - 4, 255, 255, 255, 255, 1, 1, 1, 1);
+		pixbuf_set_rect(rect_pixbuf, 0, 0, rect_width, rect_height, 255, 255, 255, 255, 1, 1, 1, 1);
 
 		rect_id = pixbuf_renderer_overlay_add(reinterpret_cast<PixbufRenderer *>(imd->pr), rect_pixbuf, pixbuf_start_x, pixbuf_start_y, OVL_NORMAL);
 		}
@@ -279,10 +326,7 @@ static void image_drag_cb(PixbufRenderer *pr, GdkEventMotion *event, gpointer da
 
 	if (imd->func_drag)
 		{
-		imd->func_drag(imd, event,
-			       static_cast<gfloat>(pr->drag_last_x - event->x) / width,
-			       static_cast<gfloat>(pr->drag_last_y - event->y) / height,
-			       imd->data_button);
+		imd->func_drag(imd, event, static_cast<gfloat>(pr->drag_last_x - event->x) / width, static_cast<gfloat>(pr->drag_last_y - event->y) / height, imd->data_button);
 		}
 }
 

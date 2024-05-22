@@ -1340,6 +1340,11 @@ static void layout_menu_stereo_mode_cb(GtkRadioAction *action, GtkRadioAction *,
 	layout_image_stereo_pixbuf_set(lw, mode);
 }
 
+static void layout_menu_draw_rectangle_aspect_ratio_cb(GtkRadioAction *action, GtkRadioAction *, gpointer)
+{
+	options->rectangle_draw_aspect_ratio = static_cast<RectangleDrawAspectRatio>(gq_gtk_radio_action_get_current_value(action));
+}
+
 static void layout_menu_help_cb(GtkAction *, gpointer data)
 {
 	auto lw = static_cast<LayoutWindow *>(data);
@@ -1551,6 +1556,13 @@ static void layout_menu_about_cb(GtkAction *, gpointer data)
 
 	layout_exit_fullscreen(lw);
 	show_about_window(lw);
+}
+
+static void layout_menu_crop_selection_cb(GtkAction *, gpointer data)
+{
+	auto lw = static_cast<LayoutWindow *>(data);
+
+	start_editor_from_file("org.geeqie.image-crop.desktop", lw->image->image_fd);
 }
 
 static void layout_menu_log_window_cb(GtkAction *, gpointer data)
@@ -2660,6 +2672,7 @@ static void layout_menu_window_delete_cb(GtkWidget *, gpointer data)
 static GtkActionEntry menu_entries[] = {
   { "About",                 GQ_ICON_ABOUT,                     N_("_About"),                                           nullptr,               N_("About"),                                           CB(layout_menu_about_cb) },
   { "AlterNone",             PIXBUF_INLINE_ICON_ORIGINAL,       N_("_Original state"),                                  "<shift>O",            N_("Image rotate Original state"),                     CB(layout_menu_alter_none_cb) },
+  { "AspectRatioMenu",       nullptr,                           N_("Aspect Ratio"),                                     nullptr,               N_("Aspect Ratio"),                                    nullptr },
   { "Back",                  GQ_ICON_GO_PREV,                   N_("_Back"),                                            nullptr,               N_("Back in folder history"),                          CB(layout_menu_back_cb) },
   { "ClearMarks",            nullptr,                           N_("Clear Marks..."),                                   nullptr,               N_("Clear Marks"),                                     CB(layout_menu_clear_marks_cb) },
   { "CloseWindow",           GQ_ICON_CLOSE,                     N_("C_lose window"),                                    "<control>W",          N_("Close window"),                                    CB(layout_menu_close_cb) },
@@ -2682,9 +2695,10 @@ static GtkActionEntry menu_entries[] = {
   { "ConnectZoomOutAlt1",    GQ_ICON_ZOOM_OUT,                  N_("Zoom _out"),                                        "<shift>KP_Subtract",  N_("Connected Zoom out"),                              CB(layout_menu_connect_zoom_out_cb) },                 
   { "ConnectZoomOut",        GQ_ICON_ZOOM_OUT,                  N_("Zoom _out"),                                        "underscore",          N_("Connected Zoom out"),                              CB(layout_menu_connect_zoom_out_cb) },
   { "Copy",                  GQ_ICON_COPY,                      N_("_Copy..."),                                         "<control>C",          N_("Copy..."),                                         CB(layout_menu_copy_cb) },
-  { "CopyPath",              nullptr,                           N_("_Copy to clipboard"),                          nullptr,               N_("Copy to clipboard"),                          CB(layout_menu_copy_path_cb) },
-  { "CopyPathUnquoted",      nullptr,                           N_("_Copy to clipboard (unquoted)"),                 nullptr,               N_("Copy to clipboard (unquoted)"),                 CB(layout_menu_copy_path_unquoted_cb) },
-  { "CutPath",               nullptr,                           N_("_Cut to clipboard"),                           "<control>X",          N_("Cut to clipboard"),                           CB(layout_menu_cut_path_cb) },
+  { "CopyPath",              nullptr,                           N_("_Copy to clipboard"),                               nullptr,               N_("Copy to clipboard"),                               CB(layout_menu_copy_path_cb) },
+  { "CopyPathUnquoted",      nullptr,                           N_("_Copy to clipboard (unquoted)"),                    nullptr,               N_("Copy to clipboard (unquoted)"),                    CB(layout_menu_copy_path_unquoted_cb) },
+  { "CropRectangle",         nullptr,                           N_("Crop Rectangle"),                                   nullptr,               N_("Crop Rectangle"),                                  CB(layout_menu_crop_selection_cb) },
+  { "CutPath",               nullptr,                           N_("_Cut to clipboard"),                                "<control>X",          N_("Cut to clipboard"),                                CB(layout_menu_cut_path_cb) },
   { "DeleteAlt1",            GQ_ICON_USER_TRASH,                N_("Move to Trash..."),                                 "Delete",              N_("Move to Trash..."),                                CB(layout_menu_move_to_trash_key_cb) },                
   { "DeleteAlt2",            GQ_ICON_USER_TRASH,                N_("Move to Trash..."),                                 "KP_Delete",           N_("Move to Trash..."),                                CB(layout_menu_move_to_trash_key_cb) },                
   { "Delete",                GQ_ICON_USER_TRASH,                N_("Move to Trash..."),                                 "<control>D",          N_("Move to Trash..."),                                CB(layout_menu_move_to_trash_cb) },
@@ -2883,6 +2897,14 @@ static GtkRadioActionEntry menu_stereo_mode_entries[] = {
   { "StereoCross",  nullptr,  N_("_Cross"),         nullptr,  N_("Stereo Cross"),         STEREO_PIXBUF_CROSS },
   { "StereoOff",    nullptr,  N_("_Off"),           nullptr,  N_("Stereo Off"),           STEREO_PIXBUF_NONE },
   { "StereoSBS",    nullptr,  N_("_Side by Side"),  nullptr,  N_("Stereo Side by Side"),  STEREO_PIXBUF_SBS }
+};
+
+static GtkRadioActionEntry menu_draw_rectangle_aspect_ratios[] = {
+  { "None",        nullptr, N_("None"), nullptr, N_("None"), RECTANGLE_DRAW_ASPECT_RATIO_NONE },
+  { "OneOne",      nullptr, N_("1:1"),  nullptr, N_("1:1"),  RECTANGLE_DRAW_ASPECT_RATIO_ONE_ONE },
+  { "FourThree",   nullptr, N_("4:3"),  nullptr, N_("4:3"),  RECTANGLE_DRAW_ASPECT_RATIO_FOUR_THREE },
+  { "ThreeTwo",    nullptr, N_("3:2"),  nullptr, N_("3:2"),  RECTANGLE_DRAW_ASPECT_RATIO_THREE_TWO },
+  { "SixteenNine", nullptr, N_("16:9"), nullptr, N_("16:9"), RECTANGLE_DRAW_ASPECT_RATIO_SIXTEEN_NINE }
 };
 #undef CB
 
@@ -3209,6 +3231,9 @@ void layout_actions_setup(LayoutWindow *lw)
 	gq_gtk_action_group_add_radio_actions(lw->action_group,
 					   menu_stereo_mode_entries, G_N_ELEMENTS(menu_stereo_mode_entries),
 					   0, G_CALLBACK(layout_menu_stereo_mode_cb), lw);
+	gq_gtk_action_group_add_radio_actions(lw->action_group,
+					   menu_draw_rectangle_aspect_ratios, G_N_ELEMENTS(menu_draw_rectangle_aspect_ratios),
+					   0, G_CALLBACK(layout_menu_draw_rectangle_aspect_ratio_cb), lw);
 
 
 	lw->ui_manager = gq_gtk_ui_manager_new();
@@ -3840,6 +3865,9 @@ static void layout_util_sync_views(LayoutWindow *lw)
 
 	action = gq_gtk_action_group_get_action(lw->action_group, "ViewIcons");
 	gq_gtk_radio_action_set_current_value(GTK_RADIO_ACTION(action), lw->options.file_view_type);
+
+	action = gq_gtk_action_group_get_action(lw->action_group, "None");
+	gq_gtk_radio_action_set_current_value(GTK_RADIO_ACTION(action), options->rectangle_draw_aspect_ratio);
 
 	action = gq_gtk_action_group_get_action(lw->action_group, "FloatTools");
 	gq_gtk_toggle_action_set_active(GTK_TOGGLE_ACTION(action), lw->options.tools_float);

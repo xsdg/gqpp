@@ -374,6 +374,7 @@ static void write_global_attributes(GString *outstr, gint indent)
 	WRITE_NL(); WRITE_UINT(*options, dnd_default_action);
 	WRITE_NL(); WRITE_BOOL(*options, place_dialogs_under_mouse);
 	WRITE_NL(); WRITE_INT(*options, clipboard_selection);
+	WRITE_NL(); WRITE_UINT(*options, rectangle_draw_aspect_ratio);
 
 	WRITE_NL(); WRITE_BOOL(*options, save_window_positions);
 	WRITE_NL(); WRITE_BOOL(*options, use_saved_window_positions_for_new_windows);
@@ -882,6 +883,7 @@ static gboolean load_global_params(const gchar **attribute_names, const gchar **
 		if (READ_UINT_ENUM(*options, dnd_default_action)) continue;
 		if (READ_BOOL(*options, place_dialogs_under_mouse)) continue;
 		if (READ_INT(*options, clipboard_selection)) continue;
+		if (READ_UINT_ENUM(*options, rectangle_draw_aspect_ratio)) continue;
 
 		if (READ_BOOL(*options, save_window_positions)) continue;
 		if (READ_BOOL(*options, use_saved_window_positions_for_new_windows)) continue;

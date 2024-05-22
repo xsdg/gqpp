@@ -25,6 +25,7 @@
 #include <gdk/gdk.h>
 #include <glib.h>
 
+#include "image.h"
 #include "typedefs.h"
 
 struct SecureSaveInfo;
@@ -86,6 +87,7 @@ struct ConfOptions
 	gint dnd_icon_size;
 	DnDAction dnd_default_action;
 	gint clipboard_selection;
+	RectangleDrawAspectRatio rectangle_draw_aspect_ratio;
 
 	gboolean save_window_positions;
 	gboolean use_saved_window_positions_for_new_windows;

@@ -951,6 +951,52 @@
           <para>Saves queued metadata changes. Autosave can be configured too.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <shortcut>
+              <keycombo>
+                <keycap>Alt</keycap>
+                <keycap>K</keycap>
+              </keycombo>
+            </shortcut>
+            <guimenu>Keyword Autocomplete</guimenu>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Refer to <link linkend="KeywordAutocompletion">Info Sidebar</link>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Draw rectangle</guimenu>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Press and drag the mouse left button to draw a rectangle.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Aspect ratio</guimenu>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Select an aspect ratio for the above action.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <menuchoice>
+            <guimenu>Crop rectangle</guimenu>
+          </menuchoice>
+        </term>
+        <listitem>
+          <para>Crop the image rectangle set above. See also <link linkend="Imagecrop">Image Crop plugin</link>.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <variablelist>
       <varlistentry>

@@ -97,6 +97,14 @@
         <placeholder name="PropertiesSection"/>
         <separator/>
         <menuitem action="DrawRectangle"/>
+        <menu action="AspectRatioMenu">
+          <menuitem action="None"/>
+          <menuitem action="OneOne"/>
+          <menuitem action="FourThree"/>
+          <menuitem action="ThreeTwo"/>
+          <menuitem action="SixteenNine"/>
+        </menu>
+        <menuitem action="CropRectangle"/>
         <separator/>
         <menuitem action="Preferences"/>
         <menuitem action="Plugins"/>
