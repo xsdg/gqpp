@@ -22,7 +22,7 @@
 ## @file
 ## @brief Perform validity checks on project ancillary files
 ##
-## $1 Root of project sources
+## $1 Root of project sources or NULL for current
 ##
 ## Perform validity checks on project ancillary files:
 ## appdata
@@ -32,7 +32,10 @@
 ## xml
 ##
 
-cd "$1" || exit 1
+if [ -n "$1" ]
+then
+	cd "$1" || exit 1
+fi
 
 if [ ! -d "src" ] || [ ! -f "geeqie.1" ]
 then
@@ -57,7 +60,7 @@ do
 		fi
 	fi
 done << EOF
-$(find "$1/plugins" "$1/src" "$1/scripts" -type f -not -name downsize -executable)
+$(find "./plugins" "./src" "./scripts" -type f -not -name downsize -executable)
 EOF
 
 # Script files must have the file extension .sh  or
@@ -81,7 +84,7 @@ do
 		fi
 	fi
 done << EOF
-$(find "$1/plugins" "$1/src" "$1/scripts" -type f -executable)
+$(find "./plugins" "./src" "./scripts" -type f -executable)
 EOF
 
 # Check if all options are in the disabled checks
@@ -89,7 +92,7 @@ while read -r line
 do
 	if [ -n "$line" ]
 	then
-		res=$(grep "$line" "$1/scripts/test-all.sh")
+		res=$(grep "$line" "./scripts/test-all.sh")
 		if [ -z "$res" ]
 		then
 			printf "ERROR; Option no disabled check in ./scripts/test-all.sh: %s\n" "$line"
@@ -97,7 +100,7 @@ do
 		fi
 	fi
 done << EOF
-$(awk 'BEGIN {FS="\047"} /option/ { if (substr($2,0,2) != "gq") { print $2 } }' meson_options.txt)
+$(awk --lint=fatal --posix 'BEGIN {FS="\047"} /option\(/ { if (substr($2, 1, 2) != "gq") { print $2 } }' meson_options.txt)
 EOF
 
 # Check if all options are in the disabled checks in a GitHub run
@@ -108,7 +111,7 @@ then
 	do
 		if [ -n "$line" ]
 		then
-			res=$(grep "\-D$line=disabled" "$1/.github/workflows/check-build-actions.yml")
+			res=$(grep "\-D$line=disabled" "./.github/workflows/check-build-actions.yml")
 			if [ -z "$res" ]
 			then
 				printf "ERROR; Option no disabled check in .github/workflows/check-build-actions.yml: %s\n" "$line"
@@ -116,7 +119,7 @@ then
 			fi
 		fi
 	done << EOF
-$(awk 'BEGIN {FS="\047"} /option/ { if (substr($2,0,2) != "gq") { print $2 } }' meson_options.txt)
+$(awk --lint=fatal --posix 'BEGIN {FS="\047"} /option\(/ { if (substr($2, 1, 2) != "gq") { print $2 } }' meson_options.txt)
 EOF
 fi
 
@@ -217,10 +220,10 @@ else
 		if [ -n "$line" ]
 		then
 			desktop_file=$(basename "$line" ".in")
-			ln --symbolic "$line" "$1/$desktop_file"
-			result=$(desktop-file-validate "$1/$desktop_file")
+			ln --symbolic "$line" "./$desktop_file"
+			result=$(desktop-file-validate "./$desktop_file")
 
-			rm "$1/$desktop_file"
+			rm "./$desktop_file"
 			if [ -n "$result" ]
 			then
 				printf "ERROR; desktop-file-validate error in: %s %s\n" "$line" "$result"
@@ -276,5 +279,238 @@ else
 $(find ./doc/docbook -name "*.xml")
 EOF
 fi
+
+# Command line completion
+## Check the sections: actions, options_basic, options_remote
+## The file_types section is not checked.
+## Look for options not included and options erroneously included.
+
+if [ ! -d ./build ]
+then
+	meson setup build
+	ninja -C build
+else
+	if [ ! -f ./build/src/geeqie ]
+	then
+		ninja -C build
+	fi
+fi
+
+geeqie_exe=$(realpath ./build/src/geeqie)
+
+actions_cc=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
+actions_help=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
+actions_help_cut=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
+help_output=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
+options_basic_cc=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
+options_basic_help=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
+options_remote_cc=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
+options_remote_help=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
+
+options_basic1=$(grep 'options_basic=' ./auto-complete/geeqie)
+options_basic2=$(echo "$options_basic1" | cut -c 16-)
+options_basic3=$(echo "$options_basic2" | sed "s/\x27//g")
+options_basic4=$(echo "$options_basic3" | sed "s/ /\n/g")
+echo "$options_basic4" | sort > "$options_basic_cc"
+
+options_remote1=$(grep 'options_remote=' ./auto-complete/geeqie)
+options_remote2=$(echo "$options_remote1" | cut -c 17-)
+options_remote3=$(echo "$options_remote2" | sed "s/\x27//g")
+options_remote4=$(echo "$options_remote3" | sed "s/ /\n/g")
+echo "$options_remote4" | sort > "$options_remote_cc"
+
+action_list1=$(grep 'actions=' ./auto-complete/geeqie)
+action_list2=$(echo "$action_list1" | cut --delimiter='=' --fields=2)
+action_list3=$(echo "$action_list2" | sed "s/\x27//g")
+action_list4=$(echo "$action_list3" | sed 's/ /\n/g')
+echo "$action_list4" | sort > "$actions_cc"
+
+./scripts/isolate-test.sh xvfb-run --auto-servernum "$geeqie_exe" --help > "$help_output"
+
+awk --lint=fatal --posix --assign options_basic_help="$options_basic_help" --assign options_remote_help="$options_remote_help" '
+BEGIN {
+valid_found = 0
+}
+
+/Valid options/ {valid_found = 1}
+/Remote command/ {valid_found = 0}
+/--/ && valid_found {
+	start = match($0, /--/)
+	new=substr($0, start)
+	{gsub(/ .*/, "", new)}
+	{gsub(/=.*/, "=", new)}
+	{gsub(/\[.*/, "", new)}
+	print new >> options_basic_help
+	}
+
+/--/ && ! valid_found {
+	start = match($0, /--/)
+	new = substr($0, start)
+	{gsub(/ .*/, "", new)}
+	{gsub(/=.*/, "=", new)}
+	{gsub(/\[.*/, "", new)}
+	print new >> options_remote_help
+	}
+
+END {
+close(options_basic_help)
+close(options_remote_help)
+}
+' "$help_output"
+
+# https://backreference.org/2010/02/10/idiomatic-awk/ is a good reference
+awk --lint=fatal --posix '
+BEGIN {
+exit_status = 0
+}
+
+NR == FNR{a[$0]="";next} !($0 in a) {
+	exit_status = 1
+	print "Bash completions - Basic option missing: " $0
+	}
+
+END {
+exit exit_status
+}
+' "$options_basic_cc" "$options_basic_help"
+
+if [ $? = 1 ]
+then
+	exit_status=1
+fi
+
+awk --lint=fatal --posix '
+BEGIN {
+exit_status = 0
+}
+
+NR == FNR{a[$0]="";next} !($0 in a) {
+	exit_status = 1
+	print "Bash completions - Basic option error: " $0
+	}
+
+END {
+exit exit_status
+}
+' "$options_basic_help" "$options_basic_cc"
+
+if [ $? = 1 ]
+then
+	exit_status=1
+fi
+
+awk --lint=fatal --posix '
+BEGIN {
+exit_status = 0
+}
+
+NR == FNR{a[$0]="";next} !($0 in a) {
+	exit_status = 1
+	print "Bash completions - Remote option missing: " $0
+	}
+
+END {
+exit exit_status
+}
+' "$options_remote_cc" "$options_remote_help"
+
+if [ $? = 1 ]
+then
+	exit_status=1
+fi
+
+## @FIXME Differing configuration options are not handled
+awk --lint=fatal --posix '
+BEGIN {
+exit_status = 0
+}
+
+NR == FNR{a[$0]="";next} !($0 in a) {
+	if (index($0, "lua") == 0)
+		{
+		exit_status = 1
+		print "Bash completions - Remote option error: " $0
+		}
+	}
+
+END {
+exit exit_status
+}
+' "$options_remote_help" "$options_remote_cc"
+
+if [ $? = 1 ]
+then
+	exit_status=1
+fi
+
+./scripts/isolate-test.sh xvfb-run --auto-servernum "$geeqie_exe" --remote --action-list --quit | cut --delimiter=' ' --fields=1 | sed '/^$/d' > "$actions_help"
+
+awk --lint=fatal --posix --assign actions_help_cut="$actions_help_cut" '
+BEGIN {
+remote_found = 0
+}
+
+/Remote/ {
+	remote_found = 1
+	next
+	}
+
+/.*?/ && remote_found {
+	print $0 >> actions_help_cut
+	}
+
+END {
+close(actions_help_cut)
+}
+' "$actions_help"
+
+awk --lint=fatal --posix '
+BEGIN {
+exit_status = 0
+}
+
+NR == FNR{a[$0]="";next} !($0 in a) {
+	print "Bash completions - Action missing: " $0
+	exit_status = 1
+	}
+
+END {
+exit exit_status
+}
+' "$actions_cc" "$actions_help_cut"
+
+if [ $? = 1 ]
+then
+	exit_status=1
+fi
+
+awk --lint=fatal --posix '
+BEGIN {
+exit_status = 0
+}
+
+NR == FNR{a[$0]="";next} !($0 in a) {
+	print "Bash completions - Action error: " $0
+	exit_status = 1
+	}
+
+END {
+exit exit_status
+}
+' "$actions_help_cut" "$actions_cc"
+
+if [ $? = 1 ]
+then
+	exit_status=1
+fi
+
+rm --force "$actions_cc"
+rm --force "actions_help"
+rm --force "actions_help_cut"
+rm --force "help_output"
+rm --force "options_basic_cc"
+rm --force "options_basic_help"
+rm --force "options_remote_cc"
+rm --force "options_remote_help"
 
 exit "$exit_status"

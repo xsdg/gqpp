@@ -98,11 +98,11 @@
         <separator/>
         <menuitem action="DrawRectangle"/>
         <menu action="AspectRatioMenu">
-          <menuitem action="None"/>
-          <menuitem action="OneOne"/>
-          <menuitem action="FourThree"/>
-          <menuitem action="ThreeTwo"/>
-          <menuitem action="SixteenNine"/>
+          <menuitem action="CropNone"/>
+          <menuitem action="CropOneOne"/>
+          <menuitem action="CropFourThree"/>
+          <menuitem action="CropThreeTwo"/>
+          <menuitem action="CropSixteenNine"/>
         </menu>
         <menuitem action="CropRectangle"/>
         <separator/>

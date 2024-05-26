@@ -27,6 +27,17 @@ meson compile geeqie-update-po
 ./scripts/template-desktop.sh
 ```
 
+* The command line completion file has four sections that must be updated by hand
+
+```sh
+file_types
+actions
+options_basic
+options_remote
+
+./auto-complete/geeqie
+```
+
 ### After compiling the sources, carry out the following actions when necessary
 
 * Update the man page and Command Line Options section in Help if the command line options have changed

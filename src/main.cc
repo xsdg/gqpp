@@ -498,7 +498,7 @@ static void parse_command_line(gint argc, gchar *argv[])
 				print_term(FALSE, _("  -v, --version                    print version info\n"));
 				print_term(FALSE, _("  -w, --show-log-window            show log window\n"));
 #ifdef DEBUG
-				print_term(FALSE, _("      --debug[=level]              turn on debug output\n"));
+				print_term(FALSE, _("      --debug=[level]              turn on debug output\n"));
 				print_term(FALSE, _("  -g, --grep=<regexp>              filter debug output\n"));
 #endif
 
