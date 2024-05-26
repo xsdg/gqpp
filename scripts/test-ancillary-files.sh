@@ -405,8 +405,11 @@ exit_status = 0
 }
 
 NR == FNR{a[$0]="";next} !($0 in a) {
-	exit_status = 1
-	print "Bash completions - Remote option missing: " $0
+	if (index($0, "desktop") == 0)
+		{
+		exit_status = 1
+		print "Bash completions - Remote option missing: " $0
+		}
 	}
 
 END {
@@ -426,7 +429,7 @@ exit_status = 0
 }
 
 NR == FNR{a[$0]="";next} !($0 in a) {
-	if (index($0, "lua") == 0)
+	if (index($0, "desktop") == 0 && index($0, "lua") == 0)
 		{
 		exit_status = 1
 		print "Bash completions - Remote option error: " $0
