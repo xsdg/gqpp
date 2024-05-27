@@ -300,7 +300,7 @@ geeqie_exe=$(realpath ./build/src/geeqie)
 
 actions_cc=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 actions_help=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
-actions_help_cut=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
+actions_help_filtered=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 help_output=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 options_basic_cc=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 options_basic_help=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
@@ -364,7 +364,7 @@ BEGIN {
 exit_status = 0
 }
 
-NR == FNR{a[$0]="";next} !($0 in a) {
+NR == FNR{a[$0] = "";next} !($0 in a) {
 	exit_status = 1
 	print "Bash completions - Basic option missing: " $0
 	}
@@ -384,7 +384,7 @@ BEGIN {
 exit_status = 0
 }
 
-NR == FNR{a[$0]="";next} !($0 in a) {
+NR == FNR{a[$0] = "";next} !($0 in a) {
 	exit_status = 1
 	print "Bash completions - Basic option error: " $0
 	}
@@ -404,7 +404,7 @@ BEGIN {
 exit_status = 0
 }
 
-NR == FNR{a[$0]="";next} !($0 in a) {
+NR == FNR{a[$0] = "";next} !($0 in a) {
 	if (index($0, "desktop") == 0)
 		{
 		exit_status = 1
@@ -428,7 +428,7 @@ BEGIN {
 exit_status = 0
 }
 
-NR == FNR{a[$0]="";next} !($0 in a) {
+NR == FNR{a[$0] = "";next} !($0 in a) {
 	if (index($0, "desktop") == 0 && index($0, "lua") == 0)
 		{
 		exit_status = 1
@@ -448,7 +448,8 @@ fi
 
 ./scripts/isolate-test.sh xvfb-run --auto-servernum "$geeqie_exe" --remote --action-list --quit | cut --delimiter=' ' --fields=1 | sed '/^$/d' > "$actions_help"
 
-awk --lint=fatal --posix --assign actions_help_cut="$actions_help_cut" '
+## @FIXME Find a better way to ignore the junk
+awk --lint=fatal --posix --assign actions_help_filtered="$actions_help_filtered" '
 BEGIN {
 remote_found = 0
 }
@@ -458,12 +459,14 @@ remote_found = 0
 	next
 	}
 
-/.*?/ && remote_found {
-	print $0 >> actions_help_cut
+/^[A-Z].*?/ && remote_found {
+	if ((index($0, "desktop") == 0) && (index($0, "glx") == 0) && (index($0, "Geeqie not running") == 0) && (index($0, "Gtk-Message") == 0)) {
+		print $0 >> actions_help_filtered
+		}
 	}
 
 END {
-close(actions_help_cut)
+close(actions_help_filtered)
 }
 ' "$actions_help"
 
@@ -472,7 +475,7 @@ BEGIN {
 exit_status = 0
 }
 
-NR == FNR{a[$0]="";next} !($0 in a) {
+NR == FNR{a[$0] = "";next} !($0 in a) {
 	print "Bash completions - Action missing: " $0
 	exit_status = 1
 	}
@@ -480,7 +483,7 @@ NR == FNR{a[$0]="";next} !($0 in a) {
 END {
 exit exit_status
 }
-' "$actions_cc" "$actions_help_cut"
+' "$actions_cc" "$actions_help_filtered"
 
 if [ $? = 1 ]
 then
@@ -492,7 +495,7 @@ BEGIN {
 exit_status = 0
 }
 
-NR == FNR{a[$0]="";next} !($0 in a) {
+NR == FNR{a[$0] = "";next} !($0 in a) {
 	print "Bash completions - Action error: " $0
 	exit_status = 1
 	}
@@ -500,7 +503,7 @@ NR == FNR{a[$0]="";next} !($0 in a) {
 END {
 exit exit_status
 }
-' "$actions_help_cut" "$actions_cc"
+' "$actions_help_filtered" "$actions_cc"
 
 if [ $? = 1 ]
 then
@@ -509,7 +512,7 @@ fi
 
 rm --force "$actions_cc"
 rm --force "actions_help"
-rm --force "actions_help_cut"
+rm --force "actions_help_filtered"
 rm --force "help_output"
 rm --force "options_basic_cc"
 rm --force "options_basic_help"
