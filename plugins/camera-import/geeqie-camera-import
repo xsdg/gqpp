@@ -82,9 +82,9 @@ else
 	camera_selected=$(gphoto2 --auto-detect | tail +3)
 fi
 
-port_type=$(printf '%s\n' "$camera_selected" | awk -F ':' '{print $1}' | awk '{print $NF}')
-camera=$(printf '%s\n' "$camera_selected" | awk -F "$port_type" '{print $1}')
-port_address=$(printf '%s\n' "$camera_selected" | awk -F ':' '{print $2}')
+port_type=$(printf '%s\n' "$camera_selected" | awk --lint=fatal --posix --field-separator ':' '{print $1}' | awk '{print $NF}')
+camera=$(printf '%s\n' "$camera_selected" | awk --lint=fatal --posix --field-separator "$port_type" '{print $1}')
+port_address=$(printf '%s\n' "$camera_selected" | awk --lint=fatal --posix --field-separator ':' '{print $2}')
 port="$port_type:$port_address"
 
 script_dir=$(dirname "$0")
@@ -98,7 +98,7 @@ src_files_sorted=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 dest_files_sorted=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 
 (
-	gphoto2 --port "$port" --list-files 2> /tmp/geeqie-camera-import.log | awk '/#/ {print $2}' | sort > "$src_files_sorted"
+	gphoto2 --port "$port" --list-files 2> /tmp/geeqie-camera-import.log | awk --lint=fatal --posix '/#/ {print $2}' | sort > "$src_files_sorted"
 ) | zenity --progress --auto-close --auto-kill --title="Geeqie camera import" --text="Searching for files to download..." --pulsate --window-icon=/usr/local/share/pixmaps/geeqie.png --width=250
 
 error=$(grep -i error /tmp/geeqie-camera-import.log)

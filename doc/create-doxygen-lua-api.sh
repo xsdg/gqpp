@@ -50,12 +50,12 @@ TMPFILE=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX") || exit 1
 
 # Modify the Geeqie doxygen.conf file to produce
 # only the data needed for the lua API document
-awk '
+awk --lint=fatal --posix '
 BEGIN {
-	FILE_PATTERNS_found = "FALSE"
-}
+	file_patterns_found = "FALSE"
+	}
 {
-	if (FILE_PATTERNS_found == "TRUE")
+	if (file_patterns_found == "TRUE")
 		{
 		if ($0 ~ /\\/)
 			{
@@ -63,20 +63,20 @@ BEGIN {
 			}
 		else
 			{
-			FILE_PATTERNS_found = "FALSE"
+			file_patterns_found = "FALSE"
 			}
 		}
-	if ($1 == SHOW_INCLUDE_FILES)
+	if (NF > 0 && $1 == "SHOW_INCLUDE_FILES")
 		{
 		{print "SHOW_INCLUDE_FILES = NO"}
 		}
-	else if ($1 == "FILE_PATTERNS")
+	else if (NF > 0 && $1 == "FILE_PATTERNS")
 		{
 		print "FILE_PATTERNS = lua.cc"
-		FILE_PATTERNS_found = "TRUE"
+		file_patterns_found = "TRUE"
 		next
 		}
-	else if ($1 == "EXCLUDE_SYMBOLS")
+	else if (NF > 0 && $1 == "EXCLUDE_SYMBOLS")
 		{
 		print "EXCLUDE_SYMBOLS = L \\"
 		print "lua_callvalue \\"
@@ -87,11 +87,11 @@ BEGIN {
 		print "LUA_register_global \\"
 		print "LUA_register_meta"
 		}
-	else if ($1 == "SOURCE_BROWSER")
+	else if (NF > 0 && $1 == "SOURCE_BROWSER")
 		{
 		print "SOURCE_BROWSER = NO"
 		}
-	else if ($1 == "HAVE_DOT")
+	else if (NF > 0 && $1 == "HAVE_DOT")
 		{
 		{print "HAVE_DOT = NO"}
 		}

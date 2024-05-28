@@ -12,7 +12,7 @@ path=$(dirname "$(realpath "$0")")
 srcpath=$(dirname "$path")/src/ui/menu-classic.ui
 templatepath=$(dirname "$path")/plugins/org.geeqie.template.desktop.in
 
-awk -v src_path="$srcpath" 'BEGIN {
+awk --lint=fatal --posix --assign src_path="$srcpath" 'BEGIN {
 menu_flag = 0
 template_flag = 0
 i = 0
@@ -33,9 +33,8 @@ function get_menus()
 		if (menu_flag >= 1)
 			{
 			gsub(/\047|"|\/|<|>/, "", line)
-			split(line, lineArr, "=")
-
-			if (index(lineArr[1], "menu action") > 0)
+			split_count = split(line, lineArr, "=")
+			if (split_count > 1 && index(lineArr[1], "menu action") > 0)
 				{
 				i = i + 1
 				menu[i] = lineArr[2]
@@ -52,7 +51,7 @@ function get_menus()
 					print "#    " lineArr[2]
 					}
 				}
-			if (index(lineArr[1], "placeholder name"))
+			if (split_count > 1 && index(lineArr[1], "placeholder name"))
 				{
 				if ( i == 2)
 					{
@@ -68,7 +67,7 @@ function get_menus()
 				{
 				i = i - 1
 				}
-			if (lineArr[2] == "PluginsMenu")
+			if (split_count > 1 && lineArr[2] == "PluginsMenu")
 				{
 				i = i - 1
 				}
@@ -80,6 +79,8 @@ function get_menus()
 /Valid sections/ {template_flag = 1; print; get_menus()}
 /For other keys/ {template_flag = 0; print ""}
 (template_flag == 0) {print}
+
+END {close(src_path)}
 '  "$templatepath" > "$tmp_file"
 
 cat "$tmp_file"

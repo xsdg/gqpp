@@ -53,7 +53,12 @@ then
 	printf '%s\n' "Environment variable PROJECT not set"
 	zenity --title="Geeqie" --width=200 --warning --text="Environment variable PROJECT not set"
 else
-	url_found=$(awk  -v search_param="$1" -v docdir="$DOCDIR" '
+	url_found=$(awk --lint=fatal --posix --assign search_param="$1" --assign docdir="$DOCDIR" '
+		BEGIN {
+		function_result = ""
+		struct_result = ""
+		}
+
 		{
 		if ($1 == "<name>_"search_param"</name>")
 			{

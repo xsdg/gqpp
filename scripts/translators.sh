@@ -55,18 +55,19 @@ do
 	full_file_path="$source_dir/$1"
 	locale=${base%.po}
 
-	printf "\n"
-	awk '$1 == "'"$locale"'" {print $0}' "$locales"
-	awk '$0 ~/Translators:/ {
+	awk --lint=fatal --posix '{if ((NF > 0) && ($1 == "'"$locale"'")) {print $0}}' "$locales"
+	awk --lint=fatal --posix '$0 ~/Translators:/ {
 		while (1) {
 			getline $0
-		if ($0 == "#") {
-			exit
+			if ($0 == "#")
+				{
+				exit
+				}
+			else
+				{
+				print substr($0, 3)
+				}
 			}
-		else {
-			print substr($0, 3)
-			}
-		}
 		print $0
 	}' "$full_file_path"
 

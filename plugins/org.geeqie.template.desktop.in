@@ -109,6 +109,7 @@ OnlyShowIn=X-Geeqie;
 #    EditMenu/OrientationMenu
 #    EditMenu/RatingMenu
 #    EditMenu/PropertiesSection
+#    EditMenu/AspectRatioMenu
 #    EditMenu/PreferencesSection
 #    PluginsMenu
 #    ViewMenu

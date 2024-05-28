@@ -79,15 +79,17 @@ post_main_window_xml="
 # shellcheck disable=SC2016
 awk_window='BEGIN {
 	{FS=","}
+	getline
 	while ($0 !~ /^hard_coded_window_keys/) {getline}
-}
-$0~/{static_cast<GdkModifierType>\(0\), 0/ {exit}
+	}
+
+$0~/\{static_cast<GdkModifierType>\(0\), 0/ {exit}
 {
-gsub(/{static_cast<GdkModifierType>\(0\)/, "", $1);
-gsub(/{static_cast<GdkModifierType>\(GDK_CONTROL_MASK \+ GDK_SHIFT_MASK\)/, "Ctrl + Shift +", $1);
-gsub(/{GDK_CONTROL_MASK/, "Ctrl +", $1);
-gsub(/{GDK_SHIFT_MASK/, "Shift +", $1);
-gsub(/{GDK_MOD1_MASK/, "Alt +", $1);
+gsub(/\{static_cast<GdkModifierType>\(0\)/, "", $1);
+gsub(/\{static_cast<GdkModifierType>\(GDK_CONTROL_MASK \+ GDK_SHIFT_MASK\)/, "Ctrl + Shift +", $1);
+gsub(/\{GDK_CONTROL_MASK/, "Ctrl +", $1);
+gsub(/\{GDK_SHIFT_MASK/, "Shift +", $1);
+gsub(/\{GDK_MOD1_MASK/, "Alt +", $1);
 gsub(/ GDK_KEY_/, "", $2);
 gsub(/\047/, "", $2);
 gsub(/N_\(/, "", $3);
@@ -101,13 +103,14 @@ gsub(/"/, "", $3);
 # shellcheck disable=SC2016
 awk_main_window='BEGIN {
 	{FS=","}
-}
+	}
+
 $0 ~ /^  { "/ {
 	if ($4 !~ /nullptr/) {
 		{
 		gsub(/^[[:space:]]+|[[:space:]]+$/,"",$4);
 		gsub(/^[[:space:]]+|[[:space:]]+$/,"",$5);
-		gsub(/{0/, "", $4);
+		gsub(/\{0/, "", $4);
 		gsub(/<control>/, "Ctrl + ", $4);
 		gsub(/<alt>/, "Alt + ", $4);
 		gsub(/<shift>/, "Shift + ", $4);
@@ -127,20 +130,20 @@ $0 ~ /^  { "/ {
 }
 '
 
-keys_xml=$(awk "$awk_window" ./src/dupe.cc )
+keys_xml=$(awk --lint=fatal --posix "$awk_window" ./src/dupe.cc )
 printf '%b\n' "$pre_1_xml $duplicates_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceDuplicatesShortcuts.xml
 
-keys_xml=$(awk "$awk_window" ./src/search.cc )
+keys_xml=$(awk --lint=fatal --posix "$awk_window" ./src/search.cc )
 printf '%b\n' "$pre_1_xml $search_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceSearchShortcuts.xml
 
-keys_xml=$(awk "$awk_window" ./src/pan-view/pan-view.cc )
+keys_xml=$(awk --lint=fatal --posix "$awk_window" ./src/pan-view/pan-view.cc )
 printf '%b\n' "$pre_1_xml $pan_view_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferencePanViewShortcuts.xml
 
-keys_xml=$(awk "$awk_window" ./src/collect-table.cc)
+keys_xml=$(awk --lint=fatal --posix "$awk_window" ./src/collect-table.cc)
 printf '%b\n' "$pre_1_xml $collections_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceCollectionsShortcuts.xml
 
-keys_xml=$(awk "$awk_window" ./src/img-view.cc)
+keys_xml=$(awk --lint=fatal --posix "$awk_window" ./src/img-view.cc)
 printf '%b\n' "$pre_1_xml $image_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceImageViewShortcuts.xml
 
-keys_xml=$(awk "$awk_main_window" ./src/layout-util.cc)
+keys_xml=$(awk --lint=fatal --posix "$awk_main_window" ./src/layout-util.cc)
 printf '%b\n' "$pre_1_xml $main_window_xml $pre_2_xml $keys_xml $post_main_window_xml" > ./doc/docbook/GuideReferenceMainWindowShortcuts.xml

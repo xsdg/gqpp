@@ -88,7 +88,7 @@ then
     chmod +x doxygen-bash.sed
 fi
 
-latest_plantuml=$(curl --silent -qI https://github.com/plantuml/plantuml/releases/latest | awk -F '/' '/^location/ {print  substr($NF, 1, length($NF)-1)}')
+latest_plantuml=$(curl --silent -qI https://github.com/plantuml/plantuml/releases/latest | awk --lint=fatal --posix --field-separator '/' '/^location/ {print  substr($NF, 1, length($NF)-1)}')
 
 if ! [ -f "plantuml-${latest_plantuml#v}.jar" ]
 then

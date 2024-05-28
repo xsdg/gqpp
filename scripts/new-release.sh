@@ -90,7 +90,7 @@ then
 	exit 1
 fi
 
-if [ "$(printf '%s\n' "$version" | awk -F"." '{print NF-1}')" -ne 1 ]
+if [ "$(printf '%s\n' "$version" | awk --lint=fatal --posix --field-separator "." '{print NF-1}')" -ne 1 ]
 then
 	printf '%s\n' "Version major.minor $version is not valid"
 	exit 1
