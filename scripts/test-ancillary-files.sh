@@ -100,7 +100,7 @@ do
 		fi
 	fi
 done << EOF
-$(awk --lint=fatal --posix 'BEGIN {FS="\047"} /option\(/ { if (substr($2, 1, 2) != "gq") { print $2 } }' meson_options.txt)
+$(awk -W posix 'BEGIN {LINT = "fatal"; FS="\047"} /option\(/ { if (substr($2, 1, 2) != "gq") { print $2 } }' meson_options.txt)
 EOF
 
 # Check if all options are in the disabled checks in a GitHub run
@@ -119,7 +119,7 @@ then
 			fi
 		fi
 	done << EOF
-$(awk --lint=fatal --posix 'BEGIN {FS="\047"} /option\(/ { if (substr($2, 1, 2) != "gq") { print $2 } }' meson_options.txt)
+$(awk -W posix 'BEGIN {LINT = "fatal"; FS="\047"} /option\(/ { if (substr($2, 1, 2) != "gq") { print $2 } }' meson_options.txt)
 EOF
 fi
 
@@ -327,8 +327,9 @@ echo "$action_list4" | sort > "$actions_cc"
 
 ./scripts/isolate-test.sh xvfb-run --auto-servernum "$geeqie_exe" --help > "$help_output"
 
-awk --lint=fatal --posix --assign options_basic_help="$options_basic_help" --assign options_remote_help="$options_remote_help" '
+awk -W posix -v options_basic_help="$options_basic_help" -v options_remote_help="$options_remote_help" '
 BEGIN {
+LINT = "fatal"
 valid_found = 0
 }
 
@@ -359,8 +360,9 @@ close(options_remote_help)
 ' "$help_output"
 
 # https://backreference.org/2010/02/10/idiomatic-awk/ is a good reference
-awk --lint=fatal --posix '
+awk -W posix '
 BEGIN {
+LINT = "fatal"
 exit_status = 0
 }
 
@@ -379,8 +381,9 @@ then
 	exit_status=1
 fi
 
-awk --lint=fatal --posix '
+awk -W posix '
 BEGIN {
+LINT = "fatal"
 exit_status = 0
 }
 
@@ -399,8 +402,9 @@ then
 	exit_status=1
 fi
 
-awk --lint=fatal --posix '
+awk -W posix '
 BEGIN {
+LINT = "fatal"
 exit_status = 0
 }
 
@@ -423,8 +427,9 @@ then
 fi
 
 ## @FIXME Differing configuration options are not handled
-awk --lint=fatal --posix '
+awk -W posix '
 BEGIN {
+LINT = "fatal"
 exit_status = 0
 }
 
@@ -449,8 +454,9 @@ fi
 ./scripts/isolate-test.sh xvfb-run --auto-servernum "$geeqie_exe" --remote --action-list --quit | cut --delimiter=' ' --fields=1 | sed '/^$/d' > "$actions_help"
 
 ## @FIXME Find a better way to ignore the junk
-awk --lint=fatal --posix --assign actions_help_filtered="$actions_help_filtered" '
+awk -W posix -v actions_help_filtered="$actions_help_filtered" '
 BEGIN {
+LINT = "fatal"
 remote_found = 0
 }
 
@@ -470,8 +476,9 @@ close(actions_help_filtered)
 }
 ' "$actions_help"
 
-awk --lint=fatal --posix '
+awk -W posix '
 BEGIN {
+LINT = "fatal"
 exit_status = 0
 }
 
@@ -490,8 +497,9 @@ then
 	exit_status=1
 fi
 
-awk --lint=fatal --posix '
+awk -W posix '
 BEGIN {
+LINT = "fatal"
 exit_status = 0
 }
 

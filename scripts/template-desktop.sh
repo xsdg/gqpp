@@ -12,7 +12,8 @@ path=$(dirname "$(realpath "$0")")
 srcpath=$(dirname "$path")/src/ui/menu-classic.ui
 templatepath=$(dirname "$path")/plugins/org.geeqie.template.desktop.in
 
-awk --lint=fatal --posix --assign src_path="$srcpath" 'BEGIN {
+awk -W posix -v src_path="$srcpath" 'BEGIN {
+LINT = "fatal"
 menu_flag = 0
 template_flag = 0
 i = 0

@@ -15,6 +15,10 @@
 ## Error: $0  
 ##
 
+BEGIN {
+LINT = "fatal"
+}
+
 function check_parameters(latitude, longitude)
     {
     # Ensure the parameters are numbers

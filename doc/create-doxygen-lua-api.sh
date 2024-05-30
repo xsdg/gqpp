@@ -50,8 +50,9 @@ TMPFILE=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX") || exit 1
 
 # Modify the Geeqie doxygen.conf file to produce
 # only the data needed for the lua API document
-awk --lint=fatal --posix '
+awk -W posix '
 BEGIN {
+	LINT = "fatal"
 	file_patterns_found = "FALSE"
 	}
 {

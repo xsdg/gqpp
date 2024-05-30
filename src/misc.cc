@@ -163,7 +163,7 @@ gchar *decode_geo_script(const gchar *path_dir, const gchar *input_text)
 {
 	std::unique_ptr<gchar, decltype(&g_free)> message{nullptr, g_free};
 	gchar *path = g_build_filename(path_dir, GEOCODE_NAME, NULL);
-	gchar *cmd = g_strconcat("echo \'", input_text, "\'  | awk --lint=fatal --posix --file ", path, NULL);
+	gchar *cmd = g_strconcat("echo \'", input_text, "\'  | awk -W posix -f ", path, NULL);
 
 	if (g_file_test(path, G_FILE_TEST_EXISTS))
 		{

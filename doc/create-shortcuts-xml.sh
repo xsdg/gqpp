@@ -78,7 +78,8 @@ post_main_window_xml="
 
 # shellcheck disable=SC2016
 awk_window='BEGIN {
-	{FS=","}
+	LINT = "fatal"
+	FS = ","
 	getline
 	while ($0 !~ /^hard_coded_window_keys/) {getline}
 	}
@@ -102,7 +103,8 @@ gsub(/"/, "", $3);
 # This assumes that lines beginning with /^  { "/ are the only ones in layout-util.cc containing key shortcuts
 # shellcheck disable=SC2016
 awk_main_window='BEGIN {
-	{FS=","}
+	LINT = "fatal"
+	FS = ","
 	}
 
 $0 ~ /^  { "/ {
@@ -130,20 +132,20 @@ $0 ~ /^  { "/ {
 }
 '
 
-keys_xml=$(awk --lint=fatal --posix "$awk_window" ./src/dupe.cc )
+keys_xml=$(awk -W posix "$awk_window" ./src/dupe.cc )
 printf '%b\n' "$pre_1_xml $duplicates_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceDuplicatesShortcuts.xml
 
-keys_xml=$(awk --lint=fatal --posix "$awk_window" ./src/search.cc )
+keys_xml=$(awk -W posix "$awk_window" ./src/search.cc )
 printf '%b\n' "$pre_1_xml $search_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceSearchShortcuts.xml
 
-keys_xml=$(awk --lint=fatal --posix "$awk_window" ./src/pan-view/pan-view.cc )
+keys_xml=$(awk -W posix "$awk_window" ./src/pan-view/pan-view.cc )
 printf '%b\n' "$pre_1_xml $pan_view_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferencePanViewShortcuts.xml
 
-keys_xml=$(awk --lint=fatal --posix "$awk_window" ./src/collect-table.cc)
+keys_xml=$(awk -W posix "$awk_window" ./src/collect-table.cc)
 printf '%b\n' "$pre_1_xml $collections_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceCollectionsShortcuts.xml
 
-keys_xml=$(awk --lint=fatal --posix "$awk_window" ./src/img-view.cc)
+keys_xml=$(awk -W posix "$awk_window" ./src/img-view.cc)
 printf '%b\n' "$pre_1_xml $image_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceImageViewShortcuts.xml
 
-keys_xml=$(awk --lint=fatal --posix "$awk_main_window" ./src/layout-util.cc)
+keys_xml=$(awk -W posix "$awk_main_window" ./src/layout-util.cc)
 printf '%b\n' "$pre_1_xml $main_window_xml $pre_2_xml $keys_xml $post_main_window_xml" > ./doc/docbook/GuideReferenceMainWindowShortcuts.xml
