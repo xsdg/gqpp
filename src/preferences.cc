@@ -426,7 +426,6 @@ static void config_window_apply()
 	options->image_overlay.background_green = c_options->image_overlay.background_green;
 	options->image_overlay.background_blue = c_options->image_overlay.background_blue;
 	options->image_overlay.background_alpha = c_options->image_overlay.background_alpha;
-	options->image_overlay.font = c_options->image_overlay.font;
 	options->update_on_time_change = c_options->update_on_time_change;
 
 	options->duplicates_similarity_threshold = c_options->duplicates_similarity_threshold;
