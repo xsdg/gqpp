@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <section id="GuideReferenceSupportedFormats">
   <title id="titleGuideReferenceSupportedFormats">Supported File Formats</title>
-  <para>3FR, ANI, ARW, AVIF, BMP, CR2, CR3, CRW, CUR, DDS, DjVu, DNG, ERF, GIF, HEIC, HEIF, ICO, JP2. JPE/JPEG/JPG, JPEG XL, JPS, KDC, MEF, MOS, MPO, MRW, NEF, ORF, PBM/PGM/PNM/PPM, PEF, PNG, PSD, QIF/QTIF (QuickTime Image Format), RAF, RAW, RW2, SCR (ZX Spectrum), SR2, SRF, SVG/SVGZ, TGA/TARGA, TIF/TIFF, WEBP, XBM, XPM.</para>
-  <para>Images in archive files (.zip, .tar etc) can be displayed.
+  <para>3FR ANI ARW AVIF BMP CR2 CR3 CRW CUR DDS DJVU DNG ERF GIF HEIC HEIF ICO JP2 JPE JPEG JPG JPS JXL KDC MEF MOS MPO MRW NEF ORF PBM PDF PEF PGM PNG PNM PPM PSD QIF QTIF RAF RAW RW2 SCR SR2 SRF SVG SVGZ TGA TIF TIFF WEBP XBM XPM </para>
+  <para>Images in archive files (.ZIP, .TAR etc) can be displayed.
   </para>
   <para>Animated GIF and WEBP files are supported.
   </para>
