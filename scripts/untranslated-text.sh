@@ -43,6 +43,10 @@
 ## $1 file to process
 ##
 
+TARGET_FILENAME="$1"
+
+# Lines containing these strings will not be checked for untranslated text.
+# Only double-quotes should be escaped.
 omit_text_array="
  msg
 #define
@@ -57,7 +61,7 @@ Damien
 ERR
 EXIF
 Error
-Exif\.
+Exif.
 FIXME
 ImageLoaderType
 LUA_
@@ -74,11 +78,11 @@ Wrap
 \"Desktop\"
 \"Layout\"
 \"OK\"
-\"Xmp\.
-\.html
-\/\*
-\/\/
-\{\"
+\"Xmp.
+.html
+/*
+//
+{\"
 _attribute
 action_group
 courier
@@ -125,56 +129,56 @@ website-label
 write_char_option
 
 ##cellrendericon.cc
-\"Background color as a GdkRGBA\"\,
-\"Background color\"\,
-\"Background set\"\,
-\"Draw focus indicator\"\,
-\"Fixed height\"\,
-\"Fixed width\"\,
-\"Focus\"\,
-\"Foreground color as a GdkRGBA\"\,
-\"Foreground color\"\,
-\"Foreground set\"\,
-\"GQvCellRendererIcon\"\,
-\"Height of icon excluding text\"\,
-\"Marks bit array\"\,
-\"Marks\"\,
-\"Number of marks\"\,
-\"Pixbuf Object\"\,
-\"Show marks\"\,
-\"Show text\"\,
-\"Text to render\"\,
-\"Text\"\,
-\"The pixbuf to render\"\,
-\"Toggled mark\"\,
-\"Whether the marks are displayed\"\,
-\"Whether the text is displayed\"\,
-\"Whether this tag affects the background color\"\,
-\"Whether this tag affects the foreground color\"\,
-\"Width of cell\"\,
+\"Background color as a GdkRGBA\",
+\"Background color\",
+\"Background set\",
+\"Draw focus indicator\",
+\"Fixed height\",
+\"Fixed width\",
+\"Focus\",
+\"Foreground color as a GdkRGBA\",
+\"Foreground color\",
+\"Foreground set\",
+\"GQvCellRendererIcon\",
+\"Height of icon excluding text\",
+\"Marks bit array\",
+\"Marks\",
+\"Number of marks\",
+\"Pixbuf Object\",
+\"Show marks\",
+\"Show text\",
+\"Text to render\",
+\"Text\",
+\"The pixbuf to render\",
+\"Toggled mark\",
+\"Whether the marks are displayed\",
+\"Whether the text is displayed\",
+\"Whether this tag affects the background color\",
+\"Whether this tag affects the foreground color\",
+\"Width of cell\",
 
 ##pixbuf-renderer.cc
-\"Delay image update\"\,
-\"Display cache size MiB\"\,
-\"Expand image in autozoom.\"\,
-\"Fit window to image size\"\,
-\"Image actively loading\"\,
-\"Image rendering complete\"\,
-\"Limit size of image when autofitting\"\,
-\"Limit size of parent window\"\,
-\"New image scroll reset\"\,
-\"Number of tiles to retain in memory at any one time.\"\,
-\"Size increase limit of image when autofitting\"\,
-\"Size limit of image when autofitting\"\,
-\"Size limit of parent window\"\,
-\"Tile cache count\"\,
-\"Zoom maximum\"\,
-\"Zoom minimum\"\,
-\"Zoom quality\"\,
+\"Delay image update\",
+\"Display cache size MiB\",
+\"Expand image in autozoom.\",
+\"Fit window to image size\",
+\"Image actively loading\",
+\"Image rendering complete\",
+\"Limit size of image when autofitting\",
+\"Limit size of parent window\",
+\"New image scroll reset\",
+\"Number of tiles to retain in memory at any one time.\",
+\"Size increase limit of image when autofitting\",
+\"Size limit of image when autofitting\",
+\"Size limit of parent window\",
+\"Tile cache count\",
+\"Zoom maximum\",
+\"Zoom minimum\",
+\"Zoom quality\",
 
 ##print.cc
-G_CALLBACK(print_set_font_cb)\, const_cast<char \*>(\"Image text font\"));
-G_CALLBACK(print_set_font_cb)\, const_cast<char \*>(\"Page text font\"));
+G_CALLBACK(print_set_font_cb), const_cast<char *>(\"Image text font\"));
+G_CALLBACK(print_set_font_cb), const_cast<char *>(\"Page text font\"));
 
 ##remote.cc
 render_intent = g_strdup(\"Absolute Colorimetric\");
@@ -193,6 +197,38 @@ format-olympus.cc
 keymap-template.cc
 "
 
+# A POSIX-compliant function that returns 0 if the substring is present, or 1
+# otherwise.  See https://stackoverflow.com/a/229585
+string_contains_substring()
+{
+	haystack="$1"
+	needle="$2"
+
+	case "$haystack" in
+		*"$needle"*)
+			return 0
+			;;
+		*)
+			return 1
+			;;
+	esac
+}
+
+# Small self-test
+if (string_contains_substring "alpha" "bet") || \
+	(string_contains_substring "bet" "alphabet") || \
+	(string_contains_substring "b*t" "bet")
+then
+	echo "Negative substring self-test failed."
+	exit 1
+fi
+if ! (string_contains_substring "alphabet" "bet") || \
+	! (string_contains_substring "(alpha)(bet)" "bet)")
+then
+	echo "Positive substring self-test failed."
+	exit 1
+fi
+
 filename_printed="no"
 
 omit="FILE_OK"
@@ -200,7 +236,7 @@ while read -r omit_file
 do
 	if [ -n "$omit_file" ]
 	then
-		if echo "$1" | grep --quiet "$omit_file"
+		if string_contains_substring "$TARGET_FILENAME" "$omit_file"
 		then
 			omit="omit"
 		fi
@@ -220,7 +256,7 @@ then
 			do
 				if [ -n "$omit_text" ]
 				then
-					if echo "$infile_line" | grep --quiet "$omit_text"
+					if string_contains_substring "$infile_line" "$omit_text"
 					then
 						omit="omit"
 					fi
@@ -232,7 +268,7 @@ EOF
 			then
 				if [ "$filename_printed" = "no" ]
 				then
-					printf "\nfile: %s\n" "$1"
+					printf "\nfile: %s\n" "$TARGET_FILENAME"
 					filename_printed="yes"
 				fi
 
@@ -241,7 +277,7 @@ EOF
 			fi
 		fi
 	done << EOF
-$(cat --number "$1" | grep --perl-regexp '(?<!_\()"[[:upper:]]([[:lower:]]|[[:space:]])[[:print:]]+"')
+$(cat --number "$TARGET_FILENAME" | grep --perl-regexp '(?<!_\()"[[:upper:]]([[:lower:]]|[[:space:]])[[:print:]]+"')
 EOF
 fi
 
