@@ -386,8 +386,6 @@ static void file_data_set_path(FileData *fd, const gchar *path)
 static FileData *file_data_new(const gchar *path_utf8, struct stat *st, gboolean disable_sidecars)
 {
 	FileData *fd;
-	struct passwd *user;
-	struct group *group;
 
 	DEBUG_2("file_data_new: '%s' %d", path_utf8, disable_sidecars);
 
@@ -434,51 +432,54 @@ static FileData *file_data_new(const gchar *path_utf8, struct stat *st, gboolean
 		return fd;
 		}
 
-	fd = new FileData;
+	fd = new FileData(path_utf8, st, disable_sidecars);
+	return fd;
+}
+
+FileData::FileData(const gchar* path_utf8, struct stat *st, gboolean disable_sidecars)
+{
 #ifdef DEBUG_FILEDATA
 	global_file_data_count++;
 	DEBUG_2("file data count++: %d", global_file_data_count);
 #endif
 
-	fd->size = st->st_size;
-	fd->date = st->st_mtime;
-	fd->cdate = st->st_ctime;
-	fd->mode = st->st_mode;
-	fd->ref = 1;
-	fd->magick = FD_MAGICK;
-	fd->exifdate = 0;
-	fd->rating = STAR_RATING_NOT_READ;
-	fd->format_class = filter_file_get_class(path_utf8);
-	fd->page_num = 0;
-	fd->page_total = 0;
+	this->size = st->st_size;
+	this->date = st->st_mtime;
+	this->cdate = st->st_ctime;
+	this->mode = st->st_mode;
+	this->ref = 1;
+	this->magick = FD_MAGICK;
+	this->exifdate = 0;
+	this->rating = STAR_RATING_NOT_READ;
+	this->format_class = filter_file_get_class(path_utf8);
+	this->page_num = 0;
+	this->page_total = 0;
 
-	user = getpwuid(st->st_uid);
+	struct passwd *user = getpwuid(st->st_uid);
 	if (!user)
 		{
-		fd->owner = g_strdup_printf("%u", st->st_uid);
+		this->owner = g_strdup_printf("%u", st->st_uid);
 		}
 	else
 		{
-		fd->owner = g_strdup(user->pw_name);
+		this->owner = g_strdup(user->pw_name);
 		}
 
-	group = getgrgid(st->st_gid);
+	struct group *group = getgrgid(st->st_gid);
 	if (!group)
 		{
-		fd->group = g_strdup_printf("%u", st->st_gid);
+		this->group = g_strdup_printf("%u", st->st_gid);
 		}
 	else
 		{
-		fd->group = g_strdup(group->gr_name);
+		this->group = g_strdup(group->gr_name);
 		}
 
-	fd->sym_link = get_symbolic_link(path_utf8);
+	this->sym_link = get_symbolic_link(path_utf8);
 
-	if (disable_sidecars) fd->disable_grouping = TRUE;
+	if (disable_sidecars) this->disable_grouping = TRUE;
 
-	file_data_set_path(fd, path_utf8); /* set path, name, collate_key_*, original_path */
-
-	return fd;
+	file_data_set_path(this, path_utf8); /* set path, name, collate_key_*, original_path */
 }
 
 static FileData *file_data_new_local(const gchar *path, struct stat *st, gboolean disable_sidecars)
@@ -756,34 +757,38 @@ void FileData::file_data_dump()
 #endif
 }
 
+FileData::~FileData()
+{
+#ifdef DEBUG_FILEDATA
+	global_file_data_count--;
+	DEBUG_2("file data count--: %d", global_file_data_count);
+#endif
+
+	metadata_cache_free(this);
+	g_hash_table_remove(file_data_pool, this->original_path);
+
+	g_free(this->path);
+	g_free(this->original_path);
+	g_free(this->collate_key_name);
+	g_free(this->collate_key_name_nocase);
+	g_free(this->extended_extension);
+	if (this->thumb_pixbuf) g_object_unref(this->thumb_pixbuf);
+	histmap_free(this->histmap);
+	g_free(this->owner);
+	g_free(this->group);
+	g_free(this->sym_link);
+	g_free(this->format_name);
+	g_assert(this->sidecar_files == nullptr); /* sidecar files must be freed before calling this */
+
+	file_data_change_info_free(nullptr, this);
+}
+
 static void file_data_free(FileData *fd)
 {
 	g_assert(fd->magick == FD_MAGICK);
 	g_assert(fd->ref == 0);
 	g_assert(!fd->locked);
 
-#ifdef DEBUG_FILEDATA
-	global_file_data_count--;
-	DEBUG_2("file data count--: %d", global_file_data_count);
-#endif
-
-	metadata_cache_free(fd);
-	g_hash_table_remove(file_data_pool, fd->original_path);
-
-	g_free(fd->path);
-	g_free(fd->original_path);
-	g_free(fd->collate_key_name);
-	g_free(fd->collate_key_name_nocase);
-	g_free(fd->extended_extension);
-	if (fd->thumb_pixbuf) g_object_unref(fd->thumb_pixbuf);
-	histmap_free(fd->histmap);
-	g_free(fd->owner);
-	g_free(fd->group);
-	g_free(fd->sym_link);
-	g_free(fd->format_name);
-	g_assert(fd->sidecar_files == nullptr); /* sidecar files must be freed before calling this */
-
-	file_data_change_info_free(nullptr, fd);
 	delete fd;
 }
 

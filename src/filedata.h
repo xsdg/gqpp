@@ -71,67 +71,74 @@ struct FileDataChangeInfo {
 };
 
 class FileData {
-    //~ DO NOT MERGE FileData() = delete;
+    public:
+	// TODO(xsdg): These should be protected or private, but that's not
+	// possible until the static functions that call them become associated
+	// with this class as well (likely as private methods).
+	FileData(const gchar* path_utf8, struct stat *st, gboolean disable_sidecars);
+	FileData(FileData &) = delete;  // Not copyable.
+	FileData &operator=(FileData &) = delete;  // Not assignable.
+	~FileData();
 
     public:
 	// Public members from the original API
-	guint magick;
-	gint type;
-	gchar *original_path; /**< key to file_data_pool hash table */
-	gchar *path;
-	const gchar *name;
-	const gchar *extension;
-	gchar *extended_extension;
+	guint magick = 0;
+	gint type = 0;
+	gchar *original_path = nullptr; /**< key to file_data_pool hash table */
+	gchar *path = nullptr;
+	const gchar *name = nullptr;
+	const gchar *extension = nullptr;
+	gchar *extended_extension = nullptr;
 	FileFormatClass format_class;
-	gchar *format_name; /**< set by the image loader */
-	gchar *collate_key_name;
-	gchar *collate_key_name_nocase;
-	gchar *collate_key_name_natural;
-	gchar *collate_key_name_nocase_natural;
-	gint64 size;
-	time_t date;
-	time_t cdate;
-	mode_t mode; /**< this is needed at least for notification in view_dir because it is preserved after the file/directory is deleted */
-	gint sidecar_priority;
+	gchar *format_name = nullptr; /**< set by the image loader */
+	gchar *collate_key_name = nullptr;
+	gchar *collate_key_name_nocase = nullptr;
+	gchar *collate_key_name_natural = nullptr;
+	gchar *collate_key_name_nocase_natural = nullptr;
+	gint64 size = 0;
+	time_t date = 0;
+	time_t cdate = 0;
+	mode_t mode = 0; /**< this is needed at least for notification in view_dir because it is preserved after the file/directory is deleted */
+	gint sidecar_priority = 0;
 
-	guint marks; /**< each bit represents one mark */
-	guint valid_marks; /**< zero bit means that the corresponding mark needs to be reread */
+	guint marks = 0; /**< each bit represents one mark */
+	guint valid_marks = 0; /**< zero bit means that the corresponding mark needs to be reread */
 
 
-	GList *sidecar_files;
-	FileData *parent; /**< parent file if this is a sidecar file, NULL otherwise */
-	FileDataChangeInfo *change; /**< for rename, move ... */
-	GdkPixbuf *thumb_pixbuf;
+	GList *sidecar_files = nullptr;
+	FileData *parent = nullptr; /**< parent file if this is a sidecar file, NULL otherwise */
+	FileDataChangeInfo *change = nullptr; /**< for rename, move ... */
+	GdkPixbuf *thumb_pixbuf = nullptr;
 
-	GdkPixbuf *pixbuf; /**< full-size image, only complete images, NULL during loading
+	GdkPixbuf *pixbuf = nullptr; /**< full-size image, only complete images, NULL during loading
 			      all FileData with non-NULL pixbuf are referenced by image_cache */
 
-	HistMap *histmap;
+	HistMap *histmap = nullptr;
 
-	gboolean locked;
-	gint ref;
-	gint version; /**< increased when any field in this structure is changed */
-	gboolean disable_grouping;
+	gboolean locked = 0;
+	gint ref = 0;
+	gint version = 0; /**< increased when any field in this structure is changed */
+	gboolean disable_grouping = 0;
 
-	gint user_orientation;
-	gint exif_orientation;
+	gint user_orientation = 0;
+	gint exif_orientation = 0;
 
-	ExifData *exif;
-	time_t exifdate;
-	time_t exifdate_digitized;
-	GHashTable *modified_xmp; /**< hash table which contains unwritten xmp metadata in format: key->list of string values */
-	GList *cached_metadata;
-	gint rating;
-	gboolean metadata_in_idle_loaded;
+	ExifData *exif = nullptr;
+	time_t exifdate = 0;
+	time_t exifdate_digitized = 0;
+	GHashTable *modified_xmp = nullptr; /**< hash table which contains unwritten xmp metadata in format: key->list of string values */
+	GList *cached_metadata = nullptr;
+	gint rating = 0;
+	gboolean metadata_in_idle_loaded = 0;
 
-	gchar *owner;
-	gchar *group;
-	gchar *sym_link;
+	gchar *owner = nullptr;
+	gchar *group = nullptr;
+	gchar *sym_link = nullptr;
 
-	SelectionType selected;  /**< Used by view-file-icon. */
+	SelectionType selected = {};  /**< Used by view-file-icon. */
 
-	gint page_num;
-	gint page_total;
+	gint page_num = 0;
+	gint page_total = 0;
 
 	static gchar *text_from_size(gint64 size);
 	static gchar *text_from_size_abrev(gint64 size);
