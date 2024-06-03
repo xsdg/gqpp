@@ -434,7 +434,7 @@ static FileData *file_data_new(const gchar *path_utf8, struct stat *st, gboolean
 		return fd;
 		}
 
-	fd = g_new0(FileData, 1);
+	fd = new FileData;
 #ifdef DEBUG_FILEDATA
 	global_file_data_count++;
 	DEBUG_2("file data count++: %d", global_file_data_count);
@@ -784,7 +784,7 @@ static void file_data_free(FileData *fd)
 	g_assert(fd->sidecar_files == nullptr); /* sidecar files must be freed before calling this */
 
 	file_data_change_info_free(nullptr, fd);
-	g_free(fd);
+	delete fd;
 }
 
 /**

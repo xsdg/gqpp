@@ -71,7 +71,7 @@ struct FileDataChangeInfo {
 };
 
 class FileData {
-    FileData() = delete;
+    //~ DO NOT MERGE FileData() = delete;
 
     public:
 	// Public members from the original API
