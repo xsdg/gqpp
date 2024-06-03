@@ -19,6 +19,7 @@
 #
 # Build file for filedata sub-components.
 
-filedata_sources = files('filedata.cc')
+filedata_sources = files('filedata.cc',
+'filelist.cc')
 
 code_sources += filedata_sources
