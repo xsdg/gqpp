@@ -369,7 +369,7 @@ void log_print_backtrace(const gchar *, gint, const gchar *)
  * Print image ref. count and full path name of all images in
  * the file_data_pool.
  */
-void log_print_file_data_dump(const gchar *file, const gchar *function, gint line)
+void log_print_file_data_dump(const gchar *file, gint line, const gchar *function)
 {
 	gchar *exe_path;
 
