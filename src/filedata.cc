@@ -155,80 +155,80 @@ void file_data_disable_grouping_list(GList *fd_list, gboolean disable)
 
 gint filelist_sort_compare_filedata(FileData *fa, FileData *fb)
 {
-	return FileData::FileList::filelist_sort_compare_filedata(fa, fb);
+	return FileData::FileList::sort_compare_filedata(fa, fb);
 }
 
 gint filelist_sort_compare_filedata_full(FileData *fa, FileData *fb, SortType method, gboolean ascend)
 {
-	return FileData::FileList::filelist_sort_compare_filedata_full(fa, fb, method, ascend);
+	return FileData::FileList::sort_compare_filedata_full(fa, fb, method, ascend);
 }
 
 GList *filelist_sort(GList *list, SortType method, gboolean ascend, gboolean case_sensitive)
 {
-	return FileData::FileList::filelist_sort(list, method, ascend, case_sensitive);
+	return FileData::FileList::sort(list, method, ascend, case_sensitive);
 }
 
 GList *filelist_sort_full(GList *list, SortType method, gboolean ascend, gboolean case_sensitive, GCompareFunc cb)
 {
-	return FileData::FileList::filelist_sort_full(list, method, ascend, case_sensitive, cb);
+	return FileData::FileList::sort_full(list, method, ascend, case_sensitive, cb);
 }
 
 GList *filelist_insert_sort_full(GList *list, gpointer data, SortType method, gboolean ascend, gboolean case_sensitive, GCompareFunc cb)
 {
-	return FileData::FileList::filelist_insert_sort_full(list, data, method, ascend, case_sensitive, cb);
+	return FileData::FileList::insert_sort_full(list, data, method, ascend, case_sensitive, cb);
 }
 
 
 gboolean filelist_read(FileData *dir_fd, GList **files, GList **dirs)
 {
-	return FileData::FileList::filelist_read(dir_fd, files, dirs);
+	return FileData::FileList::read_list(dir_fd, files, dirs);
 }
 
 gboolean filelist_read_lstat(FileData *dir_fd, GList **files, GList **dirs)
 {
-	return FileData::FileList::filelist_read_lstat(dir_fd, files, dirs);
+	return FileData::FileList::read_list_lstat(dir_fd, files, dirs);
 }
 
 void filelist_free(GList *list)
 {
-	FileData::FileList::filelist_free(list);
+	FileData::FileList::free_list(list);
 }
 
 GList *filelist_copy(GList *list)
 {
-	return FileData::FileList::filelist_copy(list);
+	return FileData::FileList::copy(list);
 }
 
 GList *filelist_from_path_list(GList *list)
 {
-	return FileData::FileList::filelist_from_path_list(list);
+	return FileData::FileList::from_path_list(list);
 }
 
 GList *filelist_to_path_list(GList *list)
 {
-	return FileData::FileList::filelist_to_path_list(list);
+	return FileData::FileList::to_path_list(list);
 }
 
 
 GList *filelist_filter(GList *list, gboolean is_dir_list)
 {
-	return FileData::FileList::filelist_filter(list, is_dir_list);
+	return FileData::FileList::filter(list, is_dir_list);
 }
 
 
 GList *filelist_sort_path(GList *list)
 {
-	return FileData::FileList::filelist_sort_path(list);
+	return FileData::FileList::sort_path(list);
 }
 
 GList *filelist_recursive(FileData *dir_fd)
 {
-	return FileData::FileList::filelist_recursive(dir_fd);
+	return FileData::FileList::recursive(dir_fd);
 }
 
 GList *filelist_recursive_full(FileData *dir_fd, SortType method, gboolean ascend, gboolean case_sensitive)
 {
-	return FileData::FileList::filelist_recursive_full(dir_fd, method, ascend, case_sensitive);
+	return FileData::FileList::recursive_full(dir_fd, method, ascend, case_sensitive);
 }
 
 
