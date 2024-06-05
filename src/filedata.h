@@ -305,35 +305,41 @@ class FileData::FileList
 	friend class FileData;  // Allows FileData to access protected API.
 
 	// Globals.
-	static SortType filelist_sort_method;
-	static gboolean filelist_sort_ascend;
-	static gboolean filelist_sort_case;
+	static SortType sort_method;
+	static gboolean sort_ascend;
+	static gboolean sort_case;
 
     public:
-	static gint filelist_sort_compare_filedata(FileData *fa, FileData *fb);
-	static gint filelist_sort_compare_filedata_full(FileData *fa, FileData *fb, SortType method, gboolean ascend);
-	static GList *filelist_sort(GList *list, SortType method, gboolean ascend, gboolean case_sensitive);
-	static GList *filelist_sort_full(GList *list, SortType method, gboolean ascend, gboolean case_sensitive, GCompareFunc cb);
-	static GList *filelist_insert_sort_full(GList *list, gpointer data, SortType method, gboolean ascend, gboolean case_sensitive, GCompareFunc cb);
+	static gint sort_compare_filedata(FileData *fa, FileData *fb);
+	static gint sort_compare_filedata_full(FileData *fa, FileData *fb, SortType method, gboolean ascend);
+	static GList *sort(GList *list, SortType method, gboolean ascend, gboolean case_sensitive);
+	static GList *sort_full(GList *list, SortType method, gboolean ascend, gboolean case_sensitive, GCompareFunc cb);
+	static GList *insert_sort_full(GList *list, gpointer data, SortType method, gboolean ascend, gboolean case_sensitive, GCompareFunc cb);
 
-	static gboolean filelist_read(FileData *dir_fd, GList **files, GList **dirs);
-	static gboolean filelist_read_lstat(FileData *dir_fd, GList **files, GList **dirs);
-	static void filelist_free(GList *list);
-	static GList *filelist_copy(GList *list);
-	static GList *filelist_from_path_list(GList *list);
-	static GList *filelist_to_path_list(GList *list);
+	static gboolean read_list(FileData *dir_fd, GList **files, GList **dirs);
+	static gboolean read_list_lstat(FileData *dir_fd, GList **files, GList **dirs);
+	static void free_list(GList *list);
+	static GList *copy(GList *list);
+	static GList *from_path_list(GList *list);
+	static GList *to_path_list(GList *list);
 
-	static GList *filelist_filter(GList *list, gboolean is_dir_list);
+	static GList *filter(GList *list, gboolean is_dir_list);
 
-	static GList *filelist_sort_path(GList *list);
-	static GList *filelist_recursive(FileData *dir_fd);
-	static GList *filelist_recursive_full(FileData *dir_fd, SortType method, gboolean ascend, gboolean case_sensitive);
+	static GList *sort_path(GList *list);
+	static GList *recursive(FileData *dir_fd);
+	static GList *recursive_full(FileData *dir_fd, SortType method, gboolean ascend, gboolean case_sensitive);
 
     protected:
-	static gboolean filelist_read_real(const gchar *dir_path, GList **files, GList **dirs, gboolean follow_symlinks);
+	static GList *filter_out_sidecars(GList *flist);
+	static gboolean is_hidden_file(const gchar *name);
+	static gboolean read_list_real(const gchar *dir_path, GList **files, GList **dirs, gboolean follow_symlinks);
+	static gint sort_file_cb(gpointer a, gpointer b);
+	static gint sort_path_cb(gconstpointer a, gconstpointer b);
+	static void recursive_append(GList **list, GList *dirs);
+	static void recursive_append_full(GList **list, GList *dirs, SortType method, gboolean ascend, gboolean case_sensitive);
 
     private:
-	static GList *filelist_insert_sort_unused(GList *list, FileData *fd, SortType method, gboolean ascend);
+	static GList *insert_sort_unused(GList *list, FileData *fd, SortType method, gboolean ascend);
 };
 
 // C-style compatibility API.

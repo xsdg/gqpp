@@ -1268,7 +1268,7 @@ FileData *FileData::file_data_new_group(const gchar *path_utf8)
 
 	dir = remove_level_from_path(path_utf8);
 
-	FileList::filelist_read_real(dir, &files, nullptr, TRUE);
+	FileList::read_list_real(dir, &files, nullptr, TRUE);
 
 	fd = static_cast<FileData *>(g_hash_table_lookup(file_data_pool, path_utf8));
 	if (!fd) fd = file_data_new(path_utf8, &st, TRUE);
