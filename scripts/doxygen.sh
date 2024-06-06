@@ -58,4 +58,21 @@ export PLANTUML_JAR_PATH="$HOME"/bin/plantuml.jar
 export INLINE_SOURCES=YES
 export STRIP_CODE_COMMENTS=NO
 
+# Set doxygen.conf parameters so that searchdata.xml is generated
+EXTERNAL_SEARCH="YES"
+SERVER_BASED_SEARCH="YES"
+export EXTERNAL_SEARCH
+export SERVER_BASED_SEARCH
+
 doxygen doxygen.conf
+
+tmp_searchdata_xml=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
+mv "$DOCDIR/searchdata.xml" "$tmp_searchdata_xml"
+
+# Run again with default settings so that the html search box is generated
+EXTERNAL_SEARCH="NO"
+SERVER_BASED_SEARCH="NO"
+
+doxygen doxygen.conf
+
+mv "$tmp_searchdata_xml" "$DOCDIR/searchdata.xml"
