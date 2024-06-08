@@ -137,11 +137,11 @@ static void command_store_populate(SarData* sar)
 					new_command = g_string_new(nullptr);
 					if (g_strcmp0(label, tooltip) == 0)
 						{
-						g_string_append_printf(new_command, "%s : %s",label, accel);
+						g_string_append_printf(new_command, "%s : <b>%s</b>",label, accel);
 						}
 					else
 						{
-						g_string_append_printf(new_command, "%s - %s : %s",label, tooltip, accel);
+						g_string_append_printf(new_command, "%s - %s : <b>%s</b>",label, tooltip, accel);
 						}
 
 					iter_found = gtk_tree_model_get_iter_first(GTK_TREE_MODEL(sar->command_store), &iter);
