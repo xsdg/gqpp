@@ -86,12 +86,18 @@ gboolean ImageLoaderWEBP::write(const guchar *buf, gsize &chunk_size, gsize coun
 		pixels = WebPDecodeRGB(buf, count, &width, &height);
 		}
 
-	pixbuf = gdk_pixbuf_new_from_data(pixels, GDK_COLORSPACE_RGB, features.has_alpha, 8, width, height, width * (features.has_alpha ? 4 : 3), free_buffer, nullptr);
+	if (pixels)
+		{
+		pixbuf = gdk_pixbuf_new_from_data(pixels, GDK_COLORSPACE_RGB, features.has_alpha, 8, width, height, width * (features.has_alpha ? 4 : 3), free_buffer, nullptr);
 
-	area_updated_cb(nullptr, 0, 0, width, height, data);
+		area_updated_cb(nullptr, 0, 0, width, height, data);
 
-	chunk_size = count;
-	return TRUE;
+		chunk_size = count;
+
+		return TRUE;
+		}
+
+	return FALSE;
 }
 
 void ImageLoaderWEBP::init(AreaUpdatedCb area_updated_cb, SizePreparedCb, AreaPreparedCb, gpointer data)
