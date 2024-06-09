@@ -3225,6 +3225,8 @@ static void search_window_destroy_cb(GtkWidget *, gpointer data)
 	search_stop(sd);
 	search_result_clear(sd);
 
+	g_idle_remove_by_data(sd);
+
 	file_data_unref(sd->search_dir_fd);
 
 	g_free(sd->search_name);
