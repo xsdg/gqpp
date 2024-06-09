@@ -24,6 +24,7 @@ AppDir:
     - sourceline: deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports jammy-updates main restricted
     - sourceline: deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports jammy-updates universe
     include:
+    - curl
     - evince
     - libarchive13
     - libchamplain-0.12

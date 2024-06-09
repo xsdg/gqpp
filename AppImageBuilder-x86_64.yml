@@ -24,6 +24,7 @@ AppDir:
     - sourceline: deb http://im.archive.ubuntu.com/ubuntu/ jammy-updates main restricted
     - sourceline: deb http://im.archive.ubuntu.com/ubuntu/ jammy-updates universe
     include:
+    - curl
     - evince
     - libarchive13
     - libchamplain-0.12
