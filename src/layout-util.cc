@@ -3866,7 +3866,7 @@ static void layout_util_sync_views(LayoutWindow *lw)
 	action = gq_gtk_action_group_get_action(lw->action_group, "ViewIcons");
 	gq_gtk_radio_action_set_current_value(GTK_RADIO_ACTION(action), lw->options.file_view_type);
 
-	action = gq_gtk_action_group_get_action(lw->action_group, "None");
+	action = gq_gtk_action_group_get_action(lw->action_group, "CropNone");
 	gq_gtk_radio_action_set_current_value(GTK_RADIO_ACTION(action), options->rectangle_draw_aspect_ratio);
 
 	action = gq_gtk_action_group_get_action(lw->action_group, "FloatTools");
