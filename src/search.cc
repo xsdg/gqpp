@@ -169,6 +169,11 @@ struct SearchData
 	GtkWidget *menu_comment;
 	GtkWidget *entry_comment;
 
+	GtkWidget *check_exif;
+	GtkWidget *menu_exif;
+	GtkWidget *entry_exif_tag;
+	GtkWidget *entry_exif_value;
+
 	GtkWidget *check_rating;
 	GtkWidget *menu_rating;
 	GtkWidget *spin_rating;
@@ -204,6 +209,11 @@ struct SearchData
 	GList *search_keyword_list;
 	gchar *search_comment;
 	GRegex *search_comment_regex;
+	gchar *search_exif;
+	GRegex *search_exif_regex;
+	gchar *search_exif_tag;
+	gchar *search_exif_value;
+	gboolean search_exif_match_case;
 	gint   search_rating;
 	gint   search_rating_end;
 	gboolean   search_comment_match_case;
@@ -216,6 +226,7 @@ struct SearchData
 	MatchType match_dimensions;
 	MatchType match_keywords;
 	MatchType match_comment;
+	MatchType match_exif;
 	MatchType match_rating;
 	MatchType match_gps;
 	MatchType match_class;
@@ -228,6 +239,7 @@ struct SearchData
 	gboolean match_similarity_enable;
 	gboolean match_keywords_enable;
 	gboolean match_comment_enable;
+	gboolean match_exif_enable;
 	gboolean match_rating_enable;
 	gboolean match_class_enable;
 	gboolean match_marks_enable;
@@ -319,6 +331,10 @@ static const MatchList text_search_menu_comment[] = {
 	{ N_("miss"),		SEARCH_MATCH_NONE }
 };
 
+static const MatchList text_search_menu_exif[] = {
+	{ N_("contains"),	SEARCH_MATCH_CONTAINS },
+	{ N_("miss"),		SEARCH_MATCH_NONE }
+};
 
 static const MatchList text_search_menu_rating[] = {
 	{ N_("equal to"),	SEARCH_MATCH_EQUAL },
@@ -2198,6 +2214,40 @@ static gboolean search_file_next(SearchData *sd)
 			}
 		}
 
+	if (match && sd->match_exif_enable && sd->search_exif_tag && strlen(sd->search_exif_tag))
+		{
+		gchar *exif_tag_result;
+
+		tested = TRUE;
+		match = FALSE;
+
+		exif_tag_result = metadata_read_string(fd, sd->search_exif_tag, METADATA_FORMATTED);
+
+		if (exif_tag_result)
+			{
+			if (!sd->search_exif_match_case)
+				{
+				gchar *tmp = g_utf8_strdown(exif_tag_result, -1);
+				g_free(exif_tag_result);
+				exif_tag_result = tmp;
+				}
+
+			if (sd->match_exif == SEARCH_MATCH_CONTAINS)
+				{
+				match = g_regex_match(sd->search_exif_regex, exif_tag_result, static_cast<GRegexMatchFlags>(0), nullptr);
+				}
+			else if (sd->match_exif == SEARCH_MATCH_NONE)
+				{
+				match = !g_regex_match(sd->search_exif_regex, exif_tag_result, static_cast<GRegexMatchFlags>(0), nullptr);
+				}
+			g_free(exif_tag_result);
+			}
+		else
+			{
+			match = (sd->match_exif == SEARCH_MATCH_NONE);
+			}
+		}
+
 	if (match && sd->match_rating_enable)
 		{
 		tested = TRUE;
@@ -2580,6 +2630,14 @@ static void search_start(SearchData *sd)
 		sd->search_name = tmp;
 		}
 
+	if (!sd->search_exif_match_case)
+		{
+		/* convert to lowercase here, so that this is only done once per search */
+		gchar *tmp = g_utf8_strdown(sd->search_exif_value, -1);
+		g_free(sd->search_exif_value);
+		sd->search_exif_value = tmp;
+		}
+
 	if(sd->search_name_regex)
 		{
 		g_regex_unref(sd->search_name_regex);
@@ -2614,6 +2672,20 @@ static void search_start(SearchData *sd)
 		g_error_free(error);
 		error = nullptr;
 		sd->search_comment_regex = g_regex_new("", static_cast<GRegexCompileFlags>(0), static_cast<GRegexMatchFlags>(0), nullptr);
+		}
+
+	if(sd->search_exif_regex)
+		{
+		g_regex_unref(sd->search_exif_regex);
+		}
+
+	sd->search_exif_regex = g_regex_new(sd->search_exif_value, static_cast<GRegexCompileFlags>(0), static_cast<GRegexMatchFlags>(0), &error);
+	if (error)
+		{
+		log_printf("Error: could not compile regular expression %s\n%s\n", sd->search_exif_value, error->message);
+		g_error_free(error);
+		error = nullptr;
+		sd->search_exif_regex = g_regex_new("", static_cast<GRegexCompileFlags>(0), static_cast<GRegexMatchFlags>(0), nullptr);
 		}
 
 	sd->search_count = 0;
@@ -2684,6 +2756,12 @@ static void search_start_cb(GtkWidget *, gpointer data)
 	/* XXX */
 	g_free(sd->search_comment);
 	sd->search_comment = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(sd->entry_comment)));
+
+	g_free(sd->search_exif_tag);
+	sd->search_exif_tag = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(sd->entry_exif_tag)));
+
+	g_free(sd->search_exif_value);
+	sd->search_exif_value = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(sd->entry_exif_value)));
 
 	g_free(sd->search_similarity_path);
 	sd->search_similarity_path = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(sd->entry_similarity)));
@@ -3046,6 +3124,13 @@ static void menu_choice_comment_cb(GtkWidget *combo, gpointer data)
 	if (!menu_choice_get_match_type(combo, &sd->match_comment)) return;
 }
 
+static void menu_choice_exif_cb(GtkWidget *combo, gpointer data)
+{
+	auto sd = static_cast<SearchData *>(data);
+
+	if (!menu_choice_get_match_type(combo, &sd->match_exif)) return;
+}
+
 static void menu_choice_spin_cb(GtkAdjustment *adjustment, gpointer data)
 {
 	auto value = static_cast<gint *>(data);
@@ -3333,6 +3418,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	sd->match_dimensions = SEARCH_MATCH_EQUAL;
 	sd->match_keywords = SEARCH_MATCH_ALL;
 	sd->match_comment = SEARCH_MATCH_CONTAINS;
+	sd->match_exif = SEARCH_MATCH_CONTAINS;
 	sd->match_rating = SEARCH_MATCH_EQUAL;
 	sd->match_class = SEARCH_MATCH_EQUAL;
 	sd->match_marks = SEARCH_MATCH_EQUAL;
@@ -3539,6 +3625,34 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	pref_checkbox_new_int(hbox, _("Match case"),
 			      sd->search_comment_match_case, &sd->search_comment_match_case);
 	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->entry_comment), _("This field uses Perl Compatible Regular Expressions.\ne.g. use \nabc.*ghk\n and not \nabc*ghk\n\nSee the Help file."));
+
+	/* Search for Exif tag */
+	hbox = menu_choice(sd->box_search, &sd->check_exif, &sd->menu_exif,
+			_("Exif"), &sd->match_exif_enable,
+			text_search_menu_exif, sizeof(text_search_menu_exif) / sizeof(MatchList),
+			G_CALLBACK(menu_choice_exif_cb), sd);
+
+	pref_label_new(hbox, _("Tag"));
+
+	sd->entry_exif_tag = gtk_entry_new();
+	gq_gtk_box_pack_start(GTK_BOX(hbox), sd->entry_exif_tag, TRUE, TRUE, 0);
+	gtk_widget_set_sensitive(sd->entry_exif_tag, sd->match_exif_enable);
+	g_signal_connect(G_OBJECT(sd->check_exif), "toggled", G_CALLBACK(menu_choice_check_cb), sd->entry_exif_tag);
+	gtk_widget_show(sd->entry_exif_tag);
+	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->entry_exif_tag), _("e.g. Exif.Image.Model\nThis always case-sensitive\n\nYou may drag-and-drop from the Exif Window\n\nSee https://exiv2.org/tags.html"));
+
+	pref_label_new(hbox, _("Value"));
+
+	sd->entry_exif_value = gtk_entry_new();
+	gq_gtk_box_pack_start(GTK_BOX(hbox), sd->entry_exif_value, TRUE, TRUE, 0);
+	gtk_widget_set_sensitive(sd->entry_exif_value, sd->match_exif_enable);
+	g_signal_connect(G_OBJECT(sd->check_exif), "toggled",
+			G_CALLBACK(menu_choice_check_cb), sd->entry_exif_value);
+	gtk_widget_show(sd->entry_exif_value);
+
+	gtk_widget_set_tooltip_text(GTK_WIDGET(sd->entry_exif_value), _("e.g. Canon EOS\n\nThis field uses Perl Compatible Regular Expressions.\ne.g. use \nabc.*ghk\n and not \nabc*ghk\n\nSee the Help file."));
+
+	pref_checkbox_new_int(hbox, _("Match case"), sd->search_exif_match_case, &sd->search_exif_match_case);
 
 	/* Search for image rating */
 	hbox = menu_choice(sd->box_search, &sd->check_rating, &sd->menu_rating,

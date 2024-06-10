@@ -167,6 +167,17 @@
       </varlistentry>
       <varlistentry>
         <term>
+          <guilabel>Exif</guilabel>
+        </term>
+        <listitem>
+          The search will match if the file's Exif Tag contains the pattern entered in the Value box.
+          <link linkend="GuideReferencePCRE">Perl Compatible Regular Expressions</link>
+          are used.
+          <note>The value checked will be against the formatted value e.g. for focal length search for 67.5 mm and not 675/10. See also <link linkend="formatted_exif">pre-formatted tags</link></note>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
           <guilabel>Geocoded position</guilabel>
         </term>
         <listitem>
