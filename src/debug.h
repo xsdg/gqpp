@@ -50,7 +50,9 @@ const gchar *get_exec_time();
 void init_exec_time();
 
 #define DEBUG_N(n, ...) do \
-				{ \
+				{                                                      \
+				_Pragma("GCC diagnostic push")                         \
+				_Pragma("GCC diagnostic ignored  \"-Wformat\"")        \
 				gint debug_level = get_debug_level(); \
 				if (debug_level >= (n)) 	\
 					{ 		\
@@ -62,7 +64,8 @@ void init_exec_time();
 						{ \
 						log_domain_printf(DOMAIN_DEBUG, __VA_ARGS__); \
 						} \
-					} \
+					}                                                  \
+				_Pragma("GCC diagnostic pop")                          \
 				} while (0)
 
 /**
