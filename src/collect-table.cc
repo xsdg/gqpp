@@ -1502,115 +1502,6 @@ static CollectInfo *collection_table_insert_point(CollectTable *ct, gint x, gint
 	return info;
 }
 
-static void collection_table_insert_marker(CollectTable *ct, CollectInfo *info, gboolean enable)
-{
-	gboolean after = FALSE;
-	GdkRectangle cell;
-	GdkWindow *parent;
-	gint x_parent;
-	gint y_parent;
-	GError *error = nullptr;
-	GInputStream *in_stream;
-	GdkPixbuf *pb;
-
-	parent = gtk_widget_get_window(gtk_widget_get_toplevel(ct->listview));
-	gdk_window_get_position(parent, &x_parent, &y_parent);
-
-	if (!enable)
-		{
-		if (ct->marker_window) gdk_window_destroy(ct->marker_window);
-		ct->marker_window = nullptr;
-
-		return;
-		}
-
-	info = collection_table_insert_find(ct, info, &after, &cell, FALSE, 0, 0);
-
-	/* this setting does not take into account (after), but since it is not really used... */
-	ct->marker_info = info;
-
-	if (!ct->marker_window)
-		{
-		GdkWindowAttr attributes;
-		gint attributes_mask;
-
-		in_stream = g_resources_open_stream(GQ_RESOURCE_PATH_ICONS "/gq-marker.xpm", G_RESOURCE_LOOKUP_FLAGS_NONE, &error);
-		pb = gdk_pixbuf_new_from_stream(in_stream, nullptr, &error);
-		g_object_unref(in_stream);
-
-		if (error)
-			{
-			log_printf("warning: collection marker error: %s", error->message);
-			g_error_free(error);
-			return;
-			}
-
-		gint w = gdk_pixbuf_get_width(pb);
-		gint h = gdk_pixbuf_get_height(pb);
-
-		attributes.window_type = GDK_WINDOW_CHILD;
-		attributes.wclass = GDK_INPUT_OUTPUT;
-		attributes.width = w;
-		attributes.height = h;
-		attributes.event_mask = gtk_widget_get_events(ct->listview);
-		attributes_mask = 0;
-
-		ct->marker_window = gdk_window_new(nullptr, &attributes, attributes_mask);
-
-		cairo_region_t *mask;
-		cairo_pattern_t *pattern;
-		cairo_surface_t *img = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, w, h);
-		cairo_t *cr = cairo_create(img);
-		gdk_cairo_set_source_pixbuf(cr, pb, 0, 0);
-		cairo_paint(cr);
-		/** @FIXME this is a hack to get the background color
-		 * pattern = cairo_pattern_create_for_surface(img);
-		 */
-		pattern = cairo_pattern_create_rgb (1.0, 0.0, 0.0);
-		mask = gdk_cairo_region_create_from_surface(img);
-		gdk_window_shape_combine_region(ct->marker_window, mask, 0, 0);
-		gdk_window_set_background_pattern(ct->marker_window, pattern);
-		cairo_region_destroy(mask);
-		cairo_pattern_destroy(pattern);
-		cairo_destroy(cr);
-		cairo_surface_destroy(img);
-		g_object_unref(pb);
-		}
-
-	if (info)
-		{
-		gint x;
-		gint y;
-		gint w;
-		gint h;
-
-		w = gdk_window_get_width(ct->marker_window);
-		h = gdk_window_get_height(ct->marker_window);
-
-		if (!after)
-			{
-			x = cell.x;
-			}
-		else
-			{
-			x = cell.x + cell.width;
-			}
-		x -= (w / 2);
-		y = cell.y + (cell.height / 2) - (h / 2);
-
-		x = x + x_parent;
-		y = y + y_parent;
-
-		gdk_window_move(ct->marker_window, x, y);
-
-		if (!gdk_window_is_visible(ct->marker_window)) gdk_window_show(ct->marker_window);
-		}
-	else
-		{
-		if (gdk_window_is_visible(ct->marker_window)) gdk_window_hide(ct->marker_window);
-		}
-}
-
 /*
  *-------------------------------------------------------------------
  * mouse drag auto-scroll
@@ -1626,7 +1517,6 @@ static void collection_table_motion_update(CollectTable *ct, gint x, gint y, gbo
 	if (drop_event)
 		{
 		tip_unschedule(ct);
-		collection_table_insert_marker(ct, info, TRUE);
 		}
 	else
 		{
@@ -1685,7 +1575,6 @@ static void collection_table_scroll(CollectTable *ct, gboolean scroll)
 			ct->drop_idle_id = 0;
 			}
 		widget_auto_scroll_stop(ct->listview);
-		collection_table_insert_marker(ct, nullptr, FALSE);
 		}
 	else
 		{
@@ -2359,7 +2248,6 @@ static void collection_table_dnd_receive(GtkWidget *, GdkDragContext *context,
 	DEBUG_1("%s", gtk_selection_data_get_data(selection_data));
 
 	collection_table_scroll(ct, FALSE);
-	collection_table_insert_marker(ct, nullptr, FALSE);
 
 	drop_info = collection_table_insert_point(ct, x, y);
 
