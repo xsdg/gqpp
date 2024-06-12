@@ -62,6 +62,8 @@ struct ExifItem;
 
 struct ExifWin
 {
+	GtkWidget *button_close;
+	GtkWidget *button_help;
 	GtkWidget *window;
 	GtkWidget *vbox;
 	GtkWidget *scrolled;
@@ -435,14 +437,33 @@ static gboolean search_function_cb(GtkTreeModel *model, gint column, const gchar
 	return ret;
 }
 
+static void exif_window_help_cb(GtkWidget *, gpointer)
+{
+	help_window_show("GuideOtherWindowsExif.html");
+}
+
+static void exif_window_close(ExifWin *ew)
+{
+	gq_gtk_widget_destroy(ew->window);
+}
+
+static void exif_window_close_cb(GtkWidget *, gpointer data)
+{
+	auto ew = static_cast<ExifWin *>(data);
+
+	exif_window_close(ew);
+}
+
 GtkWidget *advanced_exif_new(LayoutWindow *lw)
 {
 	ExifWin *ew;
-	GtkListStore *store;
 	GdkGeometry geometry;
+	GtkListStore *store;
 	GtkTreeSortable *sortable;
 	GtkWidget *box;
 	gint n;
+	GtkWidget *button_box;
+	GtkWidget *hbox;
 
 	ew = g_new0(ExifWin, 1);
 
@@ -537,6 +558,23 @@ GtkWidget *advanced_exif_new(LayoutWindow *lw)
 	gq_gtk_container_add(GTK_WIDGET(ew->scrolled), ew->listview);
 	gtk_widget_show(ew->listview);
 	gtk_widget_show(ew->scrolled);
+
+	button_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+	gq_gtk_box_pack_end(GTK_BOX(ew->vbox), button_box, FALSE, FALSE, 0);
+
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+	gtk_box_set_spacing(GTK_BOX(hbox), PREF_PAD_SPACE);
+	gq_gtk_box_pack_end(GTK_BOX(button_box), hbox, FALSE, FALSE, 0);
+
+	ew->button_help = pref_button_new(hbox, GQ_ICON_HELP, _("Help"), G_CALLBACK(exif_window_help_cb), ew);
+	gtk_widget_set_tooltip_text(GTK_WIDGET(ew->button_help), "F1");
+	gtk_widget_set_sensitive(ew->button_help, TRUE);
+
+	ew->button_close = pref_button_new(hbox, GQ_ICON_CLOSE, _("Close"), G_CALLBACK(exif_window_close_cb), ew);
+	gtk_widget_set_tooltip_text(GTK_WIDGET(ew->button_close), _("Ctrl-W"));
+	gtk_widget_set_sensitive(ew->button_close, TRUE);
+
+	gq_gtk_widget_show_all(button_box);
 
 	gtk_widget_show(ew->window);
 	return ew->window;
