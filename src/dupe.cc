@@ -2260,7 +2260,7 @@ static void dupe_loader_done_cb(ImageLoader *il, gpointer data)
 			image_sim_fill_data(di->simd, pixbuf);
 			}
 
-		if (di->width == 0 && di->height == 0)
+		if (di->width == 0 && di->height == 0 && pixbuf)
 			{
 			di->width = gdk_pixbuf_get_width(pixbuf);
 			di->height = gdk_pixbuf_get_height(pixbuf);
