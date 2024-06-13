@@ -1,7 +1,8 @@
 # Geeqie Readme
 
-Code Status:  
+GitHub Code Status:  
 ![Build Status](https://github.com/BestImageViewer/geeqie/actions/workflows/check-build-actions.yml/badge.svg)
+![GitHub Downloads](https://img.shields.io/github/downloads/BestImageViewer/geeqie/total)
 
 Package Status:  
 [![Packaging status](https://repology.org/badge/tiny-repos/geeqie.svg)](https://repology.org/project/geeqie/versions)
