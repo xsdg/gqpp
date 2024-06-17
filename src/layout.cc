@@ -3148,8 +3148,9 @@ LayoutWindow *layout_new_from_default()
 		lw = layout_new_from_config(nullptr, nullptr, TRUE);
 		}
 
+	gchar *id_tmp = g_strdup(layout_get_unique_id());
 	g_free(lw->options.id);
-	lw->options.id = g_strdup(layout_get_unique_id());
+	lw->options.id = id_tmp;
 
 	return lw;
 }

@@ -325,7 +325,7 @@ LayoutOptions *init_layout_options(LayoutOptions *options)
 	options->float_window.x = 0;
 	options->float_window.y = 0;
 	options->home_path = nullptr;
-	options->id = g_strdup("lw1");
+	options->id = g_strdup("null");
 	options->main_window.h = 540;
 	options->main_window.hdivider_pos = -1;
 	options->main_window.maximized = FALSE;
