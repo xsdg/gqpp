@@ -61,8 +61,4 @@ mkdir -p "$XDG_CONFIG_HOME"
 # This will automatically pass the command name and args in the expected order.
 # And `set -e` (above) means that we'll automatically exit with the same return
 # code as our sub-command.
-#
-# G_DEBUG="fatal-warnings" will force an abort if a critical warning or
-# critical error is encountered.
-# https://docs.gtk.org/glib/running.html#environment-variables
-env -i G_DEBUG="fatal-warnings" HOME="$HOME" XDG_CONFIG_HOME="$XDG_CONFIG_HOME" "$@"
+env -i HOME="$HOME" XDG_CONFIG_HOME="$XDG_CONFIG_HOME" "$@"
