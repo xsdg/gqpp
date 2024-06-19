@@ -1768,6 +1768,8 @@ static gboolean vficon_refresh_real(ViewFile *vf, gboolean keep_position)
 	GList *old_selected = nullptr;
 	GtkTreePath *end_path = nullptr;
 	GtkTreePath *start_path = nullptr;
+	GtkTreeIter iter;
+	GtkTreeModel *store;
 
 	gtk_tree_view_get_visible_range(GTK_TREE_VIEW(vf->listview), &start_path, &end_path);
 
@@ -1904,7 +1906,9 @@ static gboolean vficon_refresh_real(ViewFile *vf, gboolean keep_position)
 		}
 	file_data_unref(first_selected);
 
-	if (start_path)
+	store = gtk_tree_view_get_model(GTK_TREE_VIEW(vf->listview));
+
+	if (gtk_tree_model_get_iter_first(store, &iter) && start_path)
 		{
 		gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW(vf->listview), start_path, nullptr, FALSE, 0.0, 0.0);
 		}
