@@ -774,6 +774,8 @@ static void collection_table_popup_delete_cb(GtkWidget *, gpointer data)
 
 	options->file_ops.safe_delete_enable = FALSE;
 	file_util_delete(nullptr, collection_table_popup_file_list(ct), ct->listview);
+
+	collection_table_refresh(ct);
 }
 
 static void collection_table_popup_move_to_trash_cb(GtkWidget *, gpointer data)
@@ -782,6 +784,8 @@ static void collection_table_popup_move_to_trash_cb(GtkWidget *, gpointer data)
 
 	options->file_ops.safe_delete_enable = TRUE;
 	file_util_delete(nullptr, collection_table_popup_file_list(ct), ct->listview);
+
+	collection_table_refresh(ct);
 }
 
 static void collection_table_popup_copy_path_cb(GtkWidget *, gpointer data)
