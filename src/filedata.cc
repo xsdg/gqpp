@@ -37,28 +37,23 @@ const gchar *text_from_time(time_t t)
 }
 
 /**
- * @headerfile file_data_new_group
- * scan for sidecar files - expensive
+ * @brief Scan for sidecar files - expensive
  */
 FileData *file_data_new_group(const gchar *path_utf8)
 {
 	return FileData::file_data_new_group(path_utf8);
 }
 
-
 /**
- * @headerfile file_data_new_no_grouping
- * should be used on helper files which can't have sidecars
+ * @brief Should be used on helper files which can't have sidecars
  */
 FileData *file_data_new_no_grouping(const gchar *path_utf8)
 {
 	return FileData::file_data_new_no_grouping(path_utf8);
 }
 
-
 /**
- * @headerfile file_data_new_dir
- * should be used on dirs
+ * @brief Should be used on dirs
  */
 FileData *file_data_new_dir(const gchar *path_utf8)
 {

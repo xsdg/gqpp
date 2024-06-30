@@ -69,7 +69,7 @@ static gboolean md5_update_from_file(GChecksum *md5, const gchar *path)
 }
 
 /**
- * md5_get_string: get the md5 hash of a buffer
+ * @brief Get the md5 hash of a buffer
  * @buffer: byte buffer
  * @buffer_size: buffer size (in bytes)
  * @return: hash as a hexadecimal string
@@ -88,7 +88,7 @@ gchar *md5_get_string(const guchar *buffer, gint buffer_size)
 }
 
 /**
- * md5_get_digest_from_file: get the md5 hash of a file
+ * @brief Get the md5 hash of a file
  * @filename: file name
  * @digest: 16 bytes buffer receiving the hash code.
  * @return: TRUE on success
@@ -111,7 +111,7 @@ gboolean md5_get_digest_from_file(const gchar *path, guchar digest[16])
 }
 
 /**
- * md5_get_string_from_file: get the md5 hash of a file
+ * @brief Get the md5 hash of a file
  * @filename: file name
  * @return: hash as a hexadecimal string
  *
@@ -128,7 +128,9 @@ gchar *md5_get_string_from_file(const gchar *path)
 	return g_strdup(g_checksum_get_string(md5.get()));
 }
 
-/* these to and from text string converters were borrowed from
+/**
+ * @brief Convert digest to a NULL terminated text string, in ascii encoding
+ * These to and from text string converters were borrowed from
  * the libgnomeui library, where they are name thumb_digest_to/from_ascii
  *
  * this version of the from text util does buffer length checking,
@@ -152,6 +154,9 @@ gchar *md5_digest_to_text(const guchar digest[16])
 	return result;
 }
 
+/**
+ * @brief Convert digest from a NULL terminated text string, in ascii encoding
+ */
 gboolean md5_digest_from_text(const gchar *text, guchar digest[16])
 {
 	for (gsize i = 0; i < MD5_SIZE; i++)

@@ -30,10 +30,6 @@ struct LayoutWindow;
 void show_config_window(LayoutWindow *lw);
 void show_about_window(LayoutWindow *lw);
 
-/**
- * @headerfile config_entry_to_option
- * reusable helper functions
- */
 void config_entry_to_option(GtkWidget *entry, gchar **option, gchar *(*func)(const gchar *));
 
 

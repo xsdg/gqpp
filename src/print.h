@@ -27,10 +27,6 @@
 
 class FileData;
 
-/**
- * @headerfile print_window_new
- * do not free selection or list, the print window takes control of them
- */
 void print_window_new(FileData *fd, GList *selection, GList *list, GtkWidget *parent);
 
 #endif

@@ -1007,6 +1007,11 @@ static gboolean thumb_loader_std_thumb_file_validate_idle_cb(gpointer data)
 	return G_SOURCE_REMOVE;
 }
 
+/**
+ * @brief Validates a non local thumbnail file,
+ * calling func_valid with the information when app is idle
+ * for thumbnail's without a file: uri, validates against allowed_age in days
+ */
 ThumbLoaderStd *thumb_loader_std_thumb_file_validate(const gchar *thumb_path, gint allowed_days,
 						     void (*func_valid)(const gchar *path, gboolean valid, gpointer data),
 						     gpointer data)

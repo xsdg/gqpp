@@ -388,6 +388,9 @@ void menu_item_add_divider(GtkWidget *menu)
 	gtk_widget_show(item);
 }
 
+/**
+ * @brief Use to avoid mnemonics, for example filenames
+ */
 GtkWidget *menu_item_add_simple(GtkWidget *menu, const gchar *label,
 				GCallback func, gpointer data)
 {

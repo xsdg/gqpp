@@ -543,7 +543,13 @@ CollectionData *collection_from_number(gint n)
 	return static_cast<CollectionData *>(g_list_nth_data(collection_list, n));
 }
 
-CollectionData *collection_from_dnd_data(const gchar *data, GList **list, GList **info_list)
+/**
+ * @brief Pass a NULL pointer to whatever you don't need
+ * use free_selected_list to free list, and
+ * g_list_free to free info_list, which is a list of
+ * CollectInfo pointers into CollectionData
+ */
+ CollectionData *collection_from_dnd_data(const gchar *data, GList **list, GList **info_list)
 {
 	if (list) *list = nullptr;
 	if (info_list) *info_list = nullptr;

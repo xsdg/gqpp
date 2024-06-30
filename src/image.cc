@@ -1385,7 +1385,9 @@ FileData *image_get_fd(ImageWindow *imd)
 	return imd->image_fd;
 }
 
-/* merely changes path string, does not change the image! */
+/**
+ * @brief Merely changes path string, does not change the image!
+ */
 void image_set_fd(ImageWindow *imd, FileData *fd)
 {
 	if (imd->auto_refresh && imd->image_fd)
@@ -1850,8 +1852,9 @@ void image_stereo_pixbuf_set(ImageWindow *imd, StereoPixbufData stereo_mode)
 	image_reload(imd);
 }
 
-/* read ahead */
-
+/**
+ * @brief Read ahead, pass NULL to cancel
+ */
 void image_prebuffer_set(ImageWindow *imd, FileData *fd)
 {
 	if (pixbuf_renderer_get_tiles(PIXBUF_RENDERER(imd->pr))) return;
@@ -1890,6 +1893,9 @@ static void image_notify_cb(FileData *fd, NotifyType type, gpointer data)
 		}
 }
 
+/**
+ * @brief Auto refresh
+ */
 void image_auto_refresh_enable(ImageWindow *imd, gboolean enable)
 {
 	if (!enable && imd->auto_refresh && imd->image_fd)
@@ -1901,6 +1907,9 @@ void image_auto_refresh_enable(ImageWindow *imd, gboolean enable)
 	imd->auto_refresh = enable;
 }
 
+/**
+ * @brief Allow top window to be resized ?
+ */
 void image_top_window_set_sync(ImageWindow *imd, gboolean allow_sync)
 {
 	imd->top_window_sync = allow_sync;
@@ -1994,6 +2003,9 @@ gboolean image_color_profile_get_status(ImageWindow *imd, gchar **image_profile,
 
 }
 
+/**
+ * @brief Set delayed page flipping
+ */
 void image_set_delay_flip(ImageWindow *imd, gboolean delay)
 {
 	if (!imd ||
@@ -2015,6 +2027,9 @@ void image_set_delay_flip(ImageWindow *imd, gboolean delay)
 		}
 }
 
+/**
+ * @brief Wallpaper util
+ */
 void image_to_root_window(ImageWindow *, gboolean)
 {
 }
@@ -2084,6 +2099,9 @@ static void image_options_set(ImageWindow *imd)
 					options->stereo.fixed_x2, options->stereo.fixed_y2);
 }
 
+/**
+ * @brief Reset default options
+ */
 void image_options_sync()
 {
 	GList *work;

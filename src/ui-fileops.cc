@@ -716,6 +716,10 @@ gchar *get_current_dir()
 	return path8;
 }
 
+/**
+ * @brief return True on success, it is up to you to free
+ * the lists with string_list_free()
+ */
 void string_list_free(GList *list)
 {
 	g_list_free_full(list, g_free);
@@ -823,6 +827,9 @@ gchar *remove_extension_from_path(const gchar *path)
 	return g_strndup(path, strlen(path) - (reg_ext == nullptr ? 0 : strlen(reg_ext)));
 }
 
+/**
+ * @brief Warning note: this modifies path string!
+ */
 void parse_out_relatives(gchar *path)
 {
 	gint s;
@@ -954,7 +961,10 @@ gboolean md5_get_digest_from_file_utf8(const gchar *path, guchar digest[16])
 	return success;
 }
 
-
+/**
+ * @brief Generate md5 string from file,
+ * on failure returns newly allocated copy of error_text, error_text may be NULL
+ */
 gchar *md5_text_from_file_utf8(const gchar *path, const gchar *error_text)
 {
 	std::unique_ptr<gchar, decltype(&g_free)> pathl{path_from_utf8(path), g_free};

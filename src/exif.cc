@@ -1184,6 +1184,11 @@ static gint unmap_file(gpointer mapping, gint size)
 	return 0;
 }
 
+/**
+ * @brief exif_read returns processed data (merged from image and sidecar, etc.)
+ * this function gives access to the original data from the image.
+ * original data are part of the processed data and should not be freed separately
+ */
 ExifData *exif_get_original(ExifData *processed)
 {
 	return processed;
@@ -1514,6 +1519,9 @@ static void exif_write_item(FILE *f, ExifItem *item, ExifData *exif)
 	g_free(text);
 }
 
+/**
+ * @brief Usually for debugging to stdout
+ */
 void exif_write_data_list(ExifData *exif, FILE *f, gint human_readable_list)
 {
 	if (!f || !exif) return;

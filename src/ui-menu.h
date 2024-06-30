@@ -60,10 +60,6 @@ GtkWidget *menu_item_add_radio(GtkWidget *menu, const gchar *label, gpointer ite
 			       GCallback func, gpointer data);
 void menu_item_add_divider(GtkWidget *menu);
 
-/**
- * @headerfile menu_item_add_simple
- * use to avoid mnemonics, for example filenames
- */
 GtkWidget *menu_item_add_simple(GtkWidget *menu, const gchar *label,
 				GCallback func, gpointer data);
 

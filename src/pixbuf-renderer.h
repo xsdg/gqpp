@@ -248,15 +248,8 @@ PixbufRenderer *pixbuf_renderer_new();
 
 void pixbuf_renderer_set_parent(PixbufRenderer *pr, GtkWindow *window);
 
-/**
- * @headerfile pixbuf_renderer_set_pixbuf
- * display a pixbuf
- */
 void pixbuf_renderer_set_pixbuf(PixbufRenderer *pr, GdkPixbuf *pixbuf, gdouble zoom);
 
-/**
- * @headerfile  pixbuf_renderer_set_pixbuf_lazy
- * same as pixbuf_renderer_set_pixbuf but waits with redrawing for pixbuf_renderer_area_changed */
 void pixbuf_renderer_set_pixbuf_lazy(PixbufRenderer *pr, GdkPixbuf *pixbuf, gdouble zoom, gint orientation, StereoPixbufData stereo_data);
 
 
@@ -264,18 +257,10 @@ GdkPixbuf *pixbuf_renderer_get_pixbuf(PixbufRenderer *pr);
 
 void pixbuf_renderer_set_orientation(PixbufRenderer *pr, gint orientation);
 
-/**
- * @headerfile pixbuf_renderer_set_stereo_data
- * sets the format of stereo data in the input pixbuf
- */
 void pixbuf_renderer_set_stereo_data(PixbufRenderer *pr, StereoPixbufData stereo_data);
 
 void pixbuf_renderer_set_post_process_func(PixbufRenderer *pr, PixbufRendererPostProcessFunc func, gpointer user_data, gboolean slow);
 
-/**
- * @headerfile pixbuf_renderer_set_tiles
- * display an on-request array of pixbuf tiles
- */
 void pixbuf_renderer_set_tiles(PixbufRenderer *pr, gint width, gint height,
 			       gint tile_width, gint tile_height, gint cache_size,
 			       PixbufRendererTileRequestFunc func_request,
@@ -285,17 +270,9 @@ void pixbuf_renderer_set_tiles(PixbufRenderer *pr, gint width, gint height,
 void pixbuf_renderer_set_tiles_size(PixbufRenderer *pr, gint width, gint height);
 gint pixbuf_renderer_get_tiles(PixbufRenderer *pr);
 
-/**
- * @headerfile pixbuf_renderer_move
- * move image data from source to pr, source is then set to NULL image
- */
 void pixbuf_renderer_move(PixbufRenderer *pr, PixbufRenderer *source);
 void pixbuf_renderer_copy(PixbufRenderer *pr, PixbufRenderer *source);
 
-/**
- * @headerfile pixbuf_renderer_area_changed
- * update region of existing image
- */
 void pixbuf_renderer_area_changed(PixbufRenderer *pr, gint x, gint y, gint width, gint height);
 
 /* scrolling */
@@ -322,16 +299,8 @@ void pixbuf_renderer_zoom_set_limits(PixbufRenderer *pr, gdouble min, gdouble ma
 gboolean pixbuf_renderer_get_image_size(PixbufRenderer *pr, gint *width, gint *height);
 gboolean pixbuf_renderer_get_scaled_size(PixbufRenderer *pr, gint *width, gint *height);
 
-/**
- * @headerfile pixbuf_renderer_get_visible_rect
- * region of image in pixel coordinates
- */
 gboolean pixbuf_renderer_get_visible_rect(PixbufRenderer *pr, GdkRectangle *rect);
 
-/**
- * @headerfile pixbuf_renderer_set_color
- *  background color
- */
 void pixbuf_renderer_set_color(PixbufRenderer *pr, GdkRGBA *color);
 
 /* overlay */
@@ -344,10 +313,6 @@ void pixbuf_renderer_overlay_remove(PixbufRenderer *pr, gint id);
 
 gboolean pixbuf_renderer_get_mouse_position(PixbufRenderer *pr, gint *x_pixel, gint *y_pixel);
 
-/**
- * @headerfile pixbuf_renderer_get_pixel_colors
- * x_pixel and y_pixel are the pixel coordinates see #pixbuf_renderer_get_mouse_position
- */
 gboolean pixbuf_renderer_get_pixel_colors(PixbufRenderer *pr, gint x_pixel, gint y_pixel,
 	 				gint *r_mouse, gint *g_mouse, gint *b_mouse);
 

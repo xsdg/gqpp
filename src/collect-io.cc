@@ -1018,6 +1018,13 @@ static void collect_manager_add_action(CollectManagerAction *action)
 	collect_manager_timer_push(FALSE);
 }
 
+/**
+ * @brief These are used to update collections contained in user's collection
+ * folder when moving or renaming files.
+ * also handles:
+ *   deletes file when newpath == NULL
+ *   adds file when oldpath == NULL
+ */
 void collect_manager_moved(FileData *fd)
 {
 	CollectManagerAction *action;
@@ -1028,6 +1035,9 @@ void collect_manager_moved(FileData *fd)
 	collect_manager_add_action(action);
 }
 
+/**
+ * @brief Add from a specific collection
+ */
 void collect_manager_add(FileData *fd, const gchar *collection)
 {
 	CollectManagerAction *action;
@@ -1049,6 +1059,9 @@ void collect_manager_add(FileData *fd, const gchar *collection)
 	collect_manager_add_action(action);
 }
 
+/**
+ * @brief Removing from a specific collection
+ */
 void collect_manager_remove(FileData *fd, const gchar *collection)
 {
 	CollectManagerAction *action;
@@ -1067,6 +1080,9 @@ void collect_manager_remove(FileData *fd, const gchar *collection)
 	collect_manager_add_action(action);
 }
 
+/**
+ * @brief Commit pending operations to disk
+ */
 void collect_manager_flush()
 {
 	collect_manager_timer_push(TRUE);

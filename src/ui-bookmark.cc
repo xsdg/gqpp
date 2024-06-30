@@ -938,6 +938,9 @@ void bookmark_list_add(GtkWidget *list, const gchar *name, const gchar *path)
 	bookmark_populate_all(bm->key);
 }
 
+/**
+ * @brief Allows apps to set up the defaults
+ */
 void bookmark_add_default(const gchar *name, const gchar *path)
 {
 	if (!name || !path) return;

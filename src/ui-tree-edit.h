@@ -43,41 +43,15 @@ struct TreeEditData
 	GtkCellRenderer *cell;
 };
 
-
-/**
- * @headerfile  tree_edit_by_path
- * edit_func: return TRUE if rename successful, FALSE on failure.
- */
 gboolean tree_edit_by_path(GtkTreeView *tree, GtkTreePath *tpath, gint column, const gchar *text,
 		           gboolean (*edit_func)(TreeEditData *, const gchar *, const gchar *, gpointer), gpointer data);
 
-
-/**
- * @headerfile tree_view_row_get_visibility
- * return 0 = row visible, -1 = row is above, 1 = row is below visible region \n
- * if fully_visible is TRUE, the behavior changes to return -1/1 if _any_ part of the cell is out of view
- */
 gint tree_view_row_get_visibility(GtkTreeView *widget, GtkTreeIter *iter, gboolean fully_visible);
 
-/**
- * @headerfile tree_view_row_make_visible
- * scrolls to make row visible, if necessary
- * return is same as above (before the scroll)
- */
 gint tree_view_row_make_visible(GtkTreeView *widget, GtkTreeIter *iter, gboolean center);
 
-/**
- * @headerfile tree_view_move_cursor_away
- * if iter is location of cursor, moves cursor to nearest row
- */
 gboolean tree_view_move_cursor_away(GtkTreeView *widget, GtkTreeIter *iter, gboolean only_selected);
 
-/**
- * @headerfile shift_color
- * shifts a GdkRGBA values lighter or darker \n
- * val is percent from 1 to 100, or -1 for default (usually 10%) \n
- * direction is -1 darker, 0 auto, 1 lighter
- */
 void shift_color(GdkRGBA *src, gshort val, gint direction);
 
 /**
@@ -86,11 +60,6 @@ void shift_color(GdkRGBA *src, gshort val, gint direction);
  */
 #define STYLE_SHIFT_STANDARD 10
 
-/**
- * @headerfile widget_auto_scroll_start
- * auto scroll, set scroll_speed or region_size to -1 to their respective the defaults
- * notify_func will be called before a scroll, return FALSE to turn off autoscroll
- */
 gint widget_auto_scroll_start(GtkWidget *widget, GtkAdjustment *v_adj, gint scroll_speed, gint region_size,
 			      gint (*notify_func)(GtkWidget *widget, gint x, gint y, gpointer data), gpointer notify_data);
 void widget_auto_scroll_stop(GtkWidget *widget);

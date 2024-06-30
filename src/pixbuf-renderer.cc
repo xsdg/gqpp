@@ -893,6 +893,9 @@ static void pr_scroller_stop(PixbufRenderer *pr)
  *-------------------------------------------------------------------
  */
 
+/**
+ * @brief Background color
+ */
 void pixbuf_renderer_set_color(PixbufRenderer *pr, GdkRGBA *color)
 {
 	g_return_if_fail(IS_PIXBUF_RENDERER(pr));
@@ -1136,6 +1139,9 @@ static void pr_source_tile_changed(PixbufRenderer *pr, gint x, gint y, gint widt
 		}
 }
 
+/**
+ * @brief Display an on-request array of pixbuf tiles
+ */
 void pixbuf_renderer_set_tiles(PixbufRenderer *pr, gint width, gint height,
 			       gint tile_width, gint tile_height, gint cache_size,
 			       PixbufRendererTileRequestFunc func_request,
@@ -2490,6 +2496,9 @@ static void pr_set_pixbuf(PixbufRenderer *pr, GdkPixbuf *pixbuf, gdouble zoom, P
 	pr_zoom_sync(pr, zoom, static_cast<PrZoomFlags>(flags | PR_ZOOM_FORCE | PR_ZOOM_NEW), 0, 0);
 }
 
+/**
+ * @brief Display a pixbuf
+ */
 void pixbuf_renderer_set_pixbuf(PixbufRenderer *pr, GdkPixbuf *pixbuf, gdouble zoom)
 {
 	g_return_if_fail(IS_PIXBUF_RENDERER(pr));
@@ -2501,6 +2510,9 @@ void pixbuf_renderer_set_pixbuf(PixbufRenderer *pr, GdkPixbuf *pixbuf, gdouble z
 	pr_update_signal(pr);
 }
 
+/**
+ * @brief Same as pixbuf_renderer_set_pixbuf but waits with redrawing for pixbuf_renderer_area_changed
+ */
 void pixbuf_renderer_set_pixbuf_lazy(PixbufRenderer *pr, GdkPixbuf *pixbuf, gdouble zoom, gint orientation, StereoPixbufData stereo_data)
 {
 	g_return_if_fail(IS_PIXBUF_RENDERER(pr));
@@ -2531,6 +2543,9 @@ void pixbuf_renderer_set_orientation(PixbufRenderer *pr, gint orientation)
 	pr_zoom_sync(pr, pr->zoom, PR_ZOOM_FORCE, 0, 0);
 }
 
+/**
+ * @brief Sets the format of stereo data in the input pixbuf
+ */
 void pixbuf_renderer_set_stereo_data(PixbufRenderer *pr, StereoPixbufData stereo_data)
 {
 	g_return_if_fail(IS_PIXBUF_RENDERER(pr));
@@ -2560,7 +2575,9 @@ void pixbuf_renderer_set_post_process_func(PixbufRenderer *pr, PixbufRendererPos
 
 }
 
-
+/**
+ * @brief Move image data from source to pr, source is then set to NULL image
+ */
 void pixbuf_renderer_move(PixbufRenderer *pr, PixbufRenderer *source)
 {
 	GObject *object;
@@ -2678,6 +2695,9 @@ void pixbuf_renderer_copy(PixbufRenderer *pr, PixbufRenderer *source)
 	pr->scroll_reset = scroll_reset;
 }
 
+/**
+ * @brief Update region of existing image
+ */
 void pixbuf_renderer_area_changed(PixbufRenderer *pr, gint x, gint y, gint w, gint h)
 {
 	g_return_if_fail(IS_PIXBUF_RENDERER(pr));
@@ -2820,6 +2840,9 @@ static void pr_stereo_temp_disable(PixbufRenderer *pr, gboolean disable)
 	pr_size_sync(pr, pr->window_width, pr->window_height); /* recalculate new viewport */
 }
 
+/**
+ * @brief x_pixel and y_pixel are the pixel coordinates see #pixbuf_renderer_get_mouse_position
+ */
 gboolean pixbuf_renderer_get_pixel_colors(PixbufRenderer *pr, gint x_pixel, gint y_pixel,
                                           gint *r_mouse, gint *g_mouse, gint *b_mouse)
 {
@@ -2940,6 +2963,9 @@ gboolean pixbuf_renderer_get_scaled_size(PixbufRenderer *pr, gint *width, gint *
 	return TRUE;
 }
 
+/**
+ * @brief Region of image in pixel coordinates
+ */
 gboolean pixbuf_renderer_get_visible_rect(PixbufRenderer *pr, GdkRectangle *rect)
 {
 	g_return_val_if_fail(IS_PIXBUF_RENDERER(pr), FALSE);

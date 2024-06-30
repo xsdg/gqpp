@@ -259,6 +259,9 @@ static void slideshow_delay_seconds_cb(GtkWidget *spin, gpointer)
  *-----------------------------------------------------------------------------
  */
 
+/**
+ * @brief Reusable helper functions
+ */
 void config_entry_to_option(GtkWidget *entry, gchar **option, gchar *(*func)(const gchar *))
 {
 	const gchar *buf;

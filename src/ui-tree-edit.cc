@@ -188,6 +188,9 @@ static gboolean tree_edit_by_path_idle_cb(gpointer data)
 	return G_SOURCE_REMOVE;
 }
 
+/**
+ * @brief edit_func: return TRUE if rename successful, FALSE on failure.
+ */
 gboolean tree_edit_by_path(GtkTreeView *tree, GtkTreePath *tpath, gint column, const gchar *text,
 		           gboolean (*edit_func)(TreeEditData *, const gchar *, const gchar *, gpointer), gpointer data)
 {
@@ -263,7 +266,11 @@ gboolean tree_edit_by_path(GtkTreeView *tree, GtkTreePath *tpath, gint column, c
  *-------------------------------------------------------------------
  */
 
-/* an implementation that uses gtk_tree_view_get_visible_range */
+/**
+ * @brief return 0 = row visible, -1 = row is above, 1 = row is below visible region \n
+ * if fully_visible is TRUE, the behavior changes to return -1/1 if _any_ part of the cell is out of view
+ * An implementation that uses gtk_tree_view_get_visible_range
+ */
 gint tree_view_row_get_visibility(GtkTreeView *widget, GtkTreeIter *iter, gboolean fully_visible)
 {
 	GtkTreeModel *store;
@@ -306,6 +313,10 @@ gint tree_view_row_get_visibility(GtkTreeView *widget, GtkTreeIter *iter, gboole
 	return ret;
 }
 
+/**
+ * @brief Scrolls to make row visible, if necessary
+ * return is same as above (before the scroll)
+ */
 gint tree_view_row_make_visible(GtkTreeView *widget, GtkTreeIter *iter, gboolean center)
 {
 	GtkTreePath *tpath;
@@ -331,6 +342,9 @@ gint tree_view_row_make_visible(GtkTreeView *widget, GtkTreeIter *iter, gboolean
 	return vis;
 }
 
+/**
+ * @brief If iter is location of cursor, moves cursor to nearest row
+ */
 gboolean tree_view_move_cursor_away(GtkTreeView *widget, GtkTreeIter *iter, gboolean only_selected)
 {
 	GtkTreeModel *store;
@@ -387,6 +401,11 @@ gboolean tree_view_move_cursor_away(GtkTreeView *widget, GtkTreeIter *iter, gboo
  *-------------------------------------------------------------------
  */
 
+/**
+ * @brief Shifts a GdkRGBA values lighter or darker \n
+ * val is percent from 1 to 100, or -1 for default (usually 10%) \n
+ * direction is -1 darker, 0 auto, 1 lighter
+ */
 void shift_color(GdkRGBA *src, gshort val, gint direction)
 {
 	gdouble cs;
@@ -523,6 +542,10 @@ static gboolean widget_auto_scroll_cb(gpointer data)
 	return TRUE;
 }
 
+/**
+ * @brief Auto scroll, set scroll_speed or region_size to -1 to their respective the defaults
+ * notify_func will be called before a scroll, return FALSE to turn off autoscroll
+ */
 gint widget_auto_scroll_start(GtkWidget *widget, GtkAdjustment *v_adj, gint scroll_speed, gint region_size,
 			      gint (*notify_func)(GtkWidget *widget, gint x, gint y, gpointer data), gpointer notify_data)
 {

@@ -60,11 +60,6 @@ struct FileDialog
 	gchar *dest_path;
 };
 
-
-/**
- * @headerfile generic_dialog_new
- * When parent is not NULL, the dialog is set as a transient of the window containing parent
- */
 GenericDialog *generic_dialog_new(const gchar *title,
 				  const gchar *role,
 				  GtkWidget *parent, gboolean auto_close,
@@ -92,13 +87,6 @@ void file_dialog_close(FileDialog *fd);
 GtkWidget *file_dialog_add_button(FileDialog *fd, const gchar *stock_id, const gchar *text,
 				  void (*func_cb)(FileDialog *, gpointer), gboolean is_default);
 
-/**
- * @headerfile file_dialog_add_path_widgets
- * default_path is default base directory, and is only used if no history
- * exists for history_key (HOME is used if default_path is NULL).
- * path can be a full path or only a file name. If name only, appended to
- * the default_path or the last history (see default_path)
- */
 void file_dialog_add_path_widgets(FileDialog *fd, const gchar *default_path, const gchar *path,
 				  const gchar *history_key, const gchar *filter, const gchar *filter_desc);
 

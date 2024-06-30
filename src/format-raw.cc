@@ -522,6 +522,9 @@ static guint format_debug_tiff_table(guchar *data, const guint len, guint offset
 	return exif_byte_get_int32(data + offset + count * EXIF_TIFD_SIZE, bo);
 }
 
+/**
+ * @brief Used for debugging only
+ */
 gboolean format_debug_tiff_raw(guchar *data, const guint len,
 			       guint *image_offset, guint *exif_offset)
 {

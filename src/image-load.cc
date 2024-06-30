@@ -1085,6 +1085,9 @@ static void image_loader_stop(ImageLoader *il)
 
 }
 
+/**
+ * @brief Delay area_ready signals
+ */
 void image_loader_delay_area_ready(ImageLoader *il, gboolean enable)
 {
 	g_mutex_lock(il->data_mutex);
@@ -1301,6 +1304,11 @@ GdkPixbuf *image_loader_get_pixbuf(ImageLoader *il)
 	return ret;
 }
 
+/**
+ * @brief Speed up loading when you only need at most width x height size image,
+ * only the jpeg GdkPixbuf loader benefits from it - so there is no
+ * guarantee that the image will scale down to the requested size..
+ */
 void image_loader_set_requested_size(ImageLoader *il, gint width, gint height)
 {
 	if (!il) return;
@@ -1320,6 +1328,10 @@ void image_loader_set_buffer_size(ImageLoader *il, guint count)
 	g_mutex_unlock(il->data_mutex);
 }
 
+/**
+ * @brief This only has effect if used before image_loader_start()
+ * default is G_PRIORITY_DEFAULT_IDLE
+ */
 void image_loader_set_priority(ImageLoader *il, gint priority)
 {
 	if (!il) return;

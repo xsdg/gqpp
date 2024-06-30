@@ -446,7 +446,9 @@ void gq_gtk_grid_attach_default(GtkGrid *grid, GtkWidget *child, guint left_atta
 	gtk_grid_attach(grid, child, left_attach, top_attach, right_attach - left_attach, bottom_attach - top_attach);
 }
 
-/* this overrides the low default of a GtkCellRenderer from 100 to CELL_HEIGHT_OVERRIDE, something sane for our purposes */
+/**
+ * @brief This overrides the low default of a GtkCellRenderer from 100 to CELL_HEIGHT_OVERRIDE, something sane for our purposes
+ */
 void cell_renderer_height_override(GtkCellRenderer *renderer)
 {
 	GParamSpec *spec;

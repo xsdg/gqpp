@@ -513,6 +513,9 @@ void history_list_item_remove(const gchar *key, const gchar *path)
 	history_list_item_change(key, path, nullptr);
 }
 
+/**
+ * @brief The returned GList is internal, don't free it
+ */
 GList *history_list_get_by_key(const gchar *key)
 {
 	HistoryData *hd;

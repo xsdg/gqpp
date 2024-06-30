@@ -882,6 +882,9 @@ static void print_response_cb(GtkDialog *dialog, gint, gpointer)
 	gq_gtk_widget_destroy(GTK_WIDGET(dialog));
 }
 
+/**
+ * @brief Do not free selection or list, the print window takes control of them
+ */
 void print_window_new(FileData *, GList *selection, GList *, GtkWidget *parent)
 {
 	GtkWidget *vbox;
