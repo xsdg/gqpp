@@ -38,6 +38,7 @@ namespace {
 // For convenience.
 namespace t = ::testing;
 
+
 class FileDataTest : public t::Test
 {
     protected:
@@ -57,6 +58,7 @@ class FileDataTest : public t::Test
 
 	FileData *fd = nullptr;
 	FileData *parent_fd = nullptr;
+	FileDataContext context;
 };
 
 TEST_F(FileDataTest, text_from_size_test)
@@ -113,6 +115,20 @@ TEST_F(FileDataTest, text_from_size_abrev_test)
 		ASSERT_EQ(test_case.second, std::string(generated));
 		g_free(generated);
 	}
+}
+
+TEST_F(FileDataTest, FileDataNewSimpleAndFree)
+{
+	ASSERT_EQ(0, context.global_file_data_count);
+
+	auto *_fd = FileData::file_data_new_simple("/does/not/exist.jpg", &context);
+	ASSERT_EQ(1, context.global_file_data_count);
+	// This currently fails because of a bug in file_data_new_simple.
+	ASSERT_EQ(1, _fd->ref);
+
+	_fd->file_data_unref();
+	_fd = nullptr;
+	ASSERT_EQ(0, context.global_file_data_count);
 }
 
 TEST_F(FileDataTest, BasicIncrementVersion)
