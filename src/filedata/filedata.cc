@@ -510,11 +510,11 @@ FileData *FileData::file_data_new_simple(const gchar *path_utf8, FileDataContext
 	}
 
 	auto *fd = static_cast<FileData *>(g_hash_table_lookup(context->file_data_pool, path_utf8));
-	// TODO(xsdg): This looks like it double-refs fd if it needed to be
-	// created.  Figure out what should happen here and either fix or
-	// document.
-	if (!fd) fd = file_data_new(path_utf8, &st, TRUE, context);
-	if (fd)
+	if (!fd)
+		{
+		fd = file_data_new(path_utf8, &st, TRUE, context);
+		}
+	else
 		{
 		::file_data_ref(fd);
 		}
