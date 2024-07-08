@@ -112,12 +112,35 @@ void folder_icons_free(PixmapFolders *pf)
 {
 	if (!pf) return;
 
-	g_object_unref(pf->close);
-	g_object_unref(pf->open);
-	g_object_unref(pf->deny);
-	g_object_unref(pf->parent);
-	g_object_unref(pf->link);
-	g_object_unref(pf->read_only);
+	if (pf->close)
+		{
+		g_object_unref(pf->close);
+		}
+
+	if (pf->open)
+		{
+		g_object_unref(pf->open);
+		}
+
+	if (pf->deny)
+		{
+		g_object_unref(pf->deny);
+		}
+
+	if (pf->parent)
+		{
+		g_object_unref(pf->parent);
+		}
+
+	if (pf->link)
+		{
+		g_object_unref(pf->link);
+		}
+
+	if (pf->read_only)
+		{
+		g_object_unref(pf->read_only);
+		}
 
 	g_free(pf);
 }
