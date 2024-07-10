@@ -188,15 +188,13 @@ else
 			then
 				if [ -z "$GITHUB_WORKSPACE" ]
 				then
-					builder_error=$(gtk-builder-tool validate "$line" 2>&1)
-					if [ -n "$builder_error" ]
+					if ! builder_error=$(gtk-builder-tool validate "$line" 2>&1)
 					then
 						printf "ERROR; gtk-builder-tool error in: %s\n" "$builder_error"
 						exit_status=1
 					fi
 				else
-					builder_error=$(xvfb-run --auto-servernum gtk-builder-tool validate "$line" 2>&1)
-					if [ -n "$builder_error" ]
+					if ! builder_error=$(xvfb-run --auto-servernum gtk-builder-tool validate "$line" 2>&1)
 					then
 						printf "ERROR; gtk-builder-tool error in: %s\n" "$builder_error"
 						exit_status=1
