@@ -53,6 +53,10 @@ trap teardown EXIT
 
 export HOME="$TEST_HOME"
 export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_RUNTIME_DIR="${HOME}/.runtime"
+# Mode setting required by the spec.
+# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+mkdir -p -m 0700 "$XDG_RUNTIME_DIR"
 
 # Change to temporary homedir and ensure that XDG_CONFIG_HOME exists.
 cd
@@ -61,4 +65,5 @@ mkdir -p "$XDG_CONFIG_HOME"
 # This will automatically pass the command name and args in the expected order.
 # And `set -e` (above) means that we'll automatically exit with the same return
 # code as our sub-command.
-env -i HOME="$HOME" XDG_CONFIG_HOME="$XDG_CONFIG_HOME" "$@"
+# Start with a clean environment containing only these variables.
+env -i HOME="$HOME" XDG_CONFIG_HOME="$XDG_CONFIG_HOME" XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" "$@"
