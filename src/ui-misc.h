@@ -23,6 +23,7 @@
 #define UI_MISC_H
 
 #include <ctime>
+#include <vector>
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gdk/gdk.h>
@@ -207,14 +208,18 @@ gchar *text_widget_text_pull_selected(GtkWidget *text_widget);
 
 struct ActionItem
 {
-	const gchar *name; /* GtkActionEntry terminology */
-	const gchar *label;
-	const gchar *icon_name;
+	ActionItem(const gchar *name, const gchar *label, const gchar *icon_name);
+	ActionItem(const ActionItem &other);
+	~ActionItem();
+
+	bool has_label(const gchar *label) const;
+
+	gchar *name = nullptr; /* GtkActionEntry terminology */
+	gchar *label = nullptr;
+	gchar *icon_name = nullptr;
 };
 
-GList* get_action_items();
-gint action_item_compare_label(const ActionItem *action_item, const gchar *label);
-void action_items_free(GList *list);
+std::vector<ActionItem> get_action_items();
 
 gboolean defined_mouse_buttons(GtkWidget *widget, GdkEventButton *event, gpointer data);
 

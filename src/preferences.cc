@@ -21,10 +21,11 @@
 
 #include "preferences.h"
 
-#include <config.h>
-
+#include <algorithm>
 #include <cstdlib>
 #include <cstring>
+
+#include <config.h>
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gdk/gdk.h>
@@ -824,33 +825,26 @@ static void add_zoom_style_selection_menu(GtkWidget *table, gint column, gint ro
 static void mouse_buttons_selection_menu_cb(GtkWidget *combo, gpointer data)
 {
 	auto option = static_cast<gchar **>(data);
-	gchar *label;
-	GList *list;
-	GList *work;
 
-	label = gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(combo));
+	g_autofree gchar *label = gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(combo));
 
-	list = get_action_items();
-	work = g_list_find_custom(list, label, reinterpret_cast<GCompareFunc>(action_item_compare_label));
-	if (work)
+	std::vector<ActionItem> list = get_action_items();
+	const auto action_item_has_label = [label](const ActionItem &action_item)
+	{
+		return action_item.has_label(label);
+	};
+	const auto work = std::find_if(list.cbegin(), list.cend(), action_item_has_label);
+	if (work != list.cend())
 		{
-		auto *action_item = static_cast<ActionItem *>(work->data);
-
 		g_free(*option);
-		*option = g_strdup(action_item->name);
+		*option = g_strdup(work->name);
 		}
-
-	g_free(label);
-	action_items_free(list);
 }
 
 static void add_mouse_selection_menu(GtkWidget *table, gint column, gint row, const gchar *text, gchar *option, gchar **option_c)
 {
-	ActionItem *action_item;
 	gint current = 0;
 	gint i = 0;
-	GList *list;
-	GList *work;
 	GtkWidget *combo;
 
 	*option_c = option;
@@ -859,22 +853,17 @@ static void add_mouse_selection_menu(GtkWidget *table, gint column, gint row, co
 
 	combo = gtk_combo_box_text_new();
 
-	list = get_action_items();
-	work = list;
-	while (work)
+	std::vector<ActionItem> list = get_action_items();
+	for (const ActionItem &action_item : list)
 		{
-		action_item = static_cast<ActionItem *>(work->data);
-		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), action_item->label);
+		gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(combo), action_item.label);
 
-		if (g_strcmp0(action_item->name, option) == 0)
+		if (g_strcmp0(action_item.name, option) == 0)
 			{
 			current = i;
 			}
 		i++;
-		work = work->next;
 		}
-
-	action_items_free(list);
 
 	gtk_combo_box_set_active(GTK_COMBO_BOX(combo), current);
 

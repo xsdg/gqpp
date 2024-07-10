@@ -21,6 +21,7 @@
 
 #include "toolbar.h"
 
+#include <algorithm>
 #include <cstddef>
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
@@ -146,27 +147,21 @@ static gboolean toolbar_press_cb(GtkGesture *, int, double, double, gpointer dat
 
 static void get_toolbar_item(const gchar *name, gchar **label, gchar **stock_id)
 {
-	GList *list;
-	GList *work;
 	*label = nullptr;
 	*stock_id = nullptr;
 
-	list = get_action_items();
+	std::vector<ActionItem> list = get_action_items();
 
-	const auto action_item_compare_name = [](gconstpointer data, gconstpointer user_data)
+	const auto action_item_has_name = [name](const ActionItem &action_item)
 	{
-		return g_strcmp0(static_cast<const ActionItem *>(data)->name, static_cast<const gchar *>(user_data));
+		return g_strcmp0(action_item.name, name) == 0;
 	};
-	work = g_list_find_custom(list, name, action_item_compare_name);
-	if (work)
+	const auto work = std::find_if(list.cbegin(), list.cend(), action_item_has_name);
+	if (work != list.cend())
 		{
-		auto *action_item = static_cast<ActionItem *>(work->data);
-
-		*label = g_strdup(action_item->label);
-		*stock_id = g_strdup(action_item->icon_name);
+		*label = g_strdup(work->label);
+		*stock_id = g_strdup(work->icon_name);
 		}
-
-	action_items_free(list);
 }
 
 static void toolbar_button_free(GtkWidget *widget)
@@ -279,9 +274,6 @@ static void get_desktop_data(const gchar *name, gchar **label, gchar **stock_id)
 // toolbar_menu_add_popup
 static gboolean toolbar_menu_add_cb(GtkWidget *, gpointer data)
 {
-	ActionItem *action_item;
-	GList *list;
-	GList *work;
 	GtkWidget *item;
 	GtkWidget *menu;
 
@@ -293,23 +285,16 @@ static gboolean toolbar_menu_add_cb(GtkWidget *, gpointer data)
 	g_object_set_data(G_OBJECT(item), "toolbar_add_stock_id", g_strdup("no-icon"));
 	g_signal_connect(G_OBJECT(item), "destroy", G_CALLBACK(toolbar_button_free), item);
 
-	list = get_action_items();
+	std::vector<ActionItem> list = get_action_items();
 
-	work = list;
-	while (work)
+	for (const ActionItem &action_item : list)
 		{
-		action_item = static_cast<ActionItem *>(work->data);
-
-		item = menu_item_add_stock(menu, action_item->label, action_item->icon_name, G_CALLBACK(toolbarlist_add_cb), data);
-		g_object_set_data(G_OBJECT(item), "toolbar_add_name", g_strdup(action_item->name));
-		g_object_set_data(G_OBJECT(item), "toolbar_add_label", g_strdup(action_item->label));
-		g_object_set_data(G_OBJECT(item), "toolbar_add_stock_id", g_strdup(action_item->icon_name));
+		item = menu_item_add_stock(menu, action_item.label, action_item.icon_name, G_CALLBACK(toolbarlist_add_cb), data);
+		g_object_set_data(G_OBJECT(item), "toolbar_add_name", g_strdup(action_item.name));
+		g_object_set_data(G_OBJECT(item), "toolbar_add_label", g_strdup(action_item.label));
+		g_object_set_data(G_OBJECT(item), "toolbar_add_stock_id", g_strdup(action_item.icon_name));
 		g_signal_connect(G_OBJECT(item), "destroy", G_CALLBACK(toolbar_button_free), item);
-
-		work = work->next;
 		}
-
-	action_items_free(list);
 
 	gtk_menu_popup_at_pointer(GTK_MENU(menu), nullptr);
 

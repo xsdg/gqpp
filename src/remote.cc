@@ -33,9 +33,9 @@
 #include <cstdlib>
 #include <cstring>
 
-#include <config.h>
-
 #include <gtk/gtk.h>
+
+#include <config.h>
 
 #include "cache-maint.h"
 #include "collect-io.h"
@@ -1608,9 +1608,7 @@ static void gr_action(const gchar *text, GIOChannel *, gpointer)
 
 static void gr_action_list(const gchar *, GIOChannel *channel, gpointer)
 {
-	ActionItem *action_item;
 	gint max_length = 0;
-	GList *list = nullptr;
 	GString *out_string = g_string_new(nullptr);
 
 	if (!layout_valid(&lw_id))
@@ -1618,27 +1616,22 @@ static void gr_action_list(const gchar *, GIOChannel *channel, gpointer)
 		return;
 		}
 
-	list = get_action_items();
+	std::vector<ActionItem> list = get_action_items();
 
 	/* Get the length required for padding */
-	for (GList *work = list; work; work = work->next)
+	for (const ActionItem &action_item : list)
 		{
-		action_item = static_cast<ActionItem *>(work->data);
-		const auto length = g_utf8_strlen(action_item->name, -1);
+		const auto length = g_utf8_strlen(action_item.name, -1);
 		max_length = MAX(length, max_length);
 		}
 
 	/* Pad the action names to the same column for readable output */
-	for (GList *work = list; work; work = work->next)
+	for (const ActionItem &action_item : list)
 		{
-		action_item = static_cast<ActionItem *>(work->data);
-
-		g_string_append_printf(out_string, "%-*s", max_length + 4, action_item->name);
-		out_string = g_string_append(out_string, action_item->label);
+		g_string_append_printf(out_string, "%-*s", max_length + 4, action_item.name);
+		out_string = g_string_append(out_string, action_item.label);
 		out_string = g_string_append(out_string, "\n");
 		}
-
-	action_items_free(list);
 
 	g_io_channel_write_chars(channel, out_string->str, -1, nullptr, nullptr);
 	g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, nullptr, nullptr);

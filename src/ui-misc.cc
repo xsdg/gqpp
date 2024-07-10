@@ -23,6 +23,7 @@
 
 #include <langinfo.h>
 
+#include <algorithm>
 #include <cstdlib>
 #include <cstring>
 #include <string>
@@ -1274,130 +1275,112 @@ gchar *text_widget_text_pull_selected(GtkWidget *text_widget)
 	
 }
 
-void free_action_items_cb(gpointer data)
-{
-	ActionItem *action_item;
+ActionItem::ActionItem(const gchar *name, const gchar *label, const gchar *icon_name)
+    : name(g_strdup(name))
+    , label(g_strdup(label))
+    , icon_name(g_strdup(icon_name))
+{}
 
-	action_item = static_cast<ActionItem *>(data);
-	g_free((gchar *)action_item->icon_name);
-	g_free((gchar *)action_item->name);
-	g_free((gchar *)action_item->label);
-	g_free(action_item);
+ActionItem::ActionItem(const ActionItem &other)
+{
+	name = g_strdup(other.name);
+	label = g_strdup(other.label);
+	icon_name = g_strdup(other.icon_name);
 }
 
-void action_items_free(GList *list)
+ActionItem::~ActionItem()
 {
-	g_list_free_full(list, free_action_items_cb);
+	g_free(name);
+	g_free(label);
+	g_free(icon_name);
+}
+
+bool ActionItem::has_label(const gchar *label) const
+{
+	return g_strcmp0(this->label, label) == 0;
+}
+
+static gchar *get_action_label(GtkAction *action, const gchar *action_name)
+{
+	gchar *tooltip;
+	gchar *label;
+	g_object_get(action, "tooltip", &tooltip, "label", &label, NULL);
+
+	/* .desktop items need the program name, Geeqie menu items need the tooltip */
+	if (g_strstr_len(action_name, -1, ".desktop") == nullptr &&
+	    /* Tooltips with newlines affect output format */
+	    tooltip && (g_strstr_len(tooltip, -1, "\n") == nullptr))
+		{
+		return g_strdup(tooltip);
+		}
+
+	return g_strdup(label);
 }
 
 /**
  * @brief Get a list of menu actions
  * @param
- * @returns GList ActionItem
- *
- * Free returned list with action_items_free(list)
+ * @returns std::vector<ActionItem>
  *
  * The list generated is used in the --remote --action-list command and
  * programmable mouse buttons 8 and 9.
  */
-GList* get_action_items()
+std::vector<ActionItem> get_action_items()
 {
-	ActionItem *action_item;
-	const gchar *accel_path;
-	gchar *action_name;
-	gchar *label;
-	gchar *tooltip;
-	GList *actions;
-	GList *groups;
-	GList *list_duplicates = nullptr;
-	GList *list_unique = nullptr;
-	GtkAction *action;
 	LayoutWindow *lw = nullptr;
 
 	if (!layout_valid(&lw))
 		{
-		return nullptr;
+		return {};
 		}
 
-	groups = gq_gtk_ui_manager_get_action_groups(lw->ui_manager);
-	while (groups)
-		{
-		actions = gq_gtk_action_group_list_actions(GTK_ACTION_GROUP(groups->data));
-		while (actions)
-			{
-			action = GTK_ACTION(actions->data);
-			accel_path = gq_gtk_action_get_accel_path(action);
+	std::vector<ActionItem> list_duplicates;
 
+	for (GList *groups = gq_gtk_ui_manager_get_action_groups(lw->ui_manager); groups; groups = groups->next)
+		{
+		GtkActionGroup *action_group = GTK_ACTION_GROUP(groups->data);
+		for (GList *actions = gq_gtk_action_group_list_actions(action_group); actions; actions = actions->next)
+			{
+			GtkAction *action = GTK_ACTION(actions->data);
+
+			const gchar *accel_path = gq_gtk_action_get_accel_path(action);
 			if (accel_path && gtk_accel_map_lookup_entry(accel_path, nullptr))
 				{
-				g_object_get(action, "tooltip", &tooltip, "label", &label, NULL);
-
-				action_name = g_path_get_basename(accel_path);
+				g_autofree gchar *action_name = g_path_get_basename(accel_path);
 
 				/* Menu actions are irrelevant */
 				if (g_strstr_len(action_name, -1, "Menu") == nullptr)
 					{
-					action_item = g_new0(ActionItem, 1);
+					g_autofree gchar *action_label = get_action_label(action, action_name);
 
-					/* .desktop items need the program name, Geeqie menu items need the tooltip */
-					if (g_strstr_len(action_name, -1, ".desktop") == nullptr)
-						{
-
-						/* Tooltips with newlines affect output format */
-						if (tooltip && (g_strstr_len(tooltip, -1, "\n") == nullptr) )
-							{
-							action_item->label = g_strdup(tooltip);
-							}
-						else
-							{
-							action_item->label = g_strdup(label);
-							}
-						}
-					else
-						{
-						action_item->label = g_strdup(label);
-						}
-
-					action_item->name = action_name;
-					action_item->icon_name = g_strdup(gq_gtk_action_get_stock_id(action));
-
-					list_duplicates = g_list_prepend(list_duplicates, action_item);
+					list_duplicates.emplace_back(action_name, action_label, gq_gtk_action_get_stock_id(action));
 					}
 				}
-			actions = actions->next;
 			}
-
-		groups = groups->next;
 		}
 
 	/* Use the shortest name i.e. ignore -Alt versions. Sort makes the shortest first in the list */
-	const auto action_item_compare_names = [](gconstpointer a, gconstpointer b)
+	const auto action_item_compare_names = [](const ActionItem &a, const ActionItem &b)
 	{
-		return g_strcmp0(static_cast<const ActionItem *>(a)->name, static_cast<const ActionItem *>(b)->name);
+		return g_strcmp0(a.name, b.name) < 0;
 	};
-	list_duplicates = g_list_sort(list_duplicates, action_item_compare_names);
+	std::sort(list_duplicates.begin(), list_duplicates.end(), action_item_compare_names);
 
 	/* Ignore duplicate entries */
-	for (GList *work = list_duplicates; work; work = work->next)
+	std::vector<ActionItem> list_unique;
+	for (const ActionItem &action_item : list_duplicates)
 		{
-		if (!g_list_find_custom(list_unique, static_cast<ActionItem *>(work->data)->label, reinterpret_cast<GCompareFunc>(action_item_compare_label)))
+		const auto action_item_has_label = [label = action_item.label](const ActionItem &action_item)
+		{
+			return action_item.has_label(label);
+		};
+		if (std::none_of(list_unique.cbegin(), list_unique.cend(), action_item_has_label))
 			{
-			action_item = g_new0(ActionItem, 1);
-			action_item->name = g_strdup(static_cast<ActionItem *>(work->data)->name);
-			action_item->label = g_strdup(static_cast<ActionItem *>(work->data)->label);
-			action_item->icon_name = g_strdup(static_cast<ActionItem *>(work->data)->icon_name);
-			list_unique = g_list_append(list_unique, action_item);
+			list_unique.push_back(action_item);
 			}
 		}
 
-	g_list_free_full(list_duplicates, free_action_items_cb);
-
 	return list_unique;
-}
-
-gint action_item_compare_label(const ActionItem *action_item, const gchar *label)
-{
-	return g_strcmp0(action_item->label, label);
 }
 
 gboolean defined_mouse_buttons(GtkWidget *, GdkEventButton *event, gpointer data)
