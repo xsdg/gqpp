@@ -702,7 +702,7 @@ option = get_option('unit_tests')
 if option.enabled()
     if xvfb.found()
         get_test_images_sh = find_program('get-test-images.sh', dirs : scriptsdir, required : true)
-        image_test_sh = find_program('image-test.sh', dirs : scriptsdir, required : true)
+        image_test_py = find_program('image-test.py', dirs : scriptsdir, required : true)
 
         images_dir = join_paths(meson.current_build_dir(), 'test-images.p')
 
@@ -716,7 +716,7 @@ if option.enabled()
             image_name = path_array[path_array.length() - 1]
 
             should_fail = image_name.startswith('fail')
-            test_cmd = [image_test_sh.full_path(), geeqie_exe.full_path(), image]
+            test_cmd = [image_test_py.full_path(), geeqie_exe.full_path(), image]
             test('Image_ ' + image_name, isolate_test_sh, args: test_cmd, should_fail : should_fail, timeout: 100, suite: ['functional', 'image'])
         endforeach
         summary({'Image tests' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)

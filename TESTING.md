@@ -83,7 +83,7 @@ meson setup -C build -D unit_test=enabled
 This tests that Geeqie can successfully open and provide metadata info about a
 library of images of different types.
 
-See `scripts/image-test.sh` for more details.
+See `scripts/image-test.py` for more details.
 
 ### Lua tests
 
