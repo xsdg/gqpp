@@ -57,7 +57,7 @@ export XDG_RUNTIME_DIR="${HOME}/.runtime"
 mkdir -p "$XDG_RUNTIME_DIR"
 # Mode setting required by the spec.
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-chmod -m 0700 "$XDG_RUNTIME_DIR"
+chmod 0700 "$XDG_RUNTIME_DIR"
 
 # Change to temporary homedir and ensure that XDG_CONFIG_HOME exists.
 cd
