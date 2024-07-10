@@ -54,9 +54,10 @@ trap teardown EXIT
 export HOME="$TEST_HOME"
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_RUNTIME_DIR="${HOME}/.runtime"
+mkdir -p "$XDG_RUNTIME_DIR"
 # Mode setting required by the spec.
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-mkdir -p -m 0700 "$XDG_RUNTIME_DIR"
+chmod -m 0700 "$XDG_RUNTIME_DIR"
 
 # Change to temporary homedir and ensure that XDG_CONFIG_HOME exists.
 cd
