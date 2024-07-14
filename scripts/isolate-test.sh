@@ -67,4 +67,8 @@ mkdir -p "$XDG_CONFIG_HOME"
 # And `set -e` (above) means that we'll automatically exit with the same return
 # code as our sub-command.
 # Start with a clean environment containing only these variables.
-env -i HOME="$HOME" XDG_CONFIG_HOME="$XDG_CONFIG_HOME" XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" "$@"
+#
+# G_DEBUG="fatal-warnings" will force an abort if a warning or
+# critical error is encountered.
+# https://docs.gtk.org/glib/running.html#environment-variables
+env -i G_DEBUG="fatal-warnings" HOME="$HOME" XDG_CONFIG_HOME="$XDG_CONFIG_HOME" XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" "$@"
