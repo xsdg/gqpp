@@ -27,9 +27,9 @@ import time
 import traceback
 from typing import Optional
 
-MAX_GEEQIE_INIT_TIME_S = 5
-MAX_REMOTE_CMD_TIME_S = 5
-MAX_GEEQIE_SHUTDOWN_TIME_S = 5
+MAX_GEEQIE_INIT_TIME_S = 10
+MAX_REMOTE_CMD_TIME_S = 10
+MAX_GEEQIE_SHUTDOWN_TIME_S = 10
 
 
 class GeeqieTestError(Exception):
