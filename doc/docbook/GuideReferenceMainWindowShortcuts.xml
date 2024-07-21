@@ -45,6 +45,7 @@ keyboard shortcuts
 <row> <entry> <code> <keycap> Ctrl + E </keycap> </code> </entry> <entry> Exif window </entry> </row>
 <row> <entry> <code> <keycap> D </keycap> </code> </entry> <entry> Find duplicates </entry> </row>
 <row> <entry> <code> <keycap> Home </keycap> </code> </entry> <entry> First Image </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + Home </keycap> </code> </entry> <entry>  First Page of multi-page image </entry> </row>
 <row> <entry> <code> <keycap> Shift + F </keycap> </code> </entry> <entry> Image Flip </entry> </row>
 <row> <entry> <code> <keycap> V </keycap> </code> </entry> <entry> Full screen </entry> </row>
 <row> <entry> <code> <keycap> F11 </keycap> </code> </entry> <entry> Full screen </entry> </row>
@@ -56,6 +57,7 @@ keyboard shortcuts
 <row> <entry> <code> <keycap> I </keycap> </code> </entry> <entry> Cycle through Overlay modes </entry> </row>
 <row> <entry> <code> <keycap> Alt + K </keycap> </code> </entry> <entry> Keyword Autocomplete </entry> </row>
 <row> <entry> <code> <keycap> End </keycap> </code> </entry> <entry> Last Image </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + End </keycap> </code> </entry> <entry> Last Page of multi-page image </entry> </row>
 <row> <entry> <code> <keycap> Shift + M </keycap> </code> </entry> <entry> Image Mirror </entry> </row>
 <row> <entry> <code> <keycap> Ctrl + M </keycap> </code> </entry> <entry> Move </entry> </row>
 <row> <entry> <code> <keycap> C </keycap> </code> </entry> <entry> New collection </entry> </row>
@@ -64,6 +66,7 @@ keyboard shortcuts
 <row> <entry> <code> <keycap> Page_Down </keycap> </code> </entry> <entry> Next Image </entry> </row>
 <row> <entry> <code> <keycap> KP_Page_Down </keycap> </code> </entry> <entry> Next Image </entry> </row>
 <row> <entry> <code> <keycap> space </keycap> </code> </entry> <entry> Next Image </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + Page_Down </keycap> </code> </entry> <entry> Next Page of multi-page image </entry> </row>
 <row> <entry> <code> <keycap> O </keycap> </code> </entry> <entry> Open collection </entry> </row>
 <row> <entry> <code> <keycap> Ctrl + J </keycap> </code> </entry> <entry> Pan view </entry> </row>
 <row> <entry> <code> <keycap> Shift + Delete </keycap> </code> </entry> <entry> Delete </entry> </row>
@@ -71,6 +74,7 @@ keyboard shortcuts
 <row> <entry> <code> <keycap> Page_Up </keycap> </code> </entry> <entry> Previous Image </entry> </row>
 <row> <entry> <code> <keycap> KP_Page_Up </keycap> </code> </entry> <entry> Previous Image </entry> </row>
 <row> <entry> <code> <keycap> BackSpace </keycap> </code> </entry> <entry> Previous Image </entry> </row>
+<row> <entry> <code> <keycap> Ctrl + Page_Up </keycap> </code> </entry> <entry> Previous Page of multi-page image </entry> </row>
 <row> <entry> <code> <keycap> Shift + P </keycap> </code> </entry> <entry> Print </entry> </row>
 <row> <entry> <code> <keycap> Ctrl + Q </keycap> </code> </entry> <entry> Quit </entry> </row>
 <row> <entry> <code> <keycap> Alt + KP_0 </keycap> </code> </entry> <entry> Rating 0 </entry> </row>
