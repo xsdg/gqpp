@@ -461,7 +461,7 @@ static void bar_menu_add_popup(GtkWidget *widget)
 }
 
 
-static gboolean bar_menu_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer)
+static gboolean bar_menu_expander_cb(GtkWidget *widget, GdkEventButton *bevent, gpointer)
 {
 	if (bevent->button == MOUSE_BUTTON_RIGHT)
 		{
@@ -684,7 +684,7 @@ void bar_add(GtkWidget *bar, GtkWidget *pane)
 
 	gq_gtk_box_pack_start(GTK_BOX(bd->vbox), expander, FALSE, TRUE, 0);
 
-	g_signal_connect(expander, "button_release_event", G_CALLBACK(bar_menu_cb), bd);
+	g_signal_connect(expander, "button_release_event", G_CALLBACK(bar_menu_expander_cb), bd);
 	g_signal_connect(expander, "notify::expanded", G_CALLBACK(bar_expander_cb), pd);
 
 	gq_gtk_container_add(GTK_WIDGET(expander), pane);
@@ -769,8 +769,6 @@ GtkWidget *bar_new(LayoutWindow *lw)
 
 	g_signal_connect(G_OBJECT(bd->widget), "size-allocate",
 			 G_CALLBACK(bar_size_allocate), bd);
-
-	g_signal_connect(G_OBJECT(bd->widget), "button_release_event", G_CALLBACK(bar_menu_cb), bd);
 
 	bd->width = SIDEBAR_DEFAULT_WIDTH;
 
