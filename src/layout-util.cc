@@ -3156,6 +3156,33 @@ static void layout_actions_setup_editors(LayoutWindow *lw)
 			}
 		gq_gtk_action_group_add_actions(lw->action_group_editors, &entry, 1, lw);
 
+		GList *button_list;
+		GList *work_button_list;
+
+		button_list = gtk_container_get_children(GTK_CONTAINER(lw->toolbar[TOOLBAR_MAIN]));
+		work_button_list = button_list;
+
+		while (work_button_list)
+			{
+			if (g_strcmp0(gtk_widget_get_tooltip_text(GTK_WIDGET(work_button_list->data)), editor->key) == 0)
+				{
+				GtkWidget *image = nullptr;
+				if (editor->icon)
+					{
+					image = gtk_image_new_from_stock(editor->key, GTK_ICON_SIZE_BUTTON);
+					}
+				else
+					{
+					image = gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE, GTK_ICON_SIZE_BUTTON);
+					}
+				gtk_button_set_image(GTK_BUTTON(work_button_list->data), GTK_WIDGET(image));
+				gtk_widget_set_tooltip_text(GTK_WIDGET(work_button_list->data), editor->name);
+				}
+			work_button_list = work_button_list->next;
+			}
+
+		g_list_free(button_list);
+
 		path = layout_actions_editor_menu_path(editor);
 		layout_actions_editor_add(desc, path, old_path);
 
@@ -3512,10 +3539,23 @@ void layout_toolbar_add(LayoutWindow *lw, ToolbarType type, const gchar *action_
 		}
 	else
 		{
-		action = gq_gtk_action_group_get_action(lw->action_group, action_name);
+		if (g_str_has_suffix(action_name, ".desktop"))
+			{
+			action = gq_gtk_action_group_get_action(lw->action_group_editors, action_name);
+
+			/** @FIXME Using tootip as a flag to layout_actions_setup_editors()
+			 * is not a good way.
+			 */
+			tooltip_text = gtk_action_get_label(action);
+			}
+		else
+			{
+			action = gq_gtk_action_group_get_action(lw->action_group, action_name);
+
+			tooltip_text = gq_gtk_action_get_tooltip(action);
+			}
 
 		action_icon = gq_gtk_action_create_icon(action, GTK_ICON_SIZE_SMALL_TOOLBAR);
-		tooltip_text = gq_gtk_action_get_tooltip(action);
 
 		gq_gtk_ui_manager_add_ui(lw->ui_manager, lw->toolbar_merge_id[type], path, action_name, action_name, GTK_UI_MANAGER_TOOLITEM, FALSE);
 
