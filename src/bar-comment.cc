@@ -256,9 +256,7 @@ static void bar_pane_comment_destroy(gpointer data)
 	auto pcd = static_cast<PaneCommentData *>(data);
 
 	file_data_unregister_notify_func(bar_pane_comment_notify_cb, pcd);
-#if HAVE_SPELL
-	gtk_container_remove(GTK_CONTAINER(gtk_widget_get_parent(pcd->comment_view)), pcd->comment_view);
-#endif
+
 	file_data_unref(pcd->fd);
 	g_free(pcd->key);
 
