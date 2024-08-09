@@ -385,7 +385,7 @@ class FileData::FileList
 
     protected:
 	static GList *filter_out_sidecars(GList *flist);
-	static gboolean is_hidden_file(const gchar *name);
+	static gboolean is_hidden_file(const gchar *filepath);
 	static gboolean read_list_real(const gchar *dir_path, GList **files, GList **dirs, gboolean follow_symlinks);
 	static gint sort_file_cb(gconstpointer a, gconstpointer b, gpointer data);
 	static gint sort_path_cb(gconstpointer a, gconstpointer b);

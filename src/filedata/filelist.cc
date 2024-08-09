@@ -76,11 +76,30 @@ GList *FileData::FileList::filter_out_sidecars(GList *flist)
  * the main filelist function
  *-----------------------------------------------------------------------------
  */
-gboolean FileData::FileList::is_hidden_file(const gchar *name)
+/**
+ * @brief File hidden status
+ * @param filepath Full path to file
+ * @returns
+ *
+ * Takes into account the contents of a .hidden file.
+ * The Preferences/File Filters/Show Hidden Files Or Folders
+ * option will ultimately determine if the file is displayed.
+ */
+gboolean FileData::FileList::is_hidden_file(const gchar *filepath)
 {
-	if (name[0] != '.') return FALSE;
-	if (name[1] == '\0' || (name[1] == '.' && name[2] == '\0')) return FALSE;
-	return TRUE;
+	GFile *file;
+	GFileInfo *info;
+	gboolean res = FALSE;
+
+	file = g_file_new_for_path(filepath);
+	info = g_file_query_info(file, G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN, G_FILE_QUERY_INFO_NONE, nullptr, nullptr);
+
+	res = g_file_info_get_is_hidden(info);
+
+	g_object_unref(file);
+	g_object_unref(info);
+
+	return res;
 }
 
 gboolean FileData::FileList::read_list_real(const gchar *dir_path, GList **files, GList **dirs, gboolean follow_symlinks)
@@ -122,10 +141,13 @@ gboolean FileData::FileList::read_list_real(const gchar *dir_path, GList **files
 		const gchar *name = dir->d_name;
 		gchar *filepath;
 
-		if (!options->file_filter.show_hidden_files && is_hidden_file(name))
-			continue;
-
 		filepath = g_build_filename(pathl, name, NULL);
+
+		if (!options->file_filter.show_hidden_files && is_hidden_file(filepath))
+			{
+			continue;
+			}
+
 		if (stat_func(filepath, &ent_sbuf) >= 0)
 			{
 			if (S_ISDIR(ent_sbuf.st_mode))
@@ -387,10 +409,11 @@ GList *FileData::FileList::filter(GList *list, gboolean is_dir_list)
 		{
 		auto fd = static_cast<FileData *>(work->data);
 		const gchar *name = fd->name;
+		const gchar *filepath = fd->path;
 		GList *link = work;
 		work = work->next;
 
-		if ((!options->file_filter.show_hidden_files && is_hidden_file(name)) ||
+		if ((!options->file_filter.show_hidden_files && is_hidden_file(filepath)) ||
 		    (!is_dir_list && !filter_name_exists(name)) ||
 		    (is_dir_list && name[0] == '.' && (strcmp(name, GQ_CACHE_LOCAL_THUMB) == 0 ||
 						       strcmp(name, GQ_CACHE_LOCAL_METADATA) == 0)) )
