@@ -94,10 +94,14 @@ gboolean FileData::FileList::is_hidden_file(const gchar *filepath)
 	file = g_file_new_for_path(filepath);
 	info = g_file_query_info(file, G_FILE_ATTRIBUTE_STANDARD_IS_HIDDEN, G_FILE_QUERY_INFO_NONE, nullptr, nullptr);
 
-	res = g_file_info_get_is_hidden(info);
+	if (info)
+		{
+		res = g_file_info_get_is_hidden(info);
+
+		g_object_unref(info);
+		}
 
 	g_object_unref(file);
-	g_object_unref(info);
 
 	return res;
 }
