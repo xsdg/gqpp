@@ -192,7 +192,7 @@
         <guiicon>
           <inlinegraphic fileref="gtk-color-picker.png" />
         </guiicon>
-        Shows coordinates and RGB value under cursor.
+        Shows coordinates and RGB[A] value under cursor.
       </para>
       <para />
     </section>

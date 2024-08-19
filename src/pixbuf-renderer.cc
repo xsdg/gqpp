@@ -2815,7 +2815,7 @@ static void pr_stereo_temp_disable(PixbufRenderer *pr, gboolean disable)
  * @brief x_pixel and y_pixel are the pixel coordinates see #pixbuf_renderer_get_mouse_position
  */
 gboolean pixbuf_renderer_get_pixel_colors(PixbufRenderer *pr, gint x_pixel, gint y_pixel,
-                                          gint *r_mouse, gint *g_mouse, gint *b_mouse)
+                                          gint *r_mouse, gint *g_mouse, gint *b_mouse, gint *a_mouse)
 {
 	GdkPixbuf *pb = pr->pixbuf;
 	gint p_alpha;
@@ -2833,6 +2833,7 @@ gboolean pixbuf_renderer_get_pixel_colors(PixbufRenderer *pr, gint x_pixel, gint
 		*r_mouse = -1;
 		*g_mouse = -1;
 		*b_mouse = -1;
+		*a_mouse = -1;
 		return FALSE;
 		}
 
@@ -2857,6 +2858,12 @@ gboolean pixbuf_renderer_get_pixel_colors(PixbufRenderer *pr, gint x_pixel, gint
 	*g_mouse = *pp;
 	pp++;
 	*b_mouse = *pp;
+
+	if (p_alpha)
+		{
+		pp++;
+		*a_mouse = *pp;
+		}
 
 	return TRUE;
 }

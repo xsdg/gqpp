@@ -773,6 +773,7 @@ static void gr_pixel_info(const gchar *, GIOChannel *channel, gpointer)
 	gint r_mouse;
 	gint g_mouse;
 	gint b_mouse;
+	gint a_mouse;
 	PixbufRenderer *pr;
 
 	if (!layout_valid(&lw_id)) return;
@@ -788,12 +789,20 @@ static void gr_pixel_info(const gchar *, GIOChannel *channel, gpointer)
 
 		if (x_pixel >= 0 && y_pixel >= 0)
 			{
-			pixbuf_renderer_get_pixel_colors(pr, x_pixel, y_pixel,
-							 &r_mouse, &g_mouse, &b_mouse);
+			pixbuf_renderer_get_pixel_colors(pr, x_pixel, y_pixel, &r_mouse, &g_mouse, &b_mouse, &a_mouse);
 
-			pixel_info = g_strdup_printf(_("[%d,%d]: RGB(%3d,%3d,%3d)"),
-						 x_pixel, y_pixel,
-						 r_mouse, g_mouse, b_mouse);
+			if (gdk_pixbuf_get_has_alpha(pr->pixbuf))
+				{
+				pixel_info = g_strdup_printf(_("[%d,%d]: RGBA(%3d,%3d,%3d,%3d)"),
+				x_pixel, y_pixel,
+				r_mouse, g_mouse, b_mouse, a_mouse);
+				}
+			else
+				{
+				pixel_info = g_strdup_printf(_("[%d,%d]: RGB(%3d,%3d,%3d)"),
+				x_pixel, y_pixel,
+				r_mouse, g_mouse, b_mouse);
+				}
 
 			g_io_channel_write_chars(channel, pixel_info, -1, nullptr, nullptr);
 			g_io_channel_write_chars(channel, "<gq_end_of_command>", -1, nullptr, nullptr);

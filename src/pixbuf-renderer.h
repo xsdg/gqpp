@@ -314,7 +314,7 @@ void pixbuf_renderer_overlay_remove(PixbufRenderer *pr, gint id);
 gboolean pixbuf_renderer_get_mouse_position(PixbufRenderer *pr, gint *x_pixel, gint *y_pixel);
 
 gboolean pixbuf_renderer_get_pixel_colors(PixbufRenderer *pr, gint x_pixel, gint y_pixel,
-	 				gint *r_mouse, gint *g_mouse, gint *b_mouse);
+	 				gint *r_mouse, gint *g_mouse, gint *b_mouse, gint *a_mouse);
 
 void pixbuf_renderer_set_size_early(PixbufRenderer *pr, guint width, guint height);
 

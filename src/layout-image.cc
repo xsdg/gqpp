@@ -2033,15 +2033,25 @@ static void layout_status_update_pixel_cb(PixbufRenderer *pr, gpointer data)
 		gint r_mouse;
 		gint g_mouse;
 		gint b_mouse;
+		gint a_mouse;
 
 		pixbuf_renderer_get_pixel_colors(pr, x_pixel, y_pixel,
-						 &r_mouse, &g_mouse, &b_mouse);
+						 &r_mouse, &g_mouse, &b_mouse, &a_mouse);
 
-		text = g_strdup_printf(_("[%*d,%*d]: RGB(%3d,%3d,%3d)"),
+		if (gdk_pixbuf_get_has_alpha(pr->pixbuf))
+			{
+			text = g_strdup_printf(_("[%*d,%*d]: RGBA(%3d,%3d,%3d,%3d)"),
+					 num_length(width - 1), x_pixel,
+					 num_length(height - 1), y_pixel,
+					 r_mouse, g_mouse, b_mouse, a_mouse);
+			}
+		else
+			{
+			text = g_strdup_printf(_("[%*d,%*d]: RGB(%3d,%3d,%3d)"),
 					 num_length(width - 1), x_pixel,
 					 num_length(height - 1), y_pixel,
 					 r_mouse, g_mouse, b_mouse);
-
+			}
 		}
 	else
 		{
