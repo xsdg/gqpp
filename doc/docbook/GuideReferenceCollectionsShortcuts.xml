@@ -26,7 +26,7 @@ keyboard shortcuts
  <row> <entry> <code> 	Ctrl + <keycap>  C </keycap> </code> </entry> <entry>  Copy </entry> </row>
 <row> <entry> <code> 	Ctrl + <keycap>  M </keycap> </code> </entry> <entry>  Move </entry> </row>
 <row> <entry> <code> 	Ctrl + <keycap>  R </keycap> </code> </entry> <entry>  Rename </entry> </row>
-<row> <entry> <code> 	Ctrl + <keycap>  D </keycap> </code> </entry> <entry>  Move to Trash </entry> </row>
+<row> <entry> <code> 	Ctrl + <keycap>  D </keycap> </code> </entry> <entry>  Move selection to Trash </entry> </row>
 <row> <entry> <code> 	Ctrl + <keycap>  W </keycap> </code> </entry> <entry>  Close window </entry> </row>
 <row> <entry> <code> 	 <keycap> Delete </keycap> </code> </entry> <entry>  Remove </entry> </row>
 <row> <entry> <code> 	 <keycap> Return </keycap> </code> </entry> <entry>  View </entry> </row>

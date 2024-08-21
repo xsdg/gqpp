@@ -858,12 +858,12 @@ GtkWidget *vf_pop_menu(ViewFile *vf)
 				G_CALLBACK(vf_pop_menu_cut_path_cb), vf);
 	menu_item_add_divider(menu);
 	menu_item_add_icon_sensitive(menu,
-				options->file_ops.confirm_move_to_trash ? _("Move to Trash...") :
-					_("Move to Trash"), GQ_ICON_DELETE, active,
+				options->file_ops.confirm_move_to_trash ? _("Move selection to Trash...") :
+					_("Move selection to Trash"), GQ_ICON_DELETE, active,
 				G_CALLBACK(vf_pop_menu_move_to_trash_cb), vf);
 	menu_item_add_icon_sensitive(menu,
-				options->file_ops.confirm_delete ? _("_Delete...") :
-					_("_Delete"), GQ_ICON_DELETE_SHRED, active,
+				options->file_ops.confirm_delete ? _("_Delete selection...") :
+					_("_Delete selection"), GQ_ICON_DELETE_SHRED, active,
 				G_CALLBACK(vf_pop_menu_delete_cb), vf);
 	menu_item_add_divider(menu);
 

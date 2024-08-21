@@ -393,8 +393,8 @@ hard_coded_window_keys search_window_keys[] = {
 	{GDK_CONTROL_MASK, 'C', N_("Copy")},
 	{GDK_CONTROL_MASK, 'M', N_("Move")},
 	{GDK_CONTROL_MASK, 'R', N_("Rename")},
-	{GDK_CONTROL_MASK, 'D', N_("Move to Trash")},
-	{GDK_SHIFT_MASK, GDK_KEY_Delete, N_("Delete")},
+	{GDK_CONTROL_MASK, 'D', N_("Move selection to Trash")},
+	{GDK_SHIFT_MASK, GDK_KEY_Delete, N_("Delete selection")},
 	{static_cast<GdkModifierType>(0), GDK_KEY_Delete, N_("Remove")},
 	{GDK_CONTROL_MASK, 'A', N_("Select all")},
 	{static_cast<GdkModifierType>(GDK_CONTROL_MASK + GDK_SHIFT_MASK), 'A', N_("Select none")},
@@ -1221,12 +1221,12 @@ static GtkWidget *search_result_menu(SearchData *sd, gboolean on_row, gboolean e
 
 	menu_item_add_divider(menu);
 	menu_item_add_icon_sensitive(menu,
-				options->file_ops.confirm_move_to_trash ? _("Move to Trash...") :
-					_("Move to Trash"), GQ_ICON_DELETE, on_row,
+				options->file_ops.confirm_move_to_trash ? _("Move selection to Trash...") :
+					_("Move selection to Trash"), GQ_ICON_DELETE, on_row,
 				G_CALLBACK(sr_menu_move_to_trash_cb), sd);
 	menu_item_add_icon_sensitive(menu,
-				options->file_ops.confirm_delete ? _("_Delete...") :
-					_("_Delete"), GQ_ICON_DELETE_SHRED, on_row,
+				options->file_ops.confirm_delete ? _("_Delete selection...") :
+					_("_Delete selection"), GQ_ICON_DELETE_SHRED, on_row,
 				G_CALLBACK(sr_menu_delete_cb), sd);
 
 	return menu;

@@ -2251,16 +2251,33 @@ static void file_util_delete_full(FileData *source_fd, GList *flist, GtkWidget *
 	ud->done_func = done_func;
 
 	ud->details_func = file_util_details_dialog;
-	if(options->file_ops.safe_delete_enable)
+
+	if (g_list_length(flist) > 1)
 		{
-		message = _("This will move the following files to the Trash bin");
+		if(options->file_ops.safe_delete_enable)
+			{
+			message = g_strdup_printf("%s%d%s", _("⚠ This will move the following    "), g_list_length(flist), _("    files to the Trash bin"));
+			}
+		else
+			{
+			message = g_strdup_printf("%s%d%s",_("⚠ This will permanently delete the following    "), g_list_length(flist), _("    files"));
+			}
+		ud->messages.question = _("Delete files?");
 		}
 	else
 		{
-		message = _("This will permanently delete the following files");
+		if(options->file_ops.safe_delete_enable)
+			{
+			message = _("This will move the following file to the Trash bin");
+			}
+		else
+			{
+			message = _("This will permanently delete the following file");
+			}
+		ud->messages.question = _("Delete file?");
 		}
+
 	ud->messages.title = _("Delete");
-	ud->messages.question = _("Delete files?");
 	ud->messages.desc_flist = message;
 	ud->messages.desc_source_fd = "";
 	ud->messages.fail = _("File deletion failed");
