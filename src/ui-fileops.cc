@@ -1000,7 +1000,7 @@ gboolean download_web_file(const gchar *text, gboolean minimized, gpointer data)
 				log_printf("Error: could not create temporary file n%s\n", error->message);
 				g_error_free(error);
 				error = nullptr;
-				ret = TRUE;
+				ret = FALSE;
 				}
 			else
 				{
