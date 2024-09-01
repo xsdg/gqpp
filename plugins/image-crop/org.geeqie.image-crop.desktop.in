@@ -9,7 +9,7 @@ Comment=Crop image from marked rectangle
 Exec=geeqie-image-crop %f
 
 # Desktop files that are usable only in Geeqie should be marked like this:
-Categories=Graphics;
+Categories=X-Geeqie;Graphics;
 OnlyShowIn=X-Geeqie;
 
 # It can be made verbose

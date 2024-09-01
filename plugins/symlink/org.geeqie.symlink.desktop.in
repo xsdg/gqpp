@@ -7,7 +7,7 @@ Name=Symlink
 Exec=geeqie-symlink %f
 
 # Desktop files that are usable only in Geeqie should be marked like this:
-Categories=Graphics;
+Categories=X-Geeqie;Graphics;
 OnlyShowIn=X-Geeqie;
 
 # Show in menu "File"

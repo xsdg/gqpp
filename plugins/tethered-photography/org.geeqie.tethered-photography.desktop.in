@@ -6,7 +6,7 @@ Name=Tethered photography
 Exec=geeqie-tethered-photography
 
 # Desktop files that are usable only in Geeqie should be marked like this:
-Categories=Graphics;
+Categories=X-Geeqie;Graphics;
 OnlyShowIn=X-Geeqie;
 
 # It can be made verbose

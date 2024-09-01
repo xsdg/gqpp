@@ -9,7 +9,7 @@ Comment=Sets file mtime to the Exif.Image.DateTimeOriginal of the file
 Exec=geeqie-exif-datetime-to-file %F
 
 # Desktop files that are usable only in Geeqie should be marked like this:
-Categories=Graphics;
+Categories=X-Geeqie;Graphics;
 OnlyShowIn=X-Geeqie;
 
 # It can be made verbose

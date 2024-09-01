@@ -7,7 +7,7 @@ Name=Apply the orientation to image content
 Exec=geeqie-rotate -g %f
 
 # Desktop files that are usable only in Geeqie should be marked like this:
-Categories=Graphics;
+Categories=X-Geeqie;Graphics;
 OnlyShowIn=X-Geeqie;
 
 # Show in menu "Edit/Orientation"
