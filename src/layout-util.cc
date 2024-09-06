@@ -1364,6 +1364,11 @@ static void layout_menu_help_search_cb(GtkAction *, gpointer data)
 	help_search_window_show();
 }
 
+static void layout_menu_help_pdf_cb(GtkAction *, gpointer)
+{
+	help_pdf();
+}
+
 static void layout_menu_help_keys_cb(GtkAction *, gpointer data)
 {
 	auto lw = static_cast<LayoutWindow *>(data);
@@ -2712,6 +2717,7 @@ static GtkActionEntry menu_entries[] = {
   { "HelpKbd",               nullptr,                           N_("_Keyboard map"),                                    nullptr,               N_("Keyboard map"),                                    CB(layout_menu_kbd_map_cb) },
   { "HelpMenu",              nullptr,                           N_("_Help"),                                            nullptr,               nullptr,                                               nullptr },
   { "HelpNotes",             nullptr,                           N_("_Readme"),                                          nullptr,               N_("Readme"),                                          CB(layout_menu_notes_cb) },
+  { "HelpPdf",               nullptr,                           N_("Help in pdf format"),                               nullptr,               N_("Help in pdf formast"),                             CB(layout_menu_help_pdf_cb) },
   { "HelpSearch",            nullptr,                           N_("On-line help search"),                              nullptr,               N_("On-line help search"),                             CB(layout_menu_help_search_cb) },
   { "HelpShortcuts",         nullptr,                           N_("_Keyboard shortcuts"),                              nullptr,               N_("Keyboard shortcuts"),                              CB(layout_menu_help_keys_cb) },
   { "HideTools",             PIXBUF_INLINE_ICON_HIDETOOLS,      N_("_Hide file list"),                                  "<control>H",          N_("Hide file list"),                                  CB(layout_menu_hide_cb) },
