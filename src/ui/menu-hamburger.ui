@@ -251,7 +251,6 @@
       <menu action="HelpMenu">
         <separator/>
         <menuitem action="HelpContents"/>
-        <menuitem action="HelpPdf"/>
         <menuitem action="SearchAndRunCommand"/>
         <menuitem action="HelpSearch"/>
         <menuitem action="HelpShortcuts"/>

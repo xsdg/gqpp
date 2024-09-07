@@ -48,14 +48,3 @@ if running_from_git
         summary({'lua-api' : ['disabled - lua-api help file created:', false]}, section : 'Documentation', bool_yn : true)
     endif
 endif
-
-help_pdf_sh = find_program('help-html-to-pdf.sh', dirs : scriptsdir, required : false)
-if help_pdf_sh.found()
-    htmldir = join_paths(meson.project_build_root(), 'doc', 'html')
-    help_pdf = custom_target(
-        'help.pdf',
-        output: 'help.pdf',
-        command: [help_pdf_sh, htmldir, meson.project_build_root(), '@OUTPUT@'],
-        install: true,
-        install_dir: helpdir)
-endif
