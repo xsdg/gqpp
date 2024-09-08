@@ -418,4 +418,29 @@ void help_search_window_show()
 
 	gtk_widget_show(gd->dialog);
 }
+
+void help_pdf()
+{
+	GError *error = nullptr;
+	gchar *path;
+	gchar *command;
+
+	path = g_build_filename(gq_helpdir, "help.pdf", NULL);
+
+	if (!isfile(path))
+		{
+		path = g_build_filename("https://www.geeqie.org/help-pdf/help.pdf", NULL);
+		}
+
+	command = g_strdup_printf("xdg-open %s", path);
+
+	if (!g_spawn_command_line_async(command, &error))
+		{
+		log_printf(_("Warning: Failed to execute command: %s\n"), error->message);
+		g_error_free(error);
+		}
+
+	g_free(path);
+	g_free(command);
+}
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */
