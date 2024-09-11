@@ -74,15 +74,16 @@ if not option.disabled()
                     install : true,
                     install_dir : helpdir,
                     )
+                summary({'help_pdf' : ['Help file in pdf created:', true]}, section : 'Documentation', bool_yn : true)
             else
-                summary({'help_pdf' : ['docbook.xsl not found - Help files in pdf created:', false]}, section : 'Documentation', bool_yn : true)
+                summary({'help_pdf' : ['docbook.xsl not found - Help file in pdf created:', false]}, section : 'Documentation', bool_yn : true)
             endif
         else
-            summary({'help_pdf' : ['fop not found - Help files in pdf created:', false]}, section : 'Documentation', bool_yn : true)
+            summary({'help_pdf' : ['fop not found - Help file in pdf created:', false]}, section : 'Documentation', bool_yn : true)
         endif
     else
-        summary({'help_pdf' : ['xsltproc not found - Help files in pdf created:', false]}, section : 'Documentation', bool_yn : true)
+        summary({'help_pdf' : ['xsltproc not found - Help file in pdf created:', false]}, section : 'Documentation', bool_yn : true)
     endif
 else
-    summary({'help-pdf' : ['disabled - Help files in pdf created:', false]}, section : 'Documentation', bool_yn : true)
+    summary({'help-pdf' : ['disabled - Help file in pdf created:', false]}, section : 'Documentation', bool_yn : true)
 endif
