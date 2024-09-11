@@ -8,7 +8,7 @@
     can be displayed by clicking the right mouse button on the file pane or pressing the menu key while the file pane has the focus.
   </para>
   <para />
-  <section id="Listview">
+  <section id="Listview2">
     <title>List view</title>
     <para>
       This mode can be enabled by selecting
@@ -88,7 +88,7 @@
     <title>Multiple selection</title>
     <para>It is possible to select more than one image from the file pane. Multiple files can be selected with several methods:</para>
     <para />
-    <section id="Mouse">
+    <section id="Mouse2">
       <title>Mouse</title>
       <itemizedlist spacing="compact">
         <listitem>
@@ -106,7 +106,7 @@
       </itemizedlist>
       <para />
     </section>
-    <section id="Keyboard">
+    <section id="Keyboard2">
       <title>Keyboard</title>
       <itemizedlist spacing="compact">
         <listitem>
@@ -139,13 +139,13 @@
       <para />
     </section>
   </section>
-  <section id="Sorting">
+  <section id="Sorting2">
     <title>Sorting</title>
     <para>The order of the images can be changed by clicking the sort area of the status bar or from the context menu. The sort methods are by file name, number, file date, or file size. The number method will sort file names by their natural order, for example files with names of file_10, file_12, and file_9 will appear in order file_9, file_10, and file_12.</para>
     <para>Selecting the ascending menu item will toggle between increasing and decreasing sort order.</para>
     <para />
   </section>
-  <section id="Contextmenu">
+  <section id="Contextmenu3">
     <title>Context menu</title>
     <para>
       Right clicking the mouse or pressing the menu key while the file pane has focus will display a menu. The menu functions will perform the same as those that match the window's
@@ -204,7 +204,7 @@
     </variablelist>
     <para />
   </section>
-  <section id="DragandDrop">
+  <section id="DragandDrop3">
     <title>Drag and Drop</title>
     <para>Drag and drop can be initialized with the primary or middle mouse buttons in the file pane. Dragging a file that is selected will include all selected files in the drag. Dragging a file that is not selected will first change the selection to the dragged file, and clear the previous selection.</para>
     <para />

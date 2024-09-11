@@ -100,6 +100,8 @@
     <para>Reduce the size of an image.</para>
     <table frame="all">
       <tgroup cols="2" rowsep="1" colsep="1">
+      <colspec colname="col1" colwidth="1*"/>
+      <colspec colname="col2" colwidth="1*"/>
         <thead>
           <row>
             <entry>Option</entry>

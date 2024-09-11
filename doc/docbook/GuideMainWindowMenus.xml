@@ -502,10 +502,10 @@
         <listitem>
           <para>
             Copy selected item-path(s) to clipboard
-            <footnote id='ref1'>
+            <footnote id='ref1'><para>
               The clipboard used is selected
               <link linkend="Behaviour">here.</link>
-            </footnote>
+            </para></footnote>
             . Each data item copied will be enclosed in quotes.
           </para>
         </listitem>
@@ -1469,7 +1469,6 @@
         </listitem>
       </varlistentry>
     </variablelist>
-    <variablelist />
     <variablelist>
       <varlistentry>
         <term>

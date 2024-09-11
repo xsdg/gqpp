@@ -19,5 +19,4 @@
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceDecodeLatLong.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceStandards.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferencePCRE.xml" />
-  <para />
 </chapter>

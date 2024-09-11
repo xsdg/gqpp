@@ -56,6 +56,7 @@ meson setup \
 -Dgps-map=disabled \
 -Dgtk4=disabled \
 -Dheif=disabled \
+-Dhelp_pdf=disabled \
 -Dj2k=disabled \
 -Djpeg=disabled \
 -Djpegxl=disabled \

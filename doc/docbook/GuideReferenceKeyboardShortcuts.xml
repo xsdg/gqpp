@@ -16,7 +16,10 @@
     <table frame="all">
       <title>Standard keyboard shortcuts</title>
       <tgroup cols="3" rowsep="1" colsep="1">
-        <thead>
+      <colspec colname="col1" colwidth="1*"/>
+      <colspec colname="col2" colwidth="1*"/>
+      <colspec colname="col3" colwidth="1*"/>
+       <thead>
           <row>
             <entry>Shortcut</entry>
             <entry>Mouse</entry>
@@ -84,6 +87,8 @@
     <title>Mouse actions</title>
     <table frame="all">
       <tgroup cols="2" rowsep="1" colsep="1">
+      <colspec colname="col1" colwidth="1*"/>
+      <colspec colname="col2" colwidth="1*"/>
         <thead>
           <row>
             <entry>Mouse</entry>
@@ -172,7 +177,9 @@
     <title>Arrow keys actions</title>
     <table frame="all">
       <tgroup cols="2" rowsep="1" colsep="1">
-        <thead>
+      <colspec colname="col1" colwidth="1*"/>
+      <colspec colname="col2" colwidth="1*"/>
+       <thead>
           <row>
             <entry>Shortcut</entry>
             <entry>Action</entry>

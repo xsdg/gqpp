@@ -270,7 +270,6 @@
     <note>
       <para>Geeqie must be restarted for the change to take effect.</para>
     </note>
-    <variablelist />
   </section>
   <section id="TimezoneDatabase">
     <title>Timezone Database</title>
@@ -279,7 +278,6 @@
       <link linkend="GuideReferenceUTC">here.</link>
       This option allows you to install or update the database. An Internet connection is required.
     </para>
-    <variablelist />
   </section>
   <section id="OnLineHelpSearch">
     <title>On-line help search</title>
@@ -290,6 +288,5 @@
       <para />
       <code>https://www.search-engine.com/?q=site:geeqie.org/help'</code>
     </para>
-    <variablelist />
   </section>
 </section>

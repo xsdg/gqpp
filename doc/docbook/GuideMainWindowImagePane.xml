@@ -78,11 +78,11 @@
       <title>Mouse</title>
       <para>
         Press the left mouse button on the image and hold it, then move the mouse to pan the image in the desired direction. Releasing the mouse button will stop the panning operation. The mouse wheel can also be used to scroll the image when holding down the Shift key
-        <footnote id='ref2'>
+        <footnote><para>
           The mouse wheel behavior for scrolling and image step can be swapped with the "Mouse wheel scrolls image" option located on the
           <link linkend="GuideOptionsBehavior">Behaviour tab</link>
           of the preferences dialog.
-        </footnote>
+        </para></footnote>
         .
       </para>
       <para>To scale the image size hold down the Ctrl key and scroll the mouse wheel up to zoom in, or down to zoom out.</para>

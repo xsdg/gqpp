@@ -11,7 +11,9 @@
     </para>
     <table frame="all">
       <tgroup cols="2" rowsep="1" colsep="1">
-        <tbody>
+      <colspec colname="col1" colwidth="1*"/>
+      <colspec colname="col2" colwidth="1*"/>
+       <tbody>
           <row>
             <entry>
               <emphasis role="strong">Tag</emphasis>
@@ -144,7 +146,9 @@
     <para>Examples:</para>
     <table>
       <tgroup cols="2" rowsep="1" colsep="1">
-        <tbody>
+      <colspec colname="col1" colwidth="1*"/>
+      <colspec colname="col2" colwidth="1*"/>
+       <tbody>
           <row>
             <entry>
               <emphasis role="strong">Template</emphasis>

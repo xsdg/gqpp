@@ -39,5 +39,6 @@ ninja -C build
 
 find ../geeqie.github.io/help/ -type f -exec rm "{}" \;
 cp -a build/doc/html/* ../geeqie.github.io/help
+cp -a build/doc/help.pdf ../geeqie.github.io/help-pdf
 
 exit 0

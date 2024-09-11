@@ -7,6 +7,9 @@
     <table frame="all">
       <title>Pre-formatted tags</title>
       <tgroup cols="3" rowsep="1" colsep="1">
+      <colspec colname="col1" colwidth="1*"/>
+      <colspec colname="col2" colwidth="1*"/>
+      <colspec colname="col3" colwidth="1*"/>
         <thead>
           <row>
             <entry>
@@ -357,6 +360,8 @@
     <table frame="all">
       <title>Fixed panes</title>
       <tgroup cols="2" rowsep="1" colsep="1">
+      <colspec colname="col1" colwidth="1*"/>
+      <colspec colname="col2" colwidth="1*"/>
         <thead>
           <row>
             <entry>
@@ -414,7 +419,9 @@
     <table frame="all">
       <title>Location and GPS pane</title>
       <tgroup cols="2" rowsep="1" colsep="1">
-        <thead>
+      <colspec colname="col1" colwidth="1*"/>
+      <colspec colname="col2" colwidth="1*"/>
+       <thead>
           <row>
             <entry>
               <para>Tag</para>
@@ -497,6 +504,8 @@
     <table frame="all">
       <title>Copyright pane</title>
       <tgroup cols="2" rowsep="1" colsep="1">
+      <colspec colname="col1" colwidth="1*"/>
+      <colspec colname="col2" colwidth="1*"/>
         <thead>
           <row>
             <entry>
@@ -538,6 +547,8 @@
     <table frame="all">
       <title>Exif pane</title>
       <tgroup cols="2" rowsep="1" colsep="1">
+      <colspec colname="col1" colwidth="1*"/>
+      <colspec colname="col2" colwidth="1*"/>
         <thead>
           <row>
             <entry>
@@ -686,7 +697,9 @@
     <table frame="all">
       <title>Conversion table</title>
       <tgroup cols="2" rowsep="1" colsep="1">
-        <thead>
+      <colspec colname="col1" colwidth="1*"/>
+      <colspec colname="col2" colwidth="1*"/>
+       <thead>
           <row>
             <entry>
               <para>Tag</para>

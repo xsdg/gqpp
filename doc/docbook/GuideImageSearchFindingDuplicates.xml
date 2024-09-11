@@ -179,7 +179,7 @@
       </varlistentry>
     </variablelist>
   </section>
-  <section id="Resultslist">
+  <section id="Resultslist2">
     <title>Results list</title>
     <para>Files that match with the selected comparison method will appear in the list. Matching files are grouped in alternating color.</para>
     <para>The order of the result list can be changed by clicking on the column header. This will re-order the images within each set. When comparing by image content similarity, the matching sets will be sorted by order of rank starting with the files that are most similar.</para>
@@ -202,7 +202,7 @@
     </para>
     <para>The image Dimensions column of the result list will only contain dimension information when comparing by dimensions, or when the data is easily available from memory or has been read from the cache.</para>
   </section>
-  <section id="Statusbar">
+  <section id="Statusbar2">
     <title>Status bar</title>
     <para>Along the bottom of the Find Duplicates window is an area that displays the count of files contained in the window, and the number of files in the result list.</para>
     <para>The status bar will also display the status of an active compare operation using the progress bar. A compare operation involves 2 or 3 stages, depending on the type of comparison. These are the stages in order:</para>
@@ -239,7 +239,7 @@
     <para>Sometimes it is useful to compare one group of files to another, different group of files. Enable this check box to compare two groups of files. When enabled, a second list will appear and files can be added to this list using the same methods for the main list.</para>
     <para>When comparing two file sets the results list will display matches between the two lists. For each match group, the first file is always from the main group, and the remaining files are always from the second group.</para>
   </section>
-  <section id="DragandDrop">
+  <section id="DragandDrop2">
     <title>Drag and Drop</title>
     <para>Drag and drop can be initiated with the primary or middle mouse buttons. Dragging a file that is selected will include all selected files in the drag. Dragging a file that is not selected will first change the selection to the dragged file, and clear the previous selection.</para>
   </section>

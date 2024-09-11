@@ -74,12 +74,12 @@
     </para>
     <para />
   </section>
-  <section id="Statusbar">
+  <section id="Statusbar3">
     <title>Status bar</title>
     <para>The status bar displays the total number of images in the collection, and the number of selected images in parenthesis. A progress bar also displays whenever thumbnails are loading from disk.</para>
     <para />
   </section>
-  <section id="DragandDrop">
+  <section id="DragandDrop4">
     <title>Drag and Drop</title>
     <para>Drag and drop can be initialized with the primary or middle mouse buttons. Dragging an image that is selected will include all selected images in the drag. Dragging an image that is not selected will drag only that image.</para>
     <para>Dropping files and folders onto the collection window will add them to the collection, they will be inserted at the location of the drop. A red arrow will indicate the location of the drop as files are dragged over the collection window. When one or more folders are included in the drop list, a menu will appear to select how to handle the contents of the folders.</para>

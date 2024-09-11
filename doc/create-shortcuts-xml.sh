@@ -49,6 +49,8 @@ pre_2_xml="
 keyboard shortcuts\n
 </title>\n
 <tgroup cols=\"2\" rowsep=\"1\" colsep=\"1\">\n
+<colspec colname=\"col1\" colwidth=\"1*\"/>
+<colspec colname=\"col2\" colwidth=\"1*\"/>
 <thead>\n
 <row>\n
 <entry>Shortcut</entry>\n

@@ -209,7 +209,9 @@
     <para>As an aide, in addition to standard metadata tags, Geeqie can call lua scripts and also provides certain pre-formatted tags. These tags are:</para>
     <table id="formatted_exif">
       <tgroup cols="2" rowsep="1" colsep="1">
-        <tbody>
+      <colspec colname="col1" colwidth="1*"/>
+      <colspec colname="col2" colwidth="1*"/>
+       <tbody>
           <row>
             <entry>
               <emphasis role="strong">Tag</emphasis>
@@ -348,17 +350,17 @@
             <entry>lua.lensID</entry>
             <entry>
               lens identification data
-              <footnote id='lensid'>
+              <footnote id='lensid'><para>
                 Requires lua and exiftool.
                 <note>This function may be slow.</note>
-              </footnote>
+              </para></footnote>
             </entry>
           </row>
           <row>
             <entry>lua.&lt;lua script&gt;</entry>
             <entry>
               Call a lua script
-              <footnote id='lua_ref1'>The output is expected to be text.</footnote>
+              <footnote id='lua_ref1'><para>The output is expected to be text.</para></footnote>
             </entry>
           </row>
         </tbody>

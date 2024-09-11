@@ -23,6 +23,9 @@
     </para>
     <table frame="all">
       <tgroup cols="3" rowsep="1" colsep="1">
+      <colspec colname="col1" colwidth="1*"/>
+      <colspec colname="col2" colwidth="1*"/>
+      <colspec colname="col3" colwidth="1*"/>
         <thead rowsep="1" colsep="1">
           <row>
             <entry>Icon</entry>
@@ -278,7 +281,7 @@
     <para>The order of the folder names will match the order selected for the file pane. Sort order can be changed by clicking the sort area of the status bar or from the context menu of the file pane.</para>
     <para />
   </section>
-  <section id="Contextmenu">
+  <section id="Contextmenu2">
     <title>Context menu</title>
     <para>
       Right clicking the mouse or pressing the menu key while the folder pane has focus will display a menu. The menu functions will perform the same as those that match the window's
@@ -286,7 +289,10 @@
       , however a few functions are unique to the context menu:
     </para>
     <table frame="all">
-      <tgroup cols="3" rowsep="1" colsep="1">
+       <tgroup cols="3" rowsep="1" colsep="1">
+       <colspec colname="col1" colwidth="1*"/>
+       <colspec colname="col2" colwidth="1*"/>
+       <colspec colname="col3" colwidth="1*"/>
         <thead rowsep="1" colsep="1">
           <row>
             <entry>Icon</entry>
@@ -393,10 +399,10 @@
             <entry>
               <para>
                 Copy selected item-path(s) to clipboard
-                <footnote id='ref1'>
+                <footnote id='ref1'><para>
                   The clipboard used is selected
                   <link linkend="Behaviour">here.</link>
-                </footnote>
+                </para></footnote>
                 . Each data item copied will be enclosed in quotes.
               </para>
             </entry>

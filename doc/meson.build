@@ -48,3 +48,41 @@ if running_from_git
         summary({'lua-api' : ['disabled - lua-api help file created:', false]}, section : 'Documentation', bool_yn : true)
     endif
 endif
+
+
+option = get_option('help_pdf')
+if not option.disabled()
+    xmldir =  join_paths(meson.current_source_dir(), 'docbook/')
+
+    xsltproc_exe = find_program('xsltproc', required : false)
+    if xsltproc_exe.found()
+        fop_exe = find_program('fop', required : false)
+        if fop_exe.found()
+            if fs.is_file('/usr/share/xml/docbook/stylesheet/docbook-xsl/fo/docbook.xsl')
+                intermediate_fo = custom_target(
+                    'create fo file',
+                    input : guideindex_xml,
+                    output : 'output.fo',
+                    command : [xsltproc_exe, '--path', xmldir, '--stringparam', 'img.src.path',  iconsdir, '--output', '@OUTPUT@', '--stringparam', 'paper.type', 'A4', '--xinclude', '/usr/share/xml/docbook/stylesheet/docbook-xsl/fo/docbook.xsl', '@INPUT@'],
+                    )
+
+                help_pdf = custom_target(
+                    'create pdf file',
+                    input : intermediate_fo,
+                    output : 'help.pdf',
+                    command : [fop_exe, '-fo', '@INPUT@', '-pdf', '@OUTPUT@'],
+                    install : true,
+                    install_dir : helpdir,
+                    )
+            else
+                summary({'help_pdf' : ['docbook.xsl not found - Help files in pdf created:', false]}, section : 'Documentation', bool_yn : true)
+            endif
+        else
+            summary({'help_pdf' : ['fop not found - Help files in pdf created:', false]}, section : 'Documentation', bool_yn : true)
+        endif
+    else
+        summary({'help_pdf' : ['xsltproc not found - Help files in pdf created:', false]}, section : 'Documentation', bool_yn : true)
+    endif
+else
+    summary({'help-pdf' : ['disabled - Help files in pdf created:', false]}, section : 'Documentation', bool_yn : true)
+endif
