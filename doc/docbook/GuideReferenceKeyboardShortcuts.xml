@@ -86,6 +86,7 @@
   <section id="MouseActions">
     <title>Mouse actions</title>
     <table frame="all">
+      <title>Mouse action shortcuts</title>
       <tgroup cols="2" rowsep="1" colsep="1">
       <colspec colname="col1" colwidth="1*"/>
       <colspec colname="col2" colwidth="1*"/>
@@ -176,6 +177,7 @@
   <section id="ArrowKeys">
     <title>Arrow keys actions</title>
     <table frame="all">
+      <title>Arrow key shortcuts</title>
       <tgroup cols="2" rowsep="1" colsep="1">
       <colspec colname="col1" colwidth="1*"/>
       <colspec colname="col2" colwidth="1*"/>

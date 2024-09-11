@@ -22,6 +22,7 @@
       menu.
     </para>
     <table frame="all">
+      <title>Tool bar</title>
       <tgroup cols="3" rowsep="1" colsep="1">
       <colspec colname="col1" colwidth="1*"/>
       <colspec colname="col2" colwidth="1*"/>
@@ -289,6 +290,7 @@
       , however a few functions are unique to the context menu:
     </para>
     <table frame="all">
+       <title>Context menu</title>
        <tgroup cols="3" rowsep="1" colsep="1">
        <colspec colname="col1" colwidth="1*"/>
        <colspec colname="col2" colwidth="1*"/>

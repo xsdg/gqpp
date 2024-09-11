@@ -99,6 +99,7 @@
     <title>Resize image</title>
     <para>Reduce the size of an image.</para>
     <table frame="all">
+      <title>Resize image options</title>
       <tgroup cols="2" rowsep="1" colsep="1">
       <colspec colname="col1" colwidth="1*"/>
       <colspec colname="col2" colwidth="1*"/>

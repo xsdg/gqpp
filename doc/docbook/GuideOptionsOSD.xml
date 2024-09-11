@@ -10,6 +10,7 @@
       <programlisting>%tag[:max_length][:extra]%</programlisting>
     </para>
     <table frame="all">
+      <title>Overlay Screen Display templates</title>
       <tgroup cols="2" rowsep="1" colsep="1">
       <colspec colname="col1" colwidth="1*"/>
       <colspec colname="col2" colwidth="1*"/>
@@ -145,6 +146,7 @@
     </para>
     <para>Examples:</para>
     <table>
+      <title>Overlay Screen Display template examples</title>
       <tgroup cols="2" rowsep="1" colsep="1">
       <colspec colname="col1" colwidth="1*"/>
       <colspec colname="col2" colwidth="1*"/>

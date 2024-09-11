@@ -208,6 +208,7 @@
     </para>
     <para>As an aide, in addition to standard metadata tags, Geeqie can call lua scripts and also provides certain pre-formatted tags. These tags are:</para>
     <table id="formatted_exif">
+      <title>Pre-formatted tags</title>
       <tgroup cols="2" rowsep="1" colsep="1">
       <colspec colname="col1" colwidth="1*"/>
       <colspec colname="col2" colwidth="1*"/>
