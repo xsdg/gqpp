@@ -25,24 +25,6 @@
       </affiliation>
       <email>geeqie@freelists.org</email>
     </author>
-    <revhistory>
-      <revision>
-        <revnumber>0.1</revnumber>
-        <date>2004-01-01</date>
-        <revdescription>
-          <para role="author">John Ellis</para>
-          <para role="publisher">Gqview Project</para>
-        </revdescription>
-      </revision>
-      <revision>
-        <revnumber>0.3</revnumber>
-        <date>2024-09-09</date>
-        <revdescription>
-          <para role="author">Colin Clark</para>
-          <para role="publisher">The Geeqie Team</para>
-        </revdescription>
-      </revision>
-    </revhistory>
     <legalnotice>
       <title>Feedback</title>
       <para>
@@ -57,6 +39,32 @@
         Website:
         <ulink url="https://www.geeqie.org">geeqie.org</ulink>
       </para>
+    <revhistory>
+      <revision>
+        <revnumber>0.1</revnumber>
+        <date>2004-01-01</date>
+        <revdescription>
+          <para role="author">John Ellis</para>
+          <para role="publisher">Gqview Project</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>0.2</revnumber>
+        <date>2016-05-30</date>
+        <revdescription>
+          <para role="author">Colin Clark</para>
+          <para role="publisher">The Geeqie Team</para>
+        </revdescription>
+      </revision>
+      <revision>
+        <revnumber>0.3</revnumber>
+        <date>2024-09-16</date>
+        <revdescription>
+          <para role="author">Colin Clark</para>
+          <para role="publisher">The Geeqie Team</para>
+        </revdescription>
+      </revision>
+    </revhistory>
     </legalnotice>
   </bookinfo>
 

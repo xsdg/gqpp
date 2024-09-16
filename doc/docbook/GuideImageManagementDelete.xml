@@ -14,14 +14,14 @@
       <guimenuitem>Delete</guimenuitem>
     </menuchoice>
     . Delete is also available in the context menu of all images and files. If
-    <link linkend="Delete">Enable delete key</link>
+    <emphasis role="underline"><link linkend="Delete">Enable delete key</link></emphasis>
     is enabled in Options, pressing the
     <keycap>Delete</keycap>
     key can also be used to delete files.
   </para>
   <para>
     The behavior when starting a delete operation depends on the
-    <link linkend="Delete">Confirm file delete</link>
+    <emphasis role="underline"><link linkend="Delete">Confirm file delete</link></emphasis>
     option in Options. If the option is enabled a dialog will appear to confirm the operation, if it is not enabled the files will be deleted without further interaction. In all cases if the file is unable to be deleted you will be notified by a dialog.
   </para>
   <para />
@@ -37,7 +37,7 @@
     <para>When deleting multiple files, the dialog will include two arrow buttons to step the image preview through the list of files to be deleted. Initially the preview will be blank, activate the right arrow to display the first file.</para>
     <para>
       The dialog will also display the status of the
-      <link linkend="Delete">Safe Delete</link>
+      <emphasis role="underline"><link linkend="Delete">Safe Delete</link></emphasis>
       feature. Use this to determine if a file to be deleted will be immediately lost, or if the file can possibly be recovered from the Safe Delete folder.
     </para>
     <para>
@@ -51,7 +51,7 @@
     <title>Safe Delete</title>
     <para>
       Geeqie includes a feature to temporarily store deleted files in a selected folder, to use this feature enable
-      <link linkend="Delete">Safe Delete</link>
+      <emphasis role="underline"><link linkend="Delete">Safe Delete</link></emphasis>
       on the advanced tab of the preferences dialog.
     </para>
   </section>

@@ -30,7 +30,7 @@
       from the context menu.
     </para>
     <para>
-      <link linkend="GuideOptionsFiltering">Grouped sidecar files</link>
+      <emphasis role="underline"><link linkend="GuideOptionsFiltering">Grouped sidecar files</link></emphasis>
       are represented by the main file with an expander. Clicking on the expander shows sidecar files.
     </para>
     <para />
@@ -52,7 +52,7 @@
       from the context menu.
     </para>
     <para>
-      <link linkend="GuideOptionsFiltering">Grouped sidecar files</link>
+      <emphasis role="underline"><link linkend="GuideOptionsFiltering">Grouped sidecar files</link></emphasis>
       are represented by the main file. For accessing sidecars switch to List mode.
     </para>
     <para />
@@ -66,7 +66,7 @@
     </para>
     <para>
       Characters you type into this box will be used for pattern matching to select the files displayed.
-      <link linkend="GuideReferencePCRE">Regular expressions</link>
+      <emphasis role="underline"><link linkend="GuideReferencePCRE">Regular expressions</link></emphasis>
       are used in this field.
       <para />
       For basic pattern matching "JPG" will match any filename containing those characters.
@@ -81,7 +81,7 @@
     </para>
     <para>By default filtering is case-insensitive. A checkbox labelled "Case" permits the filter to be made case-sensitive.
     </para>
-    <para>Additionally a drop-down box permits any of the file <link linkend="Filetypes">Classes</link> to be selected or deselected from the viewed list.</para>
+    <para>Additionally a drop-down box permits any of the file <emphasis role="underline"><link linkend="Filetypes">Classes</link></emphasis> to be selected or deselected from the viewed list.</para>
     <para />
   </section>
   <section id="Multipleselection">
@@ -133,7 +133,7 @@
       </para>
       <para>
         The current number of selected images and their total size will be indicated in the File list section of the
-        <link linkend="GuideMainWindowStatusBar">status bar</link>
+        <emphasis role="underline"><link linkend="GuideMainWindowStatusBar">status bar</link></emphasis>
         .
       </para>
       <para />
@@ -149,7 +149,7 @@
     <title>Context menu</title>
     <para>
       Right clicking the mouse or pressing the menu key while the file pane has focus will display a menu. The menu functions will perform the same as those that match the window's
-      <link linkend="GuideMainWindowMenus">menu bar</link>
+      <emphasis role="underline"><link linkend="GuideMainWindowMenus">menu bar</link></emphasis>
       , however a few functions are unique to the context menu:
     </para>
     <variablelist>

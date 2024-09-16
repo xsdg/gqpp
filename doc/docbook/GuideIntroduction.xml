@@ -15,19 +15,19 @@
       <title>Basic Features</title>
       <itemizedlist spacing="compact">
         <listitem>
-          <link linkend="Iconview" endterm="titleIconview" />
+          <emphasis role="underline"><link linkend="Iconview" endterm="titleIconview" /></emphasis>
         </listitem>
         <listitem>
-          <link linkend="GuideImagePresentationFullscreen" endterm="titleGuideImagePresentationFullscreen" />
+          <emphasis role="underline"><link linkend="GuideImagePresentationFullscreen" endterm="titleGuideImagePresentationFullscreen" /></emphasis>
         </listitem>
         <listitem>
-          <link linkend="GuideImagePresentationSlideshow" endterm="titleGuideImagePresentationSlideshow" />
+          <emphasis role="underline"><link linkend="GuideImagePresentationSlideshow" endterm="titleGuideImagePresentationSlideshow" /></emphasis>
         </listitem>
         <listitem>
-          <link linkend="GuideImageManagement" endterm="titleGuideImageManagement" />
+          <emphasis role="underline"><link linkend="GuideImageManagement" endterm="titleGuideImageManagement" /></emphasis>
         </listitem>
         <listitem>
-          <link linkend="GuideCollections" endterm="titleGuideCollections" />
+          <emphasis role="underline"><link linkend="GuideCollections" endterm="titleGuideCollections" /></emphasis>
         </listitem>
       </itemizedlist>
       <para />
@@ -36,35 +36,35 @@
       <title>Advanced Features</title>
       <itemizedlist spacing="compact">
         <listitem>
-          <link linkend="GuideImageSearch" endterm="titleGuideImageSearch" />
+          <emphasis role="underline"><link linkend="GuideImageSearch" endterm="titleGuideImageSearch" /></emphasis>
           <para>Image Search based on many parameters</para>
         </listitem>
         <listitem>
-          <link linkend="GuideImageSearchFindingDuplicates" endterm="titleGuideImageSearchFindingDuplicates" />
+          <emphasis role="underline"><link linkend="GuideImageSearchFindingDuplicates" endterm="titleGuideImageSearchFindingDuplicates" /></emphasis>
           <para>Find image duplicates based on image content</para>
         </listitem>
         <listitem>
-          <link linkend="GuideSidebarsInfo" endterm="titleExif" />
+          <emphasis role="underline"><link linkend="GuideSidebarsInfo" endterm="titleExif" /></emphasis>
           <para>View IPTC, and view and edit Exif and XMP data stored in images</para>
         </listitem>
         <listitem>
-          <link linkend="GuideSidebarsSortManager" endterm="titleGuideSidebarsSortManager" />
+          <emphasis role="underline"><link linkend="GuideSidebarsSortManager" endterm="titleGuideSidebarsSortManager" /></emphasis>
           <para>Simple Sort Manager to quickly sort a folder of images into other folders</para>
         </listitem>
         <listitem>
-          <link linkend="GuideImageManagementRename" endterm="titleGuideImageManagementRename" />
+          <emphasis role="underline"><link linkend="GuideImageManagementRename" endterm="titleGuideImageManagementRename" /></emphasis>
           <para>Rename images in bulk</para>
         </listitem>
         <listitem>
-          <link linkend="InformationandhistogramOverlay" endterm="titleInformationandhistogramOverlay" />
+          <emphasis role="underline"><link linkend="InformationandhistogramOverlay" endterm="titleInformationandhistogramOverlay" /></emphasis>
           <para>Overlay the image with a panel showing user-definable data</para>
         </listitem>
         <listitem>
-          <link linkend="Keywords" endterm="titleKeywords" />
+          <emphasis role="underline"><link linkend="Keywords" endterm="titleKeywords" /></emphasis>
           <para>Add XMP keywords to images, and recall those images with the search function</para>
         </listitem>
         <listitem>
-          <link linkend="GuideOptionsMain" endterm="titleGuideOptionsMain" />
+          <emphasis role="underline"><link linkend="GuideOptionsMain" endterm="titleGuideOptionsMain" /></emphasis>
           <para>Geeqie is a very configurable application</para>
         </listitem>
       </itemizedlist>

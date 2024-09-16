@@ -45,10 +45,12 @@
     <title>Image viewing</title>
     <para />
     <section id="HowdoIkeepimagessmallerthanthevisibleareafromenlargingwhenthezoomissettofittowindow">
-      <title>How do I keep images smaller than the visible area from enlarging when the zoom is set to “fit to window” ?</title>
+      <title>Limiting enlargement of images</title>
+      <para>How do I keep images smaller than the visible area from enlarging when the zoom is set to “fit to window”?
+      </para>
       <para>
         In the
-        <link linkend="GuideOptionsImage">Preferences Image dialog</link>
+        <emphasis role="underline"><link linkend="GuideOptionsImage">Preferences Image dialog</link></emphasis>
         , disable “Allow enlargement of image for zoom to fit”.
       </para>
       <para />
@@ -64,7 +66,9 @@
       <para />
     </section>
     <section id="HowdoIsettheslideshowdelaywhenstartingGeeqieinslideshowfromthecommandline">
-      <title>How do I set the slide show delay when starting Geeqie in slide show from the command line ?</title>
+      <title>Setting the slide show delay</title>
+      <para>How do I set the slide show delay when starting Geeqie in slide show from the command line ?
+      </para>
       <para>The delay can not be set when used with the standard --slideshow command line switch, as --slideshow uses the delay stored in the configuration file.</para>
       <para>For this, use the remote command --slideshow-start to start the slide show after setting the delay with --delay=. The order of the command line is important. For example for a 12 second slide show delay use:</para>
       <programlisting>geeqie --remote  --delay=12 --slideshow-start</programlisting>
@@ -80,7 +84,7 @@
       <title>How can I save and restore multiple Geeqie windows</title>
       <para>
         The option
-        <link linkend="titleGuideOptionsLayout">Exit program when this window is closed</link>
+        <emphasis role="underline"><link linkend="titleGuideOptionsLayout">Exit program when this window is closed</link></emphasis>
         provides this facility.
       </para>
       <para />
@@ -102,7 +106,7 @@
       <title>How do the Exif auto-rotation commands work?</title>
       <para>
         Image auto-rotation works in either of two modes, set by
-        <link linkend="MetadataMiscellaneous">Write altered image orientation to the metadata</link>
+        <emphasis role="underline"><link linkend="MetadataMiscellaneous">Write altered image orientation to the metadata</link></emphasis>
         option.
       </para>
       <para>
@@ -115,7 +119,7 @@
       </warning>
       <para>
         If the option
-        <link linkend="Editmenu">Auto rotate image using EXIF information</link>
+        <emphasis role="underline"><link linkend="Editmenu">Auto rotate image using EXIF information</link></emphasis>
         is selected, any images which have Exif orientation data will also be shown rotated. However, any rotation you have selected manually will always over-ride the embedded Exif rotation value.
       </para>
       <para>
@@ -124,12 +128,12 @@
         <para>If you change the orientation of an image using any of the available commands, this new orientation is stored in a metadata write queue.</para>
         <para>
           If the option
-          <link linkend="Editmenu">Auto rotate image using EXIF information</link>
+          <emphasis role="underline"><link linkend="Editmenu">Auto rotate image using EXIF information</link></emphasis>
           is selected, any images which have Exif orientation data will be shown rotated, including any in the metadata write queue.
         </para>
         <para>
           However if the option
-          <link linkend="Editmenu">Auto rotate image using EXIF information</link>
+          <emphasis role="underline"><link linkend="Editmenu">Auto rotate image using EXIF information</link></emphasis>
           is not selected, no images will be auto-rotated. If you have manually rotated any images, the metadata write icon on the status bar will alert you to that fact. Clicking the icon will give a list of the modified files.
         </para>
       </para>

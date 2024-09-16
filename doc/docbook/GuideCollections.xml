@@ -53,7 +53,7 @@
     <para>The icon pane displays images contained in the collection as thumbnails in a grid, by default the file names also appear below each thumbnail.</para>
     <para>
       The Icon pane works exactly like the Icon view mode of the
-      <link linkend="GuideMainWindowFilePane" endterm="titleGuideMainWindowFilePane" />
+      <emphasis role="underline"><link linkend="GuideMainWindowFilePane" endterm="titleGuideMainWindowFilePane" /></emphasis>
       in a main window, but with the addition that the contents of the collection can be organized with drag and drop.
     </para>
     <para>
@@ -62,14 +62,14 @@
       is available for the icon pane by right clicking the mouse or pressing the Menu key.
     </para>
     <para>
-      <link linkend="GuideReferenceKeyboardShortcuts" endterm="titleGuideReferenceKeyboardShortcuts" />
+      <emphasis role="underline"><link linkend="GuideReferenceKeyboardShortcuts" endterm="titleGuideReferenceKeyboardShortcuts" /></emphasis>
       are available in the collection window:
     </para>
     <para>
       The
       <emphasis role="strong">selection</emphasis>
       can be changed using the keyboard and mouse the same as in a
-      <link linkend="GuideMainWindowFilePane" endterm="titleGuideMainWindowFilePane" />
+      <emphasis role="underline"><link linkend="GuideMainWindowFilePane" endterm="titleGuideMainWindowFilePane" /></emphasis>
       of the main window.
     </para>
     <para />
@@ -87,7 +87,7 @@
     <note>
       <para>
         When renaming or moving files within Geeqie, the contents of collections located in the
-        <link linkend="GuideReferenceConfig">collections folder</link>
+        <emphasis role="underline"><link linkend="GuideReferenceConfig">collections folder</link></emphasis>
         will automatically update to the new name or location.
       </para>
     </note>

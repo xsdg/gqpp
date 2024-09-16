@@ -3,11 +3,11 @@
   <title id="titleGuideReferenceKeyboardShortcuts">Keyboard and Mouse Shortcuts</title>
   <para>
     The tables below shows the defaults for keyboard shortcuts. The current settings for shortcuts may be found in the
-    <link linkend="GuideOptionsKeyboard" endterm="titleGuideOptionsKeyboard" />
+    <emphasis role="underline"><link linkend="GuideOptionsKeyboard" endterm="titleGuideOptionsKeyboard" /></emphasis>
     dialogue.
     <para />
     Only the main window shortcuts can be redefined in
-    <link linkend="GuideOptionsKeyboard" endterm="titleGuideOptionsKeyboard" />
+    <emphasis role="underline"><link linkend="GuideOptionsKeyboard" endterm="titleGuideOptionsKeyboard" /></emphasis>
     . The shortcuts in other windows are fixed.
   </para>
   <note>In the list below, KP means KeyPad</note>
@@ -106,7 +106,7 @@
               <footnote id='ref1'>
                 <para>
                   Default Mouse wheel functions can be altered by changing the
-                  <link linkend="GuideOptionsBehavior">Mouse wheel scrolls image</link>
+                  <emphasis role="underline"><link linkend="GuideOptionsBehavior">Mouse wheel scrolls image</link></emphasis>
                   option.
                 </para>
               </footnote>

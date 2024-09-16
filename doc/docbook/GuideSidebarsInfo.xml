@@ -22,7 +22,7 @@
     <title>Histogram</title>
     <para>
       This histogram is identical to that shown in the
-      <link linkend="InformationandhistogramOverlay" endterm="titleInformationandhistogramOverlay" />
+      <emphasis role="underline"><link linkend="InformationandhistogramOverlay" endterm="titleInformationandhistogramOverlay" /></emphasis>
       . It can be configured by right-click to modify the display of color or linear/logarithmic scale.
     </para>
     <para />
@@ -64,7 +64,7 @@
     <note>
       <para>
         Keywords are not case-sensitive unless selected as so in
-        <link linkend="MetadataMiscellaneous">Preferences</link>
+        <emphasis role="underline"><link linkend="MetadataMiscellaneous">Preferences</link></emphasis>
       </para>
     </note>
     <para>The Keyword pane in the sidebar consists of two sections:</para>
@@ -122,15 +122,15 @@
     </para>
     <para>
       Right-click on the right-hand box allows a connection to be made between a keyword and a mark. The
-      <link linkend="GuideImageMarks" endterm="titleGuideImageMarks" />
+      <emphasis role="underline"><link linkend="GuideImageMarks" endterm="titleGuideImageMarks" /></emphasis>
       section shows how marks and keywords inter-operate.
     </para>
     <para>The ordering of keywords in the right-hand box may be changed by drag-and-drop.</para>
     <para>
       The meta-data write operation for a file is triggered either
-      <link linkend="Buttons">manually</link>
+      <emphasis role="underline"><link linkend="Buttons">manually</link></emphasis>
       or as defined in
-      <link linkend="GuideOptionsMetadata" endterm="titleGuideOptionsMetadata" />
+      <emphasis role="underline"><link linkend="GuideOptionsMetadata" endterm="titleGuideOptionsMetadata" /></emphasis>
       .
     </para>
     <para>
@@ -173,7 +173,7 @@
       Frequently used sets of keywords can be entered as comma-delimited lists.
       <para />
       The list of keywords used for autocompletion can be edited on the
-      <link linkend="GuideOptionsKeywords">Keywords</link>
+      <emphasis role="underline"><link linkend="GuideOptionsKeywords">Keywords</link></emphasis>
       tab of the Preferences dialog.
       <para />
       The menu action "Keyword autocomplete", set to
@@ -203,7 +203,7 @@
     </para>
     <para>
       It is also possible to drag new items from the
-      <link linkend="GuideOtherWindowsExif" endterm="titleGuideOtherWindowsExif" />
+      <emphasis role="underline"><link linkend="GuideOtherWindowsExif" endterm="titleGuideOtherWindowsExif" /></emphasis>
       onto any pane.
     </para>
     <para>As an aide, in addition to standard metadata tags, Geeqie can call lua scripts and also provides certain pre-formatted tags. These tags are:</para>
@@ -284,7 +284,7 @@
               <footnote id='ref1'>
                 <para>
                   Refer to
-                  <link linkend="GuideReferenceUTC">UTC and DST</link>
+                  <emphasis role="underline"><link linkend="GuideReferenceUTC">UTC and DST</link></emphasis>
                   section.
                 </para>
               </footnote>
@@ -297,7 +297,7 @@
               <footnote id='ref1'>
                 <para>
                   Refer to
-                  <link linkend="GuideReferenceUTC">UTC and DST</link>
+                  <emphasis role="underline"><link linkend="GuideReferenceUTC">UTC and DST</link></emphasis>
                   section.
                 </para>
               </footnote>
@@ -382,7 +382,7 @@
               <listitem>
                 <para>
                   Exif, IPTC, XMP or
-                  <link linkend="formatted_exif">Geeqie formatted exif</link>
+                  <emphasis role="underline"><link linkend="formatted_exif">Geeqie formatted exif</link></emphasis>
                   tags.
                 </para>
               </listitem>
@@ -453,7 +453,7 @@
           Geo-coded search
           <para />
           Left-click stores the latitude/longitude under the cursor into the clipboard. This may be used to define the origin of a
-          <link linkend="Searchparameters">geocode search</link>
+          <emphasis role="underline"><link linkend="Searchparameters">geocode search</link></emphasis>
           .
         </para>
       </listitem>
@@ -469,7 +469,7 @@
           Map Centering
           <para />
           If an internet URL containing a valid latitude and longitude is dropped on the map, the map will be re-centered on that location. The zoom level will not change. Refer to
-          <link linkend="GuideReferenceDecodeLatLong">Decoding Latitude and Longitude</link>
+          <emphasis role="underline"><link linkend="GuideReferenceDecodeLatLong">Decoding Latitude and Longitude</link></emphasis>
           .
         </para>
       </listitem>

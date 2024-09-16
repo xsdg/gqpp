@@ -88,7 +88,7 @@
           <para/>The search can be restricted to symbolic links by enabling the Symbolic Link checkbox.
           <para />
           If "contains" or "path contains" is selected,
-          <link linkend="GuideReferencePCRE">Perl Compatible Regular Expressions</link>
+          <emphasis role="underline"><link linkend="GuideReferencePCRE">Perl Compatible Regular Expressions</link></emphasis>
           are used.
         </listitem>
       </varlistentry>
@@ -122,7 +122,7 @@
           button displays a pop up calendar to enter the date.
           <para />
           One of four date types may be selected. They are described in the
-          <link linkend="GuideReferenceFileDates">Reference section</link>
+          <emphasis role="underline"><link linkend="GuideReferenceFileDates">Reference section</link></emphasis>
           .
           <note>If an image does not have an exif date, it will default to 01 January 1970.</note>
         </listitem>
@@ -145,7 +145,7 @@
         </term>
         <listitem>
           The search will match if the image contents are similar within the percentage value, inclusive. This uses the same test and data that is used to determine image similarity when
-          <link linkend="GuideImageSearchFindingDuplicates">Finding Duplicates</link>
+          <emphasis role="underline"><link linkend="GuideImageSearchFindingDuplicates">Finding Duplicates</link></emphasis>
           . The entry is for entering the path for the image to use in this test.
         </listitem>
       </varlistentry>
@@ -161,7 +161,7 @@
         </term>
         <listitem>
           The search will match if the file's Comments field contains the entered pattern.
-          <link linkend="GuideReferencePCRE">Perl Compatible Regular Expressions</link>
+          <emphasis role="underline"><link linkend="GuideReferencePCRE">Perl Compatible Regular Expressions</link></emphasis>
           are used.
         </listitem>
       </varlistentry>
@@ -171,9 +171,9 @@
         </term>
         <listitem>
           The search will match if the file's Exif Tag contains the pattern entered in the Value box.
-          <link linkend="GuideReferencePCRE">Perl Compatible Regular Expressions</link>
+          <emphasis role="underline"><link linkend="GuideReferencePCRE">Perl Compatible Regular Expressions</link></emphasis>
           are used.
-          <note>The value checked will be against the formatted value e.g. for focal length search for 67.5 mm and not 675/10. See also <link linkend="formatted_exif">pre-formatted tags</link></note>
+          <note>The value checked will be against the formatted value e.g. for focal length search for 67.5 mm and not 675/10. See also <emphasis role="underline"><link linkend="formatted_exif">pre-formatted tags</link></emphasis></note>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -194,9 +194,9 @@
           </itemizedlist>
           <note>
             In this last case, the result of a search may contain the latitude/longitude embedded in the URL. This may be automatically decoded with the help of an external file:-
-            <programlisting xml:space="preserve">$HOME/.config/geeqie/geocode-parameters.awk</programlisting>
+            <code>$HOME/.config/geeqie/geocode-parameters.awk</code>
             See
-            <link linkend="GuideReferenceDecodeLatLong">Decoding Latitude and Longitude</link>
+            <emphasis role="underline"><link linkend="GuideReferenceDecodeLatLong">Decoding Latitude and Longitude</link></emphasis>
             for details on how to create this file.
           </note>
         </listitem>
@@ -225,7 +225,7 @@
         </term>
         <listitem>
           The search will match if the file does or does not have a mark attached to it. Refer to
-          <link linkend="GuideImageMarks">Marking Images</link>
+          <emphasis role="underline"><link linkend="GuideImageMarks">Marking Images</link></emphasis>
           .
         </listitem>
       </varlistentry>
@@ -243,7 +243,7 @@
     </para>
     <para>
       The
-      <link linkend="GuideReferenceKeyboardShortcuts" endterm="titleGuideReferenceKeyboardShortcuts" />
+      <emphasis role="underline"><link linkend="GuideReferenceKeyboardShortcuts" endterm="titleGuideReferenceKeyboardShortcuts" /></emphasis>
       available are listed here.
     </para>
     <para>The image Dimensions column of the result list will only contain dimension information when dimensions are included in the search parameters.</para>

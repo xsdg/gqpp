@@ -8,12 +8,12 @@
     <para>The image is drawn to the screen as it is decoded from disk. The image can be panned and zoomed while it is still loading. Image adjustment operations for rotation, mirror, and flip will delay until the image is completed. The adjustment queue will remember one operation and will retain the most recently requested function, which will be performed once the image has finished loading.</para>
     <para>
       The quality of the image, especially when using the zoom feature, is dependent on the settings that are available on the
-      <link linkend="GuideOptionsImage">Image tab</link>
+      <emphasis role="underline"><link linkend="GuideOptionsImage">Image tab</link></emphasis>
       of the preferences dialog.
     </para>
     <para>
       To increase the speed of loading the next image when navigating the image list in sequence, enable the
-      <link linkend="GuideOptionsImage">Preload next image</link>
+      <emphasis role="underline"><link linkend="GuideOptionsImage">Preload next image</link></emphasis>
       option.
     </para>
     <para />
@@ -29,7 +29,7 @@
       Data the overlay will always show is:
       <itemizedlist>
          <listitem>
-          <link linkend="GuideImageMarks">Marks</link>
+          <emphasis role="underline"><link linkend="GuideImageMarks">Marks</link></emphasis>
           , if they are selected
         </listitem>
       </itemizedlist>
@@ -43,7 +43,7 @@
     </para>
     <para>
       Data the overlay displays is customizable through the
-      <link linkend="OverlayScreenDisplay">Image Overlay Template</link>
+      <emphasis role="underline"><link linkend="OverlayScreenDisplay">Image Overlay Template</link></emphasis>
       option in the Windows tab in the Preferences dialog.
     </para>
     <para />
@@ -55,7 +55,7 @@
     <section id="Keyboard">
       <title>Keyboard and mouse</title>
       <para>
-        <link linkend="GuideReferenceKeyboardShortcuts" endterm="titleGuideReferenceKeyboardShortcuts" />
+        <emphasis role="underline"><link linkend="GuideReferenceKeyboardShortcuts" endterm="titleGuideReferenceKeyboardShortcuts" /></emphasis>
         describes how you may manipulate the image displayed.
       </para>
       <note>
@@ -69,7 +69,7 @@
           , or this may happen automatically if
           <emphasis>Write altered image orientation to the metadata</emphasis>
           is set in
-          <link linkend="GuideOptionsMetadata">Metadata Options</link>
+          <emphasis role="underline"><link linkend="GuideOptionsMetadata">Metadata Options</link></emphasis>
         </para>
       </note>
       <para />
@@ -80,7 +80,7 @@
         Press the left mouse button on the image and hold it, then move the mouse to pan the image in the desired direction. Releasing the mouse button will stop the panning operation. The mouse wheel can also be used to scroll the image when holding down the Shift key
         <footnote><para>
           The mouse wheel behavior for scrolling and image step can be swapped with the "Mouse wheel scrolls image" option located on the
-          <link linkend="GuideOptionsBehavior">Behaviour tab</link>
+          <emphasis role="underline"><link linkend="GuideOptionsBehavior">Behaviour tab</link></emphasis>
           of the preferences dialog.
         </para></footnote>
         .
@@ -131,7 +131,7 @@
     <title>Context menu</title>
     <para>
       Right clicking the mouse or pressing the menu key while the image has the focus will display a menu. The menu functions will perform the same as those that match the window's
-      <link linkend="GuideMainWindowMenus">menu bar</link>
+      <emphasis role="underline"><link linkend="GuideMainWindowMenus">menu bar</link></emphasis>
       , however a few functions are unique to the context menu:
     </para>
     <variablelist>
@@ -164,10 +164,17 @@
   </section>
   <section id="Displayingimagessidebyside">
     <title>Displaying images side by side</title>
-    <para>Using View &gt; Split item from the main menu, image pane can be split into either two or four panes, allowing one to display images side by side. You may use drag'n drop to change images in each pane.</para>
+    <para>Using <emphasis role="bold"><menuchoice>
+        <guimenu>View</guimenu>
+        <guimenuitem>Split</guimenuitem>
+        </menuchoice></emphasis> item from the main menu, image pane can be split into either two, three or four panes, allowing one to display images side by side. You may use drag'n drop to change images in each pane.</para>
     <para>
       Connected zoom is possible through the
-      <emphasis role="bold">View▸Zoom▸Connected Zoom</emphasis>
+      <emphasis role="bold"><menuchoice>
+        <guimenu>View</guimenu>
+        <guisubmenu>Zoom</guisubmenu>
+        <guimenuitem>Connected Zoom</guimenuitem>
+    </menuchoice></emphasis>
       menu item. Zoom is then applied to all displayed images.
     </para>
     <para>Connected scrolling is also possible using Shift and primary mouse button.</para>

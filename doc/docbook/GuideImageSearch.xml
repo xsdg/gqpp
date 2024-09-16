@@ -10,11 +10,11 @@
       Searching large numbers of files for similarity can take significant cpu time. Part of this is the time to compute the similarity matrix for each file.
       <para />
       If the
-      <link linkend="PreferencesThumbnails">Cache Thumbnails</link>
+      <emphasis role="underline"><link linkend="PreferencesThumbnails">Cache Thumbnails</link></emphasis>
       option is selected in Preferences/General, the similarity matrix, checksum, image size and Exif Date may also be cached. This will reduce the time needed for future searches.
       <note>
         If you frequently search on similarity and your images are in a tree arrangement under a single point, the
-        <link linkend="CreateSimFiles">Create file similarity cache</link>
+        <emphasis role="underline"><link linkend="CreateSimFiles">Create file similarity cache</link></emphasis>
         from the top of the tree will generate the similarity data for all images.
       </note>
       <para>Similarity data are stored in a folder hierarchy that mirrors the location of the source images. The data have the same name as the original appended by the file extension .sim.</para>

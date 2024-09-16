@@ -5,17 +5,17 @@
   <para>An image window can always be opened from the context menu of all images and files. Keyboard shortcuts exist for most windows that display images or files, however the shortcut can vary dependent on the type of window containing them.</para>
   <para>
     The image pane contained in an image window behaves and operates similar to the
-    <link linkend="GuideMainWindowImagePane" endterm="titleGuideMainWindowImagePane" />
+    <emphasis role="underline"><link linkend="GuideMainWindowImagePane" endterm="titleGuideMainWindowImagePane" /></emphasis>
     of a Main Window, including the
-    <link linkend="InformationandhistogramOverlay" endterm="titleInformationandhistogramOverlay" />
+    <emphasis role="underline"><link linkend="InformationandhistogramOverlay" endterm="titleInformationandhistogramOverlay" /></emphasis>
     . The keyboard shortcuts are the same, and the context menu is the same except
     <emphasis>Hide file list</emphasis>
     is replaced by
     <emphasis>Close window</emphasis>
     . The
-    <link linkend="GuideImagePresentationSlideshow">slide show</link>
+    <emphasis role="underline"><link linkend="GuideImagePresentationSlideshow">slide show</link></emphasis>
     and
-    <link linkend="GuideImagePresentationFullscreen">full screen</link>
+    <emphasis role="underline"><link linkend="GuideImagePresentationFullscreen">full screen</link></emphasis>
     functions are also available.
   </para>
   <para />
@@ -27,7 +27,7 @@
       and
       <keycap>PageUp</keycap>
       keys. In addition, all navigation methods for the mouse and keyboard are similar to that of the
-      <link linkend="GuideMainWindowImagePane" endterm="titleGuideMainWindowImagePane" />
+      <emphasis role="underline"><link linkend="GuideMainWindowImagePane" endterm="titleGuideMainWindowImagePane" /></emphasis>
       of a Main Window.
     </para>
     <para />
@@ -36,7 +36,7 @@
     <title id="titleImageWindowDragandDrop">Drag and Drop</title>
     <para>
       Images can be dragged and dropped onto an image window, but the process is somewhat different to that of an
-      <link linkend="GuideMainWindowImagePane" endterm="titleGuideMainWindowImagePane" />
+      <emphasis role="underline"><link linkend="GuideMainWindowImagePane" endterm="titleGuideMainWindowImagePane" /></emphasis>
       . If multiple images, a folder or an image from a collection window is dropped onto the image window, you can cycle through all these images using the navigation keys.
     </para>
     <para>The dropped item can be one or more files, folders, or an image from a collection window:</para>

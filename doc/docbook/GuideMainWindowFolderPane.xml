@@ -7,7 +7,7 @@
     <title>Menu bar</title>
     <para>
       The main menu of the window. The functions available from the main menu are described in the
-      <link linkend="GuideMainWindowMenus">Menus</link>
+      <emphasis role="underline"><link linkend="GuideMainWindowMenus">Menus</link></emphasis>
       chapter.
     </para>
     <para />
@@ -144,7 +144,7 @@
             <entry>
               <para>
                 Displays the
-                <link linkend="GuideOptionsMain">Preferences window</link>
+                <emphasis role="underline"><link linkend="GuideOptionsMain">Preferences window</link></emphasis>
                 .
               </para>
             </entry>
@@ -286,7 +286,7 @@
     <title>Context menu</title>
     <para>
       Right clicking the mouse or pressing the menu key while the folder pane has focus will display a menu. The menu functions will perform the same as those that match the window's
-      <link linkend="GuideMainWindowMenus">menu bar</link>
+      <emphasis role="underline"><link linkend="GuideMainWindowMenus">menu bar</link></emphasis>
       , however a few functions are unique to the context menu:
     </para>
     <table frame="all">
@@ -320,7 +320,7 @@
             <entry>
               <para>
                 Start a
-                <link linkend="GuideImagePresentationSlideshow">slide show</link>
+                <emphasis role="underline"><link linkend="GuideImagePresentationSlideshow">slide show</link></emphasis>
                 that contains all images in the selected folder.
               </para>
             </entry>
@@ -331,7 +331,7 @@
             <entry>
               <para>
                 Start a
-                <link linkend="GuideImagePresentationSlideshow">slide show</link>
+                <emphasis role="underline"><link linkend="GuideImagePresentationSlideshow">slide show</link></emphasis>
                 that contains all images in the selected folder, and all images in the sub folders of that folder.
               </para>
             </entry>
@@ -346,7 +346,7 @@
             <entry>
               <para>
                 This will open a new
-                <link linkend="GuideImageSearchFindingDuplicates">find duplicates</link>
+                <emphasis role="underline"><link linkend="GuideImageSearchFindingDuplicates">find duplicates</link></emphasis>
                 window containing all images in the selected folder.
               </para>
             </entry>
@@ -361,7 +361,7 @@
             <entry>
               <para>
                 This will open a new
-                <link linkend="GuideImageSearchFindingDuplicates">find duplicates</link>
+                <emphasis role="underline"><link linkend="GuideImageSearchFindingDuplicates">find duplicates</link></emphasis>
                 window containing all image in the selected folder, and all images in the sub folders of that folder.
               </para>
             </entry>
@@ -403,7 +403,7 @@
                 Copy selected item-path(s) to clipboard
                 <footnote id='ref1'><para>
                   The clipboard used is selected
-                  <link linkend="Behaviour">here.</link>
+                  <emphasis role="underline"><link linkend="Behaviour">here.</link></emphasis>
                 </para></footnote>
                 . Each data item copied will be enclosed in quotes.
               </para>

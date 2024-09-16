@@ -4,7 +4,7 @@
   <note>
     <para>
       This page only refers the Geeqie thumbnail caching mechanism, the shared thumbnail cache mechanism is described in
-      <link linkend="GuideReferenceStandards">Thumbnail Standards</link>
+      <emphasis role="underline"><link linkend="GuideReferenceStandards">Thumbnail Standards</link></emphasis>
       .
     </para>
   </note>
@@ -19,7 +19,7 @@
     <title>Location</title>
     <para>
       Thumbnails are stored in a location specified in
-      <link linkend="PreferencesThumbnails">Thumbnail Preferences</link>
+      <emphasis role="underline"><link linkend="PreferencesThumbnails">Thumbnail Preferences</link></emphasis>
       .
 
     </para>

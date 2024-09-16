@@ -2,7 +2,7 @@
 <chapter id="GuideImageManagement">
   <title id="titleGuideImageManagement">File Management</title>
   <para>Geeqie includes a set of utilities to copy, move, rename, and delete images. Cache maintenance utilities are also provided.
-<note>The standard commands for copy, move, rename, delete and create folder can be overridden by <link linkend="Specialplugins">Special Plugins</link></note>
+<note>The standard commands for copy, move, rename, delete and create folder can be overridden by <emphasis role="underline"><link linkend="Specialplugins">Special Plugins</link></emphasis></note>
   </para>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideImageManagementCopyMove.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideImageManagementRename.xml" />

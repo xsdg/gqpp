@@ -26,13 +26,13 @@
   </para>
   <para>
     Geeqie-created desktop files used by
-    <link linkend="GuideImageManagementPlugins">Plugins</link>
+    <emphasis role="underline"><link linkend="GuideImageManagementPlugins">Plugins</link></emphasis>
     are in the folder:
     <programlisting xml:space="preserve">.../applications</programlisting>
   </para>
   <para>
     Lua script files for
-    <link linkend="GuideReferenceLua">Lua Extensions</link>
+    <emphasis role="underline"><link linkend="GuideReferenceLua">Lua Extensions</link></emphasis>
     are in the folder:
     <programlisting xml:space="preserve">.../lua</programlisting>
   </para>
@@ -51,11 +51,11 @@
   </para>
   <para>
     Thumbnails are stored in a location specified in
-    <link linkend="PreferencesThumbnails">Thumbnail Preferences</link>
+    <emphasis role="underline"><link linkend="PreferencesThumbnails">Thumbnail Preferences</link></emphasis>
   </para>
   <para>
     Metadata is stored either in the image file or in the location specified in
-    <link linkend="MetadataWritingProcess">Metadata</link>
+    <emphasis role="underline"><link linkend="MetadataWritingProcess">Metadata</link></emphasis>
   </para>
   <para>
     Similarity files are stored in the folder:
@@ -63,7 +63,7 @@
   </para>
   <para>
     The safe delete folder is specified in the
-    <link linkend="Delete">Safe Delete</link>
+    <emphasis role="underline"><link linkend="Delete">Safe Delete</link></emphasis>
     tab of main Preferences
   </para>
 </section>

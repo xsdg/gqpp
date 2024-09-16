@@ -15,7 +15,7 @@
         <listitem>
           <para>
             Display this "raw" data in the
-            <link linkend="GuideOtherWindowsExif">Exif Window</link>
+            <emphasis role="underline"><link linkend="GuideOtherWindowsExif">Exif Window</link></emphasis>
             .
           </para>
         </listitem>
@@ -25,7 +25,7 @@
         <listitem>
           <para>
             Synchronise XMP data with Exif and IPTC data. This process corresponds to the section "Reconciling metadata properties" as described in the
-            <link linkend="GuideReferenceStandards">XMP Specification</link>
+            <emphasis role="underline"><link linkend="GuideReferenceStandards">XMP Specification</link></emphasis>
             .
             <itemizedlist spacing="compact">
               <listitem>
@@ -40,7 +40,7 @@
         <listitem>
           <para>
             Use this "processed" data within Geeqie, with the exception of in the
-            <link linkend="GuideOtherWindowsExif">Exif Window</link>
+            <emphasis role="underline"><link linkend="GuideOtherWindowsExif">Exif Window</link></emphasis>
           </para>
         </listitem>
       </orderedlist>
@@ -52,7 +52,7 @@
         <listitem>
           <para>
             Metadata is written to a single file or group of files as specified in the
-            <link linkend="MetadataMiscellaneous">Metadata</link>
+            <emphasis role="underline"><link linkend="MetadataMiscellaneous">Metadata</link></emphasis>
             tab of main Preferences.
           </para>
         </listitem>
@@ -62,9 +62,9 @@
         <listitem>
           <para>
             Writing of the queued changes is triggered either
-            <link linkend="Buttons">manually</link>
+            <emphasis role="underline"><link linkend="Buttons">manually</link></emphasis>
             or as defined in
-            <link linkend="GuideOptionsMetadata" endterm="titleGuideOptionsMetadata" />. It is possible to review the changes and exclude selected files.
+            <emphasis role="underline"><link linkend="GuideOptionsMetadata" endterm="titleGuideOptionsMetadata" /></emphasis>. It is possible to review the changes and exclude selected files.
           </para>
         </listitem>
       </itemizedlist>
@@ -80,16 +80,16 @@
             is updated from
             <emphasis>Xmp.exif.orientation</emphasis>
             ). See
-            <link linkend="GuideReferenceStandards">XMP</link>
+            <emphasis role="underline"><link linkend="GuideReferenceStandards">XMP</link></emphasis>
             and
-            <link linkend="GuideReferenceStandards">IPTC4XMP</link>
+            <emphasis role="underline"><link linkend="GuideReferenceStandards">IPTC4XMP</link></emphasis>
             specifications for the list of corresponding tags.
           </para>
         </listitem>
         <listitem>
           <para>
             Try to write metadata in the order specified in the
-            <link linkend="MetadataWritingProcess" endterm="titleMetadataWritingProcess" />
+            <emphasis role="underline"><link linkend="MetadataWritingProcess" endterm="titleMetadataWritingProcess" /></emphasis>
             section of Preferences.
           </para>
         </listitem>
@@ -104,7 +104,7 @@
     <title>Options that influence the process</title>
     <para>
       File types with allowed sidecars are listed in the
-      <link linkend="GuideOptionsFiltering" endterm="titleGuideOptionsFiltering" />
+      <emphasis role="underline"><link linkend="GuideOptionsFiltering" endterm="titleGuideOptionsFiltering" /></emphasis>
       tab of the main Preferences.
     </para>
     <para />

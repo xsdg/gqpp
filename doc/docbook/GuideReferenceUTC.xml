@@ -4,7 +4,7 @@
   <para>Geeqie can display the local time at which a photo was taken, adjusted for UTC offset and Daylight Saving Time.</para>
   <para>
     If the image exif data contains the required parameters (see
-    <link linkend="GuideReferenceXmpExif">Pre-formatted tags</link>
+    <emphasis role="underline"><link linkend="GuideReferenceXmpExif">Pre-formatted tags</link></emphasis>
     ), Geeqie will use the latitude and longitude to determine which timezone the image was taken in.
     <para />
     The UTC offset and Daylight Saving Time Correction for that timezone, combined with the GPS UTC value, will then be used to compute the correct local time.

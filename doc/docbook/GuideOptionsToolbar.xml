@@ -12,7 +12,7 @@
   <note>
     <para>
       If you select a desktop file, ensure that it includes an icon - the desktop file format is described in the
-      <link linkend="GuideReferenceStandards">Standards section</link>
+      <emphasis role="underline"><link linkend="GuideReferenceStandards">Standards section</link></emphasis>
     </para>
   </note>
 </section>

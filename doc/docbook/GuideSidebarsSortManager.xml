@@ -60,7 +60,7 @@
       <title>Copy, Move, Link and Desktop actions</title>
       <para>
         Copy, Move and Symbolic Link are available operations to use on the active image; they should be self explanatory. In some cases, Desktop files are also listed. This is detailed in
-        <link linkend="Geeqieextensions" endterm="titleGuidePluginsConfig" />
+        <emphasis role="underline"><link linkend="Geeqieextensions" endterm="titleGuidePluginsConfig" /></emphasis>
       </para>
       <para />
     </section>
@@ -84,7 +84,7 @@
       <title>Collection list</title>
       <para>
         This is the list of collections located in the folder listed in
-        <link linkend="GuideReferenceConfig">Configuration Files</link>
+        <emphasis role="underline"><link linkend="GuideReferenceConfig">Configuration Files</link></emphasis>
         . Activating a member of this list will result in the current image selection to be added to the collection. If the image already exists within the collection, it will not be added a second time.
       </para>
       <para>A new empty collection can be added to the list by activating the Add button at the bottom of the sidebar.</para>

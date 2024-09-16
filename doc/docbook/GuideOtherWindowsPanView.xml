@@ -24,7 +24,7 @@
   <para>A primary mouse button click on any image will display information about the image. Secondary mouse button will show a context menu.</para>
   <para>
     The
-    <link linkend="GuideReferenceKeyboardShortcuts" endterm="titleGuideReferenceKeyboardShortcuts" />
+    <emphasis role="underline"><link linkend="GuideReferenceKeyboardShortcuts" endterm="titleGuideReferenceKeyboardShortcuts" /></emphasis>
     available are listed in the Reference section.
   </para>
   <note>

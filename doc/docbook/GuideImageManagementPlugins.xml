@@ -6,12 +6,12 @@
   <para>Plugins can do anything from running simple operations like symlink to activating fully featured programs like Gimp. Nor does the action have to be performed on files - you may, for instance, configure a plugin to download images from your digital camera.</para>
   <para>
     To perform these actions, Geeqie uses standard
-    <link linkend="GuideReferenceStandards">desktop</link>
+    <emphasis role="underline"><link linkend="GuideReferenceStandards">desktop</link></emphasis>
     files.
   </para>
   <para>
     It is not necessary to understand the details of desktop file specifications because the
-    <link linkend="GuidePluginsConfig" endterm="titleGuidePluginsConfig" />
+    <emphasis role="underline"><link linkend="GuidePluginsConfig" endterm="titleGuidePluginsConfig" /></emphasis>
     dialogue presents you with an easy-to-use template. This dialogue is accessed via
     <menuchoice>
       <guimenu>Edit</guimenu>
@@ -36,6 +36,6 @@
   </para>
   <para>
     The supplied standard plugins are described in the
-    <link linkend="GuideReferenceStandardPlugins">Reference section.</link>
+    <emphasis role="underline"><link linkend="GuideReferenceStandardPlugins">Reference section.</link></emphasis>
   </para>
 </chapter>

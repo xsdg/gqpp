@@ -5,12 +5,12 @@
   <para>Unlike the other parts of the program, this window shows the "raw" metadata read from the file, without any post-processing. Thus, this window is ideal for metadata debugging.</para>
   <para>
     The Exif pane in the
-    <link linkend="GuideSidebarsInfo">Info Sidebar</link>
+    <emphasis role="underline"><link linkend="GuideSidebarsInfo">Info Sidebar</link></emphasis>
     is more suitable for general use, as it displays merged data from sidecar and private metadata files.
   </para>
   <para>
     To facilitate including extra items in the Exif pane in the
-    <link linkend="GuideSidebarsInfo">Info Sidebar</link>
+    <emphasis role="underline"><link linkend="GuideSidebarsInfo">Info Sidebar</link></emphasis>
     , it is possible to drag-and-drop an item from the Exif window onto the Sidebar pane.
   </para>
   <para>

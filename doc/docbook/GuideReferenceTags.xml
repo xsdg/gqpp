@@ -267,7 +267,7 @@
                 <footnote id='ref1'>
                   <para>
                     Refer to
-                    <link linkend="GuideReferenceUTC">UTC and DST</link>
+                    <emphasis role="underline"><link linkend="GuideReferenceUTC">UTC and DST</link></emphasis>
                     section.
                   </para>
                 </footnote>
@@ -295,7 +295,7 @@
                 <footnote id='ref1'>
                   <para>
                     Refer to
-                    <link linkend="GuideReferenceUTC">UTC and DST</link>
+                    <emphasis role="underline"><link linkend="GuideReferenceUTC">UTC and DST</link></emphasis>
                     section.
                   </para>
                 </footnote>

@@ -3,7 +3,7 @@
   <title id="titleGuideColorManagement">Color Management</title>
   <para>TBD.</para>
   <para>
-    <link linkend="GuideOptionsColor" endterm="titleGuideOptionsColor" />
+    <emphasis role="underline"><link linkend="GuideOptionsColor" endterm="titleGuideOptionsColor" /></emphasis>
   </para>
 
 </chapter>

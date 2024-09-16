@@ -3,9 +3,9 @@
   <title>Lua Extensions</title>
   <para>
     Lua scripts allow the functionality of Geeqie to be extended. Lua scripts may only be used in conjunction with the
-    <link linkend="OverlayScreenDisplay">Overlay Screen Display</link>
+    <emphasis role="underline"><link linkend="OverlayScreenDisplay">Overlay Screen Display</link></emphasis>
     ,
-    <link linkend="GuideSidebarsInfo" endterm="Listpanes-ExifFileinfoCopyrightLocationandGPS">List panes</link>
+    <emphasis role="underline"><link linkend="GuideSidebarsInfo" endterm="Listpanes-ExifFileinfoCopyrightLocationandGPS">List panes</link></emphasis>
     on the Info Sidebar, and the
     <programlisting xml:space="preserve">geeqie --remote --lua:</programlisting>
     command line option.
@@ -21,12 +21,12 @@
     <title>How to use Lua</title>
     <para>
       Lua scripts must be stored in a single folder as defined in
-      <link linkend="GuideReferenceConfig" endterm="titleGuideReferenceConfig" />
+      <emphasis role="underline"><link linkend="GuideReferenceConfig" endterm="titleGuideReferenceConfig" /></emphasis>
       .
     </para>
     <para>
       A link to a Lua script must be inserted into the overlay template. Refer to the
-      <link linkend="OverlayScreenDisplay">Overlay Screen Display</link>
+      <emphasis role="underline"><link linkend="OverlayScreenDisplay">Overlay Screen Display</link></emphasis>
       section of Window Options.
     </para>
     <para>The full extent of the Lua language is available.</para>
@@ -101,10 +101,11 @@
     <para>Note that it is necessary to have escape characters surrounding path and filenames.</para>
     <para>
       The following example demonstrates how to extract exif data from a file:
-      <programlisting xml:space="preserve">
+      <programlisting>
         --Retrieve the DateTimeDigitized exif tag
         exif_structure = Image:get_exif();
-        DateTimeDigitized = exif_structure:get_datum("Exif.Photo.DateTimeDigitized");
+        DateTimeDigitized =
+             exif_structure:get_datum("Exif.Photo.DateTimeDigitized");
         return (os.date(DateTimeDigitized))
       </programlisting>
     </para>

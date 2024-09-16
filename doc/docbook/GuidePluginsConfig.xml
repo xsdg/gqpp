@@ -84,7 +84,7 @@
         </term>
         <listitem>
           Name of the desktop file, used as an identifier in
-          <link linkend="GuideOptionsKeyboard" endterm="titleGuideOptionsKeyboard" />
+          <emphasis role="underline"><link linkend="GuideOptionsKeyboard" endterm="titleGuideOptionsKeyboard" /></emphasis>
           .
         </listitem>
       </varlistentry>
@@ -222,7 +222,7 @@
     </para>
     <para>
       Desktop files containing this entry will be displayed in the Folder action list of the
-      <link linkend="CopyMoveandLink" endterm="titleGuideSidebarsSortManager" />
+      <emphasis role="underline"><link linkend="CopyMoveandLink" endterm="titleGuideSidebarsSortManager" /></emphasis>
       . The path of the bookmark clicked will be used by the desktop file.
       <para />
       If the desktop file is called from the menu, when the plugin is executed you are presented with a dialogue which enables a path to be selected. The path selected, appended by the filename currently being processed, is made available to the shell script either as an environment variable or via a call to geeqie --remote. The following code demonstrates the use of both methods:
@@ -262,7 +262,7 @@
       <programlisting>X-Geeqie-Hotkey=&lt;control&gt;y</programlisting>
       <note>
         This value may conflict with a setting in
-        <link linkend="GuideOptionsKeyboard" endterm="titleGuideOptionsKeyboard" />
+        <emphasis role="underline"><link linkend="GuideOptionsKeyboard" endterm="titleGuideOptionsKeyboard" /></emphasis>
       </note>
     </para>
   </section>

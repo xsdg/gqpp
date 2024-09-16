@@ -3,7 +3,7 @@
   <title id="titleGuideSidebars">Sidebars</title>
   <para>
     A sidebar is a panel that appears next to an
-    <link linkend="GuideMainWindowImagePane" endterm="titleGuideMainWindowImagePane" />
+    <emphasis role="underline"><link linkend="GuideMainWindowImagePane" endterm="titleGuideMainWindowImagePane" /></emphasis>
     , and displays additional information about the image.
   </para>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideSidebarsInfo.xml" />

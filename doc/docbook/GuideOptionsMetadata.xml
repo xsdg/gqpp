@@ -4,14 +4,14 @@
   <para>This section describes the options for metadata writing.</para>
   <para>
     Refer also to
-    <link linkend="GuideReferenceMetadata" endterm="titleGuideReferenceMetadata" />
+    <emphasis role="underline"><link linkend="GuideReferenceMetadata" endterm="titleGuideReferenceMetadata" /></emphasis>
     in the Reference section.
   </para>
   <section id="MetadataWritingProcess">
     <title id="titleMetadataWritingProcess">Metadata writing process</title>
     <para>
       When writing metadata, Geeqie will follow these steps. This process will stop when the first successful write occurs. A flowchart showing the sequence is
-      <link linkend="MetadataFlowchart">here</link>
+      <emphasis role="underline"><link linkend="MetadataFlowchart">here</link></emphasis>
       .
       <orderedlist>
         <listitem>
@@ -21,7 +21,7 @@
             If checked, Geeqie will attempt to write metadata to the file itself, or to an associated XMP sidecar file
             <para />
             The destination is dependent on the settings in the "Writable" and "Sidecar Is Allowed" columns of the
-            <link linkend="Filetypes">File Filters tab</link>
+            <emphasis role="underline"><link linkend="Filetypes">File Filters tab</link></emphasis>
             .
           </para>
         </listitem>
@@ -53,7 +53,7 @@
           <guilabel>Store metadata also in legacy IPTC tags (converted according to IPTC4XMP standard)</guilabel>
           <para />
           If checked, Geeqie will write IPTC tags as defined in
-          <link linkend="GuideReferenceStandards" endterm="titleGuideReferenceStandards" />
+          <emphasis role="underline"><link linkend="GuideReferenceStandards" endterm="titleGuideReferenceStandards" /></emphasis>
           <para />
           The conversion from XMP tag to IPTC tag is performed by exiv2. A list of the XMP-IPTC conversions is at the end of
           <ulink url="https://exiv2.org/conversion.html">this table</ulink>
@@ -104,7 +104,7 @@
           <guilabel>Write the same description tags to all grouped sidecars</guilabel>
           <para />
           If checked the same descriptive tags are written to all files in a group. File grouping is as defined in the
-          <link linkend="Groupingsidecarextensions">File Filters tab</link>
+          <emphasis role="underline"><link linkend="Groupingsidecarextensions">File Filters tab</link></emphasis>
           of main Preferences. Technical tags (exif) are handled separately for each file.
         </para>
         <para>The tags written are:</para>
@@ -150,7 +150,7 @@
           <guilabel>Write altered image orientation to the metadata</guilabel>
           <para />
           If checked, the results of orientation commands (Rotate, Mirror and Flip) issued on an image will be written to metadata either automatically as specified below or when manually initiated. This option also affects the
-          <link linkend="Editmenu">Auto rotate image using EXIF information</link>
+          <emphasis role="underline"><link linkend="Editmenu">Auto rotate image using EXIF information</link></emphasis>
           menu item.
         </para>
         <warning>
@@ -238,7 +238,7 @@
   <section id="MetadataFlowchart">
     <title>Metadata Write Sequence Flowchart</title>
     <para>
-      <inlinegraphic fileref="metadata-flowchart.png" />
+      <inlinegraphic fileref="metadata-flowchart.png" width="340" scalefit="1" align="left"/>
     </para>
     <para />
   </section>

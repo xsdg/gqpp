@@ -2,7 +2,6 @@
 <chapter id="GuideOtherSoftware">
   <title id="titleGuideOtherSoftware">Useful Software</title>
   <para>This is a list of other software that users might find useful in conjunction with Geeqie.</para>
-  <section id="OtherSoftware">
   <section id="Entangle">
     <title>Entangle</title>
     <para>
@@ -27,7 +26,7 @@
   <section id="GeeqieCacheMaintenance">
     <title>Geeqie Cache Maintenance</title>
     <para>
-      Command line program to automatically create or update thumbnails and similarity data: <link linkend="CacheMaintenance"><code>geeqie-cache-maintenance</code></link>
+      Command line program to automatically create or update thumbnails and similarity data: <emphasis role="underline"><link linkend="CacheMaintenance"><code>geeqie-cache-maintenance</code></link></emphasis>
     </para>
   </section>
   <section id="KeywordMerge">
@@ -53,6 +52,5 @@
     <para>
       This program is unlikely to be of interest to most users. It shows a summary of the contents of a .sim file. (Requires perl to be installed): <ulink url="https://raw.githubusercontent.com/BestImageViewer/geeqie/master/scripts/decode_sim">decode_sim</ulink>
     </para>
-  </section>
   </section>
 </chapter>

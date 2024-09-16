@@ -62,11 +62,11 @@
       <listitem>
         <para>
           The Geeqie main window consists of three main panes: the
-          <link linkend="GuideMainWindowFolderPane">folder pane</link>
+          <emphasis role="underline"><link linkend="GuideMainWindowFolderPane">folder pane</link></emphasis>
           ,
-          <link linkend="GuideMainWindowFilePane">file pane</link>
+          <emphasis role="underline"><link linkend="GuideMainWindowFilePane">file pane</link></emphasis>
           and the
-          <link linkend="GuideMainWindowImagePane">image pane</link>
+          <emphasis role="underline"><link linkend="GuideMainWindowImagePane">image pane</link></emphasis>
           . Their position and order can be changed here. The four choices shown represent the basic layout of the main window,  the difference being that each has the larger pane in a different location: right, bottom, left, and top.
         </para>
         <para>The numbers within each selection represent the order of the pane content.</para>

@@ -96,7 +96,7 @@
     </table>
     <para>
       As an aide, in addition to standard metadata tags, Geeqie provides a number of
-      <link linkend="formatted_exif">pre-formatted tags</link>
+      <emphasis role="underline"><link linkend="formatted_exif">pre-formatted tags</link></emphasis>
       .
     </para>
     <para>Examples of usage are:</para>
@@ -110,7 +110,7 @@
     </para>
     <para>
       Refer to
-      <link linkend="GuideReferenceLua">Lua Extensions</link>
+      <emphasis role="underline"><link linkend="GuideReferenceLua">Lua Extensions</link></emphasis>
       for further information.
     </para>
     <para>
@@ -123,7 +123,7 @@
       If two or more variables are connected with the
       <code>|</code>
       character, the variables are displayed with a separator. For example::
-      <programlisting>%formatted.ShutterSpeed%|%formatted.ISOSpeedRating%|%formatted.FocalLength%</programlisting>
+      <para><code>%formatted.ShutterSpeed%|%formatted.ISOSpeedRating%|%formatted.FocalLength%</code></para><para/>
       could show:
       <programlisting>"1/20s - 400 - 80 mm"</programlisting>
       Or, if there is no ISO information in the Exif data:
@@ -141,7 +141,7 @@
       is used to mark the position of the Tag data item. If no
       <code>*</code>
       is present, the extra string is just appended to the standard data displayed. Any "\n" is replaced by a newline on display.
-      <link linkend="GuideReferenceStandards">Pango mark up</link>
+      <emphasis role="underline"><link linkend="GuideReferenceStandards">Pango mark up</link></emphasis>
       is accepted in both left and right parts. If the data item is empty, nothing will be displayed.
     </para>
     <para>Examples:</para>

@@ -3,18 +3,18 @@
   <title>Main Window</title>
   <para>
     The Geeqie main window is designed for quick and easy navigation of images. The window consists of three regions: the
-    <link linkend="GuideMainWindowFilePane" endterm="titleGuideMainWindowFilePane" />
+    <emphasis role="underline"><link linkend="GuideMainWindowFilePane" endterm="titleGuideMainWindowFilePane" /></emphasis>
     , the
-    <link linkend="GuideMainWindowFolderPane" endterm="titleGuideMainWindowFolderPane" />
+    <emphasis role="underline"><link linkend="GuideMainWindowFolderPane" endterm="titleGuideMainWindowFolderPane" /></emphasis>
     , and the
-    <link linkend="GuideMainWindowImagePane" endterm="titleGuideMainWindowImagePane" />
+    <emphasis role="underline"><link linkend="GuideMainWindowImagePane" endterm="titleGuideMainWindowImagePane" /></emphasis>
     (optionally bordered by
-    <link linkend="GuideSidebars" endterm="titleGuideSidebars" />
+    <emphasis role="underline"><link linkend="GuideSidebars" endterm="titleGuideSidebars" /></emphasis>
     )
     , all bordered by
-    <link linkend="GuideMainWindowMenus" endterm="titleGuideMainWindowMenus" />
+    <emphasis role="underline"><link linkend="GuideMainWindowMenus" endterm="titleGuideMainWindowMenus" /></emphasis>
     and
-    <link linkend="GuideMainWindowStatusBar" endterm="titleGuideMainWindowStatusBar" />
+    <emphasis role="underline"><link linkend="GuideMainWindowStatusBar" endterm="titleGuideMainWindowStatusBar" /></emphasis>
     .
   </para>
   <para>
@@ -30,9 +30,9 @@
       <guimenuitem>New Window</guimenuitem>
     </menuchoice>
     menu item, and the
-    <link linkend="GuideMainWindowLayout" endterm="titleGuideMainWindowLayout" />
+    <emphasis role="underline"><link linkend="GuideMainWindowLayout" endterm="titleGuideMainWindowLayout" /></emphasis>
     of each may be individually configured in the
-    <link linkend="GuideOptionsLayout" endterm="titleGuideOptionsLayout" />
+    <emphasis role="underline"><link linkend="GuideOptionsLayout" endterm="titleGuideOptionsLayout" /></emphasis>
     dialogue.
   </para>
   <para>
@@ -65,7 +65,7 @@
     The main window may be recognised by the word "Geeqie" in the title bar, as opposed to other windows which have the word "geeqie".
     <para />
     Several window layouts may be defined and displayed at any time, as described in the
-    <link linkend="Windowmenu">Windows menu</link>
+    <emphasis role="underline"><link linkend="Windowmenu">Windows menu</link></emphasis>
     .
   </para>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideMainWindowFilePane.xml" />

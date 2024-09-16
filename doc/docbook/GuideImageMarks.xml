@@ -3,7 +3,7 @@
   <title id="titleGuideImageMarks">Marking Images</title>
   <para>Marks are intended as a temporary method of grouping and filtering sets of images.</para>
   <para>
-    <link linkend="Keywords" endterm="titleKeywords" />
+    <emphasis role="underline"><link linkend="Keywords" endterm="titleKeywords" /></emphasis>
     are intended as a permanent method of identifying sets of images, and to this end it is possible to link any mark with any keyword.
   </para>
   <para>
@@ -20,19 +20,19 @@
   <para>Moving the mouse over any of the check-boxes at the top of the files pane will show mnemonic text for that mark. The text can be modified by right-clicking on the check box.</para>
   <para>
     If the
-    <link linkend="InformationandhistogramOverlay" endterm="titleInformationandhistogramOverlay" />
+    <emphasis role="underline"><link linkend="InformationandhistogramOverlay" endterm="titleInformationandhistogramOverlay" /></emphasis>
     is being displayed, the currently set marks for the image are shown. It is not necessary to include an entry into the overlay template for this to happen.
   </para>
   <para>
     A keyword can be associated with a single mark by right-clicking on the keyword in the sidebar panel. When a meta-data write operation for a file is triggered either
-    <link linkend="Buttons">manually</link>
+    <emphasis role="underline"><link linkend="Buttons">manually</link></emphasis>
     or as defined in
-    <link linkend="GuideOptionsMetadata" endterm="titleGuideOptionsMetadata" />
+    <emphasis role="underline"><link linkend="GuideOptionsMetadata" endterm="titleGuideOptionsMetadata" /></emphasis>
     , the keyword data indicated by the current set of mark-to-keyword links will be written.
   </para>
   <para>
     The associations between keywords and marks is preserved when Geeqie is shut down. The current setting of marks can also be optionally saved - the setting is in the
-    <link linkend="Behaviour">Behavior tab of Preferences</link>
+    <emphasis role="underline"><link linkend="Behaviour">Behavior tab of Preferences</link></emphasis>
     .
   </para>
   <para />

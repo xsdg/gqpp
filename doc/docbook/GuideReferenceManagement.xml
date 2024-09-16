@@ -14,9 +14,9 @@
     <title>Geeqie thumbnail and sim. cache</title>
     <para>
       The utilities listed here operate on the Geeqie caching mechanism. This also includes the data cached for the
-      <link linkend="GuideImageSearchSearch">search</link>
+      <emphasis role="underline"><link linkend="GuideImageSearchSearch">search</link></emphasis>
       and
-      <link linkend="GuideImageSearchFindingDuplicates">find duplicates</link>
+      <emphasis role="underline"><link linkend="GuideImageSearchFindingDuplicates">find duplicates</link></emphasis>
       utilities.
     </para>
     <variablelist>
@@ -64,7 +64,7 @@
     <title>Create thumbnails</title>
     <para>
       This utility will render thumbnails using the current thumbnail caching mechanism, as determined in
-      <link linkend="GuideOptionsGeneral">Preferences</link>
+      <emphasis role="underline"><link linkend="GuideOptionsGeneral">Preferences</link></emphasis>
       .
     </para>
     <variablelist>
@@ -98,9 +98,9 @@
     <title>Create file similarity cache</title>
     <para>
       Some file operations, such as
-      <link linkend="GuideImageSearchSearch">search</link>
+      <emphasis role="underline"><link linkend="GuideImageSearchSearch">search</link></emphasis>
       and
-      <link linkend="GuideImageSearchFindingDuplicates">find duplicates</link>
+      <emphasis role="underline"><link linkend="GuideImageSearchFindingDuplicates">find duplicates</link></emphasis>
       , are speeded up if similarity data files for the images have been created. This utility will create sim. files recursively under the specified folder.
       <para />
       The sim. files contain some or all of the following fields:
@@ -144,7 +144,7 @@
     <title>Metadata</title>
     <para>
       This utility operates on the data store for
-      <link linkend="MetadataWritingProcess">Metadata</link>
+      <emphasis role="underline"><link linkend="MetadataWritingProcess">Metadata</link></emphasis>
       located in the folder:
       <programlisting>$HOME/.local/share/Geeqie/metadata</programlisting>
     </para>

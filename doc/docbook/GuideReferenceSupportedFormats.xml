@@ -8,12 +8,12 @@
   </para>
   <para>
     Refer to
-    <link linkend="GuideReferencePixbufLoaders" endterm="titleGuideReferencePixbufLoaders" />
+    <emphasis role="underline"><link linkend="GuideReferencePixbufLoaders" endterm="titleGuideReferencePixbufLoaders" /></emphasis>
     for additional information.
   </para>
   <para>
     Preview and thumbnails of video clips can be displayed. Clips can be run via a defined external program - see
-    <link linkend="Behaviour">Play video by left click on image</link>
+    <emphasis role="underline"><link linkend="Behaviour">Play video by left click on image</link></emphasis>
     .
   </para>
 </section>

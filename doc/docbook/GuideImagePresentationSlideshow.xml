@@ -37,12 +37,12 @@
     <title>Stopping a slide show</title>
     <para>
       An active slide show can be stopped by using the same functions available to start one, as they work like a toggle switch. If slide show repeat is not enabled in the
-      <link linkend="GuideOptionsGeneral">Preferences dialog</link>
+      <emphasis role="underline"><link linkend="GuideOptionsGeneral">Preferences dialog</link></emphasis>
       , the slide show will stop when the last image in the sequence is displayed.
     </para>
     <para>
       Any action that changes the image pane to a new image will stop the active slide show, with the exception of the methods discussed in
-      <link linkend="Slideshowsequencenavigation">Slide show sequence navigation</link>
+      <emphasis role="underline"><link linkend="Slideshowsequencenavigation">Slide show sequence navigation</link></emphasis>
       .
     </para>
     <para />
@@ -51,11 +51,11 @@
     <title>Slide show status</title>
     <para>
       The main window
-      <link linkend="GuideMainWindowStatusBar">status bar</link>
+      <emphasis role="underline"><link linkend="GuideMainWindowStatusBar">status bar</link></emphasis>
       can be used to determine when a slide show is active,
       <emphasis role="strong">Slide show</emphasis>
       will be displayed next to the file count field. An individual
-      <link linkend="GuideOtherWindowsImageWindow">Image Window</link>
+      <emphasis role="underline"><link linkend="GuideOtherWindowsImageWindow">Image Window</link></emphasis>
       can also display a slide show, however the status will not be immediately visible. To determine the slide show status in an image window, open a context menu by right clicking or using the menu key, the slide show menu item will reflect the slide show status; if
       <emphasis role="strong">Start slide show</emphasis>
       is displayed, no slide show is active, conversely if
@@ -105,7 +105,7 @@
     <para>An image collection can be used as the list of images, to do this drag an image from a collection window onto the image pane. Starting a slide show will then include the images from that collection.</para>
     <para>
       So far, the methods described are for slide shows in a main window, in an
-      <link linkend="GuideOtherWindowsImageWindow">Image Window</link>
+      <emphasis role="underline"><link linkend="GuideOtherWindowsImageWindow">Image Window</link></emphasis>
       , the slide show will use all images referenced by that window.
     </para>
     <para />
@@ -132,7 +132,7 @@
     <title>Configuring a slide show</title>
     <para>
       The options that control the behavior of slide shows are located on the
-      <link linkend="Slideshow">General tab</link>
+      <emphasis role="underline"><link linkend="Slideshow">General tab</link></emphasis>
       of the options dialog.
     </para>
   </section>

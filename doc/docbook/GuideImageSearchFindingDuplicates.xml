@@ -190,14 +190,14 @@
     </para>
     <para>
       Groups in the results list may be selected by using the keyboard. Refer to the <emphasis>Find Duplicates Window</emphasis> section of
-       <link linkend="DuplicatesKeyboardShortcuts" >Keyboard Shortcuts</link>
+       <emphasis role="underline"><link linkend="DuplicatesKeyboardShortcuts" >Keyboard Shortcuts</link></emphasis>
       .
     </para>
     <para>
       The
       <emphasis role="strong">selection</emphasis>
       can be changed using the keyboard and mouse the same as in a
-      <link linkend="GuideMainWindowFilePane">file pane</link>
+      <emphasis role="underline"><link linkend="GuideMainWindowFilePane">file pane</link></emphasis>
       of the main window.
     </para>
     <para>The image Dimensions column of the result list will only contain dimension information when comparing by dimensions, or when the data is easily available from memory or has been read from the cache.</para>

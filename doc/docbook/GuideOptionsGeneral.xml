@@ -60,7 +60,7 @@
         <listitem>
           <para>
             Enable this to save thumbnails and
-            <link linkend="CreateSimFiles">sim. files</link>
+            <emphasis role="underline"><link linkend="CreateSimFiles">sim. files</link></emphasis>
             to disk. Subsequent requests for a thumbnail will be faster, as will searches and find duplicates.
           </para>
           <variablelist>
@@ -73,9 +73,9 @@
                 <para>
                   The root of the hierarchy is:
                   <para>
-                    <programlisting>$XDG_CACHE_HOME/geeqie/thumbnails/</programlisting>
+                    <code>$XDG_CACHE_HOME/geeqie/thumbnails/</code>
                     or, if $XDG_CACHE_HOME is not defined:
-                    <programlisting>$HOME/.cache/geeqie/thumbnails/</programlisting>
+                    <code>$HOME/.cache/geeqie/thumbnails/</code>
                   </para>
                 </para>
               </listitem>
@@ -93,7 +93,7 @@
                   Thumbnails have the same name as the original appended by the file extension .png.
                   <para />
                   The resulting location is the source image's folder, in a sub folder with the name
-                  <programlisting>.thumbnails</programlisting>
+                  <code>.thumbnails</code>
                   <para />
                   When the image source folder cannot be written, Geeqie falls back to saving the thumbnail in the user's home folder.
                 </para>
@@ -109,13 +109,13 @@
                 <para>
                   This will use a thumbnail caching method that is compatible with applications that use the standard thumbnail specification. When this option is enabled thumbnails will be stored in:
                   <para>
-                    <programlisting>$XDG_CACHE_HOME/thumbnails/</programlisting>
+                    <code>$XDG_CACHE_HOME/thumbnails/</code>
                     or, if $XDG_CACHE_HOME is not defined:
-                    <programlisting>$HOME/.cache/thumbnails/</programlisting>
+                    <code>$HOME/.cache/thumbnails/</code>
                   </para>
                   <para>
                     All thumbnails are stored in the same folder, with computer-generated filenames. Refer to
-                    <link linkend="GuideReferenceThumbnails">Thumbnails Reference</link>
+                    <emphasis role="underline"><link linkend="GuideReferenceThumbnails">Thumbnails Reference</link></emphasis>
                     for additional details.
                   </para>
                 </para>
@@ -157,7 +157,7 @@
         <listitem>
           <para>
             If thumbnail caching is enabled and you open the
-            <link linkend="GuideReferenceConfig">Collections folder</link>
+            <emphasis role="underline"><link linkend="GuideReferenceConfig">Collections folder</link></emphasis>
             , 
             Geeqie will display a preview of the collections as a thumbnail montage. This option limits the number of thumbnails displayed in each preview.
             <note>
@@ -241,7 +241,7 @@
   </section>
   <section id="MenuStyle">
     <title>Menu style</title>
-    <para>Use a ☰ "hamburger" style menu button instead of the standard menu across the top of the frame.</para>
+    <para>Use a ≡ "hamburger" style menu button instead of the standard menu across the top of the frame.</para>
     <note>
       <para>Geeqie must be restarted for changes to take effect.</para>
     </note>
@@ -275,7 +275,7 @@
     <title>Timezone Database</title>
     <para>
       The timezone database is used to correct exif time and date for UTC offset and Daylight Saving Time as described
-      <link linkend="GuideReferenceUTC">here.</link>
+      <emphasis role="underline"><link linkend="GuideReferenceUTC">here.</link></emphasis>
       This option allows you to install or update the database. An Internet connection is required.
     </para>
   </section>

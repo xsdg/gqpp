@@ -59,7 +59,7 @@
         <listitem>
           <para>
             This menu item lists the recently active collections, selecting an item from the list will open that collection in a new window. The most recent item will appear at the top of the list. Maximum number of entries can be modified through
-            <link linkend="Behaviour">Open recent list maximum size</link>
+            <emphasis role="underline"><link linkend="Behaviour">Open recent list maximum size</link></emphasis>
             option.
           </para>
         </listitem>
@@ -205,7 +205,7 @@
         <listitem>
           <para>
             Creates a symbolic link. This is implemented via a
-            <link linkend="GuideImageManagementPlugins">plugin</link>
+            <emphasis role="underline"><link linkend="GuideImageManagementPlugins">plugin</link></emphasis>
             .
           </para>
         </listitem>
@@ -353,7 +353,7 @@
         <listitem>
           <para>
             Goes to the the Home folder as defined in
-            <link linkend="GuideOptionsLayout" endterm="titleGuideOptionsLayout" />
+            <emphasis role="underline"><link linkend="GuideOptionsLayout" endterm="titleGuideOptionsLayout" /></emphasis>
           </para>
         </listitem>
       </varlistentry>
@@ -504,7 +504,7 @@
             Copy selected item-path(s) to clipboard
             <footnote id='ref1'><para>
               The clipboard used is selected
-              <link linkend="Behaviour">here.</link>
+              <emphasis role="underline"><link linkend="Behaviour">here.</link></emphasis>
             </para></footnote>
             . Each data item copied will be enclosed in quotes.
           </para>
@@ -773,12 +773,12 @@
           <warning>
             <para>
               The above orientation commands - Rotate, Mirror and Flip - do not change the image on disk. The changes will be lost when Geeqie closes. Refer to the
-              <link linkend="MetadataMiscellaneous">Metadata tab of the Preferences Dialog</link>
+              <emphasis role="underline"><link linkend="MetadataMiscellaneous">Metadata tab of the Preferences Dialog</link></emphasis>
               if you wish these changes to be written to metadata.
             </para>
             <para>
               Refer also to the
-              <link linkend="HowdotheExifauto-rotationcommandswork">FAQ</link>
+              <emphasis role="underline"><link linkend="HowdotheExifauto-rotationcommandswork">FAQ</link></emphasis>
               .
             </para>
           </warning>
@@ -808,7 +808,7 @@
         <listitem>
           <para>
             Auto rotates images based on metadata stored in images that have Exif data. Refer also to the
-            <link linkend="HowdotheExifauto-rotationcommandswork">FAQ</link>
+            <emphasis role="underline"><link linkend="HowdotheExifauto-rotationcommandswork">FAQ</link></emphasis>
             .
           </para>
         </listitem>
@@ -825,7 +825,7 @@
           <warning>
             <para>
               The file rotate.desktop, using external commands exiftran, exiv2 and mogrify, is used to implement this command. Refer to
-              <link linkend="GuideImageManagementPlugins">Plugins section</link>
+              <emphasis role="underline"><link linkend="GuideImageManagementPlugins">Plugins section</link></emphasis>
               for details.
             </para>
           </warning>
@@ -964,7 +964,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Refer to <link linkend="KeywordAutocompletion">Info Sidebar</link>.</para>
+          <para>Refer to <emphasis role="underline"><link linkend="KeywordAutocompletion">Info Sidebar</link></emphasis>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -994,7 +994,7 @@
           </menuchoice>
         </term>
         <listitem>
-          <para>Crop the image rectangle set above. See also <link linkend="Imagecrop">Image Crop plugin</link>.</para>
+          <para>Crop the image rectangle set above. See also <emphasis role="underline"><link linkend="Imagecrop">Image Crop plugin</link></emphasis>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -1014,7 +1014,7 @@
         <listitem>
           <para>
             Opens the
-            <link linkend="GuideOptionsMain">Preferences Dialog</link>
+            <emphasis role="underline"><link linkend="GuideOptionsMain">Preferences Dialog</link></emphasis>
             for changing of global preferences.
           </para>
         </listitem>
@@ -1028,7 +1028,7 @@
         <listitem>
           <para>
             Opens the
-            <link linkend="GuideImageManagementPlugins">Plugins Dialog</link>
+            <emphasis role="underline"><link linkend="GuideImageManagementPlugins">Plugins Dialog</link></emphasis>
             for changing of desktop files.
           </para>
         </listitem>
@@ -1042,7 +1042,7 @@
         <listitem>
           <para>
             Opens the
-            <link linkend="GuideOptionsWindow">Window Preferences Dialog</link>
+            <emphasis role="underline"><link linkend="GuideOptionsWindow">Window Preferences Dialog</link></emphasis>
             for changing of options that can differ for each window.
           </para>
         </listitem>
@@ -1056,7 +1056,7 @@
         <listitem>
           <para>
             Opens a dialog with utilities for thumbnail and keyword
-            <link linkend="GuideReferenceManagement" endterm="titleGuideReferenceManagement" />
+            <emphasis role="underline"><link linkend="GuideReferenceManagement" endterm="titleGuideReferenceManagement" /></emphasis>
             .
           </para>
         </listitem>
@@ -1092,7 +1092,7 @@
         <listitem>
           <para>
             This menu contains the plugins (desktop files) that were found on the system. See the
-            <link linkend="GuideImageManagementPlugins">Plugins section</link>
+            <emphasis role="underline"><link linkend="GuideImageManagementPlugins">Plugins section</link></emphasis>
             for details.
           </para>
         </listitem>
@@ -1333,7 +1333,7 @@
             Automatically adjusts the zoom so that the image will fit within the display pane. The effect on images with an original size smaller than the display pane can be changed with the
             <emphasis>Allow enlargement of image for zoom to fit</emphasis>
             option located on the
-            <link linkend="GuideOptionsImage">Image tab</link>
+            <emphasis role="underline"><link linkend="GuideOptionsImage">Image tab</link></emphasis>
             of the preferences dialog.
           </para>
         </listitem>
@@ -1735,7 +1735,7 @@
         <listitem>
           <para>
             Use a web browser to search Geeqie's on-line help files. The search engine used is defined in
-            <link linkend="OnLineHelpSearch">Preferences General</link>
+            <emphasis role="underline"><link linkend="OnLineHelpSearch">Preferences General</link></emphasis>
             .
           </para>
         </listitem>
@@ -1802,7 +1802,7 @@
     <title>Keyboard shortcuts</title>
     <para>
       The keyboard sequence associated to each menu entry is listed within the main window menu bar. For reference, the complete list of default keyboard shortcuts can be found in section
-      <link linkend="GuideReferenceKeyboardShortcuts">Keyboard Shortcuts</link>
+      <emphasis role="underline"><link linkend="GuideReferenceKeyboardShortcuts">Keyboard Shortcuts</link></emphasis>
       .
     </para>
     <para />
@@ -1811,7 +1811,7 @@
     <title>Changing the main window menu bar keyboard shortcuts</title>
     <para>
       The section
-      <link linkend="GuideOptionsKeyboard" endterm="titleGuideOptionsKeyboard" />
+      <emphasis role="underline"><link linkend="GuideOptionsKeyboard" endterm="titleGuideOptionsKeyboard" /></emphasis>
       describes how to modify the keyboard shortcuts used in the main menu.
     </para>
   </section>

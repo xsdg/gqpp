@@ -12,7 +12,7 @@
       When “Loading thumbs...” is displayed, thumbnails are currently being generated when Geeqie is idle; the progress bar will update to display the percentage of thumbnails that are completed.
       <para />
       When “Loading meta...” is displayed, certain metadata is being loaded when Geeqie is idle; the progress bar will update to display the percentage of files that have been read. Refer to
-      <link linkend="PreLoadMetadata">Preferences metadata.</link>
+      <emphasis role="underline"><link linkend="PreLoadMetadata">Preferences metadata.</link></emphasis>
     </para>
   </section>
   <section id="Sortmethod">
@@ -50,7 +50,7 @@
         <listitem>
           <para>
             Images are sorted by one of four types of file date. They are described in the
-            <link linkend="GuideReferenceFileDates">Reference section</link>
+            <emphasis role="underline"><link linkend="GuideReferenceFileDates">Reference section</link></emphasis>
             .
           </para>
         </listitem>
@@ -170,7 +170,7 @@
     <title>Buttons</title>
     <para>
       The Status bar toolbar buttons, the defaults are shown below, correspond to selected menu action. The buttons displayed may be changed in the
-      <link linkend="GuideOptionsToolbar">Toolbar tab of Preferences.</link>
+      <emphasis role="underline"><link linkend="GuideOptionsToolbar">Toolbar tab of Preferences.</link></emphasis>
     </para>
     <para />
     <section id="ExifRotate">
@@ -181,7 +181,7 @@
         </guiicon>
         Toggles the auto-rotation of images if they have Exif orientation data.
         Refer also to the
-        <link linkend="HowdotheExifauto-rotationcommandswork">FAQ</link>
+        <emphasis role="underline"><link linkend="HowdotheExifauto-rotationcommandswork">FAQ</link></emphasis>
         .
       </para>
       <para />
