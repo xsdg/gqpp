@@ -1222,15 +1222,15 @@ gchar *metadata_file_info(FileData *fd, const gchar *key, MetadataFormat)
 		}
 	if (strcmp(key, "file.owner") == 0)
 		{
-		return g_strdup(fd->owner);
+		return get_file_owner(fd->path);
 		}
 	if (strcmp(key, "file.group") == 0)
 		{
-		return g_strdup(fd->group);
+		return get_file_group(fd->path);
 		}
 	if (strcmp(key, "file.link") == 0)
 		{
-		return g_strdup(fd->sym_link);
+		return get_symbolic_link(fd->path);
 		}
 	if (strcmp(key, "file.page_no") == 0)
 		{

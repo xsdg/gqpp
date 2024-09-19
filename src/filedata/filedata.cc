@@ -33,7 +33,6 @@
 #include <ctime>
 
 #include <glib-object.h>
-#include <grp.h>
 #include <pwd.h>
 
 #include <config.h>
@@ -392,8 +391,6 @@ FileData *FileData::file_data_new(const gchar *path_utf8, struct stat *st, gbool
 		}
 
 	FileData *fd;
-	struct passwd *user;
-	struct group *group;
 
 	DEBUG_2("file_data_new: '%s' %d", path_utf8, disable_sidecars);
 
@@ -454,29 +451,6 @@ FileData *FileData::file_data_new(const gchar *path_utf8, struct stat *st, gbool
 	fd->format_class = filter_file_get_class(path_utf8);
 	fd->page_num = 0;
 	fd->page_total = 0;
-
-	user = getpwuid(st->st_uid);
-	if (!user)
-		{
-		fd->owner = g_strdup_printf("%u", st->st_uid);
-		}
-	else
-		{
-		fd->owner = g_strdup(user->pw_name);
-		}
-
-	group = getgrgid(st->st_gid);
-	if (!group)
-		{
-		fd->group = g_strdup_printf("%u", st->st_gid);
-		}
-	else
-		{
-		fd->group = g_strdup(group->gr_name);
-		}
-
-	fd->sym_link = get_symbolic_link(path_utf8);
-
 	if (disable_sidecars) fd->disable_grouping = TRUE;
 
 	fd->set_path(path_utf8); /* set path, name, collate_key_*, original_path */
@@ -708,9 +682,6 @@ void FileData::file_data_free(FileData *fd)
 	g_free(fd->extended_extension);
 	if (fd->thumb_pixbuf) g_object_unref(fd->thumb_pixbuf);
 	histmap_free(fd->histmap);
-	g_free(fd->owner);
-	g_free(fd->group);
-	g_free(fd->sym_link);
 	g_free(fd->format_name);
 	g_assert(fd->sidecar_files == nullptr); /* sidecar files must be freed before calling this */
 

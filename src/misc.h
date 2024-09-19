@@ -33,6 +33,8 @@ gchar *date_get_abbreviated_day_name(gint day);
 gchar *decode_geo_parameters(const gchar *input_text);
 gchar *expand_tilde(const gchar *filename);
 gchar *get_symbolic_link(const gchar *path_utf8);
+gchar *get_file_group(const gchar *path_utf8);
+gchar *get_file_owner(const gchar *path_utf8);
 gchar *utf8_validate_or_convert(const gchar *text);
 gdouble get_zoom_increment();
 gint date_get_first_day_of_week();

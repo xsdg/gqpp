@@ -176,10 +176,6 @@ class FileData {
 	gint rating;
 	gboolean metadata_in_idle_loaded;
 
-	gchar *owner;
-	gchar *group;
-	gchar *sym_link;
-
 	SelectionType selected;  /**< Used by view-file-icon. */
 
 	gint page_num;

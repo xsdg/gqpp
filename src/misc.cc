@@ -33,6 +33,7 @@
 #include <cstring>
 
 #include <glib-object.h>
+#include <grp.h>
 #include <langinfo.h>
 #include <pwd.h>
 
@@ -371,6 +372,56 @@ gchar *convert_rating_to_stars(gint rating)
 		}
 
 	return g_strdup("");
+}
+
+gchar *get_file_group(const gchar *path_utf8)
+{
+	struct passwd *user;
+	gchar *ret;
+
+	struct stat st;
+
+	if (!stat_utf8(path_utf8, &st))
+		{
+		return nullptr;
+		}
+
+	user = getpwuid(st.st_uid);
+	if (!user)
+		{
+		ret = g_strdup_printf("%u", st.st_uid);
+		}
+	else
+		{
+		ret = g_strdup(user->pw_name);
+		}
+
+	return ret;
+}
+
+gchar *get_file_owner(const gchar *path_utf8)
+{
+	struct group *group;
+	gchar *ret;
+
+	struct stat st;
+
+	if (!stat_utf8(path_utf8, &st))
+		{
+		return nullptr;
+		}
+
+	group = getgrgid(st.st_gid);
+	if (!group)
+		{
+		ret = g_strdup_printf("%u", st.st_gid);
+		}
+	else
+		{
+		ret = g_strdup(group->gr_name);
+		}
+
+	return ret;
 }
 
 gchar *get_symbolic_link(const gchar *path_utf8)
