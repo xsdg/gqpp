@@ -34,12 +34,12 @@
 ## This needs to be run only when the sortcut keys have been changed
 ##
 
-duplicates_xml="<link linkend=\"GuideImageSearchFindingDuplicates\">Duplicates window</link>"
-search_xml="<link linkend=\"GuideImageSearchSearch\">Search window</link>"
-pan_view_xml="<link linkend=\"GuideOtherWindowsPanView\">Pan view window</link>"
-collections_xml="<link linkend=\"GuideCollections\">Collections window</link>"
-image_xml="<link linkend=\"GuideOtherWindowsImageWindow\">Image view window</link>"
-main_window_xml="<link linkend=\"GuideMainWindow\">Main window</link>"
+duplicates_xml="<emphasis role=\"underline\"><link linkend=\"GuideImageSearchFindingDuplicates\">Duplicates window</link></emphasis>"
+search_xml="<emphasis role=\"underline\"><link linkend=\"GuideImageSearchSearch\">Search window</link></emphasis>"
+pan_view_xml="<emphasis role=\"underline\"><link linkend=\"GuideOtherWindowsPanView\">Pan view window</link></emphasis>"
+collections_xml="<emphasis role=\"underline\"><link linkend=\"GuideCollections\">Collections window</link></emphasis>"
+image_xml="<emphasis role=\"underline\"><link linkend=\"GuideOtherWindowsImageWindow\">Image view window</link></emphasis>"
+main_window_xml="<emphasis role=\"underline\"><link linkend=\"GuideMainWindow\">Main window</link></emphasis>"
 
 pre_1_xml="<table frame=\"all\">\n
 <title>\n
@@ -135,19 +135,19 @@ $0 ~ /^  { "/ {
 '
 
 keys_xml=$(awk -W posix "$awk_window" ./src/dupe.cc )
-printf '%b\n' "$pre_1_xml $duplicates_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceDuplicatesShortcuts.xml
+printf '%b\n' "$pre_1_xml $duplicates_xml$pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceDuplicatesShortcuts.xml
 
 keys_xml=$(awk -W posix "$awk_window" ./src/search.cc )
-printf '%b\n' "$pre_1_xml $search_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceSearchShortcuts.xml
+printf '%b\n' "$pre_1_xml $search_xml$pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceSearchShortcuts.xml
 
 keys_xml=$(awk -W posix "$awk_window" ./src/pan-view/pan-view.cc )
-printf '%b\n' "$pre_1_xml $pan_view_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferencePanViewShortcuts.xml
+printf '%b\n' "$pre_1_xml $pan_view_xml$pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferencePanViewShortcuts.xml
 
 keys_xml=$(awk -W posix "$awk_window" ./src/collect-table.cc)
-printf '%b\n' "$pre_1_xml $collections_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceCollectionsShortcuts.xml
+printf '%b\n' "$pre_1_xml $collections_xml$pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceCollectionsShortcuts.xml
 
 keys_xml=$(awk -W posix "$awk_window" ./src/img-view.cc)
-printf '%b\n' "$pre_1_xml $image_xml $pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceImageViewShortcuts.xml
+printf '%b\n' "$pre_1_xml $image_xml$pre_2_xml $keys_xml $post_xml" > ./doc/docbook/GuideReferenceImageViewShortcuts.xml
 
 keys_xml=$(awk -W posix "$awk_main_window" ./src/layout-util.cc)
-printf '%b\n' "$pre_1_xml $main_window_xml $pre_2_xml $keys_xml $post_main_window_xml" > ./doc/docbook/GuideReferenceMainWindowShortcuts.xml
+printf '%b\n' "$pre_1_xml $main_window_xml$pre_2_xml $keys_xml $post_main_window_xml" > ./doc/docbook/GuideReferenceMainWindowShortcuts.xml
