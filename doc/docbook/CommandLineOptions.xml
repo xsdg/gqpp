@@ -7,8 +7,8 @@
 <refmeta>
 <refentrytitle>GEEQIE</refentrytitle>
 <manvolnum>1</manvolnum>
-<refmiscinfo class='source'>April 2024</refmiscinfo>
-<refmiscinfo class='manual'>Geeqie 2.4+git20240413-fc816858 GTK3</refmiscinfo>
+<refmiscinfo class='source'>September 2024</refmiscinfo>
+<refmiscinfo class='manual'>Geeqie 2.4+git20240921-6cc6b171 GTK3</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>Geeqie</refname>
@@ -30,7 +30,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
 
 <para>Generated for version:</para>
 
-<para>Geeqie 2.4+git20240413-fc816858</para>
+<para>Geeqie 2.4+git20240921-6cc6b171</para>
 
 <refsect2 id='valid_options'><title>Valid options:</title>
 <variablelist remap='TP'>
@@ -93,12 +93,6 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--remote-help</emphasis></term>
-  <listitem>
-<para>print remote command list</para>
-  </listitem>
-  </varlistentry>
-  <varlistentry>
   <term><emphasis role='strong' remap='B'>-s</emphasis>, <emphasis role='strong' remap='B'>--slideshow</emphasis></term>
   <listitem>
 <para>start in slideshow mode</para>
@@ -129,7 +123,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--debug</emphasis>[=<emphasis remap='I'>level</emphasis>]</term>
+  <term><emphasis role='strong' remap='B'>--debug</emphasis>=<emphasis remap='I'>[level]</emphasis></term>
   <listitem>
 <para>turn on debug output</para>
   </listitem>
@@ -224,7 +218,7 @@ can be used to modify this behavior on an individual basis e.g.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>-d</emphasis> <emphasis role='strong' remap='B'>--delay=</emphasis>&lt;[H=][M=][N][.M]&gt;</term>
+  <term><emphasis role='strong' remap='B'>-d</emphasis> <emphasis role='strong' remap='B'>--delay=</emphasis>&lt;[H:][M:][N][.M]&gt;</term>
   <listitem>
 <para>set slide show delay to Hrs Mins N.M seconds</para>
   </listitem>
