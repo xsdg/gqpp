@@ -3,14 +3,14 @@ run-name: ${{ github.actor }} is running Geeqie check build
 on: [push, pull_request]
 jobs:
   Check-Markdown:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v4
     - name: Run Markdown Lint
       uses: actionshub/markdownlint@main
 
   Check-Shellcheck:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v4
     - name: Run Shellcheck Lint
@@ -19,7 +19,7 @@ jobs:
         ignore_names: downsize
 
   Check-Build-No-Options:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
     - run: sudo apt-get update
     - run: sudo apt-get install appstream
@@ -77,7 +77,7 @@ jobs:
         retention-days: 5
 
   Check-Build-Most-Options:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
     - run: sudo apt-get update
     - run: sudo apt-get install appstream
@@ -97,9 +97,13 @@ jobs:
     - run: sudo apt-get install libgspell-1-dev
     - run: sudo apt-get install libgtk-3-bin
     - run: sudo apt-get install libheif-dev
+    - run: sudo apt-get install libdjvulibre-dev djvulibre-bin
     - run: sudo apt-get install liblua5.3-dev
+    - run: sudo apt-get install libopenjp2-7-dev
+    - run: sudo apt-get install libjxl-dev
     - run: sudo apt-get install libpoppler-glib-dev
     - run: sudo apt-get install libraw-dev libomp-dev
+    - run: sudo apt-get install librsvg2-common
     - run: sudo apt-get install libunwind-dev
     - run: sudo apt-get install libwebp-dev
     - run: sudo apt-get install libwebp7
@@ -108,7 +112,6 @@ jobs:
     - run: sudo apt-get install shellcheck
     - run: sudo apt-get install xsltproc
     #~ - run: sudo apt-get install libffmpegthumbnailer-dev
-    #~ - run: sudo apt-get install libjxl-dev
     #~ - run: sudo apt-get install yelp-tools
     - uses: actions/checkout@v4
       with:
