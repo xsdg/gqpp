@@ -22,7 +22,13 @@ option = get_option('yelp-build')
 if not option.disabled()
     gnome_doc_tool = find_program('yelp-build', required : false)
     if gnome_doc_tool.found()
-        run_command(gnome_doc_tool, 'html', '-o', destdir, '-p', iconsdir, guideindex_xml, check : false)
+        help_html = custom_target(
+            'help-html',
+            input : guideindex_xml,
+            output : ['html'],
+            command : [gnome_doc_tool, 'html', '@INPUT@', '-o', destdir, '-p', iconsdir],
+            install : true,
+            install_dir : helpdir)
         run_command(find_program('ln'), '-s', '-f', 'GuideIndex.html', guideindex_ln, check : false)
         summary({'help' : ['Help files created:', true]}, section : 'Documentation', bool_yn : true)
     else
