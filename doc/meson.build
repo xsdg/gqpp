@@ -80,7 +80,7 @@ if not option.disabled()
             'create intermediate pdf',
             input : intermediate_fo,
             output : 'help_inter.pdf',
-            command : [fop_exe, '-fo', '@INPUT@', '-pdf', '@OUTPUT@'],
+            command : ['sh', '-c', '"$1" -fo "$2" -pdf "$3" 2>/dev/null', 'ignored', fop_exe, '@INPUT@', '@OUTPUT@'],
             )
 
         # Create ToC in text format from intermediate .pdf file
