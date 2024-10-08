@@ -347,6 +347,8 @@ See the shell scripts section in the Doxygen documentation (`File List`, `detail
 
 ## Documentation
 
+The documentation in Doxygen format for the latest release, or later, is [here](https://cclark.uk/geeqie/doxygen/html/index.html).
+
 Use American, rather than British English, spelling. This will facilitate consistent
 text searches. User text may be translated via the en_GB.po file.
 
