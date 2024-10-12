@@ -74,6 +74,7 @@
 #include "search-and-run.h"
 #include "search.h"
 #include "slideshow.h"
+#include "toolbar.h"
 #include "ui-fileops.h"
 #include "ui-menu.h"
 #include "ui-misc.h"
@@ -3320,6 +3321,16 @@ static gboolean layout_editors_reload_idle_cb(gpointer)
 			}
 
 		DEBUG_1("%s layout_editors_reload_idle_cb: setup_editors done", get_exec_time());
+
+		/* The toolbars need to be regenerated in case they contain a plugin */
+		LayoutWindow *lw = nullptr;
+		layout_valid(&lw);
+
+		toolbar_select_new(lw, TOOLBAR_MAIN);
+		toolbar_apply(TOOLBAR_MAIN);
+
+		toolbar_select_new(lw, TOOLBAR_STATUS);
+		toolbar_apply(TOOLBAR_STATUS);
 
 		layout_editors_reload_idle_id = -1;
 		return G_SOURCE_REMOVE;
