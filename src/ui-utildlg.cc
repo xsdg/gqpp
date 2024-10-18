@@ -508,90 +508,38 @@ GenericDialog *warning_dialog(const gchar *heading, const gchar *text,
 
 /*
  *-----------------------------------------------------------------------------
- * AppImage version update notification message with fade-out
+ * AppImage version update notification message
  *-----------------------------------------------------------------------------
  *
  * If the current version is not on GitHub, assume a newer one is available
- * and show a fade-out message.
+ * and show a notification message.
  */
 
 struct AppImageData
 {
 	GThreadPool *thread_pool;
-	GtkWidget *window;
-	guint id;
 };
 
-static gboolean appimage_notification_close_cb(gpointer data)
+void show_new_appimage_notification(GtkApplication *app)
 {
-	auto appimage_data = static_cast<AppImageData *>(data);
+	auto *notification = g_notification_new("Geeqie");
 
-	if (appimage_data->window && gtk_widget_get_opacity(appimage_data->window) != 0)
-		{
-		g_source_remove(appimage_data->id);
-		}
+	g_notification_set_title(notification, _("AppImage"));
+	g_notification_set_body(notification, _("A new Geeqie AppImage is available"));
+	g_notification_set_priority(notification, G_NOTIFICATION_PRIORITY_NORMAL);
+	g_notification_set_default_action(notification, "app.null");
 
-	if (appimage_data->window)
-		{
-		gq_gtk_widget_destroy(appimage_data->window);
-		}
+	g_application_send_notification(G_APPLICATION(app), "new-appimage-notification", notification);
 
-	g_thread_pool_free(appimage_data->thread_pool, TRUE, TRUE);
-	g_free(appimage_data);
-
-	return G_SOURCE_REMOVE;
+	g_object_unref(notification);
 }
 
-static gboolean appimage_notification_fade_cb(gpointer data)
-{
-	auto appimage_data = static_cast<AppImageData *>(data);
-
-	gtk_widget_set_opacity(appimage_data->window, (gtk_widget_get_opacity(appimage_data->window) - 0.02));
-
-	if (gtk_widget_get_opacity(appimage_data->window) == 0)
-		{
-		g_idle_add(appimage_notification_close_cb, data);
-
-		return FALSE;
-		}
-
-	return TRUE;
-}
-
-static gboolean user_close_cb(GtkWidget *, GdkEvent *, gpointer data)
-{
-	auto appimage_data = static_cast<AppImageData *>(data);
-
-	g_idle_add(appimage_notification_close_cb, appimage_data);
-
-	return FALSE;
-}
-
-static void show_notification_message(AppImageData *appimage_data)
-{
-	GtkBuilder *builder;
-
-	builder = gtk_builder_new_from_resource(GQ_RESOURCE_PATH_UI "/appimage-notification.ui");
-
-	appimage_data->window = GTK_WIDGET(gtk_builder_get_object(builder, "appimage_notification"));
-
-	GdkRectangle workarea;
-	gdk_monitor_get_workarea(gdk_display_get_primary_monitor(gdk_display_get_default()),
-                             &workarea);
-	gq_gtk_window_move(GTK_WINDOW(appimage_data->window), workarea.width * 0.8, workarea.height / 20);
-	g_signal_connect(appimage_data->window, "focus-in-event", G_CALLBACK(user_close_cb), appimage_data);
-	appimage_data->id = g_timeout_add(100, appimage_notification_fade_cb, appimage_data);
-
-	g_object_unref(builder);
-	gtk_widget_show(appimage_data->window);
-}
-
-static void appimage_notification_func(gpointer data, gpointer)
+static void new_appimage_notification_func(gpointer, gpointer user_data)
 {
 	FILE *pipe;
 	GNetworkMonitor *net_mon;
 	GSocketConnectable *geeqie_github;
-	auto appimage_data = static_cast<AppImageData *>(data);
+	auto app = static_cast<GtkApplication *>(user_data);
 	char buffer[max_buffer_size];
 	char result[max_buffer_size];
 	gboolean internet_available = FALSE;
@@ -640,20 +588,20 @@ static void appimage_notification_func(gpointer data, gpointer)
 
 				if (mktime(&github_version_date) > mktime(&current_version_date))
 					{
-					show_notification_message(appimage_data);
+					show_new_appimage_notification(app);
 					}
 				}
 			}
 		}
 }
 
-void appimage_notification(GtkApplication *)
+void new_appimage_notification(GtkApplication *app)
 {
 	AppImageData *appimage_data;
 
 	appimage_data = g_new0(AppImageData, 1);
 
-	appimage_data->thread_pool = g_thread_pool_new(appimage_notification_func, appimage_data, 1, FALSE, nullptr);
+	appimage_data->thread_pool = g_thread_pool_new(new_appimage_notification_func, app, 1, FALSE, nullptr);
 	g_thread_pool_push(appimage_data->thread_pool, appimage_data, nullptr);
 }
 

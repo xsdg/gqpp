@@ -349,6 +349,21 @@ gboolean search_command_line_for_unit_test_option(gint argc, gchar *argv[])
 }
 
 /**
+ * @brief Null action
+ * @param GSimpleAction
+ * @param GVariant
+ * @param gpointer
+ *
+ * This is required for the AppImage notification.
+ * If the user clicks on the notification and a default action is
+ * not defined, the action taken is to activate the app (again).
+ * The default action is linked to this callback.
+ */
+void null_activated_cb(GSimpleAction *, GVariant *, gpointer)
+{
+}
+
+/**
  * @brief Notification Quit button pressed
  * @param action
  * @param parameter
@@ -1010,17 +1025,17 @@ void startup_cb(GtkApplication *app, gpointer)
 	g_signal_connect(default_settings, "notify::gtk-theme-name", G_CALLBACK(theme_change_cb), nullptr);
 	set_theme_bg_color();
 
-	/* Show a fade-out notification window if the server has a newer AppImage version */
+	/* Show a notification if the server has a newer AppImage version */
 	if (options->appimage_notifications)
 		{
 		if (g_getenv("APPDIR") && strstr(g_getenv("APPDIR"), "/tmp/.mount_Geeqie"))
 			{
-			appimage_notification(app);
+			new_appimage_notification(app);
 			}
 		else if (g_strstr_len(gq_executable_path, -1, "squashfs-root"))
 			{
 			/* Probably running an extracted AppImage */
-			appimage_notification(app);
+			new_appimage_notification(app);
 			}
 		}
 
@@ -1152,6 +1167,11 @@ Version: Geeqie "), VERSION, nullptr);
 	g_signal_connect(app, "activate", G_CALLBACK(activate_cb), nullptr);
 	g_signal_connect(app, "command-line", G_CALLBACK(command_line_cb), nullptr);
 	g_signal_connect(app, "startup", G_CALLBACK(startup_cb), nullptr);
+
+	/* The null action is required for the AppImage notification */
+	GSimpleAction *null_action = g_simple_action_new("null", nullptr);
+	g_signal_connect(null_action, "activate", G_CALLBACK(null_activated_cb), app);
+	g_action_map_add_action(G_ACTION_MAP(app), G_ACTION(null_action));
 
 	status = g_application_run(G_APPLICATION(app), argc, argv);
 
