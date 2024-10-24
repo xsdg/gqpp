@@ -225,11 +225,11 @@
       <emphasis role="underline"><link linkend="CopyMoveandLink" endterm="titleGuideSidebarsSortManager" /></emphasis>
       . The path of the bookmark clicked will be used by the desktop file.
       <para />
-      If the desktop file is called from the menu, when the plugin is executed you are presented with a dialogue which enables a path to be selected. The path selected, appended by the filename currently being processed, is made available to the shell script either as an environment variable or via a call to geeqie --remote. The following code demonstrates the use of both methods:
+      If the desktop file is called from the menu, when the plugin is executed you are presented with a dialogue which enables a path to be selected. The path selected, appended by the filename currently being processed, is made available to the shell script either as an environment variable or via a call to geeqie. The following code demonstrates the use of both methods:
       <programlisting xml:space="preserve">
         for file in "$@"
         do
-        destination=$(geeqie --remote --get-destination:"$file")
+        destination=$(geeqie --get-destination:"$file")
         
         echo "$destination"
         echo $GEEQIE_DESTINATION

@@ -28,7 +28,7 @@ process_raw ()
 
 		rm "$tmpdir/$src_filename"
 
-		geeqie --remote --view="$tmpdir/$filename-crop.$extension"
+		geeqie --view="$tmpdir/$filename-crop.$extension"
 		res=0
 	else
 		res=1
@@ -49,7 +49,7 @@ process_plain ()
 	then
 		zenity --error --title="$title" --text="Cannot process this file format" --width="$width" --window-icon="$window_icon"
 	else
-		geeqie --remote --view="$tmpdir/$filename-crop.$extension"
+		geeqie --view="$tmpdir/$filename-crop.$extension"
 	fi
 }
 
@@ -62,7 +62,7 @@ then
 	if [ -x "$(command -v exiftool)" ]
 	then
 
-		coords=$(geeqie --remote --get-rectangle)
+		coords=$(geeqie --get-rectangle)
 
 		if [ -z "$coords" ]
 		then

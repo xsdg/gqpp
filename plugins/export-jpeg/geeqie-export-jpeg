@@ -199,7 +199,7 @@ then
 
 	if echo "$base_name" | grep --quiet --ignore-case "\.jpeg$" || echo "$base_name" | grep --quiet --ignore-case "\.jpg$"
 	then
-		render_str=$(geeqie --remote --get-render-intent)
+		render_str=$(geeqie --get-render-intent)
 
 		case $render_str in
 			"Perceptual")
@@ -229,5 +229,5 @@ then
 		fi
 	fi
 
-	geeqie --remote --view="$tmpdir/"
+	geeqie --view="$tmpdir/"
 fi

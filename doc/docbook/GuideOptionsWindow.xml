@@ -102,7 +102,7 @@
           <para>
             Show the window ID in the titlebar of each window. When multiple Geeqie windows are opened, this option shows a unique identifier for each window. It may be used in conjunction with the command line option:
             <emphasis role="underline"><link linkend="GuideReferenceCommandLine">
-              <code>--remote --id:&lt;ID&gt;</code>
+              <code>--id=&lt;ID&gt;</code>
             </link></emphasis>
           </para>
         </listitem>

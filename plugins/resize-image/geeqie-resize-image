@@ -130,7 +130,7 @@ kill "$info_id"
 
 if [ "$open_geeqie" = "TRUE" ]
 then
-	geeqie --remote "$new_filename"
+	geeqie "$new_filename"
 fi
 
 

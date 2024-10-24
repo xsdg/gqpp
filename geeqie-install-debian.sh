@@ -8,7 +8,7 @@
 ## Dialogs allow the user to install additional features.
 ##
 
-version="2024-01-22"
+version="2024-10-23"
 description='
 Geeqie is an image viewer.
 This script will download, compile, and install Geeqie on Debian-based systems.
@@ -43,7 +43,7 @@ exiv2 (for exif handling)
 libgexiv2-dev
 evince (for print preview)
 evince
-lua (for --remote commands)
+lua (for lua commands)
 liblua5.3-dev
 libffmpegthumbnailer (for mpeg thumbnails)
 libffmpegthumbnailer-dev

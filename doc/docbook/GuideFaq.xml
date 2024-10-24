@@ -61,8 +61,8 @@
     <para />
     <section id="HowdoIopenanimageinanexistingGeeqieapplication">
       <title>How do I open an image in an existing Geeqie application ?</title>
-      <para>Use the “--remote” command line option to send commands to an existing Geeqie, for a list of commands supported by the remote switch run:</para>
-      <programlisting>geeqie --remote-help</programlisting>
+      <para>Use command line options to send commands to an existing Geeqie instance, for a list of commands supported by the remote switch run:</para>
+      <programlisting>geeqie --help</programlisting>
       <para />
     </section>
     <section id="HowdoIsettheslideshowdelaywhenstartingGeeqieinslideshowfromthecommandline">
@@ -70,10 +70,10 @@
       <para>How do I set the slide show delay when starting Geeqie in slide show from the command line ?
       </para>
       <para>The delay can not be set when used with the standard --slideshow command line switch, as --slideshow uses the delay stored in the configuration file.</para>
-      <para>For this, use the remote command --slideshow-start to start the slide show after setting the delay with --delay=. The order of the command line is important. For example for a 12 second slide show delay use:</para>
-      <programlisting>geeqie --remote  --delay=12 --slideshow-start</programlisting>
+      <para>For this, use the remote command --slideshow to start the slide show after setting the delay with --delay=. The order of the command line is important. For example for a 12 second slide show delay use:</para>
+      <programlisting>geeqie --delay=12 --slideshow</programlisting>
       <para>Note that if geeqie is running prior to this command, the slide show should also be stopped prior to changing the delay:</para>
-      <programlisting>geeqie --remote --slideshow-stop --delay=12 --slideshow-start</programlisting>
+      <programlisting>geeqie --slideshow --delay=12 --slideshow</programlisting>
       <para />
     </section>
   </section>

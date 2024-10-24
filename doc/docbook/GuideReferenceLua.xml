@@ -7,7 +7,7 @@
     ,
     <emphasis role="underline"><link linkend="GuideSidebarsInfo" endterm="Listpanes-ExifFileinfoCopyrightLocationandGPS">List panes</link></emphasis>
     on the Info Sidebar, and the
-    <programlisting xml:space="preserve">geeqie --remote --lua:</programlisting>
+    <programlisting xml:space="preserve">geeqie --lua:</programlisting>
     command line option.
   </para>
   <para />

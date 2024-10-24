@@ -9,11 +9,11 @@ IFS='
 '
 
 # get list of images in all collections
-collection_list=$(geeqie --remote --get-collection-list)
+collection_list=$(geeqie --get-collection-list)
 
 for collection_name in $collection_list
 do
-	collection_file_list=$(geeqie --remote --get-collection="$collection_name")
+	collection_file_list=$(geeqie --get-collection="$collection_name")
 	for collection_file in $collection_file_list
 		do
 		list="${list:+${list}}\n${collection_file}"
@@ -21,7 +21,7 @@ do
 done
 
 # get list of images in current folder
-file_list=$(geeqie --remote --get-filelist=)
+file_list=$(geeqie --get-filelist=)
 
 for file_name in $file_list
 do
@@ -49,7 +49,7 @@ files_no_spaces=$(printf '%b\n' "$files_no_blanks" | sed 's/^[ \t]*//;s/[ \t]*$/
 display_image=$( (printf '%b\n'  "$files_no_spaces")  | sort --uniq | shuf -n 1)
 
 # get image currently displayed
-current_image_collection=$(geeqie --remote --tell)
+current_image_collection=$(geeqie --tell)
 # remove collection name, if it is there
 current_image_spaces="${current_image_collection%%Collection:*}"
 # remove leading trailing whitespace
@@ -61,4 +61,4 @@ then
 	display_image=$(printf '%b' "$files_no_spaces" | sort --uniq | shuf -n 1)
 fi
 
-geeqie --remote file="$display_image"
+geeqie --file="$display_image"

@@ -1335,7 +1335,7 @@ static gchar *get_action_label(GtkAction *action, const gchar *action_name)
  * @param
  * @returns std::vector<ActionItem>
  *
- * The list generated is used in the --remote --action-list command and
+ * The list generated is used in the --action-list command and
  * programmable mouse buttons 8 and 9.
  */
 std::vector<ActionItem> get_action_items()
