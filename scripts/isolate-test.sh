@@ -64,8 +64,12 @@ chmod 0700 "$XDG_RUNTIME_DIR"
 cd
 mkdir -p "$XDG_CONFIG_HOME"
 
-# Primary and remote instances of GtkApplication communicate with D-Bus
-dbus_session_sh="$1"
-shift
+# Debug setting
+# export G_DEBUG="fatal-warnings"  # Causes persistent SIGTRAP currently.
+export G_DEBUG="fatal-critical"
 
-exec dbus-run-session -- "$dbus_session_sh" "$@" 2>/dev/null
+echo "Variables in isolated environment:" >&2
+env -i G_DEBUG="$G_DEBUG" HOME="$HOME" XDG_CONFIG_HOME="$XDG_CONFIG_HOME" XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" dbus-run-session -- env >&2
+echo >&2
+
+env -i G_DEBUG="$G_DEBUG" HOME="$HOME" XDG_CONFIG_HOME="$XDG_CONFIG_HOME" XDG_RUNTIME_DIR="$XDG_RUNTIME_DIR" dbus-run-session -- "$@"

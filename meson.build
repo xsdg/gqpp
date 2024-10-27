@@ -690,12 +690,11 @@ i18n.merge_file(
 configure_file(input: 'geeqie.spec.in', output: 'geeqie.spec', configuration: conf_data)
 
 isolate_test_sh = find_program('isolate-test.sh', dirs : scriptsdir, required : true)
-dbus_session_sh = find_program('dbus-session.sh', dirs : scriptsdir, required : true)
 
 # Basic test of the executable
 xvfb = find_program('xvfb-run', required : false)
 if xvfb.found()
-    test_cmd = [dbus_session_sh.full_path(), xvfb.full_path(), '--auto-servernum', geeqie_exe.full_path(), '--version']
+    test_cmd = [xvfb.full_path(), '--auto-servernum', geeqie_exe.full_path(), '--version']
     test('Basic test', isolate_test_sh, args: test_cmd, timeout: 100, suite: 'functional')
     summary({'xvfb' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
 else
@@ -725,7 +724,7 @@ if option.enabled()
             image_name = path_array[path_array.length() - 1]
 
             should_fail = image_name.startswith('fail')
-            test_cmd = [dbus_session_sh.full_path(), image_test_py.full_path(), geeqie_exe.full_path(), image]
+            test_cmd = [image_test_py.full_path(), geeqie_exe.full_path(), image]
             test('Image_ ' + image_name, isolate_test_sh, args: test_cmd, should_fail : should_fail, timeout: 100, suite: ['functional', 'image'])
 
         endforeach
