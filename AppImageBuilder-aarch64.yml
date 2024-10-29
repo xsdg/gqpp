@@ -35,11 +35,11 @@ AppDir:
     - libgexiv2-2
     - libgspell-1-2
     - libheif1
-    - libimath
+    - libimath-3-1-29
     - libjpeg8
     - liblcms2-2
     - liblua5.3-0
-    - libopenexr
+    - libopenexr-3-1-30
     - libopenjp2-7
     - libraw23
     - librsvg2-common
