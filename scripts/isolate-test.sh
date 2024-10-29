@@ -48,7 +48,15 @@ fi
 # Automatically clean up the temporary home directory on exit.
 teardown() {
     # echo "Cleaning up temporary homedir $TEST_HOME" >&2
-    rm -rf "$TEST_HOME"
+    if ! rm -rf "$TEST_HOME"; then
+        # Could be a race condition; try sleeping and repeating.
+        echo >&2
+        echo "First cleanup attempt failed; sleeping and retrying..." >&2
+        sleep 2
+
+        # Repeat with verbose listing
+        rm -rfv "$TEST_HOME"
+    fi
 }
 trap teardown EXIT
 
