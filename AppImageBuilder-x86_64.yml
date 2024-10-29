@@ -19,10 +19,10 @@ AppDir:
     - amd64
     allow_unauthenticated: true
     sources:
-    - sourceline: deb http://im.archive.ubuntu.com/ubuntu/ jammy main restricted
-    - sourceline: deb http://im.archive.ubuntu.com/ubuntu/ jammy universe
-    - sourceline: deb http://im.archive.ubuntu.com/ubuntu/ jammy-updates main restricted
-    - sourceline: deb http://im.archive.ubuntu.com/ubuntu/ jammy-updates universe
+    - sourceline: deb http://im.archive.ubuntu.com/ubuntu/ noble main restricted
+    - sourceline: deb http://im.archive.ubuntu.com/ubuntu/ noble universe
+    - sourceline: deb http://im.archive.ubuntu.com/ubuntu/ noble-updates main restricted
+    - sourceline: deb http://im.archive.ubuntu.com/ubuntu/ noble-updates universe
     include:
     - curl
     - evince
@@ -40,9 +40,9 @@ AppDir:
     - liblcms2-2
     - liblua5.3-0
     - libopenjp2-7
-    - libraw20
+    - libraw23
     - librsvg2-common
-    - libtiff5
+    - libtiff6
     - libunwind8
     - libwebp7
 
