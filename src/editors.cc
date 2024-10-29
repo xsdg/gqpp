@@ -139,6 +139,7 @@ static GList *editor_mime_types_to_extensions(gchar **mime_types)
 		{"image/x-cr2",		".cr2"},
 		{"image/x-dcraw",	"%raw;.mos"},
 		{"image/x-epson-erf",	"%erf"},
+		{"image/x-exr",		".exr"},
 		{"image/x-ico",		".ico"},
 		{"image/x-kodak-kdc",	".kdc"},
 		{"image/x-mrw",		".mrw"},

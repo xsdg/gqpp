@@ -53,6 +53,9 @@
 /* Define to enable exiv2 support */
 #mesondefine HAVE_EXIV2
 
+/* Define to enable exr support */
+#mesondefine HAVE_EXR
+
 /* Define to enable ffmpegthumbnailer support */
 #mesondefine HAVE_FFMPEGTHUMBNAILER
 

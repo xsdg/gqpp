@@ -51,6 +51,7 @@ meson setup \
 -Devince=disabled \
 -Dexecinfo=disabled \
 -Dexiv2=disabled \
+-Dexr=disabled \
 -Dextended_stacktrace=disabled \
 -Dgit=disabled \
 -Dgps-map=disabled \

@@ -306,6 +306,29 @@ else
     summary({'exiv2' : ['disabled - image data processed by exiv2:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
+conf_data.set('HAVE_EXR', 0)
+exr_dep = []
+req_version_exr = '>=3.0.0'
+imath_dep = []
+req_version_imath = '>=3.0.0'
+option = get_option('exr')
+if not option.disabled()
+    exr_dep = dependency('OpenEXR', version : req_version_exr, required : get_option('exr'))
+    if exr_dep.found()
+        imath_dep = dependency('Imath', version : req_version_imath, required : get_option('exr'))
+        if imath_dep.found()
+            conf_data.set('HAVE_EXR', 1)
+            summary({'exr' : ['exr files supported:', true]}, section : 'Configuration', bool_yn : true)
+        else
+            summary({'exr' : ['imath ' + req_version_imath + ' not found - exr files supported:', false]}, section : 'Configuration', bool_yn : true)
+        endif
+    else
+        summary({'exr' : ['exr ' + req_version_exr + ' not found - exr files supported:', false]}, section : 'Configuration', bool_yn : true)
+    endif
+else
+    summary({'exr' : ['disabled - exr files supported:', false]}, section : 'Configuration', bool_yn : true)
+endif
+
 conf_data.set('HAVE_CLUTTER', 0)
 conf_data.set('HAVE_LIBCHAMPLAIN', 0)
 conf_data.set('HAVE_LIBCHAMPLAIN_GTK', 0)

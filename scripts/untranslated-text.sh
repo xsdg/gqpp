@@ -73,6 +73,7 @@ Pause
 PixbufRenderer
 PluginsMenu
 READ_
+runtime_error
 Separator
 URL
 WRITE_

@@ -47,6 +47,7 @@ jobs:
           -Devince=disabled
           -Dexecinfo=disabled
           -Dexiv2=disabled
+          -Dexr=disabled
           -Dextended_stacktrace=disabled
           -Dgit=disabled
           -Dgps-map=disabled
@@ -97,9 +98,11 @@ jobs:
     - run: sudo apt-get install libgspell-1-dev
     - run: sudo apt-get install libgtk-3-bin
     - run: sudo apt-get install libheif-dev
+    - run: sudo apt-get install libimath-dev
     - run: sudo apt-get install libdjvulibre-dev
     - run: sudo apt-get install libjxl-dev
     - run: sudo apt-get install liblua5.3-dev
+    - run: sudo apt-get install libopenexr-dev
     - run: sudo apt-get install libopenjp2-7-dev
     - run: sudo apt-get install libpoppler-glib-dev
     - run: sudo apt-get install libraw-dev libomp-dev

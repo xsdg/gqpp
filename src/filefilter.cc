@@ -163,9 +163,13 @@ void filter_reset()
 void filter_add_defaults()
 {
 	/* formats supported by custom loaders */
+	/*                     key    description      extensions   file_class   writable   allow_sidecar   enabled */
 	filter_add_if_missing("dds", "DirectDraw Surface", ".dds", FORMAT_CLASS_IMAGE, FALSE, FALSE, TRUE);
 #if HAVE_PDF
 	filter_add_if_missing("pdf", "Portable Document Format", ".pdf", FORMAT_CLASS_DOCUMENT, FALSE, FALSE, TRUE);
+#endif
+#if HAVE_EXR
+	filter_add_if_missing("exr", "Exr Image", ".exr", FORMAT_CLASS_IMAGE, FALSE, TRUE, TRUE);
 #endif
 #if HAVE_HEIF
 	filter_add_if_missing("heif/avif", "HEIF/AVIF Image", ".heif;.heic;.avif", FORMAT_CLASS_IMAGE, FALSE, TRUE, TRUE);

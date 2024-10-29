@@ -20,8 +20,10 @@ jobs:
     - run: sudo apt-get install libgexiv2-dev
     - run: sudo apt-get install libgspell-1-dev
     - run: sudo apt-get install libheif-dev
+    - run: sudo apt-get install libimath-dev
     - run: sudo apt-get install libdjvulibre-dev
     - run: sudo apt-get install liblua5.3-dev
+    - run: sudo apt-get install libopenexr-dev
     - run: sudo apt-get install libpoppler-glib-dev
     - run: sudo apt-get install libraw-dev libomp-dev
     - run: sudo apt-get install libunwind-dev

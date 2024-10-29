@@ -36,6 +36,9 @@
 #if HAVE_DJVU
 #  include "image-load-djvu.h"
 #endif
+#if HAVE_EXR
+#  include "image-load-exr.h"
+#endif
 #include "image-load-external.h"
 #if HAVE_FFMPEGTHUMBNAILER
 #  include "image-load-ffmpegthumbnailer.h"
@@ -716,6 +719,15 @@ static void image_loader_setup_loader(ImageLoader *il)
 			}
 		else
 #endif
+#if HAVE_EXR
+		if (il->bytes_total >= 4 &&
+			(memcmp(il->mapped_file, "\x76\x2F\x31\x01", 4) == 0))
+			{
+			DEBUG_1("Using custom exr loader");
+			il->backend = get_image_loader_backend_exr();
+			}
+		else
+#endif
 #if HAVE_JPEG
 		if (il->bytes_total >= 2 && il->mapped_file[0] == 0xff && il->mapped_file[1] == 0xd8)
 			{
@@ -993,7 +1005,7 @@ static gboolean image_loader_setup_source(ImageLoader *il)
 		/* normal file */
 		g_autofree gchar *pathl = path_from_utf8(il->fd->path);
 
-		il->mapped_file = map_file(pathl, il->bytes_total);
+		il->mapped_file = map_file(pathl, il->bytes_total); // bytes_total written from fs.stsize
 		if (!il->mapped_file)
 			{
 			return FALSE;

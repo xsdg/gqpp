@@ -8,7 +8,7 @@
 ## Dialogs allow the user to install additional features.
 ##
 
-version="2024-10-23"
+version="2024-10-29"
 description='
 Geeqie is an image viewer.
 This script will download, compile, and install Geeqie on Debian-based systems.
@@ -75,6 +75,10 @@ libwebp (for WebP images)
 libwebp-dev
 libdjvulibre (for DjVu images)
 libdjvulibre-dev
+libopenexr (for exr images)
+libopenexr-dev
+libimath (for exr images)
+libimath-dev
 libopenjp2 (for JP2 images)
 libopenjp2-7-dev
 libraw (for CR3 images)

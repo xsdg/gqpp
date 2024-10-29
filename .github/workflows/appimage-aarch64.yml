@@ -42,7 +42,9 @@ jobs:
             yes | sudo apt-get install libgexiv2-dev
             yes | sudo apt-get install libgspell-1-dev
             yes | sudo apt-get install libheif-dev
+            yes | sudo apt-get install libimath-dev
             yes | sudo apt-get install liblua5.3-dev
+            yes | sudo apt-get install libopenexr-dev
             yes | sudo apt-get install libpoppler-glib-dev
             yes | sudo apt-get install libraw-dev libomp-dev
             yes | sudo apt-get install libunwind-dev

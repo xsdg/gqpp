@@ -66,7 +66,7 @@ Geeqie is a graphics file viewer. Basic features:
     * output: single image, anaglyph, SBS, mirror, SBS half size (3DTV)
 
 * Viewing raster and vector images, in the following formats:
-    * 3FR ANI ARW AVIF BMP CR2 CR3 CRW CUR DDS DJVU DNG ERF GIF GQV HEIC HEIF ICO JP2 JPE JPEG JPG JPS JXL KDC MEF MOS MPO MRW NEF ORF PBM PDF PEF PGM PNG PNM PPM PSD QIF QTIF RAF RAW RW2 SCR SR2 SRF SVG SVGZ TGA TIF TIFF WEBP XBM XPM.
+    * 3FR ANI ARW AVIF BMP CR2 CR3 CRW CUR DDS DJVU DNG ERF EXR GIF GQV HEIC HEIF ICO JP2 JPE JPEG JPG JPS JXL KDC MEF MOS MPO MRW NEF ORF PBM PDF PEF PGM PNG PNM PPM PSD QIF QTIF RAF RAW RW2 SCR SR2 SRF SVG SVGZ TGA TIF TIFF WEBP XBM XPM.
     * Display images in archive files (.ZIP, .RAR etc.).
     * Animated GIF and WEBP files are supported.
 
