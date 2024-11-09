@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is running Geeqie aarch64 AppImage build
 on: [push]
 jobs:
   Build-AppImage:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         arch: [aarch64]
@@ -42,9 +42,9 @@ jobs:
             yes | sudo apt-get install libgexiv2-dev
             yes | sudo apt-get install libgspell-1-dev
             yes | sudo apt-get install libheif-dev
-            yes | sudo apt-get install libimath-dev
+            # yes | sudo apt-get install libimath-dev
             yes | sudo apt-get install liblua5.3-dev
-            yes | sudo apt-get install libopenexr-dev
+            # yes | sudo apt-get install libopenexr-dev
             yes | sudo apt-get install libpoppler-glib-dev
             yes | sudo apt-get install libraw-dev libomp-dev
             yes | sudo apt-get install libunwind-dev
@@ -55,7 +55,7 @@ jobs:
             yes | sudo apt-get install yelp-tools
             mkdir -p $GITHUB_WORKSPACE/AppDir
             mkdir -p $GITHUB_WORKSPACE/AppDir/usr
-            meson setup -Ddoxygen=disabled -Dyelp-build=disabled -Dprefix=$GITHUB_WORKSPACE/AppDir/usr build
+            meson setup -Ddoxygen=disabled -Dexr=disabled -Dyelp-build=disabled -Dprefix=$GITHUB_WORKSPACE/AppDir/usr build
             ninja -C build install
             tar -czvf geeqie.gz $GITHUB_WORKSPACE/
 
