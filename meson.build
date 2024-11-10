@@ -471,6 +471,15 @@ else
     summary({'lua' : ['disabled - lua supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
+conf_data.set('HAVE_NPY', 0)
+option = get_option('npy')
+if not option.disabled()
+    conf_data.set('HAVE_NPY', 1)
+    summary({'npy' : ['npy supported:', true]}, section : 'Configuration', bool_yn : true)
+else
+    summary({'npy' : ['npy supported:', false]}, section : 'Configuration', bool_yn : true)
+endif
+
 # Install standard documents
 option = get_option('pandoc')
 if not option.disabled()

@@ -60,6 +60,9 @@
 #  include "image-load-jpegxl.h"
 #endif
 #include "image-load-libraw.h"
+#if HAVE_NPY
+#  include "image-load-npy.h"
+#endif
 #if HAVE_PDF
 #  include "image-load-pdf.h"
 #endif
@@ -755,6 +758,15 @@ static void image_loader_setup_loader(ImageLoader *il)
 		     	{
 			DEBUG_1("Using custom tiff loader");
 			il->backend = get_image_loader_backend_tiff();
+			}
+		else
+#endif
+#if HAVE_NPY
+		if (il->bytes_total >= 6 &&
+			(memcmp(il->mapped_file, "\x93NUMPY", 6) == 0))
+			{
+			DEBUG_1("Using custom npy loader");
+			il->backend = get_image_loader_backend_npy();
 			}
 		else
 #endif

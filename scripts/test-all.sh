@@ -63,6 +63,7 @@ meson setup \
 -Djpegxl=disabled \
 -Dlibraw=disabled \
 -Dlua=disabled \
+-Dnpy=disabled \
 -Dpandoc=disabled \
 -Dpdf=disabled \
 -Dspell=disabled \

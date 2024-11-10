@@ -286,6 +286,13 @@ if conf_data.get('HAVE_LUA', 0) == 1
     )
 endif
 
+if conf_data.get('HAVE_NPY', 0) == 1
+    main_sources += files(
+        'image-load-npy.cc',
+        'image-load-npy.h',
+    )
+endif
+
 if conf_data.get('HAVE_PDF', 0) == 1
     main_sources += files(
         'image-load-pdf.cc',
