@@ -329,6 +329,21 @@ else
     summary({'exr' : ['disabled - exr files supported:', false]}, section : 'Configuration', bool_yn : true)
 endif
 
+conf_data.set('HAVE_FITS', 0)
+fits_dep = []
+option = get_option('fits')
+if not option.disabled()
+    fits_dep = dependency('cfitsio', required: get_option('fits'))
+    if fits_dep.found()
+		conf_data.set('HAVE_FITS', 1)
+		summary({'fits' : ['fits files supported:', true]}, section : 'Configuration', bool_yn : true)
+    else
+        summary({'fits' : ['libcfitsio not found - fits files supported:', false]}, section : 'Configuration', bool_yn : true)
+    endif
+else
+    summary({'fits' : ['disabled - fits files supported:', false]}, section : 'Configuration', bool_yn : true)
+endif
+
 conf_data.set('HAVE_CLUTTER', 0)
 conf_data.set('HAVE_LIBCHAMPLAIN', 0)
 conf_data.set('HAVE_LIBCHAMPLAIN_GTK', 0)

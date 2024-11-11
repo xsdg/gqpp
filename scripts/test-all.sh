@@ -53,6 +53,7 @@ meson setup \
 -Dexiv2=disabled \
 -Dexr=disabled \
 -Dextended_stacktrace=disabled \
+-Dfits=disabled \
 -Dgit=disabled \
 -Dgps-map=disabled \
 -Dgtk4=disabled \

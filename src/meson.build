@@ -237,6 +237,13 @@ if conf_data.get('HAVE_EXR', 0) == 1
     )
 endif
 
+if conf_data.get('HAVE_FITS', 0) == 1
+    main_sources += files(
+        'image-load-fits.cc',
+        'image-load-fits.h',
+    )
+endif
+
 if conf_data.get('HAVE_HEIF', 0) == 1
     main_sources += files(
         'image-load-heif.cc',
@@ -365,6 +372,7 @@ clutter_gtk_dep,
 ddjvuapi_dep,
 exiv2_dep,
 exr_dep,
+fits_dep,
 glib_dep,
 gspell_dep,
 imath_dep,

@@ -171,6 +171,9 @@ void filter_add_defaults()
 #if HAVE_EXR
 	filter_add_if_missing("exr", "Exr Image", ".exr", FORMAT_CLASS_IMAGE, FALSE, TRUE, TRUE);
 #endif
+#if HAVE_FITS
+	filter_add_if_missing("fits", "Fits Image", ".fits;.fit;.fts", FORMAT_CLASS_IMAGE, FALSE, TRUE, TRUE);
+#endif
 #if HAVE_HEIF
 	filter_add_if_missing("heif/avif", "HEIF/AVIF Image", ".heif;.heic;.avif", FORMAT_CLASS_IMAGE, FALSE, TRUE, TRUE);
 #endif

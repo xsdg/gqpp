@@ -68,6 +68,9 @@
 /* Define if ffmpegthumbnailer supports specifying size by width/height */
 #mesondefine HAVE_FFMPEGTHUMBNAILER_WH
 
+/* Define to enable fits support */
+#mesondefine HAVE_FITS
+
 /* Define to enable heif support */
 #mesondefine HAVE_HEIF
 

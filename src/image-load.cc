@@ -43,6 +43,9 @@
 #if HAVE_FFMPEGTHUMBNAILER
 #  include "image-load-ffmpegthumbnailer.h"
 #endif
+#if HAVE_FITS
+#  include "image-load-fits.h"
+#endif
 #include "image-load-gdk.h"
 #if HAVE_HEIF
 #  include "image-load-heif.h"
@@ -677,6 +680,15 @@ static void image_loader_setup_loader(ImageLoader *il)
 			{
 			DEBUG_1("Using custom ffmpegthumbnailer loader");
 			il->backend = get_image_loader_backend_ft();
+			}
+		else
+#endif
+#if HAVE_FITS
+		if (il->bytes_total >= 6 &&
+			(memcmp(il->mapped_file, "SIMPLE", 6) == 0))
+			{
+			DEBUG_1("Using custom fits loader");
+			il->backend = get_image_loader_backend_fits();
 			}
 		else
 #endif

@@ -8,7 +8,7 @@
 ## Dialogs allow the user to install additional features.
 ##
 
-version="2024-10-29"
+version="2024-11-11"
 description='
 Geeqie is an image viewer.
 This script will download, compile, and install Geeqie on Debian-based systems.
@@ -96,7 +96,9 @@ libchamplain-0.12-dev
 libpoppler (for pdf file preview)
 libpoppler-glib-dev
 libjxl (for viewing .jxl images)
-libjxl-dev"
+libjxl-dev
+libcfitsio (for .fits images)
+libcfitsio-dev"
 
 ####################################################################
 # Get System Info
