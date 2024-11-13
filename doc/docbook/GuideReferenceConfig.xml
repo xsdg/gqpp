@@ -18,7 +18,7 @@
   </para>
   <para>
     An alternative configuration file may be used by executing:
-    <programlisting xml:space="preserve">geeqie -r --config-load:&lt;filename&gt;</programlisting>
+    <programlisting xml:space="preserve">geeqie --config-load:&lt;filename&gt;</programlisting>
   </para>
   <para>
     Saved window layout files are in the folder:
