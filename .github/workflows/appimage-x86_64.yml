@@ -3,71 +3,99 @@ run-name: ${{ github.actor }} is running Geeqie x86_64 AppImage build
 on: [push]
 jobs:
   Build-AppImage:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
-    - run: sudo apt-get update
-    - run: sudo apt-get install build-essential libgtk-3-dev libgtk-3-bin
-    - run: sudo apt-get install curl
-    - run: sudo apt-get install docbook-xsl
-    - run: sudo apt-get install evince
-    - run: sudo apt-get install fop
-    - run: sudo apt-get install gettext
-    - run: sudo apt-get install libarchive-dev
-    - run: sudo apt-get install libchamplain-0.12-dev libchamplain-gtk-0.12-dev
-    - run: sudo apt-get install libdw-dev
-    - run: sudo apt-get install libdwarf-dev
-    - run: sudo apt-get install libffmpegthumbnailer-dev
-    - run: sudo apt-get install libgexiv2-dev
-    - run: sudo apt-get install libgspell-1-dev
-    - run: sudo apt-get install libheif-dev
-    # - run: sudo apt-get install libimath-dev
-    - run: sudo apt-get install libdjvulibre-dev
-    - run: sudo apt-get install liblua5.3-dev
-    # - run: sudo apt-get install libopenexr-dev
-    - run: sudo apt-get install libpoppler-glib-dev
-    - run: sudo apt-get install libraw-dev libomp-dev
-    - run: sudo apt-get install libunwind-dev
-    - run: sudo apt-get install libwebp-dev
-    - run: sudo apt-get install libwebp7
-    - run: sudo apt-get install pandoc
-    - run: sudo apt-get install yelp-tools
-    - run: sudo apt-get install xsltproc
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y appstream
+          sudo apt install -y build-essential
+          sudo apt install -y curl
+          sudo apt install -y docbook-xsl
+          sudo apt install -y evince
+          sudo apt install -y fop
+          sudo apt install -y fuse
+          sudo apt install -y gettext
+          sudo apt install -y libarchive-dev
+          sudo apt install -y libcfitsio-dev
+          sudo apt install -y libchamplain-0.12-dev
+          sudo apt install -y libchamplain-gtk-0.12-dev
+          sudo apt install -y libdjvulibre-dev
+          sudo apt install -y libdw-dev
+          sudo apt install -y libdwarf-dev
+          sudo apt install -y libffmpegthumbnailer-dev
+          sudo apt install -y libgexiv2-dev
+          sudo apt install -y libgspell-1-dev
+          sudo apt install -y libgtk-3-bin
+          sudo apt install -y libgtk-3-dev
+          sudo apt install -y libheif-dev
+          sudo apt install -y libimath-dev
+          sudo apt install -y liblua5.3-dev
+          sudo apt install -y libomp-dev
+          sudo apt install -y libopenexr-dev
+          sudo apt install -y libpoppler-glib-dev
+          sudo apt install -y libraw-dev
+          sudo apt install -y libunwind-dev
+          sudo apt install -y libwebp-dev
+          sudo apt install -y libwebp7
+          sudo apt install -y pandoc
+          sudo apt install -y patchelf
+          sudo apt install -y wget
+          sudo apt install -y xsltproc
+          sudo apt install -y yelp-tools
 
-    - uses: actions/checkout@v4
-    - run: git fetch --tags --force
-    - run: git fetch --depth=1000000
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-    - uses: BSFishy/meson-build@v1.0.3
-      with:
-        action: build
-        directory: build
-        setup-options: >
-          -Dexr=disabled
-        options: --verbose
-        meson-version: 1.0.1
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: build
-      run: DESTDIR=${{ github.workspace }}/AppDir ninja -C build install
-    - name: build AppImage
-      uses: AppImageCrafters/build-appimage-action@master
-      with:
-        recipe: AppImageBuilder-x86_64.yml
+      - name: git fetch
+        run: |
+          git fetch --tags --force
+          git fetch --depth=1000000
 
-    - name: Create Release
-      uses: ncipollo/release-action@v1
-      with:
-         allowUpdates: true
-         tag: continuous
-         name: Continuous build
-         prerelease: true
-         artifacts: "Geeqie-latest-x86_64.AppImage"
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
-    - name: Upload logs
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: logs-all-build-appimage
-        path: ${{ github.workspace }}/build/meson-logs/*.txt
-        retention-days: 5
+      - name: Meson build
+        uses: BSFishy/meson-build@v1.0.3
+        with:
+          action: build
+          directory: build
+          setup-options: >
+            --prefix=/usr
+            --datadir=share
+          options: --verbose
+          meson-version: 1.0.1
+
+      - name: Ninja compile
+        run: DESTDIR=${{ github.workspace }}/AppDir ninja -C build install
+
+      - name: Download linuxdeploy and plugin
+        run: |
+          wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+          chmod +x linuxdeploy-x86_64.AppImage
+
+      - name: Build AppImage
+        run: |
+          ./linuxdeploy-x86_64.AppImage --appdir ${{ github.workspace }}/AppDir \
+            --desktop-file ${{ github.workspace }}/AppDir/usr/share/applications/org.geeqie.Geeqie.desktop \
+            --output appimage
+          mv Geeqie-x86_64.AppImage Geeqie-latest-x86_64.AppImage
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+           allowUpdates: true
+           tag: continuous
+           name: Continuous build
+           prerelease: true
+           artifacts: "Geeqie-latest-x86_64.AppImage"
+
+      - name: Upload logs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: logs-all-build-appimage
+          path: ${{ github.workspace }}/build/meson-logs/*.txt
+          retention-days: 5
