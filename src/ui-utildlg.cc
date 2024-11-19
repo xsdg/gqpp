@@ -544,7 +544,9 @@ static void new_appimage_notification_func(gpointer, gpointer user_data)
 	char result[max_buffer_size];
 	gboolean internet_available = FALSE;
 
-	/* If this is a release version, do not check for updates */
+	/* If this is a release version, do not check for updates.
+	 * Non-release version is e.g. 2.5+git20241117-167271b8
+	 */
 	if (g_strrstr(VERSION, "git"))
 		{
 		net_mon = g_network_monitor_get_default();
@@ -584,7 +586,7 @@ static void new_appimage_notification_func(gpointer, gpointer user_data)
 				g_auto(GStrv) version_split = g_strsplit_set(VERSION, "+-", -1);
 
 				std::tm current_version_date{};
-				strptime(version_split[1] + 3, "%Y-%m-%d", &current_version_date);
+				strptime(version_split[1] + 3, "%Y%m%d", &current_version_date);
 
 				if (mktime(&github_version_date) > mktime(&current_version_date))
 					{
