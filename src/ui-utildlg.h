@@ -92,6 +92,7 @@ void file_dialog_add_path_widgets(FileDialog *fd, const gchar *default_path, con
 
 void file_dialog_sync_history(FileDialog *fd, gboolean dir_only);
 
+gboolean generic_dialog_find_window(const gchar *title, const gchar *role, GdkRectangle &rect);
 void generic_dialog_windows_load_config(const gchar **attribute_names, const gchar **attribute_values);
 void generic_dialog_windows_write_config(GString *outstr, gint indent);
 

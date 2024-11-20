@@ -89,6 +89,13 @@ constexpr gint DIALOG_DEF_IMAGE_DIM_Y = 100;
 
 constexpr gint DIALOG_WIDTH = 750;
 
+/** @FIXME It would be better if the window size was auto-adjusted.
+ */
+enum RenameWindowDimensions {
+	RENAME_WINDOW_WIDTH = 625,
+	RENAME_WINDOW_HEIGHT = 635
+};
+
 /* thumbnail spec has a max depth of 4 (.thumb??/fail/appname/??.png) */
 constexpr gint UTILITY_DELETE_MAX_DEPTH = 5;
 
@@ -1215,6 +1222,12 @@ static void file_util_fdlg_rename_cb(FileDialog *fdlg, gpointer data)
 		file_dialog_close(fdlg);
 		ud->fdlg = nullptr;
 		file_util_dialog_run(ud);
+
+		GdkRectangle rect;
+		if (!options->save_dialog_window_positions || !generic_dialog_find_window("Rename", "dlg_confirm", rect))
+			{
+			gtk_window_resize(GTK_WINDOW(ud->gd->dialog), RENAME_WINDOW_WIDTH, RENAME_WINDOW_HEIGHT);
+			}
 		}
 	else
 		{
@@ -1917,6 +1930,12 @@ void file_util_dialog_run(UtilityData *ud)
 					break;
 				case UTILITY_TYPE_RENAME:
 					file_util_dialog_init_source_dest(ud, TRUE);
+
+					GdkRectangle rect;
+					if (!options->save_dialog_window_positions || !generic_dialog_find_window("Rename", "dlg_confirm", rect))
+						{
+						gtk_window_resize(GTK_WINDOW(ud->gd->dialog), RENAME_WINDOW_WIDTH, RENAME_WINDOW_HEIGHT);
+						}
 					ud->phase = UTILITY_PHASE_ENTERING;
 					break;
 				case UTILITY_TYPE_COPY:

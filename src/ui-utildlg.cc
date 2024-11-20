@@ -90,7 +90,7 @@ static void generic_dialog_save_window(const gchar *title, const gchar *role, Gd
 	dialog_windows = g_list_append(dialog_windows, dw);
 }
 
-static gboolean generic_dialog_find_window(const gchar *title, const gchar *role, GdkRectangle &rect)
+gboolean generic_dialog_find_window(const gchar *title, const gchar *role, GdkRectangle &rect)
 {
 	GList *work;
 
