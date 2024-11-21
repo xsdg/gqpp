@@ -2894,11 +2894,11 @@ static GtkRadioActionEntry menu_stereo_mode_entries[] = {
 };
 
 static GtkRadioActionEntry menu_draw_rectangle_aspect_ratios[] = {
-  { "CropNone",        nullptr, N_("None"), nullptr, N_("None"), RECTANGLE_DRAW_ASPECT_RATIO_NONE },
-  { "CropOneOne",      nullptr, N_("1:1"),  nullptr, N_("1:1"),  RECTANGLE_DRAW_ASPECT_RATIO_ONE_ONE },
-  { "CropFourThree",   nullptr, N_("4:3"),  nullptr, N_("4:3"),  RECTANGLE_DRAW_ASPECT_RATIO_FOUR_THREE },
-  { "CropThreeTwo",    nullptr, N_("3:2"),  nullptr, N_("3:2"),  RECTANGLE_DRAW_ASPECT_RATIO_THREE_TWO },
-  { "CropSixteenNine", nullptr, N_("16:9"), nullptr, N_("16:9"), RECTANGLE_DRAW_ASPECT_RATIO_SIXTEEN_NINE }
+  { "CropNone",        nullptr, N_("Crop None"), nullptr, N_("Crop rectangle None"), RECTANGLE_DRAW_ASPECT_RATIO_NONE },
+  { "CropOneOne",      nullptr, N_("Crop 1:1"),  nullptr, N_("Crop rectangle 1:1"),  RECTANGLE_DRAW_ASPECT_RATIO_ONE_ONE },
+  { "CropFourThree",   nullptr, N_("Crop 4:3"),  nullptr, N_("Crop rectangle 4:3"),  RECTANGLE_DRAW_ASPECT_RATIO_FOUR_THREE },
+  { "CropThreeTwo",    nullptr, N_("Crop 3:2"),  nullptr, N_("Crop rectangle 3:2"),  RECTANGLE_DRAW_ASPECT_RATIO_THREE_TWO },
+  { "CropSixteenNine", nullptr, N_("Crop 16:9"), nullptr, N_("Crop rectangle 16:9"), RECTANGLE_DRAW_ASPECT_RATIO_SIXTEEN_NINE }
 };
 #undef CB
 
