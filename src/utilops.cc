@@ -3153,7 +3153,20 @@ void file_util_start_filter_from_filelist(const gchar *key, GList *list, const g
 
 void file_util_delete_dir(FileData *fd, GtkWidget *parent)
 {
+	gboolean file_filter_disable_status;
+
+	/* If the file filter is enabled and there are hidden files, the directory
+	 * cannot be deleted but the dialog does not show to the user those files.
+	 * It is better to temporarily disable the file filter so that the user
+	 * can see the entire contents of the directory about to be deleted.
+	 */
+	file_filter_disable_status = options->file_filter.disable;
+	options->file_filter.disable = TRUE;
+
 	file_util_delete_dir_full(fd, parent, UTILITY_PHASE_START);
+
+	options->file_filter.disable = file_filter_disable_status;
+
 }
 
 void file_util_create_dir(const gchar *path, GtkWidget *parent, FileUtilDoneFunc done_func, gpointer done_data)
