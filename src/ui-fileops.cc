@@ -1065,4 +1065,29 @@ guchar *map_file(const gchar *path, gsize &map_len)
 	map_len = st.st_size;
 	return map_data;
 }
+
+/**
+ * @brief Get list of file extensions supported by gdk_pixbuf_loader
+ * @param  extensions_list
+ *
+ * extensions_list must be supplied by and freed by caller
+ */
+void pixbuf_gdk_known_extensions(GList **extensions_list)
+{
+	GSList *formats_list = gdk_pixbuf_get_formats();
+
+	for (GSList *work = formats_list; work; work = work->next)
+		{
+		auto *fm = static_cast<GdkPixbufFormat *>(work->data);
+		g_auto(GStrv) extensions = gdk_pixbuf_format_get_extensions(fm);
+		const guint extensions_count = g_strv_length(extensions);
+
+		for (guint i = 0; i < extensions_count; i++)
+			{
+			*extensions_list = g_list_insert_sorted(*extensions_list, g_strdup(extensions[i]), reinterpret_cast<GCompareFunc>(g_strcmp0));
+			}
+		}
+
+	g_slist_free(formats_list);
+}
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

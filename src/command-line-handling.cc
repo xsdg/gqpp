@@ -472,6 +472,41 @@ void gq_File(GtkApplication *, GApplicationCommandLine *app_command_line, GVaria
 	file_load_no_raise(text, app_command_line);
 }
 
+void gq_file_extensions(GtkApplication *, GApplicationCommandLine *app_command_line, GVariantDict *, GList *)
+{
+	GList *extensions_list = nullptr;
+	GList *work;
+
+	pixbuf_gdk_known_extensions(&extensions_list);
+
+	work = filter_get_list();
+	while (work)
+		{
+		FilterEntry *fe;
+
+		fe = static_cast<FilterEntry *>(work->data);
+		work = work->next;
+		if (!g_list_find_custom(extensions_list, fe->key, reinterpret_cast<GCompareFunc>(g_strcmp0)))
+			{
+			extensions_list = g_list_insert_sorted(extensions_list, g_strdup(fe->key), reinterpret_cast<GCompareFunc>(g_strcmp0));
+			}
+		}
+
+	g_autoptr(GString) types_string = g_string_new(nullptr);
+	for (GList *work = extensions_list; work; work = work->next)
+		{
+		if (types_string->len > 0)
+			{
+			types_string = g_string_append(types_string, " ");
+			}
+		types_string = g_string_append(types_string, static_cast<gchar *>(work->data));
+		}
+
+	g_list_free_full(extensions_list, g_free);
+
+	g_application_command_line_print(app_command_line, "%s\n", types_string->str);
+}
+
 void gq_first(GtkApplication *, GApplicationCommandLine *, GVariantDict *, GList *)
 {
 	layout_image_first(lw_id);
@@ -1454,6 +1489,7 @@ CommandLineOptionEntry command_line_options[] =
 	{ "delay",                       gq_delay,                       PRIMARY_REMOTE, GUI  },
 	{ "file",                        gq_file,                        PRIMARY_REMOTE, GUI  },
 	{ "File",                        gq_File,                        PRIMARY_REMOTE, GUI  },
+	{ "file-extensions",             gq_file_extensions,             PRIMARY_REMOTE, TEXT },
 	{ "first",                       gq_first,                       PRIMARY_REMOTE, GUI  },
 	{ "fullscreen",                  gq_fullscreen,                  PRIMARY_REMOTE, GUI  },
 	{ "geometry",                    gq_geometry,                    PRIMARY_REMOTE, GUI  },

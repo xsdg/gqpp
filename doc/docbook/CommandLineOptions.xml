@@ -7,8 +7,8 @@
 <refmeta>
 <refentrytitle>GEEQIE</refentrytitle>
 <manvolnum>1</manvolnum>
-<refmiscinfo class='source'>October 2024</refmiscinfo>
-<refmiscinfo class='manual'>Geeqie 2.5+git20241018-28accf20 GTK3</refmiscinfo>
+<refmiscinfo class='source'>November 2024</refmiscinfo>
+<refmiscinfo class='manual'>Geeqie 2.5+git20241125-c74ba346 GTK3</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>Geeqie</refname>
@@ -28,7 +28,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
 
 <para>Geeqie is an image viewer.</para>
 
-<para>Version: Geeqie 2.5+git20241018-28accf20</para>
+<para>Version: Geeqie 2.5+git20241125-c74ba346</para>
 </refsect2>
 
 <refsect2 id='help_options'><title>Help Options:</title>
@@ -156,6 +156,12 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   <term><emphasis role='strong' remap='B'>--File=</emphasis>&lt;FILE&gt;|&lt;URL&gt;</term>
   <listitem>
 <para>open FILE or URL do not bring Geeqie window to the top</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term><emphasis role='strong' remap='B'>--file-extensions</emphasis></term>
+  <listitem>
+<para>list known file extensions</para>
   </listitem>
   </varlistentry>
   <varlistentry>

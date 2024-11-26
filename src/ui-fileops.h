@@ -112,5 +112,7 @@ gint scale_factor();
 
 guchar *map_file(const gchar *path, gsize &map_len);
 
+void pixbuf_gdk_known_extensions(GList **extensions_list);
+
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

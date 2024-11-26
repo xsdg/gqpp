@@ -3910,21 +3910,10 @@ static void config_tab_advanced(GtkWidget *notebook)
 
 	pref_spacer(group, PREF_PAD_GROUP);
 
-	GSList *formats_list = gdk_pixbuf_get_formats();
-	for (GSList *work = formats_list; work; work = work->next)
-		{
-		auto *fm = static_cast<GdkPixbufFormat *>(work->data);
-		g_auto(GStrv) extensions = gdk_pixbuf_format_get_extensions(fm);
-		const guint extensions_count = g_strv_length(extensions);
+	pixbuf_gdk_known_extensions(&extensions_list);
 
-		for (guint i = 0; i < extensions_count; i++)
-			{
-			extensions_list = g_list_insert_sorted(extensions_list, g_strdup(extensions[i]), reinterpret_cast<GCompareFunc>(g_strcmp0));
-			}
-		}
-	g_slist_free(formats_list);
+	 g_autoptr(GString) types_string = g_string_new(nullptr);
 
-	g_autoptr(GString) types_string = g_string_new(nullptr);
 	for (GList *work = extensions_list; work; work = work->next)
 		{
 		if (types_string->len > 0)
