@@ -8,7 +8,7 @@
 <refentrytitle>GEEQIE</refentrytitle>
 <manvolnum>1</manvolnum>
 <refmiscinfo class='source'>November 2024</refmiscinfo>
-<refmiscinfo class='manual'>Geeqie 2.5+git20241125-c74ba346 GTK3</refmiscinfo>
+<refmiscinfo class='manual'>Geeqie 2.5+git20241126-85764a0f GTK3</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>Geeqie</refname>
@@ -28,7 +28,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
 
 <para>Geeqie is an image viewer.</para>
 
-<para>Version: Geeqie 2.5+git20241125-c74ba346</para>
+<para>Version: Geeqie 2.5+git20241126-85764a0f</para>
 </refsect2>
 
 <refsect2 id='help_options'><title>Help Options:</title>
@@ -65,7 +65,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   <varlistentry>
   <term><emphasis role='strong' remap='B'>--action=</emphasis>&lt;ACTION&gt;</term>
   <listitem>
-<para>execute keyboard action (See Help/Reference/Remote Keyboard Actions)</para>
+<para>execute keyboard action (https://www.geeqie.org/help/GuideReferenceRemoteKeyboardActions.html)</para>
   </listitem>
   </varlistentry>
   <varlistentry>
@@ -197,7 +197,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   <varlistentry>
   <term><emphasis role='strong' remap='B'>--get-destination=</emphasis>&lt;FILE&gt;</term>
   <listitem>
-<para>get destination path of FILE (See Plugins Configuration)</para>
+<para>get destination path of FILE (https://www.geeqie.org/help/GuidePluginsConfig.html)</para>
   </listitem>
   </varlistentry>
   <varlistentry>

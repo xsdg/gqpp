@@ -131,7 +131,7 @@ User manual: https://www.geeqie.org/help/GuideIndex.html\n \
 
 GOptionEntry command_line_options[] =
 {
-	{ "action"                    ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("execute keyboard action (See Help/Reference/Remote Keyboard Actions)")        , "<ACTION>" },
+	{ "action"                    ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("execute keyboard action (https://www.geeqie.org/help/GuideReferenceRemoteKeyboardActions.html)"), "<ACTION>" },
 	{ "action-list"               ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_NONE  , nullptr, _("list available keyboard actions (some are redundant)")                        , nullptr },
 	{ "back"                      , 'b', G_OPTION_FLAG_NONE, G_OPTION_ARG_NONE  , nullptr, _("previous image")                                                              , nullptr },
 	{ "cache-metadata"            ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_NONE  , nullptr, _("clean the metadata cache")                                                    , nullptr },
@@ -155,7 +155,7 @@ GOptionEntry command_line_options[] =
 	{ "geometry"                  ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("set main window location and geometry")                                       , "<W>x<H>[+<XOFF>+<YOFF>]" },
 	{ "get-collection"            ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("get collection content")                                                      , "<COLLECTION>" },
 	{ "get-collection-list"       ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_NONE  , nullptr, _("get collection list")                                                         , nullptr },
-	{ "get-destination"           ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("get destination path of FILE (See Plugins Configuration)")                    , "<FILE>" },
+	{ "get-destination"           ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("get destination path of FILE (https://www.geeqie.org/help/GuidePluginsConfig.html)"), "<FILE>" },
 	{ "get-file-info"             ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_NONE  , nullptr, _("get file info")                                                               , nullptr},
 	{ "get-filelist"              ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("get list of files and class")                                                 , "[<FOLDER>]" },
 	{ "get-filelist-recurse"      ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("get list of files and class recursive")                                       , "[<FOLDER>]" },
