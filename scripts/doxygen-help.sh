@@ -59,11 +59,11 @@
 if [ -z "${DOCDIR}" ]
 then
 	printf '%s\n' "Environment variable DOCDIR not set"
-	zenity --title="Geeqie" --width=200 --warning --text="Environment variable DOCDIR not set"
+	zenity --title="Geeqie" --warning --text="Environment variable DOCDIR not set"
 elif [ -z "${PROJECT}" ]
 then
 	printf '%s\n' "Environment variable PROJECT not set"
-	zenity --title="Geeqie" --width=200 --warning --text="Environment variable PROJECT not set"
+	zenity --title="Geeqie" --warning --text="Environment variable PROJECT not set"
 else
 	url_found=$(awk -W posix -v search_param="$1" -v docdir="$DOCDIR" '
 		BEGIN {

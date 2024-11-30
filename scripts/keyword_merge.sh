@@ -33,7 +33,7 @@ done < "$1"
 
 np=$#
 
-zenity --info --text="This script will merge the keywords from one Geeqie\nconfiguration file into another.\n\n\The command format is:\nkeyword_merge.sh {config. file to merge into} {config. file to merge from}\n\nIf you do not supply parameters, you are prompted.\n\nYou are given the option to backup the main config. file before it is overwritten with the merged data.\n\nEnsure that Geeqie is not running." --title="Geeqie merge keywords" --width=400 --height=200
+zenity --info --text="This script will merge the keywords from one Geeqie\nconfiguration file into another.\n\n\The command format is:\nkeyword_merge.sh {config. file to merge into} {config. file to merge from}\n\nIf you do not supply parameters, you are prompted.\n\nYou are given the option to backup the main config. file before it is overwritten with the merged data.\n\nEnsure that Geeqie is not running." --title="Geeqie merge keywords"
 if [ $? -eq 1 ]
 then
 	exit

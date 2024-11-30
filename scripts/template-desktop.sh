@@ -87,7 +87,7 @@ END {close(src_path)}
 cat "$tmp_file"
 printf '%s\n' "$PWD"
 
-if diff --unified=0 "./plugins/org.geeqie.template.desktop.in" "$tmp_file" | zenity --title="Plugin template update" --text-info --width=700 --height=400
+if diff --unified=0 "./plugins/org.geeqie.template.desktop.in" "$tmp_file" | zenity --title="Plugin template update" --text-info
 then
 	mv "$tmp_file" "$templatepath"
 else

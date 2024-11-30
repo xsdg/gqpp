@@ -12,13 +12,13 @@ current_dir=$(dirname "$(readlink -f "$0")")
 
 if ! command -v yad > /dev/null
 then
-	zenity --window-icon=/usr/local/share/pixmaps/geeqie.png --width=400 --info --title "Geeqie Resize" --text="yad and ImageMagick are required\n\nyad is not installed"
+	zenity --window-icon=/usr/local/share/pixmaps/geeqie.png --info --title "Geeqie Resize" --text="yad and ImageMagick are required\n\nyad is not installed"
 	exit 0
 fi
 
 if ! command -v convert > /dev/null
 then
-	zenity --window-icon=/usr/local/share/pixmaps/geeqie.png --width=400 --info --title "Geeqie Resize" --text="yad and ImageMagick are required\n\nImageMagick is not installed"
+	zenity --window-icon=/usr/local/share/pixmaps/geeqie.png --info --title "Geeqie Resize" --text="yad and ImageMagick are required\n\nImageMagick is not installed"
 	exit 0
 fi
 

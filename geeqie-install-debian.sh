@@ -226,13 +226,13 @@ uninstall()
 
 		sudo --askpass  ninja -C build uninstall
 
-		if ! zenity --title="Uninstall Geeqie" --width=370 --text="WARNING.\nThis will delete folder:\n\n$PWD\n\nand all sub-folders!" --question --ok-label="Cancel" --cancel-label="OK" 2> /dev/null
+		if ! zenity --title="Uninstall Geeqie" --text="WARNING.\nThis will delete folder:\n\n$PWD\n\nand all sub-folders!" --question --ok-label="Cancel" --cancel-label="OK" 2> /dev/null
 		then
 			cd ..
 			sudo --askpass rm -rf geeqie
 		fi
 	else
-		zenity --title="Uninstall Geeqie" --width=370 --text="This is not a geeqie installation folder!\n\n$PWD" --warning 2> /dev/null
+		zenity --title="Uninstall Geeqie" --text="This is not a geeqie installation folder!\n\n$PWD" --warning 2> /dev/null
 	fi
 
 	exit_install
@@ -274,7 +274,7 @@ exit_install()
 		printf '%b\n' "#End" > "$zen_pipe"
 	fi
 
-	zenity --title="$title" --width=370 --text="Geeqie is not installed\nLog file: $install_log" --info 2> /dev/null
+	zenity --title="$title" --text="Geeqie is not installed\nLog file: $install_log" --info 2> /dev/null
 
 	rm "$zen_pipe" > /dev/null 2>&1
 
@@ -289,7 +289,7 @@ IFS='
 # If uninstall has been run, maybe the current directory no longer exists
 if [ ! -d "$PWD" ]
 then
-	zenity --error --title="Install Geeqie and dependencies" --width=370 --text="Folder $PWD does not exist!" 2> /dev/null
+	zenity --error --title="Install Geeqie and dependencies" --text="Folder $PWD does not exist!" 2> /dev/null
 
 	exit
 fi
@@ -298,7 +298,7 @@ fi
 systemProfile
 if [ "$DistroBasedOn" != "debian" ]
 then
-	zenity --error --title="Install Geeqie and dependencies" --width=370 --text="Unknown operating system:\n
+	zenity --error --title="Install Geeqie and dependencies" --text="Unknown operating system:\n
 Operating System: $OS
 Distribution: $DIST
 Psuedoname: $PSUEDONAME
@@ -372,7 +372,7 @@ fi
 # If a Geeqie folder already exists here, warn the user
 if [ -d "geeqie" ]
 then
-	zenity --info --title="Install Geeqie and dependencies" --width=370 --text="This script is for use on Ubuntu and other\nDebian-based installations.\nIt will download, compile, and install Geeqie source\ncode and its dependencies.\n\nA sub-folder named \"geeqie\" will be created in the\nfolder this script is run from, and the source code\nwill be downloaded to that sub-folder.\n\nA sub-folder of that name already exists.\nPlease try another folder." 2> /dev/null
+	zenity --info --title="Install Geeqie and dependencies" --text="This script is for use on Ubuntu and other\nDebian-based installations.\nIt will download, compile, and install Geeqie source\ncode and its dependencies.\n\nA sub-folder named \"geeqie\" will be created in the\nfolder this script is run from, and the source code\nwill be downloaded to that sub-folder.\n\nA sub-folder of that name already exists.\nPlease try another folder." 2> /dev/null
 
 	exit
 fi
@@ -385,7 +385,7 @@ else
 	# If it looks like something else is already installed here, warn the user
 	if [ -d ".git" ] || [ -d "src" ]
 	then
-		zenity --info --title="Install Geeqie and dependencies" --width=370 --text="This script is for use on Ubuntu and other\nDebian-based installations.\nIt will download, compile, and install Geeqie source\ncode and its dependencies.\n\nIt looks like you are running this script from a folder which already has software installed.\n\nPlease try another folder." 2> /dev/null
+		zenity --info --title="Install Geeqie and dependencies" --text="This script is for use on Ubuntu and other\nDebian-based installations.\nIt will download, compile, and install Geeqie source\ncode and its dependencies.\n\nIt looks like you are running this script from a folder which already has software installed.\n\nPlease try another folder." 2> /dev/null
 
 		exit
 	else
@@ -411,7 +411,7 @@ fi
 
 # Ask whether to install GTK3 or uninstall
 
-if ! gtk_version=$(zenity --title="$title" --width=370 --text="$message" --list --radiolist --column "" --column "" "$gtk3_installed" "Install" FALSE "Uninstall" --cancel-label="Cancel" --ok-label="OK" --hide-header 2> /dev/null)
+if ! gtk_version=$(zenity --title="$title" --text="$message" --list --radiolist --column "" --column "" "$gtk3_installed" "Install" FALSE "Uninstall" --cancel-label="Cancel" --ok-label="OK" --hide-header 2> /dev/null)
 then
 	exit
 fi
@@ -420,7 +420,7 @@ fi
 # so create a temporary script containing the command
 install_pass_script=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 printf '%b\n' "#!/bin/sh
-if zenity --password --title=\"$title\" --width=370 2>/dev/null
+if zenity --password --title=\"$title\" 2>/dev/null
 then
 	exit 1
 fi" > "$install_pass_script"
@@ -436,7 +436,7 @@ fi
 rm install.log 2> /dev/null
 install_log=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 
-sleep 100 | zenity --title="$title" --text="Checking for installed files" --width=370 --progress --pulsate 2> /dev/null &
+sleep 100 | zenity --title="$title" --text="Checking for installed files" --progress --pulsate 2> /dev/null &
 zen_pid=$!
 
 # Get the standard options that are not yet installed
@@ -465,7 +465,7 @@ kill "$zen_pid" 2> /dev/null
 # Ask the user which options to install
 if [ -n "$option_string" ]
 then
-	if ! options=$(printf '%b\n' "$option_string" | zenity --title="$title" --width=400 --height=500 --list --checklist --text 'Select which library files to install:' --column='Select' --column='Library files' --column='Library' --hide-column=3 --print-column=3 2> /dev/null)
+	if ! options=$(printf '%b\n' "$option_string" | zenity --title="$title" --list --checklist --text 'Select which library files to install:' --column='Select' --column='Library files' --column='Library' --hide-column=3 --print-column=3 2> /dev/null)
 	then
 		exit_install
 	fi
@@ -474,7 +474,7 @@ fi
 # Start of Zenity progress section
 zen_pipe=$(mktemp -u "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 mkfifo "$zen_pipe"
-(tail -f "$zen_pipe" 2> /dev/null) | zenity --progress --title="$title" --width=370 --text="Installing options..." --auto-close --auto-kill --percentage=0 2> /dev/null &
+(tail -f "$zen_pipe" 2> /dev/null) | zenity --progress --title="$title" --text="Installing options..." --auto-close --auto-kill --percentage=0 2> /dev/null &
 
 printf '%b\n' "2" > "$zen_pipe"
 printf '%b\n' "#Installing essential libraries..." > "$zen_pipe"
@@ -497,20 +497,20 @@ then
 	if ! git clone http://git.geeqie.org/git/geeqie.git >> "$install_log" 2>&1
 	then
 		git_error=$(tail -n5 "$install_log" 2>&1)
-		zenity --title="$title" --width=370 --height=400 --error --text="Git error:\n\n$git_error" 2> /dev/null
+		zenity --title="$title" --error --text="Git error:\n\n$git_error" 2> /dev/null
 		exit_install
 	fi
 else
 	if ! git checkout master >> "$install_log" 2>&1
 	then
 		git_error="$(tail -n25 "$install_log" 2>&1)"
-		zenity --title="$title" --width=370 --height=400 --error --text="Git error:\n\n$git_error" 2> /dev/null
+		zenity --title="$title" --error --text="Git error:\n\n$git_error" 2> /dev/null
 		exit_install
 	fi
 	if ! git pull >> "$install_log" 2>&1
 	then
 		git_error=$(tail -n5 "$install_log" 2>&1)
-		zenity --title="$title" --width=370 --height=400 --error --text="Git error:\n\n$git_error" 2> /dev/null
+		zenity --title="$title" --error --text="Git error:\n\n$git_error" 2> /dev/null
 		exit_install
 	fi
 fi
@@ -533,7 +533,7 @@ then
 	if ! git checkout master~"$BACK" >> "$install_log" 2>&1
 	then
 		git_error=$(tail -n5 "$install_log" 2>&1)
-		zenity --title="$title" --width=370 --height=400 --error --text="Git error:\n\n$git_error" 2> /dev/null
+		zenity --title="$title" --error --text="Git error:\n\n$git_error" 2> /dev/null
 		exit_install
 	fi
 elif [ -n "$COMMIT" ]
@@ -542,7 +542,7 @@ then
 	if ! git checkout "$COMMIT" >> "$install_log" 2>&1
 	then
 		git_error=$(tail -n5 "$install_log" 2>&1)
-		zenity --title="$title" --width=370 --height=400 --error --text="Git error:\n\n$git_error" 2> /dev/null
+		zenity --title="$title" --error --text="Git error:\n\n$git_error" 2> /dev/null
 		exit_install
 	fi
 elif [ -n "$TAG" ]
@@ -550,7 +550,7 @@ then
 	if ! git checkout "$TAG" >> "$install_log" 2>&1
 	then
 		git_error=$(tail -n5 "$install_log" 2>&1)
-		zenity --title="$title" --width=370 --height=400 --error --text="Git error:\n\n$git_error" 2> /dev/null
+		zenity --title="$title" --error --text="Git error:\n\n$git_error" 2> /dev/null
 		exit_install
 	fi
 fi
@@ -582,6 +582,6 @@ rm "$zen_pipe"
 do
 	printf '%b\n' "$i"
 	sleep 0.1
-done) | zenity --progress --title="$title" --width=370 --text="Geeqie installation complete...\n" --auto-close --percentage=0 2> /dev/null
+done) | zenity --progress --title="$title" --text="Geeqie installation complete...\n" --auto-close --percentage=0 2> /dev/null
 
 exit

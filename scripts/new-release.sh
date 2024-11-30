@@ -61,14 +61,14 @@ then
 	exit 1
 fi
 
-if ! zenity --title="NEW RELEASE" --question --text "Have the following files been updated?\n\n$orig_dir/NEWS\n$orig_dir/org.geeqie.Geeqie.appdata.xml.in\n\nContinue?" --width=600
+if ! zenity --title="NEW RELEASE" --question --text "Have the following files been updated?\n\n$orig_dir/NEWS\n$orig_dir/org.geeqie.Geeqie.appdata.xml.in\n\nContinue?"
 then
 	exit 1
 fi
 
 if [ "$push" = true ]
 then
-	if ! zenity --title="NEW RELEASE" --question --text "Do you have write access to the repo.?\nDo you really want to push?\n\nContinue?" --width=600
+	if ! zenity --title="NEW RELEASE" --question --text "Do you have write access to the repo.?\nDo you really want to push?\n\nContinue?"
 	then
 		exit 1
 	fi
@@ -218,4 +218,4 @@ then
 	git push git@geeqie.org:geeqie
 fi
 
-zenity --info --window-icon="info" --text="Upload files:\n\n$tmp_dir/geeqie-$revision.tar.xz\n$tmp_dir/geeqie-$revision.tar.xz.asc\n\nto https://github.com/BestImageViewer/geeqie/releases" --width=400
+zenity --info --window-icon="info" --text="Upload files:\n\n$tmp_dir/geeqie-$revision.tar.xz\n$tmp_dir/geeqie-$revision.tar.xz.asc\n\nto https://github.com/BestImageViewer/geeqie/releases"

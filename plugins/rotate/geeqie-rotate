@@ -12,7 +12,7 @@ gq_exiftran()
 {
 	if ! [ -x "$(command -v exiftran)" ]
 	then
-		zenity --title="Geeqie rotate" --info --width=200 --text="Exiftran is not installed" --window-icon=/usr/local/share/pixmaps/geeqie.png 2> /dev/null
+		zenity --title="Geeqie rotate" --info --text="Exiftran is not installed" --window-icon=/usr/local/share/pixmaps/geeqie.png 2> /dev/null
 		exit 0
 	fi
 
@@ -23,7 +23,7 @@ gq_exiv2()
 {
 	if ! [ -x "$(command -v exiv2)" ]
 	then
-		zenity --title="Geeqie rotate" --info --width=200 --text="Exiv2 is not installed" --window-icon=/usr/local/share/pixmaps/geeqie.png 2> /dev/null
+		zenity --title="Geeqie rotate" --info --text="Exiv2 is not installed" --window-icon=/usr/local/share/pixmaps/geeqie.png 2> /dev/null
 		exit 0
 	fi
 
@@ -34,7 +34,7 @@ gq_mogrify()
 {
 	if ! [ -x "$(command -v mogrify)" ]
 	then
-		zenity --title="Geeqie rotate" --info --width=200 --text="ImageMagick is not installed" --window-icon=/usr/local/share/pixmaps/geeqie.png 2> /dev/null
+		zenity --title="Geeqie rotate" --info --text="ImageMagick is not installed" --window-icon=/usr/local/share/pixmaps/geeqie.png 2> /dev/null
 		exit 0
 	fi
 

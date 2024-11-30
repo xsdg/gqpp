@@ -47,7 +47,7 @@ process_plain ()
 	convert "$1" -crop "$2" "$tmpdir/$filename-crop.$extension"
 	if [ $? = 1 ]
 	then
-		zenity --error --title="$title" --text="Cannot process this file format" --width="$width" --window-icon="$window_icon"
+		zenity --error --title="$title" --text="Cannot process this file format" --window-icon="$window_icon"
 	else
 		geeqie --view="$tmpdir/$filename-crop.$extension"
 	fi
@@ -55,7 +55,6 @@ process_plain ()
 
 export window_icon="/usr/local/share/pixmaps/geeqie.png"
 export title="Geeqie crop image"
-export width="250"
 
 if [ -x "$(command -v convert)" ]
 then
@@ -66,7 +65,7 @@ then
 
 		if [ -z "$coords" ]
 		then
-			zenity --error --title="$title" --text="Rectangle coordinates have not been set" --width="$width" --window-icon="$window_icon" 2> /dev/null
+			zenity --error --title="$title" --text="Rectangle coordinates have not been set" --window-icon="$window_icon" 2> /dev/null
 			exit 0
 		fi
 
@@ -95,11 +94,11 @@ then
 			fi
 		fi
 	else
-		zenity --info --title="$title" --width="$width" --height=100 --text="Crop image\n\nexiftool is not installed" --title="$title" --window-icon="$window_icon" 2> /dev/null
+		zenity --info --title="$title" --text="Crop image\n\nexiftool is not installed" --title="$title" --window-icon="$window_icon" 2> /dev/null
 		exit 0
 	fi
 else
-	zenity --info --title="$title" --width="$width" --height=100 --text="Crop image\n\nImageMagick is not installed" --title="$title" --window-icon="$window_icon" 2> /dev/null
+	zenity --info --title="$title" --text="Crop image\n\nImageMagick is not installed" --title="$title" --window-icon="$window_icon" 2> /dev/null
 	exit 0
 fi
 

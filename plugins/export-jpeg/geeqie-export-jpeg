@@ -23,14 +23,14 @@ if ! [ -x "$(command -v exiftool)" ]
 then
 	if ! [ -x "$(command -v exiv2)" ]
 	then
-		zenity --info --width=300 --height=100 --text="Export jpeg from raw file\n\nNeither exiftoool nor exiv2 are installed" --title="Geeqie export jpeg" 2> /dev/null
+		zenity --info --text="Export jpeg from raw file\n\nNeither exiftoool nor exiv2 are installed" --title="Geeqie export jpeg" 2> /dev/null
 		exit 1
 	fi
 fi
 
 if ! [ -x "$(command -v jpgicc)" ]
 then
-	zenity --info --width=300 --height=100 --text="Export jpeg from raw file\n\njpgicc is not installed\ncolor corrections will not be made\nYou may install via liblcms2-utils" --title="Geeqie export jpeg" 2> /dev/null
+	zenity --info --text="Export jpeg from raw file\n\njpgicc is not installed\ncolor corrections will not be made\nYou may install via liblcms2-utils" --title="Geeqie export jpeg" 2> /dev/null
 fi
 
 IFS='
@@ -99,7 +99,7 @@ fi
 
 if [ "$count" -eq 0 ]
 then
-	zenity --info --width=300 --height=100 --text="Export jpeg from raw file\n\nFile contains no embedded images" --title="Geeqie export jpeg" 2> /dev/null
+	zenity --info --text="Export jpeg from raw file\n\nFile contains no embedded images" --title="Geeqie export jpeg" 2> /dev/null
 	exit 0
 fi
 
@@ -166,7 +166,7 @@ do
 	n=$((n + 1))
 done
 
-image_selected=$(echo "$image_list" | zenity --width=500 --height=250 --title="Geeqie export jpeg" --list --text "Select embedded image" --radiolist --column "Select" --column "Image" --column "n" --hide-column=3 --print-column=3 2> /dev/null)
+image_selected=$(echo "$image_list" | zenity --title="Geeqie export jpeg" --list --text "Select embedded image" --radiolist --column "Select" --column "Image" --column "n" --hide-column=3 --print-column=3 2> /dev/null)
 
 if [ -n "$image_selected" ]
 then

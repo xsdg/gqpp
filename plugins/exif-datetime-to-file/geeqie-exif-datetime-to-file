@@ -12,7 +12,7 @@ if [ -z "$(command -v exiv2)" ]
 then
 	if [ -z "$(command -v exiftool)" ]
 	then
-		zenity --title="Geeqie exif datetime to file" --info --width=200 --text="Neither exiv2 nor exiftran is installed" --icon=/usr/local/share/pixmaps/geeqie.png 2> /dev/null
+		zenity --title="Geeqie exif datetime to file" --info --text="Neither exiv2 nor exiftran is installed" --icon=/usr/local/share/pixmaps/geeqie.png 2> /dev/null
 		exit 1
 	else
 		use_exiv2=false
@@ -21,7 +21,7 @@ else
 	use_exiv2=true
 fi
 
-if ! zenity --title="Geeqie - exif datetime to file" --question --text "Set file datetime (mtime) to  Exif.Image.DateTime\n\nContinue?" --width=300 --icon=/usr/local/share/pixmaps/geeqie.png
+if ! zenity --title="Geeqie - exif datetime to file" --question --text "Set file datetime (mtime) to  Exif.Image.DateTime\n\nContinue?" --icon=/usr/local/share/pixmaps/geeqie.png
 then
 	exit 0
 fi

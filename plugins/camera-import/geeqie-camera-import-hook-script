@@ -11,7 +11,7 @@ then
 
 elif [ "$ACTION" = "stop" ]
 then
-	zenity --info --title="Geeqie camera download" --text="Import ended" --width=200 --timeout=5 --window-icon=usr/local/share/pixmaps/geeqie.png 2>/dev/null 
+	zenity --info --title="Geeqie camera download" --text="Import ended" --timeout=5 --window-icon=usr/local/share/pixmaps/geeqie.png 2>/dev/null 
 	if [ -f /tmp/geeqie-camera-import-files ]
 	then
 		rm /tmp/geeqie-camera-import-files
