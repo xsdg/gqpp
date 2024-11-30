@@ -140,4 +140,15 @@
       <para />
     </section>
   </section>
+  <section id="DarkMode">
+    <title>Dark Mode</title>
+    <para />
+    <section id="Howtosetdarkmode">
+      <title>How to set Geeqie to use a dark mode</title>
+      <para>If Geeqie does not automatically change mode when a style is changed, use the following as an example to start Geeqie:</para>
+      <para>
+        <code>GTK_THEME=Adwaita:dark geeqie</code>
+      </para>
+    </section>
+  </section>
 </chapter>
