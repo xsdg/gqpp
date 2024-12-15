@@ -193,6 +193,7 @@ static gboolean keypress_cb(GtkWidget *, GdkEventKey *event, gpointer data)
 			ret = TRUE;
 			break;
 		case GDK_KEY_Return:
+		case GDK_KEY_KP_Enter:
 			break;
 		default:
 			sar->match_found = FALSE;

@@ -293,7 +293,7 @@ static void height_spin_changed_cb(GtkSpinButton *spin, gpointer data)
 
 static void height_spin_key_press_cb(GtkEventControllerKey *, gint keyval, guint, GdkModifierType, gpointer data)
 {
-	if ((keyval == GDK_KEY_Return || keyval == GDK_KEY_Escape))
+	if ((keyval == GDK_KEY_Return || keyval == GDK_KEY_KP_Enter || keyval == GDK_KEY_Escape))
 		{
 		gq_gtk_widget_destroy(GTK_WIDGET(data));
 		}

@@ -143,7 +143,7 @@ static gboolean generic_dialog_default_key_press_cb(GtkWidget *widget, GdkEventK
 {
 	auto gd = static_cast<GenericDialog *>(data);
 
-	if (event->keyval == GDK_KEY_Return && gtk_widget_has_focus(widget)
+	if ((event->keyval == (GDK_KEY_Return) || (event->keyval == GDK_KEY_KP_Enter)) && gtk_widget_has_focus(widget)
 	    && gd->default_cb)
 		{
 		gboolean auto_close;
