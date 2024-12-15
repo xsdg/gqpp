@@ -25,6 +25,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
+#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -1314,8 +1315,7 @@ static void layout_menu_slideshow_slower_cb(GtkAction *, gpointer)
 static void layout_menu_slideshow_faster_cb(GtkAction *, gpointer)
 {
 	options->slideshow.delay = options->slideshow.delay - 5;
-	if (options->slideshow.delay < SLIDESHOW_MIN_SECONDS * 10)
-		options->slideshow.delay = SLIDESHOW_MIN_SECONDS * 10;
+	options->slideshow.delay = std::max<double>(options->slideshow.delay, SLIDESHOW_MIN_SECONDS * 10);
 }
 
 

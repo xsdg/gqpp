@@ -129,7 +129,7 @@ gboolean ImageLoaderFITS::write(const guchar *buf, gsize &chunk_size, gsize coun
 		{
 		for (glong x = 0; x < width; x++)
 			{
-			gfloat value =  (image_data[y * width + x]);
+			gfloat value =  (image_data[(y * width) + x]);
 
 			max_value = std::max(max_value, value);
 			min_value = std::min(min_value, value);
@@ -141,8 +141,8 @@ gboolean ImageLoaderFITS::write(const guchar *buf, gsize &chunk_size, gsize coun
 		{
 		for (glong x = 0; x < width; x++)
 			{
-			gint pixel_index = y * rowstride + x * 3;
-			gfloat value = (image_data[y * width + x]);
+			gint pixel_index = (y * rowstride) + (x * 3);
+			gfloat value = (image_data[(y * width) + x]);
 			/* fits images seem to have a large intensity range, but the useful data is mostly at the lower end.
 			 * Using linear scaling results in a black image. */
 			auto intensity = (guchar)(255.0 * (log(value - min_value) / log((max_value - min_value))));

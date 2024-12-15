@@ -229,8 +229,8 @@ gboolean pan_item_box_draw(PanWindow *, PanItem *pi, GdkPixbuf *pixbuf, PixbufRe
 	draw_rect_if_intersect({pi->x, pi->y, bw, bh}, pi->color);
 
 	draw_rect_if_intersect({pi->x, pi->y, bw, pi->border}, pi->color2);
-	draw_rect_if_intersect({pi->x, pi->y + pi->border, pi->border, bh - pi->border * 2}, pi->color2);
-	draw_rect_if_intersect({pi->x + bw - pi->border, pi->y + pi->border, pi->border, bh - pi->border * 2}, pi->color2);
+	draw_rect_if_intersect({pi->x, pi->y + pi->border, pi->border, bh - (pi->border * 2)}, pi->color2);
+	draw_rect_if_intersect({pi->x + bw - pi->border, pi->y + pi->border, pi->border, bh - (pi->border * 2)}, pi->color2);
 	draw_rect_if_intersect({pi->x, pi->y + bh - pi->border, bw, pi->border}, pi->color2);
 
 	return FALSE;
@@ -443,8 +443,8 @@ gboolean pan_item_thumb_draw(PanWindow *pw, PanItem *pi, GdkPixbuf *pixbuf, Pixb
 		gint tw = gdk_pixbuf_get_width(pi->pixbuf);
 		gint th = gdk_pixbuf_get_height(pi->pixbuf);
 
-		gint tx = pi->x + (pi->width - tw) / 2;
-		gint ty = pi->y + (pi->height - th) / 2;
+		gint tx = pi->x + ((pi->width - tw) / 2);
+		gint ty = pi->y + ((pi->height - th) / 2);
 
 		if (gdk_pixbuf_get_has_alpha(pi->pixbuf))
 			{
@@ -512,13 +512,13 @@ gboolean pan_item_thumb_draw(PanWindow *pw, PanItem *pi, GdkPixbuf *pixbuf, Pixb
 		draw_rect_if_intersect(thumb_rect, PAN_OUTLINE_COLOR_2);
 
 		thumb_rect = {tx + PAN_OUTLINE_THICKNESS, ty + th - PAN_OUTLINE_THICKNESS,
-		              tw - PAN_OUTLINE_THICKNESS * 2, PAN_OUTLINE_THICKNESS};
+		              tw - (PAN_OUTLINE_THICKNESS * 2), PAN_OUTLINE_THICKNESS};
 		draw_rect_if_intersect(thumb_rect, PAN_OUTLINE_COLOR_2);
 		}
 	else
 		{
 		thumb_rect = {pi->x + PAN_SHADOW_OFFSET, pi->y + PAN_SHADOW_OFFSET,
-		              pi->width - PAN_SHADOW_OFFSET * 2, pi->height - PAN_SHADOW_OFFSET * 2 };
+		              pi->width - (PAN_SHADOW_OFFSET * 2), pi->height - (PAN_SHADOW_OFFSET * 2) };
 		if (gdk_rectangle_intersect(&request_rect, &thumb_rect, &r))
 			{
 			gint d;

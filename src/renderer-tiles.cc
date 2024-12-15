@@ -1238,8 +1238,8 @@ void rt_tile_get_region(gboolean has_alpha, gboolean ignore_alpha,
 					for (gint x = 0; x < pb_rect.width; x++)
 						{
 						const gint sx = -static_cast<int>(offset_x) + pb_rect.x + x;
-						const guchar *sp = s_pix + sy * srs + sx * COLOR_BYTES;
-						guchar *dp = d_pix + y * drs + x * COLOR_BYTES;
+						const guchar *sp = s_pix + (sy * srs) + (sx * COLOR_BYTES);
+						guchar *dp = d_pix + (y * drs) + (x * COLOR_BYTES);
 
 						memcpy(dp, sp, COLOR_BYTES);
 						}
@@ -1421,7 +1421,7 @@ void rt_tile_render(RendererTiles *rt, ImageTile *it,
 
 		rt_tile_get_region(has_alpha, pr->ignore_alpha,
 		                   pr->pixbuf, it->pixbuf, pb_rect,
-		                   static_cast<gdouble>(0.0) - src_x - get_right_pixbuf_offset(rt) * scale_x,
+		                   static_cast<gdouble>(0.0) - src_x - (get_right_pixbuf_offset(rt) * scale_x),
 		                   static_cast<gdouble>(0.0) - src_y,
 		                   scale_x, scale_y,
 		                   (fast) ? GDK_INTERP_NEAREST : pr->zoom_quality,
@@ -1432,7 +1432,7 @@ void rt_tile_render(RendererTiles *rt, ImageTile *it,
 			GdkPixbuf *right_pb = rt_get_spare_tile(rt);
 			rt_tile_get_region(has_alpha, pr->ignore_alpha,
 			                   pr->pixbuf, right_pb, pb_rect,
-			                   static_cast<gdouble>(0.0) - src_x - get_left_pixbuf_offset(rt) * scale_x,
+			                   static_cast<gdouble>(0.0) - src_x - (get_left_pixbuf_offset(rt) * scale_x),
 			                   static_cast<gdouble>(0.0) - src_y,
 			                   scale_x, scale_y,
 			                   (fast) ? GDK_INTERP_NEAREST : pr->zoom_quality,

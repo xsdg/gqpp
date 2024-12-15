@@ -21,6 +21,7 @@
 
 #include "slideshow.h"
 
+#include <algorithm>
 #include <cstdlib>
 #include <utility>
 
@@ -326,7 +327,7 @@ static void slideshow_timer_stop(SlideShowData *ss)
 
 static void slideshow_timer_reset(SlideShowData *ss)
 {
-	if (options->slideshow.delay < 1) options->slideshow.delay = 1;
+	options->slideshow.delay = std::max(options->slideshow.delay, 1);
 
 	if (ss->timeout_id) g_source_remove(ss->timeout_id);
 	ss->timeout_id = g_timeout_add(options->slideshow.delay * 1000 / SLIDESHOW_SUBSECOND_PRECISION,

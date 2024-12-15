@@ -651,7 +651,7 @@ static GtkWidget *file_util_dialog_add_list(GtkWidget *box, GList *list, gboolea
 
 
 static gboolean file_util_perform_ci_internal(gpointer data);
-void file_util_dialog_run(UtilityData *ud);
+static void file_util_dialog_run(UtilityData *ud);
 static gint file_util_perform_ci_cb(gpointer resume_data, EditorFlags flags, GList *list, gpointer data);
 
 /* call file_util_perform_ci_internal or start_editor_from_filelist_full */

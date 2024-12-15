@@ -23,6 +23,7 @@
 
 #include <sys/mman.h>
 
+#include <algorithm>
 #include <cstring>
 
 #include <config.h>
@@ -613,13 +614,13 @@ static void image_loader_size_cb(gpointer,
 			{
 			nw = il->requested_width;
 			nh = static_cast<gdouble>(nw) / width * height;
-			if (nh < 1) nh = 1;
+			nh = std::max(nh, 1);
 			}
 		else
 			{
 			nh = il->requested_height;
 			nw = static_cast<gdouble>(nh) / height * width;
-			if (nw < 1) nw = 1;
+			nw = std::max(nw, 1);
 			}
 
 		il->actual_width = nw;

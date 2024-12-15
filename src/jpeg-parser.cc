@@ -160,10 +160,10 @@ static gint tiff_parse_IFD_table(const guchar *tiff, guint offset,
 
 	for (i = 0; i < count; i++)
 		{
-		parse_entry(tiff, offset + i * TIFF_TIFD_SIZE, size, bo, data);
+		parse_entry(tiff, offset + (i * TIFF_TIFD_SIZE), size, bo, data);
 		}
 
-	next = tiff_byte_get_int32(tiff + offset + count * TIFF_TIFD_SIZE, bo);
+	next = tiff_byte_get_int32(tiff + offset + (count * TIFF_TIFD_SIZE), bo);
 	if (next_offset) *next_offset = next;
 
 	return 0;
@@ -215,15 +215,15 @@ static gint mpo_parse_Index_IFD_entry(const guchar *tiff, guint offset,
 		mpo->images = g_new0(MPOEntry, mpo->num_images);
 
 		for (i = 0; i < mpo->num_images; i++) {
-			guint image_attr = tiff_byte_get_int32(tiff + data_offset + i * 16, bo);
+			guint image_attr = tiff_byte_get_int32(tiff + data_offset + (i * 16), bo);
 			mpo->images[i].type_code = image_attr & 0xffffff;
 			mpo->images[i].representative = !!(image_attr & 0x20000000);
 			mpo->images[i].dependent_child = !!(image_attr & 0x40000000);
 			mpo->images[i].dependent_parent = !!(image_attr & 0x80000000);
-			mpo->images[i].length = tiff_byte_get_int32(tiff + data_offset + i * 16 + 4, bo);
-			mpo->images[i].offset = tiff_byte_get_int32(tiff + data_offset + i * 16 + 8, bo);
-			mpo->images[i].dep1 = tiff_byte_get_int16(tiff + data_offset + i * 16 + 12, bo);
-			mpo->images[i].dep2 = tiff_byte_get_int16(tiff + data_offset + i * 16 + 14, bo);
+			mpo->images[i].length = tiff_byte_get_int32(tiff + data_offset + (i * 16) + 4, bo);
+			mpo->images[i].offset = tiff_byte_get_int32(tiff + data_offset + (i * 16) + 8, bo);
+			mpo->images[i].dep1 = tiff_byte_get_int16(tiff + data_offset + (i * 16) + 12, bo);
+			mpo->images[i].dep2 = tiff_byte_get_int16(tiff + data_offset + (i * 16) + 14, bo);
 
 			if (i == 0)
 				{

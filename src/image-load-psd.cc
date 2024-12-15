@@ -50,6 +50,7 @@
 
 #include "image-load-psd.h"
 
+#include <algorithm>
 #include <cstring>
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
@@ -198,9 +199,7 @@ feed_buffer (guchar*        buffer,
              guint          bytes_needed)
 {
 	guint how_many = bytes_needed - *bytes_read;
-	if (how_many > *size) {
-		how_many = *size;
-	}
+	how_many = std::min(how_many, *size);
 	memcpy(buffer + *bytes_read, *data, how_many);
 	*bytes_read += how_many;
 	*data += how_many;
@@ -447,7 +446,7 @@ gboolean ImageLoaderPSD::write(const guchar *buf, gsize &chunk_size, gsize count
 					guint line_length = ctx->width * ctx->depth_bytes;
 					if (ctx->compression == PSD_COMPRESSION_RLE) {
 						line_length = ctx->lines_lengths[
-							ctx->curr_ch * ctx->height + ctx->curr_row];
+							(ctx->curr_ch * ctx->height) + ctx->curr_row];
 					}
 
 					if (feed_buffer(ctx->buffer, &ctx->bytes_read, &buf, &size,
@@ -493,9 +492,9 @@ gboolean ImageLoaderPSD::write(const guchar *buf, gsize &chunk_size, gsize count
 		if (ctx->color_mode == PSD_MODE_RGB) {
 			for (i = 0; i < ctx->height; i++) {
 				for (j = 0; j < ctx->width; j++) {
-					pixels[3*j+0] = ctx->ch_bufs[0][ctx->width*i*b + j*b];
-					pixels[3*j+1] = ctx->ch_bufs[1][ctx->width*i*b + j*b];
-					pixels[3*j+2] = ctx->ch_bufs[2][ctx->width*i*b + j*b];
+					pixels[(3*j)+0] = ctx->ch_bufs[0][(ctx->width*i*b) + (j*b)];
+					pixels[(3*j)+1] = ctx->ch_bufs[1][(ctx->width*i*b) + (j*b)];
+					pixels[(3*j)+2] = ctx->ch_bufs[2][(ctx->width*i*b) + (j*b)];
 				}
 				pixels += gdk_pixbuf_get_rowstride(ctx->pixbuf);
 			}
@@ -504,8 +503,8 @@ gboolean ImageLoaderPSD::write(const guchar *buf, gsize &chunk_size, gsize count
 		{
 			for (i = 0; i < ctx->height; i++) {
 				for (j = 0; j < ctx->width; j++) {
-					pixels[3*j+0] = pixels[3*j+1] = pixels[3*j+2] =
-						ctx->ch_bufs[0][ctx->width*i*b + j*b];
+					pixels[(3*j)+0] = pixels[(3*j)+1] = pixels[(3*j)+2] =
+						ctx->ch_bufs[0][(ctx->width*i*b) + (j*b)];
 				}
 				pixels += gdk_pixbuf_get_rowstride(ctx->pixbuf);
 			}
@@ -517,17 +516,17 @@ gboolean ImageLoaderPSD::write(const guchar *buf, gsize &chunk_size, gsize count
 			for (i = 0; i < ctx->height; i++) {
 				for (j = 0; j < ctx->width; j++) {
 					double c = 1.0 -
-						static_cast<double>(ctx->ch_bufs[0][ctx->width*i + j]) / 255.0;
+						(static_cast<double>(ctx->ch_bufs[0][(ctx->width*i) + j]) / 255.0);
 					double m = 1.0 -
-						static_cast<double>(ctx->ch_bufs[1][ctx->width*i + j]) / 255.0;
+						(static_cast<double>(ctx->ch_bufs[1][(ctx->width*i) + j]) / 255.0);
 					double y = 1.0 -
-						static_cast<double>(ctx->ch_bufs[2][ctx->width*i + j]) / 255.0;
+						(static_cast<double>(ctx->ch_bufs[2][(ctx->width*i) + j]) / 255.0);
 					double k = 1.0 -
-						static_cast<double>(ctx->ch_bufs[3][ctx->width*i + j]) / 255.0;
+						(static_cast<double>(ctx->ch_bufs[3][(ctx->width*i) + j]) / 255.0);
 
-					pixels[3*j+0] = (1.0 - (c * (1.0 - k) + k)) * 255.0;
-					pixels[3*j+1] = (1.0 - (m * (1.0 - k) + k)) * 255.0;
-					pixels[3*j+2] = (1.0 - (y * (1.0 - k) + k)) * 255.0;
+					pixels[(3*j)+0] = (1.0 - (c * (1.0 - k) + k)) * 255.0;
+					pixels[(3*j)+1] = (1.0 - (m * (1.0 - k) + k)) * 255.0;
+					pixels[(3*j)+2] = (1.0 - (y * (1.0 - k) + k)) * 255.0;
 				}
 				pixels += gdk_pixbuf_get_rowstride(ctx->pixbuf);
 			}

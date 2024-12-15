@@ -21,6 +21,7 @@
 
 #include "img-view.h"
 
+#include <algorithm>
 #include <array>
 
 #include <gdk/gdk.h>
@@ -95,7 +96,7 @@ static void view_window_notify_cb(FileData *fd, NotifyType type, gpointer data);
  *
  * See also @link hard_coded_window_keys @endlink
  **/
-hard_coded_window_keys image_window_keys[] = {
+static hard_coded_window_keys image_window_keys[] = {
 	{GDK_CONTROL_MASK, 'C', N_("Copy")},
 	{GDK_CONTROL_MASK, 'M', N_("Move")},
 	{GDK_CONTROL_MASK, 'R', N_("Rename")},
@@ -996,8 +997,8 @@ static ViewWindow *real_view_window_new(FileData *fd, GList *list, CollectionDat
 		gint mw = gdk_screen_width() * options->image.max_window_size / 100;
 		gint mh = gdk_screen_height() * options->image.max_window_size / 100;
 
-		if (w > mw) w = mw;
-		if (h > mh) h = mh;
+		w = std::min(w, mw);
+		h = std::min(h, mh);
 		}
 
 	gtk_window_set_default_size(GTK_WINDOW(vw->window), w, h);

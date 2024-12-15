@@ -54,10 +54,10 @@ static void pan_flower_size(PanWindow *pw, gint &width, gint &height)
 		pi = static_cast<PanItem *>(work->data);
 		work = work->next;
 
-		if (x1 > pi->x) x1 = pi->x;
-		if (y1 > pi->y) y1 = pi->y;
-		if (x2 < pi->x + pi->width) x2 = pi->x + pi->width;
-		if (y2 < pi->y + pi->height) y2 = pi->y + pi->height;
+		x1 = std::min(x1, pi->x);
+		y1 = std::min(y1, pi->y);
+		x2 = std::max(x2, pi->x + pi->width);
+		y2 = std::max(y2, pi->y + pi->height);
 		}
 
 	x1 -= PAN_BOX_BORDER;
@@ -134,12 +134,12 @@ static void pan_flower_position(FlowerGroup *group, FlowerGroup *parent,
 	gdouble a;
 
 	radius = parent->circumference / (2*G_PI);
-	radius = MAX(radius, parent->diameter / 2 + group->diameter / 2);
+	radius = MAX(radius, (parent->diameter / 2) + (group->diameter / 2));
 
 	a = 2*G_PI * group->diameter / parent->circumference;
 
-	x = static_cast<gint>(static_cast<gdouble>(radius) * cos(parent->angle + a / 2));
-	y = static_cast<gint>(static_cast<gdouble>(radius) * sin(parent->angle + a / 2));
+	x = static_cast<gint>(static_cast<gdouble>(radius) * cos(parent->angle + (a / 2)));
+	y = static_cast<gint>(static_cast<gdouble>(radius) * sin(parent->angle + (a / 2)));
 
 	parent->angle += a;
 
@@ -178,8 +178,8 @@ static void pan_flower_build(PanWindow *pw, FlowerGroup *group, FlowerGroup *par
 
 	if (parent)
 		{
-		GdkPoint cp{parent->x + parent->width / 2, parent->y + parent->height / 2};
-		GdkPoint cg{group->x + group->width / 2, group->y + group->height / 2};
+		GdkPoint cp{parent->x + (parent->width / 2), parent->y + (parent->height / 2)};
+		GdkPoint cg{group->x + (group->width / 2), group->y + (group->height / 2)};
 
 		pan_item_tri_new(pw,
 		                 cp, cg, {cg.x + 5, cg.y + 5},
@@ -271,7 +271,7 @@ static FlowerGroup *pan_flower_group(PanWindow *pw, FileData *dir_fd, gint x, gi
 			{
 			pi = pan_item_image_new(pw, fd, x, y, 10, 10);
 			x += pi->width + PAN_THUMB_GAP;
-			if (pi->height > y_height) y_height = pi->height;
+			y_height = std::max(pi->height, y_height);
 			}
 		else
 			{
@@ -403,7 +403,7 @@ static void pan_folder_tree_path(PanWindow *pw, FileData *dir_fd,
 			{
 			pi = pan_item_image_new(pw, fd, x, y, 10, 10);
 			x += pi->width + PAN_THUMB_GAP;
-			if (pi->height > y_height) y_height = pi->height;
+			y_height = std::max(pi->height, y_height);
 			}
 		else
 			{

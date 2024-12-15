@@ -21,6 +21,7 @@
 
 #include "pan-timeline.h"
 
+#include <algorithm>
 #include <ctime>
 
 #include "filedata.h"
@@ -174,7 +175,7 @@ void pan_timeline_compute(PanWindow *pw, FileData *dir_fd, gint &width, gint &he
 		if (pw->size > PAN_IMAGE_SIZE_THUMB_LARGE)
 			{
 			pi = pan_item_image_new(pw, fd, x, y, 10, 10);
-			if (pi->width > x_width) x_width = pi->width;
+			x_width = std::max(pi->width, x_width);
 			y_height = pi->height;
 			}
 		else

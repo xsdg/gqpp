@@ -258,13 +258,13 @@ guchar *ddsDecodeDXT1(uint width, uint height, const unsigned char *buffer) {
 				uint t1 = (buffer[index] & 0x0C) >> 2;
 				uint t2 = (buffer[index] & 0x30) >> 4;
 				uint t3 = (buffer[index++] & 0xC0) >> 6;
-				pixels[4 * width*i + 4 * j + width*k + 0] = ddsGetDXTColor(c0, c1, 0xFF, t0);
+				pixels[(4 * width*i) + (4 * j) + (width*k) + 0] = ddsGetDXTColor(c0, c1, 0xFF, t0);
 				if (4 * j + 1 >= width) continue;
-				pixels[4 * width*i + 4 * j + width*k + 1] = ddsGetDXTColor(c0, c1, 0xFF, t1);
+				pixels[(4 * width*i) + (4 * j) + (width*k) + 1] = ddsGetDXTColor(c0, c1, 0xFF, t1);
 				if (4 * j + 2 >= width) continue;
-				pixels[4 * width*i + 4 * j + width*k + 2] = ddsGetDXTColor(c0, c1, 0xFF, t2);
+				pixels[(4 * width*i) + (4 * j) + (width*k) + 2] = ddsGetDXTColor(c0, c1, 0xFF, t2);
 				if (4 * j + 3 >= width) continue;
-				pixels[4 * width*i + 4 * j + width*k + 3] = ddsGetDXTColor(c0, c1, 0xFF, t3);
+				pixels[(4 * width*i) + (4 * j) + (width*k) + 3] = ddsGetDXTColor(c0, c1, 0xFF, t3);
 			}
 		}
 	}
@@ -285,10 +285,10 @@ guchar *ddsDecodeDXT3(uint width, uint height, const unsigned char *buffer) {
 				uint a0 = (buffer[index++] & 0xFF);
 				uint a1 = (buffer[index++] & 0xFF);
 				// 4bit alpha to 8bit alpha
-				alphaTable[4 * k + 0] = 17 * ((a0 & 0xF0) >> 4);
-				alphaTable[4 * k + 1] = 17 * (a0 & 0x0F);
-				alphaTable[4 * k + 2] = 17 * ((a1 & 0xF0) >> 4);
-				alphaTable[4 * k + 3] = 17 * (a1 & 0x0F);
+				alphaTable[(4 * k) + 0] = 17 * ((a0 & 0xF0) >> 4);
+				alphaTable[(4 * k) + 1] = 17 * (a0 & 0x0F);
+				alphaTable[(4 * k) + 2] = 17 * ((a1 & 0xF0) >> 4);
+				alphaTable[(4 * k) + 3] = 17 * (a1 & 0x0F);
 			}
 			uint c0 = (buffer[index] & 0xFF) | (buffer[index + 1] & 0xFF) << 8; index += 2;
 			uint c1 = (buffer[index] & 0xFF) | (buffer[index + 1] & 0xFF) << 8; index += 2;
@@ -298,13 +298,13 @@ guchar *ddsDecodeDXT3(uint width, uint height, const unsigned char *buffer) {
 				uint t1 = (buffer[index] & 0x0C) >> 2;
 				uint t2 = (buffer[index] & 0x30) >> 4;
 				uint t3 = (buffer[index++] & 0xC0) >> 6;
-				pixels[4 * width*i + 4 * j + width*k + 0] = ddsGetDXTColor(c0, c1, alphaTable[4 * k + 0], t0);
+				pixels[(4 * width*i) + (4 * j) + (width*k) + 0] = ddsGetDXTColor(c0, c1, alphaTable[(4 * k) + 0], t0);
 				if (4 * j + 1 >= width) continue;
-				pixels[4 * width*i + 4 * j + width*k + 1] = ddsGetDXTColor(c0, c1, alphaTable[4 * k + 1], t1);
+				pixels[(4 * width*i) + (4 * j) + (width*k) + 1] = ddsGetDXTColor(c0, c1, alphaTable[(4 * k) + 1], t1);
 				if (4 * j + 2 >= width) continue;
-				pixels[4 * width*i + 4 * j + width*k + 2] = ddsGetDXTColor(c0, c1, alphaTable[4 * k + 2], t2);
+				pixels[(4 * width*i) + (4 * j) + (width*k) + 2] = ddsGetDXTColor(c0, c1, alphaTable[(4 * k) + 2], t2);
 				if (4 * j + 3 >= width) continue;
-				pixels[4 * width*i + 4 * j + width*k + 3] = ddsGetDXTColor(c0, c1, alphaTable[4 * k + 3], t3);
+				pixels[(4 * width*i) + (4 * j) + (width*k) + 3] = ddsGetDXTColor(c0, c1, alphaTable[(4 * k) + 3], t3);
 			}
 		}
 	}
@@ -381,13 +381,13 @@ guchar *ddsDecodeDXT5(uint width, uint height, const unsigned char *buffer) {
 				uint t1 = (buffer[index] & 0x0C) >> 2;
 				uint t2 = (buffer[index] & 0x30) >> 4;
 				uint t3 = (buffer[index++] & 0xC0) >> 6;
-				pixels[4 * width*i + 4 * j + width*k + 0] = ddsGetDXTColor(c0, c1, ddsGetDXT5Alpha(a0, a1, alphaTable[4 * k + 0]), t0);
+				pixels[(4 * width*i) + (4 * j) + (width*k) + 0] = ddsGetDXTColor(c0, c1, ddsGetDXT5Alpha(a0, a1, alphaTable[(4 * k) + 0]), t0);
 				if (4 * j + 1 >= width) continue;
-				pixels[4 * width*i + 4 * j + width*k + 1] = ddsGetDXTColor(c0, c1, ddsGetDXT5Alpha(a0, a1, alphaTable[4 * k + 1]), t1);
+				pixels[(4 * width*i) + (4 * j) + (width*k) + 1] = ddsGetDXTColor(c0, c1, ddsGetDXT5Alpha(a0, a1, alphaTable[(4 * k) + 1]), t1);
 				if (4 * j + 2 >= width) continue;
-				pixels[4 * width*i + 4 * j + width*k + 2] = ddsGetDXTColor(c0, c1, ddsGetDXT5Alpha(a0, a1, alphaTable[4 * k + 2]), t2);
+				pixels[(4 * width*i) + (4 * j) + (width*k) + 2] = ddsGetDXTColor(c0, c1, ddsGetDXT5Alpha(a0, a1, alphaTable[(4 * k) + 2]), t2);
 				if (4 * j + 3 >= width) continue;
-				pixels[4 * width*i + 4 * j + width*k + 3] = ddsGetDXTColor(c0, c1, ddsGetDXT5Alpha(a0, a1, alphaTable[4 * k + 3]), t3);
+				pixels[(4 * width*i) + (4 * j) + (width*k) + 3] = ddsGetDXTColor(c0, c1, ddsGetDXT5Alpha(a0, a1, alphaTable[(4 * k) + 3]), t3);
 			}
 		}
 	}

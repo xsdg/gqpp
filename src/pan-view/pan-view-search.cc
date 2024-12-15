@@ -121,7 +121,7 @@ static gint pan_search_by_path(PanWindow *pw, const gchar *path)
 		}
 
 	pan_info_update(pw, pi);
-	image_scroll_to_point(pw->imd, pi->x + pi->width / 2, pi->y + pi->height / 2, 0.5, 0.5);
+	image_scroll_to_point(pw->imd, pi->x + (pi->width / 2), pi->y + (pi->height / 2), 0.5, 0.5);
 
 	buf = g_strdup_printf("%s ( %d / %u )",
 	                      (path[0] == G_DIR_SEPARATOR) ? _("path found") : _("filename found"),
@@ -169,7 +169,7 @@ static gboolean pan_search_by_partial(PanWindow *pw, const gchar *text)
 		}
 
 	pan_info_update(pw, pi);
-	image_scroll_to_point(pw->imd, pi->x + pi->width / 2, pi->y + pi->height / 2, 0.5, 0.5);
+	image_scroll_to_point(pw->imd, pi->x + (pi->width / 2), pi->y + (pi->height / 2), 0.5, 0.5);
 
 	buf = g_strdup_printf("%s ( %d / %u )",
 	                      _("partial match"),
@@ -347,14 +347,14 @@ static gboolean pan_search_by_date(PanWindow *pw, const gchar *text)
 		pan_info_update(pw, nullptr);
 		pan_calendar_update(pw, pi);
 		image_scroll_to_point(pw->imd,
-				      pi->x + pi->width / 2,
-				      pi->y + pi->height / 2, 0.5, 0.5);
+				      pi->x + (pi->width / 2),
+				      pi->y + (pi->height / 2), 0.5, 0.5);
 		}
 	else if (pi)
 		{
 		pan_info_update(pw, pi);
 		image_scroll_to_point(pw->imd,
-				      pi->x - PAN_BOX_BORDER * 5 / 2,
+				      pi->x - (PAN_BOX_BORDER * 5 / 2),
 				      pi->y, 0.0, 0.5);
 		}
 

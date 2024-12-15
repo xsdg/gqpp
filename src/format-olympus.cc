@@ -95,11 +95,11 @@ static guint olympus_tiff_table(guchar *data, const guint len, guint offset, Exi
 
 	for (i = 0; i < count; i++)
 		{
-		olympus_tiff_entry(data, len, offset + i * EXIF_TIFD_SIZE, bo, level,
+		olympus_tiff_entry(data, len, offset + (i * EXIF_TIFD_SIZE), bo, level,
 				   image_offset, exif_offset);
 		}
 
-	return exif_byte_get_int32(data + offset + count * EXIF_TIFD_SIZE, bo);
+	return exif_byte_get_int32(data + offset + (count * EXIF_TIFD_SIZE), bo);
 }
 
 gboolean format_olympus_raw(guchar *data, const guint len,

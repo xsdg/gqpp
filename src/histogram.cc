@@ -189,9 +189,9 @@ static gboolean histmap_read(HistMap *histmap, gboolean whole)
 		}
 	else
 		{
-		gint lines = 1 + 16384 / w;
+		gint lines = 1 + (16384 / w);
 		end_line = histmap->y + lines;
-		if (end_line > h) end_line = h;
+		end_line = std::min(end_line, h);
 		}
 
 	step = 3 + !!(has_alpha);
@@ -257,7 +257,7 @@ static void histogram_vgrid(Histogram *histogram, GdkPixbuf *pixbuf, GdkRectangl
 
 	for (guint i = 1; i < histogram->vgrid; i++)
 		{
-		gint xpos = rect.x + static_cast<int>(i * add + 0.5);
+		gint xpos = rect.x + static_cast<int>((i * add) + 0.5);
 
 		pixbuf_draw_line(pixbuf, rect, xpos, rect.y, xpos, rect.y + rect.height,
 				 histogram->grid_color.R,
@@ -275,7 +275,7 @@ static void histogram_hgrid(Histogram *histogram, GdkPixbuf *pixbuf, GdkRectangl
 
 	for (guint i = 1; i < histogram->hgrid; i++)
 		{
-		gint ypos = rect.y + static_cast<int>(i * add + 0.5);
+		gint ypos = rect.y + static_cast<int>((i * add) + 0.5);
 
 		pixbuf_draw_line(pixbuf, rect, rect.x, ypos, rect.x + rect.width, ypos,
 				 histogram->grid_color.R,
@@ -291,7 +291,7 @@ gboolean histogram_draw(Histogram *histogram, const HistMap *histmap, GdkPixbuf 
 	gint i;
 	gulong max = 0;
 	gdouble logmax;
-	gint combine = (HISTMAP_SIZE - 1) / width + 1;
+	gint combine = ((HISTMAP_SIZE - 1) / width) + 1;
 	gint ypos = y + height;
 
 	if (!histogram || !histmap) return FALSE;

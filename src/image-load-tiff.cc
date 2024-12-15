@@ -274,7 +274,7 @@ gboolean ImageLoaderTiff::write(const guchar *buf, gsize &chunk_size, gsize coun
 			}
 
 			/* Read the strip into an RGBA array */
-			if (!TIFFReadRGBAStrip(tiff, row, reinterpret_cast<guint32 *>(pixels + row * rowstride))) {
+			if (!TIFFReadRGBAStrip(tiff, row, reinterpret_cast<guint32 *>(pixels + (row * rowstride)))) {
 				break;
 			}
 

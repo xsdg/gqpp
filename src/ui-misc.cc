@@ -844,8 +844,8 @@ static void date_selection_popup(DateSelection *ds)
 		{
 		y = wy + button_allocation.y - window_allocation.height;
 		}
-	if (x < 0) x = 0;
-	if (y < 0) y = 0;
+	x = std::max(x, 0);
+	y = std::max(y, 0);
 
 	gq_gtk_window_move(GTK_WINDOW(ds->window), x, y);
 	gtk_widget_show(ds->window);

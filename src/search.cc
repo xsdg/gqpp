@@ -377,7 +377,7 @@ static void search_window_close(SearchData *sd);
 
 static void search_notify_cb(FileData *fd, NotifyType type, gpointer data);
 static void search_start_cb(GtkWidget *widget, gpointer data);
-void mfd_list_free(GList *list);
+static void mfd_list_free(GList *list);
 
 
 /**
@@ -389,7 +389,7 @@ void mfd_list_free(GList *list);
  * See also @link hard_coded_window_keys @endlink
  **/
 
-hard_coded_window_keys search_window_keys[] = {
+static hard_coded_window_keys search_window_keys[] = {
 	{GDK_CONTROL_MASK, 'C', N_("Copy")},
 	{GDK_CONTROL_MASK, 'M', N_("Move")},
 	{GDK_CONTROL_MASK, 'R', N_("Rename")},
@@ -2428,10 +2428,10 @@ static gboolean search_file_next(SearchData *sd)
 		longitude = metadata_read_GPS_coord(fd, "Xmp.exif.GPSLongitude", 1000);
 		if (latitude != 1000 && longitude != 1000)
 			{
-			range = conversion * acos(sin(latitude * RADIANS) *
-						sin(sd->search_lat * RADIANS) + cos(latitude * RADIANS) *
+			range = conversion * acos((sin(latitude * RADIANS) *
+						sin(sd->search_lat * RADIANS)) + (cos(latitude * RADIANS) *
 						cos(sd->search_lat * RADIANS) * cos((sd->search_lon -
-						longitude) * RADIANS));
+						longitude) * RADIANS)));
 			if (sd->match_gps == SEARCH_MATCH_UNDER)
 				{
 				if (sd->search_gps >= range)
@@ -3563,7 +3563,7 @@ void search_new(FileData *dir_fd, FileData *example_file)
 	hbox2 = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 2);
 	gq_gtk_box_pack_start(GTK_BOX(hbox), hbox2, FALSE, FALSE, 0);
 	pref_label_new(hbox2, _("and"));
-	pref_spacer(hbox2, PREF_PAD_SPACE - 2*2);
+	pref_spacer(hbox2, PREF_PAD_SPACE - (2*2));
 	sd->spin_width_end = menu_spin(hbox2, 0, 1000000, sd->search_width_end,
 				       G_CALLBACK(menu_choice_spin_cb), &sd->search_width_end);
 	pref_label_new(hbox2, "x");

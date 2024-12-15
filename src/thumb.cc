@@ -23,6 +23,7 @@
 
 #include <utime.h>
 
+#include <algorithm>
 #include <cstdio>
 #include <cstring>
 
@@ -210,13 +211,13 @@ static void thumb_loader_done_cb(ImageLoader *il, gpointer data)
 			{
 			w = tl->max_w;
 			h = static_cast<gdouble>(w) / pw * ph;
-			if (h < 1) h = 1;
+			h = std::max(h, 1);
 			}
 		else
 			{
 			h = tl->max_h;
 			w = static_cast<gdouble>(h) / ph * pw;
-			if (w < 1) w = 1;
+			w = std::max(w, 1);
 			}
 
 		if (tl->fd)
@@ -603,9 +604,9 @@ static GdkPixbuf *get_xv_thumbnail(gchar *thumb_filename, gint max_w, gint max_h
 		rgb_data = g_new(guchar, width * height * 3);
 		for (i = 0; i < width * height; i++)
 			{
-			rgb_data[i * 3 + 0] = (packed_data[i] >> 5) * 36;
-			rgb_data[i * 3 + 1] = ((packed_data[i] & 28) >> 2) * 36;
-			rgb_data[i * 3 + 2] = (packed_data[i] & 3) * 85;
+			rgb_data[(i * 3) + 0] = (packed_data[i] >> 5) * 36;
+			rgb_data[(i * 3) + 1] = ((packed_data[i] & 28) >> 2) * 36;
+			rgb_data[(i * 3) + 2] = (packed_data[i] & 3) * 85;
 			}
 		g_free(packed_data);
 

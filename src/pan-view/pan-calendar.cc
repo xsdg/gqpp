@@ -21,6 +21,7 @@
 
 #include "pan-calendar.h"
 
+#include <algorithm>
 #include <cmath>
 #include <cstring>
 #include <ctime>
@@ -240,7 +241,7 @@ void pan_calendar_compute(PanWindow *pw, FileData *dir_fd, gint &width, gint &he
 		else
 			{
 			count++;
-			if (day_max < count) day_max = count;
+			day_max = std::max(day_max, count);
 			}
 		}
 
@@ -379,7 +380,7 @@ void pan_calendar_compute(PanWindow *pw, FileData *dir_fd, gint &width, gint &he
 				{
 				PanItem *pi;
 
-				pi_day->color.r = MAX(pi_day->color.r - 61 - n * 3, 80);
+				pi_day->color.r = MAX(pi_day->color.r - 61 - (n * 3), 80);
 				pi_day->color.g = pi_day->color.r;
 
 				buf = g_strdup_printf("( %d )", n);
@@ -430,7 +431,7 @@ void pan_calendar_compute(PanWindow *pw, FileData *dir_fd, gint &width, gint &he
 		}
 
 	width += grid;
-	height = MAX(height, grid + PAN_BOX_BORDER * 2 * 2);
+	height = MAX(height, grid + (PAN_BOX_BORDER * 2 * 2));
 
 	g_list_free(list);
 }

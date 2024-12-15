@@ -99,7 +99,7 @@ struct LayoutConfig
 } // namespace
 
 GList *layout_window_list = nullptr;
-LayoutWindow *current_lw = nullptr;
+static LayoutWindow *current_lw = nullptr;
 
 static void layout_list_scroll_to_subpart(LayoutWindow *lw, const gchar *needle);
 

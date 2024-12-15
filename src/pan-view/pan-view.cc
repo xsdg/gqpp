@@ -144,7 +144,7 @@ static void pan_window_dnd_init(PanWindow *pw);
  *
  * See also @link hard_coded_window_keys @endlink
  **/
-hard_coded_window_keys pan_view_window_keys[] = {
+static hard_coded_window_keys pan_view_window_keys[] = {
 	{GDK_CONTROL_MASK, 'C', N_("Copy")},
 	{GDK_CONTROL_MASK, 'M', N_("Move")},
 	{GDK_CONTROL_MASK, 'R', N_("Rename")},
@@ -802,10 +802,10 @@ static void pan_grid_build(PanWindow *pw, gint width, gint height, gint grid_siz
 
 	if (l < 1) return;
 
-	col = static_cast<gint>(sqrt(static_cast<gdouble>(l) / grid_size) * width / height + 0.999);
-	col = CLAMP(col, 1, l / grid_size + 1);
+	col = static_cast<gint>((sqrt(static_cast<gdouble>(l) / grid_size) * width / height) + 0.999);
+	col = CLAMP(col, 1, (l / grid_size) + 1);
 	row = static_cast<gint>(static_cast<gdouble>(l) / grid_size / col);
-	if (row < 1) row = 1;
+	row = std::max(row, 1);
 
 	/* limit minimum size of grid so that a tile will always fit regardless of position */
 	cw = MAX((gint)ceil((gdouble)width / col), PAN_TILE_SIZE * 2);
@@ -1043,8 +1043,8 @@ void pan_layout_resize(PanWindow *pw)
 		pi = static_cast<PanItem *>(work->data);
 		work = work->next;
 
-		if (width < pi->x + pi->width) width = pi->x + pi->width;
-		if (height < pi->y + pi->height) height = pi->y + pi->height;
+		width = std::max(width, pi->x + pi->width);
+		height = std::max(height, pi->y + pi->height);
 		}
 	work = pw->list_static;
 	while (work)
@@ -1054,15 +1054,15 @@ void pan_layout_resize(PanWindow *pw)
 		pi = static_cast<PanItem *>(work->data);
 		work = work->next;
 
-		if (width < pi->x + pi->width) width = pi->x + pi->width;
-		if (height < pi->y + pi->height) height = pi->y + pi->height;
+		width = std::max(width, pi->x + pi->width);
+		height = std::max(height, pi->y + pi->height);
 		}
 
 	width += PAN_BOX_BORDER * 2;
 	height += PAN_BOX_BORDER * 2;
 
 	pr = PIXBUF_RENDERER(pw->imd->pr);
-	if (width < pr->window_width) width = pr->window_width;
+	width = std::max(width, pr->window_width);
 	if (height < pr->window_width) height = pr->window_height;
 
 	pixbuf_renderer_set_tiles_size(PIXBUF_RENDERER(pw->imd->pr), width, height);
@@ -1232,13 +1232,13 @@ static gboolean pan_window_key_press_cb(GtkWidget *widget, GdkEventKey *event, g
 				y += 1;
 				break;
 			case GDK_KEY_Page_Up: case GDK_KEY_KP_Page_Up:
-				pixbuf_renderer_scroll(pr, 0, 0 - pr->vis_height / 2);
+				pixbuf_renderer_scroll(pr, 0, 0 - (pr->vis_height / 2));
 				break;
 			case GDK_KEY_Page_Down: case GDK_KEY_KP_Page_Down:
 				pixbuf_renderer_scroll(pr, 0, pr->vis_height / 2);
 				break;
 			case GDK_KEY_Home: case GDK_KEY_KP_Home:
-				pixbuf_renderer_scroll(pr, 0 - pr->vis_width / 2, 0);
+				pixbuf_renderer_scroll(pr, 0 - (pr->vis_width / 2), 0);
 				break;
 			case GDK_KEY_End: case GDK_KEY_KP_End:
 				pixbuf_renderer_scroll(pr, pr->vis_width / 2, 0);

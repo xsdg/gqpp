@@ -115,7 +115,7 @@ gboolean ImageLoaderEXR::write(const guchar *buffer, gsize &chunk_size, gsize co
 
 		// Allocate memory for the pixel data
 		Imf::Array2D<Imf::Rgba> pixels(height, width);
-		file.setFrameBuffer(&pixels[0][0] - dw.min.x - dw.min.y * width, 1, width);
+		file.setFrameBuffer(&pixels[0][0] - dw.min.x - (dw.min.y * width), 1, width);
 		file.readPixels(dw.min.y, dw.max.y);
 
 		// Convert EXR pixel data to GdkPixbuf format (8-bit RGBA)
@@ -134,9 +134,9 @@ gboolean ImageLoaderEXR::write(const guchar *buffer, gsize &chunk_size, gsize co
 
 				// Store in RGBA format
 				image_data[4 * (y * width + x)] = r;
-				image_data[4 * (y * width + x) + 1] = g;
-				image_data[4 * (y * width + x) + 2] = b;
-				image_data[4 * (y * width + x) + 3] = a;
+				image_data[(4 * (y * width + x)) + 1] = g;
+				image_data[(4 * (y * width + x)) + 2] = b;
+				image_data[(4 * (y * width + x)) + 3] = a;
 				}
 			}
 

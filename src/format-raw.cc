@@ -129,7 +129,7 @@ static guint tiff_table(guchar *data, const guint len, guint offset, ExifByteOrd
 			}
 		}
 
-	return exif_byte_get_int32(data + offset + count * 12, bo);
+	return exif_byte_get_int32(data + offset + (count * 12), bo);
 }
 
 static gboolean format_tiff_find_tag_data(guchar *data, const guint len,

@@ -129,7 +129,7 @@ gboolean ImageLoaderZXSCR::write(const guchar *buf, gsize &chunk_size, gsize cou
 				}
 			else
 				{
-				attr = buf[6144 + row * 32 + col];
+				attr = buf[6144 + (row * 32) + col];
 				bright = (attr >> 6) & 0x01;
 				ink = attr & 0x07;
 				paper = ((attr >> 3) & 0x07);
@@ -138,7 +138,7 @@ gboolean ImageLoaderZXSCR::write(const guchar *buf, gsize &chunk_size, gsize cou
 
 			for (mrow = 0; mrow < 8; mrow ++)
 				{
-				pxs = buf[(row / 8) * 2048 + mrow * 256 + (row % 8) * 32 + col];
+				pxs = buf[((row / 8) * 2048) + (mrow * 256) + ((row % 8) * 32) + col];
 				for (i = 0; i < 8; i++)
 					{
 					if (pxs & 0x80)

@@ -146,7 +146,7 @@ gchar *md5_digest_to_text(const guchar digest[16])
 	for (gsize i = 0; i < MD5_SIZE; i++)
 		{
 		result[2*i] = hex_digits[digest[i] >> 4];
-		result[2*i+1] = hex_digits[digest[i] & 0xf];
+		result[(2*i)+1] = hex_digits[digest[i] & 0xf];
 		}
 	result[result_size] = '\0';
 
@@ -160,9 +160,9 @@ gboolean md5_digest_from_text(const gchar *text, guchar digest[16])
 {
 	for (gsize i = 0; i < MD5_SIZE; i++)
 		{
-		if (text[2*i] == '\0' || text[2*i+1] == '\0') return FALSE;
+		if (text[2*i] == '\0' || text[(2*i)+1] == '\0') return FALSE;
 		digest[i] = g_ascii_xdigit_value(text[2*i]) << 4 |
-			    g_ascii_xdigit_value(text[2*i + 1]);
+			    g_ascii_xdigit_value(text[(2*i) + 1]);
 		}
 
 	return TRUE;

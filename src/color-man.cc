@@ -469,7 +469,7 @@ static double HLG_fct(double x)
 	static const double B     = 0.28466892; // 1.0 - 4.0 * A
 	static const double C     = 0.5599107295; // 0,5 –aln(4a)
 
-	double e = MAX(x * (1.0 - Beta) + Beta, 0.0);
+	double e = MAX((x * (1.0 - Beta)) + Beta, 0.0);
 
 	if(e == 0.0) return 0.0;
 
@@ -504,7 +504,7 @@ static double PQ_fct(double x)
 
 	const double xpo = pow(x, 1.0 / M2);
 	const double num = MAX(xpo - C1, 0.0);
-	const double den = C2 - C3 * xpo;
+	const double den = C2 - (C3 * xpo);
 	const double res = pow(num / den, 1.0 / M1);
 
 	return copysign(res, sign);

@@ -21,6 +21,6 @@
 #ifndef KEYMAP_TEMPLATE_H
 #define KEYMAP_TEMPLATE_H
 
-extern char *keymap_template [];
+extern const char *keymap_template [];
 
 #endif

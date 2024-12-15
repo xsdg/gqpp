@@ -76,7 +76,7 @@ static void nikon_tiff_entry(guchar *data, const guint len, guint offset, ExifBy
 			{
 			guint subset;
 
-			subset = exif_byte_get_int32(data + segment + i * 4, bo);
+			subset = exif_byte_get_int32(data + segment + (i * 4), bo);
 			nikon_tiff_table(data, len, subset, bo, level + 1, image_offset, image_length);
 			}
 
@@ -113,7 +113,7 @@ static guint nikon_tiff_table(guchar *data, const guint len, guint offset, ExifB
 
 	for (i = 0; i < count; i++)
 		{
-		nikon_tiff_entry(data, len, offset + i * EXIF_TIFD_SIZE, bo, level,
+		nikon_tiff_entry(data, len, offset + (i * EXIF_TIFD_SIZE), bo, level,
 				 image_offset, image_length, &jpeg_start, &jpeg_len);
 		}
 
@@ -124,7 +124,7 @@ static guint nikon_tiff_table(guchar *data, const guint len, guint offset, ExifB
 		*image_length = jpeg_len;
 		}
 
-	return exif_byte_get_int32(data + offset + count * EXIF_TIFD_SIZE, bo);
+	return exif_byte_get_int32(data + offset + (count * EXIF_TIFD_SIZE), bo);
 }
 
 gboolean format_nikon_raw(guchar *data, const guint len,

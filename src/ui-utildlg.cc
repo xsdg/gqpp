@@ -513,7 +513,7 @@ struct AppImageData
 	GThreadPool *thread_pool;
 };
 
-void show_new_appimage_notification(GtkApplication *app)
+static void show_new_appimage_notification(GtkApplication *app)
 {
 	auto *notification = g_notification_new("Geeqie");
 

@@ -109,9 +109,9 @@ gdouble image_sim_data_compare_transfo(const ImageSimilarityData *a, const Image
 		for (gint i1 = 0; i1 < 32; i1++)
 			{
 			if (transfo & 4) *i = 31-i1; else *i = i1;
-			sim += abs(a->avg_r[i1*32+j1] - b->avg_r[i2*32+j2]);
-			sim += abs(a->avg_g[i1*32+j1] - b->avg_g[i2*32+j2]);
-			sim += abs(a->avg_b[i1*32+j1] - b->avg_b[i2*32+j2]);
+			sim += abs(a->avg_r[(i1*32)+j1] - b->avg_r[(i2*32)+j2]);
+			sim += abs(a->avg_g[(i1*32)+j1] - b->avg_g[(i2*32)+j2]);
+			sim += abs(a->avg_b[(i1*32)+j1] - b->avg_b[(i2*32)+j2]);
 			/* check for abort, if so return 0.0 */
 			if (check_abort(sim)) return 0.0;
 			}
@@ -159,8 +159,8 @@ static void image_sim_channel_norm(guint8 *pix, gint len)
 
 	for (i = 0; i < len; i++)
 		{
-		if (pix[i] < l) l = pix[i];
-		if (pix[i] > h) h = pix[i];
+		l = std::min(pix[i], l);
+		h = std::max(pix[i], h);
 		}
 
 	delta = h - l;

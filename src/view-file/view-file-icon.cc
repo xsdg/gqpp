@@ -21,6 +21,7 @@
 
 #include "view-file-icon.h"
 
+#include <algorithm>
 #include <cstring>
 #include <utility>
 
@@ -181,7 +182,7 @@ static gint vficon_get_icon_width(ViewFile *vf)
 	if (!VFICON(vf)->show_text && !vf->marks_enabled ) return options->thumbnails.max_width;
 
 	width = options->thumbnails.max_width + options->thumbnails.max_width / 2;
-	if (width < THUMB_MIN_ICON_WIDTH) width = THUMB_MIN_ICON_WIDTH;
+	width = std::max(width, THUMB_MIN_ICON_WIDTH);
 	if (width > THUMB_MAX_ICON_WIDTH) width = options->thumbnails.max_width;
 	if (vf->marks_enabled && width < THUMB_MIN_ICON_WIDTH_WITH_MARKS) width = THUMB_MIN_ICON_WIDTH_WITH_MARKS;
 
@@ -889,7 +890,7 @@ static void vficon_move_focus(ViewFile *vf, gint row, gint col, gboolean relativ
 		new_col = VFICON(vf)->focus_column;
 
 		new_row += row;
-		if (new_row < 0) new_row = 0;
+		new_row = std::max(new_row, 0);
 		if (new_row >= VFICON(vf)->rows) new_row = VFICON(vf)->rows - 1;
 
 		while (col != 0)
@@ -1033,7 +1034,7 @@ static gint page_height(ViewFile *vf)
 	if (VFICON(vf)->show_text) row_height += options->thumbnails.max_height / 3;
 
 	ret = page_size / row_height;
-	if (ret < 1) ret = 1;
+	ret = std::max(ret, 1);
 
 	return ret;
 }
@@ -1512,7 +1513,7 @@ static void vficon_populate_at_new_size(ViewFile *vf, gint w, gint, gboolean for
 	thumb_width = vficon_get_icon_width(vf);
 
 	new_cols = w / (thumb_width + (THUMB_BORDER_PADDING * 6));
-	if (new_cols < 1) new_cols = 1;
+	new_cols = std::max(new_cols, 1);
 
 	if (!force && new_cols == VFICON(vf)->columns) return;
 

@@ -82,7 +82,7 @@ static void toolbar_item_move(GtkWidget *, gpointer data, gboolean up, gboolean 
 	if (single_step)
 		{
 		pos = up ? (pos - 1) : (pos + 1);
-		if (pos < 0) pos = 0;
+		pos = std::max(pos, 0);
 		}
 	else
 		{

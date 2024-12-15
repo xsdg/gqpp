@@ -178,7 +178,7 @@ static gint timeval_delta(struct timeval *result, struct timeval *x, struct time
 {
 	if (x->tv_usec < y->tv_usec)
 		{
-		gint nsec = (y->tv_usec - x->tv_usec) / 1000000 + 1;
+		gint nsec = ((y->tv_usec - x->tv_usec) / 1000000) + 1;
 		y->tv_usec -= 1000000 * nsec;
 		y->tv_sec += nsec;
 		}

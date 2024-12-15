@@ -47,6 +47,7 @@
 
 #include "exif.h"
 
+#include <algorithm>
 #include <fcntl.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
@@ -92,9 +93,11 @@ ExifFormatAttrib ExifFormatList[] = {
 };
 
 /* tags that are special, or need special treatment */
-#define TAG_EXIFOFFSET          0x8769
-#define TAG_EXIFMAKERNOTE	0x927c
-#define TAG_GPSOFFSET		0x8825
+enum {
+TAG_EXIFOFFSET = 0x8769,
+TAG_EXIFMAKERNOTE = 0x927c,
+TAG_GPSOFFSET = 0x8825
+};
 
 
 /*
@@ -675,9 +678,11 @@ guint16 exif_byte_get_int16(guchar *f, ExifByteOrder bo)
 	memcpy(&align_buf, f, sizeof(guint16));
 
 	if (bo == EXIF_BYTE_ORDER_INTEL)
+		{
 		return GUINT16_FROM_LE(align_buf);
-	else
-		return GUINT16_FROM_BE(align_buf);
+		}
+
+	return GUINT16_FROM_BE(align_buf);
 }
 
 guint32 exif_byte_get_int32(guchar *f, ExifByteOrder bo)
@@ -687,9 +692,11 @@ guint32 exif_byte_get_int32(guchar *f, ExifByteOrder bo)
 	memcpy(&align_buf, f, sizeof(guint32));
 
 	if (bo == EXIF_BYTE_ORDER_INTEL)
+		{
 		return GUINT32_FROM_LE(align_buf);
-	else
-		return GUINT32_FROM_BE(align_buf);
+		}
+
+	return GUINT32_FROM_BE(align_buf);
 }
 
 void exif_byte_put_int16(guchar *f, guint16 n, ExifByteOrder bo)
@@ -793,7 +800,7 @@ void exif_item_copy_data(ExifItem *item, gpointer src, guint len,
 		case EXIF_FORMAT_SHORT:
 			for (i = 0; i < ne; i++)
 				{
-				(static_cast<guint16 *>(dest))[i] = exif_byte_get_int16(static_cast<guchar *>(src) + i * bs, bo);
+				(static_cast<guint16 *>(dest))[i] = exif_byte_get_int16(static_cast<guchar *>(src) + (i * bs), bo);
 				}
 			break;
 		case EXIF_FORMAT_LONG_UNSIGNED:
@@ -808,7 +815,7 @@ void exif_item_copy_data(ExifItem *item, gpointer src, guint len,
 				for (i = 0; i < ne; i++)
 					{
 					(static_cast<gint32 *>(dest))[i] =
-						static_cast<gint32>(exif_byte_get_int16(static_cast<guchar *>(src) + i * ss, bo));
+						static_cast<gint32>(exif_byte_get_int16(static_cast<guchar *>(src) + (i * ss), bo));
 					}
 				}
 			else
@@ -816,7 +823,7 @@ void exif_item_copy_data(ExifItem *item, gpointer src, guint len,
 				for (i = 0; i < ne; i++)
 					{
 					(static_cast<gint32 *>(dest))[i] =
-						exif_byte_get_int32(static_cast<guchar *>(src) + i * bs, bo);
+						exif_byte_get_int32(static_cast<guchar *>(src) + (i * bs), bo);
 					}
 				}
 			break;
@@ -824,13 +831,13 @@ void exif_item_copy_data(ExifItem *item, gpointer src, guint len,
 		case EXIF_FORMAT_RATIONAL:
 			for (i = 0; i < ne; i++)
 				{
-				rational_from_data(&(static_cast<ExifRational *>(dest))[i], static_cast<guchar *>(src) + i * bs, bo);
+				rational_from_data(&(static_cast<ExifRational *>(dest))[i], static_cast<guchar *>(src) + (i * bs), bo);
 				}
 			break;
 		case EXIF_FORMAT_FLOAT:
 			for (i = 0; i < ne; i++)
 				{
-				(static_cast<float *>(dest))[i] = exif_byte_get_int32(static_cast<guchar *>(src) + i * bs, bo);
+				(static_cast<float *>(dest))[i] = exif_byte_get_int32(static_cast<guchar *>(src) + (i * bs), bo);
 				}
 			break;
 		case EXIF_FORMAT_DOUBLE:
@@ -838,7 +845,7 @@ void exif_item_copy_data(ExifItem *item, gpointer src, guint len,
 				{
 				ExifRational r;
 
-				rational_from_data(&r, static_cast<guchar *>(src) + i * bs, bo);
+				rational_from_data(&r, static_cast<guchar *>(src) + (i * bs), bo);
 				if (r.den) (static_cast<gdouble *>(dest))[i] = static_cast<gdouble>(r.num) / r.den;
 				}
 			break;
@@ -978,7 +985,7 @@ gint exif_parse_IFD_table(ExifData *exif,
 
 	for (i = 0; i < count; i++)
 		{
-		exif_parse_IFD_entry(exif, tiff, offset + i * EXIF_TIFD_SIZE, size, bo, level, list);
+		exif_parse_IFD_entry(exif, tiff, offset + (i * EXIF_TIFD_SIZE), size, bo, level, list);
 		}
 
 	return 0;
@@ -1207,7 +1214,8 @@ ExifData *exif_read(gchar *path, gchar *, GHashTable *)
 {
 	ExifData *exif;
 	gpointer f;
-	gint size, res;
+	gint res;
+	gint size;
 	gchar *pathl;
 
 	if (!path) return nullptr;
@@ -1291,8 +1299,7 @@ ExifItem *exif_get_item(ExifData *exif, const gchar *key)
 	return work ? static_cast<ExifItem*>(work->data) : nullptr;
 }
 
-#define EXIF_DATA_AS_TEXT_MAX_COUNT 16
-
+constexpr guint EXIF_DATA_AS_TEXT_MAX_COUNT = 16;
 
 static gchar *exif_item_get_data_as_text_full(ExifItem *item, MetadataFormat format)
 {
@@ -1309,7 +1316,7 @@ static gchar *exif_item_get_data_as_text_full(ExifItem *item, MetadataFormat for
 
 	data = item->data;
 	ne = item->elements;
-	if (ne > EXIF_DATA_AS_TEXT_MAX_COUNT) ne = EXIF_DATA_AS_TEXT_MAX_COUNT;
+	ne = std::min(item->elements, EXIF_DATA_AS_TEXT_MAX_COUNT);
 	string = g_string_new("");
 	switch (item->format)
 		{

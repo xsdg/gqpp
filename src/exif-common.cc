@@ -45,6 +45,8 @@
 #include "cache.h"
 #include "debug.h"
 #include "exif.h"
+/* Required to prevent clang-tidy warnings */
+#include "exif-int.h"
 #include "filecache.h"
 #include "filedata.h"
 #include "glua.h"

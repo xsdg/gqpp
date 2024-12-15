@@ -404,7 +404,7 @@ void gq_delay(GtkApplication *, GApplicationCommandLine *app_command_line, GVari
 		n = 0;
 		}
 
-	options->slideshow.delay = static_cast<gint>(n * 10.0 + 0.01);
+	options->slideshow.delay = static_cast<gint>((n * 10.0) + 0.01);
 }
 
 void file_load_no_raise(const gchar *text, GApplicationCommandLine *app_command_line)

@@ -169,7 +169,7 @@ static gint dupe_match_link_exists(DupeItem *child, DupeItem *parent);
  *
  * See also @link hard_coded_window_keys @endlink
  **/
-hard_coded_window_keys dupe_window_keys[] = {
+static hard_coded_window_keys dupe_window_keys[] = {
 	{GDK_CONTROL_MASK, 'C', N_("Copy")},
 	{GDK_CONTROL_MASK, 'M', N_("Move")},
 	{GDK_CONTROL_MASK, 'R', N_("Rename")},
@@ -308,7 +308,7 @@ static guint64 msec_time()
 
 	if (gettimeofday(&tv, nullptr) == -1) return 0;
 
-	return static_cast<guint64>(tv.tv_sec) * 1000000 + static_cast<guint64>(tv.tv_usec);
+	return (static_cast<guint64>(tv.tv_sec) * 1000000) + static_cast<guint64>(tv.tv_usec);
 }
 
 static gint dupe_iterations(gint n)

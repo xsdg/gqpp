@@ -20,6 +20,7 @@
 
 #include "image-load-j2k.h"
 
+#include <algorithm>
 #include <cstdlib>
 #include <cstring>
 
@@ -83,8 +84,7 @@ OPJ_SIZE_T opj_read_from_buffer (void* pdst, OPJ_SIZE_T len, void* user_data)
 
 	if (n)
 		{
-		if (n > len)
-			n = len;
+		n = std::min(n, len);
 
 		memcpy (pdst, psrc->cur, n);
 		psrc->cur += n;
@@ -201,7 +201,7 @@ gboolean ImageLoaderJ2K::write(const guchar *buf, gsize &chunk_size, gsize count
 			{
 			for (gint x = 0; x < width; x++)
 				{
-				pixels[(y * width + x) * bytes_per_pixel + b] = image->comps[b].data[y * width + x];
+				pixels[((y * width + x) * bytes_per_pixel) + b] = image->comps[b].data[(y * width) + x];
 				}
 			}
 		}

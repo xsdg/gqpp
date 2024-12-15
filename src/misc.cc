@@ -28,6 +28,7 @@
 #if !HAVE__NL_TIME_FIRST_WEEKDAY
 #  include <clocale>
 #endif
+#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -518,7 +519,7 @@ void cell_renderer_height_override(GtkCellRenderer *renderer)
 		GParamSpecInt *spec_int;
 
 		spec_int = G_PARAM_SPEC_INT(spec);
-		if (spec_int->maximum < CELL_HEIGHT_OVERRIDE) spec_int->maximum = CELL_HEIGHT_OVERRIDE;
+		spec_int->maximum = std::max(spec_int->maximum, CELL_HEIGHT_OVERRIDE);
 		}
 }
 

@@ -339,8 +339,8 @@ static void image_scroll_notify_cb(PixbufRenderer *pr, gpointer data)
 		imd->func_scroll_notify(imd,
 					static_cast<gint>(static_cast<gdouble>(pr->x_scroll) / pr->scale),
 					static_cast<gint>(static_cast<gdouble>(pr->y_scroll) / pr->scale),
-					static_cast<gint>(static_cast<gdouble>(pr->image_width) - pr->vis_width / pr->scale),
-					static_cast<gint>(static_cast<gdouble>(pr->image_height) - pr->vis_height / pr->scale),
+					static_cast<gint>(static_cast<gdouble>(pr->image_width) - (pr->vis_width / pr->scale)),
+					static_cast<gint>(static_cast<gdouble>(pr->image_height) - (pr->vis_height / pr->scale)),
 					imd->data_scroll_notify);
 		}
 }

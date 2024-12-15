@@ -21,6 +21,7 @@
 
 #include "image-overlay.h"
 
+#include <algorithm>
 #include <cstring>
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
@@ -309,8 +310,8 @@ static GdkPixbuf *image_osd_info_render(OverlayStateData *osd)
 				n = 1;
 				}
 
-			if (n < 1) n = 1;
-			if (t < 1) t = 1;
+			n = std::max(n, 1);
+			t = std::max(t, 1);
 
 			osd_template_insert(vars, "collection", nullptr);
 			}
@@ -389,7 +390,7 @@ static GdkPixbuf *image_osd_info_render(OverlayStateData *osd)
 
 		if (active_marks > 0)
 			{
-			GString *buf = g_string_sized_new(strlen(text) + 1 + FILEDATA_MARKS_SIZE * 2);
+			GString *buf = g_string_sized_new(strlen(text) + 1 + (FILEDATA_MARKS_SIZE * 2));
 
 			if (*text)
 				{
@@ -436,7 +437,7 @@ static GdkPixbuf *image_osd_info_render(OverlayStateData *osd)
 
 	if (with_hist)
 		{
-		if (width < HISTOGRAM_WIDTH + 10) width = HISTOGRAM_WIDTH + 10;
+		width = std::max(width, HISTOGRAM_WIDTH + 10);
 		height += HISTOGRAM_HEIGHT + 5;
 		}
 

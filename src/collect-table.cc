@@ -21,6 +21,7 @@
 
 #include "collect-table.h"
 
+#include <algorithm>
 #include <array>
 #include <cstddef>
 #include <utility>
@@ -108,7 +109,7 @@ static void collection_table_populate_at_new_size(CollectTable *ct, gint w, gint
  *
  * See also @link hard_coded_window_keys @endlink
  **/
-hard_coded_window_keys collection_window_keys[] = {
+static hard_coded_window_keys collection_window_keys[] = {
 	{GDK_CONTROL_MASK, 'C', N_("Copy")},
 	{GDK_CONTROL_MASK, 'M', N_("Move")},
 	{GDK_CONTROL_MASK, 'R', N_("Rename")},
@@ -339,7 +340,7 @@ static gint collection_table_get_icon_width(CollectTable *ct)
 	if (!ct->show_text) return options->thumbnails.max_width;
 
 	width = options->thumbnails.max_width + options->thumbnails.max_width / 2;
-	if (width < THUMB_MIN_ICON_WIDTH) width = THUMB_MIN_ICON_WIDTH;
+	width = std::max(width, THUMB_MIN_ICON_WIDTH);
 	if (width > THUMB_MAX_ICON_WIDTH) width = options->thumbnails.max_width;
 
 	return width;
@@ -1168,7 +1169,7 @@ static void collection_table_move_focus(CollectTable *ct, gint row, gint col, gb
 		new_col = ct->focus_column;
 
 		new_row += row;
-		if (new_row < 0) new_row = 0;
+		new_row = std::max(new_row, 0);
 		if (new_row >= ct->rows) new_row = ct->rows - 1;
 
 		while (col != 0)
@@ -1280,7 +1281,7 @@ static gint page_height(CollectTable *ct)
 	if (ct->show_text) row_height += options->thumbnails.max_height / 3;
 
 	ret = page_size / row_height;
-	if (ret < 1) ret = 1;
+	ret = std::max(ret, 1);
 
 	return ret;
 }
@@ -1822,7 +1823,7 @@ static void collection_table_populate_at_new_size(CollectTable *ct, gint w, gint
 	thumb_width = collection_table_get_icon_width(ct);
 
 	new_cols = w / (thumb_width + (THUMB_BORDER_PADDING * 6));
-	if (new_cols < 1) new_cols = 1;
+	new_cols = std::max(new_cols, 1);
 
 	if (!force && new_cols == ct->columns) return;
 
@@ -2027,7 +2028,7 @@ void collection_table_file_update(CollectTable *ct, CollectInfo *info)
 
 	if (ct->columns != 0 && ct->rows != 0)
 		{
-		value = static_cast<gdouble>(row * ct->columns + col) / (ct->columns * ct->rows);
+		value = static_cast<gdouble>((row * ct->columns) + col) / (ct->columns * ct->rows);
 		}
 	else
 		{

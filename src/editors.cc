@@ -87,7 +87,7 @@ static EditorFlags editor_command_done(EditorData *ed);
 
 GHashTable *editors = nullptr;
 GtkListStore *desktop_file_list;
-gboolean editors_finished = FALSE;
+static gboolean editors_finished = FALSE;
 
 #ifdef G_KEY_FILE_DESKTOP_GROUP
 #define DESKTOP_GROUP G_KEY_FILE_DESKTOP_GROUP
