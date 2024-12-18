@@ -1070,8 +1070,6 @@ void exit_program()
 
 gint main(gint argc, gchar *argv[])
 {
-	gdk_set_allowed_backends("x11, *");
-
 	gint status;
 	gchar *version_string;
 	GtkApplication *app;
