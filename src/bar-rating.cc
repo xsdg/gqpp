@@ -96,7 +96,7 @@ static void bar_pane_rating_notify_cb(FileData *fd, NotifyType type, gpointer da
 {
 	auto prd = static_cast<PaneRatingData *>(data);
 
-	if ((type & (NOTIFY_REREAD | NOTIFY_CHANGE | NOTIFY_HISTMAP | NOTIFY_PIXBUF)) && fd == prd->fd)
+	if ((type & (NOTIFY_REREAD | NOTIFY_CHANGE | NOTIFY_HISTMAP | NOTIFY_METADATA | NOTIFY_PIXBUF)) && fd == prd->fd)
 		{
 		DEBUG_1("Notify pane_rating: %s %04x", fd->path, type);
 		bar_pane_rating_update(prd);

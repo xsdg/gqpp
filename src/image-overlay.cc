@@ -655,11 +655,9 @@ static gboolean image_osd_update_cb(gpointer data)
 
 	if (osd->show & OSD_SHOW_INFO)
 		{
-		/* redraw when the image was changed,
+		/* redraw when the image or metadata was changed,
 		   with histogram we have to redraw also when loading is finished */
-		if (osd->changed_states & IMAGE_STATE_IMAGE ||
-		    (osd->changed_states & IMAGE_STATE_LOADING && osd->show & OSD_SHOW_HISTOGRAM) ||
-		    osd->notify & NOTIFY_HISTMAP)
+		if (osd->changed_states & IMAGE_STATE_IMAGE || (osd->changed_states & IMAGE_STATE_LOADING && osd->show & OSD_SHOW_HISTOGRAM) || osd->notify & NOTIFY_HISTMAP || osd->notify & NOTIFY_METADATA)
 			{
 			GdkPixbuf *pixbuf;
 
@@ -792,7 +790,7 @@ static void image_osd_notify_cb(FileData *fd, NotifyType type, gpointer data)
 {
 	auto osd = static_cast<OverlayStateData *>(data);
 
-	if ((type & (NOTIFY_HISTMAP)) && osd->imd && fd == osd->imd->image_fd)
+	if (((type & NOTIFY_HISTMAP) || (type & NOTIFY_METADATA)) && osd->imd && fd == osd->imd->image_fd)
 		{
 		DEBUG_1("Notify osd: %s %04x", fd->path, type);
 		osd->notify = static_cast<NotifyType>(osd->notify | type);
