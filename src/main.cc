@@ -113,7 +113,7 @@ GQ_NEW_INSTANCE=y[es] geeqie\n \
 Normally a single set of configuration files is used for all instances.\n \
 However, the environment variables XDG_CONFIG_HOME, XDG_CACHE_HOME, XDG_DATA_HOME\n \
 can be used to modify this behavior on an individual basis e.g.\n \
-XDG_CONFIG_HOME=/tmp/a XDG_CACHE_HOME=/tmp/b GQ_NON_UNIQUE= geeqie\n\n \
+XDG_CONFIG_HOME=/tmp/a XDG_CACHE_HOME=/tmp/b GQ_NEW_INSTANCE=y geeqie\n\n \
 To disable Clutter use:\n \
 GQ_DISABLE_CLUTTER=y[es] geeqie\n\n \
 To run or stop Geeqie in cache maintenance (non-GUI) mode use:\n \
@@ -169,7 +169,7 @@ GOptionEntry command_line_options[] =
 #endif
 	{ "id"                        ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("window id for following commands")                                            , "<ID>" },
 	{ "last"                      ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_NONE  , nullptr, _("last image")                                                                  , nullptr },
-	{ "log-file"                  , 'o', G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("open collection window for command line")                                     , "<file>" },
+	{ "log-file"                  , 'o', G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("save log data to file")                                                       , "<file>" },
 	{ "lua"                       ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("run lua script on FILE")                                                      , "<FILE>,<lua script>" },
 	{ "new-window"                ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_NONE  , nullptr, _("new window")                                                                  , nullptr },
 	{ "next"                      , 'n', G_OPTION_FLAG_NONE, G_OPTION_ARG_NONE  , nullptr, _("next image")                                                                  , nullptr },
