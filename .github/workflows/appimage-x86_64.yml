@@ -75,11 +75,14 @@ jobs:
         run: |
           wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
           chmod +x linuxdeploy-x86_64.AppImage
+          wget https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh
+          chmod +x linuxdeploy-plugin-gtk.sh
 
       - name: Build AppImage
         run: |
           ./linuxdeploy-x86_64.AppImage --appdir ${{ github.workspace }}/AppDir \
             --desktop-file ${{ github.workspace }}/AppDir/usr/share/applications/org.geeqie.Geeqie.desktop \
+            --plugin gtk \
             --output appimage
           mv Geeqie-x86_64.AppImage Geeqie-latest-x86_64.AppImage
 
