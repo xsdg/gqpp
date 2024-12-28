@@ -569,21 +569,25 @@ static void new_appimage_notification_func(gpointer, gpointer user_data)
 
 				/* GitHub date looks like: "published_at": "2024-04-17T08:50:08Z" */
 				gchar *start_date = g_strstr_len(result, -1, "published_at");
-				start_date += 16; // skip 'published_at": "' part
-				start_date[10] = '\0'; // drop everything after YYYY-mm-dd part
 
-				std::tm github_version_date{};
-				strptime(start_date, "%Y-%m-%d", &github_version_date);
-
-				/* VERSION looks like: 2.0.1+git20220116-c791cbee */
-				g_auto(GStrv) version_split = g_strsplit_set(VERSION, "+-", -1);
-
-				std::tm current_version_date{};
-				strptime(version_split[1] + 3, "%Y%m%d", &current_version_date);
-
-				if (mktime(&github_version_date) > mktime(&current_version_date))
+				if (start_date)
 					{
-					show_new_appimage_notification(app);
+					start_date += 16; // skip 'published_at": "' part
+					start_date[10] = '\0'; // drop everything after YYYY-mm-dd part
+
+					std::tm github_version_date{};
+					strptime(start_date, "%Y-%m-%d", &github_version_date);
+
+					/* VERSION looks like: 2.0.1+git20220116-c791cbee */
+					g_auto(GStrv) version_split = g_strsplit_set(VERSION, "+-", -1);
+
+					std::tm current_version_date{};
+					strptime(version_split[1] + 3, "%Y%m%d", &current_version_date);
+
+					if (mktime(&github_version_date) > mktime(&current_version_date))
+						{
+						show_new_appimage_notification(app);
+						}
 					}
 				}
 			}
