@@ -1827,6 +1827,10 @@ void vf_notify_cb(FileData *fd, NotifyType type, gpointer data)
 	gboolean refresh;
 
 	auto interested = static_cast<NotifyType>(NOTIFY_CHANGE | NOTIFY_REREAD | NOTIFY_GROUPING);
+	if (options->show_star_rating)
+		{
+		interested = static_cast<NotifyType>(interested | NOTIFY_METADATA);
+		}
 	if (vf->marks_enabled) interested = static_cast<NotifyType>(interested | NOTIFY_MARKS | NOTIFY_METADATA);
 	/** @FIXME NOTIFY_METADATA should be checked by the keyword-to-mark functions and converted to NOTIFY_MARKS only if there was a change */
 
