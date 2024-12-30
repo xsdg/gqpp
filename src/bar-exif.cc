@@ -22,7 +22,7 @@
 #include "bar-exif.h"
 
 #include <array>
-#include <cstring>
+#include <string>
 
 #include <gdk/gdk.h>
 #include <glib-object.h>
@@ -872,7 +872,7 @@ GtkWidget *bar_pane_exif_new_from_config(const gchar **attribute_names, const gc
 		if (READ_BOOL_FULL("expanded", expanded)) continue;
 		if (READ_BOOL_FULL("show_all", show_all)) continue;
 
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	bar_pane_translate_title(PANE_EXIF, id, &title);
@@ -900,8 +900,7 @@ void bar_pane_exif_update_from_config(GtkWidget *pane, const gchar **attribute_n
 		if (READ_BOOL_FULL("show_all", ped->show_all)) continue;
 		if (READ_CHAR_FULL("id", ped->pane.id)) continue;
 
-
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	if (title)
@@ -937,7 +936,7 @@ void bar_pane_exif_entry_add_from_config(GtkWidget *pane, const gchar **attribut
 		if (READ_BOOL_FULL("if_set", if_set)) continue;
 		if (READ_BOOL_FULL("editable", editable)) continue;
 
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	if (key && key[0]) bar_pane_exif_add_entry(ped, key, title, if_set, editable);

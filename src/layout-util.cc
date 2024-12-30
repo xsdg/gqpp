@@ -28,7 +28,7 @@
 #include <algorithm>
 #include <cstdio>
 #include <cstdlib>
-#include <cstring>
+#include <string>
 
 #include <gio/gio.h>
 #include <glib-object.h>
@@ -3657,7 +3657,7 @@ void layout_toolbar_add_from_config(LayoutWindow *lw, ToolbarType type, const ch
 
 		if (READ_CHAR_FULL("action", action)) continue;
 
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	layout_toolbar_add(lw, type, action);

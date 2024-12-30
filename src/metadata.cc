@@ -1807,7 +1807,7 @@ GtkTreeIter *keyword_add_from_config(GtkTreeStore *keyword_tree, GtkTreeIter *pa
 		if (READ_BOOL_FULL("kw", is_kw)) continue;
 		if (READ_CHAR_FULL("mark", mark_str)) continue;
 
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	if (name && name[0])

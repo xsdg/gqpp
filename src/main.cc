@@ -73,6 +73,7 @@
 #include "layout-image.h"
 #include "layout-util.h"
 #include "layout.h"
+#include "logwindow.h"
 #include "main-defines.h"
 #include "metadata.h"
 #include "pixbuf-util.h"
@@ -347,6 +348,24 @@ gboolean search_command_line_for_option(const gint argc, const gchar* const argv
 gboolean search_command_line_for_unit_test_option(gint argc, gchar *argv[])
 {
 	return search_command_line_for_option(argc, argv, "--run-unit-tests");
+}
+
+/**
+ * @brief Show log window for config. file errors
+ * @param GSimpleAction
+ * @param GVariant
+ * @param gpointer
+ *
+ * When a config. file error is detected, a notification is displayed.
+ * If the user clicks on the notification button, the log window is displayed.
+ */
+void config_file_error_notification_clicked_cb(GSimpleAction *, GVariant *, gpointer)
+{
+	LayoutWindow *lw;
+
+	layout_valid(&lw);
+
+	log_window_new(lw);
 }
 
 /**
@@ -1127,6 +1146,11 @@ Version: Geeqie "), VERSION, nullptr);
 	GSimpleAction *null_action = g_simple_action_new("null", nullptr);
 	g_signal_connect(null_action, "activate", G_CALLBACK(null_activated_cb), app);
 	g_action_map_add_action(G_ACTION_MAP(app), G_ACTION(null_action));
+
+	/* Used only for config. file error notifications */
+	GSimpleAction *config_file_error_notification_action = g_simple_action_new("config-file-error", nullptr);
+    g_signal_connect(config_file_error_notification_action, "activate", G_CALLBACK(config_file_error_notification_clicked_cb), app);
+    g_action_map_add_action(G_ACTION_MAP(app), G_ACTION(config_file_error_notification_action));
 
 	status = g_application_run(G_APPLICATION(app), argc, argv);
 

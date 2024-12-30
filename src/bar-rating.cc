@@ -243,7 +243,7 @@ GtkWidget *bar_pane_rating_new_from_config(const gchar **attribute_names, const 
 		if (READ_CHAR_FULL("title", title)) continue;
 		if (READ_BOOL_FULL("expanded", expanded)) continue;
 
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	bar_pane_translate_title(PANE_RATING, id, &title);
@@ -271,7 +271,7 @@ void bar_pane_rating_update_from_config(GtkWidget *pane, const gchar **attribute
 		if (READ_CHAR(prd->pane, id)) continue;
 		if (READ_BOOL(prd->pane, expanded)) continue;
 
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	bar_update_expander(pane);

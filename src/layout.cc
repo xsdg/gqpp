@@ -23,7 +23,7 @@
 
 #include <unistd.h>
 
-#include <cstring>
+#include <string>
 #include <utility>
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
@@ -2913,7 +2913,7 @@ void layout_load_attributes(LayoutOptions *layout, const gchar **attribute_names
 		if (READ_BOOL(*layout, animate)) continue;
 		if (READ_INT(*layout, workspace)) continue;
 
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	if (id && strcmp(id, LAYOUT_ID_CURRENT) != 0)

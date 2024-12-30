@@ -22,8 +22,8 @@
 #include "ui-utildlg.h"
 
 #include <cstdio>
-#include <cstring>
 #include <ctime>
+#include <string>
 
 #include <gdk/gdk.h>
 #include <gio/gio.h>
@@ -323,7 +323,7 @@ void generic_dialog_windows_load_config(const gchar **attribute_names, const gch
 		if (READ_INT_FULL("w", dw->rect.width)) continue;
 		if (READ_INT_FULL("h", dw->rect.height)) continue;
 
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	if (dw->title && dw->title[0] != 0)

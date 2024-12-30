@@ -22,7 +22,7 @@
 #include "bar-gps.h"
 
 #include <array>
-#include <cstring>
+#include <string>
 
 #include <cairo.h>
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
@@ -1056,7 +1056,7 @@ GtkWidget *bar_pane_gps_new_from_config(const gchar **attribute_names, const gch
 		if (READ_CHAR_FULL("id", id))
 			continue;
 
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	bar_pane_translate_title(PANE_COMMENT, id, &title);
@@ -1117,7 +1117,8 @@ void bar_pane_gps_update_from_config(GtkWidget *pane, const gchar **attribute_na
 			g_object_set(G_OBJECT(CHAMPLAIN_VIEW(pgd->gps_view)), "latitude", latitude, NULL);
 			continue;
 			}
-		log_printf("unknown attribute %s = %s\n", option, value);
+
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 	}
 
 	if (title)

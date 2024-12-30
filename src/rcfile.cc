@@ -22,8 +22,8 @@
 #include "rcfile.h"
 
 #include <cstdlib>
-#include <cstring>
 #include <stack>
+#include <string>
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
@@ -109,6 +109,29 @@ struct GQParserData
 
 } // namespace
 
+void config_file_error(const gchar *message)
+{
+	g_autofree gchar *rc_path = g_build_filename(get_rc_dir(), RC_FILE_NAME, NULL);
+	g_autofree gchar *error_text = g_strconcat(_("Error reading configuration file: "), rc_path, " - ", message, nullptr);
+
+	GtkApplication *app = GTK_APPLICATION(g_application_get_default());
+
+	auto *notification = g_notification_new("Geeqie");
+
+	g_notification_add_button(notification, _("Show log window"), "app.config-file-error");
+	g_notification_set_body(notification, error_text);
+	/* Using G_NOTIFICATION_PRIORITY_URGENT requires the user to explicitly close
+	 * the notification */
+	g_notification_set_priority(notification, G_NOTIFICATION_PRIORITY_URGENT);
+	g_notification_set_title(notification, _("Configuration file error"));
+
+	g_application_send_notification(G_APPLICATION(app), "configuration-file-error-notification", notification);
+
+	g_object_unref(notification);
+
+	log_printf("%s", error_text);
+}
+
 /*
  *-----------------------------------------------------------------------------
  * line write/parse routines (public)
@@ -149,7 +172,8 @@ void write_char_option(GString *str, gint, const gchar *label, const gchar *text
 gboolean read_dummy_option(const gchar *option, const gchar *label, const gchar *message)
 {
 	if (g_ascii_strcasecmp(option, label) != 0) return FALSE;
-	log_printf(_("Option %s ignored: %s\n"), option, message);
+	config_file_error((std::string("- Option ") + option + " ignored: = " + message).c_str());
+
 	return TRUE;
 }
 
@@ -738,7 +762,7 @@ gboolean save_config_to_file(const gchar *utf8_path, ConfOptions *options, Layou
 	ssi = secure_open(rc_pathl);
 	if (!ssi)
 		{
-		log_printf(_("error saving config file: %s\n"), utf8_path);
+		config_file_error((std::string("- Error saving config file: ") + utf8_path).c_str());
 		return FALSE;
 		}
 
@@ -817,8 +841,7 @@ gboolean save_config_to_file(const gchar *utf8_path, ConfOptions *options, Layou
 
 	if (secure_close(ssi))
 		{
-		log_printf(_("error saving config file: %s\nerror: %s\n"), utf8_path,
-			   secsave_strerror(secsave_errno));
+		config_file_error((std::string("- Error saving config file: ") + utf8_path + " error: " + secsave_strerror(secsave_errno)).c_str());
 		return FALSE;
 		}
 
@@ -835,7 +858,7 @@ gboolean save_default_layout_options_to_file(const gchar *utf8_path, ConfOptions
 	ssi = secure_open(rc_pathl);
 	if (!ssi)
 		{
-		log_printf(_("error saving default layout file: %s\n"), utf8_path);
+		config_file_error((std::string("- Error saving default layout file: ") + utf8_path).c_str());
 		return FALSE;
 		}
 
@@ -865,8 +888,8 @@ gboolean save_default_layout_options_to_file(const gchar *utf8_path, ConfOptions
 
 	if (secure_close(ssi))
 		{
-		log_printf(_("error saving config file: %s\nerror: %s\n"), utf8_path,
-			   secsave_strerror(secsave_errno));
+		config_file_error((std::string("- Error saving config file: ") + utf8_path + " error: " + secsave_strerror(secsave_errno)).c_str());
+
 		return FALSE;
 		}
 
@@ -1123,7 +1146,7 @@ static gboolean load_global_params(const gchar **attribute_names, const gchar **
 		if (READ_DUMMY(*options, image.dither_quality, "deprecated since 2012-08-13")) continue;
 
 		/* Unknown options */
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	return TRUE;
@@ -1143,7 +1166,7 @@ static void options_load_color_profiles(const gchar **attribute_names, const gch
 		if (READ_BOOL(options->color_profile, use_x11_screen_profile)) continue;
 		if (READ_INT(options->color_profile, render_intent)) continue;
 
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 }
@@ -1160,7 +1183,7 @@ static void options_load_profile(GQParserData *parser_data, const gchar **attrib
 		if (READ_CHAR_FULL("input_file", options->color_profile.input_file[i])) continue;
 		if (READ_CHAR_FULL("input_name", options->color_profile.input_name[i])) continue;
 
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 	i++;
 	parser_data->func_set_data(GINT_TO_POINTER(i));
@@ -1177,7 +1200,7 @@ static void options_load_marks_tooltips(GQParserData *parser_data, const gchar *
 		const gchar *value = *attribute_values++;
 		if (READ_CHAR_FULL("text",  options->marks_tooltips[i])) continue;
 
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 	i++;
 	parser_data->func_set_data(GINT_TO_POINTER(i));
@@ -1200,7 +1223,7 @@ static void options_load_disabled_plugins(GQParserData *parser_data, const gchar
 			continue;
 			}
 
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 	i++;
 	parser_data->func_set_data(GINT_TO_POINTER(i));
@@ -1227,7 +1250,7 @@ static const gchar *options_get_id(const gchar **attribute_names, const gchar **
 
 static void options_parse_leaf(GQParserData *parser_data, const gchar *element_name, const gchar **, const gchar **, gpointer)
 {
-	log_printf("unexpected: %s\n", element_name);
+	config_file_error((std::string("- Unexpected: ") + element_name).c_str());
 	parser_data->func_push(options_parse_leaf, nullptr, nullptr);
 }
 
@@ -1239,7 +1262,7 @@ static void options_parse_color_profiles(GQParserData *parser_data, const gchar 
 		}
 	else
 		{
-		log_printf("unexpected in <color_profiles>: <%s>\n", element_name);
+		config_file_error((std::string("Unexpected in <color_profiles>: ") + element_name).c_str());
 		}
 
 	parser_data->func_push(options_parse_leaf, nullptr, nullptr);
@@ -1253,7 +1276,7 @@ static void options_parse_marks_tooltips(GQParserData *parser_data, const gchar 
 		}
 	else
 		{
-		log_printf("unexpected in <marks_tooltips>: <%s>\n", element_name);
+		config_file_error((std::string("Unexpected in <marks_tooltips>: ") + element_name).c_str());
 		}
 
 	parser_data->func_push(options_parse_leaf, nullptr, nullptr);
@@ -1304,20 +1327,20 @@ static void class_filter_load_filter_type(const gchar **attribute_names, const g
 			continue;
 			}
 
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	if (enabled_name == nullptr || enabled_value == nullptr || format_class_index < 0)
 		{
-		log_printf("Failed to parse <filter_type> config element\n");
+
+		config_file_error((std::string("- Failed to parse <filter_type> config element")).c_str());
 		return;
 		}
 
 	if (!read_bool_option(enabled_name, "enabled", enabled_value,
 						  &(options->class_filter[format_class_index])))
 		{
-		log_printf("Failed to load <filter_type> config element with "
-			   "class index %d\n", format_class_index);
+		config_file_error(((std::string("- Failed to load <filter_type> config element with class index ")) + (std::to_string(format_class_index))).c_str());
 		}
 }
 
@@ -1329,7 +1352,7 @@ static void options_parse_class_filter(GQParserData *parser_data, const gchar *e
 		}
 	else
 		{
-		log_printf("unexpected in <class_filter>: <%s>\n", element_name);
+		config_file_error((std::string("Unexpected in <class_filter>:: ") + element_name).c_str());
 		}
 
 	parser_data->func_push(options_parse_leaf, nullptr, nullptr);
@@ -1343,7 +1366,7 @@ static void options_parse_disabled_plugins(GQParserData *parser_data, const gcha
 		}
 	else
 		{
-		log_printf("unexpected in <disabled_plugins>: <%s>\n", element_name);
+		config_file_error((std::string("Unexpected in <disabled_plugins>: ") + element_name).c_str());
 		}
 
 	parser_data->func_push(options_parse_leaf, nullptr, nullptr);
@@ -1357,7 +1380,7 @@ static void options_parse_filter(GQParserData *parser_data, const gchar *element
 		}
 	else
 		{
-		log_printf("unexpected in <filter>: <%s>\n", element_name);
+		config_file_error((std::string("Unexpected in <filter>: ") + element_name).c_str());
 		}
 
 	parser_data->func_push(options_parse_leaf, nullptr, nullptr);
@@ -1387,7 +1410,7 @@ static void options_parse_keyword(GQParserData *parser_data, const gchar *elemen
 		}
 	else
 		{
-		log_printf("unexpected in <keyword>: <%s>\n", element_name);
+		config_file_error((std::string("Unexpected in <keyword>: ") + element_name).c_str());
 		parser_data->func_push(options_parse_leaf, nullptr, nullptr);
 		}
 }
@@ -1403,7 +1426,7 @@ static void options_parse_keyword_tree(GQParserData *parser_data, const gchar *e
 		}
 	else
 		{
-		log_printf("unexpected in <keyword_tree>: <%s>\n", element_name);
+		config_file_error((std::string("Unexpected in <keyword tree>: ") + element_name).c_str());
 		parser_data->func_push(options_parse_leaf, nullptr, nullptr);
 		}
 }
@@ -1441,7 +1464,7 @@ static void options_parse_global(GQParserData *parser_data, const gchar *element
 		}
 	else
 		{
-		log_printf("unexpected in <global>: <%s>\n", element_name);
+		config_file_error((std::string("Unexpected in <global>: ") + element_name).c_str());
 		parser_data->func_push(options_parse_leaf, nullptr, nullptr);
 		}
 }
@@ -1466,7 +1489,7 @@ static void options_parse_pane_exif(GQParserData *parser_data, const gchar *elem
 		}
 	else
 		{
-		log_printf("unexpected in <pane_exif>: <%s>\n", element_name);
+		config_file_error((std::string("Unexpected in <pane_exif>: ") + element_name).c_str());
 		}
 
 	parser_data->func_push(options_parse_leaf, nullptr, nullptr);
@@ -1481,7 +1504,7 @@ static void options_parse_pane_keywords(GQParserData *parser_data, const gchar *
 		}
 	else
 		{
-		log_printf("unexpected in <pane_keywords>: <%s>\n", element_name);
+		config_file_error((std::string("Unexpected in <pane_keywords>: ") + element_name).c_str());
 		}
 
 	parser_data->func_push(options_parse_leaf, nullptr, nullptr);
@@ -1587,7 +1610,7 @@ static void options_parse_bar(GQParserData *parser_data, const gchar *element_na
 		}
 	else
 		{
-		log_printf("unexpected in <bar>: <%s>\n", element_name);
+		config_file_error((std::string("Unexpected in <bar>: ") + element_name).c_str());
 		parser_data->func_push(options_parse_leaf, nullptr, nullptr);
 		}
 }
@@ -1605,7 +1628,7 @@ static void options_parse_toolbar(GQParserData *parser_data, const gchar *elemen
 		}
 	else
 		{
-		log_printf("unexpected in <toolbar>: <%s>\n", element_name);
+		config_file_error((std::string("Unexpected in <toolbar>: ") + element_name).c_str());
 		}
 
 	parser_data->func_push(options_parse_leaf, nullptr, nullptr);
@@ -1624,7 +1647,7 @@ static void options_parse_statusbar(GQParserData *parser_data, const gchar *elem
 		}
 	else
 		{
-		log_printf("unexpected in <statusbar>: <%s>\n", element_name);
+		config_file_error((std::string("Unexpected in <statusbar>: ") + element_name).c_str());
 		}
 
 	parser_data->func_push(options_parse_leaf, nullptr, nullptr);
@@ -1638,7 +1661,7 @@ static void options_parse_dialogs(GQParserData *parser_data, const gchar *elemen
 		}
 	else
 		{
-		log_printf("unexpected in <dialogs>: <%s>\n", element_name);
+		config_file_error((std::string("Unexpected in <dialogs>: ") + element_name).c_str());
 		}
 
 	parser_data->func_push(options_parse_leaf, nullptr, nullptr);
@@ -1689,7 +1712,7 @@ static void options_parse_layout(GQParserData *parser_data, const gchar *element
 		}
 	else
 		{
-		log_printf("unexpected in <layout>: <%s>\n", element_name);
+		config_file_error((std::string("Unexpected in <layout>: ") + element_name).c_str());
 		parser_data->func_push(options_parse_leaf, nullptr, nullptr);
 		}
 }
@@ -1731,7 +1754,7 @@ static void options_parse_toplevel(GQParserData *parser_data, const gchar *eleme
 		}
 	else
 		{
-		log_printf("unexpected in <toplevel>: <%s>\n", element_name);
+		config_file_error((std::string("Unexpected in <toplevel>: ") + element_name).c_str());
 		parser_data->func_push(options_parse_leaf, nullptr, nullptr);
 		}
 }
@@ -1794,8 +1817,11 @@ gboolean load_config_from_buf(const gchar *buf, gsize size, gboolean startup)
 
 	context = g_markup_parse_context_new(&parser, static_cast<GMarkupParseFlags>(0), &parser_data, nullptr);
 
-	if (g_markup_parse_context_parse(context, buf, size, nullptr) == FALSE)
+	g_autoptr(GError) error = nullptr;
+	if (g_markup_parse_context_parse(context, buf, size, &error) == FALSE)
 		{
+		config_file_error(error->message);
+
 		ret = FALSE;
 		DEBUG_1("Parse failed");
 		}
@@ -1809,8 +1835,11 @@ gboolean load_config_from_file(const gchar *utf8_path, gboolean startup)
 	gsize size;
 	g_autofree gchar *buf = nullptr;
 
-	if (g_file_get_contents(utf8_path, &buf, &size, nullptr) == FALSE)
+	g_autoptr(GError) error = nullptr;
+	if (g_file_get_contents(utf8_path, &buf, &size, &error) == FALSE)
 		{
+		config_file_error(error->message);
+
 		return FALSE;
 		}
 

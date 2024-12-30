@@ -22,7 +22,7 @@
 #include "bar.h"
 
 #include <algorithm>
-#include <cstring>
+#include <string>
 
 #include <glib-object.h>
 #include <pango/pango.h>
@@ -831,8 +831,7 @@ GtkWidget *bar_update_from_config(GtkWidget *bar, const gchar **attribute_names,
 		if (READ_BOOL_FULL("enabled", enabled)) continue;
 		if (READ_INT_FULL("width", width)) continue;
 
-
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	if (startup)

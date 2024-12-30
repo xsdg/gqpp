@@ -21,7 +21,7 @@
 
 #include "filefilter.h"
 
-#include <cstring>
+#include <string>
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
@@ -520,7 +520,7 @@ void filter_load_file_type(const gchar **attribute_names, const gchar **attribut
 		if (READ_BOOL(fe, writable)) continue;
 		if (READ_BOOL(fe, allow_sidecar)) continue;
 
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 	if (fe.file_class >= FILE_FORMAT_CLASSES) fe.file_class = FORMAT_CLASS_UNKNOWN;
 

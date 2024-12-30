@@ -21,7 +21,7 @@
 
 #include "bar-sort.h"
 
-#include <cstring>
+#include <string>
 
 #include <gdk/gdk.h>
 #include <glib-object.h>
@@ -785,7 +785,7 @@ void bar_sort_cold_start(LayoutWindow *lw, const gchar **attribute_names, const 
 		if (READ_INT_CLAMP_FULL("selection", selection, 0, BAR_SORT_SELECTION_COUNT - 1)) continue;
 		if (READ_CHAR_FULL("filter_key", filter_key)) continue;
 
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	lw->options.action = static_cast<SortActionType>(action);

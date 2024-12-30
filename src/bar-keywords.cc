@@ -23,7 +23,7 @@
 
 #include <array>
 #include <cstdio>
-#include <cstring>
+#include <string>
 
 #include <gdk/gdk.h>
 #include <glib-object.h>
@@ -1793,8 +1793,7 @@ GtkWidget *bar_pane_keywords_new_from_config(const gchar **attribute_names, cons
 		if (READ_BOOL_FULL("expanded", expanded)) continue;
 		if (READ_INT_FULL("height", height)) continue;
 
-
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	options->info_keywords.height = height;
@@ -1825,8 +1824,7 @@ void bar_pane_keywords_update_from_config(GtkWidget *pane, const gchar **attribu
 		if (READ_BOOL_FULL("expanded", pkd->pane.expanded)) continue;
 		if (READ_CHAR_FULL("id", pkd->pane.id)) continue;
 
-
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	if (title)
@@ -1863,7 +1861,8 @@ void bar_pane_keywords_entry_add_from_config(GtkWidget *pane, const gchar **attr
 			pkd->expanded_rows = g_list_append(pkd->expanded_rows, g_strdup(path));
 			continue;
 			}
-		log_printf("unknown attribute %s = %s\n", option, value);
+
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 }
 

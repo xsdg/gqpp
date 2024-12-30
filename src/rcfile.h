@@ -89,5 +89,7 @@ gboolean save_default_layout_options_to_file(const gchar *utf8_path, ConfOptions
 gboolean load_config_from_buf(const gchar *buf, gsize size, gboolean startup);
 gboolean load_config_from_file(const gchar *utf8_path, gboolean startup);
 
+void config_file_error(const gchar *message);
+
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

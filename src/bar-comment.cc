@@ -21,7 +21,7 @@
 
 #include "bar-comment.h"
 
-#include <cstring>
+#include <string>
 
 #include <config.h>
 
@@ -348,8 +348,7 @@ GtkWidget *bar_pane_comment_new_from_config(const gchar **attribute_names, const
 		if (READ_INT_FULL("height", height)) continue;
 		if (READ_CHAR_FULL("id", id)) continue;
 
-
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	if (!g_strcmp0(id, "title"))
@@ -397,8 +396,7 @@ void bar_pane_comment_update_from_config(GtkWidget *pane, const gchar **attribut
 		if (READ_INT_FULL("height", pcd->height)) continue;
 		if (READ_CHAR_FULL("id", pcd->pane.id)) continue;
 
-
-		log_printf("unknown attribute %s = %s\n", option, value);
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
 		}
 
 	if (title)
