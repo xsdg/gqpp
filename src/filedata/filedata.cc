@@ -85,7 +85,7 @@ gchar *FileData::text_from_size(gint64 size)
 
 	gchar *s = a;
 	gchar *d = b;
-	gint i = len - n * 3;
+	gint i = len - (n * 3);
 	while (*s != '\0')
 		{
 		if (i < 1)

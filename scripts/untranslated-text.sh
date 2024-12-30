@@ -73,12 +73,13 @@ Pause
 PixbufRenderer
 PluginsMenu
 READ_
-runtime_error
 Separator
 URL
 WRITE_
 Wrap
 XOFF
+config_file_error
+runtime_error
 \"Desktop\"
 \"File\"
 \"Geeqie\"
