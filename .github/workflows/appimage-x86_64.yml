@@ -77,6 +77,7 @@ jobs:
           chmod +x linuxdeploy-x86_64.AppImage
           wget https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh
           chmod +x linuxdeploy-plugin-gtk.sh
+          sed -i '/GDK_BACKEND/d' linuxdeploy-plugin-gtk.sh
 
       - name: Build AppImage
         run: |

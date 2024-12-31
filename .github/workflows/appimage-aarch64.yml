@@ -65,6 +65,7 @@ jobs:
             chmod +x tools/linuxdeploy-aarch64.AppImage
             wget https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-plugin-gtk/master/linuxdeploy-plugin-gtk.sh
             chmod +x linuxdeploy-plugin-gtk.sh
+            sed -i '/GDK_BACKEND/d' linuxdeploy-plugin-gtk.sh
             tools/linuxdeploy-aarch64.AppImage \
               --desktop-file $GITHUB_WORKSPACE/AppDir/usr/share/applications/org.geeqie.Geeqie.desktop \
               --icon-file $GITHUB_WORKSPACE/AppDir/usr/share/pixmaps/geeqie.png \
