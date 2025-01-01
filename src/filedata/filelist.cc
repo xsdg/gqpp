@@ -36,7 +36,6 @@
 #include <glib.h>
 
 #include "cache.h"
-#include "debug.h"
 #include "filefilter.h"
 #include "main.h"
 #include "options.h"

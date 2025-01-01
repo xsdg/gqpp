@@ -26,7 +26,6 @@
 #include "collect-io.h"
 #include "collect.h"
 #include "compat.h"
-#include "debug.h"
 #include "exif.h"
 #include "filedata.h"
 #include "filefilter.h"

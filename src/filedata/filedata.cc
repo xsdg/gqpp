@@ -38,7 +38,6 @@
 #include <config.h>
 
 #include "cache.h"
-#include "debug.h"
 #include "exif.h"
 #include "filefilter.h"
 #include "histogram.h"

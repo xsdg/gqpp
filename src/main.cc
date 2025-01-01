@@ -61,7 +61,6 @@
 #include "collect-io.h"
 #include "collect.h"
 #include "command-line-handling.h"
-#include "debug.h"
 #include "exif.h"
 #include "filedata.h"
 #include "filefilter.h"

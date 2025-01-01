@@ -38,7 +38,6 @@
 #include <config.h>
 
 #include "collect.h"
-#include "debug.h"
 #include "filedata.h"
 #include "intl.h"
 #include "layout-util.h"

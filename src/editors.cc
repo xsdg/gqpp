@@ -30,7 +30,6 @@
 #include <glib-object.h>
 
 #include "compat.h"
-#include "debug.h"
 #include "filedata.h"
 #include "filefilter.h"
 #include "intl.h"

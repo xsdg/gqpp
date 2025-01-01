@@ -23,7 +23,6 @@
 #include <cstring>
 #include <regex>
 
-#include "debug.h"
 #include "image-load.h"
 
 namespace

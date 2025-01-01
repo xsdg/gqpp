@@ -30,7 +30,6 @@
 
 #include <config.h>
 
-#include "debug.h"
 #include "filedata.h"
 #include "image-load.h"
 #include "options.h"

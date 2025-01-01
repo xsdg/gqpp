@@ -53,7 +53,6 @@
 #include "cache.h"
 #include "color-man.h"
 #include "compat.h"
-#include "debug.h"
 #include "editors.h"
 #include "filedata.h"
 #include "filefilter.h"

@@ -27,7 +27,6 @@
 #include <glib.h>
 #include <poppler.h>
 
-#include "debug.h"
 #include "image-load.h"
 
 namespace

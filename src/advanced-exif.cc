@@ -33,7 +33,6 @@
 #include <config.h>
 
 #include "compat.h"
-#include "debug.h"
 #include "dnd.h"
 #include "exif.h"
 #include "filedata.h"

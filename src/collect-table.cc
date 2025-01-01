@@ -33,7 +33,6 @@
 #include "collect-io.h"
 #include "collect.h"
 #include "compat.h"
-#include "debug.h"
 #include "dnd.h"
 #include "dupe.h"
 #include "filedata.h"

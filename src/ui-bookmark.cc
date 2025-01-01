@@ -31,7 +31,6 @@
 #include <pango/pango.h>
 
 #include "compat.h"
-#include "debug.h"
 #include "history-list.h"
 #include "intl.h"
 #include "main-defines.h"

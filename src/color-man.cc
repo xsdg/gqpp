@@ -38,7 +38,6 @@
 #  include <lcms.h>
 #endif
 
-#include "debug.h"
 #include "filedata.h"
 #include "image.h"
 #include "intl.h"

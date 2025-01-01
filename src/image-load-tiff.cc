@@ -37,7 +37,6 @@
 #include <tiff.h>
 #include <tiffio.h>
 
-#include "debug.h"
 #include "image-load.h"
 
 namespace

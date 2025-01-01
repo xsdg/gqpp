@@ -23,7 +23,6 @@
 #include <cstdio>
 #include <cstring>
 
-#include "debug.h"
 #include "intl.h"
 #include "options.h"
 #include "secure-save.h"

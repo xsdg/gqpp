@@ -36,7 +36,6 @@
 #include <config.h>
 
 #include "cache.h"
-#include "debug.h"
 #include "exif.h"
 #include "filedata.h"
 #include "intl.h"

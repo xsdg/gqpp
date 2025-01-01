@@ -24,7 +24,6 @@
 #include <fitsio.h>
 #include <limits>
 
-#include "debug.h"
 #include "image-load.h"
 
 namespace

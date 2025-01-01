@@ -23,7 +23,6 @@
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
-#include "debug.h"
 #include "histogram.h" /* HCHAN_RGB */
 #include "image-overlay.h" /* OSD_SHOW_NOTHING */
 #include "image.h" /* RECTANGLE_DRAW_ASPECT_RATIO_NONE */

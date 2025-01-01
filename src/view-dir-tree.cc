@@ -29,7 +29,6 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <glib-object.h>
 
-#include "debug.h"
 #include "filedata.h"
 #include "layout.h"
 #include "misc.h"

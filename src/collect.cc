@@ -34,7 +34,6 @@
 #include "collect-io.h"
 #include "collect-table.h"
 #include "compat.h"
-#include "debug.h"
 #include "filedata.h"
 #include "img-view.h"
 #include "intl.h"

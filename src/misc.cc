@@ -38,7 +38,6 @@
 #include <langinfo.h>
 #include <pwd.h>
 
-#include "debug.h"
 #include "main.h"
 #include "options.h"
 #include "ui-fileops.h"

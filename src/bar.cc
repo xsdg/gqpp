@@ -30,7 +30,6 @@
 #include <config.h>
 
 #include "compat.h"
-#include "debug.h"
 #include "filedata.h"
 #include "intl.h"
 #include "layout.h"

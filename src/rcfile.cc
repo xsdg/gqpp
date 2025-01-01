@@ -38,7 +38,6 @@
 #include "bar-rating.h"
 #include "bar-sort.h"
 #include "bar.h"
-#include "debug.h"
 #include "dupe.h"
 #include "editors.h"
 #include "filefilter.h"

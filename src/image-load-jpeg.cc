@@ -38,7 +38,6 @@
 #include <jerror.h>
 #include <jpeglib.h>
 
-#include "debug.h"
 #include "image-load.h"
 #include "intl.h"
 #include "jpeg-parser.h"

@@ -43,7 +43,6 @@
 #endif
 
 #include "cache.h"
-#include "debug.h"
 #include "exif.h"
 /* Required to prevent clang-tidy warnings */
 #include "exif-int.h"

@@ -55,6 +55,9 @@ add_global_arguments('-Wno-overlength-strings', language : 'c')
 # To compile originally-C files as C++
 add_global_arguments('-Wno-error=deprecated-declarations', language : 'cpp')
 
+# To enable debug statements in all files
+add_global_arguments('-include', 'debug.h', language : 'cpp')
+
 # Project requirements
 # code_sources is all human-written geeqie C/C++ code
 code_sources = []

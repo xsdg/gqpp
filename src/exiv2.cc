@@ -38,7 +38,6 @@
 #  include <libintl.h>
 #endif
 
-#include "debug.h"
 #include "filedata.h"
 #include "filefilter.h"
 #include "misc.h"

@@ -45,7 +45,6 @@
 #include "collect.h"
 #include "color-man.h"
 #include "compat.h"
-#include "debug.h"
 #include "desktop-file.h"
 #include "dupe.h"
 #include "editors.h"

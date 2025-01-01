@@ -31,7 +31,6 @@
 #include <glib-object.h>
 
 #include "compat.h"
-#include "debug.h"
 #include "intl.h"
 #include "main-defines.h"
 #include "misc.h"

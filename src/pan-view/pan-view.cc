@@ -36,7 +36,6 @@
 #include "cache-loader.h"
 #include "cache.h"
 #include "compat.h"
-#include "debug.h"
 #include "dnd.h"
 #include "editors.h"
 #include "exif.h"

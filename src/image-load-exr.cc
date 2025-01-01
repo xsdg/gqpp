@@ -24,7 +24,6 @@
 #include <OpenEXR/ImfRgbaFile.h>
 #include <vector>
 
-#include "debug.h"
 #include "image-load.h"
 #include "ui-fileops.h"
 

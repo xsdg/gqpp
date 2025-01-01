@@ -25,7 +25,6 @@
 #include <glib.h>
 #include <webp/decode.h>
 
-#include "debug.h"
 #include "image-load.h"
 
 namespace

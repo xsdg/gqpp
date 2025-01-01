@@ -31,7 +31,6 @@
 #include <gtk/gtk.h>
 
 #include "compat.h"
-#include "debug.h"
 #include "editors.h"
 #include "intl.h"
 #include "layout-util.h"

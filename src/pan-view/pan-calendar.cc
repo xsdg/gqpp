@@ -29,7 +29,6 @@
 
 #include <gdk/gdk.h>
 
-#include "debug.h"
 #include "filedata.h"
 #include "misc.h"
 #include "pan-item.h"

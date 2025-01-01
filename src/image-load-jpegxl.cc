@@ -63,7 +63,6 @@
 #include <jxl/decode.h> //TODO Use decode_cxx.h?
 #include <jxl/types.h>
 
-#include "debug.h"
 #include "image-load.h"
 
 namespace

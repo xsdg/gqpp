@@ -27,7 +27,6 @@
 
 #include <gio/gio.h>
 
-#include "debug.h"
 #include "editors.h"
 #include "filedata.h"
 #include "intl.h"

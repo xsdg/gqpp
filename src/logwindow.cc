@@ -33,7 +33,6 @@
 #include <config.h>
 
 #include "compat.h"
-#include "debug.h"
 #include "intl.h"
 #include "layout.h"
 #include "main-defines.h"

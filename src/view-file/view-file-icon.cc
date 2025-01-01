@@ -30,7 +30,6 @@
 #include "cellrenderericon.h"
 #include "collect.h"
 #include "compat.h"
-#include "debug.h"
 #include "dnd.h"
 #include "filedata.h"
 #include "intl.h"

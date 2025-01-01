@@ -20,7 +20,6 @@
 
 #include "uri-utils.h"
 
-#include "debug.h"
 #include "filedata.h"
 #include "intl.h"
 #include "main-defines.h"

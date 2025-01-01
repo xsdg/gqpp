@@ -23,7 +23,6 @@
 
 #include <cstring>
 
-#include "debug.h"
 
 gboolean is_jpeg_container(const guchar *data, guint size)
 {

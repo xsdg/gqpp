@@ -35,7 +35,6 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 
-#include "debug.h"
 #include "options.h"
 #include "pixbuf-renderer.h"
 #include "typedefs.h"

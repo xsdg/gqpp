@@ -30,7 +30,6 @@
 
 #include <glib.h>
 
-#include "debug.h"
 #include "exif.h"
 #include "format-canon.h"
 #include "format-fuji.h"

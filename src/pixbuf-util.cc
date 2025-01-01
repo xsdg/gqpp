@@ -39,7 +39,6 @@
 
 #include <config.h>
 
-#include "debug.h"
 #include "exif.h"
 #include "filedata.h"
 #include "main-defines.h"

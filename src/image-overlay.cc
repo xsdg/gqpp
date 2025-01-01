@@ -31,7 +31,6 @@
 #include <pango/pango.h>
 
 #include "collect.h"
-#include "debug.h"
 #include "filedata.h"
 #include "histogram.h"
 #include "image-load.h"

@@ -29,7 +29,6 @@
 #include <glib.h>
 #include <openjpeg.h>
 
-#include "debug.h"
 #include "image-load.h"
 #include "intl.h"
 #include "misc.h"

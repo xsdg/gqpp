@@ -29,7 +29,6 @@
 #include <glib-object.h>
 
 #include "cache.h"
-#include "debug.h"
 #include "exif.h"
 #include "filedata.h"
 #include "image-load.h"

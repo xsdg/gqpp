@@ -59,7 +59,6 @@
 #include <glib.h>
 #include <glib/gprintf.h>
 
-#include "debug.h"
 #include "exif-int.h"
 #include "format-raw.h"
 #include "intl.h"

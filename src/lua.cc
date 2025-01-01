@@ -31,7 +31,6 @@
 #include <glib.h>
 #include <lua.hpp>
 
-#include "debug.h"
 #include "exif.h"
 #include "filedata.h"
 #include "main.h"

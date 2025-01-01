@@ -57,7 +57,6 @@
 #include <glib-object.h>
 #include <glib.h>
 
-#include "debug.h"
 #include "image-load.h"
 
 namespace

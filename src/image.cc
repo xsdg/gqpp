@@ -31,7 +31,6 @@
 #include "collect.h"
 #include "color-man.h"
 #include "compat.h"
-#include "debug.h"
 #include "exif.h"
 #include "filecache.h"
 #include "filedata.h"

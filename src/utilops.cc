@@ -34,7 +34,6 @@
 
 #include "cache.h"
 #include "compat.h"
-#include "debug.h"
 #include "editors.h"
 #include "exif.h"
 #include "filedata.h"

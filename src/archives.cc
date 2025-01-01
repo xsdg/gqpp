@@ -22,7 +22,6 @@
 
 #include <config.h>
 
-#include "debug.h"
 #include "intl.h"
 
 #if HAVE_ARCHIVE

@@ -31,7 +31,6 @@
 
 #include "bar.h"
 #include "compat.h"
-#include "debug.h"
 #include "filedata.h"
 #include "histogram.h"
 #include "intl.h"

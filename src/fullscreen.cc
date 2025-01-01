@@ -30,7 +30,6 @@
 #include <glib-object.h>
 
 #include "compat.h"
-#include "debug.h"
 #include "image-load.h"
 #include "image.h"
 #include "intl.h"
