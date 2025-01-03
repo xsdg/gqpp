@@ -83,7 +83,7 @@ awk_window='BEGIN {
 	LINT = "fatal"
 	FS = ","
 	getline
-	while ($0 !~ /^hard_coded_window_keys/) {getline}
+	while ($0 !~ /^static hard_coded_window_keys/) {getline}
 	}
 
 $0~/\{static_cast<GdkModifierType>\(0\), 0/ {exit}

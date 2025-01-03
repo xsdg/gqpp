@@ -1699,9 +1699,7 @@ void cache_maintenance_notification(GtkApplication *app, const gchar *message, g
 	geeqie_icon = g_themed_icon_new(PIXBUF_INLINE_ICON);
 
 	g_notification_set_body(notification, message);
-	g_notification_set_icon(notification, geeqie_icon);
-	g_notification_set_priority(notification, G_NOTIFICATION_PRIORITY_LOW);
-	g_notification_set_priority(notification, G_NOTIFICATION_PRIORITY_URGENT);
+	g_notification_set_priority(notification, G_NOTIFICATION_PRIORITY_NORMAL);
 	g_notification_set_title(notification, _("Cache Maintenance"));
 
 	if (show_quit_button)

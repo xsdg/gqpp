@@ -117,13 +117,13 @@ XDG_CONFIG_HOME=/tmp/a XDG_CACHE_HOME=/tmp/b GQ_NEW_INSTANCE=y geeqie\n\n \
 To disable Clutter use:\n \
 GQ_DISABLE_CLUTTER=y[es] geeqie\n\n \
 To run or stop Geeqie in cache maintenance (non-GUI) mode use:\n \
-GQ_CACHE_MAINTENANCE=y[es] geeqie --help (This is disabled in this version and will be fixed in a future version.)\n\n \
+GQ_CACHE_MAINTENANCE=y[es] geeqie --help\n\n \
 User manual: https://www.geeqie.org/help/GuideIndex.html\n \
            : https://www.geeqie.org/help-pdf/help.pdf");
 
 const gchar *option_context_description_cache_maintenance = _(" \
-This will recursively remove orphaned thumbnails and .sim files, and create thumbnails\n \
-and similarity data for all images found under FOLDER.\n \
+This is a command line program that will recursively remove orphaned thumbnails and\n \
+.sim files, and create thumbnails and similarity data for all images found under FOLDER.\n \
 It may also be called from cron or anacron thus enabling automatic updating of the cached\n \
 data for all your images.\n\n \
 User manual: https://www.geeqie.org/help/GuideIndex.html\n \
@@ -1082,16 +1082,12 @@ gint main(gint argc, gchar *argv[])
 	const gchar *gq_cache_maintenance = g_getenv("GQ_CACHE_MAINTENANCE");
 	if (gq_cache_maintenance && tolower(gq_cache_maintenance[0]) == 'y')
 		{
-		/* Disabled at the moment */
-		log_printf("Command line cache maintenance is disabled in this version.\nThis will be fixed in a future version.");
-		return 1;
-
 		app = gtk_application_new("org.geeqie.cache-maintenance", static_cast<GApplicationFlags>( G_APPLICATION_HANDLES_COMMAND_LINE | G_APPLICATION_SEND_ENVIRONMENT));
 		g_application_add_main_option_entries(G_APPLICATION(app), command_line_options_cache_maintenance);
 
 		g_application_set_option_context_parameter_string (G_APPLICATION(app), \
 _("\n\nUsage for cache maintenance:\n \
-GQ_CACHE_MAINTENANCE= geeqie OPTION"));
+GQ_CACHE_MAINTENANCE=y[es] geeqie OPTION"));
 
 		g_autofree gchar *version_string = g_strconcat(
 _("Geeqie Cache Maintenance. \n \
