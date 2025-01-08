@@ -1730,19 +1730,23 @@ static void pr_zoom_sync(PixbufRenderer *pr, gdouble zoom,
 	(void) pr_size_clamp(pr);
 	(void) pr_parent_window_resize(pr, pr->width, pr->height);
 
+/* NOLINT(bugprone-integer-division) is required due to
+ * https://github.com/BestImageViewer/geeqie/issues/1588
+ * The reason is not known.
+ */
 	if (force && new_z)
 		{
 		switch (pr->scroll_reset)
 			{
 			case ScrollReset::NOCHANGE:
 				/* maintain old scroll position */
-				pr->x_scroll = (static_cast<gdouble>(pr->image_width) * old_center_x * pr->scale) - pr->vis_width / 2.0;
-				pr->y_scroll = (static_cast<gdouble>(pr->image_height) * old_center_y * pr->scale * pr->aspect_ratio) - pr->vis_height / 2.0;
+				pr->x_scroll = (static_cast<gdouble>(pr->image_width) * old_center_x * pr->scale) - pr->vis_width / 2; // NOLINT(bugprone-integer-division)
+				pr->y_scroll = (static_cast<gdouble>(pr->image_height) * old_center_y * pr->scale * pr->aspect_ratio) - pr->vis_height / 2; // NOLINT(bugprone-integer-division)
 				break;
 			case ScrollReset::CENTER:
 				/* center new image */
-				pr->x_scroll = (static_cast<gdouble>(pr->image_width) / 2.0 * pr->scale) - pr->vis_width / 2.0;
-				pr->y_scroll = (static_cast<gdouble>(pr->image_height) / 2.0 * pr->scale * pr->aspect_ratio) - pr->vis_height / 2.0;
+				pr->x_scroll = (static_cast<gdouble>(pr->image_width) / 2 * pr->scale) - pr->vis_width / 2; // NOLINT(bugprone-integer-division)
+				pr->y_scroll = (static_cast<gdouble>(pr->image_height) / 2 * pr->scale * pr->aspect_ratio) - pr->vis_height / 2; // NOLINT(bugprone-integer-division)
 				break;
 			case ScrollReset::TOPLEFT:
 			default:
@@ -1762,8 +1766,8 @@ static void pr_zoom_sync(PixbufRenderer *pr, gdouble zoom,
 			}
 		else
 			{
-			pr->x_scroll = old_cx / old_scale * pr->scale - (pr->vis_width / 2.0);
-			pr->y_scroll = old_cy / old_scale * pr->scale * pr->aspect_ratio - (pr->vis_height / 2.0);
+			pr->x_scroll = old_cx / old_scale * pr->scale - (pr->vis_width / 2); // NOLINT(bugprone-integer-division)
+			pr->y_scroll = old_cy / old_scale * pr->scale * pr->aspect_ratio - (pr->vis_height / 2); // NOLINT(bugprone-integer-division)
 			}
 		}
 
