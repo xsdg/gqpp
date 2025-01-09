@@ -26,6 +26,10 @@
 #ifndef H_6B9572DA_A64B_49E6_B234_051480991C89
 #define H_6B9572DA_A64B_49E6_B234_051480991C89
 
+/* Addition for geeqie */
+#include <intl.h>
+/* end */
+
 #ifndef __cplusplus
 #error "It's not going to compile without a C++ compiler..."
 #endif
@@ -4250,8 +4254,10 @@ public:
     #else
       error_addr = reinterpret_cast<void *>(uctx->uc_mcontext.pc);
     #endif
+/* Addition for geeqie */
 #elif defined(__loongarch64)
     error_addr = reinterpret_cast<void *>(uctx->uc_mcontext.__pc);
+/* end */
 #elif defined(__mips__)
     error_addr = reinterpret_cast<void *>(
         reinterpret_cast<struct sigcontext *>(&uctx->uc_mcontext)->sc_pc);
@@ -4280,11 +4286,23 @@ public:
     printer.address = true;
     printer.print(st, stderr);
 
-	/** @FIXME This is probably not the correct way to do this */
+/* Addition for geeqie */
+/** @FIXME This is probably not the correct way to do this */
     FILE *fp;
-    fp = fopen("/tmp/geeqie-crash.log", "a");
+    fp = fopen("/tmp/geeqie-crash.log", "w");
     printer.print(st, fp);
     fclose(fp);
+
+    GtkWidget *dialog;
+
+    dialog = gtk_message_dialog_new( nullptr, GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, _("Sorry - Geeqie has crashed")
+    );
+
+    gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog),  _("Crash log file: /tmp/geeqie-crash.log")
+    );
+    gtk_dialog_run(GTK_DIALOG(dialog));
+/* end */
+
 
 #if (defined(_XOPEN_SOURCE) && _XOPEN_SOURCE >= 700) || \
     (defined(_POSIX_C_SOURCE) && _POSIX_C_SOURCE >= 200809L)
