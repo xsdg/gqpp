@@ -236,11 +236,6 @@ static void layout_box_folders_changed_cb(GtkWidget *widget, gpointer)
 		}
 }
 
-static gint window_list_sort_cb(gconstpointer a, gconstpointer b)
-{
-	return CASE_SORT((gchar *)a, (gchar *)b);
-}
-
 GString *layout_get_window_list()
 {
 	LayoutWindow *lw;
@@ -252,7 +247,7 @@ GString *layout_get_window_list()
 	while (work)
 		{
 		lw = static_cast<LayoutWindow *>(work->data);
-		window_list = g_list_insert_sorted(window_list, g_strdup(lw->options.id), window_list_sort_cb);
+		window_list = g_list_append(window_list, g_strdup(lw->options.id));
 		work = work->next;
 		}
 
