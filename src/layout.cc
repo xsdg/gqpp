@@ -515,7 +515,6 @@ static GtkWidget *layout_sort_button(LayoutWindow *lw, GtkWidget *box)
 {
 	GtkWidget *button;
 	GtkWidget *frame;
-	GtkWidget *image;
 
 	frame = gtk_frame_new(nullptr);
 	DEBUG_NAME(frame);
@@ -523,9 +522,14 @@ static GtkWidget *layout_sort_button(LayoutWindow *lw, GtkWidget *box)
 	gq_gtk_box_pack_start(GTK_BOX(box), frame, FALSE, FALSE, 0);
 	gtk_widget_show(frame);
 
-	image = gtk_image_new_from_icon_name(GQ_ICON_PAN_DOWN, GTK_ICON_SIZE_BUTTON);
 	button = gtk_button_new_with_label(sort_type_get_text(lw->options.file_view_list_sort.method));
+#if HAVE_GTK4
+	gtk_button_set_icon_name(GTK_BUTTON(button), GQ_ICON_PAN_DOWN);
+#else
+	GtkWidget *image = gtk_image_new_from_icon_name(GQ_ICON_PAN_DOWN, GTK_ICON_SIZE_BUTTON);
+	gtk_button_set_always_show_image(GTK_BUTTON(button), TRUE);
 	gtk_button_set_image(GTK_BUTTON(button), image);
+#endif
 	g_signal_connect(G_OBJECT(button), "clicked",
 			 G_CALLBACK(layout_sort_button_press_cb), lw);
 	gtk_button_set_relief(GTK_BUTTON(button), GTK_RELIEF_NONE);
@@ -601,7 +605,6 @@ static GtkWidget *layout_zoom_button(LayoutWindow *lw, GtkWidget *box, gint size
 {
 	GtkWidget *button;
 	GtkWidget *frame;
-	GtkWidget *image;
 
 	frame = gtk_frame_new(nullptr);
 	DEBUG_NAME(frame);
@@ -612,9 +615,14 @@ static GtkWidget *layout_zoom_button(LayoutWindow *lw, GtkWidget *box, gint size
 
 	gtk_widget_show(frame);
 
-	image = gtk_image_new_from_icon_name(GQ_ICON_PAN_DOWN, GTK_ICON_SIZE_BUTTON);
 	button = gtk_button_new_with_label("1:1");
+#if HAVE_GTK4
+	gtk_button_set_icon_name(GTK_BUTTON(button), GQ_ICON_PAN_DOWN);
+#else
+	GtkWidget *image = gtk_image_new_from_icon_name(GQ_ICON_PAN_DOWN, GTK_ICON_SIZE_BUTTON);
+	gtk_button_set_always_show_image(GTK_BUTTON(button), TRUE);
 	gtk_button_set_image(GTK_BUTTON(button), image);
+#endif
 	g_signal_connect(G_OBJECT(button), "clicked",
 			 G_CALLBACK(layout_zoom_button_press_cb), lw);
 	gtk_button_set_relief(GTK_BUTTON(button), GTK_RELIEF_NONE);
