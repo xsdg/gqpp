@@ -2,6 +2,39 @@
 <chapter id="GuideMainWindow">
   <title>Main Window</title>
   <para>
+    <inlinegraphic fileref="geeqie-layout.png" />
+    <literallayout>
+      <table>
+        <tgroup cols="3">
+          <tbody>
+            <row>
+              <entry>
+                <inlinegraphic fileref="layout-window.png" />  Layout window
+                <inlinegraphic fileref="title-bar.png" />  Title bar
+                <inlinegraphic fileref="tools.png" />  Tools
+                <inlinegraphic fileref="main-menu.png" />  Main menu
+                <inlinegraphic fileref="main-toolbar.png" />  Main toolbar
+               </entry>
+               <entry>
+                <inlinegraphic fileref="location-bar.png" />  Location bar
+                <inlinegraphic fileref="shortcuts-pane.png" />  Shortcuts pane
+                <inlinegraphic fileref="folders-pane.png" />  Folders pane
+                <inlinegraphic fileref="files-pane.png" />  Files pane
+               </entry>
+               <entry>
+                <inlinegraphic fileref="image-pane.png" />  Image pane
+                <inlinegraphic fileref="info-sidebar.png" />  Info sidebar (optional)
+                <inlinegraphic fileref="sort-manager.png" />  Sort manager (optional)
+                <inlinegraphic fileref="status-bar.png" />  Status bar
+                <inlinegraphic fileref="status-toolbar.png" />  Status toolbar
+             </entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </literallayout>
+  </para>
+  <para>
     The Geeqie main window is designed for quick and easy navigation of images. The window consists of three regions: the
     <emphasis role="underline"><link linkend="GuideMainWindowFilePane" endterm="titleGuideMainWindowFilePane" /></emphasis>
     , the

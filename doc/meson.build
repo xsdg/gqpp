@@ -15,7 +15,7 @@ subdir('html')
 
 guideindex_xml = files('docbook/GuideIndex.xml')
 destdir = join_paths(meson.current_build_dir(), 'html/')
-iconsdir = join_paths(meson.current_source_dir(), 'icons/')
+graphicsdir = join_paths(meson.current_source_dir(), 'graphics/')
 guideindex_ln = join_paths(destdir, 'index.html')
 
 option = get_option('yelp-build')
@@ -26,7 +26,7 @@ if not option.disabled()
             'help-html',
             input : guideindex_xml,
             output : ['html'],
-            command : [gnome_doc_tool, 'html', '@INPUT@', '-o', destdir, '-p', iconsdir],
+            command : [gnome_doc_tool, 'html', '@INPUT@', '-o', destdir, '-p', graphicsdir],
             install : true,
             install_dir : helpdir)
         run_command(find_program('ln'), '-s', '-f', 'GuideIndex.html', guideindex_ln, check : false)
@@ -72,7 +72,7 @@ if not option.disabled()
             'create .fo file',
             input : guideindex_xml,
             output : 'output.fo',
-            command : [xsltproc_exe, '--path', xmldir, '--stringparam', 'img.src.path',  iconsdir, '--output', '@OUTPUT@', '--stringparam', 'paper.type', 'A4', '--xinclude', '/usr/share/xml/docbook/stylesheet/docbook-xsl/fo/docbook.xsl', '@INPUT@'],
+            command : [xsltproc_exe, '--path', xmldir, '--stringparam', 'img.src.path',  graphicsdir, '--output', '@OUTPUT@', '--stringparam', 'paper.type', 'A4', '--xinclude', '/usr/share/xml/docbook/stylesheet/docbook-xsl/fo/docbook.xsl', '@INPUT@'],
             )
 
         # Create intermediate .pdf file - no ToC in sidebar',
