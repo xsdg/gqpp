@@ -911,30 +911,6 @@ void startup_common(GtkApplication *, gpointer)
 	accel_map_load();
 
 	command_line = g_new0(CommandLine, 1);
-
-	const gchar *gq_disable_clutter = g_getenv("GQ_DISABLE_CLUTTER");
-
-	if (gq_disable_clutter && (gq_disable_clutter[0] == 'y' || gq_disable_clutter[0] == 'Y'))
-		{
-		options->disable_gpu = TRUE;
-		}
-
-#if HAVE_CLUTTER
-	/** @FIXME For the background of this see:
-	 * https://github.com/BestImageViewer/geeqie/issues/397
-	 * The feature CLUTTER_FEATURE_SWAP_EVENTS indictates if the
-	 * system is liable to exhibit this problem.
-	 * The user is provided with an override in Preferences/Behavior
-	 */
-	if (!options->override_disable_gpu && !options->disable_gpu)
-		{
-		DEBUG_1("CLUTTER_FEATURE_SWAP_EVENTS %d",clutter_feature_available(CLUTTER_FEATURE_SWAP_EVENTS));
-		if (clutter_feature_available(CLUTTER_FEATURE_SWAP_EVENTS) != 0)
-			{
-			options->disable_gpu = TRUE;
-			}
-		}
-#endif
 }
 
 void activate_cb(GtkApplication *, gpointer)
@@ -979,6 +955,30 @@ void startup_cb(GtkApplication *app, gpointer)
 		filter_add_defaults();
 		filter_rebuild();
 		}
+
+	const gchar *gq_disable_clutter = g_getenv("GQ_DISABLE_CLUTTER");
+
+	if (gq_disable_clutter && (gq_disable_clutter[0] == 'y' || gq_disable_clutter[0] == 'Y'))
+		{
+		options->disable_gpu = TRUE;
+		}
+
+#if HAVE_CLUTTER
+	/** @FIXME For the background of this see:
+	 * https://github.com/BestImageViewer/geeqie/issues/397
+	 * The feature CLUTTER_FEATURE_SWAP_EVENTS indictates if the
+	 * system is liable to exhibit this problem.
+	 * The user is provided with an override in Preferences/Behavior
+	 */
+	if (!options->override_disable_gpu && !options->disable_gpu)
+		{
+		DEBUG_1("CLUTTER_FEATURE_SWAP_EVENTS %d",clutter_feature_available(CLUTTER_FEATURE_SWAP_EVENTS));
+		if (clutter_feature_available(CLUTTER_FEATURE_SWAP_EVENTS) != 0)
+			{
+			options->disable_gpu = TRUE;
+			}
+		}
+#endif
 
 	/* handle missing config file and commandline additions*/
 	if (!layout_window_list)
