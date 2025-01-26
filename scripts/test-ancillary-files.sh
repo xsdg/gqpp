@@ -239,7 +239,7 @@ then
 	printf "ERROR: appstreamcli is not installed"
 	exit_status=1
 else
-	if ! result=$(appstreamcli validate org.geeqie.Geeqie.appdata.xml.in --pedantic --explain)
+	if ! result=$(appstreamcli validate org.geeqie.Geeqie.appdata.xml.in --pedantic --explain --no-net)
 	then
 		exit_status=1
 		status="Error"
