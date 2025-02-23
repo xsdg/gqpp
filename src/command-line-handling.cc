@@ -167,8 +167,8 @@ void gq_action(GtkApplication *, GApplicationCommandLine *app_command_line, GVar
 
 	remote_instance = g_application_command_line_get_is_remote(app_command_line);
 
-	g_autofree gchar *text = nullptr;
-	g_variant_dict_lookup(command_line_options_dict, "action", "s", &text);
+	gchar *text = nullptr;
+	g_variant_dict_lookup(command_line_options_dict, "action", "&s", &text);
 
 	layout_valid(&lw_id);
 
@@ -809,7 +809,7 @@ void gq_get_selection(GtkApplication *, GApplicationCommandLine *app_command_lin
 void gq_get_sidecars(GtkApplication *, GApplicationCommandLine *app_command_line, GVariantDict *command_line_options_dict, GList *)
 {
 	const gchar *text;
-	g_variant_dict_lookup(command_line_options_dict, "file", "&s", &text);
+	g_variant_dict_lookup(command_line_options_dict, "get-sidecars", "&s", &text);
 	g_autofree gchar *filename = expand_tilde(text);
 	FileData *fd = file_data_new_group(filename);
 
@@ -834,15 +834,14 @@ void gq_get_sidecars(GtkApplication *, GApplicationCommandLine *app_command_line
 void gq_grep(GtkApplication *, GApplicationCommandLine *, GVariantDict *command_line_options_dict, GList *)
 {
 	gchar *text;
-	g_variant_dict_lookup(command_line_options_dict, "file", "&s", &text);
-
+	g_variant_dict_lookup(command_line_options_dict, "grep", "&s", &text);
 	set_regexp(g_strdup(text));
 }
 
 void gq_id(GtkApplication *, GApplicationCommandLine *app_command_line, GVariantDict *command_line_options_dict, GList *)
 {
 	gchar *text;
-	g_variant_dict_lookup(command_line_options_dict, "id", "s", &text);
+	g_variant_dict_lookup(command_line_options_dict, "id", "&s", &text);
 
 	lw_id = layout_find_by_layout_id(text);
 	if (!lw_id)
@@ -859,7 +858,7 @@ void gq_last(GtkApplication *, GApplicationCommandLine *, GVariantDict *, GList 
 void gq_log_file(GtkApplication *, GApplicationCommandLine *, GVariantDict *command_line_options_dict, GList *)
 {
 	gchar *text;
-	g_variant_dict_lookup(command_line_options_dict, "log-file", "s", &text);
+	g_variant_dict_lookup(command_line_options_dict, "log-file", "&s", &text);
 
 	gchar *pathl;
 	gchar *path = g_strdup(text);
@@ -1049,7 +1048,7 @@ void gq_selection_clear(GtkApplication *, GApplicationCommandLine *,GVariantDict
 void gq_selection_remove(GtkApplication *, GApplicationCommandLine *app_command_line,GVariantDict *command_line_options_dict, GList *)
 {
 	gchar *text = nullptr;
-	g_variant_dict_lookup(command_line_options_dict, "selectin-remove", "s", &text);
+	g_variant_dict_lookup(command_line_options_dict, "selection-remove", "&s", &text);
 
 	GList *selected = layout_selection_list(lw_id);  // Keep copy to free.
 	if (!selected)
@@ -1580,7 +1579,7 @@ gint process_command_line(GtkApplication *app, GApplicationCommandLine *app_comm
 
 	g_list_free_full(file_list, g_free);
 
-	return EXIT_SUCCESS;
+	return TRUE;
 }
 
 gint process_command_line_cache_maintenance(GtkApplication *app, GApplicationCommandLine *app_command_line, gpointer)
