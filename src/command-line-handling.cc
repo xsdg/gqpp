@@ -811,23 +811,27 @@ void gq_get_sidecars(GtkApplication *, GApplicationCommandLine *app_command_line
 	const gchar *text;
 	g_variant_dict_lookup(command_line_options_dict, "get-sidecars", "&s", &text);
 	g_autofree gchar *filename = expand_tilde(text);
-	FileData *fd = file_data_new_group(filename);
 
-	GList *work;
-	if (fd->parent)
+	if (isfile(filename))
 		{
-		fd = fd->parent;
-		}
+		FileData *fd = file_data_new_group(filename);
 
-	g_application_command_line_print(app_command_line, "%s\n", fd->path);
+		GList *work;
+		if (fd->parent)
+			{
+			fd = fd->parent;
+			}
 
-	work = fd->sidecar_files;
-
-	while (work)
-		{
-		fd = static_cast<FileData *>(work->data);
-		work = work->next;
 		g_application_command_line_print(app_command_line, "%s\n", fd->path);
+
+		work = fd->sidecar_files;
+
+		while (work)
+			{
+			fd = static_cast<FileData *>(work->data);
+			work = work->next;
+			g_application_command_line_print(app_command_line, "%s\n", fd->path);
+			}
 		}
 }
 
