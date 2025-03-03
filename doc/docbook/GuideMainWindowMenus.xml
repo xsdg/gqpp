@@ -15,11 +15,11 @@
                 <keycap>N</keycap>
               </keycombo>
             </shortcut>
-            <guimenu>New window</guimenu>
+            <guimenu>Open File</guimenu>
           </menuchoice>
         </term>
         <listitem>
-          <para>Opens a new main window, with the initial path set to the current folder.</para>
+          <para>Opens a file using the system default dialog. A limited range of file types may be displayed in the preview pane.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

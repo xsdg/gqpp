@@ -50,6 +50,7 @@
 #include "dupe.h"
 #include "editors.h"
 #include "filedata.h"
+#include "filefilter.h"
 #include "fullscreen.h"
 #include "histogram.h"
 #include "history-list.h"
@@ -1064,6 +1065,86 @@ static void layout_menu_open_archive_cb(GtkAction *, gpointer data)
 
 	LayoutWindow *lw_new = layout_new_from_default();
 	layout_set_path(lw_new, dest_dir);
+}
+
+static void open_file(GtkFileChooser *chooser, gint response_id, gpointer)
+{
+	if (response_id == GTK_RESPONSE_ACCEPT)
+		{
+		g_autofree gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(chooser));
+
+		layout_set_path(get_current_layout(), filename);
+		}
+
+	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
+}
+
+static void preview_file(GtkFileChooser *chooser, gpointer data)
+{
+	GtkImage *image_widget = GTK_IMAGE(data);
+	g_autofree gchar *file_name = gtk_file_chooser_get_filename(chooser);
+
+	if (file_name)
+		{
+		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(file_name, nullptr);
+		if (pixbuf)
+			{
+			GdkPixbuf *scaled_pixbuf = gdk_pixbuf_scale_simple(pixbuf, options->thumbnails.max_width, options->thumbnails.max_height, GDK_INTERP_BILINEAR);
+			gtk_image_set_from_pixbuf(image_widget, scaled_pixbuf);
+
+			g_object_unref(pixbuf);
+			}
+		else
+			{
+			gtk_image_set_from_icon_name(image_widget, "image-missing", GTK_ICON_SIZE_DIALOG);
+			}
+		}
+	else
+		{
+		gtk_image_set_from_icon_name(image_widget, "image-missing", GTK_ICON_SIZE_DIALOG);
+		}
+}
+
+static void layout_menu_open_file_cb(GtkAction *, gpointer)
+{
+	GtkFileChooserDialog *dialog;
+	GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
+
+	dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Open File"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_ACCEPT, nullptr));
+
+	GtkWidget *preview_area = gtk_image_new();
+	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), preview_area);
+
+	GtkFileFilter *image_filter = gtk_file_filter_new();
+	gtk_file_filter_set_name(image_filter, _("Geeqie image files"));
+
+	GList *work = filter_get_list();
+
+	while (work)
+		{
+		FilterEntry *fe;
+
+		fe = static_cast<FilterEntry *>(work->data);
+
+		g_auto(GStrv) extension_list = g_strsplit(fe->extensions, ";", -1);
+
+		for (gint i = 0; extension_list[i] != nullptr; i++)
+			{
+			gchar ext[64];
+			g_snprintf(ext, sizeof(ext), "*%s", extension_list[i]);
+			gtk_file_filter_add_pattern(image_filter, ext);
+			}
+
+		work = work->next;
+		}
+
+	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), image_filter);
+	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), preview_area);
+
+	g_signal_connect(dialog, "selection-changed", G_CALLBACK(preview_file), preview_area);
+	g_signal_connect(dialog, "response", G_CALLBACK(open_file), dialog);
+
+	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
 }
 
 static void layout_menu_fullscreen_cb(GtkAction *, gpointer data)
@@ -2649,6 +2730,7 @@ static GtkActionEntry menu_entries[] = {
   { "NextPage",              GQ_ICON_FORWARD_PAGE,              N_("_Next Page"),                                       "<control>Page_Down",  N_("Next Page of multi-page image"),                   CB(layout_menu_page_next_cb) },
   { "OpenArchive",           GQ_ICON_OPEN,                      N_("Open archive"),                                     nullptr,               N_("Open archive"),                                    CB(layout_menu_open_archive_cb) },
   { "OpenCollection",        GQ_ICON_OPEN,                      N_("_Open collection..."),                              "O",                   N_("Open collection..."),                              nullptr },
+  { "OpenFile",              GQ_ICON_OPEN,                      N_("Open file..."),                                     nullptr,               N_("Open file..."),                                    CB(layout_menu_open_file_cb) },
   { "OpenMenu",              nullptr,                           N_("☰"),                                                nullptr,               nullptr,                                               nullptr },
   { "OpenRecent",            nullptr,                           N_("Open recen_t"),                                     nullptr,               N_("Open recent collection"),                          nullptr },
   { "OpenWith",              GQ_ICON_OPEN_WITH,                 N_("Open With..."),                                     nullptr,               N_("Open With..."),                                    CB(layout_menu_open_with_cb) },

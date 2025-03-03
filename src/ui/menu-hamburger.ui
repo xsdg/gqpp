@@ -2,6 +2,8 @@
   <menubar name="MainMenu">
     <menu action="OpenMenu">
       <menu action="FileMenu">
+        <menuitem action="OpenFile"/>
+        <separator/>
         <menuitem action="NewCollection"/>
         <menuitem action="OpenCollection"/>
         <menuitem action="OpenRecent"/>
