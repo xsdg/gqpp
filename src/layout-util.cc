@@ -1067,7 +1067,7 @@ static void layout_menu_open_archive_cb(GtkAction *, gpointer data)
 	layout_set_path(lw_new, dest_dir);
 }
 
-static void open_file(GtkFileChooser *chooser, gint response_id, gpointer)
+static void open_file_cb(GtkFileChooser *chooser, gint response_id, gpointer)
 {
 	if (response_id == GTK_RESPONSE_ACCEPT)
 		{
@@ -1079,25 +1079,36 @@ static void open_file(GtkFileChooser *chooser, gint response_id, gpointer)
 	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
 }
 
-static void preview_file(GtkFileChooser *chooser, gpointer data)
+static void preview_file_cb(GtkFileChooser *chooser, gpointer data)
 {
 	GtkImage *image_widget = GTK_IMAGE(data);
 	g_autofree gchar *file_name = gtk_file_chooser_get_filename(chooser);
 
 	if (file_name)
 		{
-		GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(file_name, nullptr);
-		if (pixbuf)
-			{
-			GdkPixbuf *scaled_pixbuf = gdk_pixbuf_scale_simple(pixbuf, options->thumbnails.max_width, options->thumbnails.max_height, GDK_INTERP_BILINEAR);
-			gtk_image_set_from_pixbuf(image_widget, scaled_pixbuf);
+		FileData *fd = file_data_new_simple(file_name);
 
-			g_object_unref(pixbuf);
+		if (fd->thumb_pixbuf)
+			{
+			gtk_image_set_from_pixbuf(image_widget, fd->thumb_pixbuf);
 			}
 		else
 			{
-			gtk_image_set_from_icon_name(image_widget, "image-missing", GTK_ICON_SIZE_DIALOG);
+			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(file_name, nullptr);
+			if (pixbuf)
+				{
+				GdkPixbuf *scaled_pixbuf = gdk_pixbuf_scale_simple(pixbuf, options->thumbnails.max_width, options->thumbnails.max_height, GDK_INTERP_BILINEAR);
+				gtk_image_set_from_pixbuf(image_widget, scaled_pixbuf);
+
+				g_object_unref(pixbuf);
+				}
+			else
+				{
+				gtk_image_set_from_icon_name(image_widget, "image-missing", GTK_ICON_SIZE_DIALOG);
+				}
 			}
+
+		file_data_unref(fd);
 		}
 	else
 		{
@@ -1105,10 +1116,42 @@ static void preview_file(GtkFileChooser *chooser, gpointer data)
 		}
 }
 
+static void dir_copy_move_button_clicked_cb(GtkButton *, gpointer data)
+{
+	GtkFileChooserDialog *dialog = GTK_FILE_CHOOSER_DIALOG(data);
+
+	GList *dir_list = history_list_get_by_key("bookmarks");
+
+	while (dir_list)
+		{
+		g_auto(GStrv) extension_list = g_strsplit((gchar *)(dir_list->data), "]", -1);
+		gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), extension_list[1], nullptr);
+
+		dir_list = dir_list->next;
+		}
+}
+
+static void dir_sort_manager_button_clicked_cb(GtkButton *, gpointer data)
+{
+	GtkFileChooserDialog *dialog = GTK_FILE_CHOOSER_DIALOG(data);
+
+	GList *dir_list = history_list_get_by_key("sort_manager");
+
+	while (dir_list)
+		{
+		g_auto(GStrv) extension_list = g_strsplit((gchar *)(dir_list->data), "]", -1);
+		gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), extension_list[1], nullptr);
+
+		dir_list = dir_list->next;
+		}
+}
+
 static void layout_menu_open_file_cb(GtkAction *, gpointer)
 {
 	GtkFileChooserDialog *dialog;
 	GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
+	GtkWidget *dir_copy_move_button;
+	GtkWidget *dir_sort_manager_button;
 
 	dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Open File"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_ACCEPT, nullptr));
 
@@ -1139,10 +1182,34 @@ static void layout_menu_open_file_cb(GtkAction *, gpointer)
 		}
 
 	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), image_filter);
+
+	GtkFileFilter *all_filter = gtk_file_filter_new();
+	gtk_file_filter_set_name(all_filter, _("All files"));
+	gtk_file_filter_add_pattern(all_filter, "*");
+	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), all_filter);
+
+	gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(dialog), image_filter);
+
 	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), preview_area);
 
-	g_signal_connect(dialog, "selection-changed", G_CALLBACK(preview_file), preview_area);
-	g_signal_connect(dialog, "response", G_CALLBACK(open_file), dialog);
+    GtkWidget *dir_button_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
+
+	/* These are the additional bookmarks the user has set in the Copy/Move Geeqie dialog */
+	dir_copy_move_button = gtk_button_new_from_icon_name(GQ_ICON_DIRECTORY, GTK_ICON_SIZE_BUTTON);
+	gq_gtk_box_pack_start(GTK_BOX(dir_button_box), dir_copy_move_button, FALSE, FALSE, 5);
+	gtk_widget_set_tooltip_text(dir_copy_move_button, _("Add Copy/Move folders"));
+	g_signal_connect(dir_copy_move_button, "clicked", G_CALLBACK(dir_copy_move_button_clicked_cb), dialog);
+
+	/* These are the additional bookmarks the user has set in the Sort Manager sidebar */
+	dir_sort_manager_button = gtk_button_new_from_icon_name(GQ_ICON_DIRECTORY, GTK_ICON_SIZE_BUTTON);
+	gq_gtk_box_pack_start(GTK_BOX(dir_button_box), dir_sort_manager_button, FALSE, FALSE, 5);
+	gtk_widget_set_tooltip_text(dir_sort_manager_button, _("Add Sort Manager folders"));
+	g_signal_connect(dir_sort_manager_button, "clicked", G_CALLBACK(dir_sort_manager_button_clicked_cb), dialog);
+
+	gtk_file_chooser_set_extra_widget(GTK_FILE_CHOOSER(dialog), dir_button_box);
+
+	g_signal_connect(dialog, "selection-changed", G_CALLBACK(preview_file_cb), preview_area);
+	g_signal_connect(dialog, "response", G_CALLBACK(open_file_cb), dialog);
 
 	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
 }
