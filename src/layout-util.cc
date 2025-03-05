@@ -1125,7 +1125,7 @@ static void dir_copy_move_button_clicked_cb(GtkButton *, gpointer data)
 
 	while (dir_list)
 		{
-		g_auto(GStrv) extension_list = g_strsplit((gchar *)(dir_list->data), "]", -1);
+		g_auto(GStrv) extension_list = g_strsplit(static_cast<gchar *>(dir_list->data), "]", -1);
 		gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), extension_list[1], nullptr);
 
 		dir_list = dir_list->next;
@@ -1140,7 +1140,7 @@ static void dir_shortcuts_button_clicked_cb(GtkButton *, gpointer data)
 
 	while (dir_list)
 		{
-		g_auto(GStrv) extension_list = g_strsplit((gchar *)(dir_list->data), "]", -1);
+		g_auto(GStrv) extension_list = g_strsplit(static_cast<gchar *>(dir_list->data), "]", -1);
 		gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), extension_list[1], nullptr);
 
 		dir_list = dir_list->next;
@@ -1155,7 +1155,7 @@ static void dir_sort_manager_button_clicked_cb(GtkButton *, gpointer data)
 
 	while (dir_list)
 		{
-		g_auto(GStrv) extension_list = g_strsplit((gchar *)(dir_list->data), "]", -1);
+		g_auto(GStrv) extension_list = g_strsplit(static_cast<gchar *>(dir_list->data), "]", -1);
 		gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), extension_list[1], nullptr);
 
 		dir_list = dir_list->next;
@@ -1299,7 +1299,7 @@ static void layout_menu_open_collection_cb(GtkWidget *, gpointer)
 	GtkWidget *dir_shortcuts_button;
 	GtkWidget *dir_sort_manager_button;
 
-	dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Open File"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_ACCEPT, nullptr));
+	dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Geeqie - Open Collection"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_ACCEPT, nullptr));
 
 	GtkWidget *preview_area = gtk_image_new();
 	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), preview_area);
@@ -2311,18 +2311,31 @@ static void layout_menu_collection_recent_update(LayoutWindow *lw)
 
 	while (list)
 		{
-		const gchar *filename = filename_from_path(static_cast<gchar *>(list->data));
 		gchar *name;
 		gboolean free_name = FALSE;
 
-		if (file_extension_match(filename, GQ_COLLECTION_EXT))
+		g_autofree gchar *collection_dir = g_path_get_dirname(static_cast<gchar *>(list->data));
+
+		/* If the collection file is not in the default directory, include the full
+		 * path name in the display box */
+		if (g_strcmp0(collection_dir, get_collections_dir()) != 0)
 			{
-			name = remove_extension_from_path(filename);
+			name = g_strdup(static_cast<gchar *>(list->data));
 			free_name = TRUE;
 			}
 		else
 			{
-			name = const_cast<gchar *>(filename);
+			const gchar *filename = filename_from_path(static_cast<gchar *>(list->data));
+
+			if (file_extension_match(filename, GQ_COLLECTION_EXT))
+				{
+				name = remove_extension_from_path(filename);
+				free_name = TRUE;
+				}
+			else
+				{
+				name = const_cast<gchar *>(filename);
+				}
 			}
 
 		item = menu_item_add_simple(menu, name, G_CALLBACK(layout_menu_recent_cb), lw);
