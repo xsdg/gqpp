@@ -3,6 +3,7 @@
     <menu action="OpenMenu">
       <menu action="FileMenu">
         <menuitem action="OpenFile"/>
+        <menuitem action="OpenRecentFile"/>
         <separator/>
         <menuitem action="NewCollection"/>
         <menuitem action="OpenCollection"/>
