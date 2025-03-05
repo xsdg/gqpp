@@ -312,28 +312,6 @@ static void layout_menu_new_cb(GtkAction *, gpointer data)
 	collection_window_new(nullptr);
 }
 
-static void layout_menu_open_cb(GtkAction *widget, gpointer data)
-{
-	auto lw = static_cast<LayoutWindow *>(data);
-	gint n;
-	GList *collection_list = nullptr;
-
-	layout_exit_fullscreen(lw);
-
-	n = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(widget), "recent_index"));
-	collect_manager_list(nullptr, nullptr, &collection_list);
-
-	const auto *collection_path = static_cast<gchar *>(g_list_nth_data(collection_list, n));
-	if (collection_path)
-		{
-		/* make a copy of it */
-		g_autofree gchar *path = g_strdup(collection_path);
-		collection_window_new(path);
-		}
-
-	g_list_free_full(collection_list, g_free);
-}
-
 static void layout_menu_search_cb(GtkAction *, gpointer data)
 {
 	auto lw = static_cast<LayoutWindow *>(data);
@@ -1141,6 +1119,21 @@ static void dir_copy_move_button_clicked_cb(GtkButton *, gpointer data)
 		}
 }
 
+static void dir_shortcuts_button_clicked_cb(GtkButton *, gpointer data)
+{
+	GtkFileChooserDialog *dialog = GTK_FILE_CHOOSER_DIALOG(data);
+
+	GList *dir_list = history_list_get_by_key("shortcuts");
+
+	while (dir_list)
+		{
+		g_auto(GStrv) extension_list = g_strsplit((gchar *)(dir_list->data), "]", -1);
+		gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), extension_list[1], nullptr);
+
+		dir_list = dir_list->next;
+		}
+}
+
 static void dir_sort_manager_button_clicked_cb(GtkButton *, gpointer data)
 {
 	GtkFileChooserDialog *dialog = GTK_FILE_CHOOSER_DIALOG(data);
@@ -1220,6 +1213,77 @@ static void layout_menu_open_file_cb(GtkAction *, gpointer)
 
 	g_signal_connect(dialog, "selection-changed", G_CALLBACK(preview_file_cb), preview_area);
 	g_signal_connect(dialog, "response", G_CALLBACK(open_file_cb), dialog);
+
+	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
+}
+
+static void open_collection_cb(GtkFileChooser *chooser, gint response_id, gpointer)
+{
+	if (response_id == GTK_RESPONSE_ACCEPT)
+		{
+		g_autofree gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(chooser));
+
+		if (file_extension_match(filename, GQ_COLLECTION_EXT))
+			{
+			collection_window_new(filename);
+			}
+		}
+
+	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
+}
+
+static void layout_menu_open_collection_cb(GtkWidget *, gpointer)
+{
+	GtkFileChooserDialog *dialog;
+	GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
+	GtkWidget *dir_copy_move_button;
+	GtkWidget *dir_shortcuts_button;
+	GtkWidget *dir_sort_manager_button;
+
+	dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Open File"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_ACCEPT, nullptr));
+
+	GtkWidget *preview_area = gtk_image_new();
+	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), preview_area);
+
+	GtkFileFilter *collection_filter = gtk_file_filter_new();
+	gtk_file_filter_set_name(collection_filter, _("Geeqie Collection files"));
+	gtk_file_filter_add_pattern(collection_filter, "*.gqv");
+	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), collection_filter);
+
+	GtkFileFilter *all_filter = gtk_file_filter_new();
+	gtk_file_filter_set_name(all_filter, _("All files"));
+	gtk_file_filter_add_pattern(all_filter, "*");
+	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), all_filter);
+
+	gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(dialog), collection_filter);
+	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), get_collections_dir());
+
+	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), preview_area);
+
+    GtkWidget *dir_button_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
+
+	/* These are the additional bookmarks the user has set in the Shortcuts pane */
+	dir_shortcuts_button = gtk_button_new_from_icon_name(GQ_ICON_DIRECTORY, GTK_ICON_SIZE_BUTTON);
+	gq_gtk_box_pack_start(GTK_BOX(dir_button_box), dir_shortcuts_button, FALSE, FALSE, 5);
+	gtk_widget_set_tooltip_text(dir_shortcuts_button, _("Add Shortcuts folders"));
+	g_signal_connect(dir_shortcuts_button, "clicked", G_CALLBACK(dir_shortcuts_button_clicked_cb), dialog);
+
+	/* These are the additional bookmarks the user has set in the Copy/Move Geeqie dialog */
+	dir_copy_move_button = gtk_button_new_from_icon_name(GQ_ICON_DIRECTORY, GTK_ICON_SIZE_BUTTON);
+	gq_gtk_box_pack_start(GTK_BOX(dir_button_box), dir_copy_move_button, FALSE, FALSE, 5);
+	gtk_widget_set_tooltip_text(dir_copy_move_button, _("Add Copy/Move folders"));
+	g_signal_connect(dir_copy_move_button, "clicked", G_CALLBACK(dir_copy_move_button_clicked_cb), dialog);
+
+	/* These are the additional bookmarks the user has set in the Sort Manager sidebar */
+	dir_sort_manager_button = gtk_button_new_from_icon_name(GQ_ICON_DIRECTORY, GTK_ICON_SIZE_BUTTON);
+	gq_gtk_box_pack_start(GTK_BOX(dir_button_box), dir_sort_manager_button, FALSE, FALSE, 5);
+	gtk_widget_set_tooltip_text(dir_sort_manager_button, _("Add Sort Manager folders"));
+	g_signal_connect(dir_sort_manager_button, "clicked", G_CALLBACK(dir_sort_manager_button_clicked_cb), dialog);
+
+	gtk_file_chooser_set_extra_widget(GTK_FILE_CHOOSER(dialog), dir_button_box);
+
+	g_signal_connect(dialog, "selection-changed", G_CALLBACK(preview_file_cb), preview_area);
+	g_signal_connect(dialog, "response", G_CALLBACK(open_collection_cb), dialog);
 
 	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
 }
@@ -2219,67 +2283,11 @@ static void layout_menu_collection_recent_update(LayoutWindow *lw)
 	gtk_widget_set_sensitive(recent, (n != 0));
 }
 
-static void layout_menu_collection_open_update(LayoutWindow *lw)
-{
-	gchar *name;
-	gint n;
-	GList *collection_list = nullptr;
-	GList *work;
-	GtkWidget *item;
-	GtkWidget *menu;
-	GtkWidget *recent;
-
-	if (!lw->ui_manager) return;
-
-	collect_manager_list(&collection_list, nullptr, nullptr);
-
-	n = 0;
-
-	menu = gtk_menu_new();
-
-	work = collection_list;
-	while (work)
-		{
-		auto *filename = static_cast<gchar *>(work->data);
-
-		const gboolean has_extension = file_extension_match(filename, GQ_COLLECTION_EXT);
-		if (has_extension)
-			{
-			name = remove_extension_from_path(filename);
-			}
-		else
-			{
-			name = filename;
-			}
-
-		item = menu_item_add_simple(menu, name, G_CALLBACK(layout_menu_open_cb), lw);
-		if (has_extension)
-			{
-			g_free(name);
-			}
-		g_object_set_data(G_OBJECT(item), "recent_index", GINT_TO_POINTER(n));
-		work = work->next;
-		n++;
-		}
-
-	g_list_free_full(collection_list, g_free);
-
-	if (n == 0)
-		{
-		menu_item_add(menu, _("Empty"), nullptr, nullptr);
-		}
-
-	recent = gq_gtk_ui_manager_get_widget(lw->ui_manager, options->hamburger_menu ? "/MainMenu/OpenMenu/FileMenu/OpenCollection" : "/MainMenu/FileMenu/OpenCollection");
-	gtk_menu_item_set_submenu(GTK_MENU_ITEM(recent), menu);
-	gtk_widget_set_sensitive(recent, (n != 0));
-}
-
 void layout_recent_update_all()
 {
 	layout_window_foreach([](LayoutWindow *lw)
 	{
 		layout_menu_collection_recent_update(lw);
-		layout_menu_collection_open_update(lw);
 	});
 }
 
@@ -2806,7 +2814,7 @@ static GtkActionEntry menu_entries[] = {
   { "NextImage",             GQ_ICON_GO_DOWN,                   N_("_Next Image"),                                      "space",               N_("Next Image"),                                      CB(layout_menu_image_next_cb) },
   { "NextPage",              GQ_ICON_FORWARD_PAGE,              N_("_Next Page"),                                       "<control>Page_Down",  N_("Next Page of multi-page image"),                   CB(layout_menu_page_next_cb) },
   { "OpenArchive",           GQ_ICON_OPEN,                      N_("Open archive"),                                     nullptr,               N_("Open archive"),                                    CB(layout_menu_open_archive_cb) },
-  { "OpenCollection",        GQ_ICON_OPEN,                      N_("_Open collection..."),                              "O",                   N_("Open collection..."),                              nullptr },
+  { "OpenCollection",        GQ_ICON_OPEN,                      N_("_Open collection..."),                              "O",                   N_("Open collection..."),                              CB(layout_menu_open_collection_cb) },
   { "OpenFile",              GQ_ICON_OPEN,                      N_("Open file..."),                                     nullptr,               N_("Open file..."),                                    CB(layout_menu_open_file_cb) },
   { "OpenMenu",              nullptr,                           N_("☰"),                                                nullptr,               nullptr,                                               nullptr },
   { "OpenRecent",            nullptr,                           N_("Open recen_t"),                                     nullptr,               N_("Open recent collection"),                          nullptr },
@@ -3984,7 +3992,6 @@ void layout_util_sync(LayoutWindow *lw)
 	layout_util_sync_views(lw);
 	layout_util_sync_thumb(lw);
 	layout_menu_collection_recent_update(lw);
-	layout_menu_collection_open_update(lw);
 }
 
 /**
