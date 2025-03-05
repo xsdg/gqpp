@@ -41,6 +41,7 @@
 #include "bar-sort.h"
 #include "bar.h"
 #include "cache-maint.h"
+#include "cache.h"
 #include "collect-io.h"
 #include "collect.h"
 #include "color-man.h"
@@ -1086,14 +1087,25 @@ static void preview_file_cb(GtkFileChooser *chooser, gpointer data)
 
 	if (file_name)
 		{
-		FileData *fd = file_data_new_simple(file_name);
-
-		if (fd->thumb_pixbuf)
+		/* Use a thumbnail file if one exists */
+		g_autofree gchar *thumb_file = cache_find_location(CACHE_TYPE_THUMB, file_name);
+		if (thumb_file)
 			{
-			gtk_image_set_from_pixbuf(image_widget, fd->thumb_pixbuf);
+			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(thumb_file, nullptr);
+			if (pixbuf)
+				{
+				gtk_image_set_from_pixbuf(image_widget, pixbuf);
+				}
+			else
+				{
+				gtk_image_set_from_icon_name(image_widget, "image-missing", GTK_ICON_SIZE_DIALOG);
+				}
+
+			g_object_unref(pixbuf);
 			}
 		else
 			{
+			/* Use the standard pixbuf loader */
 			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(file_name, nullptr);
 			if (pixbuf)
 				{
@@ -1107,8 +1119,6 @@ static void preview_file_cb(GtkFileChooser *chooser, gpointer data)
 				gtk_image_set_from_icon_name(image_widget, "image-missing", GTK_ICON_SIZE_DIALOG);
 				}
 			}
-
-		file_data_unref(fd);
 		}
 	else
 		{
