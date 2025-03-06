@@ -23,6 +23,7 @@
 #include <vector>
 
 #include "cache-maint.h"
+#include "cache.h"
 #include "collect-io.h"
 #include "collect.h"
 #include "compat-deprecated.h"
@@ -631,6 +632,26 @@ void gq_get_file_info(GtkApplication *, GApplicationCommandLine *app_command_lin
 			{
 			g_string_append_printf(out_string, ("Local time: %s\n"), local_time);
 			}
+		}
+
+	if (fd->marks > 0)
+		{
+		out_string = g_string_append(out_string, _("Marks:"));
+
+		for (gint i = 0; i < FILEDATA_MARKS_SIZE; i++)
+			{
+			if ((fd->marks & (1 << i) ) != 0)
+				{
+				g_string_append_printf(out_string, (" %d"), i + 1);
+				}
+			}
+		out_string = g_string_append(out_string, "\n");
+		}
+
+	g_autofree gchar *thumb_file = cache_find_location(CACHE_TYPE_THUMB, filename);
+	if (thumb_file)
+		{
+		g_string_append_printf(out_string, _("Thumb: %s\n"), thumb_file);
 		}
 
 	g_application_command_line_print(app_command_line, "%s%c", out_string->str, print0 ? 0 : '\n');

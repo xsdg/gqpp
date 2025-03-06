@@ -35,6 +35,12 @@
        This program will merge the keyword tree of one Geeqie configuration file into another. The keyword trees are simply concatenated. When Geeqie loads the resulting configuration file, any duplicates are discarded: <ulink url="https://raw.githubusercontent.com/BestImageViewer/geeqie/master/scripts/keyword_merge.sh">keyword_merge.sh</ulink>
     </para>
   </section>
+  <section id="KeywordMarks">
+    <title>Keyword Marks</title>
+    <para>
+       This program will list the current keyword-mark links that have been set in the <emphasis role="underline"><link linkend="GuideSidebarsInfo">Info Sidebar</link></emphasis>. The Geeqie configuration file is scanned to produce this list, therefore changes to keyword-marks will not be listed until Geeqie is closed and the config. file updated: <ulink url="https://raw.githubusercontent.com/BestImageViewer/geeqie/master/scripts/keyword-mark.sh">keyword-mark.sh</ulink>
+    </para>
+  </section>
   <section id="InstallDebian">
     <title>Install Geeqie from sources on Debian</title>
     <para>
