@@ -74,63 +74,57 @@ void shortcuts_add_close(ShortcutsData *scd)
 	scd->dialog = nullptr;
 }
 
-void shortcuts_add_ok_cb(FileDialog *fd, gpointer data)
+void add_shortcut_cb(GtkFileChooser *chooser, gint response_id, gpointer data)
 {
-	auto scd = static_cast<ShortcutsData *>(data);
-	const gchar *name = gtk_entry_get_text(GTK_ENTRY(scd->dialog_name_entry));
-	gboolean empty_name = (name[0] == '\0');
-
-	name = gtk_entry_get_text(GTK_ENTRY(scd->dialog_name_entry));
-
-	if (empty_name)
+	if (response_id == GTK_RESPONSE_ACCEPT)
 		{
-		name = filename_from_path(fd->dest_path);
+		GList *list = gtk_container_get_children(GTK_CONTAINER(gtk_file_chooser_get_extra_widget(chooser)));
+
+		GList *work = list;
+		while (work)
+			{
+			if (GTK_IS_ENTRY(work->data))
+				{
+				auto scd = static_cast<ShortcutsData *>(data);
+
+				const gchar *alias_name = gtk_entry_get_text(static_cast<GtkEntry *>(work->data));
+
+				gboolean empty_name = (alias_name[0] == '\0');
+				g_autofree gchar *selected_dir = gtk_file_chooser_get_filename(chooser);
+
+				bookmark_list_add(scd->bookmarks, empty_name ? filename_from_path(selected_dir) : alias_name, selected_dir);
+				}
+			work = work->next;
+			}
+		g_list_free(list);
 		}
 
-	bookmark_list_add(scd->bookmarks, name, fd->dest_path);
-
-	shortcuts_add_close(scd);
+	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
 }
 
-void shortcuts_add_cancel_cb(FileDialog *, gpointer data)
+void shortcuts_add_cb(GtkWidget *, gpointer data)
 {
 	auto scd = static_cast<ShortcutsData *>(data);
+	GtkFileChooserDialog *dialog;
+	GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER;
 
-	shortcuts_add_close(scd);
-}
+	dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Add Shortcut - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("Add"), GTK_RESPONSE_ACCEPT, nullptr));
 
-void shortcuts_add_cb(GtkWidget *button, gpointer data)
-{
-	auto scd = static_cast<ShortcutsData *>(data);
-	GtkWidget *hbox;
-	const gchar *title;
+	GtkWidget *name_widget_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 
-	if (scd->dialog)
-		{
-		gtk_window_present(GTK_WINDOW(GENERIC_DIALOG(scd->dialog)->dialog));
-		return;
-		}
+	GtkWidget *name_label = gtk_label_new(_("Shortcut alias name (optional):"));
+	gq_gtk_box_pack_start(GTK_BOX(name_widget_box), name_label, FALSE, FALSE, 0);
+	gtk_widget_set_tooltip_text(name_label, _("If none given, the basename of the folder is used"));
 
-	title = _("Add Shortcut");
-	scd->dialog = file_util_file_dlg(title,
-					"add_shortcuts", button,
-					shortcuts_add_cancel_cb, scd);
-	file_dialog_add_button(scd->dialog, GQ_ICON_OK, "OK", shortcuts_add_ok_cb, TRUE);
+	GtkWidget *entry = gtk_entry_new();
+	gq_gtk_box_pack_start(GTK_BOX(name_widget_box), entry, FALSE, FALSE, 0);
+	gtk_widget_set_tooltip_text(entry, _("If none given, the basename of the folder is used"));
 
-	generic_dialog_add_message(GENERIC_DIALOG(scd->dialog), nullptr, title, nullptr, FALSE);
+	gtk_file_chooser_set_extra_widget(GTK_FILE_CHOOSER(dialog), name_widget_box);
 
-	file_dialog_add_path_widgets(scd->dialog, nullptr, nullptr, "add_shortcuts", nullptr, nullptr);
+	g_signal_connect(dialog, "response", G_CALLBACK(add_shortcut_cb), scd);
 
-	hbox = pref_box_new(GENERIC_DIALOG(scd->dialog)->vbox, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
-
-	pref_label_new(hbox, _("Name:"));
-
-	scd->dialog_name_entry = gtk_entry_new();
-	gq_gtk_box_pack_start(GTK_BOX(hbox), scd->dialog_name_entry, TRUE, TRUE, 0);
-	generic_dialog_attach_default(GENERIC_DIALOG(scd->dialog), scd->dialog_name_entry);
-	gtk_widget_show(scd->dialog_name_entry);
-
-	gtk_widget_show(GENERIC_DIALOG(scd->dialog)->dialog);
+	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
 }
 
 void shortcuts_destroy(gpointer data)
