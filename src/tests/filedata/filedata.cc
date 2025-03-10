@@ -117,6 +117,7 @@ TEST_F(FileDataTest, text_from_size_abrev_test)
 	}
 }
 
+#ifdef DEBUG_FILEDATA
 TEST_F(FileDataTest, FileDataNewSimpleAndFree)
 {
 	ASSERT_EQ(0, context.global_file_data_count);
@@ -130,7 +131,9 @@ TEST_F(FileDataTest, FileDataNewSimpleAndFree)
 	_fd = nullptr;
 	ASSERT_EQ(0, context.global_file_data_count);
 }
+#endif
 
+#ifdef DEBUG_FILEDATA
 TEST_F(FileDataTest, FileDataNewGroupAndFree)
 {
 	ASSERT_EQ(0, context.global_file_data_count);
@@ -144,6 +147,7 @@ TEST_F(FileDataTest, FileDataNewGroupAndFree)
 	_fd = nullptr;
 	ASSERT_EQ(0, context.global_file_data_count);
 }
+#endif
 
 TEST_F(FileDataTest, BasicIncrementVersion)
 {
