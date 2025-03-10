@@ -370,8 +370,12 @@ exit_status = 0
 }
 
 NR == FNR{a[$0] = "";next} !($0 in a) {
-	exit_status = 1
-	print "Bash completions - Option error: " $0
+	# In a no-debug build, --debug and --grep are missing.
+	# This error can be ignored
+	if ($0 != "--debug=" && $0 != "--grep=") {
+		exit_status = 1
+		print "Bash completions - Option error: " $0
+		}
 	}
 
 END {
