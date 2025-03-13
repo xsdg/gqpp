@@ -165,10 +165,12 @@ static void bar_sort_mode_cb(GtkWidget *combo, gpointer data)
 
 	if (gtk_combo_box_get_active(GTK_COMBO_BOX(combo)) == BAR_SORT_MODE_FOLDER)
 		{
+		gtk_widget_set_tooltip_text(sd->add_button, _("Add Bookmark"));
 		bar_sort_mode_sync(sd, BAR_SORT_MODE_FOLDER);
 		}
 	else
 		{
+		gtk_widget_set_tooltip_text(sd->add_button, _("Create new Collection in default folder"));
 		bar_sort_mode_sync(sd, BAR_SORT_MODE_COLLECTION);
 		}
 }
@@ -615,19 +617,12 @@ static void bar_sort_add_cb(GtkWidget *button, gpointer data)
 		}
 	else
 		{
-		title = _("Add Collection");
+		title = _("Create Collection");
 
-		sd->dialog = file_util_file_dlg(title,
-		                                "add_bookmark", button,
-		                                bar_sort_add_cancel_cb, sd);
+		sd->dialog = file_util_file_dlg(title, "create_collection", button, bar_sort_add_cancel_cb, sd);
 		file_dialog_add_button(sd->dialog, GQ_ICON_OK, "OK", bar_sort_add_ok_cb, TRUE);
 
 		generic_dialog_add_message(GENERIC_DIALOG(sd->dialog), nullptr, title, nullptr, FALSE);
-
-		if (sd->mode == BAR_SORT_MODE_FOLDER)
-			{
-			file_dialog_add_path_widgets(sd->dialog, nullptr, nullptr, "add_bookmark", nullptr, nullptr);
-			}
 
 		hbox = pref_box_new(GENERIC_DIALOG(sd->dialog)->vbox, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 
@@ -638,10 +633,7 @@ static void bar_sort_add_cb(GtkWidget *button, gpointer data)
 		generic_dialog_attach_default(GENERIC_DIALOG(sd->dialog), sd->dialog_name_entry);
 		gtk_widget_show(sd->dialog_name_entry);
 
-		if (sd->mode == BAR_SORT_MODE_COLLECTION)
-			{
-			gtk_widget_grab_focus(sd->dialog_name_entry);
-			}
+		gtk_widget_grab_focus(sd->dialog_name_entry);
 
 		gtk_widget_show(GENERIC_DIALOG(sd->dialog)->dialog);
 		}
