@@ -112,7 +112,7 @@ void shortcuts_add_cb(GtkWidget *, gpointer data)
 
 	GtkWidget *name_widget_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 
-	GtkWidget *name_label = gtk_label_new(_("Shortcut alias name (optional):"));
+	GtkWidget *name_label = gtk_label_new(_("Shortcut name (optional):"));
 	gq_gtk_box_pack_start(GTK_BOX(name_widget_box), name_label, FALSE, FALSE, 0);
 	gtk_widget_set_tooltip_text(name_label, _("If none given, the basename of the folder is used"));
 

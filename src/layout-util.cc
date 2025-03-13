@@ -1117,57 +1117,10 @@ static void preview_file_cb(GtkFileChooser *chooser, gpointer data)
 		}
 }
 
-static void dir_copy_move_button_clicked_cb(GtkButton *, gpointer data)
-{
-	GtkFileChooserDialog *dialog = GTK_FILE_CHOOSER_DIALOG(data);
-
-	GList *dir_list = history_list_get_by_key("bookmarks");
-
-	while (dir_list)
-		{
-		g_auto(GStrv) extension_list = g_strsplit(static_cast<gchar *>(dir_list->data), "]", -1);
-		gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), extension_list[1], nullptr);
-
-		dir_list = dir_list->next;
-		}
-}
-
-static void dir_shortcuts_button_clicked_cb(GtkButton *, gpointer data)
-{
-	GtkFileChooserDialog *dialog = GTK_FILE_CHOOSER_DIALOG(data);
-
-	GList *dir_list = history_list_get_by_key("shortcuts");
-
-	while (dir_list)
-		{
-		g_auto(GStrv) extension_list = g_strsplit(static_cast<gchar *>(dir_list->data), "]", -1);
-		gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), extension_list[1], nullptr);
-
-		dir_list = dir_list->next;
-		}
-}
-
-static void dir_sort_manager_button_clicked_cb(GtkButton *, gpointer data)
-{
-	GtkFileChooserDialog *dialog = GTK_FILE_CHOOSER_DIALOG(data);
-
-	GList *dir_list = history_list_get_by_key("sort_manager");
-
-	while (dir_list)
-		{
-		g_auto(GStrv) extension_list = g_strsplit(static_cast<gchar *>(dir_list->data), "]", -1);
-		gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), extension_list[1], nullptr);
-
-		dir_list = dir_list->next;
-		}
-}
-
 static void layout_menu_open_file_cb(GtkAction *, gpointer)
 {
 	GtkFileChooserDialog *dialog;
 	GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
-	GtkWidget *dir_copy_move_button;
-	GtkWidget *dir_sort_manager_button;
 
 	dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Geeqie - Open File"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_ACCEPT, nullptr));
 
@@ -1207,22 +1160,6 @@ static void layout_menu_open_file_cb(GtkAction *, gpointer)
 	gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(dialog), image_filter);
 
 	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), preview_area);
-
-    GtkWidget *dir_button_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
-
-	/* These are the additional bookmarks the user has set in the Copy/Move Geeqie dialog */
-	dir_copy_move_button = gtk_button_new_from_icon_name(GQ_ICON_DIRECTORY, GTK_ICON_SIZE_BUTTON);
-	gq_gtk_box_pack_start(GTK_BOX(dir_button_box), dir_copy_move_button, FALSE, FALSE, 5);
-	gtk_widget_set_tooltip_text(dir_copy_move_button, _("Add Copy/Move folders"));
-	g_signal_connect(dir_copy_move_button, "clicked", G_CALLBACK(dir_copy_move_button_clicked_cb), dialog);
-
-	/* These are the additional bookmarks the user has set in the Sort Manager sidebar */
-	dir_sort_manager_button = gtk_button_new_from_icon_name(GQ_ICON_DIRECTORY, GTK_ICON_SIZE_BUTTON);
-	gq_gtk_box_pack_start(GTK_BOX(dir_button_box), dir_sort_manager_button, FALSE, FALSE, 5);
-	gtk_widget_set_tooltip_text(dir_sort_manager_button, _("Add Sort Manager folders"));
-	g_signal_connect(dir_sort_manager_button, "clicked", G_CALLBACK(dir_sort_manager_button_clicked_cb), dialog);
-
-	gtk_file_chooser_set_extra_widget(GTK_FILE_CHOOSER(dialog), dir_button_box);
 
 	g_signal_connect(dialog, "selection-changed", G_CALLBACK(preview_file_cb), preview_area);
 	g_signal_connect(dialog, "response", G_CALLBACK(open_file_cb), dialog);
@@ -1295,9 +1232,6 @@ static void layout_menu_open_collection_cb(GtkWidget *, gpointer)
 {
 	GtkFileChooserDialog *dialog;
 	GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
-	GtkWidget *dir_copy_move_button;
-	GtkWidget *dir_shortcuts_button;
-	GtkWidget *dir_sort_manager_button;
 
 	dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Geeqie - Open Collection"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_ACCEPT, nullptr));
 
@@ -1319,27 +1253,7 @@ static void layout_menu_open_collection_cb(GtkWidget *, gpointer)
 
 	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), preview_area);
 
-    GtkWidget *dir_button_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 5);
-
-	/* These are the additional bookmarks the user has set in the Shortcuts pane */
-	dir_shortcuts_button = gtk_button_new_from_icon_name(GQ_ICON_DIRECTORY, GTK_ICON_SIZE_BUTTON);
-	gq_gtk_box_pack_start(GTK_BOX(dir_button_box), dir_shortcuts_button, FALSE, FALSE, 5);
-	gtk_widget_set_tooltip_text(dir_shortcuts_button, _("Add Shortcuts folders"));
-	g_signal_connect(dir_shortcuts_button, "clicked", G_CALLBACK(dir_shortcuts_button_clicked_cb), dialog);
-
-	/* These are the additional bookmarks the user has set in the Copy/Move Geeqie dialog */
-	dir_copy_move_button = gtk_button_new_from_icon_name(GQ_ICON_DIRECTORY, GTK_ICON_SIZE_BUTTON);
-	gq_gtk_box_pack_start(GTK_BOX(dir_button_box), dir_copy_move_button, FALSE, FALSE, 5);
-	gtk_widget_set_tooltip_text(dir_copy_move_button, _("Add Copy/Move folders"));
-	g_signal_connect(dir_copy_move_button, "clicked", G_CALLBACK(dir_copy_move_button_clicked_cb), dialog);
-
-	/* These are the additional bookmarks the user has set in the Sort Manager sidebar */
-	dir_sort_manager_button = gtk_button_new_from_icon_name(GQ_ICON_DIRECTORY, GTK_ICON_SIZE_BUTTON);
-	gq_gtk_box_pack_start(GTK_BOX(dir_button_box), dir_sort_manager_button, FALSE, FALSE, 5);
-	gtk_widget_set_tooltip_text(dir_sort_manager_button, _("Add Sort Manager folders"));
-	g_signal_connect(dir_sort_manager_button, "clicked", G_CALLBACK(dir_sort_manager_button_clicked_cb), dialog);
-
-	gtk_file_chooser_set_extra_widget(GTK_FILE_CHOOSER(dialog), dir_button_box);
+	gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), get_collections_dir(), nullptr);
 
 	g_signal_connect(dialog, "selection-changed", G_CALLBACK(preview_file_cb), preview_area);
 	g_signal_connect(dialog, "response", G_CALLBACK(open_collection_cb), dialog);
