@@ -530,6 +530,47 @@ static void bar_sort_add_ok_cb(FileDialog *fd, gpointer data)
 	bar_sort_add_close(sd);
 }
 
+static void bar_sort_add_response_cb(GtkFileChooser *chooser, gint response_id, gpointer data)
+{
+	auto sd = static_cast<SortData *>(data);
+
+	if (response_id == GTK_RESPONSE_ACCEPT)
+		{
+		if (sd->mode == BAR_SORT_MODE_FOLDER)
+			{
+			GList *list = gtk_container_get_children(GTK_CONTAINER(gtk_file_chooser_get_extra_widget(chooser)));
+
+			GList *work = list;
+			g_autofree gchar *name = nullptr;
+
+			while (work)
+				{
+				if (GTK_IS_ENTRY(work->data))
+					{
+					name = g_strdup(gtk_entry_get_text(GTK_ENTRY(work->data)));
+					break;
+					}
+
+				work = work->next;
+				}
+
+			g_list_free(list);
+
+			g_autofree gchar *selected_directory = gtk_file_chooser_get_filename(chooser);
+
+			if (strlen(name) == 0)
+				{
+				name = g_strdup(filename_from_path(selected_directory));
+				}
+
+			bookmark_list_add(sd->bookmarks, name, selected_directory);
+			}
+		}
+
+	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
+	bar_sort_add_close(sd);
+}
+
 static void bar_sort_add_cancel_cb(FileDialog *, gpointer data)
 {
 	auto sd = static_cast<SortData *>(data);
@@ -551,40 +592,59 @@ static void bar_sort_add_cb(GtkWidget *button, gpointer data)
 
 	if (sd->mode == BAR_SORT_MODE_FOLDER)
 		{
-		title = _("Add Bookmark");
+		GtkFileChooserDialog *dialog;
+		GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER;
+
+		dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Add Bookmark - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("Add"), GTK_RESPONSE_ACCEPT, nullptr));
+
+		GtkWidget *name_widget_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
+
+		GtkWidget *name_label = gtk_label_new(_("Bookmark name (optional):"));
+		gq_gtk_box_pack_start(GTK_BOX(name_widget_box), name_label, FALSE, FALSE, 0);
+		gtk_widget_set_tooltip_text(name_label, _("If none given, the basename of the folder is used"));
+
+		GtkWidget *entry = gtk_entry_new();
+		gq_gtk_box_pack_start(GTK_BOX(name_widget_box), entry, FALSE, FALSE, 0);
+		gtk_widget_set_tooltip_text(entry, _("If none given, the basename of the folder is used"));
+
+		gtk_file_chooser_set_extra_widget(GTK_FILE_CHOOSER(dialog), name_widget_box);
+
+		g_signal_connect(dialog, "response", G_CALLBACK(bar_sort_add_response_cb), sd);
+
+		gq_gtk_widget_show_all(GTK_WIDGET(dialog));
 		}
 	else
 		{
 		title = _("Add Collection");
+
+		sd->dialog = file_util_file_dlg(title,
+		                                "add_bookmark", button,
+		                                bar_sort_add_cancel_cb, sd);
+		file_dialog_add_button(sd->dialog, GQ_ICON_OK, "OK", bar_sort_add_ok_cb, TRUE);
+
+		generic_dialog_add_message(GENERIC_DIALOG(sd->dialog), nullptr, title, nullptr, FALSE);
+
+		if (sd->mode == BAR_SORT_MODE_FOLDER)
+			{
+			file_dialog_add_path_widgets(sd->dialog, nullptr, nullptr, "add_bookmark", nullptr, nullptr);
+			}
+
+		hbox = pref_box_new(GENERIC_DIALOG(sd->dialog)->vbox, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
+
+		pref_label_new(hbox, _("Name:"));
+
+		sd->dialog_name_entry = gtk_entry_new();
+		gq_gtk_box_pack_start(GTK_BOX(hbox), sd->dialog_name_entry, TRUE, TRUE, 0);
+		generic_dialog_attach_default(GENERIC_DIALOG(sd->dialog), sd->dialog_name_entry);
+		gtk_widget_show(sd->dialog_name_entry);
+
+		if (sd->mode == BAR_SORT_MODE_COLLECTION)
+			{
+			gtk_widget_grab_focus(sd->dialog_name_entry);
+			}
+
+		gtk_widget_show(GENERIC_DIALOG(sd->dialog)->dialog);
 		}
-
-	sd->dialog = file_util_file_dlg(title,
-				       "add_bookmark", button,
-				       bar_sort_add_cancel_cb, sd);
-	file_dialog_add_button(sd->dialog, GQ_ICON_OK, "OK", bar_sort_add_ok_cb, TRUE);
-
-	generic_dialog_add_message(GENERIC_DIALOG(sd->dialog), nullptr, title, nullptr, FALSE);
-
-	if (sd->mode == BAR_SORT_MODE_FOLDER)
-		{
-		file_dialog_add_path_widgets(sd->dialog, nullptr, nullptr, "add_bookmark", nullptr, nullptr);
-		}
-
-	hbox = pref_box_new(GENERIC_DIALOG(sd->dialog)->vbox, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
-
-	pref_label_new(hbox, _("Name:"));
-
-	sd->dialog_name_entry = gtk_entry_new();
-	gq_gtk_box_pack_start(GTK_BOX(hbox), sd->dialog_name_entry, TRUE, TRUE, 0);
-	generic_dialog_attach_default(GENERIC_DIALOG(sd->dialog), sd->dialog_name_entry);
-	gtk_widget_show(sd->dialog_name_entry);
-
-	if (sd->mode == BAR_SORT_MODE_COLLECTION)
-		{
-		gtk_widget_grab_focus(sd->dialog_name_entry);
-		}
-
-	gtk_widget_show(GENERIC_DIALOG(sd->dialog)->dialog);
 }
 
 void bar_sort_close(GtkWidget *bar)
