@@ -121,6 +121,7 @@ void shortcuts_add_cb(GtkWidget *, gpointer data)
 	gtk_widget_set_tooltip_text(entry, _("If none given, the basename of the folder is used"));
 
 	gtk_file_chooser_set_extra_widget(GTK_FILE_CHOOSER(dialog), name_widget_box);
+	gtk_file_chooser_set_create_folders(GTK_FILE_CHOOSER(dialog), TRUE);
 
 	g_signal_connect(dialog, "response", G_CALLBACK(add_shortcut_cb), scd);
 
