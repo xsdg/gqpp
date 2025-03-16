@@ -1341,7 +1341,15 @@ CollectWindow *collection_window_new(const gchar *path)
 
 	collection_set_update_info_func(cw->cd, collection_window_update_info, cw);
 
-	if (path && *path == G_DIR_SEPARATOR) collection_load_begin(cw->cd, nullptr, COLLECTION_LOAD_NONE);
+	if (path && *path == G_DIR_SEPARATOR)
+		{
+		if (!collection_load_begin(cw->cd, nullptr, COLLECTION_LOAD_NONE))
+			{
+			collection_window_close(cw);
+
+			return nullptr;
+			}
+		}
 
 	return cw;
 }

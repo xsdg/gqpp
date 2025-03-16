@@ -347,7 +347,6 @@ static gboolean collection_load_private(CollectionData *cd, const gchar *path, C
 				                                         cd->path, filename);
 				warning_dialog(_("Cannot open Collection"), text, GQ_ICON_DIALOG_WARNING, nullptr);
 
-				collection_window_close_by_collection(cd);
 				success = FALSE;
 				break;
 				}
