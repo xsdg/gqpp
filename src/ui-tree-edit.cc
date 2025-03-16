@@ -27,6 +27,7 @@
 
 #include "compat-deprecated.h"
 #include "compat.h"
+#include "layout.h"
 #include "misc.h"
 #include "ui-misc.h"
 
@@ -230,6 +231,10 @@ gboolean tree_edit_by_path(GtkTreeView *tree, GtkTreePath *tpath, gint column, c
 	/* create the window */
 
 	ted->window = gtk_window_new(GTK_WINDOW_POPUP);
+
+LayoutWindow * lw = get_current_layout();
+	gtk_window_set_transient_for(GTK_WINDOW(ted->window), GTK_WINDOW(lw->window));
+
 	gtk_window_set_resizable(GTK_WINDOW(ted->window), FALSE);
 	g_signal_connect(G_OBJECT(ted->window), "button_press_event",
 			 G_CALLBACK(tree_edit_click_cb), ted);
