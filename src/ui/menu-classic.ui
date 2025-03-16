@@ -6,7 +6,6 @@
         <separator/>
         <menuitem action="NewCollection"/>
         <menuitem action="OpenCollection"/>
-        <menuitem action="OpenRecent"/>
         <placeholder name="OpenSection"/>
         <separator/>
         <menuitem action="Search"/>

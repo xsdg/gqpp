@@ -1171,7 +1171,7 @@ static void layout_menu_open_recent_file_cb(GtkAction *, gpointer)
 {
 	GtkWidget *dialog;
 
-	dialog = gtk_recent_chooser_dialog_new(_("Geeqie - Open Recent File"), nullptr, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_ACCEPT, nullptr);
+	dialog = gtk_recent_chooser_dialog_new(_("Open Recent File - Geeqie"), nullptr, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_ACCEPT, nullptr);
 
 	gtk_recent_chooser_set_show_tips(GTK_RECENT_CHOOSER(dialog), TRUE);
 	gtk_recent_chooser_set_show_icons(GTK_RECENT_CHOOSER(dialog), TRUE);
@@ -1233,14 +1233,14 @@ static void layout_menu_open_collection_cb(GtkWidget *, gpointer)
 	GtkFileChooserDialog *dialog;
 	GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
 
-	dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Geeqie - Open Collection"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_ACCEPT, nullptr));
+	dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Open Collection - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_ACCEPT, nullptr));
 
 	GtkWidget *preview_area = gtk_image_new();
 	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), preview_area);
 
 	GtkFileFilter *collection_filter = gtk_file_filter_new();
 	gtk_file_filter_set_name(collection_filter, _("Geeqie Collection files"));
-	gtk_file_filter_add_pattern(collection_filter, "*.gqv");
+	gtk_file_filter_add_pattern(collection_filter, "*" GQ_COLLECTION_EXT);
 	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), collection_filter);
 
 	GtkFileFilter *all_filter = gtk_file_filter_new();
@@ -1251,8 +1251,7 @@ static void layout_menu_open_collection_cb(GtkWidget *, gpointer)
 	gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(dialog), collection_filter);
 	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), get_collections_dir());
 
-	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), preview_area);
-
+	/* Add the default Collection dir to the dialog shortcuts box */
 	gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), get_collections_dir(), nullptr);
 
 	g_signal_connect(dialog, "selection-changed", G_CALLBACK(preview_file_cb), preview_area);
@@ -2187,103 +2186,11 @@ static void layout_color_menu_input_cb()
 }
 #endif
 
-
-/*
- *-----------------------------------------------------------------------------
- * recent menu
- *-----------------------------------------------------------------------------
- */
-
-static void layout_menu_recent_cb(GtkWidget *widget, gpointer)
-{
-	gint n;
-
-	n = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(widget), "recent_index"));
-
-	const auto *recent_path = static_cast<const gchar *>(g_list_nth_data(history_list_get_by_key("recent"), n));
-	if (!recent_path) return;
-
-	/* make a copy of it */
-	g_autofree gchar *path = g_strdup(recent_path);
-	collection_window_new(path);
-}
-
-static void layout_menu_collection_recent_update(LayoutWindow *lw)
-{
-	GtkWidget *menu;
-	GtkWidget *recent;
-	GtkWidget *item;
-	GList *list;
-	gint n;
-
-	if (!lw->ui_manager) return;
-
-	list = history_list_get_by_key("recent");
-	n = 0;
-
-	menu = gtk_menu_new();
-
-	while (list)
-		{
-		gchar *name;
-		gboolean free_name = FALSE;
-
-		g_autofree gchar *collection_dir = g_path_get_dirname(static_cast<gchar *>(list->data));
-
-		/* If the collection file is not in the default directory, include the full
-		 * path name in the display box */
-		if (g_strcmp0(collection_dir, get_collections_dir()) != 0)
-			{
-			name = g_strdup(static_cast<gchar *>(list->data));
-			free_name = TRUE;
-			}
-		else
-			{
-			const gchar *filename = filename_from_path(static_cast<gchar *>(list->data));
-
-			if (file_extension_match(filename, GQ_COLLECTION_EXT))
-				{
-				name = remove_extension_from_path(filename);
-				free_name = TRUE;
-				}
-			else
-				{
-				name = const_cast<gchar *>(filename);
-				}
-			}
-
-		item = menu_item_add_simple(menu, name, G_CALLBACK(layout_menu_recent_cb), lw);
-		if (free_name) g_free(name);
-		g_object_set_data(G_OBJECT(item), "recent_index", GINT_TO_POINTER(n));
-		list = list->next;
-		n++;
-		}
-
-	if (n == 0)
-		{
-		menu_item_add(menu, _("Empty"), nullptr, nullptr);
-		}
-
-	recent = gq_gtk_ui_manager_get_widget(lw->ui_manager, options->hamburger_menu ? "/MainMenu/OpenMenu/FileMenu/OpenRecent" : "/MainMenu/FileMenu/OpenRecent");
-	gtk_menu_item_set_submenu(GTK_MENU_ITEM(recent), menu);
-	gtk_widget_set_sensitive(recent, (n != 0));
-}
-
-void layout_recent_update_all()
-{
-	layout_window_foreach([](LayoutWindow *lw)
-	{
-		layout_menu_collection_recent_update(lw);
-	});
-}
-
 void layout_recent_add_path(const gchar *path)
 {
 	if (!path) return;
 
 	history_list_add_to_key("recent", path, options->open_recent_list_maxsize);
-
-	layout_recent_update_all();
 }
 
 /*
@@ -3978,7 +3885,6 @@ void layout_util_sync(LayoutWindow *lw)
 {
 	layout_util_sync_views(lw);
 	layout_util_sync_thumb(lw);
-	layout_menu_collection_recent_update(lw);
 }
 
 /**
