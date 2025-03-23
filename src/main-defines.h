@@ -54,6 +54,7 @@
 
 #define DEFAULT_MINIMAL_WINDOW_SIZE 100
 
+#define GQ_RESPONSE_NAME_CLICKED 1
 
 #define DEFAULT_OVERLAY_INFO	"%collection:<i>*</i>\\n%" \
 				"(%number%/%total%) [%zoom%] <b>%name%</b>\n" \

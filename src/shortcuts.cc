@@ -44,8 +44,8 @@ struct ShortcutsData
 	GtkWidget *bookmarks;
 	LayoutWindow *lw;
 
-	FileDialog *dialog;
-	GtkWidget *dialog_name_entry;
+	gchar *name;
+	GtkPopover *name_popover;
 
 	GtkWidget *add_button;
 };
@@ -69,34 +69,41 @@ void shortcuts_bookmark_select(const gchar *path, gpointer data)
 
 void shortcuts_add_close(ShortcutsData *scd)
 {
-	if (scd->dialog) file_dialog_close(scd->dialog);
-	scd->dialog_name_entry = nullptr;
-	scd->dialog = nullptr;
+	g_free(scd->name);
+}
+
+void name_entry_activate_cb(GtkEntry *entry, gpointer data)
+{
+	auto scd = static_cast<ShortcutsData *>(data);
+
+	g_free(scd->name);
+	scd->name = g_strdup(gtk_entry_get_text(entry));
+
+	gtk_popover_popdown(GTK_POPOVER(scd->name_popover));
 }
 
 void add_shortcut_cb(GtkFileChooser *chooser, gint response_id, gpointer data)
 {
+	auto scd = static_cast<ShortcutsData *>(data);
+
 	if (response_id == GTK_RESPONSE_ACCEPT)
 		{
-		GList *list = gtk_container_get_children(GTK_CONTAINER(gtk_file_chooser_get_extra_widget(chooser)));
+		gboolean empty_name = (scd->name == nullptr);
+		g_autofree gchar *selected_dir = gtk_file_chooser_get_filename(chooser);
 
-		GList *work = list;
-		while (work)
-			{
-			if (GTK_IS_ENTRY(work->data))
-				{
-				auto scd = static_cast<ShortcutsData *>(data);
+		bookmark_list_add(scd->bookmarks, empty_name ? filename_from_path(selected_dir) : scd->name, selected_dir);
 
-				const gchar *alias_name = gtk_entry_get_text(static_cast<GtkEntry *>(work->data));
+		g_free(scd->name);
+		scd->name = nullptr;
+		}
 
-				gboolean empty_name = (alias_name[0] == '\0');
-				g_autofree gchar *selected_dir = gtk_file_chooser_get_filename(chooser);
+	if (response_id == GQ_RESPONSE_NAME_CLICKED)
+		{
+		gtk_popover_popup(GTK_POPOVER(scd->name_popover));
+		gq_gtk_widget_show_all(GTK_WIDGET(scd->name_popover));
+		gtk_widget_grab_focus(GTK_WIDGET(scd->name_popover));
 
-				bookmark_list_add(scd->bookmarks, empty_name ? filename_from_path(selected_dir) : alias_name, selected_dir);
-				}
-			work = work->next;
-			}
-		g_list_free(list);
+		return;
 		}
 
 	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
@@ -108,19 +115,23 @@ void shortcuts_add_cb(GtkWidget *, gpointer data)
 	GtkFileChooserDialog *dialog;
 	GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER;
 
-	dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Add Shortcut - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("Add"), GTK_RESPONSE_ACCEPT, nullptr));
+	dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Add Shortcut - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("Add"), GTK_RESPONSE_ACCEPT, _("Name"), GQ_RESPONSE_NAME_CLICKED, nullptr));
 
-	GtkWidget *name_widget_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
+	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), layout_get_path(get_current_layout()));
+	gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), layout_get_path(get_current_layout()), nullptr);
 
-	GtkWidget *name_label = gtk_label_new(_("Shortcut name (optional):"));
-	gq_gtk_box_pack_start(GTK_BOX(name_widget_box), name_label, FALSE, FALSE, 0);
-	gtk_widget_set_tooltip_text(name_label, _("If none given, the basename of the folder is used"));
+	gtk_widget_set_tooltip_text(gtk_dialog_get_widget_for_response(GTK_DIALOG(dialog), GQ_RESPONSE_NAME_CLICKED), _("Optional alias name for the shortcut.\nThis may be amended or added from the Shortcuts pane.\nIf none given, the basename of the folder is usedddd"));
 
 	GtkWidget *entry = gtk_entry_new();
-	gq_gtk_box_pack_start(GTK_BOX(name_widget_box), entry, FALSE, FALSE, 0);
-	gtk_widget_set_tooltip_text(entry, _("If none given, the basename of the folder is used"));
+	GtkWidget *name_popover = gtk_popover_new(GTK_WIDGET(gtk_dialog_get_widget_for_response(GTK_DIALOG(dialog), GQ_RESPONSE_NAME_CLICKED)));
+	scd->name_popover = GTK_POPOVER(name_popover);
 
-	gtk_file_chooser_set_extra_widget(GTK_FILE_CHOOSER(dialog), name_widget_box);
+	g_signal_connect(GTK_ENTRY(entry), "activate", G_CALLBACK(name_entry_activate_cb), scd);
+
+	gtk_popover_set_position(GTK_POPOVER(name_popover), GTK_POS_BOTTOM);
+	gq_gtk_container_add(GTK_WIDGET(name_popover), entry);
+	gtk_container_set_border_width(GTK_CONTAINER(name_popover), 6);
+
 	gtk_file_chooser_set_create_folders(GTK_FILE_CHOOSER(dialog), TRUE);
 
 	g_signal_connect(dialog, "response", G_CALLBACK(add_shortcut_cb), scd);
