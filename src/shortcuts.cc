@@ -89,7 +89,9 @@ void add_shortcut_cb(GtkFileChooser *chooser, gint response_id, gpointer data)
 	if (response_id == GTK_RESPONSE_ACCEPT)
 		{
 		gboolean empty_name = (scd->name == nullptr);
-		g_autofree gchar *selected_dir = gtk_file_chooser_get_filename(chooser);
+
+		g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
+		g_autofree gchar *selected_dir = g_file_get_path(file);
 
 		bookmark_list_add(scd->bookmarks, empty_name ? filename_from_path(selected_dir) : scd->name, selected_dir);
 

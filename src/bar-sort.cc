@@ -558,7 +558,8 @@ static void bar_sort_add_response_cb(GtkFileChooser *chooser, gint response_id, 
 
 			g_list_free(list);
 
-			g_autofree gchar *selected_directory = gtk_file_chooser_get_filename(chooser);
+			g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
+			g_autofree gchar *selected_directory = g_file_get_path(file);
 
 			if (strlen(name) == 0)
 				{

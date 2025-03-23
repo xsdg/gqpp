@@ -89,7 +89,8 @@ static void collection_save_cb(GtkFileChooser *chooser, gint response_id, gpoint
 
 	if (response_id == GTK_RESPONSE_ACCEPT)
 		{
-		g_autofree gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(chooser));
+		g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
+		g_autofree gchar *filename = g_file_get_path(file);
 
 		cd->collection_path = g_strdup(filename);
 		collection_save_confirmed((GenericDialog *)(chooser), FALSE, cd);
@@ -104,7 +105,8 @@ static void append_collection_cb(GtkFileChooser *chooser, gint response_id, gpoi
 
 	if (response_id == GTK_RESPONSE_ACCEPT)
 		{
-		g_autofree gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(chooser));
+		g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
+		g_autofree gchar *filename = g_file_get_path(file);
 
 		if (!collection_load(cd, filename, COLLECTION_LOAD_APPEND))
 			{
@@ -120,7 +122,8 @@ static void append_collection_cb(GtkFileChooser *chooser, gint response_id, gpoi
 static void preview_file_cb(GtkFileChooser *chooser, gpointer data)
 {
 	GtkImage *image_widget = GTK_IMAGE(data);
-	g_autofree gchar *file_name = gtk_file_chooser_get_filename(chooser);
+	g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
+	g_autofree gchar *file_name = g_file_get_path(file);
 
 	if (file_name)
 		{

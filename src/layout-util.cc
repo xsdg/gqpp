@@ -1050,7 +1050,8 @@ static void open_file_cb(GtkFileChooser *chooser, gint response_id, gpointer)
 {
 	if (response_id == GTK_RESPONSE_ACCEPT)
 		{
-		g_autofree gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(chooser));
+		g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
+		g_autofree gchar *filename = g_file_get_path(file);
 
 		layout_set_path(get_current_layout(), filename);
 		}
@@ -1074,7 +1075,8 @@ static void open_recent_file_cb(GtkFileChooser *chooser, gint response_id, gpoin
 static void preview_file_cb(GtkFileChooser *chooser, gpointer data)
 {
 	GtkImage *image_widget = GTK_IMAGE(data);
-	g_autofree gchar *file_name = gtk_file_chooser_get_filename(chooser);
+	g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
+	g_autofree gchar *file_name = g_file_get_path(file);
 
 	if (file_name)
 		{
@@ -1217,7 +1219,8 @@ static void open_collection_cb(GtkFileChooser *chooser, gint response_id, gpoint
 {
 	if (response_id == GTK_RESPONSE_ACCEPT)
 		{
-		g_autofree gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(chooser));
+		g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
+		g_autofree gchar *filename = g_file_get_path(file);
 
 		if (file_extension_match(filename, GQ_COLLECTION_EXT))
 			{
