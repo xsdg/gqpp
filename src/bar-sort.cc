@@ -595,10 +595,10 @@ static void bar_sort_add_cb(GtkWidget *button, gpointer data)
 
 	if (sd->mode == BAR_SORT_MODE_FOLDER)
 		{
-		GtkFileChooserDialog *dialog;
+		GtkWidget *dialog;
 		GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER;
 
-		dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Add Bookmark - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("Add"), GTK_RESPONSE_ACCEPT, nullptr));
+		dialog = gtk_file_chooser_dialog_new(_("Add Bookmark - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("Add"), GTK_RESPONSE_ACCEPT, nullptr);
 
 		GtkWidget *name_widget_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
 

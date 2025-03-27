@@ -1121,10 +1121,10 @@ static void preview_file_cb(GtkFileChooser *chooser, gpointer data)
 
 static void layout_menu_open_file_cb(GtkAction *, gpointer)
 {
-	GtkFileChooserDialog *dialog;
+	GtkWidget *dialog;
 	GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
 
-	dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Geeqie - Open File"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_ACCEPT, nullptr));
+	dialog = gtk_file_chooser_dialog_new(_("Geeqie - Open File"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_ACCEPT, nullptr);
 
 	GtkWidget *preview_area = gtk_image_new();
 	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), preview_area);
@@ -1233,10 +1233,10 @@ static void open_collection_cb(GtkFileChooser *chooser, gint response_id, gpoint
 
 static void layout_menu_open_collection_cb(GtkWidget *, gpointer)
 {
-	GtkFileChooserDialog *dialog;
+	GtkWidget *dialog;
 	GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
 
-	dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Open Collection - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_ACCEPT, nullptr));
+	dialog = gtk_file_chooser_dialog_new(_("Open Collection - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_ACCEPT, nullptr);
 
 	GtkWidget *preview_area = gtk_image_new();
 	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), preview_area);

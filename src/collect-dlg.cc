@@ -168,7 +168,7 @@ static void preview_file_cb(GtkFileChooser *chooser, gpointer data)
 
 static void collection_save_or_append_dialog(gint type, CollectionData *cd)
 {
-	GtkFileChooserDialog *dialog;
+	GtkWidget *dialog;
 
 	if (!cd) return;
 	collection_ref(cd);
@@ -177,7 +177,7 @@ static void collection_save_or_append_dialog(gint type, CollectionData *cd)
 		{
 		GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_SAVE;
 
-		dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Save Collection As - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Save"), GTK_RESPONSE_ACCEPT, nullptr));
+		dialog = gtk_file_chooser_dialog_new(_("Save Collection As - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Save"), GTK_RESPONSE_ACCEPT, nullptr);
 
 		gtk_file_chooser_set_do_overwrite_confirmation(GTK_FILE_CHOOSER(dialog), TRUE);
 		gtk_file_chooser_set_current_name(GTK_FILE_CHOOSER(dialog), _("Untitled.gqv"));
@@ -188,7 +188,7 @@ static void collection_save_or_append_dialog(gint type, CollectionData *cd)
 		{
 		GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
 
-		dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Append Collection - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Append"), GTK_RESPONSE_ACCEPT, nullptr));
+		dialog = gtk_file_chooser_dialog_new(_("Append Collection - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Append"), GTK_RESPONSE_ACCEPT, nullptr);
 
 		g_signal_connect(dialog, "response", G_CALLBACK(append_collection_cb), cd);
 		}

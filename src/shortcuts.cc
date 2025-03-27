@@ -107,10 +107,10 @@ void add_shortcut_cb(GtkFileChooser *chooser, gint response_id, gpointer data)
 void shortcuts_add_cb(GtkWidget *, gpointer data)
 {
 	auto scd = static_cast<ShortcutsData *>(data);
-	GtkFileChooserDialog *dialog;
+	GtkWidget *dialog;
 	GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER;
 
-	dialog = GTK_FILE_CHOOSER_DIALOG(gtk_file_chooser_dialog_new(_("Add Shortcut - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("Add"), GTK_RESPONSE_ACCEPT, _("Name"), GQ_RESPONSE_NAME_CLICKED, nullptr));
+	dialog = gtk_file_chooser_dialog_new(_("Add Shortcut - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("Add"), GTK_RESPONSE_ACCEPT, _("Name"), GQ_RESPONSE_NAME_CLICKED, nullptr);
 
 	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), layout_get_path(get_current_layout()));
 	gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), layout_get_path(get_current_layout()), nullptr);
