@@ -3153,7 +3153,6 @@ void create_toolbars(LayoutWindow *lw)
 	for (i = 0; i < TOOLBAR_COUNT; i++)
 		{
 		layout_actions_toolbar(lw, static_cast<ToolbarType>(i));
-		layout_toolbar_clear(lw, static_cast<ToolbarType>(i));
 		layout_toolbar_add_default(lw, static_cast<ToolbarType>(i));
 		}
 }
@@ -3538,6 +3537,11 @@ void layout_toolbar_add(LayoutWindow *lw, ToolbarType type, const gchar *action_
 void layout_toolbar_add_default(LayoutWindow *lw, ToolbarType type)
 {
 	if (type >= TOOLBAR_COUNT) return;
+
+	if (layout_window_count() > 0)
+		{
+		return;
+		}
 
 	LayoutWindow *lw_first = layout_window_first();
 	if (lw_first && lw_first->toolbar_actions[type])
