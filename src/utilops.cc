@@ -3059,7 +3059,18 @@ void file_util_delete_dir(FileData *fd, GtkWidget *parent)
 
 void file_util_create_dir(const gchar *path, GtkWidget *parent, FileUtilDoneFunc done_func, gpointer done_data)
 {
-	GtkWidget *dialog = gtk_file_chooser_dialog_new(_("Create Folder"), GTK_WINDOW(parent), GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER, _("Cancel"), GTK_RESPONSE_CANCEL, _("Close"), GTK_RESPONSE_ACCEPT, nullptr);
+	GtkWidget *parent_window;
+
+	if (G_TYPE_CHECK_INSTANCE_TYPE(parent, GTK_TYPE_WINDOW))
+		{
+		parent_window = parent;
+		}
+	else
+		{
+		parent_window = gtk_widget_get_toplevel(parent);
+		}
+
+	GtkWidget *dialog = gtk_file_chooser_dialog_new(_("Create Folder"), GTK_WINDOW(parent_window), GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER, _("Cancel"), GTK_RESPONSE_CANCEL, _("Close"), GTK_RESPONSE_ACCEPT, nullptr);
 
 	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), path);
 
