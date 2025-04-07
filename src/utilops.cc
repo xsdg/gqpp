@@ -2893,43 +2893,6 @@ static void file_util_rename_dir_full(FileData *fd, const gchar *new_path, GtkWi
 	file_util_dialog_run(ud);
 }
 
-static void file_util_create_dir_full(const gchar *path, const gchar *dest_path, GtkWidget *parent, UtilityPhase phase, FileUtilDoneFunc done_func, gpointer done_data)
-{
-	UtilityData *ud;
-
-	ud = file_util_data_new(UTILITY_TYPE_CREATE_FOLDER);
-
-	ud->phase = phase;
-	ud->with_sidecars = TRUE;
-
-	ud->dir_fd = nullptr;
-	ud->flist = nullptr;
-	ud->content_list = nullptr;
-	ud->parent = parent;
-
-	if (dest_path)
-		{
-		g_assert_not_reached(); // not used in current design
-		ud->dest_path = g_strdup(dest_path);
-		}
-	else
-		{
-		g_autofree gchar *buf = g_build_filename(path, _("New folder"), nullptr);
-		ud->dest_path = unique_filename(buf, nullptr, " ", FALSE);
-		}
-
-	ud->done_func = done_func;
-	ud->done_data = done_data;
-
-	ud->messages.title = _("Create Folder");
-	ud->messages.question = _("Create folder?");
-	ud->messages.desc_flist = "";
-	ud->messages.desc_source_fd = "";
-	ud->messages.fail = _("Can't create folder");
-
-	file_util_dialog_run(ud);
-}
-
 static gboolean file_util_write_metadata_first_after_done(gpointer data)
 {
 	auto dd = static_cast<UtilityDelayData *>(data);
@@ -3096,7 +3059,24 @@ void file_util_delete_dir(FileData *fd, GtkWidget *parent)
 
 void file_util_create_dir(const gchar *path, GtkWidget *parent, FileUtilDoneFunc done_func, gpointer done_data)
 {
-	file_util_create_dir_full(path, nullptr, parent, UTILITY_PHASE_START, done_func, done_data);
+	GtkWidget *dialog = gtk_file_chooser_dialog_new(_("Create Folder"), GTK_WINDOW(parent), GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER, _("Cancel"), GTK_RESPONSE_CANCEL, _("Close"), GTK_RESPONSE_ACCEPT, nullptr);
+
+	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), path);
+
+	if (gtk_dialog_run(GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
+		{
+#if HAVE_GTK4
+		g_autoptr(GFile) folder = gtk_file_chooser_get_current_folder(GTK_FILE_CHOOSER(dialog));
+		g_autofree gchar *current_folder = g_file_get_path(folder);
+#else
+		g_autofree gchar *current_folder = gtk_file_chooser_get_current_folder(GTK_FILE_CHOOSER(dialog));
+#endif
+		if (g_file_test(current_folder, G_FILE_TEST_IS_DIR))
+			{
+			done_func(TRUE, current_folder, done_data);
+			}
+		}
+	gq_gtk_widget_destroy(dialog);
 }
 
 void file_util_rename_dir(FileData *source_fd, const gchar *new_path, GtkWidget *parent, FileUtilDoneFunc done_func, gpointer done_data)
