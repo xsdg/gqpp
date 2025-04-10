@@ -1468,7 +1468,7 @@ static gboolean dupe_match(DupeItem *a, DupeItem *b, DupeMatchType mask, gdouble
 			return FALSE;
 			}
 		return FALSE;
-		
+
 		}
 	if (mask & DUPE_MATCH_SIZE)
 		{
@@ -2914,6 +2914,34 @@ void dupe_window_add_files(DupeWindow *dw, GList *list, gboolean recurse)
 		dw->add_files_queue_id = g_idle_add(dupe_files_add_queue_cb, dw);
 		gtk_widget_set_sensitive(dw->controls_box, FALSE);
 		}
+}
+
+void dupe_window_add_folder(const gchar *path)
+{
+	DupeWindow *dw = dupe_window_new();
+	FileData *fd = file_data_new_simple(path);
+	g_autoptr(GList) list = nullptr;
+	list = g_list_append(list, fd);
+
+	dupe_window_add_files(dw, list, FALSE);
+
+	dupe_check_start(dw);
+
+	file_data_unref(fd);
+}
+
+void dupe_window_add_folder_recurse(const gchar *path)
+{
+	DupeWindow *dw = dupe_window_new();
+	FileData *fd = file_data_new_simple(path);
+	g_autoptr(GList) list = nullptr;
+	list = g_list_append(list, fd);
+
+	dupe_window_add_files(dw, list, TRUE);
+
+	dupe_check_start(dw);
+
+	file_data_unref(fd);
 }
 
 static void dupe_item_update(DupeWindow *dw, DupeItem *di)

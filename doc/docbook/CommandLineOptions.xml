@@ -7,8 +7,8 @@
 <refmeta>
 <refentrytitle>GEEQIE</refentrytitle>
 <manvolnum>1</manvolnum>
-<refmiscinfo class='source'>January 2025</refmiscinfo>
-<refmiscinfo class='manual'>Geeqie 2.5+git20250101-2ec35a8e GTK3</refmiscinfo>
+<refmiscinfo class='source'>April 2025</refmiscinfo>
+<refmiscinfo class='manual'>Geeqie 2.5+git20250407-604c9658 GTK3</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>Geeqie</refname>
@@ -28,7 +28,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
 
 <para>Geeqie is an image viewer.</para>
 
-<para>Version: Geeqie 2.5+git20250101-2ec35a8e</para>
+<para>Version: Geeqie 2.5+git20250407-604c9658</para>
 </refsect2>
 
 <refsect2 id='help_options'><title>Help Options:</title>
@@ -144,6 +144,18 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   <term><emphasis role='strong' remap='B'>-d</emphasis>, <emphasis role='strong' remap='B'>--delay=</emphasis>&lt;[H:][M:][N][.M]&gt;</term>
   <listitem>
 <para>set slide show delay to Hrs Mins N.M seconds,</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term><emphasis role='strong' remap='B'>--dupes=</emphasis>&lt;FOLDER&gt;</term>
+  <listitem>
+<para>find duplicates in folder</para>
+  </listitem>
+  </varlistentry>
+  <varlistentry>
+  <term><emphasis role='strong' remap='B'>--dupes-recurse=</emphasis>&lt;FOLDER&gt;</term>
+  <listitem>
+<para>find duplicates in folder recursively</para>
   </listitem>
   </varlistentry>
   <varlistentry>

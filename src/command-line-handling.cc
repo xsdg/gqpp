@@ -28,6 +28,7 @@
 #include "collect.h"
 #include "compat-deprecated.h"
 #include "compat.h"
+#include "dupe.h"
 #include "exif.h"
 #include "filedata.h"
 #include "filefilter.h"
@@ -434,6 +435,42 @@ void file_load_no_raise(const gchar *text, GApplicationCommandLine *app_command_
 		/* shoould not happen */
 		g_application_command_line_print(app_command_line, "File " BOLD_ON "%s" BOLD_OFF " does not exist\n",  filename);
 		}
+}
+
+void gq_dupes(GtkApplication *app, GApplicationCommandLine *app_command_line, GVariantDict *command_line_options_dict, GList *)
+{
+	const gchar *path;
+	g_variant_dict_lookup(command_line_options_dict, "dupes", "&s", &path);
+
+	g_autofree gchar *folder_path = expand_tilde(path);
+	if (!isdir(folder_path))
+		{
+		g_autofree gchar *notification_message = g_strdup_printf("\"%s\"%s", folder_path, _(" is not a folder"));
+		cache_maintenance_notification(app, notification_message, FALSE);
+		g_application_command_line_print(app_command_line, "%s\n", notification_message);
+
+		exit(EXIT_FAILURE);
+		}
+
+	dupe_window_add_folder(folder_path);
+}
+
+void gq_dupes_recurse(GtkApplication *app, GApplicationCommandLine *app_command_line, GVariantDict *command_line_options_dict, GList *)
+{
+	const gchar *path;
+	g_variant_dict_lookup(command_line_options_dict, "dupes-recurse", "&s", &path);
+
+	g_autofree gchar *folder_path = expand_tilde(path);
+	if (!isdir(folder_path))
+		{
+		g_autofree gchar *notification_message = g_strdup_printf("\"%s\"%s", folder_path, _(" is not a folder"));
+		cache_maintenance_notification(app, notification_message, FALSE);
+		g_application_command_line_print(app_command_line, "%s\n", notification_message);
+
+		exit(EXIT_FAILURE);
+		}
+
+	dupe_window_add_folder_recurse(folder_path);
 }
 
 void gq_file(GtkApplication *, GApplicationCommandLine *app_command_line, GVariantDict *command_line_options_dict, GList *)
@@ -1411,6 +1448,8 @@ CommandLineOptionEntry command_line_options[] =
 #endif
 	{ "delay",                       gq_delay,                       PRIMARY_REMOTE, GUI  },
 	{ "file",                        gq_file,                        PRIMARY_REMOTE, GUI  },
+	{ "dupes",                       gq_dupes,                       PRIMARY_REMOTE, GUI  },
+	{ "dupes-recurse",               gq_dupes_recurse,               PRIMARY_REMOTE, GUI  },
 	{ "File",                        gq_File,                        PRIMARY_REMOTE, GUI  },
 	{ "file-extensions",             gq_file_extensions,             PRIMARY_REMOTE, TEXT },
 	{ "first",                       gq_first,                       PRIMARY_REMOTE, GUI  },

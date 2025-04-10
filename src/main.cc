@@ -150,6 +150,8 @@ GOptionEntry command_line_options[] =
 	{ "debug"                     ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_INT   , nullptr, _("turn on debug output")                                                        , "[level]" },
 #endif
 	{ "delay"                     , 'd', G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("set slide show delay to Hrs Mins N.M seconds,")                               , "<[H:][M:][N][.M]>" },
+	{ "dupes"                     ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("find duplicates in folder")                                                   , "<FOLDER>" },
+	{ "dupes-recurse"             ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("find duplicates in folder recursively")                                       , "<FOLDER>" },
 	{ "file"                      ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("open FILE or URL bring Geeqie window to the top")                             , "<FILE>|<URL>" },
 	{ "File"                      ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("open FILE or URL do not bring Geeqie window to the top")                      , "<FILE>|<URL>" },
 	{ "file-extensions"           ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_NONE  , nullptr, _("list known file extensions")                                                  , nullptr },
