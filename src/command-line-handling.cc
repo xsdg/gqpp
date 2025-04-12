@@ -455,6 +455,15 @@ void gq_dupes(GtkApplication *app, GApplicationCommandLine *app_command_line, GV
 	dupe_window_add_folder(folder_path);
 }
 
+void gq_dupes_export(GtkApplication *, GApplicationCommandLine *app_command_line, GVariantDict *, GList *)
+{
+	g_autoptr(GString) output_string = g_string_new(nullptr);
+
+	export_duplicates_data_command_line(output_string);
+
+	g_application_command_line_print(app_command_line, "%s\n", output_string->str);
+}
+
 void gq_dupes_recurse(GtkApplication *app, GApplicationCommandLine *app_command_line, GVariantDict *command_line_options_dict, GList *)
 {
 	const gchar *path;
@@ -1449,6 +1458,7 @@ CommandLineOptionEntry command_line_options[] =
 	{ "delay",                       gq_delay,                       PRIMARY_REMOTE, GUI  },
 	{ "file",                        gq_file,                        PRIMARY_REMOTE, GUI  },
 	{ "dupes",                       gq_dupes,                       PRIMARY_REMOTE, GUI  },
+	{ "dupes-export",                gq_dupes_export,                PRIMARY_REMOTE, TEXT },
 	{ "dupes-recurse",               gq_dupes_recurse,               PRIMARY_REMOTE, GUI  },
 	{ "File",                        gq_File,                        PRIMARY_REMOTE, GUI  },
 	{ "file-extensions",             gq_file_extensions,             PRIMARY_REMOTE, TEXT },
