@@ -113,11 +113,9 @@ GtkWidget *window_new(const gchar *role, const gchar *icon, const gchar *icon_fi
 	g_autofree gchar *title = nullptr;
 	GtkWidget *window;
 
-#if HAVE_GTK4
-	window = gtk_window_new();
-#else
-	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-#endif
+	GApplication *app = g_application_get_default();
+	window = gtk_application_window_new(GTK_APPLICATION(app));
+
 	if (!window) return nullptr;
 
 	if (subtitle)
