@@ -5125,7 +5125,6 @@ static void export_duplicates_data(DupeWindow *dw, const gchar *sep, GString *ou
 	output_string = g_string_append_c(output_string, '\n');
 
 	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(dw->listview));
-	gtk_tree_selection_select_all(selection);
 	slist = gtk_tree_selection_get_selected_rows(selection, &store);
 	work = slist;
 
@@ -5246,6 +5245,9 @@ void export_duplicates_data_command_line(GString *output_string)
 			}
 		else
 			{
+			GtkTreeSelection *selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(dw->listview));
+			gtk_tree_selection_select_all(selection);
+
 			export_duplicates_data(dw, "\t", output_string);
 			}
 		}
