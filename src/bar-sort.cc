@@ -63,7 +63,6 @@ struct SortData
 	gchar *name;
 	GtkPopover *name_popover;
 
-	FileDialog *dialog;
 	GtkWidget *dialog_name_entry;
 
 	SortModeType mode;
@@ -90,8 +89,6 @@ struct SortData
 
 
 static void bar_sort_undo_set(SortData *sd, GList *src_list, const gchar *dest);
-static void bar_sort_add_close(SortData *sd);
-
 
 static void bar_sort_collection_list_build(GtkWidget *bookmarks)
 {
@@ -157,8 +154,6 @@ static void bar_sort_mode_sync(SortData *sd, SortModeType mode)
 		bar_sort_collection_list_build(sd->bookmarks);
 		}
 
-	bar_sort_add_close(sd);
-
 	bar_sort_undo_set(sd, nullptr, nullptr);
 }
 
@@ -173,7 +168,7 @@ static void bar_sort_mode_cb(GtkWidget *combo, gpointer data)
 		}
 	else
 		{
-		gtk_widget_set_tooltip_text(sd->add_button, _("Create new Collection in default folder"));
+		gtk_widget_set_tooltip_text(sd->add_button, _("Create new Collection file"));
 		bar_sort_mode_sync(sd, BAR_SORT_MODE_COLLECTION);
 		}
 }
@@ -472,69 +467,6 @@ static void bar_sort_set_selection_selected_cb(GtkWidget *button, gpointer data)
 	bar_sort_set_selection(sd, BAR_SORT_SELECTION_SELECTED);
 }
 
-static void bar_sort_add_close(SortData *sd)
-{
-	if (sd->dialog) file_dialog_close(sd->dialog);
-	sd->dialog_name_entry = nullptr;
-	sd->dialog = nullptr;
-}
-
-static void bar_sort_add_ok_cb(FileDialog *fd, gpointer data)
-{
-	auto sd = static_cast<SortData *>(data);
-	const gchar *name = gq_gtk_entry_get_text(GTK_ENTRY(sd->dialog_name_entry));
-	gboolean empty_name = (name[0] == '\0');
-
-	name = gq_gtk_entry_get_text(GTK_ENTRY(sd->dialog_name_entry));
-	if (sd->mode == BAR_SORT_MODE_FOLDER)
-		{
-		if (empty_name)
-			{
-			name = filename_from_path(fd->dest_path);
-			}
-
-		bookmark_list_add(sd->bookmarks, name, fd->dest_path);
-		}
-	else
-		{
-		if (empty_name) return;
-
-		g_autoptr(GString) filename = g_string_new(name);
-
-		const gboolean has_extension = file_extension_match(name, GQ_COLLECTION_EXT);
-		if (!has_extension)
-			{
-			filename = g_string_append(filename, GQ_COLLECTION_EXT);
-			}
-
-		g_autofree gchar *path = g_build_filename(get_collections_dir(), filename->str, NULL);
-		if (isfile(path))
-			{
-			g_autofree gchar *text = g_strdup_printf(_("The collection:\n%s\nalready exists."), filename->str);
-			file_util_warning_dialog(_("Collection exists"), text, GQ_ICON_DIALOG_INFO, nullptr);
-			}
-		else
-			{
-			CollectionData *cd;
-
-			cd = collection_new(path);
-			if (collection_save(cd, path))
-				{
-				bar_sort_collection_list_build(sd->bookmarks);
-				}
-			else
-				{
-				g_autofree gchar *text = g_strdup_printf(_("Failed to save the collection:\n%s"), path);
-				file_util_warning_dialog(_("Save Failed"), text,
-							 GQ_ICON_DIALOG_ERROR, GENERIC_DIALOG(fd)->dialog);
-				}
-			collection_unref(cd);
-			}
-		}
-
-	bar_sort_add_close(sd);
-}
-
 static void bar_sort_add_response_cb(GtkFileChooser *chooser, gint response_id, gpointer data)
 {
 	auto sd = static_cast<SortData *>(data);
@@ -565,14 +497,6 @@ static void bar_sort_add_response_cb(GtkFileChooser *chooser, gint response_id, 
 		}
 
 	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
-	bar_sort_add_close(sd);
-}
-
-static void bar_sort_add_cancel_cb(FileDialog *, gpointer data)
-{
-	auto sd = static_cast<SortData *>(data);
-
-	bar_sort_add_close(sd);
 }
 
 static void name_entry_activate_cb(GtkEntry *entry, gpointer data)
@@ -585,17 +509,82 @@ static void name_entry_activate_cb(GtkEntry *entry, gpointer data)
 	gtk_popover_popdown(GTK_POPOVER(sd->name_popover));
 }
 
-static void bar_sort_add_cb(GtkWidget *button, gpointer data)
+static void new_collection_file_save_failed_cb(GtkDialog *dialog, gint, gpointer)
+{
+	gq_gtk_widget_destroy(GTK_WIDGET(dialog));
+}
+
+static gboolean save_new_collection(GtkFileChooser *chooser, gpointer data)
 {
 	auto sd = static_cast<SortData *>(data);
-	GtkWidget *hbox;
-	const gchar *title;
+	CollectionData *cd;
+	gboolean ret;
 
-	if (sd->dialog)
+	g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
+	g_autofree gchar *path = g_file_get_path(file);
+
+	cd = collection_new(path);
+	if (collection_save(cd, path))
 		{
-		gtk_window_present(GTK_WINDOW(GENERIC_DIALOG(sd->dialog)->dialog));
-		return;
+		bar_sort_collection_list_build(sd->bookmarks);
+		ret = TRUE;
 		}
+	else
+		{
+		GtkWidget *new_collection_file_save_failed = gtk_message_dialog_new_with_markup(GTK_WINDOW(chooser), GTK_DIALOG_MODAL, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("<b>File save failed.</b>\n\nFile \"%s\" was not saved."), path);
+		gtk_window_set_modal(GTK_WINDOW(new_collection_file_save_failed), TRUE);
+
+		g_signal_connect(new_collection_file_save_failed, "response", G_CALLBACK(new_collection_file_save_failed_cb), nullptr);
+
+		gtk_widget_show(new_collection_file_save_failed);
+
+		ret = FALSE;
+		}
+
+	collection_unref(cd);
+
+	return ret;
+}
+
+static void collection_exists_response_cb(GtkDialog *dialog, gint, gpointer)
+{
+	gq_gtk_widget_destroy(GTK_WIDGET(dialog));
+}
+
+static void new_collection_file_response_cb(GtkFileChooser *chooser, gint response_id, gpointer data)
+{
+	auto sd = static_cast<SortData *>(data);
+
+	if (response_id == GTK_RESPONSE_ACCEPT)
+		{
+		g_autofree gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(chooser));
+
+		if (g_file_test(filename, G_FILE_TEST_EXISTS))
+			{
+			GtkWidget *collection_exists = gtk_message_dialog_new(GTK_WINDOW(chooser), GTK_DIALOG_MODAL, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("File \"%s\" already exists."), filename);
+			gtk_window_set_modal(GTK_WINDOW(collection_exists), TRUE);
+
+			g_signal_connect(collection_exists, "response", G_CALLBACK(collection_exists_response_cb), nullptr);
+
+			gtk_widget_show(collection_exists);
+			}
+		else
+			{
+			if (save_new_collection(chooser, sd))
+				{
+				gq_gtk_widget_destroy(GTK_WIDGET(chooser));
+				}
+			}
+		}
+	else
+		{
+		gq_gtk_widget_destroy(GTK_WIDGET(chooser));
+		}
+}
+
+static void bar_sort_add_cb(GtkWidget *, gpointer data)
+{
+	auto sd = static_cast<SortData *>(data);
 
 	if (sd->mode == BAR_SORT_MODE_FOLDER)
 		{
@@ -624,25 +613,33 @@ static void bar_sort_add_cb(GtkWidget *button, gpointer data)
 		}
 	else
 		{
-		title = _("Create Collection");
+		GtkWidget *dialog = gtk_file_chooser_dialog_new(_("Create empty Collection file"), GTK_WINDOW(sd->lw->window), GTK_FILE_CHOOSER_ACTION_SAVE, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Save"), GTK_RESPONSE_ACCEPT, nullptr);
 
-		sd->dialog = file_util_file_dlg(title, "create_collection", button, bar_sort_add_cancel_cb, sd);
-		file_dialog_add_button(sd->dialog, GQ_ICON_OK, "OK", bar_sort_add_ok_cb, TRUE);
+		GtkFileFilter *all_filter = gtk_file_filter_new();
+		gtk_file_filter_set_name(all_filter, _("All files"));
+		gtk_file_filter_add_pattern(all_filter, "*");
+		gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), all_filter);
 
-		generic_dialog_add_message(GENERIC_DIALOG(sd->dialog), nullptr, title, nullptr, FALSE);
+		GtkFileFilter *collections_filter = gtk_file_filter_new();
+		gtk_file_filter_set_name(collections_filter, _("Collections files"));
+		gtk_file_filter_add_pattern(collections_filter, "*.gqv");
+		gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), collections_filter);
 
-		hbox = pref_box_new(GENERIC_DIALOG(sd->dialog)->vbox, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_GAP);
+		gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(dialog), collections_filter);
 
-		pref_label_new(hbox, _("Name:"));
+#if HAVE_GTK4
+		g_autoptr(GFile) path = g_file_new_for_path(get_collections_dir(), nullptr);
+		gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), path, nullptr);
+#else
+		gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), get_collections_dir(), nullptr);
+#endif
 
-		sd->dialog_name_entry = gtk_entry_new();
-		gq_gtk_box_pack_start(GTK_BOX(hbox), sd->dialog_name_entry, TRUE, TRUE, 0);
-		generic_dialog_attach_default(GENERIC_DIALOG(sd->dialog), sd->dialog_name_entry);
-		gtk_widget_show(sd->dialog_name_entry);
+		gtk_file_chooser_set_current_name(GTK_FILE_CHOOSER(dialog), _("Untitled.gqv"));
+		gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), get_collections_dir());
 
-		gtk_widget_grab_focus(sd->dialog_name_entry);
+		g_signal_connect(dialog, "response", G_CALLBACK(new_collection_file_response_cb), sd);
 
-		gtk_widget_show(GENERIC_DIALOG(sd->dialog)->dialog);
+		gtk_window_present(GTK_WINDOW(dialog));
 		}
 }
 
@@ -659,8 +656,6 @@ void bar_sort_close(GtkWidget *bar)
 static void bar_sort_destroy(gpointer data)
 {
 	auto sd = static_cast<SortData *>(data);
-
-	bar_sort_add_close(sd);
 
 	g_free(sd->filter_key);
 	g_list_free_full(sd->undo_src_list, g_free);
