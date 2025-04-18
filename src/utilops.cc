@@ -3015,6 +3015,48 @@ void file_util_delete_dir(FileData *fd, GtkWidget *parent)
 	file_util_delete_dir_full(fd, parent, UtilityPhase::START);
 }
 
+struct CreateFolderdData
+{
+	FileUtilDoneFunc done_func;
+	gpointer done_data;
+};
+
+static void create_folder_cb(GtkFileChooser *chooser, gint response_id, gpointer data)
+{
+	auto cfd = static_cast<CreateFolderdData *>(data);
+
+	if (response_id == GTK_RESPONSE_ACCEPT)
+		{
+#if HAVE_GTK4
+		g_autoptr(GFile) folder = gtk_file_chooser_get_current_folder(GTK_FILE_CHOOSER(chooser));
+		g_autofree gchar *current_folder = g_file_get_path(folder);
+#else
+		g_autofree gchar *current_folder = gtk_file_chooser_get_current_folder(GTK_FILE_CHOOSER(chooser));
+#endif
+		if (g_file_test(current_folder, G_FILE_TEST_IS_DIR))
+			{
+			cfd->done_func(TRUE, current_folder, cfd->done_data);
+			}
+		else
+			{
+			log_printf("warning, folder %s was not created\n", current_folder);
+
+			g_autoptr(GNotification) notification = g_notification_new("Geeqie");
+			GApplication *app = g_application_get_default ();
+
+			g_notification_set_title(notification, _("Create Folder"));
+			g_notification_set_body(notification, _("Folder was not created"));
+			g_notification_set_priority(notification, G_NOTIFICATION_PRIORITY_URGENT);
+			g_notification_set_default_action(notification, "app.null");
+
+			g_application_send_notification(G_APPLICATION(app), "folder-not-created-notification", notification);
+			}
+		}
+
+	g_free(cfd);
+	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
+}
+
 void file_util_create_dir(const gchar *path, GtkWidget *parent, FileUtilDoneFunc done_func, gpointer done_data)
 {
 	if (!GTK_IS_WINDOW(parent))
@@ -3022,24 +3064,17 @@ void file_util_create_dir(const gchar *path, GtkWidget *parent, FileUtilDoneFunc
 		parent = gtk_widget_get_toplevel(parent);
 		}
 
+	auto cfd = g_new0(CreateFolderdData, 1);
+	cfd->done_func = done_func;
+	cfd->done_data = done_data;
+
 	GtkWidget *dialog = gtk_file_chooser_dialog_new(_("Create Folder"), GTK_WINDOW(parent), GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER, _("Cancel"), GTK_RESPONSE_CANCEL, _("Close"), GTK_RESPONSE_ACCEPT, nullptr);
 
 	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), path);
 
-	if (gtk_dialog_run(GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
-		{
-#if HAVE_GTK4
-		g_autoptr(GFile) folder = gtk_file_chooser_get_current_folder(GTK_FILE_CHOOSER(dialog));
-		g_autofree gchar *current_folder = g_file_get_path(folder);
-#else
-		g_autofree gchar *current_folder = gtk_file_chooser_get_current_folder(GTK_FILE_CHOOSER(dialog));
-#endif
-		if (g_file_test(current_folder, G_FILE_TEST_IS_DIR))
-			{
-			done_func(TRUE, current_folder, done_data);
-			}
-		}
-	gq_gtk_widget_destroy(dialog);
+	g_signal_connect(dialog, "response", G_CALLBACK(create_folder_cb), cfd);
+
+	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
 }
 
 void file_util_rename_dir(FileData *source_fd, const gchar *new_path, GtkWidget *parent, FileUtilDoneFunc done_func, gpointer done_data)
