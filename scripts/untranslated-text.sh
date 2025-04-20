@@ -184,6 +184,9 @@ write_char_option
 \"Zoom minimum\",
 \"Zoom quality\",
 
+##preferences.cc
+Valencia
+
 ##print.cc
 G_CALLBACK(print_set_font_cb), const_cast<char *>(\"Image text font\"));
 G_CALLBACK(print_set_font_cb), const_cast<char *>(\"Page text font\"));
