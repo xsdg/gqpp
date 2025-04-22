@@ -152,6 +152,22 @@ ConfOptions *init_options(ConfOptions *options)
 	options->image_overlay.background_blue = 240;
 	options->image_overlay.background_alpha = 210;
 
+	for (gint i = 0; i < OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT; i++)
+		{
+		options->image_overlay_n.template_string[i] = nullptr;
+		options->image_overlay_n.x[i] = 10;
+		options->image_overlay_n.y[i] = -10;
+		options->image_overlay_n.font[i] = g_strdup("Sans 10");
+		options->image_overlay_n.text_red[i] = 0;
+		options->image_overlay_n.text_green[i] = 0;
+		options->image_overlay_n.text_blue[i] = 0;
+		options->image_overlay_n.text_alpha[i] = 255;
+		options->image_overlay_n.background_red[i] = 240;
+		options->image_overlay_n.background_green[i] = 240;
+		options->image_overlay_n.background_blue[i] = 240;
+		options->image_overlay_n.background_alpha[i] = 210;
+		}
+
 	options->lazy_image_sync = FALSE;
 	options->mousewheel_scrolls = FALSE;
 	options->image_lm_click_nav = TRUE;

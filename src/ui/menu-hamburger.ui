@@ -203,6 +203,12 @@
           <menuitem action="Grayscale"/>
         </menu>
         <menu action="OverlayMenu">
+          <menu action="SelectOSD">
+            <menuitem action="OSD1"/>
+            <menuitem action="OSD2"/>
+            <menuitem action="OSD3"/>
+            <menuitem action="OSD4"/>
+          </menu>
           <menuitem action="ImageOverlay"/>
           <menuitem action="ImageHistogram"/>
           <menuitem action="ImageOverlayCycle"/>

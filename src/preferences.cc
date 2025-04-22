@@ -94,7 +94,7 @@ enum {
 	EDITOR_COMMAND_MAX_LENGTH = 1024
 };
 
-static void image_overlay_set_text_colors();
+static void image_overlay_set_text_colors(gint i);
 
 static GtkWidget *keyword_text;
 static void config_tab_keywords_save();
@@ -400,24 +400,28 @@ static void config_window_apply()
 
 	options->fullscreen = c_options->fullscreen;
 
-	if (c_options->image_overlay.template_string)
+	for (gint i = 0; i < OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT ; i++)
 		{
-		g_free(options->image_overlay.template_string);
-		options->image_overlay.template_string = g_strdup(c_options->image_overlay.template_string);
+		if (c_options->image_overlay_n.template_string[i])
+			{
+			g_free(options->image_overlay_n.template_string[i]);
+			options->image_overlay_n.template_string[i] = g_strdup(c_options->image_overlay_n.template_string[i]);
+			}
+		if (c_options->image_overlay_n.font[i])
+			{
+			g_free(options->image_overlay_n.font[i]);
+			options->image_overlay_n.font[i] = g_strdup(c_options->image_overlay_n.font[i]);
+			}
+		options->image_overlay_n.text_red[i] = c_options->image_overlay_n.text_red[i];
+		options->image_overlay_n.text_green[i] = c_options->image_overlay_n.text_green[i];
+		options->image_overlay_n.text_blue[i] = c_options->image_overlay_n.text_blue[i];
+		options->image_overlay_n.text_alpha[i] = c_options->image_overlay_n.text_alpha[i];
+		options->image_overlay_n.background_red[i] = c_options->image_overlay_n.background_red[i];
+		options->image_overlay_n.background_green[i] = c_options->image_overlay_n.background_green[i];
+		options->image_overlay_n.background_blue[i] = c_options->image_overlay_n.background_blue[i];
+		options->image_overlay_n.background_alpha[i] = c_options->image_overlay_n.background_alpha[i];
 		}
-	if (c_options->image_overlay.font)
-		{
-		g_free(options->image_overlay.font);
-		options->image_overlay.font = g_strdup(c_options->image_overlay.font);
-		}
-	options->image_overlay.text_red = c_options->image_overlay.text_red;
-	options->image_overlay.text_green = c_options->image_overlay.text_green;
-	options->image_overlay.text_blue = c_options->image_overlay.text_blue;
-	options->image_overlay.text_alpha = c_options->image_overlay.text_alpha;
-	options->image_overlay.background_red = c_options->image_overlay.background_red;
-	options->image_overlay.background_green = c_options->image_overlay.background_green;
-	options->image_overlay.background_blue = c_options->image_overlay.background_blue;
-	options->image_overlay.background_alpha = c_options->image_overlay.background_alpha;
+
 	options->update_on_time_change = c_options->update_on_time_change;
 
 	options->duplicates_similarity_threshold = c_options->duplicates_similarity_threshold;
@@ -1392,10 +1396,13 @@ static void safe_delete_clear_cb(GtkWidget *widget, gpointer)
 	gtk_widget_show(gd->dialog);
 }
 
-static void image_overlay_template_view_changed_cb(GtkWidget *, gpointer data)
+static void image_overlay_template_view_changed_cb(GtkWidget *buffer, gpointer data)
 {
-	g_free(c_options->image_overlay.template_string);
-	c_options->image_overlay.template_string = text_widget_text_pull(GTK_WIDGET(data), TRUE);
+	gpointer profile_number_pointer = g_object_get_data(G_OBJECT(buffer), "osd_profile_number");
+	gint i = GPOINTER_TO_INT(profile_number_pointer);
+
+	g_free(c_options->image_overlay_n.template_string[i]);
+	c_options->image_overlay_n.template_string[i] = text_widget_text_pull(GTK_WIDGET(data), TRUE);
 }
 
 static void image_overlay_default_template_ok_cb(GenericDialog *, gpointer data)
@@ -1436,131 +1443,142 @@ static void font_activated_cb(GtkFontChooser *widget, gchar *fontname, gpointer)
 	gq_gtk_widget_destroy(GTK_WIDGET(widget));
 }
 
-static void font_response_cb(GtkDialog *dialog, gint response_id, gpointer)
+static void font_response_cb(GtkDialog *dialog, gint response_id, gpointer data)
 {
-	g_free(c_options->image_overlay.font);
+	gint i = GPOINTER_TO_INT(data);
+
+	g_free(c_options->image_overlay_n.font[i]);
 
 	if (response_id == GTK_RESPONSE_OK)
 		{
-		c_options->image_overlay.font = gtk_font_chooser_get_font(GTK_FONT_CHOOSER(dialog));
+		c_options->image_overlay_n.font[i] = gtk_font_chooser_get_font(GTK_FONT_CHOOSER(dialog));
 		}
 	else
 		{
-		c_options->image_overlay.font = g_strdup(options->image_overlay.font);
+		c_options->image_overlay_n.font[i] = g_strdup(options->image_overlay_n.font[i]);
 		}
 
 	gq_gtk_widget_destroy(GTK_WIDGET(dialog));
 }
 
-static void image_overlay_set_font_cb(GtkWidget *widget, gpointer)
+static void image_overlay_set_font_cb(GtkWidget *widget, gpointer data)
 {
 	GtkWidget *dialog;
+	gint i = GPOINTER_TO_INT(data);
 
 	dialog = gtk_font_chooser_dialog_new(_("Image Overlay Font"), GTK_WINDOW(gtk_widget_get_toplevel(widget)));
 	gtk_window_set_modal(GTK_WINDOW(dialog), TRUE);
-	gtk_font_chooser_set_font(GTK_FONT_CHOOSER(dialog), options->image_overlay.font);
+	gtk_font_chooser_set_font(GTK_FONT_CHOOSER(dialog), options->image_overlay_n.font[i]);
 
-	g_signal_connect(dialog, "font-activated", G_CALLBACK(font_activated_cb), nullptr);
-	g_signal_connect(dialog, "response", G_CALLBACK(font_response_cb), nullptr);
+	g_signal_connect(dialog, "font-activated", G_CALLBACK(font_activated_cb), data);
+	g_signal_connect(dialog, "response", G_CALLBACK(font_response_cb), data);
 
 	gtk_widget_show(dialog);
 }
 
-static void text_color_activated_cb(GtkColorChooser *chooser, GdkRGBA *color, gpointer)
+static void text_color_activated_cb(GtkColorChooser *chooser, GdkRGBA *color, gpointer data)
 {
-	c_options->image_overlay.text_red = color->red * 255;
-	c_options->image_overlay.text_green = color->green * 255;
-	c_options->image_overlay.text_blue = color->blue * 255;
-	c_options->image_overlay.text_alpha = color->alpha * 255;
+	gint i = GPOINTER_TO_INT(data);
+
+	c_options->image_overlay_n.text_red[i] = color->red * 255;
+	c_options->image_overlay_n.text_green[i] = color->green * 255;
+	c_options->image_overlay_n.text_blue[i] = color->blue * 255;
+	c_options->image_overlay_n.text_alpha[i] = color->alpha * 255;
 
 	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
 }
 
-static void text_color_response_cb(GtkDialog *dialog, gint response_id, gpointer)
+static void text_color_response_cb(GtkDialog *dialog, gint response_id, gpointer data)
 {
 	GdkRGBA color;
+	gint i = GPOINTER_TO_INT(data);
 
-	c_options->image_overlay.text_red = options->image_overlay.text_red;
-	c_options->image_overlay.text_green = options->image_overlay.text_green;
-	c_options->image_overlay.text_blue = options->image_overlay.text_blue;
-	c_options->image_overlay.text_alpha = options->image_overlay.text_alpha;
+	c_options->image_overlay_n.text_red[i] = options->image_overlay_n.text_red[i];
+	c_options->image_overlay_n.text_green[i] = options->image_overlay_n.text_green[i];
+	c_options->image_overlay_n.text_blue[i] = options->image_overlay_n.text_blue[i];
+	c_options->image_overlay_n.text_alpha[i] = options->image_overlay_n.text_alpha[i];
 
 	if (response_id == GTK_RESPONSE_OK)
 		{
 		gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(dialog), &color);
-		c_options->image_overlay.text_red = color.red * 255;
-		c_options->image_overlay.text_green = color.green * 255;
-		c_options->image_overlay.text_blue = color.blue * 255;
-		c_options->image_overlay.text_alpha = color.alpha * 255;
+		c_options->image_overlay_n.text_red[i] = color.red * 255;
+		c_options->image_overlay_n.text_green[i] = color.green * 255;
+		c_options->image_overlay_n.text_blue[i] = color.blue * 255;
+		c_options->image_overlay_n.text_alpha[i] = color.alpha * 255;
 		}
 
 	gq_gtk_widget_destroy(GTK_WIDGET(dialog));
 }
 
-static void image_overlay_set_text_color_cb(GtkWidget *widget, gpointer)
+static void image_overlay_set_text_color_cb(GtkWidget *widget, gpointer data)
 {
 	GtkWidget *dialog;
 	GdkRGBA color;
+	gint i = GPOINTER_TO_INT(data);
 
 	dialog = gtk_color_chooser_dialog_new(_("Image Overlay Text Color"), GTK_WINDOW(gtk_widget_get_toplevel(widget)));
-	color.red = options->image_overlay.text_red;
-	color.green = options->image_overlay.text_green;
-	color.blue = options->image_overlay.text_blue;
-	color.alpha = options->image_overlay.text_alpha;
+	color.red = static_cast<double>(options->image_overlay_n.text_red[i]) / 255;
+	color.green = static_cast<double>(options->image_overlay_n.text_green[i]) / 255;
+	color.blue = static_cast<double>(options->image_overlay_n.text_blue[i]) / 255;
+	color.alpha = static_cast<double>(options->image_overlay_n.text_alpha[i]) / 255;
 	gtk_color_chooser_set_rgba(GTK_COLOR_CHOOSER(dialog), &color);
 	gtk_color_chooser_set_use_alpha(GTK_COLOR_CHOOSER(dialog), TRUE);
 
-	g_signal_connect(dialog, "color-activated", G_CALLBACK(text_color_activated_cb), nullptr);
-	g_signal_connect(dialog, "response", G_CALLBACK(text_color_response_cb), nullptr);
+	g_signal_connect(dialog, "color-activated", G_CALLBACK(text_color_activated_cb), data);
+	g_signal_connect(dialog, "response", G_CALLBACK(text_color_response_cb), data);
 
 	gtk_widget_show(dialog);
 }
 
-static void bg_color_activated_cb(GtkColorChooser *chooser, GdkRGBA *color, gpointer)
+static void bg_color_activated_cb(GtkColorChooser *chooser, GdkRGBA *color, gpointer data)
 {
-	c_options->image_overlay.background_red = color->red * 255;
-	c_options->image_overlay.background_green = color->green * 255;
-	c_options->image_overlay.background_blue = color->blue * 255;
-	c_options->image_overlay.background_alpha = color->alpha * 255;
+	gint i = GPOINTER_TO_INT(data);
+
+	c_options->image_overlay_n.background_red[i] = color->red * 255;
+	c_options->image_overlay_n.background_green[i] = color->green * 255;
+	c_options->image_overlay_n.background_blue[i] = color->blue * 255;
+	c_options->image_overlay_n.background_alpha[i] = color->alpha * 255;
 
 	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
 }
 
-static void bg_color_response_cb(GtkDialog *dialog, gint response_id, gpointer)
+static void bg_color_response_cb(GtkDialog *dialog, gint response_id, gpointer data)
 {
 	GdkRGBA color;
+	gint i = GPOINTER_TO_INT(data);
 
-	c_options->image_overlay.background_red = options->image_overlay.background_red;
-	c_options->image_overlay.background_green = options->image_overlay.background_green;
-	c_options->image_overlay.background_blue = options->image_overlay.background_blue;
-	c_options->image_overlay.background_alpha = options->image_overlay.background_alpha;
+	c_options->image_overlay_n.background_red[i] = options->image_overlay_n.background_red[i];
+	c_options->image_overlay_n.background_green[i] = options->image_overlay_n.background_green[i];
+	c_options->image_overlay_n.background_blue[i] = options->image_overlay_n.background_blue[i];
+	c_options->image_overlay_n.background_alpha[i] = options->image_overlay_n.background_alpha[i];
 
 	if (response_id == GTK_RESPONSE_OK)
 		{
 		gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(dialog), &color);
-		c_options->image_overlay.background_red = color.red * 255;
-		c_options->image_overlay.background_green = color.green * 255;
-		c_options->image_overlay.background_blue = color.blue * 255;
-		c_options->image_overlay.background_alpha = color.alpha * 255;
+		c_options->image_overlay_n.background_red[i] = color.red * 255;
+		c_options->image_overlay_n.background_green[i] = color.green * 255;
+		c_options->image_overlay_n.background_blue[i] = color.blue * 255;
+		c_options->image_overlay_n.background_alpha[i] = color.alpha * 255;
 		}
 	gq_gtk_widget_destroy(GTK_WIDGET(dialog));
 }
 
-static void image_overlay_set_background_color_cb(GtkWidget *widget, gpointer)
+static void image_overlay_set_background_color_cb(GtkWidget *widget, gpointer data)
 {
 	GtkWidget *dialog;
 	GdkRGBA color;
+	gint i = GPOINTER_TO_INT(data);
 
 	dialog = gtk_color_chooser_dialog_new(_("Image Overlay Background Color"), GTK_WINDOW(gtk_widget_get_toplevel(widget)));
-	color.red = options->image_overlay.background_red;
-	color.green = options->image_overlay.background_green;
-	color.blue = options->image_overlay.background_blue;
-	color.alpha = options->image_overlay.background_alpha;
+	color.red = static_cast<double>(options->image_overlay_n.background_red[i]) / 255;
+	color.green = static_cast<double>(options->image_overlay_n.background_green[i]) / 255;
+	color.blue = static_cast<double>(options->image_overlay_n.background_blue[i]) / 255;
+	color.alpha = static_cast<double>(options->image_overlay_n.background_alpha[i]) / 255;
 	gtk_color_chooser_set_rgba(GTK_COLOR_CHOOSER(dialog), &color);
 	gtk_color_chooser_set_use_alpha(GTK_COLOR_CHOOSER(dialog), TRUE);
 
-	g_signal_connect(dialog, "color-activated", G_CALLBACK(bg_color_activated_cb), nullptr);
-	g_signal_connect(dialog, "response", G_CALLBACK(bg_color_response_cb), nullptr);
+	g_signal_connect(dialog, "color-activated", G_CALLBACK(bg_color_activated_cb), data);
+	g_signal_connect(dialog, "response", G_CALLBACK(bg_color_response_cb), data);
 
 	gtk_widget_show(dialog);
 }
@@ -2401,25 +2419,23 @@ static void config_tab_windows(GtkWidget *notebook)
 			      options->fullscreen.disable_saver, &c_options->fullscreen.disable_saver);
 }
 
-static void config_tab_osd(GtkWidget *notebook)
+static GtkWidget *osd_profiles(gint i)
 {
-	GtkWidget *hbox;
-	GtkWidget *vbox;
-	GtkWidget *group;
+	GtkTextBuffer *buffer;
 	GtkWidget *button;
+	GtkWidget *group;
+	GtkWidget *hbox;
 	GtkWidget *image_overlay_template_view;
+	GtkWidget *page;
 	GtkWidget *scrolled;
 	GtkWidget *scrolled_pre_formatted;
-	GtkTextBuffer *buffer;
-	GtkWidget *label;
 	GtkWidget *subgroup;
 
-	vbox = scrolled_notebook_page(notebook, _("OSD"));
+	page = gtk_box_new(GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 
 	image_overlay_template_view = gtk_text_view_new();
 
-	group = pref_group_new(vbox, FALSE, _("Overlay Screen Display"), GTK_ORIENTATION_VERTICAL);
-
+	group = pref_group_new(page, FALSE, _(""), GTK_ORIENTATION_VERTICAL);
 	subgroup = pref_box_new(group, FALSE, GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 
 	scrolled_pre_formatted = osd_new(PRE_FORMATTED_COLUMNS, image_overlay_template_view);
@@ -2435,48 +2451,72 @@ static void config_tab_osd(GtkWidget *notebook)
 	scrolled = gq_gtk_scrolled_window_new(nullptr, nullptr);
 	gtk_widget_set_size_request(scrolled, 200, 150);
 	gq_gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(scrolled), GTK_SHADOW_IN);
-	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled),
-									GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 	gq_gtk_box_pack_start(GTK_BOX(group), scrolled, TRUE, TRUE, 5);
 	gtk_widget_show(scrolled);
 
-	gtk_widget_set_tooltip_markup(image_overlay_template_view,
-					_("Extensive formatting options are shown in the Help file"));
+	gtk_widget_set_tooltip_markup(image_overlay_template_view, _("Extensive formatting options are shown in the Help file"));
 
 	gq_gtk_container_add(GTK_WIDGET(scrolled), image_overlay_template_view);
 	gtk_widget_show(image_overlay_template_view);
 
 	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_BUTTON_GAP);
 
-	button = pref_button_new(nullptr, GQ_ICON_SELECT_FONT, _("Font"),
-				 G_CALLBACK(image_overlay_set_font_cb), notebook);
+	button = pref_button_new(nullptr, GQ_ICON_SELECT_FONT, _("Font"), G_CALLBACK(image_overlay_set_font_cb), GINT_TO_POINTER(i));
 
 	gq_gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
-	button = pref_button_new(nullptr, GQ_ICON_SELECT_COLOR, _("Text"), G_CALLBACK(image_overlay_set_text_color_cb), nullptr);
+	button = pref_button_new(nullptr, GQ_ICON_SELECT_COLOR, _("Text"), G_CALLBACK(image_overlay_set_text_color_cb), GINT_TO_POINTER(i));
 	gq_gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
-	button = pref_button_new(nullptr, GQ_ICON_SELECT_COLOR, _("Background"), G_CALLBACK(image_overlay_set_background_color_cb), nullptr);
+	button = pref_button_new(nullptr, GQ_ICON_SELECT_COLOR, _("Background"), G_CALLBACK(image_overlay_set_background_color_cb), GINT_TO_POINTER(i));
 	gq_gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
-	image_overlay_set_text_colors();
+	image_overlay_set_text_colors(i);
 
-	button = pref_button_new(nullptr, nullptr, _("Defaults"),
-				 G_CALLBACK(image_overlay_default_template_cb), image_overlay_template_view);
+	button = pref_button_new(nullptr, nullptr, _("Defaults"), G_CALLBACK(image_overlay_default_template_cb), image_overlay_template_view);
 	gq_gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
-	button = pref_button_new(nullptr, GQ_ICON_HELP, _("Help"),
-				 G_CALLBACK(image_overlay_help_cb), nullptr);
+	button = pref_button_new(nullptr, GQ_ICON_HELP, _("Help"), G_CALLBACK(image_overlay_help_cb), nullptr);
 	gq_gtk_box_pack_end(GTK_BOX(hbox), button, FALSE, FALSE, 0);
 	gtk_widget_show(button);
 
 	buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(image_overlay_template_view));
-	if (options->image_overlay.template_string) gtk_text_buffer_set_text(buffer, options->image_overlay.template_string, -1);
-	g_signal_connect(G_OBJECT(buffer), "changed",
-			 G_CALLBACK(image_overlay_template_view_changed_cb), image_overlay_template_view);
+	if (options->image_overlay_n.template_string[i]) gtk_text_buffer_set_text(buffer, options->image_overlay_n.template_string[i], -1);
+	g_object_set_data(G_OBJECT(buffer), "osd_profile_number", GINT_TO_POINTER(i));
+
+	g_signal_connect(G_OBJECT(buffer), "changed", G_CALLBACK(image_overlay_template_view_changed_cb), image_overlay_template_view);
+
+	return page;
+}
+
+static void config_tab_osd(GtkWidget *notebook)
+{
+	GtkWidget *hbox;
+	GtkWidget *label;
+	GtkWidget *page;
+
+	GtkWidget *vbox = scrolled_notebook_page(notebook, _("OSD"));
+
+	GtkWidget *group = pref_group_new(vbox, FALSE, _("Overlay Screen Display"), GTK_ORIENTATION_VERTICAL);
+
+	GtkWidget *notebook_osd_profiles = gtk_notebook_new();
+	gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook_osd_profiles), GTK_POS_TOP);
+	gtk_notebook_set_scrollable(GTK_NOTEBOOK(notebook_osd_profiles), TRUE);
+	gq_gtk_box_pack_start(GTK_BOX(group), notebook_osd_profiles, TRUE, TRUE, 0);
+
+	for (gint i = 0; i < OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT; i++)
+		{
+		page = osd_profiles(i);
+		g_autofree gchar *profile_name = g_strdup_printf("OSD %i", i + 1);
+		gtk_notebook_append_page(GTK_NOTEBOOK(notebook_osd_profiles), page, gtk_label_new(profile_name));
+		}
+
+	gq_gtk_widget_show_all(group);
+	gtk_notebook_set_current_page(GTK_NOTEBOOK(notebook_osd_profiles), options->overlay_screen_display_selected_profile);
 
 	pref_line(group, PREF_PAD_GAP);
 
@@ -4114,16 +4154,16 @@ void show_about_window(LayoutWindow *lw)
 	g_object_unref(in_stream_translators);
 }
 
-static void image_overlay_set_text_colors()
+static void image_overlay_set_text_colors(gint i)
 {
-	c_options->image_overlay.text_red = options->image_overlay.text_red;
-	c_options->image_overlay.text_green = options->image_overlay.text_green;
-	c_options->image_overlay.text_blue = options->image_overlay.text_blue;
-	c_options->image_overlay.text_alpha = options->image_overlay.text_alpha;
-	c_options->image_overlay.background_red = options->image_overlay.background_red;
-	c_options->image_overlay.background_green = options->image_overlay.background_green;
-	c_options->image_overlay.background_blue = options->image_overlay.background_blue;
-	c_options->image_overlay.background_alpha = options->image_overlay.background_alpha;
+	c_options->image_overlay_n.text_red[i] = options->image_overlay_n.text_red[i];
+	c_options->image_overlay_n.text_green[i] = options->image_overlay_n.text_green[i];
+	c_options->image_overlay_n.text_blue[i] = options->image_overlay_n.text_blue[i];
+	c_options->image_overlay_n.text_alpha[i] = options->image_overlay_n.text_alpha[i];
+	c_options->image_overlay_n.background_red[i] = options->image_overlay_n.background_red[i];
+	c_options->image_overlay_n.background_green[i] = options->image_overlay_n.background_green[i];
+	c_options->image_overlay_n.background_blue[i] = options->image_overlay_n.background_blue[i];
+	c_options->image_overlay_n.background_alpha[i] = options->image_overlay_n.background_alpha[i];
 }
 
 /*

@@ -552,6 +552,7 @@ static void write_global_attributes(GString *outstr, gint indent)
 	WRITE_NL(); WRITE_INT(*options, image_overlay.background_blue);
 	WRITE_NL(); WRITE_INT(*options, image_overlay.background_alpha);
 	WRITE_NL(); WRITE_CHAR(*options, image_overlay.font);
+	WRITE_NL(); WRITE_UINT(*options, overlay_screen_display_selected_profile);
 
 	/* Slideshow Options */
 	WRITE_NL(); WRITE_INT_UNIT(*options, slideshow.delay, SLIDESHOW_SUBSECOND_PRECISION);
@@ -679,6 +680,38 @@ static void write_color_profile(GString *outstr, gint indent)
 	WRITE_NL(); WRITE_STRING("</color_profiles>");
 }
 
+static void write_osd_profiles(GString *outstr, gint indent)
+{
+	gint i;
+
+	WRITE_NL(); WRITE_STRING("<osd_profiles>");
+
+	indent++;
+	for (i = 0; i < OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT; i++)
+		{
+		WRITE_NL(); WRITE_STRING("<osd ");
+		indent++;
+		WRITE_NL(); write_char_option(outstr, "template_string", options->image_overlay_n.template_string[i]);
+		WRITE_NL(); write_int_option(outstr, "x", options->image_overlay_n.x[i]);
+		WRITE_NL(); write_int_option(outstr, "y", options->image_overlay_n.y[i]);
+		WRITE_NL(); write_int_option(outstr, "text_red", options->image_overlay_n.text_red[i]);
+		WRITE_NL(); write_int_option(outstr, "text_green", options->image_overlay_n.text_green[i]);
+		WRITE_NL(); write_int_option(outstr, "text_blue", options->image_overlay_n.text_blue[i]);
+		WRITE_NL(); write_int_option(outstr, "text_alpha", options->image_overlay_n.text_alpha[i]);
+		WRITE_NL(); write_int_option(outstr, "background_red", options->image_overlay_n.background_red[i]);
+		WRITE_NL(); write_int_option(outstr, "background_green", options->image_overlay_n.background_green[i]);
+		WRITE_NL(); write_int_option(outstr, "background_blue", options->image_overlay_n.background_blue[i]);
+		WRITE_NL(); write_int_option(outstr, "background_alpha", options->image_overlay_n.background_alpha[i]);
+		WRITE_NL(); write_char_option(outstr, "font", options->image_overlay_n.font[i]);
+		indent--;
+		WRITE_NL();
+		WRITE_STRING("/>");
+		}
+	indent--;
+	WRITE_NL();
+	WRITE_STRING("</osd_profiles>");
+}
+
 static void write_marks_tooltips(GString *outstr, gint indent)
 {
 	gint i;
@@ -789,6 +822,9 @@ gboolean save_config_to_file(const gchar *utf8_path, ConfOptions *options, Layou
 		indent++;
 
 		write_color_profile(outstr, indent);
+
+		WRITE_SEPARATOR();
+		write_osd_profiles(outstr, indent);
 
 		WRITE_SEPARATOR();
 		filter_write_list(outstr, indent);
@@ -1041,6 +1077,7 @@ static gboolean load_global_params(const gchar **attribute_names, const gchar **
 		if (READ_USHORT(*options, image_overlay.background_blue)) continue;
 		if (READ_USHORT(*options, image_overlay.background_alpha)) continue;
 		if (READ_CHAR(*options, image_overlay.font)) continue;
+		if (READ_UINT_ENUM(*options, overlay_screen_display_selected_profile)) continue;
 
 		/* Slideshow options */
 		if (READ_INT_UNIT(*options, slideshow.delay, SLIDESHOW_SUBSECOND_PRECISION)) continue;
@@ -1256,6 +1293,49 @@ static void options_parse_color_profiles(GQParserData *parser_data, const gchar 
 	parser_data->func_push(options_parse_leaf, nullptr, nullptr);
 }
 
+static void options_load_osd_profiles(GQParserData *parser_data, const gchar **attribute_names, const gchar **attribute_values, gpointer data)
+{
+	gint i = GPOINTER_TO_INT(data);
+
+	if (i < 0 || i >= OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT) return;
+	while (*attribute_names)
+		{
+		const gchar *option = *attribute_names++;
+		const gchar *value = *attribute_values++;
+
+		if (READ_CHAR_FULL("template_string", options->image_overlay_n.template_string[i])) continue;
+		if (READ_INT_FULL("x", options->image_overlay_n.x[i])) continue;
+		if (READ_INT_FULL("y", options->image_overlay_n.y[i])) continue;
+		if (READ_USHORT_FULL("text_red", options->image_overlay_n.text_red[i])) continue;
+		if (READ_USHORT_FULL("text_green", options->image_overlay_n.text_green[i])) continue;
+		if (READ_USHORT_FULL("text_blue", options->image_overlay_n.text_blue[i])) continue;
+		if (READ_USHORT_FULL("text_alpha", options->image_overlay_n.text_alpha[i])) continue;
+		if (READ_USHORT_FULL("background_red", options->image_overlay_n.background_red[i])) continue;
+		if (READ_USHORT_FULL("background_green", options->image_overlay_n.background_green[i])) continue;
+		if (READ_USHORT_FULL("background_blue", options->image_overlay_n.background_blue[i])) continue;
+		if (READ_USHORT_FULL("background_alpha", options->image_overlay_n.background_alpha[i])) continue;
+		if (READ_CHAR_FULL("font", options->image_overlay_n.font[i])) continue;
+
+		config_file_error((std::string("Unknown attribute: ") + option + " = " + value).c_str());
+		}
+	i++;
+	parser_data->func_set_data(GINT_TO_POINTER(i));
+}
+
+static void options_parse_osd_profiles(GQParserData *parser_data, const gchar *element_name, const gchar **attribute_names, const gchar **attribute_values, gpointer data)
+{
+	if (g_ascii_strcasecmp(element_name, "osd") == 0)
+		{
+		options_load_osd_profiles(parser_data, attribute_names, attribute_values, data);
+		}
+	else
+		{
+		config_file_error((std::string("Unexpected in <osd>: ") + element_name).c_str());
+		}
+
+	parser_data->func_push(options_parse_leaf, nullptr, nullptr);
+}
+
 static void options_parse_marks_tooltips(GQParserData *parser_data, const gchar *element_name, const gchar **attribute_names, const gchar **attribute_values, gpointer data)
 {
 	if (g_ascii_strcasecmp(element_name, "tooltip") == 0)
@@ -1449,6 +1529,10 @@ static void options_parse_global(GQParserData *parser_data, const gchar *element
 		{
 		options_load_disabled_plugins(parser_data, attribute_names, attribute_values, data);
 		parser_data->func_push(options_parse_disabled_plugins, nullptr, nullptr);
+		}
+	else if (g_ascii_strcasecmp(element_name, "osd_profiles") == 0)
+		{
+		parser_data->func_push(options_parse_osd_profiles, nullptr, GINT_TO_POINTER(0));
 		}
 	else
 		{

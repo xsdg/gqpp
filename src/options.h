@@ -32,6 +32,7 @@ enum TextPosition : gint;
 struct SecureSaveInfo;
 
 #define COLOR_PROFILE_INPUTS 4
+#define OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT 4
 
 /**
  * @enum DnDAction
@@ -49,6 +50,13 @@ enum RectangleDrawAspectRatio {
 	RECTANGLE_DRAW_ASPECT_RATIO_FOUR_THREE,
 	RECTANGLE_DRAW_ASPECT_RATIO_THREE_TWO,
 	RECTANGLE_DRAW_ASPECT_RATIO_SIXTEEN_NINE
+};
+
+enum OverlayScreenDisplaySelectedTab {
+	OVERLAY_SCREEN_DISPLAY_1 = 0,
+	OVERLAY_SCREEN_DISPLAY_2,
+	OVERLAY_SCREEN_DISPLAY_3,
+	OVERLAY_SCREEN_DISPLAY_4
 };
 
 enum ZoomStyle {
@@ -280,6 +288,23 @@ struct ConfOptions
 		guint16 background_alpha;
 		gchar *font;
 	} image_overlay;
+
+	struct {
+		gchar *template_string[OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT];
+		gint x[OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT];
+		gint y[OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT];
+		guint16 text_red[OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT];
+		guint16 text_green[OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT];
+		guint16 text_blue[OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT];
+		guint16 text_alpha[OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT];
+		guint16 background_red[OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT];
+		guint16 background_green[OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT];
+		guint16 background_blue[OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT];
+		guint16 background_alpha[OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT];
+		gchar *font[OVERLAY_SCREEN_DISPLAY_PROFILE_COUNT];
+	} image_overlay_n;
+
+	OverlayScreenDisplaySelectedTab overlay_screen_display_selected_profile;
 
 	/* properties dialog */
 	struct {

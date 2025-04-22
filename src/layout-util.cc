@@ -1526,6 +1526,32 @@ static void layout_menu_draw_rectangle_aspect_ratio_cb(GtkRadioAction *action, G
 	options->rectangle_draw_aspect_ratio = static_cast<RectangleDrawAspectRatio>(gq_gtk_radio_action_get_current_value(action));
 }
 
+static void overlay_screen_display_profile_set(gint i)
+{
+	g_free(options->image_overlay.template_string);
+	options->image_overlay.template_string = g_strdup(options->image_overlay_n.template_string[i]);
+	options->image_overlay.x = options->image_overlay_n.x[i];
+	options->image_overlay.y = options->image_overlay_n.y[i];
+	options->image_overlay.text_red = options->image_overlay_n.text_red[i];
+	options->image_overlay.text_green = options->image_overlay_n.text_green[i];
+	options->image_overlay.text_blue = options->image_overlay_n.text_blue[i];
+	options->image_overlay.background_red = options->image_overlay_n.background_red[i];
+	options->image_overlay.background_green = options->image_overlay_n.background_green[i];
+	options->image_overlay.background_blue = options->image_overlay_n.background_blue[i];
+	g_free(options->image_overlay.font);
+	options->image_overlay.font = g_strdup(options->image_overlay_n.font[i]);
+}
+
+static void layout_menu_osd_cb(GtkRadioAction *action, GtkRadioAction *, gpointer data)
+{
+	auto lw = static_cast<LayoutWindow *>(data);
+
+	options->overlay_screen_display_selected_profile = static_cast<OverlayScreenDisplaySelectedTab>(gq_gtk_radio_action_get_current_value(action));
+	overlay_screen_display_profile_set(options->overlay_screen_display_selected_profile);
+
+	layout_image_refresh(lw);
+}
+
 static void layout_menu_help_cb(GtkAction *, gpointer data)
 {
 	auto lw = static_cast<LayoutWindow *>(data);
@@ -2751,6 +2777,7 @@ static GtkActionEntry menu_entries[] = {
   { "SelectInvert",          PIXBUF_INLINE_ICON_SELECT_INVERT,  N_("_Invert Selection"),                                "<control><shift>I",   N_("Invert Selection"),                                CB(layout_menu_invert_selection_cb) },
   { "SelectMenu",            nullptr,                           N_("_Select"),                                          nullptr,               nullptr,                                               nullptr },
   { "SelectNone",            PIXBUF_INLINE_ICON_SELECT_NONE,    N_("Select _none"),                                     "<control><shift>A",   N_("Select none"),                                     CB(layout_menu_unselect_all_cb) },
+  { "SelectOSD",             nullptr,                           N_("Select Overlay Screen Display"),                    nullptr,               N_("Select Overlay Screen Display"),                   nullptr },
   { "SlideShowFaster",       GQ_ICON_GENERIC,                   N_("Faster"),                                           "<control>equal",      N_("Slideshow Faster"),                                CB(layout_menu_slideshow_faster_cb) },
   { "SlideShowPause",        GQ_ICON_PAUSE,                     N_("_Pause slideshow"),                                 "P",                   N_("Pause slideshow"),                                 CB(layout_menu_slideshow_pause_cb) },
   { "SlideShowSlower",       GQ_ICON_GENERIC,                   N_("Slower"),                                           "<control>minus",      N_("Slideshow Slower"),                                CB(layout_menu_slideshow_slower_cb) },
@@ -2865,6 +2892,13 @@ static GtkRadioActionEntry menu_draw_rectangle_aspect_ratios[] = {
   { "CropFourThree",   nullptr, N_("Crop 4:3"),  nullptr, N_("Crop rectangle 4:3"),  RECTANGLE_DRAW_ASPECT_RATIO_FOUR_THREE },
   { "CropThreeTwo",    nullptr, N_("Crop 3:2"),  nullptr, N_("Crop rectangle 3:2"),  RECTANGLE_DRAW_ASPECT_RATIO_THREE_TWO },
   { "CropSixteenNine", nullptr, N_("Crop 16:9"), nullptr, N_("Crop rectangle 16:9"), RECTANGLE_DRAW_ASPECT_RATIO_SIXTEEN_NINE }
+};
+
+static GtkRadioActionEntry menu_osd[] = {
+  { "OSD1", nullptr, N_("OSD 1"), nullptr, N_("Overlay Screen Display 1"), OVERLAY_SCREEN_DISPLAY_1 },
+  { "OSD2", nullptr, N_("OSD 2"), nullptr, N_("Overlay Screen Display 2"), OVERLAY_SCREEN_DISPLAY_2 },
+  { "OSD3", nullptr, N_("OSD 3"), nullptr, N_("Overlay Screen Display 3"), OVERLAY_SCREEN_DISPLAY_3 },
+  { "OSD4", nullptr, N_("OSD 4"), nullptr, N_("Overlay Screen Display 4"), OVERLAY_SCREEN_DISPLAY_4 }
 };
 #undef CB
 
@@ -3193,6 +3227,9 @@ void layout_actions_setup(LayoutWindow *lw)
 	gq_gtk_action_group_add_radio_actions(lw->action_group,
 					   menu_draw_rectangle_aspect_ratios, G_N_ELEMENTS(menu_draw_rectangle_aspect_ratios),
 					   0, G_CALLBACK(layout_menu_draw_rectangle_aspect_ratio_cb), lw);
+	gq_gtk_action_group_add_radio_actions(lw->action_group,
+					   menu_osd, G_N_ELEMENTS(menu_osd),
+					   0, G_CALLBACK(layout_menu_osd_cb), lw);
 
 
 	lw->ui_manager = gq_gtk_ui_manager_new();
@@ -3788,6 +3825,9 @@ static void layout_util_sync_views(LayoutWindow *lw)
 	action = gq_gtk_action_group_get_action(lw->action_group, "CropNone");
 	gq_gtk_radio_action_set_current_value(GQ_GTK_RADIO_ACTION(action), options->rectangle_draw_aspect_ratio);
 
+	action = gq_gtk_action_group_get_action(lw->action_group, "OSD1");
+	gq_gtk_radio_action_set_current_value(GQ_GTK_RADIO_ACTION(action), options->overlay_screen_display_selected_profile);
+
 	action = gq_gtk_action_group_get_action(lw->action_group, "FloatTools");
 	gq_gtk_toggle_action_set_active(GQ_GTK_TOGGLE_ACTION(action), lw->options.tools_float);
 
@@ -3863,6 +3903,8 @@ static void layout_util_sync_views(LayoutWindow *lw)
 	layout_util_sync_marks(lw);
 	layout_util_sync_color(lw);
 	layout_image_set_ignore_alpha(lw, lw->options.ignore_alpha);
+
+	overlay_screen_display_profile_set(options->overlay_screen_display_selected_profile);
 }
 
 void layout_util_sync_thumb(LayoutWindow *lw)

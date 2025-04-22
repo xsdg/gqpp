@@ -66,6 +66,7 @@ gboolean read_bool_option(const gchar *option, const gchar *label, const gchar *
 #define READ_UINT(_target_, _name_) read_uint_option(option, #_name_, value, &(_target_)._name_)
 #define READ_UINT_ENUM(_target_, _name_) read_uint_option(option, #_name_, value, (guint*)&(_target_)._name_)
 #define READ_USHORT(_target_, _name_) read_ushort_option(option, #_name_, value, &(_target_)._name_)
+#define READ_USHORT_FULL(_name_, _target_) read_ushort_option(option, _name_, value, &(_target_))
 #define READ_INT_CLAMP(_target_, _name_, _min_, _max_) read_int_option_clamp(option, #_name_, value, &(_target_)._name_, _min_, _max_)
 #define READ_UINT_CLAMP(_target_, _name_, _min_, _max_) read_uint_option_clamp(option, #_name_, value, &(_target_)._name_, _min_, _max_)
 #define READ_UINT_ENUM_CLAMP(_target_, _name_, _min_, _max_) read_uint_option_clamp(option, #_name_, value, (guint*)&(_target_)._name_, _min_, _max_)
