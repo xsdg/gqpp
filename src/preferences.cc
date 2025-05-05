@@ -2435,7 +2435,7 @@ static GtkWidget *osd_profiles(gint i)
 
 	image_overlay_template_view = gtk_text_view_new();
 
-	group = pref_group_new(page, FALSE, _(""), GTK_ORIENTATION_VERTICAL);
+	group = pref_group_new(page, FALSE, nullptr, GTK_ORIENTATION_VERTICAL);
 	subgroup = pref_box_new(group, FALSE, GTK_ORIENTATION_VERTICAL, PREF_PAD_GAP);
 
 	scrolled_pre_formatted = osd_new(PRE_FORMATTED_COLUMNS, image_overlay_template_view);
