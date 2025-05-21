@@ -75,7 +75,7 @@ meson setup \
 -Dyelp-build=disabled \
 build
 
-if meson test -C build
+if ninja test -C build
 then
 	options_disabled="PASS"
 else
@@ -87,7 +87,7 @@ cat ./build/meson-logs/testlog.txt >> "$tmpdir/testlog-options-disabled.txt"
 
 rm --recursive --force build
 meson setup -Dunit_tests=enabled build
-if meson test -C build
+if ninja test -C build
 then
 	options_enabled="PASS"
 else
