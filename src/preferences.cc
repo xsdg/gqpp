@@ -3456,7 +3456,13 @@ static void config_tab_behavior(GtkWidget *notebook)
 	hbox = pref_box_new(group, FALSE, GTK_ORIENTATION_HORIZONTAL, PREF_PAD_SPACE);
 	pref_checkbox_link_sensitivity(ct_button, hbox);
 
-	pref_spacer(hbox, PREF_PAD_INDENT - PREF_PAD_SPACE);
+	/* Avoid error: both sides of operator are equivalent
+	 * [misc-redundant-expression,-warnings-as-errors]
+	 * issued because PREF_PAD_INDENT = PREF_PAD_SPACE
+	 */
+	gint pad_indent = PREF_PAD_INDENT;
+	gint pad_space = PREF_PAD_SPACE;
+	pref_spacer(hbox, pad_indent - pad_space);
 	pref_label_new(hbox, _("Folder:"));
 
 	tabcomp = tab_completion_new(&safe_delete_path_entry, options->file_ops.safe_delete_path, nullptr, nullptr, nullptr, nullptr);
