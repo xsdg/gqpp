@@ -513,8 +513,6 @@ void collection_load_stop(CollectionData *cd)
 
 static gboolean collection_save_private(CollectionData *cd, const gchar *path)
 {
-	SecureSaveInfo *ssi;
-
 	if (!path && !cd->path) return FALSE;
 
 	if (!path)
@@ -523,36 +521,29 @@ static gboolean collection_save_private(CollectionData *cd, const gchar *path)
 		}
 
 	g_autofree gchar *pathl = path_from_utf8(path);
-	ssi = secure_open(pathl);
-	if (!ssi)
-		{
-		log_printf(_("failed to open collection (write) \"%s\"\n"), path);
-		return FALSE;
-		}
+	g_autoptr(GString) gstring = g_string_new(nullptr);
+	g_autofree gchar *open_text = g_strdup_printf("%s collection\n#created with %s version %s\n", GQ_COLLECTION_MARKER, GQ_APPNAME, VERSION);
 
-	secure_fprintf(ssi, "%s collection\n", GQ_COLLECTION_MARKER);
-	secure_fprintf(ssi, "#created with %s version %s\n", GQ_APPNAME, VERSION);
+	g_string_append(gstring, open_text);
 
 	collection_update_geometry(cd);
 	if (cd->window_read)
 		{
-		secure_fprintf(ssi, "#geometry: %d %d %d %d\n", cd->window.x, cd->window.y, cd->window.width, cd->window.height);
+		g_autofree gchar *window_text = g_strdup_printf("#geometry: %d %d %d %d\n", cd->window.x, cd->window.y, cd->window.width, cd->window.height);
+		g_string_append(gstring, window_text);
 		}
 
-	for (GList *work = cd->list; work && secsave_succeed(); work = work->next)
+	for (GList *work = cd->list; work; work = work->next)
 		{
 		auto ci = static_cast<CollectInfo *>(work->data);
-		secure_fprintf(ssi, "\"%s\"\n", ci->fd->path);
+
+		g_autofree gchar *sec_text = g_strdup_printf("\"%s\"\n", ci->fd->path);
+		g_string_append(gstring, sec_text);
 		}
 
-	secure_fprintf(ssi, "#end\n");
+	g_string_append(gstring, "#end\n");
 
-	if (secure_close(ssi))
-		{
-		log_printf(_("error saving collection file: %s\nerror: %s\n"),
-		           path, secsave_strerror());
-		return FALSE;
-		}
+	secure_save(pathl, gstring->str, -1);
 
 	if (!cd->path || strcmp(path, cd->path) != 0)
 		{

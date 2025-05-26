@@ -785,16 +785,9 @@ static void write_disabled_plugins(GString *outstr, gint indent)
 
 gboolean save_config_to_file(const gchar *utf8_path, ConfOptions *options, LayoutWindow *lw)
 {
-	SecureSaveInfo *ssi;
 	gint indent = 0;
 
 	g_autofree gchar *rc_pathl = path_from_utf8(utf8_path);
-	ssi = secure_open(rc_pathl);
-	if (!ssi)
-		{
-		config_file_error((std::string("- Error saving config file: ") + utf8_path).c_str());
-		return FALSE;
-		}
 
 	g_autoptr(GString) outstr = g_string_new("<!--\n");
 	WRITE_STRING("######################################################################\n");
@@ -863,29 +856,16 @@ gboolean save_config_to_file(const gchar *utf8_path, ConfOptions *options, Layou
 	WRITE_NL(); WRITE_STRING("</gq>\n");
 	WRITE_SEPARATOR();
 
-	secure_fputs(ssi, outstr->str);
-
-	if (secure_close(ssi))
-		{
-		config_file_error((std::string("- Error saving config file: ") + utf8_path + " error: " + secsave_strerror()).c_str());
-		return FALSE;
-		}
+	secure_save(rc_pathl, outstr->str, -1);
 
 	return TRUE;
 }
 
 gboolean save_default_layout_options_to_file(const gchar *utf8_path, LayoutWindow *lw)
 {
-	SecureSaveInfo *ssi;
 	gint indent = 0;
 
 	g_autofree gchar *rc_pathl = path_from_utf8(utf8_path);
-	ssi = secure_open(rc_pathl);
-	if (!ssi)
-		{
-		config_file_error((std::string("- Error saving default layout file: ") + utf8_path).c_str());
-		return FALSE;
-		}
 
 	g_autoptr(GString) outstr = g_string_new("<!--\n");
 	WRITE_STRING("######################################################################\n");
@@ -908,14 +888,7 @@ gboolean save_default_layout_options_to_file(const gchar *utf8_path, LayoutWindo
 	WRITE_NL(); WRITE_STRING("</gq>\n");
 	WRITE_SEPARATOR();
 
-	secure_fputs(ssi, outstr->str);
-
-	if (secure_close(ssi))
-		{
-		config_file_error((std::string("- Error saving config file: ") + utf8_path + " error: " + secsave_strerror()).c_str());
-
-		return FALSE;
-		}
+	secure_save(rc_pathl, outstr->str, -1);
 
 	return TRUE;
 }

@@ -265,29 +265,22 @@ gboolean history_list_load(const gchar *path)
 
 gboolean history_list_save(const gchar *path)
 {
-	SecureSaveInfo *ssi;
-
 	g_autofree gchar *pathl = path_from_utf8(path);
-	ssi = secure_open(pathl);
-	if (!ssi)
-		{
-		log_printf(_("Unable to write history lists to: %s\n"), path);
-		return FALSE;
-		}
 
-	secure_fprintf(ssi, "#History lists\n\n");
+	g_autoptr(GString) gstring = g_string_new("#History lists\n\n");
 
-	for (GList *list = g_list_last(history_list); list && secsave_succeed(); list = list->prev)
+	for (GList *list = g_list_last(history_list); list; list = list->prev)
 		{
 		const auto *hd = static_cast<HistoryData *>(list->data);
 
-		secure_fprintf(ssi, "[%s]\n", hd->key);
+		g_autofree gchar *key_text = g_strdup_printf("[%s]\n", hd->key);
+		g_string_append(gstring, key_text);
 
 		/* save them inverted (oldest to newest)
 		 * so that when reading they are added correctly
 		 */
 		gint list_count = g_list_length(hd->list);
-		for (GList *work = g_list_last(hd->list); work && secsave_succeed(); work = work->prev)
+		for (GList *work = g_list_last(hd->list); work; work = work->prev)
 			{
 			const auto *item = static_cast<gchar *>(work->data);
 			if ((strcmp(hd->key, "path_list") != 0 || list_count <= options->open_recent_list_maxsize)
@@ -296,17 +289,18 @@ gboolean history_list_save(const gchar *path)
 			    &&
 			    (strcmp(hd->key, "image_list") != 0 || list_count <= options->recent_folder_image_list_maxsize))
 				{
-				secure_fprintf(ssi, "\"%s\"\n", item);
+				g_autofree gchar *item_text = g_strdup_printf("\"%s\"\n", item);
+				g_string_append(gstring, item_text);
 				}
 
 			list_count--;
 			}
-		secure_fputc(ssi, '\n');
+		g_string_append(gstring, "\n");
 		}
 
-	secure_fprintf(ssi, "#end\n");
+	g_string_append(gstring, "#end\n");
 
-	return (secure_close(ssi) == 0);
+	return secure_save(pathl, gstring->str, -1);
 }
 
 static void history_list_free(HistoryData *hd)

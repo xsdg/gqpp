@@ -933,7 +933,7 @@ void gq_log_file(GtkApplication *, GApplicationCommandLine *, GVariantDict *comm
 	g_variant_dict_lookup(command_line_options_dict, "log-file", "&s", &text);
 
 	g_autofree gchar *pathl = path_from_utf8(text);
-	command_line->log_file_ssi = secure_open(pathl);
+	command_line->log_file = g_strdup(pathl);
 }
 
 #if HAVE_LUA // @todo Use [[maybe_unused]] for command_line_options_dict since C++17 and merge declarations

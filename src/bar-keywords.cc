@@ -1693,26 +1693,23 @@ gboolean autocomplete_keywords_list_save(const gchar *path)
 {
 	g_autofree gchar *pathl = path_from_utf8(path);
 
-	SecureSaveInfo *ssi = secure_open(pathl);
-	if (!ssi)
-		{
-		log_printf(_("Error: Unable to write keywords list to: %s\n"), path);
-		return FALSE;
-		}
-
-	secure_fprintf(ssi, "#Keywords list\n");
+	g_autoptr(GString) gstring = g_string_new("#Keywords list\n");
 
 	const auto keyword_save = [](GtkTreeModel *model, GtkTreePath *, GtkTreeIter *iter, gpointer data)
 	{
 		g_autofree gchar *string = nullptr;
 		gtk_tree_model_get(model, iter, 0, &string, -1);
-		secure_fprintf(static_cast<SecureSaveInfo *>(data), "%s\n", string);
+
+		g_autofree gchar *keyword_text = g_strdup_printf("%s\n", string);
+		g_string_append(static_cast<GString *>(data), keyword_text);
+
 		return FALSE;
 	};
-	gtk_tree_model_foreach(GTK_TREE_MODEL(keyword_store), keyword_save, ssi);
+	gtk_tree_model_foreach(GTK_TREE_MODEL(keyword_store), keyword_save, gstring);
 
-	secure_fprintf(ssi, "#end\n");
-	return (secure_close(ssi) == 0);
+	g_string_append(gstring, "#end\n");
+
+	return secure_save(pathl, gstring->str, -1);
 }
 
 } // namespace

@@ -186,35 +186,41 @@ void cache_sim_data_free(CacheData *cd)
  *-------------------------------------------------------------------
  */
 
-static gboolean cache_sim_write_dimensions(SecureSaveInfo *ssi, CacheData *cd)
+static gboolean cache_sim_write_dimensions(GString *gstring, CacheData *cd)
 {
 	if (!cd || !cd->dimensions) return FALSE;
 
-	secure_fprintf(ssi, "Dimensions=[%d x %d]\n", cd->width, cd->height);
+	g_autofree gchar *parameter_text = g_strdup_printf("Dimensions=[%d x %d]\n", cd->width, cd->height);
+
+	g_string_append(gstring, parameter_text);
 
 	return TRUE;
 }
 
-static gboolean cache_sim_write_date(SecureSaveInfo *ssi, CacheData *cd)
+static gboolean cache_sim_write_date(GString *gstring, CacheData *cd)
 {
 	if (!cd || !cd->have_date) return FALSE;
 
-	secure_fprintf(ssi, "Date=[%ld]\n", cd->date);
+	g_autofree gchar *parameter_text = g_strdup_printf("Date=[%ld]\n", cd->date);
+
+	g_string_append(gstring, parameter_text);
 
 	return TRUE;
 }
 
-static gboolean cache_sim_write_md5sum(SecureSaveInfo *ssi, CacheData *cd)
+static gboolean cache_sim_write_md5sum(GString *gstring, CacheData *cd)
 {
 	if (!cd || !cd->have_md5sum) return FALSE;
 
 	g_autofree gchar *text = md5_digest_to_text(cd->md5sum);
-	secure_fprintf(ssi, "MD5sum=[%s]\n", text);
+	g_autofree gchar *parameter_text = g_strdup_printf("MD5sum=[%s]\n", text);
+
+	g_string_append(gstring, parameter_text);
 
 	return TRUE;
 }
 
-static gboolean cache_sim_write_similarity(SecureSaveInfo *ssi, CacheData *cd)
+static gboolean cache_sim_write_similarity(GString *gstring, CacheData *cd)
 {
 	guint x;
 	guint y;
@@ -222,7 +228,8 @@ static gboolean cache_sim_write_similarity(SecureSaveInfo *ssi, CacheData *cd)
 
 	if (!cd || !cd->similarity || !cd->sim || !cd->sim->filled) return FALSE;
 
-	secure_fprintf(ssi, "SimilarityGrid[32 x 32]=");
+	g_string_append(gstring, "SimilarityGrid[32 x 32]=");
+
 	for (y = 0; y < 32; y++)
 		{
 		guint s = y * 32;
@@ -238,40 +245,32 @@ static gboolean cache_sim_write_similarity(SecureSaveInfo *ssi, CacheData *cd)
 			buf[n++] = avg_b[x];
 			}
 
-		secure_fwrite(buf, sizeof(buf), 1, ssi);
+		g_string_append_len(gstring, (const gchar *)buf, sizeof(buf));
 		}
 
-	secure_fputc(ssi, '\n');
+
+	g_string_append(gstring, "\n");
 
 	return TRUE;
 }
 
 gboolean cache_sim_data_save(CacheData *cd)
 {
-	SecureSaveInfo *ssi;
-
 	if (!cd || !cd->path) return FALSE;
 
 	g_autofree gchar *pathl = path_from_utf8(cd->path);
-	ssi = secure_open(pathl);
-	if (!ssi)
-		{
-		log_printf("Unable to save sim cache data: %s\n", cd->path);
-		return FALSE;
-		}
 
-	secure_fprintf(ssi, "SIMcache\n#%s %s\n", PACKAGE, VERSION);
-	cache_sim_write_dimensions(ssi, cd);
-	cache_sim_write_date(ssi, cd);
-	cache_sim_write_md5sum(ssi, cd);
-	cache_sim_write_similarity(ssi, cd);
+	g_autoptr(GString) gstring = g_string_new(nullptr);
 
-	if (secure_close(ssi))
-		{
-		log_printf(_("error saving sim cache data: %s\nerror: %s\n"),
-		           cd->path, secsave_strerror());
-		return FALSE;
-		}
+	g_autofree gchar *open_text = g_strdup_printf("SIMcache\n#%s %s\n", PACKAGE, VERSION);
+	g_string_append(gstring, open_text);
+
+	cache_sim_write_dimensions(gstring, cd);
+	cache_sim_write_date(gstring, cd);
+	cache_sim_write_md5sum(gstring, cd);
+	cache_sim_write_similarity(gstring, cd);
+
+	secure_save(pathl, gstring->str, gstring->len);
 
 	return TRUE;
 }

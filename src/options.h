@@ -456,7 +456,7 @@ struct ConfOptions
 
 struct CommandLine
 {
-	SecureSaveInfo *log_file_ssi;
+	gchar *log_file;
 };
 
 extern ConfOptions *options;

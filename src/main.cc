@@ -452,10 +452,6 @@ void mkdir_if_not_exists(const gchar *path)
 		}
 }
 
-/* We add to duplicate and modify  gtk_accel_map_print() and gtk_accel_map_save()
- * to improve the reliability in special cases (especially when disk is full)
- * These functions are now using secure saving stuff.
- */
 void gq_accel_map_print(
 		    gpointer 	data,
 		    const gchar	*accel_path,
@@ -463,9 +459,9 @@ void gq_accel_map_print(
 		    GdkModifierType accel_mods,
 		    gboolean	changed)
 {
-	g_autoptr(GString) gstring = g_string_new(changed ? nullptr : "; ");
-	auto ssi = static_cast<SecureSaveInfo *>(data);
+	auto gstring = static_cast<GString *>(data);
 
+	g_string_append(gstring, changed ? nullptr : "; ");
 	g_string_append(gstring, "(gtk_accel_path \"");
 
 	g_autofree gchar *accel_path_escaped = g_strescape(accel_path, nullptr);
@@ -478,21 +474,11 @@ void gq_accel_map_print(
 	g_string_append(gstring, name_escaped);
 
 	g_string_append(gstring, "\")\n");
-
-	secure_fwrite(gstring->str, sizeof(*gstring->str), gstring->len, ssi);
 }
 
 gboolean gq_accel_map_save(const gchar *path)
 {
-	SecureSaveInfo *ssi;
-
 	g_autofree gchar *pathl = path_from_utf8(path);
-	ssi = secure_open(pathl);
-	if (!ssi)
-		{
-		log_printf(_("error saving file: %s\n"), path);
-		return FALSE;
-		}
 
 	g_autoptr(GString) gstring = g_string_new("; ");
 	if (g_get_prgname())
@@ -501,16 +487,9 @@ gboolean gq_accel_map_save(const gchar *path)
 	g_string_append(gstring, "; this file is an automated accelerator map dump\n");
 	g_string_append(gstring, ";\n");
 
-	secure_fwrite(gstring->str, sizeof(*gstring->str), gstring->len, ssi);
+	gtk_accel_map_foreach(gstring, gq_accel_map_print);
 
-	gtk_accel_map_foreach(ssi, gq_accel_map_print);
-
-	if (secure_close(ssi))
-		{
-		log_printf(_("error saving file: %s\nerror: %s\n"),
-		           path, secsave_strerror());
-		return FALSE;
-		}
+	secure_save(pathl, gstring->str, -1);
 
 	return TRUE;
 }
@@ -597,8 +576,6 @@ void exit_program_final()
 		g_file_delete(archive_file, nullptr, nullptr);
 		g_object_unref(archive_file);
 		}
-
-	secure_close(command_line->log_file_ssi);
 
 	exit(EXIT_SUCCESS);
 }

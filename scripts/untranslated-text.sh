@@ -136,6 +136,9 @@ trc_name
 website-label
 write_char_option
 
+##cache.cc
+\"SimilarityGrid[32 x 32]=\"
+
 ##cellrendericon.cc
 \"Background color as a GdkRGBA\",
 \"Background color\",

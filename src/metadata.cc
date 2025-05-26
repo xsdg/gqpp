@@ -436,28 +436,21 @@ gboolean metadata_write_int(FileData *fd, const gchar *key, guint64 value)
 
 static gboolean metadata_file_write(gchar *path, const GList *keywords, const gchar *comment)
 {
-	SecureSaveInfo *ssi;
+	g_autoptr(GString) gstring = g_string_new(nullptr);
 
-	ssi = secure_open(path);
-	if (!ssi) return FALSE;
+	g_autofree gchar *start_text = g_strdup_printf("#%s comment (%s)\n\n[keywords]\n", GQ_APPNAME, VERSION);
+	g_string_append(gstring, start_text);
 
-	secure_fprintf(ssi, "#%s comment (%s)\n\n", GQ_APPNAME, VERSION);
-
-	secure_fprintf(ssi, "[keywords]\n");
-	for (; keywords && secsave_succeed(); keywords = keywords->next)
+	for (; keywords; keywords = keywords->next)
 		{
 		auto word = static_cast<const gchar *>(keywords->data);
-
-		secure_fprintf(ssi, "%s\n", word);
+		g_string_append(gstring, word);
 		}
-	secure_fputc(ssi, '\n');
 
-	secure_fprintf(ssi, "[comment]\n");
-	secure_fprintf(ssi, "%s\n", comment ? comment : "");
+	g_autofree gchar *end_text = g_strdup_printf("\n[comment]\n%s\n#end\n", comment ? comment : "");
+	g_string_append(gstring, end_text);
 
-	secure_fprintf(ssi, "#end\n");
-
-	return (secure_close(ssi) == 0);
+	return secure_save(path, gstring->str, -1);
 }
 
 static gboolean metadata_legacy_write(FileData *fd)

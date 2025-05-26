@@ -20,6 +20,7 @@
 
 #include "debug.h"
 
+#include <fstream>
 #include <sys/time.h>
 
 #include <cstdarg>
@@ -146,9 +147,10 @@ void print_term(bool err, const gchar *text_utf8)
 
 	fputs(text, err ? stderr : stdout);
 
-	if(command_line && command_line->log_file_ssi)
+	if (command_line && command_line->log_file)
 		{
-		secure_fputs(command_line->log_file_ssi, text);
+		std::ofstream log(command_line->log_file, std::ios::app);
+		log << text_utf8 << std::endl; // NOLINT(performance-avoid-endl)
 		}
 }
 

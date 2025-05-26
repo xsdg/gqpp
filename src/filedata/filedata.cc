@@ -2824,28 +2824,20 @@ gboolean FileData::marks_list_load(const gchar *path)
 
 gboolean FileData::marks_list_save(gchar *path, gboolean save)
 {
-	SecureSaveInfo *ssi;
-
 	g_autofree gchar *pathl = path_from_utf8(path);
-	ssi = secure_open(pathl);
-	if (!ssi)
-		{
-		log_printf(_("Error: Unable to write marks lists to: %s\n"), path);
-		return FALSE;
-		}
-
-	secure_fprintf(ssi, "#Marks lists\n");
-
 	g_autoptr(GString) marks = g_string_new("");
+
+	g_string_append(marks, "#Marks lists\n");
+
 	if (save)
 		{
 		FileDataContext *context = FileData::DefaultFileDataContext();
 		g_hash_table_foreach(context->file_data_pool, marks_get_files, marks);
 		}
-	secure_fprintf(ssi, "%s", marks->str);
 
-	secure_fprintf(ssi, "#end\n");
-	return (secure_close(ssi) == 0);
+	g_string_append(marks,  "#end\n");
+
+	return secure_save(pathl, marks->str, -1);
 }
 
 static void marks_clear(gpointer key, gpointer value, gpointer)
