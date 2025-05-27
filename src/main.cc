@@ -1032,7 +1032,7 @@ gint main(gint argc, gchar *argv[])
 
 	if (!gq_disable_clutter || tolower(gq_disable_clutter[0]) != 'y')
 		{
-		if (clutter_init(nullptr, nullptr) != CLUTTER_INIT_SUCCESS)
+		if (gtk_clutter_init(nullptr, nullptr) != CLUTTER_INIT_SUCCESS)
 			{
 			fprintf(stderr,
 				_("Can't initialize clutter-gtk. \n \
