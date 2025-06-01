@@ -1053,7 +1053,14 @@ static void open_file_cb(GtkFileChooser *chooser, gint response_id, gpointer)
 		g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
 		g_autofree gchar *filename = g_file_get_path(file);
 
-		layout_set_path(get_current_layout(), filename);
+		if (g_str_has_suffix(filename, GQ_COLLECTION_EXT))
+			{
+			collection_window_new(filename);
+			}
+		else
+			{
+			layout_set_path(get_current_layout(), filename);
+			}
 		}
 
 	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
@@ -1066,7 +1073,14 @@ static void open_recent_file_cb(GtkFileChooser *chooser, gint response_id, gpoin
 		g_autofree gchar *uri_name = gtk_recent_chooser_get_current_uri(GTK_RECENT_CHOOSER(chooser));
 		g_autofree gchar *file_name = g_filename_from_uri(uri_name, nullptr, nullptr);
 
-		layout_set_path(get_current_layout(), file_name);
+		if (g_str_has_suffix(file_name, GQ_COLLECTION_EXT))
+			{
+			collection_window_new(file_name);
+			}
+		else
+			{
+			layout_set_path(get_current_layout(), file_name);
+			}
 		}
 
 	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
