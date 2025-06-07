@@ -575,6 +575,11 @@ GtkWidget *bar_find_pane_by_id(GtkWidget *bar, PaneType type, const gchar *id)
 
 	if (!id || !id[0]) return nullptr;
 
+	if (!bar)
+		{
+		return nullptr;
+		}
+
 	bd = static_cast<BarData *>(g_object_get_data(G_OBJECT(bar), "bar_data"));
 	if (!bd) return nullptr;
 

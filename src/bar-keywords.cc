@@ -1869,25 +1869,41 @@ gboolean bar_keywords_autocomplete_focus(LayoutWindow *lw)
 	GtkWidget *pane;
 	GtkWidget *current_focus;
 	GList *children;
-	gboolean ret;
+	gboolean ret = FALSE;
 
 	current_focus = gtk_window_get_focus(GTK_WINDOW(lw->window));
 	pane = bar_find_pane_by_id(lw->bar, PANE_KEYWORDS, "keywords");
 
-	children = gtk_container_get_children(GTK_CONTAINER(pane));
-
-	const GList *last_child = g_list_last(children);
-	if (current_focus == last_child->data)
+	if (pane)
 		{
-		ret = TRUE;
+		children = gtk_container_get_children(GTK_CONTAINER(pane));
+
+		const GList *last_child = g_list_last(children);
+		if (current_focus == last_child->data)
+			{
+			ret = TRUE;
+			}
+		else
+			{
+			gtk_widget_grab_focus(GTK_WIDGET(last_child->data));
+			ret = FALSE;
+			}
+
+		g_list_free(children);
 		}
 	else
 		{
-		gtk_widget_grab_focus(GTK_WIDGET(last_child->data));
-		ret = FALSE;
-		}
+		GApplication *app = g_application_get_default();
 
-	g_list_free(children);
+		g_autoptr(GNotification) notification = g_notification_new("Geeqie");
+
+		g_notification_set_title(notification, _("Keyword Autocomplete"));
+		g_notification_set_body(notification, _("The Info Sidebar has not yet been opened"));
+		g_notification_set_priority(notification, G_NOTIFICATION_PRIORITY_NORMAL);
+		g_notification_set_default_action(notification, "app.null");
+
+		g_application_send_notification(G_APPLICATION(app), "keyword-autocomplete-notification", notification);
+		}
 
 	return ret;
 }
