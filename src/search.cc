@@ -445,15 +445,31 @@ bool match_is_between(T val, T a, T b)
 	return (b > a) ? (a <= val && val <= b) : (b <= val && val <= a);
 }
 
+double to_radians(gdouble deg)
+{
+	return deg * M_PI / 180.0;
+}
+
+/**
+ * @brief Get distance between two lat/long points
+ * @param sd @ref SearchData
+ * @param latitude Degrees
+ * @param longitude Degrees
+ * @returns Distance in km/miles/nautical miles
+ * 
+ * Equirectangular approximation. \n
+ * Error is probably insignificant for this application: \n
+ * < 10 km       0.1% \n
+ * 10 – 100 km   0.1%–0.5% \n
+ * 100 – 1000 km 0.5%–2% \n
+ * \> 1000 km     ≥ 2–5% \n
+ */
 gdouble get_gps_range(const SearchData *sd, gdouble latitude, gdouble longitude)
 {
-	constexpr gdouble RADIANS = 0.0174532925; // 1 degree in radians
-	const gdouble lat_rad = latitude * RADIANS;
-	const gdouble search_lat_rad = sd->search_lat * RADIANS;
-	const gdouble lon_diff_rad = (sd->search_lon - longitude) * RADIANS;
+	gdouble x = to_radians(sd->search_lon - longitude) * std::cos(to_radians((latitude + sd->search_lat) / 2));
+	gdouble y = to_radians(sd->search_lat - latitude);
 
-	return sd->search_earth_radius * acos((sin(lat_rad) * sin(search_lat_rad)) +
-	                                      (cos(lat_rad) * cos(search_lat_rad) * cos(lon_diff_rad)));
+	return std::sqrt((x * x) + (y * y)) * sd->search_earth_radius;
 }
 
 GString *get_marks_string(gint mark_num)
