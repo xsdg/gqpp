@@ -1295,7 +1295,6 @@ GList *directories_collections_files(GtkApplication *app, GApplicationCommandLin
 	gboolean remote_instance;
 	gchar **argv=nullptr;
 	gchar *download_web_tmp_file;
-	gchar *real_path;
 	gint argc;
 
 	remote_instance = g_application_command_line_get_is_remote(app_command_line);
@@ -1305,7 +1304,7 @@ GList *directories_collections_files(GtkApplication *app, GApplicationCommandLin
 	for (gint i = 1; i < argc; i++)
 		{
 		current_arg = argv[i];
-		real_path =  realpath(current_arg, nullptr);
+		g_autofree gchar *real_path = g_canonicalize_filename(current_arg, nullptr);
 
 		if (isdir(real_path))
 			{
@@ -1318,7 +1317,7 @@ GList *directories_collections_files(GtkApplication *app, GApplicationCommandLin
 			}
 		else if (isfile(real_path))
 			{
-			file_list = g_list_prepend(file_list, real_path);
+			file_list = g_list_prepend(file_list, g_strdup(real_path));
 			}
 		else
 			{
