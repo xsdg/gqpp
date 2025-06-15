@@ -23,6 +23,7 @@
 
 #include "filedata.h"
 
+#include <glib/gstdio.h>
 #include <sys/stat.h>
 #include <unistd.h>
 
@@ -1973,6 +1974,60 @@ gboolean FileData::file_data_sc_update_ci_unspecified_list(GList *fd_list, const
  * it should detect all possible problems with the planned operation
  */
 
+/**
+ * @brief Determine if file is readable, do not follow symlinks
+ * @param path 
+ * @returns 
+ * 
+ * 
+ */
+static gboolean file_is_readable_no_follow(const gchar *path)
+{
+	gboolean readable = FALSE;
+	GStatBuf statbuf;
+
+	if (g_lstat(path, &statbuf) != 0)
+		{
+		log_printf("g_lstat failed: %s\n", strerror(errno));
+
+		return readable;
+		}
+
+	if (S_IRUSR & statbuf.st_mode)
+		{
+		readable = TRUE;
+		}
+
+	return readable;
+}
+
+/**
+ * @brief Determine if file is writable, do not follow symlinks
+ * @param path 
+ * @returns 
+ * 
+ * 
+ */
+static gboolean file_is_writable_no_follow(const gchar *path)
+{
+	gboolean writable = FALSE;
+	GStatBuf statbuf;
+
+	if (g_lstat(path, &statbuf) != 0)
+		{
+		log_printf("g_lstat failed: %s\n", strerror(errno));
+
+		return writable;
+		}
+
+	if (S_IWUSR & statbuf.st_mode)
+		{
+		writable = TRUE;
+		}
+
+	return writable;
+}
+
 gint FileData::file_data_verify_ci(FileData *fd, GList *list)
 {
 	gint ret = CHANGE_OK;
@@ -2007,7 +2062,7 @@ gint FileData::file_data_verify_ci(FileData *fd, GList *list)
 
 	if (fd->change->type != FILEDATA_CHANGE_DELETE &&
 	    fd->change->type != FILEDATA_CHANGE_WRITE_METADATA &&
-	    !access_file(fd->path, R_OK))
+		 !file_is_readable_no_follow(fd->path))
 		{
 		ret |= CHANGE_NO_READ_PERM;
 		DEBUG_1("Change checked: no read permission: %s", fd->path);
@@ -2021,7 +2076,7 @@ gint FileData::file_data_verify_ci(FileData *fd, GList *list)
 	else if (fd->change->type != FILEDATA_CHANGE_COPY &&
 		 fd->change->type != FILEDATA_CHANGE_UNSPECIFIED &&
 		 fd->change->type != FILEDATA_CHANGE_WRITE_METADATA &&
-		 !access_file(fd->path, W_OK))
+		 !file_is_writable_no_follow(fd->path))
 		{
 		ret |= CHANGE_WARN_NO_WRITE_PERM;
 		DEBUG_1("Change checked: no write permission: %s", fd->path);
