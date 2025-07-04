@@ -185,7 +185,8 @@ GdkPixbuf *pixbuf_inline(const gchar *key)
 	GtkSettings *settings = gtk_settings_get_default();
 	g_autofree gchar *theme_name = nullptr;
 	g_object_get(settings, "gtk-theme-name", &theme_name, nullptr);
-	gboolean dark = g_str_has_suffix(theme_name, "dark");
+	g_autofree gchar *theme_name_lc = g_ascii_strdown(theme_name, -1);
+	gboolean dark = g_str_has_suffix(theme_name_lc, "dark");
 
 	const auto it = std::find_if(std::cbegin(inline_pixbuf_data), std::cend(inline_pixbuf_data),
 	                             [key](const PixbufInline &pi){ return strcmp(pi.key, key) == 0; });
