@@ -27,8 +27,11 @@ if not option.disabled()
             input : guideindex_xml,
             output : ['html'],
             command : [gnome_doc_tool, 'html', '@INPUT@', '-o', destdir, '-p', graphicsdir],
-            install : true,
-            install_dir : helpdir)
+            install : false)
+        install_subdir(destdir,
+            install_dir : helpdir,
+            install_tag : 'help',
+            follow_symlinks : false)
         run_command(find_program('ln'), '-s', '-f', 'GuideIndex.html', guideindex_ln, check : false)
         summary({'help' : ['Help files created:', true]}, section : 'Documentation', bool_yn : true)
     else
