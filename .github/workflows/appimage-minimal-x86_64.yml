@@ -70,7 +70,7 @@ jobs:
             -Dwebp=disabled
             -Dyelp-build=disabled
           options: --verbose
-          meson-version: 1.0.1
+          meson-version: 1.3.2
 
       - name: Ninja compile
         run: DESTDIR=${{ github.workspace }}/AppDir ninja -C build install
