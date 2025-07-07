@@ -14,8 +14,8 @@
 subdir('html')
 
 guideindex_xml = files('docbook/GuideIndex.xml')
-destdir = join_paths(meson.current_build_dir(), 'html/')
-graphicsdir = join_paths(meson.current_source_dir(), 'graphics/')
+destdir = join_paths(meson.current_build_dir(), 'html')
+graphicsdir = join_paths(meson.current_source_dir(), 'graphics')
 guideindex_ln = join_paths(destdir, 'index.html')
 
 option = get_option('yelp-build')
@@ -24,16 +24,25 @@ if not option.disabled()
     if gnome_doc_tool.found()
         help_html = custom_target(
             'help-html',
-            input : guideindex_xml,
-            output : ['html'],
-            command : [gnome_doc_tool, 'html', '@INPUT@', '-o', destdir, '-p', graphicsdir],
-            install : false)
-        install_subdir(destdir,
-            install_dir : helpdir,
-            install_tag : 'help',
-            follow_symlinks : false)
-        run_command(find_program('ln'), '-s', '-f', 'GuideIndex.html', guideindex_ln, check : false)
-        summary({'help' : ['Help files created:', true]}, section : 'Documentation', bool_yn : true)
+            input: guideindex_xml,
+            output: 'help-html.stamp',  # Dummy stamp to track build
+            command: [
+                gnome_doc_tool, 'html', '@INPUT@',
+                '-o', destdir,
+                '-p', graphicsdir,
+                '&&', 'ln', '-sf', 'GuideIndex.html', guideindex_ln,
+                '&&', 'touch', '@OUTPUT@'
+                ],
+            build_by_default: true,
+            install: false
+            )
+        install_subdir(
+            destdir,
+            install_dir: helpdir,
+            install_tag: 'help',
+            follow_symlinks: false
+            )
+        summary({'help': ['Help files created:', true]}, section: 'Documentation', bool_yn: true)
     else
         summary({'help' : ['yelp-build not found - Help files created:', false]}, section : 'Documentation', bool_yn : true)
     endif
