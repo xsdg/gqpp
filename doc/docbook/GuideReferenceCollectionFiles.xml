@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<section id="GuideReferenceCollectionFiles">
+  <title>Collection file format</title>
+  <para>
+    Collection files have the following format:
+    <programlisting xml:space="preserve">
+      #Geeqie collection
+      #created with Geeqie version 2.6+git20250705-01d997ed
+      #geometry: 0 0 1080 1106
+      "&lt;filepath1&gt;"
+      "&lt;filepath2&gt;"
+      #end
+    </programlisting>
+  </para>
+  <para>
+    It is possible to include informational text along with an image. The format is:
+    <programlisting xml:space="preserve">
+      #i Some informational text for the following file
+      "&lt;filepath1&gt;"
+      #end
+    </programlisting>
+  </para>
+  <para>
+    This text can be displayed via a right-click menu option from a
+    <link linkend="GuideCollections" endterm="titleGuideCollections"/>
+    window.
+  </para>
+  <para>
+    It is assumed that you insert such text into a .gqv file via a script or program file. If you wish a facility to do this to be included within Geeqie, please raise a feature request on
+    <ulink url="https://github.com/BestImageViewer/geeqie/issues">https://github.com/BestImageViewer/geeqie/issues</ulink>
+  </para>
+</section>

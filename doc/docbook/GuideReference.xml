@@ -11,6 +11,7 @@
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceConfig.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceFileDates.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceTags.xml" />
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceCollectionFiles.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceSupportedFormats.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferenceSimilarityAlgorithms.xml" />
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="GuideReferencePixbufLoaders.xml" />

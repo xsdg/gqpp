@@ -128,7 +128,7 @@ static hard_coded_window_keys collection_window_keys[] = {
 	{static_cast<GdkModifierType>(0), 'S', N_("Save collection")},
 	{GDK_CONTROL_MASK, 'S', N_("Save collection as")},
 	{GDK_CONTROL_MASK, 'T', N_("Show filename text")},
-	{GDK_CONTROL_MASK, 'I', N_("Show info text")},
+	{GDK_CONTROL_MASK, 'I', N_("Show infotext")},
 	{static_cast<GdkModifierType>(0), 'N', N_("Sort by name")},
 	{static_cast<GdkModifierType>(0), 'D', N_("Sort by date")},
 	{static_cast<GdkModifierType>(0), 'B', N_("Sort by size")},
@@ -1096,7 +1096,7 @@ static GtkWidget *collection_table_popup_menu(CollectTable *ct, gboolean over_ic
 			G_CALLBACK(collection_table_popup_show_names_cb), ct);
 	menu_item_add_check(menu, _("Show star rating"), ct->show_stars,
 				G_CALLBACK(collection_table_popup_show_stars_cb), ct);
-	menu_item_add_check(menu, _("Show info _text"), ct->show_infotext,
+	menu_item_add_check(menu, _("Show infotext"), ct->show_infotext,
 			G_CALLBACK(collection_table_popup_show_infotext_cb), ct);
 	menu_item_add_divider(menu);
 	menu_item_add_icon(menu, _("_Save collection"), GQ_ICON_SAVE,

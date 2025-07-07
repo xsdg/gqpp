@@ -107,4 +107,13 @@
     </para>
     <para />
   </section>
+  <section id="InfoText">
+    <title>Infotext</title>
+    <para>
+      Right-click menu item
+      <emphasis role="strong">Infotext</emphasis>
+      , allows additional text to be placed against a thumbnail. See <link linkend="GuideReferenceCollectionFiles">Collection file format</link>.
+    </para>
+    <para />
+  </section>
 </section>

@@ -339,7 +339,7 @@ static gboolean collection_load_private(CollectionData *cd, const gchar *path, C
 		if (!flush)
 			changed |= collect_manager_process_action(entry, &filename);
 
-		if (filename[0] == G_DIR_SEPARATOR && collection_add_check(cd, file_data_new_simple(filename), FALSE, TRUE, infotext)) 
+		if (filename[0] == G_DIR_SEPARATOR && collection_add_check(cd, file_data_new_simple(filename), FALSE, TRUE, infotext))
 			{
 			g_clear_pointer(&infotext, g_free);
 			continue;
