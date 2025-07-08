@@ -95,7 +95,7 @@ static void collection_notify_cb(FileData *fd, NotifyType type, gpointer data);
  *-------------------------------------------------------------------
  */
 
-CollectInfo *collection_info_new(FileData *fd, struct stat *, GdkPixbuf *pixbuf, const gchar *infotext)
+static CollectInfo *collection_info_new(FileData *fd, struct stat *, GdkPixbuf *pixbuf, const gchar *infotext)
 {
 	CollectInfo *ci;
 
