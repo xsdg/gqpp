@@ -248,6 +248,10 @@ chmod +x geeqie-install-debian.sh
 ./geeqie-install-debian.sh --list
 ```
 
+### Translators
+
+Please see file `./po/README.md`.
+
 ### Code hackers
 
 If you plan on making any major changes to the code that will be offered for
