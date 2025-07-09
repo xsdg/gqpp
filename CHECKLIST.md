@@ -6,34 +6,18 @@
 
 * Update `org.geeqie.Geeqie.appdata.xml.in` with the latest released version and date
 
-* If source files have been added or removed from `./src/` directory, resync `./po/POTFILES.in`
-
-```sh
-cd ./po
-./regen_potfiles.sh | patch -p0
-```
-
-* Keep translations in sync with the code
-
-```sh
-cd ./build
-meson compile geeqie-pot
-meson compile geeqie-update-po
-```
-
 * Update the desktop template if menus have changed
 
 ```sh
 ./scripts/template-desktop.sh
 ```
 
-* The command line completion file has four sections that must be updated by hand
+* The command line completion file has three sections that must be updated by hand
 
 ```sh
 file_types
 actions
-options_basic
-options_remote
+options
 
 ./auto-complete/geeqie
 ```
