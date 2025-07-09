@@ -9,7 +9,7 @@
     For each array element, the average value of all the red and the green and the blue pixels is computed and stored in the array. Therefore the array represents the average color of each corresponding part of the image.
     <para />
     This data is stored in a file with the same name is the image and with the extension .sim. It is stored in the same location as thumbnails. If many images are to be compered, run-time is reduced by having these .sim files already created. This can be done via Edit/Cache Maintenance or by the command line instruction:
-    <code>geeqie --cache-maintenance &lt;path&gt;</code>
+    <code>GQ_CACHE_MAINTENANCE=y geeqie --cache-maintenance=&lt;path&gt;</code>
   </para>
   <section id="standard">
     <title>Standard Algorithm</title>

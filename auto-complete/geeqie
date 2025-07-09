@@ -17,11 +17,6 @@ _geeqie()
 			return
 			;;
 
-		--cache-maintenance | --cache-render | --cache-render-recurse | --cache-render-shared-recurse | --get-filelist | --get-filelist-recurse | --slideshow-recurse)
-			_filedir
-			return
-			;;
-
 		--cache-shared | --cache-thumbs)
 			COMPREPLY=($(compgen -W 'clean clear' -- "$cur"))
 			return

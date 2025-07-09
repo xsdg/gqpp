@@ -23,12 +23,6 @@
       <ulink url="https://github.com/bcpierce00/unison/">https://github.com/bcpierce00/unison/</ulink>
     </para>
   </section>
-  <section id="GeeqieCacheMaintenance">
-    <title>Geeqie Cache Maintenance</title>
-    <para>
-      Command line program to automatically create or update thumbnails and similarity data: <emphasis role="underline"><link linkend="CacheMaintenance"><code>geeqie-cache-maintenance</code></link></emphasis>
-    </para>
-  </section>
   <section id="KeywordMerge">
     <title>Keyword Merge</title>
     <para>

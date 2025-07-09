@@ -96,7 +96,7 @@ Geeqie is a graphics file viewer. Basic features:
 
 * Maps from [OpenStreetMap](https://www.openstreetmap.org) may be displayed in a side panel. If an image has GPS coordinates embedded, its position will be displayed on the map - if Image Direction is encoded, that will be displayed also. If an image does not have embedded GPS coordinates, it may be dragged-and-dropped onto the map to encode its position.
 
-* Speed of operation can be increased by caching thumbnails and similarity data of images. When Geeqie is run as a stand-alone command line program (`geeqie --cache-maintenance <path>`) these data will be recursively created from the defined start point. This program can be called from `cron` or `anacron` so that cache updating is automatically done at specified intervals.
+* Speed of operation can be increased by caching thumbnails and similarity data of images. When Geeqie is run as a stand-alone command line program (`GQ_CACHE_MAINTENANCE=y geeqie --cache-maintenance=&lt;path&gt;`) these data will be recursively created from the defined start point. This program can be called from `cron` or `anacron` so that cache updating is automatically done at specified intervals.
 
 * Extensible via plugins
 

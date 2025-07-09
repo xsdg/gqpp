@@ -708,14 +708,6 @@ i18n.merge_file(
     install_dir : join_paths(datadir, 'applications'))
 
 i18n.merge_file(
-    input : 'org.geeqie.cache-maintenance.desktop.in',
-    output : 'org.geeqie.cache-maintenance.desktop',
-    type : 'desktop',
-    po_dir : podir,
-    install : true,
-    install_dir : join_paths(datadir, 'applications'))
-
-i18n.merge_file(
     input : 'org.geeqie.Geeqie.appdata.xml.in',
     output : 'org.geeqie.Geeqie.appdata.xml',
     type : 'xml',

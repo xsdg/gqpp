@@ -119,15 +119,17 @@ XDG_CONFIG_HOME=/tmp/a XDG_CACHE_HOME=/tmp/b GQ_NEW_INSTANCE=y geeqie\n\n \
 To disable Clutter use:\n \
 GQ_DISABLE_CLUTTER=y[es] geeqie\n\n \
 To run or stop Geeqie in cache maintenance (non-GUI) mode use:\n \
-GQ_CACHE_MAINTENANCE=y[es] geeqie --help\n\n \
+GQ_CACHE_MAINTENANCE=y[es] geeqie --help\n \
+Note that bash command line completion does not work in this mode.\n\n \
 User manual: https://www.geeqie.org/help/GuideIndex.html\n \
            : https://www.geeqie.org/help-pdf/help.pdf");
 
 const gchar *option_context_description_cache_maintenance = _(" \
 This is a command line program that will recursively remove orphaned thumbnails and\n \
-.sim files, and create thumbnails and similarity data for all images found under FOLDER.\n \
+.sim files, and create thumbnails and similarity data for all images found under FOLDER.\n\n \
 It may also be called from cron or anacron thus enabling automatic updating of the cached\n \
 data for all your images.\n\n \
+Note that bash command line completion does not work in this mode.\n\n \
 User manual: https://www.geeqie.org/help/GuideIndex.html\n \
            : https://www.geeqie.org/help-pdf/help.pdf");
 
