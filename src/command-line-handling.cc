@@ -338,11 +338,21 @@ void gq_config_load(GtkApplication *, GApplicationCommandLine *app_command_line,
 }
 
 #ifdef DEBUG
+/**
+ * @brief Convert debug input string to integer and set level
+ * @param GtkApplication 
+ * @param GApplicationCommandLine 
+ * @param command_line_options_dict 
+ * @param GList 
+ * 
+ * The debug string should be between 0 and 4. If an illegal text string is
+ * input, the conversion will default to integer 0.
+ */
 void gq_debug(GtkApplication *, GApplicationCommandLine *, GVariantDict *command_line_options_dict, GList *)
 {
-	gint debug_level;
-	g_variant_dict_lookup(command_line_options_dict, "debug", "i", &debug_level);
-	set_debug_level(debug_level);
+	gchar *debug_level = nullptr;;
+	g_variant_dict_lookup(command_line_options_dict, "debug", "s", &debug_level);
+	set_debug_level((gint)g_ascii_strtoll(debug_level, nullptr, 10));
 }
 #endif
 

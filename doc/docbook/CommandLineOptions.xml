@@ -7,8 +7,8 @@
 <refmeta>
 <refentrytitle>GEEQIE</refentrytitle>
 <manvolnum>1</manvolnum>
-<refmiscinfo class='source'>May 2025</refmiscinfo>
-<refmiscinfo class='manual'>Geeqie 2.6 GTK3</refmiscinfo>
+<refmiscinfo class='source'>July 2025</refmiscinfo>
+<refmiscinfo class='manual'>Geeqie 2.6+git20250709-d20f3045 GTK3</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>Geeqie</refname>
@@ -28,7 +28,7 @@ zooming, panning, thumbnails and sorting images into collections.</para>
 
 <para>Geeqie is an image viewer.</para>
 
-<para>Version: Geeqie 2.6</para>
+<para>Version: Geeqie 2.6+git20250709-d20f3045</para>
 </refsect2>
 
 <refsect2 id='help_options'><title>Help Options:</title>
@@ -135,9 +135,9 @@ zooming, panning, thumbnails and sorting images into collections.</para>
   </listitem>
   </varlistentry>
   <varlistentry>
-  <term><emphasis role='strong' remap='B'>--debug</emphasis>=<emphasis remap='I'>[level]</emphasis></term>
+  <term><emphasis role='strong' remap='B'>--debug</emphasis>=<literal>0</literal>|1|2|3|4</term>
   <listitem>
-<para>turn on debug output</para>
+<para>debug output: 0 none, 1 to 4 increasing level of verbosity</para>
   </listitem>
   </varlistentry>
   <varlistentry>
@@ -418,7 +418,8 @@ XDG_CONFIG_HOME=/tmp/a XDG_CACHE_HOME=/tmp/b GQ_NEW_INSTANCE=y geeqie</para>
 GQ_DISABLE_CLUTTER=y[es] geeqie</para>
 
 <para>To run or stop Geeqie in cache maintenance (non-GUI) mode use:
-GQ_CACHE_MAINTENANCE=y[es] geeqie <emphasis role='strong' remap='B'>--help</emphasis></para>
+GQ_CACHE_MAINTENANCE=y[es] geeqie <emphasis role='strong' remap='B'>--help</emphasis>
+Note that bash command line completion does not work in this mode.</para>
 
 <para>User manual: https://www.geeqie.org/help/GuideIndex.html</para>
 

@@ -148,7 +148,10 @@ GOptionEntry command_line_options[] =
 	{ "close-window"              ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_NONE  , nullptr, _("close window")                                                                , nullptr },
 	{ "config-load"               ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("load configuration from FILE")                                                , "<FILE>" },
 #ifdef DEBUG
-	{ "debug"                     ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_INT   , nullptr, _("turn on debug output")                                                        , "[level]" },
+/* G_OPTION_ARG_STRING and not G_OPTION_ARG_INT is required because of
+ * the way an integer zero is handled (the parameter is not passed on).
+ */
+	{ "debug"                     ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("debug output: 0 none, 1 to 4 increasing level of verbosity")                  , "0|1|2|3|4" },
 #endif
 	{ "delay"                     , 'd', G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("set slide show delay to Hrs Mins N.M seconds,")                               , "<[H:][M:][N][.M]>" },
 	{ "dupes"                     ,   0, G_OPTION_FLAG_NONE, G_OPTION_ARG_STRING, nullptr, _("find duplicates in folder")                                                   , "<FOLDER>" },
