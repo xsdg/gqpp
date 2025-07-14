@@ -348,16 +348,35 @@ static gboolean collection_load_private(CollectionData *cd, const gchar *path, C
 		log_printf("Warning: Collection: %s Invalid file: %s", cd->name, filename);
 		DEBUG_1("collection invalid file: %s", filename);
 
-		/* If the file path has the prefix home, tmp or usr it was on the local file system and has been deleted. Ignore it. */
+		/* If the file path has the prefix home, tmp or usr it was on the local file system and has
+		 * been deleted. Ignore it. */
 		if (!g_str_has_prefix(filename, "/home") && !g_str_has_prefix(filename, "/tmp") && !g_str_has_prefix(filename, "/usr"))
 			{
-			/* The file was on a mounted drive and either has been deleted or the drive is not mounted */
+			/* The file was on a mountable drive and either has been deleted or the drive is not
+			 * mounted.
+			 */
 			if (!is_file_on_mounted_drive(filename))
 				{
+				/* The is on a mountable drive which is not mounted.
+				 * This event can happen when the user opens a Collection, or when a
+				 * file_data_register_notify_func runs. Whenever a file move or rename happens, the
+				 * notify function runs, presumably to check if the file is in a Collection and so
+				 * modify it.
+				 * Therefore it is better to use a notification rather than a warning message that
+				 * requires the user to acknowledge it.
+				 */
 				log_printf("%s is a file on an unmounted filesystem: %s", filename, cd->path);
-				g_autofree gchar *text = g_strdup_printf(_("This Collection cannot be opened because it contains a link to a file on a drive which is not yet mounted.\n\nCollection: %s\nFile: %s\n"),
-				                                         cd->path, filename);
-				warning_dialog(_("Cannot open Collection"), text, GQ_ICON_DIALOG_WARNING, nullptr);
+				g_autofree gchar *text = g_strdup_printf(_("This Collection cannot be opened because it contains a link to a file on a drive which is not yet mounted.\n\nCollection: %s\nFile: %s\n"), cd->path, filename);
+
+				g_autoptr(GNotification) notification = g_notification_new("Geeqie");
+				auto *app = g_application_get_default();
+
+				g_notification_set_title(notification, _("Collections"));
+				g_notification_set_body(notification, _(text));
+				g_notification_set_priority(notification, G_NOTIFICATION_PRIORITY_NORMAL);
+				g_notification_set_default_action(notification, "app.null");
+
+				g_application_send_notification(G_APPLICATION(app), "collection-unmounted-drive", notification);
 
 				success = FALSE;
 				break;
