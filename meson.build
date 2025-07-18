@@ -743,7 +743,7 @@ if option.enabled()
         images_dir = join_paths(meson.current_build_dir(), 'test-images.p')
 
         message('Downloading test images')
-        sources_list = run_command(get_test_images_sh, images_dir,  'https://github.com/caclark/geeqie-test.git', check: true)
+        sources_list = run_command(get_test_images_sh, images_dir,  'https://github.com/BestImageViewer/geeqie-test-images.git', check: true)
 
         sources = sources_list.stdout().strip().split('\n')
 
