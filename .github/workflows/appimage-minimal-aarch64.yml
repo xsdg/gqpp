@@ -77,7 +77,7 @@ jobs:
               --appdir $GITHUB_WORKSPACE/AppDir \
               --plugin gtk \
               --output appimage \
-              --custom-apprun=${{ github.workspace }}/scripts/appimage-custom-apprun.sh
+              --custom-apprun=./scripts/appimage-custom-apprun.sh
             mv Geeqie-aarch64.AppImage Geeqie-minimal-latest-aarch64.AppImage
 
       - uses: ncipollo/release-action@v1
