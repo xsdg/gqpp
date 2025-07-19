@@ -494,6 +494,8 @@ static void config_window_apply()
 #ifdef DEBUG
 	set_debug_level(debug_c);
 	config_entry_to_option(log_window_f1_entry, &options->log_window.action, nullptr);
+	options->log_window.timer_data = c_options->log_window.timer_data;
+	options->log_window_lines = c_options->log_window_lines;
 #endif
 
 #if HAVE_LCMS
