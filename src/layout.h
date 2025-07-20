@@ -195,6 +195,7 @@ struct LayoutWindow
 
 	ImageWindow *split_images[MAX_SPLIT_IMAGES];
 	ImageSplitMode split_mode;
+	GtkEventController *split_images_touchpad_zoom[MAX_SPLIT_IMAGES];
 	gint active_split_image;
 
 	GtkWidget *split_image_widget;
@@ -243,6 +244,7 @@ struct LayoutWindow
 	/* full screen */
 
 	FullScreenData *full_screen;
+	GtkEventController *touchpad_zoom;
 
 	/* misc */
 

@@ -90,6 +90,13 @@ static void layout_image_full_screen_stop_func(FullScreenData *fs, gpointer data
 	lw->full_screen = nullptr;
 }
 
+static void touchpad_zoom_cb(GtkGestureZoom *, double scale, gpointer data)
+{
+	auto lw = static_cast<LayoutWindow *>(data);
+
+	layout_image_zoom_set(lw, scale * image_zoom_get_real(lw->image  ), true);
+}
+
 void layout_image_full_screen_start(LayoutWindow *lw)
 {
 	if (!layout_valid(&lw)) return;
@@ -107,6 +114,9 @@ void layout_image_full_screen_start(LayoutWindow *lw)
 
 	g_signal_connect(G_OBJECT(lw->full_screen->window), "key_press_event",
 			 G_CALLBACK(layout_key_press_cb), lw);
+
+	lw->touchpad_zoom = GTK_EVENT_CONTROLLER(gtk_gesture_zoom_new(GTK_WIDGET(lw->full_screen->window)));
+	g_signal_connect(lw->touchpad_zoom, "scale-changed", G_CALLBACK(touchpad_zoom_cb), lw);
 
 	layout_actions_add_window(lw, lw->full_screen->window);
 
@@ -131,6 +141,8 @@ void layout_image_full_screen_stop(LayoutWindow *lw)
 		image_osd_copy_status(lw->image, lw->full_screen->normal_imd);
 
 	fullscreen_stop(lw->full_screen);
+
+	g_object_unref(lw->touchpad_zoom);
 
 	layout_image_animate_update_image(lw);
 }
@@ -2082,6 +2094,8 @@ GtkWidget *layout_image_new(LayoutWindow *lw, gint i)
 
 		image_set_focus_in_func(lw->split_images[i], layout_image_focus_in_cb, lw);
 
+		lw->split_images_touchpad_zoom[i] = GTK_EVENT_CONTROLLER(gtk_gesture_zoom_new(GTK_WIDGET(lw->split_images[i]->pr)));
+		g_signal_connect(lw->split_images_touchpad_zoom[i], "scale-changed", G_CALLBACK(touchpad_zoom_cb), lw);
 		}
 
 	return lw->split_images[i]->widget;
@@ -2096,6 +2110,10 @@ static void layout_image_deactivate(LayoutWindow *lw, gint i)
 
 	image_attach_window(lw->split_images[i], nullptr, nullptr, nullptr, FALSE);
 	image_select(lw->split_images[i], false);
+
+	/** @FIXME The gtk_gesture_zoom_new() is leaking here
+	 * g_object_unref(lw->split_images_touchpad_zoom[i]);
+	 */
 }
 
 /* force should be set after change of lw->split_mode */
