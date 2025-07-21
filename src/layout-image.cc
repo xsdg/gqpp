@@ -90,11 +90,11 @@ static void layout_image_full_screen_stop_func(FullScreenData *fs, gpointer data
 	lw->full_screen = nullptr;
 }
 
-static void touchpad_zoom_cb(GtkGestureZoom *, double scale, gpointer data)
+static void touchpad_zoom_cb(GtkGestureZoom *controller, double, gpointer data)
 {
 	auto lw = static_cast<LayoutWindow *>(data);
 
-	layout_image_zoom_set(lw, scale * image_zoom_get_real(lw->image  ), true);
+	layout_image_zoom_set(lw, gtk_gesture_zoom_get_scale_delta(controller) * image_zoom_get_real(lw->image), TRUE);
 }
 
 void layout_image_full_screen_start(LayoutWindow *lw)
