@@ -76,8 +76,7 @@ jobs:
               --icon-file $GITHUB_WORKSPACE/AppDir/usr/share/pixmaps/geeqie.png \
               --appdir $GITHUB_WORKSPACE/AppDir \
               --plugin gtk \
-              --output appimage \
-              --custom-apprun=./scripts/appimage-custom-apprun.sh
+              --output appimage
             mv Geeqie-aarch64.AppImage Geeqie-minimal-latest-aarch64.AppImage
 
       - uses: ncipollo/release-action@v1
