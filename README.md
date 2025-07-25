@@ -148,6 +148,17 @@ mkdir --parents $HOME/.local/share/bash-completion/completions/
 ln --symbolic $HOME/bin/Geeqie-latest-x86_64-AppImage/squashfs-root/usr/local/share/bash-completion/completions/geeqie $HOME/.local/share/bash-completion/completions/geeqie
 ```
 
+**Note:**
+
+Calling an extracted AppImage (`./squashfs-root/AppRun`) via a symbolic link does not work. The script `geeqie-download-appimage.sh --extract` will fix the problem for you. Otherwise create an intermediate script e.g.
+
+```sh
+geeqie-symbolic.sh
+#!/bin/sh
+cd ./squashfs-root
+./AppRun
+```
+
 ### Installation scripts
 
 Geeqie is stable and you may compile the latest version from sources.

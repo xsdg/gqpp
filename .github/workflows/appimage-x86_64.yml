@@ -3,49 +3,60 @@ run-name: ${{ github.actor }} is running Geeqie x86_64 AppImage build
 on: [push]
 jobs:
   Build-AppImage:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
+
+    container:
+      image: ubuntu:rolling
+
     steps:
       - name: Install dependencies
         run: |
-          sudo apt update
-          sudo apt install -y appstream
-          sudo apt install -y build-essential
-          sudo apt install -y curl
-          sudo apt install -y docbook-xsl
-          sudo apt install -y evince
-          sudo apt install -y fop
-          sudo apt install -y fuse
-          sudo apt install -y gettext
-          sudo apt install -y libarchive-dev
-          sudo apt install -y libcfitsio-dev
-          sudo apt install -y libchamplain-0.12-dev
-          sudo apt install -y libchamplain-gtk-0.12-dev
-          sudo apt install -y libdjvulibre-dev
-          sudo apt install -y libdw-dev
-          sudo apt install -y libdwarf-dev
-          sudo apt install -y libffmpegthumbnailer-dev
-          sudo apt install -y libgexiv2-dev
-          sudo apt install -y libgspell-1-dev
-          sudo apt install -y libgtk-3-bin
-          sudo apt install -y libgtk-3-dev
-          sudo apt install -y libheif-dev
-          sudo apt install -y libimath-dev
-          sudo apt install -y liblua5.3-dev
-          sudo apt install -y libomp-dev
-          sudo apt install -y libopenexr-dev
-          sudo apt install -y libpoppler-glib-dev
-          sudo apt install -y libraw-dev
-          sudo apt install -y libunwind-dev
-          sudo apt install -y libwebp-dev
-          sudo apt install -y libwebp7
-          sudo apt install -y pandoc
-          sudo apt install -y patchelf
-          sudo apt install -y wget
-          sudo apt install -y xsltproc
-          sudo apt install -y yelp-tools
+          apt update
+          apt install -y appstream
+          apt install -y build-essential
+          apt install -y curl
+          apt install -y docbook-xsl
+          apt install -y evince
+          apt install -y file
+          apt install -y fop
+          apt install -y fuse
+          apt install -y gettext
+          apt install -y git
+          apt install -y libarchive-dev
+          apt install -y libcfitsio-dev
+          apt install -y libcfitsio-dev
+          apt install -y libchamplain-0.12-dev
+          apt install -y libchamplain-gtk-0.12-dev
+          apt install -y libdjvulibre-dev
+          apt install -y libdw-dev
+          apt install -y libdwarf-dev
+          apt install -y libffmpegthumbnailer-dev
+          apt install -y libgexiv2-dev
+          apt install -y libgspell-1-dev
+          apt install -y libgtk-3-bin
+          apt install -y libgtk-3-dev
+          apt install -y libheif-dev
+          apt install -y libimath-dev
+          apt install -y libjxl-dev
+          apt install -y liblua5.3-dev
+          apt install -y libomp-dev
+          apt install -y libopenexr-dev
+          apt install -y libpoppler-glib-dev
+          apt install -y libraw-dev
+          apt install -y libunwind-dev
+          apt install -y libwebp-dev
+          apt install -y libwebp7
+          apt install -y pandoc
+          apt install -y patchelf
+          apt install -y wget
+          apt install -y xsltproc
+          apt install -y yelp-tools
 
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Mark repo as safe
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: git fetch
         run: |
@@ -71,6 +82,8 @@ jobs:
       - name: Ninja compile
         run: DESTDIR=${{ github.workspace }}/AppDir ninja -C build install
 
+# The linuxdeploy-plugin-gtk forces the backend to be X11, as it was considered
+# that Wayland has problems. Delete this and let the user choose.
       - name: Download linuxdeploy and plugin
         run: |
           wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
@@ -79,13 +92,18 @@ jobs:
           chmod +x linuxdeploy-plugin-gtk.sh
           sed -i '/GDK_BACKEND/d' linuxdeploy-plugin-gtk.sh
 
+      - name: Extract linuxdeploy to avoid FUSE
+        run: |
+          chmod +x linuxdeploy-x86_64.AppImage
+          ./linuxdeploy-x86_64.AppImage --appimage-extract
+          mv squashfs-root linuxdeploy
+
       - name: Build AppImage
         run: |
-          ./linuxdeploy-x86_64.AppImage --appdir ${{ github.workspace }}/AppDir \
+          ./linuxdeploy/AppRun --appdir ${{ github.workspace }}/AppDir \
             --desktop-file ${{ github.workspace }}/AppDir/usr/share/applications/org.geeqie.Geeqie.desktop \
             --plugin gtk \
-            --output appimage \
-            --custom-apprun=${{ github.workspace }}/scripts/appimage-custom-apprun.sh
+            --output appimage
           mv Geeqie-x86_64.AppImage Geeqie-latest-x86_64.AppImage
 
       - name: Create Release
