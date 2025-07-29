@@ -1228,7 +1228,15 @@ void layout_image_reset_orientation(LayoutWindow *lw)
 
 	if (options->image.exif_rotate_enable)
 		{
-		if (g_strcmp0(imd->image_fd->format_name, "heif") != 0)
+		/* ISO/IEC 23008‑12 (HEIF) – Key Sections & Clauses
+		 * Annex A – Metadata Specification
+		 * Specifies how Exif metadata is carried in HEIF files.
+		 * Exif orientation tags are described only as descriptive metadata—decoders are not
+		 * required to rotate images based on Exif.
+		 * This also applies to jxl files.
+		 * Also see commit ac15f03b
+		 */
+		if ((g_strcmp0(imd->image_fd->format_name, "heif") != 0) && (g_strcmp0(imd->image_fd->format_name, "jxl") != 0))
 			{
 			imd->orientation = metadata_read_int(imd->image_fd, ORIENTATION_KEY, EXIF_ORIENTATION_TOP_LEFT);
 			}

@@ -581,7 +581,7 @@ void image_alter_orientation(ImageWindow *imd, FileData *fd_n, AlterType type)
 	else
 		if (options->metadata.write_orientation)
 			{
-			if (g_strcmp0(imd->image_fd->format_name, "heif") == 0)
+			if ((g_strcmp0(imd->image_fd->format_name, "heif") == 0) || (g_strcmp0(imd->image_fd->format_name, "jxl") == 0))
 				{
 				orientation = EXIF_ORIENTATION_TOP_LEFT;
 				}
@@ -619,7 +619,7 @@ void image_alter_orientation(ImageWindow *imd, FileData *fd_n, AlterType type)
 
 	if (orientation != (fd_n->exif_orientation ? fd_n->exif_orientation : 1))
 		{
-		if (g_strcmp0(fd_n->format_name, "heif") != 0)
+		if ((g_strcmp0(fd_n->format_name, "heif") != 0) && (g_strcmp0(fd_n->format_name, "jxl") != 0))
 			{
 			if (!options->metadata.write_orientation)
 				{
@@ -644,7 +644,7 @@ void image_alter_orientation(ImageWindow *imd, FileData *fd_n, AlterType type)
 		fd_n->user_orientation = 0;
 		}
 
-	if (g_strcmp0(fd_n->format_name, "heif") != 0)
+	if ((g_strcmp0(fd_n->format_name, "heif") != 0) && (g_strcmp0(fd_n->format_name, "jxl") != 0))
 		{
 		if (options->metadata.write_orientation)
 			{
@@ -1362,7 +1362,7 @@ void image_change_pixbuf(ImageWindow *imd, GdkPixbuf *pixbuf, gdouble zoom, gboo
 			}
 		else if (options->image.exif_rotate_enable)
 			{
-			if (g_strcmp0(imd->image_fd->format_name, "heif") == 0)
+			if ((g_strcmp0(imd->image_fd->format_name, "heif") == 0) || (g_strcmp0(imd->image_fd->format_name, "jxl") == 0))
 				{
 				imd->orientation = EXIF_ORIENTATION_TOP_LEFT;
 				imd->image_fd->exif_orientation = imd->orientation;
