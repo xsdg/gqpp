@@ -1407,7 +1407,7 @@ void process_files(GList *file_list)
 
 			selected = nullptr;
 			work = file_list;
-			layout_set_path(lw_id, g_path_get_dirname(static_cast<const gchar *>(work->data)));
+			layout_set_path(lw_id, static_cast<const gchar *>(work->data));
 			while (work)
 				{
 				fd = file_data_new_simple(static_cast<gchar *>(work->data));
