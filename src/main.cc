@@ -21,8 +21,37 @@
 
 #include "main.h"
 
+//~ <<<<<<< Updated upstream
 #include <sys/types.h>
 #include <unistd.h>
+//~ =======
+//~ #include "cache.h"
+//~ #include "collect.h"
+//~ #include "collect-io.h"
+//~ #include "filedata.h"
+//~ #include "filefilter.h"
+//~ #include "history-list.h"
+//~ #include "image.h"
+//~ #include "img-view.h"
+//~ #include "layout-image.h"
+//~ #include "layout-util.h"
+//~ #include "misc.h"
+//~ #include "rcfile.h"
+//~ #include "remote.h"
+//~ #include "secure-save.h"
+//~ #include "ui-fileops.h"
+//~ #include "ui-utildlg.h"
+//~ #include "cache-maint.h"
+//~ #include "thumb.h"
+//~ #include "metadata.h"
+//~ #include "exif.h"
+//~ #include "histogram.h"
+//~ #include "pixbuf-util.h"
+//~ #include "glua.h"
+//~ #include "whereami.h"
+       //~ #include <sys/time.h>
+       //~ #include <sys/resource.h>
+//~ >>>>>>> Stashed changes
 
 #include <cctype>
 #include <clocale>
@@ -583,7 +612,17 @@ void exit_program_final()
 		g_object_unref(archive_file);
 		}
 
+//~ <<<<<<< Updated upstream
 	exit(EXIT_SUCCESS);
+//~ =======
+	//~ secure_close(command_line->ssi);
+  //~ struct rusage r_usage;
+  //~ getrusage(RUSAGE_SELF,&r_usage);
+DEBUG_M( );
+	exit(EXIT_SUCCESS);
+
+	//~ gtk_main_quit();
+//~ >>>>>>> Stashed changes
 }
 
 GenericDialog *exit_dialog = nullptr;

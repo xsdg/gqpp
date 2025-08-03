@@ -30,7 +30,17 @@
 
 void log_domain_print_debug(const gchar *domain, const gchar *file_name, int line_number, const gchar *function_name, const gchar *format, ...) G_GNUC_PRINTF(5, 6);
 void log_domain_printf(const gchar *domain, const gchar *format, ...) G_GNUC_PRINTF(2, 3);
+void log_print_m(const gchar *file, gint line_number, const gchar *function_name);
+
+//~ <<<<<<< Updated upstream
 void print_term(bool err, const gchar *text_utf8);
+//~ =======
+//~ void log_domain_print_debug(const gchar *domain, const gchar *file_name, const gchar *function_name,
+							//~ int line_number, const gchar *format, ...) G_GNUC_PRINTF(5, 6);
+//~ void log_print_file_data_dump(const gchar *file, const gchar *function_name, gint line_number);
+//~ void log_print_backtrace(const gchar *file, const gchar *function_name, gint line_number);
+//~ void log_print_m(const gchar *file, const gchar *function_name, gint line_number);
+//~ >>>>>>> Stashed changes
 
 #define log_printf(...) log_domain_printf(DOMAIN_INFO, __VA_ARGS__)
 
@@ -79,6 +89,11 @@ void log_print_file_data_dump(const gchar *file, gint line_number, const gchar *
 		} \
 	G_STMT_END
 
+  //~ struct rusage r_usage;
+  //~ getrusage(RUSAGE_SELF,&r_usage);
+//~ DEBUG_0("%ld     " ,  r_usage.ru_maxrss );
+
+
 /**
  * @brief For use with the GTKInspector (>GTK 3.14)
  *
@@ -86,6 +101,7 @@ void log_print_file_data_dump(const gchar *file, gint line_number, const gchar *
  * Sample command line call:
  * GTK_DEBUG=interactive src/geeqie
  */
+//~ <<<<<<< Updated upstream
 #define DEBUG_NAME(widget) \
 	G_STMT_START \
 		{ \
@@ -100,6 +116,29 @@ void log_print_file_data_dump(const gchar *file, gint line_number, const gchar *
 		log_print_backtrace(__FILE__, __LINE__, __func__); \
 		} \
 	G_STMT_END
+
+#define DEBUG_M() \
+	G_STMT_START \
+		{ \
+		log_print_m(__FILE__, __LINE__, __func__); \
+		} \
+	G_STMT_END
+//~ =======
+//~ #define DEBUG_NAME(widget) do                                          \
+				//~ { \
+				//~ gtk_widget_set_name(GTK_WIDGET(widget), g_strdup_printf("%s:%d", __FILE__, __LINE__)); \
+				//~ } while(0)
+
+//~ #define DEBUG_M() do                                                   \
+				//~ {                                                      \
+				//~ log_print_m(__FILE__, __func__, __LINE__);             \
+				//~ } while(0)
+
+//~ #define DEBUG_BT() do \
+				//~ { \
+				//~ log_print_backtrace(__FILE__, __func__, __LINE__); \
+				//~ } while(0)
+//~ >>>>>>> Stashed changes
 
 #define DEBUG_FD() \
 	G_STMT_START \

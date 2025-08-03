@@ -20,7 +20,16 @@
 
 #include "debug.h"
 
+//~ <<<<<<< Updated upstream
 #include <sys/time.h>
+//~ =======
+//~ #include "filedata.h"
+//~ #include "logwindow.h"
+//~ #include "misc.h"
+//~ #include "ui-fileops.h"
+       //~ #include <sys/time.h>
+       #include <sys/resource.h>
+//~ >>>>>>> Stashed changes
 
 #include <cstdarg>
 #include <cstdio>
@@ -253,7 +262,29 @@ gchar *get_regexp()
 	return g_strdup(regexp);
 }
 
+//~ <<<<<<< Updated upstream
 #if HAVE_EXECINFO_H
+//~ =======
+/**
+ * @brief Print memory usage in kB
+ * @param file 
+ * @param function 
+ * @param line 
+ * 
+ * 
+ */
+void log_print_m(const gchar *file, gint line, const gchar *function)
+{
+	struct rusage r_usage;
+
+	getrusage(RUSAGE_SELF,&r_usage);
+
+	log_printf("%s:%s:%d kB:%ld", file, function, line, r_usage.ru_maxrss);
+	log_printf("%s:%s:%d kB:%ld", file, function, line, r_usage.ru_utime.tv_sec);
+}
+
+//~ #ifdef HAVE_EXECINFO_H
+//~ >>>>>>> Stashed changes
 /**
  * @brief Backtrace of geeqie files
  * @param file
