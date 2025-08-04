@@ -115,7 +115,7 @@ tmp_file=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
 yad --window-icon=/usr/local/share/pixmaps/geeqie.png --geometry=300 --image dialog-information --title "Geeqie Resize" --button=OK:0 --text "Running Downsize...." &
 info_id="$!"
 
-result=$("$current_dir"/downsize -s "$size" -t "$tolerance" -m "$iterations" -c "$copy" -S "$strip" "$1" "$new_filename" > "$tmp_file" 2>/dev/null)
+result=$( { "$current_dir"/downsize -s "$size" -t "$tolerance" -m "$iterations" -c "$copy" -S "$strip" "$1" "$new_filename" > "$tmp_file"; } 2>&1 )
 
 if [ "$?" -eq 1 ]
 then
