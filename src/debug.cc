@@ -20,16 +20,8 @@
 
 #include "debug.h"
 
-//~ <<<<<<< Updated upstream
+#include <sys/resource.h>
 #include <sys/time.h>
-//~ =======
-//~ #include "filedata.h"
-//~ #include "logwindow.h"
-//~ #include "misc.h"
-//~ #include "ui-fileops.h"
-       //~ #include <sys/time.h>
-       #include <sys/resource.h>
-//~ >>>>>>> Stashed changes
 
 #include <cstdarg>
 #include <cstdio>
@@ -262,29 +254,7 @@ gchar *get_regexp()
 	return g_strdup(regexp);
 }
 
-//~ <<<<<<< Updated upstream
 #if HAVE_EXECINFO_H
-//~ =======
-/**
- * @brief Print memory usage in kB
- * @param file 
- * @param function 
- * @param line 
- * 
- * 
- */
-void log_print_m(const gchar *file, gint line, const gchar *function)
-{
-	struct rusage r_usage;
-
-	getrusage(RUSAGE_SELF,&r_usage);
-
-	log_printf("%s:%s:%d kB:%ld", file, function, line, r_usage.ru_maxrss);
-	log_printf("%s:%s:%d kB:%ld", file, function, line, r_usage.ru_utime.tv_sec);
-}
-
-//~ #ifdef HAVE_EXECINFO_H
-//~ >>>>>>> Stashed changes
 /**
  * @brief Backtrace of geeqie files
  * @param file
@@ -385,6 +355,23 @@ void log_print_file_data_dump(const gchar *file, gint line, const gchar *functio
 	file_data_dump();
 
 	log_printf("FileData dump end");
+}
+
+/**
+ * @brief Print memory usage and runtime
+ * @param file 
+ * @param line 
+ * @param function 
+ * 
+ */
+void log_print_ru(const gchar *file, gint line, const gchar *function)
+{
+	struct rusage r_usage;
+
+	getrusage(RUSAGE_SELF,&r_usage);
+
+	log_printf("%s:%s:%d kB:%ld", file, function, line, r_usage.ru_maxrss);
+	log_printf("%s:%s:%d secs:%ld", file, function, line, r_usage.ru_utime.tv_sec);
 }
 
 #endif /* DEBUG */

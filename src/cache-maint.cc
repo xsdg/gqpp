@@ -648,36 +648,25 @@ static void cache_manager_render_thumb_done_cb(ThumbLoader *, gpointer data)
 	cd->tl = nullptr;
 
 	while (cache_manager_render_file(cd));
-//~ DEBUG_FD(    );	
-//~ DEBUG_M(   );
-
 }
 
 static gboolean cache_manager_render_file(CacheOpsData *cd)
 {
-//~ DEBUG_0("     "    );
-DEBUG_M(   );
-//~ DEBUG_BT(   );
-
 	if (cd->list)
 		{
 		FileData *fd;
 		gint success;
 
 		fd = static_cast<FileData *>(cd->list->data);
-//~ DEBUG_0("%s     ",fd->path    );
 		cd->list = g_list_remove(cd->list, fd);
 
 		cd->tl = reinterpret_cast<ThumbLoaderStd *>(thumb_loader_new(options->thumbnails.max_width, options->thumbnails.max_height));
-DEBUG_M(   );
 		thumb_loader_set_callbacks(reinterpret_cast<ThumbLoader *>(cd->tl),
 					   cache_manager_render_thumb_done_cb,
 					   cache_manager_render_thumb_done_cb,
 					   nullptr, cd);
 		thumb_loader_set_cache(reinterpret_cast<ThumbLoader *>(cd->tl), TRUE, cd->local, TRUE);
-DEBUG_M(   );
 		success = thumb_loader_start(reinterpret_cast<ThumbLoader *>(cd->tl), fd);
-DEBUG_M(   );
 		if (success)
 			{
 			if (!cd->remote)
@@ -689,9 +678,7 @@ DEBUG_M(   );
 			}
 		else
 			{
-DEBUG_M(   );
 			thumb_loader_free(reinterpret_cast<ThumbLoader *>(cd->tl));
-DEBUG_M(   );
 			cd->tl = nullptr;
 			}
 
@@ -723,7 +710,6 @@ DEBUG_M(   );
 		{
 		g_idle_add(cd->destroy_func, cd);
 		}
-DEBUG_M(   );
 
 	return FALSE;
 }
@@ -732,10 +718,6 @@ static void cache_manager_render_start_cb(GenericDialog *, gpointer data)
 {
 	auto cd = static_cast<CacheOpsData *>(data);
 	GList *list_total = nullptr;
-//~ DEBUG_FD(    );
-//~ DEBUG_0("%d     ",sizeof (FileData)   );
-//~ DEBUG_M(    );
-//~ DEBUG_0("     "    );
 
 	if(!cd->remote)
 		{
@@ -777,20 +759,9 @@ static void cache_manager_render_start_cb(GenericDialog *, gpointer data)
 		file_data_unref(dir_fd);
 		g_list_free(list_total);
 		cd->count_done = 0;
-//~ DEBUG_0("     "    );
 
 		while (cache_manager_render_file(cd));
-		//~ {
-DEBUG_M(    );
 		}
-//~ <<<<<<< Updated upstream
-//~ =======
-//~ DEBUG_0("     "    );
-		//~ }
-//~ DEBUG_M(    );
-
-	//~ g_free(path);
-//~ >>>>>>> Stashed changes
 }
 
 static void cache_manager_render_start_render_remote(CacheOpsData *cd, const gchar *user_path)
