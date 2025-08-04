@@ -52,6 +52,11 @@ Use only for temporary debugging i.e. not in code in the repository
 Prints a dump of the FileData hash list as a ref. count followed by the full path of the item.
 Use only for temporary debugging i.e. not in code in the repository
 
+### DEBUG_RU()
+
+Prints memory usage and runtime from `getrusage`.
+Use only for temporary debugging i.e. not in code in the repository
+
 ### Log Window
 
 When the Log Window has focus, the F1 key executes the action specified in `Edit/Preferences/Behavior/Log Window F1 Command` with the selected text as a parameter.

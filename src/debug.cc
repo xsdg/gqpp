@@ -20,6 +20,7 @@
 
 #include "debug.h"
 
+#include <sys/resource.h>
 #include <sys/time.h>
 
 #include <cstdarg>
@@ -354,6 +355,23 @@ void log_print_file_data_dump(const gchar *file, gint line, const gchar *functio
 	file_data_dump();
 
 	log_printf("FileData dump end");
+}
+
+/**
+ * @brief Print memory usage and runtime
+ * @param file 
+ * @param line 
+ * @param function 
+ * 
+ */
+void log_print_ru(const gchar *file, gint line, const gchar *function)
+{
+	struct rusage r_usage;
+
+	getrusage(RUSAGE_SELF,&r_usage);
+
+	log_printf("%s:%s:%d kB:%ld", file, function, line, r_usage.ru_maxrss);
+	log_printf("%s:%s:%d secs:%ld", file, function, line, r_usage.ru_utime.tv_sec);
 }
 
 #endif /* DEBUG */
