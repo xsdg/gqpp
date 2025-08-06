@@ -36,12 +36,6 @@ if not option.disabled()
             build_by_default: true,
             install: false
             )
-        install_subdir(
-            destdir,
-            install_dir: helpdir,
-            install_tag: 'help',
-            follow_symlinks: false
-            )
         summary({'help': ['Help files created:', true]}, section: 'Documentation', bool_yn: true)
     else
         summary({'help' : ['yelp-build not found - Help files created:', false]}, section : 'Documentation', bool_yn : true)
