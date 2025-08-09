@@ -1022,8 +1022,14 @@ static void open_recent_file_cb(GtkFileChooser *chooser, gint response_id, gpoin
 static void preview_file_cb(GtkFileChooser *chooser, gpointer data)
 {
 	GtkImage *image_widget = GTK_IMAGE(data);
+	g_autofree gchar *file_name = nullptr;
+
 	g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
-	g_autofree gchar *file_name = g_file_get_path(file);
+
+	if (file)
+		{
+		file_name = g_file_get_path(file);
+		}
 
 	if (file_name)
 		{
@@ -1099,6 +1105,8 @@ static void layout_menu_open_file_cb(GtkAction *, gpointer)
 		work = work->next;
 		}
 
+	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), layout_get_path(get_current_layout()));
+
 	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), image_filter);
 
 	GtkFileFilter *all_filter = gtk_file_filter_new();
@@ -1110,7 +1118,7 @@ static void layout_menu_open_file_cb(GtkAction *, gpointer)
 
 	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), preview_area);
 
-	g_signal_connect(dialog, "selection-changed", G_CALLBACK(preview_file_cb), preview_area);
+	g_signal_connect(dialog, "update-preview", G_CALLBACK(preview_file_cb), preview_area);
 	g_signal_connect(dialog, "response", G_CALLBACK(open_file_cb), dialog);
 
 	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
