@@ -786,6 +786,64 @@ static void tab_completion_response_cb(GtkFileChooser *chooser, gint response_id
 	tab_completion_emit_enter_signal(td);
 }
 
+static void update_tabcomp_preview_cb(GtkFileChooser *chooser, gpointer data)
+{
+	g_autofree char *filename = gtk_file_chooser_get_filename(chooser);
+	GtkTextBuffer *buffer = GTK_TEXT_BUFFER(data);
+
+	gtk_text_buffer_set_text(buffer, "", -1);
+
+	if (isfile(filename) && g_str_has_suffix(filename, "icc"))
+		{
+		g_autofree gchar *stdout_data = nullptr;
+		g_autofree gchar *stderr_data = nullptr;
+		gint exit_status = 0;
+		GError *error = nullptr;
+
+		g_autofree gchar *cmd_line = g_strdup_printf("iccdump %s", filename);
+
+		gboolean success = g_spawn_command_line_sync(cmd_line, &stdout_data, &stderr_data, &exit_status, &error);
+
+		if (!success)
+			{
+			log_printf("iccdump is not installed. Install lcms utils: %s\n", error->message);
+			g_clear_error(&error);
+			}
+		else
+			{
+			gtk_text_buffer_set_text(buffer, stdout_data, -1);
+			}
+		}
+	else
+		{
+		if (filename && isdir(filename))
+			{
+			g_autoptr(GDir) dir = g_dir_open(filename, 0, nullptr);
+			if (dir)
+				{
+				const gchar *entry;
+				g_autoptr(GString) output = g_string_new("");
+
+				while ((entry = g_dir_read_name(dir)) != nullptr)
+					{
+					g_autofree gchar *fullpath = g_build_filename(filename, entry, nullptr);
+
+					if (isdir(fullpath))
+						{
+						g_string_append_printf(output, "📁 %s\n", entry);
+						}
+					else
+						{
+						g_string_append_printf(output, "📄 %s\n", entry);
+						}
+					}
+
+				gtk_text_buffer_set_text(buffer, output->str, -1);
+				}
+			}
+		}
+}
+
 static void tab_completion_select_show(TabCompData *td)
 {
 	const gchar *title;
@@ -843,7 +901,7 @@ static void tab_completion_select_show(TabCompData *td)
 	if (isfile(gtk_entry_get_text(GTK_ENTRY(td->entry))))
 		{
 		g_autofree gchar *dir_name = g_path_get_dirname(gtk_entry_get_text(GTK_ENTRY(td->entry)));
-		gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(td->dialog), dir_name);
+		gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(td->dialog), gtk_entry_get_text(GTK_ENTRY(td->entry)));
 		}
 	else
 		{
@@ -856,6 +914,21 @@ static void tab_completion_select_show(TabCompData *td)
 			gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(td->dialog), homedir());
 			}
 		}
+
+	GtkWidget *textview = gtk_text_view_new();
+	gtk_text_view_set_editable(GTK_TEXT_VIEW(textview), FALSE);
+	gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(textview), FALSE);
+
+	GtkWidget *scroller = gq_gtk_scrolled_window_new(nullptr, nullptr);
+	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroller), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+	gq_gtk_container_add(GTK_WIDGET(scroller), textview);
+	gtk_widget_set_size_request(scroller, 200, -1);
+	gq_gtk_widget_show_all(GTK_WIDGET(scroller));
+
+	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(td->dialog), scroller);
+	GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textview));
+
+	g_signal_connect(td->dialog, "update-preview", G_CALLBACK(update_tabcomp_preview_cb), buffer);
 
 	gq_gtk_widget_show_all(GTK_WIDGET(td->dialog));
 }

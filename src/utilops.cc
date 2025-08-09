@@ -3029,10 +3029,10 @@ static void create_folder_cb(GtkFileChooser *chooser, gint response_id, gpointer
 	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
 }
 
-static void update_create_dir_preview(GtkFileChooser *chooser, gpointer user_data)
+static void update_create_dir_preview_cb(GtkFileChooser *chooser, gpointer data)
 {
 	g_autofree char *filename = gtk_file_chooser_get_filename(chooser);
-	GtkTextBuffer *buffer = GTK_TEXT_BUFFER(user_data);
+	GtkTextBuffer *buffer = GTK_TEXT_BUFFER(data);
 
 	gtk_text_buffer_set_text(buffer, "", -1);
 
@@ -3091,7 +3091,7 @@ void file_util_create_dir(const gchar *path, GtkWidget *parent, const FileUtilDo
 	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), scroller);
 	GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textview));
 
-	g_signal_connect(dialog, "update-preview", G_CALLBACK(update_create_dir_preview), buffer);
+	g_signal_connect(dialog, "update-preview", G_CALLBACK(update_create_dir_preview_cb), buffer);
 	g_signal_connect(dialog, "response", G_CALLBACK(create_folder_cb), cfd);
 
 	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
