@@ -844,40 +844,6 @@ static void update_tabcomp_preview_cb(GtkFileChooser *chooser, gpointer data)
 		}
 }
 
-static GtkWidget* create_history_combo_box(const gchar *history_key)
-{
-	GList *work = history_list_get_by_key(history_key);
-
-	if (work)
-		{
-		GtkWidget *history_combo = gtk_combo_box_text_new();
-
-		for (GList *history_list = work; history_list != nullptr; history_list = history_list->next)
-			{
-			const auto path = static_cast<const gchar*>(history_list->data);
-			gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(history_combo), path);
-			}
-
-		gtk_combo_box_set_active(GTK_COMBO_BOX(history_combo), 0);
-
-		return history_combo;
-		}
-
-	return nullptr;
-}
-
-static void history_combo_changed_cb(GtkComboBoxText *history_combo, gpointer data)
-{
-	auto td = static_cast<TabCompData *>(data);
-
-	g_autofree gchar *text = gtk_combo_box_text_get_active_text(history_combo);
-
-	if (text)
-		{
-		gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(td->dialog), text);
-		}
-}
-
 static void tab_completion_select_show(TabCompData *td)
 {
 	const gchar *title;
@@ -946,17 +912,6 @@ static void tab_completion_select_show(TabCompData *td)
 		else
 			{
 			gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(td->dialog), homedir());
-			}
-		}
-
-	if (td->has_history)
-		{
-		GtkWidget *history_combo = create_history_combo_box(td->history_key);
-
-		if (history_combo)
-			{
-			gtk_file_chooser_set_extra_widget(GTK_FILE_CHOOSER(td->dialog), history_combo);
-			g_signal_connect(history_combo, "changed", G_CALLBACK(history_combo_changed_cb), td);
 			}
 		}
 
