@@ -806,7 +806,7 @@ static void update_tabcomp_preview_cb(GtkFileChooser *chooser, gpointer data)
 
 		if (!success)
 			{
-			log_printf("iccdump is not installed. Install lcms utils: %s\n", error->message);
+			log_printf("iccdump is not installed. Install argyll package: %s\n", error->message);
 			g_clear_error(&error);
 			}
 		else
