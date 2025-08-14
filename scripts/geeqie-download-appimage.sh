@@ -29,7 +29,7 @@
 ## Downloads will not be made unless the server version is newer than the local file.
 ##
 
-version="2025-07-25"
+version="2025-08-14"
 backups=3
 
 show_help()
@@ -104,7 +104,7 @@ spinner()
 	done
 }
 
-architecture=$(arch)
+architecture=$(uname -m)
 
 extract=0
 minimal=""
