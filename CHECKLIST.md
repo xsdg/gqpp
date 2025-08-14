@@ -73,3 +73,11 @@ Carry out the above actions to ensure the master branch is up to date, and then 
 * Click `Publish release`
 
 * Update the [Wikipedia entry](https://en.wikipedia.org/wiki/Geeqie)
+
+* When the latest AppImages have been generated on GitHub, run:
+
+```sh
+./scripts/new-release-appimages.sh
+```
+
+and upload the renamed files to the Latest release section on GitHub.
