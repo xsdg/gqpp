@@ -44,10 +44,6 @@ GenericDialog *file_util_gen_dlg(const gchar *title,
 				 const gchar *role,
 				 GtkWidget *parent, gint auto_close,
 				 void (*cancel_cb)(GenericDialog *, gpointer), gpointer data);
-FileDialog *file_util_file_dlg(const gchar *title,
-			       const gchar *role,
-			       GtkWidget *parent,
-			       void (*cancel_cb)(FileDialog *, gpointer), gpointer data);
 GenericDialog *file_util_warning_dialog(const gchar *heading, const gchar *message,
 					const gchar *icon_name, GtkWidget *parent);
 

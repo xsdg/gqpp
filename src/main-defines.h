@@ -50,6 +50,7 @@
 // @todo Deduplicate mousewheel_scrolls processing
 #define MOUSEWHEEL_SCROLL_SIZE 20
 
+#define GQ_RESPONSE_WITH_RENAME 1
 
 #define GQ_DEFAULT_SHELL_PATH "/bin/sh"
 #define GQ_DEFAULT_SHELL_OPTIONS "-c"

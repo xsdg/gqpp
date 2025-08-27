@@ -33,6 +33,7 @@
 #include "main-defines.h"
 #include "misc.h"
 #include "options.h"
+#include "ui-file-chooser.h"
 #include "ui-fileops.h"
 #include "ui-utildlg.h"
 #include "utilops.h"
@@ -44,39 +45,12 @@ enum {
 	DIALOG_APPEND
 };
 
-static void collection_save_confirmed(GenericDialog *gdlg, gboolean overwrite, CollectionData *cd);
-
-static void collection_confirm_ok_cb(GenericDialog *gdlg, gpointer data)
+static void collection_save_confirmed(GtkFileChooser *chooser, CollectionData *cd)
 {
-	auto cd = static_cast<CollectionData *>(data);
-
-	collection_save_confirmed(gdlg, TRUE, cd);
-}
-
-static void collection_confirm_cancel_cb(GenericDialog *gdlg, gpointer)
-{
-	generic_dialog_close(gdlg);
-}
-
-static void collection_save_confirmed(GenericDialog *gdlg, gboolean overwrite, CollectionData *cd)
-{
-	GenericDialog *gdlg_overwrite;
-
-	if (!overwrite && isfile(cd->collection_path))
-		{
-		gdlg_overwrite = file_util_gen_dlg(_("Overwrite collection"), "dlg_confirm", nullptr, FALSE, collection_confirm_cancel_cb, cd);
-		generic_dialog_add_message(gdlg_overwrite, GQ_ICON_DIALOG_QUESTION, _("Overwrite existing collection?"), cd->name, TRUE);
-		generic_dialog_add_button(gdlg_overwrite, GQ_ICON_OK, _("Overwrite"), collection_confirm_ok_cb, TRUE);
-
-		gtk_widget_show(gdlg_overwrite->dialog);
-
-		return;
-		}
-
 	if (!collection_save(cd, cd->collection_path))
 		{
 		g_autofree gchar *buf = g_strdup_printf(_("Failed to save the collection:\n%s"), cd->collection_path);
-		file_util_warning_dialog(_("Save Failed"), buf, GQ_ICON_DIALOG_ERROR, GENERIC_DIALOG(gdlg)->dialog);
+		file_util_warning_dialog(_("Save Failed"), buf, GQ_ICON_DIALOG_ERROR, GTK_WIDGET(chooser));
 		}
 
 	collection_unref(cd);
@@ -93,7 +67,7 @@ static void collection_save_cb(GtkFileChooser *chooser, gint response_id, gpoint
 		g_autofree gchar *filename = g_file_get_path(file);
 
 		cd->collection_path = g_strdup(filename);
-		collection_save_confirmed((GenericDialog *)(chooser), FALSE, cd);
+		collection_save_confirmed(chooser, cd);
 		}
 
 	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
@@ -119,111 +93,70 @@ static void append_collection_cb(GtkFileChooser *chooser, gint response_id, gpoi
 	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
 }
 
-static void preview_file_cb(GtkFileChooser *chooser, gpointer data)
+static void collection_save_dialog(CollectionData *cd)
 {
-	GtkImage *image_widget = GTK_IMAGE(data);
-	g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
-	g_autofree gchar *file_name = g_file_get_path(file);
-
-	if (file_name)
-		{
-		/* Use a thumbnail file if one exists */
-		g_autofree gchar *thumb_file = cache_find_location(CACHE_TYPE_THUMB, file_name);
-		if (thumb_file)
-			{
-			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(thumb_file, nullptr);
-			if (pixbuf)
-				{
-				gtk_image_set_from_pixbuf(image_widget, pixbuf);
-				}
-			else
-				{
-				gtk_image_set_from_icon_name(image_widget, "image-missing", GTK_ICON_SIZE_DIALOG);
-				}
-
-			g_object_unref(pixbuf);
-			}
-		else
-			{
-			/* Use the standard pixbuf loader */
-			GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file(file_name, nullptr);
-			if (pixbuf)
-				{
-				GdkPixbuf *scaled_pixbuf = gdk_pixbuf_scale_simple(pixbuf, options->thumbnails.max_width, options->thumbnails.max_height, GDK_INTERP_BILINEAR);
-				gtk_image_set_from_pixbuf(image_widget, scaled_pixbuf);
-
-				g_object_unref(pixbuf);
-				}
-			else
-				{
-				gtk_image_set_from_icon_name(image_widget, "image-missing", GTK_ICON_SIZE_DIALOG);
-				}
-			}
-		}
-	else
-		{
-		gtk_image_set_from_icon_name(image_widget, "image-missing", GTK_ICON_SIZE_DIALOG);
-		}
-}
-
-static void collection_save_or_append_dialog(gint type, CollectionData *cd)
-{
-	GtkWidget *dialog;
-
 	if (!cd) return;
 	collection_ref(cd);
 
-	if (type == DIALOG_SAVE || type == DIALOG_SAVE_CLOSE)
-		{
-		GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_SAVE;
+	g_autoptr(FileChooserDialogData) fcdd = g_new0(FileChooserDialogData, 1);
 
-		dialog = gtk_file_chooser_dialog_new(_("Save Collection As - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Save"), GTK_RESPONSE_ACCEPT, nullptr);
+	fcdd->action = GTK_FILE_CHOOSER_ACTION_SAVE;
+	fcdd->accept_text = _("Save");
+	fcdd->data = cd;
+	fcdd->entry_text = nullptr;
+	fcdd->entry_tooltip =  nullptr;
+	fcdd->filename = g_strdup(get_collections_dir());
+	fcdd->filter = g_strdup(GQ_COLLECTION_EXT);
+	fcdd->filter_description = _("Collection files");
+	fcdd->history_key = "open_collection";;
+	fcdd->response_callback = G_CALLBACK(collection_save_cb);
+	fcdd->shortcuts = g_strdup(get_collections_dir());
+	fcdd->suggested_name = _("Untitled.gqv");
+	fcdd->title =_("Save Collection As - Geeqie");
 
-		gtk_file_chooser_set_do_overwrite_confirmation(GTK_FILE_CHOOSER(dialog), TRUE);
-		gtk_file_chooser_set_current_name(GTK_FILE_CHOOSER(dialog), _("Untitled.gqv"));
+	GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 
-		g_signal_connect(dialog, "response", G_CALLBACK(collection_save_cb), cd);
-		}
-	else
-		{
-		GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
+	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
+}
 
-		dialog = gtk_file_chooser_dialog_new(_("Append Collection - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Append"), GTK_RESPONSE_ACCEPT, nullptr);
+static void collection_append_dialog(CollectionData *cd)
+{
+	if (!cd) return;
+	collection_ref(cd);
 
-		g_signal_connect(dialog, "response", G_CALLBACK(append_collection_cb), cd);
-		}
+	g_autoptr(FileChooserDialogData) fcdd = g_new0(FileChooserDialogData, 1);
 
-	GtkWidget *preview_area = gtk_image_new();
-	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), preview_area);
+	fcdd->action = GTK_FILE_CHOOSER_ACTION_OPEN;
+	fcdd->accept_text = _("Save");
+	fcdd->data = cd;
+	fcdd->entry_text = nullptr;
+	fcdd->entry_tooltip =  nullptr;
+	fcdd->filename = g_strdup(get_collections_dir());
+	fcdd->filter = g_strdup(GQ_COLLECTION_EXT);
+	fcdd->filter_description = _("Collection files");
+	fcdd->history_key = "open_collection";
+	fcdd->response_callback = G_CALLBACK(append_collection_cb);
+	fcdd->shortcuts = g_strdup(get_collections_dir());
+	fcdd->suggested_name = _("Untitled.gqv");
+	fcdd->title =_("Append Collection - Geeqie");
 
-	g_signal_connect(dialog, "selection-changed", G_CALLBACK(preview_file_cb), preview_area);
-
-	/* Add the default Collection dir to the dialog shortcuts box */
-	gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), get_collections_dir(), nullptr);
-
-	GtkFileFilter *collection_filter = gtk_file_filter_new();
-	gtk_file_filter_set_name(collection_filter, _("Geeqie Collection files"));
-	gtk_file_filter_add_pattern(collection_filter, "*" GQ_COLLECTION_EXT);
-	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), collection_filter);
-
-	gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(dialog), collection_filter);
-	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), get_collections_dir());
+	GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 
 	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
 }
 
 void collection_dialog_save_as(CollectionData *cd)
 {
-	collection_save_or_append_dialog(DIALOG_SAVE, cd);
+	collection_save_dialog(cd);
 }
 
 void collection_dialog_save_close(CollectionData *cd)
 {
-	collection_save_or_append_dialog(DIALOG_SAVE_CLOSE, cd);
+	collection_save_dialog(cd);
 }
 
 void collection_dialog_append(CollectionData *cd)
 {
-	collection_save_or_append_dialog(DIALOG_APPEND, cd);
+	collection_append_dialog(cd);
 }
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

@@ -41,6 +41,7 @@
 #include "dnd.h"
 #include "editors.h"
 #include "filedata.h"
+#include "history-list.h"
 #include "image-load.h"
 #include "img-view.h"
 #include "intl.h"
@@ -56,6 +57,7 @@
 #include "thumb.h"
 #include "typedefs.h"
 #include "ui-bookmark.h"
+#include "ui-file-chooser.h"
 #include "ui-fileops.h"
 #include "ui-menu.h"
 #include "ui-misc.h"
@@ -3095,44 +3097,58 @@ static void search_window_destroy_cb(GtkWidget *, gpointer data)
 	g_free(sd);
 }
 
-static void select_collection_dialog_close_cb(FileDialog *fdlg, gpointer)
-{
-	file_dialog_close(fdlg);
-}
-
-static void select_collection_dialog_ok_cb(FileDialog *fdlg, gpointer data)
+static void select_collection_response_cb(GtkFileChooser *chooser, gint response_id, gpointer data)
 {
 	auto sd = static_cast<SearchData *>(data);
 
-	const gchar *path = gq_gtk_entry_get_text(GTK_ENTRY(fdlg->entry));
-	g_autofree gchar *path_noext = remove_extension_from_path(path);
-	g_autofree gchar *collection = g_path_get_basename(path_noext);
+	if (response_id == GTK_RESPONSE_ACCEPT)
+		{
+		g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
 
-	gq_gtk_entry_set_text(GTK_ENTRY(sd->ui.entry_collection), collection);
-	file_dialog_close(fdlg);
+		if (file != nullptr)
+			{
+			g_autofree gchar *filename = g_file_get_path(file);
+			g_autofree gchar *path_noext = remove_extension_from_path(filename);
+			g_autofree gchar *collection = g_path_get_basename(path_noext);
+
+			gq_gtk_entry_set_text(GTK_ENTRY(sd->ui.entry_collection), collection);
+
+			g_autoptr(GFile) parent = g_file_get_parent(file);
+
+			if (parent != nullptr)
+				{
+				g_autofree gchar *dirname = g_file_get_path(parent);
+				history_list_add_to_key("search_collection", dirname, -1);
+				}
+			}
+		}
+
+	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
 }
 
 static void select_collection_clicked_cb(GtkWidget *, gpointer data)
 {
 	auto sd = static_cast<SearchData *>(data);
-	const gchar *title;
-	const gchar *btntext;
-	gpointer btnfunc;
-	const gchar *icon_name;
 
-	title = _("Select collection");
-	btntext = nullptr;
-	btnfunc = reinterpret_cast<void *>(select_collection_dialog_ok_cb);
-	icon_name = GQ_ICON_OK;
+	g_autoptr(FileChooserDialogData) fcdd = g_new0(FileChooserDialogData, 1);
 
-	FileDialog *fdlg = file_util_file_dlg(title, "dlg_collection", sd->ui.window, select_collection_dialog_close_cb, sd);
+	fcdd->accept_text = _("Open");
+	fcdd->action = GTK_FILE_CHOOSER_ACTION_OPEN;
+	fcdd->data = sd;
+	fcdd->entry_text = nullptr;
+	fcdd->entry_tooltip = nullptr;
+	fcdd->filename = g_strdup(get_collections_dir());
+	fcdd->filter = g_strdup(GQ_COLLECTION_EXT);
+	fcdd->filter_description = _("Collection files");
+	fcdd->history_key = "open_collection";
+	fcdd->response_callback = G_CALLBACK(select_collection_response_cb);
+	fcdd->shortcuts = nullptr;
+	fcdd->suggested_name = nullptr;
+	fcdd->title = _("Select collection");
 
-	generic_dialog_add_message(GENERIC_DIALOG(fdlg), nullptr, title, nullptr, FALSE);
-	file_dialog_add_button(fdlg, icon_name, btntext, reinterpret_cast<void(*)(FileDialog *, gpointer)>(btnfunc), TRUE);
+	GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 
-	file_dialog_add_path_widgets(fdlg, get_collections_dir(), nullptr, "search_collection", GQ_COLLECTION_EXT, _("Collection Files"));
-
-	gtk_widget_show(GENERIC_DIALOG(fdlg)->dialog);
+	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
 }
 
 void search_new(FileData *dir_fd, FileData *example_file)

@@ -39,6 +39,7 @@
 #include "rcfile.h"
 #include "typedefs.h"
 #include "ui-bookmark.h"
+#include "ui-file-chooser.h"
 #include "ui-fileops.h"
 #include "ui-misc.h"
 #include "ui-utildlg.h"
@@ -431,40 +432,30 @@ static gboolean save_new_collection(GtkFileChooser *chooser, gpointer data)
 	return ret;
 }
 
-static void collection_exists_response_cb(GtkDialog *dialog, gint, gpointer)
-{
-	gq_gtk_widget_destroy(GTK_WIDGET(dialog));
-}
-
 static void new_collection_file_response_cb(GtkFileChooser *chooser, gint response_id, gpointer data)
 {
 	auto sd = static_cast<SortData *>(data);
 
 	if (response_id == GTK_RESPONSE_ACCEPT)
 		{
-		g_autofree gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(chooser));
+		g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
 
-		if (g_file_test(filename, G_FILE_TEST_EXISTS))
+		if (file != nullptr)
 			{
-			GtkWidget *collection_exists = gtk_message_dialog_new(GTK_WINDOW(chooser), GTK_DIALOG_MODAL, GTK_MESSAGE_WARNING, GTK_BUTTONS_OK, _("File \"%s\" already exists."), filename);
-			gtk_window_set_modal(GTK_WINDOW(collection_exists), TRUE);
+			g_autoptr(GFile) parent = g_file_get_parent(file);
 
-			g_signal_connect(collection_exists, "response", G_CALLBACK(collection_exists_response_cb), nullptr);
-
-			gtk_widget_show(collection_exists);
-			}
-		else
-			{
 			if (save_new_collection(chooser, sd))
 				{
-				gq_gtk_widget_destroy(GTK_WIDGET(chooser));
+				if (parent != nullptr)
+					{
+					g_autofree gchar *dirname = g_file_get_path(parent);
+					history_list_add_to_key("open_collection", dirname, -1);
+					}
 				}
 			}
 		}
-	else
-		{
-		gq_gtk_widget_destroy(GTK_WIDGET(chooser));
-		}
+
+	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
 }
 
 static void bar_sort_add_cb(GtkWidget *, gpointer data)
@@ -477,33 +468,25 @@ static void bar_sort_add_cb(GtkWidget *, gpointer data)
 		}
 	else
 		{
-		GtkWidget *dialog = gtk_file_chooser_dialog_new(_("Create empty Collection file"), GTK_WINDOW(sd->lw->window), GTK_FILE_CHOOSER_ACTION_SAVE, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Save"), GTK_RESPONSE_ACCEPT, nullptr);
+		g_autoptr(FileChooserDialogData) fcdd = g_new0(FileChooserDialogData, 1);
 
-		GtkFileFilter *all_filter = gtk_file_filter_new();
-		gtk_file_filter_set_name(all_filter, _("All files"));
-		gtk_file_filter_add_pattern(all_filter, "*");
-		gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), all_filter);
+		fcdd->action = GTK_FILE_CHOOSER_ACTION_SAVE;
+		fcdd->accept_text = _("Save");
+		fcdd->data = sd;
+		fcdd->entry_text = _("Optional name...");
+		fcdd->entry_tooltip =  _("Optional alias name for the shortcut.\nThis may be amended or added from the Sort Manager pane.\nIf none given, the basename of the folder is used");
+		fcdd->filename = g_strdup(get_collections_dir());
+		fcdd->filter = g_strdup(GQ_COLLECTION_EXT);
+		fcdd->filter_description = _("Collection files");
+		fcdd->history_key = "open_collection";
+		fcdd->response_callback = G_CALLBACK(new_collection_file_response_cb);
+		fcdd->shortcuts = g_strdup(get_collections_dir());
+		fcdd->suggested_name = _("Untitled.gqv");
+		fcdd->title = _("Create empty Collection file");
 
-		GtkFileFilter *collections_filter = gtk_file_filter_new();
-		gtk_file_filter_set_name(collections_filter, _("Collections files"));
-		gtk_file_filter_add_pattern(collections_filter, "*.gqv");
-		gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), collections_filter);
+		GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 
-		gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(dialog), collections_filter);
-
-#if HAVE_GTK4
-		g_autoptr(GFile) path = g_file_new_for_path(get_collections_dir(), nullptr);
-		gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), path, nullptr);
-#else
-		gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), get_collections_dir(), nullptr);
-#endif
-
-		gtk_file_chooser_set_current_name(GTK_FILE_CHOOSER(dialog), _("Untitled.gqv"));
-		gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), get_collections_dir());
-
-		g_signal_connect(dialog, "response", G_CALLBACK(new_collection_file_response_cb), sd);
-
-		gtk_window_present(GTK_WINDOW(dialog));
+		gq_gtk_widget_show_all(GTK_WIDGET(dialog));
 		}
 }
 

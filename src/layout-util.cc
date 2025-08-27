@@ -77,6 +77,7 @@
 #include "search.h"
 #include "slideshow.h"
 #include "toolbar.h"
+#include "ui-file-chooser.h"
 #include "ui-fileops.h"
 #include "ui-menu.h"
 #include "ui-misc.h"
@@ -897,7 +898,11 @@ static void open_file_cb(GtkFileChooser *chooser, gint response_id, gpointer)
 	if (response_id == GTK_RESPONSE_ACCEPT)
 		{
 		g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
+		g_autoptr(GFile) parent = g_file_get_parent(file);
+		g_autofree gchar *dirname = g_file_get_path(parent);
 		g_autofree gchar *filename = g_file_get_path(file);
+
+		history_list_add_to_key("open_file", dirname, 0);
 
 		if (g_str_has_suffix(filename, GQ_COLLECTION_EXT))
 			{
@@ -932,172 +937,45 @@ static void open_recent_file_cb(GtkFileChooser *chooser, gint response_id, gpoin
 	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
 }
 
-static gboolean file_is_image(const std::string& path)
-{
-	g_autoptr(GFile) file = g_file_new_for_path(path.c_str());
-	g_autoptr(GError) error = nullptr;
-	g_autoptr(GFileInfo) info = g_file_query_info(file, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE, G_FILE_QUERY_INFO_NONE, nullptr, &error);
-
-	if (!info)
-		{
-		return false;
-		}
-
-	const char *content_type = g_file_info_get_content_type(info);
-	return (content_type && g_str_has_prefix(content_type, "image/"));
-}
-
-static void append_dir_entry(GString *output, const char *base_path, const char *entry)
-{
-	g_autofree gchar *fullpath = g_build_filename(base_path, entry, nullptr);
-
-	if (isdir(fullpath))
-		{
-		g_string_append_printf(output, "📁 %s\n", entry);
-		}
-	else if (file_is_image(fullpath))
-		{
-		g_string_append_printf(output, "🖼️ %s\n", entry);
-		}
-	else
-		{
-		g_string_append_printf(output, "📄 %s\n", entry);
-		}
-}
-
-static GtkWidget *create_dir_preview(const char *dir_path)
-{
-	GtkWidget *textview = gtk_text_view_new();
-	gtk_text_view_set_editable(GTK_TEXT_VIEW(textview), FALSE);
-	gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(textview), FALSE);
-
-	g_autoptr(GDir) dir = g_dir_open(dir_path, 0, nullptr);
-	if (dir)
-		{
-		g_autoptr(GString) output = g_string_new("");
-		const gchar *entry;
-		while ((entry = g_dir_read_name(dir)) != nullptr)
-			{
-			append_dir_entry(output, dir_path, entry);
-			}
-
-		GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textview));
-		gtk_text_buffer_set_text(buffer, output->str, -1);
-		}
-
-	return textview;
-}
-
-static GtkWidget *create_image_preview(const char *file_path)
-{
-	GtkWidget *image_widget = gtk_image_new();
-
-	g_autofree gchar *thumb_file = cache_find_location(CACHE_TYPE_THUMB, file_path);
-	GdkPixbuf *pixbuf = nullptr;
-
-	if (thumb_file)
-		{
-		pixbuf = gdk_pixbuf_new_from_file(thumb_file, nullptr);
-		}
-	else
-		{
-		g_autoptr(GdkPixbuf) orig_pixbuf = gdk_pixbuf_new_from_file(file_path, nullptr);
-		if (orig_pixbuf)
-			{
-			pixbuf = gdk_pixbuf_scale_simple(orig_pixbuf, options->thumbnails.max_width, options->thumbnails.max_height, GDK_INTERP_BILINEAR);
-			}
-		}
-
-	if (pixbuf)
-		{
-		gtk_image_set_from_pixbuf(GTK_IMAGE(image_widget), pixbuf);
-		g_object_unref(pixbuf);
-		}
-	else
-		{
-		gtk_image_set_from_icon_name(GTK_IMAGE(image_widget), "image-missing", GTK_ICON_SIZE_DIALOG);
-		}
-
-	return image_widget;
-}
-
-static void preview_file_cb(GtkFileChooser *chooser, gpointer)
-{
-	g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
-	if (!file)
-		{
-		return;
-		}
-
-	g_autofree gchar *file_name = g_file_get_path(file);
-	if (!file_name)
-		{
-		return;
-		}
-
-	GtkWidget *preview_box = gtk_file_chooser_get_preview_widget(chooser);
-
-	if (GtkWidget *child = gtk_bin_get_child(GTK_BIN(preview_box)))
-		{
-		gtk_container_remove(GTK_CONTAINER(preview_box), child);
-		}
-
-	GtkWidget *new_preview = isdir(file_name) ? create_dir_preview(file_name) : create_image_preview(file_name);
-
-	gq_gtk_container_add(GTK_WIDGET(preview_box), new_preview);
-	gq_gtk_widget_show_all(GTK_WIDGET(new_preview));
-}
-
 static void layout_menu_open_file_cb(GtkAction *, gpointer)
 {
-	GtkWidget *dialog;
-	GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
-
-	dialog = gtk_file_chooser_dialog_new(_("Geeqie - Open File"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_ACCEPT, nullptr);
-
-	GtkFileFilter *image_filter = gtk_file_filter_new();
-	gtk_file_filter_set_name(image_filter, _("Geeqie image files"));
-
 	GList *work = filter_get_list();
+	GString *extlist = g_string_new(nullptr);
 
 	while (work)
 		{
-		FilterEntry *fe;
+		auto fe = static_cast<FilterEntry *>(work->data);
 
-		fe = static_cast<FilterEntry *>(work->data);
-
-		g_auto(GStrv) extension_list = g_strsplit(fe->extensions, ";", -1);
-
-		for (gint i = 0; extension_list[i] != nullptr; i++)
+		if (extlist->len > 0)
 			{
-			gchar ext[64];
-			g_snprintf(ext, sizeof(ext), "*%s", extension_list[i]);
-			gtk_file_filter_add_pattern(image_filter, ext);
+			extlist = g_string_append(extlist, ";");
 			}
+
+		extlist = g_string_append(extlist, fe->extensions);
 
 		work = work->next;
 		}
 
-	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), layout_get_path(get_current_layout()));
+	auto fcdd = g_new0(FileChooserDialogData, 1);
 
-	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), image_filter);
+	fcdd->action = GTK_FILE_CHOOSER_ACTION_OPEN;
+	fcdd->accept_text = _("Open");
+	fcdd->data = nullptr;
+	fcdd->entry_text = nullptr;
+	fcdd->entry_tooltip = nullptr;
+	fcdd->filename = nullptr;
+	fcdd->filter = g_strdup(extlist->str);
+	fcdd->filter_description = _("Image files");
+	fcdd->history_key = "open_file";
+	fcdd->response_callback = G_CALLBACK(open_file_cb);
+	fcdd->shortcuts = nullptr;
+	fcdd->suggested_name = _("Untitled.gqv");
+	fcdd->title = _("Geeqie - Open File");
 
-	GtkFileFilter *all_filter = gtk_file_filter_new();
-	gtk_file_filter_set_name(all_filter, _("All files"));
-	gtk_file_filter_add_pattern(all_filter, "*");
-	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), all_filter);
+	GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 
-	gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(dialog), image_filter);
-
-	GtkWidget *scroller = gq_gtk_scrolled_window_new(nullptr, nullptr);
-	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroller), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gtk_widget_set_size_request(scroller, 200, -1);
-	gq_gtk_widget_show_all(GTK_WIDGET(scroller));
-
-	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), scroller);
-
-	g_signal_connect(dialog, "update-preview", G_CALLBACK(preview_file_cb), nullptr);
-	g_signal_connect(dialog, "response", G_CALLBACK(open_file_cb), dialog);
+	g_string_free(extlist, TRUE);
+	g_free(fcdd);
 
 	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
 }
@@ -1153,45 +1031,49 @@ static void open_collection_cb(GtkFileChooser *chooser, gint response_id, gpoint
 	if (response_id == GTK_RESPONSE_ACCEPT)
 		{
 		g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
-		g_autofree gchar *filename = g_file_get_path(file);
 
-		if (file_extension_match(filename, GQ_COLLECTION_EXT))
+		if (file != nullptr)
 			{
-			collection_window_new(filename);
+			g_autoptr(GFile) parent = g_file_get_parent(file);
+
+			if (parent != nullptr)
+				{
+				g_autofree gchar *dirname = g_file_get_path(parent);
+				history_list_add_to_key("open_collection", dirname, -1);
+				}
+
+			g_autofree gchar *filename = g_file_get_path(file);
+
+			if (file_extension_match(filename, GQ_COLLECTION_EXT))
+				{
+				collection_window_new(filename);
+				}
 			}
 		}
-
 	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
 }
 
 static void layout_menu_open_collection_cb(GtkWidget *, gpointer)
 {
-	GtkWidget *dialog;
-	GtkFileChooserAction action = GTK_FILE_CHOOSER_ACTION_OPEN;
+	auto fcdd = g_new0(FileChooserDialogData, 1);
 
-	dialog = gtk_file_chooser_dialog_new(_("Open Collection - Geeqie"), nullptr, action, _("_Cancel"), GTK_RESPONSE_CANCEL, _("_Open"), GTK_RESPONSE_ACCEPT, nullptr);
+	fcdd->action = GTK_FILE_CHOOSER_ACTION_OPEN;
+	fcdd->accept_text = _("Open");
+	fcdd->data = nullptr;
+	fcdd->entry_text = nullptr;
+	fcdd->entry_tooltip = nullptr;
+	fcdd->filename = nullptr;
+	fcdd->filter = g_strdup(GQ_COLLECTION_EXT);
+	fcdd->filter_description = _("Collection files");
+	fcdd->history_key = "open_collection";
+	fcdd->response_callback = G_CALLBACK(open_collection_cb);
+	fcdd->shortcuts = g_strdup(get_collections_dir());
+	fcdd->suggested_name = nullptr;
+	fcdd->title = _("Geeqie - Open Collection");
 
-	GtkWidget *preview_area = gtk_image_new();
-	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), preview_area);
+	GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 
-	GtkFileFilter *collection_filter = gtk_file_filter_new();
-	gtk_file_filter_set_name(collection_filter, _("Geeqie Collection files"));
-	gtk_file_filter_add_pattern(collection_filter, "*" GQ_COLLECTION_EXT);
-	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), collection_filter);
-
-	GtkFileFilter *all_filter = gtk_file_filter_new();
-	gtk_file_filter_set_name(all_filter, _("All files"));
-	gtk_file_filter_add_pattern(all_filter, "*");
-	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(dialog), all_filter);
-
-	gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(dialog), collection_filter);
-	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), get_collections_dir());
-
-	/* Add the default Collection dir to the dialog shortcuts box */
-	gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(dialog), get_collections_dir(), nullptr);
-
-	g_signal_connect(dialog, "selection-changed", G_CALLBACK(preview_file_cb), preview_area);
-	g_signal_connect(dialog, "response", G_CALLBACK(open_collection_cb), dialog);
+	g_free(fcdd);
 
 	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
 }

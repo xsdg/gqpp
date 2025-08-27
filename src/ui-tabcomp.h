@@ -32,8 +32,8 @@ const gchar *tab_completion_set_to_last_history(GtkWidget *entry);
 void tab_completion_append_to_history(GtkWidget *entry, const gchar *path);
 
 GtkWidget *tab_completion_new(GtkWidget **entry, const gchar *text,
-			      void (*enter_func)(const gchar *, gpointer), const gchar *filter, const gchar *filter_desc, gpointer data);
-void tab_completion_add_to_entry(GtkWidget *entry, void (*enter_func)(const gchar *, gpointer), const gchar *filter, const gchar *filter_desc, gpointer data);
+			      void (*enter_func)(const gchar *, gpointer), const gchar *filter, const gchar *filter_desc, const gchar *shortcuts, gpointer data);
+void tab_completion_add_to_entry(GtkWidget *entry, void (*enter_func)(const gchar *, gpointer), const gchar *filter, const gchar *filter_desc, const gchar *shortcuts, gpointer data);
 void tab_completion_add_tab_func(GtkWidget *entry, void (*tab_func)(const gchar *, gpointer), gpointer data);
 gchar *remove_trailing_slash(const gchar *path);
 

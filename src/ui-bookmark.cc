@@ -38,6 +38,7 @@
 #include "misc.h"
 #include "pixbuf-util.h"
 #include "typedefs.h"
+#include "ui-file-chooser.h"
 #include "ui-fileops.h"
 #include "ui-menu.h"
 #include "ui-misc.h"
@@ -846,7 +847,7 @@ static void bookmark_add_response_cb(GtkFileChooser *chooser, gint response_id, 
 		{
 		GtkWidget *name_entry = gtk_file_chooser_get_extra_widget(chooser);
 		const gchar *name = gtk_entry_get_text(GTK_ENTRY(name_entry));
-		gboolean empty_name = (name[0] == '\0');
+		gboolean empty_name = (g_strcmp0(name, "") == 0);
 
 		g_autoptr(GFile) file = gtk_file_chooser_get_file(chooser);
 		g_autofree gchar *selected_dir = g_file_get_path(file);
@@ -860,22 +861,25 @@ static void bookmark_add_response_cb(GtkFileChooser *chooser, gint response_id, 
 
 void bookmark_add_dialog(const gchar *title, GtkWidget *list)
 {
-	GtkWidget *dialog = gtk_file_chooser_dialog_new(title, nullptr,
-	                                                GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
-	                                                _("_Cancel"), GTK_RESPONSE_CANCEL,
-	                                                _("Add"), GTK_RESPONSE_ACCEPT,
-	                                                nullptr);
-	gtk_file_chooser_set_create_folders(GTK_FILE_CHOOSER(dialog), TRUE);
-	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), layout_get_path(get_current_layout()));
+		g_autoptr(FileChooserDialogData) fcdd = g_new0(FileChooserDialogData, 1);
 
-	GtkWidget *entry = gtk_entry_new();
-	gtk_entry_set_placeholder_text(GTK_ENTRY(entry), _("Optional name..."));
-	gtk_widget_set_tooltip_text(entry, _("Optional alias name for the shortcut.\nThis may be amended or added from the Sort Manager pane.\nIf none given, the basename of the folder is used"));
-	gtk_file_chooser_set_extra_widget(GTK_FILE_CHOOSER(dialog), entry);
+		fcdd->action = GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER;
+		fcdd->accept_text = _("Open");
+		fcdd->data = list;
+		fcdd->entry_text = _("Optional name...");
+		fcdd->entry_tooltip =  _("Optional alias name for the shortcut.\nThis may be amended or added from the Sort Manager pane.\nIf none given, the basename of the folder is used");
+		fcdd->filename = g_strdup(layout_get_path(get_current_layout()));
+		fcdd->filter = nullptr;
+		fcdd->filter_description = nullptr;
+		fcdd->history_key = nullptr;
+		fcdd->response_callback = G_CALLBACK(bookmark_add_response_cb);
+		fcdd->shortcuts = nullptr;
+		fcdd->suggested_name = nullptr;
+		fcdd->title = title;
 
-	g_signal_connect(dialog, "response", G_CALLBACK(bookmark_add_response_cb), list);
+		GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 
-	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
+		gq_gtk_widget_show_all(GTK_WIDGET(dialog));
 }
 
 /*

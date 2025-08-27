@@ -38,6 +38,7 @@
 #include "exif.h"
 #include "filedata.h"
 #include "filefilter.h"
+#include "history-list.h"
 #include "image.h"
 #include "intl.h"
 #include "main-defines.h"
@@ -47,6 +48,7 @@
 #include "thumb-standard.h"
 #include "trash.h"
 #include "ui-bookmark.h"
+#include "ui-file-chooser.h"
 #include "ui-fileops.h"
 #include "ui-misc.h"
 #include "ui-utildlg.h"
@@ -270,35 +272,6 @@ GenericDialog *file_util_gen_dlg(const gchar *title,
 	return gd;
 }
 
-/**
- * @brief
- * @param title
- * @param role
- * @param parent
- * @param cancel_cb
- * @param data
- * @returns
- *
- * \image html file_util_file_dlg.png 'Typical implementation including optional filter, buttons and path widgets' width=300
- */
-FileDialog *file_util_file_dlg(const gchar *title,
-			       const gchar *role,
-			       GtkWidget *parent,
-			       void (*cancel_cb)(FileDialog *, gpointer), gpointer data)
-{
-	FileDialog *fdlg;
-
-	fdlg = file_dialog_new(title, role, parent, cancel_cb, data);
-	if (options->place_dialogs_under_mouse)
-		{
-		gq_gtk_window_set_position(GTK_WINDOW(GENERIC_DIALOG(fdlg)->dialog), GTK_WIN_POS_MOUSE);
-		}
-
-	gtk_window_set_modal(GTK_WINDOW(fdlg->gd.dialog), TRUE);
-
-	return fdlg;
-}
-
 /* this warning dialog is copied from SLIK's ui_utildg.c,
  * because it does not have a mouse center option,
  * and we must center it before show, implement it here.
@@ -396,7 +369,7 @@ struct UtilityData {
 
 	GtkWidget *parent;
 	GenericDialog *gd;
-	FileDialog *fdlg;
+	GtkFileChooserDialog *fdlg;
 
 	guint update_idle_id; /* event source id */
 	guint perform_idle_id; /* event source id */
@@ -1120,22 +1093,14 @@ static void file_util_ok_cb(GenericDialog *gd, gpointer data)
 	file_util_dialog_run(ud);
 }
 
-static void file_util_fdlg_cancel_cb(FileDialog *fdlg, gpointer data)
-{
-	auto ud = static_cast<UtilityData *>(data);
-
-	file_dialog_close(fdlg);
-
-	ud->fdlg = nullptr;
-
-	ud->phase = UtilityPhase::CANCEL;
-	file_util_dialog_run(ud);
-}
-
 static void file_util_dest_folder_update_path(UtilityData *ud)
 {
 	g_free(ud->dest_path);
-	ud->dest_path = g_strdup(gq_gtk_entry_get_text(GTK_ENTRY(ud->fdlg->entry)));
+
+	g_autoptr(GFile) file = gtk_file_chooser_get_file(GTK_FILE_CHOOSER(ud->fdlg));
+	gchar *path = g_file_get_path(file);
+
+	ud->dest_path = path;
 
 	switch (ud->type)
 		{
@@ -1159,30 +1124,25 @@ static void file_util_dest_folder_update_path(UtilityData *ud)
 		}
 }
 
-static void file_util_fdlg_rename_cb(FileDialog *fdlg, gpointer data)
+static void file_util_fdlg_rename_cb(GtkFileChooserDialog *chooser, gpointer data)
 {
 	auto ud = static_cast<UtilityData *>(data);
 	GenericDialog *d = nullptr;
 
 	file_util_dest_folder_update_path(ud);
+
 	if (isdir(ud->dest_path))
 		{
-		file_dialog_sync_history(fdlg, TRUE);
-		file_dialog_close(fdlg);
+		gq_gtk_widget_destroy(GTK_WIDGET(chooser));
+
 		ud->fdlg = nullptr;
 		file_util_dialog_run(ud);
-
-		GdkRectangle rect;
-		if (!options->save_dialog_window_positions || !generic_dialog_find_window("Rename", "dlg_confirm", rect))
-			{
-			gtk_window_resize(GTK_WINDOW(ud->gd->dialog), RENAME_WINDOW_WIDTH, RENAME_WINDOW_HEIGHT);
-			}
 		}
 	else
 		{
 		/* During copy/move operations it is necessary to ensure that the
 		 * target directory exists before continuing with the next step.
-		 * If not revert to the select directory dialog
+		 * If not revert to the select directory dialog_
 		 */
 		g_autofree gchar *desc = g_strdup_printf(_("%s is not a directory"), ud->dest_path);
 
@@ -1194,29 +1154,71 @@ static void file_util_fdlg_rename_cb(FileDialog *fdlg, gpointer data)
 		gtk_widget_show(d->dialog);
 		ud->phase = UtilityPhase::START;
 
-		file_dialog_close(fdlg);
+		gq_gtk_widget_destroy(GTK_WIDGET(chooser));
 		ud->fdlg = nullptr;
 		}
 }
 
-static void file_util_fdlg_ok_cb(FileDialog *fdlg, gpointer data)
+static void file_util_fdlg_ok_cb(GtkFileChooserDialog *chooser, gint response_id, gpointer data)
 {
 	auto ud = static_cast<UtilityData *>(data);
 
-	file_util_dest_folder_update_path(ud);
-	if (isdir(ud->dest_path)) file_dialog_sync_history(fdlg, TRUE);
-	file_dialog_close(fdlg);
+	if (response_id == GTK_RESPONSE_ACCEPT)
+		{
 
-	ud->fdlg = nullptr;
-	ud->phase = UtilityPhase::ENTERING;
+		g_autoptr(GFile) file = gtk_file_chooser_get_file(GTK_FILE_CHOOSER(chooser));
+		if (file != nullptr)
+			{
+			g_autoptr(GFile) file = gtk_file_chooser_get_file(GTK_FILE_CHOOSER(chooser));
+			g_autofree gchar *path = g_file_get_path(file);
 
-	file_util_dialog_run(ud);
-}
+			file_util_dest_folder_update_path(ud);
 
-static void file_util_dest_folder_entry_cb(GtkWidget *, gpointer data)
-{
-	auto ud = static_cast<UtilityData *>(data);
-	file_util_dest_folder_update_path(ud);
+			if (file)
+				{
+				g_autoptr(GFile) parent = nullptr;
+
+				if (g_file_query_file_type(file, G_FILE_QUERY_INFO_NONE, nullptr) == G_FILE_TYPE_REGULAR)
+					{
+					parent = g_file_get_parent(file);
+					}
+
+				if (parent)
+					{
+					g_autofree gchar *dirname = g_file_get_path(parent);
+					history_list_add_to_key("move_copy", dirname, -1);
+					}
+				else
+					{
+					history_list_add_to_key("move_copy", path, -1);
+					}
+				}
+			}
+
+		gq_gtk_widget_destroy(GTK_WIDGET(chooser));
+
+		ud->fdlg = nullptr;
+		ud->phase = UtilityPhase::ENTERING;
+
+		file_util_dialog_run(ud);
+		}
+	else if (response_id == GQ_RESPONSE_WITH_RENAME)
+		{
+		file_util_dest_folder_update_path(ud);
+		ud->dest_path = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(ud->fdlg));
+		file_util_fdlg_rename_cb(chooser, ud);
+		gq_gtk_widget_destroy(GTK_WIDGET(ud->fdlg));
+		}
+	else
+		{
+		auto ud = static_cast<UtilityData *>(data);
+
+		gq_gtk_widget_destroy(GTK_WIDGET(chooser));
+		ud->fdlg = nullptr;
+
+		ud->phase = UtilityPhase::CANCEL;
+		file_util_dialog_run(ud);
+		}
 }
 
 /* format: * = filename without extension, ## = number position, extension is kept */
@@ -1577,51 +1579,32 @@ static void file_util_dialog_init_simple_list(UtilityData *ud)
 
 static void file_util_dialog_init_dest_folder(UtilityData *ud)
 {
-	FileDialog *fdlg;
-	GtkWidget *label;
-	const gchar *icon_name;
+	g_autoptr(FileChooserDialogData) fcdd = g_new0(FileChooserDialogData, 1);
 
-	if (ud->type == UtilityType::COPY)
-		{
-		icon_name = GQ_ICON_COPY;
-		}
-	else
-		{
-		icon_name = GQ_ICON_OK;
-		}
+	fcdd->action = GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER;
+	fcdd->accept_text = (ud->type == UtilityType::MOVE) ? _("Move") : _("Copy");
+	fcdd->data = ud;
+	fcdd->entry_text = nullptr;
+	fcdd->entry_tooltip =  nullptr;
+	fcdd->filename = nullptr;
+	fcdd->filter = nullptr;
+	fcdd->filter_description = nullptr;
+	fcdd->history_key = "move_copy";
+	fcdd->response_callback = G_CALLBACK(file_util_fdlg_ok_cb);
+	fcdd->shortcuts = nullptr;
+	fcdd->suggested_name = nullptr;
+	fcdd->title = (ud->type == UtilityType::MOVE) ? _("Geeqie - Move File") : _("Geeqie - Copy File");
 
-	fdlg = file_util_file_dlg(ud->messages.title, "dlg_dest_folder", ud->parent,
-				  file_util_fdlg_cancel_cb, ud);
+	GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 
-	ud->fdlg = fdlg;
+	ud->fdlg = dialog;
 
-	generic_dialog_add_message(GENERIC_DIALOG(fdlg), nullptr, ud->messages.question, nullptr, FALSE);
+	GtkWidget *with_rename = gtk_button_new_with_label(_("With Rename"));
 
-	label = pref_label_new(GENERIC_DIALOG(fdlg)->vbox, _("Choose the destination folder."));
-	gtk_label_set_xalign(GTK_LABEL(label), 0.0);
-	gtk_label_set_yalign(GTK_LABEL(label), 0.5);
+	gtk_dialog_add_action_widget(GTK_DIALOG(dialog), with_rename, GQ_RESPONSE_WITH_RENAME);
 
-	pref_spacer(GENERIC_DIALOG(fdlg)->vbox, 0);
-
-	if (options->with_rename)
-		{
-		file_dialog_add_button(fdlg, icon_name, ud->messages.title, file_util_fdlg_ok_cb, TRUE);
-		file_dialog_add_button(fdlg, GQ_ICON_EDIT, _("With Rename"), file_util_fdlg_rename_cb, TRUE);
-		}
-	else
-		{
-		file_dialog_add_button(fdlg, GQ_ICON_EDIT, _("With Rename"), file_util_fdlg_rename_cb, TRUE);
-		file_dialog_add_button(fdlg, icon_name, ud->messages.title, file_util_fdlg_ok_cb, TRUE);
-		}
-
-	file_dialog_add_path_widgets(fdlg, nullptr, ud->dest_path, "move_copy", nullptr, nullptr);
-
-	g_signal_connect(G_OBJECT(fdlg->entry), "changed",
-			 G_CALLBACK(file_util_dest_folder_entry_cb), ud);
-
-	gtk_widget_show(GENERIC_DIALOG(fdlg)->dialog);
+	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
 }
-
 
 static GtkWidget *furm_simple_vlabel(GtkWidget *box, const gchar *text, gboolean expand)
 {
@@ -1638,7 +1621,6 @@ static GtkWidget *furm_simple_vlabel(GtkWidget *box, const gchar *text, gboolean
 
 	return vbox;
 }
-
 
 static void file_util_dialog_init_source_dest(UtilityData *ud, gboolean second_image)
 {
@@ -3029,40 +3011,6 @@ static void create_folder_cb(GtkFileChooser *chooser, gint response_id, gpointer
 	gq_gtk_widget_destroy(GTK_WIDGET(chooser));
 }
 
-static void update_create_dir_preview_cb(GtkFileChooser *chooser, gpointer data)
-{
-	g_autofree char *filename = gtk_file_chooser_get_filename(chooser);
-	GtkTextBuffer *buffer = GTK_TEXT_BUFFER(data);
-
-	gtk_text_buffer_set_text(buffer, "", -1);
-
-	if (filename && isdir(filename))
-		{
-		g_autoptr(GDir) dir = g_dir_open(filename, 0, nullptr);
-		if (dir)
-			{
-			const gchar *entry;
-			g_autoptr(GString) output = g_string_new("");
-
-			while ((entry = g_dir_read_name(dir)) != nullptr)
-				{
-				g_autofree gchar *fullpath = g_build_filename(filename, entry, nullptr);
-
-				if (isdir(fullpath))
-					{
-					g_string_append_printf(output, "📁 %s\n", entry);
-					}
-				else
-					{
-					g_string_append_printf(output, "📄 %s\n", entry);
-					}
-				}
-
-			gtk_text_buffer_set_text(buffer, output->str, -1);
-			}
-		}
-}
-
 void file_util_create_dir(const gchar *path, GtkWidget *parent, const FileUtilDoneFunc &done_func)
 {
 	if (!GTK_IS_WINDOW(parent))
@@ -3073,26 +3021,26 @@ void file_util_create_dir(const gchar *path, GtkWidget *parent, const FileUtilDo
 	auto cfd = g_new0(CreateFolderdData, 1);
 	cfd->done_func = done_func;
 
-	GtkWidget *dialog = gtk_file_chooser_dialog_new(_("Create Folder"), GTK_WINDOW(parent), GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER, _("Cancel"), GTK_RESPONSE_CANCEL, _("Close"), GTK_RESPONSE_ACCEPT, nullptr);
+	g_autoptr(FileChooserDialogData) fcdd = g_new0(FileChooserDialogData, 1);
 
-	gtk_window_set_modal(GTK_WINDOW(dialog), TRUE);
-	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(dialog), path);
+	/* The select-folder interface is simpler for creating a new
+	 * folder than the create-folder interface
+	 */
+	fcdd->action = GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER;
+	fcdd->accept_text = _("Close");
+	fcdd->data = cfd;
+	fcdd->entry_text = nullptr;
+	fcdd->entry_tooltip = nullptr;
+	fcdd->filename = g_strdup(path);
+	fcdd->filter = nullptr;
+	fcdd->filter_description = nullptr;
+	fcdd->history_key = nullptr;
+	fcdd->response_callback = G_CALLBACK(create_folder_cb);
+	fcdd->shortcuts = nullptr;
+	fcdd->suggested_name = nullptr;
+	fcdd->title = _("Geeqie - Create Folder");
 
-	GtkWidget *textview = gtk_text_view_new();
-	gtk_text_view_set_editable(GTK_TEXT_VIEW(textview), FALSE);
-	gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(textview), FALSE);
-
-	GtkWidget *scroller = gq_gtk_scrolled_window_new(nullptr, nullptr);
-	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroller), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-	gq_gtk_container_add(GTK_WIDGET(scroller), textview);
-	gtk_widget_set_size_request(scroller, 200, -1);
-	gq_gtk_widget_show_all(GTK_WIDGET(scroller));
-
-	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(dialog), scroller);
-	GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textview));
-
-	g_signal_connect(dialog, "update-preview", G_CALLBACK(update_create_dir_preview_cb), buffer);
-	g_signal_connect(dialog, "response", G_CALLBACK(create_folder_cb), cfd);
+	GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 
 	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
 }
