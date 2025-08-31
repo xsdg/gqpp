@@ -1708,7 +1708,7 @@ static void layout_menu_page_first_cb(GtkAction *, gpointer data)
 	auto lw = static_cast<LayoutWindow *>(data);
 	FileData *fd = layout_image_get_fd(lw);
 
-	if (fd->page_total > 0)
+	if (fd && fd->page_total > 0)
 		{
 		file_data_set_page_num(fd, 1);
 		}
@@ -1719,7 +1719,7 @@ static void layout_menu_page_last_cb(GtkAction *, gpointer data)
 	auto lw = static_cast<LayoutWindow *>(data);
 	FileData *fd = layout_image_get_fd(lw);
 
-	if (fd->page_total > 0)
+	if (fd && fd->page_total > 0)
 		{
 		file_data_set_page_num(fd, -1);
 		}
@@ -1730,7 +1730,7 @@ static void layout_menu_page_next_cb(GtkAction *, gpointer data)
 	auto lw = static_cast<LayoutWindow *>(data);
 	FileData *fd = layout_image_get_fd(lw);
 
-	if (fd->page_total > 0)
+	if (fd && fd->page_total > 0)
 		{
 		file_data_inc_page_num(fd);
 		}
@@ -1741,7 +1741,7 @@ static void layout_menu_page_previous_cb(GtkAction *, gpointer data)
 	auto lw = static_cast<LayoutWindow *>(data);
 	FileData *fd = layout_image_get_fd(lw);
 
-	if (fd->page_total > 0)
+	if (fd && fd->page_total > 0)
 		{
 		file_data_dec_page_num(fd);
 		}
