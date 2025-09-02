@@ -3948,6 +3948,10 @@ GtkWidget *layout_bars_prepare(LayoutWindow *lw, GtkWidget *image)
 	DEBUG_NAME(lw->utility_paned);
 	gq_gtk_box_pack_start(GTK_BOX(lw->utility_box), lw->utility_paned, TRUE, TRUE, 0);
 
+	/* Prevent the info sidebar being minimized to invisible
+	 */
+	gtk_paned_set_wide_handle(GTK_PANED(lw->utility_paned), TRUE);
+
 	gtk_paned_pack1(GTK_PANED(lw->utility_paned), image, TRUE, FALSE);
 	gtk_widget_show(lw->utility_paned);
 
