@@ -139,7 +139,7 @@ bool is_file_on_mounted_drive(const gchar *filename)
 		       g_str_has_prefix(filename, dirname);
 	};
 
-#if defined(__GLIBC__)
+#if defined(__GLIBC__) || defined(__UCLIBC__) || defined(__MUSL__)
 	g_autoptr(MFILE) mount_entries = setmntent("/proc/mounts", "r");
 	if (mount_entries == nullptr)
 		{
