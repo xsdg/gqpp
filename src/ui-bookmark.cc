@@ -861,21 +861,16 @@ static void bookmark_add_response_cb(GtkFileChooser *chooser, gint response_id, 
 
 void bookmark_add_dialog(const gchar *title, GtkWidget *list)
 {
-		g_autoptr(FileChooserDialogData) fcdd = g_new0(FileChooserDialogData, 1);
+		FileChooserDialogData fcdd{};
 
-		fcdd->action = GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER;
-		fcdd->accept_text = _("Open");
-		fcdd->data = list;
-		fcdd->entry_text = _("Optional name...");
-		fcdd->entry_tooltip =  _("Optional alias name for the shortcut.\nThis may be amended or added from the Sort Manager pane.\nIf none given, the basename of the folder is used");
-		fcdd->filename = g_strdup(layout_get_path(get_current_layout()));
-		fcdd->filter = nullptr;
-		fcdd->filter_description = nullptr;
-		fcdd->history_key = nullptr;
-		fcdd->response_callback = G_CALLBACK(bookmark_add_response_cb);
-		fcdd->shortcuts = nullptr;
-		fcdd->suggested_name = nullptr;
-		fcdd->title = title;
+		fcdd.action = GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER;
+		fcdd.accept_text = _("Open");
+		fcdd.data = list;
+		fcdd.entry_text = _("Optional name...");
+		fcdd.entry_tooltip =  _("Optional alias name for the shortcut.\nThis may be amended or added from the Sort Manager pane.\nIf none given, the basename of the folder is used");
+		fcdd.filename = layout_get_path(get_current_layout());
+		fcdd.response_callback = G_CALLBACK(bookmark_add_response_cb);
+		fcdd.title = title;
 
 		GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 

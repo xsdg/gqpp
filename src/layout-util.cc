@@ -940,7 +940,7 @@ static void open_recent_file_cb(GtkFileChooser *chooser, gint response_id, gpoin
 static void layout_menu_open_file_cb(GtkAction *, gpointer)
 {
 	GList *work = filter_get_list();
-	GString *extlist = g_string_new(nullptr);
+	g_autoptr(GString) extlist = g_string_new(nullptr);
 
 	while (work)
 		{
@@ -956,26 +956,18 @@ static void layout_menu_open_file_cb(GtkAction *, gpointer)
 		work = work->next;
 		}
 
-	auto fcdd = g_new0(FileChooserDialogData, 1);
+	FileChooserDialogData fcdd{};
 
-	fcdd->action = GTK_FILE_CHOOSER_ACTION_OPEN;
-	fcdd->accept_text = _("Open");
-	fcdd->data = nullptr;
-	fcdd->entry_text = nullptr;
-	fcdd->entry_tooltip = nullptr;
-	fcdd->filename = nullptr;
-	fcdd->filter = g_strdup(extlist->str);
-	fcdd->filter_description = _("Image files");
-	fcdd->history_key = "open_file";
-	fcdd->response_callback = G_CALLBACK(open_file_cb);
-	fcdd->shortcuts = nullptr;
-	fcdd->suggested_name = _("Untitled.gqv");
-	fcdd->title = _("Geeqie - Open File");
+	fcdd.action = GTK_FILE_CHOOSER_ACTION_OPEN;
+	fcdd.accept_text = _("Open");
+	fcdd.filter = extlist->str;
+	fcdd.filter_description = _("Image files");
+	fcdd.history_key = "open_file";
+	fcdd.response_callback = G_CALLBACK(open_file_cb);
+	fcdd.suggested_name = _("Untitled.gqv");
+	fcdd.title = _("Geeqie - Open File");
 
 	GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
-
-	g_string_free(extlist, TRUE);
-	g_free(fcdd);
 
 	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
 }
@@ -1055,25 +1047,18 @@ static void open_collection_cb(GtkFileChooser *chooser, gint response_id, gpoint
 
 static void layout_menu_open_collection_cb(GtkWidget *, gpointer)
 {
-	auto fcdd = g_new0(FileChooserDialogData, 1);
+	FileChooserDialogData fcdd{};
 
-	fcdd->action = GTK_FILE_CHOOSER_ACTION_OPEN;
-	fcdd->accept_text = _("Open");
-	fcdd->data = nullptr;
-	fcdd->entry_text = nullptr;
-	fcdd->entry_tooltip = nullptr;
-	fcdd->filename = nullptr;
-	fcdd->filter = g_strdup(GQ_COLLECTION_EXT);
-	fcdd->filter_description = _("Collection files");
-	fcdd->history_key = "open_collection";
-	fcdd->response_callback = G_CALLBACK(open_collection_cb);
-	fcdd->shortcuts = g_strdup(get_collections_dir());
-	fcdd->suggested_name = nullptr;
-	fcdd->title = _("Geeqie - Open Collection");
+	fcdd.action = GTK_FILE_CHOOSER_ACTION_OPEN;
+	fcdd.accept_text = _("Open");
+	fcdd.filter = GQ_COLLECTION_EXT;
+	fcdd.filter_description = _("Collection files");
+	fcdd.history_key = "open_collection";
+	fcdd.response_callback = G_CALLBACK(open_collection_cb);
+	fcdd.shortcuts = get_collections_dir();
+	fcdd.title = _("Geeqie - Open Collection");
 
 	GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
-
-	g_free(fcdd);
 
 	gq_gtk_widget_show_all(GTK_WIDGET(dialog));
 }

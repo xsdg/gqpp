@@ -800,21 +800,18 @@ static void tab_completion_select_show(TabCompData *td)
 		return;
 		}
 
-	g_autoptr(FileChooserDialogData) fcdd = g_new0(FileChooserDialogData, 1);
+	FileChooserDialogData fcdd{};
 
-	fcdd->action = td->fd_folders_only ? GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER : GTK_FILE_CHOOSER_ACTION_OPEN;
-	fcdd->accept_text = _("Open");
-	fcdd->data = td;
-	fcdd->entry_text = nullptr;
-	fcdd->entry_tooltip = nullptr;
-	fcdd->filename = g_strdup(gtk_entry_get_text(GTK_ENTRY(td->entry)));
-	fcdd->filter = g_strdup(td->filter);
-	fcdd->filter_description = g_strdup(td->filter_desc);
-	fcdd->history_key = g_strdup(td->history_key);
-	fcdd->response_callback = G_CALLBACK(tab_completion_response_cb);
-	fcdd->shortcuts = g_strdup(td->shortcuts);
-	fcdd->suggested_name = nullptr;
-	fcdd->title = g_strdup(td->fd_title);
+	fcdd.action = td->fd_folders_only ? GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER : GTK_FILE_CHOOSER_ACTION_OPEN;
+	fcdd.accept_text = _("Open");
+	fcdd.data = td;
+	fcdd.filename = gtk_entry_get_text(GTK_ENTRY(td->entry));
+	fcdd.filter = td->filter;
+	fcdd.filter_description = td->filter_desc;
+	fcdd.history_key = td->history_key;
+	fcdd.response_callback = G_CALLBACK(tab_completion_response_cb);
+	fcdd.shortcuts = td->shortcuts;
+	fcdd.title = td->fd_title;
 
 	GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 

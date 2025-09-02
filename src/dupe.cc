@@ -5026,21 +5026,17 @@ static void dupe_pop_menu_export_cb(GtkWidget *, gpointer data)
 	edd->dupewindow = dw;
 	edd->separator = separator;
 
-	g_autoptr(FileChooserDialogData) fcdd = g_new0(FileChooserDialogData, 1);
+	FileChooserDialogData fcdd{};
 
-	fcdd->action = GTK_FILE_CHOOSER_ACTION_SAVE;
-	fcdd->accept_text = _("Save");
-	fcdd->data = edd;
-	fcdd->entry_text = nullptr;
-	fcdd->entry_tooltip =  nullptr;
-	fcdd->filename = nullptr;
-	fcdd->filter = g_strdup((separator == EXPORT_CSV) ? ".csv" : ".tsv");
-	fcdd->filter_description = (separator == EXPORT_CSV) ? "csv files" : "tsv files";
-	fcdd->history_key = "export_duplicates";
-	fcdd->response_callback = G_CALLBACK(export_response_cb);
-	fcdd->shortcuts = nullptr;
-	fcdd->suggested_name = (separator == EXPORT_CSV) ? _("Untitled.csv") : _("Untitled.tsv");
-	fcdd->title = _("Export duplicates data");
+	fcdd.action = GTK_FILE_CHOOSER_ACTION_SAVE;
+	fcdd.accept_text = _("Save");
+	fcdd.data = edd;
+	fcdd.filter = (separator == EXPORT_CSV) ? ".csv" : ".tsv";
+	fcdd.filter_description = (separator == EXPORT_CSV) ? "csv files" : "tsv files";
+	fcdd.history_key = "export_duplicates";
+	fcdd.response_callback = G_CALLBACK(export_response_cb);
+	fcdd.suggested_name = (separator == EXPORT_CSV) ? _("Untitled.csv") : _("Untitled.tsv");
+	fcdd.title = _("Export duplicates data");
 
 	GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 

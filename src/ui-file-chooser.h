@@ -34,16 +34,13 @@ struct FileChooserDialogData {
 	const gchar *history_key;
 	const gchar *suggested_name;
 	const gchar *title;
-	gchar *filename;
-	gchar *filter;
-	gchar *shortcuts;
+	const gchar *filename;
+	const gchar *filter;
+	const gchar *shortcuts;
 	gpointer data;
 };
 
-GtkFileChooserDialog *file_chooser_dialog_new(FileChooserDialogData *fcdd);
-void file_chooser_dialog_data_free(FileChooserDialogData *fcdd);
-
-G_DEFINE_AUTOPTR_CLEANUP_FUNC(FileChooserDialogData, file_chooser_dialog_data_free)
+GtkFileChooserDialog *file_chooser_dialog_new(const FileChooserDialogData &fcdd);
 
 #endif
 /* vim: set shiftwidth=8 softtabstop=0 cindent cinoptions={1s: */

@@ -98,21 +98,19 @@ static void collection_save_dialog(CollectionData *cd)
 	if (!cd) return;
 	collection_ref(cd);
 
-	g_autoptr(FileChooserDialogData) fcdd = g_new0(FileChooserDialogData, 1);
+	FileChooserDialogData fcdd{};
 
-	fcdd->action = GTK_FILE_CHOOSER_ACTION_SAVE;
-	fcdd->accept_text = _("Save");
-	fcdd->data = cd;
-	fcdd->entry_text = nullptr;
-	fcdd->entry_tooltip =  nullptr;
-	fcdd->filename = g_strdup(get_collections_dir());
-	fcdd->filter = g_strdup(GQ_COLLECTION_EXT);
-	fcdd->filter_description = _("Collection files");
-	fcdd->history_key = "open_collection";;
-	fcdd->response_callback = G_CALLBACK(collection_save_cb);
-	fcdd->shortcuts = g_strdup(get_collections_dir());
-	fcdd->suggested_name = _("Untitled.gqv");
-	fcdd->title =_("Save Collection As - Geeqie");
+	fcdd.action = GTK_FILE_CHOOSER_ACTION_SAVE;
+	fcdd.accept_text = _("Save");
+	fcdd.data = cd;
+	fcdd.filename = get_collections_dir();
+	fcdd.filter = GQ_COLLECTION_EXT;
+	fcdd.filter_description = _("Collection files");
+	fcdd.history_key = "open_collection";;
+	fcdd.response_callback = G_CALLBACK(collection_save_cb);
+	fcdd.shortcuts = get_collections_dir();
+	fcdd.suggested_name = _("Untitled.gqv");
+	fcdd.title =_("Save Collection As - Geeqie");
 
 	GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 
@@ -124,21 +122,19 @@ static void collection_append_dialog(CollectionData *cd)
 	if (!cd) return;
 	collection_ref(cd);
 
-	g_autoptr(FileChooserDialogData) fcdd = g_new0(FileChooserDialogData, 1);
+	FileChooserDialogData fcdd{};
 
-	fcdd->action = GTK_FILE_CHOOSER_ACTION_OPEN;
-	fcdd->accept_text = _("Save");
-	fcdd->data = cd;
-	fcdd->entry_text = nullptr;
-	fcdd->entry_tooltip =  nullptr;
-	fcdd->filename = g_strdup(get_collections_dir());
-	fcdd->filter = g_strdup(GQ_COLLECTION_EXT);
-	fcdd->filter_description = _("Collection files");
-	fcdd->history_key = "open_collection";
-	fcdd->response_callback = G_CALLBACK(append_collection_cb);
-	fcdd->shortcuts = g_strdup(get_collections_dir());
-	fcdd->suggested_name = _("Untitled.gqv");
-	fcdd->title =_("Append Collection - Geeqie");
+	fcdd.action = GTK_FILE_CHOOSER_ACTION_OPEN;
+	fcdd.accept_text = _("Save");
+	fcdd.data = cd;
+	fcdd.filename = get_collections_dir();
+	fcdd.filter = GQ_COLLECTION_EXT;
+	fcdd.filter_description = _("Collection files");
+	fcdd.history_key = "open_collection";
+	fcdd.response_callback = G_CALLBACK(append_collection_cb);
+	fcdd.shortcuts = get_collections_dir();
+	fcdd.suggested_name = _("Untitled.gqv");
+	fcdd.title =_("Append Collection - Geeqie");
 
 	GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 

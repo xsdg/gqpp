@@ -3130,21 +3130,17 @@ static void select_collection_clicked_cb(GtkWidget *, gpointer data)
 {
 	auto sd = static_cast<SearchData *>(data);
 
-	g_autoptr(FileChooserDialogData) fcdd = g_new0(FileChooserDialogData, 1);
+	FileChooserDialogData fcdd{};
 
-	fcdd->accept_text = _("Open");
-	fcdd->action = GTK_FILE_CHOOSER_ACTION_OPEN;
-	fcdd->data = sd;
-	fcdd->entry_text = nullptr;
-	fcdd->entry_tooltip = nullptr;
-	fcdd->filename = g_strdup(get_collections_dir());
-	fcdd->filter = g_strdup(GQ_COLLECTION_EXT);
-	fcdd->filter_description = _("Collection files");
-	fcdd->history_key = "open_collection";
-	fcdd->response_callback = G_CALLBACK(select_collection_response_cb);
-	fcdd->shortcuts = nullptr;
-	fcdd->suggested_name = nullptr;
-	fcdd->title = _("Select collection");
+	fcdd.accept_text = _("Open");
+	fcdd.action = GTK_FILE_CHOOSER_ACTION_OPEN;
+	fcdd.data = sd;
+	fcdd.filename = get_collections_dir();
+	fcdd.filter = GQ_COLLECTION_EXT;
+	fcdd.filter_description = _("Collection files");
+	fcdd.history_key = "open_collection";
+	fcdd.response_callback = G_CALLBACK(select_collection_response_cb);
+	fcdd.title = _("Select collection");
 
 	GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 

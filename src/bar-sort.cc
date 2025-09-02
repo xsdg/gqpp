@@ -468,21 +468,19 @@ static void bar_sort_add_cb(GtkWidget *, gpointer data)
 		}
 	else
 		{
-		g_autoptr(FileChooserDialogData) fcdd = g_new0(FileChooserDialogData, 1);
+		FileChooserDialogData fcdd{};
 
-		fcdd->action = GTK_FILE_CHOOSER_ACTION_SAVE;
-		fcdd->accept_text = _("Save");
-		fcdd->data = sd;
-		fcdd->entry_text = _("Optional name...");
-		fcdd->entry_tooltip =  _("Optional alias name for the shortcut.\nThis may be amended or added from the Sort Manager pane.\nIf none given, the basename of the folder is used");
-		fcdd->filename = g_strdup(get_collections_dir());
-		fcdd->filter = g_strdup(GQ_COLLECTION_EXT);
-		fcdd->filter_description = _("Collection files");
-		fcdd->history_key = "open_collection";
-		fcdd->response_callback = G_CALLBACK(new_collection_file_response_cb);
-		fcdd->shortcuts = g_strdup(get_collections_dir());
-		fcdd->suggested_name = _("Untitled.gqv");
-		fcdd->title = _("Create empty Collection file");
+		fcdd.action = GTK_FILE_CHOOSER_ACTION_SAVE;
+		fcdd.accept_text = _("Save");
+		fcdd.data = sd;
+		fcdd.filename = get_collections_dir();
+		fcdd.filter = GQ_COLLECTION_EXT;
+		fcdd.filter_description = _("Collection files");
+		fcdd.history_key = "open_collection";
+		fcdd.response_callback = G_CALLBACK(new_collection_file_response_cb);
+		fcdd.shortcuts = get_collections_dir();
+		fcdd.suggested_name = _("Untitled.gqv");
+		fcdd.title = _("Create empty Collection file");
 
 		GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 

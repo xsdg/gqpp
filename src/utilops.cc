@@ -1579,21 +1579,14 @@ static void file_util_dialog_init_simple_list(UtilityData *ud)
 
 static void file_util_dialog_init_dest_folder(UtilityData *ud)
 {
-	g_autoptr(FileChooserDialogData) fcdd = g_new0(FileChooserDialogData, 1);
+	FileChooserDialogData fcdd{};
 
-	fcdd->action = GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER;
-	fcdd->accept_text = (ud->type == UtilityType::MOVE) ? _("Move") : _("Copy");
-	fcdd->data = ud;
-	fcdd->entry_text = nullptr;
-	fcdd->entry_tooltip =  nullptr;
-	fcdd->filename = nullptr;
-	fcdd->filter = nullptr;
-	fcdd->filter_description = nullptr;
-	fcdd->history_key = "move_copy";
-	fcdd->response_callback = G_CALLBACK(file_util_fdlg_ok_cb);
-	fcdd->shortcuts = nullptr;
-	fcdd->suggested_name = nullptr;
-	fcdd->title = (ud->type == UtilityType::MOVE) ? _("Geeqie - Move File") : _("Geeqie - Copy File");
+	fcdd.action = GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER;
+	fcdd.accept_text = (ud->type == UtilityType::MOVE) ? _("Move") : _("Copy");
+	fcdd.data = ud;
+	fcdd.history_key = "move_copy";
+	fcdd.response_callback = G_CALLBACK(file_util_fdlg_ok_cb);
+	fcdd.title = (ud->type == UtilityType::MOVE) ? _("Geeqie - Move File") : _("Geeqie - Copy File");
 
 	GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 
@@ -3021,24 +3014,17 @@ void file_util_create_dir(const gchar *path, GtkWidget *parent, const FileUtilDo
 	auto cfd = g_new0(CreateFolderdData, 1);
 	cfd->done_func = done_func;
 
-	g_autoptr(FileChooserDialogData) fcdd = g_new0(FileChooserDialogData, 1);
+	FileChooserDialogData fcdd{};
 
 	/* The select-folder interface is simpler for creating a new
 	 * folder than the create-folder interface
 	 */
-	fcdd->action = GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER;
-	fcdd->accept_text = _("Close");
-	fcdd->data = cfd;
-	fcdd->entry_text = nullptr;
-	fcdd->entry_tooltip = nullptr;
-	fcdd->filename = g_strdup(path);
-	fcdd->filter = nullptr;
-	fcdd->filter_description = nullptr;
-	fcdd->history_key = nullptr;
-	fcdd->response_callback = G_CALLBACK(create_folder_cb);
-	fcdd->shortcuts = nullptr;
-	fcdd->suggested_name = nullptr;
-	fcdd->title = _("Geeqie - Create Folder");
+	fcdd.action = GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER;
+	fcdd.accept_text = _("Close");
+	fcdd.data = cfd;
+	fcdd.filename = path;
+	fcdd.response_callback = G_CALLBACK(create_folder_cb);
+	fcdd.title = _("Geeqie - Create Folder");
 
 	GtkFileChooserDialog *dialog = file_chooser_dialog_new(fcdd);
 
