@@ -21,9 +21,10 @@
 
 #include "ui-file-chooser.h"
 
-#include <string>
-
+#include <algorithm>
 #include <config.h>
+#include <string>
+#include <vector>
 
 #if HAVE_ARCHIVE
 #include <archive.h>
@@ -41,12 +42,6 @@
 #include "main-defines.h"
 #include "options.h"
 #include "ui-fileops.h"
-
-#include <gtk/gtk.h>
-#include <string>
-#include <vector>
-#include <algorithm>
-
 
 namespace {
 
@@ -339,25 +334,68 @@ GtkWidget *create_pdf_preview(const char *filename)
 }
 #endif
 
+gboolean is_dir(const char *dir_path, const std::string &entry)
+{
+	g_autofree gchar *full_path = g_build_filename(dir_path, entry.c_str(), NULL);
+	gboolean result = g_file_test(full_path, G_FILE_TEST_IS_DIR);
+
+	return result;
+}
+
 GtkWidget *create_dir_preview(const char *dir_path)
 {
 	GtkWidget *textview = gtk_text_view_new();
 	gtk_text_view_set_editable(GTK_TEXT_VIEW(textview), FALSE);
 	gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(textview), FALSE);
 
-	g_autoptr(GDir) dir = g_dir_open(dir_path, 0, nullptr);
-	if (dir)
+	GError *error = nullptr;
+	GDir *dir = g_dir_open(dir_path, 0, &error);
+
+	if (!dir)
 		{
-		g_autoptr(GString) output = g_string_new("");
-		const gchar *entry;
-		while ((entry = g_dir_read_name(dir)) != nullptr)
+		if (error)
 			{
-			append_dir_entry(output, dir_path, entry);
+			log_printf("Dir preview failed: %s", error->message);
+			g_error_free(error);
 			}
 
-		GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textview));
-		gtk_text_buffer_set_text(buffer, output->str, -1);
+		return nullptr;
 		}
+
+	std::vector<std::string> entries;
+	const gchar *entry;
+
+	while ((entry = g_dir_read_name(dir)) != nullptr)
+		{
+		entries.emplace_back(entry);
+		}
+
+	g_dir_close(dir);
+
+	/* Sort: directories first, then files, alphabetically within groups
+	 */
+	std::sort(entries.begin(), entries.end(), [&](const std::string &a, const std::string &b)
+		{
+		bool dir_a = is_dir(dir_path, a);
+		bool dir_b = is_dir(dir_path, b);
+
+		if (dir_a != dir_b)
+			{
+			return dir_a; // dirs first
+			}
+
+		return a < b; // then alphabetical
+		});
+
+	GString *output = g_string_new("");
+
+	for (const auto &e : entries)
+		{
+		append_dir_entry(output, dir_path, e.c_str());
+		}
+
+	GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textview));
+	gtk_text_buffer_set_text(buffer, output->str, -1);
 
 	return textview;
 }
