@@ -20,6 +20,7 @@
 
 #include "command-line-handling.h"
 
+#include <cstdlib>
 #include <vector>
 
 #include "cache-maint.h"
