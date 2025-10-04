@@ -2,6 +2,7 @@
 set -euo pipefail
 
 # Add any staged BLAS/LAPACK subdirs to LD_LIBRARY_PATH dynamically
+# shellcheck disable=SC2154  # SNAP is set by snapd
 for d in "$SNAP/usr/lib"/*/blas "$SNAP/usr/lib"/*/lapack; do
   if [ -d "$d" ]; then
     if [ -n "${LD_LIBRARY_PATH-}" ]; then
