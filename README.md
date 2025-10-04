@@ -112,6 +112,8 @@ Geeqie is available:
 
 * as a [Homebrew](https://formulae.brew.sh/formula/geeqie) or [MacPorts](https://ports.macports.org/port/geeqie) package for macOS.
 
+* as a [Snap](https://snapcraft.io/geeqie) (x86_64 only) from the  [Snapcraft site](https://snapcraft.io) ([Edge channel](https://snapcraft.io/docs/channels)).
+
 * via WSL2 on Windows 11 - see notes below.
 
 ### AppImages
