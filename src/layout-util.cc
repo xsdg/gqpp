@@ -823,6 +823,13 @@ static void open_with_response_cb(GtkDialog *, gint response_id, gpointer data)
 	open_with_data_free(open_with_data);
 }
 
+static void open_with_close(GtkDialog *, gpointer data)
+{
+	auto open_with_data = static_cast<OpenWithData *>(data);
+
+	open_with_data_free(open_with_data);
+}
+
 static void open_with_application_selected_cb(GtkAppChooserWidget *, GAppInfo *application, gpointer data)
 {
 	auto open_with_data = static_cast<OpenWithData *>(data);
@@ -862,7 +869,7 @@ static void layout_menu_open_with_cb(GtkAction *, gpointer data)
 
 		open_with_data->g_file_list = g_list_append(nullptr, g_file_new_for_path(fd->path));
 
-		open_with_data->app_chooser_dialog = gtk_app_chooser_dialog_new(nullptr, GTK_DIALOG_DESTROY_WITH_PARENT, G_FILE(g_list_first(open_with_data->g_file_list)->data));
+		open_with_data->app_chooser_dialog = gtk_app_chooser_dialog_new(nullptr, GTK_DIALOG_MODAL, G_FILE(g_list_first(open_with_data->g_file_list)->data));
 
 		widget = gtk_app_chooser_dialog_get_widget(GTK_APP_CHOOSER_DIALOG(open_with_data->app_chooser_dialog));
 
@@ -871,7 +878,7 @@ static void layout_menu_open_with_cb(GtkAction *, gpointer data)
 		g_signal_connect(G_OBJECT(widget), "application-selected", G_CALLBACK(open_with_application_selected_cb), open_with_data);
 		g_signal_connect(G_OBJECT(widget), "application-activated", G_CALLBACK(open_with_application_activated_cb), open_with_data);
 		g_signal_connect(G_OBJECT(open_with_data->app_chooser_dialog), "response", G_CALLBACK(open_with_response_cb), open_with_data);
-		g_signal_connect(G_OBJECT(open_with_data->app_chooser_dialog), "close", G_CALLBACK(open_with_response_cb), open_with_data);
+		g_signal_connect(G_OBJECT(open_with_data->app_chooser_dialog), "close", G_CALLBACK(open_with_close), open_with_data);
 
 		gtk_widget_show(open_with_data->app_chooser_dialog);
 		}
