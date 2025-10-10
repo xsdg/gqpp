@@ -13,6 +13,13 @@ contact: geeqie@freelists.org
 grade: devel
 confinement: strict
 
+package-repositories:
+  - type: apt
+    url: http://archive.ubuntu.com/ubuntu/
+    suites: [ noble ]              # core24 = Ubuntu 24.04 (noble)
+    components: [ main, universe ] # jpgicc is in universe
+    key-id: 790BC7277767219C42C86F933B4FE6ACC0B21F32
+
 apps:
   geeqie:
     command-chain:
@@ -20,10 +27,11 @@ apps:
     command: usr/bin/geeqie
     extensions: [ gnome ]
     environment:
-      LD_LIBRARY_PATH: >-
-        $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/blas:
-        $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/lapack:
-        $LD_LIBRARY_PATH
+      LD_LIBRARY_PATH: "\$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/blas:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/lapack:$LD_LIBRARY_PATH"
+      MAGICK_CONFIGURE_PATH: "$SNAP/etc/ImageMagick-6: $SNAP/usr/share/ImageMagick-6: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/config-Q16: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/config-Q16"
+      MAGICK_CODER_MODULE_PATH:  "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/modules-Q16/coders: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/modules-Q16/coders"
+      MAGICK_HOME: "$SNAP/usr"
+      PATH: "$SNAP/usr/bin:$SNAP/bin:$PATH"
     plugs:
       - home
       - removable-media
@@ -51,11 +59,59 @@ parts:
       - -Dunit_tests=disabled
     parse-info:
       - usr/share/metainfo/org.geeqie.Geeqie.appdata.xml
+    stage-packages:
+      - bc
+      - exiftool
+      - exiftran
+      - exiv2
+      - gphoto2
+      - imagemagick
+      - imagemagick-6-common
+      - imagemagick-6.q16
+      - libblas3
+      - libchamplain-0.12-0
+      - libchamplain-gtk-0.12-0
+      - libclutter-1.0-0
+      - libclutter-gtk-1.0-0
+      - libdjvulibre21
+      - libexif12
+      - libexiv2-27
+      - libffmpegthumbnailer4v5
+      - libfftw3-double3
+      - libgexiv2-2
+      - libgfortran5
+      - libgspell-1-2
+      - libheif1
+      - libimath-3-1-29
+      - libjpeg-turbo8
+      - liblapack3
+      - liblcms2-2
+      - liblua5.3-0
+      - libopenexr-3-1-30
+      - libpng16-16
+      - libpoppler-glib8
+      - libproxy1-plugin-gsettings
+      - libproxy1v5
+      - libraw23
+      - libtiff6
+      - libwebp7
+      - libzstd1
+      - shared-mime-info
+      - yad
+      - zenity
     override-prime: |
+      set -eux
       craftctl default
       ver="$(git describe --tags --dirty --always 2>/dev/null \
             || date +'%Y%m%d').edge"
       craftctl set version="$ver"
+      # Create compat symlinks because dpkg alternatives aren't run in snaps
+      for tool in convert mogrify identify composite compare; do
+        if [ -x "$CRAFT_PRIME/usr/bin/${tool}-im6.q16" ] && [ ! -e "$CRAFT_PRIME/usr/bin/$tool" ]; then
+          ln -s "${tool}-im6.q16" "$CRAFT_PRIME/usr/bin/$tool"
+        fi
+      done
+      sed -i 's|/usr/lib/|${SNAP}/usr/lib/|g' "$CRAFT_PRIME/etc/ImageMagick-6/delegates.xml" || true
   launcher:
     plugin: nil
     source: .
@@ -105,33 +161,3 @@ parts:
       - pkg-config
       - xsltproc
       - yelp-tools
-    stage-packages:
-      - libblas3
-      - libchamplain-0.12-0
-      - libchamplain-gtk-0.12-0
-      - libclutter-1.0-0
-      - libclutter-gtk-1.0-0
-      - libdjvulibre21
-      - libexif12
-      - libexiv2-27
-      - libffmpegthumbnailer4v5
-      - libfftw3-double3
-      - libgexiv2-2
-      - libgfortran5
-      - libgspell-1-2
-      - libheif1
-      - libimath-3-1-29
-      - libjpeg-turbo8
-      - liblapack3
-      - liblcms2-2
-      - liblua5.3-0
-      - libopenexr-3-1-30
-      - libpng16-16
-      - libpoppler-glib8
-      - libproxy1-plugin-gsettings
-      - libproxy1v5
-      - libraw23
-      - libtiff6
-      - libwebp7
-      - libzstd1
-      - shared-mime-info
