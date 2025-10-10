@@ -1313,7 +1313,7 @@ static void layout_menu_stereo_mode_next_cb(GtkAction *, gpointer data)
 	auto lw = static_cast<LayoutWindow *>(data);
 
 	/* 0->1, 1->2, 2->3, 3->1 - disable auto, then cycle */
-	const gint mode = layout_image_stereo_pixbuf_get(lw) % 3 + 1;
+	const gint mode = (layout_image_stereo_pixbuf_get(lw) % 3) + 1;
 
 	GtkAction *radio = gq_gtk_action_group_get_action(lw->action_group, "StereoAuto");
 	gq_gtk_radio_action_set_current_value(GQ_GTK_RADIO_ACTION(radio), mode);
