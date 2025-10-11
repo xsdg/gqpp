@@ -4,42 +4,41 @@ base: core24
 adopt-info: geeqie
 
 summary: Lightweight, fast GTK image viewer
-
-source-code: http://geeqie.org/cgi-bin/gitweb.cgi?p=geeqie.git;a=summary
-issues: https://github.com/BestImageViewer/geeqie/issues
-website: https://www.geeqie.org/
-contact: geeqie@freelists.org
+description: |
+  Geeqie is a fast GTK image viewer for browsing large image collections.
 
 grade: devel
 confinement: strict
 
+# Needed to access 'universe' packages on noble (core24)
 package-repositories:
   - type: apt
     url: http://archive.ubuntu.com/ubuntu/
-    suites: [ noble ]              # core24 = Ubuntu 24.04 (noble)
-    components: [ main, universe ] # jpgicc is in universe
+    suites: [ noble ]
+    components: [ main, universe ]
     key-id: 790BC7277767219C42C86F933B4FE6ACC0B21F32
 
 apps:
   geeqie:
     command-chain:
+      - bin/env-imagemagick.sh
       - bin/env-lapack.sh
     command: usr/bin/geeqie
     extensions: [ gnome ]
     environment:
-      LD_LIBRARY_PATH: "\$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/blas:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/lapack:$LD_LIBRARY_PATH"
-      MAGICK_CONFIGURE_PATH: "$SNAP/etc/ImageMagick-6: $SNAP/usr/share/ImageMagick-6: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/config-Q16: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/config-Q16"
-      MAGICK_CODER_MODULE_PATH:  "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/modules-Q16/coders: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/modules-Q16/coders"
+      LD_LIBRARY_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/blas:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/lapack:$LD_LIBRARY_PATH"
+      MAGICK_CONFIGURE_PATH: "$SNAP/etc/ImageMagick-6:$SNAP/usr/share/ImageMagick-6:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/config-Q16:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/config-Q16"
+      MAGICK_CODER_MODULE_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/modules-Q16/coders:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/modules-Q16/coders"
       MAGICK_HOME: "$SNAP/usr"
       PATH: "$SNAP/usr/bin:$SNAP/bin:$PATH"
     plugs:
       - home
       - removable-media
-      - network
       - gsettings
-      - opengl
       - wayland
       - x11
+      - opengl
+      - network
 
 slots:
   geeqie-dbus:
@@ -59,65 +58,67 @@ parts:
       - -Dunit_tests=disabled
     parse-info:
       - usr/share/metainfo/org.geeqie.Geeqie.appdata.xml
+
+    # --- RUNTIME (stage) packages ---
     stage-packages:
+      # Core image/codecs Geeqie actually uses
+      - libexif12
+      - libexiv2-27
+      - libgexiv2-2
+      - libjpeg-turbo8
+      - libpng16-16
+      - libtiff6
+      - libwebp7
+      - libheif1
+      - libraw23
+      - liblcms2-2
+      - libfftw3-double3
+      - libpoppler-glib8
+      - shared-mime-info
+
+      # ImageMagick (tools + configs) for scripts
+      - imagemagick-6.q16
+      - imagemagick-6-common
+
+      # LAPACK/BLAS only because command chain sets LD_LIBRARY_PATH
+      - libblas3
+      - liblapack3
+
+      # ---- OPTIONAL “extras” used by helpers ----
       - bc
       - exiftool
       - exiftran
-      - exiv2
       - gphoto2
-      - imagemagick
-      - imagemagick-6-common
-      - imagemagick-6.q16
-      - libblas3
-      - libchamplain-0.12-0
-      - libchamplain-gtk-0.12-0
-      - libclutter-1.0-0
-      - libclutter-gtk-1.0-0
-      - libdjvulibre21
-      - libexif12
-      - libexiv2-27
-      - libffmpegthumbnailer4v5
-      - libfftw3-double3
-      - libgexiv2-2
-      - libgfortran5
-      - libgspell-1-2
-      - libheif1
-      - libimath-3-1-29
-      - libjpeg-turbo8
-      - liblapack3
-      - liblcms2-2
-      - liblua5.3-0
-      - libopenexr-3-1-30
-      - libpng16-16
-      - libpoppler-glib8
-      - libproxy1-plugin-gsettings
-      - libproxy1v5
-      - libraw23
-      - libtiff6
-      - libwebp7
-      - libzstd1
-      - shared-mime-info
-      - yad
       - zenity
+      - yad
+
     override-prime: |
       set -eux
       craftctl default
-      ver="$(git describe --tags --dirty --always 2>/dev/null \
-            || date +'%Y%m%d').edge"
+
+      # stamp version even if adopt-info is set
+      ver="$(git describe --tags --dirty --always 2>/dev/null || date +'%Y%m%d').edge"
       craftctl set version="$ver"
-      # Create compat symlinks because dpkg alternatives aren't run in snaps
+
+      # Debian alternatives don't run in snaps: create IM6 compat symlinks
       for tool in convert mogrify identify composite compare; do
         if [ -x "$CRAFT_PRIME/usr/bin/${tool}-im6.q16" ] && [ ! -e "$CRAFT_PRIME/usr/bin/$tool" ]; then
           ln -s "${tool}-im6.q16" "$CRAFT_PRIME/usr/bin/$tool"
         fi
       done
-      sed -i 's|/usr/lib/|${SNAP}/usr/lib/|g' "$CRAFT_PRIME/etc/ImageMagick-6/delegates.xml" || true
+
+      # Make delegates.xml use in-snap libs (robust across distros)
+      f="$CRAFT_PRIME/etc/ImageMagick-6/delegates.xml"
+      [ -f "$f" ] && sed -i 's|/usr/lib/|${SNAP}/usr/lib/|g' "$f"
+
   launcher:
     plugin: nil
     source: .
     override-build: |
-      install -Dm755 snap/local/env-lapack.sh "$CRAFT_PART_INSTALL/bin/env-lapack.sh"
+      install -Dm755 snap/local/env-imagemagick.sh "$CRAFT_PART_INSTALL/bin/env-imagemagick.sh"
+      install -Dm755 snap/local/env-lapack.sh      "$CRAFT_PART_INSTALL/bin/env-lapack.sh"
     stage:
+      - bin/env-imagemagick.sh
       - bin/env-lapack.sh
     build-environment:
       - LDFLAGS: -Wl,--as-needed -lzstd
