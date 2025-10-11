@@ -11,10 +11,13 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-third_party_sources = files('backward.h',
-'whereami.cc',
+third_party_sources = files('whereami.cc',
 'whereami.h',
 'zonedetect.cc',
 'zonedetect.h')
+
+if get_option('extended_stacktrace').enabled()
+  third_party_sources += files('backward.h')
+endif
 
 project_sources += third_party_sources
