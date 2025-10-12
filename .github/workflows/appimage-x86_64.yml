@@ -76,6 +76,7 @@ jobs:
           setup-options: >
             --prefix=/usr
             --datadir=share
+            -Dextended_stacktrace=disabled
           options: --verbose
           meson-version: 1.3.2
 

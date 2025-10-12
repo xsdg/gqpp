@@ -47,6 +47,7 @@ jobs:
               -Dexecinfo=disabled \
               -Dexiv2=disabled \
               -Dexr=disabled \
+              -Dextended_stacktrace=disabled \
               -Dfits=disabled \
               -Dgps-map=disabled \
               -Dheif=disabled \
