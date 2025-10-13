@@ -41,73 +41,6 @@
 #include "ui-misc.h"
 #include "ui-utildlg.h"
 
-namespace
-{
-
-struct HtmlBrowser {
-	operator bool() const { return (binary && *binary) || (command && *command); }
-	gchar *command_result() const;
-
-	const gchar *binary;  /**< the binary to look for in the path */
-	const gchar *command; /**< has 3 capabilities:
-	                       *     nullptr  exec binary with html file path as command line
-	                       *     string   exec string and use results for command line
-	                       *     !string  use text following ! as command line, replacing optional %s with html file path */
-};
-
-constexpr std::array<HtmlBrowser, 10> html_browsers{{
-	/* Our specific script */
-	{GQ_APPNAME_LC "_html_browser", nullptr},
-	/* Redhat has a nifty htmlview script to start the user's preferred browser */
-	{"htmlview",                    nullptr},
-	/* Debian has even better approach with alternatives */
-	{"sensible-browser",            nullptr},
-	/* GNOME 2 */
-	{"gconftool-2",                 "gconftool-2 -g /desktop/gnome/url-handlers/http/command"},
-	/* KDE */
-	{"kfmclient",                   "!kfmclient exec \"%s\""},
-	/* use fallbacks */
-	{"firefox",                     nullptr},
-	{"mozilla",                     nullptr},
-	{"konqueror",                   nullptr},
-	{"netscape",                    nullptr},
-	{"opera",                       "!opera --remote 'openURL(%s,new-page)'"},
-}};
-
-gchar *HtmlBrowser::command_result() const
-{
-	gchar *result = nullptr;
-	FILE *f;
-	gchar buf[2048];
-	gint l;
-
-	if (!binary || binary[0] == '\0') return nullptr;
-	if (!file_in_path(binary)) return nullptr;
-
-	if (!command || command[0] == '\0') return g_strdup(binary);
-	if (command[0] == '!') return g_strdup(command + 1);
-
-	f = popen(command, "r");
-	if (!f) return nullptr;
-
-	while ((l = fread(buf, sizeof(gchar), sizeof(buf), f)) > 0)
-		{
-		if (!result)
-			{
-			gint n = 0;
-
-			while (n < l && buf[n] != '\n' && buf[n] != '\r') n++;
-			if (n > 0) result = g_strndup(buf, n);
-			}
-		}
-
-	pclose(f);
-
-	return result;
-}
-
-} // namespace
-
 GtkWidget *window_new(const gchar *role, const gchar *icon, const gchar *icon_file, const gchar *subtitle)
 {
 	g_autofree gchar *title = nullptr;
@@ -177,63 +110,16 @@ gboolean window_maximized(GtkWidget *window)
  *-----------------------------------------------------------------------------
  */
 
-static int help_browser_command(const gchar *command, const gchar *path)
-{
-	g_autofree gchar *result = nullptr;
-	gchar *begin;
-	gchar *end;
-	int retval = -1;
-
-	if (!command || !path) return retval;
-
-	DEBUG_1("Help command pre \"%s\", \"%s\"", command, path);
-
-	g_autofree gchar *buf = g_strdup(command);
-	begin = strstr(buf, "%s");
-	if (begin)
-		{
-		*begin = '\0';
-		end = begin + 2;
-		begin = buf;
-
-		result = g_strdup_printf("%s%s%s &", begin, path, end);
-		}
-	else
-		{
-		result = g_strdup_printf("%s \"%s\" &", command, path);
-		}
-
-	DEBUG_1("Help command post [%s]", result);
-
-	retval = runcmd(result);
-	DEBUG_1("Help command exit code: %d", retval);
-
-	return retval;
-}
-
 static void help_browser_run(const gchar *path)
 {
-	const auto try_browser = [path](const HtmlBrowser &html_browser)
-	{
-		if (!html_browser) return false;
+	g_autoptr(GError) error = nullptr;
 
-		DEBUG_1("Trying browser: name=%s command=%s", html_browser.binary, html_browser.command);
+	g_app_info_launch_default_for_uri(path, nullptr, &error);
 
-		g_autofree gchar *result = html_browser.command_result();
-		DEBUG_1("Result: %s", result ? result : "(null)");
-		if (!result) return false;
-
-		return help_browser_command(result, path) == 0;
-	};
-
-	if (try_browser({options->helpers.html_browser.command_name, options->helpers.html_browser.command_line})) return;
-
-	for (const auto &html_browser : html_browsers)
+	if (error)
 		{
-		if (try_browser(html_browser)) return;
+		log_printf("Error opening %s in the default browser\n", error->message);
 		}
-
-	log_printf("Unable to detect an installed browser.\n");
 }
 
 /*
