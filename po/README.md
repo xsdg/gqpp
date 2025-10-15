@@ -31,3 +31,34 @@ The program `poedit` is one of the programs suitable for making translations.
 ## Other files
 
 The script `gen_translations_stats.sh` generates statistics about translations.
+
+# Creating a GitHub Pull Request
+
+This guide explains how to make a pull request - you should change the text where necessary to suit the translation you are making.
+
+Go to [https://github.com](https://github.com) and click on Sign Up to create a new account.
+
+Go to the Geeqie GitHub page:
+   [https://github.com/BestImageViewer/geeqie](https://github.com/BestImageViewer/geeqie)
+
+Towards the top right corner, click the **Fork** button. This will create your own copy of the project under your GitHub account.
+
+Open a terminal on your computer and clone your fork locally:
+
+```bash
+cd <a work area>
+git clone https://github.com/<your-github-username>/geeqie.git
+cd geeqie
+git checkout -b new-translation-branch
+git add .
+```
+
+Edit the .po file, as described above.
+
+When complete, commit the changes locally:
+
+```
+git commit -m "New language translation"
+```
+
+To create the Pull Request, go to your fork on GitHub and click on the Compare & pull request button.
