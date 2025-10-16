@@ -32,7 +32,7 @@ The program `poedit` is one of the programs suitable for making translations.
 
 The script `gen_translations_stats.sh` generates statistics about translations.
 
-# Creating a GitHub Pull Request
+## Creating a GitHub Pull Request
 
 This guide explains how to make a pull request - you should change the text where necessary to suit the translation you are making.
 
@@ -57,8 +57,8 @@ Edit the .po file, as described above.
 
 When complete, commit the changes locally:
 
-```
+`
 git commit -m "New language translation"
-```
+`
 
 To create the Pull Request, go to your fork on GitHub and click on the Compare & pull request button.
