@@ -901,24 +901,38 @@ static void layout_menu_open_with_cb(GtkAction *, gpointer data)
 
 	if (layout_selection_list(lw))
 		{
-		open_with_data = g_new(OpenWithData, 1);
+		if (g_getenv("SNAP"))
+			{
+			/** FIXME The app chooser cannot be used within a sandbox as it does
+			 * not see system .desktop files. The correct way is to use XDG DESKTOP PORTAL,
+			 * but this method is far simpler.
+			 * The video player .desktop is used, rather than creating a new one with
+			 * the same function.
+			 * The .desktop calls xdg-open which works as required when called externally.
+			 */
+			file_util_start_editor_from_filelist("org.geeqie.video-player.desktop", layout_selection_list(lw), nullptr, nullptr);
+			}
+		else
+			{
+			open_with_data = g_new(OpenWithData, 1);
 
-		fd = static_cast<FileData *>(g_list_first(layout_selection_list(lw))->data);
+			fd = static_cast<FileData *>(g_list_first(layout_selection_list(lw))->data);
 
-		open_with_data->g_file_list = g_list_append(nullptr, g_file_new_for_path(fd->path));
+			open_with_data->g_file_list = g_list_append(nullptr, g_file_new_for_path(fd->path));
 
-		open_with_data->app_chooser_dialog = gtk_app_chooser_dialog_new(nullptr, GTK_DIALOG_MODAL, G_FILE(g_list_first(open_with_data->g_file_list)->data));
+			open_with_data->app_chooser_dialog = gtk_app_chooser_dialog_new(nullptr, GTK_DIALOG_MODAL, G_FILE(g_list_first(open_with_data->g_file_list)->data));
 
-		widget = gtk_app_chooser_dialog_get_widget(GTK_APP_CHOOSER_DIALOG(open_with_data->app_chooser_dialog));
+			widget = gtk_app_chooser_dialog_get_widget(GTK_APP_CHOOSER_DIALOG(open_with_data->app_chooser_dialog));
 
-		open_with_data->application = gtk_app_chooser_get_app_info(GTK_APP_CHOOSER(open_with_data->app_chooser_dialog));
+			open_with_data->application = gtk_app_chooser_get_app_info(GTK_APP_CHOOSER(open_with_data->app_chooser_dialog));
 
-		g_signal_connect(G_OBJECT(widget), "application-selected", G_CALLBACK(open_with_application_selected_cb), open_with_data);
-		g_signal_connect(G_OBJECT(widget), "application-activated", G_CALLBACK(open_with_application_activated_cb), open_with_data);
-		g_signal_connect(G_OBJECT(open_with_data->app_chooser_dialog), "response", G_CALLBACK(open_with_response_cb), open_with_data);
-		g_signal_connect(G_OBJECT(open_with_data->app_chooser_dialog), "close", G_CALLBACK(open_with_close), open_with_data);
+			g_signal_connect(G_OBJECT(widget), "application-selected", G_CALLBACK(open_with_application_selected_cb), open_with_data);
+			g_signal_connect(G_OBJECT(widget), "application-activated", G_CALLBACK(open_with_application_activated_cb), open_with_data);
+			g_signal_connect(G_OBJECT(open_with_data->app_chooser_dialog), "response", G_CALLBACK(open_with_response_cb), open_with_data);
+			g_signal_connect(G_OBJECT(open_with_data->app_chooser_dialog), "close", G_CALLBACK(open_with_close), open_with_data);
 
-		gtk_widget_show(open_with_data->app_chooser_dialog);
+			gtk_widget_show(open_with_data->app_chooser_dialog);
+			}
 		}
 }
 
