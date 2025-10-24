@@ -23,9 +23,60 @@ apps:
     command-chain:
       - bin/env-imagemagick.sh
       - bin/env-lapack.sh
+      - bin/auto-backend.sh
     command: usr/bin/geeqie
     extensions: [ gnome ]
     environment:
+      GIO_USE_NETWORK_MONITOR: netlink
+      GIO_USE_PROXY_RESOLVER: libproxy
+      LD_LIBRARY_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/blas:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/lapack:$LD_LIBRARY_PATH"
+      MAGICK_CONFIGURE_PATH: "$SNAP/etc/ImageMagick-6:$SNAP/usr/share/ImageMagick-6:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/config-Q16:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/config-Q16"
+      MAGICK_CODER_MODULE_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/modules-Q16/coders:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/modules-Q16/coders"
+      MAGICK_HOME: "$SNAP/usr"
+      PATH: "$SNAP/usr/bin:$SNAP/bin:$PATH"
+    plugs:
+      - home
+      - removable-media
+      - gsettings
+      - wayland
+      - x11
+      - opengl
+      - network
+
+  wayland:
+    command-chain:
+      - bin/env-imagemagick.sh
+      - bin/env-lapack.sh
+      - bin/force-wayland.sh
+    command: usr/bin/geeqie
+    extensions: [ gnome ]
+    environment:
+      GIO_USE_NETWORK_MONITOR: netlink
+      GIO_USE_PROXY_RESOLVER: libproxy
+      LD_LIBRARY_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/blas:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/lapack:$LD_LIBRARY_PATH"
+      MAGICK_CONFIGURE_PATH: "$SNAP/etc/ImageMagick-6:$SNAP/usr/share/ImageMagick-6:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/config-Q16:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/config-Q16"
+      MAGICK_CODER_MODULE_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/modules-Q16/coders:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/modules-Q16/coders"
+      MAGICK_HOME: "$SNAP/usr"
+      PATH: "$SNAP/usr/bin:$SNAP/bin:$PATH"
+    plugs:
+      - home
+      - removable-media
+      - gsettings
+      - wayland
+      - x11
+      - opengl
+      - network
+
+  x11:
+    command-chain:
+      - bin/env-imagemagick.sh
+      - bin/env-lapack.sh
+      - bin/force-x11.sh
+    command: usr/bin/geeqie
+    extensions: [ gnome ]
+    environment:
+      GIO_USE_NETWORK_MONITOR: netlink
+      GIO_USE_PROXY_RESOLVER: libproxy
       LD_LIBRARY_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/blas:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/lapack:$LD_LIBRARY_PATH"
       MAGICK_CONFIGURE_PATH: "$SNAP/etc/ImageMagick-6:$SNAP/usr/share/ImageMagick-6:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/config-Q16:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/config-Q16"
       MAGICK_CODER_MODULE_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/modules-Q16/coders:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/modules-Q16/coders"
@@ -53,27 +104,87 @@ parts:
     meson-parameters:
       - --prefix=/usr
       - --wrap-mode=default
-      - -Dgps-map=disabled
+      - -Ddoxygen=disabled
       - -Dextended_stacktrace=disabled
+      - -Dgit=disabled
+      - -Dhelp_pdf=disabled
+      - -Dpandoc=disabled
       - -Dunit_tests=disabled
+      - -Dyelp-build=disabled
     parse-info:
       - usr/share/metainfo/org.geeqie.Geeqie.appdata.xml
-
-    # --- RUNTIME (stage) packages ---
+    build-environment:
+      - LDFLAGS: -Wl,--as-needed -lzstd
+      - MESON_PACKAGE_CACHE_DIR: $CRAFT_PART_BUILD/meson-packagecache
+    build-packages:
+      - appstream
+      - build-essential
+      - curl
+      - gettext
+      - libarchive-dev
+      - libcfitsio-dev
+      - libchamplain-0.12-dev
+      - libchamplain-gtk-0.12-dev
+      - libclutter-1.0-dev
+      - libclutter-gtk-1.0-dev
+      - libcogl-dev
+      - libdjvulibre-dev
+      - libdw-dev
+      - libffmpegthumbnailer-dev
+      - libfftw3-dev
+      - libgexiv2-dev
+      - libglib2.0-dev
+      - libgspell-1-dev
+      - libgtk-3-dev
+      - libheif-dev
+      - libimath-dev
+      - libjpeg-turbo8-dev
+      - libjxl-dev
+      - liblcms2-dev
+      - liblua5.3-dev
+      - libomp-dev
+      - libopenexr-dev
+      - libpango1.0-dev
+      - libpng-dev
+      - libpoppler-glib-dev
+      - libraw-dev
+      - librsvg2-dev
+      - libtiff-dev
+      - libunwind-dev
+      - libwebp-dev
+      - libzstd-dev
+      - meson
+      - ninja-build
+      - pkg-config
     stage-packages:
-      # Core image/codecs Geeqie actually uses
+      - ca-certificates      # root CAs for HTTPS
+      - glib-networking      # TLS backend for GIO/libsoup
+      - libchamplain-0.12-0
+      - libchamplain-gtk-0.12-0
+      - libclutter-1.0-0
+      - libclutter-gtk-1.0-0
+      - libcogl20
+      - libdjvulibre21
       - libexif12
       - libexiv2-27
+      - libffmpegthumbnailer4v5
+      - libfftw3-double3
       - libgexiv2-2
+      - libgfortran5
+      - libgspell-1-2
+      - libheif1
+      - libimath-3-1-29
       - libjpeg-turbo8
+      - liblcms2-2
+      - liblua5.3-0
+      - libopenexr-3-1-30
       - libpng16-16
+      - libpoppler-glib8
+      - libproxy1v5           # env/system proxy support
+      - libraw23
+      - libsoup-3.0-0
       - libtiff6
       - libwebp7
-      - libheif1
-      - libraw23
-      - liblcms2-2
-      - libfftw3-double3
-      - libpoppler-glib8
       - shared-mime-info
 
       # ImageMagick (tools + configs) for scripts
@@ -84,7 +195,7 @@ parts:
       - libblas3
       - liblapack3
 
-      # ---- OPTIONAL “extras” used by helpers ----
+      # OPTIONAL “extras” used by helpers
       - bc
       - exiftool
       - exiftran
@@ -117,48 +228,6 @@ parts:
     override-build: |
       install -Dm755 snap/local/env-imagemagick.sh "$CRAFT_PART_INSTALL/bin/env-imagemagick.sh"
       install -Dm755 snap/local/env-lapack.sh      "$CRAFT_PART_INSTALL/bin/env-lapack.sh"
-    stage:
-      - bin/env-imagemagick.sh
-      - bin/env-lapack.sh
-    build-environment:
-      - LDFLAGS: -Wl,--as-needed -lzstd
-      - MESON_PACKAGE_CACHE_DIR: $CRAFT_PART_BUILD/meson-packagecache
-    build-packages:
-      - appstream
-      - build-essential
-      - curl
-      - gettext
-      - libarchive-dev
-      - libcfitsio-dev
-      - libchamplain-0.12-dev
-      - libdjvulibre-dev
-      - libdw-dev
-      - libffmpegthumbnailer-dev
-      - libfftw3-dev
-      - libgexiv2-dev
-      - libglib2.0-dev
-      - libgspell-1-dev
-      - libgtk-3-dev
-      - libheif-dev
-      - libimath-dev
-      - libjpeg-turbo8-dev
-      - libjxl-dev
-      - liblcms2-dev
-      - liblua5.3-dev
-      - libomp-dev
-      - libopenexr-dev
-      - libpango1.0-dev
-      - libpng-dev
-      - libpoppler-glib-dev
-      - libraw-dev
-      - librsvg2-dev
-      - libtiff-dev
-      - libunwind-dev
-      - libwebp-dev
-      - libzstd-dev
-      - meson
-      - ninja-build
-      - pandoc
-      - pkg-config
-      - xsltproc
-      - yelp-tools
+      install -Dm755 snap/local/auto-backend.sh    "$CRAFT_PART_INSTALL/bin/auto-backend.sh"
+      install -Dm755 snap/local/force-wayland.sh   "$CRAFT_PART_INSTALL/bin/force-wayland.sh"
+      install -Dm755 snap/local/force-x11.sh       "$CRAFT_PART_INSTALL/bin/force-x11.sh"
