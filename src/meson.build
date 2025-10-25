@@ -354,14 +354,6 @@ if conf_data.get('HAVE_LCMS', 0) == 1
     project_sources += gnome.compile_resources('icc', 'icc.gresource.xml')
 endif
 
-# Required for snaps
-net_deps = [
-  dependency('glib-2.0'),
-  dependency('gobject-2.0'),
-  dependency('gio-2.0'),
-  dependency('libsoup-3.0'),
-]
-
 geeqie_exe = executable('geeqie', project_sources,
 dependencies : [
 gtk_dep,
@@ -389,7 +381,6 @@ libraw_dep,
 libunwind_dep,
 libwebp_dep,
 lua_dep,
-net_deps,
 poppler_glib_dep,
 thread_dep,
 tiff_dep

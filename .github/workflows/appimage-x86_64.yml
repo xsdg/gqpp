@@ -3,10 +3,10 @@ run-name: ${{ github.actor }} is running Geeqie x86_64 AppImage build
 on: [push]
 jobs:
   Build-AppImage:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     container:
-      image: ubuntu:rolling
+      image: ubuntu:24.04
 
     steps:
       - name: Install dependencies
@@ -37,7 +37,7 @@ jobs:
           apt install -y libgtk-3-dev
           apt install -y libheif-dev
           apt install -y libimath-dev
-          apt install -y libjxl-dev
+          #~ apt install -y libjxl-dev
           apt install -y liblua5.3-dev
           apt install -y libomp-dev
           apt install -y libopenexr-dev
@@ -51,6 +51,9 @@ jobs:
           apt install -y wget
           apt install -y xsltproc
           apt install -y yelp-tools
+          DEBIAN_FRONTEND=noninteractive apt-get install -y \
+            python3 python3-pip python3-venv \
+            ninja-build meson  # ← avoid pip ninja; use distro ninja
 
       - name: Checkout
         uses: actions/checkout@v4
