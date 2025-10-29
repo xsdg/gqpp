@@ -10,7 +10,6 @@ description: |
 grade: devel
 confinement: strict
 
-# Needed to access 'universe' packages on noble (core24)
 package-repositories:
   - type: apt
     url: http://archive.ubuntu.com/ubuntu/
@@ -19,77 +18,57 @@ package-repositories:
     key-id: 790BC7277767219C42C86F933B4FE6ACC0B21F32
 
 apps:
-  geeqie:
+  geeqie:  # auto-detect (Wayland if available, else X11)
     command-chain:
-      - bin/env-imagemagick.sh
-      - bin/env-lapack.sh
+      - bin/ensure-gdkpixbuf-cache.sh
+      - bin/fix-platform-order.sh
       - bin/auto-backend.sh
+      - bin/env-imagemagick.sh
     command: usr/bin/geeqie
     extensions: [ gnome ]
     environment:
       GIO_USE_NETWORK_MONITOR: netlink
       GIO_USE_PROXY_RESOLVER: libproxy
-      LD_LIBRARY_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/blas:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/lapack:$LD_LIBRARY_PATH"
       MAGICK_CONFIGURE_PATH: "$SNAP/etc/ImageMagick-6:$SNAP/usr/share/ImageMagick-6:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/config-Q16:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/config-Q16"
       MAGICK_CODER_MODULE_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/modules-Q16/coders:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/modules-Q16/coders"
       MAGICK_HOME: "$SNAP/usr"
       PATH: "$SNAP/usr/bin:$SNAP/bin:$PATH"
-    plugs:
-      - home
-      - removable-media
-      - gsettings
-      - wayland
-      - x11
-      - opengl
-      - network
+      GDK_PIXBUF_MODULE_FILE: "$SNAP_USER_COMMON/.cache/gdk-pixbuf-loaders.cache"
+    plugs: [ home, removable-media, gsettings, wayland, x11, opengl, network ]
 
   wayland:
     command-chain:
-      - bin/env-imagemagick.sh
-      - bin/env-lapack.sh
+      - bin/ensure-gdkpixbuf-cache.sh
+      - bin/fix-platform-order.sh
       - bin/force-wayland.sh
+      - bin/env-imagemagick.sh
     command: usr/bin/geeqie
     extensions: [ gnome ]
     environment:
       GIO_USE_NETWORK_MONITOR: netlink
       GIO_USE_PROXY_RESOLVER: libproxy
-      LD_LIBRARY_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/blas:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/lapack:$LD_LIBRARY_PATH"
       MAGICK_CONFIGURE_PATH: "$SNAP/etc/ImageMagick-6:$SNAP/usr/share/ImageMagick-6:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/config-Q16:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/config-Q16"
       MAGICK_CODER_MODULE_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/modules-Q16/coders:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/modules-Q16/coders"
       MAGICK_HOME: "$SNAP/usr"
       PATH: "$SNAP/usr/bin:$SNAP/bin:$PATH"
-    plugs:
-      - home
-      - removable-media
-      - gsettings
-      - wayland
-      - x11
-      - opengl
-      - network
+    plugs: [ home, removable-media, gsettings, wayland, x11, opengl, network ]
 
   x11:
     command-chain:
-      - bin/env-imagemagick.sh
-      - bin/env-lapack.sh
+      - bin/ensure-gdkpixbuf-cache.sh
+      - bin/fix-platform-order.sh
       - bin/force-x11.sh
+      - bin/env-imagemagick.sh
     command: usr/bin/geeqie
     extensions: [ gnome ]
     environment:
       GIO_USE_NETWORK_MONITOR: netlink
       GIO_USE_PROXY_RESOLVER: libproxy
-      LD_LIBRARY_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/blas:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/lapack:$LD_LIBRARY_PATH"
       MAGICK_CONFIGURE_PATH: "$SNAP/etc/ImageMagick-6:$SNAP/usr/share/ImageMagick-6:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/config-Q16:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/config-Q16"
       MAGICK_CODER_MODULE_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6/modules-Q16/coders:$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/ImageMagick-6.9.12/modules-Q16/coders"
       MAGICK_HOME: "$SNAP/usr"
       PATH: "$SNAP/usr/bin:$SNAP/bin:$PATH"
-    plugs:
-      - home
-      - removable-media
-      - gsettings
-      - wayland
-      - x11
-      - opengl
-      - network
+    plugs: [ home, removable-media, gsettings, wayland, x11, opengl, network ]
 
 slots:
   geeqie-dbus:
@@ -139,7 +118,7 @@ parts:
       - libheif-dev
       - libimath-dev
       - libjpeg-turbo8-dev
-      - libjxl-dev
+      # - libjxl-dev            # removed: not available on noble by default
       - liblcms2-dev
       - liblua5.3-dev
       - libomp-dev
@@ -148,7 +127,6 @@ parts:
       - libpng-dev
       - libpoppler-glib-dev
       - libraw-dev
-      - librsvg2-dev
       - libtiff-dev
       - libunwind-dev
       - libwebp-dev
@@ -157,8 +135,13 @@ parts:
       - ninja-build
       - pkg-config
     stage-packages:
-      - ca-certificates      # root CAs for HTTPS
-      - glib-networking      # TLS backend for GIO/libsoup
+      - ca-certificates
+      - glib-networking
+      - libsoup-3.0-0
+      - libproxy1v5
+      - libproxy1-plugin-gsettings
+      - libproxy1-plugin-networkmanager   # optional, but nice to have
+
       - libchamplain-0.12-0
       - libchamplain-gtk-0.12-0
       - libclutter-1.0-0
@@ -180,9 +163,7 @@ parts:
       - libopenexr-3-1-30
       - libpng16-16
       - libpoppler-glib8
-      - libproxy1v5           # env/system proxy support
       - libraw23
-      - libsoup-3.0-0
       - libtiff6
       - libwebp7
       - shared-mime-info
@@ -191,17 +172,23 @@ parts:
       - imagemagick-6.q16
       - imagemagick-6-common
 
-      # LAPACK/BLAS only because command chain sets LD_LIBRARY_PATH
+      # LAPACK/BLAS (needed by your env chain)
       - libblas3
       - liblapack3
 
-      # OPTIONAL “extras” used by helpers
+      # Helpers
       - bc
       - exiftool
       - exiftran
       - gphoto2
       - zenity
       - yad
+
+      # SVG support (pixbuf loader comes from librsvg2-common)
+      - librsvg2-common
+      - librsvg2-2
+      # Needed to run gdk-pixbuf-query-loaders at launch
+      - libgdk-pixbuf2.0-bin
 
     override-prime: |
       set -eux
@@ -211,23 +198,41 @@ parts:
       ver="$(git describe --tags --dirty --always 2>/dev/null || date +'%Y%m%d').edge"
       craftctl set version="$ver"
 
-      # Debian alternatives don't run in snaps: create IM6 compat symlinks
+      # Compat symlinks for IM6 tools
       for tool in convert mogrify identify composite compare; do
         if [ -x "$CRAFT_PRIME/usr/bin/${tool}-im6.q16" ] && [ ! -e "$CRAFT_PRIME/usr/bin/$tool" ]; then
           ln -s "${tool}-im6.q16" "$CRAFT_PRIME/usr/bin/$tool"
         fi
       done
 
-      # Make delegates.xml use in-snap libs (robust across distros)
+      # Ensure delegates.xml uses in-snap libs
       f="$CRAFT_PRIME/etc/ImageMagick-6/delegates.xml"
       [ -f "$f" ] && sed -i 's|/usr/lib/|${SNAP}/usr/lib/|g' "$f"
+
+      # Make BLAS/LAPACK visible at /usr/lib/$arch by creating symlinks
+      arch_dir="$CRAFT_PRIME/usr/lib/$(dpkg-architecture -qDEB_HOST_MULTIARCH)"
+
+      # Link everything in these subdirs into the arch dir
+      for sub in blas lapack; do
+        d="$arch_dir/$sub"
+        [ -d "$d" ] || continue
+        for f in "$d"/lib*.so*; do
+          [ -e "$f" ] || continue
+          base="$(basename "$f")"
+          dest="$arch_dir/$base"
+          # Remove any existing file/symlink at the destination, then link
+          rm -f "$dest"
+          ln -s "$sub/$base" "$dest"
+        done
+      done
 
   launcher:
     plugin: nil
     source: .
     override-build: |
+      install -Dm755 snap/local/ensure-gdkpixbuf-cache.sh "$CRAFT_PART_INSTALL/bin/ensure-gdkpixbuf-cache.sh"
+      install -Dm755 snap/local/fix-platform-order.sh "$CRAFT_PART_INSTALL/bin/fix-platform-order.sh"
       install -Dm755 snap/local/env-imagemagick.sh "$CRAFT_PART_INSTALL/bin/env-imagemagick.sh"
-      install -Dm755 snap/local/env-lapack.sh      "$CRAFT_PART_INSTALL/bin/env-lapack.sh"
       install -Dm755 snap/local/auto-backend.sh    "$CRAFT_PART_INSTALL/bin/auto-backend.sh"
       install -Dm755 snap/local/force-wayland.sh   "$CRAFT_PART_INSTALL/bin/force-wayland.sh"
       install -Dm755 snap/local/force-x11.sh       "$CRAFT_PART_INSTALL/bin/force-x11.sh"
