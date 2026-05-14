@@ -67,9 +67,16 @@ gint file_cache_entry_compare_fd(const FileCacheEntry *fe, const FileData *fd)
 	return (fe->fd == fd) ? 0 : 1;
 }
 
-void file_cache_remove_entry(FileCacheData *fc, GList *link)
+gboolean file_cache_remove_entry(FileCacheData *fc, GList *link)
 {
 	auto *fe = static_cast<FileCacheEntry *>(link->data);
+
+	// Avoid evicting a FileCacheEntry that implicitly triggered this removal attempt.
+	if (fe->checking_if_changed)
+		{
+		DEBUG_1("deferring cache remove: fc=%p %s", (void *)fc, fe->fd->path);
+		return FALSE;
+		}
 
 	DEBUG_1("cache remove: fc=%p %s", (void *)fc, fe->fd->path);
 
@@ -78,6 +85,8 @@ void file_cache_remove_entry(FileCacheData *fc, GList *link)
 	fc->release(fe->fd);
 	file_data_unref(fe->fd);
 	g_free(fe);
+
+	return TRUE;
 }
 
 void file_cache_notify_cb(FileData *fd, NotifyType type, gpointer data)
@@ -104,6 +113,9 @@ void file_cache_shrink_to_max_size(FileCacheData *fc)
 	while (fc->size > fc->max_size && work)
 		{
 		GList *prev = work->prev;
+		// This may fail to remove the specified entry if this resize was implicitly
+		// triggered during a file_cache_get call.  Any file_cache_put after the
+		// file_cache_get will re-trigger the shrink and correct the cache size, if needed.
 		file_cache_remove_entry(fc, work);
 		work = prev;
 		}

@@ -41,6 +41,18 @@ class FileCacheTest : public t::Test
 	{
 		g_clear_pointer(&fd, g_free);
 		g_clear_pointer(&fd2, g_free);
+
+		// We have to clean this up by hand since the notify funcs are stored in a global.
+		for (const auto notify_func_pair : unregister_fd_funcs_at_teardown)
+			{
+			file_data_unregister_notify_func(notify_func_pair.first, notify_func_pair.second);
+			}
+	}
+
+	void register_notify_func_with_cleanup(FileData::NotifyFunc func, gpointer data, NotifyPriority priority)
+	{
+		unregister_fd_funcs_at_teardown.emplace_back(func, data);
+		file_data_register_notify_func(func, data, priority);
 	}
 
 	static void cache_release(FileData *fd)
@@ -51,6 +63,7 @@ class FileCacheTest : public t::Test
 	FileData *fd = nullptr;
 	FileData *fd2 = nullptr;
 	FileDataContext context;
+	std::vector<std::pair<FileData::NotifyFunc, gpointer>> unregister_fd_funcs_at_teardown;
 };
 
 
@@ -114,8 +127,45 @@ TEST_F(FileCacheTest, ReentrantCacheGet)
 	FileCacheData *fc = file_cache_new(&FileCacheTest::cache_release, /*max_size=*/5);
 
 	CacheAndFds cache_and_fds = {fc, fd, fd2};
-	file_data_register_notify_func(
+	register_notify_func_with_cleanup(
 		reentrant_cache_notify_cb, &cache_and_fds, NOTIFY_PRIORITY_HIGH);
+
+	ASSERT_FALSE(file_cache_get(fc, fd));
+	file_cache_put(fc, fd, /*size=*/1);
+	ASSERT_FALSE(file_cache_get(fc, fd));
+	ASSERT_EQ(1, cache_and_fds.trigger_count);
+}
+
+void notify_put_get_cache_notify_cb(FileData *fd, NotifyType, gpointer data)
+{
+	auto *cache_and_fds = static_cast<CacheAndFds *>(data);
+	std::cerr << "triggering eviction with set_max_size\n";
+	file_cache_set_max_size(cache_and_fds->fc, 0);
+	file_cache_set_max_size(cache_and_fds->fc, 5);
+
+	std::cerr << "triggering file_cache_put(fc, " << static_cast<void *>(fd) << ")\n";
+	file_cache_put(cache_and_fds->fc, fd, /*size=*/1);
+
+	std::cerr << "re-calling file_cache_get(fc, " << static_cast<void *>(fd) << ")\n";
+	file_cache_get(cache_and_fds->fc, fd);
+
+	++cache_and_fds->trigger_count;
+}
+
+/**
+ * Ensures that file_cache_get behaves correctly (and avoids infinite recursion) with reentrant
+ * calls to cache_notify_cb, put, and get through the notification system.
+ **/
+TEST_F(FileCacheTest, ReentrantNotifyPutGet)
+{
+	// TODO[xsdg]: Create a mock FileData that acts like the underlying file exists.
+	fd = FileData::file_data_new_simple("/does/not/exist.jpg", &context);
+	fd2 = FileData::file_data_new_simple("/does/not/exist2.jpg", &context);
+	FileCacheData *fc = file_cache_new(&FileCacheTest::cache_release, /*max_size=*/5);
+
+	CacheAndFds cache_and_fds = {fc, fd, fd2};
+	register_notify_func_with_cleanup(
+		notify_put_get_cache_notify_cb, &cache_and_fds, NOTIFY_PRIORITY_HIGH);
 
 	ASSERT_FALSE(file_cache_get(fc, fd));
 	file_cache_put(fc, fd, /*size=*/1);
