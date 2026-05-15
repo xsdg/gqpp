@@ -158,7 +158,7 @@ jobs:
     - run: sudo apt-get install libgexiv2-dev
     - run: sudo apt-get install libgspell-1-dev
     - run: sudo apt-get install libgtk-3-bin
-    - run: sudo apt-get install libheif-dev
+    - run: sudo apt-get install libheif-dev libheif-plugin-aomdec libheif-plugin-libde265 libheif1
     - run: sudo apt-get install libimath-dev
     - run: sudo apt-get install libdjvulibre-dev
     - run: sudo apt-get install libjxl-dev
@@ -220,7 +220,7 @@ jobs:
     - run: sudo apt-get install libgexiv2-dev
     - run: sudo apt-get install libgspell-1-dev
     - run: sudo apt-get install libgtk-3-bin
-    - run: sudo apt-get install libheif-dev
+    - run: sudo apt-get install libheif-dev libheif-plugin-aomdec libheif-plugin-libde265 libheif1
     - run: sudo apt-get install libimath-dev
     - run: sudo apt-get install libdjvulibre-dev
     - run: sudo apt-get install libjxl-dev
