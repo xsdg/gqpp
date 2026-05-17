@@ -4,12 +4,17 @@
 ## @file
 ## @brief Validates that bash completions include all (and only) appropriate options and actions
 ##
-## $1 Root of project sources or NULL for current
+## $1 Geeqie executable
+## $2 Path to bash completions data file
 ##
 
-if [ -n "$1" ]
-then
-	cd "$1" || exit 1
+geeqie_exe="$1"
+completions_file="$2"
+
+# Make sure input files exist.
+if [ \! \( -x "$geeqie_exe" -a -e "$completions_file" \) ]; then
+    echo "Missing input files"
+    exit 2
 fi
 
 exit_status=0
@@ -20,27 +25,14 @@ exit_status=0
 ## The file_types section is not checked.
 ## Look for options not included and options erroneously included.
 
-if [ ! -d ./build ]
-then
-	meson setup build
-	ninja -C build
-else
-	if [ ! -f ./build/src/geeqie ]
-	then
-		ninja -C build
-	fi
-fi
+actions_cc=$(mktemp "${HOME}/geeqie_bash_completions_test.XXXXXXXXXX")
+actions_help=$(mktemp "${HOME}/geeqie_bash_completions_test.XXXXXXXXXX")
+actions_help_filtered=$(mktemp "${HOME}/geeqie_bash_completions_test.XXXXXXXXXX")
+help_output=$(mktemp "${HOME}/geeqie_bash_completions_test.XXXXXXXXXX")
+options_cc=$(mktemp "${HOME}/geeqie_bash_completions_test.XXXXXXXXXX")
+options_help=$(mktemp "${HOME}/geeqie_bash_completions_test.XXXXXXXXXX")
 
-geeqie_exe=$(realpath ./build/src/geeqie)
-
-actions_cc=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
-actions_help=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
-actions_help_filtered=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
-help_output=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
-options_cc=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
-options_help=$(mktemp "${TMPDIR:-/tmp}/geeqie.XXXXXXXXXX")
-
-options1=$(grep 'options=' ./data/completions/geeqie)
+options1=$(grep 'options=' "$completions_file")
 # length(options=') = 9
 options2=$(echo "$options1" | cut -c 9-)
 # \x27 is "-" character
@@ -48,7 +40,7 @@ options3=$(echo "$options2" | sed "s/\x27//g")
 options4=$(echo "$options3" | sed "s/ /\n/g")
 echo "$options4" | sort > "$options_cc"
 
-action_list1=$(grep 'actions=' ./data/completions/geeqie)
+action_list1=$(grep 'actions=' "$completions_file")
 action_list2=$(echo "$action_list1" | cut --delimiter='=' --fields=2)
 action_list3=$(echo "$action_list2" | sed "s/\x27//g")
 action_list4=$(echo "$action_list3" | sed 's/ /\n/g')

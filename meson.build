@@ -897,6 +897,17 @@ test('Ancillary files', test_ancillary_files_sh, args: [meson.current_source_dir
 
 summary({'Ancillary files' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
 
+# Bash completions test
+if xvfb.found()
+    bash_completions_test_sh = find_program('test-bash-completions.sh', dirs : buildauxdir, required : true)
+    completions_file = join_paths(meson.project_source_root(), 'data', 'completions', 'geeqie')
+    test('Bash completions test', isolate_test_sh, args: [bash_completions_test_sh.full_path(), geeqie_exe.full_path(), completions_file], timeout: 100, suite : 'analysis')
+
+    summary({'Bash completions' : ['Test runs:', true]}, section : 'Testing', bool_yn : true)
+else
+    summary({'Bash completions' : ['Test runs:', false]}, section : 'Testing', bool_yn : true)
+endif
+
 # Unit tests
 if conf_data.get('ENABLE_UNIT_TESTS', 0) == 1
     test('Unit tests', isolate_test_sh, args: [geeqie_exe.full_path(), '--run-unit-tests'], suite : 'unit')
